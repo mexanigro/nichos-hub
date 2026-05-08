@@ -37,13 +37,9 @@ function getDb(): Firestore {
     initializeApp({ credential: cert(serviceAccount) });
   }
 
-  const databaseId = process.env.FIREBASE_DATABASE_ID;
-  if (databaseId) {
-    console.log(`[firebase-admin] using database: ${databaseId}`);
-    _db = getFirestore(databaseId);
-  } else {
-    _db = getFirestore();
-  }
+  const databaseId = process.env.FIREBASE_DATABASE_ID || "default";
+  console.log(`[firebase-admin] using database: "${databaseId}" (env was: "${process.env.FIREBASE_DATABASE_ID || "NOT SET"}")`);
+  _db = getFirestore(databaseId);
   return _db;
 }
 
