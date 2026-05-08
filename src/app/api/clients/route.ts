@@ -104,19 +104,25 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
   }
 
-  const docRef = await db.collection("hub_clients").add({
-    businessName,
-    niche,
-    deployUrl,
-    adminEmail: adminEmail || "",
-    clientId,
-    vercelProjectId: vercelProjectId || "",
-    notes: notes || "",
-    status: "active",
-    activationDate: new Date(),
-  });
+  try {
+    const docRef = await db.collection("hub_clients").add({
+      businessName,
+      niche,
+      deployUrl,
+      adminEmail: adminEmail || "",
+      clientId,
+      vercelProjectId: vercelProjectId || "",
+      notes: notes || "",
+      status: "active",
+      activationDate: new Date(),
+    });
 
-  return NextResponse.json({ id: docRef.id }, { status: 201 });
+    return NextResponse.json({ id: docRef.id }, { status: 201 });
+  } catch (err) {
+    console.error("[api/clients POST] Firestore write failed:", err);
+    const message = err instanceof Error ? err.message : "Unknown error";
+    return NextResponse.json({ error: message }, { status: 500 });
+  }
 }
 
 export async function PUT(request: NextRequest) {
