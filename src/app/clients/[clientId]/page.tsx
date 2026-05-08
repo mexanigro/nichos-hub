@@ -13,6 +13,7 @@ import {
   Shield,
   ShieldOff,
   MessageSquare,
+  Power,
 } from "lucide-react";
 import { HealthDot, ClientStatusBadge } from "@/components/status-badge";
 import { formatDistanceToNow, format } from "date-fns";
@@ -64,6 +65,9 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
   const [data, setData] = useState<ClientDetail | null>(null);
   const [loading, setLoading] = useState(true);
   const [toggling, setToggling] = useState(false);
+  const [killing, setKilling] = useState(false);
+  const [confirmAction, setConfirmAction] = useState<"suspend" | "kill" | null>(null);
+  const [killError, setKillError] = useState("");
 
   useEffect(() => {
     fetch(`/api/clients/${clientId}`)
@@ -83,6 +87,32 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
     });
     setData((d) => d ? { ...d, client: { ...d.client, status: newStatus } } : d);
     setToggling(false);
+    setConfirmAction(null);
+  }
+
+  async function killSwitch(paused: boolean) {
+    if (!data) return;
+    setKilling(true);
+    setKillError("");
+    try {
+      const res = await fetch("/api/clients/kill", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ clientDocId: clientId, paused }),
+      });
+      const result = await res.json();
+      if (res.ok) {
+        setData((d) =>
+          d ? { ...d, client: { ...d.client, status: paused ? "suspended" : "active" } } : d
+        );
+        setConfirmAction(null);
+      } else {
+        setKillError(result.error || "Error al ejecutar kill switch");
+      }
+    } catch {
+      setKillError("Error de conexión");
+    }
+    setKilling(false);
   }
 
   if (loading) {
@@ -127,7 +157,7 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
               <p className="text-xs text-text-muted">{client.niche} &middot; {client.clientId}</p>
             </div>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <ClientStatusBadge status={client.status} />
             <a
               href={client.deployUrl}
@@ -139,12 +169,12 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
               Abrir sitio
             </a>
             <button
-              onClick={toggleStatus}
+              onClick={() => setConfirmAction("suspend")}
               disabled={toggling}
               className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium transition-colors ${
                 client.status === "suspended"
                   ? "bg-success-muted text-success hover:bg-success/20"
-                  : "bg-danger-muted text-danger hover:bg-danger/20"
+                  : "bg-warning-muted text-warning hover:bg-warning/20"
               }`}
             >
               {client.status === "suspended" ? (
@@ -152,6 +182,14 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
               ) : (
                 <><ShieldOff size={12} /> Suspender</>
               )}
+            </button>
+            <button
+              onClick={() => setConfirmAction("kill")}
+              disabled={killing}
+              className="inline-flex items-center gap-1.5 rounded-lg bg-red-600 px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-red-700 disabled:opacity-50"
+            >
+              <Power size={12} />
+              Kill Switch
             </button>
           </div>
         </div>
@@ -318,6 +356,104 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
           </div>
         </dl>
       </div>
+
+      {/* Confirmation Modal */}
+      {confirmAction && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
+          <div className="w-full max-w-sm rounded-xl border border-border bg-bg-card p-6">
+            {confirmAction === "suspend" ? (
+              <>
+                <div className="mb-1 flex items-center gap-2">
+                  <ShieldOff size={16} className="text-warning" />
+                  <h2 className="text-sm font-semibold text-text">
+                    {client.status === "suspended" ? "Activar cliente" : "Suspender cliente"}
+                  </h2>
+                </div>
+                <p className="mb-4 text-xs text-text-muted">
+                  {client.status === "suspended"
+                    ? "Esto marca al cliente como activo en el sistema. No afecta el sitio en Vercel."
+                    : "Esto marca al cliente como suspendido en el sistema. El sitio en Vercel sigue funcionando normalmente. Usá el Kill Switch si querés apagar el sitio."}
+                </p>
+                <div className="flex justify-end gap-2">
+                  <button
+                    onClick={() => setConfirmAction(null)}
+                    className="rounded-lg px-3 py-2 text-xs font-medium text-text-secondary hover:text-text"
+                  >
+                    Cancelar
+                  </button>
+                  <button
+                    onClick={toggleStatus}
+                    disabled={toggling}
+                    className={`rounded-lg px-4 py-2 text-xs font-medium text-white disabled:opacity-50 ${
+                      client.status === "suspended"
+                        ? "bg-green-600 hover:bg-green-700"
+                        : "bg-yellow-600 hover:bg-yellow-700"
+                    }`}
+                  >
+                    {toggling
+                      ? "Procesando..."
+                      : client.status === "suspended"
+                        ? "Sí, activar"
+                        : "Sí, suspender"}
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="mb-1 flex items-center gap-2">
+                  <Power size={16} className="text-danger" />
+                  <h2 className="text-sm font-semibold text-danger">
+                    {client.status === "suspended" ? "Reactivar sitio en Vercel" : "Kill Switch"}
+                  </h2>
+                </div>
+                <p className="mb-2 text-xs text-text-muted">
+                  {client.status === "suspended"
+                    ? "Esto reactiva el proyecto en Vercel. El sitio del cliente volverá a estar online."
+                    : "Esto pausa el proyecto en Vercel. El sitio del cliente dejará de funcionar inmediatamente."}
+                </p>
+                {client.status !== "suspended" && (
+                  <p className="mb-4 rounded-lg bg-danger-muted px-3 py-2 text-xs font-medium text-danger">
+                    Esta acción apaga el sitio del cliente. Los usuarios no podrán acceder.
+                  </p>
+                )}
+                {!client.vercelProjectId && (
+                  <p className="mb-4 rounded-lg bg-warning-muted px-3 py-2 text-xs text-warning">
+                    Este cliente no tiene un Vercel Project ID configurado.
+                  </p>
+                )}
+                {killError && (
+                  <p className="mb-4 rounded-lg bg-danger-muted px-3 py-2 text-xs text-danger">
+                    {killError}
+                  </p>
+                )}
+                <div className="flex justify-end gap-2">
+                  <button
+                    onClick={() => { setConfirmAction(null); setKillError(""); }}
+                    className="rounded-lg px-3 py-2 text-xs font-medium text-text-secondary hover:text-text"
+                  >
+                    Cancelar
+                  </button>
+                  <button
+                    onClick={() => killSwitch(client.status !== "suspended")}
+                    disabled={killing || !client.vercelProjectId}
+                    className={`rounded-lg px-4 py-2 text-xs font-medium text-white disabled:opacity-50 ${
+                      client.status === "suspended"
+                        ? "bg-green-600 hover:bg-green-700"
+                        : "bg-red-600 hover:bg-red-700"
+                    }`}
+                  >
+                    {killing
+                      ? "Ejecutando..."
+                      : client.status === "suspended"
+                        ? "Sí, reactivar en Vercel"
+                        : "Sí, apagar sitio"}
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
