@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
-import { getDb } from "@/lib/firebase-admin";
+import { db } from "@/lib/firebase-admin";
 import { classifyMessage } from "@/lib/classify";
 
 export async function POST(request: NextRequest) {
@@ -14,7 +14,6 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Missing messageId" }, { status: 400 });
   }
 
-  const db = getDb();
   const doc = await db.collection("provider_messages").doc(messageId).get();
   if (!doc.exists) {
     return NextResponse.json({ error: "Message not found" }, { status: 404 });

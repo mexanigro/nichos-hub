@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
-import { getDb } from "@/lib/firebase-admin";
+import { db } from "@/lib/firebase-admin";
 import { pool } from "@/lib/postgres";
 import type { ClientWithHealth, HealthStatus } from "@/types";
 
@@ -10,7 +10,6 @@ export async function GET() {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
-  const db = getDb();
   const clientsSnap = await db.collection("hub_clients").orderBy("businessName").get();
 
   const clients = clientsSnap.docs.map((doc) => {
@@ -105,7 +104,6 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
   }
 
-  const db = getDb();
   try {
     const docRef = await db.collection("hub_clients").add({
       businessName,
@@ -140,7 +138,6 @@ export async function PUT(request: NextRequest) {
     return NextResponse.json({ error: "Missing client id" }, { status: 400 });
   }
 
-  const db = getDb();
   await db.collection("hub_clients").doc(id).update(updates);
   return NextResponse.json({ ok: true });
 }

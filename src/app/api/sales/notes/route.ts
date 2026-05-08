@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
-import { getDb } from "@/lib/firebase-admin";
+import { db } from "@/lib/firebase-admin";
 import { FieldValue } from "firebase-admin/firestore";
 
 export async function POST(request: NextRequest) {
@@ -15,7 +15,6 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Missing fields" }, { status: 400 });
   }
 
-  const db = getDb();
   if (session.user.role === "seller") {
     const doc = await db.collection("hub_prospects").doc(prospectId).get();
     if (doc.data()?.assignedSeller !== session.user.email) {

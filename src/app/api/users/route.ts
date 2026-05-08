@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
-import { getDb } from "@/lib/firebase-admin";
+import { db } from "@/lib/firebase-admin";
 
 export async function GET() {
   const session = await auth();
@@ -8,7 +8,6 @@ export async function GET() {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
-  const db = getDb();
   const snap = await db.collection("hub_users").get();
   const users = snap.docs.map((doc) => ({
     email: doc.id,
@@ -30,7 +29,6 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Missing email" }, { status: 400 });
   }
 
-  const db = getDb();
   await db.collection("hub_users").doc(email.toLowerCase()).set({
     name: name || email.split("@")[0],
     role: "seller",
@@ -51,7 +49,6 @@ export async function DELETE(request: NextRequest) {
     return NextResponse.json({ error: "Missing email" }, { status: 400 });
   }
 
-  const db = getDb();
   await db.collection("hub_users").doc(email.toLowerCase()).delete();
   return NextResponse.json({ ok: true });
 }

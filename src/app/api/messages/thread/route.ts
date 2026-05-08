@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
-import { getDb } from "@/lib/firebase-admin";
+import { db } from "@/lib/firebase-admin";
 
 export async function GET(request: NextRequest) {
   const session = await auth();
@@ -13,7 +13,6 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "Missing parentId" }, { status: 400 });
   }
 
-  const db = getDb();
   const snap = await db
     .collection("provider_messages")
     .where("parentId", "==", parentId)

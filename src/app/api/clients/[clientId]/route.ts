@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
-import { getDb } from "@/lib/firebase-admin";
+import { db } from "@/lib/firebase-admin";
 import { pool } from "@/lib/postgres";
 
 export async function GET(
@@ -13,7 +13,6 @@ export async function GET(
   }
 
   const { clientId } = await params;
-  const db = getDb();
   const doc = await db.collection("hub_clients").doc(clientId).get();
 
   if (!doc.exists) {

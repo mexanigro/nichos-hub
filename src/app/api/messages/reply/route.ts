@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
-import { getDb } from "@/lib/firebase-admin";
+import { db } from "@/lib/firebase-admin";
 
 export async function POST(request: NextRequest) {
   const session = await auth();
@@ -14,7 +14,6 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
   }
 
-  const db = getDb();
   await db.collection("provider_messages").doc(parentId).update({ status: "read" });
 
   const docRef = await db.collection("provider_messages").add({

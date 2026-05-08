@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
-import { getDb } from "@/lib/firebase-admin";
+import { db } from "@/lib/firebase-admin";
 import type { ProspectStatus } from "@/types";
 
 export async function GET() {
@@ -9,7 +9,6 @@ export async function GET() {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const db = getDb();
   let query: FirebaseFirestore.Query = db.collection("hub_prospects").orderBy("createdAt", "desc");
 
   if (session.user.role === "seller") {
@@ -55,7 +54,6 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
   }
 
-  const db = getDb();
   const docRef = await db.collection("hub_prospects").add({
     businessName,
     city,
@@ -84,7 +82,6 @@ export async function PATCH(request: NextRequest) {
     return NextResponse.json({ error: "Missing prospect id" }, { status: 400 });
   }
 
-  const db = getDb();
   if (session.user.role === "seller") {
     const doc = await db.collection("hub_prospects").doc(id).get();
     if (doc.data()?.assignedSeller !== session.user.email) {
