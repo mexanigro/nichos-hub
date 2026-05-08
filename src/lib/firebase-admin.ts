@@ -3,7 +3,7 @@ import { getFirestore, type Firestore } from "firebase-admin/firestore";
 
 let _db: Firestore | null = null;
 
-export function getDb(): Firestore {
+function getDb(): Firestore {
   if (_db) return _db;
 
   if (getApps().length === 0) {
@@ -12,12 +12,9 @@ export function getDb(): Firestore {
     const privateKey = process.env.FIREBASE_PRIVATE_KEY;
 
     if (!projectId || !clientEmail || !privateKey) {
-      console.error("[firebase-admin] Missing env vars:", {
-        hasProjectId: !!projectId,
-        hasClientEmail: !!clientEmail,
-        hasPrivateKey: !!privateKey,
-      });
-      throw new Error("Firebase Admin credentials not configured");
+      throw new Error(
+        `Firebase Admin credentials not configured (projectId=${!!projectId}, clientEmail=${!!clientEmail}, privateKey=${!!privateKey})`,
+      );
     }
 
     console.log(`[firebase-admin] initializing for project: ${projectId}`);
@@ -33,3 +30,14 @@ export function getDb(): Firestore {
   _db = getFirestore();
   return _db;
 }
+
+export const db = new Proxy({} as Firestore, {
+  get(_target, prop) {
+    const firestore = getDb();
+    const value = (firestore as unknown as Record<string | symbol, unknown>)[prop];
+    if (typeof value === "function") {
+      return (value as Function).bind(firestore);
+    }
+    return value;
+  },
+});

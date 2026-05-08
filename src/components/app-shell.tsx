@@ -4,12 +4,13 @@ import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
 import { Sidebar } from "./sidebar";
 import type { ReactNode } from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export function AppShell({ children }: { children: ReactNode }) {
   const { data: session, status } = useSession();
   const pathname = usePathname();
   const router = useRouter();
+  const [timedOut, setTimedOut] = useState(false);
 
   const isLoginPage = pathname === "/login";
 
@@ -19,12 +20,25 @@ export function AppShell({ children }: { children: ReactNode }) {
     }
   }, [status, isLoginPage, router]);
 
-  if (status === "loading") {
+  useEffect(() => {
+    if (status === "loading") {
+      const t = setTimeout(() => setTimedOut(true), 3000);
+      return () => clearTimeout(t);
+    }
+    setTimedOut(false);
+  }, [status]);
+
+  if (status === "loading" && !timedOut) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-bg">
         <div className="h-6 w-6 animate-spin rounded-full border-2 border-border border-t-accent" />
       </div>
     );
+  }
+
+  if (status === "loading" && timedOut && !isLoginPage) {
+    router.push("/login");
+    return null;
   }
 
   if (isLoginPage || !session) {
