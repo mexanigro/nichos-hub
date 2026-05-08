@@ -261,18 +261,18 @@ export default function MessagesPage() {
       </div>
 
       {/* Tabs */}
-      <div className="mb-4 flex gap-1 overflow-x-auto rounded-lg border border-border bg-bg-card p-1">
+      <div className="mb-4 flex gap-1 overflow-x-auto rounded-lg border border-border bg-bg-card p-1 scrollbar-none">
         {tabs.map(({ key, label, icon: Icon }) => (
           <button
             key={key}
             onClick={() => setActiveTab(key)}
-            className={`flex shrink-0 items-center gap-2 rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
+            className={`flex shrink-0 items-center gap-2 rounded-md px-3.5 py-2 text-xs font-medium transition-colors ${
               activeTab === key
                 ? "bg-accent-muted text-accent"
-                : "text-text-secondary hover:text-text"
+                : "text-text-secondary hover:bg-bg-hover hover:text-text"
             }`}
           >
-            <Icon size={13} />
+            <Icon size={14} />
             {label}
             {unreadCounts[key] > 0 && (
               <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-accent px-1 text-[10px] font-bold text-white">

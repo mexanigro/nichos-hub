@@ -108,3 +108,23 @@ export interface UptimeStats {
   totalChecks24h: number;
   totalChecks7d: number;
 }
+
+export type ExpenseCategory =
+  | "hosting"
+  | "software"
+  | "marketing"
+  | "salarios"
+  | "servicios"
+  | "equipamiento"
+  | "otro";
+
+export interface Expense {
+  id: string;
+  date: string;
+  category: ExpenseCategory;
+  description: string;
+  amount: number;
+  paymentMethod?: string;
+  createdBy: string;
+  createdAt: Date;
+}

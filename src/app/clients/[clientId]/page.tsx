@@ -160,26 +160,46 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
       {/* Stats Grid */}
       <div className="mb-6 grid grid-cols-2 gap-3 lg:grid-cols-4">
         <div className="rounded-xl border border-border bg-bg-card p-4">
-          <p className="mb-1 text-[11px] font-medium text-text-muted">Uptime 24h</p>
-          <p className={`text-2xl font-bold ${uptime.last24h >= 99 ? "text-success" : uptime.last24h >= 95 ? "text-warning" : "text-danger"}`}>
+          <div className="mb-2 flex items-center gap-2">
+            <div className={`flex h-8 w-8 items-center justify-center rounded-lg ${uptime.last24h >= 99 ? "bg-success-muted" : uptime.last24h >= 95 ? "bg-warning-muted" : "bg-danger-muted"}`}>
+              <Shield size={16} className={uptime.last24h >= 99 ? "text-success" : uptime.last24h >= 95 ? "text-warning" : "text-danger"} />
+            </div>
+            <p className="text-[11px] font-medium uppercase tracking-wider text-text-muted">Uptime 24h</p>
+          </div>
+          <p className={`text-2xl font-bold tabular-nums ${uptime.last24h >= 99 ? "text-success" : uptime.last24h >= 95 ? "text-warning" : "text-danger"}`}>
             {uptime.last24h}%
           </p>
         </div>
         <div className="rounded-xl border border-border bg-bg-card p-4">
-          <p className="mb-1 text-[11px] font-medium text-text-muted">Uptime 7d</p>
-          <p className={`text-2xl font-bold ${uptime.last7d >= 99 ? "text-success" : uptime.last7d >= 95 ? "text-warning" : "text-danger"}`}>
+          <div className="mb-2 flex items-center gap-2">
+            <div className={`flex h-8 w-8 items-center justify-center rounded-lg ${uptime.last7d >= 99 ? "bg-success-muted" : uptime.last7d >= 95 ? "bg-warning-muted" : "bg-danger-muted"}`}>
+              <Shield size={16} className={uptime.last7d >= 99 ? "text-success" : uptime.last7d >= 95 ? "text-warning" : "text-danger"} />
+            </div>
+            <p className="text-[11px] font-medium uppercase tracking-wider text-text-muted">Uptime 7d</p>
+          </div>
+          <p className={`text-2xl font-bold tabular-nums ${uptime.last7d >= 99 ? "text-success" : uptime.last7d >= 95 ? "text-warning" : "text-danger"}`}>
             {uptime.last7d}%
           </p>
         </div>
         <div className="rounded-xl border border-border bg-bg-card p-4">
-          <p className="mb-1 text-[11px] font-medium text-text-muted">Incidentes activos</p>
-          <p className={`text-2xl font-bold ${activeIncidents.length > 0 ? "text-danger" : "text-text"}`}>
+          <div className="mb-2 flex items-center gap-2">
+            <div className={`flex h-8 w-8 items-center justify-center rounded-lg ${activeIncidents.length > 0 ? "bg-danger-muted" : "bg-success-muted"}`}>
+              <AlertTriangle size={16} className={activeIncidents.length > 0 ? "text-danger" : "text-success"} />
+            </div>
+            <p className="text-[11px] font-medium uppercase tracking-wider text-text-muted">Incidentes</p>
+          </div>
+          <p className={`text-2xl font-bold tabular-nums ${activeIncidents.length > 0 ? "text-danger" : "text-text"}`}>
             {activeIncidents.length}
           </p>
         </div>
         <div className="rounded-xl border border-border bg-bg-card p-4">
-          <p className="mb-1 text-[11px] font-medium text-text-muted">Mensajes</p>
-          <p className="text-2xl font-bold text-text">{messages.length}</p>
+          <div className="mb-2 flex items-center gap-2">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent-muted">
+              <MessageSquare size={16} className="text-accent" />
+            </div>
+            <p className="text-[11px] font-medium uppercase tracking-wider text-text-muted">Mensajes</p>
+          </div>
+          <p className="text-2xl font-bold tabular-nums text-text">{messages.length}</p>
         </div>
       </div>
 

@@ -94,34 +94,42 @@ export default function MonitorPage() {
       {/* Stats */}
       <div className="mb-6 grid grid-cols-2 gap-3 lg:grid-cols-4">
         <div className="rounded-xl border border-border bg-bg-card p-4">
-          <div className="mb-1 flex items-center gap-2">
-            <AlertTriangle size={14} className="text-danger" />
-            <p className="text-[11px] font-medium text-text-muted">Activos</p>
+          <div className="mb-2 flex items-center gap-2">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-danger-muted">
+              <AlertTriangle size={16} className="text-danger" />
+            </div>
+            <p className="text-[11px] font-medium uppercase tracking-wider text-text-muted">Activos</p>
           </div>
-          <p className={`text-2xl font-bold ${data.activeIncidents.length > 0 ? "text-danger" : "text-text"}`}>
+          <p className={`text-2xl font-bold tabular-nums ${data.activeIncidents.length > 0 ? "text-danger" : "text-text"}`}>
             {data.activeIncidents.length}
           </p>
         </div>
         <div className="rounded-xl border border-border bg-bg-card p-4">
-          <div className="mb-1 flex items-center gap-2">
-            <CheckCircle size={14} className="text-success" />
-            <p className="text-[11px] font-medium text-text-muted">Resueltos</p>
+          <div className="mb-2 flex items-center gap-2">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-success-muted">
+              <CheckCircle size={16} className="text-success" />
+            </div>
+            <p className="text-[11px] font-medium uppercase tracking-wider text-text-muted">Resueltos</p>
           </div>
-          <p className="text-2xl font-bold text-success">{data.recentIncidents.length}</p>
+          <p className="text-2xl font-bold tabular-nums text-success">{data.recentIncidents.length}</p>
         </div>
         <div className="rounded-xl border border-border bg-bg-card p-4">
-          <div className="mb-1 flex items-center gap-2">
-            <Activity size={14} className="text-accent" />
-            <p className="text-[11px] font-medium text-text-muted">Clientes</p>
+          <div className="mb-2 flex items-center gap-2">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent-muted">
+              <Activity size={16} className="text-accent" />
+            </div>
+            <p className="text-[11px] font-medium uppercase tracking-wider text-text-muted">Clientes</p>
           </div>
-          <p className="text-2xl font-bold text-text">{data.uptime.length}</p>
+          <p className="text-2xl font-bold tabular-nums text-text">{data.uptime.length}</p>
         </div>
         <div className="rounded-xl border border-border bg-bg-card p-4">
-          <div className="mb-1 flex items-center gap-2">
-            <ShieldCheck size={14} className="text-success" />
-            <p className="text-[11px] font-medium text-text-muted">Uptime promedio</p>
+          <div className="mb-2 flex items-center gap-2">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-success-muted">
+              <ShieldCheck size={16} className="text-success" />
+            </div>
+            <p className="text-[11px] font-medium uppercase tracking-wider text-text-muted">Uptime prom.</p>
           </div>
-          <p className="text-2xl font-bold text-text">
+          <p className="text-2xl font-bold tabular-nums text-text">
             {data.uptime.length > 0
               ? Math.round(data.uptime.reduce((s, u) => s + u.last24h, 0) / data.uptime.length)
               : 100}

@@ -71,3 +71,11 @@ body {
 input, textarea, select {
   font-family: inherit;
 }
+
+/* Sidebar layout offset — raw CSS fallback for Tailwind utility */
+@media (min-width: 1024px) {
+  .sidebar-offset {
+    padding-left: 14rem;
+    padding-top: 0;
+  }
+}

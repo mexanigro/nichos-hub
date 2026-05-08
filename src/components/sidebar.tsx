@@ -8,6 +8,7 @@ import {
   MessageSquare,
   TrendingUp,
   Activity,
+  DollarSign,
   LogOut,
   Menu,
   X,
@@ -18,6 +19,7 @@ const ownerNav = [
   { href: "/clients", label: "Clientes", icon: LayoutDashboard },
   { href: "/messages", label: "Mensajes", icon: MessageSquare },
   { href: "/sales", label: "Ventas", icon: TrendingUp },
+  { href: "/expenses", label: "Gastos", icon: DollarSign },
   { href: "/monitor", label: "Monitor", icon: Activity },
 ];
 
