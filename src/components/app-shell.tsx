@@ -49,7 +49,7 @@ export function AppShell({ children }: { children: ReactNode }) {
     <>
       <Sidebar />
       <main className="sidebar-offset min-h-screen pt-14">
-        <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-10">
           {children}
         </div>
       </main>

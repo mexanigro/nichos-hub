@@ -163,15 +163,15 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
               href={client.deployUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-xs font-medium text-text-secondary transition-colors hover:bg-bg-hover"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-border px-2.5 py-1.5 text-[11px] font-medium text-text-secondary transition-colors hover:bg-bg-hover"
             >
               <Globe size={12} />
-              Abrir sitio
+              <span className="hidden sm:inline">Abrir sitio</span>
             </a>
             <button
               onClick={() => setConfirmAction("suspend")}
               disabled={toggling}
-              className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium transition-colors ${
+              className={`inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[11px] font-medium transition-colors ${
                 client.status === "suspended"
                   ? "bg-success-muted text-success hover:bg-success/20"
                   : "bg-warning-muted text-warning hover:bg-warning/20"
@@ -180,16 +180,16 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
               {client.status === "suspended" ? (
                 <><Shield size={12} /> Activar</>
               ) : (
-                <><ShieldOff size={12} /> Suspender</>
+                <><ShieldOff size={12} /> <span className="hidden sm:inline">Suspender</span></>
               )}
             </button>
             <button
               onClick={() => setConfirmAction("kill")}
               disabled={killing}
-              className="inline-flex items-center gap-1.5 rounded-lg bg-red-600 px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-red-700 disabled:opacity-50"
+              className="inline-flex items-center gap-1.5 rounded-lg bg-red-600 px-2.5 py-1.5 text-[11px] font-medium text-white transition-colors hover:bg-red-700 disabled:opacity-50"
             >
               <Power size={12} />
-              Kill Switch
+              <span className="hidden sm:inline">Kill Switch</span>
             </button>
           </div>
         </div>
