@@ -28,7 +28,7 @@ export function HealthDot({ status }: { status: HealthStatus }) {
 export function ClientStatusBadge({ status }: { status: ClientStatus }) {
   const config = statusLabels[status];
   return (
-    <span className={`inline-flex items-center rounded-md px-2 py-0.5 text-[11px] font-semibold ${config.className}`}>
+    <span className={`inline-flex items-center rounded-md px-2.5 py-1 text-[11px] font-semibold ${config.className}`}>
       {config.label}
     </span>
   );

@@ -183,7 +183,7 @@ export default function SalesPage() {
                   <span className={`h-2 w-2 rounded-full ${bgColor.replace("-muted", "").replace("bg-", "bg-")}`} style={{background: key === "following" ? "#3b82f6" : key === "rejected" ? "#ef4444" : "#22c55e"}} />
                   <span className={`text-xs font-semibold ${color}`}>{label}</span>
                 </div>
-                <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-bg-elevated px-1.5 text-[10px] font-bold text-text-muted">
+                <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-bg-elevated px-2 text-[10px] font-bold text-text-muted">
                   {colProspects.length}
                 </span>
               </div>
@@ -209,7 +209,7 @@ export default function SalesPage() {
                                 <MapPin size={9} />
                                 {prospect.city}
                               </span>
-                              <span className="rounded bg-bg-active px-1 py-0.5 font-medium">
+                              <span className="rounded-md bg-bg-active px-2 py-0.5 font-medium">
                                 {prospect.nicheTarget}
                               </span>
                             </div>
@@ -232,7 +232,7 @@ export default function SalesPage() {
                         </div>
 
                         {prospect.rejectionReason && key === "rejected" && (
-                          <p className="mt-2 rounded bg-danger-muted px-2 py-1 text-[10px] text-danger">
+                          <p className="mt-2 rounded-md bg-danger-muted px-2.5 py-1 text-[10px] text-danger">
                             {prospect.rejectionReason}
                           </p>
                         )}

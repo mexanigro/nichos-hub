@@ -185,7 +185,7 @@ export default function MonitorPage() {
                       {inc.severity}
                     </span>
                     <span className="text-xs font-medium text-text">{inc.client_id}</span>
-                    <span className="rounded bg-bg-active px-1 py-0.5 text-[9px] font-medium text-text-muted">
+                    <span className="rounded bg-bg-active px-2 py-1 text-[9px] font-medium text-text-muted">
                       {inc.check_type}
                     </span>
                     <span className="ml-auto text-[10px] text-text-muted">
@@ -222,7 +222,7 @@ export default function MonitorPage() {
                   <div className="mb-1 flex items-center gap-2">
                     <CheckCircle size={10} className="text-success" />
                     <span className="text-xs font-medium text-text">{inc.client_id}</span>
-                    <span className="rounded bg-bg-active px-1 py-0.5 text-[9px] font-medium text-text-muted">
+                    <span className="rounded bg-bg-active px-2 py-1 text-[9px] font-medium text-text-muted">
                       {inc.check_type}
                     </span>
                     <span className="ml-auto text-[10px] text-text-muted">

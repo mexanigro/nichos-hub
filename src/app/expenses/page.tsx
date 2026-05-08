@@ -355,7 +355,7 @@ export default function ExpensesPage() {
                   </td>
                   <td className="px-4 py-3">
                     <span
-                      className={`inline-block rounded-md px-2 py-0.5 text-[10px] font-semibold ${CATEGORY_COLORS[exp.category] || CATEGORY_COLORS.otro}`}
+                      className={`inline-block rounded-md px-2.5 py-1 text-[10px] font-semibold ${CATEGORY_COLORS[exp.category] || CATEGORY_COLORS.otro}`}
                     >
                       {CATEGORIES.find((c) => c.key === exp.category)?.label ||
                         exp.category}

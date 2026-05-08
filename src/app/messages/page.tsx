@@ -168,7 +168,7 @@ export default function MessagesPage() {
                 <p className="text-[11px] text-text-muted">{selected.clientId}</p>
               </div>
               {selected.category ? (
-                <span className="rounded-md bg-bg-elevated px-2 py-1 text-[10px] font-semibold text-text-secondary">
+                <span className="rounded-md bg-bg-elevated px-2.5 py-1 text-[10px] font-semibold text-text-secondary">
                   {selected.category}
                 </span>
               ) : (
@@ -275,7 +275,7 @@ export default function MessagesPage() {
             <Icon size={14} />
             {label}
             {unreadCounts[key] > 0 && (
-              <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-accent px-1 text-[10px] font-bold text-white">
+              <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-accent px-1.5 text-[10px] font-bold text-white">
                 {unreadCounts[key]}
               </span>
             )}
@@ -307,7 +307,7 @@ export default function MessagesPage() {
                 <div className="mb-0.5 flex items-center gap-2">
                   <span className="text-xs font-semibold text-text">{msg.businessName}</span>
                   {msg.category && (
-                    <span className="rounded bg-bg-elevated px-1.5 py-0.5 text-[10px] font-medium text-text-muted">
+                    <span className="rounded-md bg-bg-elevated px-2 py-0.5 text-[10px] font-medium text-text-muted">
                       {msg.category}
                     </span>
                   )}
