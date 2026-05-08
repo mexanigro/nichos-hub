@@ -191,7 +191,7 @@ export default function MessagesPage() {
           {/* Thread */}
           <div className="max-h-96 space-y-3 overflow-y-auto p-4">
             {/* Original message */}
-            <div className="rounded-lg bg-bg-elevated p-3">
+            <div className="rounded-lg bg-bg-elevated p-4">
               <div className="mb-1 flex items-center justify-between">
                 <span className="text-[10px] font-semibold text-accent">Cliente</span>
                 <span className="text-[10px] text-text-muted">
@@ -208,7 +208,7 @@ export default function MessagesPage() {
             {threadMessages.map((msg) => (
               <div
                 key={msg.id}
-                className={`rounded-lg p-3 ${
+                className={`rounded-lg p-4 ${
                   msg.sender === "provider" ? "ml-6 bg-accent-muted" : "bg-bg-elevated"
                 }`}
               >
@@ -296,7 +296,7 @@ export default function MessagesPage() {
             <button
               key={msg.id}
               onClick={() => openMessage(msg)}
-              className={`flex w-full items-start gap-3 rounded-lg border border-border p-3 text-left transition-colors hover:bg-bg-hover ${
+              className={`flex w-full items-start gap-3 rounded-lg border border-border p-4 text-left transition-colors hover:bg-bg-hover ${
                 msg.status === "new" ? "bg-bg-card" : "bg-transparent"
               }`}
             >

@@ -188,7 +188,7 @@ export default function SalesPage() {
                 </span>
               </div>
 
-              <div className="space-y-2 p-3">
+              <div className="space-y-2 p-4">
                 {colProspects.length === 0 ? (
                   <p className="py-8 text-center text-[11px] text-text-muted">Sin prospectos</p>
                 ) : (
@@ -197,7 +197,7 @@ export default function SalesPage() {
                     return (
                       <div
                         key={prospect.id}
-                        className="rounded-lg border border-border bg-bg-elevated p-3 transition-colors hover:border-border-hover"
+                        className="rounded-lg border border-border bg-bg-elevated p-4 transition-colors hover:border-border-hover"
                       >
                         <div className="flex items-start justify-between">
                           <div className="min-w-0 flex-1">
@@ -279,7 +279,7 @@ export default function SalesPage() {
                             {prospect.notes.length > 0 && (
                               <div className="max-h-32 space-y-1 overflow-y-auto">
                                 {prospect.notes.map((note, i) => (
-                                  <div key={i} className="rounded bg-bg-card p-2">
+                                  <div key={i} className="rounded bg-bg-card p-3">
                                     <p className="text-[11px] text-text-secondary">{note.text}</p>
                                     <p className="mt-0.5 text-[9px] text-text-muted">
                                       {note.author} &middot;{" "}

@@ -179,7 +179,7 @@ export default function MonitorPage() {
           ) : (
             <div className="max-h-96 space-y-2 overflow-y-auto">
               {data.activeIncidents.map((inc) => (
-                <div key={inc.id} className="rounded-lg border border-border bg-bg-elevated p-3">
+                <div key={inc.id} className="rounded-lg border border-border bg-bg-elevated p-4">
                   <div className="mb-1 flex items-center gap-2">
                     <span className={`text-[10px] font-bold uppercase ${inc.severity === "critical" ? "text-danger" : "text-warning"}`}>
                       {inc.severity}
@@ -218,7 +218,7 @@ export default function MonitorPage() {
           ) : (
             <div className="max-h-96 space-y-2 overflow-y-auto">
               {data.recentIncidents.map((inc) => (
-                <div key={inc.id} className="rounded-lg border border-border bg-bg-elevated p-3">
+                <div key={inc.id} className="rounded-lg border border-border bg-bg-elevated p-4">
                   <div className="mb-1 flex items-center gap-2">
                     <CheckCircle size={10} className="text-success" />
                     <span className="text-xs font-medium text-text">{inc.client_id}</span>

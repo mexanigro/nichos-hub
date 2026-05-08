@@ -99,7 +99,7 @@ export function Sidebar() {
           })}
         </nav>
 
-        <div className="border-t border-border p-3">
+        <div className="border-t border-border p-4">
           <div className="mb-2 px-3">
             <p className="truncate text-xs font-medium text-text">{session?.user?.name}</p>
             <p className="truncate text-[11px] text-text-muted">{session?.user?.email}</p>

@@ -269,7 +269,7 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
           ) : (
             <div className="space-y-2 max-h-80 overflow-y-auto">
               {incidents.map((inc) => (
-                <div key={inc.id} className="rounded-lg border border-border bg-bg-elevated p-3">
+                <div key={inc.id} className="rounded-lg border border-border bg-bg-elevated p-4">
                   <div className="mb-1 flex items-center gap-2">
                     {inc.resolved ? (
                       <CheckCircle size={12} className="text-success" />
@@ -309,7 +309,7 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
           ) : (
             <div className="space-y-2 max-h-80 overflow-y-auto">
               {messages.map((msg) => (
-                <div key={msg.id} className="rounded-lg border border-border bg-bg-elevated p-3">
+                <div key={msg.id} className="rounded-lg border border-border bg-bg-elevated p-4">
                   <div className="mb-1 flex items-center justify-between">
                     <span className={`text-[10px] font-semibold ${msg.sender === "client" ? "text-accent" : "text-success"}`}>
                       {msg.sender === "client" ? "Cliente" : "Proveedor"}
