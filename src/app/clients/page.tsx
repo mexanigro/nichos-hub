@@ -134,16 +134,16 @@ export default function ClientsPage() {
         />
       ) : (
         <div className="overflow-x-auto rounded-xl border border-border">
-          <table className="w-full text-left text-sm">
+          <table className="w-full min-w-[600px] text-left text-sm">
             <thead>
               <tr className="border-b border-border bg-bg-card text-[11px] font-semibold uppercase tracking-wider text-text-muted">
-                <th className="px-4 py-3">Estado</th>
-                <th className="px-4 py-3">Negocio</th>
+                <th className="w-12 px-4 py-3">Estado</th>
+                <th className="min-w-[120px] px-4 py-3">Negocio</th>
                 <th className="hidden px-4 py-3 md:table-cell">Nicho</th>
                 <th className="hidden px-4 py-3 lg:table-cell">URL</th>
-                <th className="hidden px-4 py-3 md:table-cell">Activación</th>
-                <th className="hidden px-4 py-3 lg:table-cell">Último incidente</th>
-                <th className="px-4 py-3">Plan</th>
+                <th className="hidden whitespace-nowrap px-4 py-3 md:table-cell">Activación</th>
+                <th className="hidden whitespace-nowrap px-4 py-3 lg:table-cell">Último incidente</th>
+                <th className="w-20 px-4 py-3">Plan</th>
               </tr>
             </thead>
             <tbody>
@@ -153,16 +153,16 @@ export default function ClientsPage() {
                   onClick={() => router.push(`/clients/${client.id}`)}
                   className="cursor-pointer border-b border-border transition-colors last:border-0 hover:bg-bg-hover"
                 >
-                  <td className="px-4 py-3">
+                  <td className="w-12 px-4 py-3">
                     <HealthDot status={client.healthStatus} />
                   </td>
-                  <td className="px-4 py-3">
+                  <td className="min-w-[120px] px-4 py-3">
                     <span className="font-medium text-text">{client.businessName}</span>
                   </td>
                   <td className="hidden px-4 py-3 md:table-cell">
-                    <span className="text-text-secondary">{client.niche}</span>
+                    <span className="whitespace-nowrap text-text-secondary">{client.niche}</span>
                   </td>
-                  <td className="hidden px-4 py-3 lg:table-cell">
+                  <td className="hidden max-w-[200px] truncate px-4 py-3 lg:table-cell">
                     <a
                       href={client.deployUrl}
                       target="_blank"
@@ -174,10 +174,10 @@ export default function ClientsPage() {
                       <ExternalLink size={10} />
                     </a>
                   </td>
-                  <td className="hidden px-4 py-3 text-xs text-text-muted md:table-cell">
+                  <td className="hidden whitespace-nowrap px-4 py-3 text-xs text-text-muted md:table-cell">
                     {formatDistanceToNow(client.activationDate, { addSuffix: true, locale: es })}
                   </td>
-                  <td className="hidden px-4 py-3 lg:table-cell">
+                  <td className="hidden whitespace-nowrap px-4 py-3 lg:table-cell">
                     {client.lastIncident ? (
                       <span className="text-xs text-warning">
                         {client.lastIncident.severity} — {formatDistanceToNow(client.lastIncident.createdAt, { addSuffix: true, locale: es })}
@@ -186,7 +186,7 @@ export default function ClientsPage() {
                       <span className="text-xs text-text-muted">—</span>
                     )}
                   </td>
-                  <td className="px-4 py-3">
+                  <td className="w-20 px-4 py-3">
                     <ClientStatusBadge status={client.status} />
                   </td>
                 </tr>
