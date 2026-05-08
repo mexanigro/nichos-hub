@@ -25,8 +25,6 @@ function getDb(): Firestore {
     }
     cleanKey = cleanKey.replace(/\\n/g, "\n");
 
-    console.log(`[firebase-admin] initializing for project: ${projectId}`);
-
     const serviceAccount: ServiceAccount = {
       projectId,
       clientEmail,
@@ -36,17 +34,10 @@ function getDb(): Firestore {
   }
 
   const databaseId = process.env.FIREBASE_DATABASE_ID;
-  if (databaseId) {
-    console.log(`[firebase-admin] using named database: ${databaseId}`);
-    _db = getFirestore(databaseId);
-  } else {
-    console.log(`[firebase-admin] using (default) database`);
-    _db = getFirestore();
-  }
+  _db = databaseId ? getFirestore(databaseId) : getFirestore();
 
   // Use REST API instead of gRPC — more compatible with Railway/serverless
   _db.settings({ preferRest: true });
-  console.log(`[firebase-admin] preferRest enabled`);
 
   return _db;
 }
