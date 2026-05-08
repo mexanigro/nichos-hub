@@ -275,7 +275,7 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
           <div>
             <dt className="text-text-muted">Deploy URL</dt>
             <dd className="mt-0.5 font-mono text-text">
-              <a href={client.deployUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:text-accent">
+              <a href={client.deployUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 break-all hover:text-accent">
                 {client.deployUrl} <ExternalLink size={10} />
               </a>
             </dd>

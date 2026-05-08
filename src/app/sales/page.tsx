@@ -13,7 +13,6 @@ import {
   Clock,
   ChevronDown,
   ChevronUp,
-  TrendingUp,
 } from "lucide-react";
 import { EmptyState } from "@/components/empty-state";
 import { formatDistanceToNow } from "date-fns";
@@ -33,8 +32,12 @@ export default function SalesPage() {
   const [showForm, setShowForm] = useState(false);
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [noteText, setNoteText] = useState("");
-  const [rejectionReason, setRejectionReason] = useState("");
   const [sellers, setSellers] = useState<string[]>([]);
+  const [rejectTarget, setRejectTarget] = useState<string | null>(null);
+  const [rejectionReason, setRejectionReason] = useState("");
+  const [moving, setMoving] = useState<string | null>(null);
+  const [addingNote, setAddingNote] = useState(false);
+  const [creating, setCreating] = useState(false);
 
   const isOwner = session?.user?.role === "owner";
 
@@ -72,6 +75,7 @@ export default function SalesPage() {
 
   async function handleCreate(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    setCreating(true);
     const form = new FormData(e.currentTarget);
     const body = Object.fromEntries(form);
 
@@ -85,9 +89,11 @@ export default function SalesPage() {
       setShowForm(false);
       fetchProspects();
     }
+    setCreating(false);
   }
 
   async function moveProspect(id: string, newStatus: ProspectStatus, reason?: string) {
+    setMoving(id);
     const body: Record<string, unknown> = { id, status: newStatus };
     if (reason) body.rejectionReason = reason;
 
@@ -103,10 +109,13 @@ export default function SalesPage() {
       )
     );
     setRejectionReason("");
+    setRejectTarget(null);
+    setMoving(null);
   }
 
   async function addNote(prospectId: string) {
     if (!noteText.trim()) return;
+    setAddingNote(true);
 
     await fetch("/api/sales/notes", {
       method: "POST",
@@ -133,6 +142,7 @@ export default function SalesPage() {
       )
     );
     setNoteText("");
+    setAddingNote(false);
   }
 
   if (loading) {
@@ -234,7 +244,8 @@ export default function SalesPage() {
                               {key !== "following" && (
                                 <button
                                   onClick={() => moveProspect(prospect.id, "following")}
-                                  className="flex items-center gap-1 rounded bg-accent-muted px-2 py-1 text-[10px] font-medium text-accent hover:bg-accent/20"
+                                  disabled={moving === prospect.id}
+                                  className="flex items-center gap-1 rounded bg-accent-muted px-2 py-1 text-[10px] font-medium text-accent hover:bg-accent/20 disabled:opacity-50"
                                 >
                                   <ArrowLeft size={10} />
                                   Seguimiento
@@ -243,10 +254,11 @@ export default function SalesPage() {
                               {key !== "rejected" && (
                                 <button
                                   onClick={() => {
-                                    const reason = prompt("Motivo de rechazo:");
-                                    if (reason) moveProspect(prospect.id, "rejected", reason);
+                                    setRejectTarget(prospect.id);
+                                    setRejectionReason("");
                                   }}
-                                  className="flex items-center gap-1 rounded bg-danger-muted px-2 py-1 text-[10px] font-medium text-danger hover:bg-danger/20"
+                                  disabled={moving === prospect.id}
+                                  className="flex items-center gap-1 rounded bg-danger-muted px-2 py-1 text-[10px] font-medium text-danger hover:bg-danger/20 disabled:opacity-50"
                                 >
                                   Rechazar
                                 </button>
@@ -254,7 +266,8 @@ export default function SalesPage() {
                               {key !== "closed" && (
                                 <button
                                   onClick={() => moveProspect(prospect.id, "closed")}
-                                  className="flex items-center gap-1 rounded bg-success-muted px-2 py-1 text-[10px] font-medium text-success hover:bg-success/20"
+                                  disabled={moving === prospect.id}
+                                  className="flex items-center gap-1 rounded bg-success-muted px-2 py-1 text-[10px] font-medium text-success hover:bg-success/20 disabled:opacity-50"
                                 >
                                   Cerrar
                                   <ArrowRight size={10} />
@@ -291,7 +304,8 @@ export default function SalesPage() {
                               />
                               <button
                                 onClick={() => addNote(prospect.id)}
-                                className="rounded bg-accent px-2 py-1 text-white hover:bg-accent-hover"
+                                disabled={addingNote}
+                                className="rounded bg-accent px-2 py-1 text-white hover:bg-accent-hover disabled:opacity-50"
                               >
                                 <Send size={10} />
                               </button>
@@ -307,6 +321,44 @@ export default function SalesPage() {
           );
         })}
       </div>
+
+      {/* Rejection Reason Modal */}
+      {rejectTarget && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
+          <div className="w-full max-w-sm rounded-xl border border-border bg-bg-card p-6">
+            <h2 className="mb-1 text-sm font-semibold text-text">Rechazar prospecto</h2>
+            <p className="mb-4 text-xs text-text-muted">Indicá el motivo del rechazo</p>
+            <textarea
+              value={rejectionReason}
+              onChange={(e) => setRejectionReason(e.target.value)}
+              placeholder="Motivo de rechazo..."
+              rows={3}
+              autoFocus
+              className="w-full resize-none rounded-lg border border-border bg-bg-elevated px-3 py-2 text-sm text-text placeholder:text-text-muted focus:border-accent focus:outline-none"
+            />
+            <div className="mt-4 flex justify-end gap-2">
+              <button
+                onClick={() => { setRejectTarget(null); setRejectionReason(""); }}
+                disabled={moving === rejectTarget}
+                className="rounded-lg px-3 py-2 text-xs font-medium text-text-secondary hover:text-text"
+              >
+                Cancelar
+              </button>
+              <button
+                onClick={() => {
+                  if (rejectionReason.trim()) {
+                    moveProspect(rejectTarget, "rejected", rejectionReason.trim());
+                  }
+                }}
+                disabled={!rejectionReason.trim() || moving === rejectTarget}
+                className="rounded-lg bg-danger px-4 py-2 text-xs font-medium text-white hover:bg-danger/80 disabled:opacity-50"
+              >
+                {moving === rejectTarget ? "Rechazando..." : "Rechazar"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Create Prospect Modal */}
       {showForm && (
@@ -354,11 +406,11 @@ export default function SalesPage() {
                 )}
               </div>
               <div className="flex justify-end gap-2 pt-2">
-                <button type="button" onClick={() => setShowForm(false)} className="rounded-lg px-3 py-2 text-xs font-medium text-text-secondary hover:text-text">
+                <button type="button" onClick={() => setShowForm(false)} disabled={creating} className="rounded-lg px-3 py-2 text-xs font-medium text-text-secondary hover:text-text">
                   Cancelar
                 </button>
-                <button type="submit" className="rounded-lg bg-accent px-4 py-2 text-xs font-medium text-white hover:bg-accent-hover">
-                  Crear prospecto
+                <button type="submit" disabled={creating} className="rounded-lg bg-accent px-4 py-2 text-xs font-medium text-white hover:bg-accent-hover disabled:opacity-50">
+                  {creating ? "Creando..." : "Crear prospecto"}
                 </button>
               </div>
             </form>

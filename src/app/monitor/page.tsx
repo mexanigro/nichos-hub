@@ -244,9 +244,9 @@ export default function MonitorPage() {
               <tr className="border-b border-border bg-bg-card text-[11px] font-semibold uppercase tracking-wider text-text-muted">
                 <th className="px-4 py-3">Cliente</th>
                 <th className="px-4 py-3">Uptime 24h</th>
-                <th className="px-4 py-3">Uptime 7d</th>
-                <th className="px-4 py-3">Checks 24h</th>
-                <th className="px-4 py-3">Checks 7d</th>
+                <th className="hidden px-4 py-3 sm:table-cell">Uptime 7d</th>
+                <th className="hidden px-4 py-3 md:table-cell">Checks 24h</th>
+                <th className="hidden px-4 py-3 md:table-cell">Checks 7d</th>
               </tr>
             </thead>
             <tbody>
@@ -258,13 +258,13 @@ export default function MonitorPage() {
                       {u.last24h}%
                     </span>
                   </td>
-                  <td className="px-4 py-3">
+                  <td className="hidden px-4 py-3 sm:table-cell">
                     <span className={`text-xs font-bold ${u.last7d >= 99 ? "text-success" : u.last7d >= 95 ? "text-warning" : "text-danger"}`}>
                       {u.last7d}%
                     </span>
                   </td>
-                  <td className="px-4 py-3 text-xs text-text-muted">{u.totalChecks24h}</td>
-                  <td className="px-4 py-3 text-xs text-text-muted">{u.totalChecks7d}</td>
+                  <td className="hidden px-4 py-3 text-xs text-text-muted md:table-cell">{u.totalChecks24h}</td>
+                  <td className="hidden px-4 py-3 text-xs text-text-muted md:table-cell">{u.totalChecks7d}</td>
                 </tr>
               ))}
             </tbody>

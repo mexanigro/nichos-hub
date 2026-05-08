@@ -261,12 +261,12 @@ export default function MessagesPage() {
       </div>
 
       {/* Tabs */}
-      <div className="mb-4 flex gap-1 rounded-lg border border-border bg-bg-card p-1">
+      <div className="mb-4 flex gap-1 overflow-x-auto rounded-lg border border-border bg-bg-card p-1">
         {tabs.map(({ key, label, icon: Icon }) => (
           <button
             key={key}
             onClick={() => setActiveTab(key)}
-            className={`flex items-center gap-2 rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
+            className={`flex shrink-0 items-center gap-2 rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
               activeTab === key
                 ? "bg-accent-muted text-accent"
                 : "text-text-secondary hover:text-text"
