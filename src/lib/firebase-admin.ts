@@ -17,12 +17,22 @@ function getDb(): Firestore {
       );
     }
 
+    // Sanitize private key: strip wrapping quotes, normalize newlines, trim whitespace
+    let cleanKey = privateKey.trim();
+    if ((cleanKey.startsWith('"') && cleanKey.endsWith('"')) ||
+        (cleanKey.startsWith("'") && cleanKey.endsWith("'"))) {
+      cleanKey = cleanKey.slice(1, -1);
+    }
+    cleanKey = cleanKey.replace(/\\n/g, "\n");
+
     console.log(`[firebase-admin] initializing for project: ${projectId}`);
+    console.log(`[firebase-admin] key starts with: ${cleanKey.substring(0, 30)}...`);
+    console.log(`[firebase-admin] key ends with: ...${cleanKey.substring(cleanKey.length - 30)}`);
 
     const serviceAccount: ServiceAccount = {
       projectId,
       clientEmail,
-      privateKey: privateKey.replace(/\\n/g, "\n"),
+      privateKey: cleanKey,
     };
     initializeApp({ credential: cert(serviceAccount) });
   }
