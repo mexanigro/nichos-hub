@@ -24,6 +24,8 @@ export default function ClientsPage() {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [showForm, setShowForm] = useState(false);
+  const [creating, setCreating] = useState(false);
+  const [formError, setFormError] = useState("");
 
   useEffect(() => {
     if (session?.user?.role !== "owner") {
@@ -50,18 +52,32 @@ export default function ClientsPage() {
 
   async function handleCreate(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const form = new FormData(e.currentTarget);
-    const body = Object.fromEntries(form);
+    setFormError("");
+    setCreating(true);
 
-    const res = await fetch("/api/clients", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
-    });
+    try {
+      const form = new FormData(e.currentTarget);
+      const body = Object.fromEntries(form);
 
-    if (res.ok) {
-      setShowForm(false);
-      fetchClients();
+      const res = await fetch("/api/clients", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+
+      if (res.ok) {
+        setShowForm(false);
+        setFormError("");
+        fetchClients();
+      } else {
+        const data = await res.json().catch(() => ({}));
+        setFormError(data.error || `Error ${res.status}: no se pudo crear el cliente`);
+      }
+    } catch (err) {
+      setFormError("Error de conexión. Verificá tu red e intentá de nuevo.");
+      console.error("[clients] create failed:", err);
+    } finally {
+      setCreating(false);
     }
   }
 
@@ -230,12 +246,15 @@ export default function ClientsPage() {
                 <label className="mb-1 block text-[11px] font-medium text-text-muted">Notas</label>
                 <textarea name="notes" rows={2} className="w-full rounded-lg border border-border bg-bg-elevated px-3 py-2 text-sm text-text focus:border-accent focus:outline-none resize-none" />
               </div>
+              {formError && (
+                <p className="rounded-lg bg-red-500/10 px-3 py-2 text-xs text-red-400">{formError}</p>
+              )}
               <div className="flex justify-end gap-2 pt-2">
-                <button type="button" onClick={() => setShowForm(false)} className="rounded-lg px-3 py-2 text-xs font-medium text-text-secondary hover:text-text">
+                <button type="button" onClick={() => { setShowForm(false); setFormError(""); }} className="rounded-lg px-3 py-2 text-xs font-medium text-text-secondary hover:text-text" disabled={creating}>
                   Cancelar
                 </button>
-                <button type="submit" className="rounded-lg bg-accent px-4 py-2 text-xs font-medium text-white hover:bg-accent-hover">
-                  Crear cliente
+                <button type="submit" disabled={creating} className="rounded-lg bg-accent px-4 py-2 text-xs font-medium text-white hover:bg-accent-hover disabled:opacity-50">
+                  {creating ? "Creando..." : "Crear cliente"}
                 </button>
               </div>
             </form>
