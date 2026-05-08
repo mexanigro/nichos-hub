@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
-import { db } from "@/lib/firebase-admin";
+import { getDb } from "@/lib/firebase-admin";
 
 export async function GET(request: NextRequest) {
   const session = await auth();
@@ -10,6 +10,7 @@ export async function GET(request: NextRequest) {
 
   const category = request.nextUrl.searchParams.get("category");
 
+  const db = getDb();
   let query = db.collection("provider_messages")
     .where("sender", "==", "client")
     .orderBy("createdAt", "desc")
@@ -45,6 +46,7 @@ export async function PATCH(request: NextRequest) {
     return NextResponse.json({ error: "Missing message id" }, { status: 400 });
   }
 
+  const db = getDb();
   await db.collection("provider_messages").doc(id).update({ status });
   return NextResponse.json({ ok: true });
 }
