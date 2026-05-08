@@ -1,26 +1,28 @@
 import { initializeApp, getApps, cert, type ServiceAccount } from "firebase-admin/app";
-import { getFirestore, type Firestore } from "firebase-admin/firestore";
+import { getFirestore } from "firebase-admin/firestore";
 
-let _db: Firestore | null = null;
+if (getApps().length === 0) {
+  const projectId = process.env.FIREBASE_PROJECT_ID;
+  const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
+  const privateKey = process.env.FIREBASE_PRIVATE_KEY;
 
-function getDb(): Firestore {
-  if (_db) return _db;
-
-  if (getApps().length === 0) {
-    const serviceAccount: ServiceAccount = {
-      projectId: process.env.FIREBASE_PROJECT_ID!,
-      clientEmail: process.env.FIREBASE_CLIENT_EMAIL!,
-      privateKey: process.env.FIREBASE_PRIVATE_KEY!.replace(/\\n/g, "\n"),
-    };
-    initializeApp({ credential: cert(serviceAccount) });
+  if (!projectId || !clientEmail || !privateKey) {
+    console.error("[firebase-admin] Missing env vars:", {
+      hasProjectId: !!projectId,
+      hasClientEmail: !!clientEmail,
+      hasPrivateKey: !!privateKey,
+    });
+    throw new Error("Firebase Admin credentials not configured");
   }
 
-  _db = getFirestore(getApps()[0]);
-  return _db;
+  console.log(`[firebase-admin] initializing for project: ${projectId}`);
+
+  const serviceAccount: ServiceAccount = {
+    projectId,
+    clientEmail,
+    privateKey: privateKey.replace(/\\n/g, "\n"),
+  };
+  initializeApp({ credential: cert(serviceAccount) });
 }
 
-export const db = new Proxy({} as Firestore, {
-  get(_target, prop) {
-    return (getDb() as unknown as Record<string | symbol, unknown>)[prop];
-  },
-});
+export const db = getFirestore();
