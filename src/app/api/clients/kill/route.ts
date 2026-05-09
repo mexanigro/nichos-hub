@@ -46,15 +46,14 @@ export async function POST(req: NextRequest) {
 
   // Call Vercel API to pause/unpause the project
   const teamId = process.env.VERCEL_TEAM_ID;
-  const url = `https://api.vercel.com/v9/projects/${vercelProjectId}${teamId ? `?teamId=${teamId}` : ""}`;
+  const action = paused ? "pause" : "unpause";
+  const url = `https://api.vercel.com/v1/projects/${vercelProjectId}/${action}${teamId ? `?teamId=${teamId}` : ""}`;
 
   const vercelRes = await fetch(url, {
-    method: "PATCH",
+    method: "POST",
     headers: {
       Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
     },
-    body: JSON.stringify({ paused }),
   });
 
   if (!vercelRes.ok) {
