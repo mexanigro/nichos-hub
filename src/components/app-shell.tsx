@@ -13,12 +13,13 @@ export function AppShell({ children }: { children: ReactNode }) {
   const [timedOut, setTimedOut] = useState(false);
 
   const isLoginPage = pathname === "/login";
+  const isPublicPage = pathname.startsWith("/pago");
 
   useEffect(() => {
-    if (status === "unauthenticated" && !isLoginPage) {
+    if (status === "unauthenticated" && !isLoginPage && !isPublicPage) {
       router.push("/login");
     }
-  }, [status, isLoginPage, router]);
+  }, [status, isLoginPage, isPublicPage, router]);
 
   useEffect(() => {
     if (status === "loading") {
@@ -28,7 +29,7 @@ export function AppShell({ children }: { children: ReactNode }) {
     setTimedOut(false);
   }, [status]);
 
-  if (status === "loading" && !timedOut) {
+  if (status === "loading" && !timedOut && !isPublicPage) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-bg">
         <div className="h-6 w-6 animate-spin rounded-full border-2 border-border border-t-accent" />
@@ -36,12 +37,12 @@ export function AppShell({ children }: { children: ReactNode }) {
     );
   }
 
-  if (status === "loading" && timedOut && !isLoginPage) {
+  if (status === "loading" && timedOut && !isLoginPage && !isPublicPage) {
     router.push("/login");
     return null;
   }
 
-  if (isLoginPage || !session) {
+  if (isLoginPage || isPublicPage || !session) {
     return <>{children}</>;
   }
 
