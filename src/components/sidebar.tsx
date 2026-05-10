@@ -9,6 +9,7 @@ import {
   TrendingUp,
   Activity,
   DollarSign,
+  CreditCard,
   LogOut,
   Menu,
   X,
@@ -20,6 +21,7 @@ const ownerNav = [
   { href: "/messages", label: "Mensajes", icon: MessageSquare },
   { href: "/sales", label: "Ventas", icon: TrendingUp },
   { href: "/expenses", label: "Gastos", icon: DollarSign },
+  { href: "/payments", label: "Pagos", icon: CreditCard },
   { href: "/monitor", label: "Monitor", icon: Activity },
 ];
 

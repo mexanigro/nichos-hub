@@ -14,11 +14,12 @@ import {
   ShieldOff,
   MessageSquare,
   Power,
+  CreditCard,
 } from "lucide-react";
 import { HealthDot, ClientStatusBadge } from "@/components/status-badge";
 import { formatDistanceToNow, format } from "date-fns";
 import { es } from "date-fns/locale";
-import type { ClientWithHealth } from "@/types";
+import type { ClientWithHealth, Payment, PaymentStatus } from "@/types";
 import {
   LineChart,
   Line,
@@ -68,12 +69,27 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
   const [killing, setKilling] = useState(false);
   const [confirmAction, setConfirmAction] = useState<"suspend" | "kill" | null>(null);
   const [killError, setKillError] = useState("");
+  const [payments, setPayments] = useState<Payment[]>([]);
 
   useEffect(() => {
     fetch(`/api/clients/${clientId}`)
       .then((r) => r.json())
       .then(setData)
       .finally(() => setLoading(false));
+    fetch(`/api/payments/${clientId}`)
+      .then((r) => r.json())
+      .then((data: Payment[]) =>
+        setPayments(
+          data.map((p) => ({
+            ...p,
+            billingDate: new Date(p.billingDate),
+            nextBillingDate: new Date(p.nextBillingDate),
+            createdAt: new Date(p.createdAt),
+            updatedAt: new Date(p.updatedAt),
+          })),
+        ),
+      )
+      .catch(() => {});
   }, [clientId]);
 
   async function toggleStatus() {
@@ -355,6 +371,78 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
             <dd className="mt-0.5 text-text">{client.notes || "—"}</dd>
           </div>
         </dl>
+      </div>
+
+      {/* Payments */}
+      <div className="mt-6 rounded-xl border border-border bg-bg-card p-4">
+        <div className="mb-3 flex items-center justify-between">
+          <h3 className="flex items-center gap-2 text-xs font-semibold text-text-muted">
+            <CreditCard size={12} />
+            Pagos
+          </h3>
+          <Link
+            href={`/payments`}
+            className="text-[10px] font-medium text-accent hover:underline"
+          >
+            Ver todos
+          </Link>
+        </div>
+        {payments.length === 0 ? (
+          <p className="py-4 text-center text-xs text-text-muted">Sin registros de pago</p>
+        ) : (
+          <>
+            <div className="mb-3 flex items-center gap-3 text-xs">
+              <span className={`inline-flex items-center rounded-md px-2.5 py-1 text-[11px] font-semibold ${
+                payments[0].status === "paid" ? "text-success bg-success-muted" :
+                payments[0].status === "pending" ? "text-warning bg-warning-muted" :
+                payments[0].status === "failed" ? "text-danger bg-danger-muted" :
+                "text-text-muted bg-bg-elevated"
+              }`}>
+                {payments[0].status === "paid" ? "Pagado" :
+                 payments[0].status === "pending" ? "Pendiente" :
+                 payments[0].status === "failed" ? "Fallido" : "Cancelado"}
+              </span>
+              <span className="text-text-muted">
+                Próximo cobro: {format(payments[0].nextBillingDate, "dd MMM yyyy", { locale: es })}
+              </span>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-xs">
+                <thead>
+                  <tr className="border-b border-border text-[10px] font-semibold uppercase tracking-wider text-text-muted">
+                    <th className="px-3 py-2">Fecha</th>
+                    <th className="px-3 py-2">Monto</th>
+                    <th className="px-3 py-2">Estado</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {payments.slice(0, 5).map((p) => (
+                    <tr key={p.id} className="border-b border-border last:border-0">
+                      <td className="whitespace-nowrap px-3 py-2 text-text-muted">
+                        {format(p.billingDate, "dd MMM yyyy", { locale: es })}
+                      </td>
+                      <td className="px-3 py-2 font-medium tabular-nums text-text">
+                        ₪{p.amount.toLocaleString()}
+                      </td>
+                      <td className="px-3 py-2">
+                        <span className={`inline-flex items-center rounded-md px-2 py-0.5 text-[10px] font-semibold ${
+                          p.status === "paid" ? "text-success bg-success-muted" :
+                          p.status === "pending" ? "text-warning bg-warning-muted" :
+                          p.status === "failed" ? "text-danger bg-danger-muted" :
+                          "text-text-muted bg-bg-elevated"
+                        }`}>
+                          {p.status === "paid" ? "Pagado" :
+                           p.status === "pending" ? "Pendiente" :
+                           p.status === "failed" ? "Fallido" : "Cancelado"}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </>
+        )}
       </div>
 
       {/* Confirmation Modal */}

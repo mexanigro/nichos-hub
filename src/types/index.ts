@@ -109,6 +109,28 @@ export interface UptimeStats {
   totalChecks7d: number;
 }
 
+export type PaymentStatus = "paid" | "pending" | "failed" | "cancelled";
+
+export interface Payment {
+  id: string;
+  clientId: string;
+  clientDocId: string;
+  businessName: string;
+  amount: number;
+  currency: "ILS";
+  status: PaymentStatus;
+  billingDate: Date;
+  nextBillingDate: Date;
+  cardLastFour?: string;
+  failureReason?: string;
+  cardcomTransactionId?: string;
+  contractAccepted: boolean;
+  contractAcceptedAt?: Date;
+  contractVersion?: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
 export type ExpenseCategory =
   | "hosting"
   | "software"
