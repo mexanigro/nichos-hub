@@ -8,6 +8,8 @@ import {
   DollarSign,
   AlertTriangle,
   Clock,
+  Zap,
+  Repeat,
 } from "lucide-react";
 import { EmptyState } from "@/components/empty-state";
 import type { Payment, PaymentStatus } from "@/types";
@@ -70,6 +72,12 @@ export default function PaymentsPage() {
   const totalCobrado = thisMonthPayments
     .filter((p) => p.status === "paid")
     .reduce((s, p) => s + p.amount, 0);
+  const totalSetups = payments
+    .filter((p) => p.type === "initial" && p.status === "paid")
+    .reduce((s, p) => s + p.amount, 0);
+  const totalMensualidades = payments
+    .filter((p) => p.type === "recurring" && p.status === "paid")
+    .reduce((s, p) => s + p.amount, 0);
   const pendientes = payments.filter((p) => p.status === "pending").length;
   const fallidos = payments.filter((p) => p.status === "failed").length;
 
@@ -95,7 +103,7 @@ export default function PaymentsPage() {
       </div>
 
       {/* Stats */}
-      <div className="mb-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
+      <div className="mb-6 grid grid-cols-2 gap-3 lg:grid-cols-5">
         <div className="rounded-xl border border-border bg-bg-card p-4">
           <div className="mb-2 flex items-center gap-2">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-success-muted">
@@ -107,6 +115,32 @@ export default function PaymentsPage() {
           </div>
           <p className="text-2xl font-bold tabular-nums text-success">
             ₪{totalCobrado.toLocaleString()}
+          </p>
+        </div>
+        <div className="rounded-xl border border-border bg-bg-card p-4">
+          <div className="mb-2 flex items-center gap-2">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent-muted">
+              <Zap size={16} className="text-accent" />
+            </div>
+            <p className="text-[11px] font-medium uppercase tracking-wider text-text-muted">
+              Total setups
+            </p>
+          </div>
+          <p className="text-2xl font-bold tabular-nums text-accent">
+            ₪{totalSetups.toLocaleString()}
+          </p>
+        </div>
+        <div className="rounded-xl border border-border bg-bg-card p-4">
+          <div className="mb-2 flex items-center gap-2">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-bg-elevated">
+              <Repeat size={16} className="text-text-secondary" />
+            </div>
+            <p className="text-[11px] font-medium uppercase tracking-wider text-text-muted">
+              Total mensualidades
+            </p>
+          </div>
+          <p className="text-2xl font-bold tabular-nums text-text">
+            ₪{totalMensualidades.toLocaleString()}
           </p>
         </div>
         <div className="rounded-xl border border-border bg-bg-card p-4">
@@ -173,6 +207,7 @@ export default function PaymentsPage() {
                 <th className="min-w-[140px] px-4 py-3">Negocio</th>
                 <th className="px-4 py-3">Client ID</th>
                 <th className="px-4 py-3">Monto</th>
+                <th className="px-4 py-3">Tipo</th>
                 <th className="px-4 py-3">Estado</th>
                 <th className="hidden px-4 py-3 md:table-cell">Último cobro</th>
                 <th className="hidden px-4 py-3 md:table-cell">Próximo cobro</th>
@@ -198,6 +233,13 @@ export default function PaymentsPage() {
                   <td className="px-4 py-3">
                     <span className="font-medium tabular-nums text-text">
                       ₪{p.amount.toLocaleString()}
+                    </span>
+                  </td>
+                  <td className="px-4 py-3">
+                    <span className={`inline-flex items-center rounded-md px-2.5 py-1 text-[11px] font-semibold ${
+                      p.type === "initial" ? "text-accent bg-accent-muted" : "text-text-secondary bg-bg-elevated"
+                    }`}>
+                      {p.type === "initial" ? "Setup" : "Mensual"}
                     </span>
                   </td>
                   <td className="px-4 py-3">

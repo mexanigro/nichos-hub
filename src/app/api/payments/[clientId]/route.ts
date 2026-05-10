@@ -28,6 +28,7 @@ export async function GET(
       businessName: d.businessName,
       amount: d.amount,
       currency: d.currency,
+      type: d.type ?? "recurring",
       status: d.status,
       billingDate: d.billingDate?.toDate(),
       nextBillingDate: d.nextBillingDate?.toDate(),

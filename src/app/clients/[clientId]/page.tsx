@@ -391,27 +391,35 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
           <p className="py-4 text-center text-xs text-text-muted">Sin registros de pago</p>
         ) : (
           <>
-            <div className="mb-3 flex items-center gap-3 text-xs">
-              <span className={`inline-flex items-center rounded-md px-2.5 py-1 text-[11px] font-semibold ${
-                payments[0].status === "paid" ? "text-success bg-success-muted" :
-                payments[0].status === "pending" ? "text-warning bg-warning-muted" :
-                payments[0].status === "failed" ? "text-danger bg-danger-muted" :
-                "text-text-muted bg-bg-elevated"
-              }`}>
-                {payments[0].status === "paid" ? "Pagado" :
-                 payments[0].status === "pending" ? "Pendiente" :
-                 payments[0].status === "failed" ? "Fallido" : "Cancelado"}
-              </span>
-              <span className="text-text-muted">
-                Próximo cobro: {format(payments[0].nextBillingDate, "dd MMM yyyy", { locale: es })}
-              </span>
-            </div>
+            {(() => {
+              const initial = payments.find((p) => p.type === "initial");
+              const paidRecurring = payments.filter((p) => p.type === "recurring" && p.status === "paid").length;
+              return (
+                <div className="mb-3 flex flex-wrap items-center gap-3 text-xs">
+                  <span className={`inline-flex items-center rounded-md px-2.5 py-1 text-[11px] font-semibold ${
+                    initial?.status === "paid" ? "text-success bg-success-muted" :
+                    initial?.status === "pending" ? "text-warning bg-warning-muted" :
+                    initial?.status === "failed" ? "text-danger bg-danger-muted" :
+                    "text-text-muted bg-bg-elevated"
+                  }`}>
+                    Setup: {initial ? (initial.status === "paid" ? "Cobrado" : initial.status === "pending" ? "Pendiente" : "Fallido") : "Sin registro"}
+                  </span>
+                  <span className="text-text-secondary">
+                    {paidRecurring} mensualidad{paidRecurring !== 1 ? "es" : ""} pagada{paidRecurring !== 1 ? "s" : ""}
+                  </span>
+                  <span className="text-text-muted">
+                    Próximo cobro: {format(payments[0].nextBillingDate, "dd MMM yyyy", { locale: es })}
+                  </span>
+                </div>
+              );
+            })()}
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs">
                 <thead>
                   <tr className="border-b border-border text-[10px] font-semibold uppercase tracking-wider text-text-muted">
                     <th className="px-3 py-2">Fecha</th>
                     <th className="px-3 py-2">Monto</th>
+                    <th className="px-3 py-2">Tipo</th>
                     <th className="px-3 py-2">Estado</th>
                   </tr>
                 </thead>
@@ -423,6 +431,13 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
                       </td>
                       <td className="px-3 py-2 font-medium tabular-nums text-text">
                         ₪{p.amount.toLocaleString()}
+                      </td>
+                      <td className="px-3 py-2">
+                        <span className={`inline-flex items-center rounded-md px-2 py-0.5 text-[10px] font-semibold ${
+                          p.type === "initial" ? "text-accent bg-accent-muted" : "text-text-secondary bg-bg-elevated"
+                        }`}>
+                          {p.type === "initial" ? "Setup" : "Mensual"}
+                        </span>
                       </td>
                       <td className="px-3 py-2">
                         <span className={`inline-flex items-center rounded-md px-2 py-0.5 text-[10px] font-semibold ${

@@ -111,6 +111,8 @@ export interface UptimeStats {
 
 export type PaymentStatus = "paid" | "pending" | "failed" | "cancelled";
 
+export type PaymentType = "initial" | "recurring";
+
 export interface Payment {
   id: string;
   clientId: string;
@@ -118,6 +120,7 @@ export interface Payment {
   businessName: string;
   amount: number;
   currency: "ILS";
+  type: PaymentType;
   status: PaymentStatus;
   billingDate: Date;
   nextBillingDate: Date;

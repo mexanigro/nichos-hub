@@ -23,6 +23,7 @@ export async function GET() {
       businessName: d.businessName,
       amount: d.amount,
       currency: d.currency,
+      type: d.type ?? "recurring",
       status: d.status,
       billingDate: d.billingDate?.toDate(),
       nextBillingDate: d.nextBillingDate?.toDate(),
@@ -52,6 +53,7 @@ export async function POST(req: NextRequest) {
     clientDocId,
     businessName,
     amount,
+    type,
     status,
     billingDate,
     nextBillingDate,
@@ -60,9 +62,16 @@ export async function POST(req: NextRequest) {
     contractVersion,
   } = body;
 
-  if (!clientId || !clientDocId || !businessName || !amount || !status || !billingDate || !nextBillingDate) {
+  if (!clientId || !clientDocId || !businessName || !amount || !type || !status || !billingDate || !nextBillingDate) {
     return NextResponse.json(
-      { error: "Campos requeridos: clientId, clientDocId, businessName, amount, status, billingDate, nextBillingDate" },
+      { error: "Campos requeridos: clientId, clientDocId, businessName, amount, type, status, billingDate, nextBillingDate" },
+      { status: 400 },
+    );
+  }
+
+  if (type !== "initial" && type !== "recurring") {
+    return NextResponse.json(
+      { error: "type debe ser 'initial' o 'recurring'" },
       { status: 400 },
     );
   }
@@ -74,6 +83,7 @@ export async function POST(req: NextRequest) {
     businessName,
     amount,
     currency: "ILS",
+    type,
     status,
     billingDate: new Date(billingDate),
     nextBillingDate: new Date(nextBillingDate),
@@ -103,7 +113,7 @@ export async function PATCH(req: NextRequest) {
     return NextResponse.json({ error: "id es requerido" }, { status: 400 });
   }
 
-  const allowed = ["status", "amount", "nextBillingDate", "cardLastFour", "failureReason", "cardcomTransactionId", "contractAccepted", "contractVersion"];
+  const allowed = ["status", "type", "amount", "nextBillingDate", "cardLastFour", "failureReason", "cardcomTransactionId", "contractAccepted", "contractVersion"];
   const filtered: Record<string, unknown> = { updatedAt: FieldValue.serverTimestamp() };
   for (const key of allowed) {
     if (key in updates) {
