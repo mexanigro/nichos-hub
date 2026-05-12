@@ -1,14 +1,31 @@
-import { NextRequest, NextResponse } from "next/server";
-import { auth } from "@/lib/auth";
+import { NextResponse } from "next/server";
+import { withOwner } from "@/lib/auth";
 import { db } from "@/lib/firebase-admin";
+import { classifyMessage } from "@/lib/classify";
 
-export async function GET(request: NextRequest) {
-  const session = await auth();
-  if (session?.user?.role !== "owner") {
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-  }
+async function autoClassify(docs: FirebaseFirestore.QueryDocumentSnapshot[]): Promise<Record<string, { category: string; categoryReason: string }>> {
+  const classified: Record<string, { category: string; categoryReason: string }> = {};
+  const unclassified = docs.filter((doc) => !doc.data().category && doc.data().message);
+  if (unclassified.length === 0) return classified;
 
-  const category = request.nextUrl.searchParams.get("category");
+  const results = await Promise.allSettled(
+    unclassified.map(async (doc) => {
+      const result = await classifyMessage(doc.data().message);
+      await db.collection("provider_messages").doc(doc.id).update({
+        category: result.category,
+        categoryReason: result.reason,
+      });
+      classified[doc.id] = { category: result.category, categoryReason: result.reason };
+    }),
+  );
+
+  const failed = results.filter((r) => r.status === "rejected").length;
+  if (failed > 0) console.error(`[auto-classify] ${failed}/${unclassified.length} failed`);
+  return classified;
+}
+
+export const GET = withOwner(async (req) => {
+  const category = req.nextUrl.searchParams.get("category");
 
   let query = db.collection("provider_messages")
     .where("sender", "==", "client")
@@ -24,27 +41,24 @@ export async function GET(request: NextRequest) {
   }
 
   const snap = await query.get();
+  const newClassifications = await autoClassify(snap.docs);
 
   const messages = snap.docs.map((doc) => ({
     id: doc.id,
     ...doc.data(),
+    ...newClassifications[doc.id],
     createdAt: doc.data().createdAt?.toDate(),
   }));
 
   return NextResponse.json(messages);
-}
+});
 
-export async function PATCH(request: NextRequest) {
-  const session = await auth();
-  if (session?.user?.role !== "owner") {
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-  }
-
-  const { id, status } = await request.json();
+export const PATCH = withOwner(async (req) => {
+  const { id, status } = await req.json();
   if (!id) {
-    return NextResponse.json({ error: "Missing message id" }, { status: 400 });
+    return NextResponse.json({ error: "id es requerido" }, { status: 400 });
   }
 
   await db.collection("provider_messages").doc(id).update({ status });
   return NextResponse.json({ ok: true });
-}
+});
