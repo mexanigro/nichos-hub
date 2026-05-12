@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { HealthDot, ClientStatusBadge } from "@/components/status-badge";
 import { EmptyState } from "@/components/empty-state";
+import { LoadingSpinner } from "@/components/loading";
 import type { ClientWithHealth } from "@/types";
 import { formatDistanceToNow } from "date-fns";
 import { es } from "date-fns/locale";
@@ -88,13 +89,7 @@ export default function ClientsPage() {
       c.clientId.toLowerCase().includes(search.toLowerCase())
   );
 
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center py-20">
-        <div className="h-6 w-6 animate-spin rounded-full border-2 border-border border-t-accent" />
-      </div>
-    );
-  }
+  if (loading) return <LoadingSpinner />;
 
   return (
     <div>

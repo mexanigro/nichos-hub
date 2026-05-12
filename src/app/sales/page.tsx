@@ -15,6 +15,7 @@ import {
   ChevronUp,
 } from "lucide-react";
 import { EmptyState } from "@/components/empty-state";
+import { LoadingSpinner } from "@/components/loading";
 import { formatDistanceToNow } from "date-fns";
 import { es } from "date-fns/locale";
 import type { Prospect, ProspectStatus, ProspectNote } from "@/types";
@@ -145,13 +146,7 @@ export default function SalesPage() {
     setAddingNote(false);
   }
 
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center py-20">
-        <div className="h-6 w-6 animate-spin rounded-full border-2 border-border border-t-accent" />
-      </div>
-    );
-  }
+  if (loading) return <LoadingSpinner />;
 
   return (
     <div>

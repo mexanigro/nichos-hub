@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { INITIAL_AMOUNT, RECURRING_AMOUNT } from "@/lib/pricing";
 
 const CONTRACT_HE = `חוזה לבניית אתרים – תחזוקה ואחסון
 
@@ -168,7 +169,7 @@ export default function PagoClient({ clientId, clientDocId, businessName, isInit
   const t = i18n[lang];
   const contract = lang === "he" ? CONTRACT_HE : CONTRACT_EN;
   const dir = lang === "he" ? "rtl" : "ltr";
-  const amount = isInitial ? 4200 : 500;
+  const amount = isInitial ? INITIAL_AMOUNT : RECURRING_AMOUNT;
 
   async function handleContinue() {
     setSending(true);

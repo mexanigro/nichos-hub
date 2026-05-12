@@ -1,12 +1,8 @@
-import { NextRequest, NextResponse } from "next/server";
-import { auth } from "@/lib/auth";
+import { NextResponse } from "next/server";
+import { withOwner } from "@/lib/auth";
 import { db } from "@/lib/firebase-admin";
 
-export async function GET() {
-  const session = await auth();
-  if (session?.user?.role !== "owner") {
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-  }
+export const GET = withOwner(async () => {
 
   const snap = await db.collection("hub_users").get();
   const users = snap.docs.map((doc) => ({
@@ -16,17 +12,12 @@ export async function GET() {
   }));
 
   return NextResponse.json(users);
-}
+});
 
-export async function POST(request: NextRequest) {
-  const session = await auth();
-  if (session?.user?.role !== "owner") {
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-  }
-
-  const { email, name } = await request.json();
+export const POST = withOwner(async (req) => {
+  const { email, name } = await req.json();
   if (!email) {
-    return NextResponse.json({ error: "Missing email" }, { status: 400 });
+    return NextResponse.json({ error: "Email es requerido" }, { status: 400 });
   }
 
   await db.collection("hub_users").doc(email.toLowerCase()).set({
@@ -36,19 +27,14 @@ export async function POST(request: NextRequest) {
   });
 
   return NextResponse.json({ ok: true }, { status: 201 });
-}
+});
 
-export async function DELETE(request: NextRequest) {
-  const session = await auth();
-  if (session?.user?.role !== "owner") {
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-  }
-
-  const { email } = await request.json();
+export const DELETE = withOwner(async (req) => {
+  const { email } = await req.json();
   if (!email) {
-    return NextResponse.json({ error: "Missing email" }, { status: 400 });
+    return NextResponse.json({ error: "Email es requerido" }, { status: 400 });
   }
 
   await db.collection("hub_users").doc(email.toLowerCase()).delete();
   return NextResponse.json({ ok: true });
-}
+});

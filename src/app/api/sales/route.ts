@@ -1,13 +1,9 @@
-import { NextRequest, NextResponse } from "next/server";
-import { auth } from "@/lib/auth";
+import { NextResponse } from "next/server";
+import { withAuth, withOwner } from "@/lib/auth";
 import { db } from "@/lib/firebase-admin";
 import type { ProspectStatus } from "@/types";
 
-export async function GET() {
-  const session = await auth();
-  if (!session?.user?.role) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+export const GET = withAuth(async (_req, session) => {
 
   let query: FirebaseFirestore.Query = db.collection("hub_prospects").orderBy("createdAt", "desc");
 
@@ -39,19 +35,14 @@ export async function GET() {
   });
 
   return NextResponse.json(prospects);
-}
+});
 
-export async function POST(request: NextRequest) {
-  const session = await auth();
-  if (session?.user?.role !== "owner") {
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-  }
-
-  const body = await request.json();
+export const POST = withOwner(async (req, session) => {
+  const body = await req.json();
   const { businessName, city, nicheTarget, assignedSeller } = body;
 
   if (!businessName || !city || !nicheTarget) {
-    return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+    return NextResponse.json({ error: "Campos requeridos: businessName, city, nicheTarget" }, { status: 400 });
   }
 
   const docRef = await db.collection("hub_prospects").add({
@@ -67,25 +58,20 @@ export async function POST(request: NextRequest) {
   });
 
   return NextResponse.json({ id: docRef.id }, { status: 201 });
-}
+});
 
-export async function PATCH(request: NextRequest) {
-  const session = await auth();
-  if (!session?.user?.role) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-
-  const body = await request.json();
+export const PATCH = withAuth(async (req, session) => {
+  const body = await req.json();
   const { id, ...updates } = body;
 
   if (!id) {
-    return NextResponse.json({ error: "Missing prospect id" }, { status: 400 });
+    return NextResponse.json({ error: "id es requerido" }, { status: 400 });
   }
 
   if (session.user.role === "seller") {
     const doc = await db.collection("hub_prospects").doc(id).get();
     if (doc.data()?.assignedSeller !== session.user.email) {
-      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+      return NextResponse.json({ error: "Sin permisos" }, { status: 403 });
     }
     const allowed = ["status", "rejectionReason", "lastContact"];
     const filtered: Record<string, unknown> = {};
@@ -98,4 +84,4 @@ export async function PATCH(request: NextRequest) {
   }
 
   return NextResponse.json({ ok: true });
-}
+});

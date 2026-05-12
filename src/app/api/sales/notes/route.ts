@@ -1,24 +1,19 @@
-import { NextRequest, NextResponse } from "next/server";
-import { auth } from "@/lib/auth";
+import { NextResponse } from "next/server";
+import { withAuth } from "@/lib/auth";
 import { db } from "@/lib/firebase-admin";
 import { FieldValue } from "firebase-admin/firestore";
 
-export async function POST(request: NextRequest) {
-  const session = await auth();
-  if (!session?.user?.role) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-
-  const { prospectId, text } = await request.json();
+export const POST = withAuth(async (req, session) => {
+  const { prospectId, text } = await req.json();
 
   if (!prospectId || !text) {
-    return NextResponse.json({ error: "Missing fields" }, { status: 400 });
+    return NextResponse.json({ error: "Campos requeridos: prospectId, text" }, { status: 400 });
   }
 
   if (session.user.role === "seller") {
     const doc = await db.collection("hub_prospects").doc(prospectId).get();
     if (doc.data()?.assignedSeller !== session.user.email) {
-      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+      return NextResponse.json({ error: "Sin permisos" }, { status: 403 });
     }
   }
 
@@ -34,4 +29,4 @@ export async function POST(request: NextRequest) {
   });
 
   return NextResponse.json({ ok: true });
-}
+});

@@ -1,7 +1,9 @@
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
+import { NextRequest, NextResponse } from "next/server";
 import { db } from "./firebase-admin";
 import type { UserRole } from "@/types";
+import type { Session } from "next-auth";
 import "./auth-types";
 
 async function getUserRole(email: string): Promise<UserRole | null> {
@@ -50,18 +52,26 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   },
 });
 
-export async function requireAuth() {
-  const session = await auth();
-  if (!session?.user?.role) {
-    throw new Error("Unauthorized");
-  }
-  return session;
+type RouteContext = { params: Promise<Record<string, string>> };
+type AuthedHandler = (req: NextRequest, session: Session, ctx: RouteContext) => Promise<NextResponse>;
+
+function withRole(role: "owner" | null, handler: AuthedHandler): (req: NextRequest, ctx: RouteContext) => Promise<NextResponse> {
+  return async (req: NextRequest, ctx: RouteContext) => {
+    const session = await auth();
+    if (!session?.user?.role) {
+      return NextResponse.json({ error: "No autenticado" }, { status: 401 });
+    }
+    if (role && session.user.role !== role) {
+      return NextResponse.json({ error: "Sin permisos" }, { status: 403 });
+    }
+    return handler(req, session, ctx);
+  };
 }
 
-export async function requireOwner() {
-  const session = await requireAuth();
-  if (session.user.role !== "owner") {
-    throw new Error("Forbidden");
-  }
-  return session;
+export function withOwner(handler: AuthedHandler) {
+  return withRole("owner", handler);
+}
+
+export function withAuth(handler: AuthedHandler) {
+  return withRole(null, handler);
 }

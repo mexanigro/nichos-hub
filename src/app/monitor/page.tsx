@@ -12,6 +12,8 @@ import {
   Shield,
 } from "lucide-react";
 import { EmptyState } from "@/components/empty-state";
+import { LoadingSpinner } from "@/components/loading";
+import { StatCard } from "@/components/stat-card";
 import { formatDistanceToNow } from "date-fns";
 import { es } from "date-fns/locale";
 import type { UptimeStats } from "@/types";
@@ -63,13 +65,7 @@ export default function MonitorPage() {
       .finally(() => setLoading(false));
   }, [session, router]);
 
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center py-20">
-        <div className="h-6 w-6 animate-spin rounded-full border-2 border-border border-t-accent" />
-      </div>
-    );
-  }
+  if (loading) return <LoadingSpinner />;
 
   if (!data) return null;
 
@@ -93,49 +89,10 @@ export default function MonitorPage() {
 
       {/* Stats */}
       <div className="mb-6 grid grid-cols-2 gap-3 lg:grid-cols-4">
-        <div className="rounded-xl border border-border bg-bg-card p-4">
-          <div className="mb-2 flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-danger-muted">
-              <AlertTriangle size={16} className="text-danger" />
-            </div>
-            <p className="text-[11px] font-medium uppercase tracking-wider text-text-muted">Activos</p>
-          </div>
-          <p className={`text-2xl font-bold tabular-nums ${data.activeIncidents.length > 0 ? "text-danger" : "text-text"}`}>
-            {data.activeIncidents.length}
-          </p>
-        </div>
-        <div className="rounded-xl border border-border bg-bg-card p-4">
-          <div className="mb-2 flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-success-muted">
-              <CheckCircle size={16} className="text-success" />
-            </div>
-            <p className="text-[11px] font-medium uppercase tracking-wider text-text-muted">Resueltos</p>
-          </div>
-          <p className="text-2xl font-bold tabular-nums text-success">{data.recentIncidents.length}</p>
-        </div>
-        <div className="rounded-xl border border-border bg-bg-card p-4">
-          <div className="mb-2 flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent-muted">
-              <Activity size={16} className="text-accent" />
-            </div>
-            <p className="text-[11px] font-medium uppercase tracking-wider text-text-muted">Clientes</p>
-          </div>
-          <p className="text-2xl font-bold tabular-nums text-text">{data.uptime.length}</p>
-        </div>
-        <div className="rounded-xl border border-border bg-bg-card p-4">
-          <div className="mb-2 flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-success-muted">
-              <ShieldCheck size={16} className="text-success" />
-            </div>
-            <p className="text-[11px] font-medium uppercase tracking-wider text-text-muted">Uptime prom.</p>
-          </div>
-          <p className="text-2xl font-bold tabular-nums text-text">
-            {data.uptime.length > 0
-              ? Math.round(data.uptime.reduce((s, u) => s + u.last24h, 0) / data.uptime.length)
-              : 100}
-            %
-          </p>
-        </div>
+        <StatCard icon={AlertTriangle} label="Activos" value={data.activeIncidents.length} iconBg="bg-danger-muted" iconColor="text-danger" valueColor={data.activeIncidents.length > 0 ? "text-danger" : "text-text"} />
+        <StatCard icon={CheckCircle} label="Resueltos" value={data.recentIncidents.length} iconBg="bg-success-muted" iconColor="text-success" valueColor="text-success" />
+        <StatCard icon={Activity} label="Clientes" value={data.uptime.length} iconBg="bg-accent-muted" iconColor="text-accent" />
+        <StatCard icon={ShieldCheck} label="Uptime prom." value={`${data.uptime.length > 0 ? Math.round(data.uptime.reduce((s, u) => s + u.last24h, 0) / data.uptime.length) : 100}%`} iconBg="bg-success-muted" iconColor="text-success" />
       </div>
 
       {/* Uptime Chart */}

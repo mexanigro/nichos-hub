@@ -1,12 +1,8 @@
 import { NextResponse } from "next/server";
-import { auth } from "@/lib/auth";
+import { withOwner } from "@/lib/auth";
 import { db } from "@/lib/firebase-admin";
 
-export async function GET() {
-  const session = await auth();
-  if (session?.user?.role !== "owner") {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+export const GET = withOwner(async () => {
 
   const snap = await db
     .collection("hub_expenses")
@@ -48,4 +44,4 @@ export async function GET() {
       "Content-Disposition": `attachment; filename=gastos-${new Date().toISOString().slice(0, 10)}.csv`,
     },
   });
-}
+});

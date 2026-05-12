@@ -15,6 +15,8 @@ import {
   Filter,
 } from "lucide-react";
 import { EmptyState } from "@/components/empty-state";
+import { LoadingSpinner } from "@/components/loading";
+import { StatCard } from "@/components/stat-card";
 import type { Expense, ExpenseCategory } from "@/types";
 
 const CATEGORIES: { key: ExpenseCategory; label: string }[] = [
@@ -191,13 +193,7 @@ export default function ExpensesPage() {
   const months = new Set(expenses.map((e) => e.date.slice(0, 7)));
   const avgMonthly = months.size > 0 ? totalAll / months.size : 0;
 
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center py-20">
-        <div className="h-6 w-6 animate-spin rounded-full border-2 border-border border-t-accent" />
-      </div>
-    );
-  }
+  if (loading) return <LoadingSpinner />;
 
   return (
     <div>
@@ -252,45 +248,9 @@ export default function ExpensesPage() {
 
       {/* Stats */}
       <div className="mb-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
-        <div className="rounded-xl border border-border bg-bg-card p-4">
-          <div className="mb-2 flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent-muted">
-              <DollarSign size={16} className="text-accent" />
-            </div>
-            <p className="text-[11px] font-medium uppercase tracking-wider text-text-muted">
-              Total acumulado
-            </p>
-          </div>
-          <p className="text-2xl font-bold tabular-nums text-text">
-            {formatCurrency(totalAll)}
-          </p>
-        </div>
-        <div className="rounded-xl border border-border bg-bg-card p-4">
-          <div className="mb-2 flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-danger-muted">
-              <TrendingDown size={16} className="text-danger" />
-            </div>
-            <p className="text-[11px] font-medium uppercase tracking-wider text-text-muted">
-              Este mes
-            </p>
-          </div>
-          <p className="text-2xl font-bold tabular-nums text-text">
-            {formatCurrency(totalMonth)}
-          </p>
-        </div>
-        <div className="rounded-xl border border-border bg-bg-card p-4">
-          <div className="mb-2 flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-warning-muted">
-              <Calendar size={16} className="text-warning" />
-            </div>
-            <p className="text-[11px] font-medium uppercase tracking-wider text-text-muted">
-              Promedio mensual
-            </p>
-          </div>
-          <p className="text-2xl font-bold tabular-nums text-text">
-            {formatCurrency(avgMonthly)}
-          </p>
-        </div>
+        <StatCard icon={DollarSign} label="Total acumulado" value={formatCurrency(totalAll)} iconBg="bg-accent-muted" iconColor="text-accent" />
+        <StatCard icon={TrendingDown} label="Este mes" value={formatCurrency(totalMonth)} iconBg="bg-danger-muted" iconColor="text-danger" />
+        <StatCard icon={Calendar} label="Promedio mensual" value={formatCurrency(avgMonthly)} iconBg="bg-warning-muted" iconColor="text-warning" />
       </div>
 
       {/* Filter */}

@@ -12,25 +12,12 @@ import {
   Repeat,
 } from "lucide-react";
 import { EmptyState } from "@/components/empty-state";
+import { LoadingSpinner } from "@/components/loading";
+import { StatCard } from "@/components/stat-card";
+import { PaymentStatusBadge, PaymentTypeBadge, statusConfig } from "@/components/payment-badges";
 import type { Payment, PaymentStatus } from "@/types";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
-
-const statusConfig: Record<PaymentStatus, { label: string; className: string }> = {
-  paid: { label: "Pagado", className: "text-success bg-success-muted" },
-  pending: { label: "Pendiente", className: "text-warning bg-warning-muted" },
-  failed: { label: "Fallido", className: "text-danger bg-danger-muted" },
-  cancelled: { label: "Cancelado", className: "text-text-muted bg-bg-elevated" },
-};
-
-function PaymentStatusBadge({ status }: { status: PaymentStatus }) {
-  const config = statusConfig[status];
-  return (
-    <span className={`inline-flex items-center rounded-md px-2.5 py-1 text-[11px] font-semibold ${config.className}`}>
-      {config.label}
-    </span>
-  );
-}
 
 export default function PaymentsPage() {
   const { data: session } = useSession();
@@ -84,13 +71,7 @@ export default function PaymentsPage() {
   const filtered =
     filter === "all" ? payments : payments.filter((p) => p.status === filter);
 
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center py-20">
-        <div className="h-6 w-6 animate-spin rounded-full border-2 border-border border-t-accent" />
-      </div>
-    );
-  }
+  if (loading) return <LoadingSpinner />;
 
   return (
     <div>
@@ -104,71 +85,11 @@ export default function PaymentsPage() {
 
       {/* Stats */}
       <div className="mb-6 grid grid-cols-2 gap-3 lg:grid-cols-5">
-        <div className="rounded-xl border border-border bg-bg-card p-4">
-          <div className="mb-2 flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-success-muted">
-              <DollarSign size={16} className="text-success" />
-            </div>
-            <p className="text-[11px] font-medium uppercase tracking-wider text-text-muted">
-              Cobrado este mes
-            </p>
-          </div>
-          <p className="text-2xl font-bold tabular-nums text-success">
-            ₪{totalCobrado.toLocaleString()}
-          </p>
-        </div>
-        <div className="rounded-xl border border-border bg-bg-card p-4">
-          <div className="mb-2 flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent-muted">
-              <Zap size={16} className="text-accent" />
-            </div>
-            <p className="text-[11px] font-medium uppercase tracking-wider text-text-muted">
-              Total setups
-            </p>
-          </div>
-          <p className="text-2xl font-bold tabular-nums text-accent">
-            ₪{totalSetups.toLocaleString()}
-          </p>
-        </div>
-        <div className="rounded-xl border border-border bg-bg-card p-4">
-          <div className="mb-2 flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-bg-elevated">
-              <Repeat size={16} className="text-text-secondary" />
-            </div>
-            <p className="text-[11px] font-medium uppercase tracking-wider text-text-muted">
-              Total mensualidades
-            </p>
-          </div>
-          <p className="text-2xl font-bold tabular-nums text-text">
-            ₪{totalMensualidades.toLocaleString()}
-          </p>
-        </div>
-        <div className="rounded-xl border border-border bg-bg-card p-4">
-          <div className="mb-2 flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-warning-muted">
-              <Clock size={16} className="text-warning" />
-            </div>
-            <p className="text-[11px] font-medium uppercase tracking-wider text-text-muted">
-              Pendientes
-            </p>
-          </div>
-          <p className="text-2xl font-bold tabular-nums text-warning">
-            {pendientes}
-          </p>
-        </div>
-        <div className="rounded-xl border border-border bg-bg-card p-4">
-          <div className="mb-2 flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-danger-muted">
-              <AlertTriangle size={16} className="text-danger" />
-            </div>
-            <p className="text-[11px] font-medium uppercase tracking-wider text-text-muted">
-              Fallidos
-            </p>
-          </div>
-          <p className="text-2xl font-bold tabular-nums text-danger">
-            {fallidos}
-          </p>
-        </div>
+        <StatCard icon={DollarSign} label="Cobrado este mes" value={`₪${totalCobrado.toLocaleString()}`} iconBg="bg-success-muted" iconColor="text-success" valueColor="text-success" />
+        <StatCard icon={Zap} label="Total setups" value={`₪${totalSetups.toLocaleString()}`} iconBg="bg-accent-muted" iconColor="text-accent" valueColor="text-accent" />
+        <StatCard icon={Repeat} label="Total mensualidades" value={`₪${totalMensualidades.toLocaleString()}`} iconBg="bg-bg-elevated" iconColor="text-text-secondary" />
+        <StatCard icon={Clock} label="Pendientes" value={pendientes} iconBg="bg-warning-muted" iconColor="text-warning" valueColor="text-warning" />
+        <StatCard icon={AlertTriangle} label="Fallidos" value={fallidos} iconBg="bg-danger-muted" iconColor="text-danger" valueColor="text-danger" />
       </div>
 
       {/* Filter */}
@@ -236,11 +157,7 @@ export default function PaymentsPage() {
                     </span>
                   </td>
                   <td className="px-4 py-3">
-                    <span className={`inline-flex items-center rounded-md px-2.5 py-1 text-[11px] font-semibold ${
-                      p.type === "initial" ? "text-accent bg-accent-muted" : "text-text-secondary bg-bg-elevated"
-                    }`}>
-                      {p.type === "initial" ? "Setup" : "Mensual"}
-                    </span>
+                    <PaymentTypeBadge type={p.type} />
                   </td>
                   <td className="px-4 py-3">
                     <PaymentStatusBadge status={p.status} />

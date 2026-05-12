@@ -17,6 +17,9 @@ import {
   CreditCard,
 } from "lucide-react";
 import { HealthDot, ClientStatusBadge } from "@/components/status-badge";
+import { LoadingSpinner } from "@/components/loading";
+import { StatCard } from "@/components/stat-card";
+import { PaymentStatusBadge, PaymentTypeBadge } from "@/components/payment-badges";
 import { formatDistanceToNow, format } from "date-fns";
 import { es } from "date-fns/locale";
 import type { ClientWithHealth, Payment, PaymentStatus } from "@/types";
@@ -131,13 +134,7 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
     setKilling(false);
   }
 
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center py-20">
-        <div className="h-6 w-6 animate-spin rounded-full border-2 border-border border-t-accent" />
-      </div>
-    );
-  }
+  if (loading) return <LoadingSpinner />;
 
   if (!data) return null;
 
@@ -213,48 +210,10 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
 
       {/* Stats Grid */}
       <div className="mb-6 grid grid-cols-2 gap-3 lg:grid-cols-4">
-        <div className="rounded-xl border border-border bg-bg-card p-4">
-          <div className="mb-2 flex items-center gap-2">
-            <div className={`flex h-8 w-8 items-center justify-center rounded-lg ${uptime.last24h >= 99 ? "bg-success-muted" : uptime.last24h >= 95 ? "bg-warning-muted" : "bg-danger-muted"}`}>
-              <Shield size={16} className={uptime.last24h >= 99 ? "text-success" : uptime.last24h >= 95 ? "text-warning" : "text-danger"} />
-            </div>
-            <p className="text-[11px] font-medium uppercase tracking-wider text-text-muted">Uptime 24h</p>
-          </div>
-          <p className={`text-2xl font-bold tabular-nums ${uptime.last24h >= 99 ? "text-success" : uptime.last24h >= 95 ? "text-warning" : "text-danger"}`}>
-            {uptime.last24h}%
-          </p>
-        </div>
-        <div className="rounded-xl border border-border bg-bg-card p-4">
-          <div className="mb-2 flex items-center gap-2">
-            <div className={`flex h-8 w-8 items-center justify-center rounded-lg ${uptime.last7d >= 99 ? "bg-success-muted" : uptime.last7d >= 95 ? "bg-warning-muted" : "bg-danger-muted"}`}>
-              <Shield size={16} className={uptime.last7d >= 99 ? "text-success" : uptime.last7d >= 95 ? "text-warning" : "text-danger"} />
-            </div>
-            <p className="text-[11px] font-medium uppercase tracking-wider text-text-muted">Uptime 7d</p>
-          </div>
-          <p className={`text-2xl font-bold tabular-nums ${uptime.last7d >= 99 ? "text-success" : uptime.last7d >= 95 ? "text-warning" : "text-danger"}`}>
-            {uptime.last7d}%
-          </p>
-        </div>
-        <div className="rounded-xl border border-border bg-bg-card p-4">
-          <div className="mb-2 flex items-center gap-2">
-            <div className={`flex h-8 w-8 items-center justify-center rounded-lg ${activeIncidents.length > 0 ? "bg-danger-muted" : "bg-success-muted"}`}>
-              <AlertTriangle size={16} className={activeIncidents.length > 0 ? "text-danger" : "text-success"} />
-            </div>
-            <p className="text-[11px] font-medium uppercase tracking-wider text-text-muted">Incidentes</p>
-          </div>
-          <p className={`text-2xl font-bold tabular-nums ${activeIncidents.length > 0 ? "text-danger" : "text-text"}`}>
-            {activeIncidents.length}
-          </p>
-        </div>
-        <div className="rounded-xl border border-border bg-bg-card p-4">
-          <div className="mb-2 flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent-muted">
-              <MessageSquare size={16} className="text-accent" />
-            </div>
-            <p className="text-[11px] font-medium uppercase tracking-wider text-text-muted">Mensajes</p>
-          </div>
-          <p className="text-2xl font-bold tabular-nums text-text">{messages.length}</p>
-        </div>
+        <StatCard icon={Shield} label="Uptime 24h" value={`${uptime.last24h}%`} iconBg={uptime.last24h >= 99 ? "bg-success-muted" : uptime.last24h >= 95 ? "bg-warning-muted" : "bg-danger-muted"} iconColor={uptime.last24h >= 99 ? "text-success" : uptime.last24h >= 95 ? "text-warning" : "text-danger"} valueColor={uptime.last24h >= 99 ? "text-success" : uptime.last24h >= 95 ? "text-warning" : "text-danger"} />
+        <StatCard icon={Shield} label="Uptime 7d" value={`${uptime.last7d}%`} iconBg={uptime.last7d >= 99 ? "bg-success-muted" : uptime.last7d >= 95 ? "bg-warning-muted" : "bg-danger-muted"} iconColor={uptime.last7d >= 99 ? "text-success" : uptime.last7d >= 95 ? "text-warning" : "text-danger"} valueColor={uptime.last7d >= 99 ? "text-success" : uptime.last7d >= 95 ? "text-warning" : "text-danger"} />
+        <StatCard icon={AlertTriangle} label="Incidentes" value={activeIncidents.length} iconBg={activeIncidents.length > 0 ? "bg-danger-muted" : "bg-success-muted"} iconColor={activeIncidents.length > 0 ? "text-danger" : "text-success"} valueColor={activeIncidents.length > 0 ? "text-danger" : "text-text"} />
+        <StatCard icon={MessageSquare} label="Mensajes" value={messages.length} iconBg="bg-accent-muted" iconColor="text-accent" />
       </div>
 
       {/* Response Time Chart */}
@@ -396,13 +355,9 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
               const paidRecurring = payments.filter((p) => p.type === "recurring" && p.status === "paid").length;
               return (
                 <div className="mb-3 flex flex-wrap items-center gap-3 text-xs">
-                  <span className={`inline-flex items-center rounded-md px-2.5 py-1 text-[11px] font-semibold ${
-                    initial?.status === "paid" ? "text-success bg-success-muted" :
-                    initial?.status === "pending" ? "text-warning bg-warning-muted" :
-                    initial?.status === "failed" ? "text-danger bg-danger-muted" :
-                    "text-text-muted bg-bg-elevated"
-                  }`}>
-                    Setup: {initial ? (initial.status === "paid" ? "Cobrado" : initial.status === "pending" ? "Pendiente" : "Fallido") : "Sin registro"}
+                  <span className="inline-flex items-center gap-1.5">
+                    <span className="text-[11px] font-medium text-text-muted">Setup:</span>
+                    {initial ? <PaymentStatusBadge status={initial.status} /> : <span className="text-[11px] text-text-muted">Sin registro</span>}
                   </span>
                   <span className="text-text-secondary">
                     {paidRecurring} mensualidad{paidRecurring !== 1 ? "es" : ""} pagada{paidRecurring !== 1 ? "s" : ""}
@@ -433,23 +388,10 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
                         ₪{p.amount.toLocaleString()}
                       </td>
                       <td className="px-3 py-2">
-                        <span className={`inline-flex items-center rounded-md px-2 py-0.5 text-[10px] font-semibold ${
-                          p.type === "initial" ? "text-accent bg-accent-muted" : "text-text-secondary bg-bg-elevated"
-                        }`}>
-                          {p.type === "initial" ? "Setup" : "Mensual"}
-                        </span>
+                        <PaymentTypeBadge type={p.type} />
                       </td>
                       <td className="px-3 py-2">
-                        <span className={`inline-flex items-center rounded-md px-2 py-0.5 text-[10px] font-semibold ${
-                          p.status === "paid" ? "text-success bg-success-muted" :
-                          p.status === "pending" ? "text-warning bg-warning-muted" :
-                          p.status === "failed" ? "text-danger bg-danger-muted" :
-                          "text-text-muted bg-bg-elevated"
-                        }`}>
-                          {p.status === "paid" ? "Pagado" :
-                           p.status === "pending" ? "Pendiente" :
-                           p.status === "failed" ? "Fallido" : "Cancelado"}
-                        </span>
+                        <PaymentStatusBadge status={p.status} />
                       </td>
                     </tr>
                   ))}

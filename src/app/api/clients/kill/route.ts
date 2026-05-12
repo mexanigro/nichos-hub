@@ -1,13 +1,8 @@
-import { NextRequest, NextResponse } from "next/server";
-import { auth } from "@/lib/auth";
+import { NextResponse } from "next/server";
+import { withOwner } from "@/lib/auth";
 import { db } from "@/lib/firebase-admin";
 
-export async function POST(req: NextRequest) {
-  const session = await auth();
-  if (session?.user?.role !== "owner") {
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-  }
-
+export const POST = withOwner(async (req) => {
   const { clientDocId, paused } = (await req.json()) as {
     clientDocId: string;
     paused: boolean;
@@ -77,4 +72,4 @@ export async function POST(req: NextRequest) {
       ? "Proyecto pausado en Vercel. El sitio dejará de funcionar."
       : "Proyecto reactivado en Vercel. El sitio volverá a estar online.",
   });
-}
+});

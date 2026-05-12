@@ -1,51 +1,15 @@
-import { NextRequest, NextResponse } from "next/server";
-import { auth } from "@/lib/auth";
+import { NextResponse } from "next/server";
+import { withOwner } from "@/lib/auth";
 import { db } from "@/lib/firebase-admin";
 import { FieldValue } from "firebase-admin/firestore";
+import { listPayments } from "@/lib/repos/payments";
+import { CURRENCY } from "@/lib/pricing";
 
-export async function GET() {
-  const session = await auth();
-  if (session?.user?.role !== "owner") {
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-  }
+export const GET = withOwner(async () => {
+  return NextResponse.json(await listPayments());
+});
 
-  const snap = await db
-    .collection("hub_payments")
-    .orderBy("billingDate", "desc")
-    .get();
-
-  const payments = snap.docs.map((doc) => {
-    const d = doc.data();
-    return {
-      id: doc.id,
-      clientId: d.clientId,
-      clientDocId: d.clientDocId,
-      businessName: d.businessName,
-      amount: d.amount,
-      currency: d.currency,
-      type: d.type ?? "recurring",
-      status: d.status,
-      billingDate: d.billingDate?.toDate(),
-      nextBillingDate: d.nextBillingDate?.toDate(),
-      cardLastFour: d.cardLastFour,
-      failureReason: d.failureReason,
-      cardcomTransactionId: d.cardcomTransactionId,
-      contractAccepted: d.contractAccepted ?? false,
-      contractAcceptedAt: d.contractAcceptedAt?.toDate(),
-      contractVersion: d.contractVersion,
-      createdAt: d.createdAt?.toDate(),
-      updatedAt: d.updatedAt?.toDate(),
-    };
-  });
-
-  return NextResponse.json(payments);
-}
-
-export async function POST(req: NextRequest) {
-  const session = await auth();
-  if (session?.user?.role !== "owner") {
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-  }
+export const POST = withOwner(async (req) => {
 
   const body = await req.json();
   const {
@@ -82,7 +46,7 @@ export async function POST(req: NextRequest) {
     clientDocId,
     businessName,
     amount,
-    currency: "ILS",
+    currency: CURRENCY,
     type,
     status,
     billingDate: new Date(billingDate),
@@ -98,13 +62,9 @@ export async function POST(req: NextRequest) {
   });
 
   return NextResponse.json({ id: docRef.id }, { status: 201 });
-}
+});
 
-export async function PATCH(req: NextRequest) {
-  const session = await auth();
-  if (session?.user?.role !== "owner") {
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-  }
+export const PATCH = withOwner(async (req) => {
 
   const body = await req.json();
   const { id, ...updates } = body;
@@ -128,4 +88,4 @@ export async function PATCH(req: NextRequest) {
   await db.collection("hub_payments").doc(id).update(filtered);
 
   return NextResponse.json({ ok: true });
-}
+});

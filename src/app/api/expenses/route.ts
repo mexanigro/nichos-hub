@@ -1,14 +1,10 @@
-import { NextRequest, NextResponse } from "next/server";
-import { auth } from "@/lib/auth";
+import { NextResponse } from "next/server";
+import { withOwner } from "@/lib/auth";
 import { db } from "@/lib/firebase-admin";
 import { FieldValue } from "firebase-admin/firestore";
 import type { ExpenseCategory } from "@/types";
 
-export async function GET() {
-  const session = await auth();
-  if (session?.user?.role !== "owner") {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+export const GET = withOwner(async () => {
 
   const snap = await db
     .collection("hub_expenses")
@@ -31,13 +27,9 @@ export async function GET() {
   });
 
   return NextResponse.json(expenses);
-}
+});
 
-export async function POST(req: NextRequest) {
-  const session = await auth();
-  if (session?.user?.role !== "owner") {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+export const POST = withOwner(async (req, session) => {
 
   const body = await req.json();
   const { date, category, description, amount, paymentMethod } = body as {
@@ -63,13 +55,9 @@ export async function POST(req: NextRequest) {
   });
 
   return NextResponse.json({ id: ref.id });
-}
+});
 
-export async function DELETE(req: NextRequest) {
-  const session = await auth();
-  if (session?.user?.role !== "owner") {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+export const DELETE = withOwner(async (req) => {
 
   const { id } = await req.json();
   if (!id) {
@@ -78,4 +66,4 @@ export async function DELETE(req: NextRequest) {
 
   await db.collection("hub_expenses").doc(id).delete();
   return NextResponse.json({ ok: true });
-}
+});

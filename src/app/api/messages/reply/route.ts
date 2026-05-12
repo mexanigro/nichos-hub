@@ -1,17 +1,12 @@
-import { NextRequest, NextResponse } from "next/server";
-import { auth } from "@/lib/auth";
+import { NextResponse } from "next/server";
+import { withOwner } from "@/lib/auth";
 import { db } from "@/lib/firebase-admin";
 
-export async function POST(request: NextRequest) {
-  const session = await auth();
-  if (session?.user?.role !== "owner") {
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-  }
-
-  const { parentId, clientId, businessName, message } = await request.json();
+export const POST = withOwner(async (req) => {
+  const { parentId, clientId, businessName, message } = await req.json();
 
   if (!parentId || !clientId || !message) {
-    return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+    return NextResponse.json({ error: "Campos requeridos: parentId, clientId, message" }, { status: 400 });
   }
 
   await db.collection("provider_messages").doc(parentId).update({ status: "read" });
@@ -27,4 +22,4 @@ export async function POST(request: NextRequest) {
   });
 
   return NextResponse.json({ id: docRef.id }, { status: 201 });
-}
+});
