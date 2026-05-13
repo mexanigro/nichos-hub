@@ -7,6 +7,7 @@ export const GET = withOwner(async () => {
   const snap = await db
     .collection("hub_expenses")
     .orderBy("date", "desc")
+    .limit(10000)
     .get();
 
   const rows = snap.docs.map((doc) => {
@@ -28,8 +29,8 @@ export const GET = withOwner(async () => {
       headers
         .map((h) => {
           const val = String(r[h as keyof typeof r] ?? "");
-          return val.includes(",") || val.includes('"')
-            ? `"${val.replace(/"/g, '""')}"`
+          return val.includes(",") || val.includes('"') || val.includes("\n")
+            ? `"${val.replace(/"/g, '""').replace(/\n/g, " ")}"`
             : val;
         })
         .join(",")

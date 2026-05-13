@@ -49,6 +49,11 @@ export const PUT = withOwner(async (req, _session, ctx) => {
   }
 
   const cleaned = replaceNullsWithDelete(body as Record<string, unknown>);
-  await db.collection("config").doc(clientId).set(cleaned, { merge: true });
+  try {
+    await db.collection("config").doc(clientId).set(cleaned, { merge: true });
+  } catch (err) {
+    console.error("[api/config PUT]", err);
+    return NextResponse.json({ error: "Error al guardar configuracion" }, { status: 500 });
+  }
   return NextResponse.json({ ok: true });
 });

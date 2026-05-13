@@ -1,5 +1,5 @@
-const TERMINAL = process.env.CARDCOM_TERMINAL!;
-const API_NAME = process.env.CARDCOM_API_NAME!;
+const TERMINAL = process.env.CARDCOM_TERMINAL ?? "";
+const API_NAME = process.env.CARDCOM_API_NAME ?? "";
 
 const BASE_URL = process.env.NEXTAUTH_URL || "https://arzac.studio";
 
@@ -18,6 +18,10 @@ interface CreatePaymentResult {
 }
 
 export async function createLowProfilePayment(params: CreatePaymentParams): Promise<CreatePaymentResult> {
+  if (!TERMINAL || !API_NAME) {
+    return { success: false, error: "Cardcom not configured" };
+  }
+
   const body = new URLSearchParams({
     TerminalNumber: TERMINAL,
     UserName: API_NAME,
@@ -66,6 +70,10 @@ interface VerifyPaymentResult {
 }
 
 export async function verifyPayment(lowProfileCode: string): Promise<VerifyPaymentResult> {
+  if (!TERMINAL || !API_NAME) {
+    return { success: false, error: "Cardcom not configured" };
+  }
+
   const url = new URL("https://secure.cardcom.solutions/Interface/BillGoldGetLowProfileIndicator.aspx");
   url.searchParams.set("terminalnumber", TERMINAL);
   url.searchParams.set("username", API_NAME);
@@ -82,6 +90,7 @@ export async function verifyPayment(lowProfileCode: string): Promise<VerifyPayme
   const text = await res.text();
   const parsed = Object.fromEntries(new URLSearchParams(text));
 
+  // Cardcom returns "DealResponse" in some versions, "DealRespone" (typo) in others
   const dealResponse = parsed.DealResponse ?? parsed.DealRespone;
   if (parsed.OperationResponse === "0" && dealResponse === "0") {
     return {

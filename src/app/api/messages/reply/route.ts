@@ -9,17 +9,27 @@ export const POST = withOwner(async (req) => {
     return NextResponse.json({ error: "Campos requeridos: parentId, clientId, message" }, { status: 400 });
   }
 
-  await db.collection("provider_messages").doc(parentId).update({ status: "read" });
+  try {
+    const parent = await db.collection("provider_messages").doc(parentId).get();
+    if (!parent.exists) {
+      return NextResponse.json({ error: "Mensaje padre no encontrado" }, { status: 404 });
+    }
 
-  const docRef = await db.collection("provider_messages").add({
-    clientId,
-    businessName,
-    message,
-    sender: "provider",
-    parentId,
-    status: "new",
-    createdAt: new Date(),
-  });
+    await parent.ref.update({ status: "read" });
 
-  return NextResponse.json({ id: docRef.id }, { status: 201 });
+    const docRef = await db.collection("provider_messages").add({
+      clientId,
+      businessName,
+      message,
+      sender: "provider",
+      parentId,
+      status: "new",
+      createdAt: new Date(),
+    });
+
+    return NextResponse.json({ id: docRef.id }, { status: 201 });
+  } catch (err) {
+    console.error("[api/messages/reply POST]", err);
+    return NextResponse.json({ error: "Error al enviar respuesta" }, { status: 500 });
+  }
 });

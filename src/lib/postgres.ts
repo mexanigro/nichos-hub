@@ -15,6 +15,10 @@ function getPool(): Pool {
       : undefined,
   });
 
+  _pool.on("error", (err) => {
+    console.error("[postgres] pool error:", err.message);
+  });
+
   return _pool;
 }
 

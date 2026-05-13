@@ -59,6 +59,16 @@ export const PATCH = withOwner(async (req) => {
     return NextResponse.json({ error: "id es requerido" }, { status: 400 });
   }
 
-  await db.collection("provider_messages").doc(id).update({ status });
+  const validStatuses = ["new", "read"];
+  if (status && !validStatuses.includes(status)) {
+    return NextResponse.json({ error: "Status invalido" }, { status: 400 });
+  }
+
+  try {
+    await db.collection("provider_messages").doc(id).update({ status });
+  } catch (err) {
+    console.error("[api/messages PATCH]", err);
+    return NextResponse.json({ error: "Error al actualizar mensaje" }, { status: 500 });
+  }
   return NextResponse.json({ ok: true });
 });

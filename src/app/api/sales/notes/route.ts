@@ -23,10 +23,15 @@ export const POST = withAuth(async (req, session) => {
     createdAt: new Date(),
   };
 
-  await db.collection("hub_prospects").doc(prospectId).update({
-    notes: FieldValue.arrayUnion(note),
-    lastContact: new Date(),
-  });
+  try {
+    await db.collection("hub_prospects").doc(prospectId).update({
+      notes: FieldValue.arrayUnion(note),
+      lastContact: new Date(),
+    });
+  } catch (err) {
+    console.error("[api/sales/notes POST]", err);
+    return NextResponse.json({ error: "Error al agregar nota" }, { status: 500 });
+  }
 
   return NextResponse.json({ ok: true });
 });

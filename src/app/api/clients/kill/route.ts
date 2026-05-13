@@ -60,10 +60,14 @@ export const POST = withOwner(async (req) => {
     );
   }
 
-  // Also update the client status in Firestore
-  await db.collection("hub_clients").doc(clientDocId).update({
-    status: paused ? "suspended" : "active",
-  });
+  try {
+    await db.collection("hub_clients").doc(clientDocId).update({
+      status: paused ? "suspended" : "active",
+    });
+  } catch (err) {
+    console.error("[kill-switch] Firestore update failed after Vercel succeeded:", err);
+    return NextResponse.json({ error: "Vercel actualizado pero error en base de datos" }, { status: 500 });
+  }
 
   return NextResponse.json({
     ok: true,

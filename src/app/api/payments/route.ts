@@ -40,6 +40,24 @@ export const POST = withOwner(async (req) => {
     );
   }
 
+  const validStatuses = ["paid", "pending", "failed", "cancelled"];
+  if (!validStatuses.includes(status)) {
+    return NextResponse.json(
+      { error: "status debe ser 'paid', 'pending', 'failed' o 'cancelled'" },
+      { status: 400 },
+    );
+  }
+
+  const bd = new Date(billingDate);
+  const nbd = new Date(nextBillingDate);
+  if (isNaN(bd.getTime()) || isNaN(nbd.getTime())) {
+    return NextResponse.json({ error: "Fecha invalida" }, { status: 400 });
+  }
+
+  if (typeof amount !== "number" || amount <= 0) {
+    return NextResponse.json({ error: "El monto debe ser un numero positivo" }, { status: 400 });
+  }
+
   const now = FieldValue.serverTimestamp();
   const docRef = await db.collection("hub_payments").add({
     clientId,
@@ -49,8 +67,8 @@ export const POST = withOwner(async (req) => {
     currency: CURRENCY,
     type,
     status,
-    billingDate: new Date(billingDate),
-    nextBillingDate: new Date(nextBillingDate),
+    billingDate: bd,
+    nextBillingDate: nbd,
     cardLastFour: cardLastFour || null,
     failureReason: null,
     cardcomTransactionId: null,
@@ -85,7 +103,12 @@ export const PATCH = withOwner(async (req) => {
     }
   }
 
-  await db.collection("hub_payments").doc(id).update(filtered);
+  try {
+    await db.collection("hub_payments").doc(id).update(filtered);
+  } catch (err) {
+    console.error("[api/payments PATCH]", err);
+    return NextResponse.json({ error: "Error al actualizar pago" }, { status: 500 });
+  }
 
   return NextResponse.json({ ok: true });
 });

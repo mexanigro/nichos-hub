@@ -47,6 +47,11 @@ export const POST = withOwner(async (req) => {
     return NextResponse.json({ error: "Campos requeridos: businessName, niche, deployUrl, clientId" }, { status: 400 });
   }
 
+  const existing = await db.collection("hub_clients").where("clientId", "==", clientId).limit(1).get();
+  if (!existing.empty) {
+    return NextResponse.json({ error: "clientId ya existe" }, { status: 409 });
+  }
+
   try {
     const docRef = await db.collection("hub_clients").add({
       businessName,
@@ -93,6 +98,11 @@ export const PUT = withOwner(async (req) => {
     return NextResponse.json({ error: "No hay campos válidos para actualizar" }, { status: 400 });
   }
 
-  await db.collection("hub_clients").doc(id).update(updates);
+  try {
+    await db.collection("hub_clients").doc(id).update(updates);
+  } catch (err) {
+    console.error("[api/clients PUT]", err);
+    return NextResponse.json({ error: "Error al actualizar cliente" }, { status: 500 });
+  }
   return NextResponse.json({ ok: true });
 });

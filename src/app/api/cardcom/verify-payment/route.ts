@@ -50,8 +50,8 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: result.error }, { status: 400 });
   }
 
-  const now = FieldValue.serverTimestamp();
-
+  // Find the pending payment, then atomically transition it to "paid"
+  // inside a transaction to prevent concurrent duplicate transitions.
   const paymentsSnap = await db
     .collection("hub_payments")
     .where("clientId", "==", clientId)
@@ -61,12 +61,17 @@ export async function POST(req: NextRequest) {
     .get();
 
   if (!paymentsSnap.empty) {
-    await paymentsSnap.docs[0].ref.update({
-      status: "paid",
-      cardcomTransactionId: result.transactionId || null,
-      cardcomLowProfileCode: lowProfileCode,
-      cardLastFour: result.cardLastFour || null,
-      updatedAt: now,
+    const paymentRef = paymentsSnap.docs[0].ref;
+    await db.runTransaction(async (tx) => {
+      const fresh = await tx.get(paymentRef);
+      if (!fresh.exists || fresh.data()?.status !== "pending") return;
+      tx.update(paymentRef, {
+        status: "paid",
+        cardcomTransactionId: result.transactionId || null,
+        cardcomLowProfileCode: lowProfileCode,
+        cardLastFour: result.cardLastFour || null,
+        updatedAt: FieldValue.serverTimestamp(),
+      });
     });
   }
 
@@ -79,7 +84,7 @@ export async function POST(req: NextRequest) {
   if (!clientSnap.empty) {
     await clientSnap.docs[0].ref.update({
       paymentStatus: "active",
-      updatedAt: now,
+      updatedAt: FieldValue.serverTimestamp(),
     });
   }
 

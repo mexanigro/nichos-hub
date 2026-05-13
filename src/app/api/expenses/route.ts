@@ -44,11 +44,20 @@ export const POST = withOwner(async (req, session) => {
     return NextResponse.json({ error: "Campos requeridos: date, category, description, amount" }, { status: 400 });
   }
 
+  const numAmount = Number(amount);
+  if (isNaN(numAmount) || numAmount <= 0) {
+    return NextResponse.json({ error: "El monto debe ser un numero positivo" }, { status: 400 });
+  }
+
+  if (isNaN(new Date(date).getTime())) {
+    return NextResponse.json({ error: "Fecha invalida" }, { status: 400 });
+  }
+
   const ref = await db.collection("hub_expenses").add({
     date,
     category,
     description,
-    amount: Number(amount),
+    amount: numAmount,
     paymentMethod: paymentMethod || "",
     createdBy: session.user.email,
     createdAt: FieldValue.serverTimestamp(),
@@ -64,6 +73,11 @@ export const DELETE = withOwner(async (req) => {
     return NextResponse.json({ error: "ID requerido" }, { status: 400 });
   }
 
-  await db.collection("hub_expenses").doc(id).delete();
+  try {
+    await db.collection("hub_expenses").doc(id).delete();
+  } catch (err) {
+    console.error("[api/expenses DELETE]", err);
+    return NextResponse.json({ error: "Error al eliminar gasto" }, { status: 500 });
+  }
   return NextResponse.json({ ok: true });
 });

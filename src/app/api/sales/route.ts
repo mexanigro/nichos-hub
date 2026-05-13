@@ -68,19 +68,36 @@ export const PATCH = withAuth(async (req, session) => {
     return NextResponse.json({ error: "id es requerido" }, { status: 400 });
   }
 
-  if (session.user.role === "seller") {
-    const doc = await db.collection("hub_prospects").doc(id).get();
-    if (doc.data()?.assignedSeller !== session.user.email) {
-      return NextResponse.json({ error: "Sin permisos" }, { status: 403 });
+  if (updates.status) {
+    const validStatuses: string[] = ["following", "rejected", "closed"];
+    if (!validStatuses.includes(updates.status)) {
+      return NextResponse.json({ error: "Status invalido" }, { status: 400 });
     }
-    const allowed = ["status", "rejectionReason", "lastContact"];
-    const filtered: Record<string, unknown> = {};
-    for (const key of allowed) {
-      if (key in updates) filtered[key] = updates[key];
+  }
+
+  try {
+    if (session.user.role === "seller") {
+      const doc = await db.collection("hub_prospects").doc(id).get();
+      if (doc.data()?.assignedSeller !== session.user.email) {
+        return NextResponse.json({ error: "Sin permisos" }, { status: 403 });
+      }
+      const allowed = ["status", "rejectionReason", "lastContact"];
+      const filtered: Record<string, unknown> = {};
+      for (const key of allowed) {
+        if (key in updates) filtered[key] = updates[key];
+      }
+      await db.collection("hub_prospects").doc(id).update(filtered);
+    } else {
+      const ownerAllowed = ["businessName", "city", "nicheTarget", "assignedSeller", "status", "rejectionReason", "lastContact"];
+      const filtered: Record<string, unknown> = {};
+      for (const key of ownerAllowed) {
+        if (key in updates) filtered[key] = updates[key];
+      }
+      await db.collection("hub_prospects").doc(id).update(filtered);
     }
-    await db.collection("hub_prospects").doc(id).update(filtered);
-  } else {
-    await db.collection("hub_prospects").doc(id).update(updates);
+  } catch (err) {
+    console.error("[api/sales PATCH]", err);
+    return NextResponse.json({ error: "Error al actualizar prospecto" }, { status: 500 });
   }
 
   return NextResponse.json({ ok: true });
