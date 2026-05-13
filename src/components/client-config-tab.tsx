@@ -22,6 +22,7 @@ import {
   ImageIcon,
   Plus,
   Trash2,
+  User,
 } from "lucide-react";
 
 /* ══════════════════════════════════════════════════════════════════════════
@@ -49,6 +50,16 @@ type ConfigDoc = {
   hero?: { backgroundImage?: string };
   gallery?: string[];
   staff?: { photoUrl?: string; portfolio?: string[] }[];
+  owner?: {
+    photo?: string;
+    name?: string;
+    role?: string;
+    bio?: string;
+    specialties?: string;
+    experience?: string;
+    certifications?: string;
+    portfolio?: string[];
+  };
   sections?: {
     services?: { images?: string[] };
     whyChooseUs?: { mainImage?: string };
@@ -64,11 +75,23 @@ const NICHE_DEFAULTS: Record<BusinessNiche, { accent: string; accentLight: strin
   nails: { accent: "#dca2ac", accentLight: "#edc2c9", surfaceDark: "#6f4a56" },
 };
 
-const FEATURES_LIST = [
+const FEATURES_SHARED = [
   { key: "showHero", label: "Hero" },
   { key: "showServices", label: "Servicios" },
   { key: "showWhyChooseUs", label: "Por que elegirnos" },
+] as const;
+
+const FEATURES_TEAM = [
   { key: "showTeam", label: "Equipo" },
+  { key: "enableStaffPages", label: "Paginas de staff" },
+] as const;
+
+const FEATURES_SOLO = [
+  { key: "showAbout", label: "Sobre mi" },
+  { key: "enableAboutPage", label: "Pagina personal" },
+] as const;
+
+const FEATURES_TAIL = [
   { key: "showGallery", label: "Galeria" },
   { key: "showTestimonials", label: "Testimonios" },
   { key: "showInquiry", label: "Formulario contacto" },
@@ -76,9 +99,13 @@ const FEATURES_LIST = [
   { key: "showBusinessHours", label: "Horarios" },
   { key: "showInstagram", label: "Instagram" },
   { key: "showBooking", label: "Reservas" },
-  { key: "enableStaffPages", label: "Paginas de staff" },
   { key: "showWhatsAppInChat", label: "WhatsApp en chatbot" },
 ] as const;
+
+function getFeaturesList(mode: string): { key: string; label: string }[] {
+  const modeFeatures = mode === "solo" ? FEATURES_SOLO : FEATURES_TEAM;
+  return [...FEATURES_SHARED, ...modeFeatures, ...FEATURES_TAIL];
+}
 
 const NICHE_SERVICES: Record<BusinessNiche, { id: string; label: string }[]> = {
   barberia: [
@@ -152,6 +179,7 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
             showTeam: true, showGallery: true, showTestimonials: true,
             showInquiry: true, showLocation: true, showBusinessHours: true,
             showInstagram: true, showBooking: true, enableStaffPages: true,
+            showAbout: false, enableAboutPage: false,
           },
           contact: { phone: "", email: "" },
           hours: {},
@@ -320,9 +348,13 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
             if (value === "solo") {
               updateNested("features.showTeam", false);
               updateNested("features.enableStaffPages", false);
+              updateNested("features.showAbout", true);
+              updateNested("features.enableAboutPage", true);
             } else {
               updateNested("features.showTeam", true);
               updateNested("features.enableStaffPages", true);
+              updateNested("features.showAbout", false);
+              updateNested("features.enableAboutPage", false);
             }
           }}
             options={[
@@ -412,7 +444,7 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
         expanded={expandedSections.has("features")} onToggle={toggleSection}
       >
         <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-          {FEATURES_LIST.map(f => {
+          {getFeaturesList((config.businessMode as string) || "team").map(f => {
             const val = config.features?.[f.key] ?? true;
             return (
               <button
@@ -521,6 +553,48 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
         </div>
       </Section>
 
+      {/* ── Autobiografia (solo mode) ────────────────────────────── */}
+      {((config.businessMode as string) || "team") === "solo" && (
+        <Section
+          icon={User} title="Autobiografia" sectionKey="owner"
+          expanded={expandedSections.has("owner")} onToggle={toggleSection}
+        >
+          <p className="text-[11px] text-text-muted">
+            Tu perfil personal como unico profesional. Esta informacion reemplaza la seccion de equipo en la web.
+          </p>
+          <div className="grid gap-3 sm:grid-cols-2">
+            <Field label="Nombre completo" path="owner.name" value={getNested("owner.name")} onChange={updateNested} placeholder="Tu nombre" />
+            <Field label="Titulo / Rol" path="owner.role" value={getNested("owner.role")} onChange={updateNested} placeholder="Master Barber, Tattoo Artist..." />
+          </div>
+          <Field label="Foto de perfil" path="owner.photo" value={getNested("owner.photo")} onChange={updateNested} placeholder="https://..." />
+          {(getNested("owner.photo") as string) ? (
+            <img src={getNested("owner.photo") as string} alt="" className="h-20 w-20 rounded-full object-cover" />
+          ) : null}
+          <TextAreaField label="Bio" path="owner.bio" value={getNested("owner.bio") as string} onChange={updateNested}
+            placeholder="Cuenta tu historia, tu trayectoria, que te hace diferente..."
+          />
+          <div className="grid gap-3 sm:grid-cols-2">
+            <Field label="Experiencia" path="owner.experience" value={getNested("owner.experience")} onChange={updateNested} placeholder="12 años en el rubro" />
+            <Field label="Especialidades" path="owner.specialties" value={getNested("owner.specialties")} onChange={updateNested} placeholder="Fade, Beard design..." />
+          </div>
+          <Field label="Certificaciones" path="owner.certifications" value={getNested("owner.certifications")} onChange={updateNested} placeholder="Certificado en..." />
+          <div>
+            <label className="mb-1 block text-[10px] text-text-muted">Portfolio personal</label>
+            <ImageListField
+              value={(config.owner?.portfolio as string[] | undefined) || []}
+              onChange={(imgs) => setConfig(prev => ({
+                ...prev,
+                owner: {
+                  ...prev.owner,
+                  portfolio: imgs.length > 0 ? imgs : undefined,
+                },
+              }))}
+              placeholder="URL de imagen de tu trabajo"
+            />
+          </div>
+        </Section>
+      )}
+
       {/* ── Images ──────────────────────────────────────────────────── */}
       <Section
         icon={ImageIcon} title="Imagenes" sectionKey="images"
@@ -579,57 +653,58 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
           </div>
         </div>
 
-        {/* Staff photos — only when staff overrides exist or can be added */}
-        <div className="border-t border-border pt-3">
-          <p className="mb-1 text-[11px] font-semibold text-text-secondary">Fotos del equipo</p>
-          <p className="mb-2 text-[10px] text-text-muted">
-            Agrega fotos de perfil y portfolio para cada miembro del equipo. El orden debe coincidir con el del preset.
-          </p>
-          {(() => {
-            const staffList = config.staff || [];
-            function updateStaffField(index: number, field: string, value: unknown) {
-              setConfig(prev => {
-                const arr = [...(prev.staff || [])];
-                while (arr.length <= index) arr.push({});
-                arr[index] = { ...arr[index], [field]: value || undefined };
-                // Clean empty entries from end
-                while (arr.length > 0 && Object.values(arr[arr.length - 1]).every(v => v === undefined)) arr.pop();
-                return { ...prev, staff: arr.length > 0 ? arr : undefined };
-              });
-            }
-            function addStaffSlot() {
-              setConfig(prev => ({ ...prev, staff: [...(prev.staff || []), {}] }));
-            }
-            return (
-              <div className="space-y-3">
-                {staffList.map((member, i) => (
-                  <div key={i} className="rounded-lg border border-border bg-bg-elevated p-3">
-                    <span className="mb-2 block text-[10px] font-medium text-text-muted">Miembro {i + 1}</span>
-                    <Field label="Foto de perfil" path={`_staff_${i}_photo`} value={member.photoUrl || ""} onChange={(_p, v) => updateStaffField(i, "photoUrl", v)} placeholder="https://..." />
-                    {member.photoUrl && (
-                      <img src={member.photoUrl} alt="" className="mt-1 h-16 w-16 rounded-full object-cover" />
-                    )}
-                    <div className="mt-2">
-                      <label className="mb-1 block text-[10px] text-text-muted">Portfolio (imagenes)</label>
-                      <ImageListField
-                        value={member.portfolio || []}
-                        onChange={(imgs) => updateStaffField(i, "portfolio", imgs.length > 0 ? imgs : undefined)}
-                        placeholder="URL de imagen de portfolio"
-                      />
+        {/* Staff photos — only in team mode */}
+        {((config.businessMode as string) || "team") !== "solo" && (
+          <div className="border-t border-border pt-3">
+            <p className="mb-1 text-[11px] font-semibold text-text-secondary">Fotos del equipo</p>
+            <p className="mb-2 text-[10px] text-text-muted">
+              Agrega fotos de perfil y portfolio para cada miembro del equipo. El orden debe coincidir con el del preset.
+            </p>
+            {(() => {
+              const staffList = config.staff || [];
+              function updateStaffField(index: number, field: string, value: unknown) {
+                setConfig(prev => {
+                  const arr = [...(prev.staff || [])];
+                  while (arr.length <= index) arr.push({});
+                  arr[index] = { ...arr[index], [field]: value || undefined };
+                  while (arr.length > 0 && Object.values(arr[arr.length - 1]).every(v => v === undefined)) arr.pop();
+                  return { ...prev, staff: arr.length > 0 ? arr : undefined };
+                });
+              }
+              function addStaffSlot() {
+                setConfig(prev => ({ ...prev, staff: [...(prev.staff || []), {}] }));
+              }
+              return (
+                <div className="space-y-3">
+                  {staffList.map((member, i) => (
+                    <div key={i} className="rounded-lg border border-border bg-bg-elevated p-3">
+                      <span className="mb-2 block text-[10px] font-medium text-text-muted">Miembro {i + 1}</span>
+                      <Field label="Foto de perfil" path={`_staff_${i}_photo`} value={member.photoUrl || ""} onChange={(_p, v) => updateStaffField(i, "photoUrl", v)} placeholder="https://..." />
+                      {member.photoUrl && (
+                        <img src={member.photoUrl} alt="" className="mt-1 h-16 w-16 rounded-full object-cover" />
+                      )}
+                      <div className="mt-2">
+                        <label className="mb-1 block text-[10px] text-text-muted">Portfolio (imagenes)</label>
+                        <ImageListField
+                          value={member.portfolio || []}
+                          onChange={(imgs) => updateStaffField(i, "portfolio", imgs.length > 0 ? imgs : undefined)}
+                          placeholder="URL de imagen de portfolio"
+                        />
+                      </div>
                     </div>
-                  </div>
-                ))}
-                <button
-                  type="button"
-                  onClick={addStaffSlot}
-                  className="flex items-center gap-1.5 rounded-lg border border-dashed border-border px-3 py-2 text-[11px] text-text-muted transition-colors hover:border-accent hover:text-text"
-                >
-                  <Plus size={12} /> Agregar miembro
-                </button>
-              </div>
-            );
-          })()}
-        </div>
+                  ))}
+                  <button
+                    type="button"
+                    onClick={addStaffSlot}
+                    className="flex items-center gap-1.5 rounded-lg border border-dashed border-border px-3 py-2 text-[11px] text-text-muted transition-colors hover:border-accent hover:text-text"
+                  >
+                    <Plus size={12} /> Agregar miembro
+                  </button>
+                </div>
+              );
+            })()}
+          </div>
+        )}
       </Section>
 
       {/* ── Visible Services ──────────────────────────────────────────── */}
