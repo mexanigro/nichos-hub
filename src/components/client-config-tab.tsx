@@ -315,7 +315,16 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
               { value: "nails", label: "Nails" },
             ]}
           />
-          <SelectField label="Modo" path="businessMode" value={(getNested("businessMode") as string) || "team"} onChange={updateNested}
+          <SelectField label="Modo" path="businessMode" value={(getNested("businessMode") as string) || "team"} onChange={(path, value) => {
+            updateNested(path, value);
+            if (value === "solo") {
+              updateNested("features.showTeam", false);
+              updateNested("features.enableStaffPages", false);
+            } else {
+              updateNested("features.showTeam", true);
+              updateNested("features.enableStaffPages", true);
+            }
+          }}
             options={[
               { value: "team", label: "Equipo (varios profesionales)" },
               { value: "solo", label: "Solo (un profesional)" },
