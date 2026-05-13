@@ -9,7 +9,7 @@ Dashboard de operaciones privado para Arzac Studio. Propietario: Liam Arzac | we
 
 ## Contexto del negocio
 
-SaaS de desarrollo web para negocios locales en Israel. Modelo: pago inicial ₪4,200 (setup) + ₪500/mes (suscripción recurrente). Proveedor de pagos: Cardcom (número de proveedor 1233048, terminal 189298). Mercado: Israel, clientes en hebreo/inglés. Venta fría: Liam construye la web primero, luego la ofrece al cliente.
+SaaS de desarrollo web para negocios locales en Israel. Modelo: ₪0 setup + ₪800/mes (suscripción desde el día uno). Proveedor de pagos: Cardcom (número de proveedor 1233048, terminal 189298). Mercado: Israel, clientes en hebreo/inglés. Venta fría: Liam construye la web primero, luego la ofrece al cliente.
 
 ## Stack técnico
 
@@ -141,8 +141,8 @@ Tablas:
 
 ## Modelo de pagos
 
-* Setup inicial: ₪4,200 (type: "initial")
-* Mensualidad: ₪500 (type: "recurring")
+* Primer pago (suscripción): ₪800 (type: "initial")
+* Mensualidad: ₪800 (type: "recurring")
 * Proveedor: Cardcom Low Profile (API key + password + terminal en env)
 * Comisión Cardcom transacciones locales: 1.2%
 * Flujo completo:
