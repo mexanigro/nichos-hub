@@ -8,7 +8,7 @@ import {
   ToggleLeft,
   Clock,
   Phone,
-  Settings2,
+  Store,
   Bot,
   Sparkles,
   ChevronDown,
@@ -17,6 +17,9 @@ import {
   Trash2,
   Eye,
   EyeOff,
+  Bell,
+  CalendarCog,
+  Wrench,
 } from "lucide-react";
 
 /* ══════════════════════════════════════════════════════════════════════════
@@ -256,7 +259,7 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
 
       {/* ── Business Info ─────────────────────────────────────────────── */}
       <Section
-        icon={Settings2} title="Datos del negocio" sectionKey="business"
+        icon={Store} title="Datos del negocio" sectionKey="business"
         expanded={expandedSections.has("business")} onToggle={toggleSection}
       >
         <div className="grid gap-3 sm:grid-cols-2">
@@ -382,7 +385,7 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
 
       {/* ── Booking Rules ─────────────────────────────────────────────── */}
       <Section
-        icon={Settings2} title="Reglas de reserva" sectionKey="bookingRules"
+        icon={CalendarCog} title="Reglas de reserva" sectionKey="bookingRules"
         expanded={expandedSections.has("bookingRules")} onToggle={toggleSection}
       >
         <div className="grid gap-3 sm:grid-cols-2">
@@ -408,7 +411,7 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
 
       {/* ── Notifications ─────────────────────────────────────────────── */}
       <Section
-        icon={Settings2} title="Notificaciones y extras" sectionKey="notifications"
+        icon={Bell} title="Notificaciones y extras" sectionKey="notifications"
         expanded={expandedSections.has("notifications")} onToggle={toggleSection}
       >
         <ToggleField label="Notificaciones habilitadas" path="notifications.enabled" value={getNested("notifications.enabled") as boolean} onChange={updateNested} />
@@ -439,7 +442,7 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
 
       {/* ── Service Overrides ─────────────────────────────────────────── */}
       <Section
-        icon={Settings2} title="Overrides de servicios" sectionKey="serviceOverrides"
+        icon={Wrench} title="Overrides de servicios" sectionKey="serviceOverrides"
         expanded={expandedSections.has("serviceOverrides")} onToggle={toggleSection}
       >
         <p className="text-[11px] text-text-muted">
@@ -490,8 +493,8 @@ function Field({ label, path, value, onChange, placeholder }: {
       <label className="mb-1 block text-[11px] font-medium text-text-muted">{label}</label>
       <input
         type="text"
-        value={(value as string) || ""}
-        onChange={e => onChange(path, e.target.value || undefined)}
+        value={(value as string) ?? ""}
+        onChange={e => onChange(path, e.target.value || null)}
         placeholder={placeholder}
         className="w-full rounded-lg border border-border bg-bg-elevated px-3 py-2 text-xs text-text placeholder:text-text-muted/50 focus:border-accent focus:outline-none"
       />
@@ -548,7 +551,7 @@ function TextAreaField({ label, path, value, onChange, placeholder }: {
       <label className="mb-1 block text-[11px] font-medium text-text-muted">{label}</label>
       <textarea
         value={value || ""}
-        onChange={e => onChange(path, e.target.value || undefined)}
+        onChange={e => onChange(path, e.target.value || null)}
         placeholder={placeholder}
         rows={3}
         className="w-full rounded-lg border border-border bg-bg-elevated px-3 py-2 text-xs text-text placeholder:text-text-muted/50 focus:border-accent focus:outline-none"
