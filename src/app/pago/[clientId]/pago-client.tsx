@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { INITIAL_AMOUNT, RECURRING_AMOUNT } from "@/lib/pricing";
 
 const CONTRACT_HE = `חוזה לבניית אתרים – תחזוקה ואחסון
@@ -26,7 +26,7 @@ const CONTRACT_HE = `חוזה לבניית אתרים – תחזוקה ואחס�
 • פיתוח אתר אישי: ₪4,200 - תשלום חד פעמי.
 • תחזוקה חודשית: ₪500 יועבר מידי חודש.
 • אחסון האתר: עלות שנתית, המחיר משתנה משנה לשנה (כפוף לשינויים אצל צד ג') ישולם תוך 7 ימים מיום מתן הדרישה על ידי הספק.
-• דומיין: עלות שנתית, המחיר משתנה משנה לשנה (כפוף לשינויים אצל צד ג') ישולם תוך 7 ימים מיום מתן הדרישה על ידי הספק.
+• דומיין: עלות שנתית, המחיר משתנה משנה לשנה (כפוף לשינויים אצד ג') ישולם תוך 7 ימים מיום מתן הדרישה על ידי הספק.
 • אי ביצוע תשלום בזמן תגרור הורדת האתר מהאוויר, האתר יימחק תוך 7 ימים מיום אי ביצוע התשלום, וביטול הסכם זה.
 
 3. זמנים:
@@ -123,34 +123,97 @@ The exclusive jurisdiction for any matter related to this agreement shall be in 
 
 const i18n = {
   he: {
-    welcome: "ברוך הבא,",
+    greeting: "שלום,",
+    paymentFor: "תשלום עבור",
+    initialLabel: "הקמת אתר",
+    recurringLabel: "תחזוקה חודשית",
+    oneTime: "תשלום חד פעמי",
+    monthly: "חודשי",
     contractTitle: "הסכם שירות",
-    accept: "קראתי ואני מסכים/ה לתנאי השירות",
-    continueToPayment: "המשך לתשלום",
-    paymentTitle: "תשלום",
-    initialLabel: "תשלום ראשוני - הקמת אתר",
-    recurringLabel: "תשלום חודשי - תחזוקה",
-    cardcomPlaceholder: "כאן יופיע טופס התשלום של Cardcom",
-    confirmPayment: "אשר תשלום",
+    expandContract: "קרא את ההסכם המלא",
+    collapseContract: "הסתר",
+    accept: "קראתי ואני מסכים/ה לתנאי ההסכם",
+    pay: "המשך לתשלום",
     processing: "מעבד...",
-    contractAccepted: "החוזה נקלט בהצלחה",
+    contractAccepted: "ההסכם נחתם בהצלחה",
     error: "שגיאה, נסה שוב",
+    cardcomPlaceholder: "טופס התשלום יופיע כאן",
+    confirmPayment: "אשר תשלום",
+    securePayment: "תשלום מאובטח",
+    includes: "השירות כולל",
+    includesWebsite: "אתר אישי מעוצב",
+    includesCRM: "מערכת ניהול לקוחות",
+    includesAI: "עוזר וירטואלי AI",
+    includesMaintenance: "תחזוקה ותמיכה טכנית",
+    includesHosting: "אחסון ודומיין",
   },
   en: {
-    welcome: "Welcome,",
+    greeting: "Hello,",
+    paymentFor: "Payment for",
+    initialLabel: "Website setup",
+    recurringLabel: "Monthly maintenance",
+    oneTime: "One-time payment",
+    monthly: "Monthly",
     contractTitle: "Service Agreement",
+    expandContract: "Read full agreement",
+    collapseContract: "Collapse",
     accept: "I have read and accept the terms of service",
-    continueToPayment: "Continue to payment",
-    paymentTitle: "Payment",
-    initialLabel: "Initial payment - Website setup",
-    recurringLabel: "Monthly payment - Maintenance",
-    cardcomPlaceholder: "Cardcom payment form will appear here",
-    confirmPayment: "Confirm payment",
+    pay: "Continue to payment",
     processing: "Processing...",
-    contractAccepted: "Contract accepted successfully",
+    contractAccepted: "Agreement signed successfully",
     error: "An error occurred, please try again",
+    cardcomPlaceholder: "Payment form will appear here",
+    confirmPayment: "Confirm payment",
+    securePayment: "Secure payment",
+    includes: "Service includes",
+    includesWebsite: "Custom designed website",
+    includesCRM: "Customer management system",
+    includesAI: "AI virtual assistant",
+    includesMaintenance: "Maintenance & technical support",
+    includesHosting: "Hosting & domain",
   },
 };
+
+function LogoMark() {
+  return (
+    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Arzac Studio">
+      <rect width="40" height="40" rx="10" fill="oklch(0.52 0.08 192)" />
+      <text x="20" y="27" textAnchor="middle" fill="oklch(0.98 0.005 192)" fontFamily="var(--font-display), sans-serif" fontWeight="700" fontSize="18" letterSpacing="-0.5">
+        AS
+      </text>
+    </svg>
+  );
+}
+
+function CheckIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="pago-check-icon">
+      <path d="M3.5 8.5L6.5 11.5L12.5 4.5" stroke="oklch(0.52 0.08 192)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function LockIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+      <path d="M4.5 6V4.5C4.5 3.12 5.62 2 7 2s2.5 1.12 2.5 2.5V6M3.5 6h7a1 1 0 011 1v4.5a1 1 0 01-1 1h-7a1 1 0 01-1-1V7a1 1 0 011-1z" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function ChevronIcon({ expanded }: { expanded: boolean }) {
+  return (
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none"
+      style={{ transform: expanded ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 0.25s cubic-bezier(0.16, 1, 0.3, 1)" }}
+    >
+      <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
 
 interface Props {
   clientId: string;
@@ -162,10 +225,9 @@ interface Props {
 
 export default function PagoClient({ clientId, clientDocId, businessName, isInitial, lang }: Props) {
   const [accepted, setAccepted] = useState(false);
-  const [contractSent, setContractSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
-  const paymentRef = useRef<HTMLDivElement>(null);
+  const [contractExpanded, setContractExpanded] = useState(false);
   const t = i18n[lang];
   const contract = lang === "he" ? CONTRACT_HE : CONTRACT_EN;
   const dir = lang === "he" ? "rtl" : "ltr";
@@ -175,122 +237,150 @@ export default function PagoClient({ clientId, clientDocId, businessName, isInit
     setSending(true);
     setError("");
     try {
-      const res = await fetch("/api/payments/contract", {
+      const contractRes = await fetch("/api/payments/contract", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          clientId,
-          clientDocId,
-          contractVersion: "1.0",
-        }),
+        body: JSON.stringify({ clientId, clientDocId, contractVersion: "1.0" }),
       });
-      if (!res.ok) {
-        const data = await res.json().catch(() => null);
-        throw new Error(data?.error || "Request failed");
+      if (!contractRes.ok) {
+        const data = await contractRes.json().catch(() => null);
+        throw new Error(data?.error || "Contract failed");
       }
-      setContractSent(true);
-      setTimeout(() => {
-        paymentRef.current?.scrollIntoView({ behavior: "smooth" });
-      }, 200);
-    } catch {
-      setError(t.error);
+
+      const paymentRes = await fetch("/api/cardcom/create-payment", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ clientId }),
+      });
+      if (!paymentRes.ok) {
+        const data = await paymentRes.json().catch(() => null);
+        throw new Error(data?.error || "Payment setup failed");
+      }
+      const { url } = await paymentRes.json();
+      if (url) {
+        window.location.href = url;
+        return;
+      }
+      throw new Error("No payment URL received");
+    } catch (e) {
+      setError(e instanceof Error ? e.message : t.error);
     }
     setSending(false);
   }
 
+  const includesList = [
+    t.includesWebsite,
+    t.includesCRM,
+    t.includesAI,
+    t.includesMaintenance,
+    t.includesHosting,
+  ];
+
   return (
-    <div dir={dir} className="min-h-screen bg-gray-50" style={{ fontFamily: "'Inter', 'Segoe UI', sans-serif" }}>
-      {/* Header */}
-      <header className="border-b border-gray-200 bg-white">
-        <div className="mx-auto flex max-w-2xl items-center justify-between px-5 py-4">
-          <span className="text-lg font-bold tracking-tight" style={{ color: "#2a7f8a" }}>
-            Arzac Studio
-          </span>
+    <div dir={dir} className="pago-root">
+      <header className="pago-header">
+        <div className="pago-header-inner">
+          <LogoMark />
+          <span className="pago-logo-text">arzac.studio</span>
         </div>
       </header>
 
-      <main className="mx-auto max-w-2xl px-5 py-8">
-        {/* Welcome */}
-        <div className="mb-8">
-          <p className="text-sm text-gray-500">{t.welcome}</p>
-          <h1 className="text-2xl font-bold text-gray-900">{businessName}</h1>
-        </div>
+      <main className="pago-main">
+        {/* Greeting + Amount */}
+        <section className="pago-hero">
+          <p className="pago-greeting">{t.greeting}</p>
+          <h1 className="pago-business-name">{businessName}</h1>
 
-        {/* Contract */}
-        <section className="mb-8 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-          <h2 className="mb-4 text-base font-semibold text-gray-900">{t.contractTitle}</h2>
-          <div
-            className="mb-6 max-h-96 overflow-y-auto rounded-lg border border-gray-100 bg-gray-50 p-5 text-sm leading-relaxed text-gray-700 whitespace-pre-wrap"
-            style={{ direction: dir }}
-          >
-            {contract}
+          <div className="pago-amount-card">
+            <div className="pago-amount-meta">
+              <span className="pago-amount-label">{isInitial ? t.initialLabel : t.recurringLabel}</span>
+              <span className="pago-amount-badge">{isInitial ? t.oneTime : t.monthly}</span>
+            </div>
+            <div className="pago-amount-value">
+              <span className="pago-currency">₪</span>
+              <span className="pago-number">{amount.toLocaleString("en-IL")}</span>
+            </div>
           </div>
-
-          <label className="flex cursor-pointer items-start gap-3">
-            <input
-              type="checkbox"
-              checked={accepted}
-              onChange={(e) => setAccepted(e.target.checked)}
-              disabled={contractSent}
-              className="mt-0.5 h-4 w-4 rounded border-gray-300 accent-[#2a7f8a]"
-            />
-            <span className="text-sm text-gray-700">{t.accept}</span>
-          </label>
-
-          {error && (
-            <p className="mt-3 text-sm text-red-600">{error}</p>
-          )}
-
-          {!contractSent && (
-            <button
-              onClick={handleContinue}
-              disabled={!accepted || sending}
-              className="mt-5 w-full rounded-lg px-4 py-3 text-sm font-semibold text-white transition-colors disabled:cursor-not-allowed disabled:opacity-40"
-              style={{ backgroundColor: accepted && !sending ? "#2a7f8a" : "#94a3b8" }}
-            >
-              {sending ? t.processing : t.continueToPayment}
-            </button>
-          )}
-
-          {contractSent && (
-            <p className="mt-4 rounded-lg bg-emerald-50 px-4 py-2.5 text-sm font-medium text-emerald-700">
-              {t.contractAccepted}
-            </p>
-          )}
         </section>
 
-        {/* Payment */}
-        <section ref={paymentRef} className={`rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition-opacity duration-300 ${contractSent ? "opacity-100" : "pointer-events-none opacity-40"}`}>
-          <h2 className="mb-4 text-base font-semibold text-gray-900">{t.paymentTitle}</h2>
+        {/* What's included (initial only) */}
+        {isInitial && (
+          <section className="pago-includes">
+            <h3 className="pago-includes-title">{t.includes}</h3>
+            <ul className="pago-includes-list">
+              {includesList.map((item) => (
+                <li key={item} className="pago-includes-item">
+                  <CheckIcon />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
-          <div className="mb-6 rounded-lg border border-gray-100 bg-gray-50 p-4">
-            <p className="text-sm text-gray-600">
-              {isInitial ? t.initialLabel : t.recurringLabel}
-            </p>
-            <p className="mt-1 text-2xl font-bold text-gray-900">
-              {"₪"}{amount.toLocaleString()}
-            </p>
+        {/* Contract */}
+        <section className="pago-contract">
+          <div className="pago-contract-header">
+            <h2 className="pago-contract-title">{t.contractTitle}</h2>
+            <button
+              type="button"
+              onClick={() => setContractExpanded(!contractExpanded)}
+              className="pago-contract-toggle"
+            >
+              <span>{contractExpanded ? t.collapseContract : t.expandContract}</span>
+              <ChevronIcon expanded={contractExpanded} />
+            </button>
           </div>
 
-          {/* Cardcom placeholder */}
-          <div className="mb-6 flex h-48 items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50">
-            <p className="text-sm text-gray-400">{t.cardcomPlaceholder}</p>
+          <div
+            className={`pago-contract-body ${contractExpanded ? "pago-contract-expanded" : ""}`}
+            style={{ direction: dir }}
+          >
+            <div className="pago-contract-text">{contract}</div>
+            {!contractExpanded && <div className="pago-contract-fade" />}
           </div>
 
           <button
-            disabled
-            className="w-full cursor-not-allowed rounded-lg bg-gray-300 px-4 py-3 text-sm font-semibold text-gray-500"
+            type="button"
+            role="checkbox"
+            aria-checked={accepted}
+            onClick={() => !sending && setAccepted(!accepted)}
+            className={`pago-checkbox-label ${sending ? "pago-checkbox-disabled" : ""}`}
           >
-            {t.confirmPayment}
+            <span className={`pago-checkbox-custom ${accepted ? "pago-checkbox-checked" : ""}`}>
+              {accepted && (
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M2.5 6.5L5 9L9.5 3.5" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              )}
+            </span>
+            <span className="pago-checkbox-text">{t.accept}</span>
+          </button>
+
+          {error && <p className="pago-error">{error}</p>}
+
+          <button
+            onClick={handleContinue}
+            disabled={!accepted || sending}
+            className="pago-btn-primary"
+          >
+            {sending ? (
+              <>
+                <span className="pago-spinner" />
+                <span>{t.processing}</span>
+              </>
+            ) : (
+              <>
+                <LockIcon />
+                <span>{t.pay}</span>
+              </>
+            )}
           </button>
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="mt-12 border-t border-gray-200 bg-white py-6">
-        <p className="text-center text-xs text-gray-400">
-          &copy; {new Date().getFullYear()} Arzac Studio
-        </p>
+      <footer className="pago-footer">
+        <p>&copy; {new Date().getFullYear()} Arzac Studio</p>
       </footer>
     </div>
   );

@@ -26,8 +26,8 @@ export const GET = withOwner(async () => {
   let healthMap: Record<string, { status: HealthStatus; lastIncident: unknown }> = {};
   try {
     healthMap = await getHealthMap();
-  } catch {
-    // PG not available — all clients show as healthy
+  } catch (err) {
+    console.error("[api/clients] PostgreSQL health check failed — clients will show as healthy:", err instanceof Error ? err.message : err);
   }
 
   const enriched: ClientWithHealth[] = clients.map((c) => ({
@@ -68,12 +68,29 @@ export const POST = withOwner(async (req) => {
   }
 });
 
+const ALLOWED_CLIENT_FIELDS = new Set([
+  "businessName", "niche", "deployUrl", "adminEmail",
+  "vercelProjectId", "notes", "status", "language",
+  "monitorChecks", "paymentStatus",
+]);
+
 export const PUT = withOwner(async (req) => {
   const body = await req.json();
-  const { id, ...updates } = body;
+  const { id, ...raw } = body;
 
   if (!id) {
     return NextResponse.json({ error: "id es requerido" }, { status: 400 });
+  }
+
+  const updates: Record<string, unknown> = {};
+  for (const [key, value] of Object.entries(raw)) {
+    if (ALLOWED_CLIENT_FIELDS.has(key)) {
+      updates[key] = value;
+    }
+  }
+
+  if (Object.keys(updates).length === 0) {
+    return NextResponse.json({ error: "No hay campos válidos para actualizar" }, { status: 400 });
   }
 
   await db.collection("hub_clients").doc(id).update(updates);

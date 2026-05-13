@@ -82,29 +82,33 @@ src/app/
   /monitor                 → uptime, incidentes, PostgreSQL
   /sales                   → kanban de prospectos (owner + seller)
   /expenses                → gastos del negocio (solo owner)
-  /pago/[clientId]         → PÁGINA PÚBLICA — contrato + pago Cardcom
+  /pago/[clientId]         → PÁGINA PÚBLICA — contrato + firma + pago Cardcom
+  /pago/success            → PÁGINA PÚBLICA — verificación post-pago Cardcom
+  /pago/error              → PÁGINA PÚBLICA — error de pago con retry
 ```
 
 ### API Routes
 
 ```
-POST /api/auth/[...nextauth]     → NextAuth handler
-GET|POST /api/clients            → CRUD clientes
-GET|PUT|DELETE /api/clients/[id] → detalle cliente
-POST /api/clients/kill           → pause/unpause Vercel
-GET|POST /api/classify           → clasificación mensajes con Claude
-GET|POST /api/messages           → lista mensajes
-POST /api/messages/reply         → responder mensaje
-POST /api/messages/thread        → hilo de mensajes
-GET|POST /api/sales              → datos de ventas
-GET|POST /api/sales/notes        → notas de ventas
-GET|POST /api/expenses           → gastos
-GET /api/expenses/export         → exportar gastos
-GET|POST /api/payments           → pagos
-GET|POST /api/payments/[clientId]→ pagos por cliente
-POST /api/payments/contract      → contratos de pago
-GET|POST /api/users              → gestión usuarios
-GET|POST /api/monitor            → integración monitor-agent
+POST /api/auth/[...nextauth]          → NextAuth handler
+GET|POST|PUT /api/clients             → CRUD clientes (PUT filtra campos permitidos)
+GET /api/clients/[clientId]           → detalle cliente
+POST /api/clients/kill                → pause/unpause Vercel
+GET|POST /api/classify                → clasificación mensajes con Claude
+GET|PATCH /api/messages               → lista mensajes
+POST /api/messages/reply              → responder mensaje
+GET /api/messages/thread              → hilo de mensajes
+GET|POST|PATCH /api/sales             → datos de ventas
+POST /api/sales/notes                 → notas de ventas
+GET|POST|DELETE /api/expenses         → gastos
+GET /api/expenses/export              → exportar gastos
+GET|POST|PATCH /api/payments          → pagos
+GET /api/payments/[clientId]          → pagos por cliente
+POST /api/payments/contract           → PÚBLICA — crear contrato + payment pending (rate limited)
+POST /api/cardcom/create-payment      → PÚBLICA — crear URL de pago Cardcom (rate limited)
+POST /api/cardcom/verify-payment      → PÚBLICA — verificar pago con idempotencia (rate limited)
+GET|POST /api/users                   → gestión usuarios
+GET /api/monitor                      → integración monitor-agent
 ```
 
 ## Auth
@@ -112,11 +116,12 @@ GET|POST /api/monitor            → integración monitor-agent
 * Provider: Google OAuth (next-auth v5 beta)
 * Roles: `owner` (email === OWNER_EMAIL env var) y `seller` (desde Firestore hub_users)
 * Helpers exportados desde `src/lib/auth.ts`:
-  - `requireAuth()` — async, lanza error si no hay sesión
-  - `requireOwner()` — async, lanza error si no es owner
+  - `withOwner(handler)` — wrapper para API routes, requiere rol owner
+  - `withAuth(handler)` — wrapper para API routes, requiere cualquier rol autenticado (owner o seller)
   - `auth()` — obtiene sesión actual
   - `handlers`, `signIn`, `signOut`
 * No hay middleware.ts — protección via app-shell.tsx a nivel componente
+* Todas las API routes privadas usan `withOwner` o `withAuth` — devuelven 401/403 sin sesión
 
 ## Colecciones Firestore
 
@@ -125,7 +130,7 @@ GET|POST /api/monitor            → integración monitor-agent
 * `hub_prospects` — prospectos de venta (kanban: following/rejected/closed)
 * `hub_expenses` — gastos del negocio
 * `provider_messages` — mensajes entre clientes y Liam (sender: client/provider)
-* `hub_payments` — pagos (type: initial/recurring, status: paid/pending/failed/cancelled, amount, contractAccepted)
+* `hub_payments` — pagos (type: initial/recurring, status: paid/pending/failed/cancelled, amount, contractAccepted, cardcomLowProfileCode, cardcomTransactionId, cardLastFour)
 
 ## PostgreSQL (monitor)
 
@@ -138,19 +143,35 @@ Tablas:
 
 * Setup inicial: ₪4,200 (type: "initial")
 * Mensualidad: ₪500 (type: "recurring")
-* Proveedor: Cardcom (API key + password + terminal en env)
+* Proveedor: Cardcom Low Profile (API key + password + terminal en env)
 * Comisión Cardcom transacciones locales: 1.2%
-* Flujo: cliente acepta contrato → firma se guarda en Firestore con timestamp + IP → pago via Cardcom
-* El placeholder del iframe de Cardcom está en /pago/[clientId] esperando integración final
+* Flujo completo:
+  1. Cliente visita /pago/[clientId] → ve contrato
+  2. Firma contrato → POST /api/payments/contract → crea payment "pending" en Firestore
+  3. Click "Continuar al pago" → POST /api/cardcom/create-payment → obtiene URL de Cardcom
+  4. Redirect a Cardcom Low Profile → cliente ingresa tarjeta
+  5. Cardcom redirige a /pago/success?LowProfileCode=xxx&ReturnValue=clientId
+  6. /pago/success llama POST /api/cardcom/verify-payment → verifica con Cardcom API, actualiza payment a "paid"
+* Idempotencia: verify-payment verifica cardcomLowProfileCode antes de re-procesar
+* Rate limiting: endpoints públicos limitados a 5-10 req/min por IP
+* Módulo de precios: src/lib/pricing.ts (getPaymentAmount, CURRENCY)
 
-## Sistema de monitoreo
+## Sistema de monitoreo (monitor-agent)
 
-* monitor-agent corre en Railway por separado
-* Hace checks HTTP a cada web de cliente cada 5 minutos
-* Registra métricas en PostgreSQL
-* Detecta anomalías con Claude Haiku
-* Genera diagnóstico con Claude Sonnet cuando hay incidente
-* Kill switch: pausa/reactiva proyectos Vercel via API
+* Corre en Railway por separado (proyecto: monitor-agent)
+* Lee clientes activos desde Firestore (hub_clients, cache 5min TTL)
+* Fast round (cada 5min): checks HTTP + API con concurrencia acotada (10 workers)
+* Slow round (cada 30min): checks Firestore + Booking
+* Registra métricas en PostgreSQL, computa baselines con percentile_cont(0.95)
+* Detecta anomalías automáticamente (latencia >3x p95 = critical, >1.5x p95 sostenido = warning)
+* Agente Claude (claude-sonnet-4-6) diagnostica incidentes con tool-use loop (max 5 turns)
+* Herramientas del agente: getMetricsHistory, vercelLogs, vercelRedeploy, writeIncident
+* Auto-resolve: 3 checks consecutivos sanos → resuelve incidente automáticamente
+* Protecciones: max 3 agentes concurrentes, cooldown 10min por cliente, rate limit emails 5/hora
+* Health endpoint: HTTP en :8080 reporta estado de rounds (Railway healthcheck)
+* Pruning automático: métricas >30 días se borran diariamente
+* Email notifications: Resend, solo cuando requiere intervención manual
+* Kill switch: pausa/reactiva proyectos Vercel via API (env: VERCEL_TOKEN)
 
 ## Diseño y UI
 
@@ -166,19 +187,24 @@ Tablas:
 1. No modificar archivos existentes salvo los explícitamente indicados en el prompt
 2. Mantener el mismo estilo visual exacto del resto del dashboard
 3. Todo texto de UI en español
-4. Cardcom NO integrado todavía — dejar placeholder, no inventar implementación
-5. La página /pago/[clientId] es PÚBLICA — no requiere autenticación
-6. Todas las demás rutas son PRIVADAS — requieren rol owner o seller
+4. Cardcom integrado via Low Profile — módulo en src/lib/cardcom.ts
+5. Las páginas /pago/* son PÚBLICAS — no requieren autenticación, pero tienen rate limiting
+6. Todas las demás rutas son PRIVADAS — requieren rol owner o seller (withOwner/withAuth)
 7. Usar Firebase Admin via src/lib/firebase-admin.ts (nunca inicializar Firebase directamente)
 8. Usar pool de PostgreSQL via src/lib/postgres.ts
 9. Agregar tipos en src/types/index.ts cuando se crean nuevas entidades
+10. PUT /api/clients filtra campos con allowlist (ALLOWED_CLIENT_FIELDS) — no acepta campos arbitrarios
+11. Endpoints públicos deben usar src/lib/rate-limit.ts para protección contra abuso
 
 ## Archivos clave
 
 * `src/lib/firebase-admin.ts` — inicialización Firebase con preferRest
-* `src/lib/postgres.ts` — pool PostgreSQL con SSL Railway
-* `src/lib/auth.ts` — next-auth config con roles (requireAuth, requireOwner)
+* `src/lib/postgres.ts` — pool PostgreSQL con SSL Railway (Proxy pattern, lazy init)
+* `src/lib/auth.ts` — next-auth config con roles (withOwner, withAuth wrappers)
 * `src/lib/auth-types.ts` — augmentación tipos NextAuth session/user
+* `src/lib/cardcom.ts` — integración Cardcom Low Profile (createLowProfilePayment, verifyPayment)
+* `src/lib/pricing.ts` — montos de pago y moneda (getPaymentAmount, CURRENCY)
+* `src/lib/rate-limit.ts` — rate limiter in-memory por IP para endpoints públicos
 * `src/lib/classify.ts` — clasificación de mensajes con Claude Haiku
 * `src/types/index.ts` — todos los tipos TypeScript del proyecto
 * `src/components/app-shell.tsx` — layout principal con auth guard

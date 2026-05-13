@@ -36,8 +36,11 @@ function getDb(): Firestore {
   const databaseId = process.env.FIREBASE_DATABASE_ID;
   _db = databaseId ? getFirestore(databaseId) : getFirestore();
 
-  // Use REST API instead of gRPC — more compatible with Railway/serverless
-  _db.settings({ preferRest: true });
+  try {
+    _db.settings({ preferRest: true });
+  } catch {
+    // Already initialized during HMR — safe to ignore
+  }
 
   return _db;
 }

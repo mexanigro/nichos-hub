@@ -2,10 +2,26 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/firebase-admin";
 import { FieldValue } from "firebase-admin/firestore";
 import { getPaymentAmount, CURRENCY } from "@/lib/pricing";
+import { isRateLimited } from "@/lib/rate-limit";
 
 export async function POST(req: NextRequest) {
-  const body = await req.json();
-  const { clientId, clientDocId, contractVersion } = body;
+  const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+  if (isRateLimited(ip, "contract", 5, 60_000)) {
+    return NextResponse.json({ error: "Demasiadas solicitudes" }, { status: 429 });
+  }
+
+  let body: Record<string, unknown>;
+  try {
+    body = await req.json();
+  } catch {
+    return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
+  }
+
+  const { clientId, clientDocId, contractVersion } = body as {
+    clientId?: string;
+    clientDocId?: string;
+    contractVersion?: string;
+  };
 
   if (!clientId || !clientDocId) {
     return NextResponse.json(
@@ -38,7 +54,6 @@ export async function POST(req: NextRequest) {
   const type = isInitial ? "initial" : "recurring";
   const amount = getPaymentAmount(isInitial);
 
-  const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
   const now = FieldValue.serverTimestamp();
   const today = new Date();
   const nextBilling = new Date(today);

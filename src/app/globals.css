@@ -82,3 +82,507 @@ input, textarea, select {
     overflow-x: hidden;
   }
 }
+
+/* ─── Payment page (public /pago) ─── */
+
+body:has(.pago-page) {
+  background: oklch(0.985 0.003 192);
+}
+
+.pago-page {
+  --pago-teal: oklch(0.52 0.08 192);
+  --pago-teal-light: oklch(0.94 0.025 192);
+  --pago-teal-muted: oklch(0.52 0.08 192 / 0.08);
+  --pago-surface: oklch(0.985 0.003 192);
+  --pago-card: oklch(1 0.002 192);
+  --pago-text: oklch(0.22 0.01 192);
+  --pago-text-secondary: oklch(0.45 0.02 192);
+  --pago-text-muted: oklch(0.6 0.015 192);
+  --pago-border: oklch(0.88 0.015 192);
+  --pago-success: oklch(0.55 0.15 155);
+  --pago-danger: oklch(0.55 0.18 25);
+  --pago-radius: 14px;
+  --pago-radius-sm: 10px;
+
+  background: var(--pago-surface);
+  color: var(--pago-text);
+  font-family: var(--font-body, "Source Sans 3"), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.55;
+  min-height: 100dvh;
+}
+
+.pago-page ::selection {
+  background: var(--pago-teal);
+  color: white;
+}
+
+.pago-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+/* Header */
+.pago-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--pago-border);
+  background: var(--pago-card);
+}
+
+.pago-header-inner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.pago-logo-text {
+  font-family: var(--font-display, "Outfit"), sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--pago-text-secondary);
+  letter-spacing: -0.01em;
+}
+
+/* Main content */
+.pago-main {
+  flex: 1;
+  max-width: 520px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 28px 20px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* Hero: greeting + amount */
+.pago-hero {
+  text-align: center;
+}
+
+.pago-greeting {
+  font-size: 1rem;
+  color: var(--pago-text-muted);
+  margin-bottom: 4px;
+}
+
+.pago-business-name {
+  font-family: var(--font-display, "Outfit"), sans-serif;
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: var(--pago-text);
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+
+.pago-amount-card {
+  background: var(--pago-card);
+  border: 1px solid var(--pago-border);
+  border-radius: var(--pago-radius);
+  padding: 22px 24px;
+  text-align: start;
+}
+
+.pago-amount-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.pago-amount-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--pago-text-secondary);
+}
+
+.pago-amount-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--pago-teal);
+  background: var(--pago-teal-muted);
+  padding: 3px 10px;
+  border-radius: 100px;
+}
+
+.pago-amount-value {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.pago-currency {
+  font-family: var(--font-display, "Outfit"), sans-serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--pago-text-muted);
+}
+
+.pago-number {
+  font-family: var(--font-display, "Outfit"), sans-serif;
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: var(--pago-text);
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+/* Includes list */
+.pago-includes {
+  background: var(--pago-card);
+  border: 1px solid var(--pago-border);
+  border-radius: var(--pago-radius);
+  padding: 20px 24px;
+}
+
+.pago-includes-title {
+  font-family: var(--font-display, "Outfit"), sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--pago-text);
+  margin-bottom: 14px;
+}
+
+.pago-includes-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pago-includes-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: var(--pago-text-secondary);
+}
+
+.pago-check-icon {
+  flex-shrink: 0;
+}
+
+/* Contract */
+.pago-contract {
+  background: var(--pago-card);
+  border: 1px solid var(--pago-border);
+  border-radius: var(--pago-radius);
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pago-contract-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pago-contract-title {
+  font-family: var(--font-display, "Outfit"), sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--pago-text);
+}
+
+.pago-contract-toggle {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--pago-teal);
+  font-family: inherit;
+  padding: 4px 0;
+}
+
+.pago-contract-toggle:hover {
+  opacity: 0.8;
+}
+
+.pago-contract-body {
+  position: relative;
+  max-height: 5.6lh;
+  overflow: hidden;
+  transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pago-contract-body.pago-contract-expanded {
+  max-height: none;
+  overflow: visible;
+}
+
+.pago-contract-text {
+  font-size: 0.82rem;
+  line-height: 1.65;
+  color: var(--pago-text-muted);
+  white-space: pre-wrap;
+}
+
+.pago-contract-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 48px;
+  background: linear-gradient(to top, var(--pago-card), transparent);
+  pointer-events: none;
+}
+
+/* Checkbox */
+.pago-checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 0.88rem;
+  color: var(--pago-text);
+  line-height: 1.4;
+  padding: 2px 0;
+  background: none;
+  border: none;
+  text-align: start;
+  font-family: inherit;
+  width: 100%;
+}
+
+.pago-checkbox-label.pago-checkbox-disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.pago-checkbox-custom {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--pago-border);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  margin-top: 1px;
+}
+
+.pago-checkbox-custom.pago-checkbox-checked {
+  background: var(--pago-teal);
+  border-color: var(--pago-teal);
+}
+
+.pago-checkbox-label:focus-visible .pago-checkbox-custom {
+  outline: 2px solid var(--pago-teal);
+  outline-offset: 2px;
+}
+
+.pago-checkbox-text {
+  flex: 1;
+}
+
+/* Error */
+.pago-error {
+  font-size: 0.85rem;
+  color: var(--pago-danger);
+  padding: 8px 12px;
+  background: oklch(0.55 0.18 25 / 0.07);
+  border-radius: var(--pago-radius-sm);
+}
+
+/* Success */
+.pago-success {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--pago-success);
+  padding: 10px 14px;
+  background: oklch(0.55 0.15 155 / 0.07);
+  border-radius: var(--pago-radius-sm);
+}
+
+/* Primary button */
+.pago-btn-primary {
+  width: 100%;
+  padding: 15px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: var(--font-display, "Outfit"), sans-serif;
+  color: white;
+  background: var(--pago-teal);
+  border: none;
+  border-radius: var(--pago-radius-sm);
+  cursor: pointer;
+  transition: opacity 0.15s ease, transform 0.1s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 52px;
+}
+
+.pago-btn-primary:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.pago-btn-primary:active:not(:disabled) {
+  transform: scale(0.985);
+}
+
+.pago-btn-primary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Spinner */
+.pago-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2.5px solid white;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: pago-spin 0.6s linear infinite;
+}
+
+@keyframes pago-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Payment section */
+.pago-payment {
+  background: var(--pago-card);
+  border: 1px solid var(--pago-border);
+  border-radius: var(--pago-radius);
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  opacity: 0.35;
+  pointer-events: none;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pago-payment.pago-payment-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.pago-payment-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--pago-text-secondary);
+}
+
+.pago-cardcom-placeholder {
+  background: var(--pago-surface);
+  border: 1px dashed var(--pago-border);
+  border-radius: var(--pago-radius-sm);
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--pago-text-muted);
+  font-size: 0.85rem;
+}
+
+.pago-btn-disabled {
+  width: 100%;
+  padding: 15px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: var(--font-display, "Outfit"), sans-serif;
+  color: white;
+  background: var(--pago-teal);
+  border: none;
+  border-radius: var(--pago-radius-sm);
+  opacity: 0.35;
+  cursor: not-allowed;
+  min-height: 52px;
+}
+
+/* Footer */
+.pago-footer {
+  text-align: center;
+  padding: 24px 20px;
+  font-size: 0.78rem;
+  color: var(--pago-text-muted);
+  border-top: 1px solid var(--pago-border);
+}
+
+/* Result pages (success/error) */
+.pago-result-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+  background: var(--pago-card);
+  border: 1px solid var(--pago-border);
+  border-radius: var(--pago-radius);
+  padding: 48px 24px 36px;
+}
+
+.pago-result-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pago-result-icon-success {
+  background: oklch(0.55 0.15 155 / 0.12);
+  color: var(--pago-success);
+}
+
+.pago-result-icon-error {
+  background: oklch(0.55 0.18 25 / 0.1);
+  color: var(--pago-danger);
+}
+
+.pago-result-title {
+  font-family: var(--font-display, "Outfit"), sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--pago-text);
+}
+
+.pago-result-text {
+  font-size: 0.92rem;
+  color: var(--pago-text-secondary);
+  line-height: 1.5;
+}
+
+/* Tablet+ refinements */
+@media (min-width: 600px) {
+  .pago-main {
+    padding-top: 48px;
+    padding-bottom: 56px;
+    gap: 32px;
+  }
+
+  .pago-business-name {
+    font-size: 1.85rem;
+  }
+
+  .pago-number {
+    font-size: 3rem;
+  }
+
+  .pago-amount-card,
+  .pago-contract,
+  .pago-includes,
+  .pago-payment {
+    padding: 28px 30px;
+  }
+}
