@@ -70,6 +70,46 @@ const FEATURES_LIST = [
   { key: "enableStaffPages", label: "Paginas de staff" },
 ] as const;
 
+const NICHE_SERVICES: Record<BusinessNiche, { id: string; label: string }[]> = {
+  barberia: [
+    { id: "haircut", label: "Haircut" },
+    { id: "beard-sculpt", label: "Beard Sculpture" },
+    { id: "straight-shave", label: "Straight Razor Shave" },
+    { id: "color-treatment", label: "Color & Tint" },
+    { id: "full-ritual", label: "The Full Ritual" },
+  ],
+  estetica: [
+    { id: "lip-filler", label: "Lip Filler" },
+    { id: "cheek-filler", label: "Cheek & Jawline Filler" },
+    { id: "botox", label: "Botox" },
+    { id: "facial", label: "Signature Facial" },
+    { id: "skin-booster", label: "Skin Booster" },
+  ],
+  tattoo: [
+    { id: "consultation", label: "Consultation" },
+    { id: "custom-design", label: "Custom Design" },
+    { id: "fine-line", label: "Fine Line" },
+    { id: "black-grey-realism", label: "Black & Grey Realism" },
+    { id: "cover-up", label: "Cover-Up" },
+    { id: "flash-small", label: "Flash & Small" },
+    { id: "piercing", label: "Piercing" },
+  ],
+  nails: [
+    { id: "classic-manicure", label: "Classic Manicure" },
+    { id: "gel-manicure", label: "Gel Manicure" },
+    { id: "acrylic-full-set", label: "Acrylic Full Set" },
+    { id: "nail-art", label: "Nail Art" },
+    { id: "spa-pedicure", label: "Spa Pedicure" },
+    { id: "extensions-infills", label: "Extensions & Infills" },
+  ],
+  abogado: [
+    { id: "consulta-inicial", label: "Consulta Inicial" },
+    { id: "contratos", label: "Contratos" },
+    { id: "constitucion", label: "Constitucion" },
+    { id: "laboral", label: "Laboral" },
+  ],
+};
+
 const DAYS = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"] as const;
 const DAY_LABELS: Record<string, string> = {
   sunday: "Domingo", monday: "Lunes", tuesday: "Martes", wednesday: "Miercoles",
@@ -432,12 +472,59 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
         expanded={expandedSections.has("visibleServices")} onToggle={toggleSection}
       >
         <p className="text-[11px] text-text-muted">
-          Lista de IDs de servicios a mostrar (en orden). Dejar vacio para mostrar todos los del preset.
+          Desactiva los servicios que el cliente no quiere mostrar. Si todos estan activos, se muestran todos los del preset.
         </p>
-        <ServiceIdList
-          ids={config.visibleServices || []}
-          onChange={ids => setConfig(prev => ({ ...prev, visibleServices: ids.length > 0 ? ids : undefined }))}
-        />
+        {(() => {
+          const nicheKey = ((config.business?.type as string) || niche || "barberia") as BusinessNiche;
+          const services = NICHE_SERVICES[nicheKey] || [];
+          const visible = config.visibleServices;
+          // If visibleServices is not set, all are visible
+          const allVisible = !visible || visible.length === 0;
+
+          function toggleService(id: string) {
+            setConfig(prev => {
+              const current = prev.visibleServices;
+              if (!current || current.length === 0) {
+                // First toggle off: start with all IDs minus this one
+                const allIds = services.map(s => s.id);
+                const next = allIds.filter(sid => sid !== id);
+                return { ...prev, visibleServices: next.length > 0 ? next : undefined };
+              }
+              if (current.includes(id)) {
+                // Toggle off
+                const next = current.filter(sid => sid !== id);
+                return { ...prev, visibleServices: next.length > 0 ? next : undefined };
+              }
+              // Toggle on
+              return { ...prev, visibleServices: [...current, id] };
+            });
+          }
+
+          return (
+            <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+              {services.map(s => {
+                const isOn = allVisible || (visible?.includes(s.id) ?? false);
+                return (
+                  <button
+                    key={s.id}
+                    type="button"
+                    onClick={() => toggleService(s.id)}
+                    className={`flex items-center gap-2 rounded-lg border px-3 py-2 text-xs transition-colors ${
+                      isOn
+                        ? "border-accent/30 bg-accent/5 text-text"
+                        : "border-border bg-bg-elevated text-text-muted"
+                    }`}
+                  >
+                    <div className={`h-3 w-6 rounded-full transition-colors ${isOn ? "bg-accent" : "bg-bg-active"}`}>
+                      <div className={`h-3 w-3 rounded-full bg-white transition-transform ${isOn ? "translate-x-3" : "translate-x-0"}`} />
+                    </div>
+                    {s.label}
+                  </button>
+                );
+              })}
+            </div>
+          );
+        })()}
       </Section>
 
       {/* ── Service Overrides ─────────────────────────────────────────── */}
@@ -593,47 +680,6 @@ function ToggleField({ label, path, value, onChange }: {
       </div>
       {label}
     </button>
-  );
-}
-
-function ServiceIdList({ ids, onChange }: { ids: string[]; onChange: (ids: string[]) => void }) {
-  const [newId, setNewId] = useState("");
-  return (
-    <div className="space-y-2">
-      <div className="flex flex-wrap gap-1.5">
-        {ids.map((id, i) => (
-          <span key={i} className="inline-flex items-center gap-1 rounded-md bg-bg-elevated px-2 py-1 text-xs text-text">
-            {id}
-            <button type="button" onClick={() => onChange(ids.filter((_, j) => j !== i))} className="text-text-muted hover:text-danger">
-              <Trash2 size={10} />
-            </button>
-          </span>
-        ))}
-      </div>
-      <div className="flex gap-2">
-        <input
-          type="text"
-          value={newId}
-          onChange={e => setNewId(e.target.value)}
-          placeholder="ID del servicio (ej: haircut)"
-          className="flex-1 rounded-lg border border-border bg-bg-elevated px-3 py-1.5 text-xs text-text placeholder:text-text-muted/50 focus:border-accent focus:outline-none"
-          onKeyDown={e => {
-            if (e.key === "Enter" && newId.trim()) {
-              e.preventDefault();
-              onChange([...ids, newId.trim()]);
-              setNewId("");
-            }
-          }}
-        />
-        <button
-          type="button"
-          onClick={() => { if (newId.trim()) { onChange([...ids, newId.trim()]); setNewId(""); } }}
-          className="rounded-lg bg-bg-elevated px-2 py-1.5 text-xs text-text-secondary hover:bg-bg-hover"
-        >
-          <Plus size={14} />
-        </button>
-      </div>
-    </div>
   );
 }
 
