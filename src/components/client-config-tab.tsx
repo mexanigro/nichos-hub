@@ -36,7 +36,6 @@ type ConfigDoc = {
   brand?: { name?: string; tagline?: string; description?: string; logo?: string; logoDark?: string; logoIconName?: string; ogImage?: string; aiPersona?: string };
   theme?: { accent?: string; accentLight?: string; surfaceDark?: string };
   activeTheme?: string;
-  businessMode?: "solo" | "team";
   features?: Record<string, boolean>;
   contact?: { phone?: string; email?: string; address?: { street?: string; district?: string; cityStateZip?: string } };
   hours?: Record<string, { start?: string; end?: string } | null>;
@@ -75,23 +74,14 @@ const NICHE_DEFAULTS: Record<BusinessNiche, { accent: string; accentLight: strin
   nails: { accent: "#dca2ac", accentLight: "#edc2c9", surfaceDark: "#6f4a56" },
 };
 
-const FEATURES_SHARED = [
+const FEATURES_LIST = [
   { key: "showHero", label: "Hero" },
   { key: "showServices", label: "Servicios" },
   { key: "showWhyChooseUs", label: "Por que elegirnos" },
-] as const;
-
-const FEATURES_TEAM = [
   { key: "showTeam", label: "Equipo" },
   { key: "enableStaffPages", label: "Paginas de staff" },
-] as const;
-
-const FEATURES_SOLO = [
   { key: "showAbout", label: "Sobre mi" },
   { key: "enableAboutPage", label: "Pagina personal" },
-] as const;
-
-const FEATURES_TAIL = [
   { key: "showGallery", label: "Galeria" },
   { key: "showTestimonials", label: "Testimonios" },
   { key: "showInquiry", label: "Formulario contacto" },
@@ -101,11 +91,6 @@ const FEATURES_TAIL = [
   { key: "showBooking", label: "Reservas" },
   { key: "showWhatsAppInChat", label: "WhatsApp en chatbot" },
 ] as const;
-
-function getFeaturesList(mode: string): { key: string; label: string }[] {
-  const modeFeatures = mode === "solo" ? FEATURES_SOLO : FEATURES_TEAM;
-  return [...FEATURES_SHARED, ...modeFeatures, ...FEATURES_TAIL];
-}
 
 const NICHE_SERVICES: Record<BusinessNiche, { id: string; label: string }[]> = {
   barberia: [
@@ -343,25 +328,6 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
               { value: "nails", label: "Nails" },
             ]}
           />
-          <SelectField label="Modo" path="businessMode" value={(getNested("businessMode") as string) || "team"} onChange={(path, value) => {
-            updateNested(path, value);
-            if (value === "solo") {
-              updateNested("features.showTeam", false);
-              updateNested("features.enableStaffPages", false);
-              updateNested("features.showAbout", true);
-              updateNested("features.enableAboutPage", true);
-            } else {
-              updateNested("features.showTeam", true);
-              updateNested("features.enableStaffPages", true);
-              updateNested("features.showAbout", false);
-              updateNested("features.enableAboutPage", false);
-            }
-          }}
-            options={[
-              { value: "team", label: "Equipo (varios profesionales)" },
-              { value: "solo", label: "Solo (un profesional)" },
-            ]}
-          />
         </div>
         <Field label="Razon social" path="business.legalName" value={getNested("business.legalName")} onChange={updateNested} />
         <Field label="Direccion legal" path="business.address" value={getNested("business.address")} onChange={updateNested} />
@@ -444,8 +410,9 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
         expanded={expandedSections.has("features")} onToggle={toggleSection}
       >
         <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-          {getFeaturesList((config.businessMode as string) || "team").map(f => {
-            const val = config.features?.[f.key] ?? true;
+          {FEATURES_LIST.map(f => {
+            const defaultOn = f.key !== "showAbout" && f.key !== "enableAboutPage";
+            const val = config.features?.[f.key] ?? defaultOn;
             return (
               <button
                 key={f.key}
@@ -554,7 +521,7 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
       </Section>
 
       {/* ── Autobiografia (solo mode) ────────────────────────────── */}
-      {((config.businessMode as string) || "team") === "solo" && (
+      {config.features?.showAbout && (
         <Section
           icon={User} title="Autobiografia" sectionKey="owner"
           expanded={expandedSections.has("owner")} onToggle={toggleSection}
@@ -654,7 +621,7 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
         </div>
 
         {/* Staff photos — only in team mode */}
-        {((config.businessMode as string) || "team") !== "solo" && (
+        {config.features?.showTeam && (
           <div className="border-t border-border pt-3">
             <p className="mb-1 text-[11px] font-semibold text-text-secondary">Fotos del equipo</p>
             <p className="mb-2 text-[10px] text-text-muted">
