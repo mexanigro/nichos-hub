@@ -13,8 +13,6 @@ import {
   Sparkles,
   ChevronDown,
   ChevronRight,
-  Plus,
-  Trash2,
   Eye,
   EyeOff,
   Bell,
@@ -529,19 +527,85 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
 
       {/* ── Service Overrides ─────────────────────────────────────────── */}
       <Section
-        icon={Wrench} title="Overrides de servicios" sectionKey="serviceOverrides"
+        icon={Wrench} title="Personalizar servicios" sectionKey="serviceOverrides"
         expanded={expandedSections.has("serviceOverrides")} onToggle={toggleSection}
       >
         <p className="text-[11px] text-text-muted">
-          Sobreescribir nombre, precio, descripcion, duracion o imagen de un servicio especifico.
+          Cambia nombre, precio, duracion, descripcion o imagen de cada servicio. Solo se guardan los campos que modifiques.
         </p>
-        <ServiceOverrides
-          overrides={config.serviceOverrides || {}}
-          onChange={overrides => setConfig(prev => ({
-            ...prev,
-            serviceOverrides: Object.keys(overrides).length > 0 ? overrides : undefined,
-          }))}
-        />
+        {(() => {
+          const nicheKey = ((config.business?.type as string) || niche || "barberia") as BusinessNiche;
+          const allServices = NICHE_SERVICES[nicheKey] || [];
+          const visible = config.visibleServices;
+          const visibleServices = (!visible || visible.length === 0)
+            ? allServices
+            : allServices.filter(s => visible.includes(s.id));
+          const overrides = config.serviceOverrides || {};
+
+          function updateField(serviceId: string, field: string, value: string) {
+            setConfig(prev => {
+              const current = prev.serviceOverrides || {};
+              const patch = { ...current[serviceId], [field]: value || null };
+              // Remove keys that are null (cleared)
+              const cleaned: Record<string, unknown> = {};
+              for (const [k, v] of Object.entries(patch)) {
+                if (v !== null && v !== undefined) cleaned[k] = v;
+              }
+              const next = { ...current, [serviceId]: cleaned };
+              // Remove service entry if empty
+              if (Object.keys(cleaned).length === 0) delete next[serviceId];
+              return {
+                ...prev,
+                serviceOverrides: Object.keys(next).length > 0 ? next : undefined,
+              };
+            });
+          }
+
+          return (
+            <div className="space-y-3">
+              {visibleServices.map(s => {
+                const patch = overrides[s.id] || {};
+                const hasOverrides = Object.keys(patch).length > 0;
+                return (
+                  <div key={s.id} className={`rounded-lg border p-3 ${hasOverrides ? "border-accent/30 bg-accent/5" : "border-border bg-bg-elevated"}`}>
+                    <div className="mb-2 flex items-center gap-2">
+                      <span className="font-mono text-xs font-medium text-accent">{s.id}</span>
+                      <span className="text-[10px] text-text-muted">{s.label}</span>
+                    </div>
+                    <div className="grid gap-2 sm:grid-cols-2">
+                      <div>
+                        <label className="mb-0.5 block text-[10px] text-text-muted">Nombre</label>
+                        <input type="text" value={(patch.name as string) || ""} onChange={e => updateField(s.id, "name", e.target.value)}
+                          placeholder={s.label}
+                          className="w-full rounded border border-border bg-bg-card px-2 py-1 text-xs text-text placeholder:text-text-muted/40 focus:border-accent focus:outline-none" />
+                      </div>
+                      <div>
+                        <label className="mb-0.5 block text-[10px] text-text-muted">Precio</label>
+                        <input type="text" value={(patch.price as string) || ""} onChange={e => updateField(s.id, "price", e.target.value)}
+                          className="w-full rounded border border-border bg-bg-card px-2 py-1 text-xs text-text placeholder:text-text-muted/40 focus:border-accent focus:outline-none" />
+                      </div>
+                      <div>
+                        <label className="mb-0.5 block text-[10px] text-text-muted">Duracion</label>
+                        <input type="text" value={(patch.duration as string) || ""} onChange={e => updateField(s.id, "duration", e.target.value)}
+                          className="w-full rounded border border-border bg-bg-card px-2 py-1 text-xs text-text placeholder:text-text-muted/40 focus:border-accent focus:outline-none" />
+                      </div>
+                      <div>
+                        <label className="mb-0.5 block text-[10px] text-text-muted">Imagen URL</label>
+                        <input type="text" value={(patch.image as string) || ""} onChange={e => updateField(s.id, "image", e.target.value)}
+                          className="w-full rounded border border-border bg-bg-card px-2 py-1 text-xs text-text placeholder:text-text-muted/40 focus:border-accent focus:outline-none" />
+                      </div>
+                    </div>
+                    <div className="mt-2">
+                      <label className="mb-0.5 block text-[10px] text-text-muted">Descripcion</label>
+                      <input type="text" value={(patch.description as string) || ""} onChange={e => updateField(s.id, "description", e.target.value)}
+                        className="w-full rounded border border-border bg-bg-card px-2 py-1 text-xs text-text placeholder:text-text-muted/40 focus:border-accent focus:outline-none" />
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          );
+        })()}
       </Section>
     </div>
   );
@@ -683,84 +747,4 @@ function ToggleField({ label, path, value, onChange }: {
   );
 }
 
-function ServiceOverrides({ overrides, onChange }: {
-  overrides: Record<string, Record<string, unknown>>;
-  onChange: (overrides: Record<string, Record<string, unknown>>) => void;
-}) {
-  const [newServiceId, setNewServiceId] = useState("");
-  const ids = Object.keys(overrides);
-
-  function updateField(serviceId: string, field: string, value: string) {
-    onChange({
-      ...overrides,
-      [serviceId]: { ...overrides[serviceId], [field]: value || undefined },
-    });
-  }
-
-  function removeService(serviceId: string) {
-    const next = { ...overrides };
-    delete next[serviceId];
-    onChange(next);
-  }
-
-  function addService() {
-    if (!newServiceId.trim() || overrides[newServiceId.trim()]) return;
-    onChange({ ...overrides, [newServiceId.trim()]: {} });
-    setNewServiceId("");
-  }
-
-  return (
-    <div className="space-y-3">
-      {ids.map(serviceId => (
-        <div key={serviceId} className="rounded-lg border border-border bg-bg-elevated p-3">
-          <div className="mb-2 flex items-center justify-between">
-            <span className="font-mono text-xs font-medium text-accent">{serviceId}</span>
-            <button type="button" onClick={() => removeService(serviceId)} className="text-text-muted hover:text-danger">
-              <Trash2 size={12} />
-            </button>
-          </div>
-          <div className="grid gap-2 sm:grid-cols-2">
-            <div>
-              <label className="mb-0.5 block text-[10px] text-text-muted">Nombre</label>
-              <input type="text" value={(overrides[serviceId].name as string) || ""} onChange={e => updateField(serviceId, "name", e.target.value)}
-                className="w-full rounded border border-border bg-bg-card px-2 py-1 text-xs text-text focus:border-accent focus:outline-none" />
-            </div>
-            <div>
-              <label className="mb-0.5 block text-[10px] text-text-muted">Precio</label>
-              <input type="text" value={(overrides[serviceId].price as string) || ""} onChange={e => updateField(serviceId, "price", e.target.value)}
-                className="w-full rounded border border-border bg-bg-card px-2 py-1 text-xs text-text focus:border-accent focus:outline-none" />
-            </div>
-            <div>
-              <label className="mb-0.5 block text-[10px] text-text-muted">Duracion</label>
-              <input type="text" value={(overrides[serviceId].duration as string) || ""} onChange={e => updateField(serviceId, "duration", e.target.value)}
-                className="w-full rounded border border-border bg-bg-card px-2 py-1 text-xs text-text focus:border-accent focus:outline-none" />
-            </div>
-            <div>
-              <label className="mb-0.5 block text-[10px] text-text-muted">Imagen URL</label>
-              <input type="text" value={(overrides[serviceId].image as string) || ""} onChange={e => updateField(serviceId, "image", e.target.value)}
-                className="w-full rounded border border-border bg-bg-card px-2 py-1 text-xs text-text focus:border-accent focus:outline-none" />
-            </div>
-          </div>
-          <div className="mt-2">
-            <label className="mb-0.5 block text-[10px] text-text-muted">Descripcion</label>
-            <input type="text" value={(overrides[serviceId].description as string) || ""} onChange={e => updateField(serviceId, "description", e.target.value)}
-              className="w-full rounded border border-border bg-bg-card px-2 py-1 text-xs text-text focus:border-accent focus:outline-none" />
-          </div>
-        </div>
-      ))}
-      <div className="flex gap-2">
-        <input
-          type="text"
-          value={newServiceId}
-          onChange={e => setNewServiceId(e.target.value)}
-          placeholder="ID del servicio a sobreescribir"
-          className="flex-1 rounded-lg border border-border bg-bg-elevated px-3 py-1.5 text-xs text-text placeholder:text-text-muted/50 focus:border-accent focus:outline-none"
-          onKeyDown={e => { if (e.key === "Enter") { e.preventDefault(); addService(); } }}
-        />
-        <button type="button" onClick={addService} className="rounded-lg bg-bg-elevated px-2 py-1.5 text-xs text-text-secondary hover:bg-bg-hover">
-          <Plus size={14} />
-        </button>
-      </div>
-    </div>
-  );
-}
+/* ServiceOverrides removed — inline in the main component now */
