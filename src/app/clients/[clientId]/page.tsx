@@ -20,6 +20,7 @@ import { HealthDot, ClientStatusBadge } from "@/components/status-badge";
 import { LoadingSpinner } from "@/components/loading";
 import { StatCard } from "@/components/stat-card";
 import { PaymentStatusBadge, PaymentTypeBadge } from "@/components/payment-badges";
+import { ClientConfigTab } from "@/components/client-config-tab";
 import { formatDistanceToNow, format } from "date-fns";
 import { es } from "date-fns/locale";
 import type { ClientWithHealth, Payment, PaymentStatus } from "@/types";
@@ -73,6 +74,7 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
   const [confirmAction, setConfirmAction] = useState<"suspend" | "kill" | null>(null);
   const [killError, setKillError] = useState("");
   const [payments, setPayments] = useState<Payment[]>([]);
+  const [activeTab, setActiveTab] = useState<"overview" | "config">("overview");
 
   useEffect(() => {
     fetch(`/api/clients/${clientId}`)
@@ -208,6 +210,35 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
         </div>
       </div>
 
+      {/* Tabs */}
+      <div className="mb-6 flex gap-1 border-b border-border">
+        <button
+          onClick={() => setActiveTab("overview")}
+          className={`px-4 py-2 text-xs font-medium border-b-2 transition-colors ${
+            activeTab === "overview"
+              ? "border-accent text-accent"
+              : "border-transparent text-text-secondary hover:text-text"
+          }`}
+        >
+          Overview
+        </button>
+        <button
+          onClick={() => setActiveTab("config")}
+          className={`px-4 py-2 text-xs font-medium border-b-2 transition-colors ${
+            activeTab === "config"
+              ? "border-accent text-accent"
+              : "border-transparent text-text-secondary hover:text-text"
+          }`}
+        >
+          Config
+        </button>
+      </div>
+
+      {activeTab === "config" && (
+        <ClientConfigTab clientId={client.clientId} niche={client.niche} />
+      )}
+
+      {activeTab === "overview" && (<>
       {/* Stats Grid */}
       <div className="mb-6 grid grid-cols-2 gap-3 lg:grid-cols-4">
         <StatCard icon={Shield} label="Uptime 24h" value={`${uptime.last24h}%`} iconBg={uptime.last24h >= 99 ? "bg-success-muted" : uptime.last24h >= 95 ? "bg-warning-muted" : "bg-danger-muted"} iconColor={uptime.last24h >= 99 ? "text-success" : uptime.last24h >= 95 ? "text-warning" : "text-danger"} valueColor={uptime.last24h >= 99 ? "text-success" : uptime.last24h >= 95 ? "text-warning" : "text-danger"} />
@@ -401,6 +432,8 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
           </>
         )}
       </div>
+
+      </>)}
 
       {/* Confirmation Modal */}
       {confirmAction && (
