@@ -19,6 +19,9 @@ import {
   CalendarCog,
   Wrench,
   Film,
+  ImageIcon,
+  Plus,
+  Trash2,
 } from "lucide-react";
 
 /* ══════════════════════════════════════════════════════════════════════════
@@ -43,6 +46,14 @@ type ConfigDoc = {
   payment?: { enabled?: boolean; mode?: string };
   splash?: { enabled?: boolean; durationMs?: number; variant?: 1 | 2 | 3 | 4 | 5 };
   adminEmail?: string;
+  hero?: { backgroundImage?: string };
+  gallery?: string[];
+  staff?: { photoUrl?: string; portfolio?: string[] }[];
+  sections?: {
+    services?: { images?: string[] };
+    whyChooseUs?: { mainImage?: string };
+    instagram?: { title?: string; handle?: string; url?: string; images?: string[] };
+  };
 };
 
 /* ── Theme presets per niche ─────────────────────────────────────────────── */
@@ -66,6 +77,7 @@ const FEATURES_LIST = [
   { key: "showInstagram", label: "Instagram" },
   { key: "showBooking", label: "Reservas" },
   { key: "enableStaffPages", label: "Paginas de staff" },
+  { key: "showWhatsAppInChat", label: "WhatsApp en chatbot" },
 ] as const;
 
 const NICHE_SERVICES: Record<BusinessNiche, { id: string; label: string }[]> = {
@@ -500,6 +512,117 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
         </div>
       </Section>
 
+      {/* ── Images ──────────────────────────────────────────────────── */}
+      <Section
+        icon={ImageIcon} title="Imagenes" sectionKey="images"
+        expanded={expandedSections.has("images")} onToggle={toggleSection}
+      >
+        {/* Hero background */}
+        <div>
+          <p className="mb-1 text-[11px] font-semibold text-text-secondary">Fondo del Hero</p>
+          <Field label="URL imagen de fondo" path="hero.backgroundImage" value={getNested("hero.backgroundImage")} onChange={updateNested} placeholder="https://images.unsplash.com/..." />
+          {(getNested("hero.backgroundImage") as string) ? (
+            <img src={getNested("hero.backgroundImage") as string} alt="" className="mt-2 h-24 w-full rounded-lg object-cover" />
+          ) : null}
+        </div>
+
+        {/* Why Choose Us */}
+        <div className="border-t border-border pt-3">
+          <p className="mb-1 text-[11px] font-semibold text-text-secondary">Seccion "Por que elegirnos"</p>
+          <Field label="Imagen principal" path="sections.whyChooseUs.mainImage" value={getNested("sections.whyChooseUs.mainImage")} onChange={updateNested} placeholder="https://..." />
+          {(getNested("sections.whyChooseUs.mainImage") as string) ? (
+            <img src={getNested("sections.whyChooseUs.mainImage") as string} alt="" className="mt-2 h-24 w-full rounded-lg object-cover" />
+          ) : null}
+        </div>
+
+        {/* Gallery */}
+        <div className="border-t border-border pt-3">
+          <p className="mb-1 text-[11px] font-semibold text-text-secondary">Galeria</p>
+          <ImageListField
+            value={(config.gallery as string[] | undefined) || []}
+            onChange={(imgs) => setConfig(prev => ({ ...prev, gallery: imgs.length > 0 ? imgs : undefined }))}
+            placeholder="URL de imagen de galeria"
+          />
+        </div>
+
+        {/* Instagram */}
+        <div className="border-t border-border pt-3">
+          <p className="mb-1 text-[11px] font-semibold text-text-secondary">Instagram</p>
+          <div className="grid gap-3 sm:grid-cols-2">
+            <Field label="Handle" path="sections.instagram.handle" value={getNested("sections.instagram.handle")} onChange={updateNested} placeholder="@negocio" />
+            <Field label="URL perfil" path="sections.instagram.url" value={getNested("sections.instagram.url")} onChange={updateNested} placeholder="https://instagram.com/..." />
+          </div>
+          <div className="mt-2">
+            <ImageListField
+              value={(config.sections?.instagram?.images as string[] | undefined) || []}
+              onChange={(imgs) => setConfig(prev => ({
+                ...prev,
+                sections: {
+                  ...prev.sections,
+                  instagram: {
+                    ...prev.sections?.instagram,
+                    images: imgs.length > 0 ? imgs : undefined,
+                  },
+                },
+              }))}
+              placeholder="URL de imagen para grid de Instagram"
+            />
+          </div>
+        </div>
+
+        {/* Staff photos — only when staff overrides exist or can be added */}
+        <div className="border-t border-border pt-3">
+          <p className="mb-1 text-[11px] font-semibold text-text-secondary">Fotos del equipo</p>
+          <p className="mb-2 text-[10px] text-text-muted">
+            Agrega fotos de perfil y portfolio para cada miembro del equipo. El orden debe coincidir con el del preset.
+          </p>
+          {(() => {
+            const staffList = config.staff || [];
+            function updateStaffField(index: number, field: string, value: unknown) {
+              setConfig(prev => {
+                const arr = [...(prev.staff || [])];
+                while (arr.length <= index) arr.push({});
+                arr[index] = { ...arr[index], [field]: value || undefined };
+                // Clean empty entries from end
+                while (arr.length > 0 && Object.values(arr[arr.length - 1]).every(v => v === undefined)) arr.pop();
+                return { ...prev, staff: arr.length > 0 ? arr : undefined };
+              });
+            }
+            function addStaffSlot() {
+              setConfig(prev => ({ ...prev, staff: [...(prev.staff || []), {}] }));
+            }
+            return (
+              <div className="space-y-3">
+                {staffList.map((member, i) => (
+                  <div key={i} className="rounded-lg border border-border bg-bg-elevated p-3">
+                    <span className="mb-2 block text-[10px] font-medium text-text-muted">Miembro {i + 1}</span>
+                    <Field label="Foto de perfil" path={`_staff_${i}_photo`} value={member.photoUrl || ""} onChange={(_p, v) => updateStaffField(i, "photoUrl", v)} placeholder="https://..." />
+                    {member.photoUrl && (
+                      <img src={member.photoUrl} alt="" className="mt-1 h-16 w-16 rounded-full object-cover" />
+                    )}
+                    <div className="mt-2">
+                      <label className="mb-1 block text-[10px] text-text-muted">Portfolio (imagenes)</label>
+                      <ImageListField
+                        value={member.portfolio || []}
+                        onChange={(imgs) => updateStaffField(i, "portfolio", imgs.length > 0 ? imgs : undefined)}
+                        placeholder="URL de imagen de portfolio"
+                      />
+                    </div>
+                  </div>
+                ))}
+                <button
+                  type="button"
+                  onClick={addStaffSlot}
+                  className="flex items-center gap-1.5 rounded-lg border border-dashed border-border px-3 py-2 text-[11px] text-text-muted transition-colors hover:border-accent hover:text-text"
+                >
+                  <Plus size={12} /> Agregar miembro
+                </button>
+              </div>
+            );
+          })()}
+        </div>
+      </Section>
+
       {/* ── Visible Services ──────────────────────────────────────────── */}
       <Section
         icon={Eye} title="Servicios visibles" sectionKey="visibleServices"
@@ -783,4 +906,55 @@ function ToggleField({ label, path, value, onChange }: {
   );
 }
 
-/* ServiceOverrides removed — inline in the main component now */
+function ImageListField({ value, onChange, placeholder }: {
+  value: string[];
+  onChange: (imgs: string[]) => void;
+  placeholder?: string;
+}) {
+  function updateItem(index: number, url: string) {
+    const next = [...value];
+    next[index] = url;
+    onChange(next);
+  }
+  function removeItem(index: number) {
+    onChange(value.filter((_, i) => i !== index));
+  }
+  function addItem() {
+    onChange([...value, ""]);
+  }
+
+  return (
+    <div className="space-y-2">
+      {value.map((url, i) => (
+        <div key={i} className="flex items-start gap-2">
+          <div className="min-w-0 flex-1">
+            <input
+              type="text"
+              value={url}
+              onChange={e => updateItem(i, e.target.value)}
+              placeholder={placeholder}
+              className="w-full rounded-lg border border-border bg-bg-elevated px-3 py-1.5 text-xs text-text placeholder:text-text-muted/50 focus:border-accent focus:outline-none"
+            />
+            {url && (
+              <img src={url} alt="" className="mt-1 h-12 rounded object-cover" onError={e => (e.currentTarget.style.display = "none")} />
+            )}
+          </div>
+          <button
+            type="button"
+            onClick={() => removeItem(i)}
+            className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded text-text-muted transition-colors hover:bg-red-500/10 hover:text-red-400"
+          >
+            <Trash2 size={12} />
+          </button>
+        </div>
+      ))}
+      <button
+        type="button"
+        onClick={addItem}
+        className="flex items-center gap-1.5 rounded-lg border border-dashed border-border px-3 py-1.5 text-[11px] text-text-muted transition-colors hover:border-accent hover:text-text"
+      >
+        <Plus size={12} /> Agregar imagen
+      </button>
+    </div>
+  );
+}
