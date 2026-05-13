@@ -18,13 +18,14 @@ import {
   Bell,
   CalendarCog,
   Wrench,
+  Film,
 } from "lucide-react";
 
 /* ══════════════════════════════════════════════════════════════════════════
  * Types — mirrors what master-template stores in Firestore config/{clientId}
  * ══════════════════════════════════════════════════════════════════════════ */
 
-type BusinessNiche = "barberia" | "estetica" | "abogado" | "tattoo" | "nails";
+type BusinessNiche = "barberia" | "estetica" | "tattoo" | "nails";
 
 type ConfigDoc = {
   business?: { type?: string; legalName?: string; address?: string; cancellationPolicy?: string };
@@ -40,7 +41,7 @@ type ConfigDoc = {
   serviceOverrides?: Record<string, Record<string, unknown>>;
   notifications?: { enabled?: boolean; bookingAlerts?: boolean; contactInquiries?: boolean };
   payment?: { enabled?: boolean; mode?: string };
-  splash?: { enabled?: boolean; durationMs?: number };
+  splash?: { enabled?: boolean; durationMs?: number; variant?: 1 | 2 | 3 | 4 | 5 };
   adminEmail?: string;
 };
 
@@ -50,7 +51,6 @@ const NICHE_DEFAULTS: Record<BusinessNiche, { accent: string; accentLight: strin
   estetica: { accent: "#b08d79", accentLight: "#d4b5a5", surfaceDark: "#1a1410" },
   tattoo: { accent: "#ededed", accentLight: "#ffffff", surfaceDark: "#050505" },
   nails: { accent: "#dca2ac", accentLight: "#edc2c9", surfaceDark: "#6f4a56" },
-  abogado: { accent: "#1d4ed8", accentLight: "#93c5fd", surfaceDark: "#0a0f1a" },
 };
 
 const FEATURES_LIST = [
@@ -100,12 +100,6 @@ const NICHE_SERVICES: Record<BusinessNiche, { id: string; label: string }[]> = {
     { id: "spa-pedicure", label: "Spa Pedicure" },
     { id: "extensions-infills", label: "Extensions & Infills" },
   ],
-  abogado: [
-    { id: "consulta-inicial", label: "Consulta Inicial" },
-    { id: "contratos", label: "Contratos" },
-    { id: "constitucion", label: "Constitucion" },
-    { id: "laboral", label: "Laboral" },
-  ],
 };
 
 const DAYS = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"] as const;
@@ -151,7 +145,7 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
           hours: {},
           businessRules: { bufferMinutes: 0, maxAdvanceBookingDays: 30, minAdvanceBookingHours: 2, autoConfirm: false },
           notifications: { enabled: true, bookingAlerts: true, contactInquiries: true },
-          splash: { enabled: true, durationMs: 2100 },
+          splash: { enabled: true, durationMs: 2100, variant: 1 },
         });
       } else {
         setConfig(data);
@@ -307,7 +301,6 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
               { value: "estetica", label: "Estetica" },
               { value: "tattoo", label: "Tattoo" },
               { value: "nails", label: "Nails" },
-              { value: "abogado", label: "Abogado" },
             ]}
           />
           <SelectField label="Modo" path="businessMode" value={(getNested("businessMode") as string) || "team"} onChange={updateNested}
@@ -457,10 +450,53 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
         <ToggleField label="Consultas de contacto" path="notifications.contactInquiries" value={getNested("notifications.contactInquiries") as boolean} onChange={updateNested} />
         <div className="mt-3 border-t border-border pt-3">
           <Field label="Admin Email" path="adminEmail" value={getNested("adminEmail")} onChange={updateNested} placeholder="admin@negocio.com" />
-          <div className="mt-3 grid gap-3 sm:grid-cols-2">
-            <ToggleField label="Splash screen" path="splash.enabled" value={getNested("splash.enabled") as boolean} onChange={updateNested} />
-            <NumberField label="Duracion splash (ms)" path="splash.durationMs" value={getNested("splash.durationMs") as number} onChange={updateNested} />
-          </div>
+        </div>
+      </Section>
+
+      {/* ── Splash Screen ────────────────────────────────────────────── */}
+      <Section
+        icon={Film} title="Splash screen" sectionKey="splash"
+        expanded={expandedSections.has("splash")} onToggle={toggleSection}
+      >
+        <div className="grid gap-3 sm:grid-cols-2">
+          <ToggleField label="Splash habilitado" path="splash.enabled" value={getNested("splash.enabled") as boolean} onChange={updateNested} />
+          <NumberField label="Duracion (ms)" path="splash.durationMs" value={getNested("splash.durationMs") as number} onChange={updateNested} />
+        </div>
+
+        <p className="text-[11px] font-medium text-text-muted">Variante de animacion</p>
+        <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+          {([
+            { value: 1, name: "Classic", desc: "Logo + letras animadas + linea accent" },
+            { value: 2, name: "Curtain", desc: "Paneles se abren como un telon" },
+            { value: 3, name: "Pulse", desc: "Onda radial que revela la marca" },
+            { value: 4, name: "Typewriter", desc: "Nombre escrito caracter a caracter" },
+            { value: 5, name: "Vortex", desc: "Particulas orbitales que convergen" },
+          ] as const).map(v => {
+            const current = (getNested("splash.variant") as number) ?? 1;
+            const isSelected = current === v.value;
+            return (
+              <button
+                key={v.value}
+                type="button"
+                onClick={() => updateNested("splash.variant", v.value)}
+                className={`rounded-lg border px-3 py-2.5 text-left transition-colors ${
+                  isSelected
+                    ? "border-accent/40 bg-accent/8 ring-1 ring-accent/20"
+                    : "border-border bg-bg-elevated hover:bg-bg-active"
+                }`}
+              >
+                <div className="flex items-center gap-2">
+                  <div className={`flex h-6 w-6 items-center justify-center rounded-md text-xs font-bold ${
+                    isSelected ? "bg-accent text-white" : "bg-bg-active text-text-muted"
+                  }`}>
+                    {v.value}
+                  </div>
+                  <span className={`text-xs font-semibold ${isSelected ? "text-text" : "text-text-secondary"}`}>{v.name}</span>
+                </div>
+                <p className="mt-1 pl-8 text-[10px] text-text-muted">{v.desc}</p>
+              </button>
+            );
+          })}
         </div>
       </Section>
 

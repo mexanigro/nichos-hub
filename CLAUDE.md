@@ -107,6 +107,7 @@ GET /api/payments/[clientId]          → pagos por cliente
 POST /api/payments/contract           → PÚBLICA — crear contrato + payment pending (rate limited)
 POST /api/cardcom/create-payment      → PÚBLICA — crear URL de pago Cardcom (rate limited)
 POST /api/cardcom/verify-payment      → PÚBLICA — verificar pago con idempotencia (rate limited)
+GET|PUT /api/config/[clientId]         → leer/guardar config Firestore por cliente (null → FieldValue.delete)
 GET|POST /api/users                   → gestión usuarios
 GET /api/monitor                      → integración monitor-agent
 ```
@@ -210,5 +211,38 @@ Tablas:
 * `src/components/app-shell.tsx` — layout principal con auth guard
 * `src/components/sidebar.tsx` — navegación (ownerNav vs sellerNav)
 * `src/components/providers.tsx` — context/provider setup
+* `src/components/client-config-tab.tsx` — editor visual de Firestore config/{clientId} (marca, colores, servicios, splash, etc.)
 * `src/components/status-badge.tsx` — badges de estado
 * `src/app/globals.css` — design tokens (@theme variables)
+* `src/app/api/config/[clientId]/route.ts` — GET/PUT para Firestore config/{clientId}
+
+## Config tab (detalle de cliente)
+
+La pestaña Config en `/clients/[clientId]` permite editar visualmente `config/{clientId}` en Firestore. Secciones:
+
+* Marca e identidad (nombre, tagline, logos, SEO)
+* Colores (accent, accentLight, surfaceDark, theme ID)
+* Datos del negocio (nicho, modo, razón social, cancelación)
+* Contacto (teléfono, email, dirección)
+* Horarios (toggle día abierto/cerrado + rangos horarios)
+* Secciones visibles (toggle features: hero, servicios, equipo, galería, etc.)
+* Reglas de reserva (buffer, anticipación, auto-confirm)
+* Chatbot IA (persona/tono — los datos del negocio se inyectan automáticamente)
+* Notificaciones y extras (email admin, alertas)
+* Splash screen (habilitado, duración, variante 1-5)
+* Servicios visibles (toggle por servicio desde NICHE_SERVICES)
+* Personalizar servicios (override nombre, precio, duración, descripción, imagen)
+
+Nichos soportados: barberia, estetica, tattoo, nails.
+
+### Splash variants (master-template)
+
+5 variantes de splash screen seleccionables por cliente (`splash.variant: 1-5`):
+
+1. **Classic** — logo clip-path reveal + letras staggered + línea accent
+2. **Curtain** — dos paneles se abren como telón revelando la marca
+3. **Pulse** — onda radial que se expande desde el centro + logo materializa
+4. **Typewriter** — nombre escrito carácter a carácter con cursor parpadeante
+5. **Vortex** — partículas orbitales que convergen hacia el logo
+
+Todas auto-incorporan branding (logo, nombre, colores accent) desde siteConfig.
