@@ -14,6 +14,8 @@ import {
   AlertCircle,
   Plus,
   Trash2,
+  CalendarDays,
+  Unlink,
 } from "lucide-react";
 import type { WhatsAppConfig } from "@/types";
 
@@ -30,6 +32,14 @@ export function WhatsAppConfigTab({ clientId }: { clientId: string }) {
     new Set(["connection"]),
   );
   const [newPhone, setNewPhone] = useState("");
+  const [calendarStatus, setCalendarStatus] = useState<{
+    connected: boolean;
+    enabled?: boolean;
+    calendarId?: string;
+    connectedAt?: string;
+  }>({ connected: false });
+  const [calendarLoading, setCalendarLoading] = useState(true);
+  const [disconnecting, setDisconnecting] = useState(false);
 
   const toggleSection = (key: string) =>
     setExpandedSections((prev) => {
@@ -65,9 +75,34 @@ export function WhatsAppConfigTab({ clientId }: { clientId: string }) {
     }
   }, [clientId]);
 
+  const fetchCalendar = useCallback(async () => {
+    try {
+      const res = await fetch(`/api/calendar/${clientId}`);
+      const data = await res.json();
+      setCalendarStatus(data);
+    } catch {
+      setCalendarStatus({ connected: false });
+    } finally {
+      setCalendarLoading(false);
+    }
+  }, [clientId]);
+
   useEffect(() => {
     fetchConfig();
-  }, [fetchConfig]);
+    fetchCalendar();
+  }, [fetchConfig, fetchCalendar]);
+
+  async function disconnectCalendar() {
+    setDisconnecting(true);
+    try {
+      await fetch(`/api/calendar/${clientId}`, { method: "DELETE" });
+      setCalendarStatus({ connected: false });
+    } catch {
+      setError("Error al desconectar Google Calendar");
+    } finally {
+      setDisconnecting(false);
+    }
+  }
 
   function updateNested(path: string, value: unknown) {
     setConfig((prev) => {
@@ -372,6 +407,56 @@ export function WhatsAppConfigTab({ clientId }: { clientId: string }) {
                 <span className="text-[11px] text-text-muted">{phone}</span>
               </div>
             ))}
+          </div>
+        )}
+      </Section>
+
+      {/* Google Calendar Section */}
+      <Section
+        icon={CalendarDays}
+        title="Google Calendar"
+        sectionKey="calendar"
+        expanded={expandedSections.has("calendar")}
+        onToggle={toggleSection}
+      >
+        {calendarLoading ? (
+          <p className="text-[11px] text-text-muted">Cargando...</p>
+        ) : calendarStatus.connected ? (
+          <div className="space-y-3">
+            <div className="flex items-center gap-2">
+              <span className="inline-block h-2 w-2 rounded-full bg-green-500" />
+              <span className="text-xs text-text">Conectado</span>
+              {calendarStatus.connectedAt && (
+                <span className="text-[10px] text-text-muted">
+                  desde {new Date(calendarStatus.connectedAt).toLocaleDateString()}
+                </span>
+              )}
+            </div>
+            <div className="rounded-lg bg-bg px-3 py-2">
+              <span className="text-[11px] text-text-muted">Calendario: </span>
+              <span className="text-xs text-text">{calendarStatus.calendarId || "primary"}</span>
+            </div>
+            <button
+              onClick={disconnectCalendar}
+              disabled={disconnecting}
+              className="flex items-center gap-1.5 rounded-lg border border-red-800/30 bg-red-950/20 px-3 py-1.5 text-xs text-red-400 transition-colors hover:bg-red-950/40 disabled:opacity-50"
+            >
+              <Unlink size={12} />
+              {disconnecting ? "Desconectando..." : "Desconectar"}
+            </button>
+          </div>
+        ) : (
+          <div className="space-y-2">
+            <p className="text-[11px] text-text-muted">
+              Conecta Google Calendar para sincronizar turnos reservados via WhatsApp.
+            </p>
+            <a
+              href={`/api/calendar/auth?clientId=${clientId}`}
+              className="inline-flex items-center gap-1.5 rounded-lg bg-accent/10 px-3 py-1.5 text-xs text-accent transition-colors hover:bg-accent/20"
+            >
+              <CalendarDays size={12} />
+              Conectar Google Calendar
+            </a>
           </div>
         )}
       </Section>
