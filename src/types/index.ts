@@ -134,6 +134,27 @@ export interface Payment {
   updatedAt: Date;
 }
 
+export interface WhatsAppConfig {
+  clientId: string;
+  enabled: boolean;
+  twilio: {
+    phoneNumber: string;
+  };
+  systemPrompt: string;
+  personality: {
+    tone: "amigable" | "profesional" | "casual";
+    useEmojis: boolean;
+    language: string;
+  };
+  adminPhones: string[];
+  pauseState: {
+    paused: boolean;
+    pausedAt: string | null;
+    resumeAt: string | null;
+  };
+  leads: Record<string, string>;
+}
+
 export type ExpenseCategory =
   | "hosting"
   | "software"

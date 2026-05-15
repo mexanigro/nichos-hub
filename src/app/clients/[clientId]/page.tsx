@@ -21,6 +21,7 @@ import { LoadingSpinner } from "@/components/loading";
 import { StatCard } from "@/components/stat-card";
 import { PaymentStatusBadge, PaymentTypeBadge } from "@/components/payment-badges";
 import { ClientConfigTab } from "@/components/client-config-tab";
+import { WhatsAppConfigTab } from "@/components/whatsapp-config-tab";
 import { formatDistanceToNow, format } from "date-fns";
 import { es } from "date-fns/locale";
 import type { ClientWithHealth, Payment, PaymentStatus } from "@/types";
@@ -74,7 +75,7 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
   const [confirmAction, setConfirmAction] = useState<"suspend" | "kill" | null>(null);
   const [killError, setKillError] = useState("");
   const [payments, setPayments] = useState<Payment[]>([]);
-  const [activeTab, setActiveTab] = useState<"overview" | "config">("overview");
+  const [activeTab, setActiveTab] = useState<"overview" | "config" | "whatsapp">("overview");
 
   useEffect(() => {
     fetch(`/api/clients/${clientId}`)
@@ -232,10 +233,24 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
         >
           Config
         </button>
+        <button
+          onClick={() => setActiveTab("whatsapp")}
+          className={`px-4 py-2 text-xs font-medium border-b-2 transition-colors ${
+            activeTab === "whatsapp"
+              ? "border-accent text-accent"
+              : "border-transparent text-text-secondary hover:text-text"
+          }`}
+        >
+          WhatsApp
+        </button>
       </div>
 
       {activeTab === "config" && (
         <ClientConfigTab clientId={client.clientId} niche={client.niche} />
+      )}
+
+      {activeTab === "whatsapp" && (
+        <WhatsAppConfigTab clientId={client.clientId} />
       )}
 
       {activeTab === "overview" && (<>
