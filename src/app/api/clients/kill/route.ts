@@ -60,10 +60,19 @@ export const POST = withOwner(async (req) => {
     );
   }
 
+  const newStatus = paused ? "suspended" : "active";
+
   try {
-    await db.collection("hub_clients").doc(clientDocId).update({
-      status: paused ? "suspended" : "active",
-    });
+    await db.collection("hub_clients").doc(clientDocId).update({ status: newStatus });
+
+    // Sync to clients/{clientId} — template Firestore rules enforce status from this collection.
+    const clientId = client.clientId;
+    if (clientId) {
+      await db.collection("clients").doc(clientId).set(
+        { status: newStatus },
+        { merge: true },
+      );
+    }
   } catch (err) {
     console.error("[kill-switch] Firestore update failed after Vercel succeeded:", err);
     return NextResponse.json({ error: "Vercel actualizado pero error en base de datos" }, { status: 500 });

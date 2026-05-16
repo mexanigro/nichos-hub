@@ -13,6 +13,18 @@ export const GET = withOwner(async (_req, _session, ctx) => {
 
   const client = { id: doc.id, ...doc.data() };
   const internalClientId = doc.data()?.clientId;
+  const clientStatus = doc.data()?.status || "active";
+
+  // Auto-heal: ensure clients/{clientId} exists (template Firestore rules depend on it).
+  if (internalClientId) {
+    const clientsDoc = await db.collection("clients").doc(internalClientId).get();
+    if (!clientsDoc.exists) {
+      await db.collection("clients").doc(internalClientId).set(
+        { status: clientStatus },
+        { merge: true },
+      );
+    }
+  }
 
   let healthData = { metrics: [] as unknown[], incidents: [] as unknown[], uptime: { last24h: 100, last7d: 100 } };
   try {

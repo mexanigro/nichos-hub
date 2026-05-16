@@ -65,6 +65,13 @@ export const POST = withOwner(async (req) => {
       activationDate: new Date(),
     });
 
+    // Sync to clients/{clientId} — the template's Firestore rules depend on this
+    // document existing with an allowed status for bookings to work.
+    await db.collection("clients").doc(clientId).set(
+      { status: "active" },
+      { merge: true },
+    );
+
     return NextResponse.json({ id: docRef.id }, { status: 201 });
   } catch (err) {
     console.error("[api/clients POST] Firestore write failed:", err);
@@ -100,6 +107,18 @@ export const PUT = withOwner(async (req) => {
 
   try {
     await db.collection("hub_clients").doc(id).update(updates);
+
+    // If status changed, sync to clients/{clientId} for template Firestore rules.
+    if (updates.status) {
+      const snap = await db.collection("hub_clients").doc(id).get();
+      const clientId = snap.data()?.clientId;
+      if (clientId) {
+        await db.collection("clients").doc(clientId).set(
+          { status: updates.status },
+          { merge: true },
+        );
+      }
+    }
   } catch (err) {
     console.error("[api/clients PUT]", err);
     return NextResponse.json({ error: "Error al actualizar cliente" }, { status: 500 });

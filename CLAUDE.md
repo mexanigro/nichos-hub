@@ -46,12 +46,17 @@ Google OAuth via next-auth v5. Roles: `owner` (OWNER_EMAIL env) y `seller` (Fire
 ## Firestore collections
 
 * `hub_clients` -- clientes del SaaS (fuente de verdad del ecosistema)
+* `clients/{clientId}` -- doc de estado por tenant (synced desde hub_clients). Las Firestore rules del template dependen de este doc para autorizar bookings. El hub lo crea/actualiza automaticamente al crear/actualizar/suspender clientes.
 * `hub_users` -- usuarios del dashboard (roles, permisos)
 * `hub_prospects` -- leads de ventas (pipeline)
 * `hub_expenses` -- gastos operativos
 * `provider_messages` -- mensajes cliente <-> Liam
 * `hub_payments` -- registro de pagos
 * `config/{clientId}` -- config override por cliente (se aplica al master-template)
+
+## Firebase rules/indexes
+
+Las Firestore security rules e indexes se deployean UNICAMENTE desde el repo del master-template. Este repo NO tiene firestore.rules ni firestore.indexes.json. El hub usa Admin SDK que bypassa las rules.
 
 ## Config tab (control remoto de cada web)
 

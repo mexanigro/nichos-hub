@@ -15,6 +15,9 @@ import {
   MessageSquare,
   Power,
   CreditCard,
+  CalendarCheck,
+  Users,
+  TrendingUp,
 } from "lucide-react";
 import { HealthDot, ClientStatusBadge } from "@/components/status-badge";
 import { LoadingSpinner } from "@/components/loading";
@@ -22,6 +25,7 @@ import { StatCard } from "@/components/stat-card";
 import { PaymentStatusBadge, PaymentTypeBadge } from "@/components/payment-badges";
 import { ClientConfigTab } from "@/components/client-config-tab";
 import { WhatsAppConfigTab } from "@/components/whatsapp-config-tab";
+import { ClientLeadsTab } from "@/components/client-leads-tab";
 import { formatDistanceToNow, format } from "date-fns";
 import { es } from "date-fns/locale";
 import type { ClientWithHealth, Payment, PaymentStatus } from "@/types";
@@ -75,7 +79,13 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
   const [confirmAction, setConfirmAction] = useState<"suspend" | "kill" | null>(null);
   const [killError, setKillError] = useState("");
   const [payments, setPayments] = useState<Payment[]>([]);
-  const [activeTab, setActiveTab] = useState<"overview" | "config" | "whatsapp">("overview");
+  const [crmStats, setCrmStats] = useState<{
+    totalBookings: number;
+    bookingsThisWeek: number;
+    totalCustomers: number;
+    lastBookingAt: string | null;
+  } | null>(null);
+  const [activeTab, setActiveTab] = useState<"overview" | "config" | "leads" | "whatsapp">("overview");
 
   useEffect(() => {
     fetch(`/api/clients/${clientId}`)
@@ -95,6 +105,10 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
           })),
         ),
       )
+      .catch(() => {});
+    fetch(`/api/crm-stats/${clientId}`)
+      .then((r) => r.json())
+      .then(setCrmStats)
       .catch(() => {});
   }, [clientId]);
 
@@ -234,6 +248,16 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
           Config
         </button>
         <button
+          onClick={() => setActiveTab("leads")}
+          className={`px-4 py-2 text-xs font-medium border-b-2 transition-colors ${
+            activeTab === "leads"
+              ? "border-accent text-accent"
+              : "border-transparent text-text-secondary hover:text-text"
+          }`}
+        >
+          Leads
+        </button>
+        <button
           onClick={() => setActiveTab("whatsapp")}
           className={`px-4 py-2 text-xs font-medium border-b-2 transition-colors ${
             activeTab === "whatsapp"
@@ -249,6 +273,10 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
         <ClientConfigTab clientId={client.clientId} niche={client.niche} />
       )}
 
+      {activeTab === "leads" && (
+        <ClientLeadsTab clientId={clientId} />
+      )}
+
       {activeTab === "whatsapp" && (
         <WhatsAppConfigTab clientId={client.clientId} />
       )}
@@ -261,6 +289,22 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
         <StatCard icon={AlertTriangle} label="Incidentes" value={activeIncidents.length} iconBg={activeIncidents.length > 0 ? "bg-danger-muted" : "bg-success-muted"} iconColor={activeIncidents.length > 0 ? "text-danger" : "text-success"} valueColor={activeIncidents.length > 0 ? "text-danger" : "text-text"} />
         <StatCard icon={MessageSquare} label="Mensajes" value={messages.length} iconBg="bg-accent-muted" iconColor="text-accent" />
       </div>
+
+      {/* CRM Stats */}
+      {crmStats && (
+        <div className="mb-6 grid grid-cols-2 gap-3 lg:grid-cols-4">
+          <StatCard icon={CalendarCheck} label="Bookings total" value={crmStats.totalBookings} iconBg="bg-accent-muted" iconColor="text-accent" />
+          <StatCard icon={TrendingUp} label="Bookings 7d" value={crmStats.bookingsThisWeek} iconBg={crmStats.bookingsThisWeek > 0 ? "bg-success-muted" : "bg-warning-muted"} iconColor={crmStats.bookingsThisWeek > 0 ? "text-success" : "text-warning"} valueColor={crmStats.bookingsThisWeek > 0 ? "text-success" : "text-warning"} />
+          <StatCard icon={Users} label="Customers" value={crmStats.totalCustomers} iconBg="bg-accent-muted" iconColor="text-accent" />
+          <StatCard
+            icon={CalendarCheck}
+            label="Último booking"
+            value={crmStats.lastBookingAt ? formatDistanceToNow(new Date(crmStats.lastBookingAt), { addSuffix: true, locale: es }) : "—"}
+            iconBg="bg-bg-elevated"
+            iconColor="text-text-muted"
+          />
+        </div>
+      )}
 
       {/* Response Time Chart */}
       {chartData.length > 0 && (
