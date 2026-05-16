@@ -24,6 +24,7 @@ import { LoadingSpinner } from "@/components/loading";
 import { StatCard } from "@/components/stat-card";
 import { PaymentStatusBadge, PaymentTypeBadge } from "@/components/payment-badges";
 import { ClientConfigTab } from "@/components/client-config-tab";
+import { ClientContentTab } from "@/components/client-content-tab";
 import { WhatsAppConfigTab } from "@/components/whatsapp-config-tab";
 import { ClientLeadsTab } from "@/components/client-leads-tab";
 import { formatDistanceToNow, format } from "date-fns";
@@ -85,7 +86,7 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
     totalCustomers: number;
     lastBookingAt: string | null;
   } | null>(null);
-  const [activeTab, setActiveTab] = useState<"overview" | "config" | "leads" | "whatsapp">("overview");
+  const [activeTab, setActiveTab] = useState<"overview" | "config" | "contenido" | "leads" | "whatsapp">("overview");
 
   useEffect(() => {
     fetch(`/api/clients/${clientId}`)
@@ -248,6 +249,16 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
           Config
         </button>
         <button
+          onClick={() => setActiveTab("contenido")}
+          className={`px-4 py-2 text-xs font-medium border-b-2 transition-colors ${
+            activeTab === "contenido"
+              ? "border-accent text-accent"
+              : "border-transparent text-text-secondary hover:text-text"
+          }`}
+        >
+          Contenido
+        </button>
+        <button
           onClick={() => setActiveTab("leads")}
           className={`px-4 py-2 text-xs font-medium border-b-2 transition-colors ${
             activeTab === "leads"
@@ -271,6 +282,10 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
 
       {activeTab === "config" && (
         <ClientConfigTab clientId={client.clientId} niche={client.niche} />
+      )}
+
+      {activeTab === "contenido" && (
+        <ClientContentTab clientId={client.clientId} niche={client.niche} />
       )}
 
       {activeTab === "leads" && (

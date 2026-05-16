@@ -11,7 +11,7 @@ function slugify(name: string): string {
     .slice(0, 40);
 }
 
-const VALID_NICHES = ["barberia", "estetica", "tattoo", "nails", "otro"];
+const VALID_NICHES = ["barberia", "estetica", "tattoo", "nails", "cafeteria", "remodelaciones", "otro"];
 
 export async function POST(req: NextRequest) {
   const ip = req.headers.get("x-forwarded-for") || "anonymous";
@@ -49,33 +49,7 @@ export async function POST(req: NextRequest) {
     const deployNiche = niche === "otro" ? "estetica" : niche;
     const slug = `demo-${slugify(businessName)}-${Date.now().toString(36)}`;
 
-    const features = businessMode === "solo"
-      ? {
-          showHero: true,
-          showServices: true,
-          showBooking: true,
-          showGallery: true,
-          showTeam: false,
-          enableStaffPages: false,
-          showAbout: true,
-          enableAboutPage: true,
-          showLocation: true,
-          showBusinessHours: true,
-          showWhatsAppInChat: true,
-        }
-      : {
-          showHero: true,
-          showServices: true,
-          showBooking: true,
-          showGallery: true,
-          showTeam: true,
-          enableStaffPages: true,
-          showAbout: false,
-          enableAboutPage: false,
-          showLocation: true,
-          showBusinessHours: true,
-          showWhatsAppInChat: true,
-        };
+    const features = buildFeatures(deployNiche, businessMode);
 
     const hubRef = db.collection("hub_clients").doc();
     await hubRef.set({
@@ -127,12 +101,43 @@ export async function POST(req: NextRequest) {
   }
 }
 
+function buildFeatures(niche: string, mode: "solo" | "team"): Record<string, boolean> {
+  const base: Record<string, boolean> = {
+    showHero: true,
+    showServices: true,
+    showBooking: true,
+    showGallery: true,
+    showTeam: mode === "team",
+    enableStaffPages: mode === "team",
+    showAbout: mode === "solo",
+    enableAboutPage: mode === "solo",
+    showLocation: true,
+    showBusinessHours: true,
+    showWhatsAppInChat: true,
+  };
+
+  if (niche === "cafeteria") {
+    base.showBooking = false;
+    base.showPhilosophy = true;
+    base.showProcess = true;
+    base.showAmbience = true;
+  } else if (niche === "remodelaciones") {
+    base.showBooking = false;
+    base.showPortfolio = true;
+    base.showProcess = true;
+  }
+
+  return base;
+}
+
 function getDefaultTheme(niche: string): string {
   const map: Record<string, string> = {
     barberia: "classic-dark",
     estetica: "elegance-light",
     tattoo: "ink-dark",
     nails: "pastel-soft",
+    cafeteria: "warm-cream",
+    remodelaciones: "pro-slate",
   };
   return map[niche] || "classic-dark";
 }
@@ -143,6 +148,8 @@ function getDefaultSplash(niche: string): number {
     tattoo: 5,
     nails: 3,
     estetica: 4,
+    cafeteria: 3,
+    remodelaciones: 1,
   };
   return map[niche] || 1;
 }

@@ -9,6 +9,8 @@ const NICHE_COLORS: Record<string, { from: string; to: string }> = {
   estetica: { from: "#2d1b4e", to: "#462255" },
   tattoo: { from: "#1a1a1a", to: "#2d2d2d" },
   nails: { from: "#3d1f3d", to: "#5c2d5c" },
+  cafeteria: { from: "#2d3a25", to: "#1a2e1a" },
+  remodelaciones: { from: "#1e293b", to: "#0f172a" },
   otro: { from: "#1e3a5f", to: "#2c5364" },
 };
 

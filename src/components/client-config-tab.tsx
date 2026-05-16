@@ -29,7 +29,7 @@ import {
  * Types — mirrors what master-template stores in Firestore config/{clientId}
  * ══════════════════════════════════════════════════════════════════════════ */
 
-type BusinessNiche = "barberia" | "estetica" | "tattoo" | "nails";
+type BusinessNiche = "barberia" | "estetica" | "tattoo" | "nails" | "cafeteria" | "remodelaciones";
 
 type ConfigDoc = {
   business?: { type?: string; legalName?: string; address?: string; cancellationPolicy?: string };
@@ -72,6 +72,8 @@ const NICHE_DEFAULTS: Record<BusinessNiche, { accent: string; accentLight: strin
   estetica: { accent: "#b08d79", accentLight: "#d4b5a5", surfaceDark: "#1a1410" },
   tattoo: { accent: "#ededed", accentLight: "#ffffff", surfaceDark: "#050505" },
   nails: { accent: "#dca2ac", accentLight: "#edc2c9", surfaceDark: "#6f4a56" },
+  cafeteria: { accent: "#6b8e5e", accentLight: "#a3c490", surfaceDark: "#1a1c17" },
+  remodelaciones: { accent: "#3b82f6", accentLight: "#60a5fa", surfaceDark: "#0f172a" },
 };
 
 const FEATURES_LIST = [
@@ -90,6 +92,10 @@ const FEATURES_LIST = [
   { key: "showInstagram", label: "Instagram" },
   { key: "showBooking", label: "Reservas" },
   { key: "showWhatsAppInChat", label: "WhatsApp en chatbot" },
+  { key: "showPhilosophy", label: "Filosofia" },
+  { key: "showProcess", label: "Proceso" },
+  { key: "showAmbience", label: "Ambiente" },
+  { key: "showPortfolio", label: "Portfolio" },
 ] as const;
 
 const NICHE_SERVICES: Record<BusinessNiche, { id: string; label: string }[]> = {
@@ -123,6 +129,21 @@ const NICHE_SERVICES: Record<BusinessNiche, { id: string; label: string }[]> = {
     { id: "nail-art", label: "Nail Art" },
     { id: "spa-pedicure", label: "Spa Pedicure" },
     { id: "extensions-infills", label: "Extensions & Infills" },
+  ],
+  cafeteria: [
+    { id: "espresso", label: "Espresso & Coffee" },
+    { id: "pastries", label: "Pastries & Bakery" },
+    { id: "brunch", label: "Brunch" },
+    { id: "specialty-drinks", label: "Specialty Drinks" },
+    { id: "sandwiches", label: "Sandwiches & Light Meals" },
+  ],
+  remodelaciones: [
+    { id: "interior-painting", label: "Interior Painting" },
+    { id: "exterior-painting", label: "Exterior Painting" },
+    { id: "kitchen-remodel", label: "Kitchen Remodeling" },
+    { id: "bathroom-remodel", label: "Bathroom Remodeling" },
+    { id: "flooring", label: "Flooring" },
+    { id: "general-renovation", label: "General Renovation" },
   ],
 };
 
@@ -322,10 +343,12 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
         <div className="grid gap-3 sm:grid-cols-2">
           <SelectField label="Nicho" path="business.type" value={(getNested("business.type") as string) || ""} onChange={updateNested}
             options={[
-              { value: "barberia", label: "Barberia" },
-              { value: "estetica", label: "Estetica" },
+              { value: "barberia", label: "Barbería" },
+              { value: "estetica", label: "Estética" },
               { value: "tattoo", label: "Tattoo" },
               { value: "nails", label: "Nails" },
+              { value: "cafeteria", label: "Cafetería" },
+              { value: "remodelaciones", label: "Remodelaciones" },
             ]}
           />
         </div>
