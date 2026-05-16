@@ -8,6 +8,7 @@ const healthColors: Record<HealthStatus, string> = {
 
 const statusLabels: Record<ClientStatus, { label: string; className: string }> = {
   active: { label: "Activo", className: "text-success bg-success-muted" },
+  demo: { label: "Demo", className: "text-yellow-500 bg-yellow-500/10" },
   trial: { label: "Trial", className: "text-accent bg-accent-muted" },
   maintenance: { label: "Mantenimiento", className: "text-warning bg-warning-muted" },
   suspended: { label: "Suspendido", className: "text-danger bg-danger-muted" },

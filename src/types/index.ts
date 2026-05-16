@@ -7,7 +7,7 @@ export interface HubUser {
   createdAt: Date;
 }
 
-export type ClientStatus = "active" | "suspended" | "trial" | "maintenance" | "archived";
+export type ClientStatus = "active" | "suspended" | "trial" | "maintenance" | "archived" | "demo";
 
 export interface Client {
   id: string;

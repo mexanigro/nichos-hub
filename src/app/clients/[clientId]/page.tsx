@@ -18,6 +18,7 @@ import {
   CalendarCheck,
   Users,
   TrendingUp,
+  Loader2,
 } from "lucide-react";
 import { HealthDot, ClientStatusBadge } from "@/components/status-badge";
 import { LoadingSpinner } from "@/components/loading";
@@ -279,6 +280,13 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
           WhatsApp
         </button>
       </div>
+
+      {/* Demo activation banner */}
+      {client.status === "demo" && (
+        <DemoActivationBanner hubDocId={clientId} onActivated={() => {
+          setData((d) => d ? { ...d, client: { ...d.client, status: "active" as const } } : d);
+        }} />
+      )}
 
       {activeTab === "config" && (
         <ClientConfigTab clientId={client.clientId} niche={client.niche} />
@@ -606,6 +614,57 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
           </div>
         </div>
       )}
+    </div>
+  );
+}
+
+function DemoActivationBanner({ hubDocId, onActivated }: { hubDocId: string; onActivated: (status: "active") => void }) {
+  const [activating, setActivating] = useState(false);
+  const [error, setError] = useState("");
+
+  async function handleActivate() {
+    setActivating(true);
+    setError("");
+    try {
+      const res = await fetch("/api/clients/provision", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ hubDocId, status: "active" }),
+      });
+      if (res.ok) {
+        onActivated("active");
+      } else {
+        const data = await res.json();
+        setError(data.error || "Error al activar");
+      }
+    } catch {
+      setError("Error de conexion");
+    }
+    setActivating(false);
+  }
+
+  return (
+    <div className="mb-6 flex items-center justify-between rounded-xl border border-yellow-500/20 bg-yellow-500/5 px-4 py-3">
+      <div className="flex items-center gap-3">
+        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-yellow-500/10">
+          <Clock size={14} className="text-yellow-500" />
+        </div>
+        <div>
+          <p className="text-xs font-medium text-text">Este cliente esta en modo demo</p>
+          <p className="text-[10px] text-text-muted">
+            Activalo cuando la configuracion y el contenido esten listos para produccion.
+          </p>
+          {error && <p className="mt-1 text-[10px] text-red-400">{error}</p>}
+        </div>
+      </div>
+      <button
+        onClick={handleActivate}
+        disabled={activating}
+        className="inline-flex items-center gap-1.5 rounded-lg bg-accent px-3 py-2 text-xs font-medium text-white transition-colors hover:bg-accent-hover disabled:opacity-50"
+      >
+        {activating ? <Loader2 size={12} className="animate-spin" /> : <CheckCircle size={12} />}
+        Activar cliente
+      </button>
     </div>
   );
 }

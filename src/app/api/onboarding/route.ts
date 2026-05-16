@@ -82,9 +82,13 @@ export async function POST(req: NextRequest) {
     });
 
     const deployUrl = `${req.nextUrl.origin}/api/deploy`;
+    const deployHeaders: Record<string, string> = { "Content-Type": "application/json" };
+    if (process.env.DEPLOY_SECRET) {
+      deployHeaders["x-deploy-secret"] = process.env.DEPLOY_SECRET;
+    }
     const deployRes = await fetch(deployUrl, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: deployHeaders,
       body: JSON.stringify({ clientId: slug, niche: deployNiche, hubDocId: hubRef.id }),
     });
 

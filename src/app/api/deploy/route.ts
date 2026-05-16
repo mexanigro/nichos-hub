@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/firebase-admin";
+import { auth } from "@/lib/auth";
 
 const VERCEL_TOKEN = process.env.VERCEL_TOKEN;
 const VERCEL_TEAM_ID = process.env.VERCEL_TEAM_ID;
+const DEPLOY_SECRET = process.env.DEPLOY_SECRET;
 const TEMPLATE_REPO = "mexanigro/Barber-shop-template";
 
 const SHARED_ENV_VARS = [
@@ -29,6 +31,16 @@ async function vercelFetch(path: string, options: RequestInit = {}) {
 }
 
 export async function POST(req: NextRequest) {
+  const internalSecret = req.headers.get("x-deploy-secret");
+  const isInternalCall = DEPLOY_SECRET && internalSecret === DEPLOY_SECRET;
+
+  if (!isInternalCall) {
+    const session = await auth();
+    if (!session?.user?.role || session.user.role !== "owner") {
+      return NextResponse.json({ error: "No autorizado" }, { status: 401 });
+    }
+  }
+
   if (!VERCEL_TOKEN) {
     return NextResponse.json({ error: "VERCEL_TOKEN not configured" }, { status: 500 });
   }

@@ -9,7 +9,6 @@ import {
   ExternalLink,
   LayoutDashboard,
   Search,
-  X,
 } from "lucide-react";
 import { HealthDot, ClientStatusBadge } from "@/components/status-badge";
 import { EmptyState } from "@/components/empty-state";
@@ -24,9 +23,6 @@ export default function ClientsPage() {
   const [clients, setClients] = useState<ClientWithHealth[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
-  const [showForm, setShowForm] = useState(false);
-  const [creating, setCreating] = useState(false);
-  const [formError, setFormError] = useState("");
 
   useEffect(() => {
     if (session?.user?.role !== "owner") {
@@ -51,36 +47,6 @@ export default function ClientsPage() {
     setLoading(false);
   }
 
-  async function handleCreate(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setFormError("");
-    setCreating(true);
-
-    try {
-      const form = new FormData(e.currentTarget);
-      const body = Object.fromEntries(form);
-
-      const res = await fetch("/api/clients", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      });
-
-      if (res.ok) {
-        setShowForm(false);
-        setFormError("");
-        fetchClients();
-      } else {
-        const data = await res.json().catch(() => ({}));
-        setFormError(data.error || `Error ${res.status}: no se pudo crear el cliente`);
-      }
-    } catch (err) {
-      setFormError("Error de conexión. Verificá tu red e intentá de nuevo.");
-      console.error("[clients] create failed:", err);
-    } finally {
-      setCreating(false);
-    }
-  }
 
   const filtered = clients.filter(
     (c) =>
@@ -99,13 +65,13 @@ export default function ClientsPage() {
           <h1 className="text-lg font-semibold tracking-tight text-text">Clientes</h1>
           <p className="text-xs text-text-muted">{clients.length} clientes registrados</p>
         </div>
-        <button
-          onClick={() => setShowForm(true)}
+        <Link
+          href="/clients/new"
           className="inline-flex items-center gap-2 rounded-lg bg-accent px-3.5 py-2 text-xs font-medium text-white transition-colors hover:bg-accent-hover"
         >
           <Plus size={14} />
-          Agregar cliente
-        </button>
+          Nuevo cliente
+        </Link>
       </div>
 
       {/* Search */}
@@ -191,71 +157,6 @@ export default function ClientsPage() {
         </div>
       )}
 
-      {/* Create Client Modal */}
-      {showForm && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
-          <div className="w-full max-w-lg rounded-xl border border-border bg-bg-card p-6">
-            <div className="mb-4 flex items-center justify-between">
-              <h2 className="text-sm font-semibold text-text">Nuevo cliente</h2>
-              <button onClick={() => setShowForm(false)} className="text-text-muted hover:text-text">
-                <X size={16} />
-              </button>
-            </div>
-            <form onSubmit={handleCreate} className="space-y-3">
-              <div className="grid gap-3 sm:grid-cols-2">
-                <div>
-                  <label className="mb-1 block text-[11px] font-medium text-text-muted">Nombre del negocio *</label>
-                  <input name="businessName" required className="w-full rounded-lg border border-border bg-bg-elevated px-3 py-2 text-sm text-text focus:border-accent focus:outline-none" />
-                </div>
-                <div>
-                  <label className="mb-1 block text-[11px] font-medium text-text-muted">Nicho *</label>
-                  <select name="niche" required className="w-full rounded-lg border border-border bg-bg-elevated px-3 py-2 text-sm text-text focus:border-accent focus:outline-none">
-                    <option value="barberia">Barbería</option>
-                    <option value="estetica">Estética</option>
-                    <option value="tattoo">Tattoo</option>
-                    <option value="nails">Nails</option>
-                    <option value="cafeteria">Cafetería</option>
-                    <option value="remodelaciones">Remodelaciones</option>
-                  </select>
-                </div>
-              </div>
-              <div>
-                <label className="mb-1 block text-[11px] font-medium text-text-muted">URL del deploy *</label>
-                <input name="deployUrl" type="url" required placeholder="https://..." className="w-full rounded-lg border border-border bg-bg-elevated px-3 py-2 text-sm text-text placeholder:text-text-muted focus:border-accent focus:outline-none" />
-              </div>
-              <div className="grid gap-3 sm:grid-cols-2">
-                <div>
-                  <label className="mb-1 block text-[11px] font-medium text-text-muted">Client ID *</label>
-                  <input name="clientId" required placeholder="demo-barber" className="w-full rounded-lg border border-border bg-bg-elevated px-3 py-2 text-sm font-mono text-text placeholder:text-text-muted focus:border-accent focus:outline-none" />
-                </div>
-                <div>
-                  <label className="mb-1 block text-[11px] font-medium text-text-muted">Admin email</label>
-                  <input name="adminEmail" type="email" className="w-full rounded-lg border border-border bg-bg-elevated px-3 py-2 text-sm text-text focus:border-accent focus:outline-none" />
-                </div>
-              </div>
-              <div>
-                <label className="mb-1 block text-[11px] font-medium text-text-muted">Vercel Project ID</label>
-                <input name="vercelProjectId" className="w-full rounded-lg border border-border bg-bg-elevated px-3 py-2 text-sm font-mono text-text focus:border-accent focus:outline-none" />
-              </div>
-              <div>
-                <label className="mb-1 block text-[11px] font-medium text-text-muted">Notas</label>
-                <textarea name="notes" rows={2} className="w-full rounded-lg border border-border bg-bg-elevated px-3 py-2 text-sm text-text focus:border-accent focus:outline-none resize-none" />
-              </div>
-              {formError && (
-                <p className="rounded-lg bg-red-500/10 px-3 py-2 text-xs text-red-400">{formError}</p>
-              )}
-              <div className="flex justify-end gap-2 pt-2">
-                <button type="button" onClick={() => { setShowForm(false); setFormError(""); }} className="rounded-lg px-3 py-2 text-xs font-medium text-text-secondary hover:text-text" disabled={creating}>
-                  Cancelar
-                </button>
-                <button type="submit" disabled={creating} className="rounded-lg bg-accent px-4 py-2 text-xs font-medium text-white hover:bg-accent-hover disabled:opacity-50">
-                  {creating ? "Creando..." : "Crear cliente"}
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

@@ -176,6 +176,17 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
         // Initialize with niche defaults
         const nicheKey = (niche || "barberia") as BusinessNiche;
         const defaults = NICHE_DEFAULTS[nicheKey] || NICHE_DEFAULTS.barberia;
+        const nicheFeatures: Record<string, boolean> = {};
+        if (nicheKey === "cafeteria") {
+          nicheFeatures.showBooking = false;
+          nicheFeatures.showPhilosophy = true;
+          nicheFeatures.showProcess = true;
+          nicheFeatures.showAmbience = true;
+        } else if (nicheKey === "remodelaciones") {
+          nicheFeatures.showBooking = false;
+          nicheFeatures.showPortfolio = true;
+          nicheFeatures.showProcess = true;
+        }
         setConfig({
           business: { type: nicheKey },
           brand: { name: "", tagline: "" },
@@ -186,6 +197,7 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
             showInquiry: true, showLocation: true, showBusinessHours: true,
             showInstagram: true, showBooking: true, enableStaffPages: true,
             showAbout: false, enableAboutPage: false,
+            ...nicheFeatures,
           },
           contact: { phone: "", email: "" },
           hours: {},
