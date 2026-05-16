@@ -1,26 +1,27 @@
 "use client";
 
-import { motion } from "framer-motion";
-import type { ReactNode } from "react";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 
 interface Props {
-  children: ReactNode;
+  children: React.ReactNode;
   className?: string;
   delay?: number;
-  id?: string;
 }
 
-export function AnimatedSection({ children, className, delay = 0, id }: Props) {
+export function AnimatedSection({ children, className, delay = 0 }: Props) {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, amount: 0.2 });
+
   return (
-    <motion.section
-      id={id}
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.5, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 20 }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+      transition={{ duration: 0.5, delay, ease: [0.16, 1, 0.3, 1] }}
       className={className}
     >
       {children}
-    </motion.section>
+    </motion.div>
   );
 }

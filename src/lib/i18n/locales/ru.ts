@@ -17,7 +17,7 @@ export const ru: Translations = {
   },
   socialProof: {
     activeBusinesses: "Активных бизнесов",
-    avgBookingsPerMonth: "Бронирований в месяц",
+    avgBookingsPerMonth: "Бронирований в среднем / мес",
     clientSatisfaction: "Удовлетворённость клиентов",
   },
   pillars: {
@@ -178,7 +178,8 @@ export const ru: Translations = {
     },
     niche: {
       title: "Какая у вас отрасль?",
-      subtitle: "Мы настроим всё под ваш тип бизнеса",
+      subtitle: "Каждая система разработана с экспертами отрасли",
+      otroPlaceholder: "Напр.: флорист, кафе, спортзал...",
     },
     photos: {
       title: "Покажите свой бизнес",
@@ -196,6 +197,9 @@ export const ru: Translations = {
       email: "Email",
       address: "Адрес",
       instagram: "Instagram",
+      modeTitle: "Вы работаете один или у вас команда?",
+      solo: "Один",
+      team: "Команда",
     },
     branding: {
       title: "Ваш бренд",
@@ -207,6 +211,17 @@ export const ru: Translations = {
     },
     submit: "Создать мой сайт",
     generating: "Создаём ваш сайт...",
+  },
+  preview: {
+    title: "Ваш сайт готов",
+    subtitle: "Войдите, чтобы увидеть полную версию",
+    cta: "Войти через Google",
+    ctaSub: "Нам нужно знать, кому его передать",
+    loading: "Создаём ваш проект...",
+    error: "Что-то пошло не так",
+    retry: "Попробовать снова",
+    noData: "Мы не нашли ваши данные",
+    startOver: "Начать заново",
   },
   footer: {
     rights: "Все права защищены",

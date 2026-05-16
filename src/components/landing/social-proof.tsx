@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
+import { useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import { useT } from "@/lib/i18n";
 
@@ -13,11 +13,11 @@ function Counter({ target, suffix = "" }: { target: number; suffix?: string }) {
     if (!inView) return;
     let start = 0;
     let rafId: number;
-    const duration = 1500;
+    const duration = 1800;
     const step = (ts: number) => {
       if (!start) start = ts;
       const progress = Math.min((ts - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
+      const eased = 1 - Math.pow(1 - progress, 4);
       setValue(Math.floor(eased * target));
       if (progress < 1) rafId = requestAnimationFrame(step);
     };
@@ -26,9 +26,12 @@ function Counter({ target, suffix = "" }: { target: number; suffix?: string }) {
   }, [inView, target]);
 
   return (
-    <span ref={ref} className="text-2xl font-bold text-text sm:text-3xl">
-      {value}
-      {suffix}
+    <span
+      ref={ref}
+      style={{ fontFamily: "var(--l-display)", fontSize: "clamp(2.4rem, 4vw, 3rem)" }}
+      className="tabular-nums font-bold tracking-[-0.03em] text-[var(--l-text)]"
+    >
+      {value}{suffix}
     </span>
   );
 }
@@ -43,26 +46,15 @@ export function SocialProof() {
   ];
 
   return (
-    <motion.section
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.5 }}
-      className="mx-auto grid max-w-4xl grid-cols-3 gap-4 px-5 py-16"
-    >
-      {stats.map((stat, i) => (
-        <motion.div
-          key={i}
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: i * 0.1, duration: 0.4 }}
-          className="flex flex-col items-center gap-1 text-center"
-        >
-          <Counter target={stat.value} suffix={stat.suffix} />
-          <span className="text-[11px] text-text-muted sm:text-xs">{stat.label}</span>
-        </motion.div>
-      ))}
-    </motion.section>
+    <section className="border-t border-[var(--l-border-subtle)]">
+      <div className="l-container grid grid-cols-1 gap-8 py-[60px] sm:grid-cols-3 md:py-[80px]">
+        {stats.map((stat, i) => (
+          <div key={i} className="text-center">
+            <Counter target={stat.value} suffix={stat.suffix} />
+            <p className="mt-1.5 text-[0.85rem] font-medium text-[var(--l-text-3)]">{stat.label}</p>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 }

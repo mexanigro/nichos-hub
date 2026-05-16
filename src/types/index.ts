@@ -1,4 +1,4 @@
-export type UserRole = "owner" | "seller";
+export type UserRole = "owner" | "seller" | "lead";
 
 export interface HubUser {
   email: string;

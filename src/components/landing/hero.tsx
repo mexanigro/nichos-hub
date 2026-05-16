@@ -1,62 +1,42 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ArrowDown } from "lucide-react";
 import { useT } from "@/lib/i18n";
 
 export function Hero() {
   const { t } = useT();
 
   return (
-    <section className="relative flex min-h-[90vh] flex-col items-center justify-center px-5 pt-20 text-center">
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute left-1/2 top-1/4 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-accent-from/5 blur-[120px]" />
-        <div className="absolute right-1/4 top-1/3 h-[300px] w-[300px] rounded-full bg-accent-to/5 blur-[100px]" />
-      </div>
+    <section className="pb-20 pt-36 px-6 md:pb-24 md:px-12 md:pt-44">
+      <div className="l-narrow text-center">
+        <span
+          style={{ fontFamily: "var(--l-display)" }}
+          className="inline-block rounded-[var(--l-radius-pill)] bg-[var(--l-accent-muted)] px-3.5 py-1.5 text-[0.8rem] font-semibold uppercase tracking-[0.04em] text-[var(--l-accent)]"
+        >
+          {t.hero.badge || "WEBSITE + CRM + AI"}
+        </span>
 
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-        className="relative z-10 mx-auto max-w-3xl"
-      >
-        <h1 className="text-3xl font-bold leading-tight tracking-tight text-text sm:text-4xl md:text-5xl lg:text-6xl">
+        <h1
+          style={{ fontFamily: "var(--l-display)", fontSize: "var(--l-h1)" }}
+          className="mt-6 font-bold leading-[1.1] tracking-[-0.025em] text-[var(--l-text)]"
+        >
           {t.hero.headline}
         </h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.15, duration: 0.5 }}
-          className="mx-auto mt-5 max-w-xl text-sm leading-relaxed text-text-secondary sm:text-base md:text-lg"
-        >
+        <p className="mx-auto mt-5 max-w-[520px] text-[1.125rem] leading-[1.7] text-[var(--l-text-2)]">
           {t.hero.subheadline}
-        </motion.p>
+        </p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.5 }}
-          className="mt-8"
+        <a
+          href="#builder"
+          style={{ fontFamily: "var(--l-display)" }}
+          className="mt-9 inline-flex items-center gap-2.5 rounded-[var(--l-radius-pill)] bg-[var(--l-accent)] px-8 py-3.5 text-[1rem] font-semibold text-white transition-all duration-200 hover:opacity-90 active:scale-[0.98]"
         >
-          <a
-            href="#builder"
-            className="inline-flex items-center gap-2 rounded-md bg-gradient-to-r from-accent-from to-accent-to px-6 py-3 text-sm font-semibold text-white shadow-glow-md transition-all hover:shadow-glow-lg hover:brightness-110"
-          >
-            {t.hero.cta}
-            <ArrowDown size={16} className="animate-bounce" />
-          </a>
-        </motion.div>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6, duration: 0.5 }}
-          className="mt-10 text-xs text-text-muted"
-        >
-          {t.hero.trustedBy}
-        </motion.p>
-      </motion.div>
+          {t.hero.cta}
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </a>
+      </div>
     </section>
   );
 }

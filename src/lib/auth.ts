@@ -29,13 +29,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   ],
   callbacks: {
     async signIn({ user }) {
-      if (!user.email) return false;
-      const role = await getUserRole(user.email);
-      return role !== null;
+      return !!user.email;
     },
     async jwt({ token, user }) {
       if (user?.email) {
-        token.role = await getUserRole(user.email);
+        token.role = (await getUserRole(user.email)) ?? "lead";
       }
       return token;
     },
@@ -60,6 +58,9 @@ function withRole(role: "owner" | null, handler: AuthedHandler): (req: NextReque
     const session = await auth();
     if (!session?.user?.role) {
       return NextResponse.json({ error: "No autenticado" }, { status: 401 });
+    }
+    if (session.user.role === "lead") {
+      return NextResponse.json({ error: "Sin permisos" }, { status: 403 });
     }
     if (role && session.user.role !== role) {
       return NextResponse.json({ error: "Sin permisos" }, { status: 403 });

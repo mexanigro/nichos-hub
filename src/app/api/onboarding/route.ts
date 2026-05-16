@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/firebase-admin";
+import { auth } from "@/lib/auth";
 import { isRateLimited } from "@/lib/rate-limit";
 
 function slugify(name: string): string {
@@ -10,7 +11,7 @@ function slugify(name: string): string {
     .slice(0, 40);
 }
 
-const VALID_NICHES = ["barberia", "estetica", "tattoo", "nails"];
+const VALID_NICHES = ["barberia", "estetica", "tattoo", "nails", "otro"];
 
 export async function POST(req: NextRequest) {
   const ip = req.headers.get("x-forwarded-for") || "anonymous";
@@ -18,9 +19,14 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Rate limited" }, { status: 429 });
   }
 
+  const session = await auth();
+  const leadEmail = session?.user?.email || "";
+
   try {
     const formData = await req.formData();
     const niche = (formData.get("niche") as string || "").trim();
+    const customNiche = (formData.get("customNiche") as string || "").trim();
+    const businessMode = (formData.get("businessMode") as string || "team") as "solo" | "team";
     const businessName = (formData.get("businessName") as string || "").trim();
     const description = (formData.get("description") as string || "").trim();
     const whatsapp = (formData.get("whatsapp") as string || "").trim();
@@ -40,14 +46,44 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Invalid email format" }, { status: 400 });
     }
 
+    const deployNiche = niche === "otro" ? "estetica" : niche;
     const slug = `demo-${slugify(businessName)}-${Date.now().toString(36)}`;
 
-    // Create hub_clients doc
+    const features = businessMode === "solo"
+      ? {
+          showHero: true,
+          showServices: true,
+          showBooking: true,
+          showGallery: true,
+          showTeam: false,
+          enableStaffPages: false,
+          showAbout: true,
+          enableAboutPage: true,
+          showLocation: true,
+          showBusinessHours: true,
+          showWhatsAppInChat: true,
+        }
+      : {
+          showHero: true,
+          showServices: true,
+          showBooking: true,
+          showGallery: true,
+          showTeam: true,
+          enableStaffPages: true,
+          showAbout: false,
+          enableAboutPage: false,
+          showLocation: true,
+          showBusinessHours: true,
+          showWhatsAppInChat: true,
+        };
+
     const hubRef = db.collection("hub_clients").doc();
     await hubRef.set({
       clientId: slug,
       name: businessName,
       niche,
+      customNiche: niche === "otro" ? customNiche : "",
+      businessMode,
       status: "demo",
       domain: `${slug}.arzac.studio`,
       createdAt: new Date(),
@@ -55,38 +91,27 @@ export async function POST(req: NextRequest) {
       description,
       colors,
       logoCreate,
+      leadEmail,
     });
 
-    // Create clients/{clientId} for Firestore rules
     await db.collection("clients").doc(slug).set({
       status: "active",
     });
 
-    // Create config/{clientId} with builder overrides
     await db.collection("config").doc(slug).set({
-      business: { type: niche, name: businessName },
+      business: { type: deployNiche, mode: businessMode, name: businessName },
       brand: { name: businessName, tagline: description },
       contact: { phone: whatsapp, email, address: { street: address } },
-      features: {
-        showHero: true,
-        showServices: true,
-        showBooking: true,
-        showGallery: true,
-        showTeam: true,
-        showLocation: true,
-        showBusinessHours: true,
-        showWhatsAppInChat: true,
-      },
-      activeTheme: getDefaultTheme(niche),
-      splash: { enabled: true, variant: getDefaultSplash(niche) },
+      features,
+      activeTheme: getDefaultTheme(deployNiche),
+      splash: { enabled: true, variant: getDefaultSplash(deployNiche) },
     });
 
-    // Trigger Vercel deploy
     const deployUrl = `${req.nextUrl.origin}/api/deploy`;
     const deployRes = await fetch(deployUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ clientId: slug, niche, hubDocId: hubRef.id }),
+      body: JSON.stringify({ clientId: slug, niche: deployNiche, hubDocId: hubRef.id }),
     });
 
     if (!deployRes.ok) {

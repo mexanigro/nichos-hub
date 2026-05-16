@@ -178,7 +178,8 @@ export const en: Translations = {
     },
     niche: {
       title: "What's your industry?",
-      subtitle: "We'll customize everything for your business type",
+      subtitle: "Each system was designed with experts from each industry",
+      otroPlaceholder: "E.g.: florist, café, gym...",
     },
     photos: {
       title: "Show off your business",
@@ -196,6 +197,9 @@ export const en: Translations = {
       email: "Email",
       address: "Address",
       instagram: "Instagram handle",
+      modeTitle: "Do you work solo or have a team?",
+      solo: "Solo",
+      team: "Team",
     },
     branding: {
       title: "Your brand",
@@ -207,6 +211,17 @@ export const en: Translations = {
     },
     submit: "Generate my website",
     generating: "Building your website...",
+  },
+  preview: {
+    title: "Your site is ready",
+    subtitle: "Sign in to see the full version",
+    cta: "Sign in with Google",
+    ctaSub: "We just need to know who to deliver it to",
+    loading: "Creating your project...",
+    error: "Something went wrong",
+    retry: "Try again",
+    noData: "We couldn't find your data",
+    startOver: "Start over",
   },
   footer: {
     rights: "All rights reserved",

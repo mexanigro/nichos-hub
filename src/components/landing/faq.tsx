@@ -1,60 +1,71 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
 import { useT } from "@/lib/i18n";
-import { AnimatedSection } from "./animated-section";
 
 export function FAQ() {
   const { t } = useT();
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <AnimatedSection className="mx-auto max-w-2xl px-5 py-20">
-      <h2 className="mb-10 text-center text-2xl font-bold text-text sm:text-3xl">
-        {t.faq.title}
-      </h2>
+    <section className="l-section">
+      <div className="mx-auto max-w-[700px]">
+        <h2
+          style={{ fontFamily: "var(--l-display)", fontSize: "var(--l-h2)" }}
+          className="mb-10 text-center font-bold leading-[1.15] tracking-[-0.02em] text-[var(--l-text)]"
+        >
+          {t.faq.title}
+        </h2>
 
-      <div className="space-y-2">
-        {t.faq.items.map((item, i) => {
-          const isOpen = openIndex === i;
-          return (
-            <div
-              key={i}
-              className="rounded-md border border-border bg-bg-card/50 transition-colors hover:border-border-hover"
-            >
-              <button
-                onClick={() => setOpenIndex(isOpen ? null : i)}
-                className="flex w-full items-center justify-between px-5 py-4 text-start"
+        <div className="space-y-2.5">
+          {t.faq.items.map((item, i) => {
+            const isOpen = openIndex === i;
+            return (
+              <div
+                key={i}
+                className={`rounded-[var(--l-radius)] border bg-[var(--l-card)] transition-colors duration-200 ${
+                  isOpen ? "border-[var(--l-accent)]" : "border-[var(--l-border-subtle)] hover:border-[var(--l-border)]"
+                }`}
               >
-                <span className="text-xs font-medium text-text">{item.question}</span>
-                <ChevronDown
-                  size={14}
-                  className={`shrink-0 text-text-muted transition-transform ${
-                    isOpen ? "rotate-180" : ""
-                  }`}
-                />
-              </button>
-              <AnimatePresence>
-                {isOpen && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                    className="overflow-hidden"
+                <button
+                  onClick={() => setOpenIndex(isOpen ? null : i)}
+                  className="flex w-full items-center justify-between px-7 py-[22px] text-start"
+                >
+                  <span className="text-[0.95rem] font-medium text-[var(--l-text)]">
+                    {item.question}
+                  </span>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    className="shrink-0 text-[var(--l-text-3)] transition-transform duration-200"
+                    style={{ transform: isOpen ? "rotate(180deg)" : "rotate(0deg)" }}
                   >
-                    <p className="px-5 pb-4 text-xs leading-relaxed text-text-secondary">
-                      {item.answer}
-                    </p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          );
-        })}
+                    <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+                <AnimatePresence>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                      className="overflow-hidden"
+                    >
+                      <p className="px-7 pb-6 text-[0.9rem] leading-[1.7] text-[var(--l-text-2)]">
+                        {item.answer}
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })}
+        </div>
       </div>
-    </AnimatedSection>
+    </section>
   );
 }

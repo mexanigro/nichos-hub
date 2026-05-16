@@ -13,22 +13,39 @@ import { FinalCTA } from "./final-cta";
 import { Footer } from "./footer";
 import { WhatsAppWidget } from "./whatsapp-widget";
 import { BuilderSection } from "./builder/builder-section";
+import { AnimatedSection } from "./animated-section";
 
 export function LandingPage() {
   return (
     <LandingI18nProvider>
-      <div className="min-h-screen bg-bg text-text">
+      <div className="landing">
         <Header />
         <main>
           <Hero />
-          <SocialProof />
-          <Pillars />
-          <HowItWorks />
-          <FeaturesGrid />
-          <Pricing />
-          <BuilderSection />
-          <FAQ />
-          <FinalCTA />
+          <AnimatedSection>
+            <SocialProof />
+          </AnimatedSection>
+          <AnimatedSection>
+            <Pillars />
+          </AnimatedSection>
+          <AnimatedSection>
+            <HowItWorks />
+          </AnimatedSection>
+          <AnimatedSection>
+            <FeaturesGrid />
+          </AnimatedSection>
+          <AnimatedSection>
+            <Pricing />
+          </AnimatedSection>
+          <AnimatedSection>
+            <BuilderSection />
+          </AnimatedSection>
+          <AnimatedSection>
+            <FAQ />
+          </AnimatedSection>
+          <AnimatedSection>
+            <FinalCTA />
+          </AnimatedSection>
         </main>
         <Footer />
         <WhatsAppWidget />

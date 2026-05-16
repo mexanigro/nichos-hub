@@ -1,8 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
 import { useT } from "@/lib/i18n";
 import { LanguageSwitcher } from "./language-switcher";
 
@@ -33,78 +31,81 @@ export function Header() {
   ];
 
   return (
-    <motion.header
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.4 }}
+    <header
       className={`fixed inset-x-0 top-0 z-40 transition-all duration-300 ${
         scrolled
-          ? "border-b border-border/50 bg-bg/80 backdrop-blur-xl"
+          ? "border-b border-[var(--l-border-subtle)] bg-white/92 backdrop-blur-xl"
           : "bg-transparent"
       }`}
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3.5">
-        <a href="#" className="text-sm font-semibold tracking-tight text-text">
-          arzac<span className="text-accent">.</span>studio
+      <div className="l-container flex h-[72px] items-center justify-between">
+        <a
+          href="#"
+          style={{ fontFamily: "var(--l-display)" }}
+          className="text-[1.05rem] font-semibold tracking-[-0.02em] text-[var(--l-text)]"
+        >
+          arzac.studio
         </a>
 
-        <nav className="hidden items-center gap-6 md:flex">
+        <nav className="hidden items-center gap-7 md:flex">
           {links.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="text-xs font-medium text-text-secondary transition-colors hover:text-text"
+              className="text-[0.9rem] font-medium text-[var(--l-text-3)] transition-colors duration-200 hover:text-[var(--l-text)]"
             >
               {link.label}
             </a>
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
           <LanguageSwitcher />
           <a
             href="#builder"
-            className="hidden rounded-md bg-gradient-to-r from-accent-from to-accent-to px-4 py-1.5 text-xs font-semibold text-white transition-opacity hover:opacity-90 md:inline-block"
+            className="hidden rounded-[var(--l-radius-pill)] bg-[var(--l-accent)] px-6 py-2.5 text-[0.88rem] font-semibold text-white transition-all duration-200 hover:opacity-90 md:inline-block"
+            style={{ fontFamily: "var(--l-display)" }}
           >
             {t.nav.getStarted}
           </a>
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="rounded-md p-1.5 text-text-secondary hover:bg-bg-hover md:hidden"
+            className="p-2 text-[var(--l-text-2)] md:hidden"
+            aria-label="Menu"
           >
-            {menuOpen ? <X size={18} /> : <Menu size={18} />}
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+              {menuOpen ? (
+                <path d="M6 6l10 10M16 6L6 16" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+              ) : (
+                <path d="M4 7h14M4 11h14M4 15h14" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+              )}
+            </svg>
           </button>
         </div>
       </div>
 
       {menuOpen && (
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
-          exit={{ opacity: 0, height: 0 }}
-          className="border-b border-border bg-bg/95 backdrop-blur-xl md:hidden"
-        >
-          <div className="flex flex-col gap-1 px-5 py-3">
-            {links.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setMenuOpen(false)}
-                className="rounded-md px-3 py-2 text-sm text-text-secondary transition-colors hover:bg-bg-hover hover:text-text"
-              >
-                {link.label}
-              </a>
-            ))}
+        <div className="border-b border-[var(--l-border-subtle)] bg-white/95 px-6 pb-5 pt-1 backdrop-blur-xl md:hidden">
+          {links.map((link) => (
             <a
-              href="#builder"
+              key={link.href}
+              href={link.href}
               onClick={() => setMenuOpen(false)}
-              className="mt-2 rounded-md bg-gradient-to-r from-accent-from to-accent-to px-4 py-2 text-center text-sm font-semibold text-white"
+              className="block py-3 text-[0.95rem] text-[var(--l-text-2)] transition-colors hover:text-[var(--l-text)]"
             >
-              {t.nav.getStarted}
+              {link.label}
             </a>
-          </div>
-        </motion.div>
+          ))}
+          <a
+            href="#builder"
+            onClick={() => setMenuOpen(false)}
+            className="mt-3 block rounded-[var(--l-radius-pill)] bg-[var(--l-accent)] px-4 py-3 text-center text-[0.9rem] font-semibold text-white"
+            style={{ fontFamily: "var(--l-display)" }}
+          >
+            {t.nav.getStarted}
+          </a>
+        </div>
       )}
-    </motion.header>
+    </header>
   );
 }

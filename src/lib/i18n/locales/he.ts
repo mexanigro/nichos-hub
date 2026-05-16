@@ -9,6 +9,7 @@ export const he: Translations = {
     getStarted: "התחל עכשיו",
   },
   hero: {
+    badge: "אתר + CRM + AI",
     headline: "הפכו את העסק המקומי שלכם לכוח דיגיטלי",
     subheadline:
       "אתר מקצועי, CRM חכם וסוכן WhatsApp עם בינה מלאכותית — הכל מוכן תוך דקות, לא חודשים.",
@@ -40,6 +41,7 @@ export const he: Translations = {
     },
   },
   howItWorks: {
+    badge: "איך זה עובד",
     title: "מוכן ב-4 צעדים",
     subtitle: "מאפס לעסק דיגיטלי מלא",
     steps: [
@@ -62,6 +64,7 @@ export const he: Translations = {
     ],
   },
   features: {
+    badge: "יתרונות",
     title: "בנוי לצמיחה",
     subtitle: "כל פיצ׳ר מביא לכם יותר לקוחות",
     items: [
@@ -92,6 +95,7 @@ export const he: Translations = {
     ],
   },
   pricing: {
+    badge: "מחירים",
     title: "מחירים פשוטים ושקופים",
     subtitle: "בלי דמי הקמה. בלי עלויות נסתרות. ביטול בכל עת.",
     monthly: "/חודש",
@@ -168,6 +172,7 @@ export const he: Translations = {
     button: "בנו לי את האתר",
   },
   builder: {
+    badge: "בנו את האתר שלכם",
     title: "בואו נבנה את האתר שלכם",
     subtitle: "מלאו את הפרטים וראו את התוצאה תוך דקות",
     steps: {
@@ -178,7 +183,8 @@ export const he: Translations = {
     },
     niche: {
       title: "מה התעשייה שלכם?",
-      subtitle: "נתאים הכל לסוג העסק שלכם",
+      subtitle: "כל מערכת תוכננה עם מומחים מהתעשייה",
+      otroPlaceholder: "לדוגמה: פרחים, בית קפה, חדר כושר...",
     },
     photos: {
       title: "הראו את העסק",
@@ -196,6 +202,9 @@ export const he: Translations = {
       email: "אימייל",
       address: "כתובת",
       instagram: "אינסטגרם",
+      modeTitle: "אתם עובדים לבד או יש לכם צוות?",
+      solo: "לבד",
+      team: "צוות",
     },
     branding: {
       title: "המותג שלכם",
@@ -207,6 +216,17 @@ export const he: Translations = {
     },
     submit: "צרו את האתר שלי",
     generating: "בונים את האתר שלכם...",
+  },
+  preview: {
+    title: "האתר שלכם מוכן",
+    subtitle: "התחברו כדי לראות את הגרסה המלאה",
+    cta: "התחברו עם Google",
+    ctaSub: "אנחנו רק צריכים לדעת למי למסור אותו",
+    loading: "יוצרים את הפרויקט שלכם...",
+    error: "משהו השתבש",
+    retry: "נסו שוב",
+    noData: "לא מצאנו את הנתונים שלכם",
+    startOver: "התחילו מחדש",
   },
   footer: {
     rights: "כל הזכויות שמורות",

@@ -54,14 +54,16 @@ function DropZone({
 
   return (
     <div>
-      <span className="mb-2 block text-xs font-medium text-text">{label}</span>
+      <span className="mb-2 block text-[0.85rem] font-medium text-[var(--l-text)]">
+        {label}
+      </span>
       <div
         onDragOver={(e) => e.preventDefault()}
         onDrop={handleDrop}
-        className="relative rounded-md border-2 border-dashed border-border p-6 text-center transition-colors hover:border-border-hover"
+        className="relative rounded-[var(--l-radius-sm)] border-2 border-dashed border-[var(--l-border)] p-7 text-center transition-colors duration-200 hover:border-[var(--l-accent)]"
       >
-        <Upload size={20} className="mx-auto mb-2 text-text-muted" />
-        <p className="text-[11px] text-text-muted">{t.builder.photos.dragDrop}</p>
+        <Upload size={20} className="mx-auto mb-2 text-[var(--l-text-3)]" />
+        <p className="text-[0.82rem] text-[var(--l-text-3)]">{t.builder.photos.dragDrop}</p>
         <input
           type="file"
           accept="image/*"
@@ -76,7 +78,7 @@ function DropZone({
           {files.map((_, i) => (
             <div
               key={i}
-              className="group relative h-16 w-16 overflow-hidden rounded-md border border-border"
+              className="group relative h-16 w-16 overflow-hidden rounded-[8px] border border-[var(--l-border)]"
             >
               <img
                 src={urlsRef.current[i]}
@@ -85,7 +87,7 @@ function DropZone({
               />
               <button
                 onClick={() => onRemove(i)}
-                className="absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 transition-opacity group-hover:opacity-100"
+                className="absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 transition-opacity duration-150 group-hover:opacity-100"
               >
                 <X size={14} className="text-white" />
               </button>
@@ -102,8 +104,15 @@ export function StepPhotos({ data, update }: Props) {
 
   return (
     <div>
-      <h3 className="mb-1 text-sm font-semibold text-text">{t.builder.photos.title}</h3>
-      <p className="mb-5 text-xs text-text-secondary">{t.builder.photos.subtitle}</p>
+      <h3
+        style={{ fontFamily: "var(--l-display)" }}
+        className="mb-1.5 text-[0.95rem] font-semibold text-[var(--l-text)]"
+      >
+        {t.builder.photos.title}
+      </h3>
+      <p className="mb-5 text-[0.85rem] text-[var(--l-text-2)]">
+        {t.builder.photos.subtitle}
+      </p>
 
       <div className="space-y-5">
         <DropZone

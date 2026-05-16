@@ -4,21 +4,21 @@ export const es: Translations = {
   nav: {
     features: "Funciones",
     pricing: "Precios",
-    howItWorks: "Como funciona",
+    howItWorks: "Cómo funciona",
     contact: "Contacto",
     getStarted: "Empezar",
   },
   hero: {
-    headline: "Transforma tu negocio local en una potencia digital",
+    headline: "Transformá tu negocio local en una potencia digital",
     subheadline:
       "Web profesional, CRM inteligente y agente WhatsApp con IA — todo listo en minutos, no meses.",
-    cta: "Mira como quedaria tu web",
+    cta: "Mirá cómo quedaría tu web",
     trustedBy: "La confianza de negocios en todo Israel",
   },
   socialProof: {
     activeBusinesses: "Negocios activos",
     avgBookingsPerMonth: "Reservas promedio / mes",
-    clientSatisfaction: "Satisfaccion del cliente",
+    clientSatisfaction: "Satisfacción del cliente",
   },
   pillars: {
     title: "Todo lo que tu negocio necesita",
@@ -31,12 +31,12 @@ export const es: Translations = {
     crm: {
       title: "CRM inteligente",
       description:
-        "Gestiona turnos, clientes y leads desde un solo panel. Insights con IA para crecer.",
+        "Gestioná turnos, clientes y leads desde un solo panel. Insights con IA para crecer.",
     },
     whatsapp: {
       title: "Agente WhatsApp IA",
       description:
-        "Respuestas automaticas 24/7, reservas de turnos y captura de leads — todo por WhatsApp.",
+        "Respuestas automáticas 24/7, reservas de turnos y captura de leads — todo por WhatsApp.",
     },
   },
   howItWorks: {
@@ -45,25 +45,25 @@ export const es: Translations = {
     steps: [
       {
         title: "Contanos sobre tu negocio",
-        description: "Selecciona tu industria, subi fotos y agrega tus datos.",
+        description: "Seleccioná tu industria, subí fotos y agregá tus datos.",
       },
       {
         title: "Construimos tu web",
         description: "Nuestro sistema genera una web personalizada en menos de 3 minutos.",
       },
       {
-        title: "Preview y ajustes",
-        description: "Ve tu sitio en vivo al instante. Un especialista ajusta cada detalle.",
+        title: "Vista previa y ajustes",
+        description: "Vé tu sitio en vivo al instante. Un especialista ajusta cada detalle.",
       },
       {
-        title: "En linea",
-        description: "Tu web esta live con reservas, CRM e integracion WhatsApp lista.",
+        title: "En línea",
+        description: "Tu web está live con reservas, CRM e integración WhatsApp lista.",
       },
     ],
   },
   features: {
     title: "Hecho para crecer",
-    subtitle: "Cada funcion disenada para traerte mas clientes",
+    subtitle: "Cada función diseñada para traerte más clientes",
     items: [
       {
         title: "Reservas online",
@@ -71,11 +71,11 @@ export const es: Translations = {
       },
       {
         title: "Multi-idioma",
-        description: "Alcanza a cada cliente en hebreo, ingles y ruso.",
+        description: "Alcanzá a cada cliente en hebreo, inglés y ruso.",
       },
       {
         title: "Chatbot IA",
-        description: "Asistente integrado que responde preguntas y guia visitantes 24/7.",
+        description: "Asistente integrado que responde preguntas y guía visitantes 24/7.",
       },
       {
         title: "Panel de analytics",
@@ -83,19 +83,19 @@ export const es: Translations = {
       },
       {
         title: "Dominio propio",
-        description: "Tu propio .com o .co.il — profesional desde el dia uno.",
+        description: "Tu propio .com o .co.il — profesional desde el día uno.",
       },
       {
-        title: "Updates automaticos",
+        title: "Updates automáticos",
         description: "Nosotros nos encargamos del mantenimiento, seguridad y actualizaciones.",
       },
     ],
   },
   pricing: {
     title: "Precios simples y transparentes",
-    subtitle: "Sin costo de setup. Sin costos ocultos. Cancela cuando quieras.",
+    subtitle: "Sin costo de setup. Sin costos ocultos. Cancelá cuando quieras.",
     monthly: "/mes",
-    popular: "Mas popular",
+    popular: "Más popular",
     cta: "Empezar",
     plans: [
       {
@@ -120,8 +120,8 @@ export const es: Translations = {
           "Todo del plan Web + CRM",
           "Agente WhatsApp IA 24/7",
           "Respuestas personalizadas",
-          "Captura automatica de leads",
-          "Integracion con CRM",
+          "Captura automática de leads",
+          "Integración con CRM",
           "Agendar turnos por WhatsApp",
         ],
       },
@@ -131,45 +131,45 @@ export const es: Translations = {
     title: "Preguntas frecuentes",
     items: [
       {
-        question: "Cuanto tarda en estar listo?",
+        question: "¿Cuánto tarda en estar listo?",
         answer:
-          "Tu preview esta lista en menos de 3 minutos. Un especialista ajusta cada detalle en las siguientes 24 horas.",
+          "Tu preview está lista en menos de 3 minutos. Un especialista ajusta cada detalle en las siguientes 24 horas.",
       },
       {
-        question: "Necesito conocimientos tecnicos?",
+        question: "¿Necesito conocimientos técnicos?",
         answer:
-          "Para nada. Nosotros nos encargamos de todo — diseno, desarrollo, hosting y mantenimiento. Solo necesitas tu info de negocio.",
+          "Para nada. Nosotros nos encargamos de todo — diseño, desarrollo, hosting y mantenimiento. Solo necesitás tu info de negocio.",
       },
       {
-        question: "Puedo cambiar cosas despues del lanzamiento?",
+        question: "¿Puedo cambiar cosas después del lanzamiento?",
         answer:
-          "Por supuesto. Updates ilimitados estan incluidos en cada plan. Solo decinos que necesitas.",
+          "Por supuesto. Updates ilimitados están incluidos en cada plan. Solo decinos qué necesitás.",
       },
       {
-        question: "Que pasa si quiero cancelar?",
+        question: "¿Qué pasa si quiero cancelar?",
         answer:
-          "Sin contratos, sin penalidades. Podes cancelar cuando quieras. Creemos en ganarnos tu confianza cada mes.",
+          "Sin contratos, sin penalidades. Podés cancelar cuando quieras. Creemos en ganarnos tu confianza cada mes.",
       },
       {
-        question: "Soportan idiomas RTL?",
+        question: "¿Soportan idiomas RTL?",
         answer:
-          "Si. Todos nuestros sitios soportan hebreo (RTL), ingles y ruso de fabrica.",
+          "Sí. Todos nuestros sitios soportan hebreo (RTL), inglés y ruso de fábrica.",
       },
       {
-        question: "Que incluye el agente WhatsApp?",
+        question: "¿Qué incluye el agente WhatsApp?",
         answer:
           "Un asistente IA que responde mensajes 24/7, agenda turnos, captura leads y sincroniza todo con tu CRM.",
       },
     ],
   },
   cta: {
-    title: "Listo para transformar tu negocio?",
-    subtitle: "Mira tu web personalizada en menos de 3 minutos — gratis, sin compromiso.",
+    title: "¿Listo para transformar tu negocio?",
+    subtitle: "Mirá tu web personalizada en menos de 3 minutos — gratis, sin compromiso.",
     button: "Crear mi web ahora",
   },
   builder: {
     title: "Construyamos tu web",
-    subtitle: "Completa tus datos y ve el resultado en minutos",
+    subtitle: "Completá tus datos y vé el resultado en minutos",
     steps: {
       niche: "Industria",
       photos: "Fotos",
@@ -177,25 +177,29 @@ export const es: Translations = {
       branding: "Marca",
     },
     niche: {
-      title: "Cual es tu industria?",
-      subtitle: "Personalizamos todo para tu tipo de negocio",
+      title: "¿Cuál es tu industria?",
+      subtitle: "Cada sistema fue diseñado con expertos de cada industria",
+      otroPlaceholder: "Ej: floristería, café, gimnasio...",
     },
     photos: {
-      title: "Mostra tu negocio",
-      subtitle: "Subi fotos de tu espacio y equipo",
+      title: "Mostrá tu negocio",
+      subtitle: "Subí fotos de tu espacio y equipo",
       business: "Fotos del negocio",
       staff: "Miembros del equipo",
-      dragDrop: "Arrastra o hace click para subir",
+      dragDrop: "Arrastrá o hacé click para subir",
     },
     details: {
       title: "Datos del negocio",
-      subtitle: "Como pueden contactarte tus clientes?",
+      subtitle: "¿Cómo pueden contactarte tus clientes?",
       businessName: "Nombre del negocio",
-      description: "Descripcion corta",
-      whatsapp: "Numero de WhatsApp",
+      description: "Descripción corta",
+      whatsapp: "Número de WhatsApp",
       email: "Email",
-      address: "Direccion",
+      address: "Dirección",
       instagram: "Instagram",
+      modeTitle: "¿Trabajás solo o tenés equipo?",
+      solo: "Solo",
+      team: "Equipo",
     },
     branding: {
       title: "Tu marca",
@@ -208,9 +212,20 @@ export const es: Translations = {
     submit: "Generar mi web",
     generating: "Construyendo tu web...",
   },
+  preview: {
+    title: "Tu web está lista",
+    subtitle: "Iniciá sesión para verla completa",
+    cta: "Iniciar sesión con Google",
+    ctaSub: "Solo necesitamos saber a quién entregársela",
+    loading: "Creando tu proyecto...",
+    error: "Algo salió mal",
+    retry: "Reintentar",
+    noData: "No encontramos tus datos",
+    startOver: "Empezar de nuevo",
+  },
   footer: {
     rights: "Todos los derechos reservados",
-    privacy: "Politica de privacidad",
-    terms: "Terminos de servicio",
+    privacy: "Política de privacidad",
+    terms: "Términos de servicio",
   },
 };

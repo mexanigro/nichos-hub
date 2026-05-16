@@ -1,5 +1,6 @@
 "use client";
 
+import { User, Users } from "lucide-react";
 import { useT } from "@/lib/i18n";
 import type { BuilderData } from "./builder-section";
 
@@ -20,23 +21,67 @@ export function StepDetails({ data, update }: Props) {
     { key: "instagram", label: t.builder.details.instagram, placeholder: "@" },
   ];
 
+  const inputClass =
+    "w-full rounded-[var(--l-radius-sm)] border border-[var(--l-border)] bg-[var(--l-bg)] px-4 py-3 text-[0.88rem] text-[var(--l-text)] placeholder:text-[var(--l-text-3)] transition-colors duration-200 focus:border-[var(--l-accent)] focus:outline-none";
+
   return (
     <div>
-      <h3 className="mb-1 text-sm font-semibold text-text">{t.builder.details.title}</h3>
-      <p className="mb-5 text-xs text-text-secondary">{t.builder.details.subtitle}</p>
+      <h3
+        style={{ fontFamily: "var(--l-display)" }}
+        className="mb-1.5 text-[0.95rem] font-semibold text-[var(--l-text)]"
+      >
+        {t.builder.details.title}
+      </h3>
+      <p className="mb-5 text-[0.85rem] text-[var(--l-text-2)]">
+        {t.builder.details.subtitle}
+      </p>
 
-      <div className="grid gap-3 sm:grid-cols-2">
+      {/* Solo / Team toggle */}
+      <div className="mb-6">
+        <p className="mb-2.5 text-[0.82rem] font-medium text-[var(--l-text-2)]">
+          {t.builder.details.modeTitle || "Do you work solo or have a team?"}
+        </p>
+        <div className="grid grid-cols-2 gap-3">
+          {(["solo", "team"] as const).map((mode) => {
+            const selected = data.businessMode === mode;
+            const Icon = mode === "solo" ? User : Users;
+            const label = mode === "solo"
+              ? (t.builder.details.solo || "Solo")
+              : (t.builder.details.team || "Team");
+            return (
+              <button
+                key={mode}
+                onClick={() => update({ businessMode: mode })}
+                aria-pressed={selected}
+                className={`flex items-center justify-center gap-2.5 rounded-[var(--l-radius-sm)] border px-4 py-3 transition-all duration-200 active:scale-[0.97] ${
+                  selected
+                    ? "border-[var(--l-accent)] bg-[var(--l-accent-muted)]"
+                    : "border-[var(--l-border)] hover:border-[var(--l-accent)]"
+                }`}
+              >
+                <Icon
+                  size={18}
+                  className={selected ? "text-[var(--l-accent)]" : "text-[var(--l-text-3)]"}
+                />
+                <span className="text-[0.85rem] font-medium text-[var(--l-text)]">{label}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="grid gap-4 sm:grid-cols-2">
         {fields.map(({ key, label, type, placeholder }) => (
           <div key={key} className={key === "description" ? "sm:col-span-2" : ""}>
-            <label className="mb-1 block text-[11px] font-medium text-text-secondary">
+            <label className="mb-1.5 block text-[0.82rem] font-medium text-[var(--l-text-2)]">
               {label}
             </label>
             {key === "description" ? (
               <textarea
                 value={data[key] as string}
                 onChange={(e) => update({ [key]: e.target.value })}
-                rows={2}
-                className="w-full rounded-md border border-border bg-bg-elevated px-3 py-2 text-xs text-text placeholder:text-text-muted focus:border-accent focus:outline-none"
+                rows={3}
+                className={inputClass + " resize-none"}
               />
             ) : (
               <input
@@ -44,7 +89,7 @@ export function StepDetails({ data, update }: Props) {
                 value={data[key] as string}
                 onChange={(e) => update({ [key]: e.target.value })}
                 placeholder={placeholder}
-                className="w-full rounded-md border border-border bg-bg-elevated px-3 py-2 text-xs text-text placeholder:text-text-muted focus:border-accent focus:outline-none"
+                className={inputClass}
               />
             )}
           </div>

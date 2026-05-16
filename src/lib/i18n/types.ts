@@ -9,6 +9,7 @@ export interface Translations {
     getStarted: string;
   };
   hero: {
+    badge?: string;
     headline: string;
     subheadline: string;
     cta: string;
@@ -27,16 +28,19 @@ export interface Translations {
     whatsapp: { title: string; description: string };
   };
   howItWorks: {
+    badge?: string;
     title: string;
     subtitle: string;
     steps: { title: string; description: string }[];
   };
   features: {
+    badge?: string;
     title: string;
     subtitle: string;
     items: { title: string; description: string }[];
   };
   pricing: {
+    badge?: string;
     title: string;
     subtitle: string;
     monthly: string;
@@ -58,6 +62,7 @@ export interface Translations {
     button: string;
   };
   builder: {
+    badge?: string;
     title: string;
     subtitle: string;
     steps: {
@@ -69,6 +74,7 @@ export interface Translations {
     niche: {
       title: string;
       subtitle: string;
+      otroPlaceholder?: string;
     };
     photos: {
       title: string;
@@ -86,6 +92,9 @@ export interface Translations {
       email: string;
       address: string;
       instagram: string;
+      modeTitle?: string;
+      solo?: string;
+      team?: string;
     };
     branding: {
       title: string;
@@ -97,6 +106,17 @@ export interface Translations {
     };
     submit: string;
     generating: string;
+  };
+  preview?: {
+    title: string;
+    subtitle: string;
+    cta: string;
+    ctaSub: string;
+    loading: string;
+    error: string;
+    retry: string;
+    noData: string;
+    startOver: string;
   };
   footer: {
     rights: string;
