@@ -18,7 +18,7 @@ export const en: Translations = {
   socialProof: {
     activeBusinesses: "Active businesses",
     avgBookingsPerMonth: "Avg. bookings / month",
-    clientSatisfaction: "Client satisfaction",
+    whatsappAgents: "Active WhatsApp agents",
   },
   pillars: {
     title: "Everything your business needs",

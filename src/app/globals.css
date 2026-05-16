@@ -62,7 +62,7 @@ body:has(.landing) {
 
   --l-text: #1a1d23;
   --l-text-2: #5a5f6b;
-  --l-text-3: #8a8f99;
+  --l-text-3: #6b7280;
 
   --l-accent: var(--l-teal);
   --l-accent-light: var(--l-teal-light);

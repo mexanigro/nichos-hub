@@ -1,227 +1,229 @@
 "use client";
 
 import { useState } from "react";
-import { INITIAL_AMOUNT, RECURRING_AMOUNT } from "@/lib/pricing";
+import { WEB_CRM_AMOUNT, COMPLETO_AMOUNT, type PlanType } from "@/lib/pricing";
 
-const CONTRACT_HE = `חוזה לבניית אתרים – תחזוקה ואחסון
+/* ═══════════════════════════════════════════════════════════════════════════
+ * CONTRACTS
+ * ═══════════════════════════════════════════════════════════════════════════ */
+
+const CONTRACT_HE = `חוזה לשירותי אתר, CRM וסוכן WhatsApp – תחזוקה ואחסון
 
 בין: Arzac Studio (להלן: "הספק")
 לבין: הלקוח (להלן: "המזמין")
 
-הואיל והספק פיתח תשתית טכנולוגית הכוללת אירוח אתרי אינטרנט (SaaS), מערכת הזמנות ומערכת ניהול לקוחות באמצעות CRM המופעלים באמצעות בינה מלאכותית, אחזקתם ואחסון (להלן: "מערכת תבנית מאסטר")
+הואיל והספק פיתח תשתית טכנולוגית הכוללת אירוח אתרי אינטרנט (SaaS), מערכת הזמנות, מערכת ניהול לקוחות (CRM) ומערכת סוכן WhatsApp המופעלים באמצעות בינה מלאכותית, אחזקתם ואחסון (להלן: "מערכת תבנית מאסטר")
 
 והואיל והלקוח מבקש לשכור את שירותי הספק על מנת לקבל "אתר אישי" במערכת תבנית המאסטר לצורך חשיפת העסק שלו ברשת האינטרנט (ויסיביליות), לדיגיטציה ולניהול תפעולי של העסק שלו. (להלן: "האתר")
 
 לפיכך הוסכם והותנה בין הצדדים, כדלקמן:
 
 1. השירותים:
+
+תוכנית Web+CRM (₪790/חודש):
 • פיתוח "אתר אישי" באמצעות מערכת תבנית מאסטר: בהתאם לתבניות הקיימות אצל הספק.
-• נראות: ויסיביליות ברשת האינטרנט.
-• מערכת מיקרו CRM וגישה לבינה מלאכותית: גישה ל"לוח ניהול אישי" בתוך מערכת תבנית מאסטר לניהול העסק באמצעות מערכת CRM ועוזר וירטואלי המופעל באמצעות בינה מלאכותית. ומערכת דיוור אוטומטית לשליחת מיילים ללקוחות.
-• תחזוקה שוטפת של האתר ותמיכה טכנית של תקלות: שינוי פרטיים דינאמיים כגון, תמונות, מחירים, תיקון טקסטים וצבע, פיקוח טכני, תיקון שגיאות וניהול תשתיות בינה מלאכותית, פתרון תקלות. (הסכם זה אינו כולל שינויים בעיצובים המבניים שנבנו במועד פיתוח האתר, שינויים כאמור יעשו רק על ידי הספק, על פי הסכמה בנפרד להסכם זה ובתוספת מחיר.)
-• אחסון לאתר: מבוצע על תשתיות של צד ג' בהתאם להחלטת הספק כפי שינהג מעת לעת.
+• נראות: ויסיביליות ברשת האינטרנט (SEO).
+• מערכת מיקרו CRM עם בינה מלאכותית: גישה ל"לוח ניהול אישי" בתוך מערכת תבנית מאסטר לניהול העסק הכולל ניהול לקוחות, מערכת תורים/הזמנות, ניהול מלאי/סטוק, מדור שאלות נפוצות הניתן לעריכה.
+• תמיכה ב-3 שפות (עברית, אנגלית, רוסית).
+• תחזוקה שוטפת של האתר ותמיכה טכנית: שינוי פרטים דינמיים כגון תמונות, מחירים, טקסטים, פיקוח טכני, תיקון שגיאות וניהול תשתיות. (הסכם זה אינו כולל שינויים בעיצובים המבניים; שינויים כאמור יעשו רק על ידי הספק בהסכמה נפרדת ובתוספת מחיר.)
+• אחסון לאתר: מבוצע על תשתיות של צד ג' בהתאם להחלטת הספק.
 • דומיין: רכישת דומיין עבור הלקוח וביצוע מעקב ותשלום שנתי.
 
+תוכנית Completo (₪990/חודש):
+• כל מה שכלול בתוכנית Web+CRM.
+• סוכן WhatsApp עם בינה מלאכותית 24/7: תשובות אוטומטיות מותאמות אישית, לכידת לידים דרך WhatsApp, קביעת תורים/הזמנות דרך WhatsApp, אינטגרציה מלאה עם מערכת ה-CRM.
+
 2. התמורה:
-• מנוי חודשי: ₪800 יועבר מידי חודש, החל מיום ההפעלה.
-• אחסון האתר: עלות שנתית, המחיר משתנה משנה לשנה (כפוף לשינויים אצל צד ג') ישולם תוך 7 ימים מיום מתן הדרישה על ידי הספק.
-• דומיין: עלות שנתית, המחיר משתנה משנה לשנה (כפוף לשינויים אצד ג') ישולם תוך 7 ימים מיום מתן הדרישה על ידי הספק.
+• תוכנית Web+CRM: ₪790 לחודש, מועבר מדי חודש, החל מיום ההפעלה.
+• תוכנית Completo: ₪990 לחודש, מועבר מדי חודש, החל מיום ההפעלה.
+• אחסון האתר: עלות שנתית, המחיר משתנה (כפוף לשינויים אצל צד ג') ישולם תוך 7 ימים מיום מתן הדרישה.
+• דומיין: עלות שנתית, המחיר משתנה (כפוף לשינויים אצל צד ג') ישולם תוך 7 ימים מיום מתן הדרישה.
 • אי ביצוע תשלום בזמן תגרור הורדת האתר מהאוויר, האתר יימחק תוך 7 ימים מיום אי ביצוע התשלום, וביטול הסכם זה.
 
 3. זמנים:
 זמן המסירה של הגרסה הפונקציונלית של האתר יהיה לאחר ביצוע התשלום הראשון של המנוי, ותוך 48 שעות מיום מסירת פרטי העיצוב על ידי הלקוח.
 
 4. זכויות / קניין רוחני ורישוי:
-• רישיון שימוש: רישיון השימוש על פי הסכם זה ניתן למזמין כל עוד המזמין משלם עבור השירות ועומד בתנאי ההסכם ועל פי המתואר בו בלבד.
-• זכויות היוצרים המסחריות והמוסריות של שורות הקוד קבצי המקור וזכויות הקניין הרוחני על העיצוב שייכים לספק. המודולים שיפותחו במסגרת הקמת האתר הן בבעלות הספק ולמזמין ניתן רישיון לשימוש במסגרת אתר בלבד, ועל פי האמור בהסכם זה ואך ורק בזמן שהסכם זה בתוקף.
-• הבעלות על הזכויות קניין הרוחני של הלוגו, המותג והתוכן של האתר שנמסרו לספק על ידי המזמין ישמש אך ורק לצורך הסכם זה ולספק אין בעלות על זכויות קניין רוחני של המזמין או על המידע שלו.
+• רישיון שימוש: רישיון השימוש על פי הסכם זה ניתן למזמין כל עוד המזמין משלם עבור השירות ועומד בתנאי ההסכם.
+• זכויות היוצרים המסחריות והמוסריות של שורות הקוד, קבצי המקור וזכויות הקניין הרוחני על העיצוב שייכים לספק. המודולים שיפותחו במסגרת הקמת האתר הן בבעלות הספק ולמזמין ניתן רישיון לשימוש במסגרת אתר בלבד, ואך ורק בזמן שהסכם זה בתוקף.
+• הבעלות על הזכויות קניין הרוחני של הלוגו, המותג והתוכן של האתר שנמסרו לספק על ידי המזמין ישמש אך ורק לצורך הסכם זה ולספק אין בעלות על זכויות קניין רוחני של המזמין.
 • הבעלות על שם הדומיין שייך למזמין.
 
 5. מדיניות שימוש מקובל:
-• חל איסור להשתמש באתר לצורך שליחת דואר ספאם, או שמירת חומרים הנוגדים את החוק או תקנות הציבור.
+• חל איסור להשתמש באתר לצורך שליחת דואר ספאם, או שמירת חומרים הנוגדים את החוק.
 • חל איסור להעלות תוכן מפר זכויות יוצרים, תוכן פוגעני ותוכן האסור על פי כל דין.
-• הפרת סעיף זה מהווה הפרה יסודית אשר תהיה עילה להפסקת השירות על ידי הספק, באופן חד צדדי, ומיידי.
+• הפרת סעיף זה מהווה הפרה יסודית אשר תהיה עילה להפסקת השירות על ידי הספק, באופן חד צדדי ומיידי.
 
 6. הגבלת אחריות:
 • תוכן המידע שיועלה לאתר יהיה בשליטה, באחריות ובידיעה בלעדית של המזמין.
 • הספק לא יהיה אחראי בכל מובן או אופן לתוכן שיועלה או יוכנס לאתר על ידי המזמין או מי מטעמו.
-• הספק אינו מבטיח תוצאות מסחריות, עליית מחירים או תשואה כלכלית כלשהי, לספק אין אחריות על התוצאות של הלקוח.
+• הספק אינו מבטיח תוצאות מסחריות, עליית מחירים או תשואה כלכלית כלשהי.
 • הספק אינו אחראי על כשלים, תקלות או נזקים שנגרמים בשל תקלות/רשלנות/נזק שנגרם על ידי צד ג' או כוח עליון.
-• בשום מקרה הספק לא אחראי לנזק תוצאתי או נסיבתי כלשהו (ללא יוצא מן הכלל, המקרים של הפסד רווחים, הפסקת פעילות עסקית, אבדת מידע עסקי, או אבדות כספיות אחרות), הקשורים במישרין או בעקיפין לאתר ובכל אופן, ככל שגורם מוסמך יקבע אחריות כאמור, גבול האחריות לעולם לא תעלה על הסכום ששולם על פי הסכם זה.
+• בשום מקרה הספק לא אחראי לנזק תוצאתי או נסיבתי כלשהו, וגבול האחריות לעולם לא תעלה על הסכום ששולם על פי הסכם זה.
 
 7. סיום/ביטול הסכם:
 • המזמין יכול לבטל הסכם זה עם מתן הודעה מוקדמת של 30 ימים, בכתב.
 • הספק רשאי לבטל הסכם זה, ללא התראה במידה והופרה מדיניות השימוש המקובל.
-• הספק רשאי לבטל הסכם זה, במידה והמזמין לא שילם את התשלום החודשי, תוך מתן התראה מוקדמת למזמין של 7 ימים ובכתב.
-• לאחר ביטול ההסכם האתר ירד מהאינטרנט ויאבד את הויסיביליות ברשת.
-• שירות אחסון האתר ושירות התחזוקה יתבטלו בהתאם למועד ביטול ההסכם.
+• הספק רשאי לבטל הסכם זה, במידה והמזמין לא שילם את התשלום החודשי, תוך מתן התראה מוקדמת של 7 ימים ובכתב.
+• לאחר ביטול ההסכם האתר ירד מהאינטרנט.
 • אין זיכוי בגין תשלום שנתי על אחסון.
-• בסיום ההסכם, לפי בקשת הלקוח, קוד המקור של האתר הספציפי (HTML, CSS, JS) יימסר, כך שללקוח תהיה מראה ויזואלית של האתר, וקבצי מערכת ה-CRM שמרכזים את נתוני העסק של הלקוח שנאספו לאורך תקופת השירות, בכל אופן למזמין בשום שלב לא תהיה הגישה לכלים פנימיים או גישה לתשתית המנהל.
+• בסיום ההסכם, לפי בקשת הלקוח, קוד המקור של האתר (HTML, CSS, JS) יימסר וקבצי מערכת ה-CRM שמרכזים את נתוני העסק; בשום שלב למזמין לא תהיה גישה לכלים פנימיים או לתשתית המנהל.
 
 8. שיפוט:
 מקום השיפוט הבלעדי לכל ענין הנוגע להסכם זה הינו בבתי המשפט המוסמכים באיזור תל אביב ישראל על פי הדין הישראלי.`;
 
-const CONTRACT_EN = `Website Development, Maintenance & Hosting Agreement
+const CONTRACT_EN = `Website, CRM & WhatsApp Agent Service Agreement
 
 Between: Arzac Studio (hereinafter: "the Provider")
 And: The Client (hereinafter: "the Client")
 
-Whereas the Provider has developed a technological infrastructure that includes website hosting (SaaS), a booking system and a customer management system (CRM) powered by artificial intelligence, their maintenance and hosting (hereinafter: "Master Template System")
+Whereas the Provider has developed a technological infrastructure that includes website hosting (SaaS), a booking system, a customer management system (CRM) and a WhatsApp agent system powered by artificial intelligence, their maintenance and hosting (hereinafter: "Master Template System")
 
-And whereas the Client wishes to engage the Provider's services in order to receive a "personal website" in the Master Template System for the purpose of exposing their business on the Internet (visibility), digitization and operational management of their business. (hereinafter: "the Website")
+And whereas the Client wishes to engage the Provider's services in order to receive a "personal website" in the Master Template System for internet visibility, digitization and operational management of their business. (hereinafter: "the Website")
 
-Therefore it has been agreed and stipulated between the parties, as follows:
+Therefore it has been agreed between the parties, as follows:
 
 1. Services:
-- Development of a "personal website" using the Master Template System: according to templates available with the Provider.
-- Visibility: internet presence.
-- Micro CRM system and AI access: access to a "personal management dashboard" within the Master Template System for business management via CRM system and virtual assistant powered by artificial intelligence. And automatic mailing system for sending emails to customers.
-- Ongoing website maintenance and technical support: changing dynamic details such as images, prices, text and color corrections, technical monitoring, error fixes and AI infrastructure management, troubleshooting. (This agreement does not include changes to structural designs built at the time of website development; such changes will only be made by the Provider, by separate agreement and at an additional cost.)
-- Website hosting: performed on third-party infrastructure at the Provider's discretion as practiced from time to time.
-- Domain: purchasing a domain for the Client and tracking and annual payment.
+
+Web+CRM Plan (₪790/month):
+- Development of a "personal website" using the Master Template System.
+- Visibility: internet presence and SEO.
+- Micro CRM system with AI: access to a personal management dashboard including customer management, booking/appointment system, inventory/stock management, editable FAQ section.
+- Support for 3 languages (Hebrew, English, Russian).
+- Ongoing maintenance and technical support: dynamic content updates (images, prices, text), technical monitoring, bug fixes, infrastructure management. (This agreement does not include structural design changes; such changes require separate agreement at additional cost.)
+- Website hosting: on third-party infrastructure at the Provider's discretion.
+- Domain: purchase, tracking and annual renewal for the Client.
+
+Completo Plan (₪990/month):
+- Everything included in the Web+CRM plan.
+- 24/7 AI WhatsApp Agent: personalized automatic responses, WhatsApp lead capture, appointment booking via WhatsApp, full CRM integration.
 
 2. Compensation:
-- Monthly subscription: ₪800 transferred monthly, starting from activation day.
-- Website hosting: annual cost, price varies year to year (subject to third-party changes) to be paid within 7 days of the Provider's demand.
-- Domain: annual cost, price varies year to year (subject to third-party changes) to be paid within 7 days of the Provider's demand.
+- Web+CRM Plan: ₪790 per month, starting from activation day.
+- Completo Plan: ₪990 per month, starting from activation day.
+- Website hosting: annual cost (subject to third-party changes), payable within 7 days of demand.
+- Domain: annual cost (subject to third-party changes), payable within 7 days of demand.
 - Failure to make timely payment will result in the website being taken offline; the website will be deleted within 7 days of non-payment, and this agreement will be terminated.
 
 3. Timeline:
-Delivery of the functional version of the website will be after the first subscription payment, and within 48 hours of the Client providing design details.
+Delivery of the functional version within 48 hours of the Client providing design details, after first payment.
 
 4. Rights / Intellectual Property and Licensing:
-- License: The license under this agreement is granted to the Client as long as the Client pays for the service and meets the terms of the agreement as described herein only.
-- Commercial and moral copyrights of code, source files and intellectual property rights of the design belong to the Provider. Modules developed as part of the website creation are owned by the Provider and the Client is granted a license for use within the website only, as stated in this agreement and only while this agreement is in effect.
-- Ownership of intellectual property rights of the logo, brand and content of the website provided to the Provider by the Client shall be used solely for the purpose of this agreement and the Provider has no ownership of the Client's intellectual property rights or information.
+- License granted to the Client as long as payment is maintained and agreement terms are met.
+- Commercial and moral copyrights of code, source files and design belong to the Provider. All modules are owned by the Provider; the Client receives a use license only while this agreement is in effect.
+- Client's logo, brand and content intellectual property remains the Client's and is used solely for this agreement.
 - Domain name ownership belongs to the Client.
 
 5. Acceptable Use Policy:
-- It is prohibited to use the website for sending spam, or storing materials that violate the law or public regulations.
-- It is prohibited to upload copyright-infringing content, offensive content and content prohibited by any law.
-- Violation of this clause constitutes a fundamental breach that will be grounds for termination of service by the Provider, unilaterally and immediately.
+- No spam, illegal materials or content violating the law.
+- No copyright-infringing, offensive or prohibited content.
+- Violation constitutes fundamental breach allowing immediate unilateral termination.
 
 6. Limitation of Liability:
-- Content uploaded to the website will be under the exclusive control, responsibility and knowledge of the Client.
-- The Provider will not be responsible in any way for content uploaded or entered to the website by the Client or anyone on their behalf.
-- The Provider does not guarantee commercial results, price increases or any economic return; the Provider has no responsibility for the Client's results.
-- The Provider is not responsible for failures, malfunctions or damages caused by third-party faults/negligence/damage or force majeure.
-- In no case will the Provider be liable for any consequential or incidental damage (without exception, cases of loss of profits, business interruption, loss of business information, or other financial losses), related directly or indirectly to the website and in any case, to the extent a competent authority determines such liability, the limit of liability shall never exceed the amount paid under this agreement.
+- Content is under the Client's exclusive control and responsibility.
+- The Provider does not guarantee commercial results or economic return.
+- The Provider is not responsible for third-party failures or force majeure.
+- Liability shall never exceed the total amount paid under this agreement.
 
-7. Termination/Cancellation:
-- The Client may cancel this agreement with 30 days written notice.
-- The Provider may cancel this agreement without notice if the acceptable use policy is violated.
-- The Provider may cancel this agreement if the Client has not paid the monthly payment, with 7 days written notice to the Client.
-- After cancellation, the website will be removed from the Internet and lose its online visibility.
-- Website hosting and maintenance services will be cancelled according to the agreement cancellation date.
+7. Termination:
+- Client: 30 days written notice.
+- Provider: immediate termination for policy violation.
+- Provider: 7 days written notice for non-payment.
+- After termination, the website goes offline.
 - No refund for annual hosting payment.
-- Upon termination, at the Client's request, the specific website source code (HTML, CSS, JS) will be delivered, so the Client will have a visual appearance of the website, and CRM system files containing the Client's business data collected during the service period; in any case, the Client will at no stage have access to internal tools or admin infrastructure.
+- Upon termination, at Client's request: website source code (HTML, CSS, JS) and CRM data files delivered. Client never gets access to internal tools or admin infrastructure.
 
 8. Jurisdiction:
-The exclusive jurisdiction for any matter related to this agreement shall be in the competent courts in the Tel Aviv area, Israel, under Israeli law.`;
+Exclusive jurisdiction in Tel Aviv, Israel under Israeli law.`;
+
+/* ═══════════════════════════════════════════════════════════════════════════
+ * i18n
+ * ═══════════════════════════════════════════════════════════════════════════ */
 
 const i18n = {
   he: {
     greeting: "שלום,",
-    paymentFor: "תשלום עבור",
-    initialLabel: "מנוי חודשי",
-    recurringLabel: "מנוי חודשי",
-    oneTime: "חודשי",
-    monthly: "חודשי",
+    choosePlan: "בחר תוכנית",
+    planWebCrm: "Web + CRM",
+    planCompleto: "Completo",
+    perMonth: "/חודש",
+    popular: "פופולרי",
     contractTitle: "הסכם שירות",
     expandContract: "קרא את ההסכם המלא",
     collapseContract: "הסתר",
     accept: "קראתי ואני מסכים/ה לתנאי ההסכם",
     pay: "המשך לתשלום",
     processing: "מעבד...",
-    contractAccepted: "ההסכם נחתם בהצלחה",
     error: "שגיאה, נסה שוב",
-    cardcomPlaceholder: "טופס התשלום יופיע כאן",
-    confirmPayment: "אשר תשלום",
     securePayment: "תשלום מאובטח",
-    includes: "השירות כולל",
-    includesWebsite: "אתר אישי מעוצב",
-    includesCRM: "מערכת ניהול לקוחות",
-    includesAI: "עוזר וירטואלי AI",
-    includesMaintenance: "תחזוקה ותמיכה טכנית",
-    includesHosting: "אחסון ודומיין",
+    webCrmFeatures: [
+      "אתר אישי מעוצב",
+      "CRM עם עוזר AI",
+      "מערכת הזמנות אונליין",
+      "ניהול מלאי/סטוק",
+      "מדור שאלות נפוצות",
+      "3 שפות (HE, EN, RU)",
+      "דומיין + אחסון כלול",
+      "תחזוקה ותמיכה 24/7",
+    ],
+    completoFeatures: [
+      "הכל מתוכנית Web+CRM",
+      "סוכן WhatsApp AI 24/7",
+      "תשובות אוטומטיות מותאמות",
+      "לכידת לידים ב-WhatsApp",
+      "תורים/הזמנות ב-WhatsApp",
+    ],
   },
   en: {
     greeting: "Hello,",
-    paymentFor: "Payment for",
-    initialLabel: "Monthly subscription",
-    recurringLabel: "Monthly subscription",
-    oneTime: "Monthly",
-    monthly: "Monthly",
+    choosePlan: "Choose your plan",
+    planWebCrm: "Web + CRM",
+    planCompleto: "Completo",
+    perMonth: "/month",
+    popular: "Popular",
     contractTitle: "Service Agreement",
     expandContract: "Read full agreement",
     collapseContract: "Collapse",
     accept: "I have read and accept the terms of service",
     pay: "Continue to payment",
     processing: "Processing...",
-    contractAccepted: "Agreement signed successfully",
     error: "An error occurred, please try again",
-    cardcomPlaceholder: "Payment form will appear here",
-    confirmPayment: "Confirm payment",
     securePayment: "Secure payment",
-    includes: "Service includes",
-    includesWebsite: "Custom designed website",
-    includesCRM: "Customer management system",
-    includesAI: "AI virtual assistant",
-    includesMaintenance: "Maintenance & technical support",
-    includesHosting: "Hosting & domain",
+    webCrmFeatures: [
+      "Custom designed website",
+      "CRM with AI assistant",
+      "Online booking system",
+      "Inventory/stock management",
+      "Editable FAQ section",
+      "3 languages (HE, EN, RU)",
+      "Domain + hosting included",
+      "24/7 maintenance & support",
+    ],
+    completoFeatures: [
+      "Everything in Web+CRM",
+      "24/7 AI WhatsApp Agent",
+      "Custom automatic responses",
+      "WhatsApp lead capture",
+      "Appointments via WhatsApp",
+    ],
   },
 };
 
-function LogoMark() {
-  return (
-    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Arzac Studio">
-      <rect width="40" height="40" rx="10" fill="oklch(0.52 0.08 192)" />
-      <text x="20" y="27" textAnchor="middle" fill="oklch(0.98 0.005 192)" fontFamily="var(--font-display), sans-serif" fontWeight="700" fontSize="18" letterSpacing="-0.5">
-        AS
-      </text>
-    </svg>
-  );
-}
-
-function CheckIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="pago-check-icon">
-      <path d="M3.5 8.5L6.5 11.5L12.5 4.5" stroke="oklch(0.52 0.08 192)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function LockIcon() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-      <path d="M4.5 6V4.5C4.5 3.12 5.62 2 7 2s2.5 1.12 2.5 2.5V6M3.5 6h7a1 1 0 011 1v4.5a1 1 0 01-1 1h-7a1 1 0 01-1-1V7a1 1 0 011-1z" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function ChevronIcon({ expanded }: { expanded: boolean }) {
-  return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 16 16"
-      fill="none"
-      style={{ transform: expanded ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 0.25s cubic-bezier(0.16, 1, 0.3, 1)" }}
-    >
-      <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
+/* ═══════════════════════════════════════════════════════════════════════════
+ * COMPONENT
+ * ═══════════════════════════════════════════════════════════════════════════ */
 
 interface Props {
   clientId: string;
   clientDocId: string;
   businessName: string;
-  isInitial: boolean;
   lang: "he" | "en";
+  defaultPlan?: PlanType;
+  isUpgrade?: boolean;
 }
 
-export default function PagoClient({ clientId, clientDocId, businessName, isInitial, lang }: Props) {
+export default function PagoClient({ clientId, clientDocId, businessName, lang, defaultPlan, isUpgrade }: Props) {
+  const [selectedPlan, setSelectedPlan] = useState<PlanType>(defaultPlan || "completo");
   const [accepted, setAccepted] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
@@ -229,7 +231,7 @@ export default function PagoClient({ clientId, clientDocId, businessName, isInit
   const t = i18n[lang];
   const contract = lang === "he" ? CONTRACT_HE : CONTRACT_EN;
   const dir = lang === "he" ? "rtl" : "ltr";
-  const amount = isInitial ? INITIAL_AMOUNT : RECURRING_AMOUNT;
+  const amount = selectedPlan === "completo" ? COMPLETO_AMOUNT : WEB_CRM_AMOUNT;
 
   async function handleContinue() {
     setSending(true);
@@ -238,7 +240,7 @@ export default function PagoClient({ clientId, clientDocId, businessName, isInit
       const contractRes = await fetch("/api/payments/contract", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ clientId, clientDocId, contractVersion: "1.0" }),
+        body: JSON.stringify({ clientId, clientDocId, contractVersion: "2.0", plan: selectedPlan }),
       });
       if (!contractRes.ok) {
         const data = await contractRes.json().catch(() => null);
@@ -248,7 +250,7 @@ export default function PagoClient({ clientId, clientDocId, businessName, isInit
       const paymentRes = await fetch("/api/cardcom/create-payment", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ clientId }),
+        body: JSON.stringify({ clientId, plan: selectedPlan }),
       });
       if (!paymentRes.ok) {
         const data = await paymentRes.json().catch(() => null);
@@ -266,110 +268,210 @@ export default function PagoClient({ clientId, clientDocId, businessName, isInit
     setSending(false);
   }
 
-  const includesList = [
-    t.includesWebsite,
-    t.includesCRM,
-    t.includesAI,
-    t.includesMaintenance,
-    t.includesHosting,
-  ];
-
   return (
-    <div dir={dir} className="pago-root">
-      <header className="pago-header">
-        <div className="pago-header-inner">
-          <LogoMark />
-          <span className="pago-logo-text">arzac.studio</span>
+    <div dir={dir} className="min-h-screen bg-[var(--l-bg,#fafafa)]">
+      {/* Header */}
+      <header className="border-b border-gray-100 bg-white/80 backdrop-blur-md">
+        <div className="mx-auto flex h-16 max-w-3xl items-center justify-between px-6">
+          <a href="/" className="flex items-center gap-2">
+            <img src="/logo-icon.png" alt="Arzac Studio" className="h-8 w-8 rounded-md object-cover" />
+            <img src="/logo.png" alt="Arzac Studio" className="hidden h-4 object-contain sm:block" />
+          </a>
+          <div className="flex items-center gap-1.5 text-[0.78rem] text-gray-400">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M4.5 6V4.5C4.5 3.12 5.62 2 7 2s2.5 1.12 2.5 2.5V6M3.5 6h7a1 1 0 011 1v4.5a1 1 0 01-1 1h-7a1 1 0 01-1-1V7a1 1 0 011-1z" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+            </svg>
+            {t.securePayment}
+          </div>
         </div>
       </header>
 
-      <main className="pago-main">
-        {/* Greeting + Amount */}
-        <section className="pago-hero">
-          <p className="pago-greeting">{t.greeting}</p>
-          <h1 className="pago-business-name">{businessName}</h1>
+      <main className="mx-auto max-w-3xl px-6 py-10">
+        {/* Greeting */}
+        <div className="mb-8">
+          <p className="text-sm text-gray-500">{t.greeting}</p>
+          <h1 className="mt-1 text-2xl font-bold text-gray-900">{businessName}</h1>
+        </div>
 
-          <div className="pago-amount-card">
-            <div className="pago-amount-meta">
-              <span className="pago-amount-label">{isInitial ? t.initialLabel : t.recurringLabel}</span>
-              <span className="pago-amount-badge">{isInitial ? t.oneTime : t.monthly}</span>
-            </div>
-            <div className="pago-amount-value">
-              <span className="pago-currency">₪</span>
-              <span className="pago-number">{amount.toLocaleString("en-IL")}</span>
-            </div>
-          </div>
-        </section>
+        {/* Plan Selection */}
+        {!isUpgrade && (
+          <section className="mb-8">
+            <h2 className="mb-4 text-sm font-semibold text-gray-700">{t.choosePlan}</h2>
+            <div className="grid gap-4 sm:grid-cols-2">
+              {/* Web+CRM */}
+              <button
+                type="button"
+                onClick={() => setSelectedPlan("web_crm")}
+                className={`relative rounded-2xl border-2 p-5 text-start transition-all ${
+                  selectedPlan === "web_crm"
+                    ? "border-gray-900 bg-white shadow-md"
+                    : "border-gray-200 bg-white hover:border-gray-300"
+                }`}
+              >
+                <p className="text-[0.9rem] font-semibold text-gray-900">{t.planWebCrm}</p>
+                <p className="mt-1">
+                  <span className="text-2xl font-bold text-gray-900">₪{WEB_CRM_AMOUNT}</span>
+                  <span className="text-sm text-gray-500">{t.perMonth}</span>
+                </p>
+                <ul className="mt-4 space-y-1.5">
+                  {t.webCrmFeatures.map((f) => (
+                    <li key={f} className="flex items-start gap-2 text-[0.8rem] text-gray-600">
+                      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="mt-0.5 shrink-0">
+                        <path d="M3.5 8.5L6.5 11.5L12.5 4.5" stroke="#16a34a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+                {selectedPlan === "web_crm" && (
+                  <div className="absolute -top-px end-4 top-4">
+                    <div className="h-5 w-5 rounded-full border-[5px] border-gray-900" />
+                  </div>
+                )}
+              </button>
 
-        {/* What's included (initial only) */}
-        {isInitial && (
-          <section className="pago-includes">
-            <h3 className="pago-includes-title">{t.includes}</h3>
-            <ul className="pago-includes-list">
-              {includesList.map((item) => (
-                <li key={item} className="pago-includes-item">
-                  <CheckIcon />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
+              {/* Completo */}
+              <button
+                type="button"
+                onClick={() => setSelectedPlan("completo")}
+                className={`relative rounded-2xl border-2 p-5 text-start transition-all ${
+                  selectedPlan === "completo"
+                    ? "border-gray-900 bg-white shadow-md"
+                    : "border-gray-200 bg-white hover:border-gray-300"
+                }`}
+              >
+                <div className="flex items-center gap-2">
+                  <p className="text-[0.9rem] font-semibold text-gray-900">{t.planCompleto}</p>
+                  <span className="rounded-full bg-gray-900 px-2 py-0.5 text-[0.65rem] font-bold text-white">
+                    {t.popular}
+                  </span>
+                </div>
+                <p className="mt-1">
+                  <span className="text-2xl font-bold text-gray-900">₪{COMPLETO_AMOUNT}</span>
+                  <span className="text-sm text-gray-500">{t.perMonth}</span>
+                </p>
+                <ul className="mt-4 space-y-1.5">
+                  {t.completoFeatures.map((f) => (
+                    <li key={f} className="flex items-start gap-2 text-[0.8rem] text-gray-600">
+                      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="mt-0.5 shrink-0">
+                        <path d="M3.5 8.5L6.5 11.5L12.5 4.5" stroke="#16a34a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+                {selectedPlan === "completo" && (
+                  <div className="absolute end-4 top-4">
+                    <div className="h-5 w-5 rounded-full border-[5px] border-gray-900" />
+                  </div>
+                )}
+              </button>
+            </div>
           </section>
         )}
 
+        {/* Upgrade note */}
+        {isUpgrade && (
+          <div className="mb-8 rounded-xl border border-blue-100 bg-blue-50/50 p-4">
+            <p className="text-[0.88rem] font-medium text-blue-900">
+              Upgrade a Completo — ₪{COMPLETO_AMOUNT}/mes
+            </p>
+            <p className="mt-1 text-[0.8rem] text-blue-700">
+              Tu plan se actualizará inmediatamente con el agente WhatsApp IA.
+            </p>
+          </div>
+        )}
+
+        {/* Amount summary */}
+        <div className="mb-8 rounded-xl border border-gray-200 bg-white p-5">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-gray-700">
+                {selectedPlan === "completo" ? t.planCompleto : t.planWebCrm}
+              </p>
+              <p className="text-xs text-gray-400">Monto mensual</p>
+            </div>
+            <p className="text-2xl font-bold text-gray-900">₪{amount}</p>
+          </div>
+        </div>
+
         {/* Contract */}
-        <section className="pago-contract">
-          <div className="pago-contract-header">
-            <h2 className="pago-contract-title">{t.contractTitle}</h2>
+        <section className="rounded-2xl border border-gray-200 bg-white p-6">
+          <div className="flex items-center justify-between">
+            <h2 className="text-[0.9rem] font-semibold text-gray-900">{t.contractTitle}</h2>
             <button
               type="button"
               onClick={() => setContractExpanded(!contractExpanded)}
-              className="pago-contract-toggle"
+              className="flex items-center gap-1.5 text-[0.8rem] font-medium text-gray-500 transition-colors hover:text-gray-800"
             >
               <span>{contractExpanded ? t.collapseContract : t.expandContract}</span>
-              <ChevronIcon expanded={contractExpanded} />
+              <svg
+                width="14" height="14" viewBox="0 0 16 16" fill="none"
+                style={{ transform: contractExpanded ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 0.25s ease" }}
+              >
+                <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
             </button>
           </div>
 
           <div
-            className={`pago-contract-body ${contractExpanded ? "pago-contract-expanded" : ""}`}
+            className={`mt-4 overflow-hidden transition-all duration-300 ease-in-out ${
+              contractExpanded ? "max-h-[60vh] overflow-y-auto" : "max-h-28"
+            }`}
             style={{ direction: dir }}
           >
-            <div className="pago-contract-text">{contract}</div>
-            {!contractExpanded && <div className="pago-contract-fade" />}
+            <div className="whitespace-pre-line text-[0.78rem] leading-relaxed text-gray-600">
+              {contract}
+            </div>
+            {!contractExpanded && (
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white to-transparent" style={{ position: "relative", marginTop: "-4rem" }} />
+            )}
           </div>
 
+          {/* Accept checkbox */}
           <button
             type="button"
             role="checkbox"
             aria-checked={accepted}
             onClick={() => !sending && setAccepted(!accepted)}
-            className={`pago-checkbox-label ${sending ? "pago-checkbox-disabled" : ""}`}
+            className={`mt-5 flex w-full items-center gap-3 rounded-xl border px-4 py-3.5 text-start transition-all ${
+              accepted ? "border-green-200 bg-green-50" : "border-gray-200 bg-gray-50 hover:bg-gray-100"
+            } ${sending ? "pointer-events-none opacity-50" : ""}`}
           >
-            <span className={`pago-checkbox-custom ${accepted ? "pago-checkbox-checked" : ""}`}>
+            <span
+              className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-md border-2 transition-all ${
+                accepted ? "border-green-600 bg-green-600" : "border-gray-300"
+              }`}
+            >
               {accepted && (
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                   <path d="M2.5 6.5L5 9L9.5 3.5" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               )}
             </span>
-            <span className="pago-checkbox-text">{t.accept}</span>
+            <span className="text-[0.82rem] text-gray-700">{t.accept}</span>
           </button>
 
-          {error && <p className="pago-error">{error}</p>}
+          {error && (
+            <p className="mt-3 rounded-lg bg-red-50 px-4 py-2.5 text-[0.82rem] text-red-600">{error}</p>
+          )}
 
+          {/* Pay button */}
           <button
             onClick={handleContinue}
             disabled={!accepted || sending}
-            className="pago-btn-primary"
+            className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl bg-gray-900 px-6 py-4 text-[0.9rem] font-semibold text-white transition-all hover:bg-gray-800 disabled:cursor-not-allowed disabled:opacity-40"
           >
             {sending ? (
               <>
-                <span className="pago-spinner" />
+                <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />
                 <span>{t.processing}</span>
               </>
             ) : (
               <>
-                <LockIcon />
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M4.5 6V4.5C4.5 3.12 5.62 2 7 2s2.5 1.12 2.5 2.5V6M3.5 6h7a1 1 0 011 1v4.5a1 1 0 01-1 1h-7a1 1 0 01-1-1V7a1 1 0 011-1z" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+                </svg>
                 <span>{t.pay}</span>
               </>
             )}
@@ -377,8 +479,8 @@ export default function PagoClient({ clientId, clientDocId, businessName, isInit
         </section>
       </main>
 
-      <footer className="pago-footer">
-        <p>&copy; {new Date().getFullYear()} Arzac Studio</p>
+      <footer className="border-t border-gray-100 py-6 text-center text-[0.75rem] text-gray-400">
+        &copy; {new Date().getFullYear()} Arzac Studio
       </footer>
     </div>
   );

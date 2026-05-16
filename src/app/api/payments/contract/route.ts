@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/firebase-admin";
 import { FieldValue } from "firebase-admin/firestore";
-import { getPaymentAmount, CURRENCY } from "@/lib/pricing";
+import { getPlanAmount, CURRENCY, type PlanType } from "@/lib/pricing";
 import { isRateLimited } from "@/lib/rate-limit";
 
 export async function POST(req: NextRequest) {
@@ -17,11 +17,14 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
   }
 
-  const { clientId, clientDocId, contractVersion } = body as {
+  const { clientId, clientDocId, contractVersion, plan } = body as {
     clientId?: string;
     clientDocId?: string;
     contractVersion?: string;
+    plan?: string;
   };
+
+  const validPlan: PlanType = plan === "completo" ? "completo" : "web_crm";
 
   if (!clientId || !clientDocId) {
     return NextResponse.json(
@@ -52,33 +55,40 @@ export async function POST(req: NextRequest) {
 
   const isInitial = existingPaid.empty;
   const type = isInitial ? "initial" : "recurring";
-  const amount = getPaymentAmount(isInitial);
+  const amount = getPlanAmount(validPlan);
 
   const now = FieldValue.serverTimestamp();
   const today = new Date();
   const nextBilling = new Date(today);
   nextBilling.setMonth(nextBilling.getMonth() + 1);
 
-  const docRef = await db.collection("hub_payments").add({
-    clientId,
-    clientDocId,
-    businessName: clientData.businessName || "",
-    amount,
-    currency: CURRENCY,
-    type,
-    status: "pending",
-    billingDate: today,
-    nextBillingDate: nextBilling,
-    cardLastFour: null,
-    failureReason: null,
-    cardcomTransactionId: null,
-    contractAccepted: true,
-    contractAcceptedAt: now,
-    contractVersion: contractVersion || "1.0",
-    contractIp: ip,
-    createdAt: now,
-    updatedAt: now,
-  });
+  let docRef;
+  try {
+    docRef = await db.collection("hub_payments").add({
+      clientId,
+      clientDocId,
+      businessName: clientData.businessName || "",
+      plan: validPlan,
+      amount,
+      currency: CURRENCY,
+      type,
+      status: "pending",
+      billingDate: today,
+      nextBillingDate: nextBilling,
+      cardLastFour: null,
+      failureReason: null,
+      cardcomTransactionId: null,
+      contractAccepted: true,
+      contractAcceptedAt: now,
+      contractVersion: contractVersion || "2.0",
+      contractIp: ip,
+      createdAt: now,
+      updatedAt: now,
+    });
+  } catch (err) {
+    console.error("[contract] Firestore write failed:", err);
+    return NextResponse.json({ error: "Error al registrar el contrato" }, { status: 500 });
+  }
 
   return NextResponse.json({
     id: docRef.id,

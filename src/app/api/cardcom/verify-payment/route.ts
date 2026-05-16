@@ -73,6 +73,20 @@ export async function POST(req: NextRequest) {
         updatedAt: FieldValue.serverTimestamp(),
       });
     });
+  } else {
+    // Fallback: payment confirmed by Cardcom but no pending doc found.
+    // Create a record so the payment is never lost.
+    await db.collection("hub_payments").add({
+      clientId,
+      status: "paid",
+      cardcomTransactionId: result.transactionId || null,
+      cardcomLowProfileCode: lowProfileCode,
+      cardLastFour: result.cardLastFour || null,
+      contractAccepted: true,
+      note: "Auto-created: no pending doc found at verification time",
+      createdAt: FieldValue.serverTimestamp(),
+      updatedAt: FieldValue.serverTimestamp(),
+    });
   }
 
   const clientSnap = await db

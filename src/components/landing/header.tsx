@@ -3,11 +3,16 @@
 import { useState, useEffect } from "react";
 import { useT } from "@/lib/i18n";
 import { LanguageSwitcher } from "./language-switcher";
+import { useUserAuth } from "@/lib/user-auth-context";
+import { UserMenu } from "./user-menu";
+import { AuthModal } from "./auth-modal";
 
 export function Header() {
   const { t } = useT();
+  const { user, loading: authLoading } = useUserAuth();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [authOpen, setAuthOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -41,12 +46,7 @@ export function Header() {
       <div className="l-container grid h-[72px] grid-cols-[1fr_auto_1fr] items-center">
         <a href="#" className="flex items-center gap-2">
           <img src="/logo-icon.png" alt="Arzac Studio" className="h-9 w-9 rounded-md object-cover" />
-          <span
-            style={{ fontFamily: "var(--l-display)" }}
-            className="hidden text-[1.05rem] font-semibold tracking-[-0.02em] text-[var(--l-text)] sm:inline"
-          >
-            arzac.studio
-          </span>
+          <img src="/logo.png" alt="Arzac Studio" className="hidden h-5 object-contain sm:block" />
         </a>
 
         <nav className="hidden items-center gap-7 md:flex">
@@ -63,6 +63,15 @@ export function Header() {
 
         <div className="flex items-center justify-end gap-3">
           <LanguageSwitcher />
+          {!authLoading && !user && (
+            <button
+              onClick={() => setAuthOpen(true)}
+              className="hidden text-[0.85rem] font-medium text-[var(--l-text-3)] transition-colors hover:text-[var(--l-text)] md:inline-block"
+            >
+              Iniciar sesión
+            </button>
+          )}
+          {!authLoading && user && <UserMenu />}
           <a
             href="#builder"
             className="hidden rounded-[var(--l-radius-pill)] bg-[var(--l-accent)] px-6 py-2.5 text-[0.88rem] font-semibold text-white transition-all duration-200 hover:opacity-90 md:inline-block"
@@ -73,9 +82,10 @@ export function Header() {
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             className="p-2 text-[var(--l-text-2)] md:hidden"
-            aria-label="Menu"
+            aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
+            aria-expanded={menuOpen}
           >
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
               {menuOpen ? (
                 <path d="M6 6l10 10M16 6L6 16" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
               ) : (
@@ -98,6 +108,14 @@ export function Header() {
               {link.label}
             </a>
           ))}
+          {!authLoading && !user && (
+            <button
+              onClick={() => { setMenuOpen(false); setAuthOpen(true); }}
+              className="block w-full py-3 text-left text-[0.95rem] text-[var(--l-text-2)] transition-colors hover:text-[var(--l-text)]"
+            >
+              Iniciar sesión
+            </button>
+          )}
           <a
             href="#builder"
             onClick={() => setMenuOpen(false)}
@@ -108,6 +126,8 @@ export function Header() {
           </a>
         </div>
       )}
+
+      <AuthModal open={authOpen} onClose={() => setAuthOpen(false)} />
     </header>
   );
 }

@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useId } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useT } from "@/lib/i18n";
 
 export function FAQ() {
   const { t } = useT();
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const uid = useId();
 
   return (
     <section className="l-section">
@@ -18,9 +19,11 @@ export function FAQ() {
           {t.faq.title}
         </h2>
 
-        <div className="space-y-2.5">
+        <div className="space-y-2.5" role="region" aria-label={t.faq.title}>
           {t.faq.items.map((item, i) => {
             const isOpen = openIndex === i;
+            const panelId = `${uid}-panel-${i}`;
+            const triggerId = `${uid}-trigger-${i}`;
             return (
               <div
                 key={i}
@@ -29,6 +32,9 @@ export function FAQ() {
                 }`}
               >
                 <button
+                  id={triggerId}
+                  aria-expanded={isOpen}
+                  aria-controls={panelId}
                   onClick={() => setOpenIndex(isOpen ? null : i)}
                   className="flex w-full items-center justify-between px-7 py-[22px] text-start"
                 >
@@ -40,6 +46,7 @@ export function FAQ() {
                     height="16"
                     viewBox="0 0 16 16"
                     fill="none"
+                    aria-hidden="true"
                     className="shrink-0 text-[var(--l-text-3)] transition-transform duration-200"
                     style={{ transform: isOpen ? "rotate(180deg)" : "rotate(0deg)" }}
                   >
@@ -49,6 +56,9 @@ export function FAQ() {
                 <AnimatePresence>
                   {isOpen && (
                     <motion.div
+                      id={panelId}
+                      role="region"
+                      aria-labelledby={triggerId}
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}

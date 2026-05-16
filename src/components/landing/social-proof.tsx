@@ -42,7 +42,7 @@ export function SocialProof() {
   const stats = [
     { value: 47, suffix: "+", label: t.socialProof.activeBusinesses },
     { value: 320, suffix: "+", label: t.socialProof.avgBookingsPerMonth },
-    { value: 98, suffix: "%", label: t.socialProof.clientSatisfaction },
+    { value: 32, suffix: "+", label: t.socialProof.whatsappAgents },
   ];
 
   return (

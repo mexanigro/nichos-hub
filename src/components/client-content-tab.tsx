@@ -1,12 +1,14 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useMemo } from "react";
 import {
   Save,
   Loader2,
   ChevronDown,
   ChevronRight,
   Sparkles,
+  Plus,
+  Trash2,
 } from "lucide-react";
 
 interface ContentSection {
@@ -150,15 +152,31 @@ const REMODELACIONES_SECTIONS: ContentSection[] = [
   },
 ];
 
+const FAQ_SECTION: ContentSection = {
+  key: "faq",
+  label: "Preguntas Frecuentes (FAQ)",
+  fields: [
+    { path: "sections.faq.title", label: "Titulo", type: "text", placeholder: "Preguntas frecuentes" },
+    { path: "sections.faq.subtitle", label: "Subtitulo", type: "text", placeholder: "Lo que nuestros clientes quieren saber" },
+  ],
+};
+
 function getSections(niche: string): ContentSection[] {
   const sections = [...BASE_SECTIONS];
   if (niche === "cafeteria") sections.push(...CAFETERIA_SECTIONS);
   if (niche === "remodelaciones") sections.push(...REMODELACIONES_SECTIONS);
+  sections.push(FAQ_SECTION);
   return sections;
+}
+
+interface FaqItem {
+  question: string;
+  answer: string;
 }
 
 export function ClientContentTab({ clientId, niche }: { clientId: string; niche: string }) {
   const [content, setContent] = useState<Record<string, string>>({});
+  const [faqItems, setFaqItems] = useState<FaqItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -167,7 +185,7 @@ export function ClientContentTab({ clientId, niche }: { clientId: string; niche:
   const [generating, setGenerating] = useState(false);
   const [businessDesc, setBusinessDesc] = useState("");
 
-  const sections = getSections(niche);
+  const sections = useMemo(() => getSections(niche), [niche]);
 
   const fetchContent = useCallback(async () => {
     try {
@@ -181,6 +199,8 @@ export function ClientContentTab({ clientId, niche }: { clientId: string; niche:
         }
       }
       setContent(flat);
+      const faq = getNestedValue(config, "sections.faq.items");
+      if (Array.isArray(faq)) setFaqItems(faq);
     } catch {
       setError("Error al cargar contenido");
     } finally {
@@ -197,7 +217,10 @@ export function ClientContentTab({ clientId, niche }: { clientId: string; niche:
     try {
       const patch: Record<string, unknown> = {};
       for (const [path, value] of Object.entries(content)) {
-        if (value) setNestedValue(patch, path, value);
+        if (value !== undefined) setNestedValue(patch, path, value);
+      }
+      if (faqItems.length > 0) {
+        setNestedValue(patch, "sections.faq.items", faqItems.filter(i => i.question.trim() || i.answer.trim()));
       }
       const res = await fetch(`/api/config/${clientId}`, {
         method: "PUT",
@@ -332,10 +355,70 @@ export function ClientContentTab({ clientId, niche }: { clientId: string; niche:
                   )}
                 </div>
               ))}
+              {section.key === "faq" && (
+                <FaqEditor items={faqItems} onChange={setFaqItems} />
+              )}
             </div>
           )}
         </div>
       ))}
+    </div>
+  );
+}
+
+function FaqEditor({ items, onChange }: { items: FaqItem[]; onChange: (items: FaqItem[]) => void }) {
+  function addItem() {
+    onChange([...items, { question: "", answer: "" }]);
+  }
+
+  function removeItem(index: number) {
+    onChange(items.filter((_, i) => i !== index));
+  }
+
+  function updateItem(index: number, field: "question" | "answer", value: string) {
+    const updated = [...items];
+    updated[index] = { ...updated[index], [field]: value };
+    onChange(updated);
+  }
+
+  return (
+    <div className="space-y-3">
+      <label className="mb-1 block text-[11px] font-medium text-text-muted">Preguntas y respuestas</label>
+      {items.map((item, i) => (
+        <div key={i} className="relative rounded-lg border border-border/60 bg-bg-elevated p-3">
+          <button
+            type="button"
+            onClick={() => removeItem(i)}
+            className="absolute end-2 top-2 rounded p-1 text-text-muted transition-colors hover:bg-red-500/10 hover:text-red-400"
+          >
+            <Trash2 size={12} />
+          </button>
+          <div className="mb-2">
+            <input
+              type="text"
+              value={item.question}
+              onChange={e => updateItem(i, "question", e.target.value)}
+              placeholder={`Pregunta ${i + 1}`}
+              className="w-full rounded border border-border bg-bg px-2.5 py-1.5 text-xs font-medium text-text placeholder:text-text-muted/50 focus:border-accent focus:outline-none"
+            />
+          </div>
+          <textarea
+            value={item.answer}
+            onChange={e => updateItem(i, "answer", e.target.value)}
+            placeholder="Respuesta..."
+            rows={2}
+            className="w-full rounded border border-border bg-bg px-2.5 py-1.5 text-xs text-text placeholder:text-text-muted/50 focus:border-accent focus:outline-none"
+          />
+        </div>
+      ))}
+      <button
+        type="button"
+        onClick={addItem}
+        className="inline-flex items-center gap-1.5 rounded-lg border border-dashed border-border px-3 py-2 text-[11px] font-medium text-text-muted transition-colors hover:border-accent hover:text-accent"
+      >
+        <Plus size={12} />
+        Agregar pregunta
+      </button>
     </div>
   );
 }

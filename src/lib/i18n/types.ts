@@ -18,7 +18,7 @@ export interface Translations {
   socialProof: {
     activeBusinesses: string;
     avgBookingsPerMonth: string;
-    clientSatisfaction: string;
+    whatsappAgents: string;
   };
   pillars: {
     title: string;

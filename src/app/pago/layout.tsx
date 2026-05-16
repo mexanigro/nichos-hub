@@ -14,8 +14,9 @@ const sourceSans = Source_Sans_3({
 });
 
 export const metadata: Metadata = {
-  title: "Arzac Studio",
-  description: "Web development for local businesses",
+  title: "Pago — Arzac Studio",
+  description: "Complete your subscription payment",
+  robots: { index: false, follow: false },
 };
 
 export default function PagoLayout({ children }: { children: React.ReactNode }) {

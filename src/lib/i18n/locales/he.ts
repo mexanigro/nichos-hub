@@ -19,7 +19,7 @@ export const he: Translations = {
   socialProof: {
     activeBusinesses: "עסקים פעילים",
     avgBookingsPerMonth: "הזמנות בממוצע / חודש",
-    clientSatisfaction: "שביעות רצון לקוחות",
+    whatsappAgents: "סוכני WhatsApp פעילים",
   },
   pillars: {
     title: "כל מה שהעסק שלכם צריך",

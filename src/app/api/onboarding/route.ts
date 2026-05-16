@@ -14,7 +14,7 @@ function slugify(name: string): string {
 const VALID_NICHES = ["barberia", "estetica", "tattoo", "nails", "cafeteria", "remodelaciones", "otro"];
 
 export async function POST(req: NextRequest) {
-  const ip = req.headers.get("x-forwarded-for") || "anonymous";
+  const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "anonymous";
   if (isRateLimited(ip, "onboarding", 5, 60_000)) {
     return NextResponse.json({ error: "Rate limited" }, { status: 429 });
   }

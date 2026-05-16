@@ -74,17 +74,17 @@ export async function POST(req: NextRequest) {
 
     // 2. Set env vars
     const envVars = [
-      { key: "VITE_CLIENT_ID", value: clientId, target: ["production", "preview"] },
-      { key: "VITE_ACTIVE_NICHE", value: niche, target: ["production", "preview"] },
-      { key: "VITE_DEMO_MODE", value: "true", target: ["production", "preview"] },
-      { key: "VITE_UI_LANGUAGE", value: "he", target: ["production", "preview"] },
+      { key: "VITE_CLIENT_ID", value: clientId, target: ["production", "preview"], type: "plain" },
+      { key: "VITE_ACTIVE_NICHE", value: niche, target: ["production", "preview"], type: "plain" },
+      { key: "VITE_DEMO_MODE", value: "true", target: ["production", "preview"], type: "plain" },
+      { key: "VITE_UI_LANGUAGE", value: "he", target: ["production", "preview"], type: "plain" },
     ];
 
     // Add shared Firebase env vars from current environment
     for (const key of SHARED_ENV_VARS) {
       const val = process.env[key];
       if (val) {
-        envVars.push({ key, value: val, target: ["production", "preview"] });
+        envVars.push({ key, value: val, target: ["production", "preview"], type: "plain" });
       }
     }
 

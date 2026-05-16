@@ -4,10 +4,12 @@ import PagoClient from "./pago-client";
 
 interface Props {
   params: Promise<{ clientId: string }>;
+  searchParams: Promise<{ plan?: string; upgrade?: string }>;
 }
 
-export default async function PagoPage({ params }: Props) {
+export default async function PagoPage({ params, searchParams }: Props) {
   const { clientId } = await params;
+  const { plan, upgrade } = await searchParams;
 
   // Find the client doc by clientId field
   const snap = await db
@@ -21,25 +23,17 @@ export default async function PagoPage({ params }: Props) {
   const doc = snap.docs[0];
   const data = doc.data();
 
-  // Check if initial payment already paid
-  const paidInitial = await db
-    .collection("hub_payments")
-    .where("clientId", "==", clientId)
-    .where("type", "==", "initial")
-    .where("status", "==", "paid")
-    .limit(1)
-    .get();
-
-  const isInitial = paidInitial.empty;
   const lang: "he" | "en" = data.language === "he" ? "he" : "en";
+  const defaultPlan = plan === "completo" ? "completo" : plan === "web_crm" ? "web_crm" : undefined;
 
   return (
     <PagoClient
       clientId={clientId}
       clientDocId={doc.id}
       businessName={data.businessName || clientId}
-      isInitial={isInitial}
       lang={lang}
+      defaultPlan={defaultPlan}
+      isUpgrade={upgrade === "true"}
     />
   );
 }
