@@ -38,13 +38,15 @@ export function Header() {
           : "bg-transparent"
       }`}
     >
-      <div className="l-container flex h-[72px] items-center justify-between">
-        <a
-          href="#"
-          style={{ fontFamily: "var(--l-display)" }}
-          className="text-[1.05rem] font-semibold tracking-[-0.02em] text-[var(--l-text)]"
-        >
-          arzac.studio
+      <div className="l-container grid h-[72px] grid-cols-[1fr_auto_1fr] items-center">
+        <a href="#" className="flex items-center gap-2">
+          <img src="/logo-icon.png" alt="Arzac Studio" className="h-9 w-9 rounded-md object-cover" />
+          <span
+            style={{ fontFamily: "var(--l-display)" }}
+            className="hidden text-[1.05rem] font-semibold tracking-[-0.02em] text-[var(--l-text)] sm:inline"
+          >
+            arzac.studio
+          </span>
         </a>
 
         <nav className="hidden items-center gap-7 md:flex">
@@ -59,7 +61,7 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center justify-end gap-3">
           <LanguageSwitcher />
           <a
             href="#builder"
