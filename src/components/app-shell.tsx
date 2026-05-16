@@ -13,7 +13,7 @@ export function AppShell({ children }: { children: ReactNode }) {
   const [timedOut, setTimedOut] = useState(false);
 
   const isLoginPage = pathname === "/login";
-  const isPublicPage = pathname.startsWith("/pago");
+  const isPublicPage = pathname.startsWith("/pago") || pathname.startsWith("/onboarding") || pathname === "/";
 
   useEffect(() => {
     if (status === "unauthenticated" && !isLoginPage && !isPublicPage) {
