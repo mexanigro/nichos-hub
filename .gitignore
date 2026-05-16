@@ -26,6 +26,9 @@ npm-debug.log*
 .env
 .env*.local
 
+# claude local settings (may contain keys from past commands)
+.claude/settings.local.json
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
