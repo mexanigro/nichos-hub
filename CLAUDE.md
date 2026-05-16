@@ -1,100 +1,51 @@
-# nichos-hub — CLAUDE.md
+# nichos-hub
 
-Dashboard de operaciones para Arzac Studio. Propietario: Liam Arzac (website@arzac.studio). SaaS de webs para negocios locales en Israel. Modelo: 0 setup + 800 NIS/mes. Pagos: Cardcom. UI en espanol.
+Dashboard de operaciones Arzac Studio. SaaS de webs para negocios locales en Israel.
+Propietario: Liam Arzac (website@arzac.studio). Modelo: 0 setup + 800 NIS/mes.
 
-## Convenciones de trabajo
+## Reglas
 
-- No crear worktrees ni ramas separadas salvo que se pida explicitamente.
-- Todos los cambios deben aplicarse directamente en los archivos del proyecto.
-- UI siempre en espanol.
-- Tema oscuro (#09090b), Tailwind @theme variables en globals.css.
+- UI en espanol. Tema oscuro (#09090b).
+- No crear worktrees/ramas salvo que se pida.
+- Cambios directo en archivos, no en dashboards de Railway/Vercel.
+- Firebase via Admin SDK (`src/lib/firebase-admin.ts`), bypassa rules.
+- Endpoints publicos usan rate limiting (`src/lib/rate-limit.ts`).
 
-## Ecosistema (3 repos)
+## Ecosistema
 
-| Repo | Que es | Hosting | Stack |
-|---|---|---|---|
-| **nichos-hub** (este) | Dashboard operaciones + config de clientes | Railway | Next.js 16, Firestore, PostgreSQL |
-| **master-template** | Web de cada cliente (landing + CRM + chatbot) | Vercel (subdominios arzac.studio) | React 19, Vite, Express, Firestore |
-| **whatsapp-agentkit** | Agente WhatsApp con IA para ventas/soporte | Railway | Python, FastAPI, Claude API, SQLite |
+| Repo | Funcion | Deploy |
+|------|---------|--------|
+| **nichos-hub** (este) | Dashboard + config clientes | Railway (Next.js 16) |
+| **master-template** | Web cliente (landing+CRM+chatbot) | Vercel (*.arzac.studio) |
+| **whatsapp-agentkit** | Agente WhatsApp IA | Railway (Python) |
 
-Conexion entre los 3: Firestore `hub_clients` es la fuente de verdad. Vercel API para kill switch/redeploy. WhatsApp agent opera independientemente pero comparte contexto de leads.
-
-## Stack
-
-Next.js 16 App Router (standalone output) | next-auth v5 beta (Google OAuth, roles owner/seller) | Firebase Admin + Firestore | PostgreSQL (metricas monitor) | Tailwind v4 | Resend (emails) | Claude Haiku (clasificacion mensajes) | Cardcom (pagos)
-
-## Rutas
-
-### Privadas (owner/seller)
-* `/clients` -- listado de clientes con filtros y estado
-* `/clients/[clientId]` -- detalle de cliente con tabs (Overview, Config, Messages, Monitor)
-* `/payments` -- historial de pagos y facturacion
-* `/messages` -- inbox unificado de mensajes de todos los clientes
-* `/monitor` -- dashboard de salud de webs (uptime, errores, metricas)
-* `/sales` -- pipeline de ventas y prospectos
-* `/expenses` -- control de gastos operativos
-
-### Publicas (rate limited)
-* `/pago/[clientId]` -- pagina de pago para el cliente (Cardcom)
-* `/pago/success` -- confirmacion de pago exitoso
-* `/pago/error` -- error en pago
+Firestore `hub_clients` es la fuente de verdad. `config/{clientId}` controla cada web remotamente (deep merge sobre preset del nicho en master-template).
 
 ## Auth
 
-Google OAuth via next-auth v5. Roles: `owner` (OWNER_EMAIL env) y `seller` (Firestore hub_users). Wrappers: `withOwner(handler)`, `withAuth(handler)` en `src/lib/auth.ts`. Sin middleware.ts, proteccion via app-shell.tsx.
+next-auth v5 Google OAuth. Roles: owner (OWNER_EMAIL env), seller (Firestore hub_users), lead (publico, sin acceso dashboard). Wrappers: `withOwner()`, `withAuth()` en `src/lib/auth.ts`. Sin middleware — proteccion via `app-shell.tsx`.
 
-## Firestore collections
+## Nichos
 
-* `hub_clients` -- clientes del SaaS (fuente de verdad del ecosistema)
-* `clients/{clientId}` -- doc de estado por tenant (synced desde hub_clients). Las Firestore rules del template dependen de este doc para autorizar bookings. El hub lo crea/actualiza automaticamente al crear/actualizar/suspender clientes.
-* `hub_users` -- usuarios del dashboard (roles, permisos)
-* `hub_prospects` -- leads de ventas (pipeline)
-* `hub_expenses` -- gastos operativos
-* `provider_messages` -- mensajes cliente <-> Liam
-* `hub_payments` -- registro de pagos
-* `config/{clientId}` -- config override por cliente (se aplica al master-template)
+barberia, estetica, tattoo, nails, cafeteria, remodelaciones. Cada uno con temas visuales propios y feature flags especificos. "otro" se acepta en onboarding y se mapea a estetica para deploy.
 
-## Firebase rules/indexes
+## Firestore
 
-Las Firestore security rules e indexes se deployean UNICAMENTE desde el repo del master-template. Este repo NO tiene firestore.rules ni firestore.indexes.json. El hub usa Admin SDK que bypassa las rules.
+| Coleccion | Uso |
+|-----------|-----|
+| `hub_clients` | Clientes SaaS (fuente de verdad) |
+| `clients/{id}` | Estado tenant — template lee esto para kill-switch |
+| `config/{id}` | Override remoto de la web del cliente |
+| `hub_users` | Usuarios dashboard |
+| `hub_payments` | Pagos |
+| `provider_messages` | Chat cliente <-> Liam |
 
-## Config tab (control remoto de cada web)
+Las Firestore rules se deployean solo desde master-template. Este repo usa Admin SDK.
 
-`/clients/[clientId]` tab Config edita `config/{clientId}` en Firestore. El master-template lee ese documento al arrancar y aplica deep merge sobre el preset del nicho.
+## Tabs del cliente (`/clients/[clientId]`)
 
-### Feature flags (secciones de la web)
-
-showHero, showServices, showWhyChooseUs, showTeam, enableStaffPages, showAbout, enableAboutPage, showGallery, showTestimonials, showInquiry, showLocation, showBusinessHours, showInstagram, showBooking, showWhatsAppInChat.
-
-### Nichos disponibles
-
-barberia, estetica, tattoo, nails. Cada uno con 3 temas visuales y 3 idiomas (en, he, ru).
-
-### Splash screen
-
-5 variantes seleccionables: Classic (1), Curtain (2), Pulse (3), Typewriter (4), Vortex (5). Cada nicho tiene un default: barberia=1, tattoo=5, nails=3, estetica=4.
-
-### Otros overrides
-
-* `activeTheme` -- cambiar tema visual del cliente
-* `visibleServices` -- filtrar y reordenar servicios
-* `serviceOverrides` -- patchear nombre/precio/duracion/imagen de servicios individuales
-* `splash.enabled`, `splash.variant`, `splash.durationMs`, `splash.image`
-* `payment.enabled`, `payment.mode`
-* `notifications.*` -- toggles de alertas
-
-### businessMode
-
-"solo" (un profesional) o "team" (equipo). Solo mode: oculta staff tab, muestra About en nav, elimina columna staff de turnos.
+Overview, Config, Contenido, Leads, WhatsApp. Config edita infraestructura (features, theme, splash, hours, services). Contenido edita textos de cada seccion. Ambos escriben a `config/{clientId}`.
 
 ## Pagos
 
-Cardcom Low Profile. Flujo: contrato firma -> payment pending -> redirect Cardcom -> verify-payment (idempotente). Endpoints publicos con rate limiting via `src/lib/rate-limit.ts`.
-
-## Reglas de desarrollo
-
-- Firebase via `src/lib/firebase-admin.ts`, PostgreSQL via `src/lib/postgres.ts`
-- Tipos en `src/types/index.ts`
-- Endpoints publicos usan `src/lib/rate-limit.ts`
-- No crear worktrees/ramas salvo que se pida
-- Para cambios en UI del browser (Railway, Vercel dashboard), dar instrucciones manuales al usuario en vez de automatizar
+Cardcom Low Profile. Flujo: firma contrato -> pending -> redirect Cardcom -> verify-payment (idempotente).
