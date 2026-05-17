@@ -19,6 +19,7 @@ export interface Translations {
     activeBusinesses: string;
     avgBookingsPerMonth: string;
     whatsappAgents: string;
+    satisfaction: string;
   };
   pillars: {
     title: string;
@@ -132,11 +133,41 @@ export interface Translations {
     badge?: string;
     title: string;
     subtitle: string;
+    scrollHint?: string;
+    bookButton?: string;
     niches: {
       barberia: string;
       estetica: string;
       cafeteria: string;
     };
+    nicheContent?: {
+      barberia: { heroText: string; services: string[] };
+      estetica: { heroText: string; services: string[] };
+      cafeteria: { heroText: string; services: string[] };
+    };
+  };
+  auth: {
+    login: string;
+    register: string;
+    googleButton: string;
+    orEmail: string;
+    name: string;
+    namePlaceholder: string;
+    email: string;
+    emailPlaceholder: string;
+    password: string;
+    passwordPlaceholder: string;
+    submitLogin: string;
+    submitRegister: string;
+    processing: string;
+    close: string;
+    errorNameRequired: string;
+    errorWrongPassword: string;
+    errorEmailExists: string;
+    errorWeakPassword: string;
+    errorInvalidEmail: string;
+    errorUserNotFound: string;
+    errorGeneric: string;
   };
   footer: {
     rights: string;

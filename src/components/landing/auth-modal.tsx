@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useId } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { signInWithGoogle, signInWithEmail, registerWithEmail } from "@/lib/user-auth";
+import { useT } from "@/lib/i18n";
 
 interface AuthModalProps {
   open: boolean;
@@ -19,6 +20,7 @@ export function AuthModal({ open, onClose, onSuccess, defaultTab = "login" }: Au
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  const { t } = useT();
   const dialogRef = useRef<HTMLDivElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
   const uid = useId();
@@ -114,7 +116,7 @@ export function AuthModal({ open, onClose, onSuccess, defaultTab = "login" }: Au
       onSuccess?.();
       handleClose();
     } catch (e: unknown) {
-      const msg = e instanceof Error ? e.message : "Error al iniciar sesión";
+      const msg = e instanceof Error ? e.message : t.auth.errorGeneric;
       if (!msg.includes("popup-closed")) setError(msg);
     } finally {
       setLoading(false);
@@ -130,7 +132,7 @@ export function AuthModal({ open, onClose, onSuccess, defaultTab = "login" }: Au
         await signInWithEmail(email, password);
       } else {
         if (!name.trim()) {
-          setError("Ingresa tu nombre");
+          setError(t.auth.errorNameRequired);
           setLoading(false);
           return;
         }
@@ -141,15 +143,15 @@ export function AuthModal({ open, onClose, onSuccess, defaultTab = "login" }: Au
     } catch (e: unknown) {
       const msg = e instanceof Error ? e.message : "Error";
       if (msg.includes("wrong-password") || msg.includes("invalid-credential")) {
-        setError("Credenciales incorrectas");
+        setError(t.auth.errorWrongPassword);
       } else if (msg.includes("email-already-in-use")) {
-        setError("Este email ya está registrado");
+        setError(t.auth.errorEmailExists);
       } else if (msg.includes("weak-password")) {
-        setError("La contraseña debe tener al menos 6 caracteres");
+        setError(t.auth.errorWeakPassword);
       } else if (msg.includes("invalid-email")) {
-        setError("Email inválido");
+        setError(t.auth.errorInvalidEmail);
       } else if (msg.includes("user-not-found")) {
-        setError("No existe una cuenta con este email");
+        setError(t.auth.errorUserNotFound);
       } else {
         setError(msg);
       }
@@ -188,12 +190,12 @@ export function AuthModal({ open, onClose, onSuccess, defaultTab = "login" }: Au
             className="relative w-full max-w-[400px] rounded-2xl border border-[var(--l-border)] bg-[var(--l-card)] p-7 shadow-2xl outline-none"
           >
             <h2 id={titleId} className="sr-only">
-              {tab === "login" ? "Iniciar sesión" : "Crear cuenta"}
+              {tab === "login" ? t.auth.login : t.auth.register}
             </h2>
 
             <button
               onClick={handleClose}
-              aria-label="Cerrar"
+              aria-label={t.auth.close}
               className="absolute right-4 top-4 p-1 text-[var(--l-text-3)] transition-colors hover:text-[var(--l-text-2)]"
             >
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
@@ -213,7 +215,7 @@ export function AuthModal({ open, onClose, onSuccess, defaultTab = "login" }: Au
                     : "text-[var(--l-text-3)] hover:text-[var(--l-text-2)]"
                 }`}
               >
-                Iniciar sesión
+                {t.auth.login}
               </button>
               <button
                 role="tab"
@@ -225,7 +227,7 @@ export function AuthModal({ open, onClose, onSuccess, defaultTab = "login" }: Au
                     : "text-[var(--l-text-3)] hover:text-[var(--l-text-2)]"
                 }`}
               >
-                Registrarse
+                {t.auth.register}
               </button>
             </div>
 
@@ -241,12 +243,12 @@ export function AuthModal({ open, onClose, onSuccess, defaultTab = "login" }: Au
                 <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05" />
                 <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" />
               </svg>
-              Continuar con Google
+              {t.auth.googleButton}
             </button>
 
             <div className="my-5 flex items-center gap-3" aria-hidden="true">
               <div className="h-px flex-1 bg-[var(--l-border)]" />
-              <span className="text-xs text-[var(--l-text-3)]">o con email</span>
+              <span className="text-xs text-[var(--l-text-3)]">{t.auth.orEmail}</span>
               <div className="h-px flex-1 bg-[var(--l-border)]" />
             </div>
 
@@ -255,7 +257,7 @@ export function AuthModal({ open, onClose, onSuccess, defaultTab = "login" }: Au
               {tab === "register" && (
                 <div className="flex flex-col gap-1">
                   <label htmlFor={nameId} className="text-[0.78rem] font-medium text-[var(--l-text-2)]">
-                    Nombre
+                    {t.auth.name}
                   </label>
                   <input
                     id={nameId}
@@ -264,13 +266,13 @@ export function AuthModal({ open, onClose, onSuccess, defaultTab = "login" }: Au
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     className="rounded-xl border border-[var(--l-border)] bg-[var(--l-surface)] px-4 py-3 text-[0.88rem] text-[var(--l-text)] outline-none transition-all placeholder:text-[var(--l-text-3)] focus:border-[var(--l-accent)] focus:ring-2 focus:ring-[var(--l-accent)]/10"
-                    placeholder="Tu nombre"
+                    placeholder={t.auth.namePlaceholder}
                   />
                 </div>
               )}
               <div className="flex flex-col gap-1">
                 <label htmlFor={emailId} className="text-[0.78rem] font-medium text-[var(--l-text-2)]">
-                  Email
+                  {t.auth.email}
                 </label>
                 <input
                   id={emailId}
@@ -280,12 +282,12 @@ export function AuthModal({ open, onClose, onSuccess, defaultTab = "login" }: Au
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   className="rounded-xl border border-[var(--l-border)] bg-[var(--l-surface)] px-4 py-3 text-[0.88rem] text-[var(--l-text)] outline-none transition-all placeholder:text-[var(--l-text-3)] focus:border-[var(--l-accent)] focus:ring-2 focus:ring-[var(--l-accent)]/10"
-                  placeholder="tu@email.com"
+                  placeholder={t.auth.emailPlaceholder}
                 />
               </div>
               <div className="flex flex-col gap-1">
                 <label htmlFor={passwordId} className="text-[0.78rem] font-medium text-[var(--l-text-2)]">
-                  Contraseña
+                  {t.auth.password}
                 </label>
                 <input
                   id={passwordId}
@@ -296,7 +298,7 @@ export function AuthModal({ open, onClose, onSuccess, defaultTab = "login" }: Au
                   required
                   minLength={6}
                   className="rounded-xl border border-[var(--l-border)] bg-[var(--l-surface)] px-4 py-3 text-[0.88rem] text-[var(--l-text)] outline-none transition-all placeholder:text-[var(--l-text-3)] focus:border-[var(--l-accent)] focus:ring-2 focus:ring-[var(--l-accent)]/10"
-                  placeholder="Mínimo 6 caracteres"
+                  placeholder={t.auth.passwordPlaceholder}
                 />
               </div>
 
@@ -313,10 +315,10 @@ export function AuthModal({ open, onClose, onSuccess, defaultTab = "login" }: Au
                 style={{ fontFamily: "var(--l-display)" }}
               >
                 {loading
-                  ? "Procesando…"
+                  ? t.auth.processing
                   : tab === "login"
-                    ? "Iniciar sesión"
-                    : "Crear cuenta"}
+                    ? t.auth.submitLogin
+                    : t.auth.submitRegister}
               </button>
             </form>
           </motion.div>

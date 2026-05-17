@@ -30,7 +30,7 @@ const NICHES = [
 ] as const;
 
 /* ─── Placeholder "site" rendered as CSS ─── */
-function PlaceholderSite({ niche, isActive }: { niche: (typeof NICHES)[number]; isActive: boolean }) {
+function PlaceholderSite({ niche, isActive, bookLabel, heroText, services }: { niche: (typeof NICHES)[number]; isActive: boolean; bookLabel: string; heroText: string; services: readonly string[] }) {
   return (
     <div
       className="absolute inset-0 flex flex-col overflow-hidden rounded-b-lg transition-opacity"
@@ -61,18 +61,18 @@ function PlaceholderSite({ niche, isActive }: { niche: (typeof NICHES)[number]; 
           className="max-w-[260px] text-[0.85rem] font-bold leading-tight tracking-tight text-white/90 sm:text-[1.1rem]"
           style={{ fontFamily: "var(--l-display)" }}
         >
-          {niche.heroText}
+          {heroText}
         </p>
         <div
           className="mt-4 rounded-full px-5 py-1.5 text-[0.7rem] font-semibold text-white sm:text-[0.75rem]"
           style={{ background: niche.accent }}
         >
-          Reservar turno
+          {bookLabel}
         </div>
 
         {/* Service cards grid */}
         <div className="mt-6 grid w-full max-w-[280px] grid-cols-2 gap-2 sm:max-w-[320px]">
-          {niche.services.map((service) => (
+          {services.map((service) => (
             <div
               key={service}
               className="rounded-lg border border-white/10 bg-white/5 px-3 py-2.5 text-center backdrop-blur-sm"
@@ -236,7 +236,14 @@ export function TemplateShowcase() {
             {/* Viewport — aspect ratio container */}
             <div className="relative aspect-[4/3] overflow-hidden bg-[var(--l-bg)]">
               {NICHES.map((niche, i) => (
-                <PlaceholderSite key={niche.id} niche={niche} isActive={i === activeNiche} />
+                <PlaceholderSite
+                  key={niche.id}
+                  niche={niche}
+                  isActive={i === activeNiche}
+                  bookLabel={t.showcase.bookButton || "Book now"}
+                  heroText={t.showcase.nicheContent?.[niche.id]?.heroText ?? niche.heroText}
+                  services={t.showcase.nicheContent?.[niche.id]?.services ?? niche.services}
+                />
               ))}
             </div>
           </div>
@@ -285,7 +292,7 @@ export function TemplateShowcase() {
                 >
                   <path d="M12 5v14M5 12l7 7 7-7" />
                 </svg>
-                {" "}Scroll para explorar
+                {" "}{t.showcase.scrollHint || "Scroll to explore"}
               </motion.p>
             </AnimatePresence>
           )}

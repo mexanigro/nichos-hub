@@ -9,6 +9,7 @@ export const en: Translations = {
     getStarted: "Get started",
   },
   hero: {
+    badge: "WEBSITE + CRM + AI",
     headline: "Turn your local business into a digital powerhouse",
     subheadline:
       "Professional website, smart CRM, and AI-powered WhatsApp agent — all set up in minutes, not months.",
@@ -19,6 +20,7 @@ export const en: Translations = {
     activeBusinesses: "Active businesses",
     avgBookingsPerMonth: "Avg. bookings / month",
     whatsappAgents: "Active WhatsApp agents",
+    satisfaction: "Satisfaction",
   },
   pillars: {
     title: "Everything your business needs",
@@ -40,6 +42,7 @@ export const en: Translations = {
     },
   },
   howItWorks: {
+    badge: "HOW IT WORKS",
     title: "Up and running in 4 steps",
     subtitle: "From zero to a fully operational digital business",
     steps: [
@@ -62,6 +65,7 @@ export const en: Translations = {
     ],
   },
   features: {
+    badge: "FEATURES",
     title: "Built for growth",
     subtitle: "Every feature designed to bring you more clients",
     items: [
@@ -92,6 +96,7 @@ export const en: Translations = {
     ],
   },
   pricing: {
+    badge: "PRICING",
     title: "Simple, transparent pricing",
     subtitle: "No setup fees. No hidden costs. Cancel anytime.",
     monthly: "/mo",
@@ -168,6 +173,7 @@ export const en: Translations = {
     button: "Build my site now",
   },
   builder: {
+    badge: "BUILD YOUR SITE",
     title: "Let's build your website",
     subtitle: "Fill in your details and see the result in minutes",
     steps: {
@@ -237,11 +243,41 @@ export const en: Translations = {
     badge: "SEE IT IN ACTION",
     title: "Real sites for real businesses",
     subtitle: "Each niche has its own design, optimized to turn visitors into customers",
+    scrollHint: "Scroll to explore",
+    bookButton: "Book now",
     niches: {
       barberia: "Barbershop",
       estetica: "Beauty salon",
       cafeteria: "Café",
     },
+    nicheContent: {
+      barberia: { heroText: "The perfect cut awaits", services: ["Classic Cut", "Beard", "Shave", "Color"] },
+      estetica: { heroText: "Your beauty, our passion", services: ["Facial", "Manicure", "Waxing", "Massage"] },
+      cafeteria: { heroText: "Specialty coffee", services: ["Espresso", "Latte Art", "Pastry", "Brunch"] },
+    },
+  },
+  auth: {
+    login: "Log in",
+    register: "Sign up",
+    googleButton: "Continue with Google",
+    orEmail: "or with email",
+    name: "Name",
+    namePlaceholder: "Your name",
+    email: "Email",
+    emailPlaceholder: "you@email.com",
+    password: "Password",
+    passwordPlaceholder: "At least 6 characters",
+    submitLogin: "Log in",
+    submitRegister: "Create account",
+    processing: "Processing…",
+    close: "Close",
+    errorNameRequired: "Please enter your name",
+    errorWrongPassword: "Invalid credentials",
+    errorEmailExists: "This email is already registered",
+    errorWeakPassword: "Password must be at least 6 characters",
+    errorInvalidEmail: "Invalid email",
+    errorUserNotFound: "No account found with this email",
+    errorGeneric: "Login failed",
   },
   footer: {
     rights: "All rights reserved",

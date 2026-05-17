@@ -9,6 +9,7 @@ export const es: Translations = {
     getStarted: "Empezar",
   },
   hero: {
+    badge: "WEB + CRM + IA",
     headline: "Transformá tu negocio local en una potencia digital",
     subheadline:
       "Web profesional, CRM inteligente y agente WhatsApp con IA — todo listo en minutos, no meses.",
@@ -19,6 +20,7 @@ export const es: Translations = {
     activeBusinesses: "Negocios activos",
     avgBookingsPerMonth: "Reservas promedio / mes",
     whatsappAgents: "Agentes WhatsApp activos",
+    satisfaction: "Satisfacción",
   },
   pillars: {
     title: "Todo lo que tu negocio necesita",
@@ -40,6 +42,7 @@ export const es: Translations = {
     },
   },
   howItWorks: {
+    badge: "CÓMO FUNCIONA",
     title: "Listo en 4 pasos",
     subtitle: "De cero a un negocio digital completamente operativo",
     steps: [
@@ -62,6 +65,7 @@ export const es: Translations = {
     ],
   },
   features: {
+    badge: "FUNCIONES",
     title: "Hecho para crecer",
     subtitle: "Cada función diseñada para traerte más clientes",
     items: [
@@ -92,6 +96,7 @@ export const es: Translations = {
     ],
   },
   pricing: {
+    badge: "PRECIOS",
     title: "Precios simples y transparentes",
     subtitle: "Sin costo de setup. Sin costos ocultos. Cancelá cuando quieras.",
     monthly: "/mes",
@@ -168,6 +173,7 @@ export const es: Translations = {
     button: "Crear mi web ahora",
   },
   builder: {
+    badge: "CREÁ TU WEB",
     title: "Construyamos tu web",
     subtitle: "Completá tus datos y vé el resultado en minutos",
     steps: {
@@ -237,11 +243,41 @@ export const es: Translations = {
     badge: "MIRÁ EN ACCIÓN",
     title: "Sitios reales para negocios reales",
     subtitle: "Cada nicho tiene su propio diseño, optimizado para convertir visitantes en clientes",
+    scrollHint: "Scroll para explorar",
+    bookButton: "Reservar turno",
     niches: {
       barberia: "Barbería",
       estetica: "Estética",
       cafeteria: "Cafetería",
     },
+    nicheContent: {
+      barberia: { heroText: "El corte perfecto te espera", services: ["Corte Clásico", "Barba", "Afeitado", "Color"] },
+      estetica: { heroText: "Tu belleza, nuestra pasión", services: ["Facial", "Manicura", "Depilación", "Masajes"] },
+      cafeteria: { heroText: "Café de especialidad", services: ["Espresso", "Latte Art", "Pastelería", "Brunch"] },
+    },
+  },
+  auth: {
+    login: "Iniciar sesión",
+    register: "Registrarse",
+    googleButton: "Continuar con Google",
+    orEmail: "o con email",
+    name: "Nombre",
+    namePlaceholder: "Tu nombre",
+    email: "Email",
+    emailPlaceholder: "tu@email.com",
+    password: "Contraseña",
+    passwordPlaceholder: "Mínimo 6 caracteres",
+    submitLogin: "Iniciar sesión",
+    submitRegister: "Crear cuenta",
+    processing: "Procesando…",
+    close: "Cerrar",
+    errorNameRequired: "Ingresá tu nombre",
+    errorWrongPassword: "Credenciales incorrectas",
+    errorEmailExists: "Este email ya está registrado",
+    errorWeakPassword: "La contraseña debe tener al menos 6 caracteres",
+    errorInvalidEmail: "Email inválido",
+    errorUserNotFound: "No existe una cuenta con este email",
+    errorGeneric: "Error al iniciar sesión",
   },
   footer: {
     rights: "Todos los derechos reservados",

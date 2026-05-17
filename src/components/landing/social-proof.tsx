@@ -39,7 +39,7 @@ export function SocialProof() {
   const badges = [
     { value: 47, suffix: "+", label: t.socialProof.activeBusinesses },
     { value: 32, suffix: "+", label: t.socialProof.whatsappAgents },
-    { value: 98, suffix: "%", label: "satisfacción" },
+    { value: 98, suffix: "%", label: t.socialProof.satisfaction },
   ];
 
   return (

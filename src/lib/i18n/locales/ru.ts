@@ -9,6 +9,7 @@ export const ru: Translations = {
     getStarted: "Начать",
   },
   hero: {
+    badge: "САЙТ + CRM + ИИ",
     headline: "Превратите ваш бизнес в цифровую силу",
     subheadline:
       "Профессиональный сайт, умная CRM и AI-агент в WhatsApp — всё готово за минуты, а не месяцы.",
@@ -19,6 +20,7 @@ export const ru: Translations = {
     activeBusinesses: "Активных бизнесов",
     avgBookingsPerMonth: "Бронирований в среднем / мес",
     whatsappAgents: "Активных агентов WhatsApp",
+    satisfaction: "Удовлетворённость",
   },
   pillars: {
     title: "Всё, что нужно вашему бизнесу",
@@ -40,6 +42,7 @@ export const ru: Translations = {
     },
   },
   howItWorks: {
+    badge: "КАК ЭТО РАБОТАЕТ",
     title: "Готово за 4 шага",
     subtitle: "От нуля до полностью работающего цифрового бизнеса",
     steps: [
@@ -62,6 +65,7 @@ export const ru: Translations = {
     ],
   },
   features: {
+    badge: "ВОЗМОЖНОСТИ",
     title: "Создано для роста",
     subtitle: "Каждая функция приносит больше клиентов",
     items: [
@@ -92,6 +96,7 @@ export const ru: Translations = {
     ],
   },
   pricing: {
+    badge: "ЦЕНЫ",
     title: "Простые и прозрачные цены",
     subtitle: "Без платы за установку. Без скрытых расходов. Отмена в любое время.",
     monthly: "/мес",
@@ -168,6 +173,7 @@ export const ru: Translations = {
     button: "Создать мой сайт",
   },
   builder: {
+    badge: "СОЗДАЙТЕ САЙТ",
     title: "Давайте создадим ваш сайт",
     subtitle: "Заполните данные и увидите результат за минуты",
     steps: {
@@ -237,11 +243,41 @@ export const ru: Translations = {
     badge: "СМОТРИТЕ В ДЕЙСТВИИ",
     title: "Реальные сайты для реального бизнеса",
     subtitle: "Каждая ниша имеет свой дизайн, оптимизированный для превращения посетителей в клиентов",
+    scrollHint: "Прокрутите для просмотра",
+    bookButton: "Записаться",
     niches: {
       barberia: "Барбершоп",
       estetica: "Салон красоты",
       cafeteria: "Кафе",
     },
+    nicheContent: {
+      barberia: { heroText: "Идеальная стрижка ждёт вас", services: ["Классическая стрижка", "Борода", "Бритьё", "Окрашивание"] },
+      estetica: { heroText: "Ваша красота — наша страсть", services: ["Уход за лицом", "Маникюр", "Депиляция", "Массаж"] },
+      cafeteria: { heroText: "Кофе премиум-класса", services: ["Эспрессо", "Латте Арт", "Выпечка", "Бранч"] },
+    },
+  },
+  auth: {
+    login: "Войти",
+    register: "Регистрация",
+    googleButton: "Продолжить с Google",
+    orEmail: "или по email",
+    name: "Имя",
+    namePlaceholder: "Ваше имя",
+    email: "Email",
+    emailPlaceholder: "you@email.com",
+    password: "Пароль",
+    passwordPlaceholder: "Минимум 6 символов",
+    submitLogin: "Войти",
+    submitRegister: "Создать аккаунт",
+    processing: "Обработка…",
+    close: "Закрыть",
+    errorNameRequired: "Введите ваше имя",
+    errorWrongPassword: "Неверные данные для входа",
+    errorEmailExists: "Этот email уже зарегистрирован",
+    errorWeakPassword: "Пароль должен содержать минимум 6 символов",
+    errorInvalidEmail: "Неверный email",
+    errorUserNotFound: "Аккаунт с этим email не найден",
+    errorGeneric: "Ошибка входа",
   },
   footer: {
     rights: "Все права защищены",
