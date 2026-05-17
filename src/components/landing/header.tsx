@@ -81,7 +81,7 @@ export function Header({ theme, toggleTheme }: HeaderProps) {
           {!authLoading && user && <UserMenu />}
           <a
             href="#builder"
-            className="hidden rounded-[var(--l-radius-pill)] bg-[var(--l-accent)] px-6 py-2.5 text-[0.88rem] font-semibold text-white transition-all duration-200 hover:opacity-90 md:inline-block"
+            className="hidden rounded-[var(--l-radius-pill)] bg-[var(--l-accent)] px-6 py-2.5 text-[0.88rem] font-semibold text-white transition-all duration-200 hover:opacity-90 active:scale-[0.97] md:inline-block"
             style={{ fontFamily: "var(--l-display)" }}
           >
             {t.nav.getStarted}

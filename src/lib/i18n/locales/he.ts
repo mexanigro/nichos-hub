@@ -238,6 +238,16 @@ export const he: Translations = {
     errorSub: "אל דאגה — הצוות שלנו קיבל הודעה ויתקן את זה בקרוב.",
     contact: "צרו קשר בוואטסאפ",
   },
+  showcase: {
+    badge: "ראו בפעולה",
+    title: "אתרים אמיתיים לעסקים אמיתיים",
+    subtitle: "לכל נישה עיצוב משלה, מותאם להפוך מבקרים ללקוחות",
+    niches: {
+      barberia: "מספרה",
+      estetica: "קוסמטיקה",
+      cafeteria: "בית קפה",
+    },
+  },
   footer: {
     rights: "כל הזכויות שמורות",
     privacy: "מדיניות פרטיות",

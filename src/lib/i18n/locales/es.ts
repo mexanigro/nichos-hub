@@ -233,6 +233,16 @@ export const es: Translations = {
     errorSub: "No te preocupes — nuestro equipo fue notificado y lo resolverá pronto.",
     contact: "Contactanos por WhatsApp",
   },
+  showcase: {
+    badge: "MIRÁ EN ACCIÓN",
+    title: "Sitios reales para negocios reales",
+    subtitle: "Cada nicho tiene su propio diseño, optimizado para convertir visitantes en clientes",
+    niches: {
+      barberia: "Barbería",
+      estetica: "Estética",
+      cafeteria: "Cafetería",
+    },
+  },
   footer: {
     rights: "Todos los derechos reservados",
     privacy: "Política de privacidad",

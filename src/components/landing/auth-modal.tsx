@@ -233,7 +233,7 @@ export function AuthModal({ open, onClose, onSuccess, defaultTab = "login" }: Au
             <button
               onClick={handleGoogle}
               disabled={loading}
-              className="flex w-full items-center justify-center gap-3 rounded-xl border border-[var(--l-border)] bg-[var(--l-surface)] px-4 py-3 text-[0.88rem] font-medium text-[var(--l-text)] transition-all hover:border-[var(--l-border-subtle)] hover:shadow-sm disabled:opacity-50"
+              className="flex w-full items-center justify-center gap-3 rounded-xl border border-[var(--l-border)] bg-[var(--l-surface)] px-4 py-3 text-[0.88rem] font-medium text-[var(--l-text)] transition-all hover:border-[var(--l-border-subtle)] hover:shadow-sm active:scale-[0.98] disabled:opacity-50"
             >
               <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
@@ -309,7 +309,7 @@ export function AuthModal({ open, onClose, onSuccess, defaultTab = "login" }: Au
               <button
                 type="submit"
                 disabled={loading}
-                className="mt-1 rounded-xl bg-[var(--l-accent)] px-4 py-3 text-[0.88rem] font-semibold text-white transition-all hover:opacity-90 disabled:opacity-50"
+                className="mt-1 rounded-xl bg-[var(--l-accent)] px-4 py-3 text-[0.88rem] font-semibold text-white transition-all hover:opacity-90 active:scale-[0.97] disabled:opacity-50"
                 style={{ fontFamily: "var(--l-display)" }}
               >
                 {loading

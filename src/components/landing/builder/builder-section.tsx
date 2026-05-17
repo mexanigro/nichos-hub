@@ -145,7 +145,7 @@ export function BuilderSection() {
                 onClick={next}
                 disabled={step === 0 && (!data.niche || (data.niche === "otro" && !data.customNiche.trim()))}
                 style={{ fontFamily: "var(--l-display)" }}
-                className="rounded-[var(--l-radius-pill)] bg-[var(--l-accent)] px-7 py-2.5 text-[0.88rem] font-semibold text-white transition-all duration-200 hover:opacity-90 disabled:opacity-40"
+                className="rounded-[var(--l-radius-pill)] bg-[var(--l-accent)] px-7 py-2.5 text-[0.88rem] font-semibold text-white transition-all duration-200 hover:opacity-90 active:scale-[0.97] disabled:opacity-40"
               >
                 Next &rarr;
               </button>
@@ -154,7 +154,7 @@ export function BuilderSection() {
                 onClick={handleSubmit}
                 disabled={submitting || !data.businessName}
                 style={{ fontFamily: "var(--l-display)" }}
-                className="rounded-[var(--l-radius-pill)] bg-[var(--l-accent)] px-7 py-2.5 text-[0.88rem] font-semibold text-white transition-all duration-200 hover:opacity-90 disabled:opacity-40"
+                className="rounded-[var(--l-radius-pill)] bg-[var(--l-accent)] px-7 py-2.5 text-[0.88rem] font-semibold text-white transition-all duration-200 hover:opacity-90 active:scale-[0.97] disabled:opacity-40"
               >
                 {submitting ? t.builder.generating : t.builder.submit}
               </button>

@@ -17,10 +17,10 @@ export function ThemeToggle({ theme, toggle }: ThemeToggleProps) {
     >
       <motion.div
         key={theme}
-        initial={{ scale: 0.6, opacity: 0, rotate: -90 }}
+        initial={{ scale: 0.85, opacity: 0, rotate: -60 }}
         animate={{ scale: 1, opacity: 1, rotate: 0 }}
-        exit={{ scale: 0.6, opacity: 0, rotate: 90 }}
-        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+        exit={{ scale: 0.85, opacity: 0, rotate: 60 }}
+        transition={{ type: "spring", stiffness: 300, damping: 22 }}
       >
         {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
       </motion.div>

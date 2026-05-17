@@ -233,6 +233,16 @@ export const en: Translations = {
     errorSub: "Don't worry — our team has been notified and will fix this shortly.",
     contact: "Contact us on WhatsApp",
   },
+  showcase: {
+    badge: "SEE IT IN ACTION",
+    title: "Real sites for real businesses",
+    subtitle: "Each niche has its own design, optimized to turn visitors into customers",
+    niches: {
+      barberia: "Barbershop",
+      estetica: "Beauty salon",
+      cafeteria: "Café",
+    },
+  },
   footer: {
     rights: "All rights reserved",
     privacy: "Privacy policy",

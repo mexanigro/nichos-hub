@@ -128,6 +128,16 @@ export interface Translations {
     errorSub: string;
     contact: string;
   };
+  showcase: {
+    badge?: string;
+    title: string;
+    subtitle: string;
+    niches: {
+      barberia: string;
+      estetica: string;
+      cafeteria: string;
+    };
+  };
   footer: {
     rights: string;
     privacy: string;

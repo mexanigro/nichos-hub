@@ -6,6 +6,7 @@ import { useTheme } from "@/hooks/useTheme";
 import { Header } from "./header";
 import { Hero } from "./hero";
 import { SocialProof } from "./social-proof";
+import { TemplateShowcase } from "./template-showcase";
 import { HowItWorks } from "./how-it-works";
 import { Features } from "./features";
 import { Pricing } from "./pricing";
@@ -35,6 +36,7 @@ export function LandingPage() {
         <main id="main-content">
           <Hero />
           <SocialProof />
+          <TemplateShowcase />
           <AnimatedSection>
             <Features />
           </AnimatedSection>
