@@ -223,6 +223,16 @@ export const es: Translations = {
     noData: "No encontramos tus datos",
     startOver: "Empezar de nuevo",
   },
+  status: {
+    building: "Construyendo tu web...",
+    buildingSub: "Esto suele tardar 2-3 minutos. No cierres esta página.",
+    ready: "¡Tu web está lista!",
+    readySub: "Tu sitio está online en",
+    viewSite: "Ver mi web",
+    error: "Algo salió mal",
+    errorSub: "No te preocupes — nuestro equipo fue notificado y lo resolverá pronto.",
+    contact: "Contactanos por WhatsApp",
+  },
   footer: {
     rights: "Todos los derechos reservados",
     privacy: "Política de privacidad",

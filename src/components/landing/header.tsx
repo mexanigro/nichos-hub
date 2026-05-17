@@ -3,11 +3,17 @@
 import { useState, useEffect } from "react";
 import { useT } from "@/lib/i18n";
 import { LanguageSwitcher } from "./language-switcher";
+import { ThemeToggle } from "./theme-toggle";
 import { useUserAuth } from "@/lib/user-auth-context";
 import { UserMenu } from "./user-menu";
 import { AuthModal } from "./auth-modal";
 
-export function Header() {
+interface HeaderProps {
+  theme: "dark" | "light";
+  toggleTheme: () => void;
+}
+
+export function Header({ theme, toggleTheme }: HeaderProps) {
   const { t } = useT();
   const { user, loading: authLoading } = useUserAuth();
   const [scrolled, setScrolled] = useState(false);
@@ -39,7 +45,7 @@ export function Header() {
     <header
       className={`fixed inset-x-0 top-0 z-40 transition-all duration-300 ${
         scrolled
-          ? "border-b border-[var(--l-border-subtle)] bg-white/92 backdrop-blur-xl"
+          ? "border-b border-[var(--l-glass-border)] bg-[var(--l-glass)] backdrop-blur-xl"
           : "bg-transparent"
       }`}
     >
@@ -62,6 +68,7 @@ export function Header() {
         </nav>
 
         <div className="flex items-center justify-end gap-3">
+          <ThemeToggle theme={theme} toggle={toggleTheme} />
           <LanguageSwitcher />
           {!authLoading && !user && (
             <button
@@ -97,7 +104,7 @@ export function Header() {
       </div>
 
       {menuOpen && (
-        <div className="border-b border-[var(--l-border-subtle)] bg-white/95 px-6 pb-5 pt-1 backdrop-blur-xl md:hidden">
+        <div className="border-b border-[var(--l-glass-border)] bg-[var(--l-glass)] px-6 pb-5 pt-1 backdrop-blur-xl md:hidden">
           {links.map((link) => (
             <a
               key={link.href}

@@ -47,7 +47,7 @@ const INITIAL_DATA: BuilderData = {
 const STEPS = ["niche", "photos", "details", "branding"] as const;
 
 export function BuilderSection() {
-  const { t } = useT();
+  const { t, locale } = useT();
   const [step, setStep] = useState(0);
   const [data, setData] = useState<BuilderData>(INITIAL_DATA);
   const [submitting, setSubmitting] = useState(false);
@@ -69,7 +69,7 @@ export function BuilderSection() {
     setSubmitting(true);
     setError("");
     try {
-      await saveBuilderDraft(data as unknown as Record<string, unknown>);
+      await saveBuilderDraft({ ...(data as unknown as Record<string, unknown>), locale });
       window.location.href = "/onboarding/preview";
     } catch {
       setError("Error al guardar. Intenta de nuevo.");
@@ -79,8 +79,13 @@ export function BuilderSection() {
   }
 
   return (
-    <section className="l-section-lg" id="builder">
-      <div className="mx-auto max-w-[640px]">
+    <section className="l-section-lg relative overflow-hidden" id="builder">
+      {/* Accent glow background */}
+      <div
+        className="pointer-events-none absolute left-1/2 top-0 h-[500px] w-[600px] -translate-x-1/2 rounded-full opacity-40"
+        style={{ background: "radial-gradient(circle, var(--l-accent-glow) 0%, transparent 70%)" }}
+      />
+      <div className="relative mx-auto max-w-[640px]">
         <div className="mb-10 text-center">
           <span
             style={{ fontFamily: "var(--l-display)" }}
@@ -121,7 +126,7 @@ export function BuilderSection() {
           </div>
 
           {error && (
-            <p className="mt-4 rounded-[var(--l-radius-sm)] bg-red-50 px-4 py-2.5 text-[0.85rem] text-red-600">
+            <p className="mt-4 rounded-[var(--l-radius-sm)] bg-red-500/10 px-4 py-2.5 text-[0.85rem] text-red-400">
               {error}
             </p>
           )}

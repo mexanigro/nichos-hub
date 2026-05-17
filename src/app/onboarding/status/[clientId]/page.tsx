@@ -1,9 +1,11 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useMemo } from "react";
 import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { Loader2, CheckCircle2, ExternalLink, AlertCircle } from "lucide-react";
+import { getTranslations, detectLocale } from "@/lib/i18n";
+import { RTL_LOCALES } from "@/lib/i18n";
 
 const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "9720557719141";
 const POLL_INTERVAL = 5000;
@@ -14,6 +16,10 @@ export default function OnboardingStatusPage() {
   const [domain, setDomain] = useState("");
   const [url, setUrl] = useState("");
   const abortRef = useRef<AbortController | null>(null);
+
+  const locale = useMemo(() => detectLocale(), []);
+  const t = useMemo(() => getTranslations(locale), [locale]);
+  const isRTL = RTL_LOCALES.includes(locale);
 
   useEffect(() => {
     if (!clientId) return;
@@ -48,7 +54,7 @@ export default function OnboardingStatusPage() {
   }, [clientId]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-bg px-5">
+    <div className="flex min-h-screen items-center justify-center bg-bg px-5" dir={isRTL ? "rtl" : "ltr"}>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -57,9 +63,9 @@ export default function OnboardingStatusPage() {
         {status === "pending" || status === "building" ? (
           <>
             <Loader2 size={40} className="mx-auto mb-4 animate-spin text-accent" />
-            <h1 className="text-lg font-bold text-text">Building your website...</h1>
+            <h1 className="text-lg font-bold text-text">{t.status.building}</h1>
             <p className="mt-2 text-sm text-text-secondary">
-              This usually takes 2-3 minutes. Don&apos;t close this page.
+              {t.status.buildingSub}
             </p>
             <div className="mt-6 h-1.5 overflow-hidden rounded-full bg-border">
               <motion.div
@@ -73,9 +79,9 @@ export default function OnboardingStatusPage() {
         ) : status === "ready" ? (
           <>
             <CheckCircle2 size={40} className="mx-auto mb-4 text-success" />
-            <h1 className="text-lg font-bold text-text">Your website is ready!</h1>
+            <h1 className="text-lg font-bold text-text">{t.status.ready}</h1>
             <p className="mt-2 text-sm text-text-secondary">
-              Your site is live at{" "}
+              {t.status.readySub}{" "}
               <span className="font-medium text-text">{domain}</span>
             </p>
             <a
@@ -84,16 +90,16 @@ export default function OnboardingStatusPage() {
               rel="noopener noreferrer"
               className="mt-6 inline-flex items-center gap-2 rounded-md bg-gradient-to-r from-accent-from to-accent-to px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
             >
-              View my website
+              {t.status.viewSite}
               <ExternalLink size={14} />
             </a>
           </>
         ) : (
           <>
             <AlertCircle size={40} className="mx-auto mb-4 text-danger" />
-            <h1 className="text-lg font-bold text-text">Something went wrong</h1>
+            <h1 className="text-lg font-bold text-text">{t.status.error}</h1>
             <p className="mt-2 text-sm text-text-secondary">
-              Don&apos;t worry — our team has been notified and will fix this shortly.
+              {t.status.errorSub}
             </p>
             <a
               href={`https://wa.me/${WHATSAPP_NUMBER}`}
@@ -101,7 +107,7 @@ export default function OnboardingStatusPage() {
               rel="noopener noreferrer"
               className="mt-6 inline-flex items-center gap-2 rounded-md border border-border px-5 py-2.5 text-sm font-medium text-text transition-colors hover:border-accent hover:text-accent"
             >
-              Contact us on WhatsApp
+              {t.status.contact}
             </a>
           </>
         )}

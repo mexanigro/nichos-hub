@@ -107,7 +107,7 @@ export interface Translations {
     submit: string;
     generating: string;
   };
-  preview?: {
+  preview: {
     title: string;
     subtitle: string;
     cta: string;
@@ -117,6 +117,16 @@ export interface Translations {
     retry: string;
     noData: string;
     startOver: string;
+  };
+  status: {
+    building: string;
+    buildingSub: string;
+    ready: string;
+    readySub: string;
+    viewSite: string;
+    error: string;
+    errorSub: string;
+    contact: string;
   };
   footer: {
     rights: string;

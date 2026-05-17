@@ -6,12 +6,12 @@ export function HowItWorks() {
   const { t } = useT();
 
   return (
-    <section className="l-section bg-[var(--l-bg-warm)]" id="how-it-works">
+    <section className="l-section bg-[var(--l-surface)]" id="how-it-works">
       <div className="mx-auto max-w-[800px]">
         <div className="mb-14 text-center">
           <span
             style={{ fontFamily: "var(--l-display)" }}
-            className="inline-block rounded-[var(--l-radius-pill)] bg-[var(--l-accent-muted)] px-3.5 py-1.5 text-[0.8rem] font-semibold uppercase tracking-[0.04em] text-[var(--l-accent)]"
+            className="inline-block rounded-[var(--l-radius-pill)] border border-[var(--l-border)] bg-[var(--l-card)] px-3.5 py-1.5 text-[0.8rem] font-semibold uppercase tracking-[0.04em] text-[var(--l-accent)]"
           >
             {t.howItWorks.badge || "HOW IT WORKS"}
           </span>

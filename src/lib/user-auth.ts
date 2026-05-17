@@ -31,7 +31,7 @@ const googleProvider = new GoogleAuthProvider();
 
 export async function signInWithGoogle(): Promise<User> {
   const auth = getClientAuth();
-  if (!auth) throw new Error("Firebase not initialized");
+  if (!auth) throw new Error("El servicio de autenticación no está disponible. Intenta recargar la página.");
   const result = await signInWithPopup(auth, googleProvider);
   await upsertLead(result.user, "google");
   return result.user;
@@ -39,7 +39,7 @@ export async function signInWithGoogle(): Promise<User> {
 
 export async function signInWithEmail(email: string, password: string): Promise<User> {
   const auth = getClientAuth();
-  if (!auth) throw new Error("Firebase not initialized");
+  if (!auth) throw new Error("El servicio de autenticación no está disponible. Intenta recargar la página.");
   const result = await signInWithEmailAndPassword(auth, email, password);
   await upsertLead(result.user, "email");
   return result.user;
@@ -51,7 +51,7 @@ export async function registerWithEmail(
   displayName: string
 ): Promise<User> {
   const auth = getClientAuth();
-  if (!auth) throw new Error("Firebase not initialized");
+  if (!auth) throw new Error("El servicio de autenticación no está disponible. Intenta recargar la página.");
   const result = await createUserWithEmailAndPassword(auth, email, password);
   await updateProfile(result.user, { displayName });
   await upsertLead(result.user, "email");

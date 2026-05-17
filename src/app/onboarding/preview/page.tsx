@@ -1,19 +1,32 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useMemo } from "react";
 import { useUserAuth } from "@/lib/user-auth-context";
 import { saveBuilderDataToLead } from "@/lib/user-auth";
 import { AuthModal } from "@/components/landing/auth-modal";
 import { loadBuilderDraft, clearBuilderDraft, type BuilderDraft } from "@/lib/builder-storage";
+import { getTranslations, detectLocale } from "@/lib/i18n";
+import { RTL_LOCALES } from "@/lib/i18n";
+import type { Locale } from "@/lib/i18n";
 
-const NICHE_COLORS: Record<string, { from: string; to: string }> = {
-  barberia: { from: "#1a1a2e", to: "#16213e" },
-  estetica: { from: "#2d1b4e", to: "#462255" },
-  tattoo: { from: "#1a1a1a", to: "#2d2d2d" },
-  nails: { from: "#3d1f3d", to: "#5c2d5c" },
-  cafeteria: { from: "#2d3a25", to: "#1a2e1a" },
-  remodelaciones: { from: "#1e293b", to: "#0f172a" },
-  otro: { from: "#1e3a5f", to: "#2c5364" },
+const NICHE_COLORS: Record<string, { primary: string; accent: string; bg: string }> = {
+  barberia: { primary: "#c8a97e", accent: "#e8d5b7", bg: "#1a1a2e" },
+  estetica: { primary: "#c77dba", accent: "#e8b4e0", bg: "#2d1b4e" },
+  tattoo: { primary: "#e74c3c", accent: "#f5a5a0", bg: "#1a1a1a" },
+  nails: { primary: "#e091c0", accent: "#f0c4df", bg: "#3d1f3d" },
+  cafeteria: { primary: "#8fbc5a", accent: "#c4e09b", bg: "#2d3a25" },
+  remodelaciones: { primary: "#5a9fd4", accent: "#a3cde8", bg: "#1e293b" },
+  otro: { primary: "#5bbfad", accent: "#a0ddd2", bg: "#1e3a5f" },
+};
+
+const NICHE_SERVICES: Record<string, string[]> = {
+  barberia: ["Corte clásico", "Barba", "Fade", "Hot towel"],
+  estetica: ["Facial", "Masaje", "Depilación", "Uñas"],
+  tattoo: ["Tattoo", "Piercing", "Cover-up", "Diseño"],
+  nails: ["Manicure", "Pedicure", "Gel", "Nail art"],
+  cafeteria: ["Espresso", "Latte", "Pastelería", "Brunch"],
+  remodelaciones: ["Cocina", "Baño", "Pisos", "Pintura"],
+  otro: ["Servicio 1", "Servicio 2", "Servicio 3", "Servicio 4"],
 };
 
 export default function PreviewPage() {
@@ -24,6 +37,14 @@ export default function PreviewPage() {
   const [error, setError] = useState("");
   const [authOpen, setAuthOpen] = useState(false);
   const submitGuard = useRef(false);
+
+  const locale = useMemo<Locale>(() => {
+    if (draft?.locale) return draft.locale as Locale;
+    return detectLocale();
+  }, [draft]);
+
+  const t = useMemo(() => getTranslations(locale), [locale]);
+  const isRTL = RTL_LOCALES.includes(locale);
 
   useEffect(() => {
     loadBuilderDraft().then((d) => {
@@ -93,14 +114,14 @@ export default function PreviewPage() {
       const res = await fetch("/api/onboarding", { method: "POST", body: formData });
       if (!res.ok) {
         const err = await res.json().catch(() => ({ error: "Submission failed" }));
-        setError(err.error || "Algo salió mal");
+        setError(err.error || t.preview.error);
         return;
       }
       const { clientId } = await res.json();
       await clearBuilderDraft();
       window.location.href = `/onboarding/status/${clientId}`;
     } catch {
-      setError("Error de red. Intenta de nuevo.");
+      setError(t.preview.error);
     } finally {
       setSubmitting(false);
     }
@@ -116,13 +137,13 @@ export default function PreviewPage() {
 
   if (!draft) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-[#fafafa] px-6">
-        <p className="text-lg font-medium text-gray-800">No encontramos tus datos</p>
+      <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-[#fafafa] px-6" dir={isRTL ? "rtl" : "ltr"}>
+        <p className="text-lg font-medium text-gray-800">{t.preview.noData}</p>
         <a
           href="/"
           className="rounded-full bg-gray-900 px-6 py-2.5 text-sm font-medium text-white hover:bg-gray-800"
         >
-          Empezar de nuevo
+          {t.preview.startOver}
         </a>
       </div>
     );
@@ -130,7 +151,7 @@ export default function PreviewPage() {
 
   if (user || submitting) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-[#fafafa] px-6">
+      <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-[#fafafa] px-6" dir={isRTL ? "rtl" : "ltr"}>
         {error ? (
           <>
             <p className="text-lg font-medium text-red-600">{error}</p>
@@ -138,69 +159,114 @@ export default function PreviewPage() {
               onClick={submitProject}
               className="rounded-full bg-gray-900 px-6 py-2.5 text-sm font-medium text-white hover:bg-gray-800"
             >
-              Reintentar
+              {t.preview.retry}
             </button>
           </>
         ) : (
           <>
             <div className="h-8 w-8 animate-spin rounded-full border-2 border-gray-300 border-t-gray-800" />
-            <p className="text-sm text-gray-600">Creando tu proyecto...</p>
+            <p className="text-sm text-gray-600">{t.preview.loading}</p>
           </>
         )}
       </div>
     );
   }
 
-  const colors = NICHE_COLORS[draft.niche] || NICHE_COLORS.otro;
+  const nicheKey = draft.niche || "otro";
+  const colors = NICHE_COLORS[nicheKey] || NICHE_COLORS.otro;
+  const services = NICHE_SERVICES[nicheKey] || NICHE_SERVICES.otro;
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-[#fafafa] px-6 py-12">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-[#fafafa] px-6 py-12" dir={isRTL ? "rtl" : "ltr"}>
       <span className="mb-10 text-sm font-semibold tracking-wide text-gray-400">
         arzac.studio
       </span>
 
-      {/* Blurred mockup */}
+      {/* Niche-specific hero mockup */}
       <div className="relative w-full max-w-[420px] overflow-hidden rounded-2xl shadow-2xl">
         <div
-          className="relative aspect-[3/4] w-full p-6"
-          style={{ background: `linear-gradient(135deg, ${colors.from}, ${colors.to})` }}
+          className="relative w-full p-0"
+          style={{ background: colors.bg }}
         >
-          {/* Glass overlay */}
-          <div className="absolute inset-0 backdrop-blur-[2px]" />
-
-          {/* Skeleton content */}
-          <div className="relative z-10 flex h-full flex-col gap-5 blur-[10px]">
-            {/* Nav skeleton */}
-            <div className="flex items-center justify-between">
-              <div className="h-4 w-20 rounded bg-white/20" />
-              <div className="flex gap-3">
-                <div className="h-3 w-12 rounded bg-white/15" />
-                <div className="h-3 w-12 rounded bg-white/15" />
-                <div className="h-3 w-12 rounded bg-white/15" />
-              </div>
-            </div>
-
-            {/* Hero skeleton */}
-            <div className="mt-8 flex flex-col items-center gap-4">
-              <div className="h-8 w-3/4 rounded bg-white/25" />
-              <div className="h-4 w-2/3 rounded bg-white/15" />
-              <div className="mt-2 h-10 w-32 rounded-full bg-white/30" />
-            </div>
-
-            {/* Card grid skeleton */}
-            <div className="mt-auto grid grid-cols-2 gap-3">
-              <div className="aspect-square rounded-lg bg-white/10" />
-              <div className="aspect-square rounded-lg bg-white/10" />
-              <div className="aspect-square rounded-lg bg-white/10" />
-              <div className="aspect-square rounded-lg bg-white/10" />
+          {/* Mini-template: Nav */}
+          <div className="flex items-center justify-between px-5 py-3 blur-[4px]">
+            <span
+              className="text-[0.7rem] font-bold tracking-wide"
+              style={{ color: colors.primary }}
+            >
+              {draft.businessName.toUpperCase().slice(0, 16)}
+            </span>
+            <div className="flex gap-3">
+              <div className="h-2 w-8 rounded" style={{ background: `${colors.accent}30` }} />
+              <div className="h-2 w-8 rounded" style={{ background: `${colors.accent}30` }} />
+              <div className="h-2 w-8 rounded" style={{ background: `${colors.accent}30` }} />
             </div>
           </div>
 
-          {/* Business name overlay */}
+          {/* Mini-template: Hero */}
+          <div className="flex flex-col items-center px-6 pb-4 pt-8 blur-[4px]">
+            <div
+              className="mb-3 h-1 w-10 rounded-full"
+              style={{ background: colors.primary }}
+            />
+            <div
+              className="mb-2 h-6 w-3/4 rounded"
+              style={{ background: `${colors.accent}35` }}
+            />
+            <div
+              className="mb-4 h-3 w-2/3 rounded"
+              style={{ background: `${colors.accent}20` }}
+            />
+            <div
+              className="h-9 w-28 rounded-full"
+              style={{ background: colors.primary }}
+            />
+          </div>
+
+          {/* Mini-template: Service cards */}
+          <div className="grid grid-cols-2 gap-2.5 px-5 pb-6 pt-2 blur-[4px]">
+            {services.map((svc, i) => (
+              <div
+                key={i}
+                className="flex flex-col items-center rounded-lg p-3"
+                style={{ background: `${colors.accent}10`, border: `1px solid ${colors.accent}15` }}
+              >
+                <div
+                  className="mb-2 h-5 w-5 rounded-md"
+                  style={{ background: `${colors.primary}40` }}
+                />
+                <span
+                  className="text-[0.6rem] font-medium"
+                  style={{ color: `${colors.accent}90` }}
+                >
+                  {svc}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          {/* Mini-template: Footer */}
+          <div className="flex items-center justify-center gap-3 px-5 pb-4 blur-[4px]">
+            <div className="h-2 w-14 rounded" style={{ background: `${colors.accent}15` }} />
+            <div className="h-2 w-14 rounded" style={{ background: `${colors.accent}15` }} />
+          </div>
+
+          {/* Business name overlay — sharp, unblurred */}
           <div className="absolute inset-0 z-20 flex items-center justify-center">
-            <span className="text-2xl font-bold text-white/80 drop-shadow-lg">
-              {draft.businessName}
-            </span>
+            <div className="text-center">
+              <span
+                className="block text-2xl font-bold drop-shadow-lg"
+                style={{ color: colors.accent }}
+              >
+                {draft.businessName}
+              </span>
+              <span
+                className="mt-1 block text-xs font-medium tracking-widest uppercase"
+                style={{ color: `${colors.accent}90` }}
+              >
+                {nicheKey !== "otro" ? nicheKey : ""}
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -208,26 +274,26 @@ export default function PreviewPage() {
       {/* CTA section */}
       <div className="mt-10 text-center">
         <h1 className="text-xl font-bold text-gray-900">
-          Tu web para {draft.businessName} está lista
+          {t.preview.title}
         </h1>
         <p className="mt-2 text-sm text-gray-500">
-          Iniciá sesión para verla completa
+          {t.preview.subtitle}
         </p>
 
         <button
           onClick={() => setAuthOpen(true)}
           className="mt-6 inline-flex items-center gap-3 rounded-full bg-gray-900 px-8 py-3.5 text-sm font-semibold text-white shadow-lg transition-all hover:bg-gray-800 hover:shadow-xl active:scale-[0.98]"
         >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
             <polyline points="10 17 15 12 10 7" />
             <line x1="15" y1="12" x2="3" y2="12" />
           </svg>
-          Iniciar sesión
+          {t.preview.cta}
         </button>
 
         <p className="mt-3 text-xs text-gray-400">
-          Con Google o email — solo toma unos segundos
+          {t.preview.ctaSub}
         </p>
       </div>
 

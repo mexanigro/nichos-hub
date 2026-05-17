@@ -14,12 +14,12 @@ export function Pricing() {
   const { t } = useT();
 
   return (
-    <section className="l-section bg-[var(--l-bg-warm)]" id="pricing">
+    <section className="l-section bg-[var(--l-surface)]" id="pricing">
       <div className="mx-auto max-w-[880px]">
         <div className="mb-14 text-center">
           <span
             style={{ fontFamily: "var(--l-display)" }}
-            className="inline-block rounded-[var(--l-radius-pill)] bg-[var(--l-accent-muted)] px-3.5 py-1.5 text-[0.8rem] font-semibold uppercase tracking-[0.04em] text-[var(--l-accent)]"
+            className="inline-block rounded-[var(--l-radius-pill)] border border-[var(--l-border)] bg-[var(--l-card)] px-3.5 py-1.5 text-[0.8rem] font-semibold uppercase tracking-[0.04em] text-[var(--l-accent)]"
           >
             {t.pricing.badge || "PRICING"}
           </span>
@@ -45,7 +45,7 @@ export function Pricing() {
                     ? "border-[var(--l-accent)]"
                     : "border-[var(--l-border-subtle)]"
                 }`}
-                style={isPopular ? { borderWidth: "2px", boxShadow: "0 0 30px rgba(74,154,138,0.06)" } : undefined}
+                style={isPopular ? { borderWidth: "2px", boxShadow: "0 0 30px var(--l-accent-glow)" } : undefined}
               >
                 {isPopular && (
                   <span

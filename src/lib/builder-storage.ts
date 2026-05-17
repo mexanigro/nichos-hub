@@ -23,6 +23,7 @@ export interface BuilderDraft {
   photos: SerializedFile[];
   staffPhotos: SerializedFile[];
   logo: SerializedFile | null;
+  locale: string;
 }
 
 function openDB(): Promise<IDBDatabase> {
@@ -83,6 +84,7 @@ export async function saveBuilderDraft(data: Record<string, unknown>): Promise<v
     photos,
     staffPhotos,
     logo,
+    locale: (data.locale as string) || "en",
   };
 
   const db = await openDB();

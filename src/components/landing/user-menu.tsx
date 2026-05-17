@@ -100,20 +100,20 @@ export function UserMenu() {
           ref={menuRef}
           role="menu"
           aria-label="Opciones de cuenta"
-          className="absolute right-0 top-full z-50 mt-2 w-56 rounded-xl border border-gray-200 bg-white p-2 shadow-xl"
+          className="absolute right-0 top-full z-50 mt-2 w-56 rounded-xl border border-[var(--l-border)] bg-[var(--l-card)] p-2 shadow-xl"
         >
-          <div className="border-b border-gray-100 px-3 pb-2.5 pt-1.5">
-            <p className="truncate text-[0.85rem] font-medium text-gray-900">
+          <div className="border-b border-[var(--l-border-subtle)] px-3 pb-2.5 pt-1.5">
+            <p className="truncate text-[0.85rem] font-medium text-[var(--l-text)]">
               {user.displayName || "Usuario"}
             </p>
-            <p className="truncate text-[0.78rem] text-gray-500">{user.email}</p>
+            <p className="truncate text-[0.78rem] text-[var(--l-text-3)]">{user.email}</p>
           </div>
 
           <a
             href="/mi-cuenta"
             role="menuitem"
             tabIndex={0}
-            className="mt-1 flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-[0.85rem] text-gray-700 transition-colors hover:bg-gray-50 focus:bg-gray-50 focus:outline-none"
+            className="mt-1 flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-[0.85rem] text-[var(--l-text-2)] transition-colors hover:bg-[var(--l-surface)] focus:bg-[var(--l-surface)] focus:outline-none"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
@@ -126,7 +126,7 @@ export function UserMenu() {
             role="menuitem"
             tabIndex={0}
             onClick={async () => { await signOut(); setOpen(false); }}
-            className="flex w-full items-center gap-2.5 rounded-lg px-3 py-2.5 text-[0.85rem] text-gray-700 transition-colors hover:bg-gray-50 focus:bg-gray-50 focus:outline-none"
+            className="flex w-full items-center gap-2.5 rounded-lg px-3 py-2.5 text-[0.85rem] text-[var(--l-text-2)] transition-colors hover:bg-[var(--l-surface)] focus:bg-[var(--l-surface)] focus:outline-none"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />

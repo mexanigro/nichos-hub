@@ -40,33 +40,42 @@
   --shadow-glow-lg: 0 4px 60px rgb(59 130 246 / 0.12);
 }
 
-/* ─── Landing page design system (light, pago-aligned) ─── */
+/* ─── Landing page design system (dark-first, Linear-inspired) ─── */
 
 body:has(.landing) {
+  background: #0a0a0f;
+}
+
+body:has(.landing[data-theme="light"]) {
   background: #f7f7f8;
 }
 
 .landing {
-  --l-teal: #4a9a8a;
-  --l-teal-light: #e6f3f0;
-  --l-teal-muted: #4a9a8a14;
-  --l-teal-glow: #4a9a8a10;
+  /* ── Dark theme (default) ── */
+  --l-teal: #5bbfad;
+  --l-teal-light: #1a3a34;
+  --l-teal-muted: rgba(91,191,173,0.12);
+  --l-teal-glow: rgba(91,191,173,0.08);
 
-  --l-bg: #f7f7f8;
-  --l-bg-warm: #f9fafb;
-  --l-card: #ffffff;
-  --l-surface: #f0f1f3;
+  --l-bg: #0a0a0f;
+  --l-bg-warm: #0e0e14;
+  --l-card: #121218;
+  --l-surface: #18181f;
 
-  --l-border: #e0e2e6;
-  --l-border-subtle: #eaecef;
+  --l-border: #1f1f2a;
+  --l-border-subtle: #16161e;
 
-  --l-text: #1a1d23;
-  --l-text-2: #5a5f6b;
-  --l-text-3: #6b7280;
+  --l-text: #ededef;
+  --l-text-2: #9a9aab;
+  --l-text-3: #6a6a7a;
 
   --l-accent: var(--l-teal);
   --l-accent-light: var(--l-teal-light);
   --l-accent-muted: var(--l-teal-muted);
+  --l-accent-glow: rgba(91,191,173,0.15);
+
+  --l-glass: rgba(10,10,15,0.75);
+  --l-glass-border: rgba(255,255,255,0.06);
 
   --l-radius: 14px;
   --l-radius-sm: 10px;
@@ -85,9 +94,9 @@ body:has(.landing) {
   --l-max-text: 680px;
   --l-edge-padding: clamp(24px, 5vw, 48px);
 
-  --l-shadow-card: 0 1px 3px rgba(0,0,0,0.04);
-  --l-shadow-card-hover: 0 4px 12px rgba(0,0,0,0.06);
-  --l-shadow-elevated: 0 8px 30px rgba(0,0,0,0.08);
+  --l-shadow-card: 0 1px 3px rgba(0,0,0,0.2);
+  --l-shadow-card-hover: 0 4px 16px rgba(0,0,0,0.3);
+  --l-shadow-elevated: 0 8px 30px rgba(0,0,0,0.4);
 
   --l-display: var(--font-display, "Outfit"), system-ui, sans-serif;
   --l-body: var(--font-body, "Source Sans 3"), system-ui, sans-serif;
@@ -98,6 +107,51 @@ body:has(.landing) {
   -webkit-font-smoothing: antialiased;
   line-height: 1.6;
   min-height: 100dvh;
+}
+
+/* ── Light theme override ── */
+.landing[data-theme="light"] {
+  --l-teal: #4a9a8a;
+  --l-teal-light: #e6f3f0;
+  --l-teal-muted: rgba(74,154,138,0.08);
+  --l-teal-glow: rgba(74,154,138,0.06);
+
+  --l-bg: #f7f7f8;
+  --l-bg-warm: #f9fafb;
+  --l-card: #ffffff;
+  --l-surface: #f0f1f3;
+
+  --l-border: #e0e2e6;
+  --l-border-subtle: #eaecef;
+
+  --l-text: #1a1d23;
+  --l-text-2: #5a5f6b;
+  --l-text-3: #6b7280;
+
+  --l-accent-glow: transparent;
+  --l-glass: rgba(255,255,255,0.85);
+  --l-glass-border: rgba(0,0,0,0.06);
+
+  --l-shadow-card: 0 1px 3px rgba(0,0,0,0.04);
+  --l-shadow-card-hover: 0 4px 12px rgba(0,0,0,0.06);
+  --l-shadow-elevated: 0 8px 30px rgba(0,0,0,0.08);
+}
+
+/* ── Landing keyframes ── */
+@keyframes glow-float {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+  33% { transform: translate(30px, -20px) scale(1.1); opacity: 0.7; }
+  66% { transform: translate(-20px, 15px) scale(0.95); opacity: 0.4; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px var(--l-accent-glow); }
+  50% { box-shadow: 0 0 40px var(--l-accent-glow), 0 0 60px var(--l-accent-glow); }
 }
 
 .l-container {

@@ -185,7 +185,7 @@ export function AuthModal({ open, onClose, onSuccess, defaultTab = "login" }: Au
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
             transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-full max-w-[400px] rounded-2xl border border-[var(--l-border)] bg-white p-7 shadow-2xl outline-none"
+            className="relative w-full max-w-[400px] rounded-2xl border border-[var(--l-border)] bg-[var(--l-card)] p-7 shadow-2xl outline-none"
           >
             <h2 id={titleId} className="sr-only">
               {tab === "login" ? "Iniciar sesión" : "Crear cuenta"}
@@ -194,7 +194,7 @@ export function AuthModal({ open, onClose, onSuccess, defaultTab = "login" }: Au
             <button
               onClick={handleClose}
               aria-label="Cerrar"
-              className="absolute right-4 top-4 p-1 text-gray-400 transition-colors hover:text-gray-600"
+              className="absolute right-4 top-4 p-1 text-[var(--l-text-3)] transition-colors hover:text-[var(--l-text-2)]"
             >
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
                 <path d="M4 4l10 10M14 4L4 14" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
@@ -202,15 +202,15 @@ export function AuthModal({ open, onClose, onSuccess, defaultTab = "login" }: Au
             </button>
 
             {/* Tabs */}
-            <div className="mb-6 flex gap-1 rounded-xl bg-gray-100 p-1" role="tablist">
+            <div className="mb-6 flex gap-1 rounded-xl bg-[var(--l-surface)] p-1" role="tablist">
               <button
                 role="tab"
                 aria-selected={tab === "login"}
                 onClick={() => { setTab("login"); setError(""); }}
                 className={`flex-1 rounded-lg py-2.5 text-[0.85rem] font-semibold transition-all ${
                   tab === "login"
-                    ? "bg-white text-gray-900 shadow-sm"
-                    : "text-gray-500 hover:text-gray-700"
+                    ? "bg-[var(--l-card)] text-[var(--l-text)] shadow-sm"
+                    : "text-[var(--l-text-3)] hover:text-[var(--l-text-2)]"
                 }`}
               >
                 Iniciar sesión
@@ -221,8 +221,8 @@ export function AuthModal({ open, onClose, onSuccess, defaultTab = "login" }: Au
                 onClick={() => { setTab("register"); setError(""); }}
                 className={`flex-1 rounded-lg py-2.5 text-[0.85rem] font-semibold transition-all ${
                   tab === "register"
-                    ? "bg-white text-gray-900 shadow-sm"
-                    : "text-gray-500 hover:text-gray-700"
+                    ? "bg-[var(--l-card)] text-[var(--l-text)] shadow-sm"
+                    : "text-[var(--l-text-3)] hover:text-[var(--l-text-2)]"
                 }`}
               >
                 Registrarse
@@ -233,7 +233,7 @@ export function AuthModal({ open, onClose, onSuccess, defaultTab = "login" }: Au
             <button
               onClick={handleGoogle}
               disabled={loading}
-              className="flex w-full items-center justify-center gap-3 rounded-xl border border-gray-200 bg-white px-4 py-3 text-[0.88rem] font-medium text-gray-700 transition-all hover:bg-gray-50 hover:shadow-sm disabled:opacity-50"
+              className="flex w-full items-center justify-center gap-3 rounded-xl border border-[var(--l-border)] bg-[var(--l-surface)] px-4 py-3 text-[0.88rem] font-medium text-[var(--l-text)] transition-all hover:border-[var(--l-border-subtle)] hover:shadow-sm disabled:opacity-50"
             >
               <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
@@ -245,16 +245,16 @@ export function AuthModal({ open, onClose, onSuccess, defaultTab = "login" }: Au
             </button>
 
             <div className="my-5 flex items-center gap-3" aria-hidden="true">
-              <div className="h-px flex-1 bg-gray-200" />
-              <span className="text-xs text-gray-400">o con email</span>
-              <div className="h-px flex-1 bg-gray-200" />
+              <div className="h-px flex-1 bg-[var(--l-border)]" />
+              <span className="text-xs text-[var(--l-text-3)]">o con email</span>
+              <div className="h-px flex-1 bg-[var(--l-border)]" />
             </div>
 
             {/* Email form */}
             <form onSubmit={handleEmailSubmit} className="flex flex-col gap-3">
               {tab === "register" && (
                 <div className="flex flex-col gap-1">
-                  <label htmlFor={nameId} className="text-[0.78rem] font-medium text-gray-600">
+                  <label htmlFor={nameId} className="text-[0.78rem] font-medium text-[var(--l-text-2)]">
                     Nombre
                   </label>
                   <input
@@ -263,13 +263,13 @@ export function AuthModal({ open, onClose, onSuccess, defaultTab = "login" }: Au
                     autoComplete="name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-[0.88rem] text-gray-900 outline-none transition-all placeholder:text-gray-400 focus:border-[var(--l-accent)] focus:ring-2 focus:ring-[var(--l-accent)]/10"
+                    className="rounded-xl border border-[var(--l-border)] bg-[var(--l-surface)] px-4 py-3 text-[0.88rem] text-[var(--l-text)] outline-none transition-all placeholder:text-[var(--l-text-3)] focus:border-[var(--l-accent)] focus:ring-2 focus:ring-[var(--l-accent)]/10"
                     placeholder="Tu nombre"
                   />
                 </div>
               )}
               <div className="flex flex-col gap-1">
-                <label htmlFor={emailId} className="text-[0.78rem] font-medium text-gray-600">
+                <label htmlFor={emailId} className="text-[0.78rem] font-medium text-[var(--l-text-2)]">
                   Email
                 </label>
                 <input
@@ -279,12 +279,12 @@ export function AuthModal({ open, onClose, onSuccess, defaultTab = "login" }: Au
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-[0.88rem] text-gray-900 outline-none transition-all placeholder:text-gray-400 focus:border-[var(--l-accent)] focus:ring-2 focus:ring-[var(--l-accent)]/10"
+                  className="rounded-xl border border-[var(--l-border)] bg-[var(--l-surface)] px-4 py-3 text-[0.88rem] text-[var(--l-text)] outline-none transition-all placeholder:text-[var(--l-text-3)] focus:border-[var(--l-accent)] focus:ring-2 focus:ring-[var(--l-accent)]/10"
                   placeholder="tu@email.com"
                 />
               </div>
               <div className="flex flex-col gap-1">
-                <label htmlFor={passwordId} className="text-[0.78rem] font-medium text-gray-600">
+                <label htmlFor={passwordId} className="text-[0.78rem] font-medium text-[var(--l-text-2)]">
                   Contraseña
                 </label>
                 <input
@@ -295,13 +295,13 @@ export function AuthModal({ open, onClose, onSuccess, defaultTab = "login" }: Au
                   onChange={(e) => setPassword(e.target.value)}
                   required
                   minLength={6}
-                  className="rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-[0.88rem] text-gray-900 outline-none transition-all placeholder:text-gray-400 focus:border-[var(--l-accent)] focus:ring-2 focus:ring-[var(--l-accent)]/10"
+                  className="rounded-xl border border-[var(--l-border)] bg-[var(--l-surface)] px-4 py-3 text-[0.88rem] text-[var(--l-text)] outline-none transition-all placeholder:text-[var(--l-text-3)] focus:border-[var(--l-accent)] focus:ring-2 focus:ring-[var(--l-accent)]/10"
                   placeholder="Mínimo 6 caracteres"
                 />
               </div>
 
               {error && (
-                <p role="alert" className="rounded-lg bg-red-50 px-3 py-2 text-[0.82rem] text-red-600">
+                <p role="alert" className="rounded-lg bg-red-500/10 px-3 py-2 text-[0.82rem] text-red-400">
                   {error}
                 </p>
               )}

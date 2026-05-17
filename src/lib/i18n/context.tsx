@@ -10,7 +10,13 @@ import { he } from "./locales/he";
 
 const locales: Record<Locale, Translations> = { en, es, ru, he };
 
-function detectLocale(): Locale {
+/** Get translations object for a given locale string. Falls back to English. */
+export function getTranslations(locale?: string): Translations {
+  if (locale && locales[locale as Locale]) return locales[locale as Locale];
+  return en;
+}
+
+export function detectLocale(): Locale {
   if (typeof window === "undefined") return "en";
   try {
     const stored = localStorage.getItem("arzac-locale") as Locale | null;

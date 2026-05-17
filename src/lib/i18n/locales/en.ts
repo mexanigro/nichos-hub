@@ -223,6 +223,16 @@ export const en: Translations = {
     noData: "We couldn't find your data",
     startOver: "Start over",
   },
+  status: {
+    building: "Building your website...",
+    buildingSub: "This usually takes 2-3 minutes. Don't close this page.",
+    ready: "Your website is ready!",
+    readySub: "Your site is live at",
+    viewSite: "View my website",
+    error: "Something went wrong",
+    errorSub: "Don't worry — our team has been notified and will fix this shortly.",
+    contact: "Contact us on WhatsApp",
+  },
   footer: {
     rights: "All rights reserved",
     privacy: "Privacy policy",
