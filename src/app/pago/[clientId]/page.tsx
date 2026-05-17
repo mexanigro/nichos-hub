@@ -23,14 +23,14 @@ export default async function PagoPage({ params, searchParams }: Props) {
   const doc = snap.docs[0];
   const data = doc.data();
 
-  const lang: "he" | "en" = data.language === "he" ? "he" : "en";
+  const lang: "he" | "en" | "es" | "ru" = data.language === "he" ? "he" : data.language === "es" ? "es" : data.language === "ru" ? "ru" : "en";
   const defaultPlan = plan === "completo" ? "completo" : plan === "web_crm" ? "web_crm" : undefined;
 
   return (
     <PagoClient
       clientId={clientId}
       clientDocId={doc.id}
-      businessName={data.businessName || clientId}
+      businessName={data.businessName || data.name || clientId}
       lang={lang}
       defaultPlan={defaultPlan}
       isUpgrade={upgrade === "true"}

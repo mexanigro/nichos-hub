@@ -19,7 +19,7 @@ export interface BuilderDraft {
   address: string;
   instagram: string;
   logoCreate: boolean;
-  colors: { primary: string; secondary: string };
+  colors: string;
   photos: SerializedFile[];
   staffPhotos: SerializedFile[];
   logo: SerializedFile | null;
@@ -77,10 +77,7 @@ export async function saveBuilderDraft(data: Record<string, unknown>): Promise<v
     address: (data.address as string) || "",
     instagram: (data.instagram as string) || "",
     logoCreate: Boolean(data.logoCreate),
-    colors: (data.colors as { primary: string; secondary: string }) || {
-      primary: "#000000",
-      secondary: "#ffffff",
-    },
+    colors: (data.colors as string) || "",
     photos,
     staffPhotos,
     logo,

@@ -136,6 +136,134 @@ Delivery of the functional version within 48 hours of the Client providing desig
 8. Jurisdiction:
 Exclusive jurisdiction in Tel Aviv, Israel under Israeli law.`;
 
+const CONTRACT_ES = `Acuerdo de Servicios de Sitio Web, CRM y Agente WhatsApp
+
+Entre: Arzac Studio (en adelante: "el Proveedor")
+Y: El Cliente (en adelante: "el Cliente")
+
+Considerando que el Proveedor ha desarrollado una infraestructura tecnológica que incluye hosting de sitios web (SaaS), sistema de reservas, sistema de gestión de clientes (CRM) y sistema de agente WhatsApp con inteligencia artificial, su mantenimiento y alojamiento (en adelante: "Sistema de Plantilla Maestra")
+
+Y considerando que el Cliente desea contratar los servicios del Proveedor para recibir un "sitio web personal" en el Sistema de Plantilla Maestra para visibilidad en internet, digitalización y gestión operativa de su negocio. (en adelante: "el Sitio Web")
+
+Por lo tanto, se ha acordado entre las partes lo siguiente:
+
+1. Servicios:
+
+Plan Web+CRM (₪790/mes):
+- Desarrollo de un "sitio web personal" utilizando el Sistema de Plantilla Maestra.
+- Visibilidad: presencia en internet y SEO.
+- Sistema Micro CRM con IA: acceso a un panel de gestión personal incluyendo gestión de clientes, sistema de turnos/reservas, gestión de inventario/stock, sección de preguntas frecuentes editable.
+- Soporte para 3 idiomas (hebreo, inglés, ruso).
+- Mantenimiento continuo y soporte técnico: actualizaciones de contenido dinámico (imágenes, precios, textos), monitoreo técnico, corrección de errores, gestión de infraestructura. (Este acuerdo no incluye cambios de diseño estructural; dichos cambios requieren acuerdo separado con costo adicional.)
+- Hosting del sitio web: en infraestructura de terceros a discreción del Proveedor.
+- Dominio: compra, seguimiento y renovación anual para el Cliente.
+
+Plan Completo (₪990/mes):
+- Todo lo incluido en el plan Web+CRM.
+- Agente WhatsApp con IA 24/7: respuestas automáticas personalizadas, captura de leads por WhatsApp, reserva de turnos por WhatsApp, integración completa con el CRM.
+
+2. Compensación:
+- Plan Web+CRM: ₪790 por mes, desde el día de activación.
+- Plan Completo: ₪990 por mes, desde el día de activación.
+- Hosting del sitio web: costo anual (sujeto a cambios de terceros), pagadero dentro de 7 días desde la solicitud.
+- Dominio: costo anual (sujeto a cambios de terceros), pagadero dentro de 7 días desde la solicitud.
+- La falta de pago oportuno resultará en la baja del sitio web; el sitio será eliminado dentro de 7 días del impago y este acuerdo será rescindido.
+
+3. Plazos:
+Entrega de la versión funcional dentro de 48 horas desde que el Cliente proporcione los detalles de diseño, tras el primer pago.
+
+4. Derechos / Propiedad Intelectual y Licencias:
+- Licencia otorgada al Cliente mientras se mantenga el pago y se cumplan los términos del acuerdo.
+- Los derechos de autor comerciales y morales del código, archivos fuente y diseño pertenecen al Proveedor. Todos los módulos son propiedad del Proveedor; el Cliente recibe una licencia de uso únicamente mientras este acuerdo esté vigente.
+- La propiedad intelectual del logo, marca y contenido del Cliente permanece siendo del Cliente y se utiliza exclusivamente para este acuerdo.
+- La propiedad del nombre de dominio pertenece al Cliente.
+
+5. Política de Uso Aceptable:
+- Sin spam, materiales ilegales o contenido que viole la ley.
+- Sin contenido que infrinja derechos de autor, contenido ofensivo o prohibido.
+- La violación constituye incumplimiento fundamental que permite la rescisión inmediata unilateral.
+
+6. Limitación de Responsabilidad:
+- El contenido está bajo el control y responsabilidad exclusivos del Cliente.
+- El Proveedor no garantiza resultados comerciales ni retorno económico.
+- El Proveedor no es responsable por fallas de terceros o fuerza mayor.
+- La responsabilidad nunca excederá el monto total pagado bajo este acuerdo.
+
+7. Rescisión:
+- Cliente: 30 días de aviso por escrito.
+- Proveedor: rescisión inmediata por violación de políticas.
+- Proveedor: 7 días de aviso por escrito por falta de pago.
+- Después de la rescisión, el sitio web se desconecta.
+- Sin reembolso por pago anual de hosting.
+- Al finalizar, a solicitud del Cliente: se entrega el código fuente del sitio web (HTML, CSS, JS) y archivos de datos del CRM. El Cliente nunca obtiene acceso a herramientas internas o infraestructura de administración.
+
+8. Jurisdicción:
+Jurisdicción exclusiva en Tel Aviv, Israel bajo la ley israelí.`;
+
+const CONTRACT_RU = `Договор об оказании услуг сайта, CRM и агента WhatsApp
+
+Между: Arzac Studio (далее: «Поставщик»)
+И: Клиент (далее: «Клиент»)
+
+Принимая во внимание, что Поставщик разработал технологическую инфраструктуру, включающую хостинг веб-сайтов (SaaS), систему бронирования, систему управления клиентами (CRM) и систему агента WhatsApp на основе искусственного интеллекта, их обслуживание и хостинг (далее: «Система Мастер-Шаблона»)
+
+И принимая во внимание, что Клиент желает воспользоваться услугами Поставщика для получения «персонального сайта» в Системе Мастер-Шаблона для присутствия в интернете, цифровизации и операционного управления своим бизнесом. (далее: «Сайт»)
+
+Стороны договорились о нижеследующем:
+
+1. Услуги:
+
+План Web+CRM (₪790/месяц):
+- Разработка «персонального сайта» с использованием Системы Мастер-Шаблона.
+- Видимость: присутствие в интернете и SEO.
+- Микро CRM система с ИИ: доступ к персональной панели управления, включая управление клиентами, систему записи/бронирования, управление инвентарём/складом, редактируемый раздел FAQ.
+- Поддержка 3 языков (иврит, английский, русский).
+- Текущее обслуживание и техническая поддержка: обновление динамического контента (изображения, цены, тексты), техническое наблюдение, исправление ошибок, управление инфраструктурой. (Данный договор не включает изменения структурного дизайна; такие изменения требуют отдельного соглашения с дополнительной оплатой.)
+- Хостинг сайта: на сторонней инфраструктуре по усмотрению Поставщика.
+- Домен: покупка, отслеживание и ежегодное продление для Клиента.
+
+План Completo (₪990/месяц):
+- Всё, что включено в план Web+CRM.
+- WhatsApp агент с ИИ 24/7: персонализированные автоматические ответы, захват лидов через WhatsApp, запись на приём через WhatsApp, полная интеграция с CRM.
+
+2. Оплата:
+- План Web+CRM: ₪790 в месяц, начиная с дня активации.
+- План Completo: ₪990 в месяц, начиная с дня активации.
+- Хостинг сайта: годовая стоимость (может изменяться третьей стороной), оплата в течение 7 дней с момента запроса.
+- Домен: годовая стоимость (может изменяться третьей стороной), оплата в течение 7 дней с момента запроса.
+- Несвоевременная оплата приведёт к отключению сайта; сайт будет удалён в течение 7 дней после неоплаты, и настоящий договор будет расторгнут.
+
+3. Сроки:
+Предоставление функциональной версии в течение 48 часов после предоставления Клиентом деталей дизайна, после первого платежа.
+
+4. Права / Интеллектуальная собственность и лицензирование:
+- Лицензия предоставляется Клиенту при условии поддержания оплаты и соблюдения условий договора.
+- Коммерческие и моральные авторские права на код, исходные файлы и дизайн принадлежат Поставщику. Все модули являются собственностью Поставщика; Клиент получает лицензию на использование только на время действия настоящего договора.
+- Интеллектуальная собственность на логотип, бренд и контент Клиента остаётся собственностью Клиента и используется исключительно в рамках настоящего договора.
+- Право собственности на доменное имя принадлежит Клиенту.
+
+5. Политика допустимого использования:
+- Запрещён спам, незаконные материалы или контент, нарушающий закон.
+- Запрещён контент, нарушающий авторские права, оскорбительный или запрещённый контент.
+- Нарушение является существенным нарушением, дающим право на немедленное одностороннее расторжение.
+
+6. Ограничение ответственности:
+- Контент находится под исключительным контролем и ответственностью Клиента.
+- Поставщик не гарантирует коммерческих результатов или экономической отдачи.
+- Поставщик не несёт ответственности за сбои третьих сторон или форс-мажор.
+- Ответственность никогда не превысит общую сумму, уплаченную по настоящему договору.
+
+7. Расторжение:
+- Клиент: 30 дней письменного уведомления.
+- Поставщик: немедленное расторжение за нарушение политики.
+- Поставщик: 7 дней письменного уведомления за неоплату.
+- После расторжения сайт отключается.
+- Возврат за годовую оплату хостинга не производится.
+- По окончании, по запросу Клиента: исходный код сайта (HTML, CSS, JS) и файлы данных CRM передаются. Клиент никогда не получает доступ к внутренним инструментам или инфраструктуре администрирования.
+
+8. Юрисдикция:
+Исключительная юрисдикция в Тель-Авиве, Израиль, в соответствии с израильским законодательством.`;
+
 /* ═══════════════════════════════════════════════════════════════════════════
  * i18n
  * ═══════════════════════════════════════════════════════════════════════════ */
@@ -156,6 +284,9 @@ const i18n = {
     processing: "מעבד...",
     error: "שגיאה, נסה שוב",
     securePayment: "תשלום מאובטח",
+    monthlyAmount: "סכום חודשי",
+    upgradeTitle: "Upgrade ל-Completo",
+    upgradeDesc: "התוכנית שלך תתעדכן מיידית עם סוכן WhatsApp AI.",
     webCrmFeatures: [
       "אתר אישי מעוצב",
       "CRM עם עוזר AI",
@@ -189,6 +320,9 @@ const i18n = {
     processing: "Processing...",
     error: "An error occurred, please try again",
     securePayment: "Secure payment",
+    monthlyAmount: "Monthly amount",
+    upgradeTitle: "Upgrade to Completo",
+    upgradeDesc: "Your plan will be updated immediately with the WhatsApp AI agent.",
     webCrmFeatures: [
       "Custom designed website",
       "CRM with AI assistant",
@@ -207,6 +341,78 @@ const i18n = {
       "Appointments via WhatsApp",
     ],
   },
+  es: {
+    greeting: "Hola,",
+    choosePlan: "Elegí tu plan",
+    planWebCrm: "Web + CRM",
+    planCompleto: "Completo",
+    perMonth: "/mes",
+    popular: "Popular",
+    contractTitle: "Acuerdo de servicio",
+    expandContract: "Leer acuerdo completo",
+    collapseContract: "Ocultar",
+    accept: "Leí y acepto los términos del acuerdo",
+    pay: "Continuar al pago",
+    processing: "Procesando...",
+    error: "Error, intentá de nuevo",
+    securePayment: "Pago seguro",
+    monthlyAmount: "Monto mensual",
+    upgradeTitle: "Upgrade a Completo",
+    upgradeDesc: "Tu plan se actualizará inmediatamente con el agente WhatsApp IA.",
+    webCrmFeatures: [
+      "Sitio web profesional a medida",
+      "CRM con asistente IA",
+      "Sistema de reservas online",
+      "Gestión de inventario/stock",
+      "Sección de preguntas frecuentes",
+      "3 idiomas (HE, EN, RU)",
+      "Dominio + hosting incluido",
+      "Mantenimiento y soporte 24/7",
+    ],
+    completoFeatures: [
+      "Todo del plan Web+CRM",
+      "Agente WhatsApp IA 24/7",
+      "Respuestas automáticas personalizadas",
+      "Captura de leads por WhatsApp",
+      "Turnos/reservas por WhatsApp",
+    ],
+  },
+  ru: {
+    greeting: "Здравствуйте,",
+    choosePlan: "Выберите план",
+    planWebCrm: "Web + CRM",
+    planCompleto: "Completo",
+    perMonth: "/мес",
+    popular: "Популярный",
+    contractTitle: "Договор об оказании услуг",
+    expandContract: "Прочитать полный договор",
+    collapseContract: "Скрыть",
+    accept: "Я прочитал(а) и принимаю условия договора",
+    pay: "Перейти к оплате",
+    processing: "Обработка...",
+    error: "Ошибка, попробуйте снова",
+    securePayment: "Безопасная оплата",
+    monthlyAmount: "Ежемесячная сумма",
+    upgradeTitle: "Переход на Completo",
+    upgradeDesc: "Ваш план будет обновлён немедленно с WhatsApp IA агентом.",
+    webCrmFeatures: [
+      "Индивидуальный профессиональный сайт",
+      "CRM с AI-помощником",
+      "Система онлайн-бронирования",
+      "Управление инвентарём/складом",
+      "Раздел часто задаваемых вопросов",
+      "3 языка (HE, EN, RU)",
+      "Домен + хостинг включены",
+      "Обслуживание и поддержка 24/7",
+    ],
+    completoFeatures: [
+      "Всё из плана Web+CRM",
+      "WhatsApp AI агент 24/7",
+      "Персонализированные автоответы",
+      "Захват лидов через WhatsApp",
+      "Запись через WhatsApp",
+    ],
+  },
 };
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -217,7 +423,7 @@ interface Props {
   clientId: string;
   clientDocId: string;
   businessName: string;
-  lang: "he" | "en";
+  lang: "he" | "en" | "es" | "ru";
   defaultPlan?: PlanType;
   isUpgrade?: boolean;
 }
@@ -229,7 +435,7 @@ export default function PagoClient({ clientId, clientDocId, businessName, lang, 
   const [error, setError] = useState("");
   const [contractExpanded, setContractExpanded] = useState(false);
   const t = i18n[lang];
-  const contract = lang === "he" ? CONTRACT_HE : CONTRACT_EN;
+  const contract = lang === "he" ? CONTRACT_HE : lang === "es" ? CONTRACT_ES : lang === "ru" ? CONTRACT_RU : CONTRACT_EN;
   const dir = lang === "he" ? "rtl" : "ltr";
   const amount = selectedPlan === "completo" ? COMPLETO_AMOUNT : WEB_CRM_AMOUNT;
 
@@ -269,15 +475,15 @@ export default function PagoClient({ clientId, clientDocId, businessName, lang, 
   }
 
   return (
-    <div dir={dir} className="min-h-screen bg-[var(--l-bg,#fafafa)]">
+    <div dir={dir} className="pago-page min-h-screen bg-[var(--pago-bg)]">
       {/* Header */}
-      <header className="border-b border-gray-100 bg-white/80 backdrop-blur-md">
+      <header className="border-b border-[var(--pago-border)] bg-[var(--pago-card)]/80 backdrop-blur-md">
         <div className="mx-auto flex h-16 max-w-3xl items-center justify-between px-6">
           <a href="/" className="flex items-center gap-2">
             <img src="/logo-icon.png" alt="Arzac Studio" className="h-8 w-8 rounded-md object-cover" />
             <img src="/logo.png" alt="Arzac Studio" className="hidden h-4 object-contain sm:block" />
           </a>
-          <div className="flex items-center gap-1.5 text-[0.78rem] text-gray-400">
+          <div className="flex items-center gap-1.5 text-[0.78rem] text-[var(--pago-text-muted)]">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
               <path d="M4.5 6V4.5C4.5 3.12 5.62 2 7 2s2.5 1.12 2.5 2.5V6M3.5 6h7a1 1 0 011 1v4.5a1 1 0 01-1 1h-7a1 1 0 01-1-1V7a1 1 0 011-1z" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
             </svg>
@@ -289,14 +495,14 @@ export default function PagoClient({ clientId, clientDocId, businessName, lang, 
       <main className="mx-auto max-w-3xl px-6 py-10">
         {/* Greeting */}
         <div className="mb-8">
-          <p className="text-sm text-gray-500">{t.greeting}</p>
-          <h1 className="mt-1 text-2xl font-bold text-gray-900">{businessName}</h1>
+          <p className="text-sm text-[var(--pago-text-secondary)]">{t.greeting}</p>
+          <h1 className="mt-1 text-2xl font-bold text-[var(--pago-text)]">{businessName}</h1>
         </div>
 
         {/* Plan Selection */}
         {!isUpgrade && (
           <section className="mb-8">
-            <h2 className="mb-4 text-sm font-semibold text-gray-700">{t.choosePlan}</h2>
+            <h2 className="mb-4 text-sm font-semibold text-[var(--pago-text)]">{t.choosePlan}</h2>
             <div className="grid gap-4 sm:grid-cols-2">
               {/* Web+CRM */}
               <button
@@ -304,20 +510,20 @@ export default function PagoClient({ clientId, clientDocId, businessName, lang, 
                 onClick={() => setSelectedPlan("web_crm")}
                 className={`relative rounded-2xl border-2 p-5 text-start transition-all ${
                   selectedPlan === "web_crm"
-                    ? "border-gray-900 bg-white shadow-md"
-                    : "border-gray-200 bg-white hover:border-gray-300"
+                    ? "border-[var(--pago-teal)] bg-[var(--pago-card)] shadow-md"
+                    : "border-[var(--pago-border)] bg-[var(--pago-card)] hover:border-[var(--pago-border)]"
                 }`}
               >
-                <p className="text-[0.9rem] font-semibold text-gray-900">{t.planWebCrm}</p>
+                <p className="text-[0.9rem] font-semibold text-[var(--pago-text)]">{t.planWebCrm}</p>
                 <p className="mt-1">
-                  <span className="text-2xl font-bold text-gray-900">₪{WEB_CRM_AMOUNT}</span>
-                  <span className="text-sm text-gray-500">{t.perMonth}</span>
+                  <span className="text-2xl font-bold text-[var(--pago-text)]">₪{WEB_CRM_AMOUNT}</span>
+                  <span className="text-sm text-[var(--pago-text-secondary)]">{t.perMonth}</span>
                 </p>
                 <ul className="mt-4 space-y-1.5">
                   {t.webCrmFeatures.map((f) => (
-                    <li key={f} className="flex items-start gap-2 text-[0.8rem] text-gray-600">
-                      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="mt-0.5 shrink-0">
-                        <path d="M3.5 8.5L6.5 11.5L12.5 4.5" stroke="#16a34a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    <li key={f} className="flex items-start gap-2 text-[0.8rem] text-[var(--pago-text-secondary)]">
+                      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="mt-0.5 shrink-0 text-[var(--pago-success)]">
+                        <path d="M3.5 8.5L6.5 11.5L12.5 4.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                       {f}
                     </li>
@@ -325,7 +531,7 @@ export default function PagoClient({ clientId, clientDocId, businessName, lang, 
                 </ul>
                 {selectedPlan === "web_crm" && (
                   <div className="absolute -top-px end-4 top-4">
-                    <div className="h-5 w-5 rounded-full border-[5px] border-gray-900" />
+                    <div className="h-5 w-5 rounded-full border-[5px] border-[var(--pago-teal)]" />
                   </div>
                 )}
               </button>
@@ -336,25 +542,25 @@ export default function PagoClient({ clientId, clientDocId, businessName, lang, 
                 onClick={() => setSelectedPlan("completo")}
                 className={`relative rounded-2xl border-2 p-5 text-start transition-all ${
                   selectedPlan === "completo"
-                    ? "border-gray-900 bg-white shadow-md"
-                    : "border-gray-200 bg-white hover:border-gray-300"
+                    ? "border-[var(--pago-teal)] bg-[var(--pago-card)] shadow-md"
+                    : "border-[var(--pago-border)] bg-[var(--pago-card)] hover:border-[var(--pago-border)]"
                 }`}
               >
                 <div className="flex items-center gap-2">
-                  <p className="text-[0.9rem] font-semibold text-gray-900">{t.planCompleto}</p>
-                  <span className="rounded-full bg-gray-900 px-2 py-0.5 text-[0.65rem] font-bold text-white">
+                  <p className="text-[0.9rem] font-semibold text-[var(--pago-text)]">{t.planCompleto}</p>
+                  <span className="rounded-full bg-[var(--pago-teal)] px-2 py-0.5 text-[0.65rem] font-bold text-white">
                     {t.popular}
                   </span>
                 </div>
                 <p className="mt-1">
-                  <span className="text-2xl font-bold text-gray-900">₪{COMPLETO_AMOUNT}</span>
-                  <span className="text-sm text-gray-500">{t.perMonth}</span>
+                  <span className="text-2xl font-bold text-[var(--pago-text)]">₪{COMPLETO_AMOUNT}</span>
+                  <span className="text-sm text-[var(--pago-text-secondary)]">{t.perMonth}</span>
                 </p>
                 <ul className="mt-4 space-y-1.5">
                   {t.completoFeatures.map((f) => (
-                    <li key={f} className="flex items-start gap-2 text-[0.8rem] text-gray-600">
-                      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="mt-0.5 shrink-0">
-                        <path d="M3.5 8.5L6.5 11.5L12.5 4.5" stroke="#16a34a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    <li key={f} className="flex items-start gap-2 text-[0.8rem] text-[var(--pago-text-secondary)]">
+                      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="mt-0.5 shrink-0 text-[var(--pago-success)]">
+                        <path d="M3.5 8.5L6.5 11.5L12.5 4.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                       {f}
                     </li>
@@ -362,7 +568,7 @@ export default function PagoClient({ clientId, clientDocId, businessName, lang, 
                 </ul>
                 {selectedPlan === "completo" && (
                   <div className="absolute end-4 top-4">
-                    <div className="h-5 w-5 rounded-full border-[5px] border-gray-900" />
+                    <div className="h-5 w-5 rounded-full border-[5px] border-[var(--pago-teal)]" />
                   </div>
                 )}
               </button>
@@ -372,37 +578,37 @@ export default function PagoClient({ clientId, clientDocId, businessName, lang, 
 
         {/* Upgrade note */}
         {isUpgrade && (
-          <div className="mb-8 rounded-xl border border-blue-100 bg-blue-50/50 p-4">
-            <p className="text-[0.88rem] font-medium text-blue-900">
-              Upgrade a Completo — ₪{COMPLETO_AMOUNT}/mes
+          <div className="mb-8 rounded-xl border border-[var(--pago-teal)]/20 bg-[var(--pago-teal)]/10 p-4">
+            <p className="text-[0.88rem] font-medium text-[var(--pago-teal)]">
+              {t.upgradeTitle} — ₪{COMPLETO_AMOUNT}{t.perMonth}
             </p>
-            <p className="mt-1 text-[0.8rem] text-blue-700">
-              Tu plan se actualizará inmediatamente con el agente WhatsApp IA.
+            <p className="mt-1 text-[0.8rem] text-[var(--pago-teal)]/80">
+              {t.upgradeDesc}
             </p>
           </div>
         )}
 
         {/* Amount summary */}
-        <div className="mb-8 rounded-xl border border-gray-200 bg-white p-5">
+        <div className="mb-8 rounded-xl border border-[var(--pago-border)] bg-[var(--pago-card)] p-5">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-700">
+              <p className="text-sm font-medium text-[var(--pago-text)]">
                 {selectedPlan === "completo" ? t.planCompleto : t.planWebCrm}
               </p>
-              <p className="text-xs text-gray-400">Monto mensual</p>
+              <p className="text-xs text-[var(--pago-text-muted)]">{t.monthlyAmount}</p>
             </div>
-            <p className="text-2xl font-bold text-gray-900">₪{amount}</p>
+            <p className="text-2xl font-bold text-[var(--pago-text)]">₪{amount}</p>
           </div>
         </div>
 
         {/* Contract */}
-        <section className="rounded-2xl border border-gray-200 bg-white p-6">
+        <section className="rounded-2xl border border-[var(--pago-border)] bg-[var(--pago-card)] p-6">
           <div className="flex items-center justify-between">
-            <h2 className="text-[0.9rem] font-semibold text-gray-900">{t.contractTitle}</h2>
+            <h2 className="text-[0.9rem] font-semibold text-[var(--pago-text)]">{t.contractTitle}</h2>
             <button
               type="button"
               onClick={() => setContractExpanded(!contractExpanded)}
-              className="flex items-center gap-1.5 text-[0.8rem] font-medium text-gray-500 transition-colors hover:text-gray-800"
+              className="flex items-center gap-1.5 text-[0.8rem] font-medium text-[var(--pago-text-secondary)] transition-colors hover:text-[var(--pago-text)]"
             >
               <span>{contractExpanded ? t.collapseContract : t.expandContract}</span>
               <svg
@@ -420,11 +626,11 @@ export default function PagoClient({ clientId, clientDocId, businessName, lang, 
             }`}
             style={{ direction: dir }}
           >
-            <div className="whitespace-pre-line text-[0.78rem] leading-relaxed text-gray-600">
+            <div className="whitespace-pre-line text-[0.78rem] leading-relaxed text-[var(--pago-text-secondary)]">
               {contract}
             </div>
             {!contractExpanded && (
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white to-transparent" style={{ position: "relative", marginTop: "-4rem" }} />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[var(--pago-card)] to-transparent" style={{ position: "relative", marginTop: "-4rem" }} />
             )}
           </div>
 
@@ -435,12 +641,12 @@ export default function PagoClient({ clientId, clientDocId, businessName, lang, 
             aria-checked={accepted}
             onClick={() => !sending && setAccepted(!accepted)}
             className={`mt-5 flex w-full items-center gap-3 rounded-xl border px-4 py-3.5 text-start transition-all ${
-              accepted ? "border-green-200 bg-green-50" : "border-gray-200 bg-gray-50 hover:bg-gray-100"
+              accepted ? "border-[var(--pago-success)]/30 bg-[var(--pago-success)]/10" : "border-[var(--pago-border)] bg-[var(--pago-surface)] hover:bg-[var(--pago-surface)]"
             } ${sending ? "pointer-events-none opacity-50" : ""}`}
           >
             <span
               className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-md border-2 transition-all ${
-                accepted ? "border-green-600 bg-green-600" : "border-gray-300"
+                accepted ? "border-[var(--pago-success)] bg-[var(--pago-success)]" : "border-[var(--pago-border)]"
               }`}
             >
               {accepted && (
@@ -449,18 +655,18 @@ export default function PagoClient({ clientId, clientDocId, businessName, lang, 
                 </svg>
               )}
             </span>
-            <span className="text-[0.82rem] text-gray-700">{t.accept}</span>
+            <span className="text-[0.82rem] text-[var(--pago-text)]">{t.accept}</span>
           </button>
 
           {error && (
-            <p className="mt-3 rounded-lg bg-red-50 px-4 py-2.5 text-[0.82rem] text-red-600">{error}</p>
+            <p className="mt-3 rounded-lg bg-[var(--pago-danger)]/10 px-4 py-2.5 text-[0.82rem] text-[var(--pago-danger)]">{error}</p>
           )}
 
           {/* Pay button */}
           <button
             onClick={handleContinue}
             disabled={!accepted || sending}
-            className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl bg-gray-900 px-6 py-4 text-[0.9rem] font-semibold text-white transition-all hover:bg-gray-800 disabled:cursor-not-allowed disabled:opacity-40"
+            className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--pago-teal)] px-6 py-4 text-[0.9rem] font-semibold text-white transition-all hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
           >
             {sending ? (
               <>
@@ -479,7 +685,7 @@ export default function PagoClient({ clientId, clientDocId, businessName, lang, 
         </section>
       </main>
 
-      <footer className="border-t border-gray-100 py-6 text-center text-[0.75rem] text-gray-400">
+      <footer className="border-t border-[var(--pago-border)] py-6 text-center text-[0.75rem] text-[var(--pago-text-muted)]">
         &copy; {new Date().getFullYear()} Arzac Studio
       </footer>
     </div>

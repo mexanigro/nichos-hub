@@ -93,7 +93,8 @@ export default function PreviewPage() {
     formData.append("address", draft.address);
     formData.append("instagram", draft.instagram);
     formData.append("logoCreate", String(draft.logoCreate));
-    formData.append("colors", JSON.stringify(draft.colors));
+    formData.append("colors", draft.colors || "");
+    formData.append("locale", draft.locale || locale);
     formData.append("userUid", user.uid);
     formData.append("userEmail", user.email || "");
 
