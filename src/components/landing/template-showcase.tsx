@@ -148,18 +148,13 @@ export function TemplateShowcase() {
     <section
       ref={sectionRef}
       className="relative"
-      style={{ height: prefersReduced ? "auto" : "200vh" }}
+      style={{ height: prefersReduced ? "auto" : "180vh" }}
     >
+      {/* Section header — scrolls normally, NOT sticky */}
       <div
         className="mx-auto max-w-[800px] px-6 md:px-12"
-        style={{
-          position: prefersReduced ? "relative" : "sticky",
-          top: prefersReduced ? undefined : "50%",
-          transform: prefersReduced ? undefined : "translateY(-50%)",
-          paddingBlock: prefersReduced ? "var(--l-section-y)" : undefined,
-        }}
+        style={{ paddingTop: "var(--l-section-y)" }}
       >
-        {/* Section header */}
         <div className="mb-10 text-center">
           <motion.span
             initial={prefersReduced ? {} : { opacity: 0, y: 8 }}
@@ -191,7 +186,17 @@ export function TemplateShowcase() {
             {t.showcase.subtitle}
           </motion.p>
         </div>
+      </div>
 
+      {/* Device frame — sticky: stays in view while scroll drives niche rotation */}
+      <div
+        className="mx-auto max-w-[800px] px-6 md:px-12"
+        style={{
+          position: prefersReduced ? "relative" : "sticky",
+          top: prefersReduced ? undefined : "12vh",
+          paddingBottom: prefersReduced ? "var(--l-section-y)" : "2rem",
+        }}
+      >
         {/* Device frame */}
         <motion.div
           style={{ y: frameY }}
