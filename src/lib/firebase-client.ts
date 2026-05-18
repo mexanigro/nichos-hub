@@ -4,13 +4,16 @@ import { initializeApp, getApps, getApp, type FirebaseApp } from "firebase/app";
 import { getAuth, type Auth } from "firebase/auth";
 import { getFirestore, type Firestore } from "firebase/firestore";
 
+// Firebase client config — these are PUBLIC keys (safe to commit).
+// Hardcoded because Turbopack + "use client" doesn't reliably inline
+// process.env.NEXT_PUBLIC_* at build time.
 const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY || "",
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN || "",
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || "",
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET || "",
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID || "",
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID || "",
+  apiKey: "AIzaSyAG6e1t-UvDmc-lbzAxFDuNgLz07YK9Cgo",
+  authDomain: "barbertemplate-madre.firebaseapp.com",
+  projectId: "barbertemplate-madre",
+  storageBucket: "barbertemplate-madre.firebasestorage.app",
+  messagingSenderId: "294619240670",
+  appId: "1:294619240670:web:bb3d0a4e0e11a69d9f0a4f",
 };
 
 let _app: FirebaseApp | undefined;
