@@ -10,8 +10,7 @@ import {
   updateProfile,
   type User,
 } from "firebase/auth";
-import { doc, setDoc, getDoc, serverTimestamp } from "firebase/firestore";
-import { getClientAuth, getClientDb } from "./firebase-client";
+import { getClientAuth } from "./firebase-client";
 
 export type { User };
 
@@ -67,7 +66,6 @@ export async function signOut(): Promise<void> {
 export function onAuthStateChanged(callback: (user: User | null) => void) {
   const auth = getClientAuth();
   if (!auth) {
-    // During SSR/build — just report no user and return a no-op unsubscribe
     callback(null);
     return () => {};
   }
@@ -75,49 +73,41 @@ export function onAuthStateChanged(callback: (user: User | null) => void) {
 }
 
 export async function getLeadData(uid: string): Promise<HubLead | null> {
-  const db = getClientDb();
-  if (!db) return null;
-  const snap = await getDoc(doc(db, "hub_leads", uid));
-  return snap.exists() ? (snap.data() as HubLead) : null;
+  try {
+    const res = await fetch(`/api/auth/lead?uid=${encodeURIComponent(uid)}`);
+    if (!res.ok) return null;
+    const { lead } = await res.json();
+    return lead ?? null;
+  } catch {
+    return null;
+  }
 }
 
 export async function saveBuilderDataToLead(
   uid: string,
   builderData: Record<string, unknown>
 ): Promise<void> {
-  const db = getClientDb();
-  if (!db) return;
-  await setDoc(
-    doc(db, "hub_leads", uid),
-    { builderData, lastLoginAt: serverTimestamp() },
-    { merge: true }
-  );
+  await fetch("/api/auth/upsert-lead", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ uid, builderData }),
+  });
 }
 
 async function upsertLead(user: User, provider: "google" | "email"): Promise<void> {
-  const db = getClientDb();
-  if (!db) return;
-  const ref = doc(db, "hub_leads", user.uid);
-  const snap = await getDoc(ref);
-
-  if (snap.exists()) {
-    await setDoc(ref, {
-      email: user.email || "",
-      name: user.displayName || "",
-      photoURL: user.photoURL || "",
-      lastLoginAt: serverTimestamp(),
-    }, { merge: true });
-  } else {
-    await setDoc(ref, {
-      email: user.email || "",
-      name: user.displayName || "",
-      photoURL: user.photoURL || "",
-      provider,
-      plan: null,
-      clientId: null,
-      builderData: null,
-      createdAt: serverTimestamp(),
-      lastLoginAt: serverTimestamp(),
-    }, { merge: true });
+  try {
+    await fetch("/api/auth/upsert-lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        uid: user.uid,
+        email: user.email || "",
+        name: user.displayName || "",
+        photoURL: user.photoURL || "",
+        provider,
+      }),
+    });
+  } catch {
+    // Non-critical — login still succeeds even if lead upsert fails
   }
 }
