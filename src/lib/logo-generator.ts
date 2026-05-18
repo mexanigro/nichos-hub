@@ -1,6 +1,12 @@
 import Anthropic from "@anthropic-ai/sdk";
 
-const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+let _anthropic: Anthropic | null = null;
+function getAnthropicClient(): Anthropic {
+  if (!_anthropic) {
+    _anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+  }
+  return _anthropic;
+}
 
 export interface LogoInput {
   businessName: string;
@@ -93,7 +99,7 @@ Use geometric shapes, clean typography, and a minimal color palette.`;
     contextParts.push(`No specific color preference — use colors appropriate for the industry as described in the brief.`);
   }
 
-  const response = await anthropic.messages.create({
+  const response = await getAnthropicClient().messages.create({
     model: "claude-haiku-4-5-20251001",
     max_tokens: 3000,
     system: `You are an expert logo designer who creates SVG logos for small businesses. Your logos are clean, professional, and look great at any size.
