@@ -76,8 +76,8 @@ export function Features() {
   const featureItems = t.features.items;
 
   return (
-    <section className="l-section" id="features">
-      <div className="l-container" style={{ paddingInline: 0 }}>
+    <section className="l-section l-dot-grid relative overflow-hidden bg-[var(--l-section-alt)]" id="features">
+      <div className="l-container relative z-10" style={{ paddingInline: 0 }}>
         <div className="mb-14 text-center">
           <span
             style={{ fontFamily: "var(--l-display)" }}
@@ -102,7 +102,7 @@ export function Features() {
             return (
               <TiltCard key={i} index={i}>
                 <div
-                  className="rounded-[var(--l-radius-lg)] border border-[var(--l-border)] bg-[var(--l-card)] p-7 transition-all duration-300 hover:border-[var(--l-accent)]/40"
+                  className="l-card-hover-glow rounded-[var(--l-radius-lg)] border border-[var(--l-border)] bg-[var(--l-card)] p-7"
                   style={{
                     boxShadow: "var(--l-shadow-card)",
                   }}

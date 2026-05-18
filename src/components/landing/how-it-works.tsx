@@ -6,8 +6,13 @@ export function HowItWorks() {
   const { t } = useT();
 
   return (
-    <section className="l-section bg-[var(--l-surface)]" id="how-it-works">
-      <div className="mx-auto max-w-[800px]">
+    <section className="l-section relative overflow-hidden bg-[var(--l-bg)]" id="how-it-works">
+      {/* Centered radial accent glow behind timeline */}
+      <div
+        className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-30"
+        style={{ background: "radial-gradient(ellipse, var(--l-orb-teal) 0%, transparent 70%)" }}
+      />
+      <div className="relative z-10 mx-auto max-w-[800px]">
         <div className="mb-14 text-center">
           <span
             style={{ fontFamily: "var(--l-display)" }}

@@ -14,8 +14,8 @@ export function Pricing() {
   const { t } = useT();
 
   return (
-    <section className="l-section bg-[var(--l-surface)]" id="pricing">
-      <div className="mx-auto max-w-[880px]">
+    <section className="l-section l-dot-grid relative overflow-hidden bg-[var(--l-section-alt)]" id="pricing">
+      <div className="relative z-10 mx-auto max-w-[880px]">
         <div className="mb-14 text-center">
           <span
             style={{ fontFamily: "var(--l-display)" }}
@@ -40,12 +40,12 @@ export function Pricing() {
             return (
               <div
                 key={i}
-                className={`relative rounded-[var(--l-radius-lg)] border bg-[var(--l-card)] p-8 ${
+                className={`l-card-hover-glow relative rounded-[var(--l-radius-lg)] border bg-[var(--l-card)] p-8 ${
                   isPopular
                     ? "border-[var(--l-accent)]"
                     : "border-[var(--l-border-subtle)]"
                 }`}
-                style={isPopular ? { borderWidth: "2px", boxShadow: "0 0 30px var(--l-accent-glow)" } : undefined}
+                style={isPopular ? { borderWidth: "2px", boxShadow: "0 0 30px var(--l-accent-glow), 0 0 60px var(--l-accent-glow)" } : undefined}
               >
                 {isPopular && (
                   <span

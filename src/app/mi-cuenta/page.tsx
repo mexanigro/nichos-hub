@@ -60,9 +60,12 @@ export default function MiCuentaPage() {
       <div className="mx-auto max-w-[560px]">
         {/* Header */}
         <div className="mb-8 flex items-center justify-between">
-          <a href="/" className="flex items-center gap-2">
-            <img src="/logo-icon.png" alt="Arzac Studio" className="h-8 w-8 rounded-md object-cover" />
-            <img src="/logo.png" alt="Arzac Studio" className="hidden h-4 object-contain sm:block" />
+          <a href="/" className="flex items-center gap-2.5">
+            <img src="/logo-icon.svg" alt="Arzac Studio" className="h-8 w-8" />
+            <span className="hidden items-baseline gap-0.5 sm:flex">
+              <span className="text-[0.95rem] font-bold tracking-tight text-gray-900">ARZAC</span>
+              <span className="text-[0.6rem] font-medium text-teal-600">.studio</span>
+            </span>
           </a>
           <button
             onClick={async () => { await signOut(); router.push("/"); }}

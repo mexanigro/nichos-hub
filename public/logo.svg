@@ -1,0 +1,7 @@
+<svg viewBox="0 0 220 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@700;500');
+  </style>
+  <text x="0" y="33" font-family="Outfit, system-ui, sans-serif" font-weight="700" font-size="32" letter-spacing="-0.5" fill="#f0f0f2">ARZAC</text>
+  <text x="134" y="33" font-family="Outfit, system-ui, sans-serif" font-weight="500" font-size="19" fill="#5bbfad">.studio</text>
+</svg>

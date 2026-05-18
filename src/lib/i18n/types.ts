@@ -7,6 +7,8 @@ export interface Translations {
     howItWorks: string;
     contact: string;
     getStarted: string;
+    home?: string;
+    builder?: string;
   };
   hero: {
     badge?: string;
@@ -14,6 +16,7 @@ export interface Translations {
     subheadline: string;
     cta: string;
     trustedBy: string;
+    serviceIcons?: { web: string; crm: string; agent: string };
   };
   socialProof: {
     activeBusinesses: string;

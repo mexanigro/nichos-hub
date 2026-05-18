@@ -115,12 +115,7 @@ function SuccessContent() {
 
 function Logo() {
   return (
-    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Arzac Studio">
-      <rect width="40" height="40" rx="10" fill="var(--pago-teal, oklch(0.52 0.08 192))" />
-      <text x="20" y="27" textAnchor="middle" fill="var(--pago-card, white)" fontFamily="var(--font-display), sans-serif" fontWeight="700" fontSize="18" letterSpacing="-0.5">
-        AS
-      </text>
-    </svg>
+    <img src="/logo-icon.svg" alt="Arzac Studio" className="h-10 w-10" />
   );
 }
 

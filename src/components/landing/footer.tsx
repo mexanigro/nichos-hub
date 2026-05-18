@@ -1,6 +1,7 @@
 "use client";
 
 import { useT } from "@/lib/i18n";
+import { Logo } from "./logo";
 
 export function Footer() {
   const { t } = useT();
@@ -8,13 +9,10 @@ export function Footer() {
   return (
     <footer className="border-t border-[var(--l-border-subtle)] py-10">
       <div className="l-container flex flex-col items-center justify-between gap-4 sm:flex-row">
-        <div className="flex flex-col items-center gap-1 sm:items-start">
-          <span
-            style={{ fontFamily: "var(--l-display)" }}
-            className="text-[0.95rem] font-semibold text-[var(--l-text)]"
-          >
-            arzac.studio
-          </span>
+        <div className="flex flex-col items-center gap-2 sm:items-start">
+          <a href="#" className="flex items-center">
+            <Logo iconClass="h-8 w-8" textClass="text-[0.9rem]" />
+          </a>
           <span className="text-[0.8rem] text-[var(--l-text-3)]">
             &copy; {new Date().getFullYear()} arzac.studio. {t.footer.rights}
           </span>

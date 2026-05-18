@@ -27,7 +27,7 @@ export function FAQ() {
             return (
               <div
                 key={i}
-                className={`rounded-[var(--l-radius)] border bg-[var(--l-card)] transition-colors duration-200 ${
+                className={`l-card-hover-glow rounded-[var(--l-radius)] border bg-[var(--l-card)] transition-colors duration-200 ${
                   isOpen ? "border-[var(--l-accent)]" : "border-[var(--l-border-subtle)] hover:border-[var(--l-border)]"
                 }`}
               >

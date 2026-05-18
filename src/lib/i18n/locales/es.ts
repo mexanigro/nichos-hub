@@ -7,6 +7,8 @@ export const es: Translations = {
     howItWorks: "Cómo funciona",
     contact: "Contacto",
     getStarted: "Empezar",
+    home: "Inicio",
+    builder: "Builder",
   },
   hero: {
     badge: "WEB + CRM + IA",
@@ -15,6 +17,7 @@ export const es: Translations = {
       "Web profesional, CRM inteligente y agente WhatsApp con IA — todo listo en minutos, no meses.",
     cta: "Mirá cómo quedaría tu web",
     trustedBy: "La confianza de negocios en todo Israel",
+    serviceIcons: { web: "WEB", crm: "CRM", agent: "Agente" },
   },
   socialProof: {
     activeBusinesses: "Negocios activos",

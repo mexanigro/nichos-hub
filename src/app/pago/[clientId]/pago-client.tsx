@@ -479,9 +479,12 @@ export default function PagoClient({ clientId, clientDocId, businessName, lang, 
       {/* Header */}
       <header className="border-b border-[var(--pago-border)] bg-[var(--pago-card)]/80 backdrop-blur-md">
         <div className="mx-auto flex h-16 max-w-3xl items-center justify-between px-6">
-          <a href="/" className="flex items-center gap-2">
-            <img src="/logo-icon.png" alt="Arzac Studio" className="h-8 w-8 rounded-md object-cover" />
-            <img src="/logo.png" alt="Arzac Studio" className="hidden h-4 object-contain sm:block" />
+          <a href="/" className="flex items-center gap-2.5">
+            <img src="/logo-icon.svg" alt="Arzac Studio" className="h-8 w-8" />
+            <span className="hidden items-baseline gap-0.5 sm:flex" style={{ fontFamily: "var(--font-display, system-ui)" }}>
+              <span className="text-[0.95rem] font-bold tracking-tight text-[var(--pago-text)]">ARZAC</span>
+              <span className="text-[0.6rem] font-medium text-[var(--pago-teal)]">.studio</span>
+            </span>
           </a>
           <div className="flex items-center gap-1.5 text-[0.78rem] text-[var(--pago-text-muted)]">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
