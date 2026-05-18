@@ -2,7 +2,7 @@
 
 import { useT } from "@/lib/i18n";
 import { motion, useReducedMotion } from "framer-motion";
-import { Monitor, Users, Bot, Rocket } from "lucide-react";
+import { Monitor, Users, Bot, Rocket, ShieldCheck, MessageSquare, Star } from "lucide-react";
 
 export function Hero() {
   const { t } = useT();
@@ -156,6 +156,34 @@ export function Hero() {
             {t.hero.cta}
             <Rocket size={16} aria-hidden="true" />
           </a>
+        </motion.div>
+
+        {/* Social proof — inline, same spacing as badge→h1 */}
+        <motion.div
+          initial={prefersReduced ? {} : { opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: prefersReduced ? 0 : 1.1, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-6 flex flex-wrap items-center justify-center gap-3"
+        >
+          {[
+            { value: "47+", label: t.socialProof.activeBusinesses, icon: ShieldCheck },
+            { value: "32+", label: t.socialProof.whatsappAgents, icon: MessageSquare },
+            { value: "120+", label: t.socialProof.avgBookingsPerMonth, icon: Star },
+          ].map((badge, i) => {
+            const Icon = badge.icon;
+            return (
+              <span
+                key={i}
+                className="flex items-center gap-2 rounded-full border border-[var(--l-border)] bg-[var(--l-card)] px-4 py-2 text-[0.78rem]"
+              >
+                <Icon size={13} style={{ color: "var(--l-accent)" }} strokeWidth={1.8} aria-hidden="true" />
+                <span className="tabular-nums font-bold text-[var(--l-stat-accent)]" style={{ textShadow: "var(--l-stat-glow)" }}>
+                  {badge.value}
+                </span>
+                <span className="text-[var(--l-text-3)]">{badge.label}</span>
+              </span>
+            );
+          })}
         </motion.div>
       </div>
     </section>
