@@ -17,13 +17,19 @@ function getDb(): Firestore {
       );
     }
 
-    // Sanitize private key: strip wrapping quotes, normalize newlines, trim whitespace
     let cleanKey = privateKey.trim();
-    if ((cleanKey.startsWith('"') && cleanKey.endsWith('"')) ||
-        (cleanKey.startsWith("'") && cleanKey.endsWith("'"))) {
+    // Strip wrapping quotes (single, double, or backtick)
+    if (/^["'`]/.test(cleanKey) && cleanKey[0] === cleanKey[cleanKey.length - 1]) {
       cleanKey = cleanKey.slice(1, -1);
     }
+    // Convert literal \n sequences to real newlines
     cleanKey = cleanKey.replace(/\\n/g, "\n");
+    // Handle double-escaped newlines (\\n → \n)
+    cleanKey = cleanKey.replace(/\\\n/g, "\n");
+
+    if (!cleanKey.includes("-----BEGIN")) {
+      console.error("[firebase-admin] Private key appears malformed — missing BEGIN marker");
+    }
 
     const serviceAccount: ServiceAccount = {
       projectId,
