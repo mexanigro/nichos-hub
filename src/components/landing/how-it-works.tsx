@@ -1,9 +1,11 @@
 "use client";
 
 import { useT } from "@/lib/i18n";
+import { motion, useReducedMotion } from "framer-motion";
 
 export function HowItWorks() {
   const { t } = useT();
+  const prefersReduced = useReducedMotion();
 
   return (
     <section className="l-section relative overflow-hidden bg-[var(--l-bg)]" id="how-it-works">
@@ -35,11 +37,22 @@ export function HowItWorks() {
           {t.howItWorks.steps.map((step, i) => {
             const isLast = i === t.howItWorks.steps.length - 1;
             return (
-              <div key={i} className="relative flex gap-5 pb-8 last:pb-0">
+              <motion.div
+                key={i}
+                initial={prefersReduced ? {} : { opacity: 0, y: 20, clipPath: "inset(4% 0% 4% 0%)" }}
+                whileInView={{ opacity: 1, y: 0, clipPath: "inset(0% 0% 0% 0%)" }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{
+                  duration: 0.5,
+                  delay: prefersReduced ? 0 : i * 0.08,
+                  ease: [0.23, 1, 0.32, 1],
+                }}
+                className="relative flex gap-5 pb-8 last:pb-0"
+              >
                 <div className="flex flex-col items-center">
                   <span
                     style={{ fontFamily: "var(--l-display)" }}
-                    className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--l-accent)] text-[0.85rem] font-bold text-white"
+                    className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-[0.85rem] font-bold text-[#0a0a0f]"
                   >
                     {i + 1}
                   </span>
@@ -58,7 +71,7 @@ export function HowItWorks() {
                     {step.description}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>

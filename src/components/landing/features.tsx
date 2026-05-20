@@ -13,17 +13,21 @@ const PILLAR_FEATURES = [
 ];
 
 const PILLAR_ICONS = [Globe, Users, MessageSquare];
-const PILLAR_COLORS = ["#5bbfad", "#4a9a8a", "#7c6dd8"];
+const PILLAR_COLORS = ["#ffffff", "#a1a1aa", "#25D366"];
 
-function TiltCard({ children, index }: { children: React.ReactNode; index: number }) {
+function TiltCard({ children, index, featured = false }: { children: React.ReactNode; index: number; featured?: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
   const prefersReduced = useReducedMotion();
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [3, -3]), { stiffness: 300, damping: 30 });
-  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-3, 3]), { stiffness: 300, damping: 30 });
+  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [6, -6]), { stiffness: 300, damping: 30 });
+  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-6, 6]), { stiffness: 300, damping: 30 });
+
+  // Dynamic shadow based on tilt
+  const shadowX = useTransform(x, [-0.5, 0.5], [8, -8]);
+  const shadowY = useTransform(y, [-0.5, 0.5], [-8, 8]);
 
   function handleMouseMove(e: MouseEvent) {
     if (prefersReduced || !ref.current) return;
@@ -42,13 +46,13 @@ function TiltCard({ children, index }: { children: React.ReactNode; index: numbe
       ref={ref}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y: 20, clipPath: "inset(4% 0% 4% 0%)" }}
+      whileInView={{ opacity: 1, y: 0, clipPath: "inset(0% 0% 0% 0%)" }}
       viewport={{ once: true, amount: 0.3 }}
       transition={{
         duration: 0.5,
         delay: index * 0.08,
-        ease: [0.16, 1, 0.3, 1],
+        ease: [0.23, 1, 0.32, 1],
       }}
       style={{
         rotateX: prefersReduced ? 0 : rotateX,
@@ -99,12 +103,17 @@ export function Features() {
         <div className="grid gap-5 lg:grid-cols-3">
           {pillars.map((pillar, i) => {
             const PillarIcon = pillar.icon;
+            const isCRM = i === 1;
             return (
-              <TiltCard key={i} index={i}>
+              <TiltCard key={i} index={i} featured={isCRM}>
                 <div
-                  className="l-card-hover-glow rounded-[var(--l-radius-lg)] border border-[var(--l-border)] bg-[var(--l-card)] p-7"
+                  className={`l-card-hover-glow rounded-[var(--l-radius-lg)] border bg-[var(--l-card)] p-7 ${
+                    isCRM ? "border-white/20" : "border-[var(--l-border)]"
+                  }`}
                   style={{
-                    boxShadow: "var(--l-shadow-card)",
+                    boxShadow: isCRM
+                      ? "var(--l-shadow-card), 0 0 30px rgba(255,255,255,0.04)"
+                      : "var(--l-shadow-card)",
                   }}
                 >
                   {/* Pillar header */}
@@ -162,6 +171,11 @@ export function Features() {
             );
           })}
         </div>
+
+        {/* Coming soon */}
+        <p className="mt-8 text-center text-[0.82rem] text-[var(--l-text-3)]">
+          {(t.features as Record<string, unknown>).comingSoon as string || "Más funciones en camino…"}
+        </p>
       </div>
     </section>
   );

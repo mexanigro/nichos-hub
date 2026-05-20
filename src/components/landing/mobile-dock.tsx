@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { Home, CreditCard, Sparkles, User, LogIn } from "lucide-react";
+import { Home, CreditCard, MessageCircle, User, LogIn } from "lucide-react";
 import { useT } from "@/lib/i18n";
 import { useUserAuth } from "@/lib/user-auth-context";
 
@@ -54,10 +54,10 @@ export function MobileDock({ onAuthClick }: MobileDockProps) {
         document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" }),
     },
     {
-      label: t.nav.builder || "Builder",
-      icon: Sparkles,
+      label: "WhatsApp",
+      icon: MessageCircle,
       action: () =>
-        document.getElementById("builder")?.scrollIntoView({ behavior: "smooth" }),
+        window.open(`https://wa.me/${(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "").replace(/\D/g, "")}`, "_blank"),
     },
     {
       label:

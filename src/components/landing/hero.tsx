@@ -1,12 +1,16 @@
 "use client";
 
+import { useRef, useEffect } from "react";
 import { useT } from "@/lib/i18n";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useMotionValue, useTransform, useSpring, useReducedMotion } from "framer-motion";
 import { Monitor, Users, Bot, Rocket, ShieldCheck, MessageSquare, Star } from "lucide-react";
+
+const WA_HREF = `https://wa.me/${(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "").replace(/\D/g, "")}`;
 
 export function Hero() {
   const { t } = useT();
   const prefersReduced = useReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
 
   const words = t.hero.headline.split(" ");
 
@@ -17,36 +21,74 @@ export function Hero() {
     { icon: Bot, label: icons?.agent ?? "Agente" },
   ];
 
+  /* Mouse-tracking parallax for orbs */
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const orbX1 = useSpring(useTransform(mouseX, [-1, 1], [-30, 30]), { stiffness: 80, damping: 30 });
+  const orbY1 = useSpring(useTransform(mouseY, [-1, 1], [-20, 20]), { stiffness: 80, damping: 30 });
+  const orbX2 = useSpring(useTransform(mouseX, [-1, 1], [20, -20]), { stiffness: 60, damping: 25 });
+  const orbY2 = useSpring(useTransform(mouseY, [-1, 1], [15, -15]), { stiffness: 60, damping: 25 });
+  const orbX3 = useSpring(useTransform(mouseX, [-1, 1], [-15, 15]), { stiffness: 50, damping: 20 });
+  const orbY3 = useSpring(useTransform(mouseY, [-1, 1], [-25, 25]), { stiffness: 50, damping: 20 });
+  const orbX4 = useSpring(useTransform(mouseX, [-1, 1], [25, -25]), { stiffness: 70, damping: 28 });
+  const orbY4 = useSpring(useTransform(mouseY, [-1, 1], [10, -10]), { stiffness: 70, damping: 28 });
+
+  useEffect(() => {
+    if (prefersReduced) return;
+    const el = sectionRef.current;
+    if (!el) return;
+
+    const onMove = (e: MouseEvent) => {
+      const rect = el.getBoundingClientRect();
+      const nx = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+      const ny = ((e.clientY - rect.top) / rect.height) * 2 - 1;
+      mouseX.set(nx);
+      mouseY.set(ny);
+    };
+
+    el.addEventListener("mousemove", onMove, { passive: true });
+    return () => el.removeEventListener("mousemove", onMove);
+  }, [prefersReduced, mouseX, mouseY]);
+
   return (
-    <section className="l-tech-grid relative overflow-hidden pb-10 pt-32 px-6 md:pb-20 md:px-12 md:pt-44">
-      {/* Enhanced glow orbs — vivid drift animation */}
-      <div
+    <section ref={sectionRef} className="l-tech-grid relative overflow-hidden pb-10 pt-32 px-6 md:pb-20 md:px-12 md:pt-44">
+      {/* Enhanced glow orbs — mouse-tracking parallax */}
+      <motion.div
         className="pointer-events-none absolute -left-[200px] top-[15%] h-[500px] w-[500px] rounded-full"
         style={{
           background: "radial-gradient(circle, var(--l-orb-teal) 0%, transparent 70%)",
           animation: prefersReduced ? "none" : "glow-drift 10s ease-in-out infinite",
+          x: prefersReduced ? 0 : orbX1,
+          y: prefersReduced ? 0 : orbY1,
         }}
       />
-      <div
+      <motion.div
         className="pointer-events-none absolute -right-[150px] top-[5%] h-[400px] w-[400px] rounded-full"
         style={{
           background: "radial-gradient(circle, var(--l-orb-purple) 0%, transparent 70%)",
           animation: prefersReduced ? "none" : "glow-drift 12s ease-in-out infinite 4s",
+          x: prefersReduced ? 0 : orbX2,
+          y: prefersReduced ? 0 : orbY2,
         }}
       />
-      <div
+      <motion.div
         className="pointer-events-none absolute left-[25%] top-[55%] h-[350px] w-[350px] rounded-full"
         style={{
           background: "radial-gradient(circle, var(--l-orb-blue) 0%, transparent 70%)",
           animation: prefersReduced ? "none" : "glow-drift 14s ease-in-out infinite 7s",
+          x: prefersReduced ? 0 : orbX3,
+          y: prefersReduced ? 0 : orbY3,
         }}
       />
-      <div
+      <motion.div
         className="pointer-events-none absolute bottom-[10%] left-[55%] h-[250px] w-[250px] rounded-full"
         style={{
           background: "radial-gradient(circle, var(--l-orb-teal) 0%, transparent 70%)",
           opacity: 0.3,
           animation: prefersReduced ? "none" : "glow-drift 11s ease-in-out infinite 2s",
+          x: prefersReduced ? 0 : orbX4,
+          y: prefersReduced ? 0 : orbY4,
         }}
       />
 
@@ -81,7 +123,7 @@ export function Hero() {
           })}
         </div>
 
-        {/* Badge with shimmer */}
+        {/* Badge — solid text, no shimmer */}
         <motion.span
           initial={prefersReduced ? {} : { opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -89,23 +131,10 @@ export function Hero() {
           style={{ fontFamily: "var(--l-display)" }}
           className="inline-block rounded-[var(--l-radius-pill)] border border-[var(--l-border)] bg-[var(--l-surface)] px-4 py-1.5 text-[0.8rem] font-semibold uppercase tracking-[0.04em] text-[var(--l-accent)]"
         >
-          <span
-            className="inline-block bg-clip-text"
-            style={{
-              backgroundImage: prefersReduced
-                ? "none"
-                : "linear-gradient(90deg, var(--l-accent), var(--l-text-2), var(--l-accent))",
-              backgroundSize: "200% 100%",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: prefersReduced ? "var(--l-accent)" : "transparent",
-              animation: prefersReduced ? "none" : "shimmer 3s linear infinite",
-            }}
-          >
-            {t.hero.badge || "WEBSITE + CRM + AI"}
-          </span>
+          {t.hero.badge || "WEBSITE + CRM + AI"}
         </motion.span>
 
-        {/* Headline with staggered word animation + gradient */}
+        {/* Headline with staggered word animation */}
         <h1
           style={{ fontFamily: "var(--l-display)", fontSize: "var(--l-h1)" }}
           className="mt-6 font-bold leading-[1.1] tracking-[-0.025em]"
@@ -138,7 +167,7 @@ export function Hero() {
           {t.hero.subheadline}
         </motion.p>
 
-        {/* CTA with glow + rocket icon */}
+        {/* CTA — premium white button */}
         <motion.div
           initial={prefersReduced ? {} : { opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
@@ -146,19 +175,21 @@ export function Hero() {
           className="mt-9"
         >
           <a
-            href="#builder"
+            href={WA_HREF}
+            target="_blank"
+            rel="noopener noreferrer"
             style={{
               fontFamily: "var(--l-display)",
-              boxShadow: "0 0 30px var(--l-accent-glow), 0 0 60px var(--l-accent-glow)",
+              boxShadow: "0 0 40px rgba(255,255,255,0.06), 0 0 80px rgba(255,255,255,0.03)",
             }}
-            className="inline-flex items-center gap-2.5 rounded-[var(--l-radius-pill)] bg-[var(--l-accent)] px-8 py-3.5 text-[1rem] font-semibold text-white transition-all duration-200 hover:opacity-90 hover:shadow-[0_0_50px_var(--l-accent-glow)] active:scale-[0.97]"
+            className="inline-flex items-center gap-2.5 rounded-[var(--l-radius-pill)] bg-white px-8 py-3.5 text-[1rem] font-semibold text-[#0a0a0f] transition-all duration-200 hover:opacity-90 hover:shadow-[0_0_50px_rgba(255,255,255,0.08)] active:scale-[0.97]"
           >
             {t.hero.cta}
             <Rocket size={16} aria-hidden="true" />
           </a>
         </motion.div>
 
-        {/* Social proof — inline, same spacing as badge→h1 */}
+        {/* Social proof */}
         <motion.div
           initial={prefersReduced ? {} : { opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}

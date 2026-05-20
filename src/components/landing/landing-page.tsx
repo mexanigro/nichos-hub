@@ -5,7 +5,6 @@ import { LandingI18nProvider } from "@/lib/i18n";
 import { useTheme } from "@/hooks/useTheme";
 import { Header } from "./header";
 import { Hero } from "./hero";
-import { TemplateShowcase } from "./template-showcase";
 import { HowItWorks } from "./how-it-works";
 import { Features } from "./features";
 import { Pricing } from "./pricing";
@@ -15,8 +14,9 @@ import { Footer } from "./footer";
 import { WhatsAppWidget } from "./whatsapp-widget";
 import { MobileDock } from "./mobile-dock";
 import { AuthModal } from "./auth-modal";
-import { BuilderSection } from "./builder/builder-section";
 import { AnimatedSection } from "./animated-section";
+import { CrmDemo } from "./crm-demo";
+import { WhatsAppAgent } from "./whatsapp-agent";
 
 export function LandingPage() {
   const { theme, toggle } = useTheme();
@@ -34,7 +34,12 @@ export function LandingPage() {
         <Header theme={theme} toggleTheme={toggle} />
         <main id="main-content">
           <Hero />
-          <TemplateShowcase />
+          <AnimatedSection>
+            <CrmDemo />
+          </AnimatedSection>
+          <AnimatedSection>
+            <WhatsAppAgent />
+          </AnimatedSection>
           <AnimatedSection>
             <Features />
           </AnimatedSection>
@@ -43,9 +48,6 @@ export function LandingPage() {
           </AnimatedSection>
           <AnimatedSection>
             <Pricing />
-          </AnimatedSection>
-          <AnimatedSection>
-            <BuilderSection />
           </AnimatedSection>
           <AnimatedSection>
             <FAQ />

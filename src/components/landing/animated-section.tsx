@@ -6,10 +6,22 @@ import { motion, useInView, useReducedMotion, type TargetAndTransition } from "f
 type Variant = "fade-up" | "fade-left" | "fade-right" | "scale";
 
 const VARIANTS: Record<Variant, { hidden: TargetAndTransition; visible: TargetAndTransition }> = {
-  "fade-up": { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } },
-  "fade-left": { hidden: { opacity: 0, x: -20 }, visible: { opacity: 1, x: 0 } },
-  "fade-right": { hidden: { opacity: 0, x: 20 }, visible: { opacity: 1, x: 0 } },
-  scale: { hidden: { opacity: 0, scale: 0.95 }, visible: { opacity: 1, scale: 1 } },
+  "fade-up": {
+    hidden: { opacity: 0, clipPath: "inset(4% 0% 4% 0%)" },
+    visible: { opacity: 1, clipPath: "inset(0% 0% 0% 0%)" },
+  },
+  "fade-left": {
+    hidden: { opacity: 0, clipPath: "inset(0% 4% 0% 0%)" },
+    visible: { opacity: 1, clipPath: "inset(0% 0% 0% 0%)" },
+  },
+  "fade-right": {
+    hidden: { opacity: 0, clipPath: "inset(0% 0% 0% 4%)" },
+    visible: { opacity: 1, clipPath: "inset(0% 0% 0% 0%)" },
+  },
+  scale: {
+    hidden: { opacity: 0, scale: 0.96, clipPath: "inset(2% 2% 2% 2%)" },
+    visible: { opacity: 1, scale: 1, clipPath: "inset(0% 0% 0% 0%)" },
+  },
 };
 
 interface Props {
@@ -31,7 +43,7 @@ export function AnimatedSection({ children, className, delay = 0, variant = "fad
       ref={ref}
       initial={prefersReduced ? v.visible : v.hidden}
       animate={inView ? v.visible : v.hidden}
-      transition={{ duration: 0.5, delay, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.65, delay, ease: [0.23, 1, 0.32, 1] }}
       className={className}
     >
       {children}

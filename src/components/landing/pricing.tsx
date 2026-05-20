@@ -82,12 +82,14 @@ export function Pricing() {
                 </ul>
 
                 <a
-                  href="#builder"
+                  href={`https://wa.me/${(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "").replace(/\D/g, "")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   style={{ fontFamily: "var(--l-display)" }}
                   className={`mt-8 flex h-12 items-center justify-center rounded-[var(--l-radius-pill)] text-[0.92rem] font-semibold transition-all duration-200 active:scale-[0.97] ${
                     isPopular
-                      ? "bg-[var(--l-accent)] text-white hover:opacity-90"
-                      : "border-[1.5px] border-[var(--l-border)] text-[var(--l-text)] hover:border-[var(--l-accent)] hover:text-[var(--l-accent)]"
+                      ? "bg-white text-[#0a0a0f] hover:opacity-90"
+                      : "border-[1.5px] border-white/20 text-[var(--l-text)] hover:border-white/40"
                   }`}
                 >
                   {t.pricing.cta}

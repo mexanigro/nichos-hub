@@ -154,7 +154,7 @@ export default function MiCuentaPage() {
                     <li>✓ Inventario/stock</li>
                   </ul>
                   <a
-                    href={lead?.clientId ? `/pago/${lead.clientId}?plan=web_crm` : "/#builder"}
+                    href={lead?.clientId ? `/pago/${lead.clientId}?plan=web_crm` : `https://wa.me/${(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "").replace(/\D/g, "")}`}
                     className="mt-4 block rounded-full bg-gray-900 px-4 py-2.5 text-center text-[0.82rem] font-semibold text-white transition-all hover:bg-gray-800"
                   >
                     Elegir plan
@@ -173,7 +173,7 @@ export default function MiCuentaPage() {
                     <li>✓ Turnos por WhatsApp</li>
                   </ul>
                   <a
-                    href={lead?.clientId ? `/pago/${lead.clientId}?plan=completo` : "/#builder"}
+                    href={lead?.clientId ? `/pago/${lead.clientId}?plan=completo` : `https://wa.me/${(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "").replace(/\D/g, "")}`}
                     className="mt-4 block rounded-full bg-gray-900 px-4 py-2.5 text-center text-[0.82rem] font-semibold text-white transition-all hover:bg-gray-800"
                   >
                     Elegir plan

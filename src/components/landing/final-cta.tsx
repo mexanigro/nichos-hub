@@ -24,12 +24,14 @@ export function FinalCTA() {
           {t.cta.subtitle}
         </p>
         <a
-          href="#builder"
+          href={`https://wa.me/${(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "").replace(/\D/g, "")}`}
+          target="_blank"
+          rel="noopener noreferrer"
           style={{
             fontFamily: "var(--l-display)",
-            boxShadow: "0 0 30px var(--l-accent-glow), 0 0 60px var(--l-accent-glow)",
+            boxShadow: "0 0 40px rgba(255,255,255,0.06), 0 0 80px rgba(255,255,255,0.03)",
           }}
-          className="mt-8 inline-flex items-center gap-2.5 rounded-[var(--l-radius-pill)] bg-[var(--l-accent)] px-8 py-3.5 text-[1rem] font-semibold text-white transition-all duration-200 hover:opacity-90 active:scale-[0.97]"
+          className="mt-8 inline-flex items-center gap-2.5 rounded-[var(--l-radius-pill)] bg-white px-8 py-3.5 text-[1rem] font-semibold text-[#0a0a0f] transition-all duration-200 hover:opacity-90 active:scale-[0.97]"
         >
           {t.cta.button}
           <Rocket size={16} aria-hidden="true" />

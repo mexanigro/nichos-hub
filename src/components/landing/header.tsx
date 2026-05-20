@@ -97,8 +97,10 @@ export function Header({ theme, toggleTheme }: HeaderProps) {
             )}
             {!authLoading && user && <UserMenu />}
             <a
-              href="#builder"
-              className="l-nav-cta hidden rounded-[var(--l-radius-pill)] bg-[var(--l-accent)] px-5 py-2 text-[0.84rem] font-semibold text-white transition-all duration-200 hover:opacity-90 active:scale-[0.97] md:inline-block"
+              href={`https://wa.me/${(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "").replace(/\D/g, "")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="l-nav-cta hidden rounded-[var(--l-radius-pill)] bg-white px-5 py-2 text-[0.84rem] font-semibold text-[#0a0a0f] transition-all duration-200 hover:opacity-90 active:scale-[0.97] md:inline-block"
               style={{ fontFamily: "var(--l-display)" }}
             >
               {t.nav.getStarted}

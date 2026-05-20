@@ -8,7 +8,6 @@ export interface Translations {
     contact: string;
     getStarted: string;
     home?: string;
-    builder?: string;
   };
   hero: {
     badge?: string;
@@ -65,51 +64,20 @@ export interface Translations {
     subtitle: string;
     button: string;
   };
-  builder: {
-    badge?: string;
+  crmDemo: {
+    badge: string;
     title: string;
     subtitle: string;
-    steps: {
-      niche: string;
-      photos: string;
-      details: string;
-      branding: string;
-    };
-    niche: {
-      title: string;
-      subtitle: string;
-      otroPlaceholder?: string;
-    };
-    photos: {
-      title: string;
-      subtitle: string;
-      business: string;
-      staff: string;
-      dragDrop: string;
-    };
-    details: {
-      title: string;
-      subtitle: string;
-      businessName: string;
-      description: string;
-      whatsapp: string;
-      email: string;
-      address: string;
-      instagram: string;
-      modeTitle?: string;
-      solo?: string;
-      team?: string;
-    };
-    branding: {
-      title: string;
-      subtitle: string;
-      logo: string;
-      logoUpload: string;
-      logoCreate: string;
-      colors: string;
-    };
-    submit: string;
-    generating: string;
+    videoAlt: string;
+    chips: string[];
+  };
+  whatsappAgent: {
+    badge: string;
+    title: string;
+    description: string;
+    reasons: string[];
+    online: string;
+    conversation: { from: "client" | "bot"; text: string }[];
   };
   preview: {
     title: string;
