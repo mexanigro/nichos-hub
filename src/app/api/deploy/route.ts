@@ -5,7 +5,7 @@ import { auth } from "@/lib/auth";
 const VERCEL_TOKEN = process.env.VERCEL_TOKEN;
 const VERCEL_TEAM_ID = process.env.VERCEL_TEAM_ID;
 const DEPLOY_SECRET = process.env.DEPLOY_SECRET;
-const TEMPLATE_REPO = "mexanigro/Barber-shop-template";
+const TEMPLATE_REPO = process.env.VERCEL_TEMPLATE_REPO || "mexanigro/Barber-shop-template";
 
 const SHARED_ENV_VARS = [
   "VITE_FIREBASE_API_KEY",
@@ -30,6 +30,15 @@ async function vercelFetch(path: string, options: RequestInit = {}) {
   });
 }
 
+async function vercelFetchWithRetry(path: string, options: RequestInit = {}, retries = 3): Promise<Response> {
+  for (let i = 0; i < retries; i++) {
+    const res = await vercelFetch(path, options);
+    if (res.status !== 429) return res;
+    await new Promise((r) => setTimeout(r, 1000 * Math.pow(2, i)));
+  }
+  return vercelFetch(path, options);
+}
+
 export async function POST(req: NextRequest) {
   const internalSecret = req.headers.get("x-deploy-secret");
   const isInternalCall = DEPLOY_SECRET && internalSecret === DEPLOY_SECRET;
@@ -45,8 +54,17 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "VERCEL_TOKEN not configured" }, { status: 500 });
   }
 
+  const requiredViteVars = ["VITE_FIREBASE_API_KEY", "VITE_FIREBASE_AUTH_DOMAIN", "VITE_FIREBASE_PROJECT_ID"];
+  const missingVite = requiredViteVars.filter((v) => !process.env[v]);
+  if (missingVite.length > 0) {
+    return NextResponse.json(
+      { error: `Variables de entorno faltantes para deploy: ${missingVite.join(", ")}` },
+      { status: 500 },
+    );
+  }
+
   try {
-    const { clientId, niche, hubDocId } = await req.json();
+    const { clientId, niche, hubDocId, demoMode = false } = await req.json();
 
     if (!clientId || !niche) {
       return NextResponse.json({ error: "Missing clientId or niche" }, { status: 400 });
@@ -55,7 +73,7 @@ export async function POST(req: NextRequest) {
     const projectName = clientId;
 
     // 1. Create project from repo
-    const createRes = await vercelFetch("/v1/projects", {
+    const createRes = await vercelFetchWithRetry("/v1/projects", {
       method: "POST",
       body: JSON.stringify({
         name: projectName,
@@ -76,7 +94,7 @@ export async function POST(req: NextRequest) {
     const envVars = [
       { key: "VITE_CLIENT_ID", value: clientId, target: ["production", "preview"], type: "plain" },
       { key: "VITE_ACTIVE_NICHE", value: niche, target: ["production", "preview"], type: "plain" },
-      { key: "VITE_DEMO_MODE", value: "true", target: ["production", "preview"], type: "plain" },
+      { key: "VITE_DEMO_MODE", value: demoMode ? "true" : "false", target: ["production", "preview"], type: "plain" },
       { key: "VITE_UI_LANGUAGE", value: "he", target: ["production", "preview"], type: "plain" },
     ];
 
@@ -88,14 +106,14 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    await vercelFetch(`/v3/projects/${projectId}/env`, {
+    await vercelFetchWithRetry(`/v3/projects/${projectId}/env`, {
       method: "POST",
       body: JSON.stringify(envVars),
     });
 
     // 3. Add custom domain
     const domain = `${clientId}.arzac.studio`;
-    await vercelFetch(`/v9/projects/${projectId}/domains`, {
+    await vercelFetchWithRetry(`/v9/projects/${projectId}/domains`, {
       method: "POST",
       body: JSON.stringify({ name: domain }),
     });

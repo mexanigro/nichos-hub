@@ -5,7 +5,7 @@ import { classifyMessage } from "@/lib/classify";
 
 async function autoClassify(docs: FirebaseFirestore.QueryDocumentSnapshot[]): Promise<Record<string, { category: string; categoryReason: string }>> {
   const classified: Record<string, { category: string; categoryReason: string }> = {};
-  const unclassified = docs.filter((doc) => !doc.data().category && doc.data().message);
+  const unclassified = docs.filter((doc) => !doc.data().category && doc.data().message).slice(0, 10);
   if (unclassified.length === 0) return classified;
 
   const results = await Promise.allSettled(

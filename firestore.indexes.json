@@ -1,0 +1,30 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "hub_clients",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "status", "order": "ASCENDING" },
+        { "fieldPath": "createdAt", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "hub_clients",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "niche", "order": "ASCENDING" },
+        { "fieldPath": "createdAt", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "provider_messages",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "sender", "order": "ASCENDING" },
+        { "fieldPath": "category", "order": "ASCENDING" },
+        { "fieldPath": "createdAt", "order": "DESCENDING" }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}

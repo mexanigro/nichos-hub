@@ -6,15 +6,16 @@
 const windows = new Map<string, number[]>();
 
 const CLEANUP_INTERVAL_MS = 5 * 60_000;
+const MAX_STALE_MS = 10 * 60_000;
 let lastCleanup = Date.now();
 
-function cleanup(windowMs: number): void {
+function cleanup(): void {
   const now = Date.now();
   if (now - lastCleanup < CLEANUP_INTERVAL_MS) return;
   lastCleanup = now;
 
   for (const [key, timestamps] of windows) {
-    const valid = timestamps.filter((t) => now - t < windowMs);
+    const valid = timestamps.filter((t) => now - t < MAX_STALE_MS);
     if (valid.length === 0) {
       windows.delete(key);
     } else {
@@ -29,7 +30,7 @@ export function isRateLimited(
   maxRequests: number,
   windowMs: number,
 ): boolean {
-  cleanup(windowMs);
+  cleanup();
 
   const key = `${ip}:${endpoint}`;
   const now = Date.now();

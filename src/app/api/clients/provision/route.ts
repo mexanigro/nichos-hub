@@ -1,10 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { withOwner } from "@/lib/auth";
 import { db } from "@/lib/firebase-admin";
-
-type BusinessNiche = "barberia" | "estetica" | "tattoo" | "nails" | "cafeteria" | "remodelaciones";
-
-const VALID_NICHES: BusinessNiche[] = ["barberia", "estetica", "tattoo", "nails", "cafeteria", "remodelaciones"];
+import { buildFeatures, getDefaultTheme, getDefaultSplash, VALID_NICHES, type BusinessNiche } from "@/lib/niche-defaults";
 
 function slugify(name: string): string {
   return name
@@ -14,62 +11,7 @@ function slugify(name: string): string {
     .slice(0, 40);
 }
 
-function buildFeatures(niche: BusinessNiche, mode: "solo" | "team"): Record<string, boolean> {
-  const base: Record<string, boolean> = {
-    showHero: true,
-    showServices: true,
-    showWhyChooseUs: true,
-    showBooking: true,
-    showGallery: true,
-    showTeam: mode === "team",
-    enableStaffPages: mode === "team",
-    showAbout: mode === "solo",
-    enableAboutPage: mode === "solo",
-    showTestimonials: true,
-    showInquiry: true,
-    showLocation: true,
-    showBusinessHours: true,
-    showInstagram: true,
-    showWhatsAppInChat: true,
-  };
-
-  if (niche === "cafeteria") {
-    base.showBooking = false;
-    base.showPhilosophy = true;
-    base.showProcess = true;
-    base.showAmbience = true;
-  } else if (niche === "remodelaciones") {
-    base.showBooking = false;
-    base.showPortfolio = true;
-    base.showProcess = true;
-  }
-
-  return base;
-}
-
-function getDefaultTheme(niche: BusinessNiche): string {
-  const map: Record<BusinessNiche, string> = {
-    barberia: "classic-dark",
-    estetica: "elegance-light",
-    tattoo: "ink-dark",
-    nails: "pastel-soft",
-    cafeteria: "warm-cream",
-    remodelaciones: "pro-slate",
-  };
-  return map[niche];
-}
-
-function getDefaultSplash(niche: BusinessNiche): number {
-  const map: Record<BusinessNiche, number> = {
-    barberia: 1,
-    estetica: 4,
-    tattoo: 5,
-    nails: 3,
-    cafeteria: 3,
-    remodelaciones: 1,
-  };
-  return map[niche];
-}
+// buildFeatures, getDefaultTheme, getDefaultSplash, VALID_NICHES importados de @/lib/niche-defaults
 
 export const POST = withOwner(async (req: NextRequest) => {
   try {

@@ -4,6 +4,7 @@ import { auth } from "@/lib/auth";
 import { isRateLimited } from "@/lib/rate-limit";
 import { resolveBranding } from "@/lib/branding-resolver";
 import { generateLogoSvg } from "@/lib/logo-generator";
+import { buildFeatures, getDefaultTheme, getDefaultSplash } from "@/lib/niche-defaults";
 
 function slugify(name: string): string {
   return name
@@ -42,7 +43,7 @@ export async function POST(req: NextRequest) {
     // Read logo file if uploaded (< 500KB → base64 data URL)
     let logoDataUrl: string | null = null;
     const logoFile = formData.get("logo");
-    if (logoFile && logoFile instanceof Blob && logoFile.size > 0 && logoFile.size < 500_000) {
+    if (logoFile && logoFile instanceof Blob && logoFile.size > 0 && logoFile.size < 350_000) {
       try {
         const buffer = Buffer.from(await logoFile.arrayBuffer());
         const mimeType = logoFile.type || "image/png";
@@ -141,58 +142,7 @@ export async function POST(req: NextRequest) {
   }
 }
 
-function buildFeatures(niche: string, mode: "solo" | "team"): Record<string, boolean> {
-  const base: Record<string, boolean> = {
-    showHero: true,
-    showServices: true,
-    showBooking: true,
-    showGallery: true,
-    showTeam: mode === "team",
-    enableStaffPages: mode === "team",
-    showAbout: mode === "solo",
-    enableAboutPage: mode === "solo",
-    showLocation: true,
-    showBusinessHours: true,
-    showWhatsAppInChat: true,
-  };
-
-  if (niche === "cafeteria") {
-    base.showBooking = false;
-    base.showPhilosophy = true;
-    base.showProcess = true;
-    base.showAmbience = true;
-  } else if (niche === "remodelaciones") {
-    base.showBooking = false;
-    base.showPortfolio = true;
-    base.showProcess = true;
-  }
-
-  return base;
-}
-
-function getDefaultTheme(niche: string): string {
-  const map: Record<string, string> = {
-    barberia: "classic-dark",
-    estetica: "elegance-light",
-    tattoo: "ink-dark",
-    nails: "pastel-soft",
-    cafeteria: "warm-cream",
-    remodelaciones: "pro-slate",
-  };
-  return map[niche] || "classic-dark";
-}
-
-function getDefaultSplash(niche: string): number {
-  const map: Record<string, number> = {
-    barberia: 1,
-    tattoo: 5,
-    nails: 3,
-    estetica: 4,
-    cafeteria: 3,
-    remodelaciones: 1,
-  };
-  return map[niche] || 1;
-}
+// buildFeatures, getDefaultTheme, getDefaultSplash importados de @/lib/niche-defaults
 
 /**
  * Generate a logo SVG via Claude Haiku and store it in Firestore.

@@ -31,9 +31,13 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     async signIn({ user }) {
       return !!user.email;
     },
-    async jwt({ token, user }) {
-      if (user?.email) {
-        token.role = (await getUserRole(user.email)) ?? "lead";
+    async jwt({ token, user, trigger }) {
+      if (user?.email || trigger === "update") {
+        token.role = (await getUserRole((user?.email ?? token.email) as string)) ?? "lead";
+        token.roleCheckedAt = Date.now();
+      } else if (!token.role || (Date.now() - ((token.roleCheckedAt as number) || 0)) > 3_600_000) {
+        token.role = (await getUserRole(token.email as string)) ?? "lead";
+        token.roleCheckedAt = Date.now();
       }
       return token;
     },

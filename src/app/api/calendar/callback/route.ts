@@ -6,12 +6,24 @@ const TOKEN_URL = "https://oauth2.googleapis.com/token";
 export async function GET(req: Request) {
   const url = new URL(req.url);
   const code = url.searchParams.get("code");
-  const clientId = url.searchParams.get("state");
+  const rawState = url.searchParams.get("state") || "";
   const error = url.searchParams.get("error");
+
+  // Separar clientId y csrfToken del state
+  const [clientId, csrfToken] = rawState.includes(":") ? rawState.split(":", 2) : [rawState, ""];
 
   if (error || !code || !clientId) {
     const base = process.env.NEXT_PUBLIC_APP_URL || url.origin;
     return NextResponse.redirect(`${base}/clients/${clientId ?? ""}?calendarError=auth_failed`);
+  }
+
+  // Verificar CSRF token contra cookie
+  const cookieHeader = req.headers.get("cookie") || "";
+  const csrfMatch = cookieHeader.match(/calendar_csrf=([^;]+)/);
+  const storedCsrf = csrfMatch?.[1];
+  if (csrfToken && storedCsrf && csrfToken !== storedCsrf) {
+    const base = process.env.NEXT_PUBLIC_APP_URL || url.origin;
+    return NextResponse.redirect(`${base}/clients/${clientId}?calendarError=csrf_mismatch`);
   }
 
   const googleClientId = process.env.GOOGLE_CLIENT_ID;
@@ -56,7 +68,9 @@ export async function GET(req: Request) {
 
     console.log(`[calendar/callback] Calendar connected for ${clientId}`);
     const base = process.env.NEXT_PUBLIC_APP_URL || url.origin;
-    return NextResponse.redirect(`${base}/clients/${clientId}?tab=whatsapp&calendarConnected=true`);
+    const successRes = NextResponse.redirect(`${base}/clients/${clientId}?tab=whatsapp&calendarConnected=true`);
+    successRes.cookies.delete("calendar_csrf");
+    return successRes;
   } catch (err) {
     console.error("[calendar/callback] Error:", err);
     const base = process.env.NEXT_PUBLIC_APP_URL || url.origin;

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { withOwner } from "@/lib/auth";
+import crypto from "crypto";
 
 const GOOGLE_AUTH_URL = "https://accounts.google.com/o/oauth2/v2/auth";
 const SCOPES = "https://www.googleapis.com/auth/calendar";
@@ -20,6 +21,9 @@ export const GET = withOwner(async (req) => {
     );
   }
 
+  const csrfToken = crypto.randomUUID();
+  const state = `${clientId}:${csrfToken}`;
+
   const params = new URLSearchParams({
     client_id: googleClientId,
     redirect_uri: redirectUri,
@@ -27,8 +31,16 @@ export const GET = withOwner(async (req) => {
     scope: SCOPES,
     access_type: "offline",
     prompt: "consent",
-    state: clientId,
+    state,
   });
 
-  return NextResponse.redirect(`${GOOGLE_AUTH_URL}?${params.toString()}`);
+  const res = NextResponse.redirect(`${GOOGLE_AUTH_URL}?${params.toString()}`);
+  res.cookies.set("calendar_csrf", csrfToken, {
+    httpOnly: true,
+    secure: true,
+    sameSite: "lax",
+    maxAge: 600, // 10 minutos
+    path: "/api/calendar",
+  });
+  return res;
 });

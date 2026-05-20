@@ -20,6 +20,8 @@ export interface Client {
   clientId: string;
   vercelProjectId?: string;
   notes?: string;
+  monitorChecks?: string[];
+  paymentStatus?: string;
 }
 
 export type HealthStatus = "healthy" | "degraded" | "down";
@@ -173,4 +175,83 @@ export interface Expense {
   paymentMethod?: string;
   createdBy: string;
   createdAt: Date;
+}
+
+// --- Tipos para sistema de turnos ---
+
+export interface TimeRange {
+  start: string; // HH:mm
+  end: string;
+}
+
+export interface SessionBreak extends TimeRange {
+  label: string;
+}
+
+export interface WorkDay {
+  isOpen: boolean;
+  hours: TimeRange;
+  breaks: SessionBreak[];
+}
+
+export interface WeeklySchedule {
+  monday: WorkDay;
+  tuesday: WorkDay;
+  wednesday: WorkDay;
+  thursday: WorkDay;
+  friday: WorkDay;
+  saturday: WorkDay;
+  sunday: WorkDay;
+}
+
+export type DateOverride =
+  | { type: "dayOff" }
+  | { type: "customHours"; start: string; end: string };
+
+export interface BlockedSlot {
+  id: string;
+  date: string;
+  start: string;
+  end: string;
+  reason: string;
+}
+
+export interface StaffMember {
+  id: string;
+  name: string;
+  schedule: WeeklySchedule;
+  blockedDates?: string[];
+  blockedSlots?: BlockedSlot[];
+  dateOverrides?: Record<string, DateOverride>;
+}
+
+export interface AppointmentService {
+  id: string;
+  name: string;
+  description: string;
+  duration: number;
+  price: number;
+  category?: string;
+}
+
+export type AppointmentStatus = "confirmed" | "pending" | "cancelled" | "completed";
+
+export interface Appointment {
+  id?: string;
+  clientId: string;
+  customerName: string;
+  customerEmail: string;
+  customerPhone: string;
+  serviceId: string;
+  staffId: string;
+  date: string;
+  time: string;
+  duration: number;
+  status: AppointmentStatus;
+  createdAt: Date;
+}
+
+export interface ManifestInterval {
+  start: string;
+  end: string;
 }

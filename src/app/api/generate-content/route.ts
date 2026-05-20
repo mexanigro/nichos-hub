@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import Anthropic from "@anthropic-ai/sdk";
 import { withOwner } from "@/lib/auth";
+import { isRateLimited } from "@/lib/rate-limit";
 
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
@@ -54,6 +55,11 @@ const REMODELACIONES_FIELDS = `
   "sections.process.subtitle": "process subtitle"`;
 
 export const POST = withOwner(async (req) => {
+  const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+  if (isRateLimited(ip, "generate-content", 5, 60_000)) {
+    return NextResponse.json({ error: "Demasiadas solicitudes" }, { status: 429 });
+  }
+
   try {
     const { niche, businessDescription } = await req.json();
 

@@ -101,7 +101,7 @@ Use geometric shapes, clean typography, and a minimal color palette.`;
 
   const response = await getAnthropicClient().messages.create({
     model: "claude-haiku-4-5-20251001",
-    max_tokens: 3000,
+    max_tokens: 1800,
     system: `You are an expert logo designer who creates SVG logos for small businesses. Your logos are clean, professional, and look great at any size.
 
 DESIGN BRIEF FOR THIS INDUSTRY:
@@ -156,6 +156,11 @@ QUALITY STANDARDS:
   // Ensure xmlns
   if (!svg.includes("xmlns")) {
     svg = svg.replace("<svg", '<svg xmlns="http://www.w3.org/2000/svg"');
+  }
+
+  // Warn if SVG is too large for data URL usage
+  if (svg.length > 6000) {
+    console.warn(`[logo-gen] SVG generado es grande (${svg.length} chars) — puede no renderizar bien en data URLs`);
   }
 
   // Encode as data URL

@@ -5,7 +5,7 @@ import { getHealthMap } from "@/lib/repos/health";
 import type { ClientWithHealth, HealthStatus } from "@/types";
 
 export const GET = withOwner(async () => {
-  const clientsSnap = await db.collection("hub_clients").orderBy("businessName").get();
+  const clientsSnap = await db.collection("hub_clients").orderBy("createdAt", "desc").get();
 
   const clients = clientsSnap.docs.map((doc) => {
     const d = doc.data();
