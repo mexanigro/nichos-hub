@@ -8,6 +8,10 @@ interface CreatePaymentParams {
   clientId: string;
   productName: string;
   language: "he" | "en";
+  /** Override ruta de exito (default: /pago/success) */
+  successPath?: string;
+  /** Override ruta de error (default: /pago/error) */
+  errorPath?: string;
 }
 
 interface CreatePaymentResult {
@@ -31,8 +35,8 @@ export async function createLowProfilePayment(params: CreatePaymentParams): Prom
     Language: params.language,
     Operation: "1",
     CodePage: "65001",
-    SuccessRedirectUrl: `${BASE_URL}/pago/success`,
-    ErrorRedirectUrl: `${BASE_URL}/pago/error`,
+    SuccessRedirectUrl: `${BASE_URL}${params.successPath || "/pago/success"}`,
+    ErrorRedirectUrl: `${BASE_URL}${params.errorPath || "/pago/error"}`,
     ReturnValue: params.clientId,
     ProductName: params.productName,
   });

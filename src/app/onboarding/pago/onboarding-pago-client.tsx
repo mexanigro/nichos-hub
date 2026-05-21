@@ -23,6 +23,7 @@ const i18n: Record<
     collapseContract: string;
     accept: string;
     continueWithGoogle: string;
+    payNow: string;
     processing: string;
     redirecting: string;
     error: string;
@@ -44,8 +45,9 @@ const i18n: Record<
     collapseContract: "הסתר",
     accept: "קראתי ואני מסכים/ה לתנאי ההסכם",
     continueWithGoogle: "המשך עם Google",
+    payNow: "לתשלום",
     processing: "מעבד...",
-    redirecting: "מעביר ל-WhatsApp...",
+    redirecting: "...מעביר לתשלום",
     error: "שגיאה, נסה שוב",
     securePayment: "תהליך מאובטח",
     monthlyAmount: "סכום חודשי",
@@ -77,8 +79,9 @@ const i18n: Record<
     collapseContract: "Collapse",
     accept: "I have read and accept the terms of service",
     continueWithGoogle: "Continue with Google",
+    payNow: "Pay now",
     processing: "Processing...",
-    redirecting: "Redirecting to WhatsApp...",
+    redirecting: "Redirecting to payment...",
     error: "An error occurred, please try again",
     securePayment: "Secure process",
     monthlyAmount: "Monthly amount",
@@ -110,8 +113,9 @@ const i18n: Record<
     collapseContract: "Ocultar",
     accept: "Leí y acepto los términos del acuerdo",
     continueWithGoogle: "Continuar con Google",
+    payNow: "Pagar ahora",
     processing: "Procesando...",
-    redirecting: "Redirigiendo a WhatsApp...",
+    redirecting: "Redirigiendo al pago...",
     error: "Error, intentá de nuevo",
     securePayment: "Proceso seguro",
     monthlyAmount: "Monto mensual",
@@ -143,8 +147,9 @@ const i18n: Record<
     collapseContract: "Скрыть",
     accept: "Я прочитал(а) и принимаю условия договора",
     continueWithGoogle: "Продолжить с Google",
+    payNow: "Оплатить",
     processing: "Обработка...",
-    redirecting: "Перенаправление в WhatsApp...",
+    redirecting: "Перенаправление на оплату...",
     error: "Ошибка, попробуйте снова",
     securePayment: "Безопасный процесс",
     monthlyAmount: "Ежемесячная сумма",
@@ -214,8 +219,8 @@ export function OnboardingPagoClient({ defaultPlan }: Props) {
     setError("");
 
     try {
-      // Registrar lead con contrato aceptado
-      const res = await fetch("/api/contract-leads", {
+      // Crear lead + pago Cardcom en un solo request
+      const res = await fetch("/api/cardcom/create-onboarding-payment", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -227,24 +232,18 @@ export function OnboardingPagoClient({ defaultPlan }: Props) {
         }),
       });
 
-      if (!res.ok) {
-        const data = await res.json().catch(() => null);
+      const data = await res.json();
+
+      if (!res.ok || !data.url) {
         throw new Error(data?.error || "Error");
       }
 
-      // Redirigir a WhatsApp
-      const waNumber = (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "").replace(/\D/g, "");
-      const planLabel = selectedPlan === "completo" ? "Completo (₪990)" : "Web+CRM (₪790)";
-      const waText = encodeURIComponent(
-        `Hola! Acabo de aceptar el contrato para el plan ${planLabel}. Mi email es ${session.user.email}. Me gustaría empezar.`,
-      );
-
       setDone(true);
 
-      // Dar tiempo a que se vea el "redirecting..."
+      // Redirigir a Cardcom
       setTimeout(() => {
-        window.location.href = `https://wa.me/${waNumber}?text=${waText}`;
-      }, 800);
+        window.location.href = data.url;
+      }, 600);
     } catch (e) {
       setError(e instanceof Error ? e.message : t.error);
       setSending(false);
@@ -564,15 +563,11 @@ export function OnboardingPagoClient({ defaultPlan }: Props) {
               </>
             ) : status === "authenticated" ? (
               <>
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <path
-                    d="M4.5 6V4.5C4.5 3.12 5.62 2 7 2s2.5 1.12 2.5 2.5V6M3.5 6h7a1 1 0 011 1v4.5a1 1 0 01-1 1h-7a1 1 0 01-1-1V7a1 1 0 011-1z"
-                    stroke="currentColor"
-                    strokeWidth="1.2"
-                    strokeLinecap="round"
-                  />
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <rect x="1" y="3.5" width="14" height="9" rx="1.5" stroke="currentColor" strokeWidth="1.3" />
+                  <path d="M1 6.5h14" stroke="currentColor" strokeWidth="1.3" />
                 </svg>
-                <span>WhatsApp</span>
+                <span>{t.payNow}</span>
               </>
             ) : (
               <>
