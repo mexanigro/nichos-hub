@@ -127,7 +127,30 @@ export async function deployToVercel({ clientId, niche, hubDocId, demoMode = fal
     body: JSON.stringify({ name: domain }),
   });
 
-  // 4. Update hub_clients with vercel info
+  // 4. Trigger explicit deployment (project creation via API doesn't always auto-build)
+  const [repoOwner, repoName] = TEMPLATE_REPO.split("/");
+  const deployRes = await vercelFetchWithRetry("/v13/deployments", {
+    method: "POST",
+    body: JSON.stringify({
+      name: projectName,
+      project: projectId,
+      target: "production",
+      gitSource: {
+        type: "github",
+        org: repoOwner,
+        repo: repoName,
+        ref: "main",
+      },
+    }),
+  });
+
+  if (!deployRes.ok) {
+    const err = await deployRes.text();
+    console.error("[deploy] Trigger deployment failed:", err);
+    // Project exists but deploy didn't start — not fatal, can retry from dashboard
+  }
+
+  // 5. Update hub_clients with vercel info
   if (hubDocId) {
     await db.collection("hub_clients").doc(hubDocId).update({
       vercelProjectId: projectId,

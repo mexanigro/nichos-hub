@@ -23,7 +23,8 @@ export const POST = withOwner(async (req) => {
   }
 
   try {
-    // Trigger a new deployment by creating a deployment hook
+    const templateRepo = process.env.VERCEL_TEMPLATE_REPO || "mexanigro/Barber-shop-template";
+    const [repoOwner, repoName] = templateRepo.split("/");
     const res = await vercelFetchWithRetry(`/v13/deployments`, {
       method: "POST",
       body: JSON.stringify({
@@ -32,7 +33,8 @@ export const POST = withOwner(async (req) => {
         target: "production",
         gitSource: {
           type: "github",
-          repoId: vercelProjectId,
+          org: repoOwner,
+          repo: repoName,
           ref: "main",
         },
       }),

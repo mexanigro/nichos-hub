@@ -69,6 +69,12 @@ export async function GET(
           url: latest.url ? `https://${latest.url}` : null,
         });
       }
+
+      // Project exists but zero deployments — build never started
+      if (data.deployStatus === "building") {
+        await doc.ref.update({ deployStatus: "error", deployError: "Build never started in Vercel" });
+        return NextResponse.json({ status: "error", domain: data.domain });
+      }
     }
   } catch (error) {
     console.error("Status check error:", error);
