@@ -11,9 +11,23 @@ export const GET = withOwner(async (_req, _session, ctx) => {
     return NextResponse.json({ error: "Cliente no encontrado" }, { status: 404 });
   }
 
-  const client = { id: doc.id, ...doc.data() };
-  const internalClientId = doc.data()?.clientId;
-  const clientStatus = doc.data()?.status || "active";
+  const d = doc.data()!;
+  const rawDate = d.activationDate?.toDate?.() ?? d.createdAt?.toDate?.() ?? null;
+  const client = {
+    id: doc.id,
+    businessName: d.businessName || "",
+    niche: d.niche || "",
+    deployUrl: d.deployUrl || "",
+    activationDate: rawDate?.toISOString() ?? new Date().toISOString(),
+    status: d.status || "active",
+    adminEmail: d.adminEmail || "",
+    clientId: d.clientId || doc.id,
+    vercelProjectId: d.vercelProjectId || "",
+    notes: d.notes || "",
+    healthStatus: "healthy",
+  };
+  const internalClientId = d.clientId;
+  const clientStatus = d.status || "active";
 
   // Auto-heal: ensure clients/{clientId} exists (template Firestore rules depend on it).
   if (internalClientId) {

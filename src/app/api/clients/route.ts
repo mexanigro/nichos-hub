@@ -5,22 +5,34 @@ import { getHealthMap } from "@/lib/repos/health";
 import type { ClientWithHealth, HealthStatus } from "@/types";
 
 export const GET = withOwner(async () => {
-  const clientsSnap = await db.collection("hub_clients").orderBy("createdAt", "desc").get();
+  // No usar orderBy — docs sin el campo quedan excluidos silenciosamente.
+  // Ordenamos en JS para garantizar que TODOS los docs aparezcan.
+  const clientsSnap = await db.collection("hub_clients").get();
 
   const clients = clientsSnap.docs.map((doc) => {
     const d = doc.data();
+    // Firestore Timestamps tienen .toDate(), pero el campo puede no existir
+    // o ser un tipo inesperado. Usar fallback robusto.
+    const rawDate = d.activationDate?.toDate?.() ?? d.createdAt?.toDate?.() ?? null;
     return {
       id: doc.id,
-      businessName: d.businessName,
-      niche: d.niche,
-      deployUrl: d.deployUrl,
-      activationDate: d.activationDate?.toDate(),
-      status: d.status,
-      adminEmail: d.adminEmail,
-      clientId: d.clientId,
-      vercelProjectId: d.vercelProjectId,
-      notes: d.notes,
+      businessName: d.businessName || "",
+      niche: d.niche || "",
+      deployUrl: d.deployUrl || "",
+      activationDate: rawDate?.toISOString() ?? null,
+      status: d.status || "active",
+      adminEmail: d.adminEmail || "",
+      clientId: d.clientId || doc.id,
+      vercelProjectId: d.vercelProjectId || "",
+      notes: d.notes || "",
     };
+  });
+
+  // Ordenar por fecha desc — docs sin fecha van al final
+  clients.sort((a, b) => {
+    if (!a.activationDate) return 1;
+    if (!b.activationDate) return -1;
+    return b.activationDate.localeCompare(a.activationDate);
   });
 
   let healthMap: Record<string, { status: HealthStatus; lastIncident: unknown }> = {};
@@ -32,6 +44,7 @@ export const GET = withOwner(async () => {
 
   const enriched: ClientWithHealth[] = clients.map((c) => ({
     ...c,
+    activationDate: c.activationDate ? new Date(c.activationDate) : new Date(),
     healthStatus: (healthMap[c.clientId]?.status as HealthStatus) || "healthy",
     lastIncident: healthMap[c.clientId]?.lastIncident as ClientWithHealth["lastIncident"],
   }));
@@ -63,6 +76,7 @@ export const POST = withOwner(async (req) => {
       notes: notes || "",
       status: "active",
       activationDate: new Date(),
+      createdAt: new Date(),
     });
 
     // Sync to clients/{clientId} — the template's Firestore rules depend on this

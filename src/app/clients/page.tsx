@@ -14,45 +14,72 @@ import { HealthDot, ClientStatusBadge } from "@/components/status-badge";
 import { EmptyState } from "@/components/empty-state";
 import { LoadingSpinner } from "@/components/loading";
 import type { ClientWithHealth } from "@/types";
-import { formatDistanceToNow } from "date-fns";
+import { formatDistanceToNow, isValid } from "date-fns";
 import { es } from "date-fns/locale";
 
+/** Convierte un valor de fecha de la API a Date, con fallback seguro */
+function safeDate(v: unknown): Date {
+  if (!v) return new Date();
+  const d = new Date(v as string);
+  return isValid(d) ? d : new Date();
+}
+
+/** formatDistanceToNow seguro — nunca crashea */
+function safeTimeAgo(date: Date): string {
+  try {
+    if (!isValid(date)) return "—";
+    return formatDistanceToNow(date, { addSuffix: true, locale: es });
+  } catch {
+    return "—";
+  }
+}
+
 export default function ClientsPage() {
-  const { data: session } = useSession();
+  const { data: session, status: authStatus } = useSession();
   const router = useRouter();
   const [clients, setClients] = useState<ClientWithHealth[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
 
   useEffect(() => {
+    // Esperar a que la sesión cargue antes de decidir
+    if (authStatus === "loading") return;
     if (session?.user?.role !== "owner") {
       router.push("/sales");
       return;
     }
     fetchClients();
-  }, [session, router]);
+  }, [session, authStatus, router]);
 
   async function fetchClients() {
-    const res = await fetch("/api/clients");
-    if (res.ok) {
-      const data = await res.json();
-      setClients(data.map((c: ClientWithHealth) => ({
-        ...c,
-        activationDate: new Date(c.activationDate),
-        lastIncident: c.lastIncident
-          ? { ...c.lastIncident, createdAt: new Date(c.lastIncident.createdAt) }
-          : undefined,
-      })));
+    try {
+      const res = await fetch("/api/clients");
+      if (res.ok) {
+        const data = await res.json();
+        setClients(data.map((c: ClientWithHealth) => ({
+          ...c,
+          businessName: c.businessName || "",
+          niche: c.niche || "",
+          clientId: c.clientId || "",
+          deployUrl: c.deployUrl || "",
+          activationDate: safeDate(c.activationDate),
+          lastIncident: c.lastIncident
+            ? { ...c.lastIncident, createdAt: safeDate(c.lastIncident.createdAt) }
+            : undefined,
+        })));
+      }
+    } catch (err) {
+      console.error("[clients] Error fetching:", err);
     }
     setLoading(false);
   }
 
-
+  const searchLower = search.toLowerCase();
   const filtered = clients.filter(
     (c) =>
-      c.businessName.toLowerCase().includes(search.toLowerCase()) ||
-      c.niche.toLowerCase().includes(search.toLowerCase()) ||
-      c.clientId.toLowerCase().includes(search.toLowerCase())
+      (c.businessName || "").toLowerCase().includes(searchLower) ||
+      (c.niche || "").toLowerCase().includes(searchLower) ||
+      (c.clientId || "").toLowerCase().includes(searchLower)
   );
 
   if (loading) return <LoadingSpinner />;
@@ -118,10 +145,10 @@ export default function ClientsPage() {
                     <HealthDot status={client.healthStatus} />
                   </td>
                   <td className="min-w-[120px] px-4 py-3">
-                    <span className="font-medium text-text">{client.businessName}</span>
+                    <span className="font-medium text-text">{client.businessName || "—"}</span>
                   </td>
                   <td className="hidden px-4 py-3 md:table-cell">
-                    <span className="whitespace-nowrap text-text-secondary">{client.niche}</span>
+                    <span className="whitespace-nowrap text-text-secondary">{client.niche || "—"}</span>
                   </td>
                   <td className="hidden max-w-[200px] truncate px-4 py-3 lg:table-cell">
                     {client.deployUrl ? (
@@ -140,12 +167,12 @@ export default function ClientsPage() {
                     )}
                   </td>
                   <td className="hidden whitespace-nowrap px-4 py-3 text-xs text-text-muted md:table-cell">
-                    {formatDistanceToNow(client.activationDate, { addSuffix: true, locale: es })}
+                    {safeTimeAgo(client.activationDate)}
                   </td>
                   <td className="hidden whitespace-nowrap px-4 py-3 lg:table-cell">
                     {client.lastIncident ? (
                       <span className="text-xs text-warning">
-                        {client.lastIncident.severity} — {formatDistanceToNow(client.lastIncident.createdAt, { addSuffix: true, locale: es })}
+                        {client.lastIncident.severity} — {safeTimeAgo(client.lastIncident.createdAt)}
                       </span>
                     ) : (
                       <span className="text-xs text-text-muted">—</span>
@@ -160,7 +187,6 @@ export default function ClientsPage() {
           </table>
         </div>
       )}
-
     </div>
   );
 }
