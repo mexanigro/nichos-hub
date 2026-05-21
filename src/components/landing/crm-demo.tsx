@@ -1,26 +1,55 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import { useRef, useEffect } from "react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useReducedMotion,
+  useInView,
+} from "framer-motion";
 import { useT } from "@/lib/i18n";
 
 export function CrmDemo() {
   const { t } = useT();
   const prefersReduced = useReducedMotion();
   const sectionRef = useRef<HTMLElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  /* Lazy play/pause */
+  const inView = useInView(sectionRef, { amount: 0.3 });
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (inView) v.play().catch(() => {});
+    else v.pause();
+  }, [inView]);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"],
   });
 
-  const rotateX = useTransform(scrollYProgress, [0, 0.4], prefersReduced ? [0, 0] : [8, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.4], prefersReduced ? [1, 1] : [0.96, 1]);
+  /* 3D adjusted for wider frame */
+  const rotateX = useTransform(
+    scrollYProgress,
+    [0, 0.4],
+    prefersReduced ? [0, 0] : [6, 0],
+  );
+  const scale = useTransform(
+    scrollYProgress,
+    [0, 0.4],
+    prefersReduced ? [1, 1] : [0.94, 1],
+  );
 
   return (
-    <section ref={sectionRef} className="l-section relative overflow-hidden bg-[var(--l-bg)]" id="crm-demo">
+    <section
+      ref={sectionRef}
+      className="l-section relative overflow-hidden bg-[var(--l-bg)]"
+      id="crm-demo"
+    >
+      {/* Header — inside container */}
       <div className="l-container relative z-10">
-        {/* Section header */}
         <div className="mb-12 text-center">
           <span
             style={{ fontFamily: "var(--l-display)" }}
@@ -29,7 +58,10 @@ export function CrmDemo() {
             {t.crmDemo.badge}
           </span>
           <h2
-            style={{ fontFamily: "var(--l-display)", fontSize: "var(--l-h2)" }}
+            style={{
+              fontFamily: "var(--l-display)",
+              fontSize: "var(--l-h2)",
+            }}
             className="mt-4 font-bold leading-[1.15] tracking-[-0.02em] text-[var(--l-text)]"
           >
             {t.crmDemo.title}
@@ -38,70 +70,96 @@ export function CrmDemo() {
             {t.crmDemo.subtitle}
           </p>
         </div>
+      </div>
 
-        {/* Browser chrome mockup with 3D perspective */}
+      {/* Browser chrome — wider than container */}
+      <div className="relative z-10 mx-auto px-6" style={{ maxWidth: "min(1280px, 100vw - 48px)" }}>
         <motion.div
-          style={{
-            perspective: 1200,
-            transformStyle: "preserve-3d",
-          }}
-          className="mx-auto max-w-[900px]"
+          style={{ perspective: 1400, transformStyle: "preserve-3d" }}
         >
           <motion.div
-            style={{
-              rotateX,
-              scale,
-              transformOrigin: "center bottom",
-            }}
+            style={{ rotateX, scale, transformOrigin: "center bottom" }}
           >
-            {/* Browser chrome */}
-            <div className="overflow-hidden rounded-[var(--l-radius-lg)] border border-[var(--l-border)] bg-[var(--l-card)]" style={{ boxShadow: "0 20px 60px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.05)" }}>
-              {/* Title bar */}
-              <div className="flex h-10 items-center gap-2 border-b border-[var(--l-border-subtle)] bg-[var(--l-surface)] px-4">
+            <div
+              className="overflow-hidden rounded-[var(--l-radius-lg)] border border-[var(--l-border)] bg-[var(--l-card)]"
+              style={{
+                boxShadow:
+                  "0 25px 70px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.05)",
+              }}
+            >
+              {/* Enhanced title bar */}
+              <div className="flex h-11 items-center gap-2 border-b border-[var(--l-border-subtle)] bg-[var(--l-surface)] px-4">
                 <div className="flex gap-1.5">
                   <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
                   <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
                   <span className="h-3 w-3 rounded-full bg-[#28c840]" />
                 </div>
                 <div className="ml-4 flex-1">
-                  <div className="mx-auto w-fit rounded-md border border-[var(--l-border-subtle)] bg-[var(--l-bg)] px-4 py-1 text-[0.7rem] text-[var(--l-text-3)]">
-                    crm.arzac.studio
+                  <div className="mx-auto flex w-fit items-center gap-1.5 rounded-md border border-[var(--l-border-subtle)] bg-[var(--l-bg)] px-4 py-1">
+                    {/* Lock icon */}
+                    <svg
+                      width="10"
+                      height="10"
+                      viewBox="0 0 16 16"
+                      fill="currentColor"
+                      className="text-emerald-500"
+                    >
+                      <path d="M8 1a4 4 0 0 0-4 4v2H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1h-1V5a4 4 0 0 0-4-4zm2.5 6H5.5V5a2.5 2.5 0 1 1 5 0v2z" />
+                    </svg>
+                    <span className="text-[0.7rem] text-[var(--l-text-3)]">
+                      crm.arzac.studio
+                    </span>
                   </div>
                 </div>
               </div>
 
-              {/* Video / placeholder area */}
+              {/* Video area */}
               <div className="relative aspect-[16/9] w-full bg-[var(--l-bg)]">
                 <video
+                  ref={videoRef}
                   className="h-full w-full object-cover"
-                  autoPlay
                   muted
                   loop
                   playsInline
-                  preload="metadata"
-                  poster="/images/crm-fallback.jpg"
+                  preload="none"
+                  poster="/videos/crm-demo-poster.jpg"
                   aria-label={t.crmDemo.videoAlt}
                 >
                   <source src="/videos/crm-demo.mp4" type="video/mp4" />
                 </video>
 
-                {/* Fallback overlay — shown when video fails to load */}
-                <div className="absolute inset-0 flex items-center justify-center bg-[var(--l-bg)]" style={{ zIndex: -1 }}>
+                {/* Fallback — behind video */}
+                <div
+                  className="absolute inset-0 flex items-center justify-center bg-[var(--l-bg)]"
+                  style={{ zIndex: -1 }}
+                >
                   <div className="text-center">
                     <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl border border-[var(--l-border)] bg-[var(--l-surface)]">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-[var(--l-accent)]">
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        className="text-[var(--l-accent)]"
+                      >
                         <polygon points="5 3 19 12 5 21 5 3" />
                       </svg>
                     </div>
-                    <p className="text-[0.85rem] text-[var(--l-text-3)]">{t.crmDemo.videoAlt}</p>
+                    <p className="text-[0.85rem] text-[var(--l-text-3)]">
+                      {t.crmDemo.videoAlt}
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
           </motion.div>
         </motion.div>
+      </div>
 
-        {/* Feature chips */}
+      {/* Feature chips — inside container */}
+      <div className="l-container relative z-10">
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           {t.crmDemo.chips.map((chip, i) => (
             <motion.span
@@ -109,7 +167,11 @@ export function CrmDemo() {
               initial={prefersReduced ? {} : { opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.06, ease: [0.23, 1, 0.32, 1] }}
+              transition={{
+                duration: 0.4,
+                delay: i * 0.06,
+                ease: [0.23, 1, 0.32, 1],
+              }}
               className="rounded-full border border-[var(--l-border)] bg-[var(--l-surface)] px-4 py-1.5 text-[0.8rem] font-medium text-[var(--l-text-2)]"
             >
               {chip}

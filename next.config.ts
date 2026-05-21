@@ -16,6 +16,7 @@ const securityHeaders = [
       "img-src 'self' data: blob: https: http:",
       "connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://*.firebase.google.com https://firestore.googleapis.com https://identitytoolkit.googleapis.com wss://*.firebaseio.com https://secure.cardcom.solutions",
       "frame-src https://secure.cardcom.solutions https://*.firebaseapp.com https://accounts.google.com",
+      "media-src 'self'",
       "object-src 'none'",
       "base-uri 'self'",
     ].join("; "),

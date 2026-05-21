@@ -68,7 +68,7 @@ export interface Translations {
     badge: string;
     title: string;
     subtitle: string;
-    niches: { barberia: string; estetica: string; cafeteria: string };
+    niches?: { barberia: string; estetica: string; cafeteria: string };
   };
   whyItMatters: {
     badge: string;
