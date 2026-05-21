@@ -4,14 +4,21 @@ const VERCEL_TOKEN = process.env.VERCEL_TOKEN;
 const VERCEL_TEAM_ID = process.env.VERCEL_TEAM_ID;
 const TEMPLATE_REPO = process.env.VERCEL_TEMPLATE_REPO || "mexanigro/Barber-shop-template";
 
-const SHARED_ENV_VARS = [
-  "VITE_FIREBASE_API_KEY",
-  "VITE_FIREBASE_AUTH_DOMAIN",
-  "VITE_FIREBASE_PROJECT_ID",
-  "VITE_FIREBASE_STORAGE_BUCKET",
-  "VITE_FIREBASE_MESSAGING_SENDER_ID",
-  "VITE_FIREBASE_APP_ID",
-];
+// VITE_FIREBASE_* → what the client template needs
+// NEXT_PUBLIC_FIREBASE_* → what the hub already has in Railway
+// Same values, different prefix. Fallback automatically.
+const FIREBASE_VAR_MAP: Record<string, string> = {
+  VITE_FIREBASE_API_KEY: "NEXT_PUBLIC_FIREBASE_API_KEY",
+  VITE_FIREBASE_AUTH_DOMAIN: "NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN",
+  VITE_FIREBASE_PROJECT_ID: "NEXT_PUBLIC_FIREBASE_PROJECT_ID",
+  VITE_FIREBASE_STORAGE_BUCKET: "NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET",
+  VITE_FIREBASE_MESSAGING_SENDER_ID: "NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID",
+  VITE_FIREBASE_APP_ID: "NEXT_PUBLIC_FIREBASE_APP_ID",
+};
+
+function getFirebaseVar(viteKey: string): string | undefined {
+  return process.env[viteKey] || process.env[FIREBASE_VAR_MAP[viteKey]];
+}
 
 export function vercelFetch(path: string, options: RequestInit = {}) {
   const url = new URL(path, "https://api.vercel.com");
@@ -55,7 +62,7 @@ export async function deployToVercel({ clientId, niche, hubDocId, demoMode = fal
   }
 
   const requiredViteVars = ["VITE_FIREBASE_API_KEY", "VITE_FIREBASE_AUTH_DOMAIN", "VITE_FIREBASE_PROJECT_ID"];
-  const missingVite = requiredViteVars.filter((v) => !process.env[v]);
+  const missingVite = requiredViteVars.filter((v) => !getFirebaseVar(v));
   if (missingVite.length > 0) {
     throw new Error(`Variables de entorno faltantes para deploy: ${missingVite.join(", ")}`);
   }
@@ -88,10 +95,10 @@ export async function deployToVercel({ clientId, niche, hubDocId, demoMode = fal
     { key: "VITE_UI_LANGUAGE", value: "he", target: ["production", "preview"], type: "plain" },
   ];
 
-  for (const key of SHARED_ENV_VARS) {
-    const val = process.env[key];
+  for (const viteKey of Object.keys(FIREBASE_VAR_MAP)) {
+    const val = getFirebaseVar(viteKey);
     if (val) {
-      envVars.push({ key, value: val, target: ["production", "preview"], type: "plain" });
+      envVars.push({ key: viteKey, value: val, target: ["production", "preview"], type: "plain" });
     }
   }
 
