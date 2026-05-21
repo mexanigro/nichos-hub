@@ -82,9 +82,7 @@ export function Pricing() {
                 </ul>
 
                 <a
-                  href={`https://wa.me/${(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "").replace(/\D/g, "")}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href={`/onboarding/pago?plan=${i === 0 ? "web_crm" : "completo"}`}
                   style={{ fontFamily: "var(--l-display)" }}
                   className={`mt-8 flex h-12 items-center justify-center rounded-[var(--l-radius-pill)] text-[0.92rem] font-semibold transition-all duration-200 active:scale-[0.97] ${
                     isPopular

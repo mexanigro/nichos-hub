@@ -2,267 +2,7 @@
 
 import { useState } from "react";
 import { WEB_CRM_AMOUNT, COMPLETO_AMOUNT, type PlanType } from "@/lib/pricing";
-
-/* ═══════════════════════════════════════════════════════════════════════════
- * CONTRACTS
- * ═══════════════════════════════════════════════════════════════════════════ */
-
-const CONTRACT_HE = `חוזה לשירותי אתר, CRM וסוכן WhatsApp – תחזוקה ואחסון
-
-בין: Arzac Studio (להלן: "הספק")
-לבין: הלקוח (להלן: "המזמין")
-
-הואיל והספק פיתח תשתית טכנולוגית הכוללת אירוח אתרי אינטרנט (SaaS), מערכת הזמנות, מערכת ניהול לקוחות (CRM) ומערכת סוכן WhatsApp המופעלים באמצעות בינה מלאכותית, אחזקתם ואחסון (להלן: "מערכת תבנית מאסטר")
-
-והואיל והלקוח מבקש לשכור את שירותי הספק על מנת לקבל "אתר אישי" במערכת תבנית המאסטר לצורך חשיפת העסק שלו ברשת האינטרנט (ויסיביליות), לדיגיטציה ולניהול תפעולי של העסק שלו. (להלן: "האתר")
-
-לפיכך הוסכם והותנה בין הצדדים, כדלקמן:
-
-1. השירותים:
-
-תוכנית Web+CRM (₪790/חודש):
-• פיתוח "אתר אישי" באמצעות מערכת תבנית מאסטר: בהתאם לתבניות הקיימות אצל הספק.
-• נראות: ויסיביליות ברשת האינטרנט (SEO).
-• מערכת מיקרו CRM עם בינה מלאכותית: גישה ל"לוח ניהול אישי" בתוך מערכת תבנית מאסטר לניהול העסק הכולל ניהול לקוחות, מערכת תורים/הזמנות, ניהול מלאי/סטוק, מדור שאלות נפוצות הניתן לעריכה.
-• תמיכה ב-3 שפות (עברית, אנגלית, רוסית).
-• תחזוקה שוטפת של האתר ותמיכה טכנית: שינוי פרטים דינמיים כגון תמונות, מחירים, טקסטים, פיקוח טכני, תיקון שגיאות וניהול תשתיות. (הסכם זה אינו כולל שינויים בעיצובים המבניים; שינויים כאמור יעשו רק על ידי הספק בהסכמה נפרדת ובתוספת מחיר.)
-• אחסון לאתר: מבוצע על תשתיות של צד ג' בהתאם להחלטת הספק.
-• דומיין: רכישת דומיין עבור הלקוח וביצוע מעקב ותשלום שנתי.
-
-תוכנית Completo (₪990/חודש):
-• כל מה שכלול בתוכנית Web+CRM.
-• סוכן WhatsApp עם בינה מלאכותית 24/7: תשובות אוטומטיות מותאמות אישית, לכידת לידים דרך WhatsApp, קביעת תורים/הזמנות דרך WhatsApp, אינטגרציה מלאה עם מערכת ה-CRM.
-
-2. התמורה:
-• תוכנית Web+CRM: ₪790 לחודש, מועבר מדי חודש, החל מיום ההפעלה.
-• תוכנית Completo: ₪990 לחודש, מועבר מדי חודש, החל מיום ההפעלה.
-• אחסון האתר: עלות שנתית, המחיר משתנה (כפוף לשינויים אצל צד ג') ישולם תוך 7 ימים מיום מתן הדרישה.
-• דומיין: עלות שנתית, המחיר משתנה (כפוף לשינויים אצל צד ג') ישולם תוך 7 ימים מיום מתן הדרישה.
-• אי ביצוע תשלום בזמן תגרור הורדת האתר מהאוויר, האתר יימחק תוך 7 ימים מיום אי ביצוע התשלום, וביטול הסכם זה.
-
-3. זמנים:
-זמן המסירה של הגרסה הפונקציונלית של האתר יהיה לאחר ביצוע התשלום הראשון של המנוי, ותוך 48 שעות מיום מסירת פרטי העיצוב על ידי הלקוח.
-
-4. זכויות / קניין רוחני ורישוי:
-• רישיון שימוש: רישיון השימוש על פי הסכם זה ניתן למזמין כל עוד המזמין משלם עבור השירות ועומד בתנאי ההסכם.
-• זכויות היוצרים המסחריות והמוסריות של שורות הקוד, קבצי המקור וזכויות הקניין הרוחני על העיצוב שייכים לספק. המודולים שיפותחו במסגרת הקמת האתר הן בבעלות הספק ולמזמין ניתן רישיון לשימוש במסגרת אתר בלבד, ואך ורק בזמן שהסכם זה בתוקף.
-• הבעלות על הזכויות קניין הרוחני של הלוגו, המותג והתוכן של האתר שנמסרו לספק על ידי המזמין ישמש אך ורק לצורך הסכם זה ולספק אין בעלות על זכויות קניין רוחני של המזמין.
-• הבעלות על שם הדומיין שייך למזמין.
-
-5. מדיניות שימוש מקובל:
-• חל איסור להשתמש באתר לצורך שליחת דואר ספאם, או שמירת חומרים הנוגדים את החוק.
-• חל איסור להעלות תוכן מפר זכויות יוצרים, תוכן פוגעני ותוכן האסור על פי כל דין.
-• הפרת סעיף זה מהווה הפרה יסודית אשר תהיה עילה להפסקת השירות על ידי הספק, באופן חד צדדי ומיידי.
-
-6. הגבלת אחריות:
-• תוכן המידע שיועלה לאתר יהיה בשליטה, באחריות ובידיעה בלעדית של המזמין.
-• הספק לא יהיה אחראי בכל מובן או אופן לתוכן שיועלה או יוכנס לאתר על ידי המזמין או מי מטעמו.
-• הספק אינו מבטיח תוצאות מסחריות, עליית מחירים או תשואה כלכלית כלשהי.
-• הספק אינו אחראי על כשלים, תקלות או נזקים שנגרמים בשל תקלות/רשלנות/נזק שנגרם על ידי צד ג' או כוח עליון.
-• בשום מקרה הספק לא אחראי לנזק תוצאתי או נסיבתי כלשהו, וגבול האחריות לעולם לא תעלה על הסכום ששולם על פי הסכם זה.
-
-7. סיום/ביטול הסכם:
-• המזמין יכול לבטל הסכם זה עם מתן הודעה מוקדמת של 30 ימים, בכתב.
-• הספק רשאי לבטל הסכם זה, ללא התראה במידה והופרה מדיניות השימוש המקובל.
-• הספק רשאי לבטל הסכם זה, במידה והמזמין לא שילם את התשלום החודשי, תוך מתן התראה מוקדמת של 7 ימים ובכתב.
-• לאחר ביטול ההסכם האתר ירד מהאינטרנט.
-• אין זיכוי בגין תשלום שנתי על אחסון.
-• בסיום ההסכם, לפי בקשת הלקוח, קוד המקור של האתר (HTML, CSS, JS) יימסר וקבצי מערכת ה-CRM שמרכזים את נתוני העסק; בשום שלב למזמין לא תהיה גישה לכלים פנימיים או לתשתית המנהל.
-
-8. שיפוט:
-מקום השיפוט הבלעדי לכל ענין הנוגע להסכם זה הינו בבתי המשפט המוסמכים באיזור תל אביב ישראל על פי הדין הישראלי.`;
-
-const CONTRACT_EN = `Website, CRM & WhatsApp Agent Service Agreement
-
-Between: Arzac Studio (hereinafter: "the Provider")
-And: The Client (hereinafter: "the Client")
-
-Whereas the Provider has developed a technological infrastructure that includes website hosting (SaaS), a booking system, a customer management system (CRM) and a WhatsApp agent system powered by artificial intelligence, their maintenance and hosting (hereinafter: "Master Template System")
-
-And whereas the Client wishes to engage the Provider's services in order to receive a "personal website" in the Master Template System for internet visibility, digitization and operational management of their business. (hereinafter: "the Website")
-
-Therefore it has been agreed between the parties, as follows:
-
-1. Services:
-
-Web+CRM Plan (₪790/month):
-- Development of a "personal website" using the Master Template System.
-- Visibility: internet presence and SEO.
-- Micro CRM system with AI: access to a personal management dashboard including customer management, booking/appointment system, inventory/stock management, editable FAQ section.
-- Support for 3 languages (Hebrew, English, Russian).
-- Ongoing maintenance and technical support: dynamic content updates (images, prices, text), technical monitoring, bug fixes, infrastructure management. (This agreement does not include structural design changes; such changes require separate agreement at additional cost.)
-- Website hosting: on third-party infrastructure at the Provider's discretion.
-- Domain: purchase, tracking and annual renewal for the Client.
-
-Completo Plan (₪990/month):
-- Everything included in the Web+CRM plan.
-- 24/7 AI WhatsApp Agent: personalized automatic responses, WhatsApp lead capture, appointment booking via WhatsApp, full CRM integration.
-
-2. Compensation:
-- Web+CRM Plan: ₪790 per month, starting from activation day.
-- Completo Plan: ₪990 per month, starting from activation day.
-- Website hosting: annual cost (subject to third-party changes), payable within 7 days of demand.
-- Domain: annual cost (subject to third-party changes), payable within 7 days of demand.
-- Failure to make timely payment will result in the website being taken offline; the website will be deleted within 7 days of non-payment, and this agreement will be terminated.
-
-3. Timeline:
-Delivery of the functional version within 48 hours of the Client providing design details, after first payment.
-
-4. Rights / Intellectual Property and Licensing:
-- License granted to the Client as long as payment is maintained and agreement terms are met.
-- Commercial and moral copyrights of code, source files and design belong to the Provider. All modules are owned by the Provider; the Client receives a use license only while this agreement is in effect.
-- Client's logo, brand and content intellectual property remains the Client's and is used solely for this agreement.
-- Domain name ownership belongs to the Client.
-
-5. Acceptable Use Policy:
-- No spam, illegal materials or content violating the law.
-- No copyright-infringing, offensive or prohibited content.
-- Violation constitutes fundamental breach allowing immediate unilateral termination.
-
-6. Limitation of Liability:
-- Content is under the Client's exclusive control and responsibility.
-- The Provider does not guarantee commercial results or economic return.
-- The Provider is not responsible for third-party failures or force majeure.
-- Liability shall never exceed the total amount paid under this agreement.
-
-7. Termination:
-- Client: 30 days written notice.
-- Provider: immediate termination for policy violation.
-- Provider: 7 days written notice for non-payment.
-- After termination, the website goes offline.
-- No refund for annual hosting payment.
-- Upon termination, at Client's request: website source code (HTML, CSS, JS) and CRM data files delivered. Client never gets access to internal tools or admin infrastructure.
-
-8. Jurisdiction:
-Exclusive jurisdiction in Tel Aviv, Israel under Israeli law.`;
-
-const CONTRACT_ES = `Acuerdo de Servicios de Sitio Web, CRM y Agente WhatsApp
-
-Entre: Arzac Studio (en adelante: "el Proveedor")
-Y: El Cliente (en adelante: "el Cliente")
-
-Considerando que el Proveedor ha desarrollado una infraestructura tecnológica que incluye hosting de sitios web (SaaS), sistema de reservas, sistema de gestión de clientes (CRM) y sistema de agente WhatsApp con inteligencia artificial, su mantenimiento y alojamiento (en adelante: "Sistema de Plantilla Maestra")
-
-Y considerando que el Cliente desea contratar los servicios del Proveedor para recibir un "sitio web personal" en el Sistema de Plantilla Maestra para visibilidad en internet, digitalización y gestión operativa de su negocio. (en adelante: "el Sitio Web")
-
-Por lo tanto, se ha acordado entre las partes lo siguiente:
-
-1. Servicios:
-
-Plan Web+CRM (₪790/mes):
-- Desarrollo de un "sitio web personal" utilizando el Sistema de Plantilla Maestra.
-- Visibilidad: presencia en internet y SEO.
-- Sistema Micro CRM con IA: acceso a un panel de gestión personal incluyendo gestión de clientes, sistema de turnos/reservas, gestión de inventario/stock, sección de preguntas frecuentes editable.
-- Soporte para 3 idiomas (hebreo, inglés, ruso).
-- Mantenimiento continuo y soporte técnico: actualizaciones de contenido dinámico (imágenes, precios, textos), monitoreo técnico, corrección de errores, gestión de infraestructura. (Este acuerdo no incluye cambios de diseño estructural; dichos cambios requieren acuerdo separado con costo adicional.)
-- Hosting del sitio web: en infraestructura de terceros a discreción del Proveedor.
-- Dominio: compra, seguimiento y renovación anual para el Cliente.
-
-Plan Completo (₪990/mes):
-- Todo lo incluido en el plan Web+CRM.
-- Agente WhatsApp con IA 24/7: respuestas automáticas personalizadas, captura de leads por WhatsApp, reserva de turnos por WhatsApp, integración completa con el CRM.
-
-2. Compensación:
-- Plan Web+CRM: ₪790 por mes, desde el día de activación.
-- Plan Completo: ₪990 por mes, desde el día de activación.
-- Hosting del sitio web: costo anual (sujeto a cambios de terceros), pagadero dentro de 7 días desde la solicitud.
-- Dominio: costo anual (sujeto a cambios de terceros), pagadero dentro de 7 días desde la solicitud.
-- La falta de pago oportuno resultará en la baja del sitio web; el sitio será eliminado dentro de 7 días del impago y este acuerdo será rescindido.
-
-3. Plazos:
-Entrega de la versión funcional dentro de 48 horas desde que el Cliente proporcione los detalles de diseño, tras el primer pago.
-
-4. Derechos / Propiedad Intelectual y Licencias:
-- Licencia otorgada al Cliente mientras se mantenga el pago y se cumplan los términos del acuerdo.
-- Los derechos de autor comerciales y morales del código, archivos fuente y diseño pertenecen al Proveedor. Todos los módulos son propiedad del Proveedor; el Cliente recibe una licencia de uso únicamente mientras este acuerdo esté vigente.
-- La propiedad intelectual del logo, marca y contenido del Cliente permanece siendo del Cliente y se utiliza exclusivamente para este acuerdo.
-- La propiedad del nombre de dominio pertenece al Cliente.
-
-5. Política de Uso Aceptable:
-- Sin spam, materiales ilegales o contenido que viole la ley.
-- Sin contenido que infrinja derechos de autor, contenido ofensivo o prohibido.
-- La violación constituye incumplimiento fundamental que permite la rescisión inmediata unilateral.
-
-6. Limitación de Responsabilidad:
-- El contenido está bajo el control y responsabilidad exclusivos del Cliente.
-- El Proveedor no garantiza resultados comerciales ni retorno económico.
-- El Proveedor no es responsable por fallas de terceros o fuerza mayor.
-- La responsabilidad nunca excederá el monto total pagado bajo este acuerdo.
-
-7. Rescisión:
-- Cliente: 30 días de aviso por escrito.
-- Proveedor: rescisión inmediata por violación de políticas.
-- Proveedor: 7 días de aviso por escrito por falta de pago.
-- Después de la rescisión, el sitio web se desconecta.
-- Sin reembolso por pago anual de hosting.
-- Al finalizar, a solicitud del Cliente: se entrega el código fuente del sitio web (HTML, CSS, JS) y archivos de datos del CRM. El Cliente nunca obtiene acceso a herramientas internas o infraestructura de administración.
-
-8. Jurisdicción:
-Jurisdicción exclusiva en Tel Aviv, Israel bajo la ley israelí.`;
-
-const CONTRACT_RU = `Договор об оказании услуг сайта, CRM и агента WhatsApp
-
-Между: Arzac Studio (далее: «Поставщик»)
-И: Клиент (далее: «Клиент»)
-
-Принимая во внимание, что Поставщик разработал технологическую инфраструктуру, включающую хостинг веб-сайтов (SaaS), систему бронирования, систему управления клиентами (CRM) и систему агента WhatsApp на основе искусственного интеллекта, их обслуживание и хостинг (далее: «Система Мастер-Шаблона»)
-
-И принимая во внимание, что Клиент желает воспользоваться услугами Поставщика для получения «персонального сайта» в Системе Мастер-Шаблона для присутствия в интернете, цифровизации и операционного управления своим бизнесом. (далее: «Сайт»)
-
-Стороны договорились о нижеследующем:
-
-1. Услуги:
-
-План Web+CRM (₪790/месяц):
-- Разработка «персонального сайта» с использованием Системы Мастер-Шаблона.
-- Видимость: присутствие в интернете и SEO.
-- Микро CRM система с ИИ: доступ к персональной панели управления, включая управление клиентами, систему записи/бронирования, управление инвентарём/складом, редактируемый раздел FAQ.
-- Поддержка 3 языков (иврит, английский, русский).
-- Текущее обслуживание и техническая поддержка: обновление динамического контента (изображения, цены, тексты), техническое наблюдение, исправление ошибок, управление инфраструктурой. (Данный договор не включает изменения структурного дизайна; такие изменения требуют отдельного соглашения с дополнительной оплатой.)
-- Хостинг сайта: на сторонней инфраструктуре по усмотрению Поставщика.
-- Домен: покупка, отслеживание и ежегодное продление для Клиента.
-
-План Completo (₪990/месяц):
-- Всё, что включено в план Web+CRM.
-- WhatsApp агент с ИИ 24/7: персонализированные автоматические ответы, захват лидов через WhatsApp, запись на приём через WhatsApp, полная интеграция с CRM.
-
-2. Оплата:
-- План Web+CRM: ₪790 в месяц, начиная с дня активации.
-- План Completo: ₪990 в месяц, начиная с дня активации.
-- Хостинг сайта: годовая стоимость (может изменяться третьей стороной), оплата в течение 7 дней с момента запроса.
-- Домен: годовая стоимость (может изменяться третьей стороной), оплата в течение 7 дней с момента запроса.
-- Несвоевременная оплата приведёт к отключению сайта; сайт будет удалён в течение 7 дней после неоплаты, и настоящий договор будет расторгнут.
-
-3. Сроки:
-Предоставление функциональной версии в течение 48 часов после предоставления Клиентом деталей дизайна, после первого платежа.
-
-4. Права / Интеллектуальная собственность и лицензирование:
-- Лицензия предоставляется Клиенту при условии поддержания оплаты и соблюдения условий договора.
-- Коммерческие и моральные авторские права на код, исходные файлы и дизайн принадлежат Поставщику. Все модули являются собственностью Поставщика; Клиент получает лицензию на использование только на время действия настоящего договора.
-- Интеллектуальная собственность на логотип, бренд и контент Клиента остаётся собственностью Клиента и используется исключительно в рамках настоящего договора.
-- Право собственности на доменное имя принадлежит Клиенту.
-
-5. Политика допустимого использования:
-- Запрещён спам, незаконные материалы или контент, нарушающий закон.
-- Запрещён контент, нарушающий авторские права, оскорбительный или запрещённый контент.
-- Нарушение является существенным нарушением, дающим право на немедленное одностороннее расторжение.
-
-6. Ограничение ответственности:
-- Контент находится под исключительным контролем и ответственностью Клиента.
-- Поставщик не гарантирует коммерческих результатов или экономической отдачи.
-- Поставщик не несёт ответственности за сбои третьих сторон или форс-мажор.
-- Ответственность никогда не превысит общую сумму, уплаченную по настоящему договору.
-
-7. Расторжение:
-- Клиент: 30 дней письменного уведомления.
-- Поставщик: немедленное расторжение за нарушение политики.
-- Поставщик: 7 дней письменного уведомления за неоплату.
-- После расторжения сайт отключается.
-- Возврат за годовую оплату хостинга не производится.
-- По окончании, по запросу Клиента: исходный код сайта (HTML, CSS, JS) и файлы данных CRM передаются. Клиент никогда не получает доступ к внутренним инструментам или инфраструктуре администрирования.
-
-8. Юрисдикция:
-Исключительная юрисдикция в Тель-Авиве, Израиль, в соответствии с израильским законодательством.`;
+import { getContract, type ContractLang } from "@/lib/contracts";
 
 /* ═══════════════════════════════════════════════════════════════════════════
  * i18n
@@ -435,7 +175,7 @@ export default function PagoClient({ clientId, clientDocId, businessName, lang, 
   const [error, setError] = useState("");
   const [contractExpanded, setContractExpanded] = useState(false);
   const t = i18n[lang];
-  const contract = lang === "he" ? CONTRACT_HE : lang === "es" ? CONTRACT_ES : lang === "ru" ? CONTRACT_RU : CONTRACT_EN;
+  const { text: contract, version: contractVersion } = getContract(lang as ContractLang, selectedPlan);
   const dir = lang === "he" ? "rtl" : "ltr";
   const amount = selectedPlan === "completo" ? COMPLETO_AMOUNT : WEB_CRM_AMOUNT;
 
@@ -446,7 +186,7 @@ export default function PagoClient({ clientId, clientDocId, businessName, lang, 
       const contractRes = await fetch("/api/payments/contract", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ clientId, clientDocId, contractVersion: "2.0", plan: selectedPlan }),
+        body: JSON.stringify({ clientId, clientDocId, contractVersion, plan: selectedPlan }),
       });
       if (!contractRes.ok) {
         const data = await contractRes.json().catch(() => null);
@@ -510,7 +250,7 @@ export default function PagoClient({ clientId, clientDocId, businessName, lang, 
               {/* Web+CRM */}
               <button
                 type="button"
-                onClick={() => setSelectedPlan("web_crm")}
+                onClick={() => { setSelectedPlan("web_crm"); setAccepted(false); }}
                 className={`relative rounded-2xl border-2 p-5 text-start transition-all ${
                   selectedPlan === "web_crm"
                     ? "border-[var(--pago-teal)] bg-[var(--pago-card)] shadow-md"
@@ -542,7 +282,7 @@ export default function PagoClient({ clientId, clientDocId, businessName, lang, 
               {/* Completo */}
               <button
                 type="button"
-                onClick={() => setSelectedPlan("completo")}
+                onClick={() => { setSelectedPlan("completo"); setAccepted(false); }}
                 className={`relative rounded-2xl border-2 p-5 text-start transition-all ${
                   selectedPlan === "completo"
                     ? "border-[var(--pago-teal)] bg-[var(--pago-card)] shadow-md"

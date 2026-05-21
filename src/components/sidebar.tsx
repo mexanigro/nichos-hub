@@ -10,6 +10,7 @@ import {
   Activity,
   DollarSign,
   CreditCard,
+  Zap,
   LogOut,
   Menu,
   X,
@@ -21,6 +22,7 @@ const ownerNav = [
   { href: "/messages", label: "Mensajes", icon: MessageSquare },
   { href: "/sales", label: "Ventas", icon: TrendingUp },
   { href: "/expenses", label: "Gastos", icon: DollarSign },
+  { href: "/api-costs", label: "Costos APIs", icon: Zap },
   { href: "/payments", label: "Pagos", icon: CreditCard },
   { href: "/monitor", label: "Monitor", icon: Activity },
 ];

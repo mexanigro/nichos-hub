@@ -255,3 +255,28 @@ export interface ManifestInterval {
   start: string;
   end: string;
 }
+
+// --- Tipos para costos de APIs ---
+
+export type ApiServiceId =
+  | "anthropic"
+  | "twilio"
+  | "firebase"
+  | "vercel"
+  | "railway"
+  | "resend"
+  | "cardcom";
+
+export interface ApiServiceCost {
+  serviceId: ApiServiceId;
+  name: string;
+  category: "ia" | "whatsapp" | "hosting" | "email" | "payments" | "database";
+  monthlyCostUsd: number;
+  monthlyCostIls: number;
+  usageMetric: string;
+  usagePeriod: string;
+  notes: string;
+  lastUpdated: string;
+  docUrl: string;
+  monthlyBudgetUsd: number;
+}
