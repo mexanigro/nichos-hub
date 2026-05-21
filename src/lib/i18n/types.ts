@@ -64,6 +64,22 @@ export interface Translations {
     subtitle: string;
     button: string;
   };
+  webShowcase: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    niches: { barberia: string; estetica: string; cafeteria: string };
+  };
+  whyItMatters: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    pillars: Array<{
+      title: string;
+      stat: string;
+      description: string;
+    }>;
+  };
   crmDemo: {
     badge: string;
     title: string;

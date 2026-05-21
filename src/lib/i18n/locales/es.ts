@@ -11,9 +11,9 @@ export const es: Translations = {
   },
   hero: {
     badge: "WEB + CRM + IA",
-    headline: "Transformá tu negocio local en una potencia digital",
+    headline: "Creamos la presencia digital que tu negocio necesita",
     subheadline:
-      "Web profesional, CRM inteligente y agente WhatsApp con IA — todo listo en minutos, no meses.",
+      "Web profesional, CRM inteligente y agente WhatsApp con IA — todo integrado y funcionando desde el primer día.",
     cta: "Mirá cómo quedaría tu web",
     trustedBy: "La confianza de negocios en todo Israel",
     serviceIcons: { web: "WEB", crm: "CRM", agent: "Agente" },
@@ -171,8 +171,36 @@ export const es: Translations = {
   },
   cta: {
     title: "¿Listo para transformar tu negocio?",
-    subtitle: "Mirá tu web personalizada en menos de 3 minutos — gratis, sin compromiso.",
+    subtitle: "Descubrí cómo podemos potenciar tu negocio — gratis, sin compromiso.",
     button: "Crear mi web ahora",
+  },
+  webShowcase: {
+    badge: "SITIOS REALES",
+    title: "Mirá cómo quedan nuestras webs",
+    subtitle: "Cada nicho tiene un diseño único, optimizado para convertir visitantes en clientes",
+    niches: { barberia: "Barbería", estetica: "Estética", cafeteria: "Cafetería" },
+  },
+  whyItMatters: {
+    badge: "POR QUÉ IMPORTA",
+    title: "Tu negocio necesita más que un local",
+    subtitle: "La presencia digital dejó de ser opcional — es lo que separa a los negocios que crecen de los que se quedan atrás",
+    pillars: [
+      {
+        title: "Web profesional",
+        stat: "75% de los clientes",
+        description: "juzgan la credibilidad de un negocio por su sitio web. Sin presencia online, perdés clientes antes de que te conozcan.",
+      },
+      {
+        title: "CRM inteligente",
+        stat: "Los negocios con CRM",
+        description: "aumentan sus ventas hasta un 29%. Gestionar clientes, turnos y leads desde un solo lugar cambia las reglas del juego.",
+      },
+      {
+        title: "Agente IA en WhatsApp",
+        stat: "El 80% prefiere WhatsApp",
+        description: "para comunicarse con negocios. Un agente que responde 24/7 significa que nunca perdés una consulta ni un lead.",
+      },
+    ],
   },
   crmDemo: {
     badge: "DEMO EN VIVO",

@@ -88,8 +88,8 @@ body:has(.landing[data-theme="light"]) {
   --l-tracking-tight: -0.025em;
   --l-tracking-heading: -0.02em;
 
-  --l-section-y: clamp(100px, 12vw, 140px);
-  --l-section-y-lg: clamp(120px, 14vw, 180px);
+  --l-section-y: clamp(64px, 10vw, 140px);
+  --l-section-y-lg: clamp(80px, 12vw, 180px);
 
   --l-max-content: 1120px;
   --l-max-text: 680px;

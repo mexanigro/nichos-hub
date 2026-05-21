@@ -55,7 +55,7 @@ export function Hero() {
     <section ref={sectionRef} className="l-tech-grid relative overflow-hidden pb-10 pt-32 px-6 md:pb-20 md:px-12 md:pt-44">
       {/* Enhanced glow orbs — mouse-tracking parallax */}
       <motion.div
-        className="pointer-events-none absolute -left-[200px] top-[15%] h-[500px] w-[500px] rounded-full"
+        className="pointer-events-none absolute -left-[200px] top-[15%] hidden h-[500px] w-[500px] rounded-full md:block"
         style={{
           background: "radial-gradient(circle, var(--l-orb-teal) 0%, transparent 70%)",
           animation: prefersReduced ? "none" : "glow-drift 10s ease-in-out infinite",
@@ -64,7 +64,7 @@ export function Hero() {
         }}
       />
       <motion.div
-        className="pointer-events-none absolute -right-[150px] top-[5%] h-[400px] w-[400px] rounded-full"
+        className="pointer-events-none absolute -right-[150px] top-[5%] hidden h-[400px] w-[400px] rounded-full md:block"
         style={{
           background: "radial-gradient(circle, var(--l-orb-purple) 0%, transparent 70%)",
           animation: prefersReduced ? "none" : "glow-drift 12s ease-in-out infinite 4s",
@@ -73,7 +73,7 @@ export function Hero() {
         }}
       />
       <motion.div
-        className="pointer-events-none absolute left-[25%] top-[55%] h-[350px] w-[350px] rounded-full"
+        className="pointer-events-none absolute left-[25%] top-[55%] hidden h-[350px] w-[350px] rounded-full md:block"
         style={{
           background: "radial-gradient(circle, var(--l-orb-blue) 0%, transparent 70%)",
           animation: prefersReduced ? "none" : "glow-drift 14s ease-in-out infinite 7s",
@@ -82,7 +82,7 @@ export function Hero() {
         }}
       />
       <motion.div
-        className="pointer-events-none absolute bottom-[10%] left-[55%] h-[250px] w-[250px] rounded-full"
+        className="pointer-events-none absolute bottom-[10%] left-[55%] hidden h-[250px] w-[250px] rounded-full md:block"
         style={{
           background: "radial-gradient(circle, var(--l-orb-teal) 0%, transparent 70%)",
           opacity: 0.3,
@@ -114,7 +114,7 @@ export function Hero() {
                 </div>
                 <span
                   style={{ fontFamily: "var(--l-display)" }}
-                  className="text-[0.7rem] font-semibold uppercase tracking-[0.08em] text-[var(--l-text-3)]"
+                  className="text-[0.75rem] font-semibold uppercase tracking-[0.08em] text-[var(--l-text-3)]"
                 >
                   {svc.label}
                 </span>

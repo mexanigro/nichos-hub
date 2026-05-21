@@ -40,7 +40,7 @@ export function Pricing() {
             return (
               <div
                 key={i}
-                className={`l-card-hover-glow relative rounded-[var(--l-radius-lg)] border bg-[var(--l-card)] p-8 ${
+                className={`l-card-hover-glow relative rounded-[var(--l-radius-lg)] border bg-[var(--l-card)] p-6 md:p-8 ${
                   isPopular
                     ? "border-[var(--l-accent)]"
                     : "border-[var(--l-border-subtle)]"
@@ -63,7 +63,7 @@ export function Pricing() {
                 <div className="mt-3 flex items-baseline gap-1.5">
                   <span
                     style={{ fontFamily: "var(--l-display)" }}
-                    className="text-[2.8rem] font-bold tracking-[-0.03em] text-[var(--l-text)]"
+                    className="text-[2.2rem] font-bold tracking-[-0.03em] text-[var(--l-text)] md:text-[2.8rem]"
                   >
                     {plan.price}
                   </span>

@@ -81,8 +81,8 @@ export function Features() {
 
   return (
     <section className="l-section l-dot-grid relative overflow-hidden bg-[var(--l-section-alt)]" id="features">
-      <div className="l-container relative z-10" style={{ paddingInline: 0 }}>
-        <div className="mb-14 text-center">
+      <div className="l-container relative z-10">
+        <div className="mb-10 text-center md:mb-14">
           <span
             style={{ fontFamily: "var(--l-display)" }}
             className="inline-block rounded-[var(--l-radius-pill)] border border-[var(--l-border)] bg-[var(--l-surface)] px-3.5 py-1.5 text-[0.8rem] font-semibold uppercase tracking-[0.04em] text-[var(--l-accent)]"
@@ -100,7 +100,7 @@ export function Features() {
           </p>
         </div>
 
-        <div className="grid gap-5 lg:grid-cols-3">
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {pillars.map((pillar, i) => {
             const PillarIcon = pillar.icon;
             const isCRM = i === 1;

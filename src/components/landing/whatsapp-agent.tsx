@@ -14,7 +14,7 @@ export function WhatsAppAgent() {
   return (
     <section className="l-section l-dot-grid relative overflow-hidden bg-[var(--l-section-alt)]" id="whatsapp-agent">
       <div className="l-container relative z-10">
-        <div className="grid items-center gap-12 lg:grid-cols-2">
+        <div className="grid items-center gap-8 lg:gap-12 lg:grid-cols-2">
           {/* Copy — left column */}
           <div>
             <motion.span
@@ -84,7 +84,7 @@ export function WhatsAppAgent() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.23, 1, 0.32, 1] }}
-            className="relative mx-auto w-full max-w-[380px]"
+            className="relative mx-auto w-full max-w-[340px] sm:max-w-[380px]"
           >
             {/* Phone frame */}
             <div

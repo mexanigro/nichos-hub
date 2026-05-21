@@ -78,6 +78,7 @@ export function CrmDemo() {
                   muted
                   loop
                   playsInline
+                  preload="metadata"
                   poster="/images/crm-fallback.jpg"
                   aria-label={t.crmDemo.videoAlt}
                 >

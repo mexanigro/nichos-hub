@@ -17,6 +17,8 @@ import { AuthModal } from "./auth-modal";
 import { AnimatedSection } from "./animated-section";
 import { CrmDemo } from "./crm-demo";
 import { WhatsAppAgent } from "./whatsapp-agent";
+import { WebShowcase } from "./web-showcase";
+import { WhyItMatters } from "./why-it-matters";
 
 export function LandingPage() {
   const { theme, toggle } = useTheme();
@@ -35,10 +37,16 @@ export function LandingPage() {
         <main id="main-content">
           <Hero />
           <AnimatedSection>
+            <WebShowcase />
+          </AnimatedSection>
+          <AnimatedSection>
             <CrmDemo />
           </AnimatedSection>
           <AnimatedSection>
             <WhatsAppAgent />
+          </AnimatedSection>
+          <AnimatedSection>
+            <WhyItMatters />
           </AnimatedSection>
           <AnimatedSection>
             <Features />

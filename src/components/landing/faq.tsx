@@ -36,7 +36,7 @@ export function FAQ() {
                   aria-expanded={isOpen}
                   aria-controls={panelId}
                   onClick={() => setOpenIndex(isOpen ? null : i)}
-                  className="flex w-full items-center justify-between px-7 py-[22px] text-start"
+                  className="flex w-full items-center justify-between px-5 py-4 text-start md:px-7 md:py-[22px]"
                 >
                   <span className="text-[0.95rem] font-medium text-[var(--l-text)]">
                     {item.question}
@@ -65,7 +65,7 @@ export function FAQ() {
                       transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
                       className="overflow-hidden"
                     >
-                      <p className="px-7 pb-6 text-[0.9rem] leading-[1.7] text-[var(--l-text-2)]">
+                      <p className="px-5 pb-5 text-[0.9rem] leading-[1.7] text-[var(--l-text-2)] md:px-7 md:pb-6">
                         {item.answer}
                       </p>
                     </motion.div>

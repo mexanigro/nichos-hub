@@ -11,9 +11,9 @@ export const en: Translations = {
   },
   hero: {
     badge: "WEBSITE + CRM + AI",
-    headline: "Turn your local business into a digital powerhouse",
+    headline: "We build the digital presence your business needs",
     subheadline:
-      "Professional website, smart CRM, and AI-powered WhatsApp agent — all set up in minutes, not months.",
+      "Professional website, smart CRM, and AI-powered WhatsApp agent — fully integrated and working from day one.",
     cta: "See how your site would look",
     trustedBy: "Trusted by businesses across Israel",
     serviceIcons: { web: "WEB", crm: "CRM", agent: "Agent" },
@@ -171,8 +171,36 @@ export const en: Translations = {
   },
   cta: {
     title: "Ready to transform your business?",
-    subtitle: "See your custom website in under 3 minutes — completely free, no commitment.",
+    subtitle: "Discover how we can boost your business — completely free, no commitment.",
     button: "Build my site now",
+  },
+  webShowcase: {
+    badge: "REAL SITES",
+    title: "See how our websites look",
+    subtitle: "Each niche has a unique design, optimized to turn visitors into customers",
+    niches: { barberia: "Barbershop", estetica: "Beauty salon", cafeteria: "Café" },
+  },
+  whyItMatters: {
+    badge: "WHY IT MATTERS",
+    title: "Your business needs more than a storefront",
+    subtitle: "A digital presence is no longer optional — it's what separates growing businesses from those left behind",
+    pillars: [
+      {
+        title: "Professional website",
+        stat: "75% of customers",
+        description: "judge a business's credibility by its website. Without an online presence, you lose clients before they even find you.",
+      },
+      {
+        title: "Smart CRM",
+        stat: "Businesses with CRM",
+        description: "increase their sales by up to 29%. Managing clients, appointments, and leads from one place changes the game.",
+      },
+      {
+        title: "AI WhatsApp agent",
+        stat: "80% prefer WhatsApp",
+        description: "to communicate with businesses. An agent that responds 24/7 means you never miss an inquiry or a lead.",
+      },
+    ],
   },
   crmDemo: {
     badge: "LIVE DEMO",

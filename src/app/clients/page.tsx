@@ -124,16 +124,20 @@ export default function ClientsPage() {
                     <span className="whitespace-nowrap text-text-secondary">{client.niche}</span>
                   </td>
                   <td className="hidden max-w-[200px] truncate px-4 py-3 lg:table-cell">
-                    <a
-                      href={client.deployUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
-                      className="inline-flex items-center gap-1 font-mono text-xs text-text-muted transition-colors hover:text-accent"
-                    >
-                      {new URL(client.deployUrl).hostname}
-                      <ExternalLink size={10} />
-                    </a>
+                    {client.deployUrl ? (
+                      <a
+                        href={client.deployUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="inline-flex items-center gap-1 font-mono text-xs text-text-muted transition-colors hover:text-accent"
+                      >
+                        {(() => { try { return new URL(client.deployUrl).hostname; } catch { return client.deployUrl; } })()}
+                        <ExternalLink size={10} />
+                      </a>
+                    ) : (
+                      <span className="text-xs text-text-muted">—</span>
+                    )}
                   </td>
                   <td className="hidden whitespace-nowrap px-4 py-3 text-xs text-text-muted md:table-cell">
                     {formatDistanceToNow(client.activationDate, { addSuffix: true, locale: es })}

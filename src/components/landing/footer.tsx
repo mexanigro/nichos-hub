@@ -13,7 +13,7 @@ export function Footer() {
           <a href="#" className="flex items-center">
             <Logo iconClass="h-8 w-8" textClass="text-[0.9rem]" />
           </a>
-          <span className="text-[0.8rem] text-[var(--l-text-3)]">
+          <span className="text-[0.82rem] text-[var(--l-text-3)]">
             &copy; {new Date().getFullYear()} arzac.studio. {t.footer.rights}
           </span>
         </div>
