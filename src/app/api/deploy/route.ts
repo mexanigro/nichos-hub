@@ -106,6 +106,21 @@ export async function POST(req: NextRequest) {
       }
     }
 
+    // Add email notification env vars if configured
+    const resendKey = process.env.RESEND_API_KEY || process.env.EMAIL_PROVIDER_API_KEY;
+    if (resendKey) {
+      envVars.push({ key: "EMAIL_PROVIDER_API_KEY", value: resendKey, target: ["production", "preview"], type: "encrypted" });
+    }
+    const emailFrom = process.env.EMAIL_FROM_ADDRESS || "noreply@arzac.studio";
+    envVars.push({ key: "EMAIL_FROM_ADDRESS", value: emailFrom, target: ["production", "preview"], type: "plain" });
+
+    // Read adminEmail from client config for notification recipient
+    const configSnap = await db.collection("config").doc(clientId).get();
+    const adminEmail = configSnap.data()?.adminEmail as string | undefined;
+    if (adminEmail) {
+      envVars.push({ key: "BUSINESS_OWNER_EMAIL", value: adminEmail, target: ["production", "preview"], type: "plain" });
+    }
+
     await vercelFetchWithRetry(`/v3/projects/${projectId}/env`, {
       method: "POST",
       body: JSON.stringify(envVars),

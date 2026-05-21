@@ -23,6 +23,7 @@ import {
   Plus,
   Trash2,
   User,
+  CreditCard,
 } from "lucide-react";
 
 /* ══════════════════════════════════════════════════════════════════════════
@@ -43,7 +44,15 @@ type ConfigDoc = {
   visibleServices?: string[];
   serviceOverrides?: Record<string, Record<string, unknown>>;
   notifications?: { enabled?: boolean; bookingAlerts?: boolean; contactInquiries?: boolean };
-  payment?: { enabled?: boolean; mode?: string };
+  payment?: {
+    enabled?: boolean;
+    mode?: "none" | "deposit" | "full" | "cash-only";
+    provider?: "none" | "cardcom" | "paypal" | "meshulam" | "bit";
+    acceptCash?: boolean;
+    depositRequired?: boolean;
+    depositAmount?: number;
+    currency?: string;
+  };
   splash?: { enabled?: boolean; durationMs?: number; variant?: 1 | 2 | 3 | 4 | 5 };
   adminEmail?: string;
   hero?: { backgroundImage?: string };
@@ -482,6 +491,42 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
         <ToggleField label="Confirmar turnos automaticamente" path="businessRules.autoConfirm" value={getNested("businessRules.autoConfirm") as boolean} onChange={updateNested} />
       </Section>
 
+      {/* ── Pagos ─────────────────────────────────────────────────────── */}
+      <Section
+        icon={CreditCard} title="Pagos" sectionKey="payment"
+        expanded={expandedSections.has("payment")} onToggle={toggleSection}
+      >
+        <p className="text-[10px] text-text-muted">
+          El proveedor y modo se sincronizan con la web del cliente automaticamente via Firestore.
+        </p>
+        <ToggleField label="Pagos habilitados" path="payment.enabled" value={getNested("payment.enabled") as boolean} onChange={updateNested} />
+        <div className="grid gap-3 sm:grid-cols-2">
+          <SelectField label="Proveedor de pago" path="payment.provider" value={(getNested("payment.provider") as string) || "none"} onChange={updateNested}
+            options={[
+              { value: "none", label: "Sin proveedor" },
+              { value: "cardcom", label: "Cardcom" },
+              { value: "paypal", label: "PayPal" },
+              { value: "meshulam", label: "Meshulam" },
+              { value: "bit", label: "Bit" },
+            ]}
+          />
+          <SelectField label="Modo de cobro" path="payment.mode" value={(getNested("payment.mode") as string) || "none"} onChange={updateNested}
+            options={[
+              { value: "none", label: "Sin cobro online" },
+              { value: "deposit", label: "Seña / Deposito" },
+              { value: "full", label: "Pago completo" },
+              { value: "cash-only", label: "Solo efectivo" },
+            ]}
+          />
+        </div>
+        <ToggleField label="Aceptar pago en efectivo" path="payment.acceptCash" value={getNested("payment.acceptCash") as boolean} onChange={updateNested} />
+        <ToggleField label="Requiere seña para reservar" path="payment.depositRequired" value={getNested("payment.depositRequired") as boolean} onChange={updateNested} />
+        {((getNested("payment.depositRequired") as boolean) || (getNested("payment.mode") as string) === "deposit") && (
+          <NumberField label="Monto de seña (agorot/centavos)" path="payment.depositAmount" value={getNested("payment.depositAmount") as number} onChange={updateNested} />
+        )}
+        <Field label="Moneda" path="payment.currency" value={getNested("payment.currency")} onChange={updateNested} placeholder="ILS" />
+      </Section>
+
       {/* ── AI Persona ────────────────────────────────────────────────── */}
       <Section
         icon={Bot} title="Chatbot IA" sectionKey="ai"
@@ -505,6 +550,11 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
         <ToggleField label="Consultas de contacto" path="notifications.contactInquiries" value={getNested("notifications.contactInquiries") as boolean} onChange={updateNested} />
         <div className="mt-3 border-t border-border pt-3">
           <Field label="Admin Email" path="adminEmail" value={getNested("adminEmail")} onChange={updateNested} placeholder="admin@negocio.com" />
+          {(getNested("adminEmail") as string) ? (
+            <p className="mt-1 text-[10px] text-green-400">✓ Notificaciones iran a {getNested("adminEmail") as string}</p>
+          ) : (
+            <p className="mt-1 text-[10px] text-amber-400">⚠ Sin admin email — las notificaciones no se enviaran</p>
+          )}
         </div>
       </Section>
 

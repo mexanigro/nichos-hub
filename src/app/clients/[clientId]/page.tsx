@@ -19,6 +19,7 @@ import {
   Users,
   TrendingUp,
   Loader2,
+  Upload,
 } from "lucide-react";
 import { HealthDot, ClientStatusBadge } from "@/components/status-badge";
 import { LoadingSpinner } from "@/components/loading";
@@ -28,6 +29,7 @@ import { ClientConfigTab } from "@/components/client-config-tab";
 import { ClientContentTab } from "@/components/client-content-tab";
 import { WhatsAppConfigTab } from "@/components/whatsapp-config-tab";
 import { ClientLeadsTab } from "@/components/client-leads-tab";
+import { CrmImportModal } from "@/components/crm-import-modal";
 import { formatDistanceToNow, format } from "date-fns";
 import { es } from "date-fns/locale";
 import type { ClientWithHealth, Payment, PaymentStatus } from "@/types";
@@ -88,6 +90,7 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
     lastBookingAt: string | null;
   } | null>(null);
   const [activeTab, setActiveTab] = useState<"overview" | "config" | "contenido" | "leads" | "whatsapp">("overview");
+  const [showImport, setShowImport] = useState(false);
 
   useEffect(() => {
     fetch(`/api/clients/${clientId}`)
@@ -327,6 +330,24 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
             iconColor="text-text-muted"
           />
         </div>
+      )}
+
+      {/* CRM Import Button */}
+      {crmStats && (
+        <div className="mb-6">
+          <button
+            onClick={() => setShowImport(true)}
+            className="inline-flex items-center gap-2 rounded-lg border border-border bg-bg-card px-4 py-2 text-xs font-medium text-text-secondary transition-colors hover:border-accent/30 hover:bg-accent/5 hover:text-accent"
+          >
+            <Upload size={14} />
+            Importar datos al CRM
+          </button>
+        </div>
+      )}
+
+      {/* CRM Import Modal */}
+      {showImport && (
+        <CrmImportModal clientId={clientId} onClose={() => setShowImport(false)} />
       )}
 
       {/* Response Time Chart */}
