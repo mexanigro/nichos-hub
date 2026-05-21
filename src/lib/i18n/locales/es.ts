@@ -13,7 +13,7 @@ export const es: Translations = {
     badge: "WEB + CRM + IA",
     headline: "Creamos la presencia digital que tu negocio necesita",
     subheadline:
-      "Web profesional, CRM inteligente y agente WhatsApp con IA — todo integrado y funcionando desde el primer día.",
+      "Vos manejás tu negocio. Nosotros manejamos todo lo que te trae clientes — tu web, tu CRM y un asistente IA que agenda turnos por WhatsApp 24/7.",
     cta: "Mirá cómo quedaría tu web",
     trustedBy: "La confianza de negocios en todo Israel",
     serviceIcons: { web: "WEB", crm: "CRM", agent: "Agente" },
@@ -103,6 +103,7 @@ export const es: Translations = {
     subtitle: "Sin costo de setup. Sin costos ocultos. Cancelá cuando quieras.",
     monthly: "/mes",
     popular: "Más popular",
+    setup: "₪0 Setup",
     cta: "Empezar",
     plans: [
       {
@@ -140,32 +141,52 @@ export const es: Translations = {
       {
         question: "¿Cuánto tarda en estar listo?",
         answer:
-          "Tu preview está lista en menos de 3 minutos. Un especialista ajusta cada detalle en las siguientes 24 horas.",
+          "Tu preview está lista en menos de 3 minutos. Un especialista ajusta cada detalle en las siguientes 24 horas. Todo el proceso es automático — no necesitás estar presente ni hacer nada técnico.",
       },
       {
         question: "¿Necesito conocimientos técnicos?",
         answer:
-          "Para nada. Nosotros nos encargamos de todo — diseño, desarrollo, hosting y mantenimiento. Solo necesitás tu info de negocio.",
+          "Para nada. Nosotros nos encargamos de todo — diseño, desarrollo, hosting y mantenimiento. Ni siquiera necesitás tus propias fotos; usamos imágenes de stock profesionales adaptadas a tu industria si es necesario.",
       },
       {
         question: "¿Puedo cambiar cosas después del lanzamiento?",
         answer:
-          "Por supuesto. Updates ilimitados están incluidos en cada plan. Solo decinos qué necesitás.",
+          "Por supuesto. Updates ilimitados están incluidos en cada plan. Colores, textos, fotos, secciones enteras — solo decinos qué necesitás y lo resolvemos, generalmente en 24 horas.",
       },
       {
         question: "¿Qué pasa si quiero cancelar?",
         answer:
-          "Sin contratos, sin penalidades. Podés cancelar cuando quieras. Creemos en ganarnos tu confianza cada mes.",
+          "Sin contratos, sin penalidades. Podés cancelar cuando quieras. Tu dominio y contenido siguen siendo tuyos — no hay lock-in. Creemos en ganarnos tu confianza cada mes.",
       },
       {
         question: "¿Soportan idiomas RTL?",
         answer:
-          "Sí. Todos nuestros sitios soportan hebreo (RTL), inglés y ruso de fábrica.",
+          "Sí. Todos nuestros sitios soportan hebreo (RTL), inglés y ruso de fábrica. El layout se ajusta automáticamente según el idioma del navegador del visitante, con tipografía optimizada para cada idioma.",
       },
       {
         question: "¿Qué incluye el agente WhatsApp?",
         answer:
-          "Un asistente IA que responde mensajes 24/7, agenda turnos, captura leads y sincroniza todo con tu CRM.",
+          "Un asistente IA que responde mensajes 24/7 en el idioma del cliente, agenda turnos en tiempo real y captura leads automáticamente. Recibís notificaciones push de cada consulta nueva y todo se sincroniza con tu CRM.",
+      },
+      {
+        question: "¿Cómo sabe el agente IA sobre mi negocio?",
+        answer:
+          "El agente se entrena específicamente con tu negocio — tus servicios, horarios, precios y preguntas frecuentes. No es un chatbot genérico; da respuestas precisas y personalizadas como si fuera parte de tu equipo.",
+      },
+      {
+        question: "¿Tengo mi propio dominio?",
+        answer:
+          "Sí. Un dominio .com o .co.il personalizado está incluido en todos los planes. Nos encargamos del DNS y los certificados SSL para que tu sitio sea seguro y profesional desde el primer día.",
+      },
+      {
+        question: "¿Qué pasa si mi sitio se cae?",
+        answer:
+          "Monitoreamos todos los sitios 24/7 con sistemas de recuperación automática. Nuestra infraestructura ofrece 99.9% de uptime. Si algo sale mal, nuestro equipo se entera al instante y lo resuelve — generalmente antes de que lo notes.",
+      },
+      {
+        question: "¿Puedo ver analíticas y leads?",
+        answer:
+          "Sí. Tu dashboard CRM muestra datos en tiempo real — visitas al sitio, estadísticas de reservas, captura de leads e insights de ingresos. Podés ver exactamente cómo está rindiendo tu presencia digital.",
       },
     ],
   },

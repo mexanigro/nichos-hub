@@ -14,15 +14,21 @@ export function CrmDemo() {
   const { t } = useT();
   const prefersReduced = useReducedMotion();
   const sectionRef = useRef<HTMLElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const desktopVideoRef = useRef<HTMLVideoElement>(null);
+  const mobileVideoRef = useRef<HTMLVideoElement>(null);
 
   /* Lazy play/pause */
   const inView = useInView(sectionRef, { amount: 0.3 });
   useEffect(() => {
-    const v = videoRef.current;
-    if (!v) return;
-    if (inView) v.play().catch(() => {});
-    else v.pause();
+    const vids = [desktopVideoRef.current, mobileVideoRef.current];
+    for (const v of vids) {
+      if (!v) continue;
+      if (inView) {
+        v.play().catch(() => {});
+      } else {
+        v.pause();
+      }
+    }
   }, [inView]);
 
   const { scrollYProgress } = useScroll({
@@ -30,7 +36,7 @@ export function CrmDemo() {
     offset: ["start end", "end start"],
   });
 
-  /* 3D adjusted for wider frame */
+  /* 3D adjusted for wider frame — desktop only */
   const rotateX = useTransform(
     scrollYProgress,
     [0, 0.4],
@@ -50,7 +56,7 @@ export function CrmDemo() {
     >
       {/* Header — inside container */}
       <div className="l-container relative z-10">
-        <div className="mb-12 text-center">
+        <div className="mb-10 text-center">
           <span
             style={{ fontFamily: "var(--l-display)" }}
             className="inline-block rounded-[var(--l-radius-pill)] border border-[var(--l-border)] bg-[var(--l-surface)] px-3.5 py-1.5 text-[0.8rem] font-semibold uppercase tracking-[0.04em] text-[var(--l-accent)]"
@@ -72,8 +78,39 @@ export function CrmDemo() {
         </div>
       </div>
 
-      {/* Browser chrome — wider than container */}
-      <div className="relative z-10 mx-auto px-6" style={{ maxWidth: "min(1280px, 100vw - 48px)" }}>
+      {/* ─── Mobile: Phone mockup with mobile CRM video ─── */}
+      <div className="relative z-10 mx-auto lg:hidden" style={{ maxWidth: "min(420px, 95vw)" }}>
+        <div
+          className="overflow-hidden rounded-[40px] border-[2.5px] border-[var(--l-border)] bg-[var(--l-card)]"
+          style={{
+            boxShadow:
+              "0 30px 80px rgba(0,0,0,0.5), 0 0 1px rgba(255,255,255,0.1)",
+          }}
+        >
+          {/* Dynamic Island */}
+          <div className="mx-auto mt-3.5 h-[26px] w-[100px] rounded-[14px] bg-black" />
+          {/* Screen */}
+          <div className="relative mx-2 mb-2 mt-2.5 aspect-[9/16] overflow-hidden rounded-[34px] bg-[var(--l-bg)]">
+            <video
+              ref={mobileVideoRef}
+              className="h-full w-full object-cover"
+              muted
+              loop
+              playsInline
+              preload="none"
+              poster="/videos/crm-demo-mobile-poster.jpg"
+              aria-label={t.crmDemo.videoAlt}
+            >
+              <source src="/videos/crm-demo-mobile.mp4" type="video/mp4" />
+            </video>
+          </div>
+          {/* Home indicator */}
+          <div className="mx-auto mb-3 mt-2 h-[5px] w-[110px] rounded-full bg-[var(--l-border)]" />
+        </div>
+      </div>
+
+      {/* ─── Desktop: Browser chrome with desktop CRM video ─── */}
+      <div className="relative z-10 mx-auto hidden px-6 lg:block" style={{ maxWidth: "min(1280px, 100vw - 48px)" }}>
         <motion.div
           style={{ perspective: 1400, transformStyle: "preserve-3d" }}
         >
@@ -116,7 +153,7 @@ export function CrmDemo() {
               {/* Video area */}
               <div className="relative aspect-[16/9] w-full bg-[var(--l-bg)]">
                 <video
-                  ref={videoRef}
+                  ref={desktopVideoRef}
                   className="h-full w-full object-cover"
                   muted
                   loop

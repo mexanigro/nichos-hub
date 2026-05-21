@@ -13,7 +13,7 @@ export const en: Translations = {
     badge: "WEBSITE + CRM + AI",
     headline: "We build the digital presence your business needs",
     subheadline:
-      "Professional website, smart CRM, and AI-powered WhatsApp agent — fully integrated and working from day one.",
+      "You run your business. We run everything that brings clients to it — your site, your CRM, and an AI assistant that books appointments on WhatsApp 24/7.",
     cta: "See how your site would look",
     trustedBy: "Trusted by businesses across Israel",
     serviceIcons: { web: "WEB", crm: "CRM", agent: "Agent" },
@@ -104,6 +104,7 @@ export const en: Translations = {
     monthly: "/mo",
     popular: "Most popular",
     cta: "Get started",
+    setup: "₪0 Setup",
     plans: [
       {
         name: "Web + CRM",
@@ -140,32 +141,52 @@ export const en: Translations = {
       {
         question: "How long does it take to set up?",
         answer:
-          "Your website preview is ready in under 3 minutes. A specialist will then fine-tune every detail within 24 hours.",
+          "Your website preview is ready in under 3 minutes. A specialist then fine-tunes every detail within 24 hours. The whole process is automated — you don't need to be present or do anything technical.",
       },
       {
         question: "Do I need technical knowledge?",
         answer:
-          "Not at all. We handle everything — design, development, hosting, and maintenance. You just provide your business info.",
+          "Not at all. We handle everything — design, development, hosting, and maintenance. You don't even need your own photos; we use professional stock images tailored to your industry if needed.",
       },
       {
         question: "Can I change things after launch?",
         answer:
-          "Absolutely. Unlimited updates are included in every plan. Just tell us what you need and we'll handle it.",
+          "Absolutely. Unlimited updates are included in every plan. Colors, texts, photos, entire sections — just tell us what you need and we'll handle it, usually within 24 hours.",
       },
       {
         question: "What if I want to cancel?",
         answer:
-          "No contracts, no penalties. You can cancel anytime. We believe in earning your business every month.",
+          "No contracts, no penalties. You can cancel anytime. Your domain and content remain yours — there's no lock-in. We believe in earning your business every month.",
       },
       {
         question: "Do you support RTL languages?",
         answer:
-          "Yes. All our sites fully support Hebrew (RTL), English, and Russian out of the box.",
+          "Yes. All our sites fully support Hebrew (RTL), English, and Russian out of the box. The layout automatically adjusts based on the visitor's browser language, with optimized typography for each language.",
       },
       {
         question: "What's included in the WhatsApp agent?",
         answer:
-          "An AI assistant that responds to client messages 24/7, books appointments, captures leads, and syncs everything with your CRM.",
+          "An AI assistant that responds to client messages 24/7 in their language, books appointments in real time, and captures leads automatically. You get push notifications for every new inquiry, and everything syncs with your CRM.",
+      },
+      {
+        question: "How does the WhatsApp AI agent know about my business?",
+        answer:
+          "The agent is trained specifically on your business — your services, hours, pricing, and frequently asked questions. It's not a generic chatbot; it gives accurate, personalized responses as if it were a member of your team.",
+      },
+      {
+        question: "Do I get my own domain?",
+        answer:
+          "Yes. A custom .com or .co.il domain is included in every plan. We handle DNS setup and SSL certificates so your site is secure and professional from day one.",
+      },
+      {
+        question: "What happens if my site goes down?",
+        answer:
+          "We monitor all sites 24/7 with automatic recovery systems. Our infrastructure provides 99.9% uptime. If anything does go wrong, our team is notified instantly and resolves it — usually before you even notice.",
+      },
+      {
+        question: "Can I see analytics and leads?",
+        answer:
+          "Yes. Your CRM dashboard shows real-time data — site visits, booking stats, lead capture, and revenue insights. You can see exactly how your digital presence is performing and track every client interaction.",
       },
     ],
   },

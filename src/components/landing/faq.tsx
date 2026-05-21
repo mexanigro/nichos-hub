@@ -14,7 +14,7 @@ export function FAQ() {
       <div className="mx-auto max-w-[700px]">
         <h2
           style={{ fontFamily: "var(--l-display)", fontSize: "var(--l-h2)" }}
-          className="mb-10 text-center font-bold leading-[1.15] tracking-[-0.02em] text-[var(--l-text)]"
+          className="mb-8 text-start font-bold leading-[1.15] tracking-[-0.02em] text-[var(--l-text)]"
         >
           {t.faq.title}
         </h2>

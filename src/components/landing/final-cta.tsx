@@ -1,10 +1,10 @@
 "use client";
 
-import { Rocket } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useT } from "@/lib/i18n";
 
 export function FinalCTA() {
-  const { t } = useT();
+  const { t, isRTL } = useT();
 
   return (
     <section className="l-section-lg l-tech-grid relative overflow-hidden bg-[var(--l-bg)]">
@@ -13,14 +13,14 @@ export function FinalCTA() {
         className="pointer-events-none absolute left-1/2 top-1/2 hidden h-[300px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-50 md:block"
         style={{ background: "radial-gradient(circle, var(--l-accent-glow) 0%, transparent 70%)" }}
       />
-      <div className="relative z-10 mx-auto max-w-[600px] text-center">
+      <div className="relative z-10 mx-auto max-w-[600px] text-start">
         <h2
           style={{ fontFamily: "var(--l-display)", fontSize: "var(--l-h2)" }}
           className="font-bold leading-[1.15] tracking-[-0.02em] text-[var(--l-text)]"
         >
           {t.cta.title}
         </h2>
-        <p className="mx-auto mt-4 max-w-[440px] text-[0.95rem] leading-[1.65] text-[var(--l-text-2)] md:text-[1rem]">
+        <p className="mt-4 text-[1.05rem] leading-[1.65] text-[var(--l-text-2)] md:text-[1rem]">
           {t.cta.subtitle}
         </p>
         <a
@@ -34,7 +34,7 @@ export function FinalCTA() {
           className="mt-8 inline-flex items-center gap-2.5 rounded-[var(--l-radius-pill)] bg-white px-6 py-3.5 text-[1rem] font-semibold text-[#0a0a0f] transition-all duration-200 hover:opacity-90 active:scale-[0.97] md:px-8"
         >
           {t.cta.button}
-          <Rocket size={16} aria-hidden="true" />
+          <ArrowRight size={16} className={isRTL ? "rotate-180" : ""} aria-hidden="true" />
         </a>
       </div>
     </section>

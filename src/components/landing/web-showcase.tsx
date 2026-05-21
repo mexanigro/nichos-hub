@@ -28,8 +28,12 @@ export function WebShowcase() {
     ];
     for (const v of vids) {
       if (!v) continue;
-      if (inView) v.play().catch(() => {});
-      else v.pause();
+      if (inView) {
+        v.playbackRate = 0.8;
+        v.play().catch(() => {});
+      } else {
+        v.pause();
+      }
     }
   }, [inView]);
 
@@ -173,7 +177,7 @@ export function WebShowcase() {
               {/* Dynamic Island */}
               <div className="mx-auto mt-3 h-[24px] w-[90px] rounded-[14px] bg-black" />
               {/* Screen */}
-              <div className="relative mx-1.5 mb-1.5 mt-2 aspect-[9/19.5] overflow-hidden rounded-[32px] bg-[var(--l-bg)]">
+              <div className="relative mx-1.5 mb-1.5 mt-2 aspect-[9/16] overflow-hidden rounded-[32px] bg-[var(--l-bg)]">
                 <video
                   ref={phoneVideoRef}
                   className="h-full w-full object-cover"
@@ -198,7 +202,7 @@ export function WebShowcase() {
         {/* ─── Mobile: single phone centered, much bigger ─── */}
         <motion.div
           style={{ y: phoneY }}
-          className="mx-auto w-[85vw] max-w-[360px] lg:hidden"
+          className="mx-auto w-[92vw] max-w-[400px] lg:hidden"
         >
           <div
             className="overflow-hidden rounded-[40px] border-[2.5px] border-[var(--l-border)] bg-[var(--l-card)]"
@@ -210,7 +214,7 @@ export function WebShowcase() {
             {/* Dynamic Island */}
             <div className="mx-auto mt-3.5 h-[26px] w-[100px] rounded-[14px] bg-black" />
             {/* Screen */}
-            <div className="relative mx-2 mb-2 mt-2.5 aspect-[9/19.5] overflow-hidden rounded-[34px] bg-[var(--l-bg)]">
+            <div className="relative mx-2 mb-2 mt-2.5 aspect-[9/16] overflow-hidden rounded-[34px] bg-[var(--l-bg)]">
               <video
                 ref={mobileVideoRef}
                 className="h-full w-full object-cover"

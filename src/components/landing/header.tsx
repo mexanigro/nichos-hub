@@ -90,7 +90,7 @@ export function Header({ theme, toggleTheme }: HeaderProps) {
                 <a
                   key={link.href}
                   href={link.href}
-                  className="group relative rounded-full px-4 py-1.5 text-[0.85rem] font-medium text-[var(--l-text-3)] transition-colors duration-200 hover:text-[var(--l-text)]"
+                  className="group relative rounded-full px-4 py-1.5 text-[0.85rem] font-medium text-[var(--l-nav-text)] transition-colors duration-200 hover:text-[var(--l-text)]"
                 >
                   {link.label}
                   <span className="absolute inset-x-4 -bottom-0.5 h-[1.5px] origin-left scale-x-0 rounded-full bg-[var(--l-accent)] transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-x-100" />
@@ -108,7 +108,7 @@ export function Header({ theme, toggleTheme }: HeaderProps) {
             {!authLoading && !user && (
               <button
                 onClick={() => setAuthOpen(true)}
-                className="hidden text-[0.84rem] font-medium text-[var(--l-text-3)] transition-colors duration-200 hover:text-[var(--l-text)] lg:inline-block"
+                className="hidden text-[0.84rem] font-medium text-[var(--l-nav-text)] transition-colors duration-200 hover:text-[var(--l-text)] lg:inline-block"
               >
                 Iniciar sesión
               </button>

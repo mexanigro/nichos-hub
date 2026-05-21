@@ -15,7 +15,7 @@ export function HowItWorks() {
         style={{ background: "radial-gradient(ellipse, var(--l-orb-teal) 0%, transparent 70%)" }}
       />
       <div className="relative z-10 mx-auto max-w-[800px]">
-        <div className="mb-14 text-center">
+        <div className="mb-10 text-start">
           <span
             style={{ fontFamily: "var(--l-display)" }}
             className="inline-block rounded-[var(--l-radius-pill)] border border-[var(--l-border)] bg-[var(--l-card)] px-3.5 py-1.5 text-[0.8rem] font-semibold uppercase tracking-[0.04em] text-[var(--l-accent)]"
@@ -28,7 +28,7 @@ export function HowItWorks() {
           >
             {t.howItWorks.title}
           </h2>
-          <p className="mt-3 text-[0.95rem] text-[var(--l-text-2)]">
+          <p className="mt-3 text-[1.05rem] text-[var(--l-text-2)]">
             {t.howItWorks.subtitle}
           </p>
         </div>

@@ -49,6 +49,7 @@ export interface Translations {
     monthly: string;
     popular: string;
     cta: string;
+    setup?: string;
     plans: {
       name: string;
       price: string;
@@ -171,3 +172,10 @@ export const LOCALE_NAMES: Record<Locale, string> = {
   ru: "Русский",
   he: "עברית",
 };
+
+export const LOCALE_CODES: { code: Locale; label: string }[] = [
+  { code: "en", label: "EN" },
+  { code: "es", label: "ES" },
+  { code: "ru", label: "RU" },
+  { code: "he", label: "HE" },
+];

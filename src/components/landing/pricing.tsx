@@ -16,7 +16,7 @@ export function Pricing() {
   return (
     <section className="l-section l-dot-grid relative overflow-hidden bg-[var(--l-section-alt)]" id="pricing">
       <div className="relative z-10 mx-auto max-w-[880px]">
-        <div className="mb-14 text-center">
+        <div className="mb-10 text-start">
           <span
             style={{ fontFamily: "var(--l-display)" }}
             className="inline-block rounded-[var(--l-radius-pill)] border border-[var(--l-border)] bg-[var(--l-card)] px-3.5 py-1.5 text-[0.8rem] font-semibold uppercase tracking-[0.04em] text-[var(--l-accent)]"
@@ -29,7 +29,7 @@ export function Pricing() {
           >
             {t.pricing.title}
           </h2>
-          <p className="mt-3 text-[0.95rem] text-[var(--l-text-2)]">
+          <p className="mt-3 text-[1.05rem] text-[var(--l-text-2)]">
             {t.pricing.subtitle}
           </p>
         </div>
@@ -69,6 +69,11 @@ export function Pricing() {
                   </span>
                   <span className="text-[0.9rem] text-[var(--l-text-3)]">₪{t.pricing.monthly}</span>
                 </div>
+                {t.pricing.setup && (
+                  <p className="mt-1.5 text-[0.82rem] font-medium text-[var(--l-text-3)]">
+                    {t.pricing.setup}
+                  </p>
+                )}
 
                 <div className="my-6 h-px bg-[var(--l-border-subtle)]" />
 

@@ -15,7 +15,7 @@ export function WhyItMatters() {
     <section className="l-section relative overflow-hidden bg-[var(--l-bg)]" id="why-it-matters">
       <div className="l-container relative z-10">
         {/* Header */}
-        <div className="mb-10 text-center md:mb-14">
+        <div className="mb-8 text-start md:mb-10">
           <motion.span
             initial={prefersReduced ? {} : { opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -41,7 +41,7 @@ export function WhyItMatters() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.12, ease: [0.23, 1, 0.32, 1] }}
-            className="mx-auto mt-3 max-w-[560px] text-[0.95rem] leading-[1.65] text-[var(--l-text-2)]"
+            className="mt-3 text-[1.05rem] leading-[1.65] text-[var(--l-text-2)]"
           >
             {t.whyItMatters.subtitle}
           </motion.p>

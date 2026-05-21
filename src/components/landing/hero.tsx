@@ -3,12 +3,12 @@
 import { useRef, useEffect } from "react";
 import { useT } from "@/lib/i18n";
 import { motion, useMotionValue, useTransform, useSpring, useReducedMotion } from "framer-motion";
-import { Monitor, Users, Bot, Rocket, ShieldCheck, MessageSquare, Star } from "lucide-react";
+import { Monitor, Users, Bot, ArrowRight } from "lucide-react";
 
 const WA_HREF = `https://wa.me/${(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "").replace(/\D/g, "")}`;
 
 export function Hero() {
-  const { t } = useT();
+  const { t, isRTL } = useT();
   const prefersReduced = useReducedMotion();
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -92,9 +92,9 @@ export function Hero() {
         }}
       />
 
-      <div className="l-narrow relative z-10 text-center">
+      <div className="l-narrow relative z-10 text-start">
         {/* Service icon row */}
-        <div className="mb-6 flex items-center justify-center gap-8 md:gap-10">
+        <div className="mb-6 flex items-center justify-start gap-8 md:gap-10">
           {services.map((svc, i) => {
             const Icon = svc.icon;
             return (
@@ -162,7 +162,7 @@ export function Hero() {
           initial={prefersReduced ? {} : { opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: prefersReduced ? 0 : 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="mx-auto mt-5 max-w-[520px] text-[1.125rem] leading-[1.7] text-[var(--l-text-2)]"
+          className="mt-5 text-[1.2rem] leading-[1.7] text-[var(--l-text-2)]"
         >
           {t.hero.subheadline}
         </motion.p>
@@ -185,36 +185,32 @@ export function Hero() {
             className="inline-flex items-center gap-2.5 rounded-[var(--l-radius-pill)] bg-white px-8 py-3.5 text-[1rem] font-semibold text-[#0a0a0f] transition-all duration-200 hover:opacity-90 hover:shadow-[0_0_50px_rgba(255,255,255,0.08)] active:scale-[0.97]"
           >
             {t.hero.cta}
-            <Rocket size={16} aria-hidden="true" />
+            <ArrowRight size={16} className={isRTL ? "rotate-180" : ""} aria-hidden="true" />
           </a>
         </motion.div>
 
-        {/* Social proof */}
+        {/* Social proof — large stats */}
         <motion.div
           initial={prefersReduced ? {} : { opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: prefersReduced ? 0 : 1.1, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-6 flex flex-wrap items-center justify-center gap-3"
+          className="mt-10 grid max-w-[500px] grid-cols-3 gap-6"
         >
           {[
-            { value: "47+", label: t.socialProof.activeBusinesses, icon: ShieldCheck },
-            { value: "32+", label: t.socialProof.whatsappAgents, icon: MessageSquare },
-            { value: "120+", label: t.socialProof.avgBookingsPerMonth, icon: Star },
-          ].map((badge, i) => {
-            const Icon = badge.icon;
-            return (
+            { value: "47+", label: t.socialProof.activeBusinesses },
+            { value: "32+", label: t.socialProof.whatsappAgents },
+            { value: "120+", label: t.socialProof.avgBookingsPerMonth },
+          ].map((stat, i) => (
+            <div key={i}>
               <span
-                key={i}
-                className="flex items-center gap-2 rounded-full border border-[var(--l-border)] bg-[var(--l-card)] px-4 py-2 text-[0.78rem]"
+                style={{ fontFamily: "var(--l-display)", textShadow: "var(--l-stat-glow)" }}
+                className="text-[1.8rem] font-bold tabular-nums text-[var(--l-stat-accent)] md:text-[2.2rem]"
               >
-                <Icon size={13} style={{ color: "var(--l-accent)" }} strokeWidth={1.8} aria-hidden="true" />
-                <span className="tabular-nums font-bold text-[var(--l-stat-accent)]" style={{ textShadow: "var(--l-stat-glow)" }}>
-                  {badge.value}
-                </span>
-                <span className="text-[var(--l-text-3)]">{badge.label}</span>
+                {stat.value}
               </span>
-            );
-          })}
+              <p className="mt-0.5 text-[0.78rem] text-[var(--l-text-3)]">{stat.label}</p>
+            </div>
+          ))}
         </motion.div>
       </div>
     </section>

@@ -82,7 +82,7 @@ export function Features() {
   return (
     <section className="l-section l-dot-grid relative overflow-hidden bg-[var(--l-section-alt)]" id="features">
       <div className="l-container relative z-10">
-        <div className="mb-10 text-center md:mb-14">
+        <div className="mb-8 text-start md:mb-10">
           <span
             style={{ fontFamily: "var(--l-display)" }}
             className="inline-block rounded-[var(--l-radius-pill)] border border-[var(--l-border)] bg-[var(--l-surface)] px-3.5 py-1.5 text-[0.8rem] font-semibold uppercase tracking-[0.04em] text-[var(--l-accent)]"
@@ -95,7 +95,7 @@ export function Features() {
           >
             {t.pillars.title}
           </h2>
-          <p className="mt-3 text-[0.95rem] text-[var(--l-text-2)]">
+          <p className="mt-3 text-[1.05rem] text-[var(--l-text-2)]">
             {t.pillars.subtitle}
           </p>
         </div>
