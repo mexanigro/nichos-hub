@@ -1,5 +1,6 @@
 import { initializeApp, getApps, cert, type ServiceAccount } from "firebase-admin/app";
 import { getFirestore, type Firestore } from "firebase-admin/firestore";
+import { getAuth as getAdminAuth, type Auth as AdminAuth } from "firebase-admin/auth";
 
 let _db: Firestore | null = null;
 
@@ -50,6 +51,27 @@ function getDb(): Firestore {
 
   return _db;
 }
+
+let _auth: AdminAuth | null = null;
+
+function getAuthInstance(): AdminAuth {
+  if (_auth) return _auth;
+  // Calling getDb() ensures the app is initialized
+  getDb();
+  _auth = getAdminAuth();
+  return _auth;
+}
+
+export const auth = new Proxy({} as AdminAuth, {
+  get(_target, prop) {
+    const a = getAuthInstance();
+    const value = (a as unknown as Record<string | symbol, unknown>)[prop];
+    if (typeof value === "function") {
+      return (value as Function).bind(a);
+    }
+    return value;
+  },
+});
 
 export const db = new Proxy({} as Firestore, {
   get(_target, prop) {
