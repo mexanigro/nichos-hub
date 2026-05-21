@@ -19,6 +19,8 @@ export interface Client {
   adminEmail: string;
   clientId: string;
   vercelProjectId?: string;
+  deployStatus?: string;
+  deployError?: string;
   notes?: string;
   monitorChecks?: string[];
   paymentStatus?: string;

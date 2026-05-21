@@ -20,6 +20,10 @@ import {
   TrendingUp,
   Loader2,
   Upload,
+  Rocket,
+  RefreshCw,
+  Trash2,
+  AlertCircle,
 } from "lucide-react";
 import { HealthDot, ClientStatusBadge } from "@/components/status-badge";
 import { LoadingSpinner } from "@/components/loading";
@@ -91,6 +95,11 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
   } | null>(null);
   const [activeTab, setActiveTab] = useState<"overview" | "config" | "contenido" | "leads" | "whatsapp">("overview");
   const [showImport, setShowImport] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState(false);
+  const [deleteConfirmText, setDeleteConfirmText] = useState("");
+  const [deleting, setDeleting] = useState(false);
+  const [deleteError, setDeleteError] = useState("");
+  const [redeploying, setRedeploying] = useState(false);
 
   useEffect(() => {
     fetch(`/api/clients/${clientId}`)
@@ -156,6 +165,44 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
     setKilling(false);
   }
 
+  async function handleDelete() {
+    setDeleting(true);
+    setDeleteError("");
+    try {
+      const res = await fetch(`/api/clients/${clientId}`, { method: "DELETE" });
+      if (res.ok) {
+        router.push("/clients");
+      } else {
+        const d = await res.json();
+        setDeleteError(d.error || "Error al eliminar");
+      }
+    } catch {
+      setDeleteError("Error de conexion");
+    }
+    setDeleting(false);
+  }
+
+  async function handleRedeploy() {
+    if (!data) return;
+    setRedeploying(true);
+    try {
+      const res = await fetch("/api/clients/redeploy", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ hubDocId: clientId }),
+      });
+      if (res.ok) {
+        setData((d) => d ? {
+          ...d,
+          client: { ...d.client, deployStatus: "building", deployError: undefined },
+        } : d);
+      }
+    } catch {
+      // silently fail
+    }
+    setRedeploying(false);
+  }
+
   if (loading) return <LoadingSpinner />;
 
   if (!data) return null;
@@ -218,6 +265,16 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
                 <><ShieldOff size={12} /> <span className="hidden sm:inline">Suspender</span></>
               )}
             </button>
+            {client.vercelProjectId && (
+              <button
+                onClick={handleRedeploy}
+                disabled={redeploying}
+                className="inline-flex items-center gap-1.5 rounded-lg border border-border px-2.5 py-1.5 text-[11px] font-medium text-text-secondary transition-colors hover:bg-bg-hover disabled:opacity-50"
+              >
+                {redeploying ? <Loader2 size={12} className="animate-spin" /> : <RefreshCw size={12} />}
+                <span className="hidden sm:inline">Redeploy</span>
+              </button>
+            )}
             <button
               onClick={() => setConfirmAction("kill")}
               disabled={killing}
@@ -225,6 +282,12 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
             >
               <Power size={12} />
               <span className="hidden sm:inline">Kill Switch</span>
+            </button>
+            <button
+              onClick={() => setConfirmDelete(true)}
+              className="inline-flex items-center gap-1.5 rounded-lg border border-red-500/30 px-2.5 py-1.5 text-[11px] font-medium text-red-400 transition-colors hover:bg-red-500/10"
+            >
+              <Trash2 size={12} />
             </button>
           </div>
         </div>
@@ -284,11 +347,29 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
         </button>
       </div>
 
+      {/* Deploy status banner */}
+      <DeployStatusBanner
+        hubDocId={clientId}
+        clientId={client.clientId}
+        niche={client.niche}
+        vercelProjectId={client.vercelProjectId}
+        deployStatus={client.deployStatus}
+        deployError={client.deployError}
+        onDeployUpdate={(updates) => {
+          setData((d) => d ? { ...d, client: { ...d.client, ...updates } } : d);
+        }}
+      />
+
       {/* Demo activation banner */}
       {client.status === "demo" && (
-        <DemoActivationBanner hubDocId={clientId} onActivated={() => {
-          setData((d) => d ? { ...d, client: { ...d.client, status: "active" as const } } : d);
-        }} />
+        <DemoActivationBanner
+          hubDocId={clientId}
+          vercelProjectId={client.vercelProjectId}
+          deployStatus={client.deployStatus}
+          onActivated={() => {
+            setData((d) => d ? { ...d, client: { ...d.client, status: "active" as const } } : d);
+          }}
+        />
       )}
 
       {activeTab === "config" && (
@@ -538,6 +619,50 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
 
       </>)}
 
+      {/* Delete Confirmation Modal */}
+      {confirmDelete && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
+          <div className="w-full max-w-sm rounded-xl border border-border bg-bg-card p-6">
+            <div className="mb-1 flex items-center gap-2">
+              <Trash2 size={16} className="text-danger" />
+              <h2 className="text-sm font-semibold text-danger">Eliminar cliente</h2>
+            </div>
+            <p className="mb-2 text-xs text-text-muted">
+              Esto eliminara permanentemente al cliente de Firebase{client.vercelProjectId ? " y su proyecto en Vercel" : ""}.
+              Esta accion no se puede deshacer.
+            </p>
+            <p className="mb-3 text-xs text-text-muted">
+              Escribi <code className="rounded bg-bg-elevated px-1 py-0.5 text-red-400">eliminar</code> para confirmar:
+            </p>
+            <input
+              type="text"
+              value={deleteConfirmText}
+              onChange={(e) => setDeleteConfirmText(e.target.value)}
+              placeholder="eliminar"
+              className="mb-3 w-full rounded-lg border border-border bg-bg-elevated px-3 py-2 text-sm text-text focus:border-red-500 focus:outline-none"
+            />
+            {deleteError && (
+              <p className="mb-3 rounded-lg bg-danger-muted px-3 py-2 text-xs text-danger">{deleteError}</p>
+            )}
+            <div className="flex justify-end gap-2">
+              <button
+                onClick={() => { setConfirmDelete(false); setDeleteConfirmText(""); setDeleteError(""); }}
+                className="rounded-lg px-3 py-2 text-xs font-medium text-text-secondary hover:text-text"
+              >
+                Cancelar
+              </button>
+              <button
+                onClick={handleDelete}
+                disabled={deleting || deleteConfirmText !== "eliminar"}
+                className="rounded-lg bg-red-600 px-4 py-2 text-xs font-medium text-white hover:bg-red-700 disabled:opacity-50"
+              >
+                {deleting ? "Eliminando..." : "Eliminar permanentemente"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Confirmation Modal */}
       {confirmAction && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
@@ -639,9 +764,133 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
   );
 }
 
-function DemoActivationBanner({ hubDocId, onActivated }: { hubDocId: string; onActivated: (status: "active") => void }) {
+function DeployStatusBanner({
+  hubDocId,
+  clientId,
+  niche,
+  vercelProjectId,
+  deployStatus,
+  deployError,
+  onDeployUpdate,
+}: {
+  hubDocId: string;
+  clientId: string;
+  niche: string;
+  vercelProjectId?: string;
+  deployStatus?: string;
+  deployError?: string;
+  onDeployUpdate: (updates: Partial<{ vercelProjectId: string; deployStatus: string; deployError: string | undefined }>) => void;
+}) {
+  const [deploying, setDeploying] = useState(false);
+  const [error, setError] = useState("");
+
+  // Poll deploy status when building
+  useEffect(() => {
+    if (deployStatus !== "building" || !clientId) return;
+    const interval = setInterval(async () => {
+      try {
+        const res = await fetch(`/api/onboarding/status/${clientId}`);
+        if (res.ok) {
+          const data = await res.json();
+          if (data.status !== "building") {
+            onDeployUpdate({ deployStatus: data.status, deployError: undefined });
+          }
+        }
+      } catch { /* ignore */ }
+    }, 8000);
+    return () => clearInterval(interval);
+  }, [deployStatus, clientId, onDeployUpdate]);
+
+  if (deployStatus === "ready" && vercelProjectId) return null;
+
+  async function handleDeploy() {
+    setDeploying(true);
+    setError("");
+    try {
+      const res = await fetch("/api/deploy", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ clientId, niche, hubDocId }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        onDeployUpdate({
+          vercelProjectId: data.projectId,
+          deployStatus: "building",
+          deployError: undefined,
+        });
+      } else {
+        setError(data.error || "Error al deployar");
+      }
+    } catch {
+      setError("Error de conexion");
+    }
+    setDeploying(false);
+  }
+
+  if (deployStatus === "building") {
+    return (
+      <div className="mb-6 flex items-center justify-between rounded-xl border border-accent/20 bg-accent/5 px-4 py-3">
+        <div className="flex items-center gap-3">
+          <Loader2 size={16} className="animate-spin text-accent" />
+          <div>
+            <p className="text-xs font-medium text-text">Deploy en progreso</p>
+            <p className="text-[10px] text-text-muted">Vercel esta construyendo el proyecto. Se actualiza automaticamente.</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (deployStatus === "error" || (!vercelProjectId && deployStatus !== "building")) {
+    return (
+      <div className="mb-6 rounded-xl border border-red-500/20 bg-red-500/5 px-4 py-3">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <AlertCircle size={16} className="text-red-400" />
+            <div>
+              <p className="text-xs font-medium text-red-400">
+                {!vercelProjectId ? "Sin deploy" : "Error en deploy"}
+              </p>
+              {deployError && (
+                <p className="mt-0.5 text-[10px] text-red-400/70">{deployError}</p>
+              )}
+              {error && (
+                <p className="mt-0.5 text-[10px] text-red-400/70">{error}</p>
+              )}
+            </div>
+          </div>
+          <button
+            onClick={handleDeploy}
+            disabled={deploying}
+            className="inline-flex items-center gap-1.5 rounded-lg bg-accent px-3 py-2 text-xs font-medium text-white hover:bg-accent-hover disabled:opacity-50"
+          >
+            {deploying ? <Loader2 size={12} className="animate-spin" /> : <Rocket size={12} />}
+            {!vercelProjectId ? "Deployar" : "Reintentar deploy"}
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  return null;
+}
+
+function DemoActivationBanner({
+  hubDocId,
+  vercelProjectId,
+  deployStatus,
+  onActivated,
+}: {
+  hubDocId: string;
+  vercelProjectId?: string;
+  deployStatus?: string;
+  onActivated: (status: "active") => void;
+}) {
   const [activating, setActivating] = useState(false);
   const [error, setError] = useState("");
+
+  const canActivate = !!vercelProjectId && deployStatus !== "building" && deployStatus !== "error";
 
   async function handleActivate() {
     setActivating(true);
@@ -673,14 +922,20 @@ function DemoActivationBanner({ hubDocId, onActivated }: { hubDocId: string; onA
         <div>
           <p className="text-xs font-medium text-text">Este cliente esta en modo demo</p>
           <p className="text-[10px] text-text-muted">
-            Activalo cuando la configuracion y el contenido esten listos para produccion.
+            {canActivate
+              ? "Activalo cuando la configuracion y el contenido esten listos para produccion."
+              : !vercelProjectId
+                ? "Necesitas deployar el proyecto primero."
+                : deployStatus === "building"
+                  ? "Esperando que termine el deploy..."
+                  : "Necesitas un deploy exitoso antes de activar."}
           </p>
           {error && <p className="mt-1 text-[10px] text-red-400">{error}</p>}
         </div>
       </div>
       <button
         onClick={handleActivate}
-        disabled={activating}
+        disabled={activating || !canActivate}
         className="inline-flex items-center gap-1.5 rounded-lg bg-accent px-3 py-2 text-xs font-medium text-white transition-colors hover:bg-accent-hover disabled:opacity-50"
       >
         {activating ? <Loader2 size={12} className="animate-spin" /> : <CheckCircle size={12} />}

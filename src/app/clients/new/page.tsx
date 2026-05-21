@@ -436,17 +436,32 @@ export default function NewClientPage() {
 
         {/* ── Error ───────────────────────────────────────────────────── */}
         {(error || state === "error") && (
-          <div className="flex items-start gap-2 rounded-lg bg-red-500/10 px-4 py-3">
-            <AlertCircle size={14} className="mt-0.5 shrink-0 text-red-400" />
-            <div>
-              <p className="text-xs font-medium text-red-400">Error</p>
-              <p className="text-[11px] text-red-400/80">{error}</p>
-              {result && (
-                <p className="mt-1 text-[10px] text-text-muted">
-                  Los documentos en Firebase se crearon correctamente. El deploy se puede reintentar desde el dashboard del cliente.
-                </p>
-              )}
+          <div className="rounded-lg bg-red-500/10 px-4 py-3">
+            <div className="flex items-start gap-2">
+              <AlertCircle size={14} className="mt-0.5 shrink-0 text-red-400" />
+              <div>
+                <p className="text-xs font-medium text-red-400">Error</p>
+                {error && <p className="text-[11px] text-red-400/80">{error}</p>}
+                {result?.deployError && (
+                  <p className="mt-1 text-[11px] text-red-400/80">
+                    Vercel: {result.deployError}
+                  </p>
+                )}
+                {result && (
+                  <p className="mt-1 text-[10px] text-text-muted">
+                    Los documentos en Firebase se crearon correctamente. Podes reintentar el deploy desde el dashboard del cliente.
+                  </p>
+                )}
+              </div>
             </div>
+            {result && (
+              <button
+                onClick={() => router.push(`/clients/${result.hubDocId}`)}
+                className="mt-3 inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2 text-xs font-medium text-white hover:bg-accent-hover"
+              >
+                Ir al dashboard del cliente
+              </button>
+            )}
           </div>
         )}
 

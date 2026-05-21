@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { withOwner } from "@/lib/auth";
 import { db } from "@/lib/firebase-admin";
 import { buildFeatures, getDefaultTheme, getDefaultSplash, VALID_NICHES, type BusinessNiche } from "@/lib/niche-defaults";
+import { deployToVercel } from "@/lib/deploy";
 
 function slugify(name: string): string {
   return name
@@ -85,34 +86,16 @@ export const POST = withOwner(async (req: NextRequest) => {
       splash: { enabled: true, variant: getDefaultSplash(nicheKey) },
     });
 
-    // 4. Trigger Vercel deploy
+    // 4. Trigger Vercel deploy (direct call, no self-fetch)
     let deployResult: { projectId?: string; domain?: string; error?: string } = {};
-    const deployUrl = `${req.nextUrl.origin}/api/deploy`;
-    const deployHeaders: Record<string, string> = { "Content-Type": "application/json" };
-    if (process.env.DEPLOY_SECRET) {
-      deployHeaders["x-deploy-secret"] = process.env.DEPLOY_SECRET;
-    }
-
     try {
-      const deployRes = await fetch(deployUrl, {
-        method: "POST",
-        headers: deployHeaders,
-        body: JSON.stringify({ clientId: slug, niche: nicheKey, hubDocId: hubRef.id }),
-      });
-
-      if (deployRes.ok) {
-        deployResult = await deployRes.json();
-      } else {
-        const errText = await deployRes.text();
-        console.error("[provision] Deploy failed:", errText);
-        await hubRef.update({ deployStatus: "error", deployError: errText.slice(0, 200) });
-        deployResult = { error: errText.slice(0, 200) };
-      }
+      const result = await deployToVercel({ clientId: slug, niche: nicheKey, hubDocId: hubRef.id });
+      deployResult = { projectId: result.projectId, domain: result.domain };
     } catch (err) {
-      const msg = err instanceof Error ? err.message : "Deploy fetch failed";
+      const msg = err instanceof Error ? err.message : "Deploy failed";
       console.error("[provision] Deploy error:", msg);
-      await hubRef.update({ deployStatus: "error", deployError: msg });
-      deployResult = { error: msg };
+      await hubRef.update({ deployStatus: "error", deployError: msg.slice(0, 500) });
+      deployResult = { error: msg.slice(0, 500) };
     }
 
     return NextResponse.json({

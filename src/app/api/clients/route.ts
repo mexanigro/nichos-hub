@@ -24,6 +24,8 @@ export const GET = withOwner(async () => {
       adminEmail: d.adminEmail || "",
       clientId: d.clientId || doc.id,
       vercelProjectId: d.vercelProjectId || "",
+      deployStatus: d.deployStatus || null,
+      deployError: d.deployError || null,
       notes: d.notes || "",
     };
   });
@@ -96,7 +98,8 @@ export const POST = withOwner(async (req) => {
 
 const ALLOWED_CLIENT_FIELDS = new Set([
   "businessName", "niche", "deployUrl", "adminEmail",
-  "vercelProjectId", "notes", "status", "language",
+  "vercelProjectId", "deployStatus", "deployError",
+  "notes", "status", "language",
   "monitorChecks", "paymentStatus",
 ]);
 
