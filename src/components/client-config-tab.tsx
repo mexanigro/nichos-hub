@@ -24,8 +24,10 @@ import {
   Trash2,
   User,
   CreditCard,
+  Package,
 } from "lucide-react";
 import { ImageUploadField, ImageUploadListField } from "./image-upload-field";
+import { BrandPackageImport } from "./brand-package-import";
 
 /* ══════════════════════════════════════════════════════════════════════════
  * Types — mirrors what master-template stores in Firestore config/{clientId}
@@ -326,6 +328,29 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
       {saved && (
         <div className="rounded-lg bg-green-500/10 px-3 py-2 text-xs text-green-400">Configuracion guardada correctamente</div>
       )}
+
+      {/* ── Brand Package Import ───────────────────────────────────────── */}
+      <Section
+        icon={Package} title="Brand Package" sectionKey="brandPackage"
+        expanded={expandedSections.has("brandPackage")} onToggle={toggleSection}
+      >
+        <BrandPackageImport
+          clientId={clientId}
+          onBrandApplied={(brandConfig) => {
+            setConfig((prev) => {
+              const next = { ...prev };
+              const bc = brandConfig as Record<string, Record<string, unknown>>;
+              if (bc.brand) {
+                next.brand = { ...next.brand, ...bc.brand } as ConfigDoc["brand"];
+              }
+              if (bc.theme) {
+                next.theme = { ...next.theme, ...bc.theme } as ConfigDoc["theme"];
+              }
+              return next;
+            });
+          }}
+        />
+      </Section>
 
       {/* ── Brand & Identity ──────────────────────────────────────────── */}
       <Section
