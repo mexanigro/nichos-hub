@@ -12,8 +12,30 @@ const ALLOWED_TYPES = new Set([
   "image/gif",
   "image/svg+xml",
   "image/avif",
+  "image/x-icon",
+  "image/vnd.microsoft.icon",
   "application/json",
 ]);
+
+/** Fallback MIME detection by extension — webkitGetAsEntry() on Windows
+ *  often produces File objects with an empty `type` string. */
+const EXT_TO_MIME: Record<string, string> = {
+  ".jpg": "image/jpeg",
+  ".jpeg": "image/jpeg",
+  ".png": "image/png",
+  ".webp": "image/webp",
+  ".gif": "image/gif",
+  ".svg": "image/svg+xml",
+  ".avif": "image/avif",
+  ".json": "application/json",
+  ".ico": "image/x-icon",
+};
+
+function resolveContentType(file: File): string {
+  if (file.type && file.type !== "application/octet-stream") return file.type;
+  const ext = file.name.slice(file.name.lastIndexOf(".")).toLowerCase();
+  return EXT_TO_MIME[ext] || "";
+}
 
 function sanitizeFilename(name: string): string {
   return name
@@ -51,8 +73,10 @@ export const POST = withOwner(async (req, _session, ctx) => {
   const errors: string[] = [];
 
   for (const file of files) {
-    if (!ALLOWED_TYPES.has(file.type)) {
-      errors.push(`${file.name}: tipo no permitido (${file.type})`);
+    const contentType = resolveContentType(file);
+
+    if (!contentType || !ALLOWED_TYPES.has(contentType)) {
+      errors.push(`${file.name}: tipo no permitido (${file.type || "vacío"} → ${contentType || "desconocido"})`);
       continue;
     }
 
@@ -71,7 +95,7 @@ export const POST = withOwner(async (req, _session, ctx) => {
 
       await bucketFile.save(buffer, {
         metadata: {
-          contentType: file.type,
+          contentType,
           cacheControl: "public, max-age=31536000",
         },
       });

@@ -191,7 +191,22 @@ export function BrandPackageImport({ clientId, onBrandApplied }: BrandPackageImp
       const img = toUpload[i];
       try {
         const form = new FormData();
-        form.append("file", img.file);
+        // Re-create the File with a proper MIME type if it's empty (common on
+        // Windows when files come from webkitGetAsEntry).
+        let fileToUpload = img.file;
+        if (!fileToUpload.type) {
+          const ext = img.filename.slice(img.filename.lastIndexOf(".")).toLowerCase();
+          const mimeMap: Record<string, string> = {
+            ".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg",
+            ".webp": "image/webp", ".svg": "image/svg+xml", ".gif": "image/gif",
+            ".avif": "image/avif", ".ico": "image/x-icon",
+          };
+          const mime = mimeMap[ext];
+          if (mime) {
+            fileToUpload = new File([fileToUpload], fileToUpload.name, { type: mime });
+          }
+        }
+        form.append("file", fileToUpload);
         const res = await fetch(`/api/upload/${clientId}`, { method: "POST", body: form });
         const data = await res.json();
 
@@ -214,13 +229,14 @@ export function BrandPackageImport({ clientId, onBrandApplied }: BrandPackageImp
     }
 
     // Build config partial
-    const config: Record<string, unknown> = {
-      brand: {
-        name: editedName,
-        ...(uploadedUrls.logo && { logo: uploadedUrls.logo }),
-        ...(uploadedUrls.logoDark && { logoDark: uploadedUrls.logoDark }),
-        ...(uploadedUrls.ogImage && { ogImage: uploadedUrls.ogImage }),
-      },
+    const brandPatch: Record<string, unknown> = { name: editedName };
+    if (uploadedUrls.logo) brandPatch.logo = uploadedUrls.logo;
+    if (uploadedUrls.logoDark) brandPatch.logoDark = uploadedUrls.logoDark;
+    if (uploadedUrls.ogImage) brandPatch.ogImage = uploadedUrls.ogImage;
+    if (uploadedUrls.favicon) brandPatch.favicon = uploadedUrls.favicon;
+
+    const configPatch: Record<string, unknown> = {
+      brand: brandPatch,
       theme: {
         accent: editedColors.accent,
         accentLight: editedColors.accentLight,
@@ -228,7 +244,7 @@ export function BrandPackageImport({ clientId, onBrandApplied }: BrandPackageImp
       },
     };
 
-    onBrandApplied(config);
+    onBrandApplied(configPatch);
     setStage("done");
   }, [parsed, clientId, editedName, editedColors, onBrandApplied]);
 
