@@ -47,7 +47,7 @@ function sanitizeFilename(name: string): string {
 export const POST = withOwner(async (req, _session, ctx) => {
   const { clientId } = await ctx.params;
 
-  if (!/^[a-z0-9-]+$/.test(clientId)) {
+  if (!/^[a-zA-Z0-9_-]+$/.test(clientId)) {
     return NextResponse.json({ error: "clientId invalido" }, { status: 400 });
   }
 

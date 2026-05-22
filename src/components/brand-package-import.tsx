@@ -207,11 +207,29 @@ export function BrandPackageImport({ clientId, onBrandApplied }: BrandPackageImp
           }
         }
         form.append("file", fileToUpload);
-        const res = await fetch(`/api/upload/${clientId}`, { method: "POST", body: form });
-        const data = await res.json();
+        let res: Response;
+        try {
+          res = await fetch(`/api/upload/${clientId}`, { method: "POST", body: form });
+        } catch (fetchErr) {
+          const msg = fetchErr instanceof Error ? fetchErr.message : String(fetchErr);
+          setError(`Error de conexion subiendo ${img.filename}: ${msg}`);
+          setStage("preview");
+          return;
+        }
+
+        // Parse response body — server may return HTML on proxy errors (413, 502, etc.)
+        let data: { urls?: string[]; errors?: string[]; error?: string } = {};
+        try {
+          data = await res.json();
+        } catch {
+          // Non-JSON body (e.g. nginx 413, Railway error page)
+          setError(`Error subiendo ${img.filename}: HTTP ${res.status} — el servidor devolvio una respuesta inesperada`);
+          setStage("preview");
+          return;
+        }
 
         if (!res.ok) {
-          setError(`Error subiendo ${img.filename}: ${data.error || "Error desconocido"}`);
+          setError(`Error subiendo ${img.filename}: ${data.error || `HTTP ${res.status}`}`);
           setStage("preview");
           return;
         }
@@ -219,8 +237,9 @@ export function BrandPackageImport({ clientId, onBrandApplied }: BrandPackageImp
         if (data.urls?.[0] && img.role) {
           uploadedUrls[img.role] = data.urls[0];
         }
-      } catch {
-        setError(`Error de red subiendo ${img.filename}`);
+      } catch (unexpectedErr) {
+        const msg = unexpectedErr instanceof Error ? unexpectedErr.message : String(unexpectedErr);
+        setError(`Error inesperado subiendo ${img.filename}: ${msg}`);
         setStage("preview");
         return;
       }
