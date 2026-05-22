@@ -25,6 +25,7 @@ import {
   User,
   CreditCard,
 } from "lucide-react";
+import { ImageUploadField, ImageUploadListField } from "./image-upload-field";
 
 /* ══════════════════════════════════════════════════════════════════════════
  * Types — mirrors what master-template stores in Firestore config/{clientId}
@@ -55,7 +56,7 @@ type ConfigDoc = {
   };
   splash?: { enabled?: boolean; durationMs?: number; variant?: 1 | 2 | 3 | 4 | 5 };
   adminEmail?: string;
-  hero?: { backgroundImage?: string };
+  hero?: { backgroundImage?: string; stats?: { value: string; label: string }[] };
   gallery?: string[];
   staff?: { photoUrl?: string; portfolio?: string[] }[];
   owner?: {
@@ -105,6 +106,9 @@ const FEATURES_LIST = [
   { key: "showProcess", label: "Proceso" },
   { key: "showAmbience", label: "Ambiente" },
   { key: "showPortfolio", label: "Portfolio" },
+  { key: "showHeroStats", label: "Stats del Hero" },
+  { key: "showFaq", label: "Preguntas frecuentes" },
+  { key: "showMenu", label: "Menu (cafeteria)" },
 ] as const;
 
 const NICHE_SERVICES: Record<BusinessNiche, { id: string; label: string }[]> = {
@@ -334,11 +338,11 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
         </div>
         <Field label="Descripcion (SEO)" path="brand.description" value={getNested("brand.description")} onChange={updateNested} />
         <div className="grid gap-3 sm:grid-cols-2">
-          <Field label="Logo (fondo claro)" path="brand.logo" value={getNested("brand.logo")} onChange={updateNested} placeholder="https://..." />
-          <Field label="Logo (fondo oscuro)" path="brand.logoDark" value={getNested("brand.logoDark")} onChange={updateNested} placeholder="https://..." />
+          <ImageUploadField label="Logo (fondo claro)" value={(getNested("brand.logo") as string) || ""} onChange={(url) => updateNested("brand.logo", url ?? "")} clientId={clientId} />
+          <ImageUploadField label="Logo (fondo oscuro)" value={(getNested("brand.logoDark") as string) || ""} onChange={(url) => updateNested("brand.logoDark", url ?? "")} clientId={clientId} />
         </div>
         <div className="grid gap-3 sm:grid-cols-2">
-          <Field label="OG Image" path="brand.ogImage" value={getNested("brand.ogImage")} onChange={updateNested} placeholder="https://..." />
+          <ImageUploadField label="OG Image" value={(getNested("brand.ogImage") as string) || ""} onChange={(url) => updateNested("brand.ogImage", url ?? "")} clientId={clientId} />
           <Field label="Icono fallback (Lucide)" path="brand.logoIconName" value={getNested("brand.logoIconName")} onChange={updateNested} placeholder="Scissors, Sparkles, Scale..." />
         </div>
       </Section>
@@ -618,10 +622,7 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
             <Field label="Nombre completo" path="owner.name" value={getNested("owner.name")} onChange={updateNested} placeholder="Tu nombre" />
             <Field label="Titulo / Rol" path="owner.role" value={getNested("owner.role")} onChange={updateNested} placeholder="Master Barber, Tattoo Artist..." />
           </div>
-          <Field label="Foto de perfil" path="owner.photo" value={getNested("owner.photo")} onChange={updateNested} placeholder="https://..." />
-          {(getNested("owner.photo") as string) ? (
-            <img src={getNested("owner.photo") as string} alt="" className="h-20 w-20 rounded-full object-cover" />
-          ) : null}
+          <ImageUploadField label="Foto de perfil" value={(getNested("owner.photo") as string) || ""} onChange={(url) => updateNested("owner.photo", url ?? "")} clientId={clientId} />
           <TextAreaField label="Bio" path="owner.bio" value={getNested("owner.bio") as string} onChange={updateNested}
             placeholder="Cuenta tu historia, tu trayectoria, que te hace diferente..."
           />
@@ -631,8 +632,8 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
           </div>
           <Field label="Certificaciones" path="owner.certifications" value={getNested("owner.certifications")} onChange={updateNested} placeholder="Certificado en..." />
           <div>
-            <label className="mb-1 block text-[10px] text-text-muted">Portfolio personal</label>
-            <ImageListField
+            <ImageUploadListField
+              label="Portfolio personal"
               value={(config.owner?.portfolio as string[] | undefined) || []}
               onChange={(imgs) => setConfig(prev => ({
                 ...prev,
@@ -641,7 +642,7 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
                   portfolio: imgs.length > 0 ? imgs : undefined,
                 },
               }))}
-              placeholder="URL de imagen de tu trabajo"
+              clientId={clientId}
             />
           </div>
         </Section>
@@ -654,29 +655,84 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
       >
         {/* Hero background */}
         <div>
-          <p className="mb-1 text-[11px] font-semibold text-text-secondary">Fondo del Hero</p>
-          <Field label="URL imagen de fondo" path="hero.backgroundImage" value={getNested("hero.backgroundImage")} onChange={updateNested} placeholder="https://images.unsplash.com/..." />
-          {(getNested("hero.backgroundImage") as string) ? (
-            <img src={getNested("hero.backgroundImage") as string} alt="" className="mt-2 h-24 w-full rounded-lg object-cover" />
-          ) : null}
+          <ImageUploadField
+            label="Fondo del Hero"
+            value={(getNested("hero.backgroundImage") as string) || ""}
+            onChange={(url) => updateNested("hero.backgroundImage", url ?? "")}
+            clientId={clientId}
+            placeholder="https://images.unsplash.com/..."
+          />
         </div>
+
+        {/* Hero Stats */}
+        {config.features?.showHeroStats !== false && (
+        <div className="border-t border-border pt-3">
+          <p className="mb-1 text-[11px] font-semibold text-text-secondary">Stats del Hero</p>
+          <p className="mb-2 text-[10px] text-text-muted">Valores como &quot;500+&quot; y &quot;Clientes atendidos&quot; que aparecen en el hero</p>
+          {(config.hero?.stats || []).map((stat, i) => (
+            <div key={i} className="mb-2 flex items-center gap-2">
+              <input
+                className="flex-1 rounded-lg border border-border bg-bg-input px-3 py-1.5 text-xs text-text outline-none focus:border-accent"
+                placeholder="500+"
+                value={stat.value}
+                onChange={(e) => {
+                  const newStats = [...(config.hero?.stats || [])];
+                  newStats[i] = { ...newStats[i], value: e.target.value };
+                  setConfig(prev => ({ ...prev, hero: { ...prev.hero, stats: newStats } }));
+                }}
+              />
+              <input
+                className="flex-1 rounded-lg border border-border bg-bg-input px-3 py-1.5 text-xs text-text outline-none focus:border-accent"
+                placeholder="Clientes atendidos"
+                value={stat.label}
+                onChange={(e) => {
+                  const newStats = [...(config.hero?.stats || [])];
+                  newStats[i] = { ...newStats[i], label: e.target.value };
+                  setConfig(prev => ({ ...prev, hero: { ...prev.hero, stats: newStats } }));
+                }}
+              />
+              <button
+                type="button"
+                onClick={() => {
+                  const newStats = (config.hero?.stats || []).filter((_, j) => j !== i);
+                  setConfig(prev => ({ ...prev, hero: { ...prev.hero, stats: newStats.length > 0 ? newStats : undefined } }));
+                }}
+                className="rounded p-1 text-text-muted hover:bg-danger-muted hover:text-danger"
+              >
+                <Trash2 size={14} />
+              </button>
+            </div>
+          ))}
+          <button
+            type="button"
+            onClick={() => {
+              const newStats = [...(config.hero?.stats || []), { value: "", label: "" }];
+              setConfig(prev => ({ ...prev, hero: { ...prev.hero, stats: newStats } }));
+            }}
+            className="flex items-center gap-1.5 rounded-lg border border-dashed border-border px-3 py-1.5 text-xs text-text-muted transition-colors hover:border-accent hover:text-accent"
+          >
+            <Plus size={12} /> Agregar stat
+          </button>
+        </div>
+        )}
 
         {/* Why Choose Us */}
         <div className="border-t border-border pt-3">
-          <p className="mb-1 text-[11px] font-semibold text-text-secondary">Seccion "Por que elegirnos"</p>
-          <Field label="Imagen principal" path="sections.whyChooseUs.mainImage" value={getNested("sections.whyChooseUs.mainImage")} onChange={updateNested} placeholder="https://..." />
-          {(getNested("sections.whyChooseUs.mainImage") as string) ? (
-            <img src={getNested("sections.whyChooseUs.mainImage") as string} alt="" className="mt-2 h-24 w-full rounded-lg object-cover" />
-          ) : null}
+          <ImageUploadField
+            label='Seccion "Por que elegirnos" - Imagen principal'
+            value={(getNested("sections.whyChooseUs.mainImage") as string) || ""}
+            onChange={(url) => updateNested("sections.whyChooseUs.mainImage", url ?? "")}
+            clientId={clientId}
+          />
         </div>
 
         {/* Gallery */}
         <div className="border-t border-border pt-3">
-          <p className="mb-1 text-[11px] font-semibold text-text-secondary">Galeria</p>
-          <ImageListField
+          <ImageUploadListField
+            label="Galeria"
             value={(config.gallery as string[] | undefined) || []}
             onChange={(imgs) => setConfig(prev => ({ ...prev, gallery: imgs.length > 0 ? imgs : undefined }))}
-            placeholder="URL de imagen de galeria"
+            clientId={clientId}
           />
         </div>
 
@@ -688,7 +744,7 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
             <Field label="URL perfil" path="sections.instagram.url" value={getNested("sections.instagram.url")} onChange={updateNested} placeholder="https://instagram.com/..." />
           </div>
           <div className="mt-2">
-            <ImageListField
+            <ImageUploadListField
               value={(config.sections?.instagram?.images as string[] | undefined) || []}
               onChange={(imgs) => setConfig(prev => ({
                 ...prev,
@@ -700,7 +756,7 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
                   },
                 },
               }))}
-              placeholder="URL de imagen para grid de Instagram"
+              clientId={clientId}
             />
           </div>
         </div>
@@ -731,16 +787,13 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
                   {staffList.map((member, i) => (
                     <div key={i} className="rounded-lg border border-border bg-bg-elevated p-3">
                       <span className="mb-2 block text-[10px] font-medium text-text-muted">Miembro {i + 1}</span>
-                      <Field label="Foto de perfil" path={`_staff_${i}_photo`} value={member.photoUrl || ""} onChange={(_p, v) => updateStaffField(i, "photoUrl", v)} placeholder="https://..." />
-                      {member.photoUrl && (
-                        <img src={member.photoUrl} alt="" className="mt-1 h-16 w-16 rounded-full object-cover" />
-                      )}
+                      <ImageUploadField label="Foto de perfil" value={member.photoUrl || ""} onChange={(url) => updateStaffField(i, "photoUrl", url ?? "")} clientId={clientId} />
                       <div className="mt-2">
-                        <label className="mb-1 block text-[10px] text-text-muted">Portfolio (imagenes)</label>
-                        <ImageListField
+                        <ImageUploadListField
+                          label="Portfolio (imagenes)"
                           value={member.portfolio || []}
                           onChange={(imgs) => updateStaffField(i, "portfolio", imgs.length > 0 ? imgs : undefined)}
-                          placeholder="URL de imagen de portfolio"
+                          clientId={clientId}
                         />
                       </div>
                     </div>

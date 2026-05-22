@@ -1,6 +1,7 @@
 import { initializeApp, getApps, cert, type ServiceAccount } from "firebase-admin/app";
 import { getFirestore, type Firestore } from "firebase-admin/firestore";
 import { getAuth as getAdminAuth, type Auth as AdminAuth } from "firebase-admin/auth";
+import { getStorage } from "firebase-admin/storage";
 
 let _db: Firestore | null = null;
 
@@ -83,3 +84,11 @@ export const db = new Proxy({} as Firestore, {
     return value;
   },
 });
+
+const STORAGE_BUCKET = "barbertemplate-madre.firebasestorage.app";
+
+/** Returns the default Firebase Storage bucket. Lazily initializes the app. */
+export function getStorageBucket() {
+  getDb(); // ensure app is initialized
+  return getStorage().bucket(STORAGE_BUCKET);
+}

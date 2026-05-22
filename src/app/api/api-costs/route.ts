@@ -17,6 +17,7 @@ const DEFAULT_SERVICES: ApiServiceCost[] = [
     lastUpdated: "",
     docUrl: "https://console.anthropic.com/settings/billing",
     monthlyBudgetUsd: 0,
+    autoFetchable: true,
   },
   {
     serviceId: "twilio",
@@ -30,6 +31,7 @@ const DEFAULT_SERVICES: ApiServiceCost[] = [
     lastUpdated: "",
     docUrl: "https://console.twilio.com/us1/billing/manage-billing/billing-history",
     monthlyBudgetUsd: 0,
+    autoFetchable: true,
   },
   {
     serviceId: "firebase",
@@ -56,6 +58,7 @@ const DEFAULT_SERVICES: ApiServiceCost[] = [
     lastUpdated: "",
     docUrl: "https://vercel.com/dashboard/usage",
     monthlyBudgetUsd: 0,
+    autoFetchable: true,
   },
   {
     serviceId: "railway",
@@ -69,6 +72,7 @@ const DEFAULT_SERVICES: ApiServiceCost[] = [
     lastUpdated: "",
     docUrl: "https://railway.com/account/billing",
     monthlyBudgetUsd: 0,
+    autoFetchable: true,
   },
   {
     serviceId: "resend",

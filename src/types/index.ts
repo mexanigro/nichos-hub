@@ -281,4 +281,6 @@ export interface ApiServiceCost {
   lastUpdated: string;
   docUrl: string;
   monthlyBudgetUsd: number;
+  autoFetchable?: boolean;
+  lastAutoFetch?: string;
 }
