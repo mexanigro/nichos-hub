@@ -57,9 +57,18 @@ Cuando `business.type` falta o no coincide (el caso normal para la mayoria de cl
 ### Staff
 - `staff[].name`, `.specialty`, `.bio`, `.photoUrl`, `.schedule`
 
-### Services
-- `visibleServices[]` — filtrar y reordenar servicios por ID
-- `serviceOverrides.{id}.*` — patch nombre, precio, imagen por servicio
+### Services (contrato de visibilidad)
+
+La visibilidad de servicios sigue un contrato estricto entre nichos-hub y master-template:
+
+| Valor de `features.showServices` | Valor de `visibleServices` | Resultado |
+|---|---|---|
+| `false` | (ignorado) | Seccion de servicios oculta. 0 servicios visibles. |
+| `true` / ausente | `null` / ausente | Todos los servicios del preset del nicho son visibles. |
+| `true` / ausente | `["id1","id2"]` | Solo los servicios listados son visibles (allow-list). IDs desconocidos se ignoran. |
+
+- `visibleServices[]` — allow-list de IDs de servicios visibles. `null` = todos visibles.
+- `serviceOverrides.{id}.*` — patch nombre, precio, imagen por servicio. `null` = sin overrides.
 
 ### Otros
 - `businessMode` — "solo" (oculta team) o "team"
@@ -80,6 +89,16 @@ La plantilla verifica esto en cada request. Modificar SOLO via:
 - `/api/clients/provision` — crea nuevo cliente
 
 Esto mantiene sincronizacion con `hub_clients`.
+
+## Normalizacion de business.type
+
+El API `PUT /api/config/:clientId` normaliza automaticamente `business.type`:
+
+1. Consulta `hub_clients` para obtener el nicho real del deploy
+2. Si el nicho solicitado difiere del deploy, usa el del deploy y devuelve un `warning`
+3. Mapeos: `"otro"` → `"estetica"`, valores desconocidos → `"barberia"`
+
+Esto previene inconsistencias entre el `business.type` guardado y el `VITE_ACTIVE_NICHE` de la build.
 
 ## Regla critica
 

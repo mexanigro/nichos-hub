@@ -28,12 +28,17 @@ import {
 } from "lucide-react";
 import { ImageUploadField, ImageUploadListField } from "./image-upload-field";
 import { BrandPackageImport } from "./brand-package-import";
+import {
+  getNicheServices,
+  normalizeBusinessNiche,
+  resolveVisibleServiceIds,
+  toggleVisibleService,
+  type BusinessNiche,
+} from "@/lib/client-config/services";
 
 /* ══════════════════════════════════════════════════════════════════════════
  * Types — mirrors what master-template stores in Firestore config/{clientId}
  * ══════════════════════════════════════════════════════════════════════════ */
-
-type BusinessNiche = "barberia" | "estetica" | "tattoo" | "nails" | "cafeteria" | "remodelaciones";
 
 type ConfigDoc = {
   business?: { type?: string; legalName?: string; address?: string; cancellationPolicy?: string };
@@ -44,8 +49,8 @@ type ConfigDoc = {
   contact?: { phone?: string; email?: string; address?: { street?: string; district?: string; cityStateZip?: string } };
   hours?: Record<string, { start?: string; end?: string } | null>;
   businessRules?: { bufferMinutes?: number; maxAdvanceBookingDays?: number; minAdvanceBookingHours?: number; autoConfirm?: boolean };
-  visibleServices?: string[];
-  serviceOverrides?: Record<string, Record<string, unknown>>;
+  visibleServices?: string[] | null;
+  serviceOverrides?: Record<string, Record<string, unknown>> | null;
   notifications?: { enabled?: boolean; bookingAlerts?: boolean; contactInquiries?: boolean };
   payment?: {
     enabled?: boolean;
@@ -113,55 +118,6 @@ const FEATURES_LIST = [
   { key: "showMenu", label: "Menu (cafeteria)" },
 ] as const;
 
-const NICHE_SERVICES: Record<BusinessNiche, { id: string; label: string }[]> = {
-  barberia: [
-    { id: "haircut", label: "Haircut" },
-    { id: "beard-sculpt", label: "Beard Sculpture" },
-    { id: "straight-shave", label: "Straight Razor Shave" },
-    { id: "color-treatment", label: "Color & Tint" },
-    { id: "full-ritual", label: "The Full Ritual" },
-  ],
-  estetica: [
-    { id: "lip-filler", label: "Lip Filler" },
-    { id: "cheek-filler", label: "Cheek & Jawline Filler" },
-    { id: "botox", label: "Botox" },
-    { id: "facial", label: "Signature Facial" },
-    { id: "skin-booster", label: "Skin Booster" },
-  ],
-  tattoo: [
-    { id: "consultation", label: "Consultation" },
-    { id: "custom-design", label: "Custom Design" },
-    { id: "fine-line", label: "Fine Line" },
-    { id: "black-grey-realism", label: "Black & Grey Realism" },
-    { id: "cover-up", label: "Cover-Up" },
-    { id: "flash-small", label: "Flash & Small" },
-    { id: "piercing", label: "Piercing" },
-  ],
-  nails: [
-    { id: "classic-manicure", label: "Classic Manicure" },
-    { id: "gel-manicure", label: "Gel Manicure" },
-    { id: "acrylic-full-set", label: "Acrylic Full Set" },
-    { id: "nail-art", label: "Nail Art" },
-    { id: "spa-pedicure", label: "Spa Pedicure" },
-    { id: "extensions-infills", label: "Extensions & Infills" },
-  ],
-  cafeteria: [
-    { id: "espresso", label: "Espresso & Coffee" },
-    { id: "pastries", label: "Pastries & Bakery" },
-    { id: "brunch", label: "Brunch" },
-    { id: "specialty-drinks", label: "Specialty Drinks" },
-    { id: "sandwiches", label: "Sandwiches & Light Meals" },
-  ],
-  remodelaciones: [
-    { id: "interior-painting", label: "Interior Painting" },
-    { id: "exterior-painting", label: "Exterior Painting" },
-    { id: "kitchen-remodel", label: "Kitchen Remodeling" },
-    { id: "bathroom-remodel", label: "Bathroom Remodeling" },
-    { id: "flooring", label: "Flooring" },
-    { id: "general-renovation", label: "General Renovation" },
-  ],
-};
-
 const DAYS = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"] as const;
 const DAY_LABELS: Record<string, string> = {
   sunday: "Domingo", monday: "Lunes", tuesday: "Martes", wednesday: "Miercoles",
@@ -178,6 +134,7 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [error, setError] = useState("");
+  const [warning, setWarning] = useState("");
   const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set(["brand"]));
   const [isNew, setIsNew] = useState(false);
 
@@ -189,7 +146,7 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
       setIsNew(isEmpty);
       if (isEmpty) {
         // Initialize with niche defaults
-        const nicheKey = (niche || "barberia") as BusinessNiche;
+        const nicheKey = normalizeBusinessNiche(niche);
         const defaults = NICHE_DEFAULTS[nicheKey] || NICHE_DEFAULTS.barberia;
         const nicheFeatures: Record<string, boolean> = {};
         if (nicheKey === "cafeteria") {
@@ -235,6 +192,7 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
   async function handleSave() {
     setSaving(true);
     setError("");
+    setWarning("");
     setSaved(false);
     try {
       const res = await fetch(`/api/config/${clientId}`, {
@@ -245,6 +203,19 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
       if (!res.ok) {
         const data = await res.json();
         throw new Error(data.error || "Error al guardar");
+      }
+      const data = await res.json();
+      if (typeof data.normalizedBusinessType === "string") {
+        setConfig(prev => ({
+          ...prev,
+          business: {
+            ...prev.business,
+            type: normalizeBusinessNiche(data.normalizedBusinessType),
+          },
+        }));
+      }
+      if (typeof data.warning === "string") {
+        setWarning(data.warning);
       }
       setSaved(true);
       setIsNew(false);
@@ -325,6 +296,9 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
       {error && (
         <div className="rounded-lg bg-red-500/10 px-3 py-2 text-xs text-red-400">{error}</div>
       )}
+      {warning && (
+        <div className="rounded-lg bg-amber-500/10 px-3 py-2 text-xs text-amber-300">{warning}</div>
+      )}
       {saved && (
         <div className="rounded-lg bg-green-500/10 px-3 py-2 text-xs text-green-400">Configuracion guardada correctamente</div>
       )}
@@ -391,7 +365,17 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
         expanded={expandedSections.has("business")} onToggle={toggleSection}
       >
         <div className="grid gap-3 sm:grid-cols-2">
-          <SelectField label="Nicho" path="business.type" value={(getNested("business.type") as string) || ""} onChange={updateNested}
+          <SelectField label="Nicho de la build" path="business.type" value={normalizeBusinessNiche(getNested("business.type") || niche)} onChange={(_, value) => {
+            const nextType = normalizeBusinessNiche(value);
+            setConfig(prev => ({
+              ...prev,
+              business: { ...prev.business, type: nextType },
+              // Service IDs are niche-specific. Reset the allow-list/patches so
+              // a niche switch never leaves invisible stale IDs in Firestore.
+              visibleServices: null,
+              serviceOverrides: null,
+            }));
+          }}
             options={[
               { value: "barberia", label: "Barbería" },
               { value: "estetica", label: "Estética" },
@@ -402,6 +386,9 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
             ]}
           />
         </div>
+        <p className="text-[10px] text-amber-300">
+          No cambies este nicho sin redeployar el sitio. Al guardar, el backend lo normaliza al nicho real del deploy para que el template aplique servicios, textos e imagenes.
+        </p>
         <Field label="Razon social" path="business.legalName" value={getNested("business.legalName")} onChange={updateNested} />
         <Field label="Direccion legal" path="business.address" value={getNested("business.address")} onChange={updateNested} />
         <Field label="Politica de cancelacion" path="business.cancellationPolicy" value={getNested("business.cancellationPolicy")} onChange={updateNested} />
@@ -843,56 +830,57 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
         expanded={expandedSections.has("visibleServices")} onToggle={toggleSection}
       >
         <p className="text-[11px] text-text-muted">
-          Desactiva los servicios que el cliente no quiere mostrar. Si todos estan activos, se muestran todos los del preset.
+          Desactiva los servicios que el cliente no quiere mostrar. La landing usa esta lista como allow-list; si todos estan activos, se borra el override y se muestran todos los del preset.
         </p>
         {(() => {
-          const nicheKey = ((config.business?.type as string) || niche || "barberia") as BusinessNiche;
-          const services = NICHE_SERVICES[nicheKey] || [];
-          const visible = config.visibleServices;
-          // If visibleServices is not set, all are visible
-          const allVisible = !visible || visible.length === 0;
+          const nicheKey = normalizeBusinessNiche(config.business?.type || niche);
+          const services = getNicheServices(nicheKey);
+          const visibleIds = resolveVisibleServiceIds(config, services);
+          const visibleCount = visibleIds.length;
+          const visibleSet = new Set(visibleIds);
 
           function toggleService(id: string) {
             setConfig(prev => {
-              const current = prev.visibleServices;
-              if (!current || current.length === 0) {
-                // First toggle off: start with all IDs minus this one
-                const allIds = services.map(s => s.id);
-                const next = allIds.filter(sid => sid !== id);
-                return { ...prev, visibleServices: next.length > 0 ? next : undefined };
-              }
-              if (current.includes(id)) {
-                // Toggle off
-                const next = current.filter(sid => sid !== id);
-                return { ...prev, visibleServices: next.length > 0 ? next : undefined };
-              }
-              // Toggle on
-              return { ...prev, visibleServices: [...current, id] };
+              const next = toggleVisibleService(prev, services, id);
+              return {
+                ...prev,
+                features: next.features,
+                visibleServices: next.visibleServices,
+              };
             });
           }
 
           return (
-            <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-              {services.map(s => {
-                const isOn = allVisible || (visible?.includes(s.id) ?? false);
-                return (
-                  <button
-                    key={s.id}
-                    type="button"
-                    onClick={() => toggleService(s.id)}
-                    className={`flex items-center gap-2 rounded-lg border px-3 py-2 text-xs transition-colors ${
-                      isOn
-                        ? "border-accent/30 bg-accent/5 text-text"
-                        : "border-border bg-bg-elevated text-text-muted"
-                    }`}
-                  >
-                    <div className={`h-3 w-6 rounded-full transition-colors ${isOn ? "bg-accent" : "bg-bg-active"}`}>
-                      <div className={`h-3 w-3 rounded-full bg-white transition-transform ${isOn ? "translate-x-3" : "translate-x-0"}`} />
-                    </div>
-                    {s.label}
-                  </button>
-                );
-              })}
+            <div className="space-y-3">
+              <div className="rounded-lg border border-border bg-bg-elevated px-3 py-2 text-[11px] text-text-secondary">
+                <span className="font-semibold text-text">{visibleCount}</span> de{" "}
+                <span className="font-semibold text-text">{services.length}</span> servicios visibles
+                {visibleCount === 0 && (
+                  <span className="ml-2 text-amber-300">La seccion Servicios queda apagada.</span>
+                )}
+              </div>
+              <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+                {services.map(s => {
+                  const isOn = visibleSet.has(s.id);
+                  return (
+                    <button
+                      key={s.id}
+                      type="button"
+                      onClick={() => toggleService(s.id)}
+                      className={`flex items-center gap-2 rounded-lg border px-3 py-2 text-xs transition-colors ${
+                        isOn
+                          ? "border-accent/30 bg-accent/5 text-text"
+                          : "border-border bg-bg-elevated text-text-muted"
+                      }`}
+                    >
+                      <div className={`h-3 w-6 rounded-full transition-colors ${isOn ? "bg-accent" : "bg-bg-active"}`}>
+                        <div className={`h-3 w-3 rounded-full bg-white transition-transform ${isOn ? "translate-x-3" : "translate-x-0"}`} />
+                      </div>
+                      {s.label}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           );
         })()}
@@ -907,12 +895,10 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
           Cambia nombre, precio, duracion, descripcion o imagen de cada servicio. Solo se guardan los campos que modifiques.
         </p>
         {(() => {
-          const nicheKey = ((config.business?.type as string) || niche || "barberia") as BusinessNiche;
-          const allServices = NICHE_SERVICES[nicheKey] || [];
-          const visible = config.visibleServices;
-          const visibleServices = (!visible || visible.length === 0)
-            ? allServices
-            : allServices.filter(s => visible.includes(s.id));
+          const nicheKey = normalizeBusinessNiche(config.business?.type || niche);
+          const allServices = getNicheServices(nicheKey);
+          const visibleIds = resolveVisibleServiceIds(config, allServices);
+          const visibleServices = allServices.filter(s => visibleIds.includes(s.id));
           const overrides = config.serviceOverrides || {};
 
           function updateField(serviceId: string, field: string, value: string) {
@@ -929,7 +915,7 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
               if (Object.keys(cleaned).length === 0) delete next[serviceId];
               return {
                 ...prev,
-                serviceOverrides: Object.keys(next).length > 0 ? next : undefined,
+                serviceOverrides: Object.keys(next).length > 0 ? next : null,
               };
             });
           }
