@@ -58,8 +58,8 @@ body:has(.at) {
   --at-accent: #b3522e;
   --at-accent-2: #9c451f;
   --at-leaf: #3e4e2c;
-  --at-serif: var(--font-at-serif, "Instrument Serif"), "Georgia", serif;
-  --at-sans: var(--font-sans, "Inter"), system-ui, sans-serif;
+  --at-serif: var(--font-at-serif, "Instrument Serif"), var(--font-noto-serif), var(--font-noto-serif-he), var(--font-noto-naskh-ar), "Georgia", serif;
+  --at-sans: var(--font-sans, "Inter"), var(--font-noto-sans-he), var(--font-noto-sans-ar), system-ui, sans-serif;
   --at-mono: var(--font-at-mono, "JetBrains Mono"), ui-monospace, monospace;
   --bg-circle: var(--at-bg);
 
@@ -552,8 +552,8 @@ body:has(.pago) {
   --pg-leaf: #3e4e2c;
   --pg-success: #2e7d4a;
   --pg-danger: #b3392e;
-  --pg-serif: var(--font-at-serif, "Instrument Serif"), "Georgia", serif;
-  --pg-sans: var(--font-sans, "Inter"), system-ui, sans-serif;
+  --pg-serif: var(--font-at-serif, "Instrument Serif"), var(--font-noto-serif), var(--font-noto-serif-he), var(--font-noto-naskh-ar), "Georgia", serif;
+  --pg-sans: var(--font-sans, "Inter"), var(--font-noto-sans-he), var(--font-noto-sans-ar), system-ui, sans-serif;
   --pg-mono: var(--font-at-mono, "JetBrains Mono"), ui-monospace, monospace;
   --bg-circle: var(--pg-bg);
 
