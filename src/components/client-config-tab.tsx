@@ -42,11 +42,17 @@ import {
 
 type ConfigDoc = {
   business?: { type?: string; legalName?: string; address?: string; cancellationPolicy?: string };
+  businessMode?: "solo" | "team";
   brand?: { name?: string; tagline?: string; description?: string; logo?: string; logoDark?: string; logoIconName?: string; ogImage?: string; aiPersona?: string };
   theme?: { accent?: string; accentLight?: string; surfaceDark?: string };
   activeTheme?: string;
   features?: Record<string, boolean>;
-  contact?: { phone?: string; email?: string; address?: { street?: string; district?: string; cityStateZip?: string } };
+  contact?: {
+    phone?: string;
+    email?: string;
+    address?: { street?: string; district?: string; cityStateZip?: string };
+    social?: { instagram?: string; facebook?: string; twitter?: string; whatsapp?: string };
+  };
   hours?: Record<string, { start?: string; end?: string } | null>;
   businessRules?: { bufferMinutes?: number; maxAdvanceBookingDays?: number; minAdvanceBookingHours?: number; autoConfirm?: boolean };
   visibleServices?: string[] | null;
@@ -93,7 +99,9 @@ const NICHE_DEFAULTS: Record<BusinessNiche, { accent: string; accentLight: strin
   remodelaciones: { accent: "#3b82f6", accentLight: "#60a5fa", surfaceDark: "#0f172a" },
 };
 
-const FEATURES_LIST = [
+type FeatureItem = { key: string; label: string; niches?: BusinessNiche[] };
+
+const FEATURES_LIST: FeatureItem[] = [
   { key: "showHero", label: "Hero" },
   { key: "showServices", label: "Servicios" },
   { key: "showWhyChooseUs", label: "Por que elegirnos" },
@@ -109,14 +117,14 @@ const FEATURES_LIST = [
   { key: "showInstagram", label: "Instagram" },
   { key: "showBooking", label: "Reservas" },
   { key: "showWhatsAppInChat", label: "WhatsApp en chatbot" },
-  { key: "showPhilosophy", label: "Filosofia" },
-  { key: "showProcess", label: "Proceso" },
-  { key: "showAmbience", label: "Ambiente" },
-  { key: "showPortfolio", label: "Portfolio" },
   { key: "showHeroStats", label: "Stats del Hero" },
   { key: "showFaq", label: "Preguntas frecuentes" },
-  { key: "showMenu", label: "Menu (cafeteria)" },
-] as const;
+  { key: "showPhilosophy", label: "Filosofia", niches: ["cafeteria"] },
+  { key: "showProcess", label: "Proceso", niches: ["cafeteria", "remodelaciones"] },
+  { key: "showAmbience", label: "Ambiente", niches: ["cafeteria"] },
+  { key: "showPortfolio", label: "Portfolio", niches: ["remodelaciones"] },
+  { key: "showMenu", label: "Menu", niches: ["cafeteria"] },
+];
 
 const DAYS = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"] as const;
 const DAY_LABELS: Record<string, string> = {
@@ -389,6 +397,19 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
         <p className="text-[10px] text-amber-300">
           No cambies este nicho sin redeployar el sitio. Al guardar, el backend lo normaliza al nicho real del deploy para que el template aplique servicios, textos e imagenes.
         </p>
+        <SelectField
+          label="Modo de negocio"
+          path="businessMode"
+          value={(config.businessMode as string) || "team"}
+          onChange={updateNested}
+          options={[
+            { value: "team", label: "Equipo (varios profesionales)" },
+            { value: "solo", label: "Solo (un profesional)" },
+          ]}
+        />
+        <p className="text-[10px] text-text-muted">
+          En modo &quot;Solo&quot;, la seccion de equipo se reemplaza por &quot;Sobre mi&quot; y el cliente no elige profesional al reservar.
+        </p>
         <Field label="Razon social" path="business.legalName" value={getNested("business.legalName")} onChange={updateNested} />
         <Field label="Direccion legal" path="business.address" value={getNested("business.address")} onChange={updateNested} />
         <Field label="Politica de cancelacion" path="business.cancellationPolicy" value={getNested("business.cancellationPolicy")} onChange={updateNested} />
@@ -407,6 +428,17 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
         <div className="grid gap-3 sm:grid-cols-2">
           <Field label="Barrio / Zona" path="contact.address.district" value={getNested("contact.address.district")} onChange={updateNested} />
           <Field label="Ciudad, CP" path="contact.address.cityStateZip" value={getNested("contact.address.cityStateZip")} onChange={updateNested} />
+        </div>
+
+        {/* Redes sociales */}
+        <div className="border-t border-border pt-3">
+          <p className="mb-2 text-[11px] font-semibold text-text-secondary">Redes sociales</p>
+          <div className="grid gap-3 sm:grid-cols-2">
+            <Field label="Instagram (URL)" path="contact.social.instagram" value={getNested("contact.social.instagram")} onChange={(path, value) => { updateNested(path, value); updateNested("sections.instagram.url", value); }} placeholder="https://instagram.com/negocio" />
+            <Field label="Facebook (URL)" path="contact.social.facebook" value={getNested("contact.social.facebook")} onChange={updateNested} placeholder="https://facebook.com/negocio" />
+            <Field label="Twitter / X (URL)" path="contact.social.twitter" value={getNested("contact.social.twitter")} onChange={updateNested} placeholder="https://x.com/negocio" />
+            <Field label="WhatsApp (URL)" path="contact.social.whatsapp" value={getNested("contact.social.whatsapp")} onChange={updateNested} placeholder="https://wa.me/1234567890" />
+          </div>
         </div>
       </Section>
 
@@ -470,7 +502,7 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
         expanded={expandedSections.has("features")} onToggle={toggleSection}
       >
         <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-          {FEATURES_LIST.map(f => {
+          {FEATURES_LIST.filter(f => !f.niches || f.niches.includes(normalizeBusinessNiche(config.business?.type || niche))).map(f => {
             const defaultOn = f.key !== "showAbout" && f.key !== "enableAboutPage";
             const val = config.features?.[f.key] ?? defaultOn;
             return (
@@ -751,9 +783,10 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
         {/* Instagram */}
         <div className="border-t border-border pt-3">
           <p className="mb-1 text-[11px] font-semibold text-text-secondary">Instagram</p>
-          <div className="grid gap-3 sm:grid-cols-2">
+          <Field label="Titulo de la seccion" path="sections.instagram.title" value={getNested("sections.instagram.title")} onChange={updateNested} placeholder="Siguenos en Instagram" />
+          <div className="mt-2 grid gap-3 sm:grid-cols-2">
             <Field label="Handle" path="sections.instagram.handle" value={getNested("sections.instagram.handle")} onChange={updateNested} placeholder="@negocio" />
-            <Field label="URL perfil" path="sections.instagram.url" value={getNested("sections.instagram.url")} onChange={updateNested} placeholder="https://instagram.com/..." />
+            <Field label="URL perfil" path="sections.instagram.url" value={getNested("sections.instagram.url")} onChange={(path, value) => { updateNested(path, value); updateNested("contact.social.instagram", value); }} placeholder="https://instagram.com/..." />
           </div>
           <div className="mt-2">
             <ImageUploadListField
