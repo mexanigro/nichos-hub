@@ -1,248 +1,307 @@
 import type { Translations } from "../types";
 
 export const en: Translations = {
-  nav: {
-    features: "Features",
-    pricing: "Pricing",
-    howItWorks: "How it works",
-    contact: "Contact",
-    getStarted: "Get started",
-    home: "Home",
-  },
+  nav: { work: "Work", crm: "CRM", agent: "Agent", how: "How", pricing: "Pricing", faq: "FAQ", start: "Start" },
+
   hero: {
-    badge: "WEBSITE + CRM + AI",
-    headline: "We build the digital presence your business needs",
-    subheadline:
-      "You run your business. We run everything that brings clients to it — your site, your CRM, and an AI assistant that books appointments on WhatsApp 24/7.",
-    cta: "See how your site would look",
-    trustedBy: "Trusted by businesses across Israel",
-    serviceIcons: { web: "WEB", crm: "CRM", agent: "Agent" },
+    eyebrow: "Studio · Web + CRM + WhatsApp",
+    h1a: "We create the ",
+    h1b: "digital presence",
+    h1c: " your business needs.",
+    sub: "We handle the digital — site, CRM and an AI agent on WhatsApp. You bring the brand. We bring the structure that works. From ₪790/mo, zero setup.",
+    cta: "Talk on WhatsApp",
+    ghost: "See live work",
   },
-  socialProof: {
-    activeBusinesses: "Active businesses",
-    avgBookingsPerMonth: "Avg. bookings / month",
-    whatsappAgents: "Active WhatsApp agents",
-    satisfaction: "Satisfaction",
-  },
-  pillars: {
-    title: "Everything your business needs",
-    subtitle: "Three powerful tools, one simple platform",
-    web: {
-      title: "Professional website",
-      description:
-        "Stunning, mobile-first websites tailored to your industry. Multi-language, booking-ready, and optimized for conversions.",
-    },
-    crm: {
-      title: "Smart CRM",
-      description:
-        "Manage appointments, customers, and leads from one dashboard. AI-powered insights help you grow.",
-    },
-    whatsapp: {
-      title: "WhatsApp AI agent",
-      description:
-        "24/7 automated responses, appointment booking, and lead capture — all through WhatsApp.",
+
+  showcase: {
+    eyebrow: "Live work",
+    title: "See how our ",
+    titleEm: "sites look.",
+    sub: "Each niche gets its own design language, tuned to convert visitors into clients.",
+    why: "A site built by a designer + marketing strategist isn't decoration — it's a tool. Hierarchy that holds attention. Words that move. Booking flows tuned per niche. The CTA that gets pressed.",
+    pickHint: "Pick a niche →",
+    open: "Visit live",
+    sites: {
+      barber:   { name: "Onyx & Steel",        tagline: "Modern gentleman's sanctuary" },
+      tattoo:   { name: "Martellin",           tagline: "Tattoo & piercing studio" },
+      nails:    { name: "Uñas de mar",         tagline: "Manicura que refleja tu esencia" },
+      cafe:     { name: "Café Aristano",       tagline: "Artisanal coffee & elegant moments" },
+      estetica: { name: "Estética",            tagline: "Tratamientos estéticos personalizados" },
+      remod:    { name: "Pinturería el Paolo", tagline: "Pintura interior y exterior" },
     },
   },
-  howItWorks: {
-    badge: "HOW IT WORKS",
-    title: "Up and running in 4 steps",
-    subtitle: "From zero to a fully operational digital business",
-    steps: [
-      {
-        title: "Tell us about your business",
-        description: "Select your industry, upload photos, and add your details.",
-      },
-      {
-        title: "We build your site",
-        description: "Our system generates a custom website in under 3 minutes.",
-      },
-      {
-        title: "Preview and refine",
-        description: "See your live site instantly. A specialist fine-tunes every detail.",
-      },
-      {
-        title: "Go live",
-        description: "Your site is live with booking, CRM, and WhatsApp integration ready to go.",
-      },
+
+  crm: {
+    eyebrow: "CRM",
+    title: "The first CRM you'll ",
+    titleEm: "actually open.",
+    sub: "Appointments, leads, conversations — in one place, fast.",
+    why: "Without a CRM, you lose two clients a week to no-shows and missed messages. With one, you remember every client by name, every visit by date, every spend by total. It's the difference between running a business and chasing one.",
+    bullets: [
+      "WhatsApp, form and walk-in in one inbox",
+      "Calendar synced to Google",
+      "Notes per client, history per visit",
+      "Reports that fit on one screen",
+    ],
+    dashboard: {
+      title: "Today",
+      bookings: "Bookings",
+      leads: "New leads",
+      revenue: "Revenue today",
+      agendaTitle: "Schedule",
+      inboxTitle: "Inbox",
+    },
+  },
+
+  agent: {
+    eyebrow: "WhatsApp agent",
+    title: "An AI agent that ",
+    titleEm: "books for you.",
+    sub: "Trained on your services. Answers in seconds. Never sleeps.",
+    why: "60% of WhatsApp messages to local businesses arrive after closing time. Without an agent, those messages wait — and waiting clients book somewhere else. With one, every message gets answered in 3 seconds, every hour, every day.",
+    reasons: [
+      { t: "Always on", d: "3am, Shabbat, holidays — bookings keep coming in." },
+      { t: "Speaks your business", d: "Trained on your services and prices, not generic AI." },
+      { t: "Knows when to stop", d: "Sensitive topic? It flags you instantly." },
+      { t: "In your language", d: "Hebrew, English, Russian, Spanish — fluent in all four." },
+    ],
+    chat: [
+      { from: "client", text: "Hi! Do you have availability tomorrow for a haircut?" },
+      { from: "agent",  text: "Of course 👋 We have 11:00, 14:30 and 17:00 tomorrow. Which fits?" },
+      { from: "client", text: "14:30 please. With Yossi if possible." },
+      { from: "agent",  text: "Booked with Yossi at 14:30 ✓ I'll send a reminder 2h before. Anything else?" },
     ],
   },
-  features: {
-    badge: "FEATURES",
-    title: "Built for growth",
-    subtitle: "Every feature designed to bring you more clients",
+
+  everything: {
+    eyebrow: "All in",
+    title: "We handle ",
+    titleEm: "everything.",
+    sub: "One subscription covers the whole digital side of your business.",
     items: [
-      {
-        title: "Online booking",
-        description: "Clients book directly from your site or WhatsApp — no calls needed.",
-      },
-      {
-        title: "Multi-language",
-        description: "Reach every client in Hebrew, English, and Russian.",
-      },
-      {
-        title: "AI chatbot",
-        description: "Built-in assistant answers questions and guides visitors 24/7.",
-      },
-      {
-        title: "Analytics dashboard",
-        description: "Track visits, bookings, and revenue in real time.",
-      },
-      {
-        title: "Custom domain",
-        description: "Your own .com or .co.il — professional from day one.",
-      },
-      {
-        title: "Automatic updates",
-        description: "We handle maintenance, security, and feature updates for you.",
-      },
+      { t: "Hosting",     d: "On infrastructure that doesn't fall on busy Fridays." },
+      { t: "Domain",      d: "Registered, renewed, pointed. Always in your name." },
+      { t: "Maintenance", d: "We fix it before you notice. Always. Quietly." },
+      { t: "Updates",     d: "Copy, photos, services, prices — unlimited changes." },
+      { t: "Security",    d: "SSL, anti-spam, hardened forms. Standard, not extra." },
+      { t: "SEO + GMB",   d: "Tuned per niche. Synced with Google Business." },
+      { t: "Backups",     d: "Daily, off-site. Your data survives anything." },
+      { t: "Monitoring",  d: "24/7 uptime. If it falls at 3am, we're already on it." },
+      { t: "Speed",       d: "Sub-second loads. Where you lose clients in real life." },
+      { t: "Support",     d: "WhatsApp. Same person, every time. No tickets." },
+    ],
+    whyTitle: "Why a pro-built site, ",
+    whyTitleEm: "actually.",
+    whyBody: "A DIY site decorates. A site built by a designer and a marketing strategist sells. You hire us for the same reason your clients hire you — because the gap between amateur and pro is the gap between a hobby and a business.",
+    whyPoints: [
+      { k: "Designer",  v: "Hierarchy, type, photo treatment. The page that holds your client's attention." },
+      { k: "Marketing", v: "Booking flow tuned per niche. Words that move. The CTA that gets pressed." },
+      { k: "Speed",     v: "Every 100ms costs bookings. We measure it. We tune it." },
+      { k: "Mobile",    v: "84% of your visitors arrive on a phone. The site is built for that first." },
     ],
   },
+
+  manifesto: {
+    eyebrow: "How we work",
+    h: "We decide the structure. ",
+    hEm: "You decide the brand.",
+    body: "Years of building for local businesses taught us what converts. You don't need to design — you need to choose. Colors, copy, photos, services. We do the rest. That's how the site is live in 48 hours and starts taking clients the same week.",
+    points: [
+      { k: "Structure", v: "Owned by us. Tested. Tuned per niche." },
+      { k: "Branding",  v: "Yours. Or ours, if you want a logo." },
+      { k: "Content",   v: "Yours. We write the rest if you're stuck." },
+      { k: "Timing",    v: "48 hours from kickoff to live." },
+    ],
+  },
+
+  process: {
+    eyebrow: "Process",
+    title: "From call to live site in ",
+    titleEm: "48 hours.",
+    steps: [
+      { t: "Call",   d: "15 minutes on WhatsApp. We map services, hours, brand, what makes you different.",  time: "Hour 0" },
+      { t: "Build",  d: "We provision the site, CRM, and WhatsApp agent. Configured to your niche.",          time: "Hour 1 – 24" },
+      { t: "Review", d: "You see it on a private link. Copy, photos and services adjusted with you.",          time: "Hour 24 – 36" },
+      { t: "Live",   d: "Domain pointed, Google Business synced. You start taking clients the same day.",      time: "Hour 48" },
+    ],
+  },
+
   pricing: {
-    badge: "PRICING",
-    title: "Simple, transparent pricing",
-    subtitle: "No setup fees. No hidden costs. Cancel anytime.",
-    monthly: "/mo",
-    popular: "Most popular",
-    cta: "Get started",
-    setup: "₪0 Setup",
+    eyebrow: "Pricing",
+    title: "Two plans. ",
+    titleEm: "Zero setup.",
+    sub: "Pay in shekels, monthly. Cancel any month. Your data leaves with you.",
+    monthlyAbbr: "/mo",
     plans: [
       {
+        tag: "Essential",
         name: "Web + CRM",
-        price: "790",
-        features: [
-          "Custom professional website",
-          "AI-powered chatbot",
-          "Online booking system",
-          "CRM with AI assistant",
-          "Analytics dashboard",
-          "Domain + hosting included",
-          "3 languages (HE, EN, RU)",
-          "24/7 maintenance",
-          "Unlimited updates",
+        price: 790,
+        tagline: "For businesses that take bookings in person.",
+        items: [
+          "Website, hosting & domain",
+          "CRM with unlimited leads",
+          "Online booking calendar",
+          "Niche template + updates",
+          "Unlimited copy edits",
+          "Hebrew, English, Russian, Spanish",
         ],
       },
       {
-        name: "Complete",
-        price: "990",
-        features: [
-          "Everything in Web + CRM",
-          "WhatsApp AI agent 24/7",
-          "Personalized responses",
-          "Automatic lead capture",
-          "CRM integration",
-          "Book appointments via WhatsApp",
+        tag: "Complete",
+        name: "Web + CRM + Agent",
+        price: 990,
+        tagline: "For businesses that want bookings 24/7.",
+        highlight: true,
+        items: [
+          "Everything in Essential",
+          "AI agent on WhatsApp 24/7",
+          "Trained on your services & prices",
+          "Hand-off to you when needed",
+          "Priority support",
+          "Monthly tune-up of the agent",
         ],
       },
     ],
+    setupLabel: "Setup",
+    setupValue: "₪0",
+    cta: "Start now",
+    ctaSecondary: "Talk first",
+    note: "Cardcom · Local invoice · No lock-in",
   },
+
   faq: {
-    title: "Frequently asked questions",
+    eyebrow: "FAQ",
+    title: "Common ",
+    titleEm: "questions.",
     items: [
-      {
-        question: "How long does it take to set up?",
-        answer:
-          "Your website preview is ready in under 3 minutes. A specialist then fine-tunes every detail within 24 hours. The whole process is automated — you don't need to be present or do anything technical.",
-      },
-      {
-        question: "Do I need technical knowledge?",
-        answer:
-          "Not at all. We handle everything — design, development, hosting, and maintenance. You don't even need your own photos; we use professional stock images tailored to your industry if needed.",
-      },
-      {
-        question: "Can I change things after launch?",
-        answer:
-          "Absolutely. Unlimited updates are included in every plan. Colors, texts, photos, entire sections — just tell us what you need and we'll handle it, usually within 24 hours.",
-      },
-      {
-        question: "What if I want to cancel?",
-        answer:
-          "No contracts, no penalties. You can cancel anytime. Your domain and content remain yours — there's no lock-in. We believe in earning your business every month.",
-      },
-      {
-        question: "Do you support RTL languages?",
-        answer:
-          "Yes. All our sites fully support Hebrew (RTL), English, and Russian out of the box. The layout automatically adjusts based on the visitor's browser language, with optimized typography for each language.",
-      },
-      {
-        question: "What's included in the WhatsApp agent?",
-        answer:
-          "An AI assistant that responds to client messages 24/7 in their language, books appointments in real time, and captures leads automatically. You get push notifications for every new inquiry, and everything syncs with your CRM.",
-      },
-      {
-        question: "How does the WhatsApp AI agent know about my business?",
-        answer:
-          "The agent is trained specifically on your business — your services, hours, pricing, and frequently asked questions. It's not a generic chatbot; it gives accurate, personalized responses as if it were a member of your team.",
-      },
-      {
-        question: "Do I get my own domain?",
-        answer:
-          "Yes. A custom .com or .co.il domain is included in every plan. We handle DNS setup and SSL certificates so your site is secure and professional from day one.",
-      },
-      {
-        question: "What happens if my site goes down?",
-        answer:
-          "We monitor all sites 24/7 with automatic recovery systems. Our infrastructure provides 99.9% uptime. If anything does go wrong, our team is notified instantly and resolves it — usually before you even notice.",
-      },
-      {
-        question: "Can I see analytics and leads?",
-        answer:
-          "Yes. Your CRM dashboard shows real-time data — site visits, booking stats, lead capture, and revenue insights. You can see exactly how your digital presence is performing and track every client interaction.",
-      },
+      { q: "Do I need technical skills?",
+        a: "Not at all. You don't touch code, hosting or settings — ever. We do all of it. The most technical thing you'll be asked is to pick colors and send us your photos. If you don't have photos, we can use stock or shoot fresh ones with you." },
+      { q: "How do I know you're trustworthy?",
+        a: "I'm Liam Arzac — you'll WhatsApp directly with me, not a chatbot or an agency. Every site we ship sits on a subdomain of arzac.studio so you can see real, live work before committing. You can cancel any month, no penalty — that's the trust contract." },
+      { q: "What if I don't have a brand or a logo?",
+        a: "We make them. If you give us a name and a vibe, we design the logo, pick the palette, write the copy, and bring back something that feels like you. Most of our clients come with nothing — and walk away with a complete brand on top of the site." },
+      { q: "What happens if I cancel?",
+        a: "You leave with your domain, your client database exported, and the booking history. No penalty, no lock-in." },
+      { q: "What languages do you support?",
+        a: "Every site, the CRM and the WhatsApp agent work in Hebrew, English, Russian, Spanish and Arabic. Hebrew reads right-to-left automatically, exactly like Israelis expect." },
+      { q: "Who trains the WhatsApp agent?",
+        a: "We do, with your services, prices and tone. We tune it monthly as you change pricing or add staff. You always get a heads-up when it hands off a tricky conversation back to you." },
+      { q: "What if I already have a domain?",
+        a: "We point it to your new site. If you don't have one, we register it on your account and hand it to you." },
     ],
   },
-  cta: {
-    title: "Ready to transform your business?",
-    subtitle: "Discover how we can boost your business — completely free, no commitment.",
-    button: "Build my site now",
+
+  final: {
+    a: "Run your business.",
+    b: "We'll run the digital.",
+    cta: "See plans & start",
+    ctaHref: "#pricing",
+    note: "Two plans. Zero setup. Cancel any month.",
   },
-  webShowcase: {
-    badge: "REAL SITES",
-    title: "See how our websites look",
-    subtitle: "Each niche has a unique design, optimized to turn visitors into customers",
-    niches: { barberia: "Barbershop", estetica: "Beauty salon", cafeteria: "Café" },
+
+  founder: {
+    eyebrow: "Meet the studio",
+    h: "I'm ",
+    hName: "Liam Arzac.",
+    hRest: " I built this with my hands.",
+    body: "I'm a designer and digital marketing strategist who's spent the last few years building websites for local businesses across Israel. I run Arzac Studio solo — no agency, no middlemen. When you message us, you talk to me. When the site goes live, I'm the one who pressed publish.",
+    role: "Designer · Marketing strategist · Founder",
+    location: "Based in Tel Aviv · Available across Israel",
+    stats: [
+      { k: "Languages", v: "EN · ES · HE · RU · AR" },
+      { k: "Response",  v: "Within the hour" },
+      { k: "Lock-in",   v: "None, ever" },
+    ],
+    cta: "Message Liam on WhatsApp",
   },
-  whyItMatters: {
-    badge: "WHY IT MATTERS",
-    title: "Your business needs more than a storefront",
-    subtitle: "A digital presence is no longer optional — it's what separates growing businesses from those left behind",
-    pillars: [
-      {
-        title: "Professional website",
-        stat: "75% of customers",
-        description: "judge a business's credibility by its website. Without an online presence, you lose clients before they even find you.",
-      },
-      {
-        title: "Smart CRM",
-        stat: "Businesses with CRM",
-        description: "increase their sales by up to 29%. Managing clients, appointments, and leads from one place changes the game.",
-      },
-      {
-        title: "AI WhatsApp agent",
-        stat: "80% prefer WhatsApp",
-        description: "to communicate with businesses. An agent that responds 24/7 means you never miss an inquiry or a lead.",
-      },
+
+  foot: { rights: "Arzac Studio · Built in Tel Aviv", legal: ["Privacy", "Terms", "Contact"] },
+  statusLine: "All client sites operational",
+
+  pago: {
+    title: "Activate your plan.",
+    back: "← Back",
+    step: "Step",
+    of: "of",
+    planLabel: "Your plan",
+    planChange: "Change",
+    includes: "Includes",
+    monthlyAbbr: "/mo",
+    yourInfo: "Your information",
+    yourInfoSub: "We use this to set up your account and send the invoice. No login required.",
+    nameLabel: "Full name",
+    namePh: "Liam Arzac",
+    emailLabel: "Email",
+    emailPh: "you@business.com",
+    phoneLabel: "WhatsApp number",
+    phonePh: "+972 50 000 0000",
+    businessLabel: "Business name",
+    businessPh: "Your business as clients know it",
+    nicheLabel: "Business type",
+    nichePh: "Pick one",
+    niches: ["Barbershop", "Tattoo studio", "Nail studio", "Café", "Aesthetic clinic", "Construction", "Other"],
+    contract: "Service contract",
+    contractExpand: "Read full",
+    contractCollapse: "Collapse",
+    contractBody: "By accepting, you subscribe to Arzac Studio's monthly service. Your subscription includes the website, hosting, domain, CRM and (if selected) the WhatsApp AI agent. The first payment is charged immediately. Subsequent payments are charged on the same day each month. You can cancel any month — your data, domain and booking history go with you. No early-cancel fee. Setup is free. Full terms at arzac.studio/terms.",
+    accept: "I read and accept the service contract.",
+    acceptShort: "Accept terms",
+    paymentTitle: "Payment",
+    paymentSub: "Secured by Cardcom. Card data never touches our servers.",
+    cardPlaceholder: "Cardcom form loads here once terms are accepted.",
+    cta: "Pay & activate",
+    ctaProcessing: "Processing…",
+    footerSecurity: "256-bit TLS · PCI DSS · Local invoice",
+    summary: "Order summary",
+    total: "Total today",
+    whyTrust: "Why this is safe",
+    whyTrustItems: [
+      "Cardcom is Israel's largest payment processor.",
+      "We never see or store your card details.",
+      "Cancel anytime from the dashboard — no fee.",
     ],
   },
-  crmDemo: {
-    badge: "LIVE DEMO",
-    title: "The CRM that runs your entire business",
-    subtitle: "Appointments, clients, leads and insights — all in one AI-powered dashboard.",
-    videoAlt: "Arzac Studio CRM demo",
-    chips: ["Online booking", "Auto leads", "AI analytics", "Multi-language"],
-  },
-  whatsappAgent: {
-    badge: "WHATSAPP AI AGENT",
-    title: "Your business responds on its own, even when you're not there",
-    description: "The AI-powered WhatsApp agent handles inquiries, books appointments, and captures leads 24/7 — without you lifting a finger.",
-    reasons: ["Instant replies 24/7", "Books appointments automatically", "Captures leads effortlessly", "Integrates with your CRM"],
-    online: "Online 24/7",
-    conversation: [
-      { from: "client", text: "Hi, do you have any spots for a haircut tomorrow at 5?" },
-      { from: "bot", text: "Hi! Yes, we have availability tomorrow at 5:00 PM with Diego. Shall I book it for you?" },
-      { from: "client", text: "Yes please, book it" },
-      { from: "bot", text: "Done! Your appointment is confirmed for tomorrow at 5:00 PM. I've sent you the details. See you there!" },
+
+  pagoOk: {
+    eyebrow: "Payment confirmed",
+    title: "You're in.",
+    sub: "Your plan is active. We start building immediately — Liam will WhatsApp you within the hour to kick off.",
+    next: "What happens next",
+    steps: [
+      { t: "Right now",      d: "You'll get a receipt by email." },
+      { t: "Within the hour", d: "Liam writes you on WhatsApp. We map your brand, services, hours." },
+      { t: "Within days",    d: "Private link with your site. Final adjustments together." },
+      { t: "Then",           d: "We point the domain, sync Google Business. You start taking clients." },
     ],
+    cta: "Open WhatsApp with Liam",
+    receipt: "Receipt",
+    dashboard: "Open dashboard",
   },
+
+  pagoErr: {
+    eyebrow: "Payment failed",
+    title: "Card was declined.",
+    sub: "Nothing was charged. The most common causes are: insufficient balance, blocked international payments, or wrong CVV.",
+    tips: [
+      "Try a different card.",
+      "Call your bank and authorize the charge.",
+      "Switch to a credit card if you tried debit.",
+    ],
+    cta: "Try again",
+    ctaSecondary: "Talk to Liam",
+    ref: "Reference",
+  },
+
+  pagoExpired: {
+    eyebrow: "Link expired",
+    title: "This link is no longer active.",
+    sub: "Payment links expire 24 hours after they're sent to keep your data safe. Ask Liam for a fresh one — takes 30 seconds.",
+    cta: "Ask for a new link",
+    ctaSecondary: "Back to home",
+  },
+
+  // PRESERVED
   preview: {
     title: "Your site is ready",
     subtitle: "Sign in to see the full version",
@@ -263,23 +322,6 @@ export const en: Translations = {
     error: "Something went wrong",
     errorSub: "Don't worry — our team has been notified and will fix this shortly.",
     contact: "Contact us on WhatsApp",
-  },
-  showcase: {
-    badge: "SEE IT IN ACTION",
-    title: "Real sites for real businesses",
-    subtitle: "Each niche has its own design, optimized to turn visitors into customers",
-    scrollHint: "Scroll to explore",
-    bookButton: "Book now",
-    niches: {
-      barberia: "Barbershop",
-      estetica: "Beauty salon",
-      cafeteria: "Café",
-    },
-    nicheContent: {
-      barberia: { heroText: "The perfect cut awaits", services: ["Classic Cut", "Beard", "Shave", "Color"] },
-      estetica: { heroText: "Your beauty, our passion", services: ["Facial", "Manicure", "Waxing", "Massage"] },
-      cafeteria: { heroText: "Specialty coffee", services: ["Espresso", "Latte Art", "Pastry", "Brunch"] },
-    },
   },
   auth: {
     login: "Log in",
@@ -303,10 +345,5 @@ export const en: Translations = {
     errorInvalidEmail: "Invalid email",
     errorUserNotFound: "No account found with this email",
     errorGeneric: "Login failed",
-  },
-  footer: {
-    rights: "All rights reserved",
-    privacy: "Privacy policy",
-    terms: "Terms of service",
   },
 };

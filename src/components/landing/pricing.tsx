@@ -1,106 +1,46 @@
 "use client";
-
-import { useT } from "@/lib/i18n";
-
-function CheckIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0">
-      <path d="M3.5 8.5L6.5 11.5L12.5 4.5" stroke="var(--l-accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
+import { useT } from "@/lib/i18n/context";
 
 export function Pricing() {
   const { t } = useT();
-
   return (
-    <section className="l-section l-dot-grid relative overflow-hidden bg-[var(--l-section-alt)]" id="pricing">
-      <div className="relative z-10 mx-auto max-w-[880px]">
-        <div className="mb-10 text-start">
-          <span
-            style={{ fontFamily: "var(--l-display)" }}
-            className="inline-block rounded-[var(--l-radius-pill)] border border-[var(--l-border)] bg-[var(--l-card)] px-3.5 py-1.5 text-[0.8rem] font-semibold uppercase tracking-[0.04em] text-[var(--l-accent)]"
-          >
-            {t.pricing.badge || "PRICING"}
-          </span>
-          <h2
-            style={{ fontFamily: "var(--l-display)", fontSize: "var(--l-h2)" }}
-            className="mt-4 font-bold leading-[1.15] tracking-[-0.02em] text-[var(--l-text)]"
-          >
-            {t.pricing.title}
-          </h2>
-          <p className="mt-3 text-[1.05rem] text-[var(--l-text-2)]">
-            {t.pricing.subtitle}
-          </p>
+    <section className="at-section alt" id="pricing">
+      <div className="container">
+        <div className="at-section-head">
+          <div>
+            <div className="eyebrow-row"><span className="dot" /><span className="txt">{t.pricing.eyebrow}</span></div>
+            <h2>{t.pricing.title}<em>{t.pricing.titleEm}</em></h2>
+          </div>
+          <p>{t.pricing.sub}</p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2">
-          {t.pricing.plans.map((plan, i) => {
-            const isPopular = i === 1;
-            return (
-              <div
-                key={i}
-                className={`l-card-hover-glow relative rounded-[var(--l-radius-lg)] border bg-[var(--l-card)] p-6 md:p-8 ${
-                  isPopular
-                    ? "border-[var(--l-accent)]"
-                    : "border-[var(--l-border-subtle)]"
-                }`}
-                style={isPopular ? { borderWidth: "2px", boxShadow: "0 0 30px var(--l-accent-glow), 0 0 60px var(--l-accent-glow)" } : undefined}
-              >
-                {isPopular && (
-                  <span
-                    style={{ fontFamily: "var(--l-display)" }}
-                    className="absolute -top-3.5 start-6 rounded-[var(--l-radius-pill)] bg-[var(--l-accent)] px-3.5 py-1.5 text-[0.72rem] font-bold uppercase tracking-[0.04em] text-white"
-                  >
-                    {t.pricing.popular}
-                  </span>
-                )}
-
-                <h3 className="text-[0.92rem] font-medium text-[var(--l-text-2)]">
-                  {plan.name}
-                </h3>
-
-                <div className="mt-3 flex items-baseline gap-1.5">
-                  <span
-                    style={{ fontFamily: "var(--l-display)" }}
-                    className="text-[2.2rem] font-bold tracking-[-0.03em] text-[var(--l-text)] md:text-[2.8rem]"
-                  >
-                    {plan.price}
-                  </span>
-                  <span className="text-[0.9rem] text-[var(--l-text-3)]">₪{t.pricing.monthly}</span>
-                </div>
-                {t.pricing.setup && (
-                  <p className="mt-1.5 text-[0.82rem] font-medium text-[var(--l-text-3)]">
-                    {t.pricing.setup}
-                  </p>
-                )}
-
-                <div className="my-6 h-px bg-[var(--l-border-subtle)]" />
-
-                <ul className="space-y-3.5">
-                  {plan.features.map((feature, fi) => (
-                    <li key={fi} className="flex items-start gap-2.5 text-[0.9rem] leading-[1.5] text-[var(--l-text-2)]">
-                      <CheckIcon />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <a
-                  href={`/onboarding/pago?plan=${i === 0 ? "web_crm" : "completo"}`}
-                  style={{ fontFamily: "var(--l-display)" }}
-                  className={`mt-8 flex h-12 items-center justify-center rounded-[var(--l-radius-pill)] text-[0.92rem] font-semibold transition-all duration-200 active:scale-[0.97] ${
-                    isPopular
-                      ? "bg-white text-[#0a0a0f] hover:opacity-90"
-                      : "border-[1.5px] border-white/20 text-[var(--l-text)] hover:border-white/40"
-                  }`}
-                >
-                  {t.pricing.cta}
-                </a>
+        <div className="at-plans">
+          {t.pricing.plans.map((p, i) => (
+            <div className={`at-plan${p.highlight ? " hl" : ""}`} key={i}>
+              {p.highlight && <span className="stamp">Most popular</span>}
+              <span className="tag">/{(i + 1).toString().padStart(2, "0")} · {p.tag}</span>
+              <h3 className="name">{p.name}</h3>
+              <p className="tagline">{p.tagline}</p>
+              <div className="price">
+                <span className="c">₪</span>
+                <span className="v">{p.price}</span>
+                <span className="per">{t.pricing.monthlyAbbr}</span>
               </div>
-            );
-          })}
+              <div className="row-meta">
+                <span>{t.pricing.setupLabel}</span>
+                <span style={{ color: "var(--at-accent)" }}>{t.pricing.setupValue}</span>
+              </div>
+              <ul>
+                {p.items.map((it, j) => <li key={j}><span>{it}</span></li>)}
+              </ul>
+              <div className="ctas">
+                <a className="at-plan-btn primary" href="/onboarding/pago">{t.pricing.cta} →</a>
+                <a className="at-plan-btn ghost" href="https://wa.me/972500000000" target="_blank" rel="noopener noreferrer">{t.pricing.ctaSecondary}</a>
+              </div>
+            </div>
+          ))}
         </div>
+        <div className="at-pricing-note">{t.pricing.note}</div>
       </div>
     </section>
   );

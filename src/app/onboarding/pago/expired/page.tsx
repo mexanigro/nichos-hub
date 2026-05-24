@@ -6,7 +6,7 @@ import { RTL_LOCALES } from "@/lib/i18n/types";
 import { LogoMark } from "@/components/landing/logo-mark";
 import { LangSwitch } from "@/components/landing/lang-switch";
 
-function ErrorContent() {
+function ExpiredContent() {
   const { t, locale } = useT();
   const dir = RTL_LOCALES.includes(locale) ? "rtl" : "ltr";
 
@@ -23,24 +23,17 @@ function ErrorContent() {
       </header>
       <main className="pago-main">
         <div className="container" style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-          <div className="pgerr-hero">
+          <div className="pgexp-hero">
+            <span className="ornament">⏳</span>
             <span className="ico">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.01l.01-.011"/></svg>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><path d="M5 5h14M5 19h14M7 5v3a5 5 0 0 0 10 0V5M7 19v-3a5 5 0 0 1 10 0v3"/></svg>
             </span>
-            <div className="eyebrow">{t.pagoErr.eyebrow}</div>
-            <h1>{t.pagoErr.title.replace(/(\.|\!)$/, "")}<em>.</em></h1>
-            <p>{t.pagoErr.sub}</p>
-            <div className="pgerr-tips">
-              <ul>
-                {t.pagoErr.tips.map((tip, i) => <li key={i}>{tip}</li>)}
-              </ul>
-            </div>
-            <div className="pgerr-actions">
-              <a href="/onboarding/pago" className="pago-btn" style={{ textDecoration: "none" }}>{t.pagoErr.cta} <span className="pago-btn-arrow">→</span></a>
-              <a href="/" className="pago-btn pago-btn-ghost" style={{ textDecoration: "none" }}>{t.pagoErr.ctaSecondary}</a>
-            </div>
-            <div className="pgerr-ref">{t.pagoErr.ref}: ARZ-PAY-{new Date().getFullYear()}-{String(new Date().getMonth() + 1).padStart(2, "0")}{String(new Date().getDate()).padStart(2, "0")}</div>
+            <div className="eyebrow">{t.pagoExpired.eyebrow}</div>
+            <h1>{t.pagoExpired.title.replace(/(\.|\!)$/, "")}<em>.</em></h1>
+            <p>{t.pagoExpired.sub}</p>
           </div>
+          <a href="/onboarding/pago" className="pago-btn" style={{ textDecoration: "none" }}>{t.pagoExpired.cta} <span className="pago-btn-arrow">→</span></a>
+          <a href="/" className="pago-btn pago-btn-ghost" style={{ textDecoration: "none" }}>{t.pagoExpired.ctaSecondary}</a>
         </div>
         <div className="container pago-foot">{t.pago.footerSecurity}</div>
       </main>
@@ -48,14 +41,14 @@ function ErrorContent() {
   );
 }
 
-export default function OnboardingErrorPage() {
+export default function PagoExpiredPage() {
   return (
     <Suspense fallback={
       <div className="pago" style={{ display: "flex", minHeight: "100vh", alignItems: "center", justifyContent: "center" }}>
         <span className="pago-spinner" />
       </div>
     }>
-      <ErrorContent />
+      <ExpiredContent />
     </Suspense>
   );
 }

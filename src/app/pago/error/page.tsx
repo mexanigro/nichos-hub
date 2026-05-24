@@ -3,78 +3,51 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
-
-const i18n: Record<string, { title: string; subtitle: string; retry: string }> = {
-  he: {
-    title: "הייתה בעיה בתשלום",
-    subtitle: "התשלום לא בוצע. אפשר לנסות שוב.",
-    retry: "נסה שוב",
-  },
-  en: {
-    title: "Payment failed",
-    subtitle: "The payment was not processed. You can try again.",
-    retry: "Try again",
-  },
-  es: {
-    title: "Error en el pago",
-    subtitle: "El pago no se proceso. Podes intentar de nuevo.",
-    retry: "Intentar de nuevo",
-  },
-  ru: {
-    title: "Ошибка оплаты",
-    subtitle: "Оплата не прошла. Попробуйте ещё раз.",
-    retry: "Попробовать снова",
-  },
-};
-
-function detectLang(): string {
-  if (typeof navigator === "undefined") return "en";
-  const bl = navigator.language?.toLowerCase() || "";
-  if (bl.startsWith("he")) return "he";
-  if (bl.startsWith("ru")) return "ru";
-  if (bl.startsWith("es")) return "es";
-  return "en";
-}
+import { useT } from "@/lib/i18n/context";
+import { RTL_LOCALES } from "@/lib/i18n/types";
+import { LogoMark } from "@/components/landing/logo-mark";
 
 function ErrorContent() {
   const params = useSearchParams();
   const clientId = params.get("ReturnValue") || params.get("returnValue");
-  const [lang, setLang] = useState("en");
 
-  useEffect(() => {
-    setLang(detectLang());
-  }, []);
-
-  const t = i18n[lang] || i18n.en;
-  const dir = lang === "he" ? "rtl" : "ltr";
+  const { t, locale } = useT();
+  const dir = RTL_LOCALES.includes(locale) ? "rtl" : "ltr";
 
   return (
-    <div className="pago-root" dir={dir}>
+    <div className="pago" dir={dir}>
       <header className="pago-header">
-        <div className="pago-header-inner">
-          <img src="/logo-icon.svg" alt="Arzac Studio" className="h-10 w-10" />
-          <span className="pago-logo-text">arzac.studio</span>
+        <div className="container pago-header-inner">
+          <a href="/" className="pago-brand">
+            <LogoMark size={20} color="var(--pg-ink)" />
+            <span className="wm">Arzac <em>studio</em></span>
+          </a>
         </div>
       </header>
       <main className="pago-main">
-        <div className="pago-result-card">
-          <div className="pago-result-icon pago-result-icon-error">
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-              <path d="M9 9l10 10M19 9L9 19" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
-            </svg>
+        <div className="container" style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+          <div className="pgerr-hero">
+            <span className="ico">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.01l.01-.011"/></svg>
+            </span>
+            <div className="eyebrow">{t.pagoErr.eyebrow}</div>
+            <h1>{t.pagoErr.title.replace(/(\.|\!)$/, "")}<em>.</em></h1>
+            <p>{t.pagoErr.sub}</p>
+            <div className="pgerr-tips">
+              <ul>
+                {t.pagoErr.tips.map((tip, i) => <li key={i}>{tip}</li>)}
+              </ul>
+            </div>
+            <div className="pgerr-actions">
+              {clientId && (
+                <a href={`/pago/${clientId}`} className="pago-btn" style={{ textDecoration: "none" }}>{t.pagoErr.cta} <span className="pago-btn-arrow">→</span></a>
+              )}
+              <a href="/" className="pago-btn pago-btn-ghost" style={{ textDecoration: "none" }}>{t.pagoErr.ctaSecondary}</a>
+            </div>
           </div>
-          <h1 className="pago-result-title">{t.title}</h1>
-          <p className="pago-result-text">{t.subtitle}</p>
-          {clientId && (
-            <a href={`/pago/${clientId}`} className="pago-btn-primary" style={{ textDecoration: "none", textAlign: "center" }}>
-              {t.retry}
-            </a>
-          )}
         </div>
+        <div className="container pago-foot">{t.pago.footerSecurity}</div>
       </main>
-      <footer className="pago-footer">
-        <p>&copy; {new Date().getFullYear()} Arzac Studio</p>
-      </footer>
     </div>
   );
 }
@@ -82,12 +55,8 @@ function ErrorContent() {
 export default function PagoErrorPage() {
   return (
     <Suspense fallback={
-      <div className="pago-root">
-        <main className="pago-main">
-          <div className="pago-result-card">
-            <span className="pago-spinner" />
-          </div>
-        </main>
+      <div className="pago" style={{ display: "flex", minHeight: "100vh", alignItems: "center", justifyContent: "center" }}>
+        <span className="pago-spinner" />
       </div>
     }>
       <ErrorContent />

@@ -1,176 +1,110 @@
-export type Locale = "en" | "es" | "ru" | "he";
+export type Locale = "en" | "es" | "he" | "ru" | "ar";
 
 export interface Translations {
-  nav: {
-    features: string;
-    pricing: string;
-    howItWorks: string;
-    contact: string;
-    getStarted: string;
-    home?: string;
+  nav: { work: string; crm: string; agent: string; how?: string; pricing: string; faq: string; start: string };
+  hero: { eyebrow: string; h1a: string; h1b: string; h1c: string; sub: string; cta: string; ghost: string };
+  showcase: {
+    eyebrow: string; title: string; titleEm: string; sub: string; why: string;
+    pickHint: string; open: string;
+    sites: Record<"barber" | "tattoo" | "nails" | "cafe" | "estetica" | "remod", { name?: string; tagline: string; blurb?: string }>;
   };
-  hero: {
-    badge?: string;
-    headline: string;
-    subheadline: string;
-    cta: string;
-    trustedBy: string;
-    serviceIcons?: { web: string; crm: string; agent: string };
+  crm: {
+    eyebrow: string; title: string; titleEm: string; sub: string; why: string;
+    bullets: string[];
+    dashboard: { title: string; bookings: string; leads: string; revenue: string; agendaTitle: string; inboxTitle: string };
   };
-  socialProof: {
-    activeBusinesses: string;
-    avgBookingsPerMonth: string;
-    whatsappAgents: string;
-    satisfaction: string;
+  agent: {
+    eyebrow: string; title: string; titleEm: string; sub: string; why: string;
+    reasons: { t: string; d: string }[];
+    chat: { from: "client" | "agent"; text: string }[];
   };
-  pillars: {
-    title: string;
-    subtitle: string;
-    web: { title: string; description: string };
-    crm: { title: string; description: string };
-    whatsapp: { title: string; description: string };
+  everything: {
+    eyebrow: string; title: string; titleEm: string; sub: string;
+    items: { t: string; d: string }[];
+    whyTitle: string; whyTitleEm: string; whyBody: string;
+    whyPoints: { k: string; v: string }[];
   };
-  howItWorks: {
-    badge?: string;
-    title: string;
-    subtitle: string;
-    steps: { title: string; description: string }[];
+  manifesto: {
+    eyebrow: string; h: string; hEm: string; body: string;
+    points: { k: string; v: string }[];
   };
-  features: {
-    badge?: string;
-    title: string;
-    subtitle: string;
-    items: { title: string; description: string }[];
+  process: {
+    eyebrow: string; title: string; titleEm: string;
+    steps: { t: string; d: string; time: string }[];
   };
   pricing: {
-    badge?: string;
-    title: string;
-    subtitle: string;
-    monthly: string;
-    popular: string;
-    cta: string;
-    setup?: string;
-    plans: {
-      name: string;
-      price: string;
-      features: string[];
-    }[];
+    eyebrow: string; title: string; titleEm: string; sub: string; monthlyAbbr: string;
+    plans: { tag: string; name: string; price: number; tagline: string; highlight?: boolean; items: string[] }[];
+    setupLabel: string; setupValue: string; cta: string; ctaSecondary: string; note: string;
   };
   faq: {
-    title: string;
-    items: { question: string; answer: string }[];
+    eyebrow: string; title: string; titleEm: string;
+    items: { q: string; a: string }[];
   };
-  cta: {
-    title: string;
-    subtitle: string;
-    button: string;
-  };
-  webShowcase: {
-    badge: string;
-    title: string;
-    subtitle: string;
-    niches?: { barberia: string; estetica: string; cafeteria: string };
-  };
-  whyItMatters: {
-    badge: string;
-    title: string;
-    subtitle: string;
-    pillars: Array<{
-      title: string;
-      stat: string;
-      description: string;
-    }>;
-  };
-  crmDemo: {
-    badge: string;
-    title: string;
-    subtitle: string;
-    videoAlt: string;
-    chips: string[];
-  };
-  whatsappAgent: {
-    badge: string;
-    title: string;
-    description: string;
-    reasons: string[];
-    online: string;
-    conversation: { from: "client" | "bot"; text: string }[];
-  };
-  preview: {
-    title: string;
-    subtitle: string;
+  final: { a: string; b: string; cta: string; ctaHref?: string; note: string };
+  founder: {
+    eyebrow: string; h: string; hName: string; hRest: string; body: string;
+    role: string; location: string;
+    stats: { k: string; v: string }[];
     cta: string;
-    ctaSub: string;
-    loading: string;
-    error: string;
-    retry: string;
-    noData: string;
-    startOver: string;
+  };
+  foot: { rights: string; legal: string[] };
+  statusLine: string;
+  pago: {
+    title: string; back: string; step: string; of: string;
+    planLabel: string; planChange: string; includes: string; monthlyAbbr: string;
+    yourInfo: string; yourInfoSub: string;
+    nameLabel: string; namePh: string; emailLabel: string; emailPh: string;
+    phoneLabel: string; phonePh: string; businessLabel: string; businessPh: string;
+    nicheLabel: string; nichePh: string; niches: string[];
+    contract: string; contractExpand: string; contractCollapse: string; contractBody: string;
+    accept: string; acceptShort: string;
+    paymentTitle: string; paymentSub: string; cardPlaceholder: string;
+    cta: string; ctaProcessing: string; footerSecurity: string;
+    summary: string; total: string; whyTrust: string; whyTrustItems: string[];
+  };
+  pagoOk: {
+    eyebrow: string; title: string; sub: string; next: string;
+    steps: { t: string; d: string }[];
+    cta: string; receipt: string; dashboard: string;
+  };
+  pagoErr: {
+    eyebrow: string; title: string; sub: string;
+    tips: string[];
+    cta: string; ctaSecondary: string; ref: string;
+  };
+  pagoExpired: {
+    eyebrow: string; title: string; sub: string;
+    cta: string; ctaSecondary: string;
+  };
+  // PRESERVED — used by onboarding/preview and onboarding/status pages
+  preview: {
+    title: string; subtitle: string; cta: string; ctaSub: string;
+    loading: string; error: string; retry: string; noData: string; startOver: string;
   };
   status: {
-    building: string;
-    buildingSub: string;
-    ready: string;
-    readySub: string;
-    viewSite: string;
-    error: string;
-    errorSub: string;
-    contact: string;
+    building: string; buildingSub: string; ready: string; readySub: string;
+    viewSite: string; error: string; errorSub: string; contact: string;
   };
-  showcase: {
-    badge?: string;
-    title: string;
-    subtitle: string;
-    scrollHint?: string;
-    bookButton?: string;
-    niches: {
-      barberia: string;
-      estetica: string;
-      cafeteria: string;
-    };
-    nicheContent?: {
-      barberia: { heroText: string; services: string[] };
-      estetica: { heroText: string; services: string[] };
-      cafeteria: { heroText: string; services: string[] };
-    };
-  };
+  // PRESERVED — used by AuthModal in mi-cuenta and onboarding/preview
   auth: {
-    login: string;
-    register: string;
-    googleButton: string;
-    orEmail: string;
-    name: string;
-    namePlaceholder: string;
-    email: string;
-    emailPlaceholder: string;
-    password: string;
-    passwordPlaceholder: string;
-    submitLogin: string;
-    submitRegister: string;
-    processing: string;
-    close: string;
-    errorNameRequired: string;
-    errorWrongPassword: string;
-    errorEmailExists: string;
-    errorWeakPassword: string;
-    errorInvalidEmail: string;
-    errorUserNotFound: string;
-    errorGeneric: string;
-  };
-  footer: {
-    rights: string;
-    privacy: string;
-    terms: string;
+    login: string; register: string; googleButton: string; orEmail: string;
+    name: string; namePlaceholder: string; email: string; emailPlaceholder: string;
+    password: string; passwordPlaceholder: string;
+    submitLogin: string; submitRegister: string; processing: string; close: string;
+    errorNameRequired: string; errorWrongPassword: string; errorEmailExists: string;
+    errorWeakPassword: string; errorInvalidEmail: string; errorUserNotFound: string; errorGeneric: string;
   };
 }
 
-export const RTL_LOCALES: Locale[] = ["he"];
+export const RTL_LOCALES: Locale[] = ["he", "ar"];
 
 export const LOCALE_NAMES: Record<Locale, string> = {
   en: "English",
   es: "Español",
   ru: "Русский",
   he: "עברית",
+  ar: "العربية",
 };
 
 export const LOCALE_CODES: { code: Locale; label: string }[] = [
@@ -178,4 +112,5 @@ export const LOCALE_CODES: { code: Locale; label: string }[] = [
   { code: "es", label: "ES" },
   { code: "ru", label: "RU" },
   { code: "he", label: "HE" },
+  { code: "ar", label: "AR" },
 ];

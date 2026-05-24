@@ -1,248 +1,306 @@
 import type { Translations } from "../types";
 
 export const es: Translations = {
-  nav: {
-    features: "Funciones",
-    pricing: "Precios",
-    howItWorks: "Cómo funciona",
-    contact: "Contacto",
-    getStarted: "Empezar",
-    home: "Inicio",
-  },
+  nav: { work: "Trabajo", crm: "CRM", agent: "Agente", how: "Cómo", pricing: "Precio", faq: "FAQ", start: "Empezar" },
+
   hero: {
-    badge: "WEB + CRM + IA",
-    headline: "Creamos la presencia digital que tu negocio necesita",
-    subheadline:
-      "Vos manejás tu negocio. Nosotros manejamos todo lo que te trae clientes — tu web, tu CRM y un asistente IA que agenda turnos por WhatsApp 24/7.",
-    cta: "Mirá cómo quedaría tu web",
-    trustedBy: "La confianza de negocios en todo Israel",
-    serviceIcons: { web: "WEB", crm: "CRM", agent: "Agente" },
+    eyebrow: "Estudio · Web + CRM + Agente WhatsApp",
+    h1a: "Creamos la ",
+    h1b: "presencia digital",
+    h1c: " que tu negocio necesita.",
+    sub: "Nos encargamos de lo digital — web, CRM y agente IA en WhatsApp. Vos ponés el branding. Nosotros, la estructura que funciona. Desde ₪790/mes, cero setup.",
+    cta: "Empezar por WhatsApp",
+    ghost: "Ver webs en vivo",
   },
-  socialProof: {
-    activeBusinesses: "Negocios activos",
-    avgBookingsPerMonth: "Reservas promedio / mes",
-    whatsappAgents: "Agentes WhatsApp activos",
-    satisfaction: "Satisfacción",
-  },
-  pillars: {
-    title: "Todo lo que tu negocio necesita",
-    subtitle: "Tres herramientas poderosas, una plataforma simple",
-    web: {
-      title: "Web profesional",
-      description:
-        "Sitios impresionantes, mobile-first, adaptados a tu industria. Multi-idioma, con reservas y optimizados para convertir.",
-    },
-    crm: {
-      title: "CRM inteligente",
-      description:
-        "Gestioná turnos, clientes y leads desde un solo panel. Insights con IA para crecer.",
-    },
-    whatsapp: {
-      title: "Agente WhatsApp IA",
-      description:
-        "Respuestas automáticas 24/7, reservas de turnos y captura de leads — todo por WhatsApp.",
+
+  showcase: {
+    eyebrow: "Trabajo en vivo",
+    title: "Hecho en nuestro estudio, ",
+    titleEm: "entregado rápido.",
+    sub: "Mirá nuestras webs sin salir de esta página.",
+    why: "Una web hecha por un diseñador + estratega de marketing no es decoración — es una herramienta. Jerarquía que retiene. Palabras que mueven. Flujos de reserva afinados por rubro. El CTA que se aprieta.",
+    pickHint: "Elegí una web →",
+    open: "Abrir",
+    sites: {
+      barber:   { tagline: "Cortes clásicos en Holon",           blurb: "Cálida y confiada. Walk-in friendly. Fidelización integrada." },
+      tattoo:   { tagline: "Atelier de tatuaje en Tel Aviv",     blurb: "Editorial, oscura, foto-led. Reservás un turno en dos taps." },
+      nails:    { tagline: "Uñas soft-glam, Ramat Gan",          blurb: "Pasteles, mucho aire, fotos primero." },
+      cafe:     { tagline: "Café de especialidad, Florentin",    blurb: "Menú, horarios, historia. Reservable para eventos." },
+      estetica: { tagline: "Piel y cuerpo, Tel Aviv",            blurb: "Calma, clínica, premium. Flujo de consulta integrado." },
+      remod:    { tagline: "Construcción, Holon",                blurb: "Tipografía pesada, portfolio de obras, pedido de cotización." },
     },
   },
-  howItWorks: {
-    badge: "CÓMO FUNCIONA",
-    title: "Listo en 4 pasos",
-    subtitle: "De cero a un negocio digital completamente operativo",
-    steps: [
-      {
-        title: "Contanos sobre tu negocio",
-        description: "Seleccioná tu industria, subí fotos y agregá tus datos.",
-      },
-      {
-        title: "Construimos tu web",
-        description: "Nuestro sistema genera una web personalizada en menos de 3 minutos.",
-      },
-      {
-        title: "Vista previa y ajustes",
-        description: "Vé tu sitio en vivo al instante. Un especialista ajusta cada detalle.",
-      },
-      {
-        title: "En línea",
-        description: "Tu web está live con reservas, CRM e integración WhatsApp lista.",
-      },
+
+  crm: {
+    eyebrow: "CRM",
+    title: "El primer CRM que ",
+    titleEm: "vas a abrir en serio.",
+    sub: "Turnos, leads, conversaciones — en un solo lugar, rápido.",
+    why: "Sin un CRM, perdés dos clientes por semana entre no-shows y mensajes que se traspapelan. Con uno, recordás cada cliente por nombre, cada visita por fecha, cada gasto por total. Es la diferencia entre llevar un negocio y correr atrás de él.",
+    bullets: [
+      "WhatsApp, formulario y walk-in en una bandeja",
+      "Calendario sincronizado a Google",
+      "Notas por cliente, historial por visita",
+      "Reportes que entran en una pantalla",
+    ],
+    dashboard: {
+      title: "Hoy",
+      bookings: "Turnos",
+      leads: "Leads nuevos",
+      revenue: "Ingresos hoy",
+      agendaTitle: "Agenda",
+      inboxTitle: "Bandeja",
+    },
+  },
+
+  agent: {
+    eyebrow: "Agente WhatsApp",
+    title: "Un agente IA que ",
+    titleEm: "toma turnos por vos.",
+    sub: "Entrenado con tus servicios. Responde en segundos. No duerme.",
+    why: "El 60% de los mensajes de WhatsApp a negocios locales llegan después del cierre. Sin agente, esos mensajes esperan — y un cliente que espera, reserva en otro lado. Con agente, cada mensaje se responde en 3 segundos, cada hora, cada día.",
+    reasons: [
+      { t: "Siempre activo",    d: "3am, shabat, feriados — los turnos siguen entrando." },
+      { t: "Habla tu negocio",  d: "Entrenado con tus servicios y precios, no IA genérica." },
+      { t: "Sabe cuándo parar", d: "¿Tema delicado? Te avisa al instante." },
+      { t: "En tu idioma",      d: "Hebreo, inglés, ruso, español — fluido en los cuatro." },
+    ],
+    chat: [
+      { from: "client", text: "Hola! Tenés horario mañana para un corte?" },
+      { from: "agent",  text: "Hola 👋 Tengo 11:00, 14:30 y 17:00 mañana. Cuál te queda mejor?" },
+      { from: "client", text: "14:30 dale. Con Yossi si se puede." },
+      { from: "agent",  text: "Reservado con Yossi a las 14:30 ✓ Te paso recordatorio 2h antes. Algo más?" },
     ],
   },
-  features: {
-    badge: "FUNCIONES",
-    title: "Hecho para crecer",
-    subtitle: "Cada función diseñada para traerte más clientes",
+
+  everything: {
+    eyebrow: "Todo incluido",
+    title: "Nos encargamos ",
+    titleEm: "de todo.",
+    sub: "Una suscripción cubre todo el lado digital de tu negocio.",
     items: [
-      {
-        title: "Reservas online",
-        description: "Tus clientes reservan directo desde la web o WhatsApp — sin llamadas.",
-      },
-      {
-        title: "Multi-idioma",
-        description: "Alcanzá a cada cliente en hebreo, inglés y ruso.",
-      },
-      {
-        title: "Chatbot IA",
-        description: "Asistente integrado que responde preguntas y guía visitantes 24/7.",
-      },
-      {
-        title: "Panel de analytics",
-        description: "Seguimiento de visitas, reservas e ingresos en tiempo real.",
-      },
-      {
-        title: "Dominio propio",
-        description: "Tu propio .com o .co.il — profesional desde el día uno.",
-      },
-      {
-        title: "Updates automáticos",
-        description: "Nosotros nos encargamos del mantenimiento, seguridad y actualizaciones.",
-      },
+      { t: "Hosting",         d: "Infraestructura que no se cae el viernes a la noche." },
+      { t: "Dominio",         d: "Registrado, renovado, apuntado. Siempre a tu nombre." },
+      { t: "Mantenimiento",   d: "Lo arreglamos antes de que te enteres. Siempre. En silencio." },
+      { t: "Actualizaciones", d: "Copy, fotos, servicios, precios — cambios ilimitados." },
+      { t: "Seguridad",       d: "SSL, anti-spam, forms blindados. Estándar, no extra." },
+      { t: "SEO + GMB",       d: "Afinado por rubro. Sincronizado con Google Business." },
+      { t: "Backups",         d: "Diarios, off-site. Tu data sobrevive a cualquier cosa." },
+      { t: "Monitoreo",       d: "24/7 de uptime. Si se cae a las 3am, ya estamos ahí." },
+      { t: "Velocidad",       d: "Carga sub-segundo. Donde perdés clientes en la vida real." },
+      { t: "Soporte",         d: "Por WhatsApp. La misma persona, siempre. Sin tickets." },
+    ],
+    whyTitle: "Por qué una web profesional ",
+    whyTitleEm: "importa de verdad.",
+    whyBody: "Una web hecha en casa decora. Una web hecha por un diseñador y un estratega de marketing vende. Nos contratás por la misma razón por la que tus clientes te contratan a vos — porque la brecha entre amateur y pro es la brecha entre un hobby y un negocio.",
+    whyPoints: [
+      { k: "Diseño",    v: "Jerarquía, tipografía, tratamiento de fotos. La página que retiene." },
+      { k: "Marketing", v: "Flujo de reserva afinado por rubro. Palabras que mueven. El CTA que se aprieta." },
+      { k: "Velocidad", v: "Cada 100ms cuesta turnos. Lo medimos. Lo afinamos." },
+      { k: "Mobile",    v: "El 84% de tus visitas llega desde el celular. Hecho para eso primero." },
     ],
   },
+
+  manifesto: {
+    eyebrow: "Cómo trabajamos",
+    h: "La estructura la ponemos nosotros. ",
+    hEm: "El branding lo ponés vos.",
+    body: "Años haciendo webs para negocios locales nos enseñaron qué convierte. Vos no necesitás diseñar — necesitás elegir. Colores, copy, fotos, servicios. Nosotros hacemos el resto. Por eso la web está online en 48 horas y empieza a tomar clientes esa misma semana.",
+    points: [
+      { k: "Estructura", v: "La ponemos nosotros. Probada. Tuneada por rubro." },
+      { k: "Branding",   v: "Tuyo. O nuestro, si necesitás logo." },
+      { k: "Contenido",  v: "Tuyo. Escribimos lo que falta si estás trabado." },
+      { k: "Tiempo",     v: "48 horas del kickoff al online." },
+    ],
+  },
+
+  process: {
+    eyebrow: "Proceso",
+    title: "De la llamada al sitio online en ",
+    titleEm: "48 horas.",
+    steps: [
+      { t: "Llamada", d: "15 min por WhatsApp. Mapeamos servicios, horarios, marca, qué te hace distinto.",  time: "Hora 0" },
+      { t: "Build",   d: "Provisionamos web, CRM y agente WhatsApp. Configurado a tu rubro.",                  time: "Hora 1 – 24" },
+      { t: "Review",  d: "Lo ves en un link privado. Ajustamos copy, fotos y servicios juntos.",               time: "Hora 24 – 36" },
+      { t: "Online",  d: "Apuntamos el dominio, sincronizamos Google Business. Empezás a tomar turnos.",       time: "Hora 48" },
+    ],
+  },
+
   pricing: {
-    badge: "PRECIOS",
-    title: "Precios simples y transparentes",
-    subtitle: "Sin costo de setup. Sin costos ocultos. Cancelá cuando quieras.",
-    monthly: "/mes",
-    popular: "Más popular",
-    setup: "₪0 Setup",
-    cta: "Empezar",
+    eyebrow: "Precio",
+    title: "Dos planes. ",
+    titleEm: "Cero setup.",
+    sub: "Pagás en shekels, mensual. Cancelás cuando querés. La data se va con vos.",
+    monthlyAbbr: "/mes",
     plans: [
       {
+        tag: "Esencial",
         name: "Web + CRM",
-        price: "790",
-        features: [
-          "Web profesional a medida",
-          "Chatbot con IA integrado",
-          "Sistema de reservas online",
-          "CRM con asistente IA",
-          "Panel de analytics",
-          "Dominio + hosting incluido",
-          "3 idiomas (HE, EN, RU)",
-          "Mantenimiento 24/7",
-          "Updates ilimitados",
+        price: 790,
+        tagline: "Para negocios que toman turnos en persona.",
+        items: [
+          "Web, hosting y dominio",
+          "CRM con leads ilimitados",
+          "Calendario de turnos online",
+          "Template del rubro + updates",
+          "Ediciones de copy ilimitadas",
+          "Hebreo, inglés, ruso, español",
         ],
       },
       {
-        name: "Completo",
-        price: "990",
-        features: [
-          "Todo del plan Web + CRM",
-          "Agente WhatsApp IA 24/7",
-          "Respuestas personalizadas",
-          "Captura automática de leads",
-          "Integración con CRM",
-          "Agendar turnos por WhatsApp",
+        tag: "Completo",
+        name: "Web + CRM + Agente",
+        price: 990,
+        tagline: "Para negocios que quieren tomar turnos 24/7.",
+        highlight: true,
+        items: [
+          "Todo lo del Esencial",
+          "Agente IA en WhatsApp 24/7",
+          "Entrenado con tus servicios y precios",
+          "Te pasa el chat cuando hace falta",
+          "Soporte prioritario",
+          "Tune-up mensual del agente",
         ],
       },
     ],
+    setupLabel: "Setup",
+    setupValue: "₪0",
+    cta: "Empezar ahora",
+    ctaSecondary: "Hablamos primero",
+    note: "Cardcom · Factura local · Sin candados",
   },
+
   faq: {
-    title: "Preguntas frecuentes",
+    eyebrow: "FAQ",
+    title: "Preguntas ",
+    titleEm: "frecuentes.",
     items: [
-      {
-        question: "¿Cuánto tarda en estar listo?",
-        answer:
-          "Tu preview está lista en menos de 3 minutos. Un especialista ajusta cada detalle en las siguientes 24 horas. Todo el proceso es automático — no necesitás estar presente ni hacer nada técnico.",
-      },
-      {
-        question: "¿Necesito conocimientos técnicos?",
-        answer:
-          "Para nada. Nosotros nos encargamos de todo — diseño, desarrollo, hosting y mantenimiento. Ni siquiera necesitás tus propias fotos; usamos imágenes de stock profesionales adaptadas a tu industria si es necesario.",
-      },
-      {
-        question: "¿Puedo cambiar cosas después del lanzamiento?",
-        answer:
-          "Por supuesto. Updates ilimitados están incluidos en cada plan. Colores, textos, fotos, secciones enteras — solo decinos qué necesitás y lo resolvemos, generalmente en 24 horas.",
-      },
-      {
-        question: "¿Qué pasa si quiero cancelar?",
-        answer:
-          "Sin contratos, sin penalidades. Podés cancelar cuando quieras. Tu dominio y contenido siguen siendo tuyos — no hay lock-in. Creemos en ganarnos tu confianza cada mes.",
-      },
-      {
-        question: "¿Soportan idiomas RTL?",
-        answer:
-          "Sí. Todos nuestros sitios soportan hebreo (RTL), inglés y ruso de fábrica. El layout se ajusta automáticamente según el idioma del navegador del visitante, con tipografía optimizada para cada idioma.",
-      },
-      {
-        question: "¿Qué incluye el agente WhatsApp?",
-        answer:
-          "Un asistente IA que responde mensajes 24/7 en el idioma del cliente, agenda turnos en tiempo real y captura leads automáticamente. Recibís notificaciones push de cada consulta nueva y todo se sincroniza con tu CRM.",
-      },
-      {
-        question: "¿Cómo sabe el agente IA sobre mi negocio?",
-        answer:
-          "El agente se entrena específicamente con tu negocio — tus servicios, horarios, precios y preguntas frecuentes. No es un chatbot genérico; da respuestas precisas y personalizadas como si fuera parte de tu equipo.",
-      },
-      {
-        question: "¿Tengo mi propio dominio?",
-        answer:
-          "Sí. Un dominio .com o .co.il personalizado está incluido en todos los planes. Nos encargamos del DNS y los certificados SSL para que tu sitio sea seguro y profesional desde el primer día.",
-      },
-      {
-        question: "¿Qué pasa si mi sitio se cae?",
-        answer:
-          "Monitoreamos todos los sitios 24/7 con sistemas de recuperación automática. Nuestra infraestructura ofrece 99.9% de uptime. Si algo sale mal, nuestro equipo se entera al instante y lo resuelve — generalmente antes de que lo notes.",
-      },
-      {
-        question: "¿Puedo ver analíticas y leads?",
-        answer:
-          "Sí. Tu dashboard CRM muestra datos en tiempo real — visitas al sitio, estadísticas de reservas, captura de leads e insights de ingresos. Podés ver exactamente cómo está rindiendo tu presencia digital.",
-      },
+      { q: "¿Tengo que tener conocimientos técnicos?",
+        a: "Para nada. No tocás código, hosting ni configuración — nunca. De eso nos ocupamos nosotros. Lo más técnico que te vamos a pedir es que elijas colores y nos pases tus fotos. Si no tenés fotos, usamos de banco o te las sacamos." },
+      { q: "¿Cómo sé si son confiables?",
+        a: "Soy Liam Arzac — vas a hablar directo conmigo por WhatsApp, no con un bot ni con una agencia. Cada web que entregamos vive en un subdominio de arzac.studio para que veas trabajo real, en vivo, antes de comprometerte. Podés hablar con cualquiera de los dueños que ya tenemos. Y cancelás cuando quieras, sin penalidad — ese es el contrato de confianza." },
+      { q: "¿Y si no tengo branding ni logo?",
+        a: "Lo hacemos nosotros. Nos das un nombre y una vibra, y te diseñamos el logo, elegimos la paleta, escribimos el copy, y te devolvemos algo que te represente. La mayoría de nuestros clientes llegan con nada — y se van con una marca completa además de la web." },
+      { q: "¿Qué pasa si cancelo?",
+        a: "Te vas con tu dominio, tu base de clientes exportada y el historial de turnos. Sin penalidad, sin candados." },
+      { q: "¿Qué idiomas soportan?",
+        a: "Toda la web, el CRM y el agente WhatsApp funcionan en hebreo, inglés, ruso, español y árabe. El hebreo se lee de derecha a izquierda automáticamente, exactamente como esperan los israelíes." },
+      { q: "¿Quién entrena al agente de WhatsApp?",
+        a: "Nosotros, con tus servicios, precios y tu tono. Lo afinamos mensualmente cuando cambiás precios o agregás staff. Siempre te avisamos cuando te pasa una conversación delicada." },
+      { q: "¿Y si ya tengo dominio?",
+        a: "Lo apuntamos a tu web nueva. Si no tenés, lo registramos en tu cuenta y te lo entregamos." },
     ],
   },
-  cta: {
-    title: "¿Listo para transformar tu negocio?",
-    subtitle: "Descubrí cómo podemos potenciar tu negocio — gratis, sin compromiso.",
-    button: "Crear mi web ahora",
+
+  final: {
+    a: "Ocupate de tu negocio.",
+    b: "Nosotros, de lo digital.",
+    cta: "Hablar con Liam por WhatsApp",
+    note: "Te respondemos dentro de una hora, domingo a viernes.",
   },
-  webShowcase: {
-    badge: "SITIOS REALES",
-    title: "Mirá cómo quedan nuestras webs",
-    subtitle: "Cada nicho tiene un diseño único, optimizado para convertir visitantes en clientes",
-    niches: { barberia: "Barbería", estetica: "Estética", cafeteria: "Cafetería" },
+
+  founder: {
+    eyebrow: "Conocé el estudio",
+    h: "Soy ",
+    hName: "Liam Arzac.",
+    hRest: " Esto lo armé con mis manos.",
+    body: "Soy diseñador y estratega de marketing digital. Los últimos años los pasé construyendo webs para negocios locales en Israel. Manejo Arzac Studio solo — sin agencia, sin intermediarios. Cuando nos escribís, hablás conmigo. Cuando la web sale al aire, soy yo el que apretó publicar.",
+    role: "Diseñador · Estratega de marketing · Fundador",
+    location: "Basado en Tel Aviv · Disponible en todo Israel",
+    stats: [
+      { k: "Idiomas",     v: "EN · ES · HE · RU · AR" },
+      { k: "Respuesta",   v: "Dentro de una hora" },
+      { k: "Permanencia", v: "Cero, siempre" },
+    ],
+    cta: "Escribile a Liam por WhatsApp",
   },
-  whyItMatters: {
-    badge: "POR QUÉ IMPORTA",
-    title: "Tu negocio necesita más que un local",
-    subtitle: "La presencia digital dejó de ser opcional — es lo que separa a los negocios que crecen de los que se quedan atrás",
-    pillars: [
-      {
-        title: "Web profesional",
-        stat: "75% de los clientes",
-        description: "juzgan la credibilidad de un negocio por su sitio web. Sin presencia online, perdés clientes antes de que te conozcan.",
-      },
-      {
-        title: "CRM inteligente",
-        stat: "Los negocios con CRM",
-        description: "aumentan sus ventas hasta un 29%. Gestionar clientes, turnos y leads desde un solo lugar cambia las reglas del juego.",
-      },
-      {
-        title: "Agente IA en WhatsApp",
-        stat: "El 80% prefiere WhatsApp",
-        description: "para comunicarse con negocios. Un agente que responde 24/7 significa que nunca perdés una consulta ni un lead.",
-      },
+
+  foot: { rights: "Arzac Studio · Hecho en Tel Aviv", legal: ["Privacidad", "Términos", "Contacto"] },
+  statusLine: "Todas las webs de clientes operativas",
+
+  pago: {
+    title: "Activá tu plan.",
+    back: "← Volver",
+    step: "Paso",
+    of: "de",
+    planLabel: "Tu plan",
+    planChange: "Cambiar",
+    includes: "Incluye",
+    monthlyAbbr: "/mes",
+    yourInfo: "Tus datos",
+    yourInfoSub: "Los usamos para armar tu cuenta y enviar la factura. No hace falta iniciar sesión.",
+    nameLabel: "Nombre completo",
+    namePh: "Liam Arzac",
+    emailLabel: "Email",
+    emailPh: "vos@negocio.com",
+    phoneLabel: "WhatsApp",
+    phonePh: "+972 50 000 0000",
+    businessLabel: "Nombre del negocio",
+    businessPh: "Como te conocen tus clientes",
+    nicheLabel: "Tipo de negocio",
+    nichePh: "Elegí uno",
+    niches: ["Barbería", "Tattoo", "Uñas", "Café", "Estética", "Remodelaciones", "Otro"],
+    contract: "Contrato de servicio",
+    contractExpand: "Leer todo",
+    contractCollapse: "Contraer",
+    contractBody: "Al aceptar, te suscribís al servicio mensual de Arzac Studio. La suscripción incluye web, hosting, dominio, CRM y (si lo elegiste) el agente IA en WhatsApp. El primer pago se cobra al confirmar. Los siguientes, el mismo día de cada mes. Cancelás cuando quieras — la data, el dominio y el historial de turnos se van con vos. Sin penalidad de cancelación. Cero setup. Términos completos en arzac.studio/terms.",
+    accept: "Leí y acepto el contrato de servicio.",
+    acceptShort: "Acepto los términos",
+    paymentTitle: "Pago",
+    paymentSub: "Procesado por Cardcom. Tu tarjeta nunca pasa por nuestros servidores.",
+    cardPlaceholder: "El formulario de Cardcom se carga acá cuando aceptes los términos.",
+    cta: "Pagar y activar",
+    ctaProcessing: "Procesando…",
+    footerSecurity: "TLS 256-bit · PCI DSS · Factura local",
+    summary: "Resumen del pedido",
+    total: "Total hoy",
+    whyTrust: "Por qué es seguro",
+    whyTrustItems: [
+      "Cardcom es la procesadora más grande de Israel.",
+      "Nunca vemos ni guardamos tu tarjeta.",
+      "Cancelás cuando quieras desde el dashboard — sin costo.",
     ],
   },
-  crmDemo: {
-    badge: "DEMO EN VIVO",
-    title: "El CRM que gestiona tu negocio completo",
-    subtitle: "Turnos, clientes, leads e insights — todo en un solo panel con inteligencia artificial.",
-    videoAlt: "Demo del CRM de Arzac Studio",
-    chips: ["Turnos online", "Leads automáticos", "Analytics IA", "Multi-idioma"],
-  },
-  whatsappAgent: {
-    badge: "AGENTE WHATSAPP IA",
-    title: "Tu negocio responde solo, aunque vos no estés",
-    description: "El agente de WhatsApp con IA atiende consultas, agenda turnos y captura leads las 24 horas — sin que tengas que levantar el teléfono.",
-    reasons: ["Respuestas instantáneas 24/7", "Agenda turnos automáticamente", "Captura leads sin esfuerzo", "Se integra con tu CRM"],
-    online: "En línea 24/7",
-    conversation: [
-      { from: "client", text: "Hola, ¿tienen lugar para un corte mañana a las 5?" },
-      { from: "bot", text: "¡Hola! Sí, tenemos disponibilidad mañana a las 17:00 con Diego. ¿Te lo reservo?" },
-      { from: "client", text: "Dale, reservame" },
-      { from: "bot", text: "¡Listo! Tu turno quedó confirmado para mañana a las 17:00. Te envié los detalles por mensaje. ¡Nos vemos!" },
+
+  pagoOk: {
+    eyebrow: "Pago confirmado",
+    title: "Estás adentro.",
+    sub: "Tu plan está activo. Empezamos a construir ya — Liam te va a escribir por WhatsApp en menos de una hora.",
+    next: "Qué viene ahora",
+    steps: [
+      { t: "Ahora mismo",          d: "Te llega el recibo por email." },
+      { t: "En menos de una hora", d: "Liam te escribe por WhatsApp. Mapeamos tu marca, servicios, horarios." },
+      { t: "En días",              d: "Link privado con tu web. Hacemos los ajustes finales juntos." },
+      { t: "Y listo",              d: "Apuntamos el dominio, sincronizamos Google Business. Empezás a tomar clientes." },
     ],
+    cta: "Abrir WhatsApp con Liam",
+    receipt: "Recibo",
+    dashboard: "Abrir dashboard",
   },
+
+  pagoErr: {
+    eyebrow: "Pago rechazado",
+    title: "Tu tarjeta fue rechazada.",
+    sub: "No se cobró nada. Las causas más comunes son: saldo insuficiente, pagos internacionales bloqueados, o CVV incorrecto.",
+    tips: [
+      "Probá con otra tarjeta.",
+      "Llamá al banco y autorizá el cobro.",
+      "Si era débito, probá con crédito.",
+    ],
+    cta: "Probar de nuevo",
+    ctaSecondary: "Hablar con Liam",
+    ref: "Referencia",
+  },
+
+  pagoExpired: {
+    eyebrow: "Link vencido",
+    title: "Este link ya no está activo.",
+    sub: "Los links de pago vencen 24 horas después de enviados, para mantener tus datos seguros. Pedile uno nuevo a Liam — tarda 30 segundos.",
+    cta: "Pedir un link nuevo",
+    ctaSecondary: "Volver al inicio",
+  },
+
+  // PRESERVED
   preview: {
     title: "Tu web está lista",
     subtitle: "Iniciá sesión para verla completa",
@@ -263,23 +321,6 @@ export const es: Translations = {
     error: "Algo salió mal",
     errorSub: "No te preocupes — nuestro equipo fue notificado y lo resolverá pronto.",
     contact: "Contactanos por WhatsApp",
-  },
-  showcase: {
-    badge: "MIRÁ EN ACCIÓN",
-    title: "Sitios reales para negocios reales",
-    subtitle: "Cada nicho tiene su propio diseño, optimizado para convertir visitantes en clientes",
-    scrollHint: "Scroll para explorar",
-    bookButton: "Reservar turno",
-    niches: {
-      barberia: "Barbería",
-      estetica: "Estética",
-      cafeteria: "Cafetería",
-    },
-    nicheContent: {
-      barberia: { heroText: "El corte perfecto te espera", services: ["Corte Clásico", "Barba", "Afeitado", "Color"] },
-      estetica: { heroText: "Tu belleza, nuestra pasión", services: ["Facial", "Manicura", "Depilación", "Masajes"] },
-      cafeteria: { heroText: "Café de especialidad", services: ["Espresso", "Latte Art", "Pastelería", "Brunch"] },
-    },
   },
   auth: {
     login: "Iniciar sesión",
@@ -303,10 +344,5 @@ export const es: Translations = {
     errorInvalidEmail: "Email inválido",
     errorUserNotFound: "No existe una cuenta con este email",
     errorGeneric: "Error al iniciar sesión",
-  },
-  footer: {
-    rights: "Todos los derechos reservados",
-    privacy: "Política de privacidad",
-    terms: "Términos de servicio",
   },
 };

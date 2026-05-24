@@ -1,22 +1,24 @@
-import { Outfit, Source_Sans_3 } from "next/font/google";
-import { LandingPage } from "@/components/landing/landing-page";
+import { Instrument_Serif, JetBrains_Mono } from "next/font/google";
+import { AtelierPage } from "@/components/landing/atelier-page";
 
-const outfit = Outfit({
+const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
-  variable: "--font-display",
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-at-serif",
   display: "swap",
 });
 
-const sourceSans = Source_Sans_3({
+const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
-  variable: "--font-body",
+  variable: "--font-at-mono",
   display: "swap",
 });
 
 export const metadata = {
-  title: "Arzac Studio — Professional websites for local businesses",
+  title: "Arzac Studio — Websites, CRM & WhatsApp AI for local businesses in Israel",
   description:
-    "Custom website, smart CRM, and AI WhatsApp agent for your business — set up in minutes. From 790 NIS/month.",
+    "Professional website, smart CRM, and AI-powered WhatsApp agent for your local business. Zero setup fee, from 790 NIS/month.",
 };
 
 const jsonLd = {
@@ -33,7 +35,7 @@ const jsonLd = {
         "@type": "ContactPoint",
         email: "website@arzac.studio",
         contactType: "sales",
-        availableLanguage: ["Spanish", "English", "Hebrew", "Russian"],
+        availableLanguage: ["Spanish", "English", "Hebrew", "Russian", "Arabic"],
       },
     },
     {
@@ -42,7 +44,7 @@ const jsonLd = {
       url: "https://arzac.studio",
       name: "Arzac Studio",
       publisher: { "@id": "https://arzac.studio/#organization" },
-      inLanguage: ["en", "es", "he", "ru"],
+      inLanguage: ["en", "es", "he", "ru", "ar"],
     },
     {
       "@type": "WebPage",
@@ -91,12 +93,12 @@ const jsonLd = {
 
 export default function Page() {
   return (
-    <div className={`${outfit.variable} ${sourceSans.variable}`}>
+    <div className={`${instrumentSerif.variable} ${jetbrainsMono.variable}`}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <LandingPage />
+      <AtelierPage />
     </div>
   );
 }

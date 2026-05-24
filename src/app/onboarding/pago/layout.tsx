@@ -22,10 +22,10 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export default function PagoLayout({ children }: { children: React.ReactNode }) {
+export default function OnboardingPagoLayout({ children }: { children: React.ReactNode }) {
   return (
     <LandingI18nProvider>
-      <div className={`${instrumentSerif.variable} ${jetbrainsMono.variable} pago`}>
+      <div className={`${instrumentSerif.variable} ${jetbrainsMono.variable}`}>
         {children}
       </div>
     </LandingI18nProvider>

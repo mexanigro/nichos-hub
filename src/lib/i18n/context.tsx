@@ -7,8 +7,9 @@ import { en } from "./locales/en";
 import { es } from "./locales/es";
 import { ru } from "./locales/ru";
 import { he } from "./locales/he";
+import { ar } from "./locales/ar";
 
-const locales: Record<Locale, Translations> = { en, es, ru, he };
+const locales: Record<Locale, Translations> = { en, es, ru, he, ar };
 
 /** Get translations object for a given locale string. Falls back to English. */
 export function getTranslations(locale?: string): Translations {
@@ -26,6 +27,7 @@ export function detectLocale(): Locale {
   try {
     const browserLang = navigator.language.slice(0, 2).toLowerCase();
     if (browserLang === "he" || browserLang === "iw") return "he";
+    if (browserLang === "ar") return "ar";
     if (browserLang === "ru") return "ru";
     if (browserLang === "es") return "es";
   } catch {}
