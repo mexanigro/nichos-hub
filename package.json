@@ -6,6 +6,7 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
+    "test:client-config": "node --experimental-strip-types --test src/lib/client-config/services.test.ts",
     "lint": "next lint"
   },
   "dependencies": {

@@ -29,6 +29,13 @@ Cuando `business.type` falta o no coincide (el caso normal para la mayoria de cl
 - `brand` — nombre, tagline, logo, description
 - `contact` — telefono, email, direccion, redes sociales
 - `businessMode` — "solo" o "team"
+- `visibleServices` — allow-list de servicios visibles por ID
+- `serviceOverrides` — patches por servicio
+
+Nota operativa: estos dos campos de servicios deben existir tambien en
+`SAFE_FIRESTORE_TOP_LEVEL` del master-template. Si una build vieja no los tiene,
+solo se aplican cuando `business.type` coincide con `VITE_ACTIVE_NICHE`; por eso
+el hub normaliza `business.type` al nicho real del deploy en cada guardado de Config.
 
 ## Campos editables desde nichos-hub
 
@@ -58,8 +65,14 @@ Cuando `business.type` falta o no coincide (el caso normal para la mayoria de cl
 - `staff[].name`, `.specialty`, `.bio`, `.photoUrl`, `.schedule`
 
 ### Services
-- `visibleServices[]` — filtrar y reordenar servicios por ID
+- `visibleServices[]` — filtrar y reordenar servicios por ID. Es una **allow-list**: si guarda `["lip-filler", "cheek-filler"]`, la landing debe renderizar solo esos 2 servicios y en ese orden.
 - `serviceOverrides.{id}.*` — patch nombre, precio, imagen por servicio
+
+Reglas importantes:
+- `visibleServices` ausente = todos los servicios del preset quedan visibles.
+- `visibleServices: []` no representa "0 visibles" en master-template; para ocultar todos se usa `features.showServices = false`.
+- El hub envia `visibleServices: null` cuando necesita borrar una allow-list vieja. `/api/config/[clientId]` convierte `null` en `FieldValue.delete()` para que Firestore no conserve IDs obsoletos en un `set(..., { merge: true })`.
+- `business.type` debe coincidir con `VITE_ACTIVE_NICHE` del deploy. Al guardar desde Config, el endpoint lo normaliza al nicho real registrado en `hub_clients` (por ejemplo `otro` -> `estetica`) para que master-template aplique tambien `visibleServices` y `serviceOverrides`.
 
 ### Otros
 - `businessMode` — "solo" (oculta team) o "team"
