@@ -1,26 +1,21 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { useT } from "@/lib/i18n/context";
 import { SITES } from "@/lib/sites";
+import { useReveal } from "@/hooks/use-scroll-reveal";
 
 export function Showcase() {
   const { t } = useT();
   const [active, setActive] = useState("estetica");
-  const [swap, setSwap] = useState(false);
+  const reveal = useReveal<HTMLElement>();
 
   const meta = SITES.find((s) => s.id === active)!;
   const siteT = t.showcase.sites[active as keyof typeof t.showcase.sites];
   const idx = SITES.findIndex((s) => s.id === active);
 
-  useEffect(() => {
-    setSwap(true);
-    const id = setTimeout(() => setSwap(false), 60);
-    return () => clearTimeout(id);
-  }, [active]);
-
   return (
-    <section className="at-section alt at-show" id="work">
+    <section className="at-section alt at-show" id="work" ref={reveal} data-reveal>
       <div className="container">
         <div className="at-section-head">
           <div>
@@ -67,13 +62,16 @@ export function Showcase() {
                 </a>
               </div>
               <div className="frame">
-                <Image
-                  src={meta.img}
-                  alt={meta.niche}
-                  fill
-                  style={{ objectFit: "cover" }}
-                  className={swap ? "swap" : ""}
-                />
+                {SITES.map((s) => (
+                  <Image
+                    key={s.id}
+                    src={s.img}
+                    alt={s.niche}
+                    fill
+                    style={{ objectFit: "cover" }}
+                    className={s.id === active ? "active" : ""}
+                  />
+                ))}
               </div>
             </div>
           </div>

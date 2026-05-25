@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import {
   Instrument_Serif,
   JetBrains_Mono,
-  Noto_Serif,
-  Noto_Serif_Hebrew,
-  Noto_Sans_Hebrew,
-  Noto_Naskh_Arabic,
-  Noto_Sans_Arabic,
+  Cormorant_Garamond,
+  Suez_One,
+  Heebo,
+  Amiri,
+  IBM_Plex_Sans_Arabic,
 } from "next/font/google";
 import { LandingI18nProvider } from "@/lib/i18n/context";
 
@@ -18,39 +18,40 @@ const instrumentSerif = Instrument_Serif({
   display: "swap",
 });
 
-const notoSerif = Noto_Serif({
+const cormorant = Cormorant_Garamond({
   subsets: ["latin", "cyrillic"],
   weight: ["400"],
   style: ["normal", "italic"],
-  variable: "--font-noto-serif",
+  variable: "--font-cormorant",
   display: "swap",
 });
 
-const notoSerifHe = Noto_Serif_Hebrew({
-  subsets: ["hebrew"],
+const suezOne = Suez_One({
+  subsets: ["hebrew", "latin"],
   weight: ["400"],
-  variable: "--font-noto-serif-he",
+  variable: "--font-suez-one",
   display: "swap",
 });
 
-const notoSansHe = Noto_Sans_Hebrew({
-  subsets: ["hebrew"],
+const heebo = Heebo({
+  subsets: ["hebrew", "latin"],
   weight: ["400", "500", "600"],
-  variable: "--font-noto-sans-he",
+  variable: "--font-heebo",
   display: "swap",
 });
 
-const notoNaskhAr = Noto_Naskh_Arabic({
-  subsets: ["arabic"],
+const amiri = Amiri({
+  subsets: ["arabic", "latin"],
   weight: ["400"],
-  variable: "--font-noto-naskh-ar",
+  style: ["normal", "italic"],
+  variable: "--font-amiri",
   display: "swap",
 });
 
-const notoSansAr = Noto_Sans_Arabic({
-  subsets: ["arabic"],
+const plexArabic = IBM_Plex_Sans_Arabic({
+  subsets: ["arabic", "latin"],
   weight: ["400", "500", "600"],
-  variable: "--font-noto-sans-ar",
+  variable: "--font-plex-ar",
   display: "swap",
 });
 
@@ -69,7 +70,7 @@ export const metadata: Metadata = {
 export default function PagoLayout({ children }: { children: React.ReactNode }) {
   return (
     <LandingI18nProvider>
-      <div className={`${instrumentSerif.variable} ${notoSerif.variable} ${notoSerifHe.variable} ${notoSansHe.variable} ${notoNaskhAr.variable} ${notoSansAr.variable} ${jetbrainsMono.variable} pago`}>
+      <div className={`${instrumentSerif.variable} ${cormorant.variable} ${suezOne.variable} ${heebo.variable} ${amiri.variable} ${plexArabic.variable} ${jetbrainsMono.variable} pago`}>
         {children}
       </div>
     </LandingI18nProvider>

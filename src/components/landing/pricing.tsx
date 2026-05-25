@@ -1,8 +1,11 @@
 "use client";
 import { useT } from "@/lib/i18n/context";
+import { useReveal } from "@/hooks/use-scroll-reveal";
+import React from "react";
 
 export function Pricing() {
   const { t } = useT();
+  const staggerRef = useReveal<HTMLDivElement>();
   return (
     <section className="at-section alt" id="pricing">
       <div className="container">
@@ -14,9 +17,9 @@ export function Pricing() {
           <p>{t.pricing.sub}</p>
         </div>
 
-        <div className="at-plans">
+        <div className="at-plans" ref={staggerRef} data-stagger>
           {t.pricing.plans.map((p, i) => (
-            <div className={`at-plan${p.highlight ? " hl" : ""}`} key={i}>
+            <div className={`at-plan${p.highlight ? " hl" : ""}`} key={i} style={{ "--si": i } as React.CSSProperties}>
               {p.highlight && <span className="stamp">Most popular</span>}
               <span className="tag">/{(i + 1).toString().padStart(2, "0")} · {p.tag}</span>
               <h3 className="name">{p.name}</h3>

@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useT } from "@/lib/i18n/context";
+import { useReveal } from "@/hooks/use-scroll-reveal";
 
 const CRM_M = [
   { id: "dashboard", label: "Today", img: "/landing/crm-m-dashboard.png" },
@@ -45,6 +46,7 @@ export function CrmSection() {
   const views = isDesktop ? CRM_D : CRM_M;
   const [active, setActive] = useState(views[0].id);
   const [paused, setPaused] = useState(false);
+  const reveal = useReveal<HTMLElement>();
 
   useEffect(() => {
     setActive(views[0].id);
@@ -62,8 +64,6 @@ export function CrmSection() {
     return () => clearInterval(tick);
   }, [paused, views]);
 
-  const cur = views.find((v) => v.id === active) || views[0];
-
   function pick(id: string) {
     setActive(id);
     setPaused(true);
@@ -71,7 +71,7 @@ export function CrmSection() {
   }
 
   return (
-    <section className="at-section" id="crm">
+    <section className="at-section" id="crm" ref={reveal} data-reveal>
       <div className="container">
         <div className="at-section-head">
           <div>
@@ -132,12 +132,16 @@ export function CrmSection() {
                   <span className="url">crm.arzac.studio</span>
                 </div>
                 <div className="frame">
-                  <Image
-                    src={cur.img}
-                    alt={`CRM · ${cur.label}`}
-                    fill
-                    style={{ objectFit: "cover", objectPosition: "top" }}
-                  />
+                  {views.map((v) => (
+                    <Image
+                      key={v.id}
+                      src={v.img}
+                      alt={`CRM · ${v.label}`}
+                      fill
+                      className={v.id === active ? "active" : ""}
+                      style={{ objectFit: "cover", objectPosition: "top" }}
+                    />
+                  ))}
                 </div>
               </div>
             ) : (
@@ -150,13 +154,20 @@ export function CrmSection() {
                   </span>
                   <span className="url">crm.arzac.studio</span>
                 </div>
-                <Image
-                  src={cur.img}
-                  alt={`CRM · ${cur.label}`}
-                  width={390}
-                  height={0}
-                  style={{ width: "100%", height: "auto" }}
-                />
+                <div className="crm-imgs">
+                  {views.map((v, i) => (
+                    <Image
+                      key={v.id}
+                      src={v.img}
+                      alt={`CRM · ${v.label}`}
+                      width={390}
+                      height={0}
+                      style={{ width: "100%", height: "auto" }}
+                      className={v.id === active ? "active" : ""}
+                      {...(i === 0 ? {} : {})}
+                    />
+                  ))}
+                </div>
               </div>
             )}
           </div>

@@ -1,14 +1,18 @@
 "use client";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useT } from "@/lib/i18n/context";
 
 export function Hero() {
   const { t } = useT();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
+
   return (
     <section className="at-hero">
       <div className="container">
         <div className="at-hero-inner">
-          <div>
+          <div data-reveal data-in-view={mounted ? "true" : undefined}>
             <div className="eyebrow-row">
               <span className="dot" />
               <span className="txt">{t.hero.eyebrow}</span>
@@ -37,7 +41,7 @@ export function Hero() {
               </a>
             </div>
           </div>
-          <div className="at-hero-teaser">
+          <div className="at-hero-teaser" data-reveal data-in-view={mounted ? "true" : undefined} style={{ transitionDelay: "100ms" }}>
             <div className="at-hero-phone" aria-hidden="true">
               <div className="island" />
               <div className="screen">

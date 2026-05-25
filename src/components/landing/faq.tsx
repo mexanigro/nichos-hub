@@ -1,13 +1,15 @@
 "use client";
 import { useState } from "react";
 import { useT } from "@/lib/i18n/context";
+import { useReveal } from "@/hooks/use-scroll-reveal";
 
 export function Faq() {
   const { t } = useT();
   const [open, setOpen] = useState(0);
+  const reveal = useReveal<HTMLElement>();
 
   return (
-    <section className="at-section" id="faq">
+    <section className="at-section" id="faq" ref={reveal} data-reveal>
       <div className="container">
         <div className="at-section-head">
           <div>
@@ -24,7 +26,11 @@ export function Faq() {
                   <span className="qt">{it.q}</span>
                   <span className="ico">+</span>
                 </div>
-                {isOpen && <div className="at-faq-a">{it.a}</div>}
+                <div className="at-faq-a-wrap">
+                  <div className="at-faq-a">
+                    <div className="at-faq-a-inner">{it.a}</div>
+                  </div>
+                </div>
               </div>
             );
           })}

@@ -35,7 +35,7 @@ function AtelierInner() {
   const dir = RTL_LOCALES.includes(locale) ? "rtl" : "ltr";
 
   return (
-    <div className="at" data-vp={vp} dir={dir}>
+    <div className="at" data-vp={vp} dir={dir} lang={locale}>
       <Header />
       <Hero />
       <Showcase />

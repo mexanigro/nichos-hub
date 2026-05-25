@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useT } from "@/lib/i18n/context";
 import { LogoMark } from "./logo-mark";
 import { LangSwitch } from "./lang-switch";
@@ -8,20 +8,33 @@ export function Header() {
   const { t } = useT();
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
+  const lastY = useRef(0);
+  const accum = useRef(0);
 
   useEffect(() => {
-    let lastY = window.scrollY;
     let ticking = false;
     function onScroll() {
       if (ticking) return;
       ticking = true;
       requestAnimationFrame(() => {
         const y = window.scrollY;
-        const delta = Math.abs(y - lastY);
+        const delta = y - lastY.current;
         setScrolled(y > 14);
-        if (y < 80) setHidden(false);
-        else if (delta > 6) setHidden(y > lastY);
-        lastY = y;
+
+        if (y < 80) {
+          setHidden(false);
+          accum.current = 0;
+        } else if (Math.abs(delta) > 2) {
+          if (delta > 0) {
+            accum.current = Math.max(0, accum.current) + delta;
+            if (accum.current > 40) setHidden(true);
+          } else {
+            accum.current = Math.min(0, accum.current) + delta;
+            if (accum.current < -20) setHidden(false);
+          }
+        }
+
+        lastY.current = y;
         ticking = false;
       });
     }

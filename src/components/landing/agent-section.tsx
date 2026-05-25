@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { useT } from "@/lib/i18n/context";
+import { useReveal } from "@/hooks/use-scroll-reveal";
 
 function AnimatedChat({
   messages,
@@ -148,8 +149,9 @@ const REASON_ICONS = [
 
 export function AgentSection() {
   const { t } = useT();
+  const reveal = useReveal<HTMLElement>();
   return (
-    <section className="at-section alt" id="agent">
+    <section className="at-section alt" id="agent" ref={reveal} data-reveal>
       <div className="container">
         <div className="at-section-head">
           <div>

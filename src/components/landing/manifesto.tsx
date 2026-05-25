@@ -1,10 +1,12 @@
 "use client";
 import { useT } from "@/lib/i18n/context";
+import { useReveal } from "@/hooks/use-scroll-reveal";
 
 export function Manifesto() {
   const { t } = useT();
+  const reveal = useReveal<HTMLElement>();
   return (
-    <section className="at-mani">
+    <section className="at-mani" ref={reveal} data-reveal>
       <div className="container">
         <div className="row">
           <div>
