@@ -1334,6 +1334,7 @@ body:has(.wiz) {
 /* ─── Wizard responsive ─── */
 @media (max-width: 540px) {
   .wiz-step-title { font-size: 26px; }
+  .wiz-cards-grid { grid-template-columns: repeat(2, 1fr); }
   .wiz-cards-row { grid-template-columns: 1fr; }
   .wiz-brand-logos { grid-template-columns: 1fr; }
   .wiz-owner-layout { flex-direction: column; align-items: center; }
