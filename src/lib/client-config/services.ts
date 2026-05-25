@@ -58,6 +58,15 @@ export const NICHE_SERVICES: Record<BusinessNiche, NicheService[]> = {
   ],
 };
 
+export const LANDING_SERVICES_DEFAULTS: Record<BusinessNiche, number> = {
+  barberia: 4,
+  estetica: 2,
+  tattoo: 4,
+  nails: 3,
+  cafeteria: 4,
+  remodelaciones: 4,
+};
+
 export function normalizeBusinessNiche(raw: unknown, fallback: BusinessNiche = "barberia"): BusinessNiche {
   if (typeof raw !== "string") return fallback;
 

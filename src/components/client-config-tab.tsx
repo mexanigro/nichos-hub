@@ -33,6 +33,7 @@ import {
   normalizeBusinessNiche,
   resolveVisibleServiceIds,
   toggleVisibleService,
+  LANDING_SERVICES_DEFAULTS,
   type BusinessNiche,
 } from "@/lib/client-config/services";
 
@@ -57,6 +58,7 @@ type ConfigDoc = {
   businessRules?: { bufferMinutes?: number; maxAdvanceBookingDays?: number; minAdvanceBookingHours?: number; autoConfirm?: boolean };
   visibleServices?: string[] | null;
   serviceOverrides?: Record<string, Record<string, unknown>> | null;
+  landingServicesCount?: number | null;
   notifications?: { enabled?: boolean; bookingAlerts?: boolean; contactInquiries?: boolean };
   payment?: {
     enabled?: boolean;
@@ -914,6 +916,40 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
                   );
                 })}
               </div>
+
+              {/* Landing services count */}
+              {visibleCount > 0 && (
+                <div className="rounded-lg border border-border bg-bg-elevated p-3">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-[11px] font-semibold text-text-secondary">Servicios en la landing</p>
+                      <p className="text-[10px] text-text-muted">
+                        Cuantos servicios se muestran en la pagina principal. La pagina de servicios muestra todos.
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="range"
+                        min={1}
+                        max={visibleCount}
+                        value={config.landingServicesCount ?? LANDING_SERVICES_DEFAULTS[nicheKey]}
+                        onChange={e => {
+                          const val = parseInt(e.target.value, 10);
+                          const defaultVal = LANDING_SERVICES_DEFAULTS[nicheKey];
+                          setConfig(prev => ({
+                            ...prev,
+                            landingServicesCount: val === defaultVal ? null : val,
+                          }));
+                        }}
+                        className="h-1.5 w-24 cursor-pointer accent-accent"
+                      />
+                      <span className="min-w-[2ch] text-center text-sm font-semibold text-accent">
+                        {config.landingServicesCount ?? LANDING_SERVICES_DEFAULTS[nicheKey]}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           );
         })()}
