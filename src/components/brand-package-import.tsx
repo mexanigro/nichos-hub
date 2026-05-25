@@ -16,9 +16,12 @@ import {
   parseBrandPackage,
   cleanupPreviews,
   lightenHex,
+  setNestedValue,
+  ROLE_META,
   type ParsedBrandPackage,
   type MappedImage,
   type ImageRole,
+  type DetectionMethod,
 } from "@/lib/brand-package-parser";
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -32,12 +35,25 @@ interface BrandPackageImportProps {
   onBrandApplied: (config: Record<string, unknown>) => void;
 }
 
-const ROLE_LABELS: Record<ImageRole | "none", string> = {
-  logo: "Logo (fondo claro)",
-  logoDark: "Logo (fondo oscuro)",
-  ogImage: "OG Image",
-  favicon: "Favicon",
-  none: "Sin asignar",
+const ALL_ROLES = Object.keys(ROLE_META) as ImageRole[];
+
+const COLOR_DESCRIPTIONS: Record<string, string> = {
+  accent: "Botones, links, acentos",
+  accentLight: "Hover, highlights, badges",
+  surfaceDark: "Fondos oscuros, header, footer",
+};
+
+const DETECTION_BADGES: Record<DetectionMethod, { icon: string; label: string }> = {
+  filename: { icon: "🏷️", label: "Nombre" },
+  json: { icon: "📄", label: "JSON" },
+  dimensions: { icon: "📐", label: "Dimensiones" },
+  manual: { icon: "✏️", label: "Manual" },
+};
+
+const GROUP_LABELS: Record<string, string> = {
+  branding: "Branding",
+  contenido: "Contenido",
+  galeria: "Galeria y servicios",
 };
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -85,6 +101,7 @@ export function BrandPackageImport({ clientId, onBrandApplied }: BrandPackageImp
   const [parsed, setParsed] = useState<ParsedBrandPackage | null>(null);
   const [editedName, setEditedName] = useState("");
   const [editedColors, setEditedColors] = useState({ accent: "", accentLight: "", surfaceDark: "" });
+  const [editedTypography, setEditedTypography] = useState<{ display: string; body: string }>({ display: "", body: "" });
   const [uploadProgress, setUploadProgress] = useState<{ done: number; total: number }>({ done: 0, total: 0 });
   const [error, setError] = useState("");
 
@@ -106,6 +123,10 @@ export function BrandPackageImport({ clientId, onBrandApplied }: BrandPackageImp
       setParsed(result);
       setEditedName(result.brandName);
       setEditedColors({ ...result.colors });
+      setEditedTypography({
+        display: result.typography?.display || "",
+        body: result.typography?.body || "",
+      });
       setStage("preview");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Error al parsear el brand package");
@@ -153,14 +174,14 @@ export function BrandPackageImport({ clientId, onBrandApplied }: BrandPackageImp
     setParsed((prev) => {
       if (!prev) return prev;
       const images = [...prev.images];
-      // If another image already has this role, unset it
-      if (newRole) {
+      // For single-image roles: if another image already has this role, unset it
+      if (newRole && !ROLE_META[newRole].isArray) {
         const existing = images.findIndex((img, i) => i !== index && img.role === newRole);
         if (existing >= 0) {
-          images[existing] = { ...images[existing], role: null };
+          images[existing] = { ...images[existing], role: null, detectedBy: undefined };
         }
       }
-      images[index] = { ...images[index], role: newRole };
+      images[index] = { ...images[index], role: newRole, detectedBy: newRole ? "manual" : undefined };
       return { ...prev, images };
     });
   }, [parsed]);
@@ -185,14 +206,13 @@ export function BrandPackageImport({ clientId, onBrandApplied }: BrandPackageImp
     const toUpload = parsed.images.filter((img) => img.role !== null);
     setUploadProgress({ done: 0, total: toUpload.length });
 
-    const uploadedUrls: Partial<Record<ImageRole, string>> = {};
+    // Track uploaded URLs — array roles can have multiple entries
+    const uploadedByRole: Record<string, string[]> = {};
 
     for (let i = 0; i < toUpload.length; i++) {
       const img = toUpload[i];
       try {
         const form = new FormData();
-        // Re-create the File with a proper MIME type if it's empty (common on
-        // Windows when files come from webkitGetAsEntry).
         let fileToUpload = img.file;
         if (!fileToUpload.type) {
           const ext = img.filename.slice(img.filename.lastIndexOf(".")).toLowerCase();
@@ -217,12 +237,10 @@ export function BrandPackageImport({ clientId, onBrandApplied }: BrandPackageImp
           return;
         }
 
-        // Parse response body — server may return HTML on proxy errors (413, 502, etc.)
         let data: { urls?: string[]; errors?: string[]; error?: string } = {};
         try {
           data = await res.json();
         } catch {
-          // Non-JSON body (e.g. nginx 413, Railway error page)
           setError(`Error subiendo ${img.filename}: HTTP ${res.status} — el servidor devolvio una respuesta inesperada`);
           setStage("preview");
           return;
@@ -235,7 +253,8 @@ export function BrandPackageImport({ clientId, onBrandApplied }: BrandPackageImp
         }
 
         if (data.urls?.[0] && img.role) {
-          uploadedUrls[img.role] = data.urls[0];
+          if (!uploadedByRole[img.role]) uploadedByRole[img.role] = [];
+          uploadedByRole[img.role].push(data.urls[0]);
         }
       } catch (unexpectedErr) {
         const msg = unexpectedErr instanceof Error ? unexpectedErr.message : String(unexpectedErr);
@@ -247,15 +266,9 @@ export function BrandPackageImport({ clientId, onBrandApplied }: BrandPackageImp
       setUploadProgress({ done: i + 1, total: toUpload.length });
     }
 
-    // Build config partial
-    const brandPatch: Record<string, unknown> = { name: editedName };
-    if (uploadedUrls.logo) brandPatch.logo = uploadedUrls.logo;
-    if (uploadedUrls.logoDark) brandPatch.logoDark = uploadedUrls.logoDark;
-    if (uploadedUrls.ogImage) brandPatch.ogImage = uploadedUrls.ogImage;
-    if (uploadedUrls.favicon) brandPatch.favicon = uploadedUrls.favicon;
-
+    // Build config patch using ROLE_META paths
     const configPatch: Record<string, unknown> = {
-      brand: brandPatch,
+      brand: { name: editedName },
       theme: {
         accent: editedColors.accent,
         accentLight: editedColors.accentLight,
@@ -263,9 +276,35 @@ export function BrandPackageImport({ clientId, onBrandApplied }: BrandPackageImp
       },
     };
 
+    // Typography
+    if (editedTypography.display || editedTypography.body) {
+      configPatch.typography = {
+        ...(editedTypography.display && { display: editedTypography.display }),
+        ...(editedTypography.body && { body: editedTypography.body }),
+      };
+    }
+
+    // Map uploaded images to config paths
+    for (const [role, urls] of Object.entries(uploadedByRole)) {
+      const meta = ROLE_META[role as ImageRole];
+      if (!meta) continue;
+
+      if (meta.isArray) {
+        // Array roles: build array value
+        if (role === "galleryImage") {
+          setNestedValue(configPatch, meta.configPath, urls.map((u) => ({ src: u, alt: "" })));
+        } else {
+          setNestedValue(configPatch, meta.configPath, urls);
+        }
+      } else {
+        // Single-image roles: use first URL
+        setNestedValue(configPatch, meta.configPath, urls[0]);
+      }
+    }
+
     onBrandApplied(configPatch);
     setStage("done");
-  }, [parsed, clientId, editedName, editedColors, onBrandApplied]);
+  }, [parsed, clientId, editedName, editedColors, editedTypography, onBrandApplied]);
 
   /* ── Reset ──────────────────────────────────────────────────────────── */
 
@@ -276,6 +315,7 @@ export function BrandPackageImport({ clientId, onBrandApplied }: BrandPackageImp
     setError("");
     setEditedName("");
     setEditedColors({ accent: "", accentLight: "", surfaceDark: "" });
+    setEditedTypography({ display: "", body: "" });
     setUploadProgress({ done: 0, total: 0 });
     setColorTarget(null);
   }, [parsed]);
@@ -359,6 +399,16 @@ export function BrandPackageImport({ clientId, onBrandApplied }: BrandPackageImp
             />
           </div>
 
+          {/* Warning: colors from image */}
+          {parsed.colorsFromImage && (
+            <div className="flex items-start gap-2 rounded-lg border border-amber-500/30 bg-amber-500/5 px-3 py-2">
+              <span className="mt-0.5 text-amber-400">⚠</span>
+              <p className="text-[11px] text-amber-300/90">
+                No se encontro JSON/CSS de colores — extraidos de imagenes. Revisar asignacion.
+              </p>
+            </div>
+          )}
+
           {/* Colors */}
           <div>
             <label className="mb-2 block text-[11px] font-semibold text-text-secondary">
@@ -386,6 +436,7 @@ export function BrandPackageImport({ clientId, onBrandApplied }: BrandPackageImp
                       value={editedColors[key]}
                       onChange={(e) => setEditedColors((prev) => ({ ...prev, [key]: e.target.value }))}
                     />
+                    <p className="text-[9px] text-text-muted/60">{COLOR_DESCRIPTIONS[key]}</p>
                   </div>
                 </div>
               ))}
@@ -397,7 +448,7 @@ export function BrandPackageImport({ clientId, onBrandApplied }: BrandPackageImp
                 <p className="mb-1.5 text-[10px] text-text-muted">
                   {colorTarget
                     ? `Click un color para asignarlo a "${colorTarget === "accent" ? "Accent" : colorTarget === "accentLight" ? "Accent Light" : "Surface Dark"}"`
-                    : "Paleta completa del JSON — click un slot arriba para reasignar"
+                    : "Paleta detectada — click un slot arriba para reasignar"
                   }
                 </p>
                 <div className="flex flex-wrap gap-1.5">
@@ -425,64 +476,143 @@ export function BrandPackageImport({ clientId, onBrandApplied }: BrandPackageImp
             )}
           </div>
 
-          {/* Typography (informational) */}
-          {parsed.typography && (
-            <div className="rounded-lg bg-bg-elevated px-3 py-2">
-              <p className="text-[10px] text-text-muted">
-                <Type size={9} className="mr-1 inline" />
-                Tipografia: <span className="font-medium text-text-secondary">{parsed.typography.display || "—"}</span> (display) / <span className="font-medium text-text-secondary">{parsed.typography.body || "—"}</span> (body)
-              </p>
+          {/* Typography (editable) */}
+          <div>
+            <label className="mb-2 block text-[11px] font-semibold text-text-secondary">
+              <Type size={10} className="mr-1 inline" />
+              Tipografia
+            </label>
+            <div className="grid gap-2 sm:grid-cols-2">
+              <div className="rounded-lg border border-border bg-bg-elevated px-3 py-2">
+                <p className="mb-1 text-[10px] font-medium text-text-muted">Display / Titulos</p>
+                <input
+                  className="w-full bg-transparent text-[11px] text-text outline-none placeholder:text-text-muted/40"
+                  value={editedTypography.display}
+                  onChange={(e) => setEditedTypography((prev) => ({ ...prev, display: e.target.value }))}
+                  placeholder="Ej: Playfair Display"
+                />
+              </div>
+              <div className="rounded-lg border border-border bg-bg-elevated px-3 py-2">
+                <p className="mb-1 text-[10px] font-medium text-text-muted">Body / Texto</p>
+                <input
+                  className="w-full bg-transparent text-[11px] text-text outline-none placeholder:text-text-muted/40"
+                  value={editedTypography.body}
+                  onChange={(e) => setEditedTypography((prev) => ({ ...prev, body: e.target.value }))}
+                  placeholder="Ej: Inter"
+                />
+              </div>
             </div>
-          )}
+          </div>
 
-          {/* Images */}
+          {/* Images — grouped by role category */}
           <div>
             <label className="mb-2 block text-[11px] font-semibold text-text-secondary">
               <ImageIcon size={10} className="mr-1 inline" />
-              Imagenes detectadas
+              Imagenes ({parsed.images.filter((i) => i.role).length}/{parsed.images.length} asignadas)
             </label>
-            <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4">
-              {parsed.images.map((img, i) => {
-                const isSkipped = img.role === null && /board|guidelines|suite|reference|original/i.test(img.filename);
-                return (
-                  <div
-                    key={i}
-                    className={`group rounded-lg border transition-all ${
-                      isSkipped
-                        ? "border-border/30 opacity-40"
-                        : img.role
-                          ? "border-accent/30 bg-accent/5"
-                          : "border-border bg-bg-elevated"
-                    }`}
-                  >
-                    <div className="relative aspect-square overflow-hidden rounded-t-lg bg-[repeating-conic-gradient(#27272a_0%_25%,#18181b_0%_50%)_0_0/16px_16px]">
-                      <img
-                        src={img.previewUrl}
-                        alt={img.filename}
-                        className="h-full w-full object-contain"
-                      />
-                    </div>
-                    <div className="px-2 py-1.5">
-                      <p className="truncate text-[9px] text-text-muted" title={img.filename}>
-                        {img.filename}
-                      </p>
-                      <select
-                        value={img.role || "none"}
-                        onChange={(e) => {
-                          const val = e.target.value;
-                          updateImageRole(i, val === "none" ? null : val as ImageRole);
-                        }}
-                        className="mt-1 w-full rounded border border-border bg-bg-input px-1.5 py-1 text-[10px] text-text outline-none focus:border-accent"
-                      >
-                        {Object.entries(ROLE_LABELS).map(([value, label]) => (
-                          <option key={value} value={value}>{label}</option>
-                        ))}
-                      </select>
-                    </div>
+
+            {(["branding", "contenido", "galeria"] as const).map((group) => {
+              const groupImages = parsed.images
+                .map((img, i) => ({ img, originalIndex: i }))
+                .filter(({ img }) => img.role && ROLE_META[img.role]?.group === group);
+
+              // Also include unassigned images in the last group
+              const unassigned = group === "galeria"
+                ? parsed.images
+                    .map((img, i) => ({ img, originalIndex: i }))
+                    .filter(({ img }) => !img.role && !/board|guidelines|suite|reference|original/i.test(img.filename))
+                : [];
+
+              const items = [...groupImages, ...unassigned];
+              if (items.length === 0) return null;
+
+              return (
+                <div key={group} className="mt-3">
+                  <p className="mb-1.5 text-[10px] font-semibold uppercase tracking-wider text-text-muted/70">
+                    {GROUP_LABELS[group]}
+                  </p>
+                  <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4">
+                    {items.map(({ img, originalIndex }) => {
+                      const isSkipped = img.role === null && /board|guidelines|suite|reference|original/i.test(img.filename);
+                      return (
+                        <div
+                          key={originalIndex}
+                          className={`group/card rounded-lg border transition-all ${
+                            isSkipped
+                              ? "border-border/30 opacity-40"
+                              : img.role
+                                ? "border-accent/30 bg-accent/5"
+                                : "border-border bg-bg-elevated"
+                          }`}
+                        >
+                          <div className="relative aspect-square overflow-hidden rounded-t-lg bg-[repeating-conic-gradient(#27272a_0%_25%,#18181b_0%_50%)_0_0/16px_16px]">
+                            <img
+                              src={img.previewUrl}
+                              alt={img.filename}
+                              className="h-full w-full object-contain"
+                            />
+                            {/* Detection badge */}
+                            {img.detectedBy && img.detectedBy !== "manual" && (
+                              <span className="absolute right-1 top-1 rounded bg-black/60 px-1.5 py-0.5 text-[8px] text-white/80" title={`Detectado por: ${DETECTION_BADGES[img.detectedBy].label}`}>
+                                {DETECTION_BADGES[img.detectedBy].icon} {DETECTION_BADGES[img.detectedBy].label}
+                              </span>
+                            )}
+                            {/* Dimensions */}
+                            {img.width && img.height && (
+                              <span className="absolute bottom-1 left-1 rounded bg-black/60 px-1 py-0.5 text-[8px] text-white/60">
+                                {img.width}×{img.height}
+                              </span>
+                            )}
+                          </div>
+                          <div className="px-2 py-1.5">
+                            <p className="truncate text-[9px] text-text-muted" title={img.filename}>
+                              {img.filename}
+                            </p>
+                            <select
+                              value={img.role || "none"}
+                              onChange={(e) => {
+                                const val = e.target.value;
+                                updateImageRole(originalIndex, val === "none" ? null : val as ImageRole);
+                              }}
+                              className="mt-1 w-full rounded border border-border bg-bg-input px-1.5 py-1 text-[10px] text-text outline-none focus:border-accent"
+                            >
+                              <option value="none">Sin asignar</option>
+                              <optgroup label="Branding">
+                                {ALL_ROLES.filter((r) => ROLE_META[r].group === "branding").map((r) => (
+                                  <option key={r} value={r}>{ROLE_META[r].label}</option>
+                                ))}
+                              </optgroup>
+                              <optgroup label="Contenido">
+                                {ALL_ROLES.filter((r) => ROLE_META[r].group === "contenido").map((r) => (
+                                  <option key={r} value={r}>{ROLE_META[r].label}</option>
+                                ))}
+                              </optgroup>
+                              <optgroup label="Galeria">
+                                {ALL_ROLES.filter((r) => ROLE_META[r].group === "galeria").map((r) => (
+                                  <option key={r} value={r}>{ROLE_META[r].label}</option>
+                                ))}
+                              </optgroup>
+                            </select>
+                            {img.role && (
+                              <p className="mt-0.5 text-[8px] text-text-muted/60">
+                                {ROLE_META[img.role].description}
+                              </p>
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })}
                   </div>
-                );
-              })}
-            </div>
+                </div>
+              );
+            })}
+
+            {/* Skipped images */}
+            {parsed.images.some((img) => /board|guidelines|suite|reference|original/i.test(img.filename)) && (
+              <p className="mt-2 text-[9px] text-text-muted/50">
+                Omitidas: {parsed.images.filter((img) => /board|guidelines|suite|reference|original/i.test(img.filename)).length} imagenes de referencia/guidelines
+              </p>
+            )}
           </div>
 
           {/* Mini preview */}

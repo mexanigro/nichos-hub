@@ -323,12 +323,34 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
           onBrandApplied={(brandConfig) => {
             setConfig((prev) => {
               const next = { ...prev };
-              const bc = brandConfig as Record<string, Record<string, unknown>>;
+              const bc = brandConfig as Record<string, unknown>;
               if (bc.brand) {
-                next.brand = { ...next.brand, ...bc.brand } as ConfigDoc["brand"];
+                next.brand = { ...next.brand, ...(bc.brand as Record<string, unknown>) } as ConfigDoc["brand"];
               }
               if (bc.theme) {
-                next.theme = { ...next.theme, ...bc.theme } as ConfigDoc["theme"];
+                next.theme = { ...next.theme, ...(bc.theme as Record<string, unknown>) } as ConfigDoc["theme"];
+              }
+              if (bc.typography) {
+                (next as Record<string, unknown>).typography = bc.typography;
+              }
+              if (bc.hero) {
+                next.hero = { ...next.hero, ...(bc.hero as Record<string, unknown>) } as ConfigDoc["hero"];
+              }
+              if (bc.gallery) {
+                (next as Record<string, unknown>).gallery = bc.gallery;
+              }
+              if (bc.sections) {
+                const sections = bc.sections as Record<string, unknown>;
+                if (!next.sections) (next as Record<string, unknown>).sections = {};
+                const ns = next.sections as Record<string, unknown>;
+                // Merge each section key
+                for (const [key, val] of Object.entries(sections)) {
+                  if (val && typeof val === "object") {
+                    ns[key] = { ...(ns[key] as Record<string, unknown> || {}), ...(val as Record<string, unknown>) };
+                  } else {
+                    ns[key] = val;
+                  }
+                }
               }
               return next;
             });

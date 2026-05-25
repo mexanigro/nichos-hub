@@ -14,13 +14,43 @@
  * Types
  * ═══════════════════════════════════════════════════════════════════════════ */
 
-export type ImageRole = "logo" | "logoDark" | "ogImage" | "favicon";
+export type ImageRole =
+  | "logo" | "logoDark" | "ogImage" | "favicon"
+  | "heroBackground" | "whyChooseUsImage"
+  | "serviceImage" | "galleryImage" | "instagramImage";
+
+/** How a role was detected — used for UI badges */
+export type DetectionMethod = "filename" | "json" | "dimensions" | "manual";
+
+export interface RoleMeta {
+  label: string;
+  description: string;
+  configPath: string;
+  isArray: boolean;
+  group: "branding" | "contenido" | "galeria";
+}
+
+export const ROLE_META: Record<ImageRole, RoleMeta> = {
+  logo:             { label: "Logo (fondo claro)", description: "Header, footer", configPath: "brand.logo", isArray: false, group: "branding" },
+  logoDark:         { label: "Logo (fondo oscuro)", description: "Header oscuro, splash", configPath: "brand.logoDark", isArray: false, group: "branding" },
+  ogImage:          { label: "OG Image", description: "Previews en redes sociales", configPath: "brand.ogImage", isArray: false, group: "branding" },
+  favicon:          { label: "Favicon", description: "Icono del tab del navegador", configPath: "brand.favicon", isArray: false, group: "branding" },
+  heroBackground:   { label: "Hero (fondo)", description: "Imagen principal de la landing", configPath: "hero.backgroundImage", isArray: false, group: "contenido" },
+  whyChooseUsImage: { label: "Por que elegirnos", description: "Seccion why-choose-us", configPath: "sections.whyChooseUs.mainImage", isArray: false, group: "contenido" },
+  serviceImage:     { label: "Servicio", description: "Cards de servicios", configPath: "sections.services.images", isArray: true, group: "galeria" },
+  galleryImage:     { label: "Galeria", description: "Seccion galeria", configPath: "gallery", isArray: true, group: "galeria" },
+  instagramImage:   { label: "Instagram", description: "Feed de Instagram", configPath: "sections.instagram.images", isArray: true, group: "galeria" },
+};
 
 export interface MappedImage {
   file: File;
   role: ImageRole | null;
-  previewUrl: string; // Object URL for preview
+  previewUrl: string;
   filename: string;
+  detectedBy?: DetectionMethod;
+  /** Natural dimensions — populated async after initial parse */
+  width?: number;
+  height?: number;
 }
 
 export interface ParsedBrandPackage {
@@ -30,14 +60,16 @@ export interface ParsedBrandPackage {
     accentLight: string;
     surfaceDark: string;
   };
-  /** Every color found in the JSON, keyed by its original name */
+  /** Every color found in the JSON/CSS, keyed by its original name */
   allColors: Record<string, string>;
   /** Images with detected roles */
   images: MappedImage[];
-  /** Typography info (informational) */
+  /** Typography info — persisted to Firestore */
   typography?: { display?: string; body?: string };
   /** Raw parsed JSON for reference */
   rawJson: Record<string, unknown>;
+  /** True when colors came from canvas extraction (no JSON/CSS) */
+  colorsFromImage?: boolean;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -126,17 +158,78 @@ async function findAndParseJson(files: File[]): Promise<Record<string, unknown> 
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
+ * CSS variable parsing
+ * ═══════════════════════════════════════════════════════════════════════════ */
+
+interface CssParsed {
+  colors: Record<string, string>;
+  fonts: { display?: string; body?: string };
+}
+
+async function findAndParseCss(files: File[]): Promise<CssParsed> {
+  const cssFiles = files.filter((f) => f.name.endsWith(".css"));
+  const branded = cssFiles.find((f) => /brand[-_]?(tokens?|data)/i.test(f.name) || /tokens/i.test(f.name));
+  const target = branded ?? cssFiles[0];
+
+  if (!target) return { colors: {}, fonts: {} };
+
+  const text = await target.text();
+  const colors: Record<string, string> = {};
+  const fonts: { display?: string; body?: string } = {};
+
+  // Extract CSS custom properties with hex color values
+  const colorRegex = /--([\w-]+)\s*:\s*(#[0-9a-fA-F]{3,6})\b/g;
+  let match: RegExpExecArray | null;
+  while ((match = colorRegex.exec(text)) !== null) {
+    const name = match[1].replace(/^color-/, "");
+    const hex = normalizeHex(match[2]);
+    if (isValidHex(hex)) colors[name] = hex;
+  }
+
+  // Extract font family values
+  const fontRegex = /--([\w-]*(?:font|typeface|family)[\w-]*)\s*:\s*['"]?([^;'"]+)['"]?\s*;/gi;
+  while ((match = fontRegex.exec(text)) !== null) {
+    const key = match[1].toLowerCase();
+    const val = match[2].trim().replace(/['",]/g, "").trim();
+    if (/display|heading|serif|title/i.test(key)) fonts.display = val;
+    else if (/body|text|sans|ui/i.test(key)) fonts.body = val;
+    else if (!fonts.display) fonts.display = val; // first unmatched → display
+  }
+
+  return { colors, fonts };
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
  * Brand name extraction
  * ═══════════════════════════════════════════════════════════════════════════ */
 
-function extractBrandName(json: Record<string, unknown>): string {
-  // Try common keys
-  for (const key of ["brandName", "brand", "name", "businessName"]) {
-    if (typeof json[key] === "string" && json[key]) return json[key] as string;
+function extractBrandName(json: Record<string, unknown> | null, files?: File[]): string {
+  if (json) {
+    // Try common keys
+    for (const key of ["brandName", "brand", "name", "businessName"]) {
+      if (typeof json[key] === "string" && json[key]) return json[key] as string;
+    }
+    // Try nested
+    const og = json.og as Record<string, unknown> | undefined;
+    if (og && typeof og.title === "string") return og.title;
   }
-  // Try nested
-  const og = json.og as Record<string, unknown> | undefined;
-  if (og && typeof og.title === "string") return og.title;
+
+  // Fallback: extract from folder name via webkitRelativePath
+  if (files && files.length > 0) {
+    const firstPath = files[0].webkitRelativePath;
+    if (firstPath) {
+      const folderName = firstPath.split("/")[0];
+      if (folderName) {
+        return folderName
+          .replace(/[-_]?brand[-_]?package/gi, "")
+          .replace(/[-_]?v\d+$/i, "")
+          .replace(/[_-]/g, " ")
+          .trim()
+          .replace(/\b\w/g, (c) => c.toUpperCase()) || "Sin nombre";
+      }
+    }
+  }
+
   return "Sin nombre";
 }
 
@@ -261,12 +354,31 @@ function mapColors(allColors: Record<string, string>): {
  * Typography extraction
  * ═══════════════════════════════════════════════════════════════════════════ */
 
-function extractTypography(json: Record<string, unknown>): { display?: string; body?: string } | undefined {
-  const typo = json.typography as Record<string, string> | undefined;
-  if (!typo) return undefined;
+function extractTypography(
+  json: Record<string, unknown> | null,
+  cssFonts?: { display?: string; body?: string },
+): { display?: string; body?: string } | undefined {
+  let display: string | undefined;
+  let body: string | undefined;
 
-  const display = typo.display || typo.displayHeadings || typo.latin_headings || typo.headings;
-  const body = typo.body || typo.bodyUi || typo.body_ui;
+  if (json) {
+    // Try nested under various container keys
+    for (const containerKey of ["typography", "fonts", "fontFamily", "typeface"]) {
+      const container = json[containerKey] as Record<string, string> | undefined;
+      if (!container || typeof container !== "object") continue;
+
+      display = display || container.display || container.displayHeadings || container.latin_headings
+        || container.headings || container.heading || container.title || container.serif;
+      body = body || container.body || container.bodyUi || container.body_ui
+        || container.text || container.sans || container.ui;
+    }
+  }
+
+  // CSS fallback
+  if (cssFonts) {
+    display = display || cssFonts.display;
+    body = body || cssFonts.body;
+  }
 
   if (!display && !body) return undefined;
   return { display, body };
@@ -279,9 +391,9 @@ function extractTypography(json: Record<string, unknown>): { display?: string; b
 const ROLE_PATTERNS: Record<ImageRole, RegExp[]> = {
   logo: [
     /logo[-_]?prim/i,
-    /logo[-_]?principal(?![-_]light)/i, // "principal" pero no "principal-light" (eso es logoDark)
+    /logo[-_]?principal(?![-_]light)/i,
     /primary[-_]?logo/i,
-    /logo[-_]?primary[-_]?light/i, // "primary-light" = logo for light backgrounds = logo (dark text on light bg)
+    /logo[-_]?primary[-_]?light/i,
     /logo[-_]?principal[-_]?light/i,
   ],
   logoDark: [
@@ -298,6 +410,37 @@ const ROLE_PATTERNS: Record<ImageRole, RegExp[]> = {
   favicon: [
     /favicon/i,
   ],
+  heroBackground: [
+    /hero/i,
+    /banner/i,
+    /header[-_]?bg/i,
+    /portada/i,
+    /cover[-_]?photo/i,
+  ],
+  whyChooseUsImage: [
+    /why[-_]?choose/i,
+    /about[-_]?us/i,
+    /nosotros/i,
+    /por[-_]?que/i,
+  ],
+  serviceImage: [
+    /servic/i,
+    /treatment/i,
+    /tratamiento/i,
+    /work[-_]?\d/i,
+  ],
+  galleryImage: [
+    /galler/i,
+    /portfolio/i,
+    /show[-_]?case/i,
+    /result/i,
+    /antes[-_]?despues/i,
+  ],
+  instagramImage: [
+    /instagram/i,
+    /insta[-_]?feed/i,
+    /social[-_]?media/i,
+  ],
 };
 
 /** Filenames to skip entirely (reference boards, not uploadable assets) */
@@ -313,15 +456,249 @@ function isImageFile(file: File): boolean {
   return file.type.startsWith("image/") || /\.(png|jpe?g|webp|svg|gif|avif|ico)$/i.test(file.name);
 }
 
-function detectImageRole(filename: string): ImageRole | null {
+function detectImageRole(filename: string): { role: ImageRole; method: DetectionMethod } | null {
   // Check skip patterns first
   if (SKIP_PATTERNS.some((p) => p.test(filename))) return null;
 
   for (const [role, patterns] of Object.entries(ROLE_PATTERNS)) {
-    if (patterns.some((p) => p.test(filename))) return role as ImageRole;
+    if (patterns.some((p) => p.test(filename))) {
+      return { role: role as ImageRole, method: "filename" };
+    }
   }
 
   return null;
+}
+
+/* ── Dimension-based role inference ─────────────────────────────────── */
+
+function loadImageDimensions(url: string): Promise<{ width: number; height: number }> {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve({ width: img.naturalWidth, height: img.naturalHeight });
+    img.onerror = reject;
+    img.src = url;
+  });
+}
+
+async function inferRoleByDimensions(images: MappedImage[]): Promise<void> {
+  // Load dimensions for all images in parallel
+  await Promise.all(
+    images.map(async (img) => {
+      try {
+        const dims = await loadImageDimensions(img.previewUrl);
+        img.width = dims.width;
+        img.height = dims.height;
+      } catch {
+        // skip images that fail to load
+      }
+    }),
+  );
+
+  // Track which single roles are already assigned
+  const assignedSingle = new Set<ImageRole>(
+    images.filter((i) => i.role && !ROLE_META[i.role].isArray).map((i) => i.role!),
+  );
+
+  for (const img of images) {
+    if (img.role !== null || !img.width || !img.height) continue;
+
+    const { width, height } = img;
+    const ratio = width / height;
+
+    // Favicon: tiny square
+    if (width <= 64 && height <= 64) {
+      if (!assignedSingle.has("favicon")) {
+        img.role = "favicon";
+        img.detectedBy = "dimensions";
+        assignedSingle.add("favicon");
+        continue;
+      }
+    }
+
+    // OG Image: ~1.91:1 aspect ratio, wide
+    if (ratio > 1.7 && ratio < 2.1 && width >= 1000 && width <= 1400) {
+      if (!assignedSingle.has("ogImage")) {
+        img.role = "ogImage";
+        img.detectedBy = "dimensions";
+        assignedSingle.add("ogImage");
+        continue;
+      }
+    }
+
+    // Logo: very wide, short height
+    if (width >= 3 * height && height < 200) {
+      if (!assignedSingle.has("logo")) {
+        img.role = "logo";
+        img.detectedBy = "dimensions";
+        assignedSingle.add("logo");
+      } else if (!assignedSingle.has("logoDark")) {
+        img.role = "logoDark";
+        img.detectedBy = "dimensions";
+        assignedSingle.add("logoDark");
+      }
+      continue;
+    }
+
+    // Hero: large landscape
+    if (width >= 1200 && ratio > 1.4) {
+      if (!assignedSingle.has("heroBackground")) {
+        img.role = "heroBackground";
+        img.detectedBy = "dimensions";
+        assignedSingle.add("heroBackground");
+        continue;
+      }
+    }
+  }
+
+  // Second pass: assign remaining unassigned medium images to gallery/service
+  for (const img of images) {
+    if (img.role !== null || !img.width || !img.height) continue;
+
+    const { width, height } = img;
+    const ratio = width / height;
+
+    // Square-ish, medium size → gallery
+    if (ratio >= 0.7 && ratio <= 1.4 && width >= 400 && width <= 1200) {
+      img.role = "galleryImage";
+      img.detectedBy = "dimensions";
+      continue;
+    }
+
+    // Remaining medium+ images → service
+    if (width >= 300 && height >= 200) {
+      img.role = "serviceImage";
+      img.detectedBy = "dimensions";
+    }
+  }
+}
+
+/* ── Canvas-based color extraction (fallback for image-only packages) ── */
+
+async function extractColorsFromImages(images: MappedImage[]): Promise<Record<string, string>> {
+  // Find the largest non-logo image
+  const candidates = images
+    .filter((img) => img.width && img.height && img.role !== "logo" && img.role !== "logoDark" && img.role !== "favicon")
+    .sort((a, b) => (b.width! * b.height!) - (a.width! * a.height!));
+
+  if (candidates.length === 0) return {};
+
+  // Sample up to 3 images
+  const toSample = candidates.slice(0, 3);
+  const allPixelColors: { h: number; s: number; l: number; count: number }[] = [];
+
+  for (const img of toSample) {
+    try {
+      const colors = await sampleImageColors(img.previewUrl);
+      allPixelColors.push(...colors);
+    } catch {
+      // skip
+    }
+  }
+
+  if (allPixelColors.length === 0) return {};
+
+  // Merge similar colors (HSL distance < 20)
+  const merged = mergeCloseColors(allPixelColors);
+
+  // Sort by count descending, take top 5
+  merged.sort((a, b) => b.count - a.count);
+  const top = merged.slice(0, 5);
+
+  const result: Record<string, string> = {};
+  top.forEach((c, i) => {
+    result[`imagen_${i + 1}`] = hslToHex(c.h, c.s, c.l);
+  });
+
+  return result;
+}
+
+function sampleImageColors(url: string): Promise<{ h: number; s: number; l: number; count: number }[]> {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.onload = () => {
+      try {
+        const canvas = document.createElement("canvas");
+        const size = 50;
+        canvas.width = size;
+        canvas.height = size;
+        const ctx = canvas.getContext("2d")!;
+        ctx.drawImage(img, 0, 0, size, size);
+        const data = ctx.getImageData(0, 0, size, size).data;
+
+        const buckets: Map<string, { h: number; s: number; l: number; count: number }> = new Map();
+
+        for (let i = 0; i < data.length; i += 4) {
+          const r = data[i] / 255;
+          const g = data[i + 1] / 255;
+          const b = data[i + 2] / 255;
+          const a = data[i + 3] / 255;
+          if (a < 0.5) continue; // skip transparent
+
+          const max = Math.max(r, g, b);
+          const min = Math.min(r, g, b);
+          const l = ((max + min) / 2) * 100;
+          if (l < 5 || l > 95) continue; // skip near-black and near-white
+
+          const d = max - min;
+          const s = d === 0 ? 0 : (l > 50 ? d / (2 - max - min) : d / (max + min)) * 100;
+          if (s < 10) continue; // skip grays
+
+          let h = 0;
+          if (d !== 0) {
+            if (max === r) h = ((g - b) / d + (g < b ? 6 : 0)) / 6;
+            else if (max === g) h = ((b - r) / d + 2) / 6;
+            else h = ((r - g) / d + 4) / 6;
+          }
+          h = h * 360;
+
+          // Bucket to 10-degree hue steps
+          const bucketKey = `${Math.round(h / 10) * 10}_${Math.round(s / 10) * 10}_${Math.round(l / 10) * 10}`;
+          const existing = buckets.get(bucketKey);
+          if (existing) {
+            existing.count++;
+          } else {
+            buckets.set(bucketKey, { h, s, l, count: 1 });
+          }
+        }
+
+        resolve(Array.from(buckets.values()));
+      } catch (err) {
+        reject(err);
+      }
+    };
+    img.onerror = reject;
+    img.src = url;
+  });
+}
+
+function mergeCloseColors(
+  colors: { h: number; s: number; l: number; count: number }[],
+): { h: number; s: number; l: number; count: number }[] {
+  const merged: { h: number; s: number; l: number; count: number }[] = [];
+
+  for (const c of colors) {
+    let found = false;
+    for (const m of merged) {
+      const dh = Math.abs(m.h - c.h);
+      const hDist = Math.min(dh, 360 - dh);
+      const ds = Math.abs(m.s - c.s);
+      const dl = Math.abs(m.l - c.l);
+      if (hDist < 20 && ds < 15 && dl < 15) {
+        // Weighted merge
+        const total = m.count + c.count;
+        m.h = (m.h * m.count + c.h * c.count) / total;
+        m.s = (m.s * m.count + c.s * c.count) / total;
+        m.l = (m.l * m.count + c.l * c.count) / total;
+        m.count = total;
+        found = true;
+        break;
+      }
+    }
+    if (!found) merged.push({ ...c });
+  }
+
+  return merged;
 }
 
 /**
@@ -375,6 +752,7 @@ function enhanceRolesFromJson(
     );
     if (matchingImage) {
       matchingImage.role = role;
+      matchingImage.detectedBy = "json";
     }
   }
 }
@@ -384,17 +762,25 @@ function enhanceRolesFromJson(
  * ═══════════════════════════════════════════════════════════════════════════ */
 
 export async function parseBrandPackage(files: File[]): Promise<ParsedBrandPackage> {
-  const json = await findAndParseJson(files);
+  // --- Parse JSON & CSS in parallel ---
+  const [json, cssParsed] = await Promise.all([
+    findAndParseJson(files),
+    findAndParseCss(files),
+  ]);
 
   // --- Brand name ---
-  const brandName = json ? extractBrandName(json) : "Sin nombre";
+  const brandName = extractBrandName(json, files);
 
-  // --- Colors ---
-  const allColors = json ? extractAllColors(json) : {};
-  const colors = mapColors(allColors);
+  // --- Colors (JSON > CSS > canvas fallback) ---
+  let allColors = json ? extractAllColors(json) : {};
+  // Merge CSS colors (JSON takes priority for duplicate keys)
+  if (Object.keys(cssParsed.colors).length > 0) {
+    allColors = { ...cssParsed.colors, ...allColors };
+  }
+  let colorsFromImage = false;
 
-  // --- Typography ---
-  const typography = json ? extractTypography(json) : undefined;
+  // --- Typography (JSON > CSS) ---
+  const typography = extractTypography(json, cssParsed.fonts);
 
   // --- Images ---
   const imageFiles = files.filter(isImageFile);
@@ -403,9 +789,11 @@ export async function parseBrandPackage(files: File[]): Promise<ParsedBrandPacka
       ? file.webkitRelativePath.split("/").pop() || file.name
       : file.name;
 
+    const detected = detectImageRole(filename);
     return {
       file,
-      role: detectImageRole(filename),
+      role: detected?.role ?? null,
+      detectedBy: detected?.method,
       previewUrl: URL.createObjectURL(file),
       filename,
     };
@@ -416,17 +804,13 @@ export async function parseBrandPackage(files: File[]): Promise<ParsedBrandPacka
     enhanceRolesFromJson(mappedImages, json);
   }
 
-  // Handle case where logo-principal.png matched "logo" but logo-principal-light.png also exists
-  // In estetica_prueba: logo-principal.png = dark bg version, logo-principal-light.png = light bg version
-  // The "light" suffix means it's designed FOR light backgrounds → it IS the "logo" (dark text)
+  // Handle logo-principal vs logo-principal-light disambiguation
   const hasExplicitLight = mappedImages.some(
     (img) => img.role === "logo" && /light/i.test(img.filename),
   );
   if (hasExplicitLight) {
-    // If we have both a "light" and non-light matched as "logo", reassign
     for (const img of mappedImages) {
       if (img.role === "logo" && !/light/i.test(img.filename)) {
-        // The non-light version is actually for dark backgrounds
         if (!mappedImages.some((i) => i.role === "logoDark")) {
           img.role = "logoDark";
         }
@@ -434,13 +818,27 @@ export async function parseBrandPackage(files: File[]): Promise<ParsedBrandPacka
     }
   }
 
-  // Dedupe: if multiple images got the same role, keep the first
-  const seenRoles = new Set<ImageRole>();
+  // --- Dimension-based inference for unassigned images ---
+  await inferRoleByDimensions(mappedImages);
+
+  // --- Canvas color extraction fallback (only if no colors from JSON/CSS) ---
+  if (Object.keys(allColors).length === 0 && mappedImages.length > 0) {
+    allColors = await extractColorsFromImages(mappedImages);
+    colorsFromImage = Object.keys(allColors).length > 0;
+  }
+
+  const colors = mapColors(allColors);
+
+  // --- Dedupe: single roles keep first match, array roles allow multiples ---
+  const seenSingleRoles = new Set<ImageRole>();
   for (const img of mappedImages) {
-    if (img.role && seenRoles.has(img.role)) {
+    if (!img.role) continue;
+    if (ROLE_META[img.role].isArray) continue; // array roles: no dedup
+    if (seenSingleRoles.has(img.role)) {
       img.role = null;
-    } else if (img.role) {
-      seenRoles.add(img.role);
+      img.detectedBy = undefined;
+    } else {
+      seenSingleRoles.add(img.role);
     }
   }
 
@@ -451,6 +849,7 @@ export async function parseBrandPackage(files: File[]): Promise<ParsedBrandPacka
     images: mappedImages,
     typography,
     rawJson: json || {},
+    colorsFromImage,
   };
 }
 
@@ -471,4 +870,24 @@ export function cleanupPreviews(images: MappedImage[]): void {
   for (const img of images) {
     URL.revokeObjectURL(img.previewUrl);
   }
+}
+
+/**
+ * Set a nested value in an object using a dot-separated path.
+ * e.g. setNestedValue(obj, "hero.backgroundImage", url)
+ */
+export function setNestedValue(
+  obj: Record<string, unknown>,
+  path: string,
+  value: unknown,
+): void {
+  const keys = path.split(".");
+  let current: Record<string, unknown> = obj;
+  for (let i = 0; i < keys.length - 1; i++) {
+    if (!current[keys[i]] || typeof current[keys[i]] !== "object") {
+      current[keys[i]] = {};
+    }
+    current = current[keys[i]] as Record<string, unknown>;
+  }
+  current[keys[keys.length - 1]] = value;
 }
