@@ -86,6 +86,48 @@ export interface Translations {
     building: string; buildingSub: string; ready: string; readySub: string;
     viewSite: string; error: string; errorSub: string; contact: string;
   };
+  wizard: {
+    next: string; back: string; skip: string; buildSite: string; submitInfo: string;
+    nicheTitle: string; nicheSub: string;
+    modeTitle: string; modeSub: string;
+    businessTitle: string; businessSub: string;
+    contactTitle: string; contactSub: string;
+    styleTitle: string; styleSub: string;
+    logoTitle: string; logoSub: string;
+    brandTitle: string; brandSub: string;
+    servicesTitle: string; servicesSub: string;
+    hoursTitle: string; hoursSub: string;
+    ownerTitle: string; ownerSub: string;
+    galleryTitle: string; gallerySub: string;
+    reviewTitle: string; reviewSub: string; reviewSubPaid: string;
+    niches: Record<string, string>;
+    customNicheLabel: string; customNichePh: string;
+    solo: string; soloDesc: string; team: string; teamDesc: string;
+    businessNameLabel: string; businessNamePh: string;
+    taglineLabel: string; taglinePh: string;
+    descLabel: string; descPh: string;
+    whatsappLabel: string; emailLabel: string; phoneLabel: string;
+    instagramLabel: string; facebookLabel: string;
+    addressLabel: string; districtLabel: string; cityLabel: string;
+    optional: string;
+    colorsLabel: string; colorsPh: string;
+    logoCreateLabel: string; logoCreateDesc: string;
+    uploadDrop: string; uploadHint: string; uploadRemove: string;
+    logoLightLabel: string; logoDarkLabel: string;
+    accentLabel: string; styleKeywords: string;
+    addService: string; serviceName: string; servicePrice: string; serviceDuration: string;
+    dayNames: string[]; closed: string;
+    ownerNameLabel: string; ownerRoleLabel: string; ownerBioLabel: string;
+    ownerPhotoLabel: string; staffPhotos: string;
+    heroImage: string; galleryImages: string;
+    nicheTypeLabel: string; modeLabel: string;
+    sectionBusiness: string; sectionContact: string; sectionStyle: string;
+    sectionBrand: string; sectionServices: string; sectionHours: string;
+    sectionOwner: string; sectionGallery: string; edit: string;
+    errNiche: string; errCustomNiche: string; errMode: string;
+    errBusinessName: string; errContact: string; errEmail: string;
+    noClientId: string; noClientIdSub: string;
+  };
   // PRESERVED — used by AuthModal in mi-cuenta and onboarding/preview
   auth: {
     login: string; register: string; googleButton: string; orEmail: string;
