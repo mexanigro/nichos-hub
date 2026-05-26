@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { withOwner } from "@/lib/auth";
 import { db } from "@/lib/firebase-admin";
+import { FieldValue } from "firebase-admin/firestore";
 import { buildFeatures, getDefaultTheme, getDefaultSplash, VALID_NICHES, type BusinessNiche } from "@/lib/niche-defaults";
 import { deployToVercel } from "@/lib/deploy";
 
@@ -112,7 +113,7 @@ export const POST = withOwner(async (req: NextRequest) => {
   }
 });
 
-export const PUT = withOwner(async (req: NextRequest) => {
+export const PUT = withOwner(async (req: NextRequest, session) => {
   try {
     const { hubDocId, status } = await req.json();
 
@@ -130,9 +131,18 @@ export const PUT = withOwner(async (req: NextRequest) => {
     }
 
     const data = hubDoc.data()!;
-    const updates: Record<string, unknown> = { status };
-    if (status === "active" && data.status === "demo") {
-      updates.activatedAt = new Date();
+    const previousStatus: string = data.status || "active";
+    const approverEmail = session?.user?.email ?? "owner";
+
+    const updates: Record<string, unknown> = { status, updatedAt: FieldValue.serverTimestamp() };
+    // Marca de activación (demo → active o pending_review → active)
+    if (status === "active" && (previousStatus === "demo" || previousStatus === "pending_review")) {
+      updates.activatedAt = FieldValue.serverTimestamp();
+    }
+    // Aprobación explícita desde pending_review
+    if (status === "active" && previousStatus === "pending_review") {
+      updates.approvedBy = approverEmail;
+      updates.approvedAt = FieldValue.serverTimestamp();
     }
 
     await db.collection("hub_clients").doc(hubDocId).update(updates);
@@ -145,7 +155,29 @@ export const PUT = withOwner(async (req: NextRequest) => {
       );
     }
 
-    return NextResponse.json({ ok: true, status });
+    // Audit log: hub_status_history/{clientId}/entries — solo si el clientId existe
+    // (en este endpoint hubDocId === clientId post-Cardcom, pero usamos data.clientId
+    // por compatibilidad con flows legacy).
+    const auditClientId = data.clientId || hubDocId;
+    if (auditClientId && previousStatus !== status) {
+      try {
+        await db
+          .collection("hub_status_history")
+          .doc(auditClientId)
+          .collection("entries")
+          .add({
+            from: previousStatus,
+            to: status,
+            changedBy: approverEmail,
+            changedAt: FieldValue.serverTimestamp(),
+            hubDocId,
+          });
+      } catch (err) {
+        console.error("[provision PUT] audit log write failed:", err);
+      }
+    }
+
+    return NextResponse.json({ ok: true, status, previousStatus });
   } catch (error) {
     console.error("[provision PUT] Error:", error);
     return NextResponse.json({ error: "Error al actualizar estado" }, { status: 500 });
