@@ -14,6 +14,11 @@ interface UseWizardOptions {
    *  guardado en localStorage no tiene esos campos — no pisa lo que el
    *  usuario haya tipeado. */
   initialData?: Partial<WizardData>;
+  /** Token JWT del flow post-pago. Si esta presente, hace save parcial
+   *  server-side via /api/onboarding/draft (debounced 2s) para que el draft
+   *  sobreviva cambio de browser/dispositivo. localStorage sigue activo como
+   *  cache local. */
+  serverDraftToken?: string;
 }
 
 interface UseWizardReturn {
@@ -40,6 +45,7 @@ export function useWizard({
   clientId,
   locale = "en",
   initialData,
+  serverDraftToken,
 }: UseWizardOptions): UseWizardReturn {
   const [data, setData] = useState<WizardData>(() =>
     createEmptyWizardData(locale),
@@ -53,24 +59,63 @@ export function useWizard({
   // Compute active steps (skip steps whose skip() returns true)
   const activeSteps = steps.filter((s) => !s.skip?.(data));
 
-  // ── Hydrate from localStorage on mount ──
+  // ── Hydrate from localStorage + server-side draft on mount ──
   useEffect(() => {
-    const saved = loadWizardDraft(variant, clientId, locale);
-    // Merge initialData solo para campos vacios en el draft — no pisa lo que
-    // el usuario ya tipeo.
-    if (initialData) {
-      const merged = { ...saved } as WizardData;
-      for (const [key, value] of Object.entries(initialData)) {
-        const k = key as keyof WizardData;
-        if (value !== undefined && value !== "" && !merged[k]) {
-          (merged as unknown as Record<string, unknown>)[key] = value;
+    let cancelled = false;
+
+    async function hydrate() {
+      const saved = loadWizardDraft(variant, clientId, locale);
+      let working = saved;
+
+      // Server draft (si hay token y el localStorage parece vacio o stale).
+      // Estrategia: si ambos existen, ganaa el MAS RECIENTE — pero como el
+      // localStorage no guarda timestamp, simplificamos: si el server tiene
+      // data y el local esta basicamente vacio (sin businessName), usar server.
+      if (serverDraftToken) {
+        try {
+          const res = await fetch("/api/onboarding/draft", {
+            method: "GET",
+            headers: { "x-onboarding-token": serverDraftToken },
+          });
+          if (res.ok) {
+            const body = await res.json();
+            if (body.data && (!saved.businessName || !saved.email)) {
+              // Mergeo: server pisa solo donde local esta vacio.
+              const merged = { ...saved } as Record<string, unknown>;
+              for (const [k, v] of Object.entries(body.data as Record<string, unknown>)) {
+                if (merged[k] === undefined || merged[k] === "" || merged[k] === null) {
+                  merged[k] = v;
+                }
+              }
+              working = merged as unknown as WizardData;
+              if (typeof body.currentStep === "number") setCurrentStep(body.currentStep);
+            }
+          }
+        } catch {
+          // Si el server falla, seguimos con localStorage — no bloqueante.
         }
       }
-      setData(merged);
-    } else {
-      setData(saved);
+
+      if (cancelled) return;
+
+      // Merge initialData (email del token JWT) solo donde local esta vacio.
+      if (initialData) {
+        const merged = { ...working } as WizardData;
+        for (const [key, value] of Object.entries(initialData)) {
+          const k = key as keyof WizardData;
+          if (value !== undefined && value !== "" && !merged[k]) {
+            (merged as unknown as Record<string, unknown>)[key] = value;
+          }
+        }
+        setData(merged);
+      } else {
+        setData(working);
+      }
+      setHydrated(true);
     }
-    setHydrated(true);
+
+    hydrate();
+    return () => { cancelled = true; };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [variant, clientId, locale]);
 
@@ -83,6 +128,27 @@ export function useWizard({
     }, 500);
     return () => clearTimeout(saveTimer.current);
   }, [data, hydrated, variant, clientId]);
+
+  // ── Auto-save server-side draft (debounced 2s, solo si hay token) ──
+  const serverSaveTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
+  useEffect(() => {
+    if (!hydrated || !serverDraftToken) return;
+    clearTimeout(serverSaveTimer.current);
+    serverSaveTimer.current = setTimeout(() => {
+      // Mandar el data + currentStep al server. Failures son silenciosas —
+      // el localStorage sigue siendo el principal cache.
+      fetch("/api/onboarding/draft", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-onboarding-token": serverDraftToken,
+        },
+        body: JSON.stringify({ data, currentStep }),
+        keepalive: true,
+      }).catch(() => {});
+    }, 2000);
+    return () => clearTimeout(serverSaveTimer.current);
+  }, [data, currentStep, hydrated, serverDraftToken]);
 
   // ── History state for browser back button ──
   useEffect(() => {

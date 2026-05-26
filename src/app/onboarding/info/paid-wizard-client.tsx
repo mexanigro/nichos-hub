@@ -67,6 +67,7 @@ export function PaidWizardClient({
     clientId,
     locale,
     initialData: initialEmail ? { email: initialEmail } : undefined,
+    serverDraftToken: uploadToken || undefined,
   });
 
   const handleSubmit = useCallback(async () => {
@@ -162,6 +163,15 @@ export function PaidWizardClient({
       }
 
       clearWizardDraft("paid", clientId);
+
+      // Borrar el draft server-side tambien — ya no se necesita.
+      if (uploadToken) {
+        fetch("/api/onboarding/draft", {
+          method: "DELETE",
+          headers: { "x-onboarding-token": uploadToken },
+        }).catch(() => {});
+      }
+
       window.location.href = `/onboarding/status/${clientId}`;
     } catch {
       setSubmitError("Network error. Please check your connection and try again.");

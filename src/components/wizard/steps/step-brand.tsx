@@ -2,6 +2,7 @@
 
 import { useCallback, useRef, useState } from "react";
 import { WizardStep } from "../wizard-step";
+import { WizardHint } from "../wizard-hint";
 import { useT } from "@/lib/i18n";
 import type { StepProps } from "@/lib/wizard/wizard-types";
 import type { SerializedFile } from "@/lib/builder-storage";
@@ -92,6 +93,7 @@ export function StepBrand({ data, updateField, errors }: StepProps) {
             />
           </div>
         </div>
+        <WizardHint k="logo" />
 
         <div className="wiz-field">
           <label>{w.accentLabel} <span className="opt">({w.optional})</span></label>
@@ -112,6 +114,7 @@ export function StepBrand({ data, updateField, errors }: StepProps) {
               className="wiz-color-picker"
             />
           </div>
+          <WizardHint k="accentColor" />
         </div>
 
         <div className="wiz-field">
@@ -122,6 +125,7 @@ export function StepBrand({ data, updateField, errors }: StepProps) {
             onChange={(e) => updateField("colors", e.target.value)}
             placeholder={w.colorsPh}
           />
+          <WizardHint k="colors" />
         </div>
       </div>
     </WizardStep>

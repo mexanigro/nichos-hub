@@ -89,6 +89,7 @@ export interface Translations {
   status: {
     building: string; buildingSub: string; ready: string; readySub: string;
     viewSite: string; error: string; errorSub: string; contact: string;
+    reviewTitle: string; reviewBody: string; reviewWhatsapp: string; reviewMeanwhile: string;
   };
   wizard: {
     next: string; back: string; skip: string; buildSite: string; submitInfo: string;
@@ -135,6 +136,11 @@ export interface Translations {
     demoEmailHint: string; demoWhatsappHint: string;
     demoSubmit: string;
     demoThanksTitle: string; demoThanksBody: string; demoThanksCta: string;
+    /** Microcopy contextual por campo. Opcional por locale — si falta, no se
+     *  renderiza hint. Keys: businessName, tagline, description, whatsapp,
+     *  email, logo, accentColor, colors, services, hours, ownerPhoto,
+     *  ownerBio, heroImage, galleryImages, address. */
+    hints?: Partial<Record<string, string>>;
   };
   // PRESERVED — used by AuthModal in mi-cuenta and onboarding/preview
   auth: {

@@ -332,6 +332,10 @@ export const he: Translations = {
     error: "משהו השתבש",
     errorSub: "אל דאגה — הצוות שלנו קיבל הודעה ויתקן את זה בקרוב.",
     contact: "צרו קשר בוואטסאפ",
+    reviewTitle: "קיבלתי את הפרטים ✓",
+    reviewBody: "אחזור אליך תוך 24 שעות עם הגרסה הראשונה של האתר שלך. תוכל לבדוק ולבקש שינויים לפני שהוא עולה לאוויר.",
+    reviewWhatsapp: "לדבר עם ליאם",
+    reviewMeanwhile: "בינתיים",
   },
   wizard: {
     next: "המשך", back: "חזרה", skip: "דלג", buildSite: "בנה את האתר שלי", submitInfo: "שלח",

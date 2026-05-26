@@ -2,6 +2,7 @@
 
 import { useCallback, useRef, useState } from "react";
 import { WizardStep } from "../wizard-step";
+import { WizardHint } from "../wizard-hint";
 import { useT } from "@/lib/i18n";
 import type { StepProps } from "@/lib/wizard/wizard-types";
 import type { SerializedFile } from "@/lib/builder-storage";
@@ -148,11 +149,14 @@ export function StepOwner({ data, updateField, errors }: StepProps) {
   return (
     <WizardStep title={w.ownerTitle} subtitle={w.ownerSub} errors={errors}>
       <div className="wiz-owner-layout">
-        <PhotoUploader
-          value={data.ownerPhoto}
-          onChange={(v) => updateField("ownerPhoto", v)}
-          placeholder={w.ownerPhotoLabel}
-        />
+        <div>
+          <PhotoUploader
+            value={data.ownerPhoto}
+            onChange={(v) => updateField("ownerPhoto", v)}
+            placeholder={w.ownerPhotoLabel}
+          />
+          <WizardHint k="ownerPhoto" />
+        </div>
         <div className="wiz-fields">
           <div className="wiz-field">
             <label>{w.ownerNameLabel} <span className="opt">({w.optional})</span></label>
@@ -180,6 +184,7 @@ export function StepOwner({ data, updateField, errors }: StepProps) {
               placeholder={w.ownerBioLabel}
               rows={3}
             />
+            <WizardHint k="ownerBio" />
           </div>
         </div>
       </div>

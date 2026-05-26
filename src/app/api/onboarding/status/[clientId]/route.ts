@@ -24,6 +24,16 @@ export async function GET(
   const doc = snap.docs[0];
   const data = doc.data();
   const projectId = data.vercelProjectId;
+  const lifecycleStatus = data.status; // pending_provision | pending_review | approved | deployed | suspended
+
+  // Si todavia esta esperando review de Liam, ese status manda — no chequeamos Vercel.
+  if (lifecycleStatus === "pending_review" || lifecycleStatus === "in_review") {
+    return NextResponse.json({
+      status: "pending_review",
+      businessName: data.businessName || null,
+      reviewRequestedAt: data.reviewRequestedAt?.toDate?.().toISOString() || null,
+    });
+  }
 
   if (!projectId || !VERCEL_TOKEN) {
     return NextResponse.json({

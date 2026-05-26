@@ -333,6 +333,10 @@ export const ar: Translations = {
     error: "حدث خطأ",
     errorSub: "فشل في بناء موقعك",
     contact: "تواصل مع الدعم",
+    reviewTitle: "استلمت بياناتك ✓",
+    reviewBody: "سأعود إليك خلال 24 ساعة مع النسخة الأولى من موقعك. يمكنك مراجعتها وطلب تعديلات قبل النشر.",
+    reviewWhatsapp: "تحدث مع ليام",
+    reviewMeanwhile: "في غضون ذلك",
   },
   wizard: {
     next: "متابعة", back: "رجوع", skip: "تخطي", buildSite: "أنشئ موقعي", submitInfo: "إرسال",

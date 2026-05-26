@@ -1,8 +1,25 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/firebase-admin";
+import { FieldValue } from "firebase-admin/firestore";
 import { isRateLimited } from "@/lib/rate-limit";
 import { resolveBranding } from "@/lib/branding-resolver";
+import { sendEmail } from "@/lib/email";
+import { infoSubmittedThanks } from "@/lib/email-templates";
 
+const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://arzac.studio";
+
+/**
+ * Submit final del wizard /onboarding/info.
+ *
+ * Escribe a tres lugares:
+ *   1. config/{clientId}     → fuente de configuracion remota del template.
+ *   2. clients/{clientId}    → flag de estado leido por el template (kill-switch).
+ *   3. hub_clients/{clientId}→ vista del owner. Marca status=pending_review.
+ *
+ * El status "pending_review" indica que Liam tiene que entrar al dashboard
+ * a revisar branding/logo/copy antes de aprobar el deploy. El deploy mismo
+ * es accion manual desde el hub (boton "Publicar sitio").
+ */
 export async function POST(req: NextRequest) {
   const ip =
     req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "anonymous";
@@ -19,12 +36,6 @@ export async function POST(req: NextRequest) {
         { error: "Missing or invalid clientId" },
         { status: 400 },
       );
-    }
-
-    // Verify client exists
-    const clientDoc = await db.collection("clients").doc(clientId).get();
-    if (!clientDoc.exists) {
-      return NextResponse.json({ error: "Client not found" }, { status: 404 });
     }
 
     // Build config update from submitted data
@@ -47,6 +58,7 @@ export async function POST(req: NextRequest) {
     if (body.tagline) configUpdate["brand.tagline"] = body.tagline;
     if (body.description)
       configUpdate["brand.description"] = body.description;
+    if (body.faviconEmoji) configUpdate["brand.faviconEmoji"] = body.faviconEmoji;
 
     // Contact (flatten for dot-notation merge)
     if (body.contact) {
@@ -128,30 +140,123 @@ export async function POST(req: NextRequest) {
       configUpdate["gallery"] = body.galleryImageUrls.map((url: string) => ({ url }));
     }
 
-    // Write to Firestore config
-    await db.collection("config").doc(clientId).update(configUpdate);
+    // ── Campos estructurados nuevos (Bloque 4) ─────────────────────────
+    // Shapes alineados con los editors de src/components/config-editors/.
 
-    // Also update hub_clients with basic info
-    const hubSnap = await db
-      .collection("hub_clients")
-      .where("clientId", "==", clientId)
-      .limit(1)
-      .get();
-
-    if (!hubSnap.empty) {
-      const hubUpdate: Record<string, unknown> = {
-        infoSubmitted: true,
-        infoSubmittedAt: new Date(),
-      };
-      if (body.businessName) hubUpdate.businessName = body.businessName;
-      if (body.niche) hubUpdate.niche = body.niche;
-      if (body.contact?.email) hubUpdate["contact.email"] = body.contact.email;
-      if (body.contact?.whatsapp)
-        hubUpdate["contact.whatsapp"] = body.contact.whatsapp;
-      await hubSnap.docs[0].ref.update(hubUpdate);
+    // Benefits → sections.whyChooseUs.benefits[]: { title, desc, iconName }
+    if (Array.isArray(body.benefits) && body.benefits.length > 0) {
+      const cleaned = body.benefits
+        .filter((b: { title?: string; desc?: string }) => b.title?.trim() || b.desc?.trim())
+        .map((b: { title?: string; desc?: string; iconName?: string }) => ({
+          title: (b.title || "").trim(),
+          desc: (b.desc || "").trim(),
+          iconName: b.iconName || "Star",
+        }));
+      if (cleaned.length > 0) configUpdate["sections.whyChooseUs.benefits"] = cleaned;
+    }
+    if (typeof body.whyChooseUsMainImage === "string" && body.whyChooseUsMainImage) {
+      configUpdate["sections.whyChooseUs.mainImage"] = body.whyChooseUsMainImage;
     }
 
-    return NextResponse.json({ ok: true });
+    // Testimonials → testimonials[]: { name, title, text, rating }
+    if (Array.isArray(body.testimonials) && body.testimonials.length > 0) {
+      const cleaned = body.testimonials
+        .filter((t: { text?: string; name?: string }) => t.text?.trim() || t.name?.trim())
+        .map((t: { name?: string; title?: string; text?: string; rating?: number }) => ({
+          name: (t.name || "").trim(),
+          title: (t.title || "").trim(),
+          text: (t.text || "").trim(),
+          rating: typeof t.rating === "number" && t.rating >= 1 && t.rating <= 5 ? t.rating : 5,
+        }));
+      if (cleaned.length > 0) configUpdate["testimonials"] = cleaned;
+    }
+
+    // FAQ → sections.faq.items[]: { q, a }
+    if (Array.isArray(body.faqItems) && body.faqItems.length > 0) {
+      const cleaned = body.faqItems
+        .filter((f: { q?: string; a?: string }) => f.q?.trim() && f.a?.trim())
+        .map((f: { q: string; a: string }) => ({ q: f.q.trim(), a: f.a.trim() }));
+      if (cleaned.length > 0) configUpdate["sections.faq.items"] = cleaned;
+    }
+
+    // Write to Firestore config — usa set+merge para que tambien funcione si
+    // el doc no existe (defensive: en el flow post-Cardcom, el doc se crea
+    // en cardcom-promote.ts, pero esto blinda el endpoint).
+    await db
+      .collection("config")
+      .doc(clientId)
+      .set(configUpdate, { merge: true });
+
+    // Update hub_clients — buscar por clientId field (post-Cardcom el docId
+    // = clientId, pero el flow legacy puede tenerlos distintos).
+    const now = FieldValue.serverTimestamp();
+    const hubUpdate: Record<string, unknown> = {
+      infoSubmitted: true,
+      infoSubmittedAt: now,
+      status: "pending_review",
+      reviewRequestedAt: now,
+      updatedAt: now,
+    };
+    if (body.businessName) hubUpdate.businessName = body.businessName;
+    if (body.niche) hubUpdate.niche = body.niche;
+    if (body.contact?.email) hubUpdate["contact.email"] = body.contact.email;
+    if (body.contact?.whatsapp)
+      hubUpdate["contact.whatsapp"] = body.contact.whatsapp;
+
+    // Prefer match por docId = clientId (flow post-Cardcom). Fallback a query.
+    const hubByDocId = await db.collection("hub_clients").doc(clientId).get();
+    if (hubByDocId.exists) {
+      await hubByDocId.ref.set(hubUpdate, { merge: true });
+    } else {
+      const hubSnap = await db
+        .collection("hub_clients")
+        .where("clientId", "==", clientId)
+        .limit(1)
+        .get();
+      if (!hubSnap.empty) {
+        await hubSnap.docs[0].ref.set(hubUpdate, { merge: true });
+      } else {
+        // Defensive: no existe en hub_clients. Lo creamos minimal para que
+        // aparezca en el dashboard. Esto NO deberia pasar en el flow normal
+        // (cardcom-promote.ts ya crea el doc), pero blinda flows alternativos.
+        await db.collection("hub_clients").doc(clientId).set(
+          {
+            clientId,
+            ...hubUpdate,
+            createdAt: now,
+            source: "info-submit-fallback",
+          },
+          { merge: true },
+        );
+      }
+    }
+
+    // Sync a clients/{clientId} — el template lee status desde aca.
+    // pending_review es un estado valido en el template (similar a pending_provision):
+    // el sitio no esta publicado todavia, esperando aprobacion de Liam.
+    await db.collection("clients").doc(clientId).set(
+      { status: "pending_review", reviewRequestedAt: now },
+      { merge: true },
+    );
+
+    // Email de "gracias por completar la info" — best-effort.
+    const customerEmail = body.contact?.email;
+    if (typeof customerEmail === "string" && customerEmail.includes("@")) {
+      const tpl = infoSubmittedThanks({
+        name: body.ownerName || body.businessName,
+        businessName: body.businessName,
+        statusUrl: `${SITE}/onboarding/status/${clientId}`,
+      });
+      sendEmail({
+        to: customerEmail,
+        subject: tpl.subject,
+        text: tpl.text,
+        html: tpl.html,
+        tag: "info_submitted_thanks",
+      }).catch((e) => console.error("[client-info] email failed:", e));
+    }
+
+    return NextResponse.json({ ok: true, status: "pending_review", clientId });
   } catch (error) {
     console.error("Client info submission error:", error);
     return NextResponse.json(

@@ -1,6 +1,8 @@
 "use client";
 
 import { WizardStep } from "../wizard-step";
+import { WizardHint } from "../wizard-hint";
+import { FieldError, useFieldValidation } from "../field-error";
 import { useT } from "@/lib/i18n";
 import type { StepProps } from "@/lib/wizard/wizard-types";
 
@@ -8,6 +10,19 @@ export function StepContact({ data, updateField, errors, variant }: StepProps) {
   const { t } = useT();
   const w = t.wizard;
   const showFull = variant === "paid";
+
+  // Validacion inline: muestra error solo despues del primer blur, no
+  // mientras el usuario esta escribiendo (no asusta).
+  const emailField = useFieldValidation(data.email, (v) => {
+    if (v && !v.includes("@")) return "Falta el @ en tu email.";
+    if (v && v.length < 5) return "Email muy corto.";
+    return null;
+  });
+
+  const whatsappField = useFieldValidation(data.whatsapp, (v) => {
+    if (v && v.replace(/\D/g, "").length < 7) return "Faltan dígitos. Incluí el código del país.";
+    return null;
+  });
 
   return (
     <WizardStep title={w.contactTitle} subtitle={w.contactSub} errors={errors}>
@@ -19,8 +34,11 @@ export function StepContact({ data, updateField, errors, variant }: StepProps) {
             inputMode="tel"
             value={data.whatsapp}
             onChange={(e) => updateField("whatsapp", e.target.value)}
+            onBlur={whatsappField.onBlur}
             placeholder="+972 50 000 0000"
           />
+          <FieldError message={whatsappField.error} />
+          {!whatsappField.error && <WizardHint k="whatsapp" />}
         </div>
 
         <div className="wiz-field">
@@ -30,8 +48,11 @@ export function StepContact({ data, updateField, errors, variant }: StepProps) {
             inputMode="email"
             value={data.email}
             onChange={(e) => updateField("email", e.target.value)}
+            onBlur={emailField.onBlur}
             placeholder="hello@mybusiness.com"
           />
+          <FieldError message={emailField.error} />
+          {!emailField.error && <WizardHint k="email" />}
         </div>
 
         {showFull && (
@@ -79,6 +100,7 @@ export function StepContact({ data, updateField, errors, variant }: StepProps) {
             onChange={(e) => updateField("address", e.target.value)}
             placeholder={w.addressLabel}
           />
+          <WizardHint k="address" />
         </div>
 
         {showFull && (

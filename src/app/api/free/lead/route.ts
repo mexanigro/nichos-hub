@@ -2,6 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/firebase-admin";
 import { FieldValue } from "firebase-admin/firestore";
 import { isRateLimited } from "@/lib/rate-limit";
+import { sendEmail } from "@/lib/email";
+import { demoLeadNotification } from "@/lib/email-templates";
+
+const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://arzac.studio";
+const OWNER_EMAIL = process.env.OWNER_EMAIL || "website@arzac.studio";
 
 /**
  * Captura comercial del wizard /onboarding/free.
@@ -101,14 +106,21 @@ export async function POST(req: NextRequest) {
     createdAt: now,
   });
 
-  // Notificacion a Liam — si en el futuro hay un email transaccional
-  // configurado, mandar mail. Por ahora solo log estructurado.
-  console.log("[free/lead] nuevo lead demo:", {
-    leadId: ref.id,
+  // Notificacion a Liam — best-effort. Si EMAIL_PROVIDER=disabled, no-op.
+  // Si esta en "log" (default), aparece en stdout de Railway.
+  const tpl = demoLeadNotification({
     email,
-    niche: formData.niche,
+    whatsapp: body.whatsapp,
     businessName: formData.businessName,
+    niche: formData.niche,
+    previewUrl: `${SITE}/onboarding/preview`,
   });
+  sendEmail({
+    to: OWNER_EMAIL,
+    subject: tpl.subject,
+    text: tpl.text,
+    tag: "demo_lead",
+  }).catch((e) => console.error("[free/lead] email failed:", e));
 
   return NextResponse.json({ ok: true, leadId: ref.id });
 }

@@ -2,6 +2,11 @@ import { db } from "@/lib/firebase-admin";
 import { FieldValue, Timestamp } from "firebase-admin/firestore";
 import { verifyPayment } from "@/lib/cardcom";
 import { getPlanAmount, type PlanType } from "@/lib/pricing";
+import { sendEmail } from "@/lib/email";
+import { paymentConfirmed } from "@/lib/email-templates";
+import { signOnboardingToken } from "@/lib/onboarding-token";
+
+const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://arzac.studio";
 
 export interface ProcessPaymentResult {
   ok: boolean;
@@ -207,6 +212,31 @@ export async function processCardcomPayment(
       infoSubmitted: c.infoSubmitted === true,
       nextChargeAt: c.nextChargeAt?.toDate?.().toISOString() || undefined,
     };
+  }
+
+  // Email de confirmacion — best-effort, no bloqueante. Si el provider esta
+  // disabled o falla, el flow sigue (la success page ya muestra confirmacion).
+  if (lead.email) {
+    try {
+      const token = await signOnboardingToken({ leadId, clientId, plan });
+      const onboardingUrl = `${SITE}/onboarding/info?token=${encodeURIComponent(token)}`;
+      const tpl = paymentConfirmed({
+        name: lead.name,
+        plan,
+        amount,
+        nextChargeAt: nextChargeTimestamp.toDate().toISOString(),
+        onboardingUrl,
+      });
+      await sendEmail({
+        to: lead.email,
+        subject: tpl.subject,
+        text: tpl.text,
+        html: tpl.html,
+        tag: "payment_confirmed",
+      });
+    } catch (e) {
+      console.error("[cardcom-promote] email send failed:", e);
+    }
   }
 
   return {

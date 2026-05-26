@@ -2,6 +2,7 @@
 
 import { useCallback, useRef } from "react";
 import { WizardStep } from "../wizard-step";
+import { WizardHint } from "../wizard-hint";
 import { useT } from "@/lib/i18n";
 import type { StepProps } from "@/lib/wizard/wizard-types";
 import type { SerializedFile } from "@/lib/builder-storage";
@@ -49,6 +50,7 @@ export function StepGallery({ data, updateField, errors }: StepProps) {
       <div className="wiz-fields">
         <div className="wiz-field">
           <label>{w.heroImage} <span className="opt">({w.optional})</span></label>
+          <WizardHint k="heroImage" />
           {data.heroImage ? (
             <div className="wiz-upload-preview wide">
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -77,6 +79,7 @@ export function StepGallery({ data, updateField, errors }: StepProps) {
 
         <div className="wiz-field">
           <label>{w.galleryImages} <span className="opt">({w.optional})</span></label>
+          <WizardHint k="galleryImages" />
           <div className="wiz-photo-grid">
             {data.galleryImages.map((p, i) => (
               <div key={i} className="wiz-photo-preview small">

@@ -1086,6 +1086,16 @@ body:has(.wiz) {
   font-size: 12.5px; color: var(--wz-ink-3);
   margin: 6px 0 0; line-height: 1.4;
 }
+.wiz-field-error {
+  font-size: 12.5px; color: #c9554b;
+  margin: 6px 0 0; line-height: 1.4;
+  display: flex; align-items: center; gap: 6px;
+}
+.wiz-field-error::before {
+  content: "!"; display: inline-flex; align-items: center; justify-content: center;
+  width: 16px; height: 16px; border-radius: 50%; background: #c9554b; color: white;
+  font-size: 11px; font-weight: 700; flex-shrink: 0;
+}
 
 /* upload zone */
 .wiz-upload-zone {

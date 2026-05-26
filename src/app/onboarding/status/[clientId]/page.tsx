@@ -3,16 +3,17 @@
 import { useEffect, useState, useRef, useMemo } from "react";
 import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
-import { Loader2, CheckCircle2, ExternalLink, AlertCircle } from "lucide-react";
+import { Loader2, CheckCircle2, ExternalLink, AlertCircle, Sparkles } from "lucide-react";
 import { getTranslations, detectLocale } from "@/lib/i18n";
 import { RTL_LOCALES } from "@/lib/i18n";
 
 const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "9720557719141";
 const POLL_INTERVAL = 5000;
+type Status = "building" | "ready" | "error" | "pending" | "pending_review";
 
 export default function OnboardingStatusPage() {
   const { clientId } = useParams<{ clientId: string }>();
-  const [status, setStatus] = useState<"building" | "ready" | "error" | "pending">("pending");
+  const [status, setStatus] = useState<Status>("pending");
   const [domain, setDomain] = useState("");
   const [url, setUrl] = useState("");
   const abortRef = useRef<AbortController | null>(null);
@@ -38,7 +39,8 @@ export default function OnboardingStatusPage() {
           setStatus(data.status);
           if (data.domain) setDomain(data.domain);
           if (data.url) setUrl(data.url);
-          if (data.status === "ready" || data.status === "error") return;
+          // pending_review tambien para de pollear (espera accion manual de Liam)
+          if (data.status === "ready" || data.status === "error" || data.status === "pending_review") return;
         }
       } catch (e) {
         if (e instanceof Error && e.name === "AbortError") return;
@@ -60,7 +62,25 @@ export default function OnboardingStatusPage() {
         animate={{ opacity: 1, y: 0 }}
         className="w-full max-w-md rounded-md border border-border bg-bg-card p-8 text-center"
       >
-        {status === "pending" || status === "building" ? (
+        {status === "pending_review" ? (
+          <>
+            <CheckCircle2 size={40} className="mx-auto mb-4 text-success" />
+            <h1 className="text-lg font-bold text-text">{t.status.reviewTitle}</h1>
+            <p className="mt-2 text-sm text-text-secondary" style={{ lineHeight: 1.5 }}>
+              {t.status.reviewBody}
+            </p>
+            <a
+              href={`https://wa.me/${WHATSAPP_NUMBER}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 inline-flex items-center gap-2 rounded-md bg-gradient-to-r from-accent-from to-accent-to px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+            >
+              <Sparkles size={14} />
+              {t.status.reviewWhatsapp}
+            </a>
+            <p className="mt-4 text-xs text-text-muted">{t.status.reviewMeanwhile}: <a href="/mi-cuenta" className="underline transition-colors hover:text-text">mi cuenta</a></p>
+          </>
+        ) : status === "pending" || status === "building" ? (
           <>
             <Loader2 size={40} className="mx-auto mb-4 animate-spin text-accent" />
             <h1 className="text-lg font-bold text-text">{t.status.building}</h1>
