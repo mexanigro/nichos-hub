@@ -11,6 +11,7 @@ import {
   ExternalLink,
   MessageSquareWarning,
   Rocket,
+  RotateCcw,
   X,
 } from "lucide-react";
 import { formatDistanceToNowStrict } from "date-fns";
@@ -197,6 +198,7 @@ export function PendingReviewBanner({
     vercelProjectId?: string;
     deployStatus?: string | null;
     reviewRequestedAt?: string | null;
+    resubmissionCount?: number;
   };
   onApproved: () => void;
   onChangesRequested: () => void;
@@ -356,6 +358,19 @@ export function PendingReviewBanner({
           </p>
         </div>
         <div className="ml-auto flex items-center gap-2 text-[10px] text-text-muted">
+          {(client.resubmissionCount ?? 0) > 0 && (
+            <span
+              className={`inline-flex items-center gap-1 rounded-md border px-2 py-1 tabular-nums ${
+                (client.resubmissionCount ?? 0) >= 3
+                  ? "border-amber-500/40 bg-amber-500/10 text-amber-300"
+                  : "border-sky-500/30 bg-sky-500/10 text-sky-300"
+              }`}
+              title="Veces que el cliente reenvió la información tras un changes_requested previo"
+            >
+              <RotateCcw size={10} />
+              Reenvíos previos: {client.resubmissionCount}
+            </span>
+          )}
           <span className="rounded-md border border-border bg-bg-card px-2 py-1 tabular-nums">
             {okCount}/{totalCount} checks
           </span>

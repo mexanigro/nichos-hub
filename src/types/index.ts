@@ -33,6 +33,12 @@ export interface Client {
   notes?: string;
   monitorChecks?: string[];
   paymentStatus?: string;
+  /** Cantidad de veces que el cliente reenvió info tras un changes_requested. */
+  resubmissionCount?: number;
+  /** Teléfono de contacto del dueño — usado para botones rápidos de WhatsApp. */
+  contactPhone?: string;
+  /** Número de WhatsApp si difiere del contactPhone. */
+  contactWhatsapp?: string;
 }
 
 export type HealthStatus = "healthy" | "degraded" | "down";

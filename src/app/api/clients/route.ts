@@ -14,6 +14,10 @@ export const GET = withOwner(async () => {
     // Firestore Timestamps tienen .toDate(), pero el campo puede no existir
     // o ser un tipo inesperado. Usar fallback robusto.
     const rawDate = d.activationDate?.toDate?.() ?? d.createdAt?.toDate?.() ?? null;
+    const contact = (d.contact && typeof d.contact === "object" ? d.contact : {}) as {
+      phone?: string;
+      whatsapp?: string;
+    };
     return {
       id: doc.id,
       businessName: d.businessName || "",
@@ -27,6 +31,9 @@ export const GET = withOwner(async () => {
       deployStatus: d.deployStatus || null,
       deployError: d.deployError || null,
       notes: d.notes || "",
+      resubmissionCount: typeof d.resubmissionCount === "number" ? d.resubmissionCount : 0,
+      contactPhone: contact.phone || d["contact.phone"] || "",
+      contactWhatsapp: contact.whatsapp || d["contact.whatsapp"] || "",
     };
   });
 

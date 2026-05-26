@@ -24,6 +24,8 @@ import {
   RefreshCw,
   Trash2,
   AlertCircle,
+  RotateCcw,
+  Phone,
 } from "lucide-react";
 import { HealthDot, ClientStatusBadge } from "@/components/status-badge";
 import { LoadingSpinner } from "@/components/loading";
@@ -85,7 +87,23 @@ type ClientReview = ClientWithHealth & {
   approvedBy?: string | null;
   lastChangesRequestMessage?: string | null;
   infoSubmitted?: boolean;
+  resubmissionCount?: number;
+  contactPhone?: string;
+  contactWhatsapp?: string;
 };
+
+/**
+ * Construye un link wa.me a partir de un número crudo. wa.me espera dígitos
+ * solamente, sin "+" ni espacios. Devuelve null si no hay nada usable.
+ */
+function buildWaMeLink(...candidates: Array<string | undefined>): string | null {
+  for (const raw of candidates) {
+    if (typeof raw !== "string") continue;
+    const digits = raw.replace(/\D/g, "");
+    if (digits.length >= 7) return `https://wa.me/${digits}`;
+  }
+  return null;
+}
 
 interface ClientDetail {
   client: ClientReview;
@@ -410,6 +428,48 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
         />
       )}
 
+      {/* Excessive resubmissions warning — communicación por email no funciona,
+          conviene destrabar por WhatsApp. */}
+      {(client.resubmissionCount ?? 0) >= 3 && (
+        <div className="mb-6 rounded-xl border border-amber-500/40 bg-amber-500/[0.07] px-4 py-3">
+          <div className="flex flex-wrap items-start gap-3">
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-amber-500/20">
+              <RotateCcw size={14} className="text-amber-300" />
+            </div>
+            <div className="min-w-0 flex-1">
+              <p className="text-xs font-semibold text-text">
+                Este cliente ya reenvió {client.resubmissionCount} veces
+              </p>
+              <p className="mt-0.5 text-[11px] text-text-muted">
+                La comunicación por email no está destrabando el ciclo. Llamalo
+                por WhatsApp para alinear cara a cara qué falta.
+              </p>
+            </div>
+            {(() => {
+              const wa = buildWaMeLink(client.contactWhatsapp, client.contactPhone);
+              if (!wa) {
+                return (
+                  <span className="text-[10px] text-text-muted">
+                    Sin teléfono en config
+                  </span>
+                );
+              }
+              return (
+                <a
+                  href={wa}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-500/15 px-3 py-2 text-[11px] font-semibold text-emerald-300 transition-colors hover:bg-emerald-500/25"
+                >
+                  <Phone size={12} />
+                  Abrir WhatsApp
+                </a>
+              );
+            })()}
+          </div>
+        </div>
+      )}
+
       {/* Pending review banner — cliente completó el wizard y espera aprobación. */}
       {client.status === "pending_review" && (
         <PendingReviewBanner
@@ -423,6 +483,7 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
             vercelProjectId: client.vercelProjectId,
             deployStatus: client.deployStatus,
             reviewRequestedAt: client.reviewRequestedAt,
+            resubmissionCount: client.resubmissionCount,
           }}
           onApproved={() => {
             setData((d) => d ? {

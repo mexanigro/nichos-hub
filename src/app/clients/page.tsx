@@ -10,6 +10,7 @@ import {
   LayoutDashboard,
   Search,
   X,
+  RotateCcw,
 } from "lucide-react";
 import { HealthDot, ClientStatusBadge } from "@/components/status-badge";
 import { EmptyState } from "@/components/empty-state";
@@ -231,7 +232,18 @@ export default function ClientsPage() {
                     <HealthDot status={client.healthStatus} />
                   </td>
                   <td className="min-w-[120px] px-4 py-3">
-                    <span className="font-medium text-text">{client.businessName || "—"}</span>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="font-medium text-text">{client.businessName || "—"}</span>
+                      {(client.resubmissionCount ?? 0) >= 3 && (
+                        <span
+                          className="inline-flex items-center gap-1 rounded-full border border-amber-500/40 bg-amber-500/10 px-1.5 py-0.5 text-[10px] font-semibold text-amber-300"
+                          title={`El cliente reenvió la info ${client.resubmissionCount} veces. Conviene contactarlo por WhatsApp.`}
+                        >
+                          <RotateCcw size={9} />
+                          Reenvíos: {client.resubmissionCount}
+                        </span>
+                      )}
+                    </div>
                   </td>
                   <td className="hidden px-4 py-3 md:table-cell">
                     <span className="whitespace-nowrap text-text-secondary">{client.niche || "—"}</span>

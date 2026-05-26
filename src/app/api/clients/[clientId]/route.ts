@@ -18,6 +18,10 @@ export const GET = withOwner(async (_req, _session, ctx) => {
   const reviewRequestedAt = d.reviewRequestedAt?.toDate?.() ?? null;
   const changesRequestedAt = d.changesRequestedAt?.toDate?.() ?? null;
   const approvedAt = d.approvedAt?.toDate?.() ?? null;
+  const contact = (d.contact && typeof d.contact === "object" ? d.contact : {}) as {
+    phone?: string;
+    whatsapp?: string;
+  };
   const client = {
     id: doc.id,
     businessName: d.businessName || "",
@@ -38,6 +42,9 @@ export const GET = withOwner(async (_req, _session, ctx) => {
     approvedBy: d.approvedBy ?? null,
     lastChangesRequestMessage: d.lastChangesRequestMessage ?? null,
     infoSubmitted: !!d.infoSubmitted,
+    resubmissionCount: typeof d.resubmissionCount === "number" ? d.resubmissionCount : 0,
+    contactPhone: contact.phone || d["contact.phone"] || "",
+    contactWhatsapp: contact.whatsapp || d["contact.whatsapp"] || "",
   };
   const internalClientId = d.clientId;
   const clientStatus = d.status || "active";
