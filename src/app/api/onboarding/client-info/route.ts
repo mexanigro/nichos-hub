@@ -4,9 +4,10 @@ import { FieldValue } from "firebase-admin/firestore";
 import { isRateLimited } from "@/lib/rate-limit";
 import { resolveBranding } from "@/lib/branding-resolver";
 import { sendEmail } from "@/lib/email";
-import { infoSubmittedThanks } from "@/lib/email-templates";
+import { infoSubmittedThanks, changesResubmitted } from "@/lib/email-templates";
 
 const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://arzac.studio";
+const OWNER_EMAIL = process.env.OWNER_EMAIL || "website@arzac.studio";
 
 /**
  * Submit final del wizard /onboarding/info.
@@ -187,14 +188,47 @@ export async function POST(req: NextRequest) {
       .doc(clientId)
       .set(configUpdate, { merge: true });
 
-    // Update hub_clients — buscar por clientId field (post-Cardcom el docId
-    // = clientId, pero el flow legacy puede tenerlos distintos).
+    // ── Detectar resubmit ANTES del update ─────────────────────────────
+    // Resubmit = el cliente ya había enviado info antes Y Liam pidió cambios.
+    // Necesitamos leer el doc actual para saber si limpiamos changesRequested* y
+    // si disparamos email a Liam.
     const now = FieldValue.serverTimestamp();
+    let previousStatus: string | undefined;
+    let previousChangesMessage: string | undefined;
+    let hubDocRef: FirebaseFirestore.DocumentReference | null = null;
+
+    const hubByDocId = await db.collection("hub_clients").doc(clientId).get();
+    if (hubByDocId.exists) {
+      hubDocRef = hubByDocId.ref;
+      const d = hubByDocId.data() || {};
+      previousStatus = typeof d.status === "string" ? d.status : undefined;
+      previousChangesMessage = typeof d.lastChangesRequestMessage === "string"
+        ? d.lastChangesRequestMessage
+        : undefined;
+    } else {
+      const hubSnap = await db
+        .collection("hub_clients")
+        .where("clientId", "==", clientId)
+        .limit(1)
+        .get();
+      if (!hubSnap.empty) {
+        hubDocRef = hubSnap.docs[0].ref;
+        const d = hubSnap.docs[0].data() || {};
+        previousStatus = typeof d.status === "string" ? d.status : undefined;
+        previousChangesMessage = typeof d.lastChangesRequestMessage === "string"
+          ? d.lastChangesRequestMessage
+          : undefined;
+      }
+    }
+
+    const isResubmit = previousStatus === "changes_requested";
+
     const hubUpdate: Record<string, unknown> = {
       infoSubmitted: true,
       infoSubmittedAt: now,
       status: "pending_review",
       reviewRequestedAt: now,
+      lastEditedAt: now,
       updatedAt: now,
     };
     if (body.businessName) hubUpdate.businessName = body.businessName;
@@ -203,31 +237,50 @@ export async function POST(req: NextRequest) {
     if (body.contact?.whatsapp)
       hubUpdate["contact.whatsapp"] = body.contact.whatsapp;
 
-    // Prefer match por docId = clientId (flow post-Cardcom). Fallback a query.
-    const hubByDocId = await db.collection("hub_clients").doc(clientId).get();
-    if (hubByDocId.exists) {
-      await hubByDocId.ref.set(hubUpdate, { merge: true });
+    if (isResubmit) {
+      // Limpiar marcas del ciclo changes_requested + bumpear contador.
+      hubUpdate.changesRequestedAt = FieldValue.delete();
+      hubUpdate.changesRequestedBy = FieldValue.delete();
+      hubUpdate.lastChangesRequestMessage = FieldValue.delete();
+      hubUpdate.resubmissionCount = FieldValue.increment(1);
+      hubUpdate.lastResubmittedAt = now;
+    }
+
+    if (hubDocRef) {
+      await hubDocRef.set(hubUpdate, { merge: true });
     } else {
-      const hubSnap = await db
-        .collection("hub_clients")
-        .where("clientId", "==", clientId)
-        .limit(1)
-        .get();
-      if (!hubSnap.empty) {
-        await hubSnap.docs[0].ref.set(hubUpdate, { merge: true });
-      } else {
-        // Defensive: no existe en hub_clients. Lo creamos minimal para que
-        // aparezca en el dashboard. Esto NO deberia pasar en el flow normal
-        // (cardcom-promote.ts ya crea el doc), pero blinda flows alternativos.
-        await db.collection("hub_clients").doc(clientId).set(
-          {
-            clientId,
-            ...hubUpdate,
-            createdAt: now,
-            source: "info-submit-fallback",
-          },
-          { merge: true },
-        );
+      // Defensive: no existe en hub_clients. Lo creamos minimal para que
+      // aparezca en el dashboard. Esto NO deberia pasar en el flow normal
+      // (cardcom-promote.ts ya crea el doc), pero blinda flows alternativos.
+      const newRef = db.collection("hub_clients").doc(clientId);
+      await newRef.set(
+        {
+          clientId,
+          ...hubUpdate,
+          createdAt: now,
+          source: "info-submit-fallback",
+        },
+        { merge: true },
+      );
+      hubDocRef = newRef;
+    }
+
+    // Audit log de la transición — sólo si hubo cambio real de status.
+    if (previousStatus && previousStatus !== "pending_review") {
+      try {
+        await db
+          .collection("hub_status_history")
+          .doc(clientId)
+          .collection("entries")
+          .add({
+            from: previousStatus,
+            to: "pending_review",
+            changedBy: "customer",
+            changedAt: now,
+            reason: isResubmit ? "customer_resubmit" : "info_submitted",
+          });
+      } catch (err) {
+        console.error("[client-info] audit log failed:", err);
       }
     }
 
@@ -239,7 +292,8 @@ export async function POST(req: NextRequest) {
       { merge: true },
     );
 
-    // Email de "gracias por completar la info" — best-effort.
+    // Email de "gracias" al cliente — best-effort. Mismo template para submit
+    // inicial y resubmit; el ciclo de espera es el mismo.
     const customerEmail = body.contact?.email;
     if (typeof customerEmail === "string" && customerEmail.includes("@")) {
       const tpl = infoSubmittedThanks({
@@ -252,11 +306,36 @@ export async function POST(req: NextRequest) {
         subject: tpl.subject,
         text: tpl.text,
         html: tpl.html,
-        tag: "info_submitted_thanks",
-      }).catch((e) => console.error("[client-info] email failed:", e));
+        tag: isResubmit ? "info_resubmitted_thanks" : "info_submitted_thanks",
+      }).catch((e) => console.error("[client-info] customer email failed:", e));
     }
 
-    return NextResponse.json({ ok: true, status: "pending_review", clientId });
+    // Email a Liam — sólo si es resubmit. En submit inicial, Liam se entera
+    // por el dashboard (pending_review aparece en /clients con filtro).
+    if (isResubmit) {
+      const tpl = changesResubmitted({
+        clientId,
+        businessName: body.businessName,
+        customerEmail: typeof customerEmail === "string" ? customerEmail : undefined,
+        customerName: body.ownerName,
+        previousMessage: previousChangesMessage,
+        reviewUrl: `${SITE}/clients/${clientId}`,
+      });
+      sendEmail({
+        to: OWNER_EMAIL,
+        subject: tpl.subject,
+        text: tpl.text,
+        html: tpl.html,
+        tag: "changes_resubmitted",
+      }).catch((e) => console.error("[client-info] owner email failed:", e));
+    }
+
+    return NextResponse.json({
+      ok: true,
+      status: "pending_review",
+      clientId,
+      wasResubmit: isResubmit,
+    });
   } catch (error) {
     console.error("Client info submission error:", error);
     return NextResponse.json(

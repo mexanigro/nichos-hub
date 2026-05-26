@@ -412,6 +412,9 @@ export const es: Translations = {
     faviconEmojiHint: "El íconito que aparece en la pestaña del browser. Elegí uno que represente tu rubro: ✂️ 💅 ☕ 🎨 🛠️…",
     refTag: "Así se ve esta sección",
     refDisclaimer: "Tu sitio puede verse distinto según los colores y fotos que elijas.",
+    submitResubmit: "Reenviar con cambios",
+    changesBannerTag: "Cambios pedidos por Liam",
+    changesBannerHint: "Tus datos actuales ya están cargados. Ajustá lo que haga falta y volvé a enviar — Liam vuelve a revisar.",
     hints: {
       businessName: "Aparece en el header y en el footer de tu sitio.",
       tagline: "Una frase corta debajo del nombre. Ej: 'Cortes clásicos, ambiente que dura'.",

@@ -1156,6 +1156,44 @@ body:has(.wiz) {
 .wiz-ref-caption { color: var(--wz-ink-2); }
 .wiz-ref-disclaimer { font-style: italic; opacity: .85; }
 
+/* Banner de cambios pedidos (modo re-edición) */
+.wiz-changes-banner {
+  margin: 0 auto 20px;
+  max-width: 720px;
+  border: 1px solid #e0d4b8;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #fefaf0 0%, #fdf6e3 100%);
+  padding: 16px 20px 14px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.02);
+}
+.wiz-changes-banner-head {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 8px;
+}
+.wiz-changes-banner-tag {
+  font-size: 10.5px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .07em;
+  color: #8a6a1f;
+}
+.wiz-changes-banner-close {
+  background: none; border: none; cursor: pointer;
+  font-size: 22px; line-height: 1; padding: 0 4px;
+  color: #8a6a1f; opacity: .6; transition: opacity .12s ease;
+}
+.wiz-changes-banner-close:hover { opacity: 1; }
+.wiz-changes-banner-message {
+  margin: 0 0 8px;
+  font-size: 14px; line-height: 1.5;
+  color: var(--wz-ink, #1a1a1a);
+  white-space: pre-wrap;
+}
+.wiz-changes-banner-hint {
+  margin: 0;
+  font-size: 12.5px; line-height: 1.4;
+  color: var(--wz-ink-3, #6a6a6a);
+  font-style: italic;
+}
+
 /* upload zone */
 .wiz-upload-zone {
   border: 1.5px dashed var(--wz-line);

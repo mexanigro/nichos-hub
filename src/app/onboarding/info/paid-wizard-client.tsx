@@ -6,8 +6,9 @@ import { WizardShell } from "@/components/wizard/wizard-shell";
 import { useWizard } from "@/lib/wizard/use-wizard";
 import { clearWizardDraft } from "@/lib/wizard/wizard-storage";
 import { uploadSerializedFiles } from "@/lib/wizard/upload-helpers";
+import { ChangesRequestedBanner } from "@/components/wizard/changes-requested-banner";
 import { useT } from "@/lib/i18n";
-import type { StepConfig } from "@/lib/wizard/wizard-types";
+import type { StepConfig, WizardData } from "@/lib/wizard/wizard-types";
 import type { SerializedFile } from "@/lib/builder-storage";
 
 import { StepNiche } from "@/components/wizard/steps/step-niche";
@@ -53,12 +54,22 @@ interface PaidWizardClientProps {
   initialPlan?: "web_crm" | "completo" | "";
   /** JWT del flow post-pago, requerido para subir imagenes al endpoint protegido. */
   uploadToken?: string;
+  /** Datos previos del config (modo re-edicion). Se hidratan en useWizard
+   *  via initialData solo donde el draft local esta vacio. */
+  prefilledData?: Partial<WizardData>;
+  /** true si el cliente vuelve a editar tras un changes_requested de Liam. */
+  isResubmit?: boolean;
+  /** Mensaje de Liam con los cambios pedidos. Solo presente si isResubmit. */
+  changesRequestedMessage?: string;
 }
 
 export function PaidWizardClient({
   initialClientId = "",
   initialEmail = "",
   uploadToken = "",
+  prefilledData,
+  isResubmit = false,
+  changesRequestedMessage = "",
 }: PaidWizardClientProps = {}) {
   const params = useSearchParams();
   // Prioridad: props del server (token verificado) → query string → vacio.
@@ -67,12 +78,22 @@ export function PaidWizardClient({
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
 
+  // Mergeo: prefilledData (config previo) + initialEmail. initialEmail tiene
+  // prioridad sobre prefilledData.email si ambos existen, porque viene del
+  // hub_clients verificado, no del config.
+  const mergedInitialData: Partial<WizardData> | undefined = (() => {
+    if (!prefilledData && !initialEmail) return undefined;
+    const merged: Partial<WizardData> = { ...(prefilledData || {}) };
+    if (initialEmail && !merged.email) merged.email = initialEmail;
+    return merged;
+  })();
+
   const wizard = useWizard({
     steps: STEPS,
     variant: "paid",
     clientId,
     locale,
-    initialData: initialEmail ? { email: initialEmail } : undefined,
+    initialData: mergedInitialData,
     serverDraftToken: uploadToken || undefined,
   });
 
@@ -204,8 +225,21 @@ export function PaidWizardClient({
     );
   }
 
+  // En modo re-edición cambiamos el CTA: "Enviar" → "Reenviar con cambios".
+  const submitLabel = submitting
+    ? "..."
+    : isResubmit
+      ? (t.wizard.submitResubmit || "Reenviar con cambios")
+      : t.wizard.submitInfo;
+
   return (
     <>
+      {isResubmit && changesRequestedMessage && (
+        <ChangesRequestedBanner
+          message={changesRequestedMessage}
+          clientId={clientId}
+        />
+      )}
       <WizardShell
         {...wizard}
         isRTL={isRTL}
@@ -215,7 +249,7 @@ export function PaidWizardClient({
           next: t.wizard.next,
           back: t.wizard.back,
           skip: t.wizard.skip,
-          submit: submitting ? "..." : t.wizard.submitInfo,
+          submit: submitLabel,
         }}
       />
       {submitError && (

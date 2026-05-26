@@ -139,6 +139,44 @@ export function changesRequested(v: ChangesRequestedVars) {
   };
 }
 
+interface ChangesResubmittedVars {
+  clientId: string;
+  businessName?: string;
+  customerEmail?: string;
+  customerName?: string;
+  previousMessage?: string;
+  reviewUrl: string;
+}
+
+/**
+ * Email a Liam (owner) cuando el cliente reenvía la info despues de un
+ * changes_requested. Distinto del infoSubmittedThanks que va al cliente.
+ */
+export function changesResubmitted(v: ChangesResubmittedVars) {
+  return {
+    subject: `Re-submission: ${v.businessName || v.customerName || v.customerEmail || v.clientId}`,
+    text: [
+      `El cliente reenvió la info con los cambios que pediste.`,
+      ``,
+      `Negocio: ${v.businessName || "(sin nombre)"}`,
+      `Cliente: ${v.customerName || "(sin nombre)"} <${v.customerEmail || "(sin email)"}>`,
+      `Client ID: ${v.clientId}`,
+      ``,
+      v.previousMessage ? `Cambios que pediste:\n${v.previousMessage}\n` : "",
+      `Revisar en el dashboard:`,
+      v.reviewUrl,
+    ].filter(Boolean).join("\n"),
+    html: `<p>El cliente reenvió la info con los cambios que pediste.</p>
+<ul style="line-height:1.6">
+  <li><strong>Negocio:</strong> ${escape(v.businessName || "(sin nombre)")}</li>
+  <li><strong>Cliente:</strong> ${escape(v.customerName || "(sin nombre)")} &lt;${escape(v.customerEmail || "(sin email)")}&gt;</li>
+  <li><strong>Client ID:</strong> ${escape(v.clientId)}</li>
+</ul>
+${v.previousMessage ? `<p><strong>Cambios que pediste:</strong></p><blockquote style="border-left:3px solid #0f0f0f;margin:0;padding:8px 14px;color:#444;background:#fafafa">${escape(v.previousMessage).replace(/\n/g, "<br>")}</blockquote>` : ""}
+<p><a href="${v.reviewUrl}" style="display:inline-block;background:#0f0f0f;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600">Revisar en el dashboard →</a></p>`,
+  };
+}
+
 function escape(s: string): string {
   return s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
 }

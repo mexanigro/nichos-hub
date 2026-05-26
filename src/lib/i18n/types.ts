@@ -152,6 +152,8 @@ export interface Translations {
     faqQuestion?: string; faqAnswer?: string; faqAdd?: string;
     faviconEmojiLabel?: string; faviconEmojiHint?: string;
     refTag?: string; refDisclaimer?: string;
+    submitResubmit?: string;
+    changesBannerTag?: string; changesBannerHint?: string;
   };
   // PRESERVED — used by AuthModal in mi-cuenta and onboarding/preview
   auth: {
