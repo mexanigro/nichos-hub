@@ -5,6 +5,7 @@ import { isRateLimited } from "@/lib/rate-limit";
 import { resolveBranding } from "@/lib/branding-resolver";
 import { sendEmail } from "@/lib/email";
 import { infoSubmittedThanks, changesResubmitted } from "@/lib/email-templates";
+import { verifyOnboardingToken } from "@/lib/onboarding-token";
 
 const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://arzac.studio";
 const OWNER_EMAIL = process.env.OWNER_EMAIL || "website@arzac.studio";
@@ -37,6 +38,30 @@ export async function POST(req: NextRequest) {
         { error: "Missing or invalid clientId" },
         { status: 400 },
       );
+    }
+
+    // Si el wizard mandó el JWT (defense-in-depth), verificamos que el clientId
+    // del body coincida con el del token y que un token resubmit solo aplique
+    // cuando el cliente está efectivamente en changes_requested.
+    const tokenHeader = req.headers.get("x-onboarding-token") || "";
+    if (tokenHeader) {
+      const tokenPayload = await verifyOnboardingToken(tokenHeader);
+      if (!tokenPayload) {
+        return NextResponse.json({ error: "Token invalido o expirado" }, { status: 401 });
+      }
+      if (tokenPayload.clientId !== clientId) {
+        return NextResponse.json({ error: "clientId no coincide con el token" }, { status: 403 });
+      }
+      if (tokenPayload.mode === "resubmit") {
+        const hubSnap = await db.collection("hub_clients").doc(clientId).get();
+        const status = hubSnap.exists ? hubSnap.data()?.status : undefined;
+        if (status !== "changes_requested") {
+          return NextResponse.json(
+            { error: "El link de reenvío ya no es válido. Pedile a Liam un link nuevo." },
+            { status: 403 },
+          );
+        }
+      }
     }
 
     // Build config update from submitted data

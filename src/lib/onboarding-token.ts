@@ -12,12 +12,20 @@ function getKey(): Uint8Array {
   return new TextEncoder().encode(SECRET);
 }
 
+export type OnboardingMode = "paid" | "resubmit";
+
 export interface OnboardingTokenPayload {
   leadId: string;
   clientId: string;
   plan: PlanType;
   /** Marca el origen — futuro: "free-demo" para tokens del flow gratis. */
   source?: "paid";
+  /**
+   * Tipo de flow: "paid" = post-pago (default), "resubmit" = cliente vuelve a
+   * editar tras un changes_requested. Diferencia exp y validación defensive
+   * en los endpoints (ver upload/client-info routes).
+   */
+  mode?: OnboardingMode;
 }
 
 /**
@@ -33,10 +41,36 @@ export async function signOnboardingToken(
     clientId: payload.clientId,
     plan: payload.plan,
     source: payload.source || "paid",
+    mode: payload.mode || "paid",
   })
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
     .setExpirationTime("24h")
+    .setIssuer(ISSUER)
+    .setAudience(AUDIENCE)
+    .sign(getKey());
+}
+
+/**
+ * Firma un token de 7 días para reenvío del cliente tras un changes_requested.
+ * Más largo que el de pago porque puede pasar varios días entre que Liam pide
+ * cambios y el cliente reenvía. El claim `mode:"resubmit"` lo diferencia y los
+ * endpoints validan defensive contra el status actual.
+ *
+ * leadId/plan se setean a strings stub porque solo se usan para hidratar UI
+ * post-pago; en modo resubmit el clientId alcanza para todo el flow.
+ */
+export async function signResubmitToken(clientId: string): Promise<string> {
+  return new SignJWT({
+    leadId: `resubmit:${clientId}`,
+    clientId,
+    plan: "web_crm",
+    source: "paid",
+    mode: "resubmit",
+  })
+    .setProtectedHeader({ alg: "HS256" })
+    .setIssuedAt()
+    .setExpirationTime("7d")
     .setIssuer(ISSUER)
     .setAudience(AUDIENCE)
     .sign(getKey());
@@ -57,11 +91,14 @@ export async function verifyOnboardingToken(
     ) {
       return null;
     }
+    const rawMode = typeof payload.mode === "string" ? payload.mode : "paid";
+    const mode: OnboardingMode = rawMode === "resubmit" ? "resubmit" : "paid";
     return {
       leadId: payload.leadId,
       clientId: payload.clientId,
       plan: payload.plan as PlanType,
       source: (payload.source as "paid") || "paid",
+      mode,
     };
   } catch {
     return null;

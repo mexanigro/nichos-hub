@@ -4,6 +4,7 @@ import { db } from "@/lib/firebase-admin";
 import { FieldValue } from "firebase-admin/firestore";
 import { sendEmail } from "@/lib/email";
 import { changesRequested } from "@/lib/email-templates";
+import { signResubmitToken } from "@/lib/onboarding-token";
 
 const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://arzac.studio";
 
@@ -110,11 +111,24 @@ export const POST = withOwner(async (req, session) => {
     data.adminEmail ||
     "";
   if (typeof customerEmail === "string" && customerEmail.includes("@")) {
+    // JWT específico para resubmit (exp 7d). El wizard lo usa para subir
+    // imágenes nuevas (logo, hero, galería) — sin token, /api/onboarding/upload
+    // rechaza con 401 y el cliente queda atrapado pudiendo editar texto pero no
+    // imágenes.
+    let resubmitToken = "";
+    try {
+      resubmitToken = await signResubmitToken(clientId);
+    } catch (err) {
+      console.error("[changes-request] resubmit token sign failed:", err);
+    }
+    const onboardingUrl = resubmitToken
+      ? `${SITE}/onboarding/info?token=${encodeURIComponent(resubmitToken)}`
+      : `${SITE}/onboarding/info?clientId=${encodeURIComponent(clientId)}`;
     const tpl = changesRequested({
       name: typeof data.ownerName === "string" ? data.ownerName : data.businessName,
       businessName: data.businessName,
       message: text,
-      onboardingUrl: `${SITE}/onboarding/info?clientId=${encodeURIComponent(clientId)}`,
+      onboardingUrl,
     });
     sendEmail({
       to: customerEmail,

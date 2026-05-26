@@ -181,9 +181,11 @@ export function PaidWizardClient({
         locale,
       };
 
+      const headers: Record<string, string> = { "Content-Type": "application/json" };
+      if (uploadToken) headers["x-onboarding-token"] = uploadToken;
       const res = await fetch("/api/onboarding/client-info", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers,
         body: JSON.stringify(body),
       });
 

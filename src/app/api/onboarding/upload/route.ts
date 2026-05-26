@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { randomUUID } from "crypto";
-import { getStorageBucket } from "@/lib/firebase-admin";
+import { db, getStorageBucket } from "@/lib/firebase-admin";
 import { verifyOnboardingToken } from "@/lib/onboarding-token";
 import { isRateLimited } from "@/lib/rate-limit";
 
@@ -58,6 +58,26 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Token invalido o expirado" }, { status: 401 });
   }
   const clientId = payload.clientId;
+
+  // Defensive: si el token es de modo "resubmit", solo es válido mientras el
+  // cliente esté efectivamente en changes_requested. Si Liam ya aprobó (active)
+  // o el cliente ya reenvió y pasó a pending_review, este token queda inválido
+  // — el cliente debería pedir un link nuevo si necesita más cambios.
+  if (payload.mode === "resubmit") {
+    try {
+      const hubSnap = await db.collection("hub_clients").doc(clientId).get();
+      const status = hubSnap.exists ? hubSnap.data()?.status : undefined;
+      if (status !== "changes_requested") {
+        return NextResponse.json(
+          { error: "El link de reenvío ya no es válido. Pedile a Liam un link nuevo." },
+          { status: 403 },
+        );
+      }
+    } catch (err) {
+      console.error("[onboarding/upload] hub_clients status check failed:", err);
+      return NextResponse.json({ error: "No se pudo verificar el estado del cliente" }, { status: 500 });
+    }
+  }
 
   let formData: FormData;
   try {
