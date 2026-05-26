@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import {
   Save,
   Loader2,
@@ -47,6 +47,8 @@ import {
   type PortfolioProject,
 } from "./config-editors/portfolio-editor";
 import { MenuEditor, type MenuCategory, type MenuItem as MenuItemConfig } from "./config-editors/menu-editor";
+import { SaveDiffModal } from "./save-diff-modal";
+import { SplashVariantPreview } from "./splash-variant-preview";
 import {
   normalizeBusinessNiche,
   type BusinessNiche,
@@ -171,6 +173,9 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
   const [issues, setIssues] = useState<ConfigIssue[]>([]);
   const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set(["brand"]));
   const [isNew, setIsNew] = useState(false);
+  /** Snapshot of the config as last loaded / last successfully saved. Source of truth for the diff modal. */
+  const originalConfigRef = useRef<ConfigDoc>({});
+  const [diffModalOpen, setDiffModalOpen] = useState(false);
 
   const fetchConfig = useCallback(async () => {
     try {
@@ -213,6 +218,7 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
         });
       } else {
         setConfig(data);
+        originalConfigRef.current = data;
       }
     } catch {
       setError("Error al cargar la configuracion");
@@ -223,21 +229,24 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
 
   useEffect(() => { fetchConfig(); }, [fetchConfig]);
 
-  async function handleSave() {
-    setSaving(true);
+  function handleRequestSave() {
+    // First gate: local validation. Blocks if any errors.
     setError("");
     setWarning("");
     setSaved(false);
-
-    // Pre-validate locally so the user sees errors instantly without a roundtrip.
     const localIssues = validateConfig(config);
     setIssues(localIssues);
     if (hasBlockingIssues(localIssues)) {
       setError("Hay errores que impiden guardar. Revisa los avisos rojos abajo.");
-      setSaving(false);
       return;
     }
+    // Second gate: show diff modal so the owner confirms what will land in Firestore.
+    setDiffModalOpen(true);
+  }
 
+  async function handleConfirmedSave() {
+    setSaving(true);
+    setError("");
     try {
       const res = await fetch(`/api/config/${clientId}`, {
         method: "PUT",
@@ -273,6 +282,9 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
       }
       setSaved(true);
       setIsNew(false);
+      setDiffModalOpen(false);
+      // Snapshot the saved state so the next diff is computed against ground truth.
+      originalConfigRef.current = config;
       setTimeout(() => setSaved(false), 3000);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Error al guardar");
@@ -338,7 +350,7 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
           </p>
         </div>
         <button
-          onClick={handleSave}
+          onClick={handleRequestSave}
           disabled={saving}
           className="inline-flex items-center gap-1.5 rounded-lg bg-accent px-4 py-2 text-xs font-medium text-white transition-colors hover:bg-accent-hover disabled:opacity-50"
         >
@@ -377,7 +389,9 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
         </div>
       )}
       {saved && (
-        <div className="rounded-lg bg-green-500/10 px-3 py-2 text-xs text-green-400">Configuracion guardada correctamente</div>
+        <div className="rounded-lg border border-green-500/20 bg-green-500/10 px-3 py-2 text-xs text-green-400">
+          Configuracion guardada. El sitio del cliente refleja los cambios en ~10s (cache CDN).
+        </div>
       )}
 
       <GroupBand label="BRANDING" hint="identidad visual y verbal" />
@@ -453,11 +467,11 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
         </div>
         <Field label="Descripcion (SEO)" path="brand.description" value={getNested("brand.description")} onChange={updateNested} />
         <div className="grid gap-3 sm:grid-cols-2">
-          <ImageUploadField label="Logo (fondo claro)" value={(getNested("brand.logo") as string) || ""} onChange={(url) => updateNested("brand.logo", url ?? "")} clientId={clientId} />
-          <ImageUploadField label="Logo (fondo oscuro)" value={(getNested("brand.logoDark") as string) || ""} onChange={(url) => updateNested("brand.logoDark", url ?? "")} clientId={clientId} />
+          <ImageUploadField aspectHint="SVG/PNG transparente · cuadrado" label="Logo (fondo claro)" value={(getNested("brand.logo") as string) || ""} onChange={(url) => updateNested("brand.logo", url ?? "")} clientId={clientId} />
+          <ImageUploadField aspectHint="SVG/PNG transparente · cuadrado" label="Logo (fondo oscuro)" value={(getNested("brand.logoDark") as string) || ""} onChange={(url) => updateNested("brand.logoDark", url ?? "")} clientId={clientId} />
         </div>
         <div className="grid gap-3 sm:grid-cols-2">
-          <ImageUploadField label="OG Image" value={(getNested("brand.ogImage") as string) || ""} onChange={(url) => updateNested("brand.ogImage", url ?? "")} clientId={clientId} />
+          <ImageUploadField aspectHint="1.91:1 · 1200×630" label="OG Image" value={(getNested("brand.ogImage") as string) || ""} onChange={(url) => updateNested("brand.ogImage", url ?? "")} clientId={clientId} />
           <Field label="Icono fallback (Lucide)" path="brand.logoIconName" value={getNested("brand.logoIconName")} onChange={updateNested} placeholder="Scissors, Sparkles, Scale..." />
         </div>
         <div className="grid gap-3 sm:grid-cols-[1fr_2fr]">
@@ -522,7 +536,7 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
                 key={v.value}
                 type="button"
                 onClick={() => updateNested("splash.variant", v.value)}
-                className={`relative rounded-lg border px-3 py-2.5 text-left transition-colors ${
+                className={`group/splash relative rounded-lg border px-3 py-2.5 text-left transition-colors ${
                   isSelected
                     ? "border-accent/40 bg-accent/8 ring-1 ring-accent/20"
                     : "border-border bg-bg-elevated hover:bg-bg-active"
@@ -542,6 +556,7 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
                   )}
                 </div>
                 <p className="mt-1 pl-8 text-[10px] text-text-muted">{v.desc}</p>
+                <SplashVariantPreview variant={v.value} />
               </button>
             );
           })}
@@ -692,7 +707,7 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
             <Field label="Nombre completo" path="owner.name" value={getNested("owner.name")} onChange={updateNested} placeholder="Tu nombre" />
             <Field label="Titulo / Rol" path="owner.role" value={getNested("owner.role")} onChange={updateNested} placeholder="Master Barber, Tattoo Artist..." />
           </div>
-          <ImageUploadField label="Foto de perfil" value={(getNested("owner.photo") as string) || ""} onChange={(url) => updateNested("owner.photo", url ?? "")} clientId={clientId} />
+          <ImageUploadField aspectHint="1:1 · 800px+" label="Foto de perfil" value={(getNested("owner.photo") as string) || ""} onChange={(url) => updateNested("owner.photo", url ?? "")} clientId={clientId} />
           <TextAreaField label="Bio" path="owner.bio" value={getNested("owner.bio") as string} onChange={updateNested}
             placeholder="Cuenta tu historia, tu trayectoria, que te hace diferente..."
           />
@@ -828,6 +843,7 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
         <div>
           <ImageUploadField
             label="Fondo del Hero"
+            aspectHint="16:9 · 1920px ancho"
             value={(getNested("hero.backgroundImage") as string) || ""}
             onChange={(url) => updateNested("hero.backgroundImage", url ?? "")}
             clientId={clientId}
@@ -936,6 +952,7 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
         </p>
         <ImageUploadField
           label="Imagen principal"
+          aspectHint="4:5 vertical · o 1:1"
           value={(getNested("sections.whyChooseUs.mainImage") as string) || ""}
           onChange={(url) => updateNested("sections.whyChooseUs.mainImage", url ?? "")}
           clientId={clientId}
@@ -1184,6 +1201,14 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
         />
       </Section>
 
+      <SaveDiffModal
+        open={diffModalOpen}
+        before={originalConfigRef.current}
+        after={config}
+        saving={saving}
+        onCancel={() => { if (!saving) setDiffModalOpen(false); }}
+        onConfirm={handleConfirmedSave}
+      />
     </div>
   );
 }

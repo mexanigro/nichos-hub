@@ -2,6 +2,7 @@
 
 import { useRef, useState, useCallback } from "react";
 import { Upload, X, Link as LinkIcon, Loader2, ImageIcon } from "lucide-react";
+import { compressImage, compressImages } from "@/lib/image-compress";
 
 /* ═══════════════════════════════════════════════════════════════════════════
  * ImageUploadField — Single image upload with drag-and-drop + URL fallback
@@ -13,19 +14,22 @@ interface ImageUploadFieldProps {
   clientId: string;
   label?: string;
   placeholder?: string;
+  /** Optional aspect-ratio hint shown above the dropzone (e.g. "16:9 · 1920×1080"). */
+  aspectHint?: string;
 }
 
-export function ImageUploadField({ value, onChange, clientId, label, placeholder }: ImageUploadFieldProps) {
+export function ImageUploadField({ value, onChange, clientId, label, placeholder, aspectHint }: ImageUploadFieldProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [uploading, setUploading] = useState(false);
   const [dragOver, setDragOver] = useState(false);
   const [showUrlInput, setShowUrlInput] = useState(false);
   const [error, setError] = useState("");
 
-  const uploadFile = useCallback(async (file: File) => {
+  const uploadFile = useCallback(async (rawFile: File) => {
     setError("");
     setUploading(true);
     try {
+      const file = await compressImage(rawFile);
       const form = new FormData();
       form.append("file", file);
       const res = await fetch(`/api/upload/${clientId}`, { method: "POST", body: form });
@@ -60,7 +64,14 @@ export function ImageUploadField({ value, onChange, clientId, label, placeholder
 
   return (
     <div className="space-y-2">
-      {label && <p className="text-[11px] font-semibold text-text-secondary">{label}</p>}
+      {label && (
+        <div className="flex items-baseline justify-between gap-2">
+          <p className="text-[11px] font-semibold text-text-secondary">{label}</p>
+          {aspectHint && (
+            <span className="text-[10px] text-text-muted/70">{aspectHint}</span>
+          )}
+        </div>
+      )}
 
       {/* Preview */}
       {value && (
@@ -141,9 +152,11 @@ interface ImageUploadListFieldProps {
   clientId: string;
   label?: string;
   placeholder?: string;
+  /** Optional aspect-ratio hint shown above the dropzone. */
+  aspectHint?: string;
 }
 
-export function ImageUploadListField({ value, onChange, clientId, label, placeholder }: ImageUploadListFieldProps) {
+export function ImageUploadListField({ value, onChange, clientId, label, placeholder, aspectHint }: ImageUploadListFieldProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [uploading, setUploading] = useState(false);
   const [dragOver, setDragOver] = useState(false);
@@ -151,18 +164,20 @@ export function ImageUploadListField({ value, onChange, clientId, label, placeho
   const [showUrlInput, setShowUrlInput] = useState(false);
   const [urlDraft, setUrlDraft] = useState("");
 
-  const uploadFiles = useCallback(async (files: File[]) => {
+  const uploadFiles = useCallback(async (rawFiles: File[]) => {
     setError("");
     setUploading(true);
     try {
-      const form = new FormData();
-      for (const f of files) {
-        if (f.type.startsWith("image/")) form.append("file", f);
-      }
-      if (!form.has("file")) {
+      const imageFiles = rawFiles.filter((f) => f.type.startsWith("image/"));
+      if (imageFiles.length === 0) {
         setError("Solo se aceptan imagenes");
         setUploading(false);
         return;
+      }
+      const files = await compressImages(imageFiles);
+      const form = new FormData();
+      for (const f of files) {
+        form.append("file", f);
       }
       const res = await fetch(`/api/upload/${clientId}`, { method: "POST", body: form });
       const data = await res.json();
@@ -211,7 +226,14 @@ export function ImageUploadListField({ value, onChange, clientId, label, placeho
 
   return (
     <div className="space-y-2">
-      {label && <p className="text-[11px] font-semibold text-text-secondary">{label}</p>}
+      {label && (
+        <div className="flex items-baseline justify-between gap-2">
+          <p className="text-[11px] font-semibold text-text-secondary">{label}</p>
+          {aspectHint && (
+            <span className="text-[10px] text-text-muted/70">{aspectHint}</span>
+          )}
+        </div>
+      )}
 
       {/* Existing images grid */}
       {value.length > 0 && (

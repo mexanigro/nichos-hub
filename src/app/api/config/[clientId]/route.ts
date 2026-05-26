@@ -4,6 +4,7 @@ import { withOwner } from "@/lib/auth";
 import { FieldValue } from "firebase-admin/firestore";
 import { normalizeBusinessNiche } from "@/lib/client-config/services";
 import { validateConfig, hasBlockingIssues } from "@/lib/config-validator";
+import { diffConfig, summarizeValue } from "@/lib/config-diff";
 
 type RouteCtx = { params: Promise<{ clientId: string }> };
 
@@ -160,7 +161,7 @@ function withNormalizedBusinessType(body: Record<string, unknown>, businessType:
 }
 
 /** PUT /api/config/:clientId — merge into Firestore config/{clientId} */
-export const PUT = withOwner(async (req, _session, ctx) => {
+export const PUT = withOwner(async (req, session, ctx) => {
   const { clientId } = await (ctx as RouteCtx).params;
   if (!CLIENT_ID_RE.test(clientId)) {
     return NextResponse.json({ error: "Invalid clientId" }, { status: 400 });
@@ -187,6 +188,16 @@ export const PUT = withOwner(async (req, _session, ctx) => {
     );
   }
 
+  // Snapshot the previous state for the audit log entry. We diff against the
+  // *normalized* shape so the log shows what actually changed on disk.
+  let previousData: Record<string, unknown> = {};
+  try {
+    const prev = await db.collection("config").doc(clientId).get();
+    if (prev.exists) previousData = normalizeConfigShape(prev.data() ?? {});
+  } catch (err) {
+    console.error("[api/config PUT] failed to snapshot prev for audit log:", err);
+  }
+
   const cleaned = replaceNullsWithDelete(normalizedBody);
   try {
     await db.collection("config").doc(clientId).set(cleaned, { merge: true });
@@ -194,6 +205,31 @@ export const PUT = withOwner(async (req, _session, ctx) => {
     console.error("[api/config PUT]", err);
     return NextResponse.json({ error: "Error al guardar configuracion" }, { status: 500 });
   }
+
+  // Audit log: write a compact summary of what changed to
+  // config_history/{clientId}/entries/{auto}. Best-effort; we don't fail the
+  // PUT if the audit write errors out (e.g. quota).
+  try {
+    const diff = diffConfig(previousData, normalizedBody);
+    if (diff.length > 0) {
+      const changes = diff.slice(0, 100).map((d) => ({
+        path: d.path,
+        kind: d.kind,
+        beforeSummary: summarizeValue(d.before),
+        afterSummary: summarizeValue(d.after),
+      }));
+      await db.collection("config_history").doc(clientId).collection("entries").add({
+        changedAt: FieldValue.serverTimestamp(),
+        changedBy: session.user?.email ?? "owner",
+        changeCount: diff.length,
+        truncated: diff.length > 100,
+        changes,
+      });
+    }
+  } catch (err) {
+    console.error("[api/config PUT] audit log write failed:", err);
+  }
+
   const warning =
     requestedBusinessType && normalizeBusinessNiche(requestedBusinessType) !== deployBusinessType
       ? `El nicho guardado se normalizo a "${deployBusinessType}" porque debe coincidir con el nicho del deploy.`

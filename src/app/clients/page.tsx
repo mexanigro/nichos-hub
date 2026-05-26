@@ -9,6 +9,7 @@ import {
   ExternalLink,
   LayoutDashboard,
   Search,
+  X,
 } from "lucide-react";
 import { HealthDot, ClientStatusBadge } from "@/components/status-badge";
 import { EmptyState } from "@/components/empty-state";
@@ -40,6 +41,9 @@ export default function ClientsPage() {
   const [clients, setClients] = useState<ClientWithHealth[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
+  const [statusFilter, setStatusFilter] = useState<"all" | "active" | "demo" | "suspended" | "trial">("all");
+  const [nicheFilter, setNicheFilter] = useState<string>("all");
+  const [deployFilter, setDeployFilter] = useState<"all" | "ok" | "issue">("all");
 
   useEffect(() => {
     // Esperar a que la sesión cargue antes de decidir
@@ -75,12 +79,26 @@ export default function ClientsPage() {
   }
 
   const searchLower = search.toLowerCase();
-  const filtered = clients.filter(
-    (c) =>
-      (c.businessName || "").toLowerCase().includes(searchLower) ||
-      (c.niche || "").toLowerCase().includes(searchLower) ||
-      (c.clientId || "").toLowerCase().includes(searchLower)
-  );
+  const niches = Array.from(new Set(clients.map((c) => c.niche).filter(Boolean))).sort();
+  const filtered = clients.filter((c) => {
+    if (statusFilter !== "all" && (c.status || "active") !== statusFilter) return false;
+    if (nicheFilter !== "all" && (c.niche || "") !== nicheFilter) return false;
+    if (deployFilter === "ok" && c.deployStatus && c.deployStatus !== "ready") return false;
+    if (deployFilter === "issue" && (!c.deployStatus || c.deployStatus === "ready")) return false;
+    if (searchLower) {
+      const hay = `${c.businessName || ""} ${c.niche || ""} ${c.clientId || ""} ${c.adminEmail || ""}`.toLowerCase();
+      if (!hay.includes(searchLower)) return false;
+    }
+    return true;
+  });
+  const filtersActive = statusFilter !== "all" || nicheFilter !== "all" || deployFilter !== "all" || !!searchLower;
+  const counts = {
+    active: clients.filter((c) => (c.status || "active") === "active").length,
+    demo: clients.filter((c) => c.status === "demo").length,
+    suspended: clients.filter((c) => c.status === "suspended").length,
+    trial: clients.filter((c) => c.status === "trial").length,
+    issues: clients.filter((c) => c.deployStatus && c.deployStatus !== "ready").length,
+  };
 
   if (loading) return <LoadingSpinner />;
 
@@ -102,15 +120,71 @@ export default function ClientsPage() {
       </div>
 
       {/* Search */}
-      <div className="relative mb-4">
+      <div className="relative mb-3">
         <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-muted" />
         <input
           type="text"
-          placeholder="Buscar por nombre, nicho o ID..."
+          placeholder="Buscar por nombre, nicho, ID o email..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full rounded-lg border border-border bg-bg-card py-2 pl-9 pr-3 text-sm text-text placeholder:text-text-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+          className="w-full rounded-lg border border-border bg-bg-card py-2 pl-9 pr-9 text-sm text-text placeholder:text-text-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
         />
+        {search && (
+          <button
+            type="button"
+            onClick={() => setSearch("")}
+            className="absolute right-2 top-1/2 -translate-y-1/2 rounded p-1 text-text-muted hover:bg-bg-hover hover:text-text"
+            aria-label="Limpiar busqueda"
+          >
+            <X size={12} />
+          </button>
+        )}
+      </div>
+
+      {/* Filters */}
+      <div className="mb-4 flex flex-wrap items-center gap-2">
+        <FilterGroup
+          label="Estado"
+          options={[
+            { key: "all", label: "Todos" },
+            { key: "active", label: `Activos${counts.active ? ` (${counts.active})` : ""}` },
+            { key: "demo", label: `Demo${counts.demo ? ` (${counts.demo})` : ""}` },
+            { key: "suspended", label: `Suspendidos${counts.suspended ? ` (${counts.suspended})` : ""}` },
+            { key: "trial", label: `Trial${counts.trial ? ` (${counts.trial})` : ""}` },
+          ]}
+          value={statusFilter}
+          onChange={(v) => setStatusFilter(v as typeof statusFilter)}
+        />
+        {niches.length > 1 && (
+          <FilterGroup
+            label="Nicho"
+            options={[
+              { key: "all", label: "Todos" },
+              ...niches.map((n) => ({ key: n, label: n })),
+            ]}
+            value={nicheFilter}
+            onChange={setNicheFilter}
+          />
+        )}
+        <FilterGroup
+          label="Deploy"
+          options={[
+            { key: "all", label: "Todos" },
+            { key: "ok", label: "OK" },
+            { key: "issue", label: `Con problemas${counts.issues ? ` (${counts.issues})` : ""}` },
+          ]}
+          value={deployFilter}
+          onChange={(v) => setDeployFilter(v as typeof deployFilter)}
+        />
+        {filtersActive && (
+          <button
+            type="button"
+            onClick={() => { setSearch(""); setStatusFilter("all"); setNicheFilter("all"); setDeployFilter("all"); }}
+            className="ml-auto inline-flex items-center gap-1 rounded-md border border-border bg-bg-card px-2 py-1 text-[10px] text-text-muted hover:text-text"
+          >
+            <X size={10} /> Limpiar filtros
+          </button>
+        )}
       </div>
 
       {/* Table */}
@@ -187,6 +261,41 @@ export default function ClientsPage() {
           </table>
         </div>
       )}
+    </div>
+  );
+}
+
+function FilterGroup({
+  label,
+  options,
+  value,
+  onChange,
+}: {
+  label: string;
+  options: { key: string; label: string }[];
+  value: string;
+  onChange: (key: string) => void;
+}) {
+  return (
+    <div className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-bg-card p-1">
+      <span className="px-1.5 text-[10px] uppercase tracking-wider text-text-muted/70">{label}</span>
+      {options.map((opt) => {
+        const active = value === opt.key;
+        return (
+          <button
+            key={opt.key}
+            type="button"
+            onClick={() => onChange(opt.key)}
+            className={`rounded-md px-2 py-0.5 text-[11px] font-medium transition-colors ${
+              active
+                ? "bg-accent text-white"
+                : "text-text-secondary hover:bg-bg-hover hover:text-text"
+            }`}
+          >
+            {opt.label}
+          </button>
+        );
+      })}
     </div>
   );
 }

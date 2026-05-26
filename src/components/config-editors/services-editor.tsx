@@ -37,6 +37,13 @@ type ConfigSlice = {
   landingServicesCount?: number | null;
   features?: Record<string, boolean>;
   business?: { type?: string };
+  /**
+   * Internal backup of the custom services list, written when the owner
+   * clicks "Volver al preset". Survives until the next Save so the owner
+   * can recover their work if they meant to keep it. Cleared the next
+   * time the owner re-enters custom mode (since they're starting fresh).
+   */
+  _customServicesBackup?: Service[] | null;
 };
 
 type SetConfig = (updater: (prev: ConfigSlice) => ConfigSlice) => void;
@@ -86,8 +93,10 @@ export function ServicesEditor({
           setConfig((prev) => ({ ...prev, services: next.length > 0 ? (next as never) : undefined }))
         }
         onReturnToPreset={() => {
+          // Stash the current custom list as a backup so "volver al preset" is recoverable.
           setConfig((prev) => ({
             ...prev,
+            _customServicesBackup: prev.services && prev.services.length > 0 ? prev.services : null,
             services: undefined,
             visibleServices: null,
             serviceOverrides: null,
@@ -99,13 +108,30 @@ export function ServicesEditor({
   }
 
   // Preset mode
+  const customBackup = config._customServicesBackup;
+  const hasCustomBackup = Array.isArray(customBackup) && customBackup.length > 0;
   return (
     <PresetServicesEditor
       niche={niche}
       config={config}
       setConfig={setConfig}
       presetServices={presetServices}
+      backup={hasCustomBackup ? customBackup : null}
+      onRestoreBackup={() => {
+        if (!hasCustomBackup) return;
+        setConfig((prev) => ({
+          ...prev,
+          services: prev._customServicesBackup ?? undefined,
+          _customServicesBackup: null,
+          visibleServices: null,
+          serviceOverrides: null,
+        }));
+      }}
+      onDiscardBackup={() => {
+        setConfig((prev) => ({ ...prev, _customServicesBackup: null }));
+      }}
       onSwitchToCustom={() => {
+        // Entering custom fresh — clear any stale backup since we're starting over.
         // Materialize: preset filtered by visibleServices, patched with overrides
         const visibleIds = resolveVisibleServiceIds(
           config,
@@ -139,6 +165,7 @@ export function ServicesEditor({
           services: materialized,
           visibleServices: null,
           serviceOverrides: null,
+          _customServicesBackup: null,
         }));
       }}
     />
@@ -153,12 +180,18 @@ function PresetServicesEditor({
   setConfig,
   presetServices,
   onSwitchToCustom,
+  backup,
+  onRestoreBackup,
+  onDiscardBackup,
 }: {
   niche: BusinessNiche;
   config: ConfigSlice;
   setConfig: SetConfig;
   presetServices: { id: string; label: string }[];
   onSwitchToCustom: () => void;
+  backup: Service[] | null;
+  onRestoreBackup: () => void;
+  onDiscardBackup: () => void;
 }) {
   const visibleIds = resolveVisibleServiceIds(config, presetServices);
   const visibleSet = new Set(visibleIds);
@@ -201,6 +234,37 @@ function PresetServicesEditor({
           duracion, descripcion o imagen.
         </p>
       </div>
+
+      {backup && (
+        <div className="flex items-start gap-2 rounded-lg border border-accent/30 bg-accent/5 p-3 text-[11px]">
+          <RotateCcw size={14} className="mt-0.5 shrink-0 text-accent" />
+          <div className="flex-1">
+            <p className="font-medium text-text">
+              Hay un backup de tus servicios custom ({backup.length} item{backup.length === 1 ? "" : "s"})
+            </p>
+            <p className="text-text-secondary">
+              Volviste al preset hace poco. Si fue sin querer, podes restaurar la lista custom.
+              El backup se borra cuando guardes el config o cuando vuelvas a entrar a modo custom desde cero.
+            </p>
+          </div>
+          <div className="flex shrink-0 items-center gap-1">
+            <button
+              type="button"
+              onClick={onDiscardBackup}
+              className="rounded border border-border bg-bg-card px-2 py-1 text-[10px] text-text-muted hover:text-text"
+            >
+              Descartar
+            </button>
+            <button
+              type="button"
+              onClick={onRestoreBackup}
+              className="rounded border border-accent/30 bg-accent/15 px-2 py-1 text-[10px] font-medium text-accent hover:bg-accent/25"
+            >
+              Restaurar custom
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Visibility */}
       <div className="rounded-xl border border-border bg-bg-card p-3">

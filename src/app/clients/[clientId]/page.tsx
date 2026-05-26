@@ -34,6 +34,7 @@ import { ClientContentTab } from "@/components/client-content-tab";
 import { WhatsAppConfigTab } from "@/components/whatsapp-config-tab";
 import { ClientLeadsTab } from "@/components/client-leads-tab";
 import { CrmImportModal } from "@/components/crm-import-modal";
+import { ConfigHistoryPanel } from "@/components/config-history-panel";
 import { formatDistanceToNow, format } from "date-fns";
 import { es } from "date-fns/locale";
 import type { ClientWithHealth, Payment, PaymentStatus } from "@/types";
@@ -257,11 +258,25 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
               href={client.deployUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-lg border border-border px-2.5 py-1.5 text-[11px] font-medium text-text-secondary transition-colors hover:bg-bg-hover"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-accent/30 bg-accent/10 px-3 py-1.5 text-[11px] font-semibold text-accent transition-colors hover:bg-accent/20"
+              title={client.deployUrl}
             >
               <Globe size={12} />
-              <span className="hidden sm:inline">Abrir sitio</span>
+              <span>Ver sitio en vivo</span>
+              <ExternalLink size={10} className="opacity-60" />
             </a>
+            {client.vercelProjectId && (
+              <a
+                href={`https://vercel.com/dashboard/${client.vercelProjectId}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 rounded-lg border border-border px-2 py-1.5 text-[10px] text-text-muted transition-colors hover:bg-bg-hover hover:text-text"
+                title={`Vercel dashboard · ${client.vercelProjectId}`}
+              >
+                <span>Vercel</span>
+                <ExternalLink size={9} className="opacity-60" />
+              </a>
+            )}
             <button
               onClick={() => setConfirmAction("suspend")}
               disabled={toggling}
@@ -585,6 +600,11 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
             </div>
           )}
         </div>
+      </div>
+
+      {/* Config history (audit log) */}
+      <div className="mt-6">
+        <ConfigHistoryPanel clientId={client.clientId} />
       </div>
 
       {/* Client Details */}
