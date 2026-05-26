@@ -3,6 +3,7 @@
 import { useCallback, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { WizardShell } from "@/components/wizard/wizard-shell";
+import { WizardConfirmation } from "@/components/wizard/wizard-confirmation";
 import { useWizard } from "@/lib/wizard/use-wizard";
 import { clearWizardDraft } from "@/lib/wizard/wizard-storage";
 import { useT } from "@/lib/i18n";
@@ -12,12 +13,11 @@ import { StepNiche } from "@/components/wizard/steps/step-niche";
 import { StepMode } from "@/components/wizard/steps/step-mode";
 import { StepBusiness } from "@/components/wizard/steps/step-business";
 import { StepContact } from "@/components/wizard/steps/step-contact";
-import { StepBrand } from "@/components/wizard/steps/step-brand";
+import { StepBranding } from "@/components/wizard/steps/step-branding";
 import { StepServices } from "@/components/wizard/steps/step-services";
 import { StepHours } from "@/components/wizard/steps/step-hours";
 import { StepOwner } from "@/components/wizard/steps/step-owner";
 import { StepGallery } from "@/components/wizard/steps/step-gallery";
-import { StepReview } from "@/components/wizard/wizard-review";
 
 import {
   validateNiche,
@@ -31,18 +31,18 @@ const STEPS: StepConfig[] = [
   { id: "mode", component: StepMode, validate: validateMode },
   { id: "business", component: StepBusiness, validate: validateBusiness },
   { id: "contact", component: StepContact, validate: validateContact },
-  { id: "brand", component: StepBrand },
+  { id: "branding", component: StepBranding },
   { id: "services", component: StepServices },
   { id: "hours", component: StepHours },
   { id: "owner", component: StepOwner },
   { id: "gallery", component: StepGallery },
-  { id: "review", component: StepReview },
 ];
 
 export function PaidWizardClient() {
   const params = useSearchParams();
   const clientId = params.get("clientId") || "";
   const { locale, t, isRTL } = useT();
+  const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
 
@@ -74,23 +74,28 @@ export function PaidWizardClient() {
         contact: {
           phone: data.phone || data.whatsapp,
           email: data.email,
-          address: {
-            street: data.address,
-            district: data.district,
-            city: data.city,
-          },
+          address: { street: data.address, district: data.district, city: data.city },
           instagram: data.instagram,
           facebook: data.facebook,
           whatsapp: data.whatsapp,
         },
+        hasBranding: data.hasBranding,
+        wantsLiamBranding: data.wantsLiamBranding,
         colors: data.colors,
         accentColor: data.accentColor,
+        logo: data.logo?.dataUrl ?? null,
+        logoDark: data.logoDark?.dataUrl ?? null,
+        logoBlackWhite: data.logoBlackWhite?.dataUrl ?? null,
         services: data.services.filter((s) => s.visible),
         hours: data.hours,
         ownerName: data.ownerName,
         ownerRole: data.ownerRole,
         ownerBio: data.ownerBio,
+        ownerPhoto: data.ownerPhoto?.dataUrl ?? null,
+        heroImage: data.heroImage?.dataUrl ?? null,
+        galleryImages: data.galleryImages.map((f) => f.dataUrl),
         locale,
+        variant: "paid",
       };
 
       const res = await fetch("/api/onboarding/client-info", {
@@ -106,7 +111,7 @@ export function PaidWizardClient() {
       }
 
       clearWizardDraft("paid", clientId);
-      window.location.href = `/onboarding/status/${clientId}`;
+      setSubmitted(true);
     } catch {
       setSubmitError("Network error. Please check your connection and try again.");
     } finally {
@@ -126,6 +131,10 @@ export function PaidWizardClient() {
         </div>
       </div>
     );
+  }
+
+  if (submitted) {
+    return <WizardConfirmation variant="paid" />;
   }
 
   return (

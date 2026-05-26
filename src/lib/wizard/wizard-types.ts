@@ -52,15 +52,17 @@ export interface WizardData {
   facebook: string;
   whatsapp: string;
 
-  // Step 5: Style / Brand
+  // Step 5: Branding
+  hasBranding: boolean | null;
+  wantsLiamBranding: boolean | null;
   colors: string;
-  logoCreate: boolean;
   accentColor: string;
   themePreset: string;
 
-  // Step 6: Logo upload (free) / Brand uploads (paid)
+  // Step 5: Logo uploads
   logo: SerializedFile | null;
   logoDark: SerializedFile | null;
+  logoBlackWhite: SerializedFile | null;
 
   // Step 6 (paid): Services
   services: WizardService[];
@@ -119,12 +121,14 @@ export function createEmptyWizardData(locale = "en"): WizardData {
     instagram: "",
     facebook: "",
     whatsapp: "",
+    hasBranding: null,
+    wantsLiamBranding: null,
     colors: "",
-    logoCreate: false,
     accentColor: "",
     themePreset: "",
     logo: null,
     logoDark: null,
+    logoBlackWhite: null,
     services: [],
     hours: {
       sunday: { isOpen: true, open: "09:00", close: "18:00" },

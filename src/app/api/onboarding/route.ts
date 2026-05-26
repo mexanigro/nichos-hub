@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/firebase-admin";
-import { auth } from "@/lib/auth";
 import { isRateLimited } from "@/lib/rate-limit";
 import { resolveBranding } from "@/lib/branding-resolver";
-import { generateLogoSvg } from "@/lib/logo-generator";
 import { buildFeatures, getDefaultTheme, getDefaultSplash } from "@/lib/niche-defaults";
 
 function slugify(name: string): string {
@@ -22,36 +20,40 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Rate limited" }, { status: 429 });
   }
 
-  const session = await auth();
-  const leadEmail = session?.user?.email || "";
-
   try {
-    const formData = await req.formData();
-    const niche = (formData.get("niche") as string || "").trim();
-    const customNiche = (formData.get("customNiche") as string || "").trim();
-    const businessMode = (formData.get("businessMode") as string || "team") as "solo" | "team";
-    const businessName = (formData.get("businessName") as string || "").trim();
-    const description = (formData.get("description") as string || "").trim();
-    const whatsapp = (formData.get("whatsapp") as string || "").trim();
-    const email = (formData.get("email") as string || "").trim();
-    const address = (formData.get("address") as string || "").trim();
-    const instagram = (formData.get("instagram") as string || "").trim();
-    const logoCreate = formData.get("logoCreate") === "true";
-    const colors = (formData.get("colors") as string || "").trim();
-    const locale = (formData.get("locale") as string || "en").trim();
+    const body = await req.json();
 
-    // Read logo file if uploaded (< 500KB → base64 data URL)
-    let logoDataUrl: string | null = null;
-    const logoFile = formData.get("logo");
-    if (logoFile && logoFile instanceof Blob && logoFile.size > 0 && logoFile.size < 350_000) {
-      try {
-        const buffer = Buffer.from(await logoFile.arrayBuffer());
-        const mimeType = logoFile.type || "image/png";
-        logoDataUrl = `data:${mimeType};base64,${buffer.toString("base64")}`;
-      } catch {
-        // Non-critical — continue without logo
-      }
-    }
+    const niche = (body.niche as string || "").trim();
+    const customNiche = (body.customNiche as string || "").trim();
+    const businessMode = (body.businessMode as string || "team") as "solo" | "team";
+    const businessName = (body.businessName as string || "").trim();
+    const tagline = (body.tagline as string || "").trim();
+    const description = (body.description as string || "").trim();
+    const contact = body.contact ?? {};
+    const whatsapp = (contact.whatsapp as string || "").trim();
+    const email = (contact.email as string || "").trim();
+    const address = contact.address ?? {};
+    const instagram = (contact.instagram as string || "").trim();
+    const facebook = (contact.facebook as string || "").trim();
+    const phone = (contact.phone as string || "").trim();
+
+    const hasBranding = body.hasBranding ?? null;
+    const wantsLiamBranding = body.wantsLiamBranding ?? null;
+    const colors = (body.colors as string || "").trim();
+    const accentColor = (body.accentColor as string || "").trim();
+    const logoDataUrl = (body.logo as string | null) ?? null;
+    const logoDarkDataUrl = (body.logoDark as string | null) ?? null;
+    const logoBlackWhiteDataUrl = (body.logoBlackWhite as string | null) ?? null;
+    const ownerPhotoDataUrl = (body.ownerPhoto as string | null) ?? null;
+    const heroImageDataUrl = (body.heroImage as string | null) ?? null;
+    const galleryImages = (body.galleryImages as string[] | null) ?? [];
+
+    const services = body.services ?? [];
+    const hours = body.hours ?? {};
+    const ownerName = (body.ownerName as string || "").trim();
+    const ownerRole = (body.ownerRole as string || "").trim();
+    const ownerBio = (body.ownerBio as string || "").trim();
+    const locale = (body.locale as string || "en").trim();
 
     if (!businessName || businessName.length < 2) {
       return NextResponse.json({ error: "Business name is required (min 2 chars)" }, { status: 400 });
@@ -76,40 +78,67 @@ export async function POST(req: NextRequest) {
       niche,
       customNiche: niche === "otro" ? customNiche : "",
       businessMode,
+      tagline,
       status: "demo",
       domain: `${slug}.arzac.studio`,
       createdAt: new Date(),
-      contact: { whatsapp, email, address, instagram },
+      contact: { whatsapp, email, phone, address, instagram, facebook },
       description,
+      hasBranding,
+      wantsLiamBranding,
       colors,
-      logoCreate,
+      accentColor,
       logoDataUrl,
+      logoDarkDataUrl,
+      logoBlackWhiteDataUrl,
+      ownerName,
+      ownerRole,
+      ownerBio,
+      ownerPhotoDataUrl,
+      heroImageDataUrl,
+      galleryImages,
+      services,
+      hours,
       language: locale,
-      leadEmail,
+      variant: body.variant || "free",
     });
 
     await db.collection("clients").doc(slug).set({
       status: "active",
     });
 
-    // Resolve user color preferences into theme overrides
     const branding = resolveBranding({ niche: deployNiche, colors });
 
     await db.collection("config").doc(slug).set({
-      business: { type: deployNiche, mode: businessMode, name: businessName },
+      business: { type: deployNiche, mode: businessMode, name: businessName, tagline },
       brand: {
         name: businessName,
-        tagline: description,
+        tagline: tagline || description,
         ...(logoDataUrl ? { logo: logoDataUrl } : {}),
+        ...(logoDarkDataUrl ? { logoDark: logoDarkDataUrl } : {}),
+        ...(logoBlackWhiteDataUrl ? { logoBW: logoBlackWhiteDataUrl } : {}),
+        ...(accentColor ? { accentColor } : {}),
       },
-      contact: { phone: whatsapp, email, address: { street: address }, instagram },
+      contact: {
+        phone: phone || whatsapp,
+        email,
+        address,
+        instagram,
+        facebook,
+        whatsapp,
+      },
       features,
       activeTheme: getDefaultTheme(deployNiche),
       ...(Object.keys(branding.themeOverrides).length > 0
         ? { themeOverrides: branding.themeOverrides }
         : {}),
       splash: { enabled: true, variant: getDefaultSplash(deployNiche) },
-      brandingInput: { colors, logoCreate, instagram },
+      brandingInput: { colors, accentColor, hasBranding, wantsLiamBranding, instagram },
+      ...(services.length > 0 ? { services } : {}),
+      ...(Object.keys(hours).length > 0 ? { hours } : {}),
+      ...(ownerName ? { owner: { name: ownerName, role: ownerRole, bio: ownerBio, photo: ownerPhotoDataUrl } } : {}),
+      ...(heroImageDataUrl ? { heroImage: heroImageDataUrl } : {}),
+      ...(galleryImages.length > 0 ? { galleryImages } : {}),
     });
 
     const deployUrl = `${req.nextUrl.origin}/api/deploy`;
@@ -129,57 +158,9 @@ export async function POST(req: NextRequest) {
       await hubRef.update({ deployStatus: "error", deployError: err.slice(0, 200) });
     }
 
-    // Async logo generation — fire and forget, doesn't block the user
-    if (logoCreate && !logoDataUrl) {
-      generateAndStoreLogo({ slug, niche: deployNiche, businessName, colors, description })
-        .catch((err) => console.error("[onboarding] logo gen failed:", err));
-    }
-
     return NextResponse.json({ clientId: slug, hubDocId: hubRef.id });
   } catch (error) {
     console.error("Onboarding error:", error);
     return NextResponse.json({ error: "Internal error" }, { status: 500 });
   }
-}
-
-// buildFeatures, getDefaultTheme, getDefaultSplash importados de @/lib/niche-defaults
-
-/**
- * Generate a logo SVG via Claude Haiku and store it in Firestore.
- * Runs asynchronously — called fire-and-forget from the main flow.
- * The deploy takes ~2min on Vercel, logo generates in ~5sec.
- */
-async function generateAndStoreLogo(params: {
-  slug: string;
-  niche: string;
-  businessName: string;
-  colors: string;
-  description: string;
-}) {
-  const { slug, niche, businessName, colors, description } = params;
-
-  // Generate SVG via Claude with detailed niche-specific design brief
-  const svgDataUrl = await generateLogoSvg({
-    businessName,
-    niche,
-    colors,
-    description,
-  });
-
-  // Step 3: Store in Firestore
-  await db.collection("config").doc(slug).update({
-    "brand.logo": svgDataUrl,
-  });
-
-  // Also update hub_clients
-  const hubSnap = await db
-    .collection("hub_clients")
-    .where("clientId", "==", slug)
-    .limit(1)
-    .get();
-  if (!hubSnap.empty) {
-    await hubSnap.docs[0].ref.update({ logoDataUrl: svgDataUrl });
-  }
-
-  console.log(`[logo-gen] Logo generated and stored for ${slug}`);
 }

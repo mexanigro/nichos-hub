@@ -1320,6 +1320,42 @@ body:has(.wiz) {
 .wiz-empty h2 { font-family: var(--wz-serif); font-size: 28px; margin: 0; }
 .wiz-empty p { font-size: 14px; color: var(--wz-ink-2); margin: 0; }
 
+/* ─── Wizard Confirmation ─── */
+.wiz-confirm {
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; padding: 20px 0 40px; gap: 20px; max-width: 520px; margin: 0 auto;
+}
+.wiz-confirm-icon {
+  width: 72px; height: 72px; border-radius: 50%;
+  background: color-mix(in srgb, var(--wz-accent) 15%, transparent);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--wz-accent);
+}
+.wiz-confirm-title {
+  font-family: var(--wz-serif); font-size: clamp(28px, 6vw, 40px);
+  font-weight: 400; margin: 0; color: var(--wz-ink);
+}
+.wiz-confirm-msg {
+  font-size: 16px; line-height: 1.7; color: var(--wz-ink-2);
+  margin: 0; max-width: 460px;
+}
+.wiz-confirm-wa {
+  display: inline-flex; align-items: center; gap: 10px;
+  width: auto !important; padding: 14px 28px;
+  font-size: 15px; margin-top: 8px;
+}
+
+/* ─── Step Branding helpers ─── */
+.wiz-note {
+  font-size: 13px; color: var(--wz-ink-2); line-height: 1.6;
+  background: color-mix(in srgb, var(--wz-accent) 8%, transparent);
+  border-left: 3px solid var(--wz-accent); border-radius: 0 6px 6px 0;
+  padding: 10px 14px; margin: 0;
+}
+[dir="rtl"] .wiz-note { border-left: none; border-right: 3px solid var(--wz-accent); border-radius: 6px 0 0 6px; }
+.wiz-field-group { display: flex; flex-direction: column; gap: 12px; }
+.wiz-field-label { font-size: 14px; font-weight: 500; color: var(--wz-ink); margin: 0; }
+
 /* loading */
 .wiz-loading {
   display: flex; align-items: center; justify-content: center;

@@ -124,6 +124,12 @@ export interface Translations {
     sectionBusiness: string; sectionContact: string; sectionStyle: string;
     sectionBrand: string; sectionServices: string; sectionHours: string;
     sectionOwner: string; sectionGallery: string; edit: string;
+    brandingTitle: string; brandingSub: string;
+    hasBrandingYes: string; hasBrandingNo: string;
+    logoBlackWhiteLabel: string; logoAllNote: string;
+    wantsLiamTitle: string; wantsLiamYes: string; wantsLiamNo: string;
+    confirmTitle: string; confirmFreeMsg: string; confirmPaidMsg: string;
+    confirmWhatsapp: string;
     errNiche: string; errCustomNiche: string; errMode: string;
     errBusinessName: string; errContact: string; errEmail: string;
     noClientId: string; noClientIdSub: string;
