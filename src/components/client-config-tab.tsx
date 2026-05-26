@@ -13,11 +13,14 @@ import {
   Sparkles,
   ChevronDown,
   ChevronRight,
+  Award,
+  Quote,
+  Users,
+  Briefcase,
   Eye,
   EyeOff,
   Bell,
   CalendarCog,
-  Wrench,
   Film,
   ImageIcon,
   Plus,
@@ -28,12 +31,12 @@ import {
 } from "lucide-react";
 import { ImageUploadField, ImageUploadListField } from "./image-upload-field";
 import { BrandPackageImport } from "./brand-package-import";
+import { BenefitsEditor, type Benefit } from "./config-editors/benefits-editor";
+import { TestimonialsEditor, type Testimonial } from "./config-editors/testimonials-editor";
+import { StaffEditor, type StaffMember } from "./config-editors/staff-editor";
+import { ServicesEditor, type Service } from "./config-editors/services-editor";
 import {
-  getNicheServices,
   normalizeBusinessNiche,
-  resolveVisibleServiceIds,
-  toggleVisibleService,
-  LANDING_SERVICES_DEFAULTS,
   type BusinessNiche,
 } from "@/lib/client-config/services";
 import { validateConfig, hasBlockingIssues, type ConfigIssue } from "@/lib/config-validator";
@@ -74,7 +77,9 @@ type ConfigDoc = {
   adminEmail?: string;
   hero?: { backgroundImage?: string; stats?: { value: string; label: string }[] };
   gallery?: string[];
-  staff?: { photoUrl?: string; portfolio?: string[] }[];
+  staff?: StaffMember[];
+  services?: Service[];
+  testimonials?: Testimonial[];
   owner?: {
     photo?: string;
     name?: string;
@@ -87,7 +92,7 @@ type ConfigDoc = {
   };
   sections?: {
     services?: { images?: string[] };
-    whyChooseUs?: { mainImage?: string };
+    whyChooseUs?: { mainImage?: string; badge?: string; benefits?: Benefit[] };
     instagram?: { title?: string; handle?: string; url?: string; images?: string[] };
   };
 };
@@ -358,6 +363,8 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
         <div className="rounded-lg bg-green-500/10 px-3 py-2 text-xs text-green-400">Configuracion guardada correctamente</div>
       )}
 
+      <GroupBand label="BRANDING" hint="identidad visual y verbal" />
+
       {/* ── Brand Package Import ───────────────────────────────────────── */}
       <Section
         icon={Package} title="Brand Package" sectionKey="brandPackage"
@@ -467,6 +474,64 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
         </div>
         <Field label="Theme ID (opcional)" path="activeTheme" value={getNested("activeTheme")} onChange={updateNested} placeholder="barberia-urban, tattoo-fine-line..." />
       </Section>
+
+      {/* ── Splash Screen ────────────────────────────────────────────── */}
+      <Section
+        icon={Film} title="Splash screen" sectionKey="splash"
+        expanded={expandedSections.has("splash")} onToggle={toggleSection}
+      >
+        <div className="grid gap-3 sm:grid-cols-2">
+          <ToggleField label="Splash habilitado" path="splash.enabled" value={getNested("splash.enabled") as boolean} onChange={updateNested} />
+          <NumberField label="Duracion (ms)" path="splash.durationMs" value={getNested("splash.durationMs") as number} onChange={updateNested} />
+        </div>
+
+        <p className="text-[11px] font-medium text-text-muted">Variante de animacion</p>
+        <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+          {([
+            { value: 1, name: "Classic", desc: "Logo + letras animadas + linea accent", recommendedFor: ["barberia"] },
+            { value: 2, name: "Curtain", desc: "Paneles se abren como un telon" },
+            { value: 3, name: "Pulse", desc: "Onda radial que revela la marca", recommendedFor: ["nails"] },
+            { value: 4, name: "Typewriter", desc: "Nombre escrito caracter a caracter", recommendedFor: ["estetica"] },
+            { value: 5, name: "Vortex", desc: "Particulas orbitales que convergen", recommendedFor: ["tattoo"] },
+            { value: 6, name: "Cafeteria", desc: "Mocha calido + titulo serif en dos lineas", recommendedFor: ["cafeteria"] },
+            { value: 7, name: "Remodelaciones", desc: "Wipe reveal bold + corporate", recommendedFor: ["remodelaciones"] },
+          ] as const).map(v => {
+            const current = (getNested("splash.variant") as number) ?? 1;
+            const isSelected = current === v.value;
+            const currentNiche = normalizeBusinessNiche(config.business?.type || niche);
+            const isRecommended = (v as { recommendedFor?: readonly string[] }).recommendedFor?.includes(currentNiche) ?? false;
+            return (
+              <button
+                key={v.value}
+                type="button"
+                onClick={() => updateNested("splash.variant", v.value)}
+                className={`relative rounded-lg border px-3 py-2.5 text-left transition-colors ${
+                  isSelected
+                    ? "border-accent/40 bg-accent/8 ring-1 ring-accent/20"
+                    : "border-border bg-bg-elevated hover:bg-bg-active"
+                }`}
+              >
+                <div className="flex items-center gap-2">
+                  <div className={`flex h-6 w-6 items-center justify-center rounded-md text-xs font-bold ${
+                    isSelected ? "bg-accent text-white" : "bg-bg-active text-text-muted"
+                  }`}>
+                    {v.value}
+                  </div>
+                  <span className={`text-xs font-semibold ${isSelected ? "text-text" : "text-text-secondary"}`}>{v.name}</span>
+                  {isRecommended && (
+                    <span className="ml-auto rounded-full bg-accent/15 px-1.5 py-0.5 text-[8px] font-semibold uppercase tracking-wider text-accent">
+                      Recom.
+                    </span>
+                  )}
+                </div>
+                <p className="mt-1 pl-8 text-[10px] text-text-muted">{v.desc}</p>
+              </button>
+            );
+          })}
+        </div>
+      </Section>
+
+      <GroupBand label="NEGOCIO" hint="quien es y como opera" />
 
       {/* ── Business Info ─────────────────────────────────────────────── */}
       <Section
@@ -597,6 +662,47 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
         </div>
       </Section>
 
+      {/* ── Autobiografia (solo mode) ────────────────────────────── */}
+      {config.features?.showAbout && (
+        <Section
+          icon={User} title="Autobiografia" sectionKey="owner"
+          expanded={expandedSections.has("owner")} onToggle={toggleSection}
+        >
+          <p className="text-[11px] text-text-muted">
+            Tu perfil personal como unico profesional. Esta informacion reemplaza la seccion de equipo en la web.
+          </p>
+          <div className="grid gap-3 sm:grid-cols-2">
+            <Field label="Nombre completo" path="owner.name" value={getNested("owner.name")} onChange={updateNested} placeholder="Tu nombre" />
+            <Field label="Titulo / Rol" path="owner.role" value={getNested("owner.role")} onChange={updateNested} placeholder="Master Barber, Tattoo Artist..." />
+          </div>
+          <ImageUploadField label="Foto de perfil" value={(getNested("owner.photo") as string) || ""} onChange={(url) => updateNested("owner.photo", url ?? "")} clientId={clientId} />
+          <TextAreaField label="Bio" path="owner.bio" value={getNested("owner.bio") as string} onChange={updateNested}
+            placeholder="Cuenta tu historia, tu trayectoria, que te hace diferente..."
+          />
+          <div className="grid gap-3 sm:grid-cols-2">
+            <Field label="Experiencia" path="owner.experience" value={getNested("owner.experience")} onChange={updateNested} placeholder="12 años en el rubro" />
+            <Field label="Especialidades" path="owner.specialties" value={getNested("owner.specialties")} onChange={updateNested} placeholder="Fade, Beard design..." />
+          </div>
+          <Field label="Certificaciones" path="owner.certifications" value={getNested("owner.certifications")} onChange={updateNested} placeholder="Certificado en..." />
+          <div>
+            <ImageUploadListField
+              label="Portfolio personal"
+              value={(config.owner?.portfolio as string[] | undefined) || []}
+              onChange={(imgs) => setConfig(prev => ({
+                ...prev,
+                owner: {
+                  ...prev.owner,
+                  portfolio: imgs.length > 0 ? imgs : undefined,
+                },
+              }))}
+              clientId={clientId}
+            />
+          </div>
+        </Section>
+      )}
+
+      <GroupBand label="OPERACIONES" hint="features, reservas, pagos, notificaciones" />
+
       {/* ── Features ──────────────────────────────────────────────────── */}
       <Section
         icon={ToggleLeft} title="Secciones visibles" sectionKey="features"
@@ -676,19 +782,6 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
         <Field label="Moneda" path="payment.currency" value={getNested("payment.currency")} onChange={updateNested} placeholder="ILS" />
       </Section>
 
-      {/* ── AI Persona ────────────────────────────────────────────────── */}
-      <Section
-        icon={Bot} title="Chatbot IA" sectionKey="ai"
-        expanded={expandedSections.has("ai")} onToggle={toggleSection}
-      >
-        <p className="text-[11px] text-text-muted">
-          El chatbot recibe automaticamente los servicios, precios, horarios y contacto del negocio. Este campo es solo para definir el tono y personalidad.
-        </p>
-        <TextAreaField label="Persona del chatbot (opcional)" path="brand.aiPersona" value={getNested("brand.aiPersona") as string} onChange={updateNested}
-          placeholder="Ej: Responde de forma calida y profesional. Usa emojis moderadamente. Siempre sugiere agendar un turno."
-        />
-      </Section>
-
       {/* ── Notifications ─────────────────────────────────────────────── */}
       <Section
         icon={Bell} title="Notificaciones y extras" sectionKey="notifications"
@@ -707,100 +800,7 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
         </div>
       </Section>
 
-      {/* ── Splash Screen ────────────────────────────────────────────── */}
-      <Section
-        icon={Film} title="Splash screen" sectionKey="splash"
-        expanded={expandedSections.has("splash")} onToggle={toggleSection}
-      >
-        <div className="grid gap-3 sm:grid-cols-2">
-          <ToggleField label="Splash habilitado" path="splash.enabled" value={getNested("splash.enabled") as boolean} onChange={updateNested} />
-          <NumberField label="Duracion (ms)" path="splash.durationMs" value={getNested("splash.durationMs") as number} onChange={updateNested} />
-        </div>
-
-        <p className="text-[11px] font-medium text-text-muted">Variante de animacion</p>
-        <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-          {([
-            { value: 1, name: "Classic", desc: "Logo + letras animadas + linea accent", recommendedFor: ["barberia"] },
-            { value: 2, name: "Curtain", desc: "Paneles se abren como un telon" },
-            { value: 3, name: "Pulse", desc: "Onda radial que revela la marca", recommendedFor: ["nails"] },
-            { value: 4, name: "Typewriter", desc: "Nombre escrito caracter a caracter", recommendedFor: ["estetica"] },
-            { value: 5, name: "Vortex", desc: "Particulas orbitales que convergen", recommendedFor: ["tattoo"] },
-            { value: 6, name: "Cafeteria", desc: "Mocha calido + titulo serif en dos lineas", recommendedFor: ["cafeteria"] },
-            { value: 7, name: "Remodelaciones", desc: "Wipe reveal bold + corporate", recommendedFor: ["remodelaciones"] },
-          ] as const).map(v => {
-            const current = (getNested("splash.variant") as number) ?? 1;
-            const isSelected = current === v.value;
-            const currentNiche = normalizeBusinessNiche(config.business?.type || niche);
-            const isRecommended = (v as { recommendedFor?: readonly string[] }).recommendedFor?.includes(currentNiche) ?? false;
-            return (
-              <button
-                key={v.value}
-                type="button"
-                onClick={() => updateNested("splash.variant", v.value)}
-                className={`relative rounded-lg border px-3 py-2.5 text-left transition-colors ${
-                  isSelected
-                    ? "border-accent/40 bg-accent/8 ring-1 ring-accent/20"
-                    : "border-border bg-bg-elevated hover:bg-bg-active"
-                }`}
-              >
-                <div className="flex items-center gap-2">
-                  <div className={`flex h-6 w-6 items-center justify-center rounded-md text-xs font-bold ${
-                    isSelected ? "bg-accent text-white" : "bg-bg-active text-text-muted"
-                  }`}>
-                    {v.value}
-                  </div>
-                  <span className={`text-xs font-semibold ${isSelected ? "text-text" : "text-text-secondary"}`}>{v.name}</span>
-                  {isRecommended && (
-                    <span className="ml-auto rounded-full bg-accent/15 px-1.5 py-0.5 text-[8px] font-semibold uppercase tracking-wider text-accent">
-                      Recom.
-                    </span>
-                  )}
-                </div>
-                <p className="mt-1 pl-8 text-[10px] text-text-muted">{v.desc}</p>
-              </button>
-            );
-          })}
-        </div>
-      </Section>
-
-      {/* ── Autobiografia (solo mode) ────────────────────────────── */}
-      {config.features?.showAbout && (
-        <Section
-          icon={User} title="Autobiografia" sectionKey="owner"
-          expanded={expandedSections.has("owner")} onToggle={toggleSection}
-        >
-          <p className="text-[11px] text-text-muted">
-            Tu perfil personal como unico profesional. Esta informacion reemplaza la seccion de equipo en la web.
-          </p>
-          <div className="grid gap-3 sm:grid-cols-2">
-            <Field label="Nombre completo" path="owner.name" value={getNested("owner.name")} onChange={updateNested} placeholder="Tu nombre" />
-            <Field label="Titulo / Rol" path="owner.role" value={getNested("owner.role")} onChange={updateNested} placeholder="Master Barber, Tattoo Artist..." />
-          </div>
-          <ImageUploadField label="Foto de perfil" value={(getNested("owner.photo") as string) || ""} onChange={(url) => updateNested("owner.photo", url ?? "")} clientId={clientId} />
-          <TextAreaField label="Bio" path="owner.bio" value={getNested("owner.bio") as string} onChange={updateNested}
-            placeholder="Cuenta tu historia, tu trayectoria, que te hace diferente..."
-          />
-          <div className="grid gap-3 sm:grid-cols-2">
-            <Field label="Experiencia" path="owner.experience" value={getNested("owner.experience")} onChange={updateNested} placeholder="12 años en el rubro" />
-            <Field label="Especialidades" path="owner.specialties" value={getNested("owner.specialties")} onChange={updateNested} placeholder="Fade, Beard design..." />
-          </div>
-          <Field label="Certificaciones" path="owner.certifications" value={getNested("owner.certifications")} onChange={updateNested} placeholder="Certificado en..." />
-          <div>
-            <ImageUploadListField
-              label="Portfolio personal"
-              value={(config.owner?.portfolio as string[] | undefined) || []}
-              onChange={(imgs) => setConfig(prev => ({
-                ...prev,
-                owner: {
-                  ...prev.owner,
-                  portfolio: imgs.length > 0 ? imgs : undefined,
-                },
-              }))}
-              clientId={clientId}
-            />
-          </div>
-        </Section>
-      )}
+      <GroupBand label="MEDIA" hint="imagenes, contenido visual, equipo y voz de los clientes" />
 
       {/* ── Images ──────────────────────────────────────────────────── */}
       <Section
@@ -870,16 +870,6 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
         </div>
         )}
 
-        {/* Why Choose Us */}
-        <div className="border-t border-border pt-3">
-          <ImageUploadField
-            label='Seccion "Por que elegirnos" - Imagen principal'
-            value={(getNested("sections.whyChooseUs.mainImage") as string) || ""}
-            onChange={(url) => updateNested("sections.whyChooseUs.mainImage", url ?? "")}
-            clientId={clientId}
-          />
-        </div>
-
         {/* Gallery */}
         <div className="border-t border-border pt-3">
           <ImageUploadListField
@@ -916,233 +906,108 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
           </div>
         </div>
 
-        {/* Staff photos — only in team mode */}
-        {config.features?.showTeam && (
-          <div className="border-t border-border pt-3">
-            <p className="mb-1 text-[11px] font-semibold text-text-secondary">Fotos del equipo</p>
-            <p className="mb-2 text-[10px] text-text-muted">
-              Agrega fotos de perfil y portfolio para cada miembro del equipo. El orden debe coincidir con el del preset.
-            </p>
-            {(() => {
-              const staffList = config.staff || [];
-              function updateStaffField(index: number, field: string, value: unknown) {
-                setConfig(prev => {
-                  const arr = [...(prev.staff || [])];
-                  while (arr.length <= index) arr.push({});
-                  arr[index] = { ...arr[index], [field]: value || undefined };
-                  while (arr.length > 0 && Object.values(arr[arr.length - 1]).every(v => v === undefined)) arr.pop();
-                  return { ...prev, staff: arr.length > 0 ? arr : undefined };
-                });
-              }
-              function addStaffSlot() {
-                setConfig(prev => ({ ...prev, staff: [...(prev.staff || []), {}] }));
-              }
-              return (
-                <div className="space-y-3">
-                  {staffList.map((member, i) => (
-                    <div key={i} className="rounded-lg border border-border bg-bg-elevated p-3">
-                      <span className="mb-2 block text-[10px] font-medium text-text-muted">Miembro {i + 1}</span>
-                      <ImageUploadField label="Foto de perfil" value={member.photoUrl || ""} onChange={(url) => updateStaffField(i, "photoUrl", url ?? "")} clientId={clientId} />
-                      <div className="mt-2">
-                        <ImageUploadListField
-                          label="Portfolio (imagenes)"
-                          value={member.portfolio || []}
-                          onChange={(imgs) => updateStaffField(i, "portfolio", imgs.length > 0 ? imgs : undefined)}
-                          clientId={clientId}
-                        />
-                      </div>
-                    </div>
-                  ))}
-                  <button
-                    type="button"
-                    onClick={addStaffSlot}
-                    className="flex items-center gap-1.5 rounded-lg border border-dashed border-border px-3 py-2 text-[11px] text-text-muted transition-colors hover:border-accent hover:text-text"
-                  >
-                    <Plus size={12} /> Agregar miembro
-                  </button>
-                </div>
-              );
-            })()}
-          </div>
-        )}
       </Section>
 
-      {/* ── Visible Services ──────────────────────────────────────────── */}
+      {/* ── Why Choose Us (mainImage + badge + benefits) ──────────────── */}
       <Section
-        icon={Eye} title="Servicios visibles" sectionKey="visibleServices"
-        expanded={expandedSections.has("visibleServices")} onToggle={toggleSection}
+        icon={Award} title="Por que elegirnos" sectionKey="whyChooseUs"
+        expanded={expandedSections.has("whyChooseUs")} onToggle={toggleSection}
       >
         <p className="text-[11px] text-text-muted">
-          Desactiva los servicios que el cliente no quiere mostrar. La landing usa esta lista como allow-list; si todos estan activos, se borra el override y se muestran todos los del preset.
+          Seccion del template que resalta los diferenciales del negocio.
+          Es lo primero que ve un visitante despues del Hero, junto con los servicios.
         </p>
-        {(() => {
-          const nicheKey = normalizeBusinessNiche(config.business?.type || niche);
-          const services = getNicheServices(nicheKey);
-          const visibleIds = resolveVisibleServiceIds(config, services);
-          const visibleCount = visibleIds.length;
-          const visibleSet = new Set(visibleIds);
-
-          function toggleService(id: string) {
-            setConfig(prev => {
-              const next = toggleVisibleService(prev, services, id);
-              return {
+        <ImageUploadField
+          label="Imagen principal"
+          value={(getNested("sections.whyChooseUs.mainImage") as string) || ""}
+          onChange={(url) => updateNested("sections.whyChooseUs.mainImage", url ?? "")}
+          clientId={clientId}
+        />
+        <Field
+          label="Badge (texto chico sobre la imagen)"
+          path="sections.whyChooseUs.badge"
+          value={getNested("sections.whyChooseUs.badge")}
+          onChange={updateNested}
+          placeholder="Ej: Calidad premium"
+        />
+        <div className="border-t border-border pt-3">
+          <p className="mb-2 text-[11px] font-semibold text-text-secondary">Beneficios (cards)</p>
+          <BenefitsEditor
+            value={config.sections?.whyChooseUs?.benefits}
+            onChange={(next) =>
+              setConfig((prev) => ({
                 ...prev,
-                features: next.features,
-                visibleServices: next.visibleServices,
-              };
-            });
-          }
-
-          return (
-            <div className="space-y-3">
-              <div className="rounded-lg border border-border bg-bg-elevated px-3 py-2 text-[11px] text-text-secondary">
-                <span className="font-semibold text-text">{visibleCount}</span> de{" "}
-                <span className="font-semibold text-text">{services.length}</span> servicios visibles
-                {visibleCount === 0 && (
-                  <span className="ml-2 text-amber-300">La seccion Servicios queda apagada.</span>
-                )}
-              </div>
-              <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-                {services.map(s => {
-                  const isOn = visibleSet.has(s.id);
-                  return (
-                    <button
-                      key={s.id}
-                      type="button"
-                      onClick={() => toggleService(s.id)}
-                      className={`flex items-center gap-2 rounded-lg border px-3 py-2 text-xs transition-colors ${
-                        isOn
-                          ? "border-accent/30 bg-accent/5 text-text"
-                          : "border-border bg-bg-elevated text-text-muted"
-                      }`}
-                    >
-                      <div className={`h-3 w-6 rounded-full transition-colors ${isOn ? "bg-accent" : "bg-bg-active"}`}>
-                        <div className={`h-3 w-3 rounded-full bg-white transition-transform ${isOn ? "translate-x-3" : "translate-x-0"}`} />
-                      </div>
-                      {s.label}
-                    </button>
-                  );
-                })}
-              </div>
-
-              {/* Landing services count */}
-              {visibleCount > 0 && (
-                <div className="rounded-lg border border-border bg-bg-elevated p-3">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-[11px] font-semibold text-text-secondary">Servicios en la landing</p>
-                      <p className="text-[10px] text-text-muted">
-                        Cuantos servicios se muestran en la pagina principal. La pagina de servicios muestra todos.
-                      </p>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <input
-                        type="range"
-                        min={1}
-                        max={visibleCount}
-                        value={config.landingServicesCount ?? LANDING_SERVICES_DEFAULTS[nicheKey]}
-                        onChange={e => {
-                          const val = parseInt(e.target.value, 10);
-                          const defaultVal = LANDING_SERVICES_DEFAULTS[nicheKey];
-                          setConfig(prev => ({
-                            ...prev,
-                            landingServicesCount: val === defaultVal ? null : val,
-                          }));
-                        }}
-                        className="h-1.5 w-24 cursor-pointer accent-accent"
-                      />
-                      <span className="min-w-[2ch] text-center text-sm font-semibold text-accent">
-                        {config.landingServicesCount ?? LANDING_SERVICES_DEFAULTS[nicheKey]}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-          );
-        })()}
+                sections: {
+                  ...prev.sections,
+                  whyChooseUs: { ...prev.sections?.whyChooseUs, benefits: next },
+                },
+              }))
+            }
+          />
+        </div>
       </Section>
 
-      {/* ── Service Overrides ─────────────────────────────────────────── */}
+      {/* ── Testimonials ───────────────────────────────────────────────── */}
       <Section
-        icon={Wrench} title="Personalizar servicios" sectionKey="serviceOverrides"
-        expanded={expandedSections.has("serviceOverrides")} onToggle={toggleSection}
+        icon={Quote} title="Testimonios" sectionKey="testimonials"
+        expanded={expandedSections.has("testimonials")} onToggle={toggleSection}
       >
         <p className="text-[11px] text-text-muted">
-          Cambia nombre, precio, duracion, descripcion o imagen de cada servicio. Solo se guardan los campos que modifiques.
+          Reviews de clientes reales. Se renderizan como carousel en la seccion Testimonios.
+          Activable / desactivable desde &quot;Secciones visibles&quot;.
         </p>
-        {(() => {
-          const nicheKey = normalizeBusinessNiche(config.business?.type || niche);
-          const allServices = getNicheServices(nicheKey);
-          const visibleIds = resolveVisibleServiceIds(config, allServices);
-          const visibleServices = allServices.filter(s => visibleIds.includes(s.id));
-          const overrides = config.serviceOverrides || {};
-
-          function updateField(serviceId: string, field: string, value: string) {
-            setConfig(prev => {
-              const current = prev.serviceOverrides || {};
-              const patch = { ...current[serviceId], [field]: value || null };
-              // Remove keys that are null (cleared)
-              const cleaned: Record<string, unknown> = {};
-              for (const [k, v] of Object.entries(patch)) {
-                if (v !== null && v !== undefined) cleaned[k] = v;
-              }
-              const next = { ...current, [serviceId]: cleaned };
-              // Remove service entry if empty
-              if (Object.keys(cleaned).length === 0) delete next[serviceId];
-              return {
-                ...prev,
-                serviceOverrides: Object.keys(next).length > 0 ? next : null,
-              };
-            });
-          }
-
-          return (
-            <div className="space-y-3">
-              {visibleServices.map(s => {
-                const patch = overrides[s.id] || {};
-                const hasOverrides = Object.keys(patch).length > 0;
-                return (
-                  <div key={s.id} className={`rounded-lg border p-3 ${hasOverrides ? "border-accent/30 bg-accent/5" : "border-border bg-bg-elevated"}`}>
-                    <div className="mb-2 flex items-center gap-2">
-                      <span className="font-mono text-xs font-medium text-accent">{s.id}</span>
-                      <span className="text-[10px] text-text-muted">{s.label}</span>
-                    </div>
-                    <div className="grid gap-2 sm:grid-cols-2">
-                      <div>
-                        <label className="mb-0.5 block text-[10px] text-text-muted">Nombre</label>
-                        <input type="text" value={(patch.name as string) || ""} onChange={e => updateField(s.id, "name", e.target.value)}
-                          placeholder={s.label}
-                          className="w-full rounded border border-border bg-bg-card px-2 py-1 text-xs text-text placeholder:text-text-muted/40 focus:border-accent focus:outline-none" />
-                      </div>
-                      <div>
-                        <label className="mb-0.5 block text-[10px] text-text-muted">Precio</label>
-                        <input type="text" value={(patch.price as string) || ""} onChange={e => updateField(s.id, "price", e.target.value)}
-                          className="w-full rounded border border-border bg-bg-card px-2 py-1 text-xs text-text placeholder:text-text-muted/40 focus:border-accent focus:outline-none" />
-                      </div>
-                      <div>
-                        <label className="mb-0.5 block text-[10px] text-text-muted">Duracion</label>
-                        <input type="text" value={(patch.duration as string) || ""} onChange={e => updateField(s.id, "duration", e.target.value)}
-                          className="w-full rounded border border-border bg-bg-card px-2 py-1 text-xs text-text placeholder:text-text-muted/40 focus:border-accent focus:outline-none" />
-                      </div>
-                      <div>
-                        <label className="mb-0.5 block text-[10px] text-text-muted">Imagen URL</label>
-                        <input type="text" value={(patch.image as string) || ""} onChange={e => updateField(s.id, "image", e.target.value)}
-                          className="w-full rounded border border-border bg-bg-card px-2 py-1 text-xs text-text placeholder:text-text-muted/40 focus:border-accent focus:outline-none" />
-                      </div>
-                    </div>
-                    <div className="mt-2">
-                      <label className="mb-0.5 block text-[10px] text-text-muted">Descripcion</label>
-                      <input type="text" value={(patch.description as string) || ""} onChange={e => updateField(s.id, "description", e.target.value)}
-                        className="w-full rounded border border-border bg-bg-card px-2 py-1 text-xs text-text placeholder:text-text-muted/40 focus:border-accent focus:outline-none" />
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          );
-        })()}
+        <TestimonialsEditor
+          value={config.testimonials}
+          onChange={(next) => setConfig((prev) => ({ ...prev, testimonials: next }))}
+        />
       </Section>
+
+      {/* ── Equipo (staff full CRUD) ───────────────────────────────────── */}
+      {config.features?.showTeam && (
+        <Section
+          icon={Users} title="Equipo" sectionKey="staff"
+          expanded={expandedSections.has("staff")} onToggle={toggleSection}
+        >
+          <p className="text-[11px] text-text-muted">
+            Miembros del equipo del cliente. Aparecen en la seccion Equipo y, si las paginas de
+            staff estan habilitadas, cada uno tiene una pagina propia con bio y portfolio.
+          </p>
+          <StaffEditor
+            value={config.staff}
+            onChange={(next) => setConfig((prev) => ({ ...prev, staff: next }))}
+            clientId={clientId}
+          />
+        </Section>
+      )}
+
+      <GroupBand label="AVANZADO" hint="servicios, chatbot y personalizacion fina" />
+
+      {/* ── Services (combined visibility + overrides + custom CRUD) ──── */}
+      <Section
+        icon={Briefcase} title="Servicios" sectionKey="services"
+        expanded={expandedSections.has("services")} onToggle={toggleSection}
+      >
+        <ServicesEditor
+          niche={normalizeBusinessNiche(config.business?.type || niche)}
+          config={config}
+          setConfig={setConfig}
+          clientId={clientId}
+        />
+      </Section>
+
+      {/* ── AI Persona (chatbot) ──────────────────────────────────────── */}
+      <Section
+        icon={Bot} title="Chatbot IA" sectionKey="ai"
+        expanded={expandedSections.has("ai")} onToggle={toggleSection}
+      >
+        <p className="text-[11px] text-text-muted">
+          El chatbot recibe automaticamente los servicios, precios, horarios y contacto del negocio. Este campo es solo para definir el tono y personalidad.
+        </p>
+        <TextAreaField label="Persona del chatbot (opcional)" path="brand.aiPersona" value={getNested("brand.aiPersona") as string} onChange={updateNested}
+          placeholder="Ej: Responde de forma calida y profesional. Usa emojis moderadamente. Siempre sugiere agendar un turno."
+        />
+      </Section>
+
     </div>
   );
 }
@@ -1150,6 +1015,20 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
 /* ══════════════════════════════════════════════════════════════════════════
  * Sub-components
  * ══════════════════════════════════════════════════════════════════════════ */
+
+function GroupBand({ label, hint }: { label: string; hint?: string }) {
+  return (
+    <div className="flex items-baseline gap-2 pt-2 first:pt-0">
+      <h3 className="text-[10px] font-bold uppercase tracking-[0.14em] text-text-muted/80">
+        {label}
+      </h3>
+      {hint && (
+        <span className="text-[10px] text-text-muted/50">{hint}</span>
+      )}
+      <div className="ml-1 h-px flex-1 bg-border/50" />
+    </div>
+  );
+}
 
 function Section({ icon: Icon, title, sectionKey, expanded, onToggle, children }: {
   icon: React.ComponentType<{ size?: number; className?: string }>;

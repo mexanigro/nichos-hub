@@ -168,6 +168,99 @@ export function validateConfig(config: unknown): ConfigIssue[] {
     });
   }
 
+  // ── testimonials[] ──
+  const testimonials = getNested(config, "testimonials");
+  if (Array.isArray(testimonials)) {
+    testimonials.forEach((t, i) => {
+      if (!t || typeof t !== "object") {
+        issues.push({ path: `testimonials[${i}]`, message: "Debe ser un objeto.", severity: "error" });
+        return;
+      }
+      const tt = t as Record<string, unknown>;
+      if (typeof tt.name !== "string" || !tt.name.trim()) {
+        issues.push({ path: `testimonials[${i}].name`, message: "Falta el nombre.", severity: "warning" });
+      }
+      if (typeof tt.text !== "string" || !tt.text.trim()) {
+        issues.push({ path: `testimonials[${i}].text`, message: "Falta el texto del testimonio.", severity: "warning" });
+      }
+      const r = tt.rating;
+      if (typeof r !== "number" || r < 1 || r > 5) {
+        issues.push({ path: `testimonials[${i}].rating`, message: "Rating debe ser 1-5.", severity: "warning" });
+      }
+    });
+  }
+
+  // ── whyChooseUs.benefits[] ──
+  const benefits = getNested(config, "sections.whyChooseUs.benefits");
+  if (Array.isArray(benefits)) {
+    benefits.forEach((b, i) => {
+      if (!b || typeof b !== "object") {
+        issues.push({ path: `sections.whyChooseUs.benefits[${i}]`, message: "Debe ser un objeto.", severity: "error" });
+        return;
+      }
+      const bb = b as Record<string, unknown>;
+      if (typeof bb.title !== "string" || !bb.title.trim()) {
+        issues.push({ path: `sections.whyChooseUs.benefits[${i}].title`, message: "Falta el titulo.", severity: "warning" });
+      }
+      if (typeof bb.desc !== "string" || !bb.desc.trim()) {
+        issues.push({ path: `sections.whyChooseUs.benefits[${i}].desc`, message: "Falta la descripcion.", severity: "warning" });
+      }
+      if (typeof bb.iconName !== "string" || !bb.iconName.trim()) {
+        issues.push({ path: `sections.whyChooseUs.benefits[${i}].iconName`, message: "Falta el nombre del icono (Lucide).", severity: "warning" });
+      }
+    });
+  }
+
+  // ── staff[] full ──
+  if (Array.isArray(staff)) {
+    staff.forEach((member, i) => {
+      if (!member || typeof member !== "object") return;
+      const m = member as Record<string, unknown>;
+      // If the member has any non-photo data, name should be present.
+      const hasData =
+        (typeof m.specialty === "string" && m.specialty.trim()) ||
+        (typeof m.bio === "string" && m.bio.trim()) ||
+        Array.isArray(m.portfolio) && (m.portfolio as unknown[]).length > 0;
+      if (hasData && (typeof m.name !== "string" || !m.name.trim())) {
+        issues.push({
+          path: `staff[${i}].name`,
+          message: "El miembro tiene datos cargados pero le falta el nombre.",
+          severity: "warning",
+        });
+      }
+    });
+  }
+
+  // ── services[] (custom mode) ──
+  const services = getNested(config, "services");
+  if (Array.isArray(services)) {
+    const seenIds = new Set<string>();
+    services.forEach((s, i) => {
+      if (!s || typeof s !== "object") {
+        issues.push({ path: `services[${i}]`, message: "Debe ser un objeto.", severity: "error" });
+        return;
+      }
+      const sv = s as Record<string, unknown>;
+      if (typeof sv.id !== "string" || !sv.id.trim()) {
+        issues.push({ path: `services[${i}].id`, message: "Falta el id del servicio.", severity: "error" });
+      } else {
+        if (seenIds.has(sv.id)) {
+          issues.push({ path: `services[${i}].id`, message: `id "${sv.id}" duplicado.`, severity: "error" });
+        }
+        seenIds.add(sv.id);
+      }
+      if (typeof sv.name !== "string" || !sv.name.trim()) {
+        issues.push({ path: `services[${i}].name`, message: "Falta el nombre del servicio.", severity: "warning" });
+      }
+      if (typeof sv.duration !== "number" || sv.duration <= 0) {
+        issues.push({ path: `services[${i}].duration`, message: "Duracion debe ser un numero mayor a 0.", severity: "warning" });
+      }
+      if (typeof sv.price !== "number" || sv.price < 0) {
+        issues.push({ path: `services[${i}].price`, message: "Precio debe ser un numero >= 0.", severity: "warning" });
+      }
+    });
+  }
+
   // ── hours.* shape ──
   const hours = getNested(config, "hours");
   if (hours && typeof hours === "object") {
