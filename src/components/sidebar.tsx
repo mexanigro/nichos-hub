@@ -15,10 +15,10 @@ import {
   Menu,
   X,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const ownerNav = [
-  { href: "/clients", label: "Clientes", icon: LayoutDashboard },
+  { href: "/clients", label: "Clientes", icon: LayoutDashboard, badgeKey: "clients" as const },
   { href: "/messages", label: "Mensajes", icon: MessageSquare },
   { href: "/sales", label: "Ventas", icon: TrendingUp },
   { href: "/expenses", label: "Gastos", icon: DollarSign },
@@ -31,13 +31,45 @@ const sellerNav = [
   { href: "/sales", label: "Ventas", icon: TrendingUp },
 ];
 
+type ClientsCounts = {
+  pending_review?: number;
+  pending_provision?: number;
+  changes_requested?: number;
+};
+
 export function Sidebar() {
   const pathname = usePathname();
   const { data: session } = useSession();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [pendingClients, setPendingClients] = useState(0);
 
   const role = session?.user?.role;
   const nav = role === "owner" ? ownerNav : sellerNav;
+
+  // Cuenta total de clientes que requieren atención del owner.
+  // Refetch al cambiar de ruta para que el badge se mantenga actualizado.
+  useEffect(() => {
+    if (role !== "owner") return;
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch("/api/clients/counts", { cache: "no-store" });
+        if (!res.ok) return;
+        const c: ClientsCounts = await res.json();
+        if (cancelled) return;
+        const total =
+          (c.pending_review || 0) +
+          (c.pending_provision || 0) +
+          (c.changes_requested || 0);
+        setPendingClients(total);
+      } catch {
+        // silencioso — el badge solo desaparece si no se puede contar
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [role, pathname]);
 
   return (
     <>
@@ -83,8 +115,12 @@ export function Sidebar() {
         </div>
 
         <nav className="flex-1 space-y-0.5 px-3 py-4">
-          {nav.map(({ href, label, icon: Icon }) => {
+          {nav.map((item) => {
+            const { href, label, icon: Icon } = item;
+            const badgeKey = "badgeKey" in item ? item.badgeKey : undefined;
             const active = pathname.startsWith(href);
+            const badgeCount =
+              badgeKey === "clients" && pendingClients > 0 ? pendingClients : 0;
             return (
               <Link
                 key={href}
@@ -97,7 +133,15 @@ export function Sidebar() {
                 }`}
               >
                 <Icon size={16} />
-                {label}
+                <span className="flex-1">{label}</span>
+                {badgeCount > 0 && (
+                  <span
+                    className="inline-flex min-w-[20px] items-center justify-center rounded-full bg-amber-500/15 px-1.5 py-0.5 text-[10px] font-semibold leading-none text-amber-300 ring-1 ring-amber-500/30"
+                    title={`${badgeCount} cliente${badgeCount === 1 ? "" : "s"} requiere${badgeCount === 1 ? "" : "n"} tu atención`}
+                  >
+                    {badgeCount}
+                  </span>
+                )}
               </Link>
             );
           })}
