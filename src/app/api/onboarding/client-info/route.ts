@@ -6,6 +6,7 @@ import { resolveBranding } from "@/lib/branding-resolver";
 import { sendEmail } from "@/lib/email";
 import { infoSubmittedThanks, changesResubmitted } from "@/lib/email-templates";
 import { verifyOnboardingToken } from "@/lib/onboarding-token";
+import { diffConfig, summarizeValue } from "@/lib/config-diff";
 
 const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://arzac.studio";
 const OWNER_EMAIL = process.env.OWNER_EMAIL || "website@arzac.studio";
@@ -205,6 +206,18 @@ export async function POST(req: NextRequest) {
       if (cleaned.length > 0) configUpdate["sections.faq.items"] = cleaned;
     }
 
+    // Snapshot del config previo — usado más abajo para escribir un audit log
+    // en config_history con changedBy="customer" cuando es un resubmit. Esto
+    // permite que ConfigHistoryPanel muestre qué tocó el cliente (y T4 abre
+    // el modal de diff sobre la misma data).
+    let previousConfig: Record<string, unknown> = {};
+    try {
+      const prevSnap = await db.collection("config").doc(clientId).get();
+      if (prevSnap.exists) previousConfig = prevSnap.data() ?? {};
+    } catch (err) {
+      console.error("[client-info] snapshot previo config falló:", err);
+    }
+
     // Write to Firestore config — usa set+merge para que tambien funcione si
     // el doc no existe (defensive: en el flow post-Cardcom, el doc se crea
     // en cardcom-promote.ts, pero esto blinda el endpoint).
@@ -288,6 +301,40 @@ export async function POST(req: NextRequest) {
         { merge: true },
       );
       hubDocRef = newRef;
+    }
+
+    // Audit log de cambios al config — escribimos siempre que haya snapshot
+    // previo, marcado con changedBy="customer" para que el panel lo distinga
+    // del owner. Si es resubmit, agregamos kind="resubmit" para que la UI
+    // muestre el contexto del ciclo "Liam pidió cambios → cliente reenvió".
+    if (Object.keys(previousConfig).length > 0) {
+      try {
+        const afterSnap = await db.collection("config").doc(clientId).get();
+        const afterConfig = afterSnap.exists ? afterSnap.data() ?? {} : {};
+        const diff = diffConfig(previousConfig, afterConfig);
+        if (diff.length > 0) {
+          const changes = diff.slice(0, 100).map((d) => ({
+            path: d.path,
+            kind: d.kind,
+            beforeSummary: summarizeValue(d.before),
+            afterSummary: summarizeValue(d.after),
+          }));
+          await db
+            .collection("config_history")
+            .doc(clientId)
+            .collection("entries")
+            .add({
+              changedAt: now,
+              changedBy: "customer",
+              changeCount: diff.length,
+              truncated: diff.length > 100,
+              changes,
+              kind: isResubmit ? "resubmit" : "info_submitted",
+            });
+        }
+      } catch (err) {
+        console.error("[client-info] config_history write failed:", err);
+      }
     }
 
     // Audit log de la transición — sólo si hubo cambio real de status.

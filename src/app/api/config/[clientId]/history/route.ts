@@ -41,6 +41,7 @@ export const GET = withOwner(async (req, _session, ctx) => {
         changeCount: data.changeCount ?? 0,
         truncated: !!data.truncated,
         changes: Array.isArray(data.changes) ? data.changes : [],
+        kind: typeof data.kind === "string" ? data.kind : null,
       };
     });
 
