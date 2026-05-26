@@ -3,6 +3,7 @@ import { db } from "@/lib/firebase-admin";
 import { withOwner } from "@/lib/auth";
 import { FieldValue } from "firebase-admin/firestore";
 import { normalizeBusinessNiche } from "@/lib/client-config/services";
+import { validateConfig, hasBlockingIssues } from "@/lib/config-validator";
 
 type RouteCtx = { params: Promise<{ clientId: string }> };
 
@@ -42,6 +43,22 @@ function normalizeImageArray(value: unknown): string[] | undefined {
 
 function normalizeConfigShape(data: Record<string, unknown>): Record<string, unknown> {
   const out = { ...data };
+
+  // Drop legacy `brand.favicon` URL — template only reads `brand.faviconEmoji`.
+  // Mark as null so `replaceNullsWithDelete` (called later by the PUT handler)
+  // converts it to a real Firestore delete on merge.
+  if (out.brand && typeof out.brand === "object" && !Array.isArray(out.brand)) {
+    const brand = { ...(out.brand as Record<string, unknown>) };
+    if ("favicon" in brand) {
+      brand.favicon = null;
+    }
+    out.brand = brand;
+  }
+
+  // Same for any accidental `_unused.*` payload from Brand Package legacy writes.
+  if ("_unused" in out) {
+    (out as Record<string, unknown>)._unused = null;
+  }
 
   const flatGallery = normalizeImageArray(out.gallery);
   if (flatGallery !== undefined) out.gallery = flatGallery;
@@ -159,6 +176,17 @@ export const PUT = withOwner(async (req, _session, ctx) => {
   const deployBusinessType = await getDeployNiche(clientId, requestedBusinessType);
   const shapedBody = normalizeConfigShape(rawBody);
   const normalizedBody = withNormalizedBusinessType(shapedBody, deployBusinessType);
+
+  // Reject the write if the body contains a blocking shape/semantics error.
+  // Warnings are returned to the client but do not block.
+  const issues = validateConfig(normalizedBody);
+  if (hasBlockingIssues(issues)) {
+    return NextResponse.json(
+      { error: "Config invalido", issues: issues.filter((i) => i.severity === "error") },
+      { status: 422 },
+    );
+  }
+
   const cleaned = replaceNullsWithDelete(normalizedBody);
   try {
     await db.collection("config").doc(clientId).set(cleaned, { merge: true });
@@ -171,5 +199,10 @@ export const PUT = withOwner(async (req, _session, ctx) => {
       ? `El nicho guardado se normalizo a "${deployBusinessType}" porque debe coincidir con el nicho del deploy.`
       : undefined;
 
-  return NextResponse.json({ ok: true, normalizedBusinessType: deployBusinessType, warning });
+  return NextResponse.json({
+    ok: true,
+    normalizedBusinessType: deployBusinessType,
+    warning,
+    warnings: issues.filter((i) => i.severity === "warning"),
+  });
 });

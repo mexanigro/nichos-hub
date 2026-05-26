@@ -292,6 +292,9 @@ export function BrandPackageImport({ clientId, onBrandApplied }: BrandPackageImp
     for (const [role, urls] of Object.entries(uploadedByRole)) {
       const meta = ROLE_META[role as ImageRole];
       if (!meta) continue;
+      // Skip roles whose configPath is parked under "_unused.*" — the template
+      // does not consume them. Today this is `favicon` (template uses brand.faviconEmoji).
+      if (meta.configPath.startsWith("_unused.")) continue;
 
       if (meta.isArray) {
         // Array roles always persist as string[] — the template's renderers

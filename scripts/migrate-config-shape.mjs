@@ -19,7 +19,7 @@
 import { readFileSync } from "fs";
 import { resolve } from "path";
 import { initializeApp, cert } from "firebase-admin/app";
-import { getFirestore } from "firebase-admin/firestore";
+import { getFirestore, FieldValue } from "firebase-admin/firestore";
 
 // ── env bootstrap ──
 const envPath = resolve(import.meta.dirname, "../.env.local");
@@ -73,6 +73,17 @@ function normalizeImageArray(value) {
 
 function normalizeConfigShape(data) {
   const out = { ...data };
+
+  // Drop legacy `brand.favicon` URL — template only reads `brand.faviconEmoji`.
+  // Use FieldValue.delete() so the merge:true write actually removes the field.
+  if (out.brand && typeof out.brand === "object" && !Array.isArray(out.brand)) {
+    const brand = { ...out.brand };
+    if ("favicon" in brand) brand.favicon = FieldValue.delete();
+    out.brand = brand;
+  }
+
+  // Same for accidental top-level `_unused` payload from Brand Package legacy writes.
+  if ("_unused" in out) out._unused = FieldValue.delete();
 
   const flatGallery = normalizeImageArray(out.gallery);
   if (flatGallery !== undefined) out.gallery = flatGallery;

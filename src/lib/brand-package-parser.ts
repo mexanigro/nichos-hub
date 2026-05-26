@@ -34,7 +34,10 @@ export const ROLE_META: Record<ImageRole, RoleMeta> = {
   logo:             { label: "Logo (fondo claro)", description: "Header, footer", configPath: "brand.logo", isArray: false, group: "branding" },
   logoDark:         { label: "Logo (fondo oscuro)", description: "Header oscuro, splash", configPath: "brand.logoDark", isArray: false, group: "branding" },
   ogImage:          { label: "OG Image", description: "Previews en redes sociales", configPath: "brand.ogImage", isArray: false, group: "branding" },
-  favicon:          { label: "Favicon", description: "Icono del tab del navegador", configPath: "brand.favicon", isArray: false, group: "branding" },
+  // Template uses `brand.faviconEmoji` (an emoji char), not a URL — see master-template/src/types.ts.
+  // We still detect favicon files so they don't pollute other roles, but we don't write the
+  // upload URL anywhere. The owner sets the emoji manually in the Branding section.
+  favicon:          { label: "Favicon (no aplicable)", description: "El template usa un emoji, no URL — configuralo en Marca", configPath: "_unused.favicon", isArray: false, group: "branding" },
   heroBackground:   { label: "Hero (fondo)", description: "Imagen principal de la landing", configPath: "hero.backgroundImage", isArray: false, group: "contenido" },
   whyChooseUsImage: { label: "Por que elegirnos", description: "Seccion why-choose-us", configPath: "sections.whyChooseUs.mainImage", isArray: false, group: "contenido" },
   serviceImage:     { label: "Servicio", description: "Cards de servicios", configPath: "sections.services.images", isArray: true, group: "galeria" },

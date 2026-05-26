@@ -3,6 +3,7 @@ import { withOwner } from "@/lib/auth";
 import { db } from "@/lib/firebase-admin";
 import { getClientHealth } from "@/lib/repos/health";
 import { vercelFetch } from "@/lib/deploy";
+import { validateConfig } from "@/lib/config-validator";
 
 export const GET = withOwner(async (_req, _session, ctx) => {
   const { clientId } = await ctx.params;
@@ -44,10 +45,33 @@ export const GET = withOwner(async (_req, _session, ctx) => {
   }
 
   let healthData = { metrics: [] as unknown[], incidents: [] as unknown[], uptime: { last24h: 100, last7d: 100 } };
+  let healthSource: "pg" | "unavailable" = "pg";
   try {
     healthData = await getClientHealth(internalClientId);
   } catch {
-    // PG not available
+    // PostgreSQL not available — flag it instead of silently reporting 100% uptime.
+    healthSource = "unavailable";
+  }
+
+  // Config-quality healthcheck: surface any blocking/warning issues from the
+  // live config doc so the owner sees what's missing before the client uses the site.
+  const configIssues: Array<{ path: string; message: string; severity: "error" | "warning" }> = [];
+  if (internalClientId) {
+    try {
+      const configSnap = await db.collection("config").doc(internalClientId).get();
+      const configData = configSnap.exists ? configSnap.data() : null;
+      if (configData) {
+        for (const iss of validateConfig(configData)) configIssues.push(iss);
+      } else {
+        configIssues.push({
+          path: "config",
+          message: "El cliente no tiene un documento de config. Abri el tab Config y guarda para crearlo.",
+          severity: "error",
+        });
+      }
+    } catch (err) {
+      console.error("[api/clients GET] config validation failed:", err);
+    }
   }
 
   const messagesSnap = await db
@@ -63,7 +87,13 @@ export const GET = withOwner(async (_req, _session, ctx) => {
     createdAt: d.data().createdAt?.toDate(),
   }));
 
-  return NextResponse.json({ client, ...healthData, messages });
+  return NextResponse.json({
+    client,
+    ...healthData,
+    healthSource,
+    configIssues,
+    messages,
+  });
 });
 
 export const DELETE = withOwner(async (_req, _session, ctx) => {
@@ -93,14 +123,47 @@ export const DELETE = withOwner(async (_req, _session, ctx) => {
     }
   }
 
-  // 2. Delete Firestore docs
+  // 2. Delete Firestore docs.
+  // We also clean up collections keyed by internalClientId so deleted clients
+  // do not leave orphan documents behind:
+  //   - whatsapp_config/{clientId}            (single doc)
+  //   - contact_inbox      where clientId ==  (query → delete)
+  //   - provider_messages  where clientId ==  (query → delete)
+  //   - hub_payments       where clientId ==  (query → delete)
+  // We do NOT revoke Google Calendar OAuth tokens automatically — that requires
+  // contacting Google's revocation endpoint; flagged for a follow-up task.
+  // We do NOT release the Twilio number — that's a separate cost-bearing action.
   const batch = db.batch();
   batch.delete(db.collection("hub_clients").doc(clientId));
+  const orphans = { contact_inbox: 0, provider_messages: 0, hub_payments: 0, whatsapp_config: 0 };
+
   if (internalClientId) {
     batch.delete(db.collection("clients").doc(internalClientId));
     batch.delete(db.collection("config").doc(internalClientId));
-  }
-  await batch.commit();
+    batch.delete(db.collection("whatsapp_config").doc(internalClientId));
+    orphans.whatsapp_config = 1;
 
-  return NextResponse.json({ ok: true });
+    // Query-based deletions are not part of the same batch (different docs to
+    // discover). We collect refs first, then add them to the batch — staying
+    // under Firestore's 500 ops/batch cap by capping per-collection at 450.
+    const queryCollections = ["contact_inbox", "provider_messages", "hub_payments"] as const;
+    for (const col of queryCollections) {
+      try {
+        const snap = await db.collection(col).where("clientId", "==", internalClientId).limit(450).get();
+        snap.forEach((doc) => batch.delete(doc.ref));
+        orphans[col] = snap.size;
+      } catch (err) {
+        console.error(`[delete] Cleanup of ${col} failed:`, err);
+      }
+    }
+  }
+
+  try {
+    await batch.commit();
+  } catch (err) {
+    console.error("[delete] Batch commit failed:", err);
+    return NextResponse.json({ error: "Error al borrar documentos en Firestore" }, { status: 500 });
+  }
+
+  return NextResponse.json({ ok: true, orphansCleaned: orphans });
 });

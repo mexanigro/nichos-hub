@@ -69,11 +69,19 @@ interface PgIncident {
   resolved_at: string | null;
 }
 
+interface ConfigIssue {
+  path: string;
+  message: string;
+  severity: "error" | "warning";
+}
+
 interface ClientDetail {
   client: ClientWithHealth;
   metrics: PgMetric[];
   incidents: PgIncident[];
   uptime: { last24h: number; last7d: number };
+  healthSource?: "pg" | "unavailable";
+  configIssues?: ConfigIssue[];
   messages: Array<{ id: string; message: string; createdAt: string; sender: string; status: string }>;
 }
 
@@ -208,6 +216,10 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
   if (!data) return null;
 
   const { client, metrics, incidents, uptime, messages } = data;
+  const configIssues = data.configIssues ?? [];
+  const healthSource = data.healthSource ?? "pg";
+  const blockingConfigIssues = configIssues.filter((i) => i.severity === "error");
+  const warningConfigIssues = configIssues.filter((i) => i.severity === "warning");
   const chartData = [...metrics]
     .reverse()
     .filter((m) => m.response_time_ms !== null)
@@ -389,10 +401,69 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
       )}
 
       {activeTab === "overview" && (<>
+      {/* Config Healthcheck Banner */}
+      {blockingConfigIssues.length > 0 && (
+        <div className="mb-4 rounded-xl border border-red-500/30 bg-red-500/5 p-4">
+          <div className="mb-2 flex items-center gap-2 text-xs font-semibold text-red-400">
+            <AlertTriangle size={14} />
+            {blockingConfigIssues.length} {blockingConfigIssues.length === 1 ? "problema" : "problemas"} de configuracion bloquean al cliente
+          </div>
+          <ul className="space-y-1 pl-1 text-[11px] text-red-300">
+            {blockingConfigIssues.slice(0, 5).map((iss, i) => (
+              <li key={`${iss.path}-${i}`}>
+                <code className="rounded bg-black/20 px-1 py-0.5 text-[10px]">{iss.path || "config"}</code>{" "}
+                {iss.message}
+              </li>
+            ))}
+            {blockingConfigIssues.length > 5 && (
+              <li className="text-red-400/70">… y {blockingConfigIssues.length - 5} mas</li>
+            )}
+          </ul>
+          <button
+            onClick={() => setActiveTab("config")}
+            className="mt-3 inline-flex items-center gap-1.5 rounded-lg border border-red-500/30 px-3 py-1.5 text-[11px] font-medium text-red-400 hover:bg-red-500/10"
+          >
+            Ir a Config
+          </button>
+        </div>
+      )}
+      {warningConfigIssues.length > 0 && blockingConfigIssues.length === 0 && (
+        <div className="mb-4 rounded-xl border border-amber-500/20 bg-amber-500/5 p-4">
+          <div className="mb-2 flex items-center gap-2 text-xs font-semibold text-amber-300">
+            <AlertTriangle size={14} />
+            {warningConfigIssues.length} {warningConfigIssues.length === 1 ? "aviso" : "avisos"} sobre la configuracion
+          </div>
+          <ul className="space-y-1 pl-1 text-[11px] text-amber-300/80">
+            {warningConfigIssues.slice(0, 5).map((iss, i) => (
+              <li key={`${iss.path}-${i}`}>
+                <code className="rounded bg-black/20 px-1 py-0.5 text-[10px]">{iss.path || "config"}</code>{" "}
+                {iss.message}
+              </li>
+            ))}
+            {warningConfigIssues.length > 5 && (
+              <li className="text-amber-300/60">… y {warningConfigIssues.length - 5} mas</li>
+            )}
+          </ul>
+        </div>
+      )}
+
+      {/* PG Down Notice */}
+      {healthSource === "unavailable" && (
+        <div className="mb-4 flex items-start gap-2 rounded-xl border border-amber-500/20 bg-amber-500/5 p-3 text-[11px] text-amber-300">
+          <AlertTriangle size={14} className="mt-0.5 shrink-0" />
+          <div>
+            <p className="font-medium">Metricas de salud no disponibles</p>
+            <p className="text-amber-300/70">
+              La base de PostgreSQL no responde. Los valores de uptime e incidentes mostrados a continuacion pueden no reflejar la realidad.
+            </p>
+          </div>
+        </div>
+      )}
+
       {/* Stats Grid */}
       <div className="mb-6 grid grid-cols-2 gap-3 lg:grid-cols-4">
-        <StatCard icon={Shield} label="Uptime 24h" value={`${uptime.last24h}%`} iconBg={uptime.last24h >= 99 ? "bg-success-muted" : uptime.last24h >= 95 ? "bg-warning-muted" : "bg-danger-muted"} iconColor={uptime.last24h >= 99 ? "text-success" : uptime.last24h >= 95 ? "text-warning" : "text-danger"} valueColor={uptime.last24h >= 99 ? "text-success" : uptime.last24h >= 95 ? "text-warning" : "text-danger"} />
-        <StatCard icon={Shield} label="Uptime 7d" value={`${uptime.last7d}%`} iconBg={uptime.last7d >= 99 ? "bg-success-muted" : uptime.last7d >= 95 ? "bg-warning-muted" : "bg-danger-muted"} iconColor={uptime.last7d >= 99 ? "text-success" : uptime.last7d >= 95 ? "text-warning" : "text-danger"} valueColor={uptime.last7d >= 99 ? "text-success" : uptime.last7d >= 95 ? "text-warning" : "text-danger"} />
+        <StatCard icon={Shield} label="Uptime 24h" value={healthSource === "unavailable" ? "—" : `${uptime.last24h}%`} iconBg={healthSource === "unavailable" ? "bg-bg-elevated" : uptime.last24h >= 99 ? "bg-success-muted" : uptime.last24h >= 95 ? "bg-warning-muted" : "bg-danger-muted"} iconColor={healthSource === "unavailable" ? "text-text-muted" : uptime.last24h >= 99 ? "text-success" : uptime.last24h >= 95 ? "text-warning" : "text-danger"} valueColor={healthSource === "unavailable" ? "text-text-muted" : uptime.last24h >= 99 ? "text-success" : uptime.last24h >= 95 ? "text-warning" : "text-danger"} />
+        <StatCard icon={Shield} label="Uptime 7d" value={healthSource === "unavailable" ? "—" : `${uptime.last7d}%`} iconBg={healthSource === "unavailable" ? "bg-bg-elevated" : uptime.last7d >= 99 ? "bg-success-muted" : uptime.last7d >= 95 ? "bg-warning-muted" : "bg-danger-muted"} iconColor={healthSource === "unavailable" ? "text-text-muted" : uptime.last7d >= 99 ? "text-success" : uptime.last7d >= 95 ? "text-warning" : "text-danger"} valueColor={healthSource === "unavailable" ? "text-text-muted" : uptime.last7d >= 99 ? "text-success" : uptime.last7d >= 95 ? "text-warning" : "text-danger"} />
         <StatCard icon={AlertTriangle} label="Incidentes" value={activeIncidents.length} iconBg={activeIncidents.length > 0 ? "bg-danger-muted" : "bg-success-muted"} iconColor={activeIncidents.length > 0 ? "text-danger" : "text-success"} valueColor={activeIncidents.length > 0 ? "text-danger" : "text-text"} />
         <StatCard icon={MessageSquare} label="Mensajes" value={messages.length} iconBg="bg-accent-muted" iconColor="text-accent" />
       </div>

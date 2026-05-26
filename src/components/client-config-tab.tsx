@@ -36,6 +36,7 @@ import {
   LANDING_SERVICES_DEFAULTS,
   type BusinessNiche,
 } from "@/lib/client-config/services";
+import { validateConfig, hasBlockingIssues, type ConfigIssue } from "@/lib/config-validator";
 
 /* ══════════════════════════════════════════════════════════════════════════
  * Types — mirrors what master-template stores in Firestore config/{clientId}
@@ -44,7 +45,7 @@ import {
 type ConfigDoc = {
   business?: { type?: string; legalName?: string; address?: string; cancellationPolicy?: string };
   businessMode?: "solo" | "team";
-  brand?: { name?: string; tagline?: string; description?: string; logo?: string; logoDark?: string; logoIconName?: string; ogImage?: string; aiPersona?: string };
+  brand?: { name?: string; tagline?: string; description?: string; logo?: string; logoDark?: string; logoIconName?: string; faviconEmoji?: string; ogImage?: string; aiPersona?: string };
   theme?: { accent?: string; accentLight?: string; surfaceDark?: string };
   activeTheme?: string;
   features?: Record<string, boolean>;
@@ -145,6 +146,7 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
   const [saved, setSaved] = useState(false);
   const [error, setError] = useState("");
   const [warning, setWarning] = useState("");
+  const [issues, setIssues] = useState<ConfigIssue[]>([]);
   const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set(["brand"]));
   const [isNew, setIsNew] = useState(false);
 
@@ -204,6 +206,16 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
     setError("");
     setWarning("");
     setSaved(false);
+
+    // Pre-validate locally so the user sees errors instantly without a roundtrip.
+    const localIssues = validateConfig(config);
+    setIssues(localIssues);
+    if (hasBlockingIssues(localIssues)) {
+      setError("Hay errores que impiden guardar. Revisa los avisos rojos abajo.");
+      setSaving(false);
+      return;
+    }
+
     try {
       const res = await fetch(`/api/config/${clientId}`, {
         method: "PUT",
@@ -211,7 +223,11 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
         body: JSON.stringify(config),
       });
       if (!res.ok) {
-        const data = await res.json();
+        const data = await res.json().catch(() => ({}));
+        if (res.status === 422 && Array.isArray(data.issues)) {
+          setIssues(data.issues as ConfigIssue[]);
+          throw new Error(data.error || "Config invalido");
+        }
         throw new Error(data.error || "Error al guardar");
       }
       const data = await res.json();
@@ -226,6 +242,12 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
       }
       if (typeof data.warning === "string") {
         setWarning(data.warning);
+      }
+      // Server returns surviving warnings; keep them visible (no blocking).
+      if (Array.isArray(data.warnings)) {
+        setIssues(data.warnings as ConfigIssue[]);
+      } else {
+        setIssues([]);
       }
       setSaved(true);
       setIsNew(false);
@@ -309,6 +331,29 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
       {warning && (
         <div className="rounded-lg bg-amber-500/10 px-3 py-2 text-xs text-amber-300">{warning}</div>
       )}
+      {issues.length > 0 && (
+        <div className="space-y-1">
+          {issues.map((iss, idx) => (
+            <div
+              key={`${iss.path}-${idx}`}
+              className={`flex items-start gap-2 rounded-lg px-3 py-2 text-[11px] ${
+                iss.severity === "error"
+                  ? "bg-red-500/10 text-red-400"
+                  : "bg-amber-500/10 text-amber-300"
+              }`}
+            >
+              <span className="mt-0.5 inline-block min-w-[3.5rem] font-mono text-[10px] opacity-70">
+                {iss.severity === "error" ? "ERROR" : "AVISO"}
+              </span>
+              <span className="flex-1">
+                <code className="rounded bg-black/20 px-1 py-0.5 text-[10px]">{iss.path || "config"}</code>
+                {" — "}
+                {iss.message}
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
       {saved && (
         <div className="rounded-lg bg-green-500/10 px-3 py-2 text-xs text-green-400">Configuracion guardada correctamente</div>
       )}
@@ -390,6 +435,23 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
         <div className="grid gap-3 sm:grid-cols-2">
           <ImageUploadField label="OG Image" value={(getNested("brand.ogImage") as string) || ""} onChange={(url) => updateNested("brand.ogImage", url ?? "")} clientId={clientId} />
           <Field label="Icono fallback (Lucide)" path="brand.logoIconName" value={getNested("brand.logoIconName")} onChange={updateNested} placeholder="Scissors, Sparkles, Scale..." />
+        </div>
+        <div className="grid gap-3 sm:grid-cols-[1fr_2fr]">
+          <div>
+            <label className="mb-1 block text-[11px] font-medium text-text-muted">Favicon (emoji)</label>
+            <input
+              type="text"
+              maxLength={4}
+              value={(getNested("brand.faviconEmoji") as string) || ""}
+              onChange={(e) => updateNested("brand.faviconEmoji", e.target.value)}
+              placeholder="✂️"
+              className="w-full rounded-lg border border-border bg-bg-input px-3 py-2 text-center text-base text-text outline-none focus:border-accent"
+            />
+          </div>
+          <p className="self-end pb-2 text-[10px] text-text-muted">
+            Aparece en el tab del navegador. El template usa un emoji (no una imagen).
+            Sugerencias por nicho: ✂️ barberia, 💅 nails, 🎨 tattoo, 🌸 estetica, ☕ cafeteria, 🔨 remodelaciones.
+          </p>
         </div>
       </Section>
 
