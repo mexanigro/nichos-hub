@@ -1097,6 +1097,41 @@ body:has(.wiz) {
   font-size: 11px; font-weight: 700; flex-shrink: 0;
 }
 
+/* List editors (benefits, testimonials, faq) */
+.wiz-list-item {
+  border: 1px solid var(--wz-line);
+  border-radius: 12px;
+  padding: 14px 16px 12px;
+  margin-bottom: 10px;
+  background: var(--wz-card-bg, transparent);
+}
+.wiz-list-item .wiz-field { margin-bottom: 10px; }
+.wiz-list-item .wiz-field:last-of-type { margin-bottom: 8px; }
+.wiz-add-btn {
+  display: inline-block; padding: 10px 18px; border-radius: 999px;
+  border: 1.5px dashed var(--wz-line); background: transparent;
+  font-size: 13.5px; color: var(--wz-ink-2); cursor: pointer;
+  transition: all .15s ease; align-self: flex-start;
+}
+.wiz-add-btn:hover { border-color: var(--wz-ink); color: var(--wz-ink); }
+.wiz-link-btn {
+  background: none; border: none; padding: 4px 0;
+  font-size: 12px; cursor: pointer; color: var(--wz-ink-3);
+  text-decoration: underline; text-underline-offset: 3px;
+}
+.wiz-link-btn.danger { color: #c9554b; }
+.wiz-link-btn:hover { color: var(--wz-ink); }
+.wiz-link-btn.danger:hover { color: #a83b30; }
+
+/* Star rating */
+.wiz-rating-row { display: flex; gap: 4px; }
+.wiz-star {
+  font-size: 22px; line-height: 1; padding: 2px 4px;
+  background: none; border: none; cursor: pointer;
+  color: var(--wz-line); transition: color .12s ease;
+}
+.wiz-star:hover, .wiz-star.on { color: #f5b94a; }
+
 /* upload zone */
 .wiz-upload-zone {
   border: 1.5px dashed var(--wz-line);

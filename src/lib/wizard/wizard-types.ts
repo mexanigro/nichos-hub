@@ -28,6 +28,27 @@ export interface DaySchedule {
   close: string; // "18:00"
 }
 
+/* ── Benefit (whyChooseUs) ── */
+export interface WizardBenefit {
+  title: string;
+  desc: string;
+  iconName: string; // Lucide icon name (default "Star")
+}
+
+/* ── Testimonial ── */
+export interface WizardTestimonial {
+  name: string;
+  title: string;
+  text: string;
+  rating: number; // 1-5
+}
+
+/* ── FAQ item ── */
+export interface WizardFaq {
+  q: string;
+  a: string;
+}
+
 /* ── Wizard data (union of all fields for both variants) ── */
 export interface WizardData {
   // Step 1: Niche
@@ -78,6 +99,18 @@ export interface WizardData {
   // Step 9 (paid): Gallery
   heroImage: SerializedFile | null;
   galleryImages: SerializedFile[];
+
+  // Step 10+ (paid): Diferenciación
+  benefits: WizardBenefit[];
+
+  // Step 11 (paid): Confianza social
+  testimonials: WizardTestimonial[];
+
+  // Step 12 (paid): Preguntas frecuentes
+  faqItems: WizardFaq[];
+
+  // Step 13 (paid): Branding micro
+  faviconEmoji: string;
 
   // Meta
   locale: string;
@@ -142,6 +175,10 @@ export function createEmptyWizardData(locale = "en"): WizardData {
     staffPhotos: [],
     heroImage: null,
     galleryImages: [],
+    benefits: [],
+    testimonials: [],
+    faqItems: [],
+    faviconEmoji: "",
     locale,
   };
 }

@@ -141,6 +141,16 @@ export interface Translations {
      *  email, logo, accentColor, colors, services, hours, ownerPhoto,
      *  ownerBio, heroImage, galleryImages, address. */
     hints?: Partial<Record<string, string>>;
+    // Bloque 4 — steps nuevos. Opcional por locale (fallback a ES).
+    benefitsTitle?: string; benefitsSub?: string;
+    benefitTitle?: string; benefitDesc?: string; benefitIcon?: string;
+    benefitAdd?: string; benefitRemove?: string;
+    testimonialsTitle?: string; testimonialsSub?: string;
+    testimonialName?: string; testimonialRole?: string; testimonialText?: string; testimonialRating?: string;
+    testimonialAdd?: string;
+    faqTitle?: string; faqSub?: string;
+    faqQuestion?: string; faqAnswer?: string; faqAdd?: string;
+    faviconEmojiLabel?: string; faviconEmojiHint?: string;
   };
   // PRESERVED — used by AuthModal in mi-cuenta and onboarding/preview
   auth: {

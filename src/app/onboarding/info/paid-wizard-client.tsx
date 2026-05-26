@@ -19,6 +19,9 @@ import { StepServices } from "@/components/wizard/steps/step-services";
 import { StepHours } from "@/components/wizard/steps/step-hours";
 import { StepOwner } from "@/components/wizard/steps/step-owner";
 import { StepGallery } from "@/components/wizard/steps/step-gallery";
+import { StepBenefits } from "@/components/wizard/steps/step-benefits";
+import { StepTestimonials } from "@/components/wizard/steps/step-testimonials";
+import { StepFaq } from "@/components/wizard/steps/step-faq";
 import { StepReview } from "@/components/wizard/wizard-review";
 
 import {
@@ -38,6 +41,9 @@ const STEPS: StepConfig[] = [
   { id: "hours", component: StepHours },
   { id: "owner", component: StepOwner },
   { id: "gallery", component: StepGallery },
+  { id: "benefits", component: StepBenefits },
+  { id: "testimonials", component: StepTestimonials },
+  { id: "faq", component: StepFaq },
   { id: "review", component: StepReview },
 ];
 
@@ -147,6 +153,10 @@ export function PaidWizardClient({
         heroImageUrl,
         staffPhotoUrls,
         galleryImageUrls,
+        benefits: data.benefits,
+        testimonials: data.testimonials,
+        faqItems: data.faqItems,
+        faviconEmoji: data.faviconEmoji,
         locale,
       };
 
