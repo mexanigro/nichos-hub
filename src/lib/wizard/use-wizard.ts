@@ -10,6 +10,10 @@ interface UseWizardOptions {
   variant: "free" | "paid";
   clientId?: string;
   locale?: string;
+  /** Campos a precargar (ej. email del lead pagado). Solo aplica si el draft
+   *  guardado en localStorage no tiene esos campos — no pisa lo que el
+   *  usuario haya tipeado. */
+  initialData?: Partial<WizardData>;
 }
 
 interface UseWizardReturn {
@@ -35,6 +39,7 @@ export function useWizard({
   variant,
   clientId,
   locale = "en",
+  initialData,
 }: UseWizardOptions): UseWizardReturn {
   const [data, setData] = useState<WizardData>(() =>
     createEmptyWizardData(locale),
@@ -51,8 +56,22 @@ export function useWizard({
   // ── Hydrate from localStorage on mount ──
   useEffect(() => {
     const saved = loadWizardDraft(variant, clientId, locale);
-    setData(saved);
+    // Merge initialData solo para campos vacios en el draft — no pisa lo que
+    // el usuario ya tipeo.
+    if (initialData) {
+      const merged = { ...saved } as WizardData;
+      for (const [key, value] of Object.entries(initialData)) {
+        const k = key as keyof WizardData;
+        if (value !== undefined && value !== "" && !merged[k]) {
+          (merged as unknown as Record<string, unknown>)[key] = value;
+        }
+      }
+      setData(merged);
+    } else {
+      setData(saved);
+    }
     setHydrated(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [variant, clientId, locale]);
 
   // ── Auto-save to localStorage (debounced 500ms) ──

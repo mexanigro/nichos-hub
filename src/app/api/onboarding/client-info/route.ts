@@ -106,6 +106,28 @@ export async function POST(req: NextRequest) {
     // Branding input (raw user input for re-resolution)
     configUpdate["brandingInput.colors"] = body.colors || "";
 
+    // Image uploads (URLs from /api/onboarding/upload)
+    if (typeof body.logoUrl === "string" && body.logoUrl) {
+      configUpdate["brand.logo"] = body.logoUrl;
+    }
+    if (typeof body.logoDarkUrl === "string" && body.logoDarkUrl) {
+      configUpdate["brand.logoDark"] = body.logoDarkUrl;
+    }
+    if (typeof body.ownerPhotoUrl === "string" && body.ownerPhotoUrl) {
+      configUpdate["owner.photo"] = body.ownerPhotoUrl;
+    }
+    if (typeof body.heroImageUrl === "string" && body.heroImageUrl) {
+      configUpdate["hero.backgroundImage"] = body.heroImageUrl;
+    }
+    if (Array.isArray(body.staffPhotoUrls) && body.staffPhotoUrls.length > 0) {
+      // Stub: array de URLs. Liam mapea a staff[].photo en config-tab cuando
+      // tiene el contexto de quien es cada uno (nombre/role).
+      configUpdate["staffPhotos"] = body.staffPhotoUrls;
+    }
+    if (Array.isArray(body.galleryImageUrls) && body.galleryImageUrls.length > 0) {
+      configUpdate["gallery"] = body.galleryImageUrls.map((url: string) => ({ url }));
+    }
+
     // Write to Firestore config
     await db.collection("config").doc(clientId).update(configUpdate);
 

@@ -5,8 +5,10 @@ import { useSearchParams } from "next/navigation";
 import { WizardShell } from "@/components/wizard/wizard-shell";
 import { useWizard } from "@/lib/wizard/use-wizard";
 import { clearWizardDraft } from "@/lib/wizard/wizard-storage";
+import { uploadSerializedFiles } from "@/lib/wizard/upload-helpers";
 import { useT } from "@/lib/i18n";
 import type { StepConfig } from "@/lib/wizard/wizard-types";
+import type { SerializedFile } from "@/lib/builder-storage";
 
 import { StepNiche } from "@/components/wizard/steps/step-niche";
 import { StepMode } from "@/components/wizard/steps/step-mode";
@@ -39,9 +41,22 @@ const STEPS: StepConfig[] = [
   { id: "review", component: StepReview },
 ];
 
-export function PaidWizardClient() {
+interface PaidWizardClientProps {
+  initialClientId?: string;
+  initialEmail?: string;
+  initialPlan?: "web_crm" | "completo" | "";
+  /** JWT del flow post-pago, requerido para subir imagenes al endpoint protegido. */
+  uploadToken?: string;
+}
+
+export function PaidWizardClient({
+  initialClientId = "",
+  initialEmail = "",
+  uploadToken = "",
+}: PaidWizardClientProps = {}) {
   const params = useSearchParams();
-  const clientId = params.get("clientId") || "";
+  // Prioridad: props del server (token verificado) → query string → vacio.
+  const clientId = initialClientId || params.get("clientId") || "";
   const { locale, t, isRTL } = useT();
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
@@ -51,6 +66,7 @@ export function PaidWizardClient() {
     variant: "paid",
     clientId,
     locale,
+    initialData: initialEmail ? { email: initialEmail } : undefined,
   });
 
   const handleSubmit = useCallback(async () => {
@@ -63,6 +79,40 @@ export function PaidWizardClient() {
 
     try {
       const { data } = wizard;
+
+      // 1. Subir uploads (si hay token). Si no hay token, ignoramos uploads
+      //    silenciosamente — flow legacy ?clientId=... no podia subir tampoco.
+      let logoUrl: string | undefined;
+      let logoDarkUrl: string | undefined;
+      let ownerPhotoUrl: string | undefined;
+      let heroImageUrl: string | undefined;
+      let staffPhotoUrls: string[] = [];
+      let galleryImageUrls: string[] = [];
+
+      if (uploadToken) {
+        const single = async (f: SerializedFile | null): Promise<string | undefined> => {
+          if (!f) return undefined;
+          const r = await uploadSerializedFiles([f], uploadToken);
+          if (!r.ok) throw new Error(r.error || "Upload failed");
+          return r.urls?.[0];
+        };
+        const many = async (files: SerializedFile[]): Promise<string[]> => {
+          if (files.length === 0) return [];
+          const r = await uploadSerializedFiles(files, uploadToken);
+          if (!r.ok) throw new Error(r.error || "Upload failed");
+          return r.urls || [];
+        };
+
+        [logoUrl, logoDarkUrl, ownerPhotoUrl, heroImageUrl, staffPhotoUrls, galleryImageUrls] = await Promise.all([
+          single(data.logo),
+          single(data.logoDark),
+          single(data.ownerPhoto),
+          single(data.heroImage),
+          many(data.staffPhotos),
+          many(data.galleryImages),
+        ]);
+      }
+
       const body = {
         clientId,
         niche: data.niche,
@@ -90,6 +140,12 @@ export function PaidWizardClient() {
         ownerName: data.ownerName,
         ownerRole: data.ownerRole,
         ownerBio: data.ownerBio,
+        logoUrl,
+        logoDarkUrl,
+        ownerPhotoUrl,
+        heroImageUrl,
+        staffPhotoUrls,
+        galleryImageUrls,
         locale,
       };
 

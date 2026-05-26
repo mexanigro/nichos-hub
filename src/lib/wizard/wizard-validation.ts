@@ -32,3 +32,10 @@ export function validateContact(data: WizardData): string | null {
 export function validateOptional(): string | null {
   return null;
 }
+
+export function validateDemoContact(data: WizardData): string | null {
+  const email = data.email.trim();
+  if (!email) return "errEmail";
+  if (!email.includes("@") || email.length < 5) return "errEmail";
+  return null;
+}

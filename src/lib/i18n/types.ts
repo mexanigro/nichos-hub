@@ -131,6 +131,10 @@ export interface Translations {
     errNiche: string; errCustomNiche: string; errMode: string;
     errBusinessName: string; errContact: string; errEmail: string;
     noClientId: string; noClientIdSub: string;
+    demoContactTitle: string; demoContactSub: string;
+    demoEmailHint: string; demoWhatsappHint: string;
+    demoSubmit: string;
+    demoThanksTitle: string; demoThanksBody: string; demoThanksCta: string;
   };
   // PRESERVED — used by AuthModal in mi-cuenta and onboarding/preview
   auth: {
