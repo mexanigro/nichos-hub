@@ -8,6 +8,81 @@ type RouteCtx = { params: Promise<{ clientId: string }> };
 
 const CLIENT_ID_RE = /^[a-zA-Z0-9_-]+$/;
 
+/**
+ * Coerce legacy/wrong shapes back to what the template expects.
+ *
+ * Currently:
+ *   - `gallery` must be `string[]`. Old data from patch-images.mjs and an
+ *     earlier brand-package-import bug wrote `Array<{ src, alt }>` which makes
+ *     the template render `[object Object]` and triggers a runtime error in
+ *     `<Gallery />` (it calls `.slice` on the value). We flatten it here so
+ *     the editor never sees the broken shape; the next PUT then re-persists
+ *     the clean shape into Firestore.
+ *   - `sections.services.images`, `sections.instagram.images`, `staff[].portfolio`
+ *     and `owner.portfolio` are also string arrays — apply the same coercion
+ *     in case any importer ever wrote rich objects there.
+ */
+function normalizeImageArray(value: unknown): string[] | undefined {
+  if (!Array.isArray(value)) return undefined;
+  const out: string[] = [];
+  for (const item of value) {
+    if (typeof item === "string") {
+      if (item) out.push(item);
+    } else if (item && typeof item === "object") {
+      // Tolerate { src, alt } and { url } shapes that legacy data produced.
+      const candidate =
+        (item as { src?: unknown }).src ??
+        (item as { url?: unknown }).url ??
+        (item as { href?: unknown }).href;
+      if (typeof candidate === "string" && candidate) out.push(candidate);
+    }
+  }
+  return out;
+}
+
+function normalizeConfigShape(data: Record<string, unknown>): Record<string, unknown> {
+  const out = { ...data };
+
+  const flatGallery = normalizeImageArray(out.gallery);
+  if (flatGallery !== undefined) out.gallery = flatGallery;
+
+  if (out.sections && typeof out.sections === "object" && !Array.isArray(out.sections)) {
+    const sections = { ...(out.sections as Record<string, unknown>) };
+    if (sections.services && typeof sections.services === "object") {
+      const services = { ...(sections.services as Record<string, unknown>) };
+      const flat = normalizeImageArray(services.images);
+      if (flat !== undefined) services.images = flat;
+      sections.services = services;
+    }
+    if (sections.instagram && typeof sections.instagram === "object") {
+      const instagram = { ...(sections.instagram as Record<string, unknown>) };
+      const flat = normalizeImageArray(instagram.images);
+      if (flat !== undefined) instagram.images = flat;
+      sections.instagram = instagram;
+    }
+    out.sections = sections;
+  }
+
+  if (Array.isArray(out.staff)) {
+    out.staff = (out.staff as unknown[]).map((m) => {
+      if (!m || typeof m !== "object") return m;
+      const next = { ...(m as Record<string, unknown>) };
+      const flat = normalizeImageArray(next.portfolio);
+      if (flat !== undefined) next.portfolio = flat;
+      return next;
+    });
+  }
+
+  if (out.owner && typeof out.owner === "object") {
+    const owner = { ...(out.owner as Record<string, unknown>) };
+    const flat = normalizeImageArray(owner.portfolio);
+    if (flat !== undefined) owner.portfolio = flat;
+    out.owner = owner;
+  }
+
+  return out;
+}
+
 /** GET /api/config/:clientId — read Firestore config/{clientId} */
 export const GET = withOwner(async (_req, _session, ctx) => {
   const { clientId } = await (ctx as RouteCtx).params;
@@ -15,7 +90,9 @@ export const GET = withOwner(async (_req, _session, ctx) => {
     return NextResponse.json({ error: "Invalid clientId" }, { status: 400 });
   }
   const snap = await db.collection("config").doc(clientId).get();
-  return NextResponse.json(snap.exists ? snap.data() : {});
+  if (!snap.exists) return NextResponse.json({});
+  const data = snap.data() ?? {};
+  return NextResponse.json(normalizeConfigShape(data));
 });
 
 /**
@@ -80,7 +157,8 @@ export const PUT = withOwner(async (req, _session, ctx) => {
   const rawBody = body as Record<string, unknown>;
   const requestedBusinessType = getNestedBusinessType(rawBody);
   const deployBusinessType = await getDeployNiche(clientId, requestedBusinessType);
-  const normalizedBody = withNormalizedBusinessType(rawBody, deployBusinessType);
+  const shapedBody = normalizeConfigShape(rawBody);
+  const normalizedBody = withNormalizedBusinessType(shapedBody, deployBusinessType);
   const cleaned = replaceNullsWithDelete(normalizedBody);
   try {
     await db.collection("config").doc(clientId).set(cleaned, { merge: true });

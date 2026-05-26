@@ -220,17 +220,19 @@ function extractBrandName(json: Record<string, unknown> | null, files?: File[]):
     if (firstPath) {
       const folderName = firstPath.split("/")[0];
       if (folderName) {
-        return folderName
+        const cleaned = folderName
           .replace(/[-_]?brand[-_]?package/gi, "")
           .replace(/[-_]?v\d+$/i, "")
           .replace(/[_-]/g, " ")
           .trim()
-          .replace(/\b\w/g, (c) => c.toUpperCase()) || "Sin nombre";
+          .replace(/\b\w/g, (c) => c.toUpperCase());
+        if (cleaned) return cleaned;
       }
     }
   }
 
-  return "Sin nombre";
+  // Return empty so the UI can flag the field instead of persisting a placeholder.
+  return "";
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════

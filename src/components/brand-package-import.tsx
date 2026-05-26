@@ -200,6 +200,10 @@ export function BrandPackageImport({ clientId, onBrandApplied }: BrandPackageImp
 
   const handleApply = useCallback(async () => {
     if (!parsed) return;
+    if (!editedName.trim()) {
+      setError("Tenes que escribir el nombre del negocio antes de aplicar el brand package.");
+      return;
+    }
     setStage("uploading");
     setError("");
 
@@ -290,12 +294,9 @@ export function BrandPackageImport({ clientId, onBrandApplied }: BrandPackageImp
       if (!meta) continue;
 
       if (meta.isArray) {
-        // Array roles: build array value
-        if (role === "galleryImage") {
-          setNestedValue(configPatch, meta.configPath, urls.map((u) => ({ src: u, alt: "" })));
-        } else {
-          setNestedValue(configPatch, meta.configPath, urls);
-        }
+        // Array roles always persist as string[] — the template's renderers
+        // (Gallery, InstagramFeed, Services) consume URLs directly via <img src={...}>.
+        setNestedValue(configPatch, meta.configPath, urls);
       } else {
         // Single-image roles: use first URL
         setNestedValue(configPatch, meta.configPath, urls[0]);
@@ -390,13 +391,21 @@ export function BrandPackageImport({ clientId, onBrandApplied }: BrandPackageImp
           <div>
             <label className="mb-1 block text-[11px] font-semibold text-text-secondary">
               <Type size={10} className="mr-1 inline" />
-              Nombre del negocio
+              Nombre del negocio <span className="text-red-400">*</span>
             </label>
             <input
-              className="w-full rounded-lg border border-border bg-bg-input px-3 py-2 text-sm text-text outline-none focus:border-accent"
+              className={`w-full rounded-lg border bg-bg-input px-3 py-2 text-sm text-text outline-none focus:border-accent ${
+                editedName.trim() ? "border-border" : "border-red-500/50"
+              }`}
               value={editedName}
               onChange={(e) => setEditedName(e.target.value)}
+              placeholder="Ej: Estetica Lavanda"
             />
+            {!editedName.trim() && (
+              <p className="mt-1 text-[10px] text-red-400/80">
+                No detectamos el nombre desde el paquete. Escribilo antes de aplicar — sino queda como &quot;Sin nombre&quot; en el splash.
+              </p>
+            )}
           </div>
 
           {/* Warning: colors from image */}
@@ -657,7 +666,8 @@ export function BrandPackageImport({ clientId, onBrandApplied }: BrandPackageImp
           {/* Apply button */}
           <button
             onClick={handleApply}
-            className="flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-4 py-3 text-sm font-semibold text-white transition-all hover:bg-accent-hover active:scale-[0.98]"
+            disabled={!editedName.trim()}
+            className="flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-4 py-3 text-sm font-semibold text-white transition-all hover:bg-accent-hover active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-bg-active disabled:text-text-muted"
           >
             <Upload size={16} />
             Aplicar Brand Package

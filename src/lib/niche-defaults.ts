@@ -52,14 +52,19 @@ export function getDefaultTheme(niche: string): string {
   return map[niche] || "classic-dark";
 }
 
+/**
+ * Must mirror master-template's `NICHE_SPLASH` map in
+ * src/components/layout/SplashScreen.tsx so new clients deploy with the
+ * variant their niche was designed for.
+ */
 export function getDefaultSplash(niche: string): number {
   const map: Record<string, number> = {
-    barberia: 1,
-    estetica: 4,
-    tattoo: 5,
-    nails: 3,
-    cafeteria: 3,
-    remodelaciones: 1,
+    barberia: 1,         // Classic
+    estetica: 4,         // Typewriter
+    tattoo: 5,           // Vortex
+    nails: 3,            // Pulse
+    cafeteria: 6,        // Cafeteria — was 3 (Pulse), template uses 6
+    remodelaciones: 7,   // Remodelaciones — was 1 (Classic), template uses 7
   };
   return map[niche] || 1;
 }

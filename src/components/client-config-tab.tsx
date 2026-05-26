@@ -69,7 +69,7 @@ type ConfigDoc = {
     depositAmount?: number;
     currency?: string;
   };
-  splash?: { enabled?: boolean; durationMs?: number; variant?: 1 | 2 | 3 | 4 | 5 };
+  splash?: { enabled?: boolean; durationMs?: number; variant?: 1 | 2 | 3 | 4 | 5 | 6 | 7 };
   adminEmail?: string;
   hero?: { backgroundImage?: string; stats?: { value: string; label: string }[] };
   gallery?: string[];
@@ -363,6 +363,21 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
         icon={Sparkles} title="Marca e identidad" sectionKey="brand"
         expanded={expandedSections.has("brand")} onToggle={toggleSection}
       >
+        {(() => {
+          const rawName = getNested("brand.name");
+          const name = typeof rawName === "string" ? rawName.trim() : "";
+          const looksLikePlaceholder = /^sin\s*nombre$/i.test(name);
+          if (!name || looksLikePlaceholder) {
+            return (
+              <div className="rounded-lg border border-amber-500/30 bg-amber-500/5 px-3 py-2 text-[11px] text-amber-300">
+                {looksLikePlaceholder
+                  ? <>El nombre figura como <strong>&quot;{name}&quot;</strong> — se ve asi en el splash de la web. Cambialo por el nombre real del negocio.</>
+                  : <>El nombre del negocio esta vacio. Aparecera en blanco en el splash y en el header del cliente.</>}
+              </div>
+            );
+          }
+          return null;
+        })()}
         <div className="grid gap-3 sm:grid-cols-2">
           <Field label="Nombre del negocio" path="brand.name" value={getNested("brand.name")} onChange={updateNested} />
           <Field label="Tagline" path="brand.tagline" value={getNested("brand.tagline")} onChange={updateNested} />
@@ -643,20 +658,24 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
         <p className="text-[11px] font-medium text-text-muted">Variante de animacion</p>
         <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
           {([
-            { value: 1, name: "Classic", desc: "Logo + letras animadas + linea accent" },
+            { value: 1, name: "Classic", desc: "Logo + letras animadas + linea accent", recommendedFor: ["barberia"] },
             { value: 2, name: "Curtain", desc: "Paneles se abren como un telon" },
-            { value: 3, name: "Pulse", desc: "Onda radial que revela la marca" },
-            { value: 4, name: "Typewriter", desc: "Nombre escrito caracter a caracter" },
-            { value: 5, name: "Vortex", desc: "Particulas orbitales que convergen" },
+            { value: 3, name: "Pulse", desc: "Onda radial que revela la marca", recommendedFor: ["nails"] },
+            { value: 4, name: "Typewriter", desc: "Nombre escrito caracter a caracter", recommendedFor: ["estetica"] },
+            { value: 5, name: "Vortex", desc: "Particulas orbitales que convergen", recommendedFor: ["tattoo"] },
+            { value: 6, name: "Cafeteria", desc: "Mocha calido + titulo serif en dos lineas", recommendedFor: ["cafeteria"] },
+            { value: 7, name: "Remodelaciones", desc: "Wipe reveal bold + corporate", recommendedFor: ["remodelaciones"] },
           ] as const).map(v => {
             const current = (getNested("splash.variant") as number) ?? 1;
             const isSelected = current === v.value;
+            const currentNiche = normalizeBusinessNiche(config.business?.type || niche);
+            const isRecommended = (v as { recommendedFor?: readonly string[] }).recommendedFor?.includes(currentNiche) ?? false;
             return (
               <button
                 key={v.value}
                 type="button"
                 onClick={() => updateNested("splash.variant", v.value)}
-                className={`rounded-lg border px-3 py-2.5 text-left transition-colors ${
+                className={`relative rounded-lg border px-3 py-2.5 text-left transition-colors ${
                   isSelected
                     ? "border-accent/40 bg-accent/8 ring-1 ring-accent/20"
                     : "border-border bg-bg-elevated hover:bg-bg-active"
@@ -669,6 +688,11 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
                     {v.value}
                   </div>
                   <span className={`text-xs font-semibold ${isSelected ? "text-text" : "text-text-secondary"}`}>{v.name}</span>
+                  {isRecommended && (
+                    <span className="ml-auto rounded-full bg-accent/15 px-1.5 py-0.5 text-[8px] font-semibold uppercase tracking-wider text-accent">
+                      Recom.
+                    </span>
+                  )}
                 </div>
                 <p className="mt-1 pl-8 text-[10px] text-text-muted">{v.desc}</p>
               </button>
