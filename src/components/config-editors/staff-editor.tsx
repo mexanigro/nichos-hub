@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Plus, Users, ChevronDown, ChevronRight } from "lucide-react";
 import { ImageUploadField, ImageUploadListField } from "../image-upload-field";
 import { ReorderControls, moveItem } from "./reorder-controls";
+import { ScheduleEditor, defaultWeeklySchedule, type WeeklySchedule } from "./schedule-editor";
 
 export type StaffSocial = {
   instagram?: string;
@@ -29,6 +30,7 @@ export type StaffMember = {
   bio?: string;
   portfolio?: string[];
   social?: StaffSocial;
+  schedule?: WeeklySchedule;
 };
 
 function slugify(name: string): string {
@@ -106,7 +108,17 @@ export function StaffEditor({
   }
 
   function add() {
-    const next = [...items, { name: "", id: `miembro-${items.length + 1}` }];
+    // Seed a default schedule so the booking engine has something to work with
+    // until the owner customizes it. Without this, newly added staff members
+    // have `undefined` schedule and break availability calc in the template.
+    const next: StaffMember[] = [
+      ...items,
+      {
+        name: "",
+        id: `miembro-${items.length + 1}`,
+        schedule: defaultWeeklySchedule(),
+      },
+    ];
     onChange(next);
     setExpanded((prev) => new Set([...prev, items.length]));
   }
@@ -251,12 +263,21 @@ export function StaffEditor({
                   </div>
                 </div>
 
+                <ScheduleEditor
+                  value={m.schedule}
+                  onChange={(schedule) => update(i, { schedule })}
+                />
+
                 <p className="text-[10px] text-text-muted">
                   ID:{" "}
                   <code className="rounded bg-bg-card px-1 py-0.5 text-[10px] text-text-secondary">
                     {m.id || "—"}
-                  </code>{" "}
-                  · El horario semanal del miembro se administra desde el panel admin del cliente.
+                  </code>
+                  {!m.schedule && (
+                    <span className="ml-2 text-amber-300/80">
+                      · Sin horario — el booking engine va a usar el default.
+                    </span>
+                  )}
                 </p>
               </div>
             )}

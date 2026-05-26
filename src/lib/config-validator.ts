@@ -261,6 +261,167 @@ export function validateConfig(config: unknown): ConfigIssue[] {
     });
   }
 
+  // ── philosophy.pillars[] / process.steps[] (shared shape) ──
+  for (const path of ["sections.philosophy.pillars", "sections.process.steps"]) {
+    const list = getNested(config, path);
+    if (!Array.isArray(list)) continue;
+    list.forEach((it, i) => {
+      if (!it || typeof it !== "object") {
+        issues.push({ path: `${path}[${i}]`, message: "Debe ser un objeto.", severity: "error" });
+        return;
+      }
+      const item = it as Record<string, unknown>;
+      const missing: string[] = [];
+      if (typeof item.number !== "string" || !item.number.trim()) missing.push("number");
+      if (typeof item.title !== "string" || !item.title.trim()) missing.push("title");
+      if (typeof item.description !== "string" || !item.description.trim()) missing.push("description");
+      if (missing.length > 0) {
+        issues.push({
+          path: `${path}[${i}]`,
+          message: `Falta completar: ${missing.join(", ")}.`,
+          severity: "warning",
+        });
+      }
+    });
+  }
+
+  // ── ambience.sectors[] ──
+  const ambience = getNested(config, "sections.ambience.sectors");
+  if (Array.isArray(ambience)) {
+    ambience.forEach((s, i) => {
+      if (!s || typeof s !== "object") return;
+      const sec = s as Record<string, unknown>;
+      if (typeof sec.label !== "string" || !sec.label.trim()) {
+        issues.push({ path: `sections.ambience.sectors[${i}].label`, message: "Falta el nombre del sector.", severity: "warning" });
+      }
+      if (typeof sec.imageSrc !== "string" || !sec.imageSrc.trim()) {
+        issues.push({ path: `sections.ambience.sectors[${i}].imageSrc`, message: "Falta la imagen del sector.", severity: "warning" });
+      }
+    });
+  }
+
+  // ── portfolio (filters + projects coupled) ──
+  const portfolioFilters = getNested(config, "sections.portfolio.filters");
+  const portfolioProjects = getNested(config, "sections.portfolio.projects");
+  if (Array.isArray(portfolioFilters) || Array.isArray(portfolioProjects)) {
+    const filterKeys = new Set<string>();
+    if (Array.isArray(portfolioFilters)) {
+      portfolioFilters.forEach((f, i) => {
+        if (!f || typeof f !== "object") return;
+        const ff = f as Record<string, unknown>;
+        if (typeof ff.key !== "string" || !ff.key.trim()) {
+          issues.push({ path: `sections.portfolio.filters[${i}].key`, message: "Falta key del filtro.", severity: "error" });
+        } else {
+          if (filterKeys.has(ff.key)) {
+            issues.push({ path: `sections.portfolio.filters[${i}].key`, message: `key "${ff.key}" duplicada.`, severity: "error" });
+          }
+          filterKeys.add(ff.key);
+        }
+        if (typeof ff.label !== "string" || !ff.label.trim()) {
+          issues.push({ path: `sections.portfolio.filters[${i}].label`, message: "Falta label del filtro.", severity: "warning" });
+        }
+      });
+    }
+    if (Array.isArray(portfolioProjects)) {
+      portfolioProjects.forEach((p, i) => {
+        if (!p || typeof p !== "object") return;
+        const pp = p as Record<string, unknown>;
+        if (typeof pp.title !== "string" || !pp.title.trim()) {
+          issues.push({ path: `sections.portfolio.projects[${i}].title`, message: "Falta titulo del proyecto.", severity: "warning" });
+        }
+        if (typeof pp.filter !== "string" || !pp.filter.trim()) {
+          issues.push({ path: `sections.portfolio.projects[${i}].filter`, message: "Falta filtro del proyecto.", severity: "warning" });
+        } else if (filterKeys.size > 0 && !filterKeys.has(pp.filter)) {
+          issues.push({
+            path: `sections.portfolio.projects[${i}].filter`,
+            message: `El filtro "${pp.filter}" no existe en sections.portfolio.filters.`,
+            severity: "error",
+          });
+        }
+      });
+    }
+  }
+
+  // ── menu (categories + items coupled) ──
+  const menuCategories = getNested(config, "sections.menu.categories");
+  const menuItems = getNested(config, "sections.menu.items");
+  if (Array.isArray(menuCategories) || Array.isArray(menuItems)) {
+    const catKeys = new Set<string>();
+    if (Array.isArray(menuCategories)) {
+      menuCategories.forEach((c, i) => {
+        if (!c || typeof c !== "object") return;
+        const cc = c as Record<string, unknown>;
+        if (typeof cc.key !== "string" || !cc.key.trim()) {
+          issues.push({ path: `sections.menu.categories[${i}].key`, message: "Falta key de la categoria.", severity: "error" });
+        } else {
+          if (catKeys.has(cc.key)) {
+            issues.push({ path: `sections.menu.categories[${i}].key`, message: `key "${cc.key}" duplicada.`, severity: "error" });
+          }
+          catKeys.add(cc.key);
+        }
+      });
+    }
+    const itemIds = new Set<string>();
+    if (Array.isArray(menuItems)) {
+      menuItems.forEach((it, i) => {
+        if (!it || typeof it !== "object") return;
+        const item = it as Record<string, unknown>;
+        if (typeof item.id !== "string" || !item.id.trim()) {
+          issues.push({ path: `sections.menu.items[${i}].id`, message: "Falta id del item.", severity: "error" });
+        } else {
+          if (itemIds.has(item.id)) {
+            issues.push({ path: `sections.menu.items[${i}].id`, message: `id "${item.id}" duplicado.`, severity: "error" });
+          }
+          itemIds.add(item.id);
+        }
+        if (typeof item.name !== "string" || !item.name.trim()) {
+          issues.push({ path: `sections.menu.items[${i}].name`, message: "Falta el nombre.", severity: "warning" });
+        }
+        if (typeof item.category !== "string" || !item.category.trim()) {
+          issues.push({ path: `sections.menu.items[${i}].category`, message: "Falta la categoria.", severity: "warning" });
+        } else if (catKeys.size > 0 && !catKeys.has(item.category)) {
+          issues.push({
+            path: `sections.menu.items[${i}].category`,
+            message: `La categoria "${item.category}" no existe en sections.menu.categories.`,
+            severity: "error",
+          });
+        }
+      });
+    }
+  }
+
+  // ── staff[].schedule shape ──
+  if (Array.isArray(staff)) {
+    staff.forEach((member, i) => {
+      if (!member || typeof member !== "object") return;
+      const m = member as Record<string, unknown>;
+      const sched = m.schedule;
+      if (sched === undefined) return;
+      if (!sched || typeof sched !== "object") {
+        issues.push({ path: `staff[${i}].schedule`, message: "Debe ser un objeto WeeklySchedule.", severity: "error" });
+        return;
+      }
+      const sc = sched as Record<string, unknown>;
+      for (const day of ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]) {
+        const wd = sc[day];
+        if (wd === undefined) continue;
+        if (!wd || typeof wd !== "object" || Array.isArray(wd)) {
+          issues.push({ path: `staff[${i}].schedule.${day}`, message: "Debe ser {isOpen, hours, breaks}.", severity: "error" });
+          continue;
+        }
+        const w = wd as Record<string, unknown>;
+        const hours = w.hours as Record<string, unknown> | undefined;
+        if (w.isOpen === true && hours && typeof hours.start === "string" && typeof hours.end === "string" && hours.start >= hours.end) {
+          issues.push({
+            path: `staff[${i}].schedule.${day}`,
+            message: `Inicio (${hours.start}) >= cierre (${hours.end}).`,
+            severity: "warning",
+          });
+        }
+      }
+    });
+  }
+
   // ── hours.* shape ──
   const hours = getNested(config, "hours");
   if (hours && typeof hours === "object") {

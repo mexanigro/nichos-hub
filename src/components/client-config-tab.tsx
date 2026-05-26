@@ -19,6 +19,10 @@ import {
   Briefcase,
   Eye,
   EyeOff,
+  Coffee,
+  Hammer,
+  UtensilsCrossed,
+  ListOrdered,
   Bell,
   CalendarCog,
   Film,
@@ -35,6 +39,14 @@ import { BenefitsEditor, type Benefit } from "./config-editors/benefits-editor";
 import { TestimonialsEditor, type Testimonial } from "./config-editors/testimonials-editor";
 import { StaffEditor, type StaffMember } from "./config-editors/staff-editor";
 import { ServicesEditor, type Service } from "./config-editors/services-editor";
+import { NumberedStepsEditor, type NumberedStep } from "./config-editors/numbered-steps-editor";
+import { AmbienceEditor, type AmbienceSector } from "./config-editors/ambience-editor";
+import {
+  PortfolioEditor,
+  type PortfolioFilter,
+  type PortfolioProject,
+} from "./config-editors/portfolio-editor";
+import { MenuEditor, type MenuCategory, type MenuItem as MenuItemConfig } from "./config-editors/menu-editor";
 import {
   normalizeBusinessNiche,
   type BusinessNiche,
@@ -94,6 +106,11 @@ type ConfigDoc = {
     services?: { images?: string[] };
     whyChooseUs?: { mainImage?: string; badge?: string; benefits?: Benefit[] };
     instagram?: { title?: string; handle?: string; url?: string; images?: string[] };
+    philosophy?: { pillars?: NumberedStep[] };
+    process?: { steps?: NumberedStep[] };
+    ambience?: { sectors?: AmbienceSector[] };
+    portfolio?: { filters?: PortfolioFilter[]; projects?: PortfolioProject[] };
+    menu?: { title?: string; subtitle?: string; categories?: MenuCategory[]; items?: MenuItemConfig[] };
   };
 };
 
@@ -979,6 +996,165 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
           />
         </Section>
       )}
+
+      {/* ── Niche-specific sections ─────────────────────────────────── */}
+      {(() => {
+        const currentNiche = normalizeBusinessNiche(config.business?.type || niche);
+        const showPhilosophy = currentNiche === "cafeteria";
+        const showProcess = currentNiche === "cafeteria" || currentNiche === "remodelaciones";
+        const showAmbience = currentNiche === "cafeteria";
+        const showMenu = currentNiche === "cafeteria";
+        const showPortfolio = currentNiche === "remodelaciones";
+        if (!showPhilosophy && !showProcess && !showAmbience && !showMenu && !showPortfolio) {
+          return null;
+        }
+        return (
+          <>
+            {showPhilosophy && (
+              <Section
+                icon={ListOrdered} title="Filosofia (pilares)" sectionKey="philosophy"
+                expanded={expandedSections.has("philosophy")} onToggle={toggleSection}
+              >
+                <p className="text-[11px] text-text-muted">
+                  Pilares que definen la identidad de la cafeteria. Cada uno se muestra como una
+                  card numerada en la seccion Filosofia del cliente.
+                </p>
+                <NumberedStepsEditor
+                  itemNoun="pilar"
+                  value={config.sections?.philosophy?.pillars}
+                  onChange={(next) => setConfig((prev) => ({
+                    ...prev,
+                    sections: {
+                      ...prev.sections,
+                      philosophy: { ...prev.sections?.philosophy, pillars: next },
+                    },
+                  }))}
+                />
+              </Section>
+            )}
+
+            {showProcess && (
+              <Section
+                icon={ListOrdered} title="Proceso (pasos)" sectionKey="process"
+                expanded={expandedSections.has("process")} onToggle={toggleSection}
+              >
+                <p className="text-[11px] text-text-muted">
+                  Pasos del proceso del negocio. El template renderiza un icono Lucide por paso.
+                </p>
+                <NumberedStepsEditor
+                  itemNoun="paso"
+                  withIcon
+                  value={config.sections?.process?.steps}
+                  onChange={(next) => setConfig((prev) => ({
+                    ...prev,
+                    sections: {
+                      ...prev.sections,
+                      process: { ...prev.sections?.process, steps: next },
+                    },
+                  }))}
+                />
+              </Section>
+            )}
+
+            {showAmbience && (
+              <Section
+                icon={Coffee} title="Ambiente (sectores)" sectionKey="ambience"
+                expanded={expandedSections.has("ambience")} onToggle={toggleSection}
+              >
+                <p className="text-[11px] text-text-muted">
+                  Sectores del local con foto + descripcion. Barra, mesas, terraza, etc.
+                </p>
+                <AmbienceEditor
+                  value={config.sections?.ambience?.sectors}
+                  onChange={(next) => setConfig((prev) => ({
+                    ...prev,
+                    sections: {
+                      ...prev.sections,
+                      ambience: { ...prev.sections?.ambience, sectors: next },
+                    },
+                  }))}
+                  clientId={clientId}
+                />
+              </Section>
+            )}
+
+            {showMenu && (
+              <Section
+                icon={UtensilsCrossed} title="Menu" sectionKey="menu"
+                expanded={expandedSections.has("menu")} onToggle={toggleSection}
+              >
+                <p className="text-[11px] text-text-muted">
+                  Carta de la cafeteria. Las categorias son los filtros que aparecen en la pagina
+                  Menu, y cada item pertenece a una categoria.
+                </p>
+                <Field
+                  label="Titulo de la seccion"
+                  path="sections.menu.title"
+                  value={getNested("sections.menu.title")}
+                  onChange={updateNested}
+                  placeholder="Nuestro menu"
+                />
+                <Field
+                  label="Subtitulo"
+                  path="sections.menu.subtitle"
+                  value={getNested("sections.menu.subtitle")}
+                  onChange={updateNested}
+                />
+                <MenuEditor
+                  categories={config.sections?.menu?.categories}
+                  items={config.sections?.menu?.items}
+                  onCategoriesChange={(next) => setConfig((prev) => ({
+                    ...prev,
+                    sections: {
+                      ...prev.sections,
+                      menu: { ...prev.sections?.menu, categories: next },
+                    },
+                  }))}
+                  onItemsChange={(next) => setConfig((prev) => ({
+                    ...prev,
+                    sections: {
+                      ...prev.sections,
+                      menu: { ...prev.sections?.menu, items: next },
+                    },
+                  }))}
+                  clientId={clientId}
+                />
+              </Section>
+            )}
+
+            {showPortfolio && (
+              <Section
+                icon={Hammer} title="Portfolio (proyectos)" sectionKey="portfolio"
+                expanded={expandedSections.has("portfolio")} onToggle={toggleSection}
+              >
+                <p className="text-[11px] text-text-muted">
+                  Proyectos de remodelacion con filtros, imagenes y pares antes/despues
+                  opcionales.
+                </p>
+                <PortfolioEditor
+                  filters={config.sections?.portfolio?.filters}
+                  projects={config.sections?.portfolio?.projects}
+                  onFiltersChange={(next) => setConfig((prev) => ({
+                    ...prev,
+                    sections: {
+                      ...prev.sections,
+                      portfolio: { ...prev.sections?.portfolio, filters: next },
+                    },
+                  }))}
+                  onProjectsChange={(next) => setConfig((prev) => ({
+                    ...prev,
+                    sections: {
+                      ...prev.sections,
+                      portfolio: { ...prev.sections?.portfolio, projects: next },
+                    },
+                  }))}
+                  clientId={clientId}
+                />
+              </Section>
+            )}
+          </>
+        );
+      })()}
 
       <GroupBand label="AVANZADO" hint="servicios, chatbot y personalizacion fina" />
 
