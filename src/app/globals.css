@@ -1132,6 +1132,30 @@ body:has(.wiz) {
 }
 .wiz-star:hover, .wiz-star.on { color: #f5b94a; }
 
+/* Reference image (mini screenshot of the section as it renders in the template) */
+.wiz-ref {
+  margin: 0 0 20px;
+  border: 1px solid var(--wz-line);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--wz-card-bg, transparent);
+}
+.wiz-ref img {
+  display: block; width: 100%; height: auto;
+  max-height: 220px; object-fit: cover; object-position: top;
+}
+.wiz-ref figcaption {
+  display: flex; flex-direction: column; gap: 4px;
+  padding: 10px 14px;
+  font-size: 12px; color: var(--wz-ink-3); line-height: 1.4;
+}
+.wiz-ref-tag {
+  font-weight: 600; color: var(--wz-ink-2);
+  text-transform: uppercase; letter-spacing: .05em; font-size: 10.5px;
+}
+.wiz-ref-caption { color: var(--wz-ink-2); }
+.wiz-ref-disclaimer { font-style: italic; opacity: .85; }
+
 /* upload zone */
 .wiz-upload-zone {
   border: 1.5px dashed var(--wz-line);

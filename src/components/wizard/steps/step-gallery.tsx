@@ -3,6 +3,7 @@
 import { useCallback, useRef } from "react";
 import { WizardStep } from "../wizard-step";
 import { WizardHint } from "../wizard-hint";
+import { WizardRefImage } from "../wizard-ref-image";
 import { useT } from "@/lib/i18n";
 import type { StepProps } from "@/lib/wizard/wizard-types";
 import type { SerializedFile } from "@/lib/builder-storage";
@@ -48,6 +49,7 @@ export function StepGallery({ data, updateField, errors }: StepProps) {
   return (
     <WizardStep title={w.galleryTitle} subtitle={w.gallerySub} errors={errors}>
       <div className="wiz-fields">
+        <WizardRefImage data={data} stepKey="hero" />
         <div className="wiz-field">
           <label>{w.heroImage} <span className="opt">({w.optional})</span></label>
           <WizardHint k="heroImage" />

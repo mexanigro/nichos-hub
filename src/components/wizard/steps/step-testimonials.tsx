@@ -1,6 +1,7 @@
 "use client";
 
 import { WizardStep } from "../wizard-step";
+import { WizardRefImage } from "../wizard-ref-image";
 import { useT } from "@/lib/i18n";
 import type { StepProps } from "@/lib/wizard/wizard-types";
 import type { WizardTestimonial } from "@/lib/wizard/wizard-types";
@@ -31,6 +32,7 @@ export function StepTestimonials({ data, updateField, errors }: StepProps) {
       errors={errors}
     >
       <div className="wiz-fields">
+        <WizardRefImage data={data} stepKey="testimonials" />
         {items.length === 0 && (
           <p className="wiz-hint" style={{ marginBottom: 8 }}>
             Si tenés reviews en Google o IG, copialas acá. Si no, podés saltar este paso

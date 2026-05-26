@@ -1,6 +1,7 @@
 "use client";
 
 import { WizardStep } from "../wizard-step";
+import { WizardRefImage } from "../wizard-ref-image";
 import { useT } from "@/lib/i18n";
 import type { StepProps } from "@/lib/wizard/wizard-types";
 import type { WizardFaq } from "@/lib/wizard/wizard-types";
@@ -31,6 +32,7 @@ export function StepFaq({ data, updateField, errors }: StepProps) {
       errors={errors}
     >
       <div className="wiz-fields">
+        <WizardRefImage data={data} stepKey="faq" />
         {items.length === 0 && (
           <p className="wiz-hint" style={{ marginBottom: 8 }}>
             Pensá en las 3-5 que te hacen siempre por WhatsApp antes de reservar.

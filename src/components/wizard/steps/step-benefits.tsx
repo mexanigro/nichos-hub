@@ -1,6 +1,7 @@
 "use client";
 
 import { WizardStep } from "../wizard-step";
+import { WizardRefImage } from "../wizard-ref-image";
 import { useT } from "@/lib/i18n";
 import type { StepProps } from "@/lib/wizard/wizard-types";
 import type { WizardBenefit } from "@/lib/wizard/wizard-types";
@@ -33,6 +34,7 @@ export function StepBenefits({ data, updateField, errors }: StepProps) {
       errors={errors}
     >
       <div className="wiz-fields">
+        <WizardRefImage data={data} stepKey="benefits" />
         {items.length === 0 && (
           <p className="wiz-hint" style={{ marginBottom: 8 }}>
             Tu sitio puede mostrar 3 a 5 razones para confiar. Si lo dejás vacío,

@@ -410,6 +410,8 @@ export const es: Translations = {
     faqAdd: "Agregar pregunta",
     faviconEmojiLabel: "Emoji del favicon",
     faviconEmojiHint: "El íconito que aparece en la pestaña del browser. Elegí uno que represente tu rubro: ✂️ 💅 ☕ 🎨 🛠️…",
+    refTag: "Así se ve esta sección",
+    refDisclaimer: "Tu sitio puede verse distinto según los colores y fotos que elijas.",
     hints: {
       businessName: "Aparece en el header y en el footer de tu sitio.",
       tagline: "Una frase corta debajo del nombre. Ej: 'Cortes clásicos, ambiente que dura'.",

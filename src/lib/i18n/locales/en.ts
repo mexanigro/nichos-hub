@@ -411,6 +411,8 @@ export const en: Translations = {
     faqAdd: "Add question",
     faviconEmojiLabel: "Favicon emoji",
     faviconEmojiHint: "The little icon in the browser tab. Pick one that represents your niche: ✂️ 💅 ☕ 🎨 🛠️…",
+    refTag: "How this section looks",
+    refDisclaimer: "Your site may look different depending on your colors and photos.",
     hints: {
       businessName: "Shown in the header and footer of your site.",
       tagline: "A short line under the name. Ex: 'Classic cuts, lasting vibe'.",
