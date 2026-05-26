@@ -36,6 +36,7 @@ import { ClientLeadsTab } from "@/components/client-leads-tab";
 import { CrmImportModal } from "@/components/crm-import-modal";
 import { ConfigHistoryPanel } from "@/components/config-history-panel";
 import { MessagesPanel } from "@/components/messages-panel";
+import { PendingReviewBanner } from "@/components/pending-review-banner";
 import { formatDistanceToNow, format } from "date-fns";
 import { es } from "date-fns/locale";
 import type { ClientWithHealth, Payment, PaymentStatus } from "@/types";
@@ -77,8 +78,17 @@ interface ConfigIssue {
   severity: "error" | "warning";
 }
 
+type ClientReview = ClientWithHealth & {
+  reviewRequestedAt?: string | null;
+  changesRequestedAt?: string | null;
+  approvedAt?: string | null;
+  approvedBy?: string | null;
+  lastChangesRequestMessage?: string | null;
+  infoSubmitted?: boolean;
+};
+
 interface ClientDetail {
-  client: ClientWithHealth;
+  client: ClientReview;
   metrics: PgMetric[];
   incidents: PgIncident[];
   uptime: { last24h: number; last7d: number };
@@ -398,6 +408,69 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
             setData((d) => d ? { ...d, client: { ...d.client, status: "active" as const } } : d);
           }}
         />
+      )}
+
+      {/* Pending review banner — cliente completó el wizard y espera aprobación. */}
+      {client.status === "pending_review" && (
+        <PendingReviewBanner
+          hubDocId={clientId}
+          client={{
+            businessName: client.businessName,
+            niche: client.niche,
+            clientId: client.clientId,
+            deployUrl: client.deployUrl,
+            adminEmail: client.adminEmail,
+            vercelProjectId: client.vercelProjectId,
+            deployStatus: client.deployStatus,
+            reviewRequestedAt: client.reviewRequestedAt,
+          }}
+          onApproved={() => {
+            setData((d) => d ? {
+              ...d,
+              client: {
+                ...d.client,
+                status: "active" as const,
+                approvedAt: new Date().toISOString(),
+                deployStatus: d.client.vercelProjectId ? d.client.deployStatus : "building",
+              },
+            } : d);
+          }}
+          onChangesRequested={() => {
+            setData((d) => d ? {
+              ...d,
+              client: {
+                ...d.client,
+                status: "changes_requested" as const,
+                changesRequestedAt: new Date().toISOString(),
+              },
+            } : d);
+          }}
+        />
+      )}
+
+      {/* Changes-requested banner — esperando que el cliente edite y vuelva a submitear. */}
+      {client.status === "changes_requested" && (
+        <div className="mb-6 rounded-xl border border-amber-500/30 bg-amber-500/5 px-4 py-3">
+          <div className="flex flex-wrap items-start gap-3">
+            <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-amber-500/15">
+              <Clock size={13} className="text-amber-300" />
+            </div>
+            <div className="min-w-0 flex-1">
+              <p className="text-xs font-medium text-text">Cambios pedidos al cliente</p>
+              <p className="mt-0.5 text-[10px] text-text-muted">
+                Esperando que actualice la información desde el wizard.
+                {client.changesRequestedAt && (
+                  <> · {(() => { try { return formatDistanceToNow(new Date(client.changesRequestedAt!), { addSuffix: true, locale: es }); } catch { return ""; } })()}</>
+                )}
+              </p>
+              {client.lastChangesRequestMessage && (
+                <p className="mt-1 line-clamp-2 max-w-prose text-[11px] text-text-secondary">
+                  “{client.lastChangesRequestMessage}”
+                </p>
+              )}
+            </div>
+          </div>
+        </div>
       )}
 
       {activeTab === "config" && (
