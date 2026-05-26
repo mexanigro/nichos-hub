@@ -42,7 +42,7 @@ export default function ClientsPage() {
   const [clients, setClients] = useState<ClientWithHealth[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
-  const [statusFilter, setStatusFilter] = useState<"all" | "active" | "demo" | "suspended" | "trial" | "pending_review" | "changes_requested">("all");
+  const [statusFilter, setStatusFilter] = useState<"all" | "active" | "demo" | "suspended" | "trial" | "pending_review" | "pending_provision" | "changes_requested">("all");
   const [nicheFilter, setNicheFilter] = useState<string>("all");
   const [deployFilter, setDeployFilter] = useState<"all" | "ok" | "issue">("all");
 
@@ -99,6 +99,7 @@ export default function ClientsPage() {
     suspended: clients.filter((c) => c.status === "suspended").length,
     trial: clients.filter((c) => c.status === "trial").length,
     pending_review: clients.filter((c) => c.status === "pending_review").length,
+    pending_provision: clients.filter((c) => c.status === "pending_provision").length,
     changes_requested: clients.filter((c) => c.status === "changes_requested").length,
     issues: clients.filter((c) => c.deployStatus && c.deployStatus !== "ready").length,
   };
@@ -153,12 +154,17 @@ export default function ClientsPage() {
             {
               key: "pending_review",
               label: `Pendientes${counts.pending_review ? ` (${counts.pending_review})` : ""}`,
-              highlight: counts.pending_review > 0,
+              highlight: counts.pending_review > 0 ? "orange" : undefined,
+            },
+            {
+              key: "pending_provision",
+              label: `Pago sin onboarding${counts.pending_provision ? ` (${counts.pending_provision})` : ""}`,
+              highlight: counts.pending_provision > 0 ? "purple" : undefined,
             },
             {
               key: "changes_requested",
               label: `Cambios pedidos${counts.changes_requested ? ` (${counts.changes_requested})` : ""}`,
-              highlight: counts.changes_requested > 0,
+              highlight: counts.changes_requested > 0 ? "orange" : undefined,
             },
             { key: "active", label: `Activos${counts.active ? ` (${counts.active})` : ""}` },
             { key: "demo", label: `Demo${counts.demo ? ` (${counts.demo})` : ""}` },
@@ -222,11 +228,18 @@ export default function ClientsPage() {
               </tr>
             </thead>
             <tbody>
-              {filtered.map((client) => (
+              {filtered.map((client) => {
+                const rowTint =
+                  client.status === "pending_provision"
+                    ? "bg-purple-500/5 hover:bg-purple-500/10"
+                    : client.status === "pending_review"
+                      ? "bg-orange-500/5 hover:bg-orange-500/10"
+                      : "hover:bg-bg-hover";
+                return (
                 <tr
                   key={client.id}
                   onClick={() => router.push(`/clients/${client.id}`)}
-                  className="cursor-pointer border-b border-border transition-colors last:border-0 hover:bg-bg-hover"
+                  className={`cursor-pointer border-b border-border transition-colors last:border-0 ${rowTint}`}
                 >
                   <td className="w-12 px-4 py-3">
                     <HealthDot status={client.healthStatus} />
@@ -280,7 +293,8 @@ export default function ClientsPage() {
                     <ClientStatusBadge status={client.status} />
                   </td>
                 </tr>
-              ))}
+                );
+              })}
             </tbody>
           </table>
         </div>
@@ -289,6 +303,13 @@ export default function ClientsPage() {
   );
 }
 
+type FilterHighlight = "orange" | "purple";
+
+const HIGHLIGHT_STYLES: Record<FilterHighlight, string> = {
+  orange: "bg-orange-500/10 text-orange-300 ring-1 ring-orange-500/30 hover:bg-orange-500/20",
+  purple: "bg-purple-500/10 text-purple-300 ring-1 ring-purple-500/30 hover:bg-purple-500/20",
+};
+
 function FilterGroup({
   label,
   options,
@@ -296,7 +317,7 @@ function FilterGroup({
   onChange,
 }: {
   label: string;
-  options: { key: string; label: string; highlight?: boolean }[];
+  options: { key: string; label: string; highlight?: FilterHighlight }[];
   value: string;
   onChange: (key: string) => void;
 }) {
@@ -308,7 +329,7 @@ function FilterGroup({
         const cls = active
           ? "bg-accent text-white"
           : opt.highlight
-            ? "bg-orange-500/10 text-orange-300 ring-1 ring-orange-500/30 hover:bg-orange-500/20"
+            ? HIGHLIGHT_STYLES[opt.highlight]
             : "text-text-secondary hover:bg-bg-hover hover:text-text";
         return (
           <button
