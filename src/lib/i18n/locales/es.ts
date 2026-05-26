@@ -51,6 +51,17 @@ export const es: Translations = {
       agendaTitle: "Agenda",
       inboxTitle: "Bandeja",
     },
+    tabs: {
+      dashboard: "Hoy",
+      calendar: "Calendario",
+      customers: "Clientes",
+      assistant: "Asistente IA",
+      support: "Soporte",
+      menu: "Menú",
+      overview: "Resumen",
+      appointments: "Turnos",
+      payments: "Pagos + IA",
+    },
   },
 
   agent: {
@@ -349,7 +360,7 @@ export const es: Translations = {
     addressLabel: "Dirección", districtLabel: "Barrio", cityLabel: "Ciudad",
     optional: "opcional",
     colorsLabel: "Colores o palabras clave", colorsPh: "ej. negro y dorado, minimalista, tonos cálidos...",
-    logoCreateLabel: "Generame un logo", logoCreateDesc: "Nuestra IA creará un logo profesional basado en tu negocio y estilo.",
+    logoCreateLabel: "Diseñame el logo", logoCreateDesc: "Si todavía no tenés logo, lo diseño yo cuando reciba tus datos. Subí lo que tengas (aunque sea borrador) o saltá este paso.",
     uploadDrop: "Arrastrá tu logo acá o hacé clic", uploadHint: "PNG o JPG, máx 350KB", uploadRemove: "Eliminar",
     logoLightLabel: "Logo (fondo claro)", logoDarkLabel: "Logo (fondo oscuro)",
     accentLabel: "Color de acento", styleKeywords: "Palabras clave de estilo",

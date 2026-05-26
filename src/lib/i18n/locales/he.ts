@@ -51,6 +51,17 @@ export const he: Translations = {
       agendaTitle: "סדר יום",
       inboxTitle: "תיבה",
     },
+    tabs: {
+      dashboard: "היום",
+      calendar: "יומן",
+      customers: "לקוחות",
+      assistant: "סוכן AI",
+      support: "תמיכה",
+      menu: "תפריט",
+      overview: "סקירה",
+      appointments: "תורים",
+      payments: "תשלומים + AI",
+    },
   },
 
   agent: {
@@ -349,7 +360,7 @@ export const he: Translations = {
     addressLabel: "כתובת", districtLabel: "שכונה", cityLabel: "עיר",
     optional: "אופציונלי",
     colorsLabel: "צבעים או מילות מפתח", colorsPh: "למשל שחור וזהב, מינימליסטי, גוונים חמים...",
-    logoCreateLabel: "צור לי לוגו", logoCreateDesc: "הAI שלנו ייצור לוגו מקצועי בהתבסס על שם העסק והסגנון.",
+    logoCreateLabel: "תעצב לי לוגו", logoCreateDesc: "אם עוד אין לך לוגו, אני אעצב אחד אחרי שאקבל את הפרטים שלך. תעלה מה שיש לך (גם טיוטה) או תדלג על השלב הזה.",
     uploadDrop: "גרור את הלוגו לכאן או לחץ לבחירה", uploadHint: "PNG או JPG, מקסימום 350KB", uploadRemove: "הסר",
     logoLightLabel: "לוגו (רקע בהיר)", logoDarkLabel: "לוגו (רקע כהה)",
     accentLabel: "צבע הדגשה", styleKeywords: "מילות מפתח לסגנון",

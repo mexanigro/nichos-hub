@@ -5,27 +5,19 @@ import { useT } from "@/lib/i18n/context";
 import { useReveal } from "@/hooks/use-scroll-reveal";
 
 const CRM_M = [
-  { id: "dashboard", label: "Today", img: "/landing/crm-m-dashboard.png" },
-  { id: "calendar", label: "Calendar", img: "/landing/crm-m-calendar.png" },
-  { id: "customers", label: "Customers", img: "/landing/crm-m-customers.png" },
-  { id: "assistant", label: "AI assist", img: "/landing/crm-m-assistant.png" },
-  { id: "support", label: "Support", img: "/landing/crm-m-support.png" },
-  { id: "menu", label: "Menu", img: "/landing/crm-m-menu.png" },
+  { id: "dashboard", labelKey: "dashboard" as const, img: "/landing/crm-m-dashboard.png" },
+  { id: "calendar", labelKey: "calendar" as const, img: "/landing/crm-m-calendar.png" },
+  { id: "customers", labelKey: "customers" as const, img: "/landing/crm-m-customers.png" },
+  { id: "assistant", labelKey: "assistant" as const, img: "/landing/crm-m-assistant.png" },
+  { id: "support", labelKey: "support" as const, img: "/landing/crm-m-support.png" },
+  { id: "menu", labelKey: "menu" as const, img: "/landing/crm-m-menu.png" },
 ];
 
 const CRM_D = [
-  { id: "overview", label: "Overview", img: "/landing/crm-d-overview.png" },
-  {
-    id: "appointments",
-    label: "Appointments",
-    img: "/landing/crm-d-appointments.png",
-  },
-  {
-    id: "payments",
-    label: "Payments + AI",
-    img: "/landing/crm-d-payments.png",
-  },
-  { id: "support", label: "Support", img: "/landing/crm-d-support.png" },
+  { id: "overview", labelKey: "overview" as const, img: "/landing/crm-d-overview.png" },
+  { id: "appointments", labelKey: "appointments" as const, img: "/landing/crm-d-appointments.png" },
+  { id: "payments", labelKey: "payments" as const, img: "/landing/crm-d-payments.png" },
+  { id: "support", labelKey: "support" as const, img: "/landing/crm-d-support.png" },
 ];
 
 function useIsDesktop() {
@@ -43,7 +35,10 @@ function useIsDesktop() {
 export function CrmSection() {
   const { t } = useT();
   const isDesktop = useIsDesktop();
-  const views = isDesktop ? CRM_D : CRM_M;
+  const views = (isDesktop ? CRM_D : CRM_M).map((v) => ({
+    ...v,
+    label: t.crm.tabs[v.labelKey],
+  }));
   const [active, setActive] = useState(views[0].id);
   const [paused, setPaused] = useState(false);
   const reveal = useReveal<HTMLElement>();

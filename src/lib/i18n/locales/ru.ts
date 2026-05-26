@@ -51,6 +51,17 @@ export const ru: Translations = {
       agendaTitle: "Расписание",
       inboxTitle: "Входящие",
     },
+    tabs: {
+      dashboard: "Сегодня",
+      calendar: "Календарь",
+      customers: "Клиенты",
+      assistant: "ИИ-ассистент",
+      support: "Поддержка",
+      menu: "Меню",
+      overview: "Обзор",
+      appointments: "Записи",
+      payments: "Платежи + ИИ",
+    },
   },
 
   agent: {
@@ -350,7 +361,7 @@ export const ru: Translations = {
     addressLabel: "Адрес", districtLabel: "Район", cityLabel: "Город",
     optional: "необязательно",
     colorsLabel: "Цвета или ключевые слова", colorsPh: "напр. чёрный и золотой, минимализм, тёплые тона...",
-    logoCreateLabel: "Сгенерировать логотип", logoCreateDesc: "Наш ИИ создаст профессиональный логотип на основе названия и стиля.",
+    logoCreateLabel: "Сделай мне логотип", logoCreateDesc: "Если у вас ещё нет логотипа, я сделаю его, когда получу ваши данные. Загрузите что есть (даже черновик) или пропустите этот шаг.",
     uploadDrop: "Перетащите логотип сюда или нажмите", uploadHint: "PNG или JPG, макс 350КБ", uploadRemove: "Удалить",
     logoLightLabel: "Логотип (светлый фон)", logoDarkLabel: "Логотип (тёмный фон)",
     accentLabel: "Акцентный цвет", styleKeywords: "Ключевые слова стиля",

@@ -51,6 +51,17 @@ export const ar: Translations = {
       agendaTitle: "جدول اليوم",
       inboxTitle: "صندوق الوارد",
     },
+    tabs: {
+      dashboard: "اليوم",
+      calendar: "التقويم",
+      customers: "الزبائن",
+      assistant: "مساعد ذكاء",
+      support: "الدعم",
+      menu: "القائمة",
+      overview: "نظرة عامة",
+      appointments: "المواعيد",
+      payments: "المدفوعات + ذكاء",
+    },
   },
 
   agent: {
@@ -350,7 +361,7 @@ export const ar: Translations = {
     addressLabel: "العنوان", districtLabel: "الحي", cityLabel: "المدينة",
     optional: "اختياري",
     colorsLabel: "ألوان أو كلمات مفتاحية", colorsPh: "مثلاً أسود وذهبي، بسيط، ألوان دافئة...",
-    logoCreateLabel: "أنشئ لي شعارًا", logoCreateDesc: "سيقوم الذكاء الاصطناعي بإنشاء شعار احترافي بناءً على اسم عملك وأسلوبه.",
+    logoCreateLabel: "صمّم لي شعارًا", logoCreateDesc: "إذا لم يكن لديك شعار بعد، سأصممه لك بمجرد استلام بياناتك. ارفع ما لديك (حتى لو كان مسودة) أو تخطَّ هذه الخطوة.",
     uploadDrop: "اسحب شعارك هنا أو انقر للتصفح", uploadHint: "PNG أو JPG، حد أقصى 350KB", uploadRemove: "إزالة",
     logoLightLabel: "شعار (خلفية فاتحة)", logoDarkLabel: "شعار (خلفية داكنة)",
     accentLabel: "لون التمييز", styleKeywords: "كلمات مفتاحية للأسلوب",

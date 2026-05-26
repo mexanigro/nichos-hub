@@ -82,7 +82,7 @@ export function StepReview({
                 </span>
               </div>
             )}
-            {data.logoCreate && <ReviewItem label="Logo" value="AI-generated" />}
+            {data.logoCreate && <ReviewItem label="Logo" value={w.logoCreateLabel} />}
             {data.logo && <ReviewItem label="Logo" value={data.logo.name} />}
           </ReviewSection>
         )}

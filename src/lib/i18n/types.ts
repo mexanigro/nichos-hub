@@ -12,6 +12,10 @@ export interface Translations {
     eyebrow: string; title: string; titleEm: string; sub: string; why: string;
     bullets: string[];
     dashboard: { title: string; bookings: string; leads: string; revenue: string; agendaTitle: string; inboxTitle: string };
+    tabs: {
+      dashboard: string; calendar: string; customers: string; assistant: string; support: string; menu: string;
+      overview: string; appointments: string; payments: string;
+    };
   };
   agent: {
     eyebrow: string; title: string; titleEm: string; sub: string; why: string;

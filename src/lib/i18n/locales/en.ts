@@ -51,6 +51,17 @@ export const en: Translations = {
       agendaTitle: "Schedule",
       inboxTitle: "Inbox",
     },
+    tabs: {
+      dashboard: "Today",
+      calendar: "Calendar",
+      customers: "Customers",
+      assistant: "AI assistant",
+      support: "Support",
+      menu: "Menu",
+      overview: "Overview",
+      appointments: "Appointments",
+      payments: "Payments + AI",
+    },
   },
 
   agent: {
@@ -350,7 +361,7 @@ export const en: Translations = {
     addressLabel: "Address", districtLabel: "Neighborhood", cityLabel: "City",
     optional: "optional",
     colorsLabel: "Colors or keywords", colorsPh: "e.g. black and gold, minimalist, warm tones...",
-    logoCreateLabel: "Generate a logo for me", logoCreateDesc: "Our AI will create a professional logo based on your business name and style.",
+    logoCreateLabel: "Design my logo for me", logoCreateDesc: "If you don't have a logo yet, I'll design one once I get your details. Upload whatever you have (even a draft) or skip this step.",
     uploadDrop: "Drop your logo here or click to browse", uploadHint: "PNG or JPG, max 350KB", uploadRemove: "Remove",
     logoLightLabel: "Logo (light background)", logoDarkLabel: "Logo (dark background)",
     accentLabel: "Accent color", styleKeywords: "Style keywords",
