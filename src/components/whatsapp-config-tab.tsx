@@ -16,6 +16,7 @@ import {
   Trash2,
   CalendarDays,
   Unlink,
+  Loader2,
 } from "lucide-react";
 import type { WhatsAppConfig } from "@/types";
 
@@ -40,6 +41,10 @@ export function WhatsAppConfigTab({ clientId }: { clientId: string }) {
   }>({ connected: false });
   const [calendarLoading, setCalendarLoading] = useState(true);
   const [disconnecting, setDisconnecting] = useState(false);
+  const [confirmCalendarDisconnect, setConfirmCalendarDisconnect] = useState(false);
+  const [issues, setIssues] = useState<Array<{ path: string; message: string; severity: "error" | "warning" }>>([]);
+  const [testing, setTesting] = useState(false);
+  const [testResult, setTestResult] = useState<{ ok: boolean; checks: Array<{ key: string; ok: boolean; message: string }> } | null>(null);
 
   const toggleSection = (key: string) =>
     setExpandedSections((prev) => {
@@ -97,6 +102,7 @@ export function WhatsAppConfigTab({ clientId }: { clientId: string }) {
     try {
       await fetch(`/api/calendar/${clientId}`, { method: "DELETE" });
       setCalendarStatus({ connected: false });
+      setConfirmCalendarDisconnect(false);
     } catch {
       setError("Error al desconectar Google Calendar");
     } finally {
@@ -134,6 +140,7 @@ export function WhatsAppConfigTab({ clientId }: { clientId: string }) {
   async function handleSave() {
     setSaving(true);
     setError("");
+    setIssues([]);
     setSaved(false);
     try {
       const res = await fetch(`/api/whatsapp-config/${clientId}`, {
@@ -142,7 +149,11 @@ export function WhatsAppConfigTab({ clientId }: { clientId: string }) {
         body: JSON.stringify(config),
       });
       if (!res.ok) {
-        const data = await res.json();
+        const data = await res.json().catch(() => ({}));
+        if (res.status === 422 && Array.isArray(data.issues)) {
+          setIssues(data.issues);
+          throw new Error(data.error || "Config invalido");
+        }
         throw new Error(data.error || "Error al guardar");
       }
       setSaved(true);
@@ -152,6 +163,24 @@ export function WhatsAppConfigTab({ clientId }: { clientId: string }) {
       setError(err instanceof Error ? err.message : "Error al guardar");
     } finally {
       setSaving(false);
+    }
+  }
+
+  async function handleRunTest() {
+    setTesting(true);
+    setTestResult(null);
+    try {
+      const res = await fetch(`/api/whatsapp-config/${clientId}/test`);
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || "Error al ejecutar test");
+      }
+      const data = await res.json();
+      setTestResult(data);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Error al ejecutar test");
+    } finally {
+      setTesting(false);
     }
   }
 
@@ -228,6 +257,64 @@ export function WhatsAppConfigTab({ clientId }: { clientId: string }) {
         <div className="flex items-center gap-2 rounded-lg border border-red-500/20 bg-red-500/5 px-3 py-2 text-[11px] text-red-400">
           <AlertCircle size={12} />
           {error}
+        </div>
+      )}
+
+      {issues.length > 0 && (
+        <div className="space-y-1">
+          {issues.map((iss, idx) => (
+            <div
+              key={`${iss.path}-${idx}`}
+              className={`flex items-start gap-2 rounded-lg px-3 py-2 text-[11px] ${
+                iss.severity === "error" ? "bg-red-500/10 text-red-400" : "bg-amber-500/10 text-amber-300"
+              }`}
+            >
+              <span className="mt-0.5 inline-block min-w-[3.5rem] font-mono text-[10px] opacity-70">
+                {iss.severity === "error" ? "ERROR" : "AVISO"}
+              </span>
+              <span className="flex-1">
+                <code className="rounded bg-black/20 px-1 py-0.5 text-[10px]">{iss.path}</code>
+                {" — "}
+                {iss.message}
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Pre-flight test button */}
+      <div className="flex items-center justify-between rounded-lg border border-border bg-bg-elevated px-3 py-2">
+        <div>
+          <p className="text-[11px] font-semibold text-text-secondary">Pre-flight check</p>
+          <p className="text-[10px] text-text-muted">
+            Verifica que el numero, el systemPrompt y los telefonos admin estan listos. No envia mensajes reales.
+          </p>
+        </div>
+        <button
+          type="button"
+          onClick={handleRunTest}
+          disabled={testing}
+          className="inline-flex items-center gap-1 rounded-lg border border-accent/30 bg-accent/10 px-3 py-1.5 text-[11px] font-medium text-accent transition-colors hover:bg-accent/20 disabled:opacity-50"
+        >
+          {testing && <Loader2 size={11} className="animate-spin" />}
+          {testing ? "Verificando..." : "Ejecutar test"}
+        </button>
+      </div>
+      {testResult && (
+        <div className={`space-y-1 rounded-lg border p-3 text-[11px] ${
+          testResult.ok ? "border-success/30 bg-success/5" : "border-amber-500/30 bg-amber-500/5"
+        }`}>
+          <p className="font-semibold">
+            {testResult.ok ? "Agente listo para recibir mensajes." : "Hay items que resolver:"}
+          </p>
+          <ul className="space-y-0.5">
+            {testResult.checks.map((c) => (
+              <li key={c.key} className="flex items-start gap-1.5">
+                <span className={c.ok ? "text-success" : "text-amber-300"}>{c.ok ? "✓" : "✗"}</span>
+                <span className={c.ok ? "text-text-secondary" : "text-amber-200/90"}>{c.message}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       )}
 
@@ -437,7 +524,7 @@ export function WhatsAppConfigTab({ clientId }: { clientId: string }) {
               <span className="text-xs text-text">{calendarStatus.calendarId || "primary"}</span>
             </div>
             <button
-              onClick={disconnectCalendar}
+              onClick={() => setConfirmCalendarDisconnect(true)}
               disabled={disconnecting}
               className="flex items-center gap-1.5 rounded-lg border border-red-800/30 bg-red-950/20 px-3 py-1.5 text-xs text-red-400 transition-colors hover:bg-red-950/40 disabled:opacity-50"
             >
@@ -460,6 +547,41 @@ export function WhatsAppConfigTab({ clientId }: { clientId: string }) {
           </div>
         )}
       </Section>
+
+      {confirmCalendarDisconnect && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
+          <div className="w-full max-w-sm rounded-xl border border-border bg-bg-card p-6">
+            <div className="mb-1 flex items-center gap-2">
+              <Unlink size={16} className="text-red-400" />
+              <h2 className="text-sm font-semibold text-red-400">Desconectar Google Calendar</h2>
+            </div>
+            <p className="mb-3 text-xs text-text-muted">
+              El agente WhatsApp deja de crear eventos en el calendario del cliente. Los eventos
+              existentes no se borran. Para volver a conectar, el cliente tiene que reautorizar
+              via OAuth.
+            </p>
+            <div className="flex justify-end gap-2">
+              <button
+                type="button"
+                onClick={() => setConfirmCalendarDisconnect(false)}
+                disabled={disconnecting}
+                className="rounded-lg px-3 py-2 text-xs font-medium text-text-secondary hover:text-text disabled:opacity-50"
+              >
+                Cancelar
+              </button>
+              <button
+                type="button"
+                onClick={disconnectCalendar}
+                disabled={disconnecting}
+                className="inline-flex items-center gap-1.5 rounded-lg bg-red-600 px-4 py-2 text-xs font-medium text-white hover:bg-red-700 disabled:opacity-50"
+              >
+                {disconnecting && <Loader2 size={11} className="animate-spin" />}
+                {disconnecting ? "Desconectando..." : "Si, desconectar"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

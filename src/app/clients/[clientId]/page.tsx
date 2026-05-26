@@ -35,6 +35,7 @@ import { WhatsAppConfigTab } from "@/components/whatsapp-config-tab";
 import { ClientLeadsTab } from "@/components/client-leads-tab";
 import { CrmImportModal } from "@/components/crm-import-modal";
 import { ConfigHistoryPanel } from "@/components/config-history-panel";
+import { MessagesPanel } from "@/components/messages-panel";
 import { formatDistanceToNow, format } from "date-fns";
 import { es } from "date-fns/locale";
 import type { ClientWithHealth, Payment, PaymentStatus } from "@/types";
@@ -574,32 +575,20 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
           )}
         </div>
 
-        {/* Messages */}
-        <div className="rounded-xl border border-border bg-bg-card p-4">
-          <h3 className="mb-3 flex items-center gap-2 text-xs font-semibold text-text-muted">
-            <MessageSquare size={12} />
-            Mensajes del cliente
-          </h3>
-          {messages.length === 0 ? (
-            <p className="py-6 text-center text-xs text-text-muted">Sin mensajes</p>
-          ) : (
-            <div className="space-y-2 max-h-80 overflow-y-auto">
-              {messages.map((msg) => (
-                <div key={msg.id} className="rounded-lg border border-border bg-bg-elevated p-4">
-                  <div className="mb-1 flex items-center justify-between">
-                    <span className={`text-[10px] font-semibold ${msg.sender === "client" ? "text-accent" : "text-success"}`}>
-                      {msg.sender === "client" ? "Cliente" : "Proveedor"}
-                    </span>
-                    <span className="text-[10px] text-text-muted">
-                      {formatDistanceToNow(new Date(msg.createdAt), { addSuffix: true, locale: es })}
-                    </span>
-                  </div>
-                  <p className="text-xs text-text-secondary">{msg.message}</p>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
+        {/* Messages thread + reply */}
+        <MessagesPanel
+          clientId={client.clientId}
+          businessName={client.businessName}
+          messages={messages.map((m) => ({
+            id: m.id,
+            message: m.message,
+            createdAt: typeof m.createdAt === "string"
+              ? m.createdAt
+              : new Date(m.createdAt as unknown as string | number | Date).toISOString(),
+            sender: m.sender,
+            status: m.status,
+          }))}
+        />
       </div>
 
       {/* Config history (audit log) */}
