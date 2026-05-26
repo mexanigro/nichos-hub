@@ -13,6 +13,9 @@ const statusLabels: Record<ClientStatus, { label: string; className: string }> =
   maintenance: { label: "Mantenimiento", className: "text-warning bg-warning-muted" },
   suspended: { label: "Suspendido", className: "text-danger bg-danger-muted" },
   archived: { label: "Archivado", className: "text-text-muted bg-bg-elevated" },
+  pending_provision: { label: "Pago sin onboarding", className: "text-purple-300 bg-purple-500/10" },
+  pending_review: { label: "Pendiente revisión", className: "text-orange-300 bg-orange-500/10" },
+  changes_requested: { label: "Cambios pedidos", className: "text-amber-300 bg-amber-500/10" },
 };
 
 export function HealthDot({ status }: { status: HealthStatus }) {

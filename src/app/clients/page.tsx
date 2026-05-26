@@ -41,7 +41,7 @@ export default function ClientsPage() {
   const [clients, setClients] = useState<ClientWithHealth[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
-  const [statusFilter, setStatusFilter] = useState<"all" | "active" | "demo" | "suspended" | "trial">("all");
+  const [statusFilter, setStatusFilter] = useState<"all" | "active" | "demo" | "suspended" | "trial" | "pending_review" | "changes_requested">("all");
   const [nicheFilter, setNicheFilter] = useState<string>("all");
   const [deployFilter, setDeployFilter] = useState<"all" | "ok" | "issue">("all");
 
@@ -97,6 +97,8 @@ export default function ClientsPage() {
     demo: clients.filter((c) => c.status === "demo").length,
     suspended: clients.filter((c) => c.status === "suspended").length,
     trial: clients.filter((c) => c.status === "trial").length,
+    pending_review: clients.filter((c) => c.status === "pending_review").length,
+    changes_requested: clients.filter((c) => c.status === "changes_requested").length,
     issues: clients.filter((c) => c.deployStatus && c.deployStatus !== "ready").length,
   };
 
@@ -147,6 +149,16 @@ export default function ClientsPage() {
           label="Estado"
           options={[
             { key: "all", label: "Todos" },
+            {
+              key: "pending_review",
+              label: `Pendientes${counts.pending_review ? ` (${counts.pending_review})` : ""}`,
+              highlight: counts.pending_review > 0,
+            },
+            {
+              key: "changes_requested",
+              label: `Cambios pedidos${counts.changes_requested ? ` (${counts.changes_requested})` : ""}`,
+              highlight: counts.changes_requested > 0,
+            },
             { key: "active", label: `Activos${counts.active ? ` (${counts.active})` : ""}` },
             { key: "demo", label: `Demo${counts.demo ? ` (${counts.demo})` : ""}` },
             { key: "suspended", label: `Suspendidos${counts.suspended ? ` (${counts.suspended})` : ""}` },
@@ -272,7 +284,7 @@ function FilterGroup({
   onChange,
 }: {
   label: string;
-  options: { key: string; label: string }[];
+  options: { key: string; label: string; highlight?: boolean }[];
   value: string;
   onChange: (key: string) => void;
 }) {
@@ -281,16 +293,17 @@ function FilterGroup({
       <span className="px-1.5 text-[10px] uppercase tracking-wider text-text-muted/70">{label}</span>
       {options.map((opt) => {
         const active = value === opt.key;
+        const cls = active
+          ? "bg-accent text-white"
+          : opt.highlight
+            ? "bg-orange-500/10 text-orange-300 ring-1 ring-orange-500/30 hover:bg-orange-500/20"
+            : "text-text-secondary hover:bg-bg-hover hover:text-text";
         return (
           <button
             key={opt.key}
             type="button"
             onClick={() => onChange(opt.key)}
-            className={`rounded-md px-2 py-0.5 text-[11px] font-medium transition-colors ${
-              active
-                ? "bg-accent text-white"
-                : "text-text-secondary hover:bg-bg-hover hover:text-text"
-            }`}
+            className={`rounded-md px-2 py-0.5 text-[11px] font-medium transition-colors ${cls}`}
           >
             {opt.label}
           </button>
