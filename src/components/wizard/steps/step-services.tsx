@@ -10,6 +10,24 @@ function isValidNiche(niche: string): niche is BusinessNiche {
   return ["barberia", "estetica", "tattoo", "nails", "cafeteria", "remodelaciones"].includes(niche);
 }
 
+/* Mini wireframe showing how services appear on the site */
+function ServicesMockup() {
+  return (
+    <div className="wiz-mockup" aria-hidden>
+      <div className="wiz-mockup-section-title" />
+      <div className="wiz-mockup-services">
+        {[1, 2, 3].map((i) => (
+          <div key={i} className="wiz-mockup-service-row">
+            <div className="wiz-mockup-service-name" style={{ width: `${55 + i * 10}%` }} />
+            <div className="wiz-mockup-service-price" />
+          </div>
+        ))}
+      </div>
+      <div className="wiz-mockup-label">Así se ven tus servicios en la web ↑</div>
+    </div>
+  );
+}
+
 export function StepServices({ data, updateField, errors }: StepProps) {
   const { t } = useT();
   const w = t.wizard;
@@ -57,6 +75,8 @@ export function StepServices({ data, updateField, errors }: StepProps) {
 
   return (
     <WizardStep title={w.servicesTitle} subtitle={w.servicesSub} errors={errors}>
+      <p className="wiz-ctx">{w.servicesCtx}</p>
+      <ServicesMockup />
       <div className="wiz-services">
         {data.services.map((s, i) => (
           <div key={s.id} className={`wiz-service-row${s.visible ? "" : " off"}`}>
@@ -64,6 +84,7 @@ export function StepServices({ data, updateField, errors }: StepProps) {
               type="button"
               className={`wiz-service-toggle${s.visible ? " on" : ""}`}
               onClick={() => toggleService(i)}
+              title={s.visible ? "Ocultar" : "Mostrar"}
             >
               {s.visible ? (
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12" /></svg>
@@ -84,7 +105,7 @@ export function StepServices({ data, updateField, errors }: StepProps) {
               inputMode="numeric"
               value={s.price}
               onChange={(e) => updateService(i, "price", e.target.value)}
-              placeholder={w.servicePrice}
+              placeholder="₪"
             />
             <input
               type="text"

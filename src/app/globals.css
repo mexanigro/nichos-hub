@@ -1345,7 +1345,11 @@ body:has(.wiz) {
   font-size: 15px; margin-top: 8px;
 }
 
-/* ─── Step Branding helpers ─── */
+/* ─── Step context note (why we ask) ─── */
+.wiz-ctx {
+  font-size: 13px; color: var(--wz-ink-2); line-height: 1.5;
+  margin: -4px 0 4px; padding: 0;
+}
 .wiz-note {
   font-size: 13px; color: var(--wz-ink-2); line-height: 1.6;
   background: color-mix(in srgb, var(--wz-accent) 8%, transparent);
@@ -1355,6 +1359,129 @@ body:has(.wiz) {
 [dir="rtl"] .wiz-note { border-left: none; border-right: 3px solid var(--wz-accent); border-radius: 6px 0 0 6px; }
 .wiz-field-group { display: flex; flex-direction: column; gap: 12px; }
 .wiz-field-label { font-size: 14px; font-weight: 500; color: var(--wz-ink); margin: 0; }
+.wiz-field-hint {
+  font-size: 12px; color: var(--wz-ink-2); margin: -6px 0 4px; line-height: 1.5;
+}
+
+/* ─── Inline wireframe mockups ─── */
+.wiz-mockup {
+  border: 1px solid var(--wz-border); border-radius: 10px;
+  overflow: hidden; background: color-mix(in srgb, var(--wz-ink) 3%, transparent);
+  margin: 0 0 4px;
+}
+.wiz-mockup-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 12px; border-bottom: 1px solid var(--wz-border);
+  background: color-mix(in srgb, var(--wz-ink) 4%, transparent);
+}
+.wiz-mockup-logo-spot {
+  width: 52px; height: 10px; border-radius: 4px;
+  background: var(--wz-accent); opacity: 0.6;
+}
+.wiz-mockup-logo-spot.small { width: 36px; height: 8px; }
+.wiz-mockup-nav { display: flex; gap: 6px; }
+.wiz-mockup-nav span { width: 20px; height: 6px; border-radius: 3px; background: var(--wz-ink); opacity: 0.15; }
+.wiz-mockup-hero {
+  min-height: 64px; padding: 14px 16px;
+  background: color-mix(in srgb, var(--wz-ink) 6%, transparent);
+  display: flex; align-items: center;
+}
+.wiz-mockup-hero.full { min-height: 80px; position: relative; }
+.wiz-mockup-hero-label {
+  position: absolute; top: 6px; right: 10px;
+  font-size: 10px; color: var(--wz-accent); font-weight: 500;
+}
+.wiz-mockup-hero-text { display: flex; flex-direction: column; gap: 6px; width: 100%; }
+.wiz-mockup-h1 { height: 10px; border-radius: 4px; background: var(--wz-ink); opacity: 0.3; width: 70%; }
+.wiz-mockup-h1.accent-line { background: var(--wz-accent); opacity: 0.5; }
+.wiz-mockup-sub { height: 7px; border-radius: 3px; background: var(--wz-ink); opacity: 0.15; width: 50%; }
+.wiz-mockup-btn { width: 56px; height: 16px; border-radius: 8px; background: var(--wz-accent); opacity: 0.5; margin-top: 4px; }
+.wiz-mockup-footer {
+  padding: 8px 12px; border-top: 1px solid var(--wz-border);
+  background: color-mix(in srgb, var(--wz-ink) 8%, transparent);
+}
+.wiz-mockup-label {
+  padding: 6px 12px; font-size: 10px; font-weight: 500;
+  color: var(--wz-accent); text-align: center; letter-spacing: 0.02em;
+}
+/* Gallery mockup */
+.wiz-mockup-gallery {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px;
+  padding: 10px 12px; position: relative;
+}
+.wiz-mockup-gallery-label {
+  position: absolute; top: 6px; left: 10px;
+  font-size: 10px; color: var(--wz-accent); font-weight: 500;
+}
+.wiz-mockup-gallery div {
+  height: 28px; border-radius: 4px;
+  background: color-mix(in srgb, var(--wz-ink) 12%, transparent);
+}
+/* Services mockup */
+.wiz-mockup-section-title {
+  height: 9px; border-radius: 4px;
+  background: var(--wz-ink); opacity: 0.2; width: 40%; margin: 12px 12px 8px;
+}
+.wiz-mockup-services { padding: 0 12px 12px; display: flex; flex-direction: column; gap: 6px; }
+.wiz-mockup-service-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 6px 8px; border: 1px solid var(--wz-border); border-radius: 6px;
+  background: color-mix(in srgb, var(--wz-ink) 2%, transparent);
+}
+.wiz-mockup-service-name { height: 7px; border-radius: 3px; background: var(--wz-ink); opacity: 0.2; }
+.wiz-mockup-service-price { width: 32px; height: 7px; border-radius: 3px; background: var(--wz-accent); opacity: 0.4; flex-shrink: 0; }
+/* Hours mockup */
+.wiz-mockup-hours-grid { padding: 0 12px 12px; display: flex; flex-direction: column; gap: 5px; }
+.wiz-mockup-hour-row { display: flex; align-items: center; gap: 10px; }
+.wiz-mockup-day { font-size: 10px; color: var(--wz-ink-2); width: 26px; flex-shrink: 0; }
+.wiz-mockup-time { height: 6px; border-radius: 3px; background: var(--wz-ink); opacity: 0.2; flex: 1; }
+.wiz-mockup-time.short { flex: 0.5; }
+/* Owner mockup */
+.wiz-mockup-owner {
+  display: flex; align-items: flex-start; gap: 12px; padding: 12px;
+}
+.wiz-mockup-avatar {
+  width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0;
+  background: color-mix(in srgb, var(--wz-accent) 30%, transparent);
+}
+.wiz-mockup-avatar.small { width: 36px; height: 36px; }
+.wiz-mockup-owner-text { display: flex; flex-direction: column; gap: 5px; flex: 1; }
+.wiz-mockup-owner-name { height: 8px; border-radius: 3px; background: var(--wz-ink); opacity: 0.25; width: 55%; }
+.wiz-mockup-owner-role { height: 6px; border-radius: 3px; background: var(--wz-accent); opacity: 0.4; width: 35%; }
+.wiz-mockup-owner-bio { height: 5px; border-radius: 3px; background: var(--wz-ink); opacity: 0.12; width: 80%; }
+.wiz-mockup-team { display: flex; gap: 8px; padding: 12px; }
+.wiz-mockup-staff-card {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  padding: 8px; border: 1px solid var(--wz-border); border-radius: 8px;
+}
+
+/* ─── Logo upload zones ─── */
+.wiz-upload-zone.logo-zone {
+  min-height: 64px; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 6px;
+  background: #fff;
+}
+.wiz-upload-zone.logo-zone.dark-bg { background: #1a1a1a; }
+.wiz-upload-zone.logo-zone .wiz-upload-hint { color: #666; font-size: 13px; }
+.wiz-upload-zone.logo-zone.dark-bg .wiz-upload-hint { color: #aaa; }
+.wiz-logo-preview {
+  position: relative; border-radius: 8px; border: 1px solid var(--wz-border);
+  padding: 12px; display: flex; align-items: center; justify-content: center;
+  min-height: 64px;
+}
+.wiz-logo-preview img { max-height: 80px; max-width: 100%; object-fit: contain; }
+.wiz-logo-preview .wiz-upload-remove {
+  position: absolute; top: 6px; right: 6px;
+}
+
+/* ─── Hero upload zone ─── */
+.wiz-upload-zone.hero-zone {
+  min-height: 90px; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 6px;
+}
+.wiz-upload-zone.hero-zone .wiz-upload-formats {
+  font-size: 11px; color: var(--wz-ink-2); margin: 0;
+}
 
 /* loading */
 .wiz-loading {

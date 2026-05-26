@@ -16,6 +16,32 @@ function fileToSerialized(file: File): Promise<SerializedFile> {
   });
 }
 
+/* Mini wireframe showing where hero image and gallery appear on the page */
+function GalleryMockup() {
+  return (
+    <div className="wiz-mockup" aria-hidden>
+      <div className="wiz-mockup-bar">
+        <div className="wiz-mockup-logo-spot" />
+        <div className="wiz-mockup-nav"><span /><span /><span /></div>
+      </div>
+      {/* Hero */}
+      <div className="wiz-mockup-hero full">
+        <div className="wiz-mockup-hero-label">Imagen principal →</div>
+        <div className="wiz-mockup-hero-text">
+          <div className="wiz-mockup-h1" />
+          <div className="wiz-mockup-sub" />
+          <div className="wiz-mockup-btn" />
+        </div>
+      </div>
+      {/* Gallery grid */}
+      <div className="wiz-mockup-gallery">
+        <div className="wiz-mockup-gallery-label">← Galería</div>
+        <div /><div /><div /><div />
+      </div>
+    </div>
+  );
+}
+
 export function StepGallery({ data, updateField, errors }: StepProps) {
   const { t } = useT();
   const w = t.wizard;
@@ -24,7 +50,7 @@ export function StepGallery({ data, updateField, errors }: StepProps) {
 
   const handleHero = useCallback(
     async (file: File) => {
-      if (file.size > 500_000 || !file.type.startsWith("image/")) return;
+      if (file.size > 2_000_000 || !file.type.startsWith("image/")) return;
       const s = await fileToSerialized(file);
       updateField("heroImage", s);
     },
@@ -35,7 +61,7 @@ export function StepGallery({ data, updateField, errors }: StepProps) {
     async (files: FileList) => {
       const newPhotos: SerializedFile[] = [];
       for (const file of Array.from(files)) {
-        if (file.size > 500_000 || !file.type.startsWith("image/")) continue;
+        if (file.size > 2_000_000 || !file.type.startsWith("image/")) continue;
         const s = await fileToSerialized(file);
         newPhotos.push(s);
       }
@@ -47,8 +73,14 @@ export function StepGallery({ data, updateField, errors }: StepProps) {
   return (
     <WizardStep title={w.galleryTitle} subtitle={w.gallerySub} errors={errors}>
       <div className="wiz-fields">
+        <p className="wiz-note">{w.galleryCtx}</p>
+
+        <GalleryMockup />
+
+        {/* Hero image */}
         <div className="wiz-field">
           <label>{w.heroImage} <span className="opt">({w.optional})</span></label>
+          <p className="wiz-field-hint">{w.heroUploadHint}</p>
           {data.heroImage ? (
             <div className="wiz-upload-preview wide">
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -62,7 +94,10 @@ export function StepGallery({ data, updateField, errors }: StepProps) {
               </button>
             </div>
           ) : (
-            <div className="wiz-upload-zone" onClick={() => heroRef.current?.click()}>
+            <div
+              className="wiz-upload-zone hero-zone"
+              onClick={() => heroRef.current?.click()}
+            >
               <input
                 ref={heroRef}
                 type="file"
@@ -70,13 +105,21 @@ export function StepGallery({ data, updateField, errors }: StepProps) {
                 onChange={(e) => { const f = e.target.files?.[0]; if (f) handleHero(f); }}
                 hidden
               />
-              <span className="wiz-upload-hint">{w.uploadDrop}</span>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.35 }}>
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+                <circle cx="8.5" cy="8.5" r="1.5" />
+                <polyline points="21 15 16 10 5 21" />
+              </svg>
+              <span className="wiz-upload-hint">Imagen principal de tu web</span>
+              <span className="wiz-upload-formats">JPG o PNG · recomendado 1920×1080px o más</span>
             </div>
           )}
         </div>
 
+        {/* Gallery */}
         <div className="wiz-field">
           <label>{w.galleryImages} <span className="opt">({w.optional})</span></label>
+          <p className="wiz-field-hint">{w.galleryUploadHint}</p>
           <div className="wiz-photo-grid">
             {data.galleryImages.map((p, i) => (
               <div key={i} className="wiz-photo-preview small">
@@ -98,7 +141,10 @@ export function StepGallery({ data, updateField, errors }: StepProps) {
               className="wiz-upload-zone mini"
               onClick={() => galleryRef.current?.click()}
             >
-              <span className="wiz-upload-hint">+ {w.galleryImages}</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.4 }}>
+                <line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+              <span className="wiz-upload-hint">Agregar foto</span>
             </button>
           </div>
           <input

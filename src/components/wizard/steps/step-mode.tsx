@@ -10,6 +10,7 @@ export function StepMode({ data, updateField, errors }: StepProps) {
 
   return (
     <WizardStep title={w.modeTitle} subtitle={w.modeSub} errors={errors}>
+      <p className="wiz-ctx">{w.modeCtx}</p>
       <div className="wiz-cards-row">
         <button
           type="button"

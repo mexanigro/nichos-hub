@@ -58,6 +58,7 @@ export function StepNiche({ data, updateField, errors }: StepProps) {
 
   return (
     <WizardStep title={w.nicheTitle} subtitle={w.nicheSub} errors={errors}>
+      <p className="wiz-ctx">{w.nicheCtx}</p>
       <div className="wiz-cards-grid">
         {NICHE_IDS.map((id) => (
           <button

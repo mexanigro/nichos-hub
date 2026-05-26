@@ -6,6 +6,25 @@ import type { StepProps, DaySchedule } from "@/lib/wizard/wizard-types";
 
 const DAY_KEYS = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
 
+/* Mini wireframe showing how hours appear in the contact section */
+function HoursMockup() {
+  const days = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie"];
+  return (
+    <div className="wiz-mockup" aria-hidden>
+      <div className="wiz-mockup-section-title" />
+      <div className="wiz-mockup-hours-grid">
+        {days.map((d, i) => (
+          <div key={d} className="wiz-mockup-hour-row">
+            <span className="wiz-mockup-day">{d}</span>
+            <span className={`wiz-mockup-time${i === 5 ? " short" : ""}`} />
+          </div>
+        ))}
+      </div>
+      <div className="wiz-mockup-label">Tus horarios aparecen acá ↑</div>
+    </div>
+  );
+}
+
 export function StepHours({ data, updateField, errors }: StepProps) {
   const { t } = useT();
   const w = t.wizard;
@@ -18,6 +37,8 @@ export function StepHours({ data, updateField, errors }: StepProps) {
 
   return (
     <WizardStep title={w.hoursTitle} subtitle={w.hoursSub} errors={errors}>
+      <p className="wiz-ctx">{w.hoursCtx}</p>
+      <HoursMockup />
       <div className="wiz-hours">
         {DAY_KEYS.map((key, i) => {
           const day = data.hours[key];
@@ -28,6 +49,7 @@ export function StepHours({ data, updateField, errors }: StepProps) {
                 type="button"
                 className={`wiz-hour-toggle${day.isOpen ? " on" : ""}`}
                 onClick={() => updateDay(key, "isOpen", !day.isOpen)}
+                title={day.isOpen ? "Marcar como cerrado" : "Marcar como abierto"}
               >
                 <span className="wiz-hour-dot" />
               </button>

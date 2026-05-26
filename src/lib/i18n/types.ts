@@ -126,10 +126,15 @@ export interface Translations {
     sectionOwner: string; sectionGallery: string; edit: string;
     brandingTitle: string; brandingSub: string;
     hasBrandingYes: string; hasBrandingNo: string;
+    hasBrandingDesc: string; hasBrandingNoDesc: string;
     logoBlackWhiteLabel: string; logoAllNote: string;
     wantsLiamTitle: string; wantsLiamYes: string; wantsLiamNo: string;
+    wantsLiamDesc: string; wantsLiamNoDesc: string;
     confirmTitle: string; confirmFreeMsg: string; confirmPaidMsg: string;
     confirmWhatsapp: string;
+    nicheCtx: string; modeCtx: string; contactCtx: string;
+    servicesCtx: string; hoursCtx: string; ownerCtx: string; galleryCtx: string;
+    heroUploadHint: string; galleryUploadHint: string;
     errNiche: string; errCustomNiche: string; errMode: string;
     errBusinessName: string; errContact: string; errEmail: string;
     noClientId: string; noClientIdSub: string;
