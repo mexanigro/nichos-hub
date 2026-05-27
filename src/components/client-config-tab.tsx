@@ -32,6 +32,8 @@ import {
   User,
   CreditCard,
   Package,
+  Boxes,
+  Layout,
 } from "lucide-react";
 import { ImageUploadField, ImageUploadListField } from "./image-upload-field";
 import { BrandPackageImport } from "./brand-package-import";
@@ -58,6 +60,9 @@ import { MenuEditor, type MenuCategory, type MenuItem as MenuItemConfig } from "
 import { SaveDiffModal } from "./save-diff-modal";
 import { SplashVariantPreview, type SplashVariantId } from "./splash-variant-preview";
 import { HeroObjectsEditor, type HeroObjectsMap } from "./config-editors/hero-objects-editor";
+import { SectionVariantSelector } from "./config-editors/section-variant-selector";
+import { HeroSlotPicker } from "./config-editors/hero-slot-picker";
+import { HERO_VARIANTS } from "./config-editors/variant-thumbnails";
 import {
   normalizeBusinessNiche,
   type BusinessNiche,
@@ -1181,6 +1186,71 @@ export function ClientConfigTab({
           </div>
         </div>
 
+      </Section>
+
+      {/* ══════════════════════════════════════════════════════════════
+       * 3D IMPACT — heroObjects + section variants + ambient particles
+       * ══════════════════════════════════════════════════════════════ */}
+      <GroupBand label="3D IMPACT" hint="objetos transparentes, variantes 3D y particulas ambientales" />
+
+      {/* ── Hero Objects (slot management) ──────────────────────────── */}
+      <Section
+        icon={Boxes} title="Hero Objects (PNG transparentes)" sectionKey="heroObjects"
+        expanded={expandedSections.has("heroObjects")} onToggle={toggleSection}
+      >
+        <HeroObjectsEditor
+          value={config.heroObjects}
+          clientId={clientId}
+          onChange={(next) => setConfig((prev) => ({ ...prev, heroObjects: next }))}
+        />
+      </Section>
+
+      {/* ── Hero variant selector ───────────────────────────────────── */}
+      <Section
+        icon={Layout} title="Variante del Hero" sectionKey="heroVariant"
+        expanded={expandedSections.has("heroVariant")} onToggle={toggleSection}
+      >
+        {(() => {
+          const heroVariant = (config.heroVariant ?? "standard") as
+            | "standard"
+            | "slider"
+            | "hero-3d-object";
+          const slot = config.heroObjectSlot ?? "primary";
+          const slotData = config.heroObjects?.[slot];
+          const slotConfigured =
+            !!slotData &&
+            (Boolean(slotData.src) || (slotData.composition?.length ?? 0) > 0);
+          const showSlotPicker = heroVariant === "hero-3d-object";
+          return (
+            <>
+              <SectionVariantSelector
+                label="Layout del Hero"
+                hint="cambia la composicion entre las 3 variants disponibles"
+                current={heroVariant}
+                variants={HERO_VARIANTS}
+                onChange={(next) => updateNested("heroVariant", next)}
+                slotForActive={showSlotPicker ? slot : undefined}
+                heroObjectsConfigured={slotConfigured}
+              />
+              {showSlotPicker && (
+                <>
+                  <HeroSlotPicker
+                    label="Slot del objeto 3D del Hero"
+                    value={slot}
+                    onChange={(next) => updateNested("heroObjectSlot", next)}
+                    heroObjects={config.heroObjects}
+                  />
+                  <ToggleField
+                    label="Mostrar objeto 3D"
+                    path="show3DObject"
+                    value={getNested("show3DObject") as boolean ?? true}
+                    onChange={updateNested}
+                  />
+                </>
+              )}
+            </>
+          );
+        })()}
       </Section>
 
       {/* ── Why Choose Us (mainImage + badge + benefits) ──────────────── */}
