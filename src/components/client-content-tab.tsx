@@ -20,6 +20,7 @@ import {
   placeholderFor,
   type PlaceholderKey,
 } from "@/lib/dashboard-placeholders";
+import { LanguageMismatchWarning } from "./language-mismatch-warning";
 
 interface ContentSection {
   key: string;
@@ -367,12 +368,13 @@ export function ClientContentTab({
             <div className="space-y-3 border-t border-border px-4 pb-4 pt-3">
               {section.fields.map(field => {
                 const ph = field.placeholderKey ? placeholderFor(lang, field.placeholderKey) : undefined;
+                const value = content[field.path] || "";
                 return (
                 <div key={field.path}>
                   <label className="mb-1 block text-[11px] font-medium text-text-muted">{field.label}</label>
                   {field.type === "textarea" ? (
                     <textarea
-                      value={content[field.path] || ""}
+                      value={value}
                       onChange={e => setContent(prev => ({ ...prev, [field.path]: e.target.value }))}
                       placeholder={ph}
                       rows={3}
@@ -381,17 +383,22 @@ export function ClientContentTab({
                   ) : (
                     <input
                       type="text"
-                      value={content[field.path] || ""}
+                      value={value}
                       onChange={e => setContent(prev => ({ ...prev, [field.path]: e.target.value }))}
                       placeholder={ph}
                       className="w-full rounded-lg border border-border bg-bg-elevated px-3 py-2 text-xs text-text placeholder:text-text-muted/50 focus:border-accent focus:outline-none"
                     />
                   )}
+                  <LanguageMismatchWarning
+                    fieldId={`${clientId}:content:${field.path}`}
+                    text={value}
+                    expected={lang}
+                  />
                 </div>
                 );
               })}
               {section.key === "faq" && (
-                <FaqEditor items={faqItems} onChange={setFaqItems} lang={lang} />
+                <FaqEditor clientId={clientId} items={faqItems} onChange={setFaqItems} lang={lang} />
               )}
             </div>
           )}
@@ -403,10 +410,12 @@ export function ClientContentTab({
 }
 
 function FaqEditor({
+  clientId,
   items,
   onChange,
   lang,
 }: {
+  clientId: string;
   items: FaqItem[];
   onChange: (items: FaqItem[]) => void;
   lang: ClientLanguage;
@@ -448,6 +457,11 @@ function FaqEditor({
               placeholder={questionPh}
               className="w-full rounded border border-border bg-bg px-2.5 py-1.5 text-xs font-medium text-text placeholder:text-text-muted/50 focus:border-accent focus:outline-none"
             />
+            <LanguageMismatchWarning
+              fieldId={`${clientId}:faq:${i}:question`}
+              text={item.question}
+              expected={lang}
+            />
           </div>
           <textarea
             value={item.answer}
@@ -455,6 +469,11 @@ function FaqEditor({
             placeholder={answerPh}
             rows={2}
             className="w-full rounded border border-border bg-bg px-2.5 py-1.5 text-xs text-text placeholder:text-text-muted/50 focus:border-accent focus:outline-none"
+          />
+          <LanguageMismatchWarning
+            fieldId={`${clientId}:faq:${i}:answer`}
+            text={item.answer}
+            expected={lang}
           />
         </div>
       ))}

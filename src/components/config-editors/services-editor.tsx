@@ -4,6 +4,8 @@ import { useState } from "react";
 import { Plus, Eye, EyeOff, AlertTriangle, RotateCcw, Wrench } from "lucide-react";
 import { ImageUploadField } from "../image-upload-field";
 import { ReorderControls, moveItem } from "./reorder-controls";
+import { LanguageMismatchWarning } from "../language-mismatch-warning";
+import { useClientLanguage } from "@/lib/client-language-context";
 import type { BusinessNiche } from "@/lib/client-config/services";
 import {
   getNicheServices,
@@ -463,6 +465,7 @@ function CustomServicesEditor({
 }) {
   const [expanded, setExpanded] = useState<Set<number>>(new Set([services.length - 1]));
   const [confirmReset, setConfirmReset] = useState(false);
+  const lang = useClientLanguage();
 
   function update(index: number, patch: Partial<Service>) {
     const next = services.slice();
@@ -613,6 +616,11 @@ function CustomServicesEditor({
                       onChange={(e) => update(i, { description: e.target.value })}
                       rows={2}
                       className="w-full resize-none rounded border border-border bg-bg-card px-2 py-1 text-xs text-text placeholder:text-text-muted/40 focus:border-accent focus:outline-none"
+                    />
+                    <LanguageMismatchWarning
+                      fieldId={`${clientId}:services:${s.id}:description`}
+                      text={s.description}
+                      expected={lang}
                     />
                   </div>
                   <ImageUploadField

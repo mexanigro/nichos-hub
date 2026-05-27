@@ -42,6 +42,7 @@ import {
   normalizeClientLanguage,
 } from "@/lib/client-language";
 import { placeholderFor } from "@/lib/dashboard-placeholders";
+import { LanguageMismatchWarning } from "./language-mismatch-warning";
 import { BenefitsEditor, type Benefit } from "./config-editors/benefits-editor";
 import { TestimonialsEditor, type Testimonial } from "./config-editors/testimonials-editor";
 import { StaffEditor, type StaffMember } from "./config-editors/staff-editor";
@@ -491,9 +492,23 @@ export function ClientConfigTab({
         })()}
         <div className="grid gap-3 sm:grid-cols-2">
           <Field label="Nombre del negocio" path="brand.name" value={getNested("brand.name")} onChange={updateNested} />
-          <Field label="Tagline" path="brand.tagline" value={getNested("brand.tagline")} onChange={updateNested} placeholder={placeholderFor(lang, "tagline")} />
+          <Field
+            label="Tagline"
+            path="brand.tagline"
+            value={getNested("brand.tagline")}
+            onChange={updateNested}
+            placeholder={placeholderFor(lang, "tagline")}
+            mismatchCheck={{ fieldId: `${clientId}:brand.tagline`, expected: lang }}
+          />
         </div>
-        <Field label="Descripcion (SEO)" path="brand.description" value={getNested("brand.description")} onChange={updateNested} placeholder={placeholderFor(lang, "description")} />
+        <Field
+          label="Descripcion (SEO)"
+          path="brand.description"
+          value={getNested("brand.description")}
+          onChange={updateNested}
+          placeholder={placeholderFor(lang, "description")}
+          mismatchCheck={{ fieldId: `${clientId}:brand.description`, expected: lang }}
+        />
         <div className="grid gap-3 sm:grid-cols-2">
           <ImageUploadField aspectHint="SVG/PNG transparente · cuadrado" label="Logo (fondo claro)" value={(getNested("brand.logo") as string) || ""} onChange={(url) => updateNested("brand.logo", url ?? "")} clientId={clientId} />
           <ImageUploadField aspectHint="SVG/PNG transparente · cuadrado" label="Logo (fondo oscuro)" value={(getNested("brand.logoDark") as string) || ""} onChange={(url) => updateNested("brand.logoDark", url ?? "")} clientId={clientId} />
@@ -738,6 +753,7 @@ export function ClientConfigTab({
           <ImageUploadField aspectHint="1:1 · 800px+" label="Foto de perfil" value={(getNested("owner.photo") as string) || ""} onChange={(url) => updateNested("owner.photo", url ?? "")} clientId={clientId} />
           <TextAreaField label="Bio" path="owner.bio" value={getNested("owner.bio") as string} onChange={updateNested}
             placeholder="Cuenta tu historia, tu trayectoria, que te hace diferente..."
+            mismatchCheck={{ fieldId: `${clientId}:owner.bio`, expected: lang }}
           />
           <div className="grid gap-3 sm:grid-cols-2">
             <Field label="Experiencia" path="owner.experience" value={getNested("owner.experience")} onChange={updateNested} placeholder="12 años en el rubro" />
@@ -996,6 +1012,7 @@ export function ClientConfigTab({
           <p className="mb-2 text-[11px] font-semibold text-text-secondary">Beneficios (cards)</p>
           <BenefitsEditor
             value={config.sections?.whyChooseUs?.benefits}
+            fieldIdPrefix={clientId}
             onChange={(next) =>
               setConfig((prev) => ({
                 ...prev,
@@ -1020,6 +1037,7 @@ export function ClientConfigTab({
         </p>
         <TestimonialsEditor
           value={config.testimonials}
+          fieldIdPrefix={clientId}
           onChange={(next) => setConfig((prev) => ({ ...prev, testimonials: next }))}
         />
       </Section>
@@ -1226,6 +1244,7 @@ export function ClientConfigTab({
         </p>
         <TextAreaField label="Persona del chatbot (opcional)" path="brand.aiPersona" value={getNested("brand.aiPersona") as string} onChange={updateNested}
           placeholder={placeholderFor(lang, "aiPersona")}
+          mismatchCheck={{ fieldId: `${clientId}:brand.aiPersona`, expected: lang }}
         />
       </Section>
 
@@ -1281,19 +1300,28 @@ function Section({ icon: Icon, title, sectionKey, expanded, onToggle, children }
   );
 }
 
-function Field({ label, path, value, onChange, placeholder }: {
+function Field({ label, path, value, onChange, placeholder, mismatchCheck }: {
   label: string; path: string; value: unknown; onChange: (path: string, value: unknown) => void; placeholder?: string;
+  mismatchCheck?: { fieldId: string; expected: ClientLanguage };
 }) {
+  const stringValue = (value as string) ?? "";
   return (
     <div>
       <label className="mb-1 block text-[11px] font-medium text-text-muted">{label}</label>
       <input
         type="text"
-        value={(value as string) ?? ""}
+        value={stringValue}
         onChange={e => onChange(path, e.target.value || null)}
         placeholder={placeholder}
         className="w-full rounded-lg border border-border bg-bg-elevated px-3 py-2 text-xs text-text placeholder:text-text-muted/50 focus:border-accent focus:outline-none"
       />
+      {mismatchCheck && (
+        <LanguageMismatchWarning
+          fieldId={mismatchCheck.fieldId}
+          text={stringValue}
+          expected={mismatchCheck.expected}
+        />
+      )}
     </div>
   );
 }
@@ -1339,19 +1367,28 @@ function ColorField({ label, path, value, onChange }: {
   );
 }
 
-function TextAreaField({ label, path, value, onChange, placeholder }: {
+function TextAreaField({ label, path, value, onChange, placeholder, mismatchCheck }: {
   label: string; path: string; value: string | undefined; onChange: (path: string, value: unknown) => void; placeholder?: string;
+  mismatchCheck?: { fieldId: string; expected: ClientLanguage };
 }) {
+  const stringValue = value || "";
   return (
     <div>
       <label className="mb-1 block text-[11px] font-medium text-text-muted">{label}</label>
       <textarea
-        value={value || ""}
+        value={stringValue}
         onChange={e => onChange(path, e.target.value || null)}
         placeholder={placeholder}
         rows={3}
         className="w-full rounded-lg border border-border bg-bg-elevated px-3 py-2 text-xs text-text placeholder:text-text-muted/50 focus:border-accent focus:outline-none"
       />
+      {mismatchCheck && (
+        <LanguageMismatchWarning
+          fieldId={mismatchCheck.fieldId}
+          text={stringValue}
+          expected={mismatchCheck.expected}
+        />
+      )}
     </div>
   );
 }

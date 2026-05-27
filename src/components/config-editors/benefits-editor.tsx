@@ -4,6 +4,7 @@ import { Plus, Sparkles } from "lucide-react";
 import { ReorderControls, moveItem } from "./reorder-controls";
 import { useClientLanguage } from "@/lib/client-language-context";
 import { placeholderFor } from "@/lib/dashboard-placeholders";
+import { LanguageMismatchWarning } from "../language-mismatch-warning";
 
 export type Benefit = {
   title: string;
@@ -21,10 +22,13 @@ export type Benefit = {
 export function BenefitsEditor({
   value,
   onChange,
+  fieldIdPrefix = "benefits",
   iconSuggestions = ["Award", "Star", "Heart", "Shield", "Clock", "Users", "Sparkles", "Crown", "Zap"],
 }: {
   value: Benefit[] | undefined;
   onChange: (next: Benefit[] | undefined) => void;
+  /** Prefijo para sessionStorage del aviso de mismatch (clientId, normalmente). */
+  fieldIdPrefix?: string;
   iconSuggestions?: string[];
 }) {
   const items = value ?? [];
@@ -114,6 +118,11 @@ export function BenefitsEditor({
                   placeholder={titlePh}
                   className="w-full rounded border border-border bg-bg-card px-2 py-1 text-xs text-text placeholder:text-text-muted/40 focus:border-accent focus:outline-none"
                 />
+                <LanguageMismatchWarning
+                  fieldId={`${fieldIdPrefix}:benefits:${i}:title`}
+                  text={b.title}
+                  expected={lang}
+                />
               </div>
             </div>
 
@@ -125,6 +134,11 @@ export function BenefitsEditor({
                 rows={2}
                 placeholder={descPh}
                 className="w-full resize-none rounded border border-border bg-bg-card px-2 py-1 text-xs text-text placeholder:text-text-muted/40 focus:border-accent focus:outline-none"
+              />
+              <LanguageMismatchWarning
+                fieldId={`${fieldIdPrefix}:benefits:${i}:desc`}
+                text={b.desc}
+                expected={lang}
               />
             </div>
 

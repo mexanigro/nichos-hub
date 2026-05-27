@@ -4,6 +4,7 @@ import { Plus, Quote, Star } from "lucide-react";
 import { ReorderControls, moveItem } from "./reorder-controls";
 import { useClientLanguage } from "@/lib/client-language-context";
 import { placeholderFor } from "@/lib/dashboard-placeholders";
+import { LanguageMismatchWarning } from "../language-mismatch-warning";
 
 export type Testimonial = {
   name: string;
@@ -21,9 +22,12 @@ const RATINGS = [1, 2, 3, 4, 5] as const;
 export function TestimonialsEditor({
   value,
   onChange,
+  fieldIdPrefix = "testimonials",
 }: {
   value: Testimonial[] | undefined;
   onChange: (next: Testimonial[] | undefined) => void;
+  /** Prefijo para sessionStorage del aviso de mismatch (clientId, normalmente). */
+  fieldIdPrefix?: string;
 }) {
   const items = value ?? [];
   const lang = useClientLanguage();
@@ -117,6 +121,11 @@ export function TestimonialsEditor({
                 rows={3}
                 placeholder={textPh}
                 className="w-full resize-none rounded border border-border bg-bg-card px-2 py-1 text-xs text-text placeholder:text-text-muted/40 focus:border-accent focus:outline-none"
+              />
+              <LanguageMismatchWarning
+                fieldId={`${fieldIdPrefix}:testimonials:${i}:text`}
+                text={t.text}
+                expected={lang}
               />
             </div>
 
