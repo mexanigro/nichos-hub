@@ -1206,6 +1206,20 @@ export function ClientConfigTab({
        * ══════════════════════════════════════════════════════════════ */}
       <GroupBand label="3D IMPACT" hint="objetos transparentes, variantes 3D y particulas ambientales" />
 
+      {!isImpactActivated(config) ? (
+        <ImpactActivationCard
+          onActivate={() => {
+            // Seed an empty heroObjects map so the activation detector flips on.
+            // The user then configures slots from the editor below it.
+            setConfig((prev) => ({
+              ...prev,
+              heroObjects: prev.heroObjects ?? {},
+            }));
+            setExpandedSections((prev) => new Set([...prev, "heroObjects"]));
+          }}
+        />
+      ) : (
+        <>
       {/* ── Hero Objects (slot management) ──────────────────────────── */}
       <Section
         icon={Boxes} title="Hero Objects (PNG transparentes)" sectionKey="heroObjects"
@@ -1484,6 +1498,8 @@ export function ClientConfigTab({
           </div>
         )}
       </Section>
+        </>
+      )}
 
       {/* ── Why Choose Us (mainImage + badge + benefits) ──────────────── */}
       <Section
@@ -1978,6 +1994,72 @@ function ImageListField({ value, onChange, placeholder }: {
       >
         <Plus size={12} /> Agregar imagen
       </button>
+    </div>
+  );
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+ * 3D Impact activation
+ *
+ * A client is considered "activated" as soon as they have at least one
+ * heroObjects key OR any variant field set to a non-standard value OR an
+ * impact-* splash variant. This means simply seeding `heroObjects: {}`
+ * activates the system — but emptying it again returns to the welcome
+ * card without persisting any 3D state.
+ * ══════════════════════════════════════════════════════════════════════════ */
+
+function isImpactActivated(cfg: ConfigDoc): boolean {
+  if (cfg.heroObjects && Object.keys(cfg.heroObjects).length > 0) return true;
+  // `heroObjects: {}` itself counts as opted-in even if no slots are configured.
+  if (cfg.heroObjects && Object.keys(cfg.heroObjects).length === 0) return true;
+  if (cfg.heroVariant && cfg.heroVariant !== "standard") return true;
+  if (cfg.whyChooseUsVariant && cfg.whyChooseUsVariant !== "standard") return true;
+  if (cfg.servicesVariant && cfg.servicesVariant !== "standard") return true;
+  if (cfg.galleryVariant && cfg.galleryVariant !== "standard") return true;
+  if (cfg.bookingVariant && cfg.bookingVariant !== "standard") return true;
+  if (cfg.globalAmbientParticles?.enabled) return true;
+  const variant = cfg.splash?.variant;
+  if (typeof variant === "string" && variant.startsWith("impact-")) return true;
+  return false;
+}
+
+function ImpactActivationCard({ onActivate }: { onActivate: () => void }) {
+  return (
+    <div className="rounded-xl border border-purple-500/20 bg-gradient-to-br from-purple-500/5 to-bg-card p-5">
+      <div className="flex items-start gap-3">
+        <div
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-purple-500/30 to-purple-700/20 text-purple-200"
+          aria-hidden
+        >
+          <Sparkles size={18} />
+        </div>
+        <div className="flex-1">
+          <h4 className="text-sm font-semibold text-text">Sistema 3D Impact</h4>
+          <p className="mt-1 text-[11px] leading-relaxed text-text-muted">
+            Reemplaza el render clasico por objetos 3D parallax, splash variants con depth,
+            galerias bento y particulas ambientales. Es <strong>opt-in</strong>: clientes que
+            no lo usan siguen viendo el render legacy sin diferencias.
+          </p>
+          <ul className="mt-2 space-y-0.5 text-[10px] text-text-muted/80">
+            <li>· Hero Objects: PNGs transparentes con composition multi-layer.</li>
+            <li>· Splash 3D: impact-scale, impact-split, impact-reveal-3d.</li>
+            <li>· Variants por seccion: hero, why-choose, servicios, galeria, reservas.</li>
+            <li>· Particulas ambientales: burbujas, humo, chispas, perlas.</li>
+          </ul>
+          <button
+            type="button"
+            onClick={onActivate}
+            className="mt-3 inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-purple-500 to-purple-600 px-3 py-1.5 text-xs font-semibold text-white shadow-md transition-transform hover:scale-[1.02]"
+          >
+            <Sparkles size={12} />
+            Activar 3D Impact
+          </button>
+          <p className="mt-2 text-[10px] text-text-muted/60">
+            La activacion solo crea el espacio de configuracion — nada se aplica al sitio hasta que guardes
+            con una variante 3D o un slot configurado.
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
