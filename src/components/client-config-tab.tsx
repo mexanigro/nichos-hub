@@ -62,7 +62,13 @@ import { SplashVariantPreview, type SplashVariantId } from "./splash-variant-pre
 import { HeroObjectsEditor, type HeroObjectsMap } from "./config-editors/hero-objects-editor";
 import { SectionVariantSelector } from "./config-editors/section-variant-selector";
 import { HeroSlotPicker } from "./config-editors/hero-slot-picker";
-import { HERO_VARIANTS } from "./config-editors/variant-thumbnails";
+import {
+  HERO_VARIANTS,
+  WHY_CHOOSE_VARIANTS,
+  SERVICES_VARIANTS,
+  GALLERY_VARIANTS,
+  BOOKING_VARIANTS,
+} from "./config-editors/variant-thumbnails";
 import {
   normalizeBusinessNiche,
   type BusinessNiche,
@@ -1249,6 +1255,104 @@ export function ClientConfigTab({
                 </>
               )}
             </>
+          );
+        })()}
+      </Section>
+
+      {/* ── Other section variant selectors ─────────────────────────── */}
+      <Section
+        icon={Layout} title="Variantes de seccion" sectionKey="sectionVariants"
+        expanded={expandedSections.has("sectionVariants")} onToggle={toggleSection}
+      >
+        {/* Why Choose Us */}
+        {(() => {
+          const wcuVariant = (config.whyChooseUsVariant ?? "standard") as
+            | "standard"
+            | "icon-grid-3d";
+          return (
+            <SectionVariantSelector
+              label="Por que elegirnos"
+              hint="layout de la seccion de beneficios"
+              current={wcuVariant}
+              variants={WHY_CHOOSE_VARIANTS}
+              onChange={(next) => updateNested("whyChooseUsVariant", next)}
+            />
+          );
+        })()}
+
+        <div className="border-t border-border pt-3" />
+
+        {/* Services */}
+        {(() => {
+          const servicesVariant = (config.servicesVariant ?? "standard") as
+            | "standard"
+            | "list-with-icons"
+            | "treatment-card-grid"
+            | "card-stack-tabs";
+          return (
+            <SectionVariantSelector
+              label="Servicios"
+              hint="layout de la seccion de servicios"
+              current={servicesVariant}
+              variants={SERVICES_VARIANTS}
+              onChange={(next) => updateNested("servicesVariant", next)}
+            />
+          );
+        })()}
+
+        <div className="border-t border-border pt-3" />
+
+        {/* Gallery */}
+        {(() => {
+          const galleryVariant = (config.galleryVariant ?? "standard") as
+            | "standard"
+            | "bento-stats"
+            | "grid-with-filters"
+            | "portrait-bento-3d-cameo";
+          const usesCameoSlot = galleryVariant === "portrait-bento-3d-cameo";
+          const slot = config.galleryObjectSlot ?? "primary";
+          const slotData = config.heroObjects?.[slot];
+          const slotConfigured =
+            !!slotData &&
+            (Boolean(slotData.src) || (slotData.composition?.length ?? 0) > 0);
+          return (
+            <div className="space-y-2.5">
+              <SectionVariantSelector
+                label="Galeria"
+                hint="layout de la galeria visual"
+                current={galleryVariant}
+                variants={GALLERY_VARIANTS}
+                onChange={(next) => updateNested("galleryVariant", next)}
+                slotForActive={usesCameoSlot ? slot : undefined}
+                heroObjectsConfigured={slotConfigured}
+              />
+              {usesCameoSlot && (
+                <HeroSlotPicker
+                  label="Slot del cameo 3D"
+                  value={slot}
+                  onChange={(next) => updateNested("galleryObjectSlot", next)}
+                  heroObjects={config.heroObjects}
+                />
+              )}
+            </div>
+          );
+        })()}
+
+        <div className="border-t border-border pt-3" />
+
+        {/* Booking */}
+        {(() => {
+          const bookingVariant = (config.bookingVariant ?? "standard") as
+            | "standard"
+            | "form-map-hours-3d";
+          return (
+            <SectionVariantSelector
+              label="Reservas / Contacto"
+              hint="layout del bloque de contacto y reservas"
+              current={bookingVariant}
+              variants={BOOKING_VARIANTS}
+              onChange={(next) => updateNested("bookingVariant", next)}
+            />
           );
         })()}
       </Section>
