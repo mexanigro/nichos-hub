@@ -27,7 +27,7 @@ export function StepTestimonials({ data, updateField, errors }: StepProps) {
 
   return (
     <WizardStep
-      title={w.testimonialsTitle || "Testimonios de tus clientes"}
+      title={w.testimonialsTitle || "Customer testimonials"}
       subtitle={w.testimonialsSub || ""}
       errors={errors}
     >
@@ -35,45 +35,45 @@ export function StepTestimonials({ data, updateField, errors }: StepProps) {
         <WizardRefImage data={data} stepKey="testimonials" />
         {items.length === 0 && (
           <p className="wiz-hint" style={{ marginBottom: 8 }}>
-            Si tenés reviews en Google o IG, copialas acá. Si no, podés saltar este paso
-            y me las pasás por WhatsApp después.
+            {w.testimonialsEmptyHint ||
+              "If you have Google or IG reviews, paste them here. Or skip and send them by WhatsApp later."}
           </p>
         )}
         {items.map((tm, i) => (
           <div key={i} className="wiz-list-item">
             <div className="wiz-field-row">
               <div className="wiz-field">
-                <label>{w.testimonialName || "Nombre"}</label>
+                <label>{w.testimonialName || "Name"}</label>
                 <input
                   type="text"
                   value={tm.name}
                   onChange={(e) => update(i, { name: e.target.value })}
-                  placeholder="Ej: María R."
+                  placeholder={w.testimonialNamePh || "Ex: Maria R."}
                 />
               </div>
               <div className="wiz-field">
                 <label>
-                  {w.testimonialRole || "Cómo te conoció"} <span className="opt">({w.optional})</span>
+                  {w.testimonialRole || "How they found you"} <span className="opt">({w.optional})</span>
                 </label>
                 <input
                   type="text"
                   value={tm.title}
                   onChange={(e) => update(i, { title: e.target.value })}
-                  placeholder="Cliente desde 2022"
+                  placeholder={w.testimonialRolePh || "Customer since 2022"}
                 />
               </div>
             </div>
             <div className="wiz-field">
-              <label>{w.testimonialText || "Lo que dijo"}</label>
+              <label>{w.testimonialText || "What they said"}</label>
               <textarea
                 value={tm.text}
                 onChange={(e) => update(i, { text: e.target.value })}
-                placeholder="El mejor corte que tuve. Atención impecable."
+                placeholder={w.testimonialTextPh || "Best haircut I've had. Outstanding service."}
                 rows={2}
               />
             </div>
             <div className="wiz-field">
-              <label>{w.testimonialRating || "Estrellas"}</label>
+              <label>{w.testimonialRating || "Stars"}</label>
               <div className="wiz-rating-row">
                 {[1, 2, 3, 4, 5].map((n) => (
                   <button
@@ -81,7 +81,7 @@ export function StepTestimonials({ data, updateField, errors }: StepProps) {
                     type="button"
                     className={`wiz-star${tm.rating >= n ? " on" : ""}`}
                     onClick={() => update(i, { rating: n })}
-                    aria-label={`${n} estrellas`}
+                    aria-label={`${n} ${w.testimonialRating || "stars"}`}
                   >
                     ★
                   </button>
@@ -93,12 +93,12 @@ export function StepTestimonials({ data, updateField, errors }: StepProps) {
               className="wiz-link-btn danger"
               onClick={() => remove(i)}
             >
-              {w.benefitRemove || "Eliminar"}
+              {w.listRemove || w.benefitRemove || "Remove"}
             </button>
           </div>
         ))}
         <button type="button" className="wiz-add-btn" onClick={add}>
-          + {w.testimonialAdd || "Agregar testimonio"}
+          + {w.testimonialAdd || "Add testimonial"}
         </button>
       </div>
     </WizardStep>

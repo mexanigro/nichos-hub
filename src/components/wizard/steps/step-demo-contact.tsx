@@ -29,7 +29,7 @@ export function StepDemoContact({ data, updateField, errors }: StepProps) {
             inputMode="email"
             value={data.email}
             onChange={(e) => updateField("email", e.target.value)}
-            placeholder="hola@minegocio.com"
+            placeholder={w.demoEmailPh || "hello@mybusiness.com"}
             autoFocus
             required
           />

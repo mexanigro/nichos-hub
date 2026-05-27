@@ -29,7 +29,7 @@ export function StepBenefits({ data, updateField, errors }: StepProps) {
 
   return (
     <WizardStep
-      title={w.benefitsTitle || "¿Por qué te eligen?"}
+      title={w.benefitsTitle || "Why do they choose you?"}
       subtitle={w.benefitsSub || ""}
       errors={errors}
     >
@@ -37,32 +37,32 @@ export function StepBenefits({ data, updateField, errors }: StepProps) {
         <WizardRefImage data={data} stepKey="benefits" />
         {items.length === 0 && (
           <p className="wiz-hint" style={{ marginBottom: 8 }}>
-            Tu sitio puede mostrar 3 a 5 razones para confiar. Si lo dejás vacío,
-            uso un set genérico del rubro y vos lo afinás después.
+            {w.benefitsEmptyHint ||
+              "Your site can show 3 to 5 reasons to trust you. Leave it empty and I'll use a generic set for your niche."}
           </p>
         )}
         {items.map((b, i) => (
           <div key={i} className="wiz-list-item">
             <div className="wiz-field">
-              <label>{w.benefitTitle || "Título"}</label>
+              <label>{w.benefitTitle || "Title"}</label>
               <input
                 type="text"
                 value={b.title}
                 onChange={(e) => update(i, { title: e.target.value })}
-                placeholder="Ej: 15 años de experiencia"
+                placeholder={w.benefitTitlePh || "Ex: 15 years of experience"}
               />
             </div>
             <div className="wiz-field">
-              <label>{w.benefitDesc || "Descripción corta"}</label>
+              <label>{w.benefitDesc || "Short description"}</label>
               <input
                 type="text"
                 value={b.desc}
                 onChange={(e) => update(i, { desc: e.target.value })}
-                placeholder="Una línea explicando por qué importa."
+                placeholder={w.benefitDescPh || "One line on why it matters."}
               />
             </div>
             <div className="wiz-field">
-              <label>{w.benefitIcon || "Ícono"}</label>
+              <label>{w.benefitIcon || "Icon"}</label>
               <select
                 value={b.iconName}
                 onChange={(e) => update(i, { iconName: e.target.value })}
@@ -77,12 +77,12 @@ export function StepBenefits({ data, updateField, errors }: StepProps) {
               className="wiz-link-btn danger"
               onClick={() => remove(i)}
             >
-              {w.benefitRemove || "Eliminar"}
+              {w.listRemove || w.benefitRemove || "Remove"}
             </button>
           </div>
         ))}
         <button type="button" className="wiz-add-btn" onClick={add}>
-          + {w.benefitAdd || "Agregar beneficio"}
+          + {w.benefitAdd || "Add benefit"}
         </button>
       </div>
     </WizardStep>

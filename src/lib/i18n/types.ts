@@ -141,15 +141,27 @@ export interface Translations {
      *  email, logo, accentColor, colors, services, hours, ownerPhoto,
      *  ownerBio, heroImage, galleryImages, address. */
     hints?: Partial<Record<string, string>>;
-    // Bloque 4 — steps nuevos. Opcional por locale (fallback a ES).
+    // Bloque 4 — steps nuevos. Opcional por locale (fallback a EN dentro de
+    // los componentes, no a ES — evita mostrar español a un cliente de otro
+    // idioma si una clave queda sin traducir).
     benefitsTitle?: string; benefitsSub?: string;
     benefitTitle?: string; benefitDesc?: string; benefitIcon?: string;
     benefitAdd?: string; benefitRemove?: string;
+    benefitsEmptyHint?: string;
+    benefitTitlePh?: string; benefitDescPh?: string;
     testimonialsTitle?: string; testimonialsSub?: string;
     testimonialName?: string; testimonialRole?: string; testimonialText?: string; testimonialRating?: string;
     testimonialAdd?: string;
+    testimonialsEmptyHint?: string;
+    testimonialNamePh?: string; testimonialRolePh?: string; testimonialTextPh?: string;
     faqTitle?: string; faqSub?: string;
     faqQuestion?: string; faqAnswer?: string; faqAdd?: string;
+    faqEmptyHint?: string;
+    faqQuestionPh?: string; faqAnswerPh?: string;
+    /** Label compartido por los pasos benefits/testimonials/faq. */
+    listRemove?: string;
+    /** Placeholder del email en step-demo-contact (idioma-neutral). */
+    demoEmailPh?: string;
     faviconEmojiLabel?: string; faviconEmojiHint?: string;
     refTag?: string; refDisclaimer?: string;
     submitResubmit?: string;

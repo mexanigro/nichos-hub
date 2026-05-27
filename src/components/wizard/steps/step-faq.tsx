@@ -27,7 +27,7 @@ export function StepFaq({ data, updateField, errors }: StepProps) {
 
   return (
     <WizardStep
-      title={w.faqTitle || "Preguntas frecuentes"}
+      title={w.faqTitle || "Frequently asked questions"}
       subtitle={w.faqSub || ""}
       errors={errors}
     >
@@ -35,27 +35,27 @@ export function StepFaq({ data, updateField, errors }: StepProps) {
         <WizardRefImage data={data} stepKey="faq" />
         {items.length === 0 && (
           <p className="wiz-hint" style={{ marginBottom: 8 }}>
-            Pensá en las 3-5 que te hacen siempre por WhatsApp antes de reservar.
-            Si lo dejás vacío, armo un set genérico y vos lo afinás.
+            {w.faqEmptyHint ||
+              "Think of the 3-5 questions you always get on WhatsApp before someone books. If you leave it empty, I'll write a generic set."}
           </p>
         )}
         {items.map((f, i) => (
           <div key={i} className="wiz-list-item">
             <div className="wiz-field">
-              <label>{w.faqQuestion || "Pregunta"}</label>
+              <label>{w.faqQuestion || "Question"}</label>
               <input
                 type="text"
                 value={f.q}
                 onChange={(e) => update(i, { q: e.target.value })}
-                placeholder="Ej: ¿Hace falta sacar turno antes?"
+                placeholder={w.faqQuestionPh || "Ex: Do I need to book in advance?"}
               />
             </div>
             <div className="wiz-field">
-              <label>{w.faqAnswer || "Respuesta"}</label>
+              <label>{w.faqAnswer || "Answer"}</label>
               <textarea
                 value={f.a}
                 onChange={(e) => update(i, { a: e.target.value })}
-                placeholder="Recomendado, pero también atendemos walk-in si hay disponibilidad."
+                placeholder={w.faqAnswerPh || "Recommended, but we also take walk-ins if there's availability."}
                 rows={2}
               />
             </div>
@@ -64,12 +64,12 @@ export function StepFaq({ data, updateField, errors }: StepProps) {
               className="wiz-link-btn danger"
               onClick={() => remove(i)}
             >
-              {w.benefitRemove || "Eliminar"}
+              {w.listRemove || w.benefitRemove || "Remove"}
             </button>
           </div>
         ))}
         <button type="button" className="wiz-add-btn" onClick={add}>
-          + {w.faqAdd || "Agregar pregunta"}
+          + {w.faqAdd || "Add question"}
         </button>
       </div>
     </WizardStep>
