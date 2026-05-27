@@ -5,15 +5,17 @@ import {
   Activity,
   ArrowRight,
   CalendarX,
+  CheckCircle2,
+  Database,
+  Edit3,
   Globe2,
   Loader2,
-  MailCheck,
   MailQuestion,
   MessageSquare,
+  RefreshCw,
   ShieldCheck,
   User,
   UserCog,
-  UserPlus,
 } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 import { es } from "date-fns/locale";
@@ -112,69 +114,64 @@ type ResolvedEvent = {
   title: React.ReactNode;
 };
 
+function statusTransition(from: string | null, to: string | null) {
+  return (
+    <span>
+      Cambió de{" "}
+      <span className="font-medium text-text">{statusLabel(from)}</span>
+      <ArrowRight size={10} className="mx-1 inline opacity-50" />
+      <span className="font-medium text-text">{statusLabel(to)}</span>
+    </span>
+  );
+}
+
 /**
- * Resuelve el shape visual de cada entry según su `kind` (o, cuando no hay
- * kind explícito, según from/to/reason). Si encontramos un kind desconocido,
- * caemos al fallback genérico — el chip queda neutral y se ve el kind crudo.
+ * Resuelve el shape visual de cada entry según su `kind`. Cada kind escrito por
+ * los endpoints del hub tiene su propio ícono + copy. Para kinds desconocidos
+ * (futuros, o un legacy entry sin kind explícito) caemos a fallbacks que
+ * preservan información: si hay from/to mostramos la transición, si no
+ * mostramos el kind crudo. Esto evita romper la UI cuando aparece un kind
+ * nuevo antes de que actualicemos el panel.
  *
- * TODO: Si aparece un kind nuevo en hub_status_history, agregarlo acá
- * explícitamente con su ícono y texto en lugar de dejar fallback genérico.
+ * Writers actuales (mantener sincronizado con grep de hub_status_history):
+ *   - status_change       → /api/clients/provision
+ *   - changes_requested   → /api/clients/changes-request
+ *   - info_submitted      → /api/onboarding/client-info (primera vez)
+ *   - customer_resubmit   → /api/onboarding/client-info (resubmit)
+ *   - language_change     → /api/clients/[clientId]   (PATCH)
+ *   - calendar_disconnect → /api/calendar/[clientId]  (DELETE)
+ *   - owner_message_sent  → /api/messages             (owner-initiated)
+ *   - language_backfill   → script (defensive — vive en config_history)
  */
 function resolveEvent(entry: Entry): ResolvedEvent {
   const kind = entry.kind;
 
-  if (kind === "calendar_disconnect") {
-    return {
-      Icon: CalendarX,
-      iconColor: "text-amber-300",
-      title: <span>Desconectó Google Calendar</span>,
-    };
-  }
-
-  if (kind === "language_change") {
-    return {
-      Icon: Globe2,
-      iconColor: "text-sky-300",
-      title: (
-        <span>
-          Cambió idioma de{" "}
-          <span className="font-medium text-text">{languageLabel(entry.from)}</span>{" "}
-          a{" "}
-          <span className="font-medium text-text">{languageLabel(entry.to)}</span>
-        </span>
-      ),
-    };
-  }
-
-  if (kind === "owner_message_sent") {
-    return {
-      Icon: MessageSquare,
-      iconColor: "text-accent",
-      title: (
-        <span>
-          Mensaje enviado al cliente
-          {entry.channel ? <span className="text-text-muted"> · {entry.channel}</span> : null}
-        </span>
-      ),
-    };
-  }
-
-  // Sin kind explícito: si hay from/to, lo tratamos como status_change.
-  // `reason` discrimina los flows que entran a pending_review:
-  //   - "info_submitted"     → primera vez que el cliente completa el wizard
-  //   - "customer_resubmit"  → el cliente reenvió después de un changes_requested
-  if (entry.from || entry.to) {
-    if (entry.reason === "info_submitted") {
+  switch (kind) {
+    case "status_change":
       return {
-        Icon: UserPlus,
-        iconColor: "text-sky-300",
+        Icon: ArrowRight,
+        iconColor: "text-text-secondary",
+        title: statusTransition(entry.from, entry.to),
+      };
+
+    case "changes_requested":
+      return {
+        Icon: Edit3,
+        iconColor: "text-amber-300",
+        title: <span>Liam pidió cambios al cliente</span>,
+      };
+
+    case "info_submitted":
+      return {
+        Icon: CheckCircle2,
+        iconColor: "text-success",
         title: <span>Cliente completó el formulario por primera vez</span>,
       };
-    }
-    if (entry.reason === "customer_resubmit") {
+
+    case "customer_resubmit":
       return {
-        Icon: MailCheck,
-        iconColor: "text-sky-300",
+        Icon: RefreshCw,
+        iconColor: "text-amber-300",
         title: (
           <span>
             Cliente reenvió la info con cambios. Estado vuelve a{" "}
@@ -182,18 +179,94 @@ function resolveEvent(entry: Entry): ResolvedEvent {
           </span>
         ),
       };
+
+    case "language_change":
+      return {
+        Icon: Globe2,
+        iconColor: "text-sky-300",
+        title: (
+          <span>
+            Cambió idioma de{" "}
+            <span className="font-medium text-text">{languageLabel(entry.from)}</span>{" "}
+            a{" "}
+            <span className="font-medium text-text">{languageLabel(entry.to)}</span>
+          </span>
+        ),
+      };
+
+    case "calendar_disconnect":
+      return {
+        Icon: CalendarX,
+        iconColor: "text-text-muted",
+        title: <span>Desconectó Google Calendar</span>,
+      };
+
+    case "owner_message_sent":
+      return {
+        Icon: MessageSquare,
+        iconColor: "text-accent",
+        title: (
+          <span>
+            Liam envió un mensaje al cliente
+            {entry.channel ? <span className="text-text-muted"> · {entry.channel}</span> : null}
+          </span>
+        ),
+      };
+
+    case "language_backfill": {
+      // `to` = idioma resuelto. `reason` = "backfill-client-languages.mjs: <fuente>".
+      // Si el writer cambia, caemos elegante: mostramos sólo lo que tenemos.
+      const value = entry.to ?? "—";
+      const source = (entry.reason ?? "").replace(
+        /^backfill-client-languages\.mjs:\s*/,
+        "",
+      );
+      return {
+        Icon: Database,
+        iconColor: "text-text-muted",
+        title: (
+          <span>
+            Backfill de idioma:{" "}
+            <span className="font-medium text-text">{languageLabel(value)}</span>
+            {source ? (
+              <span className="text-text-muted"> · via {source}</span>
+            ) : null}
+          </span>
+        ),
+      };
     }
+
+    // Legacy: kind="resubmit" antes del fix H2 (config_history naming, pero
+    // dejamos el case por si quedó algún doc viejo migrado por error).
+    case "resubmit":
+      return {
+        Icon: RefreshCw,
+        iconColor: "text-amber-300",
+        title: (
+          <span>
+            Cliente reenvió la info con cambios. Estado vuelve a{" "}
+            <span className="font-medium text-text">pending_review</span>
+          </span>
+        ),
+      };
+
+    // Legacy: kind="changes_request" antes del fix H1 (provider_messages naming).
+    case "changes_request":
+      return {
+        Icon: Edit3,
+        iconColor: "text-amber-300",
+        title: <span>Liam pidió cambios al cliente</span>,
+      };
+  }
+
+  // Sin kind reconocido: si hay from/to inferimos status_change. Si no,
+  // mostramos el kind crudo (o "sin tipo") para que sea debuggable en lugar
+  // de quedar oculto.
+  if (entry.from || entry.to) {
     return {
       Icon: ArrowRight,
       iconColor: "text-text-secondary",
-      title: (
-        <span>
-          Estado:{" "}
-          <span className="font-medium text-text">{statusLabel(entry.from)}</span>
-          <ArrowRight size={10} className="mx-1 inline opacity-50" />
-          <span className="font-medium text-text">{statusLabel(entry.to)}</span>
-        </span>
-      ),
+      title: statusTransition(entry.from, entry.to),
     };
   }
 
@@ -202,7 +275,10 @@ function resolveEvent(entry: Entry): ResolvedEvent {
     iconColor: "text-text-muted",
     title: (
       <span>
-        Evento: <code className="font-mono text-[10px] text-text-secondary">{kind || "sin tipo"}</code>
+        Evento:{" "}
+        <code className="font-mono text-[10px] text-text-secondary">
+          {kind || "sin tipo"}
+        </code>
       </span>
     ),
   };
