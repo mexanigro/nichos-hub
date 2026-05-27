@@ -2,6 +2,8 @@
 
 import { Plus, Quote, Star } from "lucide-react";
 import { ReorderControls, moveItem } from "./reorder-controls";
+import { useClientLanguage } from "@/lib/client-language-context";
+import { placeholderFor } from "@/lib/dashboard-placeholders";
 
 export type Testimonial = {
   name: string;
@@ -24,6 +26,9 @@ export function TestimonialsEditor({
   onChange: (next: Testimonial[] | undefined) => void;
 }) {
   const items = value ?? [];
+  const lang = useClientLanguage();
+  const namePh = placeholderFor(lang, "testimonialName");
+  const textPh = placeholderFor(lang, "testimonialText");
 
   function update(index: number, patch: Partial<Testimonial>) {
     const next = items.slice();
@@ -88,7 +93,7 @@ export function TestimonialsEditor({
                   type="text"
                   value={t.name}
                   onChange={(e) => update(i, { name: e.target.value })}
-                  placeholder="Ana Goldberg"
+                  placeholder={namePh}
                   className="w-full rounded border border-border bg-bg-card px-2 py-1 text-xs text-text placeholder:text-text-muted/40 focus:border-accent focus:outline-none"
                 />
               </div>
@@ -110,7 +115,7 @@ export function TestimonialsEditor({
                 value={t.text}
                 onChange={(e) => update(i, { text: e.target.value })}
                 rows={3}
-                placeholder="Encontre el lugar perfecto para mis tratamientos..."
+                placeholder={textPh}
                 className="w-full resize-none rounded border border-border bg-bg-card px-2 py-1 text-xs text-text placeholder:text-text-muted/40 focus:border-accent focus:outline-none"
               />
             </div>

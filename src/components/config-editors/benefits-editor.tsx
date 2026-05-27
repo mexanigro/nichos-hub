@@ -2,6 +2,8 @@
 
 import { Plus, Sparkles } from "lucide-react";
 import { ReorderControls, moveItem } from "./reorder-controls";
+import { useClientLanguage } from "@/lib/client-language-context";
+import { placeholderFor } from "@/lib/dashboard-placeholders";
 
 export type Benefit = {
   title: string;
@@ -26,6 +28,9 @@ export function BenefitsEditor({
   iconSuggestions?: string[];
 }) {
   const items = value ?? [];
+  const lang = useClientLanguage();
+  const titlePh = placeholderFor(lang, "benefitTitle");
+  const descPh = placeholderFor(lang, "benefitDesc");
 
   function update(index: number, patch: Partial<Benefit>) {
     const next = items.slice();
@@ -106,7 +111,7 @@ export function BenefitsEditor({
                   type="text"
                   value={b.title}
                   onChange={(e) => update(i, { title: e.target.value })}
-                  placeholder="Atencion personalizada"
+                  placeholder={titlePh}
                   className="w-full rounded border border-border bg-bg-card px-2 py-1 text-xs text-text placeholder:text-text-muted/40 focus:border-accent focus:outline-none"
                 />
               </div>
@@ -118,7 +123,7 @@ export function BenefitsEditor({
                 value={b.desc}
                 onChange={(e) => update(i, { desc: e.target.value })}
                 rows={2}
-                placeholder="Cada cliente recibe un trato unico y un seguimiento dedicado..."
+                placeholder={descPh}
                 className="w-full resize-none rounded border border-border bg-bg-card px-2 py-1 text-xs text-text placeholder:text-text-muted/40 focus:border-accent focus:outline-none"
               />
             </div>
