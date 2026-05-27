@@ -2,6 +2,13 @@ import { NextResponse } from "next/server";
 import Anthropic from "@anthropic-ai/sdk";
 import { withOwner } from "@/lib/auth";
 import { isRateLimited } from "@/lib/rate-limit";
+import { db } from "@/lib/firebase-admin";
+import {
+  isValidClientLanguage,
+  normalizeClientLanguage,
+  CLIENT_LANGUAGE_NAME_EN,
+  type ClientLanguage,
+} from "@/lib/client-language";
 
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
@@ -61,11 +68,44 @@ export const POST = withOwner(async (req) => {
   }
 
   try {
-    const { niche, businessDescription } = await req.json();
+    const body = await req.json();
+    const { niche, businessDescription, clientId } = body;
 
     if (!businessDescription || typeof businessDescription !== "string") {
       return NextResponse.json({ error: "Business description required" }, { status: 400 });
     }
+
+    // Idioma del output — el LLM debe responder en el idioma del cliente, NO
+    // en el del businessDescription. Liam suele tipear el contexto en español
+    // pero el sitio del cliente es en hebreo. Prioridad:
+    //   1. body.language (explícito desde el frontend)
+    //   2. hub_clients/{clientId}.language
+    //   3. config/{clientId}.language
+    //   4. default ("he", Israel)
+    let resolvedLanguage: ClientLanguage | undefined;
+    if (isValidClientLanguage(body.language)) {
+      resolvedLanguage = body.language;
+    } else if (body.language !== undefined) {
+      return NextResponse.json(
+        { error: "Idioma inválido. Valores aceptados: he, en, ru, ar, es." },
+        { status: 400 },
+      );
+    } else if (typeof clientId === "string" && clientId.length > 0) {
+      try {
+        const [hubSnap, cfgSnap] = await Promise.all([
+          db.collection("hub_clients").doc(clientId).get(),
+          db.collection("config").doc(clientId).get(),
+        ]);
+        const hubLang = hubSnap.data()?.language;
+        const cfgLang = cfgSnap.data()?.language;
+        if (isValidClientLanguage(hubLang)) resolvedLanguage = hubLang;
+        else if (isValidClientLanguage(cfgLang)) resolvedLanguage = cfgLang;
+      } catch (err) {
+        console.error("[generate-content] failed to read client language:", err);
+      }
+    }
+    const language: ClientLanguage = resolvedLanguage ?? normalizeClientLanguage(undefined);
+    const languageName = CLIENT_LANGUAGE_NAME_EN[language];
 
     const nicheDesc = NICHE_CONTEXT[niche] || "local service business";
     let schema = OUTPUT_SCHEMA;
@@ -78,7 +118,7 @@ export const POST = withOwner(async (req) => {
     const response = await anthropic.messages.create({
       model: "claude-haiku-4-5-20251001",
       max_tokens: 1500,
-      system: `You are a marketing copywriter for a ${nicheDesc} website. Generate compelling, professional website text in the SAME LANGUAGE as the business description provided. Keep texts concise and impactful. Respond ONLY with a JSON object matching this exact schema:\n${schema}`,
+      system: `You are a marketing copywriter for a ${nicheDesc} website. Generate ALL content in ${languageName}. The user's input may be in any language but your output MUST be in ${languageName}. Keep texts concise and impactful. Respond ONLY with a JSON object matching this exact schema:\n${schema}`,
       messages: [
         {
           role: "user",

@@ -46,3 +46,16 @@ export const CLIENT_LANGUAGE_LABELS_ES: Record<ClientLanguage, string> = {
   ar: "Árabe",
   es: "Español",
 };
+
+/**
+ * Nombre del idioma en inglés — para usar en prompts de LLM. Anthropic responde
+ * mejor a "Hebrew" que a "he", y mejor a "Hebrew" que a la palabra hebrea para
+ * "hebreo" (que el modelo podría interpretar como texto, no como instrucción).
+ */
+export const CLIENT_LANGUAGE_NAME_EN: Record<ClientLanguage, string> = {
+  he: "Hebrew",
+  en: "English",
+  ru: "Russian",
+  ar: "Arabic",
+  es: "Spanish",
+};
