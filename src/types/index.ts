@@ -39,6 +39,8 @@ export interface Client {
   contactPhone?: string;
   /** Número de WhatsApp si difiere del contactPhone. */
   contactWhatsapp?: string;
+  /** Idioma del negocio del cliente — controla i18n del template y del LLM. */
+  language?: "he" | "en" | "ru" | "ar" | "es";
 }
 
 export type HealthStatus = "healthy" | "degraded" | "down";

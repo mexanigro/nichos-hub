@@ -1,9 +1,11 @@
 import { NextResponse } from "next/server";
 import { withOwner } from "@/lib/auth";
 import { db } from "@/lib/firebase-admin";
+import { FieldValue } from "firebase-admin/firestore";
 import { getClientHealth } from "@/lib/repos/health";
 import { vercelFetch } from "@/lib/deploy";
 import { validateConfig } from "@/lib/config-validator";
+import { isValidClientLanguage, normalizeClientLanguage } from "@/lib/client-language";
 
 export const GET = withOwner(async (_req, _session, ctx) => {
   const { clientId } = await ctx.params;
@@ -45,6 +47,7 @@ export const GET = withOwner(async (_req, _session, ctx) => {
     resubmissionCount: typeof d.resubmissionCount === "number" ? d.resubmissionCount : 0,
     contactPhone: contact.phone || d["contact.phone"] || "",
     contactWhatsapp: contact.whatsapp || d["contact.whatsapp"] || "",
+    language: normalizeClientLanguage(d.language),
   };
   const internalClientId = d.clientId;
   const clientStatus = d.status || "active";
@@ -182,4 +185,85 @@ export const DELETE = withOwner(async (_req, _session, ctx) => {
   }
 
   return NextResponse.json({ ok: true, orphansCleaned: orphans });
+});
+
+/**
+ * PATCH /api/clients/[clientId]
+ *
+ * Por ahora soporta sólo el cambio de idioma del negocio. Si crece, se puede
+ * extender a un sistema de patches genéricos. Lo importante es que escribe a
+ * hub_clients.language **y** config/{internalClientId}.language en una sola
+ * transacción — el template depende del segundo, el dashboard del primero, y
+ * ambos tienen que mantenerse en sync.
+ *
+ * Logueamos el cambio en hub_status_history con kind="language_change" para
+ * que ConfigHistoryPanel y auditoría dejen rastro de quién y cuándo.
+ */
+export const PATCH = withOwner(async (req, session, ctx) => {
+  const { clientId } = await ctx.params;
+  const body = await req.json().catch(() => ({}));
+
+  if (body.language === undefined) {
+    return NextResponse.json(
+      { error: "Sólo se soporta language en PATCH por ahora." },
+      { status: 400 },
+    );
+  }
+  if (!isValidClientLanguage(body.language)) {
+    return NextResponse.json(
+      { error: "Idioma inválido. Valores aceptados: he, en, ru, ar, es." },
+      { status: 400 },
+    );
+  }
+
+  const hubRef = db.collection("hub_clients").doc(clientId);
+  const hubSnap = await hubRef.get();
+  if (!hubSnap.exists) {
+    return NextResponse.json({ error: "Cliente no encontrado" }, { status: 404 });
+  }
+
+  const hubData = hubSnap.data()!;
+  const previousLanguage = normalizeClientLanguage(hubData.language);
+  const internalClientId: string = hubData.clientId || clientId;
+  const approverEmail = session?.user?.email ?? "owner";
+  const newLanguage = body.language;
+
+  if (previousLanguage === newLanguage) {
+    return NextResponse.json({ ok: true, language: newLanguage, unchanged: true });
+  }
+
+  const now = FieldValue.serverTimestamp();
+  await db.runTransaction(async (tx) => {
+    tx.set(hubRef, { language: newLanguage, updatedAt: now }, { merge: true });
+    tx.set(
+      db.collection("config").doc(internalClientId),
+      { language: newLanguage },
+      { merge: true },
+    );
+  });
+
+  // Audit log: hub_status_history con kind="language_change". Pisamos from/to
+  // con el código de idioma (no la transición de status), pero usamos el mismo
+  // shape para que el panel pueda interpretarlo.
+  try {
+    await db
+      .collection("hub_status_history")
+      .doc(internalClientId)
+      .collection("entries")
+      .add({
+        from: previousLanguage,
+        to: newLanguage,
+        kind: "language_change",
+        changedBy: approverEmail,
+        changedAt: now,
+      });
+  } catch (err) {
+    console.error("[clients PATCH language] audit log failed:", err);
+  }
+
+  return NextResponse.json({
+    ok: true,
+    language: newLanguage,
+    previousLanguage,
+  });
 });
