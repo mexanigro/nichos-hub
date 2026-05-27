@@ -64,11 +64,19 @@ export function validateConfig(config: unknown): ConfigIssue[] {
   }
 
   // ── splash.variant ──
+  // Legacy variants 1-7 keep working unchanged. The 3D Impact system adds
+  // string variants ("impact-scale", "impact-split", "impact-reveal-3d")
+  // that the template's splash router recognises.
   const variant = getNested(config, "splash.variant");
-  if (variant !== undefined && !(typeof variant === "number" && variant >= 1 && variant <= 7)) {
+  const isNumericVariant = typeof variant === "number" && variant >= 1 && variant <= 7;
+  const isImpactVariant =
+    typeof variant === "string" &&
+    (variant === "impact-scale" || variant === "impact-split" || variant === "impact-reveal-3d");
+  if (variant !== undefined && !isNumericVariant && !isImpactVariant) {
     issues.push({
       path: "splash.variant",
-      message: "splash.variant debe ser un numero entre 1 y 7.",
+      message:
+        'splash.variant debe ser un numero 1-7 o uno de "impact-scale" | "impact-split" | "impact-reveal-3d".',
       severity: "error",
     });
   }

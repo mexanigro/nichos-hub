@@ -56,7 +56,8 @@ import {
 } from "./config-editors/portfolio-editor";
 import { MenuEditor, type MenuCategory, type MenuItem as MenuItemConfig } from "./config-editors/menu-editor";
 import { SaveDiffModal } from "./save-diff-modal";
-import { SplashVariantPreview } from "./splash-variant-preview";
+import { SplashVariantPreview, type SplashVariantId } from "./splash-variant-preview";
+import { HeroObjectsEditor, type HeroObjectsMap } from "./config-editors/hero-objects-editor";
 import {
   normalizeBusinessNiche,
   type BusinessNiche,
@@ -95,7 +96,29 @@ type ConfigDoc = {
     depositAmount?: number;
     currency?: string;
   };
-  splash?: { enabled?: boolean; durationMs?: number; variant?: 1 | 2 | 3 | 4 | 5 | 6 | 7 };
+  splash?: {
+    enabled?: boolean;
+    durationMs?: number;
+    variant?:
+      | 1
+      | 2
+      | 3
+      | 4
+      | 5
+      | 6
+      | 7
+      | "impact-scale"
+      | "impact-split"
+      | "impact-reveal-3d";
+    /** impact-scale only — number of bands (3-9). */
+    bandCount?: number;
+    /** impact-scale only — band orientation. */
+    bandDirection?: "horizontal" | "vertical";
+    /** impact-split only — split axis. */
+    splitDirection?: "horizontal" | "vertical";
+    /** impact-reveal-3d only — per-splash ambient particles override. */
+    ambientParticles?: "bubbles" | "smoke" | "sparkles" | "pearls" | "none";
+  };
   adminEmail?: string;
   hero?: { backgroundImage?: string; stats?: { value: string; label: string }[] };
   gallery?: string[];
@@ -111,6 +134,48 @@ type ConfigDoc = {
     experience?: string;
     certifications?: string;
     portfolio?: string[];
+  };
+  heroObjects?: HeroObjectsMap;
+  /** Variant selectors for the 3D Impact rendering system. */
+  heroVariant?: "standard" | "slider" | "hero-3d-object";
+  whyChooseUsVariant?: "standard" | "icon-grid-3d";
+  servicesVariant?: "standard" | "list-with-icons" | "treatment-card-grid" | "card-stack-tabs";
+  galleryVariant?: "standard" | "bento-stats" | "grid-with-filters" | "portrait-bento-3d-cameo";
+  bookingVariant?: "standard" | "form-map-hours-3d";
+  /** Slot used by the active hero variant (primary, secondary, accent, or custom name). */
+  heroObjectSlot?: string;
+  /** Slot used by the gallery cameo variant. */
+  galleryObjectSlot?: string;
+  /** Slot used by the why-choose 3D variant. */
+  whyChooseUsObjectSlot?: string;
+  show3DObject?: boolean;
+  /** Global ambient particles override — when set, takes precedence over per-slot defaults. */
+  globalAmbientParticles?: {
+    enabled?: boolean;
+    type?: "bubbles" | "smoke" | "sparkles" | "pearls" | "none";
+    density?: "subtle" | "medium" | "strong";
+  };
+  /** Variant-specific configs for the 3D Impact system. */
+  variantConfigs?: {
+    servicesCardStackTabs?: {
+      filters?: string[];
+      layout?: "cards-grid" | "stack-carousel";
+    };
+    galleryGridWithFilters?: {
+      filters?: string[];
+      imageTags?: Record<string, string[]>;
+    };
+    galleryBentoStats?: {
+      stats?: { value: string; label: string }[];
+    };
+    galleryPortraitBentoCameo?: {
+      cameoPositions?: string[];
+    };
+    bookingFormMapHours3D?: {
+      showMap?: boolean;
+      showHours?: boolean;
+      formFields?: string[];
+    };
   };
   sections?: {
     services?: { images?: string[] };
@@ -160,6 +225,47 @@ const FEATURES_LIST: FeatureItem[] = [
   { key: "showPortfolio", label: "Portfolio", niches: ["remodelaciones"] },
   { key: "showMenu", label: "Menu", niches: ["cafeteria"] },
 ];
+
+type SplashVariantSpec = {
+  value: SplashVariantId;
+  name: string;
+  desc: string;
+  recommendedFor?: readonly string[];
+  /** "3D" badge in the corner. */
+  badge?: string;
+  /** Variant only works when `heroObjects.primary` has a base image or composition. */
+  requiresHeroPrimary?: boolean;
+};
+
+const SPLASH_VARIANTS: readonly SplashVariantSpec[] = [
+  { value: 1, name: "Classic", desc: "Logo + letras animadas + linea accent", recommendedFor: ["barberia"] },
+  { value: 2, name: "Curtain", desc: "Paneles se abren como un telon" },
+  { value: 3, name: "Pulse", desc: "Onda radial que revela la marca", recommendedFor: ["nails"] },
+  { value: 4, name: "Typewriter", desc: "Nombre escrito caracter a caracter", recommendedFor: ["estetica"] },
+  { value: 5, name: "Vortex", desc: "Particulas orbitales que convergen", recommendedFor: ["tattoo"] },
+  { value: 6, name: "Cafeteria", desc: "Mocha calido + titulo serif en dos lineas", recommendedFor: ["cafeteria"] },
+  { value: 7, name: "Remodelaciones", desc: "Wipe reveal bold + corporate", recommendedFor: ["remodelaciones"] },
+  {
+    value: "impact-scale",
+    name: "Impact Scale",
+    desc: "Bandas que colapsan al centro alrededor del objeto 3D",
+    badge: "3D",
+    requiresHeroPrimary: true,
+  },
+  {
+    value: "impact-split",
+    name: "Impact Split",
+    desc: "Split horizontal/vertical que revela la escena 3D",
+    badge: "3D",
+  },
+  {
+    value: "impact-reveal-3d",
+    name: "Impact Reveal 3D",
+    desc: "Reveal premium con particulas ambientales y rotacion del objeto",
+    badge: "3D",
+    requiresHeroPrimary: true,
+  },
+] as const;
 
 const DAYS = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"] as const;
 const DAY_LABELS: Record<string, string> = {
@@ -561,37 +667,47 @@ export function ClientConfigTab({
 
         <p className="text-[11px] font-medium text-text-muted">Variante de animacion</p>
         <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-          {([
-            { value: 1, name: "Classic", desc: "Logo + letras animadas + linea accent", recommendedFor: ["barberia"] },
-            { value: 2, name: "Curtain", desc: "Paneles se abren como un telon" },
-            { value: 3, name: "Pulse", desc: "Onda radial que revela la marca", recommendedFor: ["nails"] },
-            { value: 4, name: "Typewriter", desc: "Nombre escrito caracter a caracter", recommendedFor: ["estetica"] },
-            { value: 5, name: "Vortex", desc: "Particulas orbitales que convergen", recommendedFor: ["tattoo"] },
-            { value: 6, name: "Cafeteria", desc: "Mocha calido + titulo serif en dos lineas", recommendedFor: ["cafeteria"] },
-            { value: 7, name: "Remodelaciones", desc: "Wipe reveal bold + corporate", recommendedFor: ["remodelaciones"] },
-          ] as const).map(v => {
-            const current = (getNested("splash.variant") as number) ?? 1;
+          {SPLASH_VARIANTS.map(v => {
+            const current = (getNested("splash.variant") as 1 | 2 | 3 | 4 | 5 | 6 | 7 | string) ?? 1;
             const isSelected = current === v.value;
             const currentNiche = normalizeBusinessNiche(config.business?.type || niche);
-            const isRecommended = (v as { recommendedFor?: readonly string[] }).recommendedFor?.includes(currentNiche) ?? false;
+            const isRecommended = v.recommendedFor?.includes(currentNiche) ?? false;
+            const requiresPrimary = v.requiresHeroPrimary;
+            const hasPrimary = Boolean(
+              (config.heroObjects?.primary?.src) ||
+                (config.heroObjects?.primary?.composition?.length ?? 0) > 0,
+            );
+            const isDisabled = requiresPrimary && !hasPrimary;
             return (
               <button
-                key={v.value}
+                key={String(v.value)}
                 type="button"
-                onClick={() => updateNested("splash.variant", v.value)}
+                onClick={() => {
+                  if (isDisabled) return;
+                  updateNested("splash.variant", v.value);
+                }}
+                disabled={isDisabled}
+                title={isDisabled ? "Configura un Hero Object 'primary' arriba para habilitar esta variante 3D" : undefined}
                 className={`group/splash relative rounded-lg border px-3 py-2.5 text-left transition-colors ${
                   isSelected
                     ? "border-accent/40 bg-accent/8 ring-1 ring-accent/20"
-                    : "border-border bg-bg-elevated hover:bg-bg-active"
+                    : isDisabled
+                      ? "cursor-not-allowed border-border/50 bg-bg-elevated/50 opacity-50"
+                      : "border-border bg-bg-elevated hover:bg-bg-active"
                 }`}
               >
                 <div className="flex items-center gap-2">
-                  <div className={`flex h-6 w-6 items-center justify-center rounded-md text-xs font-bold ${
+                  <div className={`flex h-6 w-6 items-center justify-center rounded-md text-[10px] font-bold ${
                     isSelected ? "bg-accent text-white" : "bg-bg-active text-text-muted"
                   }`}>
-                    {v.value}
+                    {typeof v.value === "number" ? v.value : "3D"}
                   </div>
                   <span className={`text-xs font-semibold ${isSelected ? "text-text" : "text-text-secondary"}`}>{v.name}</span>
+                  {v.badge && (
+                    <span className="rounded-full bg-purple-500/15 px-1.5 py-0.5 text-[8px] font-semibold uppercase tracking-wider text-purple-300">
+                      {v.badge}
+                    </span>
+                  )}
                   {isRecommended && (
                     <span className="ml-auto rounded-full bg-accent/15 px-1.5 py-0.5 text-[8px] font-semibold uppercase tracking-wider text-accent">
                       Recom.
@@ -600,10 +716,92 @@ export function ClientConfigTab({
                 </div>
                 <p className="mt-1 pl-8 text-[10px] text-text-muted">{v.desc}</p>
                 <SplashVariantPreview variant={v.value} />
+                {isDisabled && (
+                  <p className="mt-1.5 pl-8 text-[9px] text-amber-300/80">
+                    Necesita un Hero Object &quot;primary&quot;.
+                  </p>
+                )}
               </button>
             );
           })}
         </div>
+
+        {/* Variant-specific configs */}
+        {(() => {
+          const variant = getNested("splash.variant") as string | number | undefined;
+          if (variant === "impact-scale") {
+            return (
+              <div className="space-y-3 rounded-lg border border-purple-500/20 bg-purple-500/5 p-3">
+                <p className="text-[11px] font-semibold text-purple-300">
+                  Config para Impact Scale
+                </p>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <NumberField
+                    label="Bandas (3-9)"
+                    path="splash.bandCount"
+                    value={(getNested("splash.bandCount") as number) ?? 5}
+                    onChange={(p, v) => {
+                      const n = typeof v === "number" ? Math.min(9, Math.max(3, Math.round(v))) : 5;
+                      updateNested(p, n);
+                    }}
+                  />
+                  <SelectField
+                    label="Direccion"
+                    path="splash.bandDirection"
+                    value={(getNested("splash.bandDirection") as string) ?? "vertical"}
+                    onChange={updateNested}
+                    options={[
+                      { value: "vertical", label: "Vertical" },
+                      { value: "horizontal", label: "Horizontal" },
+                    ]}
+                  />
+                </div>
+              </div>
+            );
+          }
+          if (variant === "impact-split") {
+            return (
+              <div className="space-y-3 rounded-lg border border-purple-500/20 bg-purple-500/5 p-3">
+                <p className="text-[11px] font-semibold text-purple-300">
+                  Config para Impact Split
+                </p>
+                <SelectField
+                  label="Direccion del split"
+                  path="splash.splitDirection"
+                  value={(getNested("splash.splitDirection") as string) ?? "horizontal"}
+                  onChange={updateNested}
+                  options={[
+                    { value: "horizontal", label: "Horizontal" },
+                    { value: "vertical", label: "Vertical" },
+                  ]}
+                />
+              </div>
+            );
+          }
+          if (variant === "impact-reveal-3d") {
+            return (
+              <div className="space-y-3 rounded-lg border border-purple-500/20 bg-purple-500/5 p-3">
+                <p className="text-[11px] font-semibold text-purple-300">
+                  Config para Impact Reveal 3D
+                </p>
+                <SelectField
+                  label="Particulas (sobreescribe el slot)"
+                  path="splash.ambientParticles"
+                  value={(getNested("splash.ambientParticles") as string) ?? "sparkles"}
+                  onChange={updateNested}
+                  options={[
+                    { value: "sparkles", label: "Chispas" },
+                    { value: "bubbles", label: "Burbujas" },
+                    { value: "smoke", label: "Humo" },
+                    { value: "pearls", label: "Perlas" },
+                    { value: "none", label: "Ninguna" },
+                  ]}
+                />
+              </div>
+            );
+          }
+          return null;
+        })()}
       </Section>
 
       <GroupBand label="NEGOCIO" hint="quien es y como opera" />

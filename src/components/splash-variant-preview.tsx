@@ -14,9 +14,26 @@
  *   5 Vortex      — orbital particles converge.
  *   6 Cafeteria   — warm mocha, two-line serif title.
  *   7 Remodelaciones — bold wipe reveal.
+ *
+ * 3D Impact additions (Block 1-7.5 of master-template):
+ *   "impact-scale"    — N bands collapse/scale around the hero object.
+ *   "impact-split"    — vertical/horizontal split that reveals the brand.
+ *   "impact-reveal-3d"— premium 3D reveal with ambient particles.
  */
 
-export function SplashVariantPreview({ variant }: { variant: 1 | 2 | 3 | 4 | 5 | 6 | 7 }) {
+export type SplashVariantId =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | "impact-scale"
+  | "impact-split"
+  | "impact-reveal-3d";
+
+export function SplashVariantPreview({ variant }: { variant: SplashVariantId }) {
   return (
     <div
       aria-hidden
@@ -29,6 +46,9 @@ export function SplashVariantPreview({ variant }: { variant: 1 | 2 | 3 | 4 | 5 |
       {variant === 5 && <VortexPreview />}
       {variant === 6 && <CafeteriaPreview />}
       {variant === 7 && <RemodelacionesPreview />}
+      {variant === "impact-scale" && <ImpactScalePreview />}
+      {variant === "impact-split" && <ImpactSplitPreview />}
+      {variant === "impact-reveal-3d" && <ImpactReveal3DPreview />}
     </div>
   );
 }
@@ -108,5 +128,59 @@ function RemodelacionesPreview() {
         BUILD
       </span>
     </>
+  );
+}
+
+/* ── 3D Impact previews ────────────────────────────────────────────────── */
+
+function ImpactScalePreview() {
+  // 5 vertical bands that collapse to the center on hover.
+  return (
+    <div className="relative flex h-full w-full items-center justify-center gap-px">
+      {[0, 1, 2, 3, 4].map((i) => (
+        <span
+          key={i}
+          className="block h-full flex-1 bg-accent/35 transition-all duration-500"
+          style={{
+            transformOrigin: i < 2 ? "left" : i > 2 ? "right" : "center",
+          }}
+        />
+      ))}
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 transition-opacity delay-200 duration-300 group-hover/splash:opacity-100">
+        <span className="h-2 w-2 rounded-full bg-accent shadow-[0_0_8px] shadow-accent/70" />
+      </div>
+      <style>{`
+        .group\\/splash:hover .impact-scale-band-0 { transform: scaleX(0.1); }
+      `}</style>
+    </div>
+  );
+}
+
+function ImpactSplitPreview() {
+  return (
+    <>
+      <div className="absolute inset-x-0 top-0 h-1/2 origin-top bg-bg-active transition-transform duration-500 group-hover/splash:-translate-y-full" />
+      <div className="absolute inset-x-0 bottom-0 h-1/2 origin-bottom bg-bg-active transition-transform duration-500 group-hover/splash:translate-y-full" />
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="h-4 w-4 rounded-full bg-accent/70 shadow-[0_0_10px] shadow-accent/60 transition-transform duration-500 group-hover/splash:scale-110" />
+      </div>
+    </>
+  );
+}
+
+function ImpactReveal3DPreview() {
+  // Premium look: gradient backdrop + rotating square + sparkle particles.
+  return (
+    <div className="relative flex h-full w-full items-center justify-center bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.06),_transparent_60%)]">
+      <div className="relative h-5 w-5 transition-transform duration-700 group-hover/splash:rotate-[20deg] group-hover/splash:scale-110">
+        <div className="absolute inset-0 rounded-sm bg-gradient-to-br from-accent/80 to-accent/30 shadow-[0_4px_12px] shadow-accent/40" />
+        <div className="absolute inset-0 rounded-sm border border-white/30" />
+      </div>
+      {/* sparkles */}
+      <span className="absolute left-3 top-2 block h-1 w-1 rounded-full bg-white/70 opacity-0 transition-opacity delay-100 duration-300 group-hover/splash:opacity-100" />
+      <span className="absolute right-3 top-3 block h-0.5 w-0.5 rounded-full bg-white/80 opacity-0 transition-opacity delay-200 duration-300 group-hover/splash:opacity-100" />
+      <span className="absolute bottom-2 left-4 block h-0.5 w-0.5 rounded-full bg-white/60 opacity-0 transition-opacity delay-300 duration-300 group-hover/splash:opacity-100" />
+      <span className="absolute bottom-3 right-4 block h-1 w-1 rounded-full bg-white/50 opacity-0 transition-opacity delay-150 duration-300 group-hover/splash:opacity-100" />
+    </div>
   );
 }
