@@ -70,6 +70,13 @@ import {
   BOOKING_VARIANTS,
 } from "./config-editors/variant-thumbnails";
 import {
+  ServicesCardStackTabsEditor,
+  GalleryGridWithFiltersEditor,
+  GalleryBentoStatsEditor,
+  GalleryPortraitBentoCameoEditor,
+  BookingFormMapHours3DEditor,
+} from "./config-editors/variant-specific-configs";
+import {
   normalizeBusinessNiche,
   type BusinessNiche,
 } from "@/lib/client-config/services";
@@ -1290,13 +1297,29 @@ export function ClientConfigTab({
             | "treatment-card-grid"
             | "card-stack-tabs";
           return (
-            <SectionVariantSelector
-              label="Servicios"
-              hint="layout de la seccion de servicios"
-              current={servicesVariant}
-              variants={SERVICES_VARIANTS}
-              onChange={(next) => updateNested("servicesVariant", next)}
-            />
+            <div className="space-y-2.5">
+              <SectionVariantSelector
+                label="Servicios"
+                hint="layout de la seccion de servicios"
+                current={servicesVariant}
+                variants={SERVICES_VARIANTS}
+                onChange={(next) => updateNested("servicesVariant", next)}
+              />
+              {servicesVariant === "card-stack-tabs" && (
+                <ServicesCardStackTabsEditor
+                  value={config.variantConfigs?.servicesCardStackTabs}
+                  onChange={(next) =>
+                    setConfig((prev) => ({
+                      ...prev,
+                      variantConfigs: {
+                        ...prev.variantConfigs,
+                        servicesCardStackTabs: next,
+                      },
+                    }))
+                  }
+                />
+              )}
+            </div>
           );
         })()}
 
@@ -1315,6 +1338,7 @@ export function ClientConfigTab({
           const slotConfigured =
             !!slotData &&
             (Boolean(slotData.src) || (slotData.composition?.length ?? 0) > 0);
+          const galleryUrls = (config.gallery as string[] | undefined) ?? [];
           return (
             <div className="space-y-2.5">
               <SectionVariantSelector
@@ -1334,6 +1358,49 @@ export function ClientConfigTab({
                   heroObjects={config.heroObjects}
                 />
               )}
+              {galleryVariant === "bento-stats" && (
+                <GalleryBentoStatsEditor
+                  value={config.variantConfigs?.galleryBentoStats}
+                  onChange={(next) =>
+                    setConfig((prev) => ({
+                      ...prev,
+                      variantConfigs: {
+                        ...prev.variantConfigs,
+                        galleryBentoStats: next,
+                      },
+                    }))
+                  }
+                />
+              )}
+              {galleryVariant === "grid-with-filters" && (
+                <GalleryGridWithFiltersEditor
+                  value={config.variantConfigs?.galleryGridWithFilters}
+                  galleryUrls={galleryUrls}
+                  onChange={(next) =>
+                    setConfig((prev) => ({
+                      ...prev,
+                      variantConfigs: {
+                        ...prev.variantConfigs,
+                        galleryGridWithFilters: next,
+                      },
+                    }))
+                  }
+                />
+              )}
+              {galleryVariant === "portrait-bento-3d-cameo" && (
+                <GalleryPortraitBentoCameoEditor
+                  value={config.variantConfigs?.galleryPortraitBentoCameo}
+                  onChange={(next) =>
+                    setConfig((prev) => ({
+                      ...prev,
+                      variantConfigs: {
+                        ...prev.variantConfigs,
+                        galleryPortraitBentoCameo: next,
+                      },
+                    }))
+                  }
+                />
+              )}
             </div>
           );
         })()}
@@ -1346,13 +1413,29 @@ export function ClientConfigTab({
             | "standard"
             | "form-map-hours-3d";
           return (
-            <SectionVariantSelector
-              label="Reservas / Contacto"
-              hint="layout del bloque de contacto y reservas"
-              current={bookingVariant}
-              variants={BOOKING_VARIANTS}
-              onChange={(next) => updateNested("bookingVariant", next)}
-            />
+            <div className="space-y-2.5">
+              <SectionVariantSelector
+                label="Reservas / Contacto"
+                hint="layout del bloque de contacto y reservas"
+                current={bookingVariant}
+                variants={BOOKING_VARIANTS}
+                onChange={(next) => updateNested("bookingVariant", next)}
+              />
+              {bookingVariant === "form-map-hours-3d" && (
+                <BookingFormMapHours3DEditor
+                  value={config.variantConfigs?.bookingFormMapHours3D}
+                  onChange={(next) =>
+                    setConfig((prev) => ({
+                      ...prev,
+                      variantConfigs: {
+                        ...prev.variantConfigs,
+                        bookingFormMapHours3D: next,
+                      },
+                    }))
+                  }
+                />
+              )}
+            </div>
           );
         })()}
       </Section>
