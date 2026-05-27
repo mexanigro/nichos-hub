@@ -12,7 +12,7 @@ const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://arzac.studio";
  * POST /api/clients/changes-request
  *
  * Liam pide cambios sobre un cliente en pending_review. Hace tres cosas:
- *   1. Escribe el mensaje en provider_messages (sender=provider, kind=changes_request)
+ *   1. Escribe el mensaje en provider_messages (sender=provider, kind=changes_requested)
  *   2. Cambia hub_clients/{docId}.status = "changes_requested" + sync clients/{clientId}
  *   3. Manda email transaccional al cliente con el link al wizard para editar.
  *   4. Audit log en hub_status_history.
@@ -53,7 +53,7 @@ export const POST = withOwner(async (req, session) => {
       businessName: data.businessName || "",
       message: text,
       sender: "provider",
-      kind: "changes_request",
+      kind: "changes_requested",
       status: "new",
       createdAt: FieldValue.serverTimestamp(),
     });
