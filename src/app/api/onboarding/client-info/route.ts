@@ -401,6 +401,7 @@ export async function POST(req: NextRequest) {
           .doc(clientId)
           .collection("entries")
           .add({
+            kind: isResubmit ? "customer_resubmit" : "info_submitted",
             from: previousStatus,
             to: "pending_review",
             changedBy: "customer",
