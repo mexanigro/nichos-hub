@@ -142,6 +142,10 @@ type ConfigDoc = {
   gallery?: string[];
   staff?: StaffMember[];
   services?: Service[];
+  /** Editor-local backup of the custom services list, written when the owner rolls back
+   * to preset mode so the "Restaurar custom" banner can recover the work. Stripped
+   * before save and cleared after a successful save — never persisted. */
+  _customServicesBackup?: Service[] | null;
   testimonials?: Testimonial[];
   owner?: {
     photo?: string;
@@ -394,10 +398,15 @@ export function ClientConfigTab({
     setSaving(true);
     setError("");
     try {
+      // Strip internal-only fields that should never reach Firestore.
+      // `_customServicesBackup` is editor-local state for the "Restaurar custom"
+      // banner — it must not be persisted.
+      const { _customServicesBackup: _ignoredBackup, ...payload } = config;
+      void _ignoredBackup;
       const res = await fetch(`/api/config/${clientId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(config),
+        body: JSON.stringify(payload),
       });
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
@@ -430,8 +439,16 @@ export function ClientConfigTab({
       setIsNew(false);
       setDiffModalOpen(false);
       onSaved?.();
+      // Clear the editor-local custom-services backup once persisted — the save
+      // crystallises the decision, so there's nothing left to "restore".
+      setConfig(prev => {
+        if (prev._customServicesBackup == null) return prev;
+        const { _customServicesBackup: _drop, ...rest } = prev;
+        void _drop;
+        return rest;
+      });
       // Snapshot the saved state so the next diff is computed against ground truth.
-      originalConfigRef.current = config;
+      originalConfigRef.current = payload;
       setTimeout(() => setSaved(false), 3000);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Error al guardar");
