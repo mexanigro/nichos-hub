@@ -40,6 +40,7 @@ import { WhatsAppConfigTab } from "@/components/whatsapp-config-tab";
 import { ClientLeadsTab } from "@/components/client-leads-tab";
 import { CrmImportModal } from "@/components/crm-import-modal";
 import { ConfigHistoryPanel } from "@/components/config-history-panel";
+import { HubStatusHistoryPanel } from "@/components/hub-status-history-panel";
 import { MessagesPanel } from "@/components/messages-panel";
 import { PendingReviewBanner } from "@/components/pending-review-banner";
 import { formatDistanceToNow, format } from "date-fns";
@@ -772,6 +773,11 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
       {/* Config history (audit log) */}
       <div className="mt-6">
         <ConfigHistoryPanel clientId={client.clientId} />
+      </div>
+
+      {/* Status / lifecycle events (audit log paralelo) */}
+      <div className="mt-6">
+        <HubStatusHistoryPanel clientId={client.clientId} />
       </div>
 
       {/* Client Details */}
