@@ -187,6 +187,7 @@ export const PUT = withOwner(async (req: NextRequest, session) => {
           .doc(auditClientId)
           .collection("entries")
           .add({
+            kind: "status_change",
             from: previousStatus,
             to: status,
             changedBy: approverEmail,
