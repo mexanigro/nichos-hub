@@ -4,7 +4,13 @@ import { useState } from "react";
 import { Plus, Users, ChevronDown, ChevronRight } from "lucide-react";
 import { ImageUploadField, ImageUploadListField } from "../image-upload-field";
 import { ReorderControls, moveItem } from "./reorder-controls";
-import { ScheduleEditor, defaultWeeklySchedule, type WeeklySchedule } from "./schedule-editor";
+import {
+  ScheduleEditor,
+  defaultWeeklySchedule,
+  scheduleFromBusinessHours,
+  type WeeklySchedule,
+  type BusinessHours,
+} from "./schedule-editor";
 
 export type StaffSocial = {
   instagram?: string;
@@ -47,10 +53,14 @@ export function StaffEditor({
   value,
   onChange,
   clientId,
+  businessHours,
 }: {
   value: StaffMember[] | undefined;
   onChange: (next: StaffMember[] | undefined) => void;
   clientId: string;
+  /** Business-wide hours from `config.hours`. Passed down so each member's
+   *  schedule editor can offer "Mismo horario que el negocio". */
+  businessHours?: BusinessHours;
 }) {
   const items = value ?? [];
   const [expanded, setExpanded] = useState<Set<number>>(new Set([0]));
@@ -108,15 +118,21 @@ export function StaffEditor({
   }
 
   function add() {
-    // Seed a default schedule so the booking engine has something to work with
+    // Seed a schedule so the booking engine has something to work with
     // until the owner customizes it. Without this, newly added staff members
     // have `undefined` schedule and break availability calc in the template.
+    // Priority: clone first existing member -> business hours -> hardcoded default.
+    const seed: WeeklySchedule = items[0]?.schedule
+      ? JSON.parse(JSON.stringify(items[0].schedule))
+      : businessHours && Object.keys(businessHours).length > 0
+        ? scheduleFromBusinessHours(businessHours)
+        : defaultWeeklySchedule();
     const next: StaffMember[] = [
       ...items,
       {
         name: "",
         id: `miembro-${items.length + 1}`,
-        schedule: defaultWeeklySchedule(),
+        schedule: seed,
       },
     ];
     onChange(next);
@@ -266,6 +282,7 @@ export function StaffEditor({
                 <ScheduleEditor
                   value={m.schedule}
                   onChange={(schedule) => update(i, { schedule })}
+                  businessHours={businessHours}
                 />
 
                 <p className="text-[10px] text-text-muted">

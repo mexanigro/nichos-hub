@@ -1,6 +1,9 @@
 "use client";
 
-import { Plus, Trash2, Coffee } from "lucide-react";
+import { Plus, Trash2, Coffee, Building2 } from "lucide-react";
+
+/** Business hours shape stored at config root (`hours.{day}: {start,end} | null`). */
+export type BusinessHours = Record<string, { start?: string; end?: string } | null> | undefined;
 
 /**
  * Schedule editor for a staff member's weekly schedule.
@@ -51,13 +54,38 @@ export function defaultWeeklySchedule(): WeeklySchedule {
   };
 }
 
+/** Build a WeeklySchedule from the business-wide `hours.{day}` config. */
+export function scheduleFromBusinessHours(hours: BusinessHours): WeeklySchedule {
+  const dayFrom = (day: typeof DAYS[number]): WorkDay => {
+    const h = hours?.[day];
+    if (!h || !h.start || !h.end) return { isOpen: false, hours: { start: "09:00", end: "18:00" }, breaks: [] };
+    return { isOpen: true, hours: { start: h.start, end: h.end }, breaks: [] };
+  };
+  return {
+    monday: dayFrom("monday"),
+    tuesday: dayFrom("tuesday"),
+    wednesday: dayFrom("wednesday"),
+    thursday: dayFrom("thursday"),
+    friday: dayFrom("friday"),
+    saturday: dayFrom("saturday"),
+    sunday: dayFrom("sunday"),
+  };
+}
+
 export function ScheduleEditor({
   value,
   onChange,
+  businessHours,
 }: {
   value: WeeklySchedule | undefined;
   onChange: (next: WeeklySchedule) => void;
+  /** Business-wide hours from `config.hours`. Used by the "copy" override. */
+  businessHours?: BusinessHours;
 }) {
+  const hasBusinessHours =
+    !!businessHours &&
+    typeof businessHours === "object" &&
+    Object.keys(businessHours).length > 0;
   const schedule = value ?? defaultWeeklySchedule();
 
   function updateDay(day: typeof DAYS[number], patch: Partial<WorkDay>) {
@@ -197,14 +225,26 @@ export function ScheduleEditor({
           );
         })}
       </div>
-      <button
-        type="button"
-        onClick={() => onChange(defaultWeeklySchedule())}
-        className="mt-2 inline-flex items-center gap-1 rounded border border-dashed border-border px-2 py-1 text-[10px] text-text-muted hover:border-accent hover:text-accent"
-        title="Restaurar L-V 09-18, sabado y domingo cerrados"
-      >
-        <Plus size={9} /> Restaurar horario por defecto
-      </button>
+      <div className="mt-2 flex flex-wrap items-center gap-1.5">
+        <button
+          type="button"
+          onClick={() => onChange(defaultWeeklySchedule())}
+          className="inline-flex items-center gap-1 rounded border border-dashed border-border px-2 py-1 text-[10px] text-text-muted hover:border-accent hover:text-accent"
+          title="Restaurar L-V 09-18, sabado y domingo cerrados"
+        >
+          <Plus size={9} /> Restaurar horario por defecto
+        </button>
+        {hasBusinessHours && (
+          <button
+            type="button"
+            onClick={() => onChange(scheduleFromBusinessHours(businessHours))}
+            className="inline-flex items-center gap-1 rounded border border-dashed border-border px-2 py-1 text-[10px] text-text-muted hover:border-accent hover:text-accent"
+            title="Copia los dias/horas configurados en Horario del negocio"
+          >
+            <Building2 size={9} /> Mismo horario que el negocio
+          </button>
+        )}
+      </div>
     </div>
   );
 }

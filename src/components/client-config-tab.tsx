@@ -1572,6 +1572,7 @@ export function ClientConfigTab({
             value={config.staff}
             onChange={(next) => setConfig((prev) => ({ ...prev, staff: next }))}
             clientId={clientId}
+            businessHours={config.hours}
           />
         </Section>
       )}
