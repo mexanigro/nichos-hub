@@ -27,6 +27,7 @@ export const POST = withOwner(async (req: NextRequest) => {
       email,
       address,
       instagram,
+      tagline,
       description,
       language = "he",
       adminEmail,
@@ -85,9 +86,17 @@ export const POST = withOwner(async (req: NextRequest) => {
     });
 
     // 3. Create config/{clientId} — remote config for the landing page
+    // tagline (frase corta tipo claim) y description (1-2 párrafos) son cosas
+    // distintas. Antes se metía description en tagline → en el template salía
+    // el párrafo entero como subtítulo. Si el provisioner sólo mandó uno, el
+    // otro queda vacío y Liam lo completa después en /clients/[id]/contenido.
     await db.collection("config").doc(slug).set({
       business: { type: nicheKey, mode, name: businessName.trim() },
-      brand: { name: businessName.trim(), tagline: description || "" },
+      brand: {
+        name: businessName.trim(),
+        tagline: tagline || "",
+        description: description || "",
+      },
       contact: {
         phone: phone || "",
         email: email || "",
