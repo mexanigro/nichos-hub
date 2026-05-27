@@ -99,12 +99,17 @@ export function WhatsAppConfigTab({ clientId }: { clientId: string }) {
 
   async function disconnectCalendar() {
     setDisconnecting(true);
+    setError("");
     try {
-      await fetch(`/api/calendar/${clientId}`, { method: "DELETE" });
+      const res = await fetch(`/api/calendar/${clientId}`, { method: "DELETE" });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || "No pude desconectar el calendar.");
+      }
       setCalendarStatus({ connected: false });
       setConfirmCalendarDisconnect(false);
-    } catch {
-      setError("Error al desconectar Google Calendar");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Error al desconectar Google Calendar");
     } finally {
       setDisconnecting(false);
     }
@@ -556,9 +561,9 @@ export function WhatsAppConfigTab({ clientId }: { clientId: string }) {
               <h2 className="text-sm font-semibold text-red-400">Desconectar Google Calendar</h2>
             </div>
             <p className="mb-3 text-xs text-text-muted">
-              El agente WhatsApp deja de crear eventos en el calendario del cliente. Los eventos
-              existentes no se borran. Para volver a conectar, el cliente tiene que reautorizar
-              via OAuth.
+              Esto borra la conexión <strong className="text-text-secondary">Y revoca el acceso en Google</strong>.
+              Si el cliente quiere reconectar, va a tener que aprobar de nuevo el consent screen.
+              Los eventos existentes en el calendario no se borran.
             </p>
             <div className="flex justify-end gap-2">
               <button
