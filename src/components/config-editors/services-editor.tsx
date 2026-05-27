@@ -39,6 +39,7 @@ type ConfigSlice = {
   landingServicesCount?: number | null;
   features?: Record<string, boolean>;
   business?: { type?: string };
+  payment?: { currency?: string };
   /**
    * Internal backup of the custom services list, written when the owner
    * clicks "Volver al preset". Survives until the next Save so the owner
@@ -73,6 +74,26 @@ type SetConfig = (updater: (prev: ConfigSlice) => ConfigSlice) => void;
  * and clear `visibleServices`/`serviceOverrides` since they no longer apply.
  * "Volver al preset" wipes `config.services` and restores defaults.
  */
+/**
+ * Map an ISO currency code to the symbol Liam shows as a placeholder hint in
+ * the price input. Falls back to "₪" (ILS — the real market) when the config
+ * hasn't picked a currency yet.
+ */
+function currencySymbol(currency: string | undefined): string {
+  switch ((currency ?? "").toLowerCase()) {
+    case "usd":
+      return "$";
+    case "ils":
+      return "₪";
+    case "eur":
+      return "€";
+    case "ars":
+      return "$";
+    default:
+      return "₪";
+  }
+}
+
 export function ServicesEditor({
   niche,
   config,
@@ -86,6 +107,7 @@ export function ServicesEditor({
 }) {
   const customMode = Array.isArray(config.services) && config.services.length > 0;
   const presetServices = getNicheServices(niche);
+  const priceSymbol = currencySymbol(config.payment?.currency);
 
   if (customMode) {
     return (
@@ -118,6 +140,7 @@ export function ServicesEditor({
       config={config}
       setConfig={setConfig}
       presetServices={presetServices}
+      priceSymbol={priceSymbol}
       backup={hasCustomBackup ? customBackup : null}
       onRestoreBackup={() => {
         if (!hasCustomBackup) return;
@@ -181,6 +204,7 @@ function PresetServicesEditor({
   config,
   setConfig,
   presetServices,
+  priceSymbol,
   onSwitchToCustom,
   backup,
   onRestoreBackup,
@@ -190,6 +214,7 @@ function PresetServicesEditor({
   config: ConfigSlice;
   setConfig: SetConfig;
   presetServices: { id: string; label: string }[];
+  priceSymbol: string;
   onSwitchToCustom: () => void;
   backup: Service[] | null;
   onRestoreBackup: () => void;
@@ -375,7 +400,7 @@ function PresetServicesEditor({
                     <PatchInput
                       label="Precio"
                       value={(patch.price as string) ?? ""}
-                      placeholder="$"
+                      placeholder={priceSymbol}
                       onChange={(v) => updateOverrideField(s.id, "price", v)}
                     />
                     <PatchInput
