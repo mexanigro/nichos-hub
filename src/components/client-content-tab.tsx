@@ -10,6 +10,16 @@ import {
   Plus,
   Trash2,
 } from "lucide-react";
+import { ClientLanguageBanner } from "./client-language-banner";
+import { ClientLanguageProvider } from "@/lib/client-language-context";
+import {
+  type ClientLanguage,
+  normalizeClientLanguage,
+} from "@/lib/client-language";
+import {
+  placeholderFor,
+  type PlaceholderKey,
+} from "@/lib/dashboard-placeholders";
 
 interface ContentSection {
   key: string;
@@ -21,7 +31,8 @@ interface ContentField {
   path: string;
   label: string;
   type: "text" | "textarea";
-  placeholder?: string;
+  /** Clave en el dict de placeholders. La UI traduce según el idioma del cliente. */
+  placeholderKey?: PlaceholderKey;
 }
 
 const BASE_SECTIONS: ContentSection[] = [
@@ -29,19 +40,19 @@ const BASE_SECTIONS: ContentSection[] = [
     key: "hero",
     label: "Hero",
     fields: [
-      { path: "hero.titlePrefix", label: "Prefijo del titulo", type: "text", placeholder: "Ej: Bienvenidos a" },
-      { path: "hero.titleHighlight", label: "Titulo destacado", type: "text", placeholder: "Ej: Tu Barberia" },
+      { path: "hero.titlePrefix", label: "Prefijo del titulo", type: "text", placeholderKey: "heroTitlePrefix" },
+      { path: "hero.titleHighlight", label: "Titulo destacado", type: "text", placeholderKey: "heroTitleHighlight" },
       { path: "hero.titleSuffix", label: "Sufijo del titulo", type: "text" },
-      { path: "hero.subtitle", label: "Subtitulo", type: "textarea", placeholder: "Descripcion breve del negocio" },
-      { path: "hero.ctaPrimary", label: "Boton principal (CTA)", type: "text", placeholder: "Reservar ahora" },
-      { path: "hero.ctaSecondary", label: "Boton secundario", type: "text", placeholder: "Ver servicios" },
+      { path: "hero.subtitle", label: "Subtitulo", type: "textarea", placeholderKey: "heroSubtitle" },
+      { path: "hero.ctaPrimary", label: "Boton principal (CTA)", type: "text", placeholderKey: "heroCtaPrimary" },
+      { path: "hero.ctaSecondary", label: "Boton secundario", type: "text", placeholderKey: "heroCtaSecondary" },
     ],
   },
   {
     key: "services",
     label: "Servicios",
     fields: [
-      { path: "sections.services.title", label: "Titulo de seccion", type: "text", placeholder: "Nuestros servicios" },
+      { path: "sections.services.title", label: "Titulo de seccion", type: "text", placeholderKey: "servicesTitle" },
       { path: "sections.services.subtitle", label: "Subtitulo", type: "text" },
     ],
   },
@@ -49,7 +60,7 @@ const BASE_SECTIONS: ContentSection[] = [
     key: "whyChooseUs",
     label: "Por que elegirnos",
     fields: [
-      { path: "sections.whyChooseUs.title", label: "Titulo", type: "text", placeholder: "Por que elegirnos" },
+      { path: "sections.whyChooseUs.title", label: "Titulo", type: "text", placeholderKey: "whyChooseUsTitle" },
       { path: "sections.whyChooseUs.subtitle", label: "Subtitulo", type: "text" },
     ],
   },
@@ -57,7 +68,7 @@ const BASE_SECTIONS: ContentSection[] = [
     key: "team",
     label: "Equipo",
     fields: [
-      { path: "sections.team.title", label: "Titulo", type: "text", placeholder: "Nuestro equipo" },
+      { path: "sections.team.title", label: "Titulo", type: "text", placeholderKey: "teamTitle" },
       { path: "sections.team.subtitle", label: "Subtitulo", type: "text" },
       { path: "sections.team.description", label: "Descripcion", type: "textarea" },
     ],
@@ -66,7 +77,7 @@ const BASE_SECTIONS: ContentSection[] = [
     key: "testimonials",
     label: "Testimonios",
     fields: [
-      { path: "sections.testimonials.title", label: "Titulo", type: "text", placeholder: "Lo que dicen nuestros clientes" },
+      { path: "sections.testimonials.title", label: "Titulo", type: "text", placeholderKey: "testimonialsTitle" },
       { path: "sections.testimonials.subtitle", label: "Subtitulo", type: "text" },
     ],
   },
@@ -74,7 +85,7 @@ const BASE_SECTIONS: ContentSection[] = [
     key: "gallery",
     label: "Galeria",
     fields: [
-      { path: "sections.gallery.title", label: "Titulo", type: "text", placeholder: "Galeria" },
+      { path: "sections.gallery.title", label: "Titulo", type: "text", placeholderKey: "galleryTitle" },
       { path: "sections.gallery.subtitle", label: "Subtitulo", type: "text" },
     ],
   },
@@ -82,7 +93,7 @@ const BASE_SECTIONS: ContentSection[] = [
     key: "location",
     label: "Ubicacion",
     fields: [
-      { path: "sections.location.title", label: "Titulo", type: "text", placeholder: "Donde estamos" },
+      { path: "sections.location.title", label: "Titulo", type: "text", placeholderKey: "locationTitle" },
       { path: "sections.location.subtitle", label: "Subtitulo", type: "text" },
     ],
   },
@@ -90,7 +101,7 @@ const BASE_SECTIONS: ContentSection[] = [
     key: "contact",
     label: "Contacto",
     fields: [
-      { path: "sections.contact.title", label: "Titulo", type: "text", placeholder: "Contactanos" },
+      { path: "sections.contact.title", label: "Titulo", type: "text", placeholderKey: "contactTitle" },
       { path: "sections.contact.subtitle", label: "Subtitulo", type: "text" },
       { path: "sections.contact.description", label: "Descripcion", type: "textarea" },
     ],
@@ -99,8 +110,8 @@ const BASE_SECTIONS: ContentSection[] = [
     key: "booking",
     label: "Reservas",
     fields: [
-      { path: "sections.booking.title", label: "Titulo", type: "text", placeholder: "Reserva tu turno" },
-      { path: "sections.booking.tagline", label: "Tagline", type: "text" },
+      { path: "sections.booking.title", label: "Titulo", type: "text", placeholderKey: "bookingTitle" },
+      { path: "sections.booking.tagline", label: "Tagline", type: "text", placeholderKey: "bookingTagline" },
     ],
   },
 ];
@@ -110,7 +121,7 @@ const CAFETERIA_SECTIONS: ContentSection[] = [
     key: "philosophy",
     label: "Filosofia",
     fields: [
-      { path: "sections.philosophy.title", label: "Titulo", type: "text", placeholder: "Nuestra filosofia" },
+      { path: "sections.philosophy.title", label: "Titulo", type: "text", placeholderKey: "philosophyTitle" },
       { path: "sections.philosophy.subtitle", label: "Subtitulo", type: "text" },
       { path: "sections.philosophy.intro", label: "Introduccion", type: "textarea" },
     ],
@@ -119,7 +130,7 @@ const CAFETERIA_SECTIONS: ContentSection[] = [
     key: "process",
     label: "Proceso",
     fields: [
-      { path: "sections.process.title", label: "Titulo", type: "text", placeholder: "Nuestro proceso" },
+      { path: "sections.process.title", label: "Titulo", type: "text", placeholderKey: "processTitle" },
       { path: "sections.process.subtitle", label: "Subtitulo", type: "text" },
     ],
   },
@@ -127,7 +138,7 @@ const CAFETERIA_SECTIONS: ContentSection[] = [
     key: "ambience",
     label: "Ambiente",
     fields: [
-      { path: "sections.ambience.title", label: "Titulo", type: "text", placeholder: "Nuestro espacio" },
+      { path: "sections.ambience.title", label: "Titulo", type: "text", placeholderKey: "ambienceTitle" },
       { path: "sections.ambience.subtitle", label: "Subtitulo", type: "text" },
     ],
   },
@@ -138,7 +149,7 @@ const REMODELACIONES_SECTIONS: ContentSection[] = [
     key: "portfolio",
     label: "Portfolio",
     fields: [
-      { path: "sections.portfolio.title", label: "Titulo", type: "text", placeholder: "Nuestros proyectos" },
+      { path: "sections.portfolio.title", label: "Titulo", type: "text", placeholderKey: "portfolioTitle" },
       { path: "sections.portfolio.subtitle", label: "Subtitulo", type: "text" },
     ],
   },
@@ -146,7 +157,7 @@ const REMODELACIONES_SECTIONS: ContentSection[] = [
     key: "process",
     label: "Proceso",
     fields: [
-      { path: "sections.process.title", label: "Titulo", type: "text", placeholder: "Como trabajamos" },
+      { path: "sections.process.title", label: "Titulo", type: "text", placeholderKey: "processTitle" },
       { path: "sections.process.subtitle", label: "Subtitulo", type: "text" },
     ],
   },
@@ -156,8 +167,8 @@ const FAQ_SECTION: ContentSection = {
   key: "faq",
   label: "Preguntas Frecuentes (FAQ)",
   fields: [
-    { path: "sections.faq.title", label: "Titulo", type: "text", placeholder: "Preguntas frecuentes" },
-    { path: "sections.faq.subtitle", label: "Subtitulo", type: "text", placeholder: "Lo que nuestros clientes quieren saber" },
+    { path: "sections.faq.title", label: "Titulo", type: "text", placeholderKey: "faqTitle" },
+    { path: "sections.faq.subtitle", label: "Subtitulo", type: "text", placeholderKey: "faqSubtitle" },
   ],
 };
 
@@ -174,7 +185,21 @@ interface FaqItem {
   answer: string;
 }
 
-export function ClientContentTab({ clientId, niche }: { clientId: string; niche: string }) {
+export function ClientContentTab({
+  clientId,
+  niche,
+  language,
+  onLanguageChange,
+  onSaved,
+}: {
+  clientId: string;
+  niche: string;
+  language: ClientLanguage;
+  onLanguageChange?: (next: ClientLanguage) => void;
+  /** Fired once Firestore confirms a successful save. Parent uses this to refresh embedded previews. */
+  onSaved?: () => void;
+}) {
+  const lang = normalizeClientLanguage(language);
   const [content, setContent] = useState<Record<string, string>>({});
   const [faqItems, setFaqItems] = useState<FaqItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -229,6 +254,7 @@ export function ClientContentTab({ clientId, niche }: { clientId: string; niche:
       });
       if (!res.ok) throw new Error("Error al guardar");
       setSaved(true);
+      onSaved?.();
       setTimeout(() => setSaved(false), 3000);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Error al guardar");
@@ -274,7 +300,13 @@ export function ClientContentTab({ clientId, niche }: { clientId: string; niche:
   }
 
   return (
+    <ClientLanguageProvider language={lang}>
     <div className="space-y-4">
+      <ClientLanguageBanner
+        clientId={clientId}
+        language={lang}
+        onChange={onLanguageChange}
+      />
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -303,7 +335,7 @@ export function ClientContentTab({ clientId, niche }: { clientId: string; niche:
         <textarea
           value={businessDesc}
           onChange={e => setBusinessDesc(e.target.value)}
-          placeholder="Describi el negocio en un parrafo: que hacen, quienes son sus clientes, que los diferencia..."
+          placeholder={placeholderFor(lang, "businessDescription")}
           rows={3}
           className="mb-3 w-full rounded-lg border border-border bg-bg-elevated px-3 py-2 text-xs text-text placeholder:text-text-muted/50 focus:border-accent focus:outline-none"
         />
@@ -333,14 +365,16 @@ export function ClientContentTab({ clientId, niche }: { clientId: string; niche:
           </button>
           {expandedSections.has(section.key) && (
             <div className="space-y-3 border-t border-border px-4 pb-4 pt-3">
-              {section.fields.map(field => (
+              {section.fields.map(field => {
+                const ph = field.placeholderKey ? placeholderFor(lang, field.placeholderKey) : undefined;
+                return (
                 <div key={field.path}>
                   <label className="mb-1 block text-[11px] font-medium text-text-muted">{field.label}</label>
                   {field.type === "textarea" ? (
                     <textarea
                       value={content[field.path] || ""}
                       onChange={e => setContent(prev => ({ ...prev, [field.path]: e.target.value }))}
-                      placeholder={field.placeholder}
+                      placeholder={ph}
                       rows={3}
                       className="w-full rounded-lg border border-border bg-bg-elevated px-3 py-2 text-xs text-text placeholder:text-text-muted/50 focus:border-accent focus:outline-none"
                     />
@@ -349,24 +383,34 @@ export function ClientContentTab({ clientId, niche }: { clientId: string; niche:
                       type="text"
                       value={content[field.path] || ""}
                       onChange={e => setContent(prev => ({ ...prev, [field.path]: e.target.value }))}
-                      placeholder={field.placeholder}
+                      placeholder={ph}
                       className="w-full rounded-lg border border-border bg-bg-elevated px-3 py-2 text-xs text-text placeholder:text-text-muted/50 focus:border-accent focus:outline-none"
                     />
                   )}
                 </div>
-              ))}
+                );
+              })}
               {section.key === "faq" && (
-                <FaqEditor items={faqItems} onChange={setFaqItems} />
+                <FaqEditor items={faqItems} onChange={setFaqItems} lang={lang} />
               )}
             </div>
           )}
         </div>
       ))}
     </div>
+    </ClientLanguageProvider>
   );
 }
 
-function FaqEditor({ items, onChange }: { items: FaqItem[]; onChange: (items: FaqItem[]) => void }) {
+function FaqEditor({
+  items,
+  onChange,
+  lang,
+}: {
+  items: FaqItem[];
+  onChange: (items: FaqItem[]) => void;
+  lang: ClientLanguage;
+}) {
   function addItem() {
     onChange([...items, { question: "", answer: "" }]);
   }
@@ -380,6 +424,9 @@ function FaqEditor({ items, onChange }: { items: FaqItem[]; onChange: (items: Fa
     updated[index] = { ...updated[index], [field]: value };
     onChange(updated);
   }
+
+  const questionPh = placeholderFor(lang, "faqQuestion");
+  const answerPh = placeholderFor(lang, "faqAnswer");
 
   return (
     <div className="space-y-3">
@@ -398,14 +445,14 @@ function FaqEditor({ items, onChange }: { items: FaqItem[]; onChange: (items: Fa
               type="text"
               value={item.question}
               onChange={e => updateItem(i, "question", e.target.value)}
-              placeholder={`Pregunta ${i + 1}`}
+              placeholder={questionPh}
               className="w-full rounded border border-border bg-bg px-2.5 py-1.5 text-xs font-medium text-text placeholder:text-text-muted/50 focus:border-accent focus:outline-none"
             />
           </div>
           <textarea
             value={item.answer}
             onChange={e => updateItem(i, "answer", e.target.value)}
-            placeholder="Respuesta..."
+            placeholder={answerPh}
             rows={2}
             className="w-full rounded border border-border bg-bg px-2.5 py-1.5 text-xs text-text placeholder:text-text-muted/50 focus:border-accent focus:outline-none"
           />

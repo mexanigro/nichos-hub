@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, use } from "react";
+import { useCallback, useEffect, useState, use } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import {
@@ -26,6 +26,8 @@ import {
   AlertCircle,
   RotateCcw,
   Phone,
+  Eye,
+  X,
 } from "lucide-react";
 import { HealthDot, ClientStatusBadge } from "@/components/status-badge";
 import { LoadingSpinner } from "@/components/loading";
@@ -33,6 +35,7 @@ import { StatCard } from "@/components/stat-card";
 import { PaymentStatusBadge, PaymentTypeBadge } from "@/components/payment-badges";
 import { ClientConfigTab } from "@/components/client-config-tab";
 import { ClientContentTab } from "@/components/client-content-tab";
+import { ClientSitePreview } from "@/components/client-site-preview";
 import { WhatsAppConfigTab } from "@/components/whatsapp-config-tab";
 import { ClientLeadsTab } from "@/components/client-leads-tab";
 import { CrmImportModal } from "@/components/crm-import-modal";
@@ -138,6 +141,10 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
   const [deleting, setDeleting] = useState(false);
   const [deleteError, setDeleteError] = useState("");
   const [redeploying, setRedeploying] = useState(false);
+  /** Bumped on every successful save in Config/Contenido. ClientSitePreview reads it to schedule an iframe reload. */
+  const [saveTick, setSaveTick] = useState(0);
+  const [mobilePreviewOpen, setMobilePreviewOpen] = useState(false);
+  const handleSaved = useCallback(() => setSaveTick((t) => t + 1), []);
 
   useEffect(() => {
     fetch(`/api/clients/${clientId}`)
@@ -534,12 +541,49 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
         </div>
       )}
 
-      {activeTab === "config" && (
-        <ClientConfigTab clientId={client.clientId} niche={client.niche} />
-      )}
+      {(activeTab === "config" || activeTab === "contenido") && (
+        <div className="grid gap-6 lg:grid-cols-[65fr_35fr] xl:grid-cols-[60fr_40fr]">
+          {/* Editor column */}
+          <div className="min-w-0">
+            {activeTab === "config" && (
+              <ClientConfigTab
+                clientId={client.clientId}
+                niche={client.niche}
+                language={client.language ?? "he"}
+                onLanguageChange={(next) =>
+                  setData((d) => (d ? { ...d, client: { ...d.client, language: next } } : d))
+                }
+                onSaved={handleSaved}
+              />
+            )}
+            {activeTab === "contenido" && (
+              <ClientContentTab
+                clientId={client.clientId}
+                niche={client.niche}
+                language={client.language ?? "he"}
+                onLanguageChange={(next) =>
+                  setData((d) => (d ? { ...d, client: { ...d.client, language: next } } : d))
+                }
+                onSaved={handleSaved}
+              />
+            )}
+          </div>
 
-      {activeTab === "contenido" && (
-        <ClientContentTab clientId={client.clientId} niche={client.niche} />
+          {/* Preview column — sticky on lg+, hidden on smaller (mobile uses floating button below). */}
+          <aside className="hidden lg:block">
+            <div className="sticky top-4">
+              <ClientSitePreview
+                clientId={client.clientId}
+                deployUrl={client.deployUrl}
+                deployStatus={client.deployStatus}
+                status={client.status}
+                saveTick={saveTick}
+                lastDeployAt={client.activationDate ? new Date(client.activationDate).toISOString() : null}
+                className="h-[calc(100vh-7rem)]"
+              />
+            </div>
+          </aside>
+        </div>
       )}
 
       {activeTab === "leads" && (
@@ -832,6 +876,45 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
       </div>
 
       </>)}
+
+      {/* Mobile preview FAB + bottom-sheet — only when editing tabs are active. */}
+      {(activeTab === "config" || activeTab === "contenido") && (
+        <>
+          <button
+            onClick={() => setMobilePreviewOpen(true)}
+            className="fixed bottom-5 right-5 z-40 inline-flex items-center gap-2 rounded-full bg-accent px-4 py-3 text-xs font-semibold text-white shadow-lg shadow-accent/30 transition-colors hover:bg-accent-hover lg:hidden"
+            aria-label="Abrir vista previa del sitio"
+          >
+            <Eye size={14} />
+            Vista previa
+          </button>
+          {mobilePreviewOpen && (
+            <div className="fixed inset-0 z-50 flex flex-col bg-black/80 backdrop-blur-sm lg:hidden">
+              <div className="flex items-center justify-between border-b border-border bg-bg-card px-4 py-3">
+                <span className="text-sm font-semibold text-text">Vista previa</span>
+                <button
+                  onClick={() => setMobilePreviewOpen(false)}
+                  className="rounded-md p-1.5 text-text-muted hover:bg-bg-hover hover:text-text"
+                  aria-label="Cerrar"
+                >
+                  <X size={16} />
+                </button>
+              </div>
+              <div className="flex-1 overflow-hidden p-3">
+                <ClientSitePreview
+                  clientId={client.clientId}
+                  deployUrl={client.deployUrl}
+                  deployStatus={client.deployStatus}
+                  status={client.status}
+                  saveTick={saveTick}
+                  lastDeployAt={client.activationDate ? new Date(client.activationDate).toISOString() : null}
+                  className="h-full"
+                />
+              </div>
+            </div>
+          )}
+        </>
+      )}
 
       {/* Delete Confirmation Modal */}
       {confirmDelete && (

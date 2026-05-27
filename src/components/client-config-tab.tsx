@@ -35,6 +35,13 @@ import {
 } from "lucide-react";
 import { ImageUploadField, ImageUploadListField } from "./image-upload-field";
 import { BrandPackageImport } from "./brand-package-import";
+import { ClientLanguageBanner } from "./client-language-banner";
+import { ClientLanguageProvider } from "@/lib/client-language-context";
+import {
+  type ClientLanguage,
+  normalizeClientLanguage,
+} from "@/lib/client-language";
+import { placeholderFor } from "@/lib/dashboard-placeholders";
 import { BenefitsEditor, type Benefit } from "./config-editors/benefits-editor";
 import { TestimonialsEditor, type Testimonial } from "./config-editors/testimonials-editor";
 import { StaffEditor, type StaffMember } from "./config-editors/staff-editor";
@@ -163,7 +170,21 @@ const DAY_LABELS: Record<string, string> = {
  * Component
  * ══════════════════════════════════════════════════════════════════════════ */
 
-export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: string }) {
+export function ClientConfigTab({
+  clientId,
+  niche,
+  language,
+  onLanguageChange,
+  onSaved,
+}: {
+  clientId: string;
+  niche: string;
+  language: ClientLanguage;
+  onLanguageChange?: (next: ClientLanguage) => void;
+  /** Fired once Firestore confirms a successful save. Parent uses this to refresh embedded previews. */
+  onSaved?: () => void;
+}) {
+  const lang = normalizeClientLanguage(language);
   const [config, setConfig] = useState<ConfigDoc>({});
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -283,6 +304,7 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
       setSaved(true);
       setIsNew(false);
       setDiffModalOpen(false);
+      onSaved?.();
       // Snapshot the saved state so the next diff is computed against ground truth.
       originalConfigRef.current = config;
       setTimeout(() => setSaved(false), 3000);
@@ -338,7 +360,13 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
   }
 
   return (
+    <ClientLanguageProvider language={lang}>
     <div className="space-y-4">
+      <ClientLanguageBanner
+        clientId={clientId}
+        language={lang}
+        onChange={onLanguageChange}
+      />
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -463,9 +491,9 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
         })()}
         <div className="grid gap-3 sm:grid-cols-2">
           <Field label="Nombre del negocio" path="brand.name" value={getNested("brand.name")} onChange={updateNested} />
-          <Field label="Tagline" path="brand.tagline" value={getNested("brand.tagline")} onChange={updateNested} />
+          <Field label="Tagline" path="brand.tagline" value={getNested("brand.tagline")} onChange={updateNested} placeholder={placeholderFor(lang, "tagline")} />
         </div>
-        <Field label="Descripcion (SEO)" path="brand.description" value={getNested("brand.description")} onChange={updateNested} />
+        <Field label="Descripcion (SEO)" path="brand.description" value={getNested("brand.description")} onChange={updateNested} placeholder={placeholderFor(lang, "description")} />
         <div className="grid gap-3 sm:grid-cols-2">
           <ImageUploadField aspectHint="SVG/PNG transparente · cuadrado" label="Logo (fondo claro)" value={(getNested("brand.logo") as string) || ""} onChange={(url) => updateNested("brand.logo", url ?? "")} clientId={clientId} />
           <ImageUploadField aspectHint="SVG/PNG transparente · cuadrado" label="Logo (fondo oscuro)" value={(getNested("brand.logoDark") as string) || ""} onChange={(url) => updateNested("brand.logoDark", url ?? "")} clientId={clientId} />
@@ -1197,7 +1225,7 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
           El chatbot recibe automaticamente los servicios, precios, horarios y contacto del negocio. Este campo es solo para definir el tono y personalidad.
         </p>
         <TextAreaField label="Persona del chatbot (opcional)" path="brand.aiPersona" value={getNested("brand.aiPersona") as string} onChange={updateNested}
-          placeholder="Ej: Responde de forma calida y profesional. Usa emojis moderadamente. Siempre sugiere agendar un turno."
+          placeholder={placeholderFor(lang, "aiPersona")}
         />
       </Section>
 
@@ -1210,6 +1238,7 @@ export function ClientConfigTab({ clientId, niche }: { clientId: string; niche: 
         onConfirm={handleConfirmedSave}
       />
     </div>
+    </ClientLanguageProvider>
   );
 }
 
