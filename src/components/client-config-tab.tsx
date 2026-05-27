@@ -1440,6 +1440,51 @@ export function ClientConfigTab({
         })()}
       </Section>
 
+      {/* ── Global Ambient Particles override ──────────────────────── */}
+      <Section
+        icon={Sparkles} title="Particulas ambientales globales" sectionKey="globalAmbientParticles"
+        expanded={expandedSections.has("globalAmbientParticles")} onToggle={toggleSection}
+      >
+        <p className="text-[11px] text-text-muted">
+          Sobreescribe las particulas configuradas por cada Hero Object para que TODO el sitio use el mismo
+          ambiente (humo en cafeteria, perlas en estetica, etc). Por default <strong>off</strong> — cada slot maneja las suyas.
+        </p>
+        <ToggleField
+          label="Override global activo"
+          path="globalAmbientParticles.enabled"
+          value={(getNested("globalAmbientParticles.enabled") as boolean) ?? false}
+          onChange={updateNested}
+        />
+        {(getNested("globalAmbientParticles.enabled") as boolean) && (
+          <div className="grid gap-3 sm:grid-cols-2">
+            <SelectField
+              label="Tipo de particulas"
+              path="globalAmbientParticles.type"
+              value={(getNested("globalAmbientParticles.type") as string) ?? "none"}
+              onChange={updateNested}
+              options={[
+                { value: "none", label: "Ninguna" },
+                { value: "bubbles", label: "Burbujas" },
+                { value: "smoke", label: "Humo" },
+                { value: "sparkles", label: "Chispas" },
+                { value: "pearls", label: "Perlas" },
+              ]}
+            />
+            <SelectField
+              label="Densidad"
+              path="globalAmbientParticles.density"
+              value={(getNested("globalAmbientParticles.density") as string) ?? "subtle"}
+              onChange={updateNested}
+              options={[
+                { value: "subtle", label: "Sutil" },
+                { value: "medium", label: "Media" },
+                { value: "strong", label: "Fuerte" },
+              ]}
+            />
+          </div>
+        )}
+      </Section>
+
       {/* ── Why Choose Us (mainImage + badge + benefits) ──────────────── */}
       <Section
         icon={Award} title="Por que elegirnos" sectionKey="whyChooseUs"
