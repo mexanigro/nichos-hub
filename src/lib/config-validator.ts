@@ -430,6 +430,116 @@ export function validateConfig(config: unknown): ConfigIssue[] {
     });
   }
 
+  // ══════════════════════════════════════════════════════════════════════
+  // 3D Impact system — slot integrity + composition + variant cross-refs
+  // ══════════════════════════════════════════════════════════════════════
+
+  const heroObjectsRaw = getNested(config, "heroObjects");
+  const heroObjects =
+    heroObjectsRaw && typeof heroObjectsRaw === "object" && !Array.isArray(heroObjectsRaw)
+      ? (heroObjectsRaw as Record<string, unknown>)
+      : null;
+
+  /** A slot is considered "renderable" if it has a base src OR a composition with at least one valid layer. */
+  function slotIsRenderable(slot: string | undefined): boolean {
+    if (!slot || !heroObjects) return false;
+    const data = heroObjects[slot];
+    if (!data || typeof data !== "object") return false;
+    const d = data as Record<string, unknown>;
+    if (typeof d.src === "string" && d.src.trim()) return true;
+    const comp = d.composition;
+    if (Array.isArray(comp)) {
+      return comp.some(
+        (layer) =>
+          layer &&
+          typeof layer === "object" &&
+          typeof (layer as Record<string, unknown>).src === "string" &&
+          ((layer as Record<string, unknown>).src as string).trim() !== "",
+      );
+    }
+    return false;
+  }
+
+  // ── Per-slot composition shape ──
+  if (heroObjects) {
+    for (const [slotName, slotValue] of Object.entries(heroObjects)) {
+      if (!slotValue || typeof slotValue !== "object") continue;
+      const slot = slotValue as Record<string, unknown>;
+      const comp = slot.composition;
+      if (comp === undefined || comp === null) continue;
+      if (!Array.isArray(comp)) {
+        issues.push({
+          path: `heroObjects.${slotName}.composition`,
+          message: "composition debe ser un array.",
+          severity: "error",
+        });
+        continue;
+      }
+      if (comp.length === 0) {
+        issues.push({
+          path: `heroObjects.${slotName}.composition`,
+          message: "El slot tiene un composition vacio. Agrega layers o quitalo para usar la imagen base.",
+          severity: "warning",
+        });
+      }
+      comp.forEach((layer, i) => {
+        if (!layer || typeof layer !== "object") {
+          issues.push({
+            path: `heroObjects.${slotName}.composition[${i}]`,
+            message: "Cada layer debe ser un objeto.",
+            severity: "error",
+          });
+          return;
+        }
+        const l = layer as Record<string, unknown>;
+        if (typeof l.src !== "string" || !l.src.trim()) {
+          issues.push({
+            path: `heroObjects.${slotName}.composition[${i}].src`,
+            message: "El layer no tiene imagen. El template va a ignorarlo.",
+            severity: "error",
+          });
+        }
+      });
+    }
+  }
+
+  // ── Variant cross-references: slot used by an active 3D variant must be renderable ──
+  const heroVariant = getNested(config, "heroVariant");
+  if (heroVariant === "hero-3d-object") {
+    const slot = (getNested(config, "heroObjectSlot") as string | undefined) ?? "primary";
+    if (!slotIsRenderable(slot)) {
+      issues.push({
+        path: `heroObjects.${slot}`,
+        message: `La variante "hero-3d-object" usa el slot "${slot}" pero no tiene imagen aun. La seccion va a caer al fallback legacy.`,
+        severity: "warning",
+      });
+    }
+  }
+
+  const galleryVariant = getNested(config, "galleryVariant");
+  if (galleryVariant === "portrait-bento-3d-cameo") {
+    const slot = (getNested(config, "galleryObjectSlot") as string | undefined) ?? "primary";
+    if (!slotIsRenderable(slot)) {
+      issues.push({
+        path: `heroObjects.${slot}`,
+        message: `La variante "portrait-bento-3d-cameo" usa el slot "${slot}" pero no tiene imagen aun.`,
+        severity: "warning",
+      });
+    }
+  }
+
+  // ── Splash variants that imply a primary slot ──
+  const splashVariantValue = getNested(config, "splash.variant");
+  if (splashVariantValue === "impact-scale" || splashVariantValue === "impact-reveal-3d") {
+    if (!slotIsRenderable("primary")) {
+      issues.push({
+        path: "splash.variant",
+        message: `La splash variant "${splashVariantValue}" necesita heroObjects.primary configurado. Se va a usar la animacion fallback.`,
+        severity: "warning",
+      });
+    }
+  }
+
   // ── hours.* shape ──
   const hours = getNested(config, "hours");
   if (hours && typeof hours === "object") {
