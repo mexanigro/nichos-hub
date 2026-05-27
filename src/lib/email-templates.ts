@@ -177,6 +177,42 @@ ${v.previousMessage ? `<p><strong>Cambios que pediste:</strong></p><blockquote s
   };
 }
 
+interface LiamMessageVars {
+  name?: string;
+  body: string;
+  /** TODO: portal de mensajes para el cliente (aún no existe). Por ahora el sitio. */
+  portalUrl?: string;
+}
+
+/**
+ * Email transaccional cuando Liam (owner) inicia una conversación con el
+ * cliente desde el hub. El cliente recibe el cuerpo del mensaje + CTA para
+ * responder en el portal cuando exista.
+ */
+export function liamMessage(v: LiamMessageVars) {
+  const name = v.name?.split(" ")[0] || "";
+  // TODO: cambiar a la URL del portal de mensajes del cliente cuando esté implementado.
+  const cta = v.portalUrl || `${SITE}`;
+  return {
+    subject: "Mensaje de Arzac Studio",
+    text: [
+      `Hola${name ? " " + name : ""},`,
+      ``,
+      v.body,
+      ``,
+      `Podés responderme entrando al portal:`,
+      cta,
+      ``,
+      `Liam`,
+      `Arzac Studio · ${SITE}`,
+    ].join("\n"),
+    html: `<p>Hola${name ? " " + escape(name) : ""},</p>
+<p style="white-space:pre-wrap">${escape(v.body).replace(/\n/g, "<br>")}</p>
+<p><a href="${cta}" style="display:inline-block;background:#0f0f0f;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600">Responder en el portal →</a></p>
+<p>—<br>Liam<br><a href="${SITE}">Arzac Studio</a></p>`,
+  };
+}
+
 function escape(s: string): string {
   return s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
 }
