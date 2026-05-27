@@ -92,6 +92,7 @@ export const POST = withOwner(async (req, session) => {
         .doc(clientId)
         .collection("entries")
         .add({
+          kind: "changes_requested",
           from: previousStatus,
           to: "changes_requested",
           changedBy: approverEmail,
