@@ -361,8 +361,9 @@ export async function POST(req: NextRequest) {
 
     // Audit log de cambios al config — escribimos siempre que haya snapshot
     // previo, marcado con changedBy="customer" para que el panel lo distinga
-    // del owner. Si es resubmit, agregamos kind="resubmit" para que la UI
-    // muestre el contexto del ciclo "Liam pidió cambios → cliente reenvió".
+    // del owner. Si es resubmit, agregamos kind="customer_resubmit" para que
+    // la UI muestre el contexto del ciclo "Liam pidió cambios → cliente
+    // reenvió". Alineado con hub_status_history (mismo kind para mismo evento).
     if (Object.keys(previousConfig).length > 0) {
       try {
         const afterSnap = await db.collection("config").doc(clientId).get();
@@ -385,7 +386,7 @@ export async function POST(req: NextRequest) {
               changeCount: diff.length,
               truncated: diff.length > 100,
               changes,
-              kind: isResubmit ? "resubmit" : "info_submitted",
+              kind: isResubmit ? "customer_resubmit" : "info_submitted",
             });
         }
       } catch (err) {

@@ -164,7 +164,7 @@ export function ConfigHistoryPanel({ clientId }: { clientId: string }) {
                   <span className="text-xs font-medium text-text">
                     {entry.changeCount} {entry.changeCount === 1 ? "cambio" : "cambios"}
                   </span>
-                  {entry.kind === "resubmit" && (
+                  {(entry.kind === "customer_resubmit" || entry.kind === "resubmit") && (
                     <span className="rounded bg-sky-500/10 px-1.5 py-0.5 text-[9px] font-medium text-sky-300">
                       Reenvío
                     </span>
@@ -182,7 +182,7 @@ export function ConfigHistoryPanel({ clientId }: { clientId: string }) {
                 </button>
                 {actor.type === "customer" && (
                   <div className="border-t border-border bg-sky-500/[0.04] px-3 py-1.5 text-[10px] text-sky-200/80">
-                    {entry.kind === "resubmit"
+                    {entry.kind === "customer_resubmit" || entry.kind === "resubmit"
                       ? "Cliente reenvió la info con cambios. El estado volvió a pending_review."
                       : "El cliente actualizó la información desde el wizard."}
                   </div>
