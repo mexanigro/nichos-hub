@@ -4,6 +4,7 @@ import { FieldValue } from "firebase-admin/firestore";
 import { isRateLimited } from "@/lib/rate-limit";
 import { sendEmail } from "@/lib/email";
 import { demoLeadNotification } from "@/lib/email-templates";
+import { isValidClientLanguage, DEFAULT_CLIENT_LANGUAGE } from "@/lib/client-language";
 
 const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://arzac.studio";
 const OWNER_EMAIL = process.env.OWNER_EMAIL || "website@arzac.studio";
@@ -54,6 +55,12 @@ export async function POST(req: NextRequest) {
   if (!email || !email.includes("@") || email.length < 5) {
     return NextResponse.json({ error: "Email invalido" }, { status: 400 });
   }
+  if (body.locale !== undefined && !isValidClientLanguage(body.locale)) {
+    return NextResponse.json(
+      { error: "Idioma inválido. Valores aceptados: he, en, ru, ar, es." },
+      { status: 400 },
+    );
+  }
 
   const now = FieldValue.serverTimestamp();
   const sinceMs = Date.now() - DEDUP_WINDOW_MS;
@@ -68,7 +75,7 @@ export async function POST(req: NextRequest) {
     instagram: body.instagram || "",
     colors: body.colors || "",
     logoCreate: !!body.logoCreate,
-    locale: body.locale || "es",
+    locale: body.locale || DEFAULT_CLIENT_LANGUAGE,
   };
 
   // Dedup: mismo email + status demo_completed en los ultimos 60min

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { WizardShell } from "@/components/wizard/wizard-shell";
 import { useWizard } from "@/lib/wizard/use-wizard";
@@ -8,6 +8,7 @@ import { clearWizardDraft } from "@/lib/wizard/wizard-storage";
 import { uploadSerializedFiles } from "@/lib/wizard/upload-helpers";
 import { ChangesRequestedBanner } from "@/components/wizard/changes-requested-banner";
 import { useT } from "@/lib/i18n";
+import type { Locale } from "@/lib/i18n";
 import type { StepConfig, WizardData } from "@/lib/wizard/wizard-types";
 import type { SerializedFile } from "@/lib/builder-storage";
 
@@ -61,6 +62,8 @@ interface PaidWizardClientProps {
   isResubmit?: boolean;
   /** Mensaje de Liam con los cambios pedidos. Solo presente si isResubmit. */
   changesRequestedMessage?: string;
+  /** Idioma persistido en hub_clients. Si viene, pisa la deteccion del browser. */
+  initialLocale?: Locale;
 }
 
 export function PaidWizardClient({
@@ -70,11 +73,26 @@ export function PaidWizardClient({
   prefilledData,
   isResubmit = false,
   changesRequestedMessage = "",
+  initialLocale,
 }: PaidWizardClientProps = {}) {
   const params = useSearchParams();
   // Prioridad: props del server (token verificado) → query string → vacio.
   const clientId = initialClientId || params.get("clientId") || "";
-  const { locale, t, isRTL } = useT();
+  const { locale, t, isRTL, setLocale } = useT();
+
+  // Pisar el locale detectado del browser una sola vez con el idioma que ya
+  // está persistido en hub_clients. El cliente puede no tener el header del
+  // browser correcto (recién compró desde la oficina de Liam, browser en EN
+  // pero el negocio es en HE). Sólo lo hacemos una vez para no atrapar al
+  // usuario si elige cambiarlo manualmente desde el LocaleSwitcher.
+  const localeApplied = useRef(false);
+  useEffect(() => {
+    if (localeApplied.current) return;
+    if (initialLocale && initialLocale !== locale) {
+      setLocale(initialLocale);
+    }
+    localeApplied.current = true;
+  }, [initialLocale, locale, setLocale]);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
 

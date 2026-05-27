@@ -5,6 +5,7 @@ import { getPlanAmount, type PlanType } from "@/lib/pricing";
 import { sendEmail } from "@/lib/email";
 import { paymentConfirmed } from "@/lib/email-templates";
 import { signOnboardingToken } from "@/lib/onboarding-token";
+import { normalizeClientLanguage, type ClientLanguage } from "@/lib/client-language";
 
 const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://arzac.studio";
 
@@ -31,6 +32,8 @@ interface LeadDoc {
   paymentStatus?: string;
   hubClientId?: string;
   cardcomTransactionId?: string;
+  /** Idioma del cliente capturado en /onboarding/pago (free/lead → contract lead). */
+  lang?: string;
 }
 
 /**
@@ -129,6 +132,11 @@ export async function processCardcomPayment(
       updatedAt: now,
     });
 
+    // Idioma del cliente: normalizamos contra la whitelist. Default "he" porque
+    // el mercado real está en Israel; si el lead vino del wizard con lang válido,
+    // lo respetamos.
+    const clientLanguage: ClientLanguage = normalizeClientLanguage(data.lang);
+
     // 2. hub_clients: crear o actualizar
     if (!clientSnap.exists) {
       tx.set(clientRef, {
@@ -138,6 +146,7 @@ export async function processCardcomPayment(
         businessName: data.name || "",
         niche: "",
         deployUrl: "",
+        language: clientLanguage,
         plan,
         paymentStatus: "active",
         cardcomToken: verify.token || null,

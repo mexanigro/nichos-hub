@@ -7,6 +7,7 @@ import { sendEmail } from "@/lib/email";
 import { infoSubmittedThanks, changesResubmitted } from "@/lib/email-templates";
 import { verifyOnboardingToken } from "@/lib/onboarding-token";
 import { diffConfig, summarizeValue } from "@/lib/config-diff";
+import { isValidClientLanguage } from "@/lib/client-language";
 
 const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://arzac.studio";
 const OWNER_EMAIL = process.env.OWNER_EMAIL || "website@arzac.studio";
@@ -40,6 +41,18 @@ export async function POST(req: NextRequest) {
         { status: 400 },
       );
     }
+
+    // Idioma del cliente: si viene en el body lo validamos. Si no viene, no
+    // pisamos lo que ya está en hub_clients (lo respeta el resto del flujo).
+    if (body.locale !== undefined && !isValidClientLanguage(body.locale)) {
+      return NextResponse.json(
+        { error: "Idioma inválido. Valores aceptados: he, en, ru, ar, es." },
+        { status: 400 },
+      );
+    }
+    const clientLanguage: string | undefined = isValidClientLanguage(body.locale)
+      ? body.locale
+      : undefined;
 
     // Si el wizard mandó el JWT (defense-in-depth), verificamos que el clientId
     // del body coincida con el del token y que un token resubmit solo aplique
@@ -78,6 +91,13 @@ export async function POST(req: NextRequest) {
       "business.mode": body.businessMode || "team",
       "business.name": body.businessName || "",
     };
+
+    // Persistir idioma del cliente en config (lo lee el template para localizar
+    // labels de servicios, formatos de hora, etc.). Sólo escribimos si vino
+    // válido; defaults van en cardcom-promote.ts al crear el hub_clients.
+    if (clientLanguage) {
+      configUpdate["language"] = clientLanguage;
+    }
 
     // Brand
     if (body.businessName)
@@ -271,6 +291,7 @@ export async function POST(req: NextRequest) {
     };
     if (body.businessName) hubUpdate.businessName = body.businessName;
     if (body.niche) hubUpdate.niche = body.niche;
+    if (clientLanguage) hubUpdate.language = clientLanguage;
     if (body.contact?.email) hubUpdate["contact.email"] = body.contact.email;
     if (body.contact?.whatsapp)
       hubUpdate["contact.whatsapp"] = body.contact.whatsapp;

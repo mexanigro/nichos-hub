@@ -4,6 +4,7 @@ import { verifyOnboardingToken } from "@/lib/onboarding-token";
 import { db } from "@/lib/firebase-admin";
 import { configToWizardData } from "@/lib/wizard/config-to-wizard";
 import type { WizardData } from "@/lib/wizard/wizard-types";
+import { isValidClientLanguage, type ClientLanguage } from "@/lib/client-language";
 
 interface PageProps {
   searchParams: Promise<{ token?: string; clientId?: string }>;
@@ -27,6 +28,9 @@ export default async function OnboardingInfoPage({ searchParams }: PageProps) {
   let prefilledData: Partial<WizardData> | undefined;
   let isResubmit = false;
   let changesRequestedMessage = "";
+  /** Idioma persistido en hub_clients — si está, gana sobre detectLocale() del
+   *  browser. El cliente recién registrado por Cardcom ya tiene language. */
+  let initialLocale: ClientLanguage | undefined;
 
   if (token) {
     const payload = await verifyOnboardingToken(token);
@@ -51,6 +55,10 @@ export default async function OnboardingInfoPage({ searchParams }: PageProps) {
         (hubData.email as string) ||
         ((hubData.contact as { email?: string } | undefined)?.email) ||
         "";
+
+      if (isValidClientLanguage(hubData.language)) {
+        initialLocale = hubData.language;
+      }
 
       // Modo re-edición: status changes_requested + ya tenía info enviada.
       // Si solo hay changes_requested sin infoSubmitted, igual contamos como
@@ -84,6 +92,7 @@ export default async function OnboardingInfoPage({ searchParams }: PageProps) {
         prefilledData={prefilledData}
         isResubmit={isResubmit}
         changesRequestedMessage={changesRequestedMessage}
+        initialLocale={initialLocale}
       />
     </Suspense>
   );

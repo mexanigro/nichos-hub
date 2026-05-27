@@ -4,6 +4,7 @@ import { db } from "@/lib/firebase-admin";
 import { FieldValue } from "firebase-admin/firestore";
 import { buildFeatures, getDefaultTheme, getDefaultSplash, VALID_NICHES, type BusinessNiche } from "@/lib/niche-defaults";
 import { deployToVercel } from "@/lib/deploy";
+import { isValidClientLanguage, DEFAULT_CLIENT_LANGUAGE, type ClientLanguage } from "@/lib/client-language";
 
 function slugify(name: string): string {
   return name
@@ -37,6 +38,16 @@ export const POST = withOwner(async (req: NextRequest) => {
     if (!niche || !VALID_NICHES.includes(niche)) {
       return NextResponse.json({ error: "Nicho invalido" }, { status: 400 });
     }
+    // language es opcional; si no viene cae al default. Si viene, validar.
+    if (body.language !== undefined && !isValidClientLanguage(body.language)) {
+      return NextResponse.json(
+        { error: "Idioma inválido. Valores aceptados: he, en, ru, ar, es." },
+        { status: 400 },
+      );
+    }
+    const lang: ClientLanguage = isValidClientLanguage(language)
+      ? language
+      : DEFAULT_CLIENT_LANGUAGE;
 
     const nicheKey = niche as BusinessNiche;
     const mode = businessMode === "solo" ? "solo" : "team";
@@ -64,7 +75,7 @@ export const POST = withOwner(async (req: NextRequest) => {
         instagram: instagram || "",
       },
       description: description || "",
-      language,
+      language: lang,
       notes: "",
     });
 
@@ -85,6 +96,7 @@ export const POST = withOwner(async (req: NextRequest) => {
       features,
       activeTheme: getDefaultTheme(nicheKey),
       splash: { enabled: true, variant: getDefaultSplash(nicheKey) },
+      language: lang,
     });
 
     // 4. Trigger Vercel deploy (direct call, no self-fetch)
