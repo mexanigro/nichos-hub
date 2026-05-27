@@ -8,6 +8,7 @@ import { infoSubmittedThanks, changesResubmitted } from "@/lib/email-templates";
 import { verifyOnboardingToken } from "@/lib/onboarding-token";
 import { diffConfig, summarizeValue } from "@/lib/config-diff";
 import { isValidClientLanguage } from "@/lib/client-language";
+import { NICHE_SERVICES, type BusinessNiche } from "@/lib/client-config/services";
 
 const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://arzac.studio";
 const OWNER_EMAIL = process.env.OWNER_EMAIL || "website@arzac.studio";
@@ -131,14 +132,48 @@ export async function POST(req: NextRequest) {
     }
 
     // Services
+    //
+    // El template tiene su propio dict de labels por idioma (t.serviceLabels[id]).
+    // Persistimos sólo id + price + duration por servicio. Si el cliente cambió
+    // el label respecto del default del nicho (por ej, dejó "Haircut" como
+    // "Corte masculino"), guardamos `customLabel` para que el template lo
+    // use por encima del dict. Para servicios custom (id="custom-…"), siempre
+    // hay customLabel — no hay default contra qué comparar.
     if (Array.isArray(body.services) && body.services.length > 0) {
+      const defaultsByNiche = (NICHE_SERVICES as Record<BusinessNiche, { id: string; label: string }[]>)[
+        niche as BusinessNiche
+      ];
+      const defaultLabelById = new Map<string, string>();
+      if (defaultsByNiche) {
+        for (const d of defaultsByNiche) defaultLabelById.set(d.id, d.label);
+      }
+
       configUpdate["services"] = body.services.map(
-        (s: { id: string; label: string; price?: string; duration?: string }) => ({
-          id: s.id,
-          label: s.label,
-          price: s.price ? Number(s.price) || 0 : 0,
-          duration: s.duration ? Number(s.duration) || 30 : 30,
-        }),
+        (s: { id: string; label?: string; price?: string; duration?: string }) => {
+          const id = s.id;
+          const submittedLabel = (s.label ?? "").trim();
+          const defaultLabel = defaultLabelById.get(id);
+          const isCustomId = !defaultLabel; // id no presente en defaults del nicho
+          const customLabel =
+            isCustomId
+              ? submittedLabel
+              : submittedLabel && submittedLabel !== defaultLabel
+                ? submittedLabel
+                : "";
+
+          const entry: {
+            id: string;
+            price: number;
+            duration: number;
+            customLabel?: string;
+          } = {
+            id,
+            price: s.price ? Number(s.price) || 0 : 0,
+            duration: s.duration ? Number(s.duration) || 30 : 30,
+          };
+          if (customLabel) entry.customLabel = customLabel;
+          return entry;
+        },
       );
     }
 

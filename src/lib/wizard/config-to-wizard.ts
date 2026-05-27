@@ -1,4 +1,5 @@
 import type { WizardData, WizardNiche } from "./wizard-types";
+import { NICHE_SERVICES, type BusinessNiche } from "@/lib/client-config/services";
 
 /**
  * Convierte un doc Firestore `config/{clientId}` (shape anidado del template)
@@ -59,16 +60,37 @@ export function configToWizardData(
   if (typeof owner.role === "string") out.ownerRole = owner.role;
   if (typeof owner.bio === "string") out.ownerBio = owner.bio;
 
-  // Services — el config los persiste con price:number / duration:number, pero
-  // WizardService usa price:string / duration:string. Convertimos.
+  // Services — el config los persiste con price:number / duration:number, sin
+  // label (sólo id + opcionalmente customLabel). El wizard UI necesita un label
+  // para mostrar al cliente, así que lo resolvemos: customLabel si lo hay, sino
+  // el default del nicho del dict en services.ts, sino el id como fallback.
   if (Array.isArray(config.services)) {
-    out.services = (config.services as Array<Record<string, unknown>>).map((s) => ({
-      id: String(s.id || ""),
-      label: String(s.label || ""),
-      price: s.price !== undefined && s.price !== null ? String(s.price) : "",
-      duration: s.duration !== undefined && s.duration !== null ? String(s.duration) : "",
-      visible: true,
-    }));
+    const nicheRaw = typeof business.type === "string" ? business.type : "";
+    const nicheKey = (nicheRaw === "otro" ? "estetica" : nicheRaw) as BusinessNiche;
+    const defaultsByNiche = (NICHE_SERVICES as Record<BusinessNiche, { id: string; label: string }[]>)[
+      nicheKey
+    ];
+    const defaultLabelById = new Map<string, string>();
+    if (defaultsByNiche) {
+      for (const d of defaultsByNiche) defaultLabelById.set(d.id, d.label);
+    }
+
+    out.services = (config.services as Array<Record<string, unknown>>).map((s) => {
+      const id = String(s.id || "");
+      const customLabel =
+        typeof s.customLabel === "string" && s.customLabel ? s.customLabel : "";
+      // Compat: docs viejos que aún tienen `label` legacy. Mantenemos el valor
+      // como si fuera customLabel para no perder data hasta que pase el backfill.
+      const legacyLabel = typeof s.label === "string" && s.label ? s.label : "";
+      const label = customLabel || legacyLabel || defaultLabelById.get(id) || id;
+      return {
+        id,
+        label,
+        price: s.price !== undefined && s.price !== null ? String(s.price) : "",
+        duration: s.duration !== undefined && s.duration !== null ? String(s.duration) : "",
+        visible: true,
+      };
+    });
   }
 
   // Hours
