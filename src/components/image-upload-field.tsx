@@ -4,6 +4,21 @@ import { useRef, useState, useCallback } from "react";
 import { Upload, X, Link as LinkIcon, Loader2, ImageIcon } from "lucide-react";
 import { compressImage, compressImages } from "@/lib/image-compress";
 
+/** Format a byte count as MB or KB, picking whichever reads naturally. */
+function formatBytes(bytes: number): string {
+  if (bytes >= 1024 * 1024) return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+  return `${Math.round(bytes / 1024)} KB`;
+}
+
+/** Compute a savings string only if compression shaved off more than 10% — otherwise
+ *  the gain is noise (or the file just got renamed) and we keep the UI quiet. */
+function savingsLabel(originalBytes: number, compressedBytes: number): string | null {
+  if (originalBytes <= 0) return null;
+  const saved = Math.round((1 - compressedBytes / originalBytes) * 100);
+  if (saved < 10) return null;
+  return `${formatBytes(originalBytes)} → ${formatBytes(compressedBytes)} · ahorrado ${saved}%`;
+}
+
 /* ═══════════════════════════════════════════════════════════════════════════
  * ImageUploadField — Single image upload with drag-and-drop + URL fallback
  * ═══════════════════════════════════════════════════════════════════════════ */
@@ -24,11 +39,14 @@ export function ImageUploadField({ value, onChange, clientId, label, placeholder
   const [dragOver, setDragOver] = useState(false);
   const [showUrlInput, setShowUrlInput] = useState(false);
   const [error, setError] = useState("");
+  const [savings, setSavings] = useState<string | null>(null);
 
   const uploadFile = useCallback(async (rawFile: File) => {
     setError("");
+    setSavings(null);
     setUploading(true);
     try {
+      const originalBytes = rawFile.size;
       const file = await compressImage(rawFile);
       const form = new FormData();
       form.append("file", file);
@@ -40,6 +58,7 @@ export function ImageUploadField({ value, onChange, clientId, label, placeholder
       }
       if (data.urls?.[0]) {
         onChange(data.urls[0]);
+        setSavings(savingsLabel(originalBytes, file.size));
       }
     } catch {
       setError("Error de red al subir");
@@ -138,6 +157,7 @@ export function ImageUploadField({ value, onChange, clientId, label, placeholder
       </div>
 
       {error && <p className="text-[10px] text-danger">{error}</p>}
+      {!error && savings && <p className="text-[10px] text-text-muted">{savings}</p>}
     </div>
   );
 }
@@ -161,11 +181,13 @@ export function ImageUploadListField({ value, onChange, clientId, label, placeho
   const [uploading, setUploading] = useState(false);
   const [dragOver, setDragOver] = useState(false);
   const [error, setError] = useState("");
+  const [savings, setSavings] = useState<string | null>(null);
   const [showUrlInput, setShowUrlInput] = useState(false);
   const [urlDraft, setUrlDraft] = useState("");
 
   const uploadFiles = useCallback(async (rawFiles: File[]) => {
     setError("");
+    setSavings(null);
     setUploading(true);
     try {
       const imageFiles = rawFiles.filter((f) => f.type.startsWith("image/"));
@@ -174,7 +196,9 @@ export function ImageUploadListField({ value, onChange, clientId, label, placeho
         setUploading(false);
         return;
       }
+      const originalTotal = imageFiles.reduce((acc, f) => acc + f.size, 0);
       const files = await compressImages(imageFiles);
+      const compressedTotal = files.reduce((acc, f) => acc + f.size, 0);
       const form = new FormData();
       for (const f of files) {
         form.append("file", f);
@@ -188,6 +212,7 @@ export function ImageUploadListField({ value, onChange, clientId, label, placeho
       }
       if (data.urls?.length) {
         onChange([...value, ...data.urls]);
+        setSavings(savingsLabel(originalTotal, compressedTotal));
       }
       if (data.errors?.length) {
         setError(data.errors.join("; "));
@@ -316,6 +341,7 @@ export function ImageUploadListField({ value, onChange, clientId, label, placeho
       </div>
 
       {error && <p className="text-[10px] text-danger">{error}</p>}
+      {!error && savings && <p className="text-[10px] text-text-muted">{savings}</p>}
     </div>
   );
 }
