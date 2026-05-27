@@ -32,6 +32,7 @@ export function TestimonialsEditor({
   const items = value ?? [];
   const lang = useClientLanguage();
   const namePh = placeholderFor(lang, "testimonialName");
+  const titlePh = placeholderFor(lang, "testimonialTitle");
   const textPh = placeholderFor(lang, "testimonialText");
 
   function update(index: number, patch: Partial<Testimonial>) {
@@ -107,7 +108,7 @@ export function TestimonialsEditor({
                   type="text"
                   value={t.title}
                   onChange={(e) => update(i, { title: e.target.value })}
-                  placeholder="Clienta hace 2 anos"
+                  placeholder={titlePh}
                   className="w-full rounded border border-border bg-bg-card px-2 py-1 text-xs text-text placeholder:text-text-muted/40 focus:border-accent focus:outline-none"
                 />
               </div>

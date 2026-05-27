@@ -55,6 +55,7 @@ export type PlaceholderKey =
   | "benefitTitle"
   | "benefitDesc"
   | "testimonialName"
+  | "testimonialTitle"
   | "testimonialText"
   | "serviceName"
   | "faqQuestion"
@@ -90,6 +91,7 @@ const en: Dict = {
   benefitTitle: "Ex: 15 years of experience",
   benefitDesc: "One line explaining why it matters",
   testimonialName: "Ex: Maria R.",
+  testimonialTitle: "Client for 2 years",
   testimonialText: "Best service I've had.",
   serviceName: "Service name",
   faqQuestion: "Ex: Do I need to book in advance?",
@@ -124,6 +126,7 @@ const he: Dict = {
   benefitTitle: "לדוגמה: 15 שנות ניסיון",
   benefitDesc: "שורה שמסבירה למה זה חשוב",
   testimonialName: "לדוגמה: מאיה כהן",
+  testimonialTitle: "לקוחה כבר שנתיים",
   testimonialText: "השירות הכי טוב שקיבלתי.",
   serviceName: "שם השירות",
   faqQuestion: "לדוגמה: צריך לתאם תור מראש?",
@@ -158,6 +161,7 @@ const ru: Dict = {
   benefitTitle: "Напр.: 15 лет опыта",
   benefitDesc: "Одна строка, почему это важно",
   testimonialName: "Напр.: Мария Р.",
+  testimonialTitle: "Клиентка уже 2 года",
   testimonialText: "Лучший сервис, что у меня был.",
   serviceName: "Название услуги",
   faqQuestion: "Напр.: Нужно ли записываться заранее?",
@@ -192,6 +196,7 @@ const ar: Dict = {
   benefitTitle: "مثلاً: 15 سنة خبرة",
   benefitDesc: "سطر يشرح لماذا هذا مهم",
   testimonialName: "مثلاً: مريم ر.",
+  testimonialTitle: "زبونة منذ سنتين",
   testimonialText: "أفضل خدمة حصلت عليها.",
   serviceName: "اسم الخدمة",
   faqQuestion: "مثلاً: هل أحتاج للحجز مسبقًا؟",
@@ -226,6 +231,7 @@ const es: Dict = {
   benefitTitle: "Ej: 15 años de experiencia",
   benefitDesc: "Una línea explicando por qué importa",
   testimonialName: "Ej: María R.",
+  testimonialTitle: "Cliente hace 2 años",
   testimonialText: "El mejor servicio que tuve.",
   serviceName: "Nombre del servicio",
   faqQuestion: "Ej: ¿Hace falta sacar turno antes?",
