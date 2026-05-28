@@ -1,68 +1,33 @@
 # Wizard reference images
 
 Mini-screenshots de cómo se ve cada sección del template en cada nicho.
-Se muestran arriba del input correspondiente en `/onboarding/info` y `/onboarding/free`.
+Se muestran arriba del input correspondiente en `/onboarding/info` y
+`/onboarding/free` para que el cliente sepa qué está editando.
 
-## Estructura esperada
+## Estructura
 
 ```
 public/wizard-refs/
   barberia/
+    hero.jpg
     benefits.jpg
     testimonials.jpg
     faq.jpg
-    hero.jpg
-    services.jpg          (futuro)
-    gallery.jpg           (futuro)
-  estetica/
-    ...
-  tattoo/
-    ...
-  nails/
-    ...
-  cafeteria/
-    ...
-  remodelaciones/
-    ...
+  cafeteria/  …
+  estetica/   …
+  nails/      …
+  remodelaciones/ …
+  tattoo/     …
 ```
 
-## Spec de las imágenes
-
-- **Aspecto**: 16:9 horizontal o 4:3.
-- **Ancho**: 800-1200px (se renderiza max-height 220px con object-fit cover).
-- **Peso**: < 150KB por imagen, JPG comprimido.
-- **Contenido**: la sección del template renderizada con datos placeholder
-  realistas del nicho (NO el sitio de un cliente real — datos de muestra).
-- **Idioma**: puede ser cualquiera (se ve como referencia visual, el texto
-  no importa tanto como el layout/style).
+Total: 6 nichos × 4 sections = 24 archivos JPG, < 150 KB c/u, 800×600.
 
 ## Cómo se enchufan
 
-El componente `WizardRefImage` (src/components/wizard/wizard-ref-image.tsx)
-construye el path `/wizard-refs/{niche}/{stepKey}.jpg`. Si la imagen no
-existe (404), no renderiza nada — fallback silencioso. Liam puede subir
-imágenes una por una y van apareciendo.
-
-## Cómo capturarlas
-
-Una opción rápida (para una sesión futura):
-
-1. Levantar cada template de nicho con datos placeholder.
-2. Para cada step que tiene referencia (benefits, testimonials, faq, hero),
-   tomar screenshot de la sección correspondiente.
-3. Comprimir a JPG ~80% calidad, < 150KB.
-4. Subir a `/public/wizard-refs/{niche}/{stepKey}.jpg`.
-
-Un script Playwright que automatice esto requeriría:
-- Acceso a los 5 repos de template (barber, estetica, tattoo, nails, cafe,
-  remodelaciones).
-- Datos placeholder por nicho.
-- Selectores estables de cada sección.
-
-Por ahora, captura manual es más rápida que automatizar — son ~24 imágenes
-en total (6 nichos × 4 steps).
-
-## Steps que aceptan referencia hoy
+`WizardRefImage` (`src/components/wizard/wizard-ref-image.tsx`) construye el
+path `/wizard-refs/{niche}/{stepKey}.jpg`. Si la imagen no existe (404), no
+renderiza nada — fallback silencioso. Las imágenes se pueden agregar o
+regenerar de forma independiente.
 
 | stepKey       | renderizado en          | sección del template |
 |---------------|-------------------------|----------------------|
@@ -71,4 +36,37 @@ en total (6 nichos × 4 steps).
 | `faq`         | step-faq                | FAQ accordion        |
 | `hero`        | step-gallery            | hero background      |
 
-Agregar nuevos: importar `WizardRefImage` en el step y pasar `stepKey`.
+## Regenerar
+
+Las 24 capturas se generan automáticamente con:
+
+```bash
+npm run capture-wizard-refs
+```
+
+El script (`scripts/capture-wizard-refs.mjs`):
+
+1. Spawn Vite dev server del master template (port 5183) — espera la ruta
+   relativa `../Nichos/Barber-shop-template-main`.
+2. Driver Playwright Chromium a viewport 1280×800.
+3. Por cada nicho × sección, navega a la ruta dev-only del master template
+   `/dev/wizard-refs-preview?niche=X&section=Y`, espera
+   `body[data-wizard-ref-ready="1"]`, screenshot.
+4. Redimensiona a 800×600 con sharp (cover, top-anchored), exporta JPG q80
+   mozjpeg.
+5. Tira el server al terminar.
+
+**Requisitos**: `playwright` y `sharp` en devDeps + `npx playwright install
+chromium` la primera vez.
+
+## Master template — código que la ruta usa
+
+- Ruta dev-only en `App.tsx`: `/dev/wizard-refs-preview` (gated by
+  `import.meta.env.DEV`).
+- Componente: `src/components/dev/WizardRefsPreview.tsx`.
+- Helper: `switchSiteToNiche(niche, lang?)` en `src/config/site.ts` —
+  rehace `siteConfig` con el preset del nicho indicado.
+
+Los presets ya contienen datos placeholder realistas (logos, textos,
+benefits, testimonials, FAQ por rubro), así que no se necesita mock data
+adicional — la captura usa el preset directamente.
