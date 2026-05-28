@@ -327,29 +327,32 @@ function buildConfig() {
         heroObjectSlot: "accent",
       },
 
+      // FAQ items are `{ question, answer }` per master-template src/types.ts:640.
+      // Writing `{ q, a }` makes FAQ.tsx:62 crash on `item.question.slice(...)`.
       faq: {
         eyebrow: "FAQ",
         title: "Frequently asked questions",
+        subtitle: "Quick answers to what most clients ask before their first visit.",
         items: [
           {
-            q: "How long does color last?",
-            a: "Most color treatments last 4-6 weeks before needing a refresh. We'll customize a maintenance plan based on your hair.",
+            question: "How long does color last?",
+            answer: "Most color treatments last 4-6 weeks before needing a refresh. We'll customize a maintenance plan based on your hair.",
           },
           {
-            q: "Do you sell professional products?",
-            a: "Yes — we carry the same salon-grade products we use in services. Ask your stylist for personalized recommendations.",
+            question: "Do you sell professional products?",
+            answer: "Yes — we carry the same salon-grade products we use in services. Ask your stylist for personalized recommendations.",
           },
           {
-            q: "Can I bring my own inspiration photos?",
-            a: "Absolutely. We love when clients arrive with references — it helps us understand exactly what you're looking for.",
+            question: "Can I bring my own inspiration photos?",
+            answer: "Absolutely. We love when clients arrive with references — it helps us understand exactly what you're looking for.",
           },
           {
-            q: "How early should I book for events?",
-            a: "We recommend 2-3 weeks in advance for bridal and special events. Same-day appointments depend on stylist availability.",
+            question: "How early should I book for events?",
+            answer: "We recommend 2-3 weeks in advance for bridal and special events. Same-day appointments depend on stylist availability.",
           },
           {
-            q: "What's your cancellation policy?",
-            a: "We ask for 24 hours notice on cancellations to avoid a charge. We understand life happens — just let us know.",
+            question: "What's your cancellation policy?",
+            answer: "We ask for 24 hours notice on cancellations to avoid a charge. We understand life happens — just let us know.",
           },
         ],
       },

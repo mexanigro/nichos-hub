@@ -5,6 +5,25 @@
 **clientId:** `demo-velvet-muse`
 **Dominio objetivo:** `https://demo-velvet-muse.arzac.studio`
 
+## ⚠️ Post-mortem del crash (3ra iteración)
+
+El segundo deploy (post-fix de `ctaPrimary`/variants nested/`VITE_UI_LANGUAGE`) seguía crasheando, pero ahora con la pantalla "Something went wrong" en inglés (confirma que `VITE_UI_LANGUAGE=en` agarró). Causa raíz #3 encontrada montando el template local con `VITE_CLIENT_ID=demo-velvet-muse VITE_ACTIVE_NICHE=estetica VITE_UI_LANGUAGE=en npm run dev` y leyendo console errors desde Chrome MCP:
+
+```
+TypeError: Cannot read properties of undefined (reading 'slice')
+    at FAQ.tsx:97:32
+    at Array.map
+    at FAQ (FAQ.tsx:83:126)
+```
+
+**`FAQ.tsx:62`** itera `data.items.map((item) => ...)` usando `key={\`faq-${item.question.slice(0,30)}-${i}\`}`. El config viejo escribía cada ítem como `{ q, a }` — el contract real (master-template `src/types.ts:640`) es `{ question, answer }`. `item.question` undefined → `.slice` explota → ErrorBoundary atrapa.
+
+**Fix:** `sections.faq.items[].q` → `question`, `sections.faq.items[].a` → `answer` en `provision-velvet-muse.mjs`. Re-corrido. Verificado vivo en `localhost:3000`: 9 347 chars renderizados (vs los 4 line del fallback antes), console errors vacía, title `"Velvet Muse"`.
+
+Inspección del repo del template: los 16 commits de 3D Impact (`2e0d51f`, `91759a9`, `5aa9bbf`, `c5a4b86`, ...) son ancestors de `origin/main` — no falta nada del template, era 100% data shape.
+
+---
+
 ## ⚠️ Post-mortem del crash (2da iteración)
 
 El primer deploy crasheó con la pantalla de error en hebreo. Causa raíz: **dos bugs sumados**.
