@@ -50,6 +50,15 @@ interface DeployParams {
   demoMode?: boolean;
 }
 
+const ALLOWED_UI_LANGUAGES = ["he", "en", "ru", "ar"] as const;
+type UiLanguage = (typeof ALLOWED_UI_LANGUAGES)[number];
+
+function resolveClientLanguage(value: unknown): UiLanguage {
+  if (typeof value !== "string") return "he";
+  const v = value.trim().toLowerCase();
+  return (ALLOWED_UI_LANGUAGES as readonly string[]).includes(v) ? (v as UiLanguage) : "he";
+}
+
 interface DeployResult {
   projectId: string;
   domain: string;
@@ -88,11 +97,21 @@ export async function deployToVercel({ clientId, niche, hubDocId, demoMode = fal
   const projectId = project.id;
 
   // 2. Set env vars
+  // VITE_UI_LANGUAGE is build-time. Pull the client's language from Firestore
+  // so the rendered site (and the ErrorBoundary fallback, which reads the same
+  // locale before tenant config loads) matches the client's locale instead of
+  // defaulting to Hebrew. Falls back to "he" when the field is missing so
+  // older clients keep their original deploy behaviour.
+  const configSnap = await db.collection("config").doc(clientId).get();
+  const configData = configSnap.data() ?? {};
+  const uiLanguage = resolveClientLanguage(configData.language);
+  const adminEmail = configData.adminEmail as string | undefined;
+
   const envVars: Array<{ key: string; value: string; target: string[]; type: string }> = [
     { key: "VITE_CLIENT_ID", value: clientId, target: ["production", "preview"], type: "plain" },
     { key: "VITE_ACTIVE_NICHE", value: niche, target: ["production", "preview"], type: "plain" },
     { key: "VITE_DEMO_MODE", value: demoMode ? "true" : "false", target: ["production", "preview"], type: "plain" },
-    { key: "VITE_UI_LANGUAGE", value: "he", target: ["production", "preview"], type: "plain" },
+    { key: "VITE_UI_LANGUAGE", value: uiLanguage, target: ["production", "preview"], type: "plain" },
   ];
 
   for (const viteKey of Object.keys(FIREBASE_VAR_MAP)) {
@@ -109,8 +128,6 @@ export async function deployToVercel({ clientId, niche, hubDocId, demoMode = fal
   const emailFrom = process.env.EMAIL_FROM_ADDRESS || "noreply@arzac.studio";
   envVars.push({ key: "EMAIL_FROM_ADDRESS", value: emailFrom, target: ["production", "preview"], type: "plain" });
 
-  const configSnap = await db.collection("config").doc(clientId).get();
-  const adminEmail = configSnap.data()?.adminEmail as string | undefined;
   if (adminEmail) {
     envVars.push({ key: "BUSINESS_OWNER_EMAIL", value: adminEmail, target: ["production", "preview"], type: "plain" });
   }

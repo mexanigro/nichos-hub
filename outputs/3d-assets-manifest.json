@@ -1,0 +1,228 @@
+{
+  "generatedAt": "2026-05-28T18:00:40.136Z",
+  "mode": "apply",
+  "bucket": "barbertemplate-madre.firebasestorage.app",
+  "uploadsDir": "C:\\Users\\liama\\AppData\\Roaming\\Claude\\local-agent-mode-sessions\\f03b34ae-3cec-4d2b-9c99-ec5c15172781\\87854f97-98f5-46f8-99cc-e29986ae0409\\agent\\local_ditto_87854f97-98f5-46f8-99cc-e29986ae0409\\uploads",
+  "entries": [
+    {
+      "category": "velvet-muse",
+      "slotName": "hero-primary",
+      "description": "Hero compuesto (pelo + tijera + espejo + bottle + cintas + perlas)",
+      "status": "uploaded",
+      "sourcePath": "C:\\Users\\liama\\AppData\\Roaming\\Claude\\local-agent-mode-sessions\\f03b34ae-3cec-4d2b-9c99-ec5c15172781\\87854f97-98f5-46f8-99cc-e29986ae0409\\agent\\local_ditto_87854f97-98f5-46f8-99cc-e29986ae0409\\uploads\\5d57153a-193863.png",
+      "storagePath": "3d-assets/velvet-muse/hero-primary.png",
+      "publicUrl": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fvelvet-muse%2Fhero-primary.png?alt=media&token=b1b86c8f-8fe6-491f-b1a8-e005b7bae8af",
+      "sizeBytes": 1535087,
+      "uploadedAt": "2026-05-28T18:00:19.641Z"
+    },
+    {
+      "category": "velvet-muse",
+      "slotName": "hero-secondary",
+      "description": "Tijera + peine + pelo + perlas",
+      "status": "uploaded",
+      "sourcePath": "C:\\Users\\liama\\AppData\\Roaming\\Claude\\local-agent-mode-sessions\\f03b34ae-3cec-4d2b-9c99-ec5c15172781\\87854f97-98f5-46f8-99cc-e29986ae0409\\agent\\local_ditto_87854f97-98f5-46f8-99cc-e29986ae0409\\uploads\\f1c0c83d-193864.png",
+      "storagePath": "3d-assets/velvet-muse/hero-secondary.png",
+      "publicUrl": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fvelvet-muse%2Fhero-secondary.png?alt=media&token=c03fdebf-d6f8-48e5-8c41-54d3bab8f653",
+      "sizeBytes": 1731907,
+      "uploadedAt": "2026-05-28T18:00:21.074Z"
+    },
+    {
+      "category": "velvet-muse",
+      "slotName": "accent-bottle",
+      "description": "Bottle + perlas + cinta + pedestal",
+      "status": "uploaded",
+      "sourcePath": "C:\\Users\\liama\\AppData\\Roaming\\Claude\\local-agent-mode-sessions\\f03b34ae-3cec-4d2b-9c99-ec5c15172781\\87854f97-98f5-46f8-99cc-e29986ae0409\\agent\\local_ditto_87854f97-98f5-46f8-99cc-e29986ae0409\\uploads\\7b340e85-193862.png",
+      "storagePath": "3d-assets/velvet-muse/accent-bottle.png",
+      "publicUrl": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fvelvet-muse%2Faccent-bottle.png?alt=media&token=0b23f8fb-388a-4ef8-822e-9f15a5988dbe",
+      "sizeBytes": 1235790,
+      "uploadedAt": "2026-05-28T18:00:22.424Z"
+    },
+    {
+      "category": "velvet-muse",
+      "slotName": "ambient-pearl",
+      "description": "Perla individual (ambient)",
+      "status": "uploaded",
+      "sourcePath": "C:\\Users\\liama\\AppData\\Roaming\\Claude\\local-agent-mode-sessions\\f03b34ae-3cec-4d2b-9c99-ec5c15172781\\87854f97-98f5-46f8-99cc-e29986ae0409\\agent\\local_ditto_87854f97-98f5-46f8-99cc-e29986ae0409\\uploads\\b74250fb-193861.png",
+      "storagePath": "3d-assets/velvet-muse/ambient-pearl.png",
+      "publicUrl": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fvelvet-muse%2Fambient-pearl.png?alt=media&token=fef317b1-050c-434f-93f2-b5e64c586032",
+      "sizeBytes": 1030669,
+      "uploadedAt": "2026-05-28T18:00:23.747Z"
+    },
+    {
+      "category": "velvet-muse",
+      "slotName": "deco-ribbon",
+      "description": "Silk ribbon swoosh",
+      "status": "uploaded",
+      "sourcePath": "C:\\Users\\liama\\AppData\\Roaming\\Claude\\local-agent-mode-sessions\\f03b34ae-3cec-4d2b-9c99-ec5c15172781\\87854f97-98f5-46f8-99cc-e29986ae0409\\agent\\local_ditto_87854f97-98f5-46f8-99cc-e29986ae0409\\uploads\\8b6ae2ee-193885.png",
+      "storagePath": "3d-assets/velvet-muse/deco-ribbon.png",
+      "publicUrl": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fvelvet-muse%2Fdeco-ribbon.png?alt=media&token=fec8c6ba-d6a5-435d-89f2-95b34e085da7",
+      "sizeBytes": 1492557,
+      "uploadedAt": "2026-05-28T18:00:25.110Z"
+    },
+    {
+      "category": "velvet-muse",
+      "slotName": "deco-silk-wave",
+      "description": "Silk wave background (paleta velvet)",
+      "status": "uploaded",
+      "sourcePath": "C:\\Users\\liama\\AppData\\Roaming\\Claude\\local-agent-mode-sessions\\f03b34ae-3cec-4d2b-9c99-ec5c15172781\\87854f97-98f5-46f8-99cc-e29986ae0409\\agent\\local_ditto_87854f97-98f5-46f8-99cc-e29986ae0409\\uploads\\0afaa0fc-193884.png",
+      "storagePath": "3d-assets/velvet-muse/deco-silk-wave.png",
+      "publicUrl": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fvelvet-muse%2Fdeco-silk-wave.png?alt=media&token=5308236c-fbe2-4ecf-8525-f546d41b8f9a",
+      "sizeBytes": 986358,
+      "uploadedAt": "2026-05-28T18:00:26.471Z"
+    },
+    {
+      "category": "velvet-muse",
+      "slotName": "deco-pearls-cluster",
+      "description": "Scattered pearls cluster",
+      "status": "uploaded",
+      "sourcePath": "C:\\Users\\liama\\AppData\\Roaming\\Claude\\local-agent-mode-sessions\\f03b34ae-3cec-4d2b-9c99-ec5c15172781\\87854f97-98f5-46f8-99cc-e29986ae0409\\agent\\local_ditto_87854f97-98f5-46f8-99cc-e29986ae0409\\uploads\\4c2319f3-193886.png",
+      "storagePath": "3d-assets/velvet-muse/deco-pearls-cluster.png",
+      "publicUrl": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fvelvet-muse%2Fdeco-pearls-cluster.png?alt=media&token=181319c8-a974-493d-a9aa-6fa57d917fb2",
+      "sizeBytes": 995452,
+      "uploadedAt": "2026-05-28T18:00:27.755Z"
+    },
+    {
+      "category": "velvet-muse",
+      "slotName": "deco-marble-pedestal",
+      "description": "Marble pedestal",
+      "status": "uploaded",
+      "sourcePath": "C:\\Users\\liama\\AppData\\Roaming\\Claude\\local-agent-mode-sessions\\f03b34ae-3cec-4d2b-9c99-ec5c15172781\\87854f97-98f5-46f8-99cc-e29986ae0409\\agent\\local_ditto_87854f97-98f5-46f8-99cc-e29986ae0409\\uploads\\ec462afc-193883.png",
+      "storagePath": "3d-assets/velvet-muse/deco-marble-pedestal.png",
+      "publicUrl": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fvelvet-muse%2Fdeco-marble-pedestal.png?alt=media&token=8c0433aa-1cbc-476c-975f-3d6e90bd2e0f",
+      "sizeBytes": 1001393,
+      "uploadedAt": "2026-05-28T18:00:29.094Z"
+    },
+    {
+      "category": "aurea",
+      "slotName": "hero-primary",
+      "description": "Hero primary — pending generate",
+      "status": "pending",
+      "sourcePath": null,
+      "storagePath": "3d-assets/aurea/hero-primary.png",
+      "publicUrl": null,
+      "sizeBytes": null,
+      "uploadedAt": null
+    },
+    {
+      "category": "aurea",
+      "slotName": "hero-secondary",
+      "description": "Hero secondary — pending generate",
+      "status": "pending",
+      "sourcePath": null,
+      "storagePath": "3d-assets/aurea/hero-secondary.png",
+      "publicUrl": null,
+      "sizeBytes": null,
+      "uploadedAt": null
+    },
+    {
+      "category": "aurea",
+      "slotName": "accent-device",
+      "description": "Single device close-up (Aurea accent)",
+      "status": "uploaded",
+      "sourcePath": "C:\\Users\\liama\\AppData\\Roaming\\Claude\\local-agent-mode-sessions\\f03b34ae-3cec-4d2b-9c99-ec5c15172781\\87854f97-98f5-46f8-99cc-e29986ae0409\\agent\\local_ditto_87854f97-98f5-46f8-99cc-e29986ae0409\\uploads\\1aaf7b74-193894.png",
+      "storagePath": "3d-assets/aurea/accent-device.png",
+      "publicUrl": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Faurea%2Faccent-device.png?alt=media&token=9f96a52c-128a-4517-8df0-fdd82b29ff36",
+      "sizeBytes": 1346844,
+      "uploadedAt": "2026-05-28T18:00:30.733Z"
+    },
+    {
+      "category": "aurea",
+      "slotName": "deco-silk-wave-beige",
+      "description": "Silk wave beige (Aurea bg)",
+      "status": "uploaded",
+      "sourcePath": "C:\\Users\\liama\\AppData\\Roaming\\Claude\\local-agent-mode-sessions\\f03b34ae-3cec-4d2b-9c99-ec5c15172781\\87854f97-98f5-46f8-99cc-e29986ae0409\\agent\\local_ditto_87854f97-98f5-46f8-99cc-e29986ae0409\\uploads\\5ccb7466-193892.png",
+      "storagePath": "3d-assets/aurea/deco-silk-wave-beige.png",
+      "publicUrl": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Faurea%2Fdeco-silk-wave-beige.png?alt=media&token=77bff517-2874-4604-8282-960e459f48ec",
+      "sizeBytes": 1728945,
+      "uploadedAt": "2026-05-28T18:00:31.960Z"
+    },
+    {
+      "category": "aurea",
+      "slotName": "ambient-droplet",
+      "description": "Floating skincare droplet",
+      "status": "uploaded",
+      "sourcePath": "C:\\Users\\liama\\AppData\\Roaming\\Claude\\local-agent-mode-sessions\\f03b34ae-3cec-4d2b-9c99-ec5c15172781\\87854f97-98f5-46f8-99cc-e29986ae0409\\agent\\local_ditto_87854f97-98f5-46f8-99cc-e29986ae0409\\uploads\\be1c649e-193893.png",
+      "storagePath": "3d-assets/aurea/ambient-droplet.png",
+      "publicUrl": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Faurea%2Fambient-droplet.png?alt=media&token=7d0751d2-a313-4800-8b39-98a9feb5457d",
+      "sizeBytes": 1202697,
+      "uploadedAt": "2026-05-28T18:00:33.237Z"
+    },
+    {
+      "category": "onyx",
+      "slotName": "hero-primary",
+      "description": "Hero primary — pending generate",
+      "status": "pending",
+      "sourcePath": null,
+      "storagePath": "3d-assets/onyx/hero-primary.png",
+      "publicUrl": null,
+      "sizeBytes": null,
+      "uploadedAt": null
+    },
+    {
+      "category": "onyx",
+      "slotName": "hero-secondary",
+      "description": "Hero secondary — pending generate",
+      "status": "pending",
+      "sourcePath": null,
+      "storagePath": "3d-assets/onyx/hero-secondary.png",
+      "publicUrl": null,
+      "sizeBytes": null,
+      "uploadedAt": null
+    },
+    {
+      "category": "onyx",
+      "slotName": "accent-bottle",
+      "description": "Ink bottle (Onyx accent)",
+      "status": "uploaded",
+      "sourcePath": "C:\\Users\\liama\\AppData\\Roaming\\Claude\\local-agent-mode-sessions\\f03b34ae-3cec-4d2b-9c99-ec5c15172781\\87854f97-98f5-46f8-99cc-e29986ae0409\\agent\\local_ditto_87854f97-98f5-46f8-99cc-e29986ae0409\\uploads\\b1ef6d96-193891.png",
+      "storagePath": "3d-assets/onyx/accent-bottle.png",
+      "publicUrl": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fonyx%2Faccent-bottle.png?alt=media&token=3d01b3b0-9389-4020-bc9f-d03a92e86aba",
+      "sizeBytes": 1353512,
+      "uploadedAt": "2026-05-28T18:00:34.603Z"
+    },
+    {
+      "category": "onyx",
+      "slotName": "bg-stone-texture",
+      "description": "Dark stone texture (Onyx bg)",
+      "status": "uploaded",
+      "sourcePath": "C:\\Users\\liama\\AppData\\Roaming\\Claude\\local-agent-mode-sessions\\f03b34ae-3cec-4d2b-9c99-ec5c15172781\\87854f97-98f5-46f8-99cc-e29986ae0409\\agent\\local_ditto_87854f97-98f5-46f8-99cc-e29986ae0409\\uploads\\695c9c08-193899.png",
+      "storagePath": "3d-assets/onyx/bg-stone-texture.png",
+      "publicUrl": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fonyx%2Fbg-stone-texture.png?alt=media&token=17fb3dbd-bdfb-4617-8b60-33e659755b92",
+      "sizeBytes": 3221990,
+      "uploadedAt": "2026-05-28T18:00:36.095Z"
+    },
+    {
+      "category": "onyx",
+      "slotName": "ambient-ink-droplets",
+      "description": "Floating ink droplets",
+      "status": "uploaded",
+      "sourcePath": "C:\\Users\\liama\\AppData\\Roaming\\Claude\\local-agent-mode-sessions\\f03b34ae-3cec-4d2b-9c99-ec5c15172781\\87854f97-98f5-46f8-99cc-e29986ae0409\\agent\\local_ditto_87854f97-98f5-46f8-99cc-e29986ae0409\\uploads\\93c6e153-193908.png",
+      "storagePath": "3d-assets/onyx/ambient-ink-droplets.png",
+      "publicUrl": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fonyx%2Fambient-ink-droplets.png?alt=media&token=1fc9200d-f3d2-4000-88bd-ad0ae156b0d8",
+      "sizeBytes": 1003996,
+      "uploadedAt": "2026-05-28T18:00:37.446Z"
+    },
+    {
+      "category": "shared",
+      "slotName": "ambient-smoke",
+      "description": "Smoke wisps",
+      "status": "uploaded",
+      "sourcePath": "C:\\Users\\liama\\AppData\\Roaming\\Claude\\local-agent-mode-sessions\\f03b34ae-3cec-4d2b-9c99-ec5c15172781\\87854f97-98f5-46f8-99cc-e29986ae0409\\agent\\local_ditto_87854f97-98f5-46f8-99cc-e29986ae0409\\uploads\\5d67a770-193887.png",
+      "storagePath": "3d-assets/shared/ambient-smoke.png",
+      "publicUrl": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fshared%2Fambient-smoke.png?alt=media&token=ac738610-cf8e-4145-8057-92ece67e8705",
+      "sizeBytes": 1264224,
+      "uploadedAt": "2026-05-28T18:00:38.782Z"
+    },
+    {
+      "category": "shared",
+      "slotName": "ambient-light-rays",
+      "description": "Light rays / sun flare",
+      "status": "uploaded",
+      "sourcePath": "C:\\Users\\liama\\AppData\\Roaming\\Claude\\local-agent-mode-sessions\\f03b34ae-3cec-4d2b-9c99-ec5c15172781\\87854f97-98f5-46f8-99cc-e29986ae0409\\agent\\local_ditto_87854f97-98f5-46f8-99cc-e29986ae0409\\uploads\\4f739d71-193890.png",
+      "storagePath": "3d-assets/shared/ambient-light-rays.png",
+      "publicUrl": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fshared%2Fambient-light-rays.png?alt=media&token=d4afed58-5ac1-4510-8be4-cf7892840515",
+      "sizeBytes": 1073586,
+      "uploadedAt": "2026-05-28T18:00:40.135Z"
+    }
+  ]
+}
