@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test:client-config": "node --experimental-strip-types --test src/lib/client-config/services.test.ts"
+    "test:client-config": "node --experimental-strip-types --test src/lib/client-config/services.test.ts",
+    "capture-wizard-refs": "node scripts/capture-wizard-refs.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.95.1",
@@ -33,7 +34,9 @@
     "@types/react-dom": "^19.2.3",
     "eslint": "^9.39.4",
     "eslint-config-next": "^16.2.5",
+    "playwright": "^1.60.0",
     "postcss": "^8.5.14",
+    "sharp": "^0.34.5",
     "tailwindcss": "^4.2.4",
     "typescript": "^6.0.3"
   }
