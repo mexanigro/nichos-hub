@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <script type="module">import { injectIntoGlobalHook } from "/@react-refresh";
+injectIntoGlobalHook(window);
+window.$RefreshReg$ = () => {};
+window.$RefreshSig$ = () => (type) => type;</script>
+
+    <script type="module" src="/@vite/client"></script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Evita flash claro: escritorio siempre dark; móvil respeta vite-ui-theme -->
+    <script>
+      (function () {
+        try {
+          var desktop = window.matchMedia("(min-width: 768px)").matches;
+          var stored = localStorage.getItem("vite-ui-theme");
+          var root = document.documentElement;
+          root.classList.remove("light", "dark");
+          if (desktop || stored !== "light") {
+            root.classList.add("dark");
+          } else {
+            root.classList.add("light");
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <!--
+    ╔══════════════════════════════════════════════════════════════════════════════╗
+    ║  MASTER TEMPLATE — DEFAULT SEO & SOCIAL PREVIEW                               ║
+    ║  Static placeholders below. At runtime, `src/hooks/useSEO.ts` overwrites      ║
+    ║  title, description, and Open Graph tags from `siteConfig.brand`.            ║
+    ╚══════════════════════════════════════════════════════════════════════════════╝
+    -->
+
+    <!-- Favicon: runtime-set by useSEO.ts from brand.faviconEmoji; generic fallback below -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23c084fc'/><text x='16' y='23' font-size='18' text-anchor='middle' fill='white' font-family='system-ui'>%E2%9C%A8</text></svg>" type="image/svg+xml" />
+
+    <title>Aesthetic Studio — The science of natural beauty</title>
+    <meta name="robots" content="index, follow" />
+    <meta name="description" content="A premier medical aesthetics clinic specializing in injectable treatments, advanced facials, and skin rejuvenation." />
+
+    <!-- Open Graph & Twitter — static fallbacks; useSEO.ts sets absolute URLs at runtime -->
+    <meta property="og:title" content="Aesthetic Studio — The science of natural beauty" />
+    <meta property="og:description" content="A premier medical aesthetics clinic specializing in injectable treatments, advanced facials, and skin rejuvenation." />
+    <meta property="og:url" content="/" />
+    <meta property="og:locale" content="en_US" />
+    <link rel="canonical" href="/" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1552693673-1bf958298935?auto=format&amp;fit=crop&amp;q=80&amp;w=1200" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:type" content="website" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Aesthetic Studio — The science of natural beauty" />
+    <meta name="twitter:description" content="A premier medical aesthetics clinic specializing in injectable treatments, advanced facials, and skin rejuvenation." />
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1552693673-1bf958298935?auto=format&amp;fit=crop&amp;q=80&amp;w=1200" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

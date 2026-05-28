@@ -5,6 +5,35 @@
 **clientId:** `demo-velvet-muse`
 **Dominio objetivo:** `https://demo-velvet-muse.arzac.studio`
 
+## ✅ Resolución (4ta iteración) — sitio LIVE
+
+Verificado en `https://demo-velvet-muse.arzac.studio/?nocache=true` con Chrome MCP:
+- Navbar renderiza completo: "Services / Team / Why Us / Gallery / Stories / Contact"
+- 9 regiones (secciones) dentro de `<main>`
+- Footer con "Hair that feels like you" + "Velvet Muse" branding
+- Botón "Book a consultation"
+- **Sin ErrorBoundary, sin "Something went wrong"**
+
+### Por qué seguía crasheando entre rondas
+Cronología del data drift:
+
+1. Round 2 (mi turno previo): commiteé `686582a` (FAQ items: `q→question`, `a→answer`) **LOCAL ONLY** — el script en `origin/main` quedó con `{q, a}`.
+2. Liam pulled `origin/main` (=`d35e092`), re-corrió `node scripts/provision-velvet-muse.mjs` → Firestore se sobrescribió con la versión vieja `{q, a}`.
+3. Vercel redeploy → cliente browser fetcheó el nuevo bundle pero seguía leyendo el mismo Firestore broken.
+4. Round 4 (esta): re-corrí la versión local con FAQ fix → Firestore correcto.
+5. Refresh prod → render OK.
+
+### Acción pendiente para Liam
+**Pushear el commit `686582a`** a `origin/main`. El working tree ya lo tiene (1 ahead of origin). Es solo el cambio al provision script para que la próxima vez que alguien re-corra `node scripts/provision-velvet-muse.mjs` desde una rama limpia, NO vuelva a romper Firestore con `{q, a}`.
+
+```bash
+git push origin main   # de Nichos-hub
+```
+
+No requiere redeploy de Vercel ni del hub Railway — el commit afecta solo el script de provisioning local.
+
+---
+
 ## ⚠️ Post-mortem del crash (3ra iteración)
 
 El segundo deploy (post-fix de `ctaPrimary`/variants nested/`VITE_UI_LANGUAGE`) seguía crasheando, pero ahora con la pantalla "Something went wrong" en inglés (confirma que `VITE_UI_LANGUAGE=en` agarró). Causa raíz #3 encontrada montando el template local con `VITE_CLIENT_ID=demo-velvet-muse VITE_ACTIVE_NICHE=estetica VITE_UI_LANGUAGE=en npm run dev` y leyendo console errors desde Chrome MCP:
