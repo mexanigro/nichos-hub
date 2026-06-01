@@ -17,10 +17,20 @@ import {
   CalendarDays,
   Unlink,
   Loader2,
+  Activity,
+  UserPlus,
 } from "lucide-react";
 import type { WhatsAppConfig } from "@/types";
+import { WhatsAppTemplatesSection } from "./whatsapp-templates-section";
 
 type ConfigState = Partial<WhatsAppConfig>;
+
+interface AgentStatus {
+  online: boolean;
+  status: "online" | "not_configured" | "error" | "down";
+  label: string;
+  description?: string;
+}
 
 export function WhatsAppConfigTab({ clientId }: { clientId: string }) {
   const [config, setConfig] = useState<ConfigState>({});
@@ -45,6 +55,12 @@ export function WhatsAppConfigTab({ clientId }: { clientId: string }) {
   const [issues, setIssues] = useState<Array<{ path: string; message: string; severity: "error" | "warning" }>>([]);
   const [testing, setTesting] = useState(false);
   const [testResult, setTestResult] = useState<{ ok: boolean; checks: Array<{ key: string; ok: boolean; message: string }> } | null>(null);
+  const [agentStatus, setAgentStatus] = useState<AgentStatus | null>(null);
+  const [agentStatusLoading, setAgentStatusLoading] = useState(true);
+
+  // Leads from dashboard (Fix 4)
+  const [newLeadPhone, setNewLeadPhone] = useState("");
+  const [newLeadName, setNewLeadName] = useState("");
 
   const toggleSection = (key: string) =>
     setExpandedSections((prev) => {
@@ -92,10 +108,23 @@ export function WhatsAppConfigTab({ clientId }: { clientId: string }) {
     }
   }, [clientId]);
 
+  const fetchAgentStatus = useCallback(async () => {
+    try {
+      const res = await fetch(`/api/whatsapp-config/${clientId}/status`);
+      const data = await res.json();
+      setAgentStatus(data.agent);
+    } catch {
+      setAgentStatus({ online: false, status: "down", label: "Error", description: "No se pudo consultar el status" });
+    } finally {
+      setAgentStatusLoading(false);
+    }
+  }, [clientId]);
+
   useEffect(() => {
     fetchConfig();
     fetchCalendar();
-  }, [fetchConfig, fetchCalendar]);
+    fetchAgentStatus();
+  }, [fetchConfig, fetchCalendar, fetchAgentStatus]);
 
   async function disconnectCalendar() {
     setDisconnecting(true);
@@ -206,6 +235,22 @@ export function WhatsAppConfigTab({ clientId }: { clientId: string }) {
     );
   }
 
+  function addLead() {
+    const phone = newLeadPhone.trim();
+    const name = newLeadName.trim();
+    if (!phone || !name) return;
+    const current = (config.leads || {}) as Record<string, string>;
+    updateNested("leads", { ...current, [phone]: name });
+    setNewLeadPhone("");
+    setNewLeadName("");
+  }
+
+  function removeLead(phone: string) {
+    const current = { ...((config.leads || {}) as Record<string, string>) };
+    delete current[phone];
+    updateNested("leads", current);
+  }
+
   if (loading) {
     return (
       <div className="flex items-center justify-center py-12">
@@ -257,6 +302,40 @@ export function WhatsAppConfigTab({ clientId }: { clientId: string }) {
           {saving ? "Guardando..." : saved ? "Guardado" : "Guardar"}
         </button>
       </div>
+
+      {/* Agent Status Banner (Fix 2) */}
+      {!agentStatusLoading && agentStatus && (
+        <div className={`flex items-center gap-3 rounded-xl border px-4 py-3 ${
+          agentStatus.status === "online"
+            ? "border-green-500/20 bg-green-500/5"
+            : agentStatus.status === "not_configured"
+              ? "border-amber-500/20 bg-amber-500/5"
+              : "border-red-500/20 bg-red-500/5"
+        }`}>
+          <Activity size={14} className={
+            agentStatus.status === "online" ? "text-green-400" :
+            agentStatus.status === "not_configured" ? "text-amber-400" : "text-red-400"
+          } />
+          <div className="flex-1">
+            <p className="text-xs font-medium text-text">
+              Agente: <span className={
+                agentStatus.status === "online" ? "text-green-400" :
+                agentStatus.status === "not_configured" ? "text-amber-400" : "text-red-400"
+              }>{agentStatus.label}</span>
+            </p>
+            {agentStatus.description && (
+              <p className="text-[10px] text-text-muted">{agentStatus.description}</p>
+            )}
+          </div>
+          <button
+            onClick={() => { setAgentStatusLoading(true); fetchAgentStatus(); }}
+            className="rounded-lg p-1.5 text-text-muted transition-colors hover:bg-bg hover:text-text"
+            title="Refrescar status"
+          >
+            <Loader2 size={12} className={agentStatusLoading ? "animate-spin" : ""} />
+          </button>
+        </div>
+      )}
 
       {error && (
         <div className="flex items-center gap-2 rounded-lg border border-red-500/20 bg-red-500/5 px-3 py-2 text-[11px] text-red-400">
@@ -476,7 +555,7 @@ export function WhatsAppConfigTab({ clientId }: { clientId: string }) {
         />
       </Section>
 
-      {/* Leads Section */}
+      {/* Leads Section (Fix 4 — now editable from dashboard) */}
       <Section
         icon={Users}
         title={`Leads (${Object.keys(leads).length})`}
@@ -486,7 +565,7 @@ export function WhatsAppConfigTab({ clientId }: { clientId: string }) {
       >
         {Object.keys(leads).length === 0 ? (
           <p className="text-[11px] text-text-muted">
-            No hay leads registrados. Se agregan via comando #lead en WhatsApp.
+            No hay leads registrados. Agregalos aqui o via comando #lead en WhatsApp.
           </p>
         ) : (
           <div className="space-y-1">
@@ -495,12 +574,62 @@ export function WhatsAppConfigTab({ clientId }: { clientId: string }) {
                 key={phone}
                 className="flex items-center justify-between rounded-lg bg-bg px-3 py-1.5"
               >
-                <span className="text-xs text-text">{name}</span>
-                <span className="text-[11px] text-text-muted">{phone}</span>
+                <div>
+                  <span className="text-xs text-text">{name}</span>
+                  <span className="ml-2 text-[11px] text-text-muted">{phone}</span>
+                </div>
+                <button
+                  onClick={() => removeLead(phone)}
+                  className="text-red-400 hover:text-red-300"
+                >
+                  <Trash2 size={12} />
+                </button>
               </div>
             ))}
           </div>
         )}
+        <div className="rounded-lg border border-border/50 bg-bg p-3">
+          <p className="mb-2 flex items-center gap-1.5 text-[11px] font-medium text-text-secondary">
+            <UserPlus size={11} />
+            Agregar lead manualmente
+          </p>
+          <div className="flex gap-2">
+            <input
+              type="text"
+              value={newLeadName}
+              onChange={(e) => setNewLeadName(e.target.value)}
+              placeholder="Nombre"
+              className="flex-1 rounded-lg border border-border bg-bg-card px-3 py-1.5 text-xs text-text placeholder:text-text-muted focus:border-accent focus:outline-none"
+            />
+            <input
+              type="text"
+              value={newLeadPhone}
+              onChange={(e) => setNewLeadPhone(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && addLead()}
+              placeholder="+972..."
+              className="w-36 rounded-lg border border-border bg-bg-card px-3 py-1.5 text-xs text-text placeholder:text-text-muted focus:border-accent focus:outline-none"
+            />
+            <button
+              onClick={addLead}
+              disabled={!newLeadName.trim() || !newLeadPhone.trim()}
+              className="inline-flex items-center gap-1 rounded-lg border border-border px-2 py-1.5 text-[11px] text-text-secondary hover:bg-bg-card disabled:opacity-40"
+            >
+              <Plus size={12} />
+              Agregar
+            </button>
+          </div>
+        </div>
+      </Section>
+
+      {/* Templates Section */}
+      <Section
+        icon={MessageSquare}
+        title="Templates"
+        sectionKey="templates"
+        expanded={expandedSections.has("templates")}
+        onToggle={toggleSection}
+      >
+        <WhatsAppTemplatesSection clientId={clientId} />
       </Section>
 
       {/* Google Calendar Section */}
@@ -561,7 +690,7 @@ export function WhatsAppConfigTab({ clientId }: { clientId: string }) {
               <h2 className="text-sm font-semibold text-red-400">Desconectar Google Calendar</h2>
             </div>
             <p className="mb-3 text-xs text-text-muted">
-              Esto borra la conexión <strong className="text-text-secondary">Y revoca el acceso en Google</strong>.
+              Esto borra la conexion <strong className="text-text-secondary">Y revoca el acceso en Google</strong>.
               Si el cliente quiere reconectar, va a tener que aprobar de nuevo el consent screen.
               Los eventos existentes en el calendario no se borran.
             </p>

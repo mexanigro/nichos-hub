@@ -85,6 +85,23 @@ export const DELETE = withOwner(async (_req, session, ctx) => {
 
   await ref.delete();
 
+  // Notify the WhatsApp agent so it stops trying to create calendar events
+  const agentUrl = process.env.WHATSAPP_AGENT_URL;
+  const agentSecret = process.env.AGENT_API_SECRET;
+  if (agentUrl && agentSecret) {
+    fetch(`${agentUrl}/webhook/calendar-disconnected`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-agent-secret": agentSecret,
+      },
+      body: JSON.stringify({ clientId }),
+      signal: AbortSignal.timeout(5000),
+    }).catch((err) =>
+      console.warn("[calendar DELETE] agent notification failed:", err)
+    );
+  }
+
   // Audit log paralelo a otros endpoints (hub_status_history/{clientId}/entries).
   const approverEmail = session?.user?.email ?? "owner";
   try {

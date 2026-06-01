@@ -28,6 +28,7 @@ import {
   Phone,
   Eye,
   X,
+  Mic,
 } from "lucide-react";
 import { HealthDot, ClientStatusBadge } from "@/components/status-badge";
 import { LoadingSpinner } from "@/components/loading";
@@ -37,6 +38,7 @@ import { ClientConfigTab } from "@/components/client-config-tab";
 import { ClientContentTab } from "@/components/client-content-tab";
 import { ClientSitePreview } from "@/components/client-site-preview";
 import { WhatsAppConfigTab } from "@/components/whatsapp-config-tab";
+import { VoiceConfigTab } from "@/components/voice-config-tab";
 import { ClientLeadsTab } from "@/components/client-leads-tab";
 import { CrmImportModal } from "@/components/crm-import-modal";
 import { ConfigHistoryPanel } from "@/components/config-history-panel";
@@ -135,7 +137,7 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
     totalCustomers: number;
     lastBookingAt: string | null;
   } | null>(null);
-  const [activeTab, setActiveTab] = useState<"overview" | "config" | "contenido" | "leads" | "whatsapp">("overview");
+  const [activeTab, setActiveTab] = useState<"overview" | "config" | "contenido" | "leads" | "whatsapp" | "voice">("overview");
   const [showImport, setShowImport] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [deleteConfirmText, setDeleteConfirmText] = useState("");
@@ -409,6 +411,17 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
         >
           WhatsApp
         </button>
+        <button
+          onClick={() => setActiveTab("voice")}
+          className={`flex items-center gap-1 px-4 py-2 text-xs font-medium border-b-2 transition-colors ${
+            activeTab === "voice"
+              ? "border-violet-400 text-violet-400"
+              : "border-transparent text-text-secondary hover:text-text"
+          }`}
+        >
+          <Mic size={12} />
+          Voice
+        </button>
       </div>
 
       {/* Deploy status banner */}
@@ -593,6 +606,10 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
 
       {activeTab === "whatsapp" && (
         <WhatsAppConfigTab clientId={client.clientId} />
+      )}
+
+      {activeTab === "voice" && (
+        <VoiceConfigTab clientId={client.clientId} />
       )}
 
       {activeTab === "overview" && (<>

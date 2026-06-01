@@ -176,6 +176,55 @@ export interface WhatsAppConfig {
   leads: Record<string, string>;
 }
 
+// --- WhatsApp Templates ---
+
+export type TemplateStatus = "draft" | "pending" | "approved" | "rejected";
+
+export interface TemplateConfig {
+  enabled: boolean;
+  twilioTemplateSid: string;
+  status: TemplateStatus;
+  lastSynced?: string;
+}
+
+export interface ReminderTemplateConfig extends TemplateConfig {
+  hoursBefore: number;
+}
+
+export interface WhatsAppTemplates {
+  clientId: string;
+  templates: {
+    reminder_24h: ReminderTemplateConfig;
+    reminder_1h: ReminderTemplateConfig;
+    booking_confirmed: TemplateConfig;
+    booking_cancelled: TemplateConfig;
+  };
+  updatedAt?: Date;
+}
+
+export type TemplateKey = keyof WhatsAppTemplates["templates"];
+
+// --- Voice AI Config ---
+
+export type VoiceModel = "male" | "female";
+export type VoiceLanguage = "he" | "en" | "es" | "ru" | "ar";
+
+export interface VoiceConfig {
+  clientId: string;
+  enabled: boolean;
+  twilio: {
+    phoneNumber: string;
+  };
+  voice: {
+    model: VoiceModel;
+    language: VoiceLanguage;
+  };
+  systemPrompt: string;
+  greeting: string;
+  transferNumber: string;
+  updatedAt?: Date;
+}
+
 export type ExpenseCategory =
   | "hosting"
   | "software"

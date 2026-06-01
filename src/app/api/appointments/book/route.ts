@@ -157,6 +157,17 @@ export const POST = withAgentAuth(async (req: NextRequest) => {
         console.warn("[appointments/book] customer upsert failed:", err)
       );
 
+    // Fire-and-forget: notify admin phones about the new booking
+    notifyAdminPhones(clientId, {
+      customerName,
+      serviceName: servicio.name,
+      staffName: staffInfo.name,
+      date,
+      time,
+    }).catch((err) =>
+      console.warn("[appointments/book] admin notification failed:", err)
+    );
+
     return NextResponse.json({
       success: true,
       appointment: {
@@ -184,3 +195,37 @@ export const POST = withAgentAuth(async (req: NextRequest) => {
     );
   }
 });
+
+async function notifyAdminPhones(
+  clientId: string,
+  booking: { customerName: string; serviceName: string; staffName: string; date: string; time: string },
+) {
+  const waConfigSnap = await db.collection("whatsapp_config").doc(clientId).get();
+  if (!waConfigSnap.exists) return;
+  const waConfig = waConfigSnap.data()!;
+  const adminPhones = waConfig.adminPhones as string[] | undefined;
+  if (!adminPhones?.length) return;
+
+  const agentUrl = process.env.WHATSAPP_AGENT_URL;
+  const agentSecret = process.env.AGENT_API_SECRET;
+  if (!agentUrl || !agentSecret) return;
+
+  const message =
+    `Nuevo turno reservado via WhatsApp:\n` +
+    `${booking.customerName} - ${booking.serviceName}\n` +
+    `${booking.staffName} | ${booking.date} ${booking.time}`;
+
+  await Promise.allSettled(
+    adminPhones.map((phone) =>
+      fetch(`${agentUrl}/notify`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-agent-secret": agentSecret,
+        },
+        body: JSON.stringify({ to: phone, message }),
+        signal: AbortSignal.timeout(5000),
+      }),
+    ),
+  );
+}
