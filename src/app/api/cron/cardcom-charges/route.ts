@@ -31,9 +31,12 @@ function isAuthorized(req: NextRequest): boolean {
     console.error("[cron/cardcom-charges] CRON_SECRET no configurado");
     return false;
   }
-  const headerSecret = req.headers.get("x-cron-secret");
+  const xCronSecret = req.headers.get("x-cron-secret");
+  const authorization = req.headers.get("authorization");
+  const bearerToken =
+    authorization?.startsWith("Bearer ") ? authorization.slice(7) : null;
   const vercelCron = req.headers.get("x-vercel-cron-signature");
-  return headerSecret === secret || !!vercelCron;
+  return xCronSecret === secret || bearerToken === secret || !!vercelCron;
 }
 
 async function runOne(clientDoc: FirebaseFirestore.QueryDocumentSnapshot) {
