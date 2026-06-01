@@ -50,7 +50,7 @@ interface DeployParams {
   demoMode?: boolean;
 }
 
-const ALLOWED_UI_LANGUAGES = ["he", "en", "ru", "ar"] as const;
+const ALLOWED_UI_LANGUAGES = ["he", "en", "ru", "ar", "es"] as const;
 type UiLanguage = (typeof ALLOWED_UI_LANGUAGES)[number];
 
 function resolveClientLanguage(value: unknown): UiLanguage {

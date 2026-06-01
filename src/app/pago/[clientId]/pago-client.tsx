@@ -273,7 +273,7 @@ export default function PagoClient({ clientId, clientDocId, businessName, lang, 
                   ))}
                 </ul>
                 {selectedPlan === "web_crm" && (
-                  <div className="absolute -top-px end-4 top-4">
+                  <div className="absolute end-4 top-4">
                     <div className="h-5 w-5 rounded-full border-[5px] border-[var(--pg-accent)]" />
                   </div>
                 )}

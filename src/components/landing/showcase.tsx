@@ -10,7 +10,7 @@ export function Showcase() {
   const [active, setActive] = useState("estetica");
   const reveal = useReveal<HTMLElement>();
 
-  const meta = SITES.find((s) => s.id === active)!;
+  const meta = SITES.find((s) => s.id === active) ?? SITES[0];
   const siteT = t.showcase.sites[active as keyof typeof t.showcase.sites];
   const idx = SITES.findIndex((s) => s.id === active);
 
@@ -34,7 +34,7 @@ export function Showcase() {
         {t.showcase.why && (
           <div className="at-why">
             <div>
-              <div className="head">Why this matters</div>
+              <div className="head">{t.whyLabel}</div>
               <div className="body">{t.showcase.why}</div>
             </div>
           </div>
@@ -61,15 +61,17 @@ export function Showcase() {
                   {t.showcase.open} &#8599;
                 </a>
               </div>
-              <div className="frame">
+              <div className="frame" role="tabpanel">
                 {SITES.map((s) => (
                   <Image
                     key={s.id}
                     src={s.img}
-                    alt={s.niche}
+                    alt={`${t.showcase.sites[s.id as keyof typeof t.showcase.sites]?.name || s.niche} — ${s.city}`}
                     fill
+                    sizes="(max-width: 1024px) 100vw, 800px"
                     style={{ objectFit: "cover" }}
                     className={s.id === active ? "active" : ""}
+                    loading={s.id === active ? undefined : "lazy"}
                   />
                 ))}
               </div>
@@ -100,14 +102,17 @@ export function Showcase() {
                   key={s.id}
                   role="tab"
                   aria-selected={s.id === active}
+                  aria-label={st?.name || s.niche}
                   onClick={() => setActive(s.id)}
                   className={`at-thumb${s.id === active ? " on" : ""}`}
                 >
                   <Image
                     src={s.img}
-                    alt={s.niche}
+                    alt={st?.name || s.niche}
                     fill
+                    sizes="80px"
                     style={{ objectFit: "cover" }}
+                    loading="lazy"
                   />
                   <span className="at-thumb-label">
                     {(st?.name || s.niche).split(" ")[0]}

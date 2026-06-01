@@ -22,10 +22,10 @@ export function Faq() {
             const isOpen = i === open;
             return (
               <div className={`at-faq-item${isOpen ? " open" : ""}`} key={i}>
-                <div className="at-faq-q" onClick={() => setOpen(isOpen ? -1 : i)} role="button" tabIndex={0} onKeyDown={(e) => e.key === "Enter" && setOpen(isOpen ? -1 : i)}>
+                <button className="at-faq-q" onClick={() => setOpen(isOpen ? -1 : i)} aria-expanded={isOpen} type="button">
                   <span className="qt">{it.q}</span>
-                  <span className="ico">+</span>
-                </div>
+                  <span className="ico" aria-hidden="true">{isOpen ? "−" : "+"}</span>
+                </button>
                 <div className="at-faq-a-wrap">
                   <div className="at-faq-a">
                     <div className="at-faq-a-inner">{it.a}</div>

@@ -226,9 +226,9 @@ export function validateConfig(config: unknown): ConfigIssue[] {
       const m = member as Record<string, unknown>;
       // If the member has any non-photo data, name should be present.
       const hasData =
-        (typeof m.specialty === "string" && m.specialty.trim()) ||
-        (typeof m.bio === "string" && m.bio.trim()) ||
-        Array.isArray(m.portfolio) && (m.portfolio as unknown[]).length > 0;
+        !!(typeof m.specialty === "string" && m.specialty.trim()) ||
+        !!(typeof m.bio === "string" && m.bio.trim()) ||
+        (Array.isArray(m.portfolio) && (m.portfolio as unknown[]).length > 0);
       if (hasData && (typeof m.name !== "string" || !m.name.trim())) {
         issues.push({
           path: `staff[${i}].name`,

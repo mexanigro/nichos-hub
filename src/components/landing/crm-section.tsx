@@ -85,7 +85,7 @@ export function CrmSection() {
         {t.crm.why && (
           <div className="at-why">
             <div>
-              <div className="head">Why this matters</div>
+              <div className="head">{t.whyLabel}</div>
               <div className="body">{t.crm.why}</div>
             </div>
           </div>
@@ -95,7 +95,7 @@ export function CrmSection() {
           <div className="at-crm-bullets">
             {t.crm.bullets.map((b, i) => (
               <div className="at-crm-bullet" key={i}>
-                <span className="n">0{i + 1}</span>
+                <span className="n">{String(i + 1).padStart(2, "0")}</span>
                 <span>{b}</span>
               </div>
             ))}
@@ -126,15 +126,17 @@ export function CrmSection() {
                   </span>
                   <span className="url">crm.arzac.studio</span>
                 </div>
-                <div className="frame">
+                <div className="frame" role="tabpanel">
                   {views.map((v) => (
                     <Image
                       key={v.id}
                       src={v.img}
                       alt={`CRM · ${v.label}`}
                       fill
+                      sizes="(max-width: 1024px) 100vw, 720px"
                       className={v.id === active ? "active" : ""}
                       style={{ objectFit: "cover", objectPosition: "top" }}
+                      loading={v.id === active ? undefined : "lazy"}
                     />
                   ))}
                 </div>
@@ -149,7 +151,7 @@ export function CrmSection() {
                   </span>
                   <span className="url">crm.arzac.studio</span>
                 </div>
-                <div className="crm-imgs">
+                <div className="crm-imgs" role="tabpanel">
                   {views.map((v, i) => (
                     <Image
                       key={v.id}
@@ -157,9 +159,10 @@ export function CrmSection() {
                       alt={`CRM · ${v.label}`}
                       width={390}
                       height={0}
+                      sizes="(max-width: 1024px) 100vw, 390px"
                       style={{ width: "100%", height: "auto" }}
                       className={v.id === active ? "active" : ""}
-                      {...(i === 0 ? {} : {})}
+                      loading={i === 0 ? undefined : "lazy"}
                     />
                   ))}
                 </div>

@@ -11,6 +11,7 @@ export const he: Translations = {
     sub: "אנחנו מטפלים בדיגיטל — אתר, CRM וסוכן AI בוואטסאפ. אתה מביא את המותג. אנחנו את המבנה שעובד. החל מ-₪790/חודש, אפס הקמה.",
     cta: "להתחיל בוואטסאפ",
     ghost: "לראות עבודות חיות",
+    ribbon: "נשלח השבוע",
   },
 
   showcase: {
@@ -82,6 +83,8 @@ export const he: Translations = {
       { from: "client", text: "14:30 בבקשה. עם יוסי אם אפשר." },
       { from: "agent",  text: "הוזמן עם יוסי ב-14:30 ✓ אשלח תזכורת שעתיים לפני. עוד משהו?" },
     ],
+    chatStatus: "מחובר · תגובה אוטומטית",
+    chatField: "הודעה…",
   },
 
   everything: {
@@ -174,6 +177,7 @@ export const he: Translations = {
         ],
       },
     ],
+    stamp: "הכי פופולרי",
     setupLabel: "הקמה",
     setupValue: "₪0",
     cta: "מתחילים עכשיו",
@@ -207,6 +211,7 @@ export const he: Translations = {
     a: "תתעסק בעסק שלך.",
     b: "אנחנו נתעסק בדיגיטל.",
     cta: "לדבר עם ליאם בוואטסאפ",
+    ctaHref: `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "9720557719141"}`,
     note: "מענה תוך שעה, ראשון עד שישי.",
   },
 
@@ -218,6 +223,7 @@ export const he: Translations = {
     body: "אני מעצב ואסטרטג שיווק דיגיטלי. השנים האחרונות שלי עברו בבנייה של אתרים לעסקים מקומיים בישראל. אני מנהל את Arzac Studio לבד — בלי סוכנות, בלי מתווכים. כשאתה שולח לנו הודעה, אתה מדבר איתי. כשהאתר עולה לאוויר, אני זה שלחץ פרסם.",
     role: "מעצב · אסטרטג שיווק · מייסד",
     location: "מבסיס בתל אביב · זמין בכל הארץ",
+    badge: "מייסד · 2024",
     stats: [
       { k: "שפות",      v: "EN · ES · HE · RU · AR" },
       { k: "מענה",      v: "תוך שעה" },
@@ -226,6 +232,7 @@ export const he: Translations = {
     cta: "להודיע לליאם בוואטסאפ",
   },
 
+  whyLabel: "למה זה חשוב",
   foot: { rights: "Arzac Studio · נבנה בתל אביב", legal: ["פרטיות", "תנאים", "צור קשר"] },
   statusLine: "כל אתרי הלקוחות פעילים",
 

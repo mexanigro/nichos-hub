@@ -1,0 +1,92 @@
+{
+  "queue": [
+    {
+      "clientId": "demo-velvet-muse",
+      "slot": "hero-accent",
+      "sourcePath": "/sessions/elegant-inspiring-dirac/mnt/Nichos-hub/uploads/3d-raw/velvet-muse-v2-incoming/hero-accent.png",
+      "status": "failed",
+      "attempts": 3,
+      "validation": {
+        "ok": false,
+        "errors": [
+          "Halo > 3%: 5.4% (BRIA dejó cream en el contorno)"
+        ],
+        "warnings": [],
+        "stats": {
+          "width": 1086,
+          "height": 1448,
+          "channels": 4,
+          "pctTransparent": 67.61,
+          "pctOpaque": 31.79,
+          "haloPct": 5.36,
+          "bboxRatio": {
+            "w": 0.734,
+            "h": 0.825
+          }
+        }
+      },
+      "backgroundTone": "#38393c",
+      "originalBytes": 1307755
+    },
+    {
+      "clientId": "demo-velvet-muse",
+      "slot": "services-smoothing-oil",
+      "sourcePath": "/sessions/elegant-inspiring-dirac/mnt/Nichos-hub/uploads/3d-raw/velvet-muse-v2-incoming/services-smoothing-oil.png",
+      "status": "failed",
+      "attempts": 1,
+      "validation": {
+        "ok": false,
+        "errors": [
+          "Halo > 3%: 8.5% (BRIA dejó cream en el contorno)"
+        ],
+        "warnings": [],
+        "stats": {
+          "width": 1254,
+          "height": 1254,
+          "channels": 4,
+          "pctTransparent": 81.71,
+          "pctOpaque": 18.05,
+          "haloPct": 8.45,
+          "bboxRatio": {
+            "w": 0.397,
+            "h": 0.723
+          }
+        }
+      },
+      "backgroundTone": "#27282c",
+      "originalBytes": 1324428
+    }
+  ],
+  "results": {
+    "demo-velvet-muse": {
+      "hero-accent": {
+        "src": null,
+        "backgroundTone": "#38393c",
+        "particles": "pearls",
+        "shadowColor": "auto",
+        "_meta": {
+          "status": "failed",
+          "attempts": 3,
+          "errors": [
+            "Halo > 3%: 5.4% (BRIA dejó cream en el contorno)"
+          ],
+          "warnings": []
+        }
+      },
+      "services-smoothing-oil": {
+        "src": null,
+        "backgroundTone": "#27282c",
+        "particles": "pearls",
+        "shadowColor": "auto",
+        "_meta": {
+          "status": "failed",
+          "attempts": 1,
+          "errors": [
+            "Halo > 3%: 8.5% (BRIA dejó cream en el contorno)"
+          ],
+          "warnings": []
+        }
+      }
+    }
+  }
+}

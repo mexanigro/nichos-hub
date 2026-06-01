@@ -1,0 +1,976 @@
+{
+  "demo-velvet-muse": {
+    "hero-accent": {
+      "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fdemo-velvet-muse%2Fhero-accent.png?alt=media&token=d9a7162a-e5da-4e71-a134-826d806a146f",
+      "backgroundTone": "#38393c",
+      "particles": "pearls",
+      "shadowColor": "auto",
+      "_meta": {
+        "attempts": 1,
+        "originalKB": 1277.1,
+        "compressedKB": 213.6,
+        "savedPct": 83.3,
+        "validation": {
+          "width": 1086,
+          "height": 1448,
+          "channels": 4,
+          "pctTransparent": 67.61,
+          "pctOpaque": 31.79,
+          "haloPct": 5.36,
+          "bbox": {
+            "minX": 116,
+            "minY": 167,
+            "maxX": 913,
+            "maxY": 1362
+          },
+          "bboxRatio": {
+            "w": 0.734,
+            "h": 0.825,
+            "max": 0.825
+          },
+          "offset": {
+            "x": 0.026,
+            "y": 0.028
+          }
+        },
+        "warnings": [],
+        "storagePath": "3d-assets/demo-velvet-muse/hero-accent.png"
+      }
+    },
+    "services-smoothing-oil": {
+      "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fdemo-velvet-muse%2Fservices-smoothing-oil.png?alt=media&token=f3450014-1074-4bbb-8758-87f78898586c",
+      "backgroundTone": "#27282c",
+      "particles": "pearls",
+      "shadowColor": "auto",
+      "_meta": {
+        "attempts": 1,
+        "originalKB": 1293.4,
+        "compressedKB": 200.3,
+        "savedPct": 84.5,
+        "validation": {
+          "width": 1254,
+          "height": 1254,
+          "channels": 4,
+          "pctTransparent": 81.71,
+          "pctOpaque": 18.05,
+          "haloPct": 8.45,
+          "bbox": {
+            "minX": 375,
+            "minY": 157,
+            "maxX": 873,
+            "maxY": 1064
+          },
+          "bboxRatio": {
+            "w": 0.397,
+            "h": 0.723,
+            "max": 0.723
+          },
+          "offset": {
+            "x": 0.002,
+            "y": 0.013
+          }
+        },
+        "warnings": [],
+        "storagePath": "3d-assets/demo-velvet-muse/services-smoothing-oil.png"
+      }
+    },
+    "hero-primary": {
+      "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fdemo-velvet-muse%2Fhero-primary.png?alt=media&token=df4055af-3d87-4e83-81ce-f4fa51ed66d1",
+      "backgroundTone": "#faf3ec",
+      "particles": "pearls",
+      "shadowColor": "auto",
+      "_meta": {
+        "attempts": 1,
+        "originalKB": 1670.6,
+        "compressedKB": 407.8,
+        "savedPct": 75.6,
+        "validation": {
+          "width": 1086,
+          "height": 1448,
+          "channels": 4,
+          "pctTransparent": 57.48,
+          "pctOpaque": 40.6,
+          "haloPct": 1.88,
+          "bbox": {
+            "minX": 120,
+            "minY": 116,
+            "maxX": 1029,
+            "maxY": 1347
+          },
+          "bboxRatio": {
+            "w": 0.837,
+            "h": 0.85,
+            "max": 0.85
+          },
+          "offset": {
+            "x": 0.029,
+            "y": 0.005
+          }
+        },
+        "warnings": [],
+        "storagePath": "3d-assets/demo-velvet-muse/hero-primary.png"
+      }
+    },
+    "hero-secondary": {
+      "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fdemo-velvet-muse%2Fhero-secondary.png?alt=media&token=a43f1129-c062-45d1-bf66-5a66697b90d1",
+      "backgroundTone": "#f3f3f3",
+      "particles": "pearls",
+      "shadowColor": "auto",
+      "_meta": {
+        "attempts": 1,
+        "originalKB": 1691.3,
+        "compressedKB": 407.7,
+        "savedPct": 75.9,
+        "validation": {
+          "width": 1086,
+          "height": 1448,
+          "channels": 4,
+          "pctTransparent": 57.5,
+          "pctOpaque": 40.55,
+          "haloPct": 2.67,
+          "bbox": {
+            "minX": 120,
+            "minY": 116,
+            "maxX": 1029,
+            "maxY": 1347
+          },
+          "bboxRatio": {
+            "w": 0.837,
+            "h": 0.85,
+            "max": 0.85
+          },
+          "offset": {
+            "x": 0.029,
+            "y": 0.005
+          }
+        },
+        "warnings": [],
+        "storagePath": "3d-assets/demo-velvet-muse/hero-secondary.png"
+      }
+    },
+    "silk-sheet-desktop": {
+      "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fdemo-velvet-muse%2Fsilk-sheet-desktop.png?alt=media&token=f4d8d44f-7768-40fa-809d-67ca55e62b6e",
+      "backgroundTone": "#29292a",
+      "particles": "pearls",
+      "shadowColor": "auto",
+      "_meta": {
+        "attempts": 1,
+        "originalKB": 1614,
+        "compressedKB": 442.4,
+        "savedPct": 72.6,
+        "validation": {
+          "width": 1086,
+          "height": 1448,
+          "channels": 4,
+          "pctTransparent": 38.99,
+          "pctOpaque": 60.83,
+          "haloPct": 0.01,
+          "bbox": {
+            "minX": 257,
+            "minY": 0,
+            "maxX": 1085,
+            "maxY": 1447
+          },
+          "bboxRatio": {
+            "w": 0.762,
+            "h": 0.999,
+            "max": 0.999
+          },
+          "offset": {
+            "x": 0.118,
+            "y": 0
+          }
+        },
+        "warnings": [],
+        "storagePath": "3d-assets/demo-velvet-muse/silk-sheet-desktop.png"
+      }
+    },
+    "silk-corner-left": {
+      "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fdemo-velvet-muse%2Fsilk-corner-left.png?alt=media&token=eef1280e-64b3-4f60-bb58-3460f4ee227d",
+      "backgroundTone": "#272526",
+      "particles": "pearls",
+      "shadowColor": "auto",
+      "_meta": {
+        "attempts": 1,
+        "originalKB": 1182.5,
+        "compressedKB": 196.7,
+        "savedPct": 83.4,
+        "validation": {
+          "width": 1254,
+          "height": 1254,
+          "channels": 4,
+          "pctTransparent": 76.81,
+          "pctOpaque": 23.07,
+          "haloPct": 3.17,
+          "bbox": {
+            "minX": 0,
+            "minY": 594,
+            "maxX": 943,
+            "maxY": 1253
+          },
+          "bboxRatio": {
+            "w": 0.752,
+            "h": 0.526,
+            "max": 0.752
+          },
+          "offset": {
+            "x": 0.124,
+            "y": 0.236
+          }
+        },
+        "warnings": [
+          "Sujeto descentrado: offset (12%, 24%)"
+        ],
+        "storagePath": "3d-assets/demo-velvet-muse/silk-corner-left.png"
+      }
+    },
+    "silk-corner-right": {
+      "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fdemo-velvet-muse%2Fsilk-corner-right.png?alt=media&token=f2e7f573-6908-4506-a625-1fd0e2259f84",
+      "backgroundTone": "#292728",
+      "particles": "pearls",
+      "shadowColor": "auto",
+      "_meta": {
+        "attempts": 1,
+        "originalKB": 1217,
+        "compressedKB": 209.9,
+        "savedPct": 82.8,
+        "validation": {
+          "width": 1254,
+          "height": 1254,
+          "channels": 4,
+          "pctTransparent": 76.86,
+          "pctOpaque": 23.01,
+          "haloPct": 2.18,
+          "bbox": {
+            "minX": 361,
+            "minY": 557,
+            "maxX": 1253,
+            "maxY": 1253
+          },
+          "bboxRatio": {
+            "w": 0.711,
+            "h": 0.555,
+            "max": 0.711
+          },
+          "offset": {
+            "x": 0.144,
+            "y": 0.222
+          }
+        },
+        "warnings": [
+          "Sujeto descentrado: offset (14%, 22%)"
+        ],
+        "storagePath": "3d-assets/demo-velvet-muse/silk-corner-right.png"
+      }
+    },
+    "silk-corner-mobile-left": {
+      "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fdemo-velvet-muse%2Fsilk-corner-mobile-left.png?alt=media&token=b9871d5f-a6a5-4c4c-88a9-80ea9150055b",
+      "backgroundTone": "#272526",
+      "particles": "pearls",
+      "shadowColor": "auto",
+      "_meta": {
+        "attempts": 1,
+        "originalKB": 1182.5,
+        "compressedKB": 196.7,
+        "savedPct": 83.4,
+        "validation": {
+          "width": 1254,
+          "height": 1254,
+          "channels": 4,
+          "pctTransparent": 76.81,
+          "pctOpaque": 23.07,
+          "haloPct": 3.17,
+          "bbox": {
+            "minX": 0,
+            "minY": 594,
+            "maxX": 943,
+            "maxY": 1253
+          },
+          "bboxRatio": {
+            "w": 0.752,
+            "h": 0.526,
+            "max": 0.752
+          },
+          "offset": {
+            "x": 0.124,
+            "y": 0.236
+          }
+        },
+        "warnings": [
+          "Sujeto descentrado: offset (12%, 24%)"
+        ],
+        "storagePath": "3d-assets/demo-velvet-muse/silk-corner-mobile-left.png"
+      }
+    },
+    "silk-corner-mobile-right": {
+      "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fdemo-velvet-muse%2Fsilk-corner-mobile-right.png?alt=media&token=fe42398e-55b4-4c89-bb4f-d0e16e9d6086",
+      "backgroundTone": "#292728",
+      "particles": "pearls",
+      "shadowColor": "auto",
+      "_meta": {
+        "attempts": 1,
+        "originalKB": 1217,
+        "compressedKB": 209.9,
+        "savedPct": 82.8,
+        "validation": {
+          "width": 1254,
+          "height": 1254,
+          "channels": 4,
+          "pctTransparent": 76.86,
+          "pctOpaque": 23.01,
+          "haloPct": 2.18,
+          "bbox": {
+            "minX": 361,
+            "minY": 557,
+            "maxX": 1253,
+            "maxY": 1253
+          },
+          "bboxRatio": {
+            "w": 0.711,
+            "h": 0.555,
+            "max": 0.711
+          },
+          "offset": {
+            "x": 0.144,
+            "y": 0.222
+          }
+        },
+        "warnings": [
+          "Sujeto descentrado: offset (14%, 22%)"
+        ],
+        "storagePath": "3d-assets/demo-velvet-muse/silk-corner-mobile-right.png"
+      }
+    },
+    "services-decoration-tools": {
+      "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fdemo-velvet-muse%2Fservices-decoration-tools.png?alt=media&token=34fb7d53-7d00-497d-98c9-35f18b15c9b2",
+      "backgroundTone": "#262628",
+      "particles": "pearls",
+      "shadowColor": "auto",
+      "_meta": {
+        "attempts": 1,
+        "originalKB": 1709.5,
+        "compressedKB": 303.7,
+        "savedPct": 82.2,
+        "validation": {
+          "width": 1254,
+          "height": 1254,
+          "channels": 4,
+          "pctTransparent": 73.49,
+          "pctOpaque": 25.25,
+          "haloPct": 0.31,
+          "bbox": {
+            "minX": 59,
+            "minY": 78,
+            "maxX": 1233,
+            "maxY": 1127
+          },
+          "bboxRatio": {
+            "w": 0.936,
+            "h": 0.837,
+            "max": 0.936
+          },
+          "offset": {
+            "x": 0.015,
+            "y": 0.02
+          }
+        },
+        "warnings": [],
+        "storagePath": "3d-assets/demo-velvet-muse/services-decoration-tools.png"
+      }
+    },
+    "composition-velvet-muse-v2": {
+      "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fdemo-velvet-muse%2Fcomposition-velvet-muse-v2.png?alt=media&token=39eaacba-14ef-434e-9fc6-915cd52d0627",
+      "backgroundTone": "#323131",
+      "particles": "pearls",
+      "shadowColor": "auto",
+      "_meta": {
+        "attempts": 1,
+        "originalKB": 1861.7,
+        "compressedKB": 343.7,
+        "savedPct": 81.5,
+        "validation": {
+          "width": 1086,
+          "height": 1448,
+          "channels": 4,
+          "pctTransparent": 55.01,
+          "pctOpaque": 44.21,
+          "haloPct": 0.04,
+          "bbox": {
+            "minX": 232,
+            "minY": 0,
+            "maxX": 1085,
+            "maxY": 1447
+          },
+          "bboxRatio": {
+            "w": 0.785,
+            "h": 0.999,
+            "max": 0.999
+          },
+          "offset": {
+            "x": 0.106,
+            "y": 0
+          }
+        },
+        "warnings": [],
+        "storagePath": "3d-assets/demo-velvet-muse/composition-velvet-muse-v2.png"
+      }
+    },
+    "marble-bowl-ribbon": {
+      "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fdemo-velvet-muse%2Fmarble-bowl-ribbon.png?alt=media&token=6587a163-e721-4e8a-b302-c6c436fbc275",
+      "backgroundTone": "#242428",
+      "particles": "pearls",
+      "shadowColor": "auto",
+      "_meta": {
+        "attempts": 1,
+        "originalKB": 1151.1,
+        "compressedKB": 135.6,
+        "savedPct": 88.2,
+        "validation": {
+          "width": 1254,
+          "height": 1254,
+          "channels": 4,
+          "pctTransparent": 82.1,
+          "pctOpaque": 17.37,
+          "haloPct": 0.29,
+          "bbox": {
+            "minX": 73,
+            "minY": 409,
+            "maxX": 1153,
+            "maxY": 851
+          },
+          "bboxRatio": {
+            "w": 0.861,
+            "h": 0.352,
+            "max": 0.861
+          },
+          "offset": {
+            "x": 0.011,
+            "y": 0.002
+          }
+        },
+        "warnings": [],
+        "storagePath": "3d-assets/demo-velvet-muse/marble-bowl-ribbon.png"
+      }
+    },
+    "silk-bottom-v-mobile": {
+      "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fdemo-velvet-muse%2Fsilk-bottom-v-mobile.png?alt=media&token=d227be4e-88df-4053-9bf4-c85900fe0354",
+      "backgroundTone": "#2b2b2b",
+      "particles": "pearls",
+      "shadowColor": "auto",
+      "_meta": {
+        "attempts": 1,
+        "originalKB": 1070.8,
+        "compressedKB": 106.2,
+        "savedPct": 90.1,
+        "validation": {
+          "width": 1254,
+          "height": 1254,
+          "channels": 4,
+          "pctTransparent": 83.47,
+          "pctOpaque": 16.37,
+          "haloPct": 0,
+          "bbox": {
+            "minX": 0,
+            "minY": 770,
+            "maxX": 1253,
+            "maxY": 1253
+          },
+          "bboxRatio": {
+            "w": 0.999,
+            "h": 0.385,
+            "max": 0.999
+          },
+          "offset": {
+            "x": 0,
+            "y": 0.307
+          }
+        },
+        "warnings": [
+          "Sujeto descentrado: offset (0%, 31%)"
+        ],
+        "storagePath": "3d-assets/demo-velvet-muse/silk-bottom-v-mobile.png"
+      }
+    },
+    "silk-hero-desktop-left": {
+      "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fdemo-velvet-muse%2Fsilk-hero-desktop-left.png?alt=media&token=c96da639-62d4-4651-b55f-aab83181a673",
+      "backgroundTone": "#2e2e2d",
+      "particles": "pearls",
+      "shadowColor": "auto",
+      "_meta": {
+        "attempts": 1,
+        "originalKB": 1419.5,
+        "compressedKB": 311.3,
+        "savedPct": 78.1,
+        "validation": {
+          "width": 1254,
+          "height": 1254,
+          "channels": 4,
+          "pctTransparent": 64.21,
+          "pctOpaque": 35.63,
+          "haloPct": 0.07,
+          "bbox": {
+            "minX": 0,
+            "minY": 214,
+            "maxX": 1253,
+            "maxY": 1253
+          },
+          "bboxRatio": {
+            "w": 0.999,
+            "h": 0.829,
+            "max": 0.999
+          },
+          "offset": {
+            "x": 0,
+            "y": 0.085
+          }
+        },
+        "warnings": [],
+        "storagePath": "3d-assets/demo-velvet-muse/silk-hero-desktop-left.png"
+      }
+    },
+    "silk-hero-desktop-right": {
+      "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fdemo-velvet-muse%2Fsilk-hero-desktop-right.png?alt=media&token=b731b409-54a5-4fb9-8019-4b3b6fa5845f",
+      "backgroundTone": "#2b2b2a",
+      "particles": "pearls",
+      "shadowColor": "auto",
+      "_meta": {
+        "attempts": 1,
+        "originalKB": 1471.2,
+        "compressedKB": 355,
+        "savedPct": 75.9,
+        "validation": {
+          "width": 1254,
+          "height": 1254,
+          "channels": 4,
+          "pctTransparent": 54.8,
+          "pctOpaque": 45.02,
+          "haloPct": 0,
+          "bbox": {
+            "minX": 0,
+            "minY": 13,
+            "maxX": 1253,
+            "maxY": 1253
+          },
+          "bboxRatio": {
+            "w": 0.999,
+            "h": 0.989,
+            "max": 0.999
+          },
+          "offset": {
+            "x": 0,
+            "y": 0.005
+          }
+        },
+        "warnings": [],
+        "storagePath": "3d-assets/demo-velvet-muse/silk-hero-desktop-right.png"
+      }
+    },
+    "hero-primary-v2": {
+      "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fdemo-velvet-muse%2Fhero-primary-v2.png?alt=media&token=702e3712-b794-4322-a94e-43436a29f4d7",
+      "backgroundTone": "#2e2c2c",
+      "particles": "pearls",
+      "shadowColor": "auto",
+      "_meta": {
+        "attempts": 1,
+        "originalKB": 1964.9,
+        "compressedKB": 415.7,
+        "savedPct": 78.8,
+        "validation": {
+          "width": 1086,
+          "height": 1448,
+          "channels": 4,
+          "pctTransparent": 53.95,
+          "pctOpaque": 45.14,
+          "haloPct": 0.23,
+          "bbox": {
+            "minX": 162,
+            "minY": 49,
+            "maxX": 953,
+            "maxY": 1402
+          },
+          "bboxRatio": {
+            "w": 0.728,
+            "h": 0.934,
+            "max": 0.934
+          },
+          "offset": {
+            "x": 0.013,
+            "y": 0.001
+          }
+        },
+        "warnings": [],
+        "storagePath": "3d-assets/demo-velvet-muse/hero-primary-v2.png"
+      }
+    },
+    "logo-velvet-muse": {
+      "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fdemo-velvet-muse%2Flogo-velvet-muse.png?alt=media&token=5bf7c16c-8e9c-4bc9-9e35-48f44a607671",
+      "backgroundTone": "#039ffd",
+      "particles": "pearls",
+      "shadowColor": "auto",
+      "_meta": {
+        "attempts": 1,
+        "originalKB": 996.5,
+        "compressedKB": 48.4,
+        "savedPct": 95.1,
+        "validation": {
+          "width": 1448,
+          "height": 1086,
+          "channels": 4,
+          "pctTransparent": 96.92,
+          "pctOpaque": 2.09,
+          "haloPct": 0,
+          "bbox": {
+            "minX": 250,
+            "minY": 273,
+            "maxX": 1164,
+            "maxY": 808
+          },
+          "bboxRatio": {
+            "w": 0.631,
+            "h": 0.493,
+            "max": 0.631
+          },
+          "offset": {
+            "x": 0.012,
+            "y": 0.002
+          }
+        },
+        "warnings": [],
+        "storagePath": "3d-assets/demo-velvet-muse/logo-velvet-muse.png"
+      }
+    },
+    "signature-your-hair": {
+      "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fdemo-velvet-muse%2Fsignature-your-hair.png?alt=media&token=f02cec72-ec02-48b2-96df-7486644a4f60",
+      "backgroundTone": "#02b1fc",
+      "particles": "pearls",
+      "shadowColor": "auto",
+      "_meta": {
+        "attempts": 1,
+        "originalKB": 1052.5,
+        "compressedKB": 70.4,
+        "savedPct": 93.3,
+        "validation": {
+          "width": 1672,
+          "height": 941,
+          "channels": 4,
+          "pctTransparent": 96.67,
+          "pctOpaque": 2.02,
+          "haloPct": 0,
+          "bbox": {
+            "minX": 351,
+            "minY": 158,
+            "maxX": 1343,
+            "maxY": 798
+          },
+          "bboxRatio": {
+            "w": 0.593,
+            "h": 0.68,
+            "max": 0.68
+          },
+          "offset": {
+            "x": 0.007,
+            "y": 0.008
+          }
+        },
+        "warnings": [],
+        "storagePath": "3d-assets/demo-velvet-muse/signature-your-hair.png"
+      }
+    },
+    "avatar-1": {
+      "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fdemo-velvet-muse%2Favatar-1.png?alt=media&token=f1c755a8-60e5-41a0-b5f2-e9cd06d1a7e4",
+      "backgroundTone": "#222222",
+      "particles": "pearls",
+      "shadowColor": "auto",
+      "_meta": {
+        "attempts": 1,
+        "originalKB": 1951.8,
+        "compressedKB": 534.6,
+        "savedPct": 72.6,
+        "validation": {
+          "width": 1254,
+          "height": 1254,
+          "channels": 4,
+          "pctTransparent": 38.05,
+          "pctOpaque": 59.89,
+          "haloPct": 0,
+          "bbox": {
+            "minX": 0,
+            "minY": 4,
+            "maxX": 1173,
+            "maxY": 1253
+          },
+          "bboxRatio": {
+            "w": 0.935,
+            "h": 0.996,
+            "max": 0.996
+          },
+          "offset": {
+            "x": 0.032,
+            "y": 0.001
+          }
+        },
+        "warnings": [],
+        "storagePath": "3d-assets/demo-velvet-muse/avatar-1.png"
+      }
+    },
+    "avatar-2": {
+      "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fdemo-velvet-muse%2Favatar-2.png?alt=media&token=aa62f978-e387-46fd-903b-09dc9a15f577",
+      "backgroundTone": "#1c1c1e",
+      "particles": "pearls",
+      "shadowColor": "auto",
+      "_meta": {
+        "attempts": 1,
+        "originalKB": 2154.6,
+        "compressedKB": 760.1,
+        "savedPct": 64.7,
+        "validation": {
+          "width": 1254,
+          "height": 1254,
+          "channels": 4,
+          "pctTransparent": 27.26,
+          "pctOpaque": 71.37,
+          "haloPct": 0,
+          "bbox": {
+            "minX": 0,
+            "minY": 0,
+            "maxX": 1253,
+            "maxY": 1253
+          },
+          "bboxRatio": {
+            "w": 0.999,
+            "h": 0.999,
+            "max": 0.999
+          },
+          "offset": {
+            "x": 0,
+            "y": 0
+          }
+        },
+        "warnings": [],
+        "storagePath": "3d-assets/demo-velvet-muse/avatar-2.png"
+      }
+    },
+    "avatar-3": {
+      "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fdemo-velvet-muse%2Favatar-3.png?alt=media&token=2dcb4669-c748-4160-a1fc-e15d716e2214",
+      "backgroundTone": "#232325",
+      "particles": "pearls",
+      "shadowColor": "auto",
+      "_meta": {
+        "attempts": 1,
+        "originalKB": 2016.4,
+        "compressedKB": 525.7,
+        "savedPct": 73.9,
+        "validation": {
+          "width": 1254,
+          "height": 1254,
+          "channels": 4,
+          "pctTransparent": 45.87,
+          "pctOpaque": 51.11,
+          "haloPct": 0,
+          "bbox": {
+            "minX": 138,
+            "minY": 15,
+            "maxX": 1169,
+            "maxY": 1253
+          },
+          "bboxRatio": {
+            "w": 0.822,
+            "h": 0.987,
+            "max": 0.987
+          },
+          "offset": {
+            "x": 0.021,
+            "y": 0.006
+          }
+        },
+        "warnings": [],
+        "storagePath": "3d-assets/demo-velvet-muse/avatar-3.png"
+      }
+    },
+    "petal-vertical": {
+      "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fdemo-velvet-muse%2Fpetal-vertical.png?alt=media&token=c4c9d14c-f5df-4689-a467-d8447f318d3d",
+      "backgroundTone": "#3e3e3e",
+      "particles": "pearls",
+      "shadowColor": "auto",
+      "_meta": {
+        "attempts": 1,
+        "originalKB": 1251.4,
+        "compressedKB": 177.4,
+        "savedPct": 85.8,
+        "validation": {
+          "width": 1254,
+          "height": 1254,
+          "channels": 4,
+          "pctTransparent": 81.92,
+          "pctOpaque": 17.87,
+          "haloPct": 0,
+          "bbox": {
+            "minX": 296,
+            "minY": 271,
+            "maxX": 980,
+            "maxY": 914
+          },
+          "bboxRatio": {
+            "w": 0.545,
+            "h": 0.513,
+            "max": 0.545
+          },
+          "offset": {
+            "x": 0.009,
+            "y": 0.028
+          }
+        },
+        "warnings": [],
+        "storagePath": "3d-assets/demo-velvet-muse/petal-vertical.png"
+      }
+    },
+    "petal-horizontal": {
+      "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fdemo-velvet-muse%2Fpetal-horizontal.png?alt=media&token=5a01c098-3995-4f05-9f63-9b55f20a9ed8",
+      "backgroundTone": "#343434",
+      "particles": "pearls",
+      "shadowColor": "auto",
+      "_meta": {
+        "attempts": 1,
+        "originalKB": 1193.1,
+        "compressedKB": 171.9,
+        "savedPct": 85.6,
+        "validation": {
+          "width": 1254,
+          "height": 1254,
+          "channels": 4,
+          "pctTransparent": 81.66,
+          "pctOpaque": 18.15,
+          "haloPct": 0,
+          "bbox": {
+            "minX": 209,
+            "minY": 380,
+            "maxX": 1044,
+            "maxY": 888
+          },
+          "bboxRatio": {
+            "w": 0.666,
+            "h": 0.405,
+            "max": 0.666
+          },
+          "offset": {
+            "x": 0,
+            "y": 0.006
+          }
+        },
+        "warnings": [],
+        "storagePath": "3d-assets/demo-velvet-muse/petal-horizontal.png"
+      }
+    },
+    "pearl-single-v2": {
+      "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fdemo-velvet-muse%2Fpearl-single-v2.png?alt=media&token=f54b2d7e-3336-47dc-9cdb-5706f948f700",
+      "backgroundTone": "#2e2e2e",
+      "particles": "pearls",
+      "shadowColor": "auto",
+      "_meta": {
+        "attempts": 1,
+        "originalKB": 1059.1,
+        "compressedKB": 132.1,
+        "savedPct": 87.5,
+        "validation": {
+          "width": 1254,
+          "height": 1254,
+          "channels": 4,
+          "pctTransparent": 78.7,
+          "pctOpaque": 21.09,
+          "haloPct": 0,
+          "bbox": {
+            "minX": 304,
+            "minY": 282,
+            "maxX": 951,
+            "maxY": 941
+          },
+          "bboxRatio": {
+            "w": 0.516,
+            "h": 0.526,
+            "max": 0.526
+          },
+          "offset": {
+            "x": 0,
+            "y": 0.012
+          }
+        },
+        "warnings": [],
+        "storagePath": "3d-assets/demo-velvet-muse/pearl-single-v2.png"
+      }
+    },
+    "logo-velvet-muse-v2": {
+      "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fdemo-velvet-muse%2Flogo-velvet-muse-v2.png?alt=media&token=82f4043d-8b1e-4331-91a8-c55adbb27e2d",
+      "backgroundTone": "#039ffd",
+      "particles": "pearls",
+      "shadowColor": "auto",
+      "_meta": {
+        "attempts": 1,
+        "originalKB": 996.5,
+        "compressedKB": 48.4,
+        "savedPct": 95.1,
+        "validation": {
+          "width": 1448,
+          "height": 1086,
+          "channels": 4,
+          "pctTransparent": 96.92,
+          "pctOpaque": 2.09,
+          "haloPct": 0,
+          "bbox": {
+            "minX": 250,
+            "minY": 273,
+            "maxX": 1164,
+            "maxY": 808
+          },
+          "bboxRatio": {
+            "w": 0.631,
+            "h": 0.493,
+            "max": 0.631
+          },
+          "offset": {
+            "x": 0.012,
+            "y": 0.002
+          }
+        },
+        "warnings": [],
+        "storagePath": "3d-assets/demo-velvet-muse/logo-velvet-muse-v2.png"
+      }
+    },
+    "signature-your-hair-v2": {
+      "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fdemo-velvet-muse%2Fsignature-your-hair-v2.png?alt=media&token=6eb3e2b0-8332-421b-b72f-1b5ed32a202d",
+      "backgroundTone": "#02b1fc",
+      "particles": "pearls",
+      "shadowColor": "auto",
+      "_meta": {
+        "attempts": 1,
+        "originalKB": 1052.5,
+        "compressedKB": 70.4,
+        "savedPct": 93.3,
+        "validation": {
+          "width": 1672,
+          "height": 941,
+          "channels": 4,
+          "pctTransparent": 96.67,
+          "pctOpaque": 2.02,
+          "haloPct": 0,
+          "bbox": {
+            "minX": 351,
+            "minY": 158,
+            "maxX": 1343,
+            "maxY": 798
+          },
+          "bboxRatio": {
+            "w": 0.593,
+            "h": 0.68,
+            "max": 0.68
+          },
+          "offset": {
+            "x": 0.007,
+            "y": 0.008
+          }
+        },
+        "warnings": [],
+        "storagePath": "3d-assets/demo-velvet-muse/signature-your-hair-v2.png"
+      }
+    }
+  }
+}

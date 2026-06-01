@@ -56,6 +56,7 @@ import {
   type PortfolioFilter,
   type PortfolioProject,
 } from "./config-editors/portfolio-editor";
+import { PaymentProviderEditor } from "./config-editors/payment-provider-editor";
 import { MenuEditor, type MenuCategory, type MenuItem as MenuItemConfig } from "./config-editors/menu-editor";
 import { SaveDiffModal } from "./save-diff-modal";
 import { SplashVariantPreview, type SplashVariantId } from "./splash-variant-preview";
@@ -108,7 +109,7 @@ type ConfigDoc = {
   payment?: {
     enabled?: boolean;
     mode?: "none" | "deposit" | "full" | "cash-only";
-    provider?: "none" | "cardcom" | "paypal" | "meshulam" | "bit";
+    provider?: "none" | "stripe" | "cardcom" | "paypal" | "square" | "manual";
     acceptCash?: boolean;
     depositRequired?: boolean;
     depositAmount?: number;
@@ -1062,33 +1063,13 @@ export function ClientConfigTab({
       >
         <p className="text-[10px] text-text-muted">
           El proveedor y modo se sincronizan con la web del cliente automaticamente via Firestore.
+          Las credenciales se guardan en una coleccion separada con acceso restringido.
         </p>
-        <ToggleField label="Pagos habilitados" path="payment.enabled" value={getNested("payment.enabled") as boolean} onChange={updateNested} />
-        <div className="grid gap-3 sm:grid-cols-2">
-          <SelectField label="Proveedor de pago" path="payment.provider" value={(getNested("payment.provider") as string) || "none"} onChange={updateNested}
-            options={[
-              { value: "none", label: "Sin proveedor" },
-              { value: "cardcom", label: "Cardcom" },
-              { value: "paypal", label: "PayPal" },
-              { value: "meshulam", label: "Meshulam" },
-              { value: "bit", label: "Bit" },
-            ]}
-          />
-          <SelectField label="Modo de cobro" path="payment.mode" value={(getNested("payment.mode") as string) || "none"} onChange={updateNested}
-            options={[
-              { value: "none", label: "Sin cobro online" },
-              { value: "deposit", label: "Seña / Deposito" },
-              { value: "full", label: "Pago completo" },
-              { value: "cash-only", label: "Solo efectivo" },
-            ]}
-          />
-        </div>
-        <ToggleField label="Aceptar pago en efectivo" path="payment.acceptCash" value={getNested("payment.acceptCash") as boolean} onChange={updateNested} />
-        <ToggleField label="Requiere seña para reservar" path="payment.depositRequired" value={getNested("payment.depositRequired") as boolean} onChange={updateNested} />
-        {((getNested("payment.depositRequired") as boolean) || (getNested("payment.mode") as string) === "deposit") && (
-          <NumberField label="Monto de seña (agorot/centavos)" path="payment.depositAmount" value={getNested("payment.depositAmount") as number} onChange={updateNested} />
-        )}
-        <Field label="Moneda" path="payment.currency" value={getNested("payment.currency")} onChange={updateNested} placeholder="ILS" />
+        <PaymentProviderEditor
+          clientId={clientId}
+          payment={config.payment}
+          onPaymentChange={updateNested}
+        />
       </Section>
 
       {/* ── Notifications ─────────────────────────────────────────────── */}

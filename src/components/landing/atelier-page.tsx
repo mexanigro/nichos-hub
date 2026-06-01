@@ -36,18 +36,21 @@ function AtelierInner() {
 
   return (
     <div className="at" data-vp={vp} dir={dir} lang={locale}>
+      <a href="#main-content" className="at-skip-link">Skip to content</a>
       <Header />
-      <Hero />
-      <Showcase />
-      <CrmSection />
-      <AgentSection />
-      <Everything />
-      <Manifesto />
-      <Process />
-      <Pricing />
-      <Faq />
-      <Founder />
-      <FinalCta />
+      <main id="main-content">
+        <Hero />
+        <Showcase />
+        <CrmSection />
+        <AgentSection />
+        <Everything />
+        <Manifesto />
+        <Process />
+        <Pricing />
+        <Faq />
+        {/* <Founder /> — oculto hasta tener foto real del fundador */}
+        <FinalCta />
+      </main>
       <Footer />
       <WhatsappFab />
     </div>

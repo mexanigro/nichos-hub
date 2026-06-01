@@ -115,6 +115,7 @@ export default function PreviewPage() {
       const res = await fetch("/api/onboarding", { method: "POST", body: formData });
       if (!res.ok) {
         const err = await res.json().catch(() => ({ error: "Submission failed" }));
+        submitGuard.current = false;
         setError(err.error || t.preview.error);
         return;
       }
@@ -122,6 +123,7 @@ export default function PreviewPage() {
       await clearBuilderDraft();
       window.location.href = `/onboarding/status/${clientId}`;
     } catch {
+      submitGuard.current = false;
       setError(t.preview.error);
     } finally {
       setSubmitting(false);

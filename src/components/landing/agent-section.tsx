@@ -170,7 +170,7 @@ export function AgentSection() {
         {t.agent.why && (
           <div className="at-why">
             <div>
-              <div className="head">Why this matters</div>
+              <div className="head">{t.whyLabel}</div>
               <div className="body">{t.agent.why}</div>
             </div>
           </div>
@@ -180,7 +180,7 @@ export function AgentSection() {
           <div className="at-agent-reasons">
             {t.agent.reasons.map((r, i) => (
               <div className="at-reason" key={i}>
-                <div className="ico">{REASON_ICONS[i]}</div>
+                <div className="ico" aria-hidden="true">{REASON_ICONS[i]}</div>
                 <div>
                   <h5>{r.t}</h5>
                   <p>{r.d}</p>
@@ -207,13 +207,13 @@ export function AgentSection() {
                 </div>
                 <div className="info">
                   <div className="name">Arzac Studio</div>
-                  <div className="status">online &middot; auto-reply</div>
+                  <div className="status">{t.agent.chatStatus || "online · auto-reply"}</div>
                 </div>
                 <span className="badge">24/7</span>
               </div>
               <AnimatedChat messages={t.agent.chat} />
               <div className="at-wa-input">
-                <div className="field">Mensaje&hellip;</div>
+                <div className="field">{t.agent.chatField || "Message…"}</div>
                 <div className="send">
                   <svg
                     width="14"

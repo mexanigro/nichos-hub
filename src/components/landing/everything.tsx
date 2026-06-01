@@ -18,7 +18,7 @@ const ICONS = [
 
 export function Everything() {
   const { t } = useT();
-  const staggerRef = useReveal<HTMLDivElement>();
+  const staggerRef = useReveal<HTMLUListElement>();
   const reveal = useReveal<HTMLElement>();
 
   return (
@@ -38,21 +38,21 @@ export function Everything() {
           <p>{t.everything.sub}</p>
         </div>
 
-        <div className="at-ev-items" ref={staggerRef} data-stagger>
+        <ul className="at-ev-items" ref={staggerRef} data-stagger role="list">
           {t.everything.items.map((it, i) => (
-            <div className="at-ev-item" key={i} style={{ "--si": i } as React.CSSProperties}>
-              <span className="ico">{ICONS[i]}</span>
+            <li className="at-ev-item" key={i} style={{ "--si": i } as React.CSSProperties}>
+              <span className="ico" aria-hidden="true">{ICONS[i]}</span>
               <h4>{it.t}</h4>
               <p>{it.d}</p>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
 
         <div className="at-ev-why">
           <div>
             <div className="eyebrow">
               <span className="dot" />
-              <span>Why this matters</span>
+              <span>{t.whyLabel}</span>
             </div>
             <h3>
               {t.everything.whyTitle}

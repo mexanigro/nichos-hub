@@ -34,6 +34,8 @@ const LANGUAGES = [
   { value: "he", label: "Hebreo" },
   { value: "en", label: "Inglés" },
   { value: "ru", label: "Ruso" },
+  { value: "ar", label: "Árabe" },
+  { value: "es", label: "Español" },
 ];
 
 type ProvisionState = "form" | "deploying" | "success" | "error";
@@ -178,6 +180,9 @@ export default function NewClientPage() {
                 setAddress("");
                 setInstagram("");
                 setAdminEmail("");
+                setNiche("barberia");
+                setLanguage("he");
+                setBusinessMode("team");
               }}
               className="inline-flex items-center justify-center gap-2 rounded-lg border border-border px-4 py-2.5 text-xs font-medium text-text-secondary hover:bg-bg-hover"
             >

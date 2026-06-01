@@ -54,18 +54,18 @@ export function Hero() {
                 />
               </div>
             </div>
-            <div className="at-hero-ribbon">
+            <div className="at-hero-ribbon" aria-hidden="true">
               <div className="at-hero-ribbon-inner">
-                <span>shipped this week</span>
-                <span>tattoo &middot; TLV</span>
-                <span>caf&eacute; &middot; Florentin</span>
-                <span>barber &middot; Holon</span>
-                <span>nails &middot; Ramat Gan</span>
-                <span>shipped this week</span>
-                <span>tattoo &middot; TLV</span>
-                <span>caf&eacute; &middot; Florentin</span>
-                <span>barber &middot; Holon</span>
-                <span>nails &middot; Ramat Gan</span>
+                <span>{t.hero.ribbon || "shipped this week"}</span>
+                <span>tattoo · TLV</span>
+                <span>café · Florentin</span>
+                <span>barber · Holon</span>
+                <span>nails · Ramat Gan</span>
+                <span>{t.hero.ribbon || "shipped this week"}</span>
+                <span>tattoo · TLV</span>
+                <span>café · Florentin</span>
+                <span>barber · Holon</span>
+                <span>nails · Ramat Gan</span>
               </div>
             </div>
           </div>

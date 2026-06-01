@@ -2,7 +2,7 @@ export type Locale = "en" | "es" | "he" | "ru" | "ar";
 
 export interface Translations {
   nav: { work: string; crm: string; agent: string; how?: string; pricing: string; faq: string; start: string };
-  hero: { eyebrow: string; h1a: string; h1b: string; h1c: string; sub: string; cta: string; ghost: string };
+  hero: { eyebrow: string; h1a: string; h1b: string; h1c: string; sub: string; cta: string; ghost: string; ribbon?: string };
   showcase: {
     eyebrow: string; title: string; titleEm: string; sub: string; why: string;
     pickHint: string; open: string;
@@ -21,6 +21,8 @@ export interface Translations {
     eyebrow: string; title: string; titleEm: string; sub: string; why: string;
     reasons: { t: string; d: string }[];
     chat: { from: "client" | "agent"; text: string }[];
+    chatStatus?: string;
+    chatField?: string;
   };
   everything: {
     eyebrow: string; title: string; titleEm: string; sub: string;
@@ -39,6 +41,7 @@ export interface Translations {
   pricing: {
     eyebrow: string; title: string; titleEm: string; sub: string; monthlyAbbr: string;
     plans: { tag: string; name: string; price: number; tagline: string; highlight?: boolean; items: string[] }[];
+    stamp: string;
     setupLabel: string; setupValue: string; cta: string; ctaSecondary: string; note: string;
   };
   faq: {
@@ -48,10 +51,11 @@ export interface Translations {
   final: { a: string; b: string; cta: string; ctaHref?: string; note: string };
   founder: {
     eyebrow: string; h: string; hName: string; hRest: string; body: string;
-    role: string; location: string;
+    role: string; location: string; badge: string;
     stats: { k: string; v: string }[];
     cta: string;
   };
+  whyLabel: string;
   foot: { rights: string; legal: string[] };
   statusLine: string;
   pago: {

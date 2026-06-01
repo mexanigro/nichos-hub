@@ -35,7 +35,7 @@ export const PUT = withOwner(async (req: NextRequest, _session, _ctx) => {
 
   const update: Partial<StoredKeys> = {};
   for (const key of allowed) {
-    if (body[key] !== undefined && typeof body[key] === "string" && body[key] !== "") {
+    if (body[key] !== undefined && typeof body[key] === "string" && body[key]!.trim() !== "") {
       update[key] = body[key];
     }
   }

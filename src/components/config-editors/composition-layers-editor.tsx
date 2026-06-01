@@ -149,14 +149,16 @@ export function CompositionLayersEditor({
                   · parallax:{(layer.parallaxFactor ?? 1).toFixed(2)} · opacity:{(layer.opacity ?? 1).toFixed(2)}
                 </p>
               </div>
-              <ReorderControls
-                index={i}
-                total={layers.length}
-                onMoveUp={() => move(i, -1)}
-                onMoveDown={() => move(i, 1)}
-                onRemove={() => remove(i)}
-                removeLabel="Eliminar layer"
-              />
+              <div onClick={e => e.stopPropagation()}>
+                <ReorderControls
+                  index={i}
+                  total={layers.length}
+                  onMoveUp={() => move(i, -1)}
+                  onMoveDown={() => move(i, 1)}
+                  onRemove={() => remove(i)}
+                  removeLabel="Eliminar layer"
+                />
+              </div>
             </button>
 
             {isExpanded && (

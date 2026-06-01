@@ -46,15 +46,20 @@ export default function MessagesPage() {
   }, [session, router]);
 
   async function fetchMessages() {
-    const res = await fetch("/api/messages");
-    if (res.ok) {
-      const data = await res.json();
-      setMessages(data.map((m: ProviderMessage) => ({
-        ...m,
-        createdAt: new Date(m.createdAt),
-      })));
+    try {
+      const res = await fetch("/api/messages");
+      if (res.ok) {
+        const data = await res.json();
+        setMessages(data.map((m: ProviderMessage) => ({
+          ...m,
+          createdAt: new Date(m.createdAt),
+        })));
+      }
+    } catch {
+      // Network error — silently degrade to empty list
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   }
 
   async function handleClassify(msgId: string) {

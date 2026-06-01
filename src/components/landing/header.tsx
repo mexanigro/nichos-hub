@@ -53,7 +53,7 @@ export function Header() {
             Arzac <em>studio</em>
           </span>
         </a>
-        <nav className="at-nav">
+        <nav className="at-nav" aria-label="Main">
           <a href="#work">{t.nav.work}</a>
           <a href="#crm">{t.nav.crm}</a>
           <a href="#agent">{t.nav.agent}</a>

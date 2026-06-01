@@ -1,0 +1,13 @@
+{
+  "demo-velvet-muse": {
+    "hero-primary": "uploads/3d-raw/velvet-muse-v2-incoming/hero-primary.png",
+    "hero-accent": "uploads/3d-raw/velvet-muse-v2-incoming/hero-accent.png",
+    "services-cut-color": "uploads/3d-raw/velvet-muse-v2-incoming/services-cut-color.png",
+    "services-smoothing-oil": "uploads/3d-raw/velvet-muse-v2-incoming/services-smoothing-oil.png",
+    "decoration-ribbon-pink": "uploads/3d-raw/velvet-muse-v2-incoming/decoration-ribbon-pink.png",
+    "accent-pedestal-marble": "uploads/3d-raw/velvet-muse-v2-incoming/accent-pedestal-marble.png",
+    "ambient-pearls-scatter": "uploads/3d-raw/velvet-muse-v2-incoming/ambient-pearls-scatter.png",
+    "ambient-smoke-wisps": "uploads/3d-raw/velvet-muse-v2-incoming/ambient-smoke-wisps.png",
+    "ambient-pearl-single": "uploads/3d-raw/velvet-muse-v2-incoming/ambient-pearl-single.png"
+  }
+}

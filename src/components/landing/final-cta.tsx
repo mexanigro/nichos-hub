@@ -11,7 +11,11 @@ export function FinalCta() {
         <span className="ornament">→</span>
         <h2>{t.final.a}<br /><em>{t.final.b}</em></h2>
         <div className="row">
-          <a className="btn" href={t.final.ctaHref || "#pricing"}>
+          <a
+            className="btn"
+            href={t.final.ctaHref || "#pricing"}
+            {...(t.final.ctaHref?.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+          >
             {t.final.cta}{" "}
             <span style={{ fontFamily: "var(--at-serif)", fontStyle: "italic", fontSize: 20 }}>→</span>
           </a>

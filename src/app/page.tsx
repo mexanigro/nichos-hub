@@ -133,6 +133,36 @@ const jsonLd = {
         unitCode: "MON",
       },
     },
+    {
+      "@type": "FAQPage",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "Do I need technical knowledge?",
+          acceptedAnswer: { "@type": "Answer", text: "Not at all. You never touch code, hosting, or configuration. We handle everything." },
+        },
+        {
+          "@type": "Question",
+          name: "How can I trust you?",
+          acceptedAnswer: { "@type": "Answer", text: "I'm Liam Arzac — you'll talk directly to me on WhatsApp. Every site we deliver lives on a subdomain of arzac.studio so you can see real, live work. Cancel anytime, no penalty." },
+        },
+        {
+          "@type": "Question",
+          name: "What if I don't have branding or a logo?",
+          acceptedAnswer: { "@type": "Answer", text: "We design it for you. Give us a name and a vibe, and we'll design the logo, choose the palette, write the copy, and deliver a complete brand alongside the website." },
+        },
+        {
+          "@type": "Question",
+          name: "What happens if I cancel?",
+          acceptedAnswer: { "@type": "Answer", text: "You keep your domain, exported client list, and appointment history. No penalty, no lock-in." },
+        },
+        {
+          "@type": "Question",
+          name: "What languages do you support?",
+          acceptedAnswer: { "@type": "Answer", text: "The website, CRM, and WhatsApp agent work in Hebrew, English, Russian, Spanish, and Arabic. Hebrew reads right-to-left automatically." },
+        },
+      ],
+    },
   ],
 };
 

@@ -11,6 +11,7 @@ export const es: Translations = {
     sub: "Nos encargamos de lo digital — web, CRM y agente IA en WhatsApp. Vos ponés el branding. Nosotros, la estructura que funciona. Desde ₪790/mes, cero setup.",
     cta: "Empezar por WhatsApp",
     ghost: "Ver webs en vivo",
+    ribbon: "enviado esta semana",
   },
 
   showcase: {
@@ -82,6 +83,8 @@ export const es: Translations = {
       { from: "client", text: "14:30 dale. Con Yossi si se puede." },
       { from: "agent",  text: "Reservado con Yossi a las 14:30 ✓ Te paso recordatorio 2h antes. Algo más?" },
     ],
+    chatStatus: "online · respuesta automática",
+    chatField: "Mensaje…",
   },
 
   everything: {
@@ -174,6 +177,7 @@ export const es: Translations = {
         ],
       },
     ],
+    stamp: "Más popular",
     setupLabel: "Setup",
     setupValue: "₪0",
     cta: "Empezar ahora",
@@ -207,6 +211,7 @@ export const es: Translations = {
     a: "Ocupate de tu negocio.",
     b: "Nosotros, de lo digital.",
     cta: "Hablar con Liam por WhatsApp",
+    ctaHref: `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "9720557719141"}`,
     note: "Te respondemos dentro de una hora, domingo a viernes.",
   },
 
@@ -218,6 +223,7 @@ export const es: Translations = {
     body: "Soy diseñador y estratega de marketing digital. Los últimos años los pasé construyendo webs para negocios locales en Israel. Manejo Arzac Studio solo — sin agencia, sin intermediarios. Cuando nos escribís, hablás conmigo. Cuando la web sale al aire, soy yo el que apretó publicar.",
     role: "Diseñador · Estratega de marketing · Fundador",
     location: "Basado en Tel Aviv · Disponible en todo Israel",
+    badge: "Fundador · 2024",
     stats: [
       { k: "Idiomas",     v: "EN · ES · HE · RU · AR" },
       { k: "Respuesta",   v: "Dentro de una hora" },
@@ -226,6 +232,7 @@ export const es: Translations = {
     cta: "Escribile a Liam por WhatsApp",
   },
 
+  whyLabel: "Por qué importa",
   foot: { rights: "Arzac Studio · Hecho en Tel Aviv", legal: ["Privacidad", "Términos", "Contacto"] },
   statusLine: "Todas las webs de clientes operativas",
 

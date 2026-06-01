@@ -1,13 +1,15 @@
 "use client";
 import { useT } from "@/lib/i18n/context";
 
+const WA_HREF = `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "9720557719141"}`;
+
 export function WhatsappFab() {
   const { t } = useT();
-  const label = t.final?.cta || "WhatsApp";
+  const label = "WhatsApp";
   return (
     <a
       className="at-wa-fab"
-      href="https://wa.me/972500000000"
+      href={WA_HREF}
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}

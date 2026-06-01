@@ -40,9 +40,9 @@ const CATEGORY_COLORS: Record<ExpenseCategory, string> = {
 };
 
 function formatCurrency(n: number) {
-  return new Intl.NumberFormat("es-AR", {
+  return new Intl.NumberFormat("he-IL", {
     style: "currency",
-    currency: "ARS",
+    currency: "ILS",
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   }).format(n);

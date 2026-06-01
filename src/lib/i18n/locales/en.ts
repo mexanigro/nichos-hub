@@ -11,6 +11,7 @@ export const en: Translations = {
     sub: "We handle the digital — site, CRM and an AI agent on WhatsApp. You bring the brand. We bring the structure that works. From ₪790/mo, zero setup.",
     cta: "Talk on WhatsApp",
     ghost: "See live work",
+    ribbon: "shipped this week",
   },
 
   showcase: {
@@ -82,6 +83,8 @@ export const en: Translations = {
       { from: "client", text: "14:30 please. With Yossi if possible." },
       { from: "agent",  text: "Booked with Yossi at 14:30 ✓ I'll send a reminder 2h before. Anything else?" },
     ],
+    chatStatus: "online · auto-reply",
+    chatField: "Message…",
   },
 
   everything: {
@@ -174,6 +177,7 @@ export const en: Translations = {
         ],
       },
     ],
+    stamp: "Most popular",
     setupLabel: "Setup",
     setupValue: "₪0",
     cta: "Start now",
@@ -219,6 +223,7 @@ export const en: Translations = {
     body: "I'm a designer and digital marketing strategist who's spent the last few years building websites for local businesses across Israel. I run Arzac Studio solo — no agency, no middlemen. When you message us, you talk to me. When the site goes live, I'm the one who pressed publish.",
     role: "Designer · Marketing strategist · Founder",
     location: "Based in Tel Aviv · Available across Israel",
+    badge: "Founder · 2024",
     stats: [
       { k: "Languages", v: "EN · ES · HE · RU · AR" },
       { k: "Response",  v: "Within the hour" },
@@ -227,6 +232,7 @@ export const en: Translations = {
     cta: "Message Liam on WhatsApp",
   },
 
+  whyLabel: "Why this matters",
   foot: { rights: "Arzac Studio · Built in Tel Aviv", legal: ["Privacy", "Terms", "Contact"] },
   statusLine: "All client sites operational",
 

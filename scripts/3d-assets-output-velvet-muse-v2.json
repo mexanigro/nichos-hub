@@ -1,0 +1,239 @@
+{
+  "demo-velvet-muse": {
+    "hero-primary": {
+      "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fdemo-velvet-muse%2Fhero-primary.png?alt=media&token=f0a5b66a-983d-425a-9bb5-a59abff15f53",
+      "backgroundTone": "#faf3ec",
+      "particles": "pearls",
+      "shadowColor": "auto",
+      "bboxRatio": { "w": 0.837, "h": 0.85 },
+      "haloPercent": 1.88,
+      "_meta": {
+        "attempts": 1,
+        "originalKB": 1670.6,
+        "compressedKB": 407.8,
+        "savedPct": 75.6,
+        "validation": {
+          "width": 1086,
+          "height": 1448,
+          "channels": 4,
+          "pctTransparent": 57.48,
+          "pctOpaque": 40.6,
+          "haloPct": 1.88,
+          "bboxRatio": { "w": 0.837, "h": 0.85 }
+        },
+        "warnings": [],
+        "storagePath": "3d-assets/demo-velvet-muse/hero-primary.png"
+      }
+    },
+    "hero-accent": {
+      "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fdemo-velvet-muse%2Fhero-accent.png?alt=media&token=d9a7162a-e5da-4e71-a134-826d806a146f",
+      "backgroundTone": "#f9f2ec",
+      "particles": null,
+      "shadowColor": "auto",
+      "bboxRatio": { "w": 0.734, "h": 0.825 },
+      "haloPercent": 5.36,
+      "_meta": {
+        "status": "accepted-with-halo",
+        "haloPercent": 5.36,
+        "ownerDecision": "Owner accepted halo 5-8% range — visualmente despreciable con drop-shadow + ambient glow + composition aplicados por el sitio",
+        "attempts": 1,
+        "retryRound": "v2-gris-carbon-accepted",
+        "rawBackgroundTone": "#38393c",
+        "originalKB": 1277.1,
+        "compressedKB": 213.6,
+        "savedPct": 83.3,
+        "validation": {
+          "width": 1086,
+          "height": 1448,
+          "channels": 4,
+          "pctTransparent": 67.61,
+          "pctOpaque": 31.79,
+          "haloPct": 5.36,
+          "bboxRatio": { "w": 0.734, "h": 0.825 }
+        },
+        "warnings": [],
+        "storagePath": "3d-assets/demo-velvet-muse/hero-accent.png"
+      }
+    },
+    "services-cut-color": {
+      "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fdemo-velvet-muse%2Fservices-cut-color.png?alt=media&token=e1e6c45e-1e14-4348-8816-4cf6b5e609bf",
+      "backgroundTone": "#fcf4ee",
+      "particles": "pearls",
+      "shadowColor": "auto",
+      "bboxRatio": { "w": 0.849, "h": 0.865 },
+      "haloPercent": 0.2,
+      "_meta": {
+        "attempts": 1,
+        "originalKB": 1525.6,
+        "compressedKB": 300.2,
+        "savedPct": 80.3,
+        "validation": {
+          "width": 1086,
+          "height": 1448,
+          "channels": 4,
+          "pctTransparent": 74.92,
+          "pctOpaque": 21.28,
+          "haloPct": 0.2,
+          "bboxRatio": { "w": 0.849, "h": 0.865 }
+        },
+        "warnings": [],
+        "storagePath": "3d-assets/demo-velvet-muse/services-cut-color.png"
+      }
+    },
+    "services-smoothing-oil": {
+      "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fdemo-velvet-muse%2Fservices-smoothing-oil.png?alt=media&token=f3450014-1074-4bbb-8758-87f78898586c",
+      "backgroundTone": "#f9f2ec",
+      "particles": null,
+      "shadowColor": "auto",
+      "bboxRatio": { "w": 0.397, "h": 0.723 },
+      "haloPercent": 8.45,
+      "_meta": {
+        "status": "accepted-with-halo",
+        "haloPercent": 8.45,
+        "ownerDecision": "Owner accepted halo 5-8% range — visualmente despreciable con drop-shadow + ambient glow + composition aplicados por el sitio",
+        "attempts": 1,
+        "retryRound": "v2-gris-carbon-accepted",
+        "rawBackgroundTone": "#27282c",
+        "originalKB": 1293.4,
+        "compressedKB": 200.3,
+        "savedPct": 84.5,
+        "validation": {
+          "width": 1254,
+          "height": 1254,
+          "channels": 4,
+          "pctTransparent": 81.71,
+          "pctOpaque": 18.05,
+          "haloPct": 8.45,
+          "bboxRatio": { "w": 0.397, "h": 0.723 }
+        },
+        "warnings": [],
+        "storagePath": "3d-assets/demo-velvet-muse/services-smoothing-oil.png"
+      }
+    },
+    "decoration-ribbon-pink": {
+      "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fdemo-velvet-muse%2Fdecoration-ribbon-pink.png?alt=media&token=55d75c34-c1b8-4b40-84cf-e49e8aaedb25",
+      "backgroundTone": "#f9f2ed",
+      "particles": "pearls",
+      "shadowColor": "auto",
+      "bboxRatio": { "w": 0.964, "h": 0.864 },
+      "haloPercent": 0,
+      "_meta": {
+        "attempts": 1,
+        "originalKB": 1213.3,
+        "compressedKB": 129.6,
+        "savedPct": 89.3,
+        "validation": {
+          "width": 1536,
+          "height": 1024,
+          "channels": 4,
+          "pctTransparent": 85.45,
+          "pctOpaque": 14.08,
+          "haloPct": 0,
+          "bboxRatio": { "w": 0.964, "h": 0.864 }
+        },
+        "warnings": [],
+        "storagePath": "3d-assets/demo-velvet-muse/decoration-ribbon-pink.png"
+      }
+    },
+    "accent-pedestal-marble": {
+      "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fdemo-velvet-muse%2Faccent-pedestal-marble.png?alt=media&token=e86300c4-e5e3-481e-b06f-dd0f70ab0b56",
+      "backgroundTone": "#f9f3ee",
+      "particles": "pearls",
+      "shadowColor": "auto",
+      "bboxRatio": { "w": 0.628, "h": 0.396 },
+      "haloPercent": 0.07,
+      "_meta": {
+        "attempts": 1,
+        "originalKB": 952.5,
+        "compressedKB": 140.5,
+        "savedPct": 85.2,
+        "validation": {
+          "width": 1254,
+          "height": 1254,
+          "channels": 4,
+          "pctTransparent": 77.55,
+          "pctOpaque": 22.17,
+          "haloPct": 0.07,
+          "bboxRatio": { "w": 0.628, "h": 0.396 }
+        },
+        "warnings": [],
+        "storagePath": "3d-assets/demo-velvet-muse/accent-pedestal-marble.png"
+      }
+    },
+    "ambient-pearls-scatter": {
+      "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fdemo-velvet-muse%2Fambient-pearls-scatter.png?alt=media&token=78e19f2d-8163-482c-937b-9cb3c53c7c2e",
+      "backgroundTone": "#f8f2ed",
+      "particles": "pearls",
+      "shadowColor": "auto",
+      "bboxRatio": { "w": 0.849, "h": 0.867 },
+      "haloPercent": 1.38,
+      "_meta": {
+        "attempts": 1,
+        "originalKB": 960.8,
+        "compressedKB": 133.3,
+        "savedPct": 86.1,
+        "validation": {
+          "width": 1448,
+          "height": 1086,
+          "channels": 4,
+          "pctTransparent": 85.76,
+          "pctOpaque": 13.59,
+          "haloPct": 1.38,
+          "bboxRatio": { "w": 0.849, "h": 0.867 }
+        },
+        "warnings": [],
+        "storagePath": "3d-assets/demo-velvet-muse/ambient-pearls-scatter.png"
+      }
+    },
+    "ambient-smoke-wisps": {
+      "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fdemo-velvet-muse%2Fambient-smoke-wisps.png?alt=media&token=297fce7b-bd77-43ab-a586-71968df998ff",
+      "backgroundTone": "#fbf3ed",
+      "particles": "pearls",
+      "shadowColor": "auto",
+      "bboxRatio": { "w": 0.666, "h": 0.939 },
+      "haloPercent": 0,
+      "_meta": {
+        "attempts": 1,
+        "originalKB": 1146.1,
+        "compressedKB": 171.8,
+        "savedPct": 85,
+        "validation": {
+          "width": 1024,
+          "height": 1536,
+          "channels": 4,
+          "pctTransparent": 88.66,
+          "pctOpaque": 3.55,
+          "haloPct": 0,
+          "bboxRatio": { "w": 0.666, "h": 0.939 }
+        },
+        "warnings": [],
+        "storagePath": "3d-assets/demo-velvet-muse/ambient-smoke-wisps.png"
+      }
+    },
+    "ambient-pearl-single": {
+      "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/3d-assets%2Fdemo-velvet-muse%2Fambient-pearl-single.png?alt=media&token=f533745c-0ecb-47b7-90f2-83a92faf25ca",
+      "backgroundTone": "#f8f2ec",
+      "particles": "pearls",
+      "shadowColor": "auto",
+      "bboxRatio": { "w": 0.533, "h": 0.534 },
+      "haloPercent": 0,
+      "_meta": {
+        "attempts": 1,
+        "originalKB": 968.5,
+        "compressedKB": 161,
+        "savedPct": 83.4,
+        "validation": {
+          "width": 1254,
+          "height": 1254,
+          "channels": 4,
+          "pctTransparent": 77.57,
+          "pctOpaque": 22.17,
+          "haloPct": 0,
+          "bboxRatio": { "w": 0.533, "h": 0.534 }
+        },
+        "warnings": [],
+        "storagePath": "3d-assets/demo-velvet-muse/ambient-pearl-single.png"
+      }
+    }
+  }
+}
