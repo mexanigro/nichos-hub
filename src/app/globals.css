@@ -98,7 +98,7 @@ body:has(.at) {
 .at .at-why { display: grid; grid-template-columns: 4px 1fr; gap: 14px; padding: 14px 0 20px; margin-bottom: 18px; border-bottom: 1px solid var(--at-line-2); }
 .at .at-why::before { content: ""; background: var(--at-accent); border-radius: 2px; }
 .at .at-why .head { font-family: var(--at-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--at-accent); margin-bottom: 4px; }
-.at .at-why .body { font-family: var(--at-serif); font-size: 18px; line-height: 1.4; letter-spacing: -0.01em; color: var(--at-ink); font-weight: 400; max-width: 64ch; }
+.at .at-why .body { font-family: var(--at-serif); font-size: 18px; line-height: 1.4; letter-spacing: -0.01em; color: var(--at-ink); font-weight: 400; max-width: 64ch; overflow-wrap: break-word; }
 .at .at-why .body em { font-style: italic; color: var(--at-accent); }
 
 /* header (scroll-aware) */
@@ -125,7 +125,7 @@ body:has(.at) {
 .at-hero-inner { display: flex; flex-direction: column; gap: 24px; }
 .at-h1 { font-family: var(--at-serif); font-weight: 400; font-size: 50px; line-height: 0.96; letter-spacing: -0.025em; margin: 12px 0 0; color: var(--at-ink); }
 .at-h1 .ital { font-style: italic; color: var(--at-accent); }
-.at-hero-sub { font-family: var(--at-sans); font-size: 16px; line-height: 1.55; color: var(--at-ink-2); max-width: 44ch; margin: 16px 0 0; }
+.at-hero-sub { font-family: var(--at-sans); font-size: 16px; line-height: 1.55; color: var(--at-ink-2); max-width: 52ch; margin: 16px 0 0; overflow-wrap: break-word; }
 .at-hero-actions { display: inline-flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 20px; }
 .at-btn-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--at-ink); color: var(--at-paper); border: 0; cursor: pointer; padding: 13px 20px; border-radius: 999px; font-size: 15px; font-weight: 500; transition: background .15s; }
 .at-btn-primary:hover { background: var(--at-accent); }
@@ -267,9 +267,9 @@ body:has(.at) {
 .at-mani h2 em { color: var(--at-accent); font-style: italic; }
 .at-mani-body { font-size: 16px; line-height: 1.6; color: rgba(244,240,232,0.78); max-width: 50ch; }
 .at-mani-points { display: grid; grid-template-columns: 1fr; gap: 0; margin-top: 18px; }
-.at-mani-point { display: grid; grid-template-columns: 110px 1fr; gap: 18px; padding-block: 16px; border-top: 1px solid rgba(244,240,232,0.12); }
+.at-mani-point { display: grid; grid-template-columns: max-content 1fr; gap: 18px; padding-block: 16px; border-top: 1px solid rgba(244,240,232,0.12); }
 .at-mani-point:last-child { border-bottom: 1px solid rgba(244,240,232,0.12); }
-.at-mani-point .k { font-family: var(--at-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(244,240,232,0.55); }
+.at-mani-point .k { font-family: var(--at-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(244,240,232,0.55); white-space: nowrap; }
 .at-mani-point .v { font-family: var(--at-serif); font-size: 18px; line-height: 1.25; letter-spacing: -0.01em; color: var(--at-paper); }
 .at-mani-point .v em { font-style: italic; color: var(--at-accent); }
 
@@ -326,7 +326,7 @@ body:has(.at) {
 .at-faq-item.open .at-faq-q .ico { background: var(--at-accent); }
 .at-faq-a-wrap { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.35s cubic-bezier(0.23, 1, 0.32, 1); }
 .at-faq-item.open .at-faq-a-wrap { grid-template-rows: 1fr; }
-.at-faq-a { overflow: hidden; font-size: 15px; color: var(--at-ink-2); line-height: 1.6; max-width: 64ch; }
+.at-faq-a { overflow: hidden; font-size: 15px; color: var(--at-ink-2); line-height: 1.6; max-width: 64ch; overflow-wrap: break-word; word-break: break-word; }
 .at-faq-a-inner { padding-bottom: 22px; }
 
 /* founder */
