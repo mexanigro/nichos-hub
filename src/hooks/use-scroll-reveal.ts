@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useEffect } from "react";
 
-export function useReveal<T extends HTMLElement>(threshold = 0.15) {
+export function useReveal<T extends HTMLElement>(threshold = 0.05, rootMargin = "0px 0px 80px 0px") {
   const ref = useRef<T>(null);
   useEffect(() => {
     const el = ref.current;
@@ -17,10 +17,10 @@ export function useReveal<T extends HTMLElement>(threshold = 0.15) {
           io.disconnect();
         }
       },
-      { threshold },
+      { threshold, rootMargin },
     );
     io.observe(el);
     return () => io.disconnect();
-  }, [threshold]);
+  }, [threshold, rootMargin]);
   return ref;
 }
