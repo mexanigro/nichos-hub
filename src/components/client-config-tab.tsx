@@ -220,6 +220,7 @@ const NICHE_DEFAULTS: Record<BusinessNiche, { accent: string; accentLight: strin
   nails: { accent: "#dca2ac", accentLight: "#edc2c9", surfaceDark: "#6f4a56" },
   cafeteria: { accent: "#6b8e5e", accentLight: "#a3c490", surfaceDark: "#1a1c17" },
   remodelaciones: { accent: "#3b82f6", accentLight: "#60a5fa", surfaceDark: "#0f172a" },
+  employment: { accent: "#0d9488", accentLight: "#2dd4bf", surfaceDark: "#0f172a" },
 };
 
 type FeatureItem = { key: string; label: string; niches?: BusinessNiche[] };
@@ -243,7 +244,7 @@ const FEATURES_LIST: FeatureItem[] = [
   { key: "showHeroStats", label: "Stats del Hero" },
   { key: "showFaq", label: "Preguntas frecuentes" },
   { key: "showPhilosophy", label: "Filosofia", niches: ["cafeteria"] },
-  { key: "showProcess", label: "Proceso", niches: ["cafeteria", "remodelaciones"] },
+  { key: "showProcess", label: "Proceso", niches: ["cafeteria", "remodelaciones", "employment"] },
   { key: "showAmbience", label: "Ambiente", niches: ["cafeteria"] },
   { key: "showPortfolio", label: "Portfolio", niches: ["remodelaciones"] },
   { key: "showMenu", label: "Menu", niches: ["cafeteria"] },
@@ -673,7 +674,7 @@ export function ClientConfigTab({
           </div>
           <p className="self-end pb-2 text-[10px] text-text-muted">
             Aparece en el tab del navegador. El template usa un emoji (no una imagen).
-            Sugerencias por nicho: ✂️ barberia, 💅 nails, 🎨 tattoo, 🌸 estetica, ☕ cafeteria, 🔨 remodelaciones.
+            Sugerencias por nicho: ✂️ barberia, 💅 nails, 🎨 tattoo, 🌸 estetica, ☕ cafeteria, 🔨 remodelaciones, 💼 employment.
           </p>
         </div>
       </Section>
@@ -866,6 +867,7 @@ export function ClientConfigTab({
               { value: "nails", label: "Nails" },
               { value: "cafeteria", label: "Cafetería" },
               { value: "remodelaciones", label: "Remodelaciones" },
+              { value: "employment", label: "Employment" },
             ]}
           />
         </div>
@@ -1579,7 +1581,7 @@ export function ClientConfigTab({
       {(() => {
         const currentNiche = normalizeBusinessNiche(config.business?.type || niche);
         const showPhilosophy = currentNiche === "cafeteria";
-        const showProcess = currentNiche === "cafeteria" || currentNiche === "remodelaciones";
+        const showProcess = currentNiche === "cafeteria" || currentNiche === "remodelaciones" || currentNiche === "employment";
         const showAmbience = currentNiche === "cafeteria";
         const showMenu = currentNiche === "cafeteria";
         const showPortfolio = currentNiche === "remodelaciones";

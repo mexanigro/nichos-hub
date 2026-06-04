@@ -19,6 +19,7 @@ const NICHE_CONTEXT: Record<string, string> = {
   nails: "nail salon / manicure studio",
   cafeteria: "artisanal café / coffee shop",
   remodelaciones: "home remodeling / painting company",
+  employment: "employment agency / staffing and recruitment service",
 };
 
 const OUTPUT_SCHEMA = `{

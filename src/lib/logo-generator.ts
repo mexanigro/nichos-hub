@@ -68,6 +68,14 @@ Color psychology: Steel blue, slate gray, deep green, orange/amber accents for e
 Composition: Horizontal with icon on left, or stacked. Clean architectural lines. Professional and structured.
 Style reference: Think construction company branding, architecture firms, premium home improvement brands.
 SVG tips: Use clean geometric shapes. Straight lines and right angles. Professional grid-like composition. Bold, confident design.`,
+
+  employment: `EMPLOYMENT / STAFFING AGENCY LOGO BRIEF:
+Visual motifs: Briefcase, handshake, person/people silhouette, upward arrow, abstract building blocks, connecting nodes/network.
+Typography: Strong geometric sans-serif. Clean, modern, trustworthy. Title case. Consider bold weight for authority.
+Color psychology: Navy blue, slate, teal, warm amber accents. Professional and approachable.
+Composition: Horizontal wordmark with icon, or stacked. Clean and corporate but friendly.
+Style reference: Think modern recruitment platforms, professional staffing agencies, career services brands.
+SVG tips: Use clean geometric shapes. Professional grid-like composition. Bold, confident design. Convey trust and opportunity.`,
 };
 
 /**

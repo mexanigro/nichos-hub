@@ -7,7 +7,7 @@ import type { StepProps, WizardService } from "@/lib/wizard/wizard-types";
 import { NICHE_SERVICES, type BusinessNiche } from "@/lib/client-config/services";
 
 function isValidNiche(niche: string): niche is BusinessNiche {
-  return ["barberia", "estetica", "tattoo", "nails", "cafeteria", "remodelaciones"].includes(niche);
+  return ["barberia", "estetica", "tattoo", "nails", "cafeteria", "remodelaciones", "employment"].includes(niche);
 }
 
 export function StepServices({ data, updateField, errors }: StepProps) {

@@ -369,7 +369,7 @@ export const ar: Translations = {
     galleryTitle: "الصور والمعرض", gallerySub: "اعرض مكانك وأعمالك.",
     reviewTitle: "جاهز لبناء موقعك", reviewSub: "تحقق أن كل شيء يبدو جيدًا، ثم سننشئ معاينتك المجانية.",
     reviewSubPaid: "راجع معلوماتك قبل الإرسال.",
-    niches: { barberia: "حلاقة", estetica: "تجميل", tattoo: "وشم", nails: "أظافر", cafeteria: "مقهى", remodelaciones: "تجديدات", otro: "أخرى" },
+    niches: { barberia: "حلاقة", estetica: "تجميل", tattoo: "وشم", nails: "أظافر", cafeteria: "مقهى", remodelaciones: "تجديدات", employment: "توظيف", otro: "أخرى" },
     customNicheLabel: "صف عملك", customNichePh: "مثلاً استوديو يوغا، تنظيف حيوانات...",
     solo: "فردي", soloDesc: "أدير عملي بشكل مستقل. علامتي الشخصية هي العمل.",
     team: "فريق", teamDesc: "لدي فريق أو عدة موظفين. للعمل علامته التجارية الخاصة.",

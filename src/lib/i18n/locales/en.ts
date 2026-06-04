@@ -369,7 +369,7 @@ export const en: Translations = {
     galleryTitle: "Photos & gallery", gallerySub: "Show off your space and work.",
     reviewTitle: "Ready to build your site", reviewSub: "Check everything looks good, then we'll create your free preview.",
     reviewSubPaid: "Review your info before submitting.",
-    niches: { barberia: "Barbershop", estetica: "Aesthetics", tattoo: "Tattoo", nails: "Nails", cafeteria: "Cafe", remodelaciones: "Renovations", otro: "Other" },
+    niches: { barberia: "Barbershop", estetica: "Aesthetics", tattoo: "Tattoo", nails: "Nails", cafeteria: "Cafe", remodelaciones: "Renovations", employment: "Employment", otro: "Other" },
     customNicheLabel: "Describe your business", customNichePh: "e.g. Yoga studio, Pet grooming...",
     solo: "Solo", soloDesc: "I run my business independently. My personal brand is the business.",
     team: "Team", teamDesc: "I have a team or multiple staff members. The business has its own brand.",

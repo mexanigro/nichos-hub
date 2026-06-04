@@ -166,7 +166,7 @@ async function main() {
 
   // business.type — known niche
   const bt = data?.business?.type;
-  if (bt && !["barberia", "estetica", "tattoo", "nails", "cafeteria", "remodelaciones"].includes(bt)) {
+  if (bt && !["barberia", "estetica", "tattoo", "nails", "cafeteria", "remodelaciones", "employment"].includes(bt)) {
     warn(`business.type = "${bt}" — not a known niche; template falls back to safe-overlay merge only`);
   } else if (bt) {
     ok(`business.type: ${bt}`);

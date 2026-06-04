@@ -13,7 +13,7 @@ import type { WizardData } from "@/lib/wizard/wizard-types";
  * a /public/wizard-refs/ y aparecen automáticamente en los steps
  * correspondientes. No hay que tocar código por cada imagen nueva.
  *
- * Nichos esperados: barberia, estetica, tattoo, nails, cafeteria, remodelaciones.
+ * Nichos esperados: barberia, estetica, tattoo, nails, cafeteria, remodelaciones, employment.
  * Para nichos sin imagen → usa "estetica" como fallback genérico.
  */
 const FALLBACK_NICHE = "estetica";

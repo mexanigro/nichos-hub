@@ -58,7 +58,7 @@ const SERVER_READY_TIMEOUT_MS = 60_000;
 const PAGE_READY_TIMEOUT_MS = 25_000;
 const POST_READY_DELAY_MS = 350;
 
-const NICHES = ["barberia", "cafeteria", "estetica", "nails", "remodelaciones", "tattoo"];
+const NICHES = ["barberia", "cafeteria", "employment", "estetica", "nails", "remodelaciones", "tattoo"];
 const SECTIONS = ["hero", "benefits", "testimonials", "faq"];
 
 const VIEWPORT = { width: 1280, height: 800 };

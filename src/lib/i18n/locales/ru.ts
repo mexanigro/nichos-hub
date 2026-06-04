@@ -369,7 +369,7 @@ export const ru: Translations = {
     galleryTitle: "Фото и галерея", gallerySub: "Покажите ваше пространство и работу.",
     reviewTitle: "Готовы создать сайт", reviewSub: "Проверьте данные, и мы создадим ваш бесплатный превью.",
     reviewSubPaid: "Проверьте информацию перед отправкой.",
-    niches: { barberia: "Барбершоп", estetica: "Эстетика", tattoo: "Тату", nails: "Ногти", cafeteria: "Кафе", remodelaciones: "Ремонт", otro: "Другое" },
+    niches: { barberia: "Барбершоп", estetica: "Эстетика", tattoo: "Тату", nails: "Ногти", cafeteria: "Кафе", remodelaciones: "Ремонт", employment: "Трудоустройство", otro: "Другое" },
     customNicheLabel: "Опишите ваш бизнес", customNichePh: "напр. Студия йоги, Груминг...",
     solo: "Один", soloDesc: "Я работаю самостоятельно. Мой личный бренд — это бизнес.",
     team: "Команда", teamDesc: "У меня есть команда или несколько сотрудников. У бизнеса свой бренд.",

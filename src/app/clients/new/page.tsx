@@ -17,9 +17,10 @@ import {
   PenTool,
   User,
   Users,
+  Briefcase,
 } from "lucide-react";
 
-type BusinessNiche = "barberia" | "estetica" | "tattoo" | "nails" | "cafeteria" | "remodelaciones";
+type BusinessNiche = "barberia" | "estetica" | "tattoo" | "nails" | "cafeteria" | "remodelaciones" | "employment";
 
 const NICHES: { id: BusinessNiche; label: string; icon: React.ComponentType<{ size?: number; className?: string }> }[] = [
   { id: "barberia", label: "Barbería", icon: Scissors },
@@ -28,6 +29,7 @@ const NICHES: { id: BusinessNiche; label: string; icon: React.ComponentType<{ si
   { id: "nails", label: "Nails", icon: Palette },
   { id: "cafeteria", label: "Cafetería", icon: Coffee },
   { id: "remodelaciones", label: "Remodelaciones", icon: Hammer },
+  { id: "employment", label: "Employment", icon: Briefcase },
 ];
 
 const LANGUAGES = [

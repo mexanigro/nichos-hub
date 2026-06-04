@@ -8,6 +8,7 @@ export const WIZARD_NICHES = [
   "nails",
   "cafeteria",
   "remodelaciones",
+  "employment",
   "otro",
 ] as const;
 export type WizardNiche = (typeof WIZARD_NICHES)[number];

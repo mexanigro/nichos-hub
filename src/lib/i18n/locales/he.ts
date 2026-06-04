@@ -369,7 +369,7 @@ export const he: Translations = {
     galleryTitle: "תמונות וגלריה", gallerySub: "הצג את המקום והעבודה שלך.",
     reviewTitle: "מוכן לבנות את האתר", reviewSub: "בדוק שהכל נראה טוב, ואז ניצור את התצוגה המקדימה שלך.",
     reviewSubPaid: "בדוק את המידע שלך לפני השליחה.",
-    niches: { barberia: "מספרה", estetica: "אסתטיקה", tattoo: "קעקוע", nails: "ציפורניים", cafeteria: "בית קפה", remodelaciones: "שיפוצים", otro: "אחר" },
+    niches: { barberia: "מספרה", estetica: "אסתטיקה", tattoo: "קעקוע", nails: "ציפורניים", cafeteria: "בית קפה", remodelaciones: "שיפוצים", employment: "תעסוקה", otro: "אחר" },
     customNicheLabel: "תאר את העסק שלך", customNichePh: "למשל סטודיו ליוגה, טיפוח חיות...",
     solo: "עצמאי", soloDesc: "אני מנהל את העסק באופן עצמאי. המותג האישי שלי הוא העסק.",
     team: "צוות", teamDesc: "יש לי צוות או מספר עובדים. לעסק יש מותג משלו.",

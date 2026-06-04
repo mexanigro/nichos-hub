@@ -1,4 +1,4 @@
-export type BusinessNiche = "barberia" | "estetica" | "tattoo" | "nails" | "cafeteria" | "remodelaciones";
+export type BusinessNiche = "barberia" | "estetica" | "tattoo" | "nails" | "cafeteria" | "remodelaciones" | "employment";
 
 export type NicheService = { id: string; label: string };
 
@@ -7,7 +7,7 @@ export type ServiceVisibilityConfig = {
   features?: Record<string, boolean>;
 };
 
-const BUSINESS_NICHES = ["barberia", "estetica", "tattoo", "nails", "cafeteria", "remodelaciones"] as const;
+const BUSINESS_NICHES = ["barberia", "estetica", "tattoo", "nails", "cafeteria", "remodelaciones", "employment"] as const;
 
 export const NICHE_SERVICES: Record<BusinessNiche, NicheService[]> = {
   barberia: [
@@ -56,6 +56,13 @@ export const NICHE_SERVICES: Record<BusinessNiche, NicheService[]> = {
     { id: "flooring", label: "Flooring" },
     { id: "general-renovation", label: "General Renovation" },
   ],
+  employment: [
+    { id: "job-placement", label: "Job Placement" },
+    { id: "resume-review", label: "Resume Review" },
+    { id: "interview-prep", label: "Interview Preparation" },
+    { id: "career-counseling", label: "Career Counseling" },
+    { id: "temp-staffing", label: "Temporary Staffing" },
+  ],
 };
 
 export const LANDING_SERVICES_DEFAULTS: Record<BusinessNiche, number> = {
@@ -65,6 +72,7 @@ export const LANDING_SERVICES_DEFAULTS: Record<BusinessNiche, number> = {
   nails: 3,
   cafeteria: 4,
   remodelaciones: 4,
+  employment: 4,
 };
 
 export function normalizeBusinessNiche(raw: unknown, fallback: BusinessNiche = "barberia"): BusinessNiche {
