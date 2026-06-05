@@ -23,8 +23,7 @@ export default function TermsPage() {
         <section>
           <h2>Plans and pricing</h2>
           <ul>
-            <li><strong>Web + CRM</strong> — ₪790/month. Includes website, hosting, domain, CRM, booking calendar, and unlimited text edits.</li>
-            <li><strong>Web + CRM + Agent</strong> — ₪990/month. Everything above plus an AI WhatsApp agent trained on your services.</li>
+            <li><strong>Web + CRM + Agent</strong> — ₪770/month. Includes website, hosting, domain, CRM, booking calendar, unlimited text edits, and an AI WhatsApp agent trained on your services.</li>
           </ul>
           <p>Setup is free. The first payment is charged upon subscription. Subsequent payments are charged monthly on the same date.</p>
         </section>

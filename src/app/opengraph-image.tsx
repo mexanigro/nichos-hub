@@ -104,7 +104,7 @@ export default function OGImage() {
           >
             <span style={{ display: "flex" }}>Zero setup</span>
             <span style={{ display: "flex" }}>·</span>
-            <span style={{ display: "flex" }}>From ₪790/mo</span>
+            <span style={{ display: "flex" }}>₪770/mo</span>
             <span style={{ display: "flex" }}>·</span>
             <span style={{ display: "flex" }}>Live in 48h</span>
           </div>

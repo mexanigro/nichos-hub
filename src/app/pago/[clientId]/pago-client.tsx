@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { WEB_CRM_AMOUNT, COMPLETO_AMOUNT, type PlanType } from "@/lib/pricing";
+import { PLAN_AMOUNT, type PlanType } from "@/lib/pricing";
 import { getContract, type ContractLang } from "@/lib/contracts";
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -11,11 +11,8 @@ import { getContract, type ContractLang } from "@/lib/contracts";
 const i18n = {
   he: {
     greeting: "שלום,",
-    choosePlan: "בחר תוכנית",
-    planWebCrm: "Web + CRM",
-    planCompleto: "Completo",
+    planName: "Web + CRM + סוכן WhatsApp",
     perMonth: "/חודש",
-    popular: "פופולרי",
     contractTitle: "הסכם שירות",
     expandContract: "קרא את ההסכם המלא",
     collapseContract: "הסתר",
@@ -25,33 +22,20 @@ const i18n = {
     error: "שגיאה, נסה שוב",
     securePayment: "תשלום מאובטח",
     monthlyAmount: "סכום חודשי",
-    upgradeTitle: "Upgrade ל-Completo",
-    upgradeDesc: "התוכנית שלך תתעדכן מיידית עם סוכן WhatsApp AI.",
-    webCrmFeatures: [
+    features: [
       "אתר אישי מעוצב",
       "CRM עם עוזר AI",
       "מערכת הזמנות אונליין",
-      "ניהול מלאי/סטוק",
-      "מדור שאלות נפוצות",
-      "3 שפות (HE, EN, RU)",
+      "סוכן WhatsApp AI 24/7",
       "דומיין + אחסון כלול",
       "תחזוקה ותמיכה 24/7",
-    ],
-    completoFeatures: [
-      "הכל מתוכנית Web+CRM",
-      "סוכן WhatsApp AI 24/7",
-      "תשובות אוטומטיות מותאמות",
-      "לכידת לידים ב-WhatsApp",
-      "תורים/הזמנות ב-WhatsApp",
+      "5 שפות (HE, EN, RU, ES, AR)",
     ],
   },
   en: {
     greeting: "Hello,",
-    choosePlan: "Choose your plan",
-    planWebCrm: "Web + CRM",
-    planCompleto: "Completo",
+    planName: "Web + CRM + WhatsApp Agent",
     perMonth: "/month",
-    popular: "Popular",
     contractTitle: "Service Agreement",
     expandContract: "Read full agreement",
     collapseContract: "Collapse",
@@ -61,33 +45,20 @@ const i18n = {
     error: "An error occurred, please try again",
     securePayment: "Secure payment",
     monthlyAmount: "Monthly amount",
-    upgradeTitle: "Upgrade to Completo",
-    upgradeDesc: "Your plan will be updated immediately with the WhatsApp AI agent.",
-    webCrmFeatures: [
+    features: [
       "Custom designed website",
       "CRM with AI assistant",
       "Online booking system",
-      "Inventory/stock management",
-      "Editable FAQ section",
-      "3 languages (HE, EN, RU)",
+      "24/7 AI WhatsApp Agent",
       "Domain + hosting included",
       "24/7 maintenance & support",
-    ],
-    completoFeatures: [
-      "Everything in Web+CRM",
-      "24/7 AI WhatsApp Agent",
-      "Custom automatic responses",
-      "WhatsApp lead capture",
-      "Appointments via WhatsApp",
+      "5 languages (HE, EN, RU, ES, AR)",
     ],
   },
   es: {
     greeting: "Hola,",
-    choosePlan: "Elegí tu plan",
-    planWebCrm: "Web + CRM",
-    planCompleto: "Completo",
+    planName: "Web + CRM + Agente WhatsApp",
     perMonth: "/mes",
-    popular: "Popular",
     contractTitle: "Acuerdo de servicio",
     expandContract: "Leer acuerdo completo",
     collapseContract: "Ocultar",
@@ -97,33 +68,20 @@ const i18n = {
     error: "Error, intentá de nuevo",
     securePayment: "Pago seguro",
     monthlyAmount: "Monto mensual",
-    upgradeTitle: "Upgrade a Completo",
-    upgradeDesc: "Tu plan se actualizará inmediatamente con el agente WhatsApp IA.",
-    webCrmFeatures: [
+    features: [
       "Sitio web profesional a medida",
       "CRM con asistente IA",
       "Sistema de reservas online",
-      "Gestión de inventario/stock",
-      "Sección de preguntas frecuentes",
-      "3 idiomas (HE, EN, RU)",
+      "Agente WhatsApp IA 24/7",
       "Dominio + hosting incluido",
       "Mantenimiento y soporte 24/7",
-    ],
-    completoFeatures: [
-      "Todo del plan Web+CRM",
-      "Agente WhatsApp IA 24/7",
-      "Respuestas automáticas personalizadas",
-      "Captura de leads por WhatsApp",
-      "Turnos/reservas por WhatsApp",
+      "5 idiomas (HE, EN, RU, ES, AR)",
     ],
   },
   ru: {
     greeting: "Здравствуйте,",
-    choosePlan: "Выберите план",
-    planWebCrm: "Web + CRM",
-    planCompleto: "Completo",
+    planName: "Сайт + CRM + Агент WhatsApp",
     perMonth: "/мес",
-    popular: "Популярный",
     contractTitle: "Договор об оказании услуг",
     expandContract: "Прочитать полный договор",
     collapseContract: "Скрыть",
@@ -133,24 +91,14 @@ const i18n = {
     error: "Ошибка, попробуйте снова",
     securePayment: "Безопасная оплата",
     monthlyAmount: "Ежемесячная сумма",
-    upgradeTitle: "Переход на Completo",
-    upgradeDesc: "Ваш план будет обновлён немедленно с WhatsApp IA агентом.",
-    webCrmFeatures: [
+    features: [
       "Индивидуальный профессиональный сайт",
       "CRM с AI-помощником",
       "Система онлайн-бронирования",
-      "Управление инвентарём/складом",
-      "Раздел часто задаваемых вопросов",
-      "3 языка (HE, EN, RU)",
+      "WhatsApp AI агент 24/7",
       "Домен + хостинг включены",
       "Обслуживание и поддержка 24/7",
-    ],
-    completoFeatures: [
-      "Всё из плана Web+CRM",
-      "WhatsApp AI агент 24/7",
-      "Персонализированные автоответы",
-      "Захват лидов через WhatsApp",
-      "Запись через WhatsApp",
+      "5 языков (HE, EN, RU, ES, AR)",
     ],
   },
 };
@@ -168,8 +116,8 @@ interface Props {
   isUpgrade?: boolean;
 }
 
-export default function PagoClient({ clientId, clientDocId, businessName, lang, defaultPlan, isUpgrade }: Props) {
-  const [selectedPlan, setSelectedPlan] = useState<PlanType>(defaultPlan || "completo");
+export default function PagoClient({ clientId, clientDocId, businessName, lang }: Props) {
+  const selectedPlan: PlanType = "completo";
   const [accepted, setAccepted] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
@@ -177,7 +125,6 @@ export default function PagoClient({ clientId, clientDocId, businessName, lang, 
   const t = i18n[lang];
   const { text: contract, version: contractVersion } = getContract(lang as ContractLang, selectedPlan);
   const dir = lang === "he" ? "rtl" : "ltr";
-  const amount = selectedPlan === "completo" ? COMPLETO_AMOUNT : WEB_CRM_AMOUNT;
 
   async function handleContinue() {
     setSending(true);
@@ -242,105 +189,35 @@ export default function PagoClient({ clientId, clientDocId, businessName, lang, 
           <h1 className="mt-1 text-2xl font-bold text-[var(--pg-ink)]">{businessName}</h1>
         </div>
 
-        {/* Plan Selection */}
-        {!isUpgrade && (
-          <section className="mb-8">
-            <h2 className="mb-4 text-sm font-semibold text-[var(--pg-ink)]">{t.choosePlan}</h2>
-            <div className="grid gap-4 sm:grid-cols-2">
-              {/* Web+CRM */}
-              <button
-                type="button"
-                onClick={() => { setSelectedPlan("web_crm"); setAccepted(false); }}
-                className={`relative rounded-2xl border-2 p-5 text-start transition-all ${
-                  selectedPlan === "web_crm"
-                    ? "border-[var(--pg-accent)] bg-[var(--pg-paper)] shadow-md"
-                    : "border-[var(--pg-line)] bg-[var(--pg-paper)] hover:border-[var(--pg-line)]"
-                }`}
-              >
-                <p className="text-[0.9rem] font-semibold text-[var(--pg-ink)]">{t.planWebCrm}</p>
-                <p className="mt-1">
-                  <span className="text-2xl font-bold text-[var(--pg-ink)]">₪{WEB_CRM_AMOUNT}</span>
-                  <span className="text-sm text-[var(--pg-ink-2)]">{t.perMonth}</span>
-                </p>
-                <ul className="mt-4 space-y-1.5">
-                  {t.webCrmFeatures.map((f) => (
-                    <li key={f} className="flex items-start gap-2 text-[0.8rem] text-[var(--pg-ink-2)]">
-                      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="mt-0.5 shrink-0 text-[var(--pg-success)]">
-                        <path d="M3.5 8.5L6.5 11.5L12.5 4.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-                {selectedPlan === "web_crm" && (
-                  <div className="absolute end-4 top-4">
-                    <div className="h-5 w-5 rounded-full border-[5px] border-[var(--pg-accent)]" />
-                  </div>
-                )}
-              </button>
-
-              {/* Completo */}
-              <button
-                type="button"
-                onClick={() => { setSelectedPlan("completo"); setAccepted(false); }}
-                className={`relative rounded-2xl border-2 p-5 text-start transition-all ${
-                  selectedPlan === "completo"
-                    ? "border-[var(--pg-accent)] bg-[var(--pg-paper)] shadow-md"
-                    : "border-[var(--pg-line)] bg-[var(--pg-paper)] hover:border-[var(--pg-line)]"
-                }`}
-              >
-                <div className="flex items-center gap-2">
-                  <p className="text-[0.9rem] font-semibold text-[var(--pg-ink)]">{t.planCompleto}</p>
-                  <span className="rounded-full bg-[var(--pg-accent)] px-2 py-0.5 text-[0.65rem] font-bold text-white">
-                    {t.popular}
-                  </span>
-                </div>
-                <p className="mt-1">
-                  <span className="text-2xl font-bold text-[var(--pg-ink)]">₪{COMPLETO_AMOUNT}</span>
-                  <span className="text-sm text-[var(--pg-ink-2)]">{t.perMonth}</span>
-                </p>
-                <ul className="mt-4 space-y-1.5">
-                  {t.completoFeatures.map((f) => (
-                    <li key={f} className="flex items-start gap-2 text-[0.8rem] text-[var(--pg-ink-2)]">
-                      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="mt-0.5 shrink-0 text-[var(--pg-success)]">
-                        <path d="M3.5 8.5L6.5 11.5L12.5 4.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-                {selectedPlan === "completo" && (
-                  <div className="absolute end-4 top-4">
-                    <div className="h-5 w-5 rounded-full border-[5px] border-[var(--pg-accent)]" />
-                  </div>
-                )}
-              </button>
-            </div>
-          </section>
-        )}
-
-        {/* Upgrade note */}
-        {isUpgrade && (
-          <div className="mb-8 rounded-xl border border-[var(--pg-accent)]/20 bg-[var(--pg-accent)]/10 p-4">
-            <p className="text-[0.88rem] font-medium text-[var(--pg-accent)]">
-              {t.upgradeTitle} — ₪{COMPLETO_AMOUNT}{t.perMonth}
+        {/* Plan overview */}
+        <section className="mb-8">
+          <div className="rounded-2xl border-2 border-[var(--pg-accent)] bg-[var(--pg-paper)] p-5 shadow-md">
+            <p className="text-[0.9rem] font-semibold text-[var(--pg-ink)]">{t.planName}</p>
+            <p className="mt-1">
+              <span className="text-2xl font-bold text-[var(--pg-ink)]">₪{PLAN_AMOUNT}</span>
+              <span className="text-sm text-[var(--pg-ink-2)]">{t.perMonth}</span>
             </p>
-            <p className="mt-1 text-[0.8rem] text-[var(--pg-accent)]/80">
-              {t.upgradeDesc}
-            </p>
+            <ul className="mt-4 space-y-1.5">
+              {t.features.map((f) => (
+                <li key={f} className="flex items-start gap-2 text-[0.8rem] text-[var(--pg-ink-2)]">
+                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="mt-0.5 shrink-0 text-[var(--pg-success)]">
+                    <path d="M3.5 8.5L6.5 11.5L12.5 4.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  {f}
+                </li>
+              ))}
+            </ul>
           </div>
-        )}
+        </section>
 
         {/* Amount summary */}
         <div className="mb-8 rounded-xl border border-[var(--pg-line)] bg-[var(--pg-paper)] p-5">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-[var(--pg-ink)]">
-                {selectedPlan === "completo" ? t.planCompleto : t.planWebCrm}
-              </p>
+              <p className="text-sm font-medium text-[var(--pg-ink)]">{t.planName}</p>
               <p className="text-xs text-[var(--pg-ink-3)]">{t.monthlyAmount}</p>
             </div>
-            <p className="text-2xl font-bold text-[var(--pg-ink)]">₪{amount}</p>
+            <p className="text-2xl font-bold text-[var(--pg-ink)]">₪{PLAN_AMOUNT}</p>
           </div>
         </div>
 

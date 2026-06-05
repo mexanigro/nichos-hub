@@ -1,18 +1,19 @@
 export type PlanType = "web_crm" | "completo";
 
-export const WEB_CRM_AMOUNT = 790;
-export const COMPLETO_AMOUNT = 990;
+export const PLAN_AMOUNT = 770;
+export const WEB_CRM_AMOUNT = PLAN_AMOUNT;
+export const COMPLETO_AMOUNT = PLAN_AMOUNT;
 export const CURRENCY = "ILS";
 
-export function getPlanAmount(plan: PlanType): number {
-  return plan === "completo" ? COMPLETO_AMOUNT : WEB_CRM_AMOUNT;
+export function getPlanAmount(_plan?: PlanType): number {
+  return PLAN_AMOUNT;
 }
 
-/** @deprecated — use getPlanAmount instead */
-export const INITIAL_AMOUNT = WEB_CRM_AMOUNT;
-/** @deprecated — use getPlanAmount instead */
-export const RECURRING_AMOUNT = WEB_CRM_AMOUNT;
+/** @deprecated — use PLAN_AMOUNT */
+export const INITIAL_AMOUNT = PLAN_AMOUNT;
+/** @deprecated — use PLAN_AMOUNT */
+export const RECURRING_AMOUNT = PLAN_AMOUNT;
 /** @deprecated */
-export function getPaymentAmount(isInitial: boolean): number {
-  return isInitial ? INITIAL_AMOUNT : RECURRING_AMOUNT;
+export function getPaymentAmount(_isInitial: boolean): number {
+  return PLAN_AMOUNT;
 }

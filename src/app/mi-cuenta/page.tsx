@@ -49,11 +49,9 @@ export default function MiCuentaPage() {
     );
   }
 
-  const planLabel = lead?.plan === "completo"
-    ? "Completo"
-    : lead?.plan === "web_crm"
-      ? "Web + CRM"
-      : null;
+  const planLabel = (lead?.plan === "completo" || lead?.plan === "web_crm")
+    ? "Web + CRM + Agent"
+    : null;
 
   return (
     <div className="min-h-screen bg-[#fafafa] px-4 py-12">
@@ -104,25 +102,8 @@ export default function MiCuentaPage() {
                 <span className="inline-flex items-center rounded-full bg-green-50 px-3 py-1 text-[0.8rem] font-semibold text-green-700">
                   {planLabel}
                 </span>
-                <span className="text-sm text-gray-500">
-                  {lead?.plan === "completo" ? "₪990/mes" : "₪790/mes"}
-                </span>
+                <span className="text-sm text-gray-500">₪770/mes</span>
               </div>
-
-              {lead?.plan === "web_crm" && (
-                <div className="mt-4 rounded-xl border border-blue-100 bg-blue-50/50 p-4">
-                  <p className="text-[0.85rem] font-medium text-blue-900">Upgrade a Completo</p>
-                  <p className="mt-1 text-[0.8rem] text-blue-700">
-                    Agrega el agente WhatsApp IA 24/7 por solo ₪200/mes más
-                  </p>
-                  <a
-                    href={lead?.clientId ? `/pago/${lead.clientId}?plan=completo&upgrade=true` : "#"}
-                    className="mt-3 inline-block rounded-full bg-blue-600 px-5 py-2 text-[0.82rem] font-semibold text-white transition-all hover:bg-blue-700"
-                  >
-                    Hacer upgrade
-                  </a>
-                </div>
-              )}
 
               {lead?.clientId && (
                 <a
@@ -143,40 +124,22 @@ export default function MiCuentaPage() {
           ) : (
             <div className="mt-3">
               <p className="text-sm text-gray-500">No tenés un plan activo</p>
-              <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                <div className="rounded-xl border border-gray-200 p-4 transition-all hover:border-gray-300 hover:shadow-sm">
-                  <p className="font-semibold text-gray-900">Web + CRM</p>
-                  <p className="mt-1 text-2xl font-bold text-gray-900">₪790<span className="text-sm font-normal text-gray-500">/mes</span></p>
+              <div className="mt-4">
+                <div className="rounded-xl border-2 border-gray-900 p-4">
+                  <p className="font-semibold text-gray-900">Web + CRM + Agent</p>
+                  <p className="mt-1 text-2xl font-bold text-gray-900">₪770<span className="text-sm font-normal text-gray-500">/mes</span></p>
                   <ul className="mt-3 space-y-1.5 text-[0.8rem] text-gray-600">
                     <li>✓ Sitio web profesional</li>
                     <li>✓ CRM con asistente IA</li>
                     <li>✓ Reservas online</li>
-                    <li>✓ Inventario/stock</li>
-                  </ul>
-                  <a
-                    href={lead?.clientId ? `/pago/${lead.clientId}?plan=web_crm` : `https://wa.me/${(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "").replace(/\D/g, "")}`}
-                    className="mt-4 block rounded-full bg-gray-900 px-4 py-2.5 text-center text-[0.82rem] font-semibold text-white transition-all hover:bg-gray-800"
-                  >
-                    Elegir plan
-                  </a>
-                </div>
-                <div className="rounded-xl border-2 border-gray-900 p-4">
-                  <div className="flex items-center gap-2">
-                    <p className="font-semibold text-gray-900">Completo</p>
-                    <span className="rounded-full bg-gray-900 px-2 py-0.5 text-[0.7rem] font-semibold text-white">Popular</span>
-                  </div>
-                  <p className="mt-1 text-2xl font-bold text-gray-900">₪990<span className="text-sm font-normal text-gray-500">/mes</span></p>
-                  <ul className="mt-3 space-y-1.5 text-[0.8rem] text-gray-600">
-                    <li>✓ Todo de Web+CRM</li>
                     <li>✓ Agente WhatsApp IA 24/7</li>
-                    <li>✓ Captura de leads</li>
-                    <li>✓ Turnos por WhatsApp</li>
+                    <li>✓ Soporte prioritario</li>
                   </ul>
                   <a
                     href={lead?.clientId ? `/pago/${lead.clientId}?plan=completo` : `https://wa.me/${(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "").replace(/\D/g, "")}`}
                     className="mt-4 block rounded-full bg-gray-900 px-4 py-2.5 text-center text-[0.82rem] font-semibold text-white transition-all hover:bg-gray-800"
                   >
-                    Elegir plan
+                    Empezar
                   </a>
                 </div>
               </div>

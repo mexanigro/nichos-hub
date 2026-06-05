@@ -1,7 +1,7 @@
 # nichos-hub
 
 Dashboard de operaciones Arzac Studio. SaaS de webs para negocios locales en Israel.
-Propietario: Liam Arzac (website@arzac.studio). Modelo: 0 setup + 800 NIS/mes.
+Propietario: Liam Arzac (website@arzac.studio). Modelo: 0 setup + 770 NIS/mes (todo incluido).
 
 ## Reglas
 

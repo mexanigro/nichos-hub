@@ -22,7 +22,6 @@ export function Pricing() {
         <div className="at-plans" ref={staggerRef} data-stagger>
           {t.pricing.plans.map((p, i) => (
             <div className={`at-plan${p.highlight ? " hl" : ""}`} key={i} style={{ "--si": i } as React.CSSProperties}>
-              {p.highlight && <span className="stamp">{t.pricing.stamp}</span>}
               <span className="tag">/{(i + 1).toString().padStart(2, "0")} · {p.tag}</span>
               <h3 className="name">{p.name}</h3>
               <p className="tagline">{p.tagline}</p>
