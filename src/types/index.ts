@@ -335,6 +335,12 @@ export type ApiServiceId =
   | "resend"
   | "cardcom";
 
+export interface UsageDetail {
+  label: string;
+  value: string;
+  costUsd?: number;
+}
+
 export interface ApiServiceCost {
   serviceId: ApiServiceId;
   name: string;
@@ -349,4 +355,6 @@ export interface ApiServiceCost {
   monthlyBudgetUsd: number;
   autoFetchable?: boolean;
   lastAutoFetch?: string;
+  details?: UsageDetail[];
+  autoFetchError?: string;
 }

@@ -32,6 +32,7 @@ export const PATCH = withOwner(async (req, _session, ctx) => {
     "usagePeriod",
     "notes",
     "monthlyBudgetUsd",
+    "details",
   ] as const;
 
   const update: Record<string, unknown> = {};

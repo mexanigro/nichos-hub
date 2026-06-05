@@ -131,6 +131,9 @@ export const GET = withOwner(async () => {
       notes: data.notes ?? def.notes,
       lastUpdated: data.lastUpdated?.toDate?.()?.toISOString?.() ?? data.lastUpdated ?? def.lastUpdated,
       monthlyBudgetUsd: data.monthlyBudgetUsd ?? def.monthlyBudgetUsd,
+      lastAutoFetch: data.lastAutoFetch?.toDate?.()?.toISOString?.() ?? data.lastAutoFetch ?? def.lastAutoFetch,
+      details: data.details ?? def.details,
+      autoFetchError: data.autoFetchError,
     };
   });
 

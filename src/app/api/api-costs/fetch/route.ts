@@ -43,20 +43,18 @@ async function runFetcher(
 async function persistResult(serviceId: string, result: FetchResult): Promise<void> {
   const now = FieldValue.serverTimestamp();
   if (result.success && result.data) {
-    await db
-      .collection("hub_api_costs")
-      .doc(serviceId)
-      .set(
-        {
-          ...(result.data.costUsd !== undefined && { monthlyCostUsd: result.data.costUsd }),
-          ...(result.data.costIls !== undefined && { monthlyCostIls: result.data.costIls }),
-          usageMetric: result.data.usageMetric,
-          usagePeriod: result.data.usagePeriod,
-          lastUpdated: now,
-          lastAutoFetch: now,
-        },
-        { merge: true },
-      );
+    const update: Record<string, unknown> = {
+      usageMetric: result.data.usageMetric,
+      usagePeriod: result.data.usagePeriod,
+      lastUpdated: now,
+      lastAutoFetch: now,
+      autoFetchError: FieldValue.delete(),
+    };
+    if (result.data.costUsd !== undefined) update.monthlyCostUsd = result.data.costUsd;
+    if (result.data.costIls !== undefined) update.monthlyCostIls = result.data.costIls;
+    if (result.data.details) update.details = result.data.details;
+
+    await db.collection("hub_api_costs").doc(serviceId).set(update, { merge: true });
   } else {
     await db
       .collection("hub_api_costs")
