@@ -14,11 +14,15 @@ import {
   LogOut,
   Menu,
   X,
+  Sparkles,
+  UserCheck,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const ownerNav = [
   { href: "/clients", label: "Clientes", icon: LayoutDashboard, badgeKey: "clients" as const },
+  { href: "/seguimiento", label: "Seguimiento", icon: UserCheck, badgeKey: "followups" as const },
+  { href: "/asistente", label: "Asistente IA", icon: Sparkles },
   { href: "/messages", label: "Mensajes", icon: MessageSquare },
   { href: "/sales", label: "Ventas", icon: TrendingUp },
   { href: "/expenses", label: "Gastos", icon: DollarSign },
@@ -37,33 +41,46 @@ type ClientsCounts = {
   changes_requested?: number;
 };
 
+type BadgeCounts = {
+  clients: number;
+  followups: number;
+};
+
 export function Sidebar() {
   const pathname = usePathname();
   const { data: session } = useSession();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [pendingClients, setPendingClients] = useState(0);
+  const [badges, setBadges] = useState<BadgeCounts>({ clients: 0, followups: 0 });
 
   const role = session?.user?.role;
   const nav = role === "owner" ? ownerNav : sellerNav;
 
-  // Cuenta total de clientes que requieren atención del owner.
-  // Refetch al cambiar de ruta para que el badge se mantenga actualizado.
   useEffect(() => {
     if (role !== "owner") return;
     let cancelled = false;
     (async () => {
       try {
-        const res = await fetch("/api/clients/counts", { cache: "no-store" });
-        if (!res.ok) return;
-        const c: ClientsCounts = await res.json();
+        const [clientsRes, followupsRes] = await Promise.all([
+          fetch("/api/clients/counts", { cache: "no-store" }),
+          fetch("/api/prospects/follow-up?pending=true", { cache: "no-store" }),
+        ]);
         if (cancelled) return;
-        const total =
-          (c.pending_review || 0) +
-          (c.pending_provision || 0) +
-          (c.changes_requested || 0);
-        setPendingClients(total);
+        let clients = 0;
+        let followups = 0;
+        if (clientsRes.ok) {
+          const c: ClientsCounts = await clientsRes.json();
+          clients =
+            (c.pending_review || 0) +
+            (c.pending_provision || 0) +
+            (c.changes_requested || 0);
+        }
+        if (followupsRes.ok) {
+          const f = await followupsRes.json();
+          followups = Array.isArray(f) ? f.length : 0;
+        }
+        if (!cancelled) setBadges({ clients, followups });
       } catch {
-        // silencioso — el badge solo desaparece si no se puede contar
+        // silencioso
       }
     })();
     return () => {
@@ -120,7 +137,7 @@ export function Sidebar() {
             const badgeKey = "badgeKey" in item ? item.badgeKey : undefined;
             const active = pathname.startsWith(href);
             const badgeCount =
-              badgeKey === "clients" && pendingClients > 0 ? pendingClients : 0;
+              badgeKey && badges[badgeKey] > 0 ? badges[badgeKey] : 0;
             return (
               <Link
                 key={href}

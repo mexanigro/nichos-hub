@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import {
   ArrowLeft,
@@ -19,6 +19,7 @@ import {
   Users,
   Briefcase,
 } from "lucide-react";
+import { LogoPicker } from "@/components/logo-upload-field";
 
 type BusinessNiche = "barberia" | "estetica" | "tattoo" | "nails" | "cafeteria" | "remodelaciones" | "employment";
 
@@ -68,6 +69,31 @@ export default function NewClientPage() {
   const [language, setLanguage] = useState("he");
   const [adminEmail, setAdminEmail] = useState("");
 
+  // Logo files (uploaded after provision)
+  const [logoLightFile, setLogoLightFile] = useState<File | null>(null);
+  const [logoDarkFile, setLogoDarkFile] = useState<File | null>(null);
+  const [logoLightPreview, setLogoLightPreview] = useState("");
+  const [logoDarkPreview, setLogoDarkPreview] = useState("");
+  const [deployPhase, setDeployPhase] = useState<"provisioning" | "uploading-logo">("provisioning");
+
+  useEffect(() => {
+    if (logoLightFile) {
+      const url = URL.createObjectURL(logoLightFile);
+      setLogoLightPreview(url);
+      return () => URL.revokeObjectURL(url);
+    }
+    setLogoLightPreview("");
+  }, [logoLightFile]);
+
+  useEffect(() => {
+    if (logoDarkFile) {
+      const url = URL.createObjectURL(logoDarkFile);
+      setLogoDarkPreview(url);
+      return () => URL.revokeObjectURL(url);
+    }
+    setLogoDarkPreview("");
+  }, [logoDarkFile]);
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!businessName.trim() || businessName.trim().length < 2) {
@@ -104,6 +130,20 @@ export default function NewClientPage() {
         return;
       }
 
+      // Upload logos if any were selected
+      if ((logoLightFile || logoDarkFile) && data.clientId) {
+        setDeployPhase("uploading-logo");
+        try {
+          const form = new FormData();
+          if (logoLightFile) form.append("logo-light", logoLightFile);
+          if (logoDarkFile) form.append("logo-dark", logoDarkFile);
+          await fetch(`/api/upload-logo/${data.clientId}`, { method: "POST", body: form });
+        } catch {
+          // Non-blocking — logo can be uploaded later from Config tab
+          console.error("[new-client] Logo upload failed, can be retried from config tab");
+        }
+      }
+
       setResult(data);
       setState(data.deployStatus === "error" ? "error" : "success");
     } catch {
@@ -117,9 +157,13 @@ export default function NewClientPage() {
       <div className="flex min-h-[60vh] flex-col items-center justify-center gap-4">
         <Loader2 size={32} className="animate-spin text-accent" />
         <div className="text-center">
-          <p className="text-sm font-medium text-text">Provisionando cliente...</p>
+          <p className="text-sm font-medium text-text">
+            {deployPhase === "provisioning" ? "Provisionando cliente..." : "Subiendo logo..."}
+          </p>
           <p className="mt-1 text-xs text-text-muted">
-            Creando documentos en Firebase y proyecto en Vercel
+            {deployPhase === "provisioning"
+              ? "Creando documentos en Firebase y proyecto en Vercel"
+              : "Guardando logo en Firebase Storage"}
           </p>
         </div>
       </div>
@@ -182,9 +226,12 @@ export default function NewClientPage() {
                 setAddress("");
                 setInstagram("");
                 setAdminEmail("");
+                setLogoLightFile(null);
+                setLogoDarkFile(null);
                 setNiche("barberia");
                 setLanguage("he");
                 setBusinessMode("team");
+                setDeployPhase("provisioning");
               }}
               className="inline-flex items-center justify-center gap-2 rounded-lg border border-border px-4 py-2.5 text-xs font-medium text-text-secondary hover:bg-bg-hover"
             >
@@ -378,6 +425,24 @@ export default function NewClientPage() {
               />
             </div>
           </div>
+        </fieldset>
+
+        {/* ── Logo Section ─────────────────────────────────────────────── */}
+        <fieldset className="rounded-xl border border-border bg-bg-card p-5">
+          <legend className="px-2 text-[11px] font-semibold uppercase tracking-wider text-text-muted">
+            Logo
+          </legend>
+          <p className="mb-4 text-[10px] text-text-muted">
+            Opcional. Podes subirlo despues desde la tab Config del cliente.
+          </p>
+          <LogoPicker
+            lightFile={logoLightFile}
+            darkFile={logoDarkFile}
+            lightPreview={logoLightPreview}
+            darkPreview={logoDarkPreview}
+            onLightChange={setLogoLightFile}
+            onDarkChange={setLogoDarkFile}
+          />
         </fieldset>
 
         {/* ── Extra Section ────────────────────────────────────────────── */}

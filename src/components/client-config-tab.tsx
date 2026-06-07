@@ -36,6 +36,7 @@ import {
   Layout,
 } from "lucide-react";
 import { ImageUploadField, ImageUploadListField } from "./image-upload-field";
+import { LogoUploadField } from "./logo-upload-field";
 import { BrandPackageImport } from "./brand-package-import";
 import { ClientLanguageBanner } from "./client-language-banner";
 import { ClientLanguageProvider } from "@/lib/client-language-context";
@@ -652,10 +653,15 @@ export function ClientConfigTab({
           placeholder={placeholderFor(lang, "description")}
           mismatchCheck={{ fieldId: `${clientId}:brand.description`, expected: lang }}
         />
-        <div className="grid gap-3 sm:grid-cols-2">
-          <ImageUploadField aspectHint="SVG/PNG transparente · cuadrado" label="Logo (fondo claro)" value={(getNested("brand.logo") as string) || ""} onChange={(url) => updateNested("brand.logo", url ?? "")} clientId={clientId} />
-          <ImageUploadField aspectHint="SVG/PNG transparente · cuadrado" label="Logo (fondo oscuro)" value={(getNested("brand.logoDark") as string) || ""} onChange={(url) => updateNested("brand.logoDark", url ?? "")} clientId={clientId} />
-        </div>
+        <LogoUploadField
+          clientId={clientId}
+          logoLight={(getNested("brand.logo") as string) || ""}
+          logoDark={(getNested("brand.logoDark") as string) || ""}
+          onLogoChange={(logos) => {
+            if (logos.logo !== undefined) updateNested("brand.logo", logos.logo);
+            if (logos.logoDark !== undefined) updateNested("brand.logoDark", logos.logoDark);
+          }}
+        />
         <div className="grid gap-3 sm:grid-cols-2">
           <ImageUploadField aspectHint="1.91:1 · 1200×630" label="OG Image" value={(getNested("brand.ogImage") as string) || ""} onChange={(url) => updateNested("brand.ogImage", url ?? "")} clientId={clientId} />
           <Field label="Icono fallback (Lucide)" path="brand.logoIconName" value={getNested("brand.logoIconName")} onChange={updateNested} placeholder="Scissors, Sparkles, Scale..." />
