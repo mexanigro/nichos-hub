@@ -3,6 +3,7 @@ import { db } from "@/lib/firebase-admin";
 import { FieldValue, Timestamp } from "firebase-admin/firestore";
 import { chargeToken } from "@/lib/cardcom";
 import { getPlanAmount, getTierAmount, type PlanType } from "@/lib/pricing";
+import { safeCompare } from "@/lib/safe-compare";
 import type { BookingTier } from "@/types";
 
 /**
@@ -36,8 +37,7 @@ function isAuthorized(req: NextRequest): boolean {
   const authorization = req.headers.get("authorization");
   const bearerToken =
     authorization?.startsWith("Bearer ") ? authorization.slice(7) : null;
-  const vercelCron = req.headers.get("x-vercel-cron-signature");
-  return xCronSecret === secret || bearerToken === secret || !!vercelCron;
+  return safeCompare(xCronSecret, secret) || safeCompare(bearerToken, secret);
 }
 
 async function runOne(clientDoc: FirebaseFirestore.QueryDocumentSnapshot) {

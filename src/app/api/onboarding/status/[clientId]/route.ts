@@ -1,13 +1,19 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/firebase-admin";
+import { isRateLimited } from "@/lib/rate-limit";
 
 const VERCEL_TOKEN = process.env.VERCEL_TOKEN;
 const VERCEL_TEAM_ID = process.env.VERCEL_TEAM_ID;
 
 export async function GET(
-  _req: Request,
+  req: Request,
   { params }: { params: Promise<{ clientId: string }> },
 ) {
+  const ip = (req.headers.get("x-forwarded-for") ?? "unknown").split(",")[0].trim();
+  if (isRateLimited(ip, "onboarding-status", 15, 60_000)) {
+    return NextResponse.json({ error: "Rate limited" }, { status: 429 });
+  }
+
   const { clientId } = await params;
 
   // Find hub_clients doc by clientId field

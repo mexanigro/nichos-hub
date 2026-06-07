@@ -44,6 +44,11 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "clientId no coincide" }, { status: 400 });
   }
 
+  const validStatuses = new Set(["pending_payment", "pending_provision", "contract_signed", undefined]);
+  if (clientData.status && !validStatuses.has(clientData.status)) {
+    return NextResponse.json({ error: "Estado del cliente no permite crear contrato" }, { status: 403 });
+  }
+
   // Determine payment type based on history
   const existingPaid = await db
     .collection("hub_payments")

@@ -11,7 +11,6 @@ const ALLOWED_TYPES = new Set([
   "image/png",
   "image/webp",
   "image/gif",
-  "image/svg+xml",
   "image/avif",
 ]);
 
@@ -21,7 +20,6 @@ const EXT_TO_MIME: Record<string, string> = {
   ".png": "image/png",
   ".webp": "image/webp",
   ".gif": "image/gif",
-  ".svg": "image/svg+xml",
   ".avif": "image/avif",
 };
 

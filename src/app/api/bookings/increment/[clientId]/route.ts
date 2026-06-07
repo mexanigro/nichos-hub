@@ -3,6 +3,7 @@ import { db } from "@/lib/firebase-admin";
 import { FieldValue } from "firebase-admin/firestore";
 import { TIER_LIMITS, TIER_LABELS, TIER_PRICING, getNextTier } from "@/lib/pricing";
 import { isRateLimited } from "@/lib/rate-limit";
+import { safeCompare } from "@/lib/safe-compare";
 import { sendEmail } from "@/lib/email";
 import { bookingLimitWarning, bookingLimitReached } from "@/lib/email-templates";
 import type { BookingTier } from "@/types";
@@ -34,7 +35,7 @@ export async function POST(
   const bearerToken =
     authorization?.startsWith("Bearer ") ? authorization.slice(7) : null;
 
-  if (!secret || (xCronSecret !== secret && bearerToken !== secret)) {
+  if (!secret || (!safeCompare(xCronSecret, secret) && !safeCompare(bearerToken, secret))) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }
 

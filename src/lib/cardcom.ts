@@ -1,6 +1,20 @@
 const TERMINAL = process.env.CARDCOM_TERMINAL ?? "";
 const API_NAME = process.env.CARDCOM_API_NAME ?? "";
 
+const SENSITIVE_KEYS = new Set([
+  "Token", "TokenResponse", "CardNumber", "CardNumber5",
+  "CardValidityMonth", "CardValidityYear", "TokenExDate",
+  "CVV", "cvv", "Id", "IdentityNumber",
+]);
+
+function redactSensitive(obj: Record<string, string>): Record<string, string> {
+  const safe: Record<string, string> = {};
+  for (const [k, v] of Object.entries(obj)) {
+    safe[k] = SENSITIVE_KEYS.has(k) ? "[REDACTED]" : v;
+  }
+  return safe;
+}
+
 const BASE_URL = process.env.NEXTAUTH_URL || "https://arzac.studio";
 
 interface CreatePaymentParams {
@@ -72,7 +86,7 @@ export async function createLowProfilePayment(params: CreatePaymentParams): Prom
     return { success: true, url: profileUrl, lowProfileCode: parsed.LowProfileCode };
   }
 
-  console.error("[cardcom] create failed:", parsed);
+  console.error("[cardcom] create failed:", redactSensitive(parsed));
   return { success: false, error: parsed.Description || "Cardcom error" };
 }
 
@@ -131,7 +145,7 @@ export async function verifyPayment(lowProfileCode: string): Promise<VerifyPayme
     };
   }
 
-  console.error("[cardcom] verify failed:", parsed);
+  console.error("[cardcom] verify failed:", redactSensitive(parsed));
   return { success: false, error: parsed.OperationResponseText || "Verification failed", raw: parsed };
 }
 
@@ -219,7 +233,7 @@ export async function chargeToken(params: ChargeTokenParams): Promise<ChargeToke
     };
   }
 
-  console.error("[cardcom] charge token failed:", parsed);
+  console.error("[cardcom] charge token failed:", redactSensitive(parsed));
   return {
     success: false,
     error: parsed.Description || parsed.ResponseDescription || "Charge failed",

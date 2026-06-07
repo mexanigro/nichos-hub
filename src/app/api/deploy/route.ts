@@ -1,12 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { deployToVercel } from "@/lib/deploy";
+import { safeCompare } from "@/lib/safe-compare";
 
 const DEPLOY_SECRET = process.env.DEPLOY_SECRET;
 
 export async function POST(req: NextRequest) {
   const internalSecret = req.headers.get("x-deploy-secret");
-  const isInternalCall = DEPLOY_SECRET && internalSecret === DEPLOY_SECRET;
+  const isInternalCall = !!DEPLOY_SECRET && safeCompare(internalSecret, DEPLOY_SECRET);
 
   if (!isInternalCall) {
     const session = await auth();

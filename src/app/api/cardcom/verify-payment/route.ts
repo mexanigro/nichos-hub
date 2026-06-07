@@ -50,8 +50,13 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: result.error }, { status: 400 });
   }
 
-  // Find the pending payment, then atomically transition it to "paid"
-  // inside a transaction to prevent concurrent duplicate transitions.
+  if (result.returnValue && result.returnValue !== clientId) {
+    return NextResponse.json(
+      { error: "clientId no coincide con el pago" },
+      { status: 403 },
+    );
+  }
+
   const paymentsSnap = await db
     .collection("hub_payments")
     .where("clientId", "==", clientId)
@@ -74,19 +79,11 @@ export async function POST(req: NextRequest) {
       });
     });
   } else {
-    // Fallback: payment confirmed by Cardcom but no pending doc found.
-    // Create a record so the payment is never lost.
-    await db.collection("hub_payments").add({
-      clientId,
-      status: "paid",
-      cardcomTransactionId: result.transactionId || null,
-      cardcomLowProfileCode: lowProfileCode,
-      cardLastFour: result.cardLastFour || null,
-      contractAccepted: true,
-      note: "Auto-created: no pending doc found at verification time",
-      createdAt: FieldValue.serverTimestamp(),
-      updatedAt: FieldValue.serverTimestamp(),
-    });
+    console.warn("[verify-payment] no pending payment found", { clientId, lowProfileCode });
+    return NextResponse.json(
+      { error: "No se encontro un pago pendiente para este cliente" },
+      { status: 404 },
+    );
   }
 
   const clientSnap = await db

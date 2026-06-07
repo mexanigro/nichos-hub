@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/firebase-admin";
 import { FieldValue } from "firebase-admin/firestore";
+import { safeCompare } from "@/lib/safe-compare";
 
 /**
  * Cron mensual para resetear contadores de bookings.
@@ -24,8 +25,7 @@ function isAuthorized(req: NextRequest): boolean {
   const authorization = req.headers.get("authorization");
   const bearerToken =
     authorization?.startsWith("Bearer ") ? authorization.slice(7) : null;
-  const vercelCron = req.headers.get("x-vercel-cron-signature");
-  return xCronSecret === secret || bearerToken === secret || !!vercelCron;
+  return safeCompare(xCronSecret, secret) || safeCompare(bearerToken, secret);
 }
 
 export async function GET(req: NextRequest) {

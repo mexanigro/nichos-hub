@@ -1,7 +1,5 @@
-// Middleware de autenticacion para endpoints del agente WhatsApp
-// Valida header x-agent-secret contra AGENT_API_SECRET
-
 import { NextRequest, NextResponse } from "next/server";
+import { safeCompare } from "@/lib/safe-compare";
 
 const AGENT_API_SECRET = process.env.AGENT_API_SECRET;
 
@@ -19,7 +17,7 @@ export function withAgentAuth(handler: AgentHandler) {
     }
 
     const secret = req.headers.get("x-agent-secret");
-    if (!secret || secret !== AGENT_API_SECRET) {
+    if (!secret || !safeCompare(secret, AGENT_API_SECRET!)) {
       return NextResponse.json({ error: "No autorizado" }, { status: 401 });
     }
 

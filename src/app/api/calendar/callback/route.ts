@@ -17,11 +17,10 @@ export async function GET(req: Request) {
     return NextResponse.redirect(`${base}/clients/${clientId ?? ""}?calendarError=auth_failed`);
   }
 
-  // Verificar CSRF token contra cookie
   const cookieHeader = req.headers.get("cookie") || "";
   const csrfMatch = cookieHeader.match(/calendar_csrf=([^;]+)/);
   const storedCsrf = csrfMatch?.[1];
-  if (csrfToken && storedCsrf && csrfToken !== storedCsrf) {
+  if (!csrfToken || !storedCsrf || csrfToken !== storedCsrf) {
     const base = process.env.NEXT_PUBLIC_APP_URL || url.origin;
     return NextResponse.redirect(`${base}/clients/${clientId}?calendarError=csrf_mismatch`);
   }

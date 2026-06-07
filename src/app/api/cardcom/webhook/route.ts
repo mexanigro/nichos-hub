@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { processCardcomPayment } from "@/lib/cardcom-promote";
+import { isRateLimited } from "@/lib/rate-limit";
 
 /**
  * Webhook server-to-server de Cardcom (IndicatorUrl).
@@ -24,6 +25,11 @@ import { processCardcomPayment } from "@/lib/cardcom-promote";
  * primero.
  */
 async function handle(req: NextRequest, params: Record<string, string>) {
+  const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+  if (isRateLimited(ip, "cardcom-webhook", 20, 60_000)) {
+    return NextResponse.json({ ok: false, reason: "rate_limited" }, { status: 429 });
+  }
+
   // Normalizar nombres de campos (Cardcom mezcla casing entre endpoints)
   const lowProfileCode =
     params.lowprofilecode ||
