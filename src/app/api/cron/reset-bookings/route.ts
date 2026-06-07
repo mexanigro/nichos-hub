@@ -46,13 +46,19 @@ export async function GET(req: NextRequest) {
 
   for (const doc of allClients.docs) {
     const data = doc.data();
-    if ((data.bookingCount ?? 0) === 0 && !data.tierAutoUpgraded) continue;
+    const needsReset = (data.bookingCount ?? 0) > 0
+      || data.tierAutoUpgraded
+      || data.bookingLimitNotified80
+      || data.bookingLimitNotified100;
+    if (!needsReset) continue;
 
     currentBatch.update(doc.ref, {
       bookingCount: 0,
       bookingCountResetAt: FieldValue.serverTimestamp(),
       tierAutoUpgraded: false,
       tierAutoUpgradedAt: null,
+      bookingLimitNotified80: false,
+      bookingLimitNotified100: false,
       updatedAt: FieldValue.serverTimestamp(),
     });
 

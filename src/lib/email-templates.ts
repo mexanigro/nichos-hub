@@ -213,6 +213,60 @@ export function liamMessage(v: LiamMessageVars) {
   };
 }
 
+interface BookingLimitWarningVars {
+  clientId: string;
+  businessName?: string;
+  tier: string;
+  bookingCount: number;
+  limit: number;
+  dashboardUrl: string;
+}
+
+export function bookingLimitWarning(v: BookingLimitWarningVars) {
+  const pct = Math.round((v.bookingCount / v.limit) * 100);
+  return {
+    subject: `⚠️ ${v.businessName || v.clientId} al ${pct}% de bookings (${v.tier})`,
+    text: [
+      `El cliente ${v.businessName || v.clientId} usó ${v.bookingCount} de ${v.limit} bookings (${pct}%).`,
+      `Plan actual: ${v.tier}.`,
+      ``,
+      `Contactalo para ofrecerle upgrade antes de que se bloquee.`,
+      ``,
+      `Dashboard: ${v.dashboardUrl}`,
+    ].join("\n"),
+    html: `<p><strong>${escape(v.businessName || v.clientId)}</strong> usó <strong>${v.bookingCount} de ${v.limit}</strong> bookings (<strong>${pct}%</strong>).</p>
+<p>Plan actual: <strong>${escape(v.tier)}</strong>.</p>
+<p>Contactalo para ofrecerle upgrade antes de que se bloquee.</p>
+<p><a href="${v.dashboardUrl}" style="display:inline-block;background:#b3522e;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600">Ver cliente →</a></p>`,
+  };
+}
+
+interface BookingLimitReachedVars {
+  clientId: string;
+  businessName?: string;
+  tier: string;
+  limit: number;
+  dashboardUrl: string;
+}
+
+export function bookingLimitReached(v: BookingLimitReachedVars) {
+  return {
+    subject: `🚫 ${v.businessName || v.clientId} — límite de bookings alcanzado (${v.tier})`,
+    text: [
+      `El cliente ${v.businessName || v.clientId} alcanzó el límite de ${v.limit} bookings del plan ${v.tier}.`,
+      `Las nuevas reservas están bloqueadas hasta que suba de plan o inicie un nuevo periodo.`,
+      ``,
+      `Contactalo para cerrar el upgrade.`,
+      ``,
+      `Dashboard: ${v.dashboardUrl}`,
+    ].join("\n"),
+    html: `<p><strong>${escape(v.businessName || v.clientId)}</strong> alcanzó el límite de <strong>${v.limit} bookings</strong> del plan <strong>${escape(v.tier)}</strong>.</p>
+<p>Las nuevas reservas están <strong>bloqueadas</strong> hasta que suba de plan o inicie un nuevo periodo.</p>
+<p>Contactalo para cerrar el upgrade.</p>
+<p><a href="${v.dashboardUrl}" style="display:inline-block;background:#b3522e;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600">Ver cliente →</a></p>`,
+  };
+}
+
 function escape(s: string): string {
   return s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
 }

@@ -65,6 +65,10 @@ export interface Client {
   tierAutoUpgradedAt?: Date;
   /** Historial de cambios de tier. */
   tierHistory?: TierChangeEvent[];
+  /** Se notificó al owner que el cliente alcanzó el 80% de bookings este periodo. */
+  bookingLimitNotified80?: boolean;
+  /** Se notificó al owner que el cliente alcanzó el 100% de bookings este periodo. */
+  bookingLimitNotified100?: boolean;
 }
 
 export type HealthStatus = "healthy" | "degraded" | "down";

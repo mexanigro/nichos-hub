@@ -1,15 +1,23 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/firebase-admin";
 import { FieldValue } from "firebase-admin/firestore";
-import { TIER_LIMITS, getNextTier } from "@/lib/pricing";
+import { TIER_LIMITS, TIER_LABELS, TIER_PRICING, getNextTier } from "@/lib/pricing";
 import { isRateLimited } from "@/lib/rate-limit";
-import type { BookingTier, TierChangeEvent } from "@/types";
+import { sendEmail } from "@/lib/email";
+import { bookingLimitWarning, bookingLimitReached } from "@/lib/email-templates";
+import type { BookingTier } from "@/types";
+
+const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://arzac.studio";
+const OWNER_EMAIL = process.env.OWNER_EMAIL || "website@arzac.studio";
+const WARNING_THRESHOLD = 0.8;
 
 /**
  * POST /api/bookings/increment/[clientId]
  *
  * Llamado por master-template y whatsapp-agentkit cuando se crea un booking.
- * Incrementa bookingCount, verifica límites del tier y auto-upgradea si corresponde.
+ * Incrementa bookingCount, valida límites del tier:
+ *   - 80%: notifica al owner para que ofrezca upgrade
+ *   - 100%: bloquea la reserva y notifica al owner
  *
  * Body: { bookingId: string } — usado como dedup key para idempotencia.
  * Auth: CRON_SECRET header (servicios internos) o API key.
@@ -77,51 +85,109 @@ export async function POST(
     return NextResponse.json({
       bookingCount: clientData.bookingCount ?? 0,
       tier: clientData.tier ?? "base",
-      upgraded: false,
+      blocked: false,
       deduplicated: true,
     });
   }
 
   const currentTier = (clientData.tier || "base") as BookingTier;
-  const currentCount = (clientData.bookingCount || 0) + 1;
+  const currentCount = (clientData.bookingCount || 0);
   const limit = TIER_LIMITS[currentTier];
+  const nextCount = currentCount + 1;
+  const dashboardUrl = `${SITE}/clients/${docId}`;
+  const businessName = clientData.businessName || clientData.name;
 
-  let upgraded = false;
-  let newTier = currentTier;
+  // --- Soft block: si ya alcanzó el límite, rechazar la reserva ---
+  if (isFinite(limit) && currentCount >= limit) {
+    // Notificar al owner si no se hizo todavía este periodo
+    if (!clientData.bookingLimitNotified100) {
+      clientDoc.ref.update({
+        bookingLimitNotified100: true,
+        updatedAt: FieldValue.serverTimestamp(),
+      }).catch(() => {});
 
+      const nextTier = getNextTier(currentTier);
+      const nextLabel = nextTier ? `${TIER_LABELS[nextTier]} (₪${TIER_PRICING[nextTier]}/mes)` : "";
+
+      sendEmail({
+        to: OWNER_EMAIL,
+        ...bookingLimitReached({
+          clientId,
+          businessName,
+          tier: `${TIER_LABELS[currentTier]} — upgrade a ${nextLabel}`,
+          limit,
+          dashboardUrl,
+        }),
+        tag: "booking_limit_reached",
+      }).catch(() => {});
+    }
+
+    return NextResponse.json({
+      blocked: true,
+      bookingCount: currentCount,
+      tier: currentTier,
+      limit,
+      message: "Límite de bookings alcanzado. Contactá a Arzac Studio para subir de plan.",
+    }, { status: 429 });
+  }
+
+  // --- Incrementar ---
   const updates: Record<string, unknown> = {
     bookingCount: FieldValue.increment(1),
     updatedAt: FieldValue.serverTimestamp(),
   };
 
-  if (currentCount > limit) {
-    const next = getNextTier(currentTier);
-    if (next) {
-      newTier = next;
-      upgraded = true;
+  // --- Notificación al 80% ---
+  if (
+    isFinite(limit) &&
+    nextCount >= Math.ceil(limit * WARNING_THRESHOLD) &&
+    !clientData.bookingLimitNotified80
+  ) {
+    updates.bookingLimitNotified80 = true;
 
-      const changeEvent: TierChangeEvent = {
-        from: currentTier,
-        to: next,
-        reason: "auto_upgrade",
-        at: new Date().toISOString(),
-        bookingCountAtChange: currentCount,
-      };
+    sendEmail({
+      to: OWNER_EMAIL,
+      ...bookingLimitWarning({
+        clientId,
+        businessName,
+        tier: TIER_LABELS[currentTier],
+        bookingCount: nextCount,
+        limit,
+        dashboardUrl,
+      }),
+      tag: "booking_limit_warning",
+    }).catch(() => {});
+  }
 
-      updates.tier = next;
-      updates.tierAutoUpgraded = true;
-      updates.tierAutoUpgradedAt = FieldValue.serverTimestamp();
-      updates.tierHistory = FieldValue.arrayUnion(changeEvent);
-    }
+  // --- Notificación al 100% (justo alcanzó el límite con este booking) ---
+  if (
+    isFinite(limit) &&
+    nextCount >= limit &&
+    !clientData.bookingLimitNotified100
+  ) {
+    updates.bookingLimitNotified100 = true;
+
+    sendEmail({
+      to: OWNER_EMAIL,
+      ...bookingLimitReached({
+        clientId,
+        businessName,
+        tier: TIER_LABELS[currentTier],
+        limit,
+        dashboardUrl,
+      }),
+      tag: "booking_limit_reached",
+    }).catch(() => {});
   }
 
   await clientDoc.ref.update(updates);
   await dedupRef.set({ createdAt: FieldValue.serverTimestamp() });
 
   return NextResponse.json({
-    bookingCount: currentCount,
-    tier: newTier,
-    upgraded,
+    bookingCount: nextCount,
+    tier: currentTier,
+    blocked: false,
     deduplicated: false,
+    ...(isFinite(limit) ? { limit, usage: Math.round((nextCount / limit) * 100) } : {}),
   });
 }
