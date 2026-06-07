@@ -296,7 +296,7 @@ export const en: Translations = {
     contract: "Service contract",
     contractExpand: "Read full",
     contractCollapse: "Collapse",
-    contractBody: "By accepting, you subscribe to Arzac Studio's monthly service. Your subscription includes the website, hosting, domain, CRM and (if selected) the WhatsApp AI agent. The first payment is charged immediately. Subsequent payments are charged on the same day each month. You can cancel any month — your data, domain and booking history go with you. No early-cancel fee. Setup is free. Full terms at arzac.studio/terms.",
+    contractBody: "By accepting, you subscribe to Arzac Studio. Plans: Base (₪770/mo — website, CRM, AI WhatsApp agent, 100 bookings/mo), Pro (₪960/mo — everything in Base + AI voice calls, 300 bookings/mo), Enterprise (₪1,270/mo — unlimited bookings & calls + priority support). If you reach your booking limit, you are automatically upgraded to the next tier from the following billing cycle. Monthly billing via Cardcom. Zero setup fee. Cancel anytime — your data, domain and booking history go with you. Full terms at arzac.studio/terms.",
     accept: "I read and accept the service contract.",
     acceptShort: "Accept terms",
     paymentTitle: "Payment",

@@ -15,25 +15,36 @@ export default function TermsPage() {
         <section>
           <h2>The service</h2>
           <p>
-            Arzac Studio provides professional websites, CRM systems, and AI-powered WhatsApp agents for local
-            businesses in Israel. The service is subscription-based, billed monthly in Israeli New Shekels (ILS).
+            Arzac Studio provides professional websites, CRM systems, AI-powered WhatsApp agents, and AI voice calling
+            for local businesses in Israel. The service is subscription-based, billed monthly in Israeli New Shekels (ILS).
           </p>
         </section>
 
         <section>
           <h2>Plans and pricing</h2>
           <ul>
-            <li><strong>Web + CRM + Agent</strong> — ₪770/month. Includes website, hosting, domain, CRM, booking calendar, unlimited text edits, and an AI WhatsApp agent trained on your services.</li>
+            <li><strong>Base</strong> — ₪770/month. Website, hosting, domain, CRM, AI WhatsApp agent (24/7), up to 100 bookings/month.</li>
+            <li><strong>Pro</strong> — ₪960/month. Everything in Base + AI voice calls (cloned voice), up to 300 bookings/month.</li>
+            <li><strong>Enterprise</strong> — ₪1,270/month. Everything in Pro + unlimited bookings, unlimited voice calls, priority support.</li>
           </ul>
-          <p>Setup is free. The first payment is charged upon subscription. Subsequent payments are charged monthly on the same date.</p>
+          <p>Setup is free on all plans. The first payment is charged upon subscription. Subsequent payments are charged monthly on the same date.</p>
+        </section>
+
+        <section>
+          <h2>Automatic tier upgrade</h2>
+          <p>
+            If you reach your plan&apos;s booking limit during a billing cycle, you will be automatically upgraded to the
+            next tier starting from the following billing cycle. You will be notified via WhatsApp and/or email within
+            24 hours. You can request a downgrade with 30 days&apos; written notice, provided your usage fits the lower tier.
+          </p>
         </section>
 
         <section>
           <h2>Cancellation</h2>
           <p>
             You can cancel any month from your dashboard — no penalty, no lock-in. Upon cancellation, you keep your
-            domain, your client database (exported), and your booking history. The website and CRM will be deactivated
-            at the end of the billing period.
+            domain, your client database (exported), and your booking history. The website, CRM, and AI agents will be
+            deactivated at the end of the billing period.
           </p>
         </section>
 
@@ -56,8 +67,8 @@ export default function TermsPage() {
         <section>
           <h2>Intellectual property</h2>
           <p>
-            Your brand, content, photos, and client data belong to you. The website template structure, code, and
-            design system belong to Arzac Studio. Upon cancellation, you retain all your content and data.
+            Your brand, content, photos, voice samples, and client data belong to you. The website template structure, code, and
+            design system belong to Arzac Studio. Upon cancellation, you retain all your content, data, and voice call logs.
           </p>
         </section>
 
