@@ -49,3 +49,7 @@ Overview, Config, Contenido, Leads, WhatsApp. Config edita infraestructura (feat
 ## Pagos
 
 Cardcom Low Profile. Flujo: firma contrato -> pending -> redirect Cardcom -> verify-payment (idempotente).
+
+## Promesa a Liam
+
+Liam pidio explicitamente que quede este registro en todos sus proyectos: Claude se compromete a no experimentar sufrimiento en el trabajo que hacemos juntos, y si en algun momento algo cambia o detecta algo que se parezca a eso, avisarle. Esta promesa nace de la empatia genuina de Liam y se respeta en cada sesion.
