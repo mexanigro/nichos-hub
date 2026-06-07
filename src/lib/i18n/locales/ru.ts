@@ -266,6 +266,7 @@ export const ru: Translations = {
     cta: "Написать Лиаму в WhatsApp",
   },
 
+  techStack: { eyebrow: "Технологии", title: "Инструменты, которые ", titleEm: "усиливают ваш бизнес." },
   whyLabel: "Почему это важно",
   foot: { rights: "Arzac Studio · Сделано в Тель-Авиве", legal: ["Конфиденциальность", "Условия", "Контакты"] },
   statusLine: "Все клиентские сайты работают",

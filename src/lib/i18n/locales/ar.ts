@@ -266,6 +266,7 @@ export const ar: Translations = {
     cta: "راسل ليام على واتساب",
   },
 
+  techStack: { eyebrow: "التقنيات", title: "أدوات ", titleEm: "تدعم عملك." },
   whyLabel: "لماذا هذا مهمّ",
   foot: { rights: "Arzac Studio · صُنع في تل أبيب", legal: ["الخصوصية", "الشروط", "تواصل"] },
   statusLine: "كل مواقع الزبائن تعمل",

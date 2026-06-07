@@ -266,6 +266,7 @@ export const he: Translations = {
     cta: "להודיע לליאם בוואטסאפ",
   },
 
+  techStack: { eyebrow: "טכנולוגיה", title: "הכלים ש", titleEm: "מניעים את העסק שלך." },
   whyLabel: "למה זה חשוב",
   foot: { rights: "Arzac Studio · נבנה בתל אביב", legal: ["פרטיות", "תנאים", "צור קשר"] },
   statusLine: "כל אתרי הלקוחות פעילים",

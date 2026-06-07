@@ -266,6 +266,7 @@ export const en: Translations = {
     cta: "Message Liam on WhatsApp",
   },
 
+  techStack: { eyebrow: "Tech stack", title: "Tools that ", titleEm: "power your business." },
   whyLabel: "Why this matters",
   foot: { rights: "Arzac Studio · Built in Tel Aviv", legal: ["Privacy", "Terms", "Contact"] },
   statusLine: "All client sites operational",

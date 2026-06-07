@@ -8,6 +8,7 @@ import { Showcase } from "./showcase";
 import { CrmSection } from "./crm-section";
 import { AgentSection } from "./agent-section";
 import { Everything } from "./everything";
+import { TechStack } from "./tech-stack";
 import { Manifesto } from "./manifesto";
 import { Process } from "./process";
 import { Pricing } from "./pricing";
@@ -44,6 +45,7 @@ function AtelierInner() {
         <CrmSection />
         <AgentSection />
         <Everything />
+        <TechStack />
         <Manifesto />
         <Process />
         <Pricing />

@@ -55,6 +55,7 @@ export interface Translations {
     stats: { k: string; v: string }[];
     cta: string;
   };
+  techStack?: { eyebrow: string; title: string; titleEm: string };
   whyLabel: string;
   foot: { rights: string; legal: string[] };
   statusLine: string;

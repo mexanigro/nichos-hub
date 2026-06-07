@@ -266,6 +266,7 @@ export const es: Translations = {
     cta: "Escribile a Liam por WhatsApp",
   },
 
+  techStack: { eyebrow: "Tech stack", title: "Herramientas que ", titleEm: "potencian tu negocio." },
   whyLabel: "Por qué importa",
   foot: { rights: "Arzac Studio · Hecho en Tel Aviv", legal: ["Privacidad", "Términos", "Contacto"] },
   statusLine: "Todas las webs de clientes operativas",
