@@ -38,14 +38,14 @@ export const GET = withOwner(async (req) => {
       ...data,
       createdAt: data.createdAt?.toDate?.()?.toISOString?.() ?? data.createdAt,
       updatedAt: data.updatedAt?.toDate?.()?.toISOString?.() ?? data.updatedAt,
-    };
+    } as Record<string, any> & { id: string };
   });
 
   if (pendingOnly) {
     const pending = prospects.filter((p) => {
       if (!p.followUpDue) return false;
-      return new Date(p.followUpDue) <= now &&
-        !["paid", "not_interested"].includes(p.status);
+      return new Date(p.followUpDue as string) <= now &&
+        !["paid", "not_interested"].includes(p.status as string);
     });
     return NextResponse.json(pending);
   }

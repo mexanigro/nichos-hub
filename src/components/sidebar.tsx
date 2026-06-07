@@ -134,7 +134,7 @@ export function Sidebar() {
         <nav className="flex-1 space-y-0.5 px-3 py-4">
           {nav.map((item) => {
             const { href, label, icon: Icon } = item;
-            const badgeKey = "badgeKey" in item ? item.badgeKey : undefined;
+            const badgeKey = "badgeKey" in item ? (item.badgeKey as keyof BadgeCounts) : undefined;
             const active = pathname.startsWith(href);
             const badgeCount =
               badgeKey && badges[badgeKey] > 0 ? badges[badgeKey] : 0;

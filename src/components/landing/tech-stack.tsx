@@ -2,7 +2,7 @@
 import { useT } from "@/lib/i18n/context";
 import { useReveal } from "@/hooks/use-scroll-reveal";
 
-const LOGOS: { name: string; icon: JSX.Element }[] = [
+const LOGOS: { name: string; icon: React.ReactNode }[] = [
   {
     name: "Google",
     icon: (

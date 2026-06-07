@@ -2,7 +2,7 @@ import { type PlanType } from "./pricing";
 
 export type ContractLang = "en" | "es" | "ru" | "he" | "ar";
 
-const CONTRACT_VERSION = "5.0";
+const CONTRACT_VERSION = "6.0";
 
 /* ═══════════════════════════════════════════════════════════════════════════
  * PLAN DETAILS (shared across all languages)
