@@ -5,6 +5,7 @@ import { db } from "@/lib/firebase-admin";
 import { configToWizardData } from "@/lib/wizard/config-to-wizard";
 import type { WizardData } from "@/lib/wizard/wizard-types";
 import { isValidClientLanguage, type ClientLanguage } from "@/lib/client-language";
+import type { PlanType } from "@/lib/pricing";
 
 interface PageProps {
   searchParams: Promise<{ token?: string; clientId?: string }>;
@@ -24,7 +25,7 @@ export default async function OnboardingInfoPage({ searchParams }: PageProps) {
 
   let initialClientId = rawClientId || "";
   let initialEmail = "";
-  let initialPlan: "web_crm" | "completo" | "" = "";
+  let initialPlan: PlanType | "" = "";
   let prefilledData: Partial<WizardData> | undefined;
   let isResubmit = false;
   let changesRequestedMessage = "";

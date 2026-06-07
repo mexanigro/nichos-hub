@@ -2,7 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/firebase-admin";
 import { FieldValue, Timestamp } from "firebase-admin/firestore";
 import { chargeToken } from "@/lib/cardcom";
-import { getPlanAmount, type PlanType } from "@/lib/pricing";
+import { getPlanAmount, getTierAmount, type PlanType } from "@/lib/pricing";
+import type { BookingTier } from "@/types";
 
 /**
  * Cron mensual que ejecuta los cobros recurrentes de las suscripciones.
@@ -43,7 +44,8 @@ async function runOne(clientDoc: FirebaseFirestore.QueryDocumentSnapshot) {
   const c = clientDoc.data();
   const clientId = clientDoc.id;
   const plan = (c.plan || "web_crm") as PlanType;
-  const amount = getPlanAmount(plan);
+  const tier = (c.tier || "base") as BookingTier;
+  const amount = tier !== "base" ? getTierAmount(tier) : getPlanAmount(plan);
 
   if (!c.cardcomToken) {
     return { clientId, ok: false, reason: "no_token" };
@@ -58,7 +60,7 @@ async function runOne(clientDoc: FirebaseFirestore.QueryDocumentSnapshot) {
     cardValidityMonth: c.cardcomTokenExpMonth,
     cardValidityYear: c.cardcomTokenExpYear,
     amount,
-    productName: plan === "completo" ? "Web+CRM+Agente" : "Web+CRM",
+    productName: tier !== "base" ? `Web+CRM (${tier})` : plan === "completo" ? "Web+CRM+Agente" : "Web+CRM",
     customerEmail: c.email || undefined,
     customerName: c.businessName || c.adminEmail || undefined,
     language: "he",

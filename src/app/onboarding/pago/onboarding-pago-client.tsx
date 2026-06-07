@@ -26,11 +26,12 @@ export function OnboardingPagoClient({ defaultPlan }: Props) {
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
 
-  // Pick plan from pricing
   const planObj = useMemo(() => {
     const plans = t.pricing.plans;
-    if (defaultPlan === "web_crm") return plans[0];
-    return plans[1] || plans[0];
+    const match = plans.find((p) => p.planId === defaultPlan);
+    if (match) return match;
+    if (defaultPlan === "web_crm" || defaultPlan === "completo") return plans[0];
+    return plans[0];
   }, [t, defaultPlan]);
 
   // Map PlanType to contract lang

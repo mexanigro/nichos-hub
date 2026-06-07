@@ -301,10 +301,10 @@ Este acuerdo se rige por la ley israelí. Jurisdicción exclusiva: tribunales co
  * ═══════════════════════════════════════════════════════════════════════════ */
 
 const contracts: Record<ContractLang, Record<PlanType, string>> = {
-  en: { web_crm: EN, completo: EN },
-  es: { web_crm: ES, completo: ES },
-  ru: { web_crm: RU, completo: RU },
-  he: { web_crm: HE, completo: HE },
+  en: { web_crm: EN, completo: EN, base: EN, pro: EN, enterprise: EN },
+  es: { web_crm: ES, completo: ES, base: ES, pro: ES, enterprise: ES },
+  ru: { web_crm: RU, completo: RU, base: RU, pro: RU, enterprise: RU },
+  he: { web_crm: HE, completo: HE, base: HE, pro: HE, enterprise: HE },
 };
 
 /**

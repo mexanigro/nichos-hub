@@ -20,7 +20,9 @@ export function Pricing() {
         </div>
 
         <div className="at-plans" ref={staggerRef} data-stagger>
-          {t.pricing.plans.map((p, i) => (
+          {t.pricing.plans.map((p, i) => {
+            const planId = p.planId || "base";
+            return (
             <div className={`at-plan${p.highlight ? " hl" : ""}`} key={i} style={{ "--si": i } as React.CSSProperties}>
               <span className="tag">/{(i + 1).toString().padStart(2, "0")} · {p.tag}</span>
               <h3 className="name">{p.name}</h3>
@@ -30,6 +32,11 @@ export function Pricing() {
                 <span className="v">{p.price}</span>
                 <span className="per">{t.pricing.monthlyAbbr}</span>
               </div>
+              {p.bookingLimit && (
+                <div className="row-meta">
+                  <span>{p.bookingLimit}</span>
+                </div>
+              )}
               <div className="row-meta">
                 <span>{t.pricing.setupLabel}</span>
                 <span style={{ color: "var(--at-accent)" }}>{t.pricing.setupValue}</span>
@@ -38,11 +45,12 @@ export function Pricing() {
                 {p.items.map((it, j) => <li key={j}><span>{it}</span></li>)}
               </ul>
               <div className="ctas">
-                <a className="at-plan-btn primary" href="/onboarding/pago">{t.pricing.cta} →</a>
+                <a className="at-plan-btn primary" href={`/onboarding/pago?plan=${planId}`}>{t.pricing.cta} →</a>
                 <a className="at-plan-btn ghost" href={WA_HREF} target="_blank" rel="noopener noreferrer">{t.pricing.ctaSecondary}</a>
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
         <div className="at-pricing-note">{t.pricing.note}</div>
       </div>

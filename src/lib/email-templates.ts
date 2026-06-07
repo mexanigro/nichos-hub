@@ -11,7 +11,7 @@ const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://arzac.studio";
 
 interface PaymentConfirmedVars {
   name?: string;
-  plan: "web_crm" | "completo";
+  plan: string;
   amount: number;
   nextChargeAt?: string;
   onboardingUrl: string;

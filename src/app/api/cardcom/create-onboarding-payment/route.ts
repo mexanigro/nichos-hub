@@ -6,7 +6,7 @@ import { getPlanAmount, type PlanType } from "@/lib/pricing";
 import { isRateLimited } from "@/lib/rate-limit";
 import { isContractLang, type ContractLang } from "@/lib/contracts";
 
-const VALID_PLANS = new Set<PlanType>(["web_crm", "completo"]);
+const VALID_PLANS = new Set<PlanType>(["web_crm", "completo", "base", "pro", "enterprise"]);
 
 export async function POST(req: NextRequest) {
   const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
@@ -25,11 +25,14 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Body invalido" }, { status: 400 });
   }
 
-  const { plan, lang, email, name, contractVersion } = body as {
+  const { plan, lang, email, name, phone, businessName, niche, contractVersion } = body as {
     plan: string;
     lang: string;
     email: string;
     name: string;
+    phone?: string;
+    businessName?: string;
+    niche?: string;
     contractVersion: string;
   };
 
@@ -49,11 +52,18 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Nombre requerido" }, { status: 400 });
   }
 
+  const tierMap: Record<string, string> = { base: "base", pro: "pro", enterprise: "enterprise" };
+  const tier = tierMap[plan] || "base";
+
   // 1. Guardar lead con contrato aceptado
   const leadRef = await db.collection("hub_contract_leads").add({
     email: email.toLowerCase().trim(),
     name: name.trim(),
+    phone: phone?.trim() || "",
+    businessName: businessName?.trim() || "",
+    niche: niche?.trim() || "",
     plan: plan as PlanType,
+    tier,
     lang: lang as ContractLang,
     contractVersion: contractVersion || "3.0",
     contractAccepted: true,
@@ -67,8 +77,9 @@ export async function POST(req: NextRequest) {
   // 2. Crear pago en Cardcom
   const amount = getPlanAmount(plan as PlanType);
   const cardcomLang: "he" | "en" = lang === "he" ? "he" : "en";
-  const planLabel = plan === "completo" ? "Completo" : "Web+CRM";
-  const productName = `${planLabel} - ${name.trim()}`;
+  const tierLabels: Record<string, string> = { base: "Base", pro: "Pro", enterprise: "Enterprise" };
+  const planLabel = tierLabels[plan] || (plan === "completo" ? "Completo" : "Web+CRM");
+  const productName = `Web+CRM (${planLabel}) - ${name.trim()}`;
 
   const result = await createLowProfilePayment({
     amount,

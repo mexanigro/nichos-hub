@@ -45,9 +45,11 @@ import { ConfigHistoryPanel } from "@/components/config-history-panel";
 import { HubStatusHistoryPanel } from "@/components/hub-status-history-panel";
 import { MessagesPanel } from "@/components/messages-panel";
 import { PendingReviewBanner } from "@/components/pending-review-banner";
+import { TierBadge } from "@/components/tier-badge";
+import { BookingTierPanel } from "@/components/booking-tier-panel";
 import { formatDistanceToNow, format } from "date-fns";
 import { es } from "date-fns/locale";
-import type { ClientWithHealth, Payment, PaymentStatus } from "@/types";
+import type { ClientWithHealth, Payment, PaymentStatus, BookingTier, TierChangeEvent } from "@/types";
 import {
   LineChart,
   Line,
@@ -96,6 +98,12 @@ type ClientReview = ClientWithHealth & {
   resubmissionCount?: number;
   contactPhone?: string;
   contactWhatsapp?: string;
+  tier?: BookingTier;
+  bookingCount?: number;
+  bookingCountResetAt?: string | null;
+  tierAutoUpgraded?: boolean;
+  tierAutoUpgradedAt?: string | null;
+  tierHistory?: TierChangeEvent[];
 };
 
 /**
@@ -293,6 +301,7 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
           </div>
           <div className="flex flex-wrap items-center gap-2">
             <ClientStatusBadge status={client.status} />
+            <TierBadge tier={client.tier ?? "base"} />
             <a
               href={client.deployUrl}
               target="_blank"
@@ -695,6 +704,40 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
           />
         </div>
       )}
+
+      {/* Booking Tier Panel */}
+      <div className="mb-6">
+        <BookingTierPanel
+          clientDocId={clientId}
+          tier={client.tier ?? "base"}
+          bookingCount={client.bookingCount ?? 0}
+          tierAutoUpgraded={client.tierAutoUpgraded ?? false}
+          tierAutoUpgradedAt={client.tierAutoUpgradedAt ?? null}
+          tierHistory={client.tierHistory ?? []}
+          onTierChange={(newTier) => {
+            setData((d) => {
+              if (!d) return d;
+              const updated: ClientReview = {
+                ...d.client,
+                tier: newTier,
+                tierAutoUpgraded: false,
+                tierAutoUpgradedAt: undefined,
+                tierHistory: [
+                  ...(d.client.tierHistory ?? []),
+                  {
+                    from: d.client.tier ?? "base",
+                    to: newTier,
+                    reason: "manual" as const,
+                    at: new Date().toISOString(),
+                    bookingCountAtChange: d.client.bookingCount ?? 0,
+                  },
+                ],
+              };
+              return { ...d, client: updated };
+            });
+          }}
+        />
+      </div>
 
       {/* CRM Import Button */}
       {crmStats && (

@@ -48,6 +48,12 @@ export const GET = withOwner(async (_req, _session, ctx) => {
     contactPhone: contact.phone || d["contact.phone"] || "",
     contactWhatsapp: contact.whatsapp || d["contact.whatsapp"] || "",
     language: normalizeClientLanguage(d.language),
+    tier: d.tier || "base",
+    bookingCount: d.bookingCount || 0,
+    bookingCountResetAt: d.bookingCountResetAt?.toDate?.()?.toISOString() ?? null,
+    tierAutoUpgraded: d.tierAutoUpgraded || false,
+    tierAutoUpgradedAt: d.tierAutoUpgradedAt?.toDate?.()?.toISOString() ?? null,
+    tierHistory: d.tierHistory || [],
   };
   const internalClientId = d.clientId;
   const clientStatus = d.status || "active";

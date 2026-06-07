@@ -25,14 +25,17 @@ export interface ProcessPaymentResult {
 interface LeadDoc {
   email?: string;
   name?: string;
+  phone?: string;
+  businessName?: string;
+  niche?: string;
   plan?: PlanType;
+  tier?: string;
   contractVersion?: string;
   contractAcceptedAt?: Timestamp;
   contractIp?: string;
   paymentStatus?: string;
   hubClientId?: string;
   cardcomTransactionId?: string;
-  /** Idioma del cliente capturado en /onboarding/pago (free/lead → contract lead). */
   lang?: string;
 }
 
@@ -94,6 +97,7 @@ export async function processCardcomPayment(
   // Cuando Liam provisione el sitio real puede renombrar el clientId si quiere.
   const clientId = leadId;
   const plan = (lead.plan || "web_crm") as PlanType;
+  const tier = lead.tier || "base";
   const amount = getPlanAmount(plan);
 
   // nextChargeAt: un mes desde hoy. Calculado fuera de la transaccion porque
@@ -143,11 +147,15 @@ export async function processCardcomPayment(
         clientId,
         email: data.email || null,
         adminEmail: data.email || null,
-        businessName: data.name || "",
-        niche: "",
+        businessName: data.businessName || data.name || "",
+        niche: data.niche || "",
+        phone: data.phone || "",
         deployUrl: "",
         language: clientLanguage,
         plan,
+        tier,
+        bookingCount: 0,
+        bookingCountResetAt: now,
         paymentStatus: "active",
         cardcomToken: verify.token || null,
         cardcomTokenExpMonth: verify.cardValidityMonth || null,
@@ -171,6 +179,7 @@ export async function processCardcomPayment(
       // Solo tocar campos de pago — NUNCA pisar businessName/niche/infoSubmitted.
       tx.update(clientRef, {
         plan,
+        tier,
         paymentStatus: "active",
         cardcomToken: verify.token || null,
         cardcomTokenExpMonth: verify.cardValidityMonth || null,

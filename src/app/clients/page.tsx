@@ -13,9 +13,11 @@ import {
   RotateCcw,
 } from "lucide-react";
 import { HealthDot, ClientStatusBadge } from "@/components/status-badge";
+import { TierBadge } from "@/components/tier-badge";
 import { EmptyState } from "@/components/empty-state";
 import { LoadingSpinner } from "@/components/loading";
-import type { ClientWithHealth } from "@/types";
+import type { ClientWithHealth, BookingTier } from "@/types";
+import { TIER_LIMITS } from "@/lib/pricing";
 import { formatDistanceToNow, isValid } from "date-fns";
 import { es } from "date-fns/locale";
 
@@ -45,6 +47,7 @@ export default function ClientsPage() {
   const [statusFilter, setStatusFilter] = useState<"all" | "active" | "demo" | "suspended" | "trial" | "pending_review" | "pending_provision" | "changes_requested">("all");
   const [nicheFilter, setNicheFilter] = useState<string>("all");
   const [deployFilter, setDeployFilter] = useState<"all" | "ok" | "issue">("all");
+  const [tierFilter, setTierFilter] = useState<"all" | BookingTier>("all");
 
   useEffect(() => {
     // Esperar a que la sesión cargue antes de decidir
@@ -61,7 +64,7 @@ export default function ClientsPage() {
       const res = await fetch("/api/clients");
       if (res.ok) {
         const data = await res.json();
-        setClients(data.map((c: ClientWithHealth) => ({
+        setClients(data.map((c: ClientWithHealth & { tier?: BookingTier; bookingCount?: number; tierAutoUpgraded?: boolean }) => ({
           ...c,
           businessName: c.businessName || "",
           niche: c.niche || "",
@@ -71,6 +74,9 @@ export default function ClientsPage() {
           lastIncident: c.lastIncident
             ? { ...c.lastIncident, createdAt: safeDate(c.lastIncident.createdAt) }
             : undefined,
+          tier: c.tier || "base",
+          bookingCount: c.bookingCount || 0,
+          tierAutoUpgraded: c.tierAutoUpgraded || false,
         })));
       }
     } catch (err) {
@@ -84,6 +90,7 @@ export default function ClientsPage() {
   const filtered = clients.filter((c) => {
     if (statusFilter !== "all" && (c.status || "active") !== statusFilter) return false;
     if (nicheFilter !== "all" && (c.niche || "") !== nicheFilter) return false;
+    if (tierFilter !== "all" && ((c as unknown as { tier?: BookingTier }).tier || "base") !== tierFilter) return false;
     if (deployFilter === "ok" && c.deployStatus && c.deployStatus !== "ready") return false;
     if (deployFilter === "issue" && (!c.deployStatus || c.deployStatus === "ready")) return false;
     if (searchLower) {
@@ -92,7 +99,8 @@ export default function ClientsPage() {
     }
     return true;
   });
-  const filtersActive = statusFilter !== "all" || nicheFilter !== "all" || deployFilter !== "all" || !!searchLower;
+  const filtersActive = statusFilter !== "all" || nicheFilter !== "all" || tierFilter !== "all" || deployFilter !== "all" || !!searchLower;
+  const autoUpgradedCount = clients.filter((c) => (c as unknown as { tierAutoUpgraded?: boolean }).tierAutoUpgraded).length;
   const counts = {
     active: clients.filter((c) => (c.status || "active") === "active").length,
     demo: clients.filter((c) => c.status === "demo").length,
@@ -186,6 +194,17 @@ export default function ClientsPage() {
           />
         )}
         <FilterGroup
+          label="Tier"
+          options={[
+            { key: "all", label: "Todos" },
+            { key: "base", label: "Base" },
+            { key: "pro", label: "Pro" },
+            { key: "enterprise", label: "Enterprise" },
+          ]}
+          value={tierFilter}
+          onChange={(v) => setTierFilter(v as typeof tierFilter)}
+        />
+        <FilterGroup
           label="Deploy"
           options={[
             { key: "all", label: "Todos" },
@@ -198,13 +217,30 @@ export default function ClientsPage() {
         {filtersActive && (
           <button
             type="button"
-            onClick={() => { setSearch(""); setStatusFilter("all"); setNicheFilter("all"); setDeployFilter("all"); }}
+            onClick={() => { setSearch(""); setStatusFilter("all"); setNicheFilter("all"); setTierFilter("all"); setDeployFilter("all"); }}
             className="ml-auto inline-flex items-center gap-1 rounded-md border border-border bg-bg-card px-2 py-1 text-[10px] text-text-muted hover:text-text"
           >
             <X size={10} /> Limpiar filtros
           </button>
         )}
       </div>
+
+      {/* Auto-upgrade alert */}
+      {autoUpgradedCount > 0 && (
+        <div className="mb-4 flex items-center gap-3 rounded-xl border border-amber-500/30 bg-amber-500/[0.07] px-4 py-3">
+          <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-amber-500/20">
+            <RotateCcw size={13} className="text-amber-300" />
+          </div>
+          <div className="min-w-0 flex-1">
+            <p className="text-xs font-semibold text-text">
+              {autoUpgradedCount} cliente{autoUpgradedCount !== 1 ? "s" : ""} con auto-upgrade pendiente de revisión
+            </p>
+            <p className="text-[10px] text-text-muted">
+              Estos clientes superaron el límite de bookings y fueron upgradeados automáticamente.
+            </p>
+          </div>
+        </div>
+      )}
 
       {/* Table */}
       {filtered.length === 0 ? (
@@ -224,6 +260,7 @@ export default function ClientsPage() {
                 <th className="hidden px-4 py-3 lg:table-cell">URL</th>
                 <th className="hidden whitespace-nowrap px-4 py-3 md:table-cell">Activación</th>
                 <th className="hidden whitespace-nowrap px-4 py-3 lg:table-cell">Último incidente</th>
+                <th className="hidden whitespace-nowrap px-4 py-3 md:table-cell">Tier</th>
                 <th className="w-20 px-4 py-3">Plan</th>
               </tr>
             </thead>
@@ -288,6 +325,16 @@ export default function ClientsPage() {
                     ) : (
                       <span className="text-xs text-text-muted">—</span>
                     )}
+                  </td>
+                  <td className="hidden whitespace-nowrap px-4 py-3 md:table-cell">
+                    <div className="flex items-center gap-1.5">
+                      <TierBadge tier={((client as unknown as { tier?: BookingTier }).tier) || "base"} />
+                      {(client as unknown as { tierAutoUpgraded?: boolean }).tierAutoUpgraded && (
+                        <span className="inline-flex h-4 w-4 items-center justify-center rounded-full bg-amber-500/20 text-amber-400" title="Auto-upgrade pendiente">
+                          <RotateCcw size={8} />
+                        </span>
+                      )}
+                    </div>
                   </td>
                   <td className="w-20 px-4 py-3">
                     <ClientStatusBadge status={client.status} />

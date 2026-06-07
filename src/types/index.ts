@@ -1,5 +1,17 @@
 export type UserRole = "owner" | "seller" | "lead";
 
+// --- Booking Tiers ---
+
+export type BookingTier = "base" | "pro" | "enterprise";
+
+export interface TierChangeEvent {
+  from: BookingTier;
+  to: BookingTier;
+  reason: "auto_upgrade" | "manual";
+  at: string;
+  bookingCountAtChange?: number;
+}
+
 export interface HubUser {
   email: string;
   name: string;
@@ -41,6 +53,18 @@ export interface Client {
   contactWhatsapp?: string;
   /** Idioma del negocio del cliente — controla i18n del template y del LLM. */
   language?: "he" | "en" | "ru" | "ar" | "es";
+  /** Tier de bookings — controla límites y pricing mensual. */
+  tier?: BookingTier;
+  /** Bookings del mes actual. */
+  bookingCount?: number;
+  /** Cuándo se reseteó por última vez el contador (inicio del mes). */
+  bookingCountResetAt?: Date;
+  /** Si fue auto-upgraded este mes por superar el límite. */
+  tierAutoUpgraded?: boolean;
+  /** Cuándo se hizo el auto-upgrade. */
+  tierAutoUpgradedAt?: Date;
+  /** Historial de cambios de tier. */
+  tierHistory?: TierChangeEvent[];
 }
 
 export type HealthStatus = "healthy" | "degraded" | "down";
@@ -245,6 +269,24 @@ export interface Expense {
   createdAt: Date;
 }
 
+// --- Costos Operativos ---
+
+export type OperationalCostType = "fijo" | "variable";
+export type OperationalCostCategory = "ai" | "infra" | "payments" | "tools";
+
+export interface OperationalCost {
+  id: string;
+  nombre: string;
+  monto: number;
+  moneda: "USD" | "ILS";
+  tipo: OperationalCostType;
+  categoria: OperationalCostCategory;
+  activo: boolean;
+  notas?: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
 // --- Tipos para sistema de turnos ---
 
 export interface TimeRange {
@@ -357,4 +399,52 @@ export interface ApiServiceCost {
   lastAutoFetch?: string;
   details?: UsageDetail[];
   autoFetchError?: string;
+}
+
+// --- Prospect Follow-up System ---
+
+export type ProspectFollowUpStatus =
+  | "web_created"
+  | "web_sent"
+  | "web_viewed"
+  | "interested"
+  | "payment_link_sent"
+  | "paid"
+  | "not_interested"
+  | "follow_up_pending";
+
+export type ProspectChannel = "whatsapp" | "instagram" | "gmail";
+
+export interface ProspectStatusEvent {
+  status: ProspectFollowUpStatus;
+  date: string;
+  note?: string;
+}
+
+export interface ProspectFollowUp {
+  id: string;
+  clientId: string;
+  businessName: string;
+  contactName?: string;
+  contactPhone?: string;
+  niche?: string;
+  status: ProspectFollowUpStatus;
+  statusHistory: ProspectStatusEvent[];
+  webSentAt?: string;
+  webSentVia?: ProspectChannel;
+  followUpDue?: string;
+  lastContactAt?: string;
+  deployUrl?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+// --- Sales Assistant Chat ---
+
+export interface AssistantMessage {
+  id: string;
+  role: "user" | "assistant";
+  content: string;
+  timestamp: string;
+  copied?: boolean;
 }

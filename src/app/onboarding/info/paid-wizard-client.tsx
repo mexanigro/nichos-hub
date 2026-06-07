@@ -52,7 +52,7 @@ const STEPS: StepConfig[] = [
 interface PaidWizardClientProps {
   initialClientId?: string;
   initialEmail?: string;
-  initialPlan?: "web_crm" | "completo" | "";
+  initialPlan?: string;
   /** JWT del flow post-pago, requerido para subir imagenes al endpoint protegido. */
   uploadToken?: string;
   /** Datos previos del config (modo re-edicion). Se hidratan en useWizard

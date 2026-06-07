@@ -40,7 +40,7 @@ export interface Translations {
   };
   pricing: {
     eyebrow: string; title: string; titleEm: string; sub: string; monthlyAbbr: string;
-    plans: { tag: string; name: string; price: number; tagline: string; highlight?: boolean; items: string[] }[];
+    plans: { tag: string; name: string; price: number; tagline: string; highlight?: boolean; items: string[]; planId?: string; bookingLimit?: string }[];
     stamp: string;
     setupLabel: string; setupValue: string; cta: string; ctaSecondary: string; note: string;
   };
