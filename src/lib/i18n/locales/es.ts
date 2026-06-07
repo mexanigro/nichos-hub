@@ -4,11 +4,11 @@ export const es: Translations = {
   nav: { work: "Trabajo", crm: "CRM", agent: "Agente", how: "Cómo", pricing: "Precio", faq: "FAQ", start: "Empezar" },
 
   hero: {
-    eyebrow: "Estudio · Web + CRM + WhatsApp + Voz IA",
+    eyebrow: "Estudio · Web + CRM con IA + Agente IA 24/7",
     h1a: "Creamos la ",
     h1b: "presencia digital",
     h1c: " que tu negocio necesita.",
-    sub: "Nos encargamos de lo digital — web, CRM, agente IA en WhatsApp y llamadas de voz con IA. Vos solo ponés el branding — si es que lo tenés. Si no, te lo regalamos. ₪770/mes, cero setup.",
+    sub: "Web profesional, CRM con inteligencia artificial y un agente IA que atiende WhatsApp y llamadas por vos 24/7. Son dos empleados de IA que conocen tu negocio y nunca duermen. La marca te la regalamos si no la tenés. ₪770/mes, cero setup.",
     cta: "Empezar por WhatsApp",
     ghost: "Ver webs en vivo",
     ribbon: "enviado esta semana",
@@ -33,20 +33,20 @@ export const es: Translations = {
   },
 
   crm: {
-    eyebrow: "CRM",
-    title: "El primer CRM que ",
-    titleEm: "vas a abrir en serio.",
-    sub: "Turnos, leads y conversaciones. Todo en un solo lugar.",
-    why: "Sin un sistema, se te escapan clientes entre turnos olvidados y mensajes sin contestar. Con un CRM, tenés todo en un lugar: quién vino, cuándo, cuánto gastó y qué le falta. Es la diferencia entre controlar tu negocio y que tu negocio te controle a vos.",
+    eyebrow: "CRM + Socio IA",
+    title: "No es un CRM. Es un CRM ",
+    titleEm: "con inteligencia.",
+    sub: "Tu segundo empleado de IA. Analiza clientes, sugiere acciones y automatiza lo que antes hacías a mano. Como tener un socio que entiende tu negocio y trabaja 24/7.",
+    why: "Un CRM normal guarda datos. Este los lee, los entiende y actúa. La IA detecta clientes que no vuelven, sugiere el mejor momento para contactarlos y automatiza campañas de seguimiento. No te dice lo que ya sabés — te muestra lo que todavía no viste.",
     bullets: [
+      "IA que analiza tu negocio y te recomienda qué hacer",
+      "Seguimiento inteligente — sabe qué clientes no vuelven",
+      "Marketing automatizado que se adapta a tu rubro",
+      "Chatbot IA embebido que responde en tu web por vos",
+      "Llamadas de voz con IA integradas al calendario",
       "WhatsApp, formulario y walk-in en una bandeja",
       "Calendario sincronizado a Google",
-      "Notas por cliente, historial por visita",
-      "Chatbot IA embebido que responde por vos",
-      "Llamadas de voz con IA integradas al calendario",
       "Recordatorios automáticos para reducir no-shows",
-      "Cobros y facturas desde el mismo lugar",
-      "Reportes que entran en una pantalla",
       "Dashboard que te dice cómo va el día en 5 segundos",
     ],
     dashboard: {
@@ -74,7 +74,7 @@ export const es: Translations = {
     eyebrow: "Agente IA · WhatsApp + Voz",
     title: "Un agente IA que ",
     titleEm: "conoce tu negocio como vos.",
-    sub: "El empleado del año. Contesta llamadas, responde WhatsApp, reserva y cancela turnos. Siempre con la mejor onda. No va al baño y no duerme.",
+    sub: "Tu primer empleado de IA. Se presenta como tu negocio, responde WhatsApp y llamadas, toma turnos reales y gestiona reservas. Cinco idiomas, cero descansos, la mejor onda siempre.",
     why: "El 60% de los mensajes de WhatsApp y el 40% de las llamadas a negocios locales se pierden fuera de horario. Sin agente, esos clientes reservan en otro lado. Con agente, cada mensaje y cada llamada se responde en segundos, cada hora, cada día.",
     reasons: [
       { t: "Siempre activo",    d: "3am, shabat, feriados — los turnos siguen entrando." },

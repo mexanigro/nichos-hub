@@ -4,11 +4,11 @@ export const en: Translations = {
   nav: { work: "Work", crm: "CRM", agent: "Agent", how: "How", pricing: "Pricing", faq: "FAQ", start: "Start" },
 
   hero: {
-    eyebrow: "Studio · Web + CRM + WhatsApp + AI Voice",
+    eyebrow: "Studio · Web + AI-Powered CRM + 24/7 AI Agent",
     h1a: "We create the ",
     h1b: "digital presence",
     h1c: " your business needs.",
-    sub: "We handle the digital — site, CRM, AI agent on WhatsApp, and AI-powered voice calls. You just bring the brand — if you have one. If not, we'll create it for you. ₪770/mo, zero setup.",
+    sub: "Professional website, AI-powered CRM and an AI agent that handles WhatsApp and phone calls for you 24/7. Two AI employees that know your business and never sleep. Branding included if you don't have one. ₪770/mo, zero setup.",
     cta: "Talk on WhatsApp",
     ghost: "See live work",
     ribbon: "shipped this week",
@@ -33,20 +33,20 @@ export const en: Translations = {
   },
 
   crm: {
-    eyebrow: "CRM",
-    title: "The first CRM you'll ",
-    titleEm: "actually open.",
-    sub: "Appointments, leads and conversations. All in one place.",
-    why: "Without a system, clients slip through the cracks between forgotten appointments and unanswered messages. With a CRM, everything is in one place: who came, when, how much they spent and what they need next. It's the difference between running your business and your business running you.",
+    eyebrow: "CRM + AI Partner",
+    title: "Not just a CRM. A CRM ",
+    titleEm: "with intelligence.",
+    sub: "Your second AI employee. Analyzes clients, suggests actions and automates what you used to do by hand. Like having a partner who understands your business and works 24/7.",
+    why: "A regular CRM stores data. This one reads it, understands it and acts. The AI detects clients who haven't returned, suggests the best time to reach out and automates follow-up campaigns. It doesn't tell you what you already know — it shows you what you haven't seen yet.",
     bullets: [
+      "AI that analyzes your business and recommends what to do",
+      "Smart follow-up — knows which clients aren't coming back",
+      "Automated marketing that adapts to your industry",
+      "Built-in AI chatbot that replies on your website for you",
+      "AI voice calls integrated with your calendar",
       "WhatsApp, form and walk-in in one inbox",
       "Calendar synced to Google",
-      "Notes per client, history per visit",
-      "Built-in AI chatbot that replies for you",
-      "AI voice calls integrated with your calendar",
       "Automatic reminders to reduce no-shows",
-      "Payments and invoices from the same place",
-      "Reports that fit on one screen",
       "Dashboard that shows how your day is going in 5 seconds",
     ],
     dashboard: {
@@ -74,7 +74,7 @@ export const en: Translations = {
     eyebrow: "AI Agent · WhatsApp + Voice",
     title: "An AI agent that ",
     titleEm: "knows your business like you do.",
-    sub: "Employee of the year. Answers phone calls, replies on WhatsApp, books and cancels appointments. Always with the best attitude. Doesn't take breaks and never sleeps.",
+    sub: "Your first AI employee. Introduces itself as your business, replies on WhatsApp and phone calls, takes real bookings and manages appointments. Five languages, zero breaks, always the best attitude.",
     why: "60% of WhatsApp messages and 40% of phone calls to local businesses go unanswered after hours. Without an agent, those clients book somewhere else. With one, every message and every call gets answered in seconds — 24/7, every day.",
     reasons: [
       { t: "Always on", d: "3am, Shabbat, holidays — bookings keep coming in." },
