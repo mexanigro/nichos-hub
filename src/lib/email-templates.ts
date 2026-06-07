@@ -19,7 +19,14 @@ interface PaymentConfirmedVars {
 }
 
 export function paymentConfirmed(v: PaymentConfirmedVars) {
-  const planLabel = v.plan === "completo" ? "Web + CRM + Agente" : "Web + CRM";
+  const tierLabels: Record<string, string> = {
+    base: "Base",
+    pro: "Pro",
+    enterprise: "Enterprise",
+    web_crm: "Web + CRM",
+    completo: "Web + CRM + Agente",
+  };
+  const planLabel = tierLabels[v.plan] || v.plan;
   const name = v.name?.split(" ")[0] || "";
   const nextLine = v.nextChargeAt
     ? `\nPróximo cobro: ${new Date(v.nextChargeAt).toLocaleDateString("es", { day: "numeric", month: "long", year: "numeric" })}.\n`
