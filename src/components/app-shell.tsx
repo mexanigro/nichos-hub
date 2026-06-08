@@ -15,11 +15,16 @@ export function AppShell({ children }: { children: ReactNode }) {
   const isLoginPage = pathname === "/login";
   const isPublicPage = pathname.startsWith("/pago") || pathname.startsWith("/onboarding") || pathname.startsWith("/mi-cuenta") || pathname === "/" || pathname === "/privacy" || pathname === "/terms";
 
+  const isOwner = session?.user?.role === "owner";
+
   useEffect(() => {
     if (status === "unauthenticated" && !isLoginPage && !isPublicPage) {
       router.push("/login");
     }
-  }, [status, isLoginPage, isPublicPage, router]);
+    if (status === "authenticated" && !isOwner && !isLoginPage && !isPublicPage) {
+      window.location.href = "https://arzac.studio";
+    }
+  }, [status, isOwner, isLoginPage, isPublicPage, router]);
 
   useEffect(() => {
     if (status === "loading") {

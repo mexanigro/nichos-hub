@@ -7,8 +7,12 @@ import type { Session } from "next-auth";
 import "./auth-types";
 
 async function getUserRole(email: string): Promise<UserRole | null> {
-  const ownerEmail = process.env.OWNER_EMAIL;
-  if (email.toLowerCase() === ownerEmail?.toLowerCase()) {
+  const ownerEmails = (process.env.OWNER_EMAIL || "")
+    .toLowerCase()
+    .split(",")
+    .map((e) => e.trim())
+    .filter(Boolean);
+  if (ownerEmails.includes(email.toLowerCase())) {
     return "owner";
   }
 
