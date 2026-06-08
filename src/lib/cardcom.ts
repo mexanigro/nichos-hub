@@ -1,5 +1,13 @@
-const TERMINAL = process.env.CARDCOM_TERMINAL ?? "";
-const API_NAME = process.env.CARDCOM_API_NAME ?? "";
+export const SANDBOX = process.env.CARDCOM_SANDBOX === "true";
+const SANDBOX_TERMINAL = "1000";
+const SANDBOX_API_NAME = "CardTest1994";
+
+const TERMINAL = SANDBOX ? SANDBOX_TERMINAL : (process.env.CARDCOM_TERMINAL ?? "");
+const API_NAME = SANDBOX ? SANDBOX_API_NAME : (process.env.CARDCOM_API_NAME ?? "");
+
+if (SANDBOX) {
+  console.warn("[cardcom] ⚠ SANDBOX MODE — terminal 1000, no real charges");
+}
 
 const SENSITIVE_KEYS = new Set([
   "Token", "TokenResponse", "CardNumber", "CardNumber5",
