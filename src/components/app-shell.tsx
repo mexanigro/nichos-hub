@@ -18,17 +18,13 @@ export function AppShell({ children }: { children: ReactNode }) {
   const isOwner = session?.user?.role === "owner";
 
   useEffect(() => {
-    if (status === "authenticated" && isOwner && pathname === "/") {
-      router.replace("/clients");
-      return;
-    }
     if (status === "unauthenticated" && !isLoginPage && !isPublicPage) {
       router.push("/login");
     }
     if (status === "authenticated" && !isOwner && !isLoginPage && !isPublicPage) {
       window.location.href = "https://arzac.studio";
     }
-  }, [status, isOwner, isLoginPage, isPublicPage, pathname, router]);
+  }, [status, isOwner, isLoginPage, isPublicPage, router]);
 
   useEffect(() => {
     if (status === "loading") {
