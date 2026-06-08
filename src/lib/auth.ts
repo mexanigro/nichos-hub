@@ -1,9 +1,9 @@
 import NextAuth from "next-auth";
-import Google from "next-auth/providers/google";
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "./firebase-admin";
 import type { UserRole } from "@/types";
 import type { Session } from "next-auth";
+import { authConfig } from "@/auth.config";
 import "./auth-types";
 
 async function getUserRole(email: string): Promise<UserRole | null> {
@@ -25,12 +25,7 @@ async function getUserRole(email: string): Promise<UserRole | null> {
 }
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
-  providers: [
-    Google({
-      clientId: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-    }),
-  ],
+  ...authConfig,
   callbacks: {
     async signIn({ user }) {
       return !!user.email;
@@ -51,10 +46,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       }
       return session;
     },
-  },
-  pages: {
-    signIn: "/login",
-    error: "/login",
   },
 });
 

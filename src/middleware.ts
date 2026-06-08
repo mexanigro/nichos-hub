@@ -1,5 +1,7 @@
-import { getToken } from "next-auth/jwt";
-import { NextRequest, NextResponse } from "next/server";
+import NextAuth from "next-auth";
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+import { authConfig } from "@/auth.config";
 
 const PUBLIC_PATHS = new Set(["/", "/login", "/privacy", "/terms"]);
 
@@ -12,19 +14,26 @@ const PUBLIC_PREFIXES = [
   "/api/onboarding",
   "/api/free",
   "/api/cron",
-  "/api/appointments/book",
-  "/api/appointments/available",
+  "/api/appointments",
   "/api/bookings",
   "/api/contract-leads",
   "/api/tenant-claim",
   "/api/sales-assistant",
   "/api/deploy",
+  "/api/payments/contract",
   "/opengraph-image",
 ];
+
+const AGENT_AUTH_PREFIXES = ["/api/whatsapp-config/"];
 
 function isPublicRoute(pathname: string): boolean {
   if (PUBLIC_PATHS.has(pathname)) return true;
   return PUBLIC_PREFIXES.some((prefix) => pathname.startsWith(prefix));
+}
+
+function isAgentRoute(pathname: string, req: NextRequest): boolean {
+  if (!req.headers.get("x-agent-secret")) return false;
+  return AGENT_AUTH_PREFIXES.some((prefix) => pathname.startsWith(prefix));
 }
 
 function getOwnerEmails(): string[] {
@@ -35,21 +44,30 @@ function getOwnerEmails(): string[] {
     .filter(Boolean);
 }
 
-export async function middleware(req: NextRequest) {
+const { auth } = NextAuth(authConfig);
+
+export default auth((req) => {
   const { pathname } = req.nextUrl;
 
   if (isPublicRoute(pathname)) {
     return NextResponse.next();
   }
 
-  const token = await getToken({ req, secret: process.env.AUTH_SECRET });
+  if (isAgentRoute(pathname, req)) {
+    return NextResponse.next();
+  }
 
-  if (!token?.email || !getOwnerEmails().includes(token.email.toLowerCase())) {
+  const email = req.auth?.user?.email;
+
+  if (!email || !getOwnerEmails().includes(email.toLowerCase())) {
+    if (pathname.startsWith("/api/")) {
+      return NextResponse.json({ error: "No autorizado" }, { status: 401 });
+    }
     return NextResponse.redirect(new URL("/", req.url));
   }
 
   return NextResponse.next();
-}
+});
 
 export const config = {
   matcher: [
