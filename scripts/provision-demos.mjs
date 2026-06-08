@@ -43,15 +43,23 @@ function loadEnv() {
 
 loadEnv();
 
-const app = initializeApp({
+let cleanKey = (process.env.FIREBASE_PRIVATE_KEY || "").trim();
+if (/^["'`]/.test(cleanKey) && cleanKey[0] === cleanKey[cleanKey.length - 1]) {
+  cleanKey = cleanKey.slice(1, -1);
+}
+cleanKey = cleanKey.replace(/\\n/g, "\n").replace(/\\\n/g, "\n");
+
+initializeApp({
   credential: cert({
     projectId: process.env.FIREBASE_PROJECT_ID,
     clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-    privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, "\n"),
+    privateKey: cleanKey,
   }),
 });
 
-const db = getFirestore(app);
+const databaseId = process.env.FIREBASE_DATABASE_ID;
+const db = databaseId ? getFirestore(databaseId) : getFirestore();
+try { db.settings({ preferRest: true }); } catch {};
 
 // ═══════════════════════════════════════════════════════════════
 // DEMO DATA — 4 tattoo artists
