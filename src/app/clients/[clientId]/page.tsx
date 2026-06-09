@@ -302,17 +302,19 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
           <div className="flex flex-wrap items-center gap-2">
             <ClientStatusBadge status={client.status} />
             <TierBadge tier={client.tier ?? "base"} />
-            <a
-              href={client.deployUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-lg border border-accent/30 bg-accent/10 px-3 py-1.5 text-[11px] font-semibold text-accent transition-colors hover:bg-accent/20"
-              title={client.deployUrl}
-            >
-              <Globe size={12} />
-              <span>Ver sitio en vivo</span>
-              <ExternalLink size={10} className="opacity-60" />
-            </a>
+            {(client.deployUrl || client.clientId) && (
+              <a
+                href={client.deployUrl || `https://${client.clientId}.arzac.studio`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-lg border border-accent/30 bg-accent/10 px-3 py-1.5 text-[11px] font-semibold text-accent transition-colors hover:bg-accent/20"
+                title={client.deployUrl || `https://${client.clientId}.arzac.studio`}
+              >
+                <Globe size={12} />
+                <span>Ver sitio en vivo</span>
+                <ExternalLink size={10} className="opacity-60" />
+              </a>
+            )}
             {client.vercelProjectId && (
               <a
                 href={`https://vercel.com/dashboard/${client.vercelProjectId}`}
@@ -847,9 +849,13 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
           <div>
             <dt className="text-text-muted">Deploy URL</dt>
             <dd className="mt-0.5 font-mono text-text">
-              <a href={client.deployUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 break-all hover:text-accent">
-                {client.deployUrl} <ExternalLink size={10} />
-              </a>
+              {(client.deployUrl || client.clientId) ? (
+                <a href={client.deployUrl || `https://${client.clientId}.arzac.studio`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 break-all hover:text-accent">
+                  {client.deployUrl || `https://${client.clientId}.arzac.studio`} <ExternalLink size={10} />
+                </a>
+              ) : (
+                <span className="text-text-muted">—</span>
+              )}
             </dd>
           </div>
           <div>
