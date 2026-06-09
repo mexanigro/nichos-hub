@@ -5,6 +5,16 @@ import { useRouter } from "next/navigation";
 import { useUserAuth } from "@/lib/user-auth-context";
 import { getLeadData, signOut, type HubLead } from "@/lib/user-auth";
 import { AuthModal } from "@/components/landing/auth-modal";
+import { getPlanAmount, type PlanType } from "@/lib/pricing";
+
+const PLAN_LABELS: Record<string, string> = {
+  solo_web: "Solo Web",
+  web_crm: "Web + CRM + Agent",
+  completo: "Web + CRM + Agent",
+  base: "Base",
+  pro: "Pro",
+  enterprise: "Enterprise",
+};
 
 export default function MiCuentaPage() {
   const { user, loading } = useUserAuth();
@@ -49,9 +59,8 @@ export default function MiCuentaPage() {
     );
   }
 
-  const planLabel = (lead?.plan === "completo" || lead?.plan === "web_crm")
-    ? "Web + CRM + Agent"
-    : null;
+  const planLabel = lead?.plan ? PLAN_LABELS[lead.plan] ?? null : null;
+  const planPrice = lead?.plan ? getPlanAmount(lead.plan as PlanType) : null;
 
   return (
     <div className="min-h-screen bg-[#fafafa] px-4 py-12">
@@ -102,7 +111,7 @@ export default function MiCuentaPage() {
                 <span className="inline-flex items-center rounded-full bg-green-50 px-3 py-1 text-[0.8rem] font-semibold text-green-700">
                   {planLabel}
                 </span>
-                <span className="text-sm text-gray-500">₪770/mes</span>
+                <span className="text-sm text-gray-500">₪{planPrice}/mes</span>
               </div>
 
               {lead?.clientId && (
@@ -127,7 +136,7 @@ export default function MiCuentaPage() {
               <div className="mt-4">
                 <div className="rounded-xl border-2 border-gray-900 p-4">
                   <p className="font-semibold text-gray-900">Web + CRM + Agent</p>
-                  <p className="mt-1 text-2xl font-bold text-gray-900">₪770<span className="text-sm font-normal text-gray-500">/mes</span></p>
+                  <p className="mt-1 text-2xl font-bold text-gray-900">₪480<span className="text-sm font-normal text-gray-500">/mes</span></p>
                   <ul className="mt-3 space-y-1.5 text-[0.8rem] text-gray-600">
                     <li>✓ Sitio web profesional</li>
                     <li>✓ CRM con asistente IA</li>

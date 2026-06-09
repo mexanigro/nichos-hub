@@ -23,8 +23,8 @@ function formatDate(iso: string | null, locale: string): string {
 function SuccessContent() {
   const params = useSearchParams();
   const router = useRouter();
-  const lowProfileCode = params.get("LowProfileCode") || params.get("lowProfileCode");
-  const leadId = params.get("ReturnValue") || params.get("returnValue");
+  const lowProfileCode = params.get("LowProfileCode") || params.get("lowProfileCode") || params.get("lowprofilecode");
+  const leadId = params.get("ReturnValue") || params.get("returnValue") || params.get("leadId");
 
   const { t, locale } = useT();
   const dir = RTL_LOCALES.includes(locale) ? "rtl" : "ltr";
@@ -34,7 +34,14 @@ function SuccessContent() {
   const [nextChargeAt, setNextChargeAt] = useState<string | null>(null);
   const [redirectUrl, setRedirectUrl] = useState<string | null>(null);
 
-  const planObj = useMemo(() => t.pricing.plans[1] || t.pricing.plans[0], [t]);
+  const planObj = useMemo(() => {
+    const planParam = params.get("plan");
+    if (planParam) {
+      const match = t.pricing.plans.find((p) => p.planId === planParam);
+      if (match) return match;
+    }
+    return t.pricing.plans.find((p) => p.highlight) || t.pricing.plans[0];
+  }, [t, params]);
 
   useEffect(() => {
     if (!lowProfileCode || !leadId) {

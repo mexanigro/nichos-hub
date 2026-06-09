@@ -143,11 +143,11 @@ export async function verifyPayment(lowProfileCode: string): Promise<VerifyPayme
     return {
       success: true,
       transactionId: parsed.InternalDealNumber || undefined,
-      cardLastFour: parsed.CardNumber?.slice(-4) || parsed.CardNumber5?.slice(-4) || undefined,
-      token: parsed.Token || parsed.TokenResponse || undefined,
+      cardLastFour: parsed.CardNumber?.slice(-4) || parsed.CardNumber5?.slice(-4) || parsed["ExtShvaParams.CardNumber5"]?.slice(-4) || undefined,
+      token: parsed.Token || parsed.TokenResponse || parsed["ExtShvaParams.CardToken"] || undefined,
       cardValidityMonth: parsed.CardValidityMonth || parsed.TokenExDate?.slice(0, 2) || undefined,
       cardValidityYear: parsed.CardValidityYear || parsed.TokenExDate?.slice(2, 4) || undefined,
-      approvalNumber: parsed.ApprovalNumber || parsed["ExtShvaParams.ApprovalNumber"] || undefined,
+      approvalNumber: parsed.ApprovalNumber || parsed["ExtShvaParams.ApprovalNumber"] || parsed["ExtShvaParams.ApprovalNumber71"] || undefined,
       returnValue: parsed.ReturnValue || undefined,
       raw: parsed,
     };

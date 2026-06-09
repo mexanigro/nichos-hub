@@ -8,7 +8,7 @@ export const en: Translations = {
     h1a: "We create the ",
     h1b: "digital presence",
     h1c: " your business needs.",
-    sub: "Professional website, AI-powered CRM and an AI agent that handles WhatsApp and phone calls for you 24/7. Two AI employees that know your business and never sleep. Branding included if you don't have one. ₪770/mo, zero setup.",
+    sub: "Professional website, AI-powered CRM and an AI agent that handles WhatsApp and phone calls for you 24/7. Two AI employees that know your business and never sleep. Branding included if you don't have one. From ₪480/mo, zero setup.",
     cta: "Talk on WhatsApp",
     ghost: "See live work",
     ribbon: "shipped this week",
@@ -154,6 +154,21 @@ export const en: Translations = {
     monthlyAbbr: "/mo",
     plans: [
       {
+        planId: "solo_web",
+        tag: "Web only",
+        name: "Solo Web",
+        price: 480,
+        tagline: "Full website with chatbot, email notifications. No WhatsApp, no CRM.",
+        items: [
+          "Website, hosting & domain",
+          "AI chatbot on website",
+          "Gmail notifications to owner",
+          "Gmail notifications to customers",
+          "Hebrew, English, Russian, Spanish, Arabic",
+          "Ongoing maintenance & support",
+        ],
+      },
+      {
         planId: "base",
         tag: "Essential",
         name: "Base",
@@ -244,8 +259,8 @@ export const en: Translations = {
   final: {
     a: "Run your business.",
     b: "We'll run the digital.",
-    cta: "See plans & start",
-    ctaHref: "#pricing",
+    cta: "Message Liam on WhatsApp",
+    ctaHref: `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "9720557719141"}`,
     note: "Your message is my priority. I'll be waiting.",
   },
 
@@ -296,7 +311,7 @@ export const en: Translations = {
     contract: "Service contract",
     contractExpand: "Read full",
     contractCollapse: "Collapse",
-    contractBody: "By accepting, you subscribe to Arzac Studio. Plans: Base (₪770/mo — website, CRM, AI WhatsApp agent, 100 bookings/mo), Pro (₪960/mo — everything in Base + AI voice calls, 300 bookings/mo), Enterprise (₪1,270/mo — unlimited bookings & calls + priority support). If you reach your booking limit, you are automatically upgraded to the next tier from the following billing cycle. Monthly billing via Cardcom. Zero setup fee. Cancel anytime — your data, domain and booking history go with you. Full terms at arzac.studio/terms.",
+    contractBody: "By accepting, you subscribe to Arzac Studio. Plans: Solo Web (₪480/mo — website, AI chatbot, email notifications), Base (₪770/mo — website, CRM, AI WhatsApp agent, 100 bookings/mo), Pro (₪960/mo — everything in Base + AI voice calls, 300 bookings/mo), Enterprise (₪1,270/mo — unlimited bookings & calls + priority support). If you reach your booking limit, you are automatically upgraded to the next tier from the following billing cycle. Monthly billing via Cardcom. Zero setup fee. Cancel anytime — your data, domain and booking history go with you. Full terms at arzac.studio/terms.",
     accept: "I read and accept the service contract.",
     acceptShort: "Accept terms",
     paymentTitle: "Payment",

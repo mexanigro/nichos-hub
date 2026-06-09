@@ -1,7 +1,7 @@
 import { OnboardingPagoClient } from "./onboarding-pago-client";
 import type { PlanType } from "@/lib/pricing";
 
-const VALID_PLANS = new Set<PlanType>(["base", "pro", "enterprise", "web_crm", "completo"]);
+const VALID_PLANS = new Set<PlanType>(["solo_web", "base", "pro", "enterprise", "web_crm", "completo"]);
 
 interface Props {
   searchParams: Promise<{ plan?: string }>;

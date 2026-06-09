@@ -23,6 +23,7 @@ export default function TermsPage() {
         <section>
           <h2>Plans and pricing</h2>
           <ul>
+            <li><strong>Solo Web</strong> — ₪480/month. Website, hosting, domain, AI chatbot, email notifications.</li>
             <li><strong>Base</strong> — ₪770/month. Website, hosting, domain, CRM, AI WhatsApp agent (24/7), up to 100 bookings/month.</li>
             <li><strong>Pro</strong> — ₪960/month. Everything in Base + AI voice calls (cloned voice), up to 300 bookings/month.</li>
             <li><strong>Enterprise</strong> — ₪1,270/month. Everything in Pro + unlimited bookings, unlimited voice calls, priority support.</li>

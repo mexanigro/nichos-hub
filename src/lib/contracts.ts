@@ -2,13 +2,14 @@ import { type PlanType } from "./pricing";
 
 export type ContractLang = "en" | "es" | "ru" | "he" | "ar";
 
-const CONTRACT_VERSION = "6.0";
+const CONTRACT_VERSION = "7.0";
 
 /* ═══════════════════════════════════════════════════════════════════════════
  * PLAN DETAILS (shared across all languages)
  * ═══════════════════════════════════════════════════════════════════════════ */
 
 const PLAN_TABLE = {
+  solo_web: { price: 480, bookings: null },
   base: { price: 770, bookings: 100 },
   pro: { price: 960, bookings: 300 },
   enterprise: { price: 1270, bookings: "unlimited" },
@@ -20,7 +21,7 @@ const PLAN_TABLE = {
 
 function EN(plan: PlanType): string {
   return `SERVICE AGREEMENT — WEBSITE, CRM & AI AGENTS
-Arzac Studio — 3-Tier Subscription
+Arzac Studio — Subscription Plans
 
 Between: Arzac Studio (hereinafter: "the Provider")
 And: The Client (hereinafter: "the Client")
@@ -33,7 +34,16 @@ THE PARTIES AGREE AS FOLLOWS:
 
 1. Service Plans
 
-The Provider offers three subscription tiers. All plans include zero setup fee.
+The Provider offers the following subscription tiers. All plans include zero setup fee.
+
+1.0. Solo Web Plan — ₪480/month
+  (a) Custom website using the Master Template System, including landing page, services, gallery, contact page, and AI-powered website chatbot.
+  (b) Online visibility: presence on the internet, domain purchase and annual renewal.
+  (c) Email notifications via Gmail: automated notifications to the business owner and to customers/leads. Optionally, email notifications to staff members.
+  (d) Ongoing maintenance and technical support: content updates, bug fixes.
+  (e) Website hosting on third-party infrastructure.
+
+  This plan does NOT include: CRM dashboard access, WhatsApp agent, WhatsApp notifications, AI voice calls, or booking management system.
 
 1.1. Base Plan — ₪770/month
   (a) Custom website using the Master Template System.
@@ -57,15 +67,17 @@ The Provider offers three subscription tiers. All plans include zero setup fee.
 
 2. Automatic Tier Upgrade
 
-2.1. If the Client reaches the booking limit of the current plan during a billing cycle, the system will automatically upgrade the Client to the next available tier starting from the following billing cycle.
-2.2. The Client will be notified of the upgrade via WhatsApp and/or email within 24 hours.
-2.3. The new tier pricing applies from the next billing date.
-2.4. By signing this agreement, the Client expressly consents to automatic tier upgrades and the corresponding price adjustments as described above.
-2.5. If the Client wishes to revert to a lower tier, they may request a downgrade with 30 days' written notice, effective at the next billing cycle, provided their usage falls within the lower tier limits.
+2.1. Sections 2.2 through 2.5 apply only to the Base, Pro, and Enterprise plans. The Solo Web plan is not subject to automatic tier upgrades.
+2.2. If the Client reaches the booking limit of the current plan during a billing cycle, the system will automatically upgrade the Client to the next available tier starting from the following billing cycle.
+2.3. The Client will be notified of the upgrade via WhatsApp and/or email within 24 hours.
+2.4. The new tier pricing applies from the next billing date.
+2.5. By signing this agreement, the Client expressly consents to automatic tier upgrades and the corresponding price adjustments as described above.
+2.6. If the Client wishes to revert to a lower tier, they may request a downgrade with 30 days' written notice, effective at the next billing cycle, provided their usage falls within the lower tier limits.
 
 3. Pricing & Payment
 
-3.1. Subscription fees per tier:
+3.1. Subscription fees per plan:
+  - Solo Web: ₪480/month
   - Base: ₪770/month
   - Pro: ₪960/month
   - Enterprise: ₪1,270/month
@@ -144,9 +156,9 @@ function HE(plan: PlanType): string {
 
 2. נראות באינטרנט — החברה תעניק למזמין נוכחות דיגיטלית ברשת האינטרנט, לרבות רכישת דומיין וחידושו השנתי.
 
-3. מערכת מיקרו CRM ומנוע AI — לוח ניהול דיגיטלי, עוזר וירטואלי מבוסס בינה מלאכותית ודיוור אלקטרוני אוטומטי.
+3. מערכת מיקרו CRM ומנוע AI — לוח ניהול דיגיטלי, עוזר וירטואלי מבוסס בינה מלאכותית ודיוור אלקטרוני אוטומטי (תוכניות Base ומעלה בלבד).
 
-4. סוכן WhatsApp מבוסס בינה מלאכותית — בוט אוטומטי המשולב בעסק המזמין באמצעות פלטפורמת WhatsApp. הסוכן מגיב להודעות, מנהל קביעת תורים וביטולם, ועונה על שאלות על בסיס המידע העסקי של המזמין. הסוכן פעיל 24 שעות ביממה, 7 ימים בשבוע.
+4. סוכן WhatsApp מבוסס בינה מלאכותית — בוט אוטומטי המשולב בעסק המזמין באמצעות פלטפורמת WhatsApp. הסוכן מגיב להודעות, מנהל קביעת תורים וביטולם, ועונה על שאלות על בסיס המידע העסקי של המזמין. הסוכן פעיל 24 שעות ביממה, 7 ימים בשבוע (תוכניות Base ומעלה בלבד).
 
 5. שיחות קוליות עם בינה מלאכותית (תוכניות Pro ו-Enterprise בלבד) — שיחות נכנסות ויוצאות באמצעות טכנולוגיית שכפול קול, המשולבות עם יומן התורים של המזמין. המזמין מאשר בזאת לחברה ליצור ולהשתמש בקול סינתטי על בסיס דגימות קול שיסופקו על ידי המזמין.
 
@@ -156,11 +168,17 @@ function HE(plan: PlanType): string {
 
 8. דומיין — רכישת שם מתחם (דומיין) עבור המזמין וחידושו השנתי.
 
+8א. צ׳אטבוט AI באתר — ווידג׳ט צ׳אט מבוסס בינה מלאכותית המוטמע באתר האינטרנט של המזמין (כלול בכל התוכניות).
+
+8ב. התראות דוא"ל — הודעות אוטומטיות באמצעות Gmail לבעל העסק וללקוחות/לידים. לפי בקשת המזמין, גם לאנשי צוות (כלול בכל התוכניות).
+
 תוכניות שירות
 
-החברה מציעה שלוש תוכניות מנוי. כל התוכניות כוללות אפס דמי הקמה.
+החברה מציעה את תוכניות המנוי הבאות. כל התוכניות כוללות אפס דמי הקמה.
 
-9. תוכנית Base — ₪770 לחודש: כוללת את השירותים המפורטים בסעיפים 1 עד 4 ו-6 עד 8 לעיל, עם מכסה של עד 100 תורים בחודש.
+8ג. תוכנית Solo Web — ₪480 לחודש: כוללת את השירותים המפורטים בסעיפים 1, 2, 6, 7, 8, 8א ו-8ב לעיל. תוכנית זו אינה כוללת: גישה ללוח ניהול CRM, סוכן WhatsApp, התראות WhatsApp, שיחות קוליות עם בינה מלאכותית או מערכת ניהול תורים.
+
+9. תוכנית Base — ₪770 לחודש: כוללת את השירותים המפורטים בסעיפים 1 עד 4 ו-6 עד 8ב לעיל, עם מכסה של עד 100 תורים בחודש.
 
 10. תוכנית Pro — ₪960 לחודש: כוללת את כל הכלול בתוכנית Base, בנוסף לשירות שיחות קוליות עם בינה מלאכותית כמפורט בסעיף 5, עם מכסה של עד 300 תורים בחודש.
 
@@ -170,7 +188,7 @@ function HE(plan: PlanType): string {
 
 12. דמי הקמה: ₪0 (אפס). אין כל חיוב בגין הקמת האתר, הגדרת סוכני הבינה המלאכותית או הצטרפות לשירות.
 
-13. דמי מנוי חודשיים בהתאם לתוכנית הנבחרת כמפורט בסעיפים 9 עד 11, ישולמו מדי חודש באמצעות מערכת הסליקה Cardcom. החברה אינה שומרת פרטי כרטיס אשראי של המזמין.
+13. דמי מנוי חודשיים בהתאם לתוכנית הנבחרת כמפורט בסעיפים 8ג עד 11, ישולמו מדי חודש באמצעות מערכת הסליקה Cardcom. החברה אינה שומרת פרטי כרטיס אשראי של המזמין.
 
 14. אחסון אתר: עלות שנתית משתנה. העלות עשויה להשתנות בהתאם לעלויות צד שלישי. ישולם תוך 7 ימים מדרישת החברה.
 
@@ -181,6 +199,8 @@ function HE(plan: PlanType): string {
 17. החברה לא תעניק זיכוי בגין תשלומים שנתיים ששולמו (אחסון ודומיין) אם ההסכם מבוטל לפני תום השנה.
 
 שדרוג אוטומטי
+
+17א. סעיפים 18 עד 21 חלים על תוכניות Base, Pro ו-Enterprise בלבד. תוכנית Solo Web אינה כפופה לשדרוג אוטומטי.
 
 18. אם המזמין יגיע למכסת התורים החודשית של תוכניתו הנוכחית במהלך תקופת חיוב, המערכת תשדרג אוטומטית את תוכנית המזמין לתוכנית הבאה הזמינה, מתחילת תקופת החיוב הבאה.
 
@@ -269,7 +289,7 @@ function HE(plan: PlanType): string {
 
 function RU(plan: PlanType): string {
   return `ДОГОВОР НА ОКАЗАНИЕ УСЛУГ — САЙТ, CRM И ИИ-АГЕНТЫ
-Arzac Studio — Подписка с 3 уровнями
+Arzac Studio — Тарифные планы
 
 Между: Arzac Studio (далее — «Исполнитель»)
 И: Заказчик (далее — «Заказчик»)
@@ -282,7 +302,16 @@ Arzac Studio — Подписка с 3 уровнями
 
 1. Тарифные планы
 
-Исполнитель предлагает три уровня подписки. Все планы без платы за подключение.
+Исполнитель предлагает следующие уровни подписки. Все планы без платы за подключение.
+
+1.0. Plan Solo Web — ₪480/мес
+  (а) Персональный сайт на основе Мастер-Шаблона, включая лендинг, услуги, галерею, контакты и ИИ-чатбот на сайте.
+  (б) Интернет-присутствие: видимость в сети, покупка и ежегодное продление домена.
+  (в) Email-уведомления через Gmail: автоматические уведомления владельцу бизнеса и клиентам/лидам. По желанию — уведомления сотрудникам.
+  (г) Техническое обслуживание и поддержка: обновление контента, исправление ошибок.
+  (д) Хостинг на сторонней инфраструктуре.
+
+  Данный план НЕ включает: доступ к CRM-панели, WhatsApp-агента, WhatsApp-уведомления, голосовые звонки с ИИ или систему управления записями.
 
 1.1. Plan Base — ₪770/мес
   (а) Персональный сайт на основе Мастер-Шаблона.
@@ -306,6 +335,7 @@ Arzac Studio — Подписка с 3 уровнями
 
 2. Автоматическое повышение уровня
 
+2.0. Пункты 2.1–2.4 применяются только к планам Base, Pro и Enterprise. План Solo Web не подлежит автоматическому повышению.
 2.1. Если Заказчик достигнет лимита записей текущего плана в течение расчётного периода, система автоматически переведёт его на следующий уровень с начала следующего расчётного периода.
 2.2. Уведомление об изменении направляется через WhatsApp и/или email в течение 24 часов.
 2.3. Стоимость нового уровня применяется с даты следующего платежа.
@@ -314,7 +344,8 @@ Arzac Studio — Подписка с 3 уровнями
 
 3. Стоимость и порядок оплаты
 
-3.1. Абонентская плата по уровням:
+3.1. Абонентская плата по планам:
+  - Solo Web: ₪480/мес
   - Base: ₪770/мес
   - Pro: ₪960/мес
   - Enterprise: ₪1 270/мес
@@ -374,7 +405,7 @@ Arzac Studio — Подписка с 3 уровнями
 
 function ES(plan: PlanType): string {
   return `ACUERDO DE SERVICIOS — SITIO WEB, CRM Y AGENTES IA
-Arzac Studio — Suscripcion de 3 Niveles
+Arzac Studio — Planes de Suscripcion
 
 Entre: Arzac Studio (en adelante: "el Proveedor")
 Y: El Cliente (en adelante: "el Cliente")
@@ -387,7 +418,16 @@ LAS PARTES ACUERDAN LO SIGUIENTE:
 
 1. Planes de Servicio
 
-El Proveedor ofrece tres niveles de suscripcion. Todos los planes incluyen cero costo de setup.
+El Proveedor ofrece los siguientes niveles de suscripcion. Todos los planes incluyen cero costo de setup.
+
+1.0. Plan Solo Web — ₪480/mes
+  (a) Sitio web personalizado usando el Sistema de Plantilla Maestra, incluyendo landing, servicios, galeria, contacto y chatbot AI integrado en el sitio.
+  (b) Visibilidad online: presencia en internet, compra de dominio y renovacion anual.
+  (c) Notificaciones por email via Gmail: notificaciones automaticas al dueño del negocio y a clientes/leads. Opcionalmente, notificaciones por email al staff.
+  (d) Mantenimiento continuo y soporte tecnico: actualizaciones de contenido, correccion de errores.
+  (e) Hosting en infraestructura de terceros.
+
+  Este plan NO incluye: acceso al dashboard CRM, agente WhatsApp, notificaciones por WhatsApp, llamadas de voz con IA ni sistema de gestion de turnos.
 
 1.1. Plan Base — ₪770/mes
   (a) Sitio web personalizado usando el Sistema de Plantilla Maestra.
@@ -411,6 +451,7 @@ El Proveedor ofrece tres niveles de suscripcion. Todos los planes incluyen cero 
 
 2. Upgrade Automatico de Nivel
 
+2.0. Las secciones 2.1 a 2.4 aplican unicamente a los planes Base, Pro y Enterprise. El plan Solo Web no esta sujeto a upgrade automatico.
 2.1. Si el Cliente alcanza el limite de reservas del plan actual durante un ciclo de facturacion, el sistema upgradeara automaticamente al siguiente nivel desde el proximo ciclo de facturacion.
 2.2. El Cliente sera notificado del upgrade via WhatsApp y/o email dentro de las 24 horas.
 2.3. El precio del nuevo nivel aplica desde la proxima fecha de facturacion.
@@ -419,7 +460,8 @@ El Proveedor ofrece tres niveles de suscripcion. Todos los planes incluyen cero 
 
 3. Precio y Pago
 
-3.1. Cuotas de suscripcion por nivel:
+3.1. Cuotas de suscripcion por plan:
+  - Solo Web: ₪480/mes
   - Base: ₪770/mes
   - Pro: ₪960/mes
   - Enterprise: ₪1.270/mes
@@ -479,7 +521,7 @@ Este acuerdo se rige por la ley israeli. Jurisdiccion exclusiva: tribunales comp
 
 function AR(plan: PlanType): string {
   return `اتفاقية تقديم خدمات — موقع إلكتروني، CRM ووكلاء ذكاء اصطناعي
-Arzac Studio — اشتراك بثلاث مستويات
+Arzac Studio — خطط الاشتراك
 
 بين: Arzac Studio (المشار إليه فيما يلي بـ "مزوّد الخدمة")
 و: العميل (المشار إليه فيما يلي بـ "العميل")
@@ -492,7 +534,16 @@ Arzac Studio — اشتراك بثلاث مستويات
 
 1. خطط الخدمة
 
-يقدّم مزوّد الخدمة ثلاث مستويات اشتراك. جميع الخطط بدون رسوم تأسيس.
+يقدّم مزوّد الخدمة مستويات الاشتراك التالية. جميع الخطط بدون رسوم تأسيس.
+
+1.0. خطة Solo Web — ₪480/شهر
+  (أ) موقع إلكتروني مخصص باستخدام نظام القالب الرئيسي، يشمل صفحة هبوط، خدمات، معرض صور، صفحة تواصل وشات بوت ذكاء اصطناعي مدمج في الموقع.
+  (ب) حضور رقمي: ظهور على الإنترنت، شراء نطاق وتجديد سنوي.
+  (ج) إشعارات بريد إلكتروني عبر Gmail: إشعارات تلقائية لصاحب العمل وللعملاء/المهتمّين. اختيارياً، إشعارات بريد إلكتروني لأعضاء الفريق.
+  (د) صيانة مستمرة ودعم فني: تحديثات المحتوى، إصلاح الأخطاء.
+  (هـ) استضافة على بنية تحتية لطرف ثالث.
+
+  هذه الخطة لا تشمل: الوصول إلى لوحة إدارة CRM، وكيل واتساب، إشعارات واتساب، مكالمات صوتية بالذكاء الاصطناعي أو نظام إدارة الحجوزات.
 
 1.1. خطة Base — ₪770/شهر
   (أ) موقع إلكتروني مخصص باستخدام نظام القالب الرئيسي.
@@ -516,6 +567,7 @@ Arzac Studio — اشتراك بثلاث مستويات
 
 2. الترقية التلقائية
 
+2.0. تسري البنود 2.1 إلى 2.4 على خطط Base وPro وEnterprise فقط. خطة Solo Web غير خاضعة للترقية التلقائية.
 2.1. إذا وصل العميل إلى حدّ الحجوزات في خطته الحالية خلال دورة الفوترة، يُرقَّى تلقائياً إلى المستوى التالي من بداية الدورة التالية.
 2.2. يُخطَر العميل بالترقية عبر WhatsApp و/أو البريد الإلكتروني خلال 24 ساعة.
 2.3. يسري تسعير المستوى الجديد من تاريخ الفوترة التالي.
@@ -524,7 +576,8 @@ Arzac Studio — اشتراك بثلاث مستويات
 
 3. التسعير والدفع
 
-3.1. رسوم الاشتراك حسب المستوى:
+3.1. رسوم الاشتراك حسب الخطة:
+  - Solo Web: ₪480/شهر
   - Base: ₪770/شهر
   - Pro: ₪960/شهر
   - Enterprise: ₪1,270/شهر

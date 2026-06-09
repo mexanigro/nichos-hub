@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "clientId es requerido" }, { status: 400 });
   }
 
-  const validPlan: PlanType = plan === "completo" ? "completo" : "web_crm";
+  const validPlan: PlanType = plan === "solo_web" ? "solo_web" : plan === "completo" ? "completo" : "web_crm";
 
   const snap = await db
     .collection("hub_clients")
@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
   const amount = getPlanAmount(validPlan);
   const lang: "he" | "en" = clientData.language === "he" ? "he" : "en";
 
-  const planLabel = validPlan === "completo" ? "Completo" : "Web+CRM";
+  const planLabel = validPlan === "solo_web" ? "Solo Web" : validPlan === "completo" ? "Completo" : "Web+CRM";
   const productName = `${planLabel} - ${clientData.businessName || clientId}`;
 
   const result = await createLowProfilePayment({
@@ -46,6 +46,7 @@ export async function POST(req: NextRequest) {
     clientId,
     productName,
     language: lang,
+    successPath: `/pago/success?clientId=${clientId}`,
   });
 
   if (!result.success) {

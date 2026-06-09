@@ -63,7 +63,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata = {
   title: "Arzac Studio — Websites, CRM & WhatsApp AI for local businesses in Israel",
   description:
-    "Professional website, smart CRM, and AI-powered WhatsApp agent for your local business. Zero setup fee, 770 NIS/month.",
+    "Professional website, smart CRM, and AI-powered WhatsApp agent for your local business. Zero setup fee, from 480 NIS/month.",
 };
 
 const jsonLd = {
@@ -109,7 +109,7 @@ const jsonLd = {
       brand: { "@id": "https://arzac.studio/#organization" },
       offers: {
         "@type": "Offer",
-        price: "770",
+        price: "480",
         priceCurrency: "ILS",
         priceValidUntil: "2026-12-31",
         availability: "https://schema.org/InStock",

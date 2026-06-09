@@ -30,13 +30,15 @@ export function OnboardingPagoClient({ defaultPlan }: Props) {
     const plans = t.pricing.plans;
     const match = plans.find((p) => p.planId === defaultPlan);
     if (match) return match;
-    if (defaultPlan === "web_crm" || defaultPlan === "completo") return plans[0];
+    if (defaultPlan === "web_crm" || defaultPlan === "completo") {
+      return plans.find((p) => p.planId === "base") || plans[0];
+    }
     return plans[0];
   }, [t, defaultPlan]);
 
   // Map PlanType to contract lang
-  const contractLang: ContractLang = (["he", "en", "es", "ru"].includes(locale) ? locale : "en") as ContractLang;
-  const { version: contractVersion } = getContract(contractLang, defaultPlan);
+  const contractLang: ContractLang = (["he", "en", "es", "ru", "ar"].includes(locale) ? locale : "en") as ContractLang;
+  const { text: fullContract, version: contractVersion } = getContract(contractLang, defaultPlan);
 
   const formValid = name && email && phone && biz && niche && agreed;
 
@@ -154,9 +156,18 @@ export function OnboardingPagoClient({ defaultPlan }: Props) {
               <h3>{t.pago.contract}</h3>
               <span className="step-of">02</span>
             </div>
-            <div className={`pago-contract ${contractOpen ? "open" : ""}`}>
-              {t.pago.contractBody}
-            </div>
+            {!contractOpen && (
+              <div className="pago-contract">
+                {t.pago.contractBody}
+              </div>
+            )}
+            {contractOpen && (
+              <div className="pago-contract-full">
+                <div className="pago-contract-full-scroll">
+                  <div className="whitespace-pre-line">{fullContract}</div>
+                </div>
+              </div>
+            )}
             <button className="pago-contract-toggle" onClick={() => setContractOpen(!contractOpen)}>
               {contractOpen ? t.pago.contractCollapse : t.pago.contractExpand} {contractOpen ? "↑" : "↓"}
             </button>

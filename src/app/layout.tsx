@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     template: "%s | Arzac Studio",
   },
   description:
-    "Custom website, smart CRM, and AI WhatsApp agent for your local business in Israel. Set up in minutes, ₪770/month.",
+    "Custom website, smart CRM, and AI WhatsApp agent for your local business in Israel. Set up in minutes, From ₪480/month.",
   metadataBase: new URL("https://arzac.studio"),
   alternates: {
     canonical: "/",

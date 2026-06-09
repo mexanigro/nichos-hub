@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useT } from "@/lib/i18n/context";
 
+const WA_HREF = `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "9720557719141"}`;
+
 export function Hero() {
   const { t } = useT();
   const [mounted, setMounted] = useState(false);
@@ -24,7 +26,7 @@ export function Hero() {
             </h1>
             <p className="at-hero-sub">{t.hero.sub}</p>
             <div className="at-hero-actions">
-              <a className="at-btn-primary" href="#pricing">
+              <a className="at-btn-primary" href={WA_HREF} target="_blank" rel="noopener noreferrer">
                 {t.hero.cta}{" "}
                 <span
                   style={{

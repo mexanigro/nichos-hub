@@ -473,11 +473,11 @@ body:has(.at) {
 .at[data-vp="desktop"] .at-step .stp-body { display: contents; }
 .at[data-vp="desktop"] .at-step .stp-name { font-size: 44px; }
 .at[data-vp="desktop"] .at-step .stp-t { order: 4; justify-content: flex-end; text-align: end; }
-.at[data-vp="desktop"] .at-plans { grid-template-columns: repeat(3, 1fr); gap: 18px; }
-.at[data-vp="desktop"] .at-plan { padding: 28px 24px 26px; }
-.at[data-vp="desktop"] .at-plan .name { font-size: 32px; }
-.at[data-vp="desktop"] .at-plan .price .v { font-size: 64px; }
-.at[data-vp="desktop"] .at-plan .price .c { font-size: 28px; }
+.at[data-vp="desktop"] .at-plans { grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.at[data-vp="desktop"] .at-plan { padding: 24px 20px 22px; }
+.at[data-vp="desktop"] .at-plan .name { font-size: 28px; }
+.at[data-vp="desktop"] .at-plan .price .v { font-size: 54px; }
+.at[data-vp="desktop"] .at-plan .price .c { font-size: 24px; }
 .at[data-vp="desktop"] .at-faq-q .qt { font-size: 28px; }
 .at[data-vp="desktop"] .at-faq-q { padding-block: 26px; }
 .at[data-vp="desktop"] .at-founder { padding-block: 110px; }
@@ -689,6 +689,7 @@ body:has(.pago) {
 .pago-contract.open { max-height: none; }
 .pago-contract::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 28px; background: linear-gradient(to top, var(--pg-paper), transparent); pointer-events: none; opacity: 1; transition: opacity .2s; }
 .pago-contract.open::after { opacity: 0; }
+.pago-contract-full-scroll { max-height: 500px; overflow-y: auto; font-family: var(--pg-sans); font-size: 13px; line-height: 1.75; color: var(--pg-ink-2); padding: 16px 20px; border: 1px solid var(--pg-line); border-radius: 10px; background: var(--pg-bg); scrollbar-width: thin; scrollbar-color: var(--pg-ink-3) transparent; }
 .pago-contract-toggle { background: transparent; border: 0; cursor: pointer; color: var(--pg-accent); font-family: var(--pg-mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; padding: 6px 0 0; align-self: flex-start; display: inline-flex; gap: 6px; align-items: center; }
 
 /* checkbox */

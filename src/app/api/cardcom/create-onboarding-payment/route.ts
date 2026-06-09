@@ -6,7 +6,7 @@ import { getPlanAmount, type PlanType } from "@/lib/pricing";
 import { isRateLimited } from "@/lib/rate-limit";
 import { isContractLang, type ContractLang } from "@/lib/contracts";
 
-const VALID_PLANS = new Set<PlanType>(["web_crm", "completo", "base", "pro", "enterprise"]);
+const VALID_PLANS = new Set<PlanType>(["solo_web", "web_crm", "completo", "base", "pro", "enterprise"]);
 
 export async function POST(req: NextRequest) {
   const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
@@ -52,7 +52,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Nombre requerido" }, { status: 400 });
   }
 
-  const tierMap: Record<string, string> = { base: "base", pro: "pro", enterprise: "enterprise" };
+  const tierMap: Record<string, string> = { base: "base", pro: "pro", enterprise: "enterprise", solo_web: "base" };
   const tier = tierMap[plan] || "base";
 
   // 1. Guardar lead con contrato aceptado
@@ -77,16 +77,18 @@ export async function POST(req: NextRequest) {
   // 2. Crear pago en Cardcom
   const amount = getPlanAmount(plan as PlanType);
   const cardcomLang: "he" | "en" = lang === "he" ? "he" : "en";
-  const tierLabels: Record<string, string> = { base: "Base", pro: "Pro", enterprise: "Enterprise" };
+  const tierLabels: Record<string, string> = { base: "Base", pro: "Pro", enterprise: "Enterprise", solo_web: "Solo Web" };
   const planLabel = tierLabels[plan] || (plan === "completo" ? "Completo" : "Web+CRM");
-  const productName = `Web+CRM (${planLabel}) - ${name.trim()}`;
+  const productName = plan === "solo_web"
+    ? `Solo Web - ${name.trim()}`
+    : `Web+CRM (${planLabel}) - ${name.trim()}`;
 
   const result = await createLowProfilePayment({
     amount,
     clientId: leadRef.id, // ReturnValue sera el leadId
     productName,
     language: cardcomLang,
-    successPath: "/onboarding/pago/success",
+    successPath: `/onboarding/pago/success?leadId=${leadRef.id}`,
     errorPath: "/onboarding/pago/error",
   });
 

@@ -14,10 +14,10 @@ const SYSTEM_PROMPT = `Sos el asistente de ventas de Arzac Studio. Tu trabajo es
 - Soporte continuo incluido
 
 ## Pricing
-- Plan Starter: 0 setup + 770 ₪/mes (todo incluido)
-- Plan Pro: 0 setup + 960 ₪/mes (para negocios con alto volumen de turnos)
-- Plan Enterprise: 0 setup + 1,270 ₪/mes (para negocios grandes con múltiples empleados)
-- Todos los planes incluyen todo. La diferencia es la capacidad de bookings y features avanzados.
+- Plan Solo Web: 0 setup + 480 ₪/mes (web, chatbot IA, notificaciones email — sin CRM ni WhatsApp)
+- Plan Base: 0 setup + 770 ₪/mes (web, CRM, agente WhatsApp IA, 100 reservas/mes)
+- Plan Pro: 0 setup + 960 ₪/mes (todo lo de Base + llamadas de voz IA, 300 reservas/mes)
+- Plan Enterprise: 0 setup + 1,270 ₪/mes (todo ilimitado + soporte prioritario)
 
 ## Nichos que atendemos
 Barberías, estéticas, tattoo, nails, cafeterías, remodelaciones, empleo, y más negocios de servicio local.

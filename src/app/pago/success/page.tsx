@@ -9,8 +9,8 @@ import { LogoMark } from "@/components/landing/logo-mark";
 
 function SuccessContent() {
   const params = useSearchParams();
-  const lowProfileCode = params.get("LowProfileCode") || params.get("lowProfileCode");
-  const clientId = params.get("ReturnValue") || params.get("returnValue");
+  const lowProfileCode = params.get("LowProfileCode") || params.get("lowProfileCode") || params.get("lowprofilecode");
+  const clientId = params.get("ReturnValue") || params.get("returnValue") || params.get("clientId");
 
   const { t, locale } = useT();
   const dir = RTL_LOCALES.includes(locale) ? "rtl" : "ltr";

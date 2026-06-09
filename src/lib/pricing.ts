@@ -1,7 +1,8 @@
 import type { BookingTier } from "@/types";
 
-export type PlanType = "web_crm" | "completo" | "base" | "pro" | "enterprise";
+export type PlanType = "solo_web" | "web_crm" | "completo" | "base" | "pro" | "enterprise";
 
+export const SOLO_WEB_AMOUNT = 480;
 export const PLAN_AMOUNT = 770;
 export const WEB_CRM_AMOUNT = PLAN_AMOUNT;
 export const COMPLETO_AMOUNT = PLAN_AMOUNT;
@@ -37,6 +38,7 @@ export function getTierAmount(tier: BookingTier): number {
 }
 
 export function getPlanAmount(plan?: PlanType): number {
+  if (plan === "solo_web") return SOLO_WEB_AMOUNT;
   if (plan === "pro") return TIER_PRICING.pro;
   if (plan === "enterprise") return TIER_PRICING.enterprise;
   return PLAN_AMOUNT;
