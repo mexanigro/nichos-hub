@@ -39,11 +39,21 @@ function ErrorContent() {
               </ul>
             </div>
             <div className="pgerr-actions">
-              {clientId && (
+              {clientId ? (
                 <a href={`/pago/${clientId}`} className="pago-btn" style={{ textDecoration: "none" }}>{t.pagoErr.cta} <span className="pago-btn-arrow">→</span></a>
+              ) : (
+                <a href="https://wa.me/9720557719141" className="pago-btn" style={{ textDecoration: "none" }} target="_blank" rel="noopener noreferrer">
+                  {locale === "es" ? "Contactar por WhatsApp"
+                    : locale === "en" ? "Contact via WhatsApp"
+                    : locale === "he" ? "צור קשר בוואטסאפ"
+                    : locale === "ru" ? "Написать в WhatsApp"
+                    : "تواصل عبر واتساب"}
+                  {" "}<span className="pago-btn-arrow">→</span>
+                </a>
               )}
               <a href="/" className="pago-btn pago-btn-ghost" style={{ textDecoration: "none" }}>{t.pagoErr.ctaSecondary}</a>
             </div>
+            <div className="pgerr-ref">{t.pagoErr.ref}: ARZ-PAY-{new Date().getFullYear()}-{String(new Date().getMonth() + 1).padStart(2, "0")}{String(new Date().getDate()).padStart(2, "0")}</div>
           </div>
         </div>
         <div className="container pago-foot">{t.pago.footerSecurity}</div>
