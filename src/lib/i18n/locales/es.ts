@@ -14,6 +14,21 @@ export const es: Translations = {
     ribbon: "enviado esta semana",
   },
 
+  evergreen: {
+    eyebrow: "Rediseño trimestral · Todos los planes",
+    h: "Las webs envejecen. ",
+    hEm: "La tuya no.",
+    body: "Mirá cualquier web de hace 3 años. Parece de otra época. El diseño web se mueve rápido y la mayoría de los negocios se quedan atrás. Con Arzac Studio, cada 90 días podés aceptar un rediseño completo de tu web. Sin costo extra. Incluido en cada plan.",
+    counter: "90",
+    counterUnit: "días",
+    counterDesc: "entre cada rediseño disponible",
+    points: [
+      { k: "Gratis", v: "El rediseño está incluido en todos los planes. Sin letra chica." },
+      { k: "A tu ritmo", v: "Si tu web te gusta, la dejás. Si querés algo nuevo, lo tenés." },
+      { k: "Sin límite", v: "Mientras seas cliente, cada trimestre tenés la opción. Siempre." },
+    ],
+  },
+
   showcase: {
     eyebrow: "Trabajo en vivo",
     title: "Hecho en nuestro estudio, ",

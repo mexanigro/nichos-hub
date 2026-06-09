@@ -55,6 +55,11 @@ export interface Translations {
     stats: { k: string; v: string }[];
     cta: string;
   };
+  evergreen?: {
+    eyebrow: string; h: string; hEm: string; body: string;
+    counter: string; counterUnit: string; counterDesc: string;
+    points: { k: string; v: string }[];
+  };
   techStack?: { eyebrow: string; title: string; titleEm: string };
   whyLabel: string;
   foot: { rights: string; legal: string[] };

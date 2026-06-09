@@ -14,6 +14,21 @@ export const en: Translations = {
     ribbon: "shipped this week",
   },
 
+  evergreen: {
+    eyebrow: "Quarterly redesign · Every plan",
+    h: "Websites age. ",
+    hEm: "Yours won't.",
+    body: "Look at any website from 3 years ago. It looks like another era. Web design moves fast and most businesses fall behind. With Arzac Studio, every 90 days you can accept a complete redesign of your site. No extra cost. Included in every plan.",
+    counter: "90",
+    counterUnit: "days",
+    counterDesc: "between each available redesign",
+    points: [
+      { k: "Free", v: "Redesign is included in every plan. No fine print." },
+      { k: "Your call", v: "If your site looks great, keep it. Want something new? It's yours." },
+      { k: "No limit", v: "As long as you're a client, you get the option every quarter. Always." },
+    ],
+  },
+
   showcase: {
     eyebrow: "Live work",
     title: "See how our ",

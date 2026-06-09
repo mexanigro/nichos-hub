@@ -4,6 +4,7 @@ import { LandingI18nProvider, useT } from "@/lib/i18n/context";
 import { RTL_LOCALES } from "@/lib/i18n/types";
 import { Header } from "./header";
 import { Hero } from "./hero";
+import { Evergreen } from "./evergreen";
 import { Showcase } from "./showcase";
 import { CrmSection } from "./crm-section";
 import { AgentSection } from "./agent-section";
@@ -41,6 +42,7 @@ function AtelierInner() {
       <Header />
       <main id="main-content">
         <Hero />
+        <Evergreen />
         <Showcase />
         <CrmSection />
         <AgentSection />
