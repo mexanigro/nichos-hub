@@ -234,6 +234,7 @@ export const ar: Translations = {
       },
     ],
     stamp: "",
+    redesignHighlight: "إعادة تصميم موقعك كل 90 يومًا — مجانًا",
     setupLabel: "إعداد",
     setupValue: "₪٠",
     cta: "ابدأ الآن",

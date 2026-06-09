@@ -336,6 +336,10 @@ body:has(.at) {
 .at-plan.hl ul { border-top-color: rgba(244,240,232,0.18); }
 .at-plan li { display: grid; grid-template-columns: 22px 1fr; gap: 8px; align-items: baseline; font-size: 14.5px; line-height: 1.5; }
 .at-plan li::before { content: "—"; font-family: var(--at-serif); font-size: 16px; color: var(--at-accent); }
+.at-plan li[data-hl] { background: rgba(179,82,46,0.08); border-radius: 10px; padding: 10px 14px 10px 8px; margin-top: 4px; font-family: var(--at-serif); font-style: italic; font-size: 15.5px; letter-spacing: -0.01em; color: var(--at-accent); }
+.at-plan li[data-hl]::before { content: "✦"; font-style: normal; font-size: 13px; }
+.at-plan.hl li[data-hl] { background: rgba(216,164,132,0.14); color: #d8a484; }
+.at-plan.hl li[data-hl]::before { color: #d8a484; }
 .at-plan .ctas { margin-top: 8px; display: flex; flex-direction: column; gap: 8px; }
 .at-plan-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 0; cursor: pointer; padding: 13px 18px; border-radius: 999px; font-size: 14.5px; font-weight: 500; transition: background .15s, color .15s; }
 .at-plan-btn.primary { background: var(--at-ink); color: var(--at-paper); }

@@ -43,6 +43,9 @@ export function Pricing() {
               </div>
               <ul>
                 {p.items.map((it, j) => <li key={j}><span>{it}</span></li>)}
+                {t.pricing.redesignHighlight && (
+                  <li data-hl><span>{t.pricing.redesignHighlight}</span></li>
+                )}
               </ul>
               <div className="ctas">
                 <a className="at-plan-btn primary" href={`/onboarding/pago?plan=${planId}`}>{t.pricing.cta} →</a>
