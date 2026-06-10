@@ -65,19 +65,89 @@ export function validateConfig(config: unknown): ConfigIssue[] {
 
   // ── splash.variant ──
   // Legacy variants 1-7 keep working unchanged. The 3D Impact system adds
-  // string variants ("impact-scale", "impact-split", "impact-reveal-3d")
-  // that the template's splash router recognises.
+  // string variants ("impact-scale", "impact-split", "impact-reveal-3d"),
+  // and the 5-variant system adds "v1"-"v5" — all recognised by the
+  // template's splash router.
   const variant = getNested(config, "splash.variant");
   const isNumericVariant = typeof variant === "number" && variant >= 1 && variant <= 7;
   const isImpactVariant =
     typeof variant === "string" &&
     (variant === "impact-scale" || variant === "impact-split" || variant === "impact-reveal-3d");
-  if (variant !== undefined && !isNumericVariant && !isImpactVariant) {
+  const isVNVariant =
+    typeof variant === "string" && /^v[1-5]$/.test(variant);
+  if (variant !== undefined && !isNumericVariant && !isImpactVariant && !isVNVariant) {
     issues.push({
       path: "splash.variant",
       message:
-        'splash.variant debe ser un numero 1-7 o uno de "impact-scale" | "impact-split" | "impact-reveal-3d".',
+        'splash.variant debe ser un numero 1-7, "v1"-"v5", o uno de "impact-scale" | "impact-split" | "impact-reveal-3d".',
       severity: "error",
+    });
+  }
+
+  // ── Sistema de 5 variantes: {seccion}.variant debe ser "v1"-"v5" ──
+  // Un valor desconocido no rompe el template (resolveVariant cae a "v1"),
+  // asi que es warning, no error.
+  const V5_VARIANT_PATHS = [
+    "hero.variant",
+    "hero.statsBar.variant",
+    "navbar.variant",
+    "footer.variant",
+    "sections.services.variant",
+    "sections.team.variant",
+    "sections.whyChooseUs.variant",
+    "sections.gallery.variant",
+    "sections.testimonials.variant",
+    "sections.instagram.variant",
+    "sections.faq.variant",
+    "sections.contact.variant",
+  ];
+  for (const path of V5_VARIANT_PATHS) {
+    const v = getNested(config, path);
+    if (v !== undefined && v !== null && !(typeof v === "string" && /^v[1-5]$/.test(v))) {
+      issues.push({
+        path,
+        message: `${path} debe ser "v1"-"v5". El template va a caer al layout original (v1).`,
+        severity: "warning",
+      });
+    }
+  }
+
+  // ── Flags globales de estilo (objeto `global`) ──
+  const GLOBAL_ENUM_FLAGS: Record<string, readonly string[]> = {
+    "global.borderRadius": ["none", "subtle", "rounded", "pill"],
+    "global.shadowStyle": ["none", "subtle", "elevated", "dramatic"],
+    "global.transitionSpeed": ["none", "fast", "normal", "slow"],
+    "global.colorScheme": ["brand", "monochrome", "complementary", "analogous"],
+    "global.spacing": ["compact", "normal", "spacious"],
+    "global.density": ["dense", "normal", "airy"],
+    "global.buttonShape": ["square", "rounded", "pill"],
+    "global.dividerStyle": ["none", "line", "gradient", "ornament"],
+    "global.animationLevel": ["none", "subtle", "rich"],
+    "global.cardStyle": ["flat", "elevated", "bordered", "glass"],
+    "global.imageStyle": ["square", "rounded", "circle", "blob"],
+    "global.letterSpacing": ["tight", "normal", "wide"],
+    "global.lineHeight": ["compact", "normal", "relaxed"],
+  };
+  for (const [path, allowed] of Object.entries(GLOBAL_ENUM_FLAGS)) {
+    const v = getNested(config, path);
+    if (v !== undefined && v !== null && !(typeof v === "string" && allowed.includes(v))) {
+      issues.push({
+        path,
+        message: `${path} debe ser uno de: ${allowed.join(" | ")}. El template ignora valores desconocidos.`,
+        severity: "warning",
+      });
+    }
+  }
+  const overlayOpacity = getNested(config, "global.overlayOpacity");
+  if (
+    overlayOpacity !== undefined &&
+    overlayOpacity !== null &&
+    !(typeof overlayOpacity === "number" && overlayOpacity >= 0 && overlayOpacity <= 1)
+  ) {
+    issues.push({
+      path: "global.overlayOpacity",
+      message: "global.overlayOpacity debe ser un numero entre 0 y 1.",
+      severity: "warning",
     });
   }
 

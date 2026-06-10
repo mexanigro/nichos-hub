@@ -78,6 +78,8 @@ import {
   GalleryPortraitBentoCameoEditor,
   BookingFormMapHours3DEditor,
 } from "./config-editors/variant-specific-configs";
+import { LayoutVariantsEditor } from "./config-editors/layout-variants-editor";
+import { GlobalStyleEditor } from "./config-editors/global-style-editor";
 import {
   normalizeBusinessNiche,
   type BusinessNiche,
@@ -129,7 +131,12 @@ type ConfigDoc = {
       | 7
       | "impact-scale"
       | "impact-split"
-      | "impact-reveal-3d";
+      | "impact-reveal-3d"
+      // Sistema de 5 variantes (v1 = default del nicho)
+      | "v2"
+      | "v3"
+      | "v4"
+      | "v5";
     /** impact-scale only — number of bands (3-9). */
     bandCount?: number;
     /** impact-scale only — band orientation. */
@@ -140,7 +147,39 @@ type ConfigDoc = {
     ambientParticles?: "bubbles" | "smoke" | "sparkles" | "pearls" | "none";
   };
   adminEmail?: string;
-  hero?: { backgroundImage?: string; stats?: { value: string; label: string }[] };
+  hero?: {
+    backgroundImage?: string;
+    stats?: { value: string; label: string }[];
+    /** Sistema de 5 variantes — "v1"/ausente = original. */
+    variant?: string;
+    statsBar?: { variant?: string };
+    videoUrl?: string;
+  };
+  /** Variantes v1-v5 de navbar/footer (sistema de 5 variantes). */
+  navbar?: { variant?: string };
+  footer?: { variant?: string };
+  /** 19 flags globales de estilo — data-gs-* en el template. */
+  global?: {
+    borderRadius?: "none" | "subtle" | "rounded" | "pill";
+    shadowStyle?: "none" | "subtle" | "elevated" | "dramatic";
+    transitionSpeed?: "none" | "fast" | "normal" | "slow";
+    glassmorphism?: boolean;
+    fontFamily?: { heading?: string; body?: string };
+    colorScheme?: "brand" | "monochrome" | "complementary" | "analogous";
+    spacing?: "compact" | "normal" | "spacious";
+    density?: "dense" | "normal" | "airy";
+    buttonShape?: "square" | "rounded" | "pill";
+    dividerStyle?: "none" | "line" | "gradient" | "ornament";
+    parallaxEnabled?: boolean;
+    animationLevel?: "none" | "subtle" | "rich";
+    cardStyle?: "flat" | "elevated" | "bordered" | "glass";
+    imageStyle?: "square" | "rounded" | "circle" | "blob";
+    overlayOpacity?: number;
+    gradientEnabled?: boolean;
+    textShadow?: boolean;
+    letterSpacing?: "tight" | "normal" | "wide";
+    lineHeight?: "compact" | "normal" | "relaxed";
+  };
   gallery?: string[];
   staff?: StaffMember[];
   services?: Service[];
@@ -202,9 +241,14 @@ type ConfigDoc = {
     };
   };
   sections?: {
-    services?: { images?: string[] };
-    whyChooseUs?: { mainImage?: string; badge?: string; benefits?: Benefit[] };
-    instagram?: { title?: string; handle?: string; url?: string; images?: string[] };
+    services?: { images?: string[]; variant?: string };
+    whyChooseUs?: { mainImage?: string; badge?: string; benefits?: Benefit[]; variant?: string };
+    instagram?: { title?: string; handle?: string; url?: string; images?: string[]; variant?: string };
+    team?: { variant?: string };
+    gallery?: { variant?: string };
+    testimonials?: { variant?: string };
+    faq?: { variant?: string };
+    contact?: { variant?: string };
     philosophy?: { pillars?: NumberedStep[] };
     process?: { steps?: NumberedStep[] };
     ambience?: { sectors?: AmbienceSector[] };
@@ -263,6 +307,12 @@ type SplashVariantSpec = {
 };
 
 const SPLASH_VARIANTS: readonly SplashVariantSpec[] = [
+  // Sistema de 5 variantes (nuevos, niche-agnostic)
+  { value: "v2", name: "Fade + Scale", desc: "Marca con settle suave + linea de progreso fina" },
+  { value: "v3", name: "Particles", desc: "Particulas animadas alrededor de la marca" },
+  { value: "v4", name: "Gradient Sweep", desc: "Barrido de gradiente que revela el logo" },
+  { value: "v5", name: "Minimal Pulse", desc: "Pulso minimal con logo chico centrado" },
+  // Legacy por nicho
   { value: 1, name: "Classic", desc: "Logo + letras animadas + linea accent", recommendedFor: ["barberia"] },
   { value: 2, name: "Curtain", desc: "Paneles se abren como un telon" },
   { value: 3, name: "Pulse", desc: "Onda radial que revela la marca", recommendedFor: ["nails"] },
@@ -1506,6 +1556,32 @@ export function ClientConfigTab({
       </Section>
         </>
       )}
+
+      {/* ── Sistema de 5 variantes (v1-v5) por seccion ─────────────────── */}
+      <Section
+        icon={Layout} title="Variantes de layout (v1-v5)" sectionKey="layoutVariants"
+        expanded={expandedSections.has("layoutVariants")} onToggle={toggleSection}
+      >
+        <p className="text-[11px] text-text-muted">
+          Cada seccion del landing tiene 5 layouts intercambiables. <strong>v1</strong> es el diseño
+          original del template; v2-v5 son layouts alternativos. La variante del splash se elige en la
+          seccion <strong>Splash screen</strong>. Guarda y refresca el preview para ver el resultado.
+        </p>
+        <LayoutVariantsEditor getNested={getNested} updateNested={updateNested} />
+      </Section>
+
+      {/* ── Flags globales de estilo ───────────────────────────────────── */}
+      <Section
+        icon={Palette} title="Estilo global (19 flags)" sectionKey="globalStyle"
+        expanded={expandedSections.has("globalStyle")} onToggle={toggleSection}
+      >
+        <p className="text-[11px] text-text-muted">
+          Ajustes transversales que afectan TODO el sitio (bordes, sombras, espaciado, animacion…).
+          Todo flag en <strong>Default</strong> usa el valor del nicho — solo seteá lo que quieras
+          forzar para este cliente.
+        </p>
+        <GlobalStyleEditor getNested={getNested} updateNested={updateNested} />
+      </Section>
 
       {/* ── Why Choose Us (mainImage + badge + benefits) ──────────────── */}
       <Section

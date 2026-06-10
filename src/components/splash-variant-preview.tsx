@@ -31,7 +31,12 @@ export type SplashVariantId =
   | 7
   | "impact-scale"
   | "impact-split"
-  | "impact-reveal-3d";
+  | "impact-reveal-3d"
+  // Sistema de 5 variantes (SplashFadeScale / Particles / GradientSweep / MinimalPulse)
+  | "v2"
+  | "v3"
+  | "v4"
+  | "v5";
 
 export function SplashVariantPreview({ variant }: { variant: SplashVariantId }) {
   return (
@@ -49,6 +54,52 @@ export function SplashVariantPreview({ variant }: { variant: SplashVariantId }) 
       {variant === "impact-scale" && <ImpactScalePreview />}
       {variant === "impact-split" && <ImpactSplitPreview />}
       {variant === "impact-reveal-3d" && <ImpactReveal3DPreview />}
+      {variant === "v2" && <FadeScalePreview />}
+      {variant === "v3" && <ParticlesPreview />}
+      {variant === "v4" && <GradientSweepPreview />}
+      {variant === "v5" && <MinimalPulsePreview />}
+    </div>
+  );
+}
+
+/* ── Sistema de 5 variantes ──────────────────────────────────────────────── */
+
+function FadeScalePreview() {
+  return (
+    <div className="relative flex h-full w-full flex-col items-center justify-center gap-1">
+      <div className="h-2.5 w-10 rounded-sm bg-text/40 transition-all duration-500 group-hover/splash:scale-110 group-hover/splash:bg-text/70" />
+      <div className="h-px w-8 overflow-hidden bg-border">
+        <div className="h-full w-0 bg-accent transition-all duration-700 group-hover/splash:w-full" />
+      </div>
+    </div>
+  );
+}
+
+function ParticlesPreview() {
+  return (
+    <div className="relative flex h-full w-full items-center justify-center">
+      <div className="h-2 w-8 rounded-sm bg-text/50" />
+      <div className="absolute left-1/4 top-1 h-1 w-1 rounded-full bg-accent/70 transition-transform duration-700 group-hover/splash:-translate-y-1" />
+      <div className="absolute right-1/4 top-2 h-1 w-1 rounded-full bg-accent/50 transition-transform duration-500 group-hover/splash:translate-y-1" />
+      <div className="absolute bottom-1 left-1/2 h-1 w-1 rounded-full bg-accent/60 transition-transform duration-600 group-hover/splash:-translate-x-2" />
+    </div>
+  );
+}
+
+function GradientSweepPreview() {
+  return (
+    <div className="relative flex h-full w-full items-center justify-center overflow-hidden">
+      <div className="h-2 w-10 rounded-sm bg-text/50" />
+      <div className="absolute inset-y-0 -left-full w-full bg-gradient-to-r from-transparent via-accent/40 to-transparent transition-transform duration-700 group-hover/splash:translate-x-[200%]" />
+    </div>
+  );
+}
+
+function MinimalPulsePreview() {
+  return (
+    <div className="relative flex h-full w-full items-center justify-center">
+      <div className="absolute h-4 w-4 rounded-full border border-accent/40 transition-all duration-700 group-hover/splash:h-7 group-hover/splash:w-7 group-hover/splash:opacity-0" />
+      <div className="h-1.5 w-6 rounded-sm bg-text/50" />
     </div>
   );
 }
