@@ -67,6 +67,33 @@ export async function POST(req: NextRequest) {
 
   if (!paymentsSnap.empty) {
     const paymentRef = paymentsSnap.docs[0].ref;
+
+    // Validar que el monto cobrado por Cardcom coincide con el monto esperado
+    // del pago pendiente (tolerancia de 1 agora por redondeo).
+    const expectedAmount = paymentsSnap.docs[0].data().amount;
+    if (
+      typeof expectedAmount === "number" &&
+      result.amount !== undefined &&
+      Math.abs(result.amount - expectedAmount) > 0.01
+    ) {
+      console.error("[verify-payment] ALERTA: monto cobrado no coincide con el esperado", {
+        clientId,
+        lowProfileCode,
+        charged: result.amount,
+        expected: expectedAmount,
+      });
+      return NextResponse.json(
+        { error: "El monto del pago no coincide con el esperado" },
+        { status: 409 },
+      );
+    }
+    if (result.amount === undefined) {
+      console.warn("[verify-payment] Cardcom no devolvió monto (Sum36) — no se pudo validar", {
+        clientId,
+        lowProfileCode,
+      });
+    }
+
     await db.runTransaction(async (tx) => {
       const fresh = await tx.get(paymentRef);
       if (!fresh.exists || fresh.data()?.status !== "pending") return;

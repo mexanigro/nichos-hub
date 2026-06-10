@@ -52,7 +52,7 @@ export const POST = withOwner(async (req: NextRequest) => {
 
     const nicheKey = niche as BusinessNiche;
     const mode = businessMode === "solo" ? "solo" : "team";
-    const slug = `demo-${slugify(businessName.trim())}-${Date.now().toString(36)}`;
+    const slug = `demo-${slugify(businessName.trim())}-${crypto.randomUUID().slice(0, 8)}`;
     const domain = `${slug}.arzac.studio`;
     const features = buildFeatures(nicheKey, mode);
 

@@ -1,13 +1,20 @@
 import { SignJWT, jwtVerify } from "jose";
 import type { PlanType } from "@/lib/pricing";
 
-const SECRET = process.env.NEXTAUTH_SECRET;
+// Orden: secret dedicado > AUTH_SECRET (estándar del proyecto, ver env-check) >
+// NEXTAUTH_SECRET (legacy, fallback para no romper deploys existentes).
+const SECRET =
+  process.env.ONBOARDING_TOKEN_SECRET ||
+  process.env.AUTH_SECRET ||
+  process.env.NEXTAUTH_SECRET;
 const ISSUER = "arzac-studio";
 const AUDIENCE = "onboarding";
 
 function getKey(): Uint8Array {
   if (!SECRET) {
-    throw new Error("NEXTAUTH_SECRET is required to sign onboarding tokens");
+    throw new Error(
+      "ONBOARDING_TOKEN_SECRET (o AUTH_SECRET) is required to sign onboarding tokens",
+    );
   }
   return new TextEncoder().encode(SECRET);
 }

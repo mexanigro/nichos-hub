@@ -111,6 +111,12 @@ export interface VerifyPaymentResult {
   approvalNumber?: string;
   /** ReturnValue que se envio en el create (nuestro leadId). */
   returnValue?: string;
+  /**
+   * Monto efectivamente cobrado en NIS. Verificado contra sandbox real:
+   * Cardcom lo devuelve en `ExtShvaParams.Sum36` en agorot (7.7 NIS → "770").
+   * undefined si el campo no vino o no es numerico.
+   */
+  amount?: number;
   /** Raw response — guardado en Firestore para auditoria. */
   raw?: Record<string, string>;
   error?: string;
@@ -140,8 +146,15 @@ export async function verifyPayment(lowProfileCode: string): Promise<VerifyPayme
   // Cardcom returns "DealResponse" in some versions, "DealRespone" (typo) in others
   const dealResponse = parsed.DealResponse ?? parsed.DealRespone;
   if (parsed.OperationResponse === "0" && dealResponse === "0") {
+    // Monto cobrado: SHVA field 36, en agorot (verificado contra sandbox).
+    const sum36 = parsed["ExtShvaParams.Sum36"] ?? parsed.Sum36;
+    const amount =
+      sum36 !== undefined && sum36 !== "" && Number.isFinite(Number(sum36))
+        ? Number(sum36) / 100
+        : undefined;
     return {
       success: true,
+      amount,
       transactionId: parsed.InternalDealNumber || undefined,
       cardLastFour: parsed.CardNumber?.slice(-4) || parsed.CardNumber5?.slice(-4) || parsed["ExtShvaParams.CardNumber5"]?.slice(-4) || undefined,
       token: parsed.Token || parsed.TokenResponse || parsed["ExtShvaParams.CardToken"] || undefined,

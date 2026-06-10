@@ -64,7 +64,7 @@ export async function POST(req: NextRequest) {
     }
 
     const deployNiche = niche === "otro" ? "estetica" : niche;
-    const slug = `demo-${slugify(businessName)}-${Date.now().toString(36)}`;
+    const slug = `demo-${slugify(businessName)}-${crypto.randomUUID().slice(0, 8)}`;
 
     const features = buildFeatures(deployNiche, businessMode);
 

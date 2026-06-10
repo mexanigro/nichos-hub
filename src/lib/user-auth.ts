@@ -72,9 +72,25 @@ export function onAuthStateChanged(callback: (user: User | null) => void) {
   return firebaseOnAuthStateChanged(auth, callback);
 }
 
+/** idToken del usuario logueado actual — requerido por los endpoints de lead. */
+async function getCurrentIdToken(): Promise<string | null> {
+  try {
+    const auth = getClientAuth();
+    const user = auth?.currentUser;
+    if (!user) return null;
+    return await user.getIdToken();
+  } catch {
+    return null;
+  }
+}
+
 export async function getLeadData(uid: string): Promise<HubLead | null> {
   try {
-    const res = await fetch(`/api/auth/lead?uid=${encodeURIComponent(uid)}`);
+    const idToken = await getCurrentIdToken();
+    if (!idToken) return null;
+    const res = await fetch(`/api/auth/lead?uid=${encodeURIComponent(uid)}`, {
+      headers: { Authorization: `Bearer ${idToken}` },
+    });
     if (!res.ok) return null;
     const { lead } = await res.json();
     return lead ?? null;
@@ -87,15 +103,17 @@ export async function saveBuilderDataToLead(
   uid: string,
   builderData: Record<string, unknown>
 ): Promise<void> {
+  const idToken = await getCurrentIdToken();
   await fetch("/api/auth/upsert-lead", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ uid, builderData }),
+    body: JSON.stringify({ uid, builderData, idToken }),
   });
 }
 
 async function upsertLead(user: User, provider: "google" | "email"): Promise<void> {
   try {
+    const idToken = await user.getIdToken();
     await fetch("/api/auth/upsert-lead", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -105,6 +123,7 @@ async function upsertLead(user: User, provider: "google" | "email"): Promise<voi
         name: user.displayName || "",
         photoURL: user.photoURL || "",
         provider,
+        idToken,
       }),
     });
   } catch {

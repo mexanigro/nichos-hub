@@ -71,9 +71,9 @@ export async function POST(
     return NextResponse.json({ error: "Cliente no encontrado" }, { status: 404 });
   }
 
-  const clientDoc = clientSnap.docs[0];
-  const clientData = clientDoc.data();
-  const docId = clientDoc.id;
+  const clientRef = clientSnap.docs[0].ref;
+  const docId = clientSnap.docs[0].id;
+  const dashboardUrl = `${SITE}/clients/${docId}`;
 
   const dedupRef = db
     .collection("hub_clients")
@@ -81,42 +81,87 @@ export async function POST(
     .collection("booking_dedup")
     .doc(bookingId);
 
-  const dedupSnap = await dedupRef.get();
-  if (dedupSnap.exists) {
+  // Transacción: lectura de bookingCount + dedup + chequeo de límite +
+  // increment + set del dedup, todo atómico para evitar races entre
+  // requests concurrentes. Los emails (side effects) van DESPUÉS, porque
+  // la transacción puede reintentarse.
+  type Outcome =
+    | { kind: "deduplicated"; bookingCount: number; tier: BookingTier }
+    | { kind: "blocked"; bookingCount: number; tier: BookingTier; limit: number; notify100: boolean; businessName?: string }
+    | { kind: "incremented"; nextCount: number; tier: BookingTier; limit: number; notify80: boolean; notify100: boolean; businessName?: string };
+
+  const outcome: Outcome = await db.runTransaction(async (tx) => {
+    const [clientFresh, dedupSnap] = await Promise.all([
+      tx.get(clientRef),
+      tx.get(dedupRef),
+    ]);
+    const clientData = clientFresh.data() || {};
+
+    const currentTier = (clientData.tier || "base") as BookingTier;
+    const currentCount = clientData.bookingCount || 0;
+    const limit = TIER_LIMITS[currentTier];
+    const nextCount = currentCount + 1;
+    const businessName = clientData.businessName || clientData.name;
+
+    if (dedupSnap.exists) {
+      return { kind: "deduplicated", bookingCount: currentCount, tier: currentTier };
+    }
+
+    // --- Soft block: si ya alcanzó el límite, rechazar la reserva ---
+    if (isFinite(limit) && currentCount >= limit) {
+      const notify100 = !clientData.bookingLimitNotified100;
+      if (notify100) {
+        tx.update(clientRef, {
+          bookingLimitNotified100: true,
+          updatedAt: FieldValue.serverTimestamp(),
+        });
+      }
+      return { kind: "blocked", bookingCount: currentCount, tier: currentTier, limit, notify100, businessName };
+    }
+
+    // --- Incrementar ---
+    const updates: Record<string, unknown> = {
+      bookingCount: FieldValue.increment(1),
+      updatedAt: FieldValue.serverTimestamp(),
+    };
+
+    const notify80 =
+      isFinite(limit) &&
+      nextCount >= Math.ceil(limit * WARNING_THRESHOLD) &&
+      !clientData.bookingLimitNotified80;
+    if (notify80) updates.bookingLimitNotified80 = true;
+
+    const notify100 =
+      isFinite(limit) && nextCount >= limit && !clientData.bookingLimitNotified100;
+    if (notify100) updates.bookingLimitNotified100 = true;
+
+    tx.update(clientRef, updates);
+    tx.set(dedupRef, { createdAt: FieldValue.serverTimestamp() });
+
+    return { kind: "incremented", nextCount, tier: currentTier, limit, notify80, notify100, businessName };
+  });
+
+  if (outcome.kind === "deduplicated") {
     return NextResponse.json({
-      bookingCount: clientData.bookingCount ?? 0,
-      tier: clientData.tier ?? "base",
+      bookingCount: outcome.bookingCount,
+      tier: outcome.tier,
       blocked: false,
       deduplicated: true,
     });
   }
 
-  const currentTier = (clientData.tier || "base") as BookingTier;
-  const currentCount = (clientData.bookingCount || 0);
-  const limit = TIER_LIMITS[currentTier];
-  const nextCount = currentCount + 1;
-  const dashboardUrl = `${SITE}/clients/${docId}`;
-  const businessName = clientData.businessName || clientData.name;
-
-  // --- Soft block: si ya alcanzó el límite, rechazar la reserva ---
-  if (isFinite(limit) && currentCount >= limit) {
-    // Notificar al owner si no se hizo todavía este periodo
-    if (!clientData.bookingLimitNotified100) {
-      clientDoc.ref.update({
-        bookingLimitNotified100: true,
-        updatedAt: FieldValue.serverTimestamp(),
-      }).catch(() => {});
-
-      const nextTier = getNextTier(currentTier);
+  if (outcome.kind === "blocked") {
+    if (outcome.notify100) {
+      const nextTier = getNextTier(outcome.tier);
       const nextLabel = nextTier ? `${TIER_LABELS[nextTier]} (₪${TIER_PRICING[nextTier]}/mes)` : "";
 
       sendEmail({
         to: OWNER_EMAIL,
         ...bookingLimitReached({
           clientId,
-          businessName,
-          tier: `${TIER_LABELS[currentTier]} — upgrade a ${nextLabel}`,
-          limit,
+          businessName: outcome.businessName,
+          tier: `${TIER_LABELS[outcome.tier]} — upgrade a ${nextLabel}`,
+          limit: outcome.limit,
           dashboardUrl,
         }),
         tag: "booking_limit_reached",
@@ -125,35 +170,23 @@ export async function POST(
 
     return NextResponse.json({
       blocked: true,
-      bookingCount: currentCount,
-      tier: currentTier,
-      limit,
+      bookingCount: outcome.bookingCount,
+      tier: outcome.tier,
+      limit: outcome.limit,
       message: "Límite de bookings alcanzado. Contactá a Arzac Studio para subir de plan.",
     }, { status: 429 });
   }
 
-  // --- Incrementar ---
-  const updates: Record<string, unknown> = {
-    bookingCount: FieldValue.increment(1),
-    updatedAt: FieldValue.serverTimestamp(),
-  };
-
   // --- Notificación al 80% ---
-  if (
-    isFinite(limit) &&
-    nextCount >= Math.ceil(limit * WARNING_THRESHOLD) &&
-    !clientData.bookingLimitNotified80
-  ) {
-    updates.bookingLimitNotified80 = true;
-
+  if (outcome.notify80) {
     sendEmail({
       to: OWNER_EMAIL,
       ...bookingLimitWarning({
         clientId,
-        businessName,
-        tier: TIER_LABELS[currentTier],
-        bookingCount: nextCount,
-        limit,
+        businessName: outcome.businessName,
+        tier: TIER_LABELS[outcome.tier],
+        bookingCount: outcome.nextCount,
+        limit: outcome.limit,
         dashboardUrl,
       }),
       tag: "booking_limit_warning",
@@ -161,34 +194,25 @@ export async function POST(
   }
 
   // --- Notificación al 100% (justo alcanzó el límite con este booking) ---
-  if (
-    isFinite(limit) &&
-    nextCount >= limit &&
-    !clientData.bookingLimitNotified100
-  ) {
-    updates.bookingLimitNotified100 = true;
-
+  if (outcome.notify100) {
     sendEmail({
       to: OWNER_EMAIL,
       ...bookingLimitReached({
         clientId,
-        businessName,
-        tier: TIER_LABELS[currentTier],
-        limit,
+        businessName: outcome.businessName,
+        tier: TIER_LABELS[outcome.tier],
+        limit: outcome.limit,
         dashboardUrl,
       }),
       tag: "booking_limit_reached",
     }).catch(() => {});
   }
 
-  await clientDoc.ref.update(updates);
-  await dedupRef.set({ createdAt: FieldValue.serverTimestamp() });
-
   return NextResponse.json({
-    bookingCount: nextCount,
-    tier: currentTier,
+    bookingCount: outcome.nextCount,
+    tier: outcome.tier,
     blocked: false,
     deduplicated: false,
-    ...(isFinite(limit) ? { limit, usage: Math.round((nextCount / limit) * 100) } : {}),
+    ...(isFinite(outcome.limit) ? { limit: outcome.limit, usage: Math.round((outcome.nextCount / outcome.limit) * 100) } : {}),
   });
 }

@@ -100,6 +100,30 @@ export async function processCardcomPayment(
   const tier = lead.tier || "base";
   const amount = getPlanAmount(plan);
 
+  // Validar monto cobrado vs. esperado del plan (tolerancia 1 agora).
+  // Cardcom devuelve el monto en ExtShvaParams.Sum36 (parseado a NIS en verifyPayment).
+  if (verify.amount !== undefined && Math.abs(verify.amount - amount) > 0.01) {
+    console.error("[cardcom-promote] ALERTA: monto cobrado no coincide con el plan", {
+      leadId,
+      lowProfileCode,
+      charged: verify.amount,
+      expected: amount,
+      plan,
+    });
+    await leadRef.update({
+      paymentStatus: "failed",
+      paymentError: `amount_mismatch: cobrado ${verify.amount}, esperado ${amount}`,
+      updatedAt: FieldValue.serverTimestamp(),
+    });
+    return { ok: false, reason: "amount_mismatch" };
+  }
+  if (verify.amount === undefined) {
+    console.warn("[cardcom-promote] Cardcom no devolvió monto (Sum36) — no se pudo validar", {
+      leadId,
+      lowProfileCode,
+    });
+  }
+
   // nextChargeAt: un mes desde hoy. Calculado fuera de la transaccion porque
   // los Date hay que materializarlos a Timestamp antes de pasar a Firestore.
   const nextChargeDate = new Date();
