@@ -64,7 +64,7 @@ Terminal Cardcom: **189298** (prod, via `CARDCOM_TERMINAL`), **1000** (sandbox, 
 
 ## Deploy
 
-Railway, Next.js standalone (`output: "standalone"` en `next.config.ts`).
+Railway, Next.js standalone (`output: "standalone"` en `next.config.ts`). URL Railway: nichos-hub-production.up.railway.app; dominio publico: arzac.studio (misma app — fallback en `src/lib/cardcom.ts`).
 
 Variables de entorno clave (ver `.env.example` para la lista completa):
 
