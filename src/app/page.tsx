@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+import { he as heT } from "@/lib/i18n/locales/he";
 import {
   Instrument_Serif,
   JetBrains_Mono,
@@ -60,27 +62,50 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
-export const metadata = {
-  title: "Arzac Studio — Websites, CRM & WhatsApp AI for local businesses in Israel",
+export const metadata: Metadata = {
+  // absolute: evita el template "%s | Arzac Studio" del layout (doble marca).
+  title: { absolute: "בניית אתר לעסק עם CRM וסוכן וואטסאפ AI | 770 ₪ לחודש" },
   description:
-    "Professional website, smart CRM, and AI-powered WhatsApp agent for your local business. Zero setup fee, from 480 NIS/month.",
+    "אתר מקצועי לעסק שלך + CRM חכם + סוכן וואטסאפ AI שקובע תורים 24/7. ללא עלות הקמה, הכל כלול ב-770 ₪ לחודש. מתאים למספרות, מכוני יופי, קעקועים ושיפוצים.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: "בניית אתר לעסק עם CRM וסוכן וואטסאפ AI — אפס דמי הקמה",
+    description:
+      "אתר מקצועי + CRM + סוכן וואטסאפ AI לעסקים מקומיים בישראל. הכל כלול במנוי חודשי, באוויר תוך 72 שעות.",
+    url: "https://arzac.studio",
+    locale: "he_IL",
+    type: "website",
+  },
 };
 
+// JSON-LD en hebreo: el SSR por defecto es hebreo, y el structured data debe
+// coincidir con el contenido visible. El FAQPage se genera desde he.ts para
+// que nunca se desincronice del FAQ renderizado.
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "Organization",
+      "@type": ["Organization", "ProfessionalService"],
       "@id": "https://arzac.studio/#organization",
       name: "Arzac Studio",
       url: "https://arzac.studio",
       logo: "https://arzac.studio/logo.png",
-      sameAs: [],
+      image: "https://arzac.studio/og.png",
+      description:
+        "סטודיו לבניית אתרים לעסקים קטנים בישראל: אתר מקצועי, מערכת CRM חכמה וסוכן וואטסאפ AI שקובע תורים 24/7. אפס דמי הקמה, הכל כלול במנוי חודשי.",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Tel Aviv",
+        addressCountry: "IL",
+      },
+      areaServed: { "@type": "Country", name: "IL" },
+      founder: { "@type": "Person", name: "Liam Arzac" },
+      knowsLanguage: ["he", "en", "ru", "es", "ar"],
       contactPoint: {
         "@type": "ContactPoint",
         email: "website@arzac.studio",
         contactType: "sales",
-        availableLanguage: ["Spanish", "English", "Hebrew", "Russian", "Arabic"],
+        availableLanguage: ["Hebrew", "English", "Russian", "Spanish", "Arabic"],
       },
     },
     {
@@ -89,63 +114,48 @@ const jsonLd = {
       url: "https://arzac.studio",
       name: "Arzac Studio",
       publisher: { "@id": "https://arzac.studio/#organization" },
-      inLanguage: ["en", "es", "he", "ru", "ar"],
+      inLanguage: "he",
     },
     {
       "@type": "WebPage",
       "@id": "https://arzac.studio/#webpage",
       url: "https://arzac.studio",
-      name: "Arzac Studio — Professional Websites for Local Businesses in Israel",
+      name: "בניית אתר לעסק עם CRM וסוכן וואטסאפ AI | Arzac Studio",
       isPartOf: { "@id": "https://arzac.studio/#website" },
       about: { "@id": "https://arzac.studio/#organization" },
+      inLanguage: "he",
       description:
-        "Custom website, smart CRM, and AI WhatsApp agent for your local business in Israel. Set up in minutes.",
+        "אתר מקצועי לעסק שלך + CRM חכם + סוכן וואטסאפ AI שקובע תורים 24/7. ללא עלות הקמה, הכל כלול במנוי חודשי.",
     },
     {
-      "@type": "Product",
-      name: "Web + CRM + WhatsApp Agent",
+      "@type": "Service",
+      "@id": "https://arzac.studio/#service",
+      name: "אתר + CRM + סוכן וואטסאפ AI לעסקים מקומיים",
+      serviceType: "בניית אתרים לעסקים קטנים",
       description:
-        "Professional website with CRM, booking system, and AI WhatsApp agent for local businesses. Everything included.",
-      brand: { "@id": "https://arzac.studio/#organization" },
+        "אתר מקצועי עם מערכת קביעת תורים אונליין, CRM לניהול לקוחות ולידים, וסוכן וואטסאפ AI שעונה וקובע תורים 24/7. מתאים למספרות, מכוני יופי, סטודיו קעקועים, מעצבות ציפורניים, בתי קפה וקבלני שיפוצים.",
+      provider: { "@id": "https://arzac.studio/#organization" },
+      areaServed: { "@type": "Country", name: "IL" },
+      availableLanguage: ["he", "en", "ru", "es", "ar"],
       offers: {
-        "@type": "Offer",
-        price: "480",
+        "@type": "AggregateOffer",
+        lowPrice: "480",
+        highPrice: "1270",
         priceCurrency: "ILS",
-        priceValidUntil: "2026-12-31",
+        offerCount: 4,
         availability: "https://schema.org/InStock",
-        url: "https://arzac.studio",
-        unitCode: "MON",
+        url: "https://arzac.studio/#pricing",
       },
     },
     {
       "@type": "FAQPage",
-      mainEntity: [
-        {
-          "@type": "Question",
-          name: "Do I need technical knowledge?",
-          acceptedAnswer: { "@type": "Answer", text: "Not at all. You never touch code, hosting, or configuration. We handle everything." },
-        },
-        {
-          "@type": "Question",
-          name: "How can I trust you?",
-          acceptedAnswer: { "@type": "Answer", text: "I'm Liam Arzac — you'll talk directly to me on WhatsApp. Every site we deliver lives on a subdomain of arzac.studio so you can see real, live work. Cancel anytime, no penalty." },
-        },
-        {
-          "@type": "Question",
-          name: "What if I don't have branding or a logo?",
-          acceptedAnswer: { "@type": "Answer", text: "We design it for you. Give us a name and a vibe, and we'll design the logo, choose the palette, write the copy, and deliver a complete brand alongside the website." },
-        },
-        {
-          "@type": "Question",
-          name: "What happens if I cancel?",
-          acceptedAnswer: { "@type": "Answer", text: "You keep your domain, exported client list, and appointment history. No penalty, no lock-in." },
-        },
-        {
-          "@type": "Question",
-          name: "What languages do you support?",
-          acceptedAnswer: { "@type": "Answer", text: "The website, CRM, and WhatsApp agent work in Hebrew, English, Russian, Spanish, and Arabic. Hebrew reads right-to-left automatically." },
-        },
-      ],
+      "@id": "https://arzac.studio/#faq",
+      inLanguage: "he",
+      mainEntity: heT.faq.items.map((item) => ({
+        "@type": "Question",
+        name: item.q,
+        acceptedAnswer: { "@type": "Answer", text: item.a },
+      })),
     },
   ],
 };

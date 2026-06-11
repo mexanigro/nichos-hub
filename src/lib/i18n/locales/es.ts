@@ -276,7 +276,7 @@ export const es: Translations = {
     a: "Ocupate de tu negocio.",
     b: "Nosotros, de lo digital.",
     cta: "Hablar con Liam por WhatsApp",
-    ctaHref: `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "9720557719141"}`,
+    ctaHref: `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "972557719141"}`,
     note: "Tu mensaje es mi prioridad, te espero.",
   },
 

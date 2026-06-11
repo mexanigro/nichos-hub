@@ -17,8 +17,12 @@ export function getTranslations(locale?: string): Translations {
   return en;
 }
 
+// Hebreo es el idioma por defecto (SSR y fallback): el mercado es Israel y
+// Google IL debe indexar el HTML inicial en hebreo. Navegadores en en-US
+// (incluido Googlebot) reciben hebreo; el usuario puede cambiar de idioma y
+// su preferencia persiste en localStorage.
 export function detectLocale(): Locale {
-  if (typeof window === "undefined") return "en";
+  if (typeof window === "undefined") return "he";
   try {
     const stored = localStorage.getItem("arzac-locale") as Locale | null;
     if (stored && locales[stored]) return stored;
@@ -26,12 +30,12 @@ export function detectLocale(): Locale {
 
   try {
     const browserLang = navigator.language.slice(0, 2).toLowerCase();
-    if (browserLang === "he" || browserLang === "iw") return "he";
     if (browserLang === "ar") return "ar";
     if (browserLang === "ru") return "ru";
     if (browserLang === "es") return "es";
   } catch {}
-  return "en";
+  // "en" cae acá a propósito: Googlebot navega como en-US y debe indexar hebreo.
+  return "he";
 }
 
 interface I18nContextValue {
@@ -49,7 +53,7 @@ const I18nContext = createContext<I18nContextValue>({
 });
 
 export function LandingI18nProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>("en");
+  const [locale, setLocaleState] = useState<Locale>("he");
 
   useEffect(() => {
     setLocaleState(detectLocale());

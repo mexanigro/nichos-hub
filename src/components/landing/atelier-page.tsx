@@ -38,6 +38,10 @@ function AtelierInner() {
 
   return (
     <div className="at" data-vp={vp} dir={dir} lang={locale}>
+      {/* Sin JS las animaciones reveal dejarían todo en opacity:0 — forzamos visible. */}
+      <noscript>
+        <style>{`[data-reveal],[data-stagger]>*{opacity:1!important;transform:none!important}`}</style>
+      </noscript>
       <a href="#main-content" className="at-skip-link">Skip to content</a>
       <Header />
       <main id="main-content">

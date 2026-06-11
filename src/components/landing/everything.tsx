@@ -42,7 +42,7 @@ export function Everything() {
           {t.everything.items.map((it, i) => (
             <li className="at-ev-item" key={i} style={{ "--si": i } as React.CSSProperties}>
               <span className="ico" aria-hidden="true">{ICONS[i]}</span>
-              <h4>{it.t}</h4>
+              <h3>{it.t}</h3>
               <p>{it.d}</p>
             </li>
           ))}

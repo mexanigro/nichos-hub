@@ -195,7 +195,7 @@ export function AgentSection() {
               <div className="at-reason" key={i}>
                 <div className="ico" aria-hidden="true">{REASON_ICONS[i]}</div>
                 <div>
-                  <h5>{r.t}</h5>
+                  <h3>{r.t}</h3>
                   <p>{r.d}</p>
                 </div>
               </div>

@@ -6,38 +6,32 @@ import { AppShell } from "@/components/app-shell";
 
 const inter = Inter({ subsets: ["latin"] });
 
+// Metadata por defecto en hebreo: el mercado objetivo es Israel (Google IL).
+// Sin hreflang: hay una sola URL con cambio de idioma client-side — hreflang
+// requiere URLs distintas por idioma. El canonical se declara por página.
 export const metadata: Metadata = {
   title: {
-    default: "Arzac Studio — Professional Websites for Local Businesses in Israel",
+    default: "בניית אתר לעסק עם CRM וסוכן וואטסאפ AI | Arzac Studio",
     template: "%s | Arzac Studio",
   },
   description:
-    "Custom website, smart CRM, and AI WhatsApp agent for your local business in Israel. Set up in minutes, From ₪480/month.",
+    "אתר מקצועי לעסק שלך + CRM חכם + סוכן וואטסאפ AI שקובע תורים 24/7. ללא עלות הקמה, הכל כלול במנוי חודשי. מתאים למספרות, מכוני יופי, קעקועים ושיפוצים.",
   metadataBase: new URL("https://arzac.studio"),
-  alternates: {
-    canonical: "/",
-    languages: {
-      en: "https://arzac.studio",
-      es: "https://arzac.studio",
-      he: "https://arzac.studio",
-      ru: "https://arzac.studio",
-      ar: "https://arzac.studio",
-      "x-default": "https://arzac.studio",
-    },
-  },
   openGraph: {
-    title: "Arzac Studio — Websites for Local Businesses",
-    description: "Website + CRM + AI WhatsApp agent. Ready in 3 minutes.",
+    title: "Arzac Studio — בניית אתר לעסק עם CRM וסוכן וואטסאפ AI",
+    description: "אתר + CRM + סוכן וואטסאפ AI לעסקים מקומיים בישראל. אפס דמי הקמה, הכל כלול במנוי חודשי.",
     url: "https://arzac.studio",
     siteName: "Arzac Studio",
-    locale: "en_US",
-    alternateLocale: ["es_ES", "he_IL", "ru_RU", "ar_SA"],
+    locale: "he_IL",
+    alternateLocale: ["en_US", "es_ES", "ru_RU", "ar_SA"],
     type: "website",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Arzac Studio — אתר + CRM + סוכן וואטסאפ AI לעסקים מקומיים בישראל" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Arzac Studio — Websites for Local Businesses",
-    description: "Website + CRM + AI WhatsApp agent. Ready in 3 minutes.",
+    title: "Arzac Studio — בניית אתר לעסק עם CRM וסוכן וואטסאפ AI",
+    description: "אתר + CRM + סוכן וואטסאפ AI לעסקים מקומיים בישראל. אפס דמי הקמה, הכל כלול במנוי חודשי.",
+    images: ["/og.png"],
   },
   robots: {
     index: true,
@@ -53,7 +47,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={inter.className}>
+    <html lang="he" className={inter.className}>
       <body>
         <Providers>
           <AppShell>{children}</AppShell>

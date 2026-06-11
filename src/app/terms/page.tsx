@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Terms of Service",
   description: "Arzac Studio terms of service — what you get, what we commit to.",
+  alternates: { canonical: "/terms" },
 };
 
 export default function TermsPage() {

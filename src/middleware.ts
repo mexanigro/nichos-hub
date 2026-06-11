@@ -3,7 +3,16 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { authConfig } from "@/auth.config";
 
-const PUBLIC_PATHS = new Set(["/", "/login", "/privacy", "/terms"]);
+const PUBLIC_PATHS = new Set([
+  "/",
+  "/login",
+  "/privacy",
+  "/terms",
+  // Archivos SEO — sin esto el middleware los redirige a /login y Google no puede leerlos.
+  "/robots.txt",
+  "/sitemap.xml",
+  "/manifest.webmanifest",
+]);
 
 const PUBLIC_PREFIXES = [
   "/onboarding",

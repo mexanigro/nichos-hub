@@ -7,7 +7,7 @@ import { Loader2, CheckCircle2, ExternalLink, AlertCircle, Sparkles } from "luci
 import { getTranslations, detectLocale } from "@/lib/i18n";
 import { RTL_LOCALES } from "@/lib/i18n";
 
-const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "9720557719141";
+const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "972557719141";
 const POLL_INTERVAL = 5000;
 type Status = "building" | "ready" | "error" | "pending" | "pending_review";
 

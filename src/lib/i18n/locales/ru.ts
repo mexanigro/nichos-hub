@@ -276,7 +276,7 @@ export const ru: Translations = {
     a: "Занимайтесь бизнесом.",
     b: "Мы — цифровым.",
     cta: "Написать Лиаму в WhatsApp",
-    ctaHref: `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "9720557719141"}`,
+    ctaHref: `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "972557719141"}`,
     note: "Ваше сообщение — мой приоритет. Жду вас.",
   },
 

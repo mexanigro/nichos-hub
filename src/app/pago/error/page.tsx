@@ -42,7 +42,7 @@ function ErrorContent() {
               {clientId ? (
                 <a href={`/pago/${clientId}`} className="pago-btn" style={{ textDecoration: "none" }}>{t.pagoErr.cta} <span className="pago-btn-arrow">→</span></a>
               ) : (
-                <a href="https://wa.me/9720557719141" className="pago-btn" style={{ textDecoration: "none" }} target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/972557719141" className="pago-btn" style={{ textDecoration: "none" }} target="_blank" rel="noopener noreferrer">
                   {locale === "es" ? "Contactar por WhatsApp"
                     : locale === "en" ? "Contact via WhatsApp"
                     : locale === "he" ? "צור קשר בוואטסאפ"
