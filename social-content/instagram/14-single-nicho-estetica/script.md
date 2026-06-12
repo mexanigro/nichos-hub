@@ -5,7 +5,7 @@
 **BG:** light
 **Slot en grilla:** #14
 **Pinned:** no
-**Estado:** ✅ COMPLETO
+**Estado:** ✅ COMPLETO (regenerado 2026-06-12 — fix חוזרים)
 
 ## Copy
 
@@ -13,12 +13,10 @@
 קוסמטיקה
 
 מעקב חכם — יודע אילו
-לקוחות לא חוזרות.
+לקוחות לא חוזרים.
 
 שיווק אוטומטי שמתאים את עצמו לתחום שלך
 ```
-
-> **TODO HE (del PLAN):** el bullet original del sitio dice "חוזרים" (masc.); aquí se usó "חוזרות" (fem.) por el público de estética. Verificar con Liam.
 
 ## Composición
 
@@ -26,4 +24,5 @@ Serie de nichos (layout idéntico 13/14/15), versión light: loto line-art terra
 
 ## Notas verificación
 
-- Intento 1: ✅ — loto line-art, chip exacto, frase verbatim (con חוזרות fem. según plan), caption verbatim. Layout consistente con la serie 13/15. Verificado por crops 2x.
+- v1 (2026-06-11): generada con "חוזרות" (fem., adaptación del PLAN para público de estética). Quedó pendiente de verificación con Liam.
+- **Fix 2026-06-12** (pedido de Liam): "חוזרות" → "חוזרים", la forma exacta del bullet del sitio en producción (`he.ts`: "מעקב חכם — יודע אילו לקוחות לא חוזרים"). ✅ Intento 1 — loto, chip y caption idénticos a v1, frase verbatim con חוזרים confirmado por zoom 2x, lockup y pills sin movimiento.
