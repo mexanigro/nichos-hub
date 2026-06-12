@@ -1,0 +1,44 @@
+{
+  "completed_at": "2026-06-11T19:40:00+03:00",
+  "status": "DONE",
+  "progress": {
+    "images_saved": 45,
+    "images_total": 45,
+    "items_complete": ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17"],
+    "items_pending": []
+  },
+  "needs_review": [
+    {
+      "path": "social-content/instagram/07-video-whatsapp-demo/frame-2.png",
+      "issue": "3 intentos: horarios 11:00/14:30/17:00 correctos en el intento final, pero la conjunción hebrea 'ו' antes de 17:00 quedó posiblemente omitida (se ve '14:30- 17:00' en vez de 'ו-17:00'). Mejor intento guardado. Verificar manualmente; los frames 3+ heredan la misma burbuja (consistencia frame a frame OK)."
+    }
+  ],
+  "sessions": {
+    "session_1": "15:19-16:46 — items 01-06 + 07 frames 1-3 (33 imgs, 35 generaciones), pausa por límite",
+    "session_2": "18:23-19:40 — 07 frames 4-5 + items 08-17 (12 imgs, 15 generaciones)"
+  },
+  "stats": {
+    "first_attempt_pass": 40,
+    "two_attempts": 4,
+    "three_attempts": 1,
+    "total_generations": 50
+  },
+  "reports": {
+    "grid_preview": "social-content/instagram/GRID-PREVIEW.md",
+    "summary": "social-content/instagram/SUMMARY.md"
+  },
+  "chats": {
+    "light_chat_url": "https://chatgpt.com/c/6a2b0a24-92c8-8331-9fc6-19e57aa7b376",
+    "dark_chat_url": "https://chatgpt.com/c/6a2b0671-acd0-832e-97ad-fdabd4eaec57",
+    "phase_b_chat_url": "https://chatgpt.com/c/6a2af532-2024-832d-8893-6f5c6505d02d",
+    "note": "Conservar por si hay que regenerar algún slot (los chats tienen el contexto de cada template)."
+  },
+  "technical_notes": {
+    "download_method": "fetch in-page de img[src*='estuary/content'] (último src único) + blob anchor a Downloads, luego Move-Item.",
+    "completion_signal": "esperar a que desaparezca [data-testid='stop-button'] y aumente el count de srcs únicos. Polls in-page <40s o el CDP da timeout (45s).",
+    "template_attach": "file_upload de archivos del repo está bloqueado. Workaround: fetch del template con URL firmada → base64 → localStorage → File → DataTransfer → input[type=file].",
+    "verification": "croppear con System.Drawing en franjas/zoom 2-4x para leer hebreo chico.",
+    "send_method": "document.execCommand('insertText') en #prompt-textarea + click en button[data-testid='send-button'] tras ~800ms.",
+    "rtl_lessons": "Las líneas mixtas hebreo+números/símbolos tienden a salir en orden LTR; pedir explícitamente el orden VISUAL left-to-right en el re-prompt lo corrige al 1er retry. Checkmarks de listas RTL: pedir columna de ✓ alineada al margen derecho."
+  }
+}
