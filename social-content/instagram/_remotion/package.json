@@ -1,0 +1,19 @@
+{
+  "name": "arzac-ig-videos",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "render-03": "remotion render Coverage out/03-pinned-coverage.mp4",
+    "render-06": "remotion render Showcase out/06-video-showcase-barberia.mp4",
+    "render-07": "remotion render WhatsappDemo out/07-video-whatsapp-demo.mp4"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.475",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "remotion": "^4.0.475",
+    "typescript": "^6.0.3"
+  }
+}

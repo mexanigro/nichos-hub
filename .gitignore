@@ -36,3 +36,8 @@ next-env.d.ts
 # local databases
 ruvector.db
 social-content/instagram/_upscale-staging/
+
+# remotion (videos IG) - deps y renders intermedios
+social-content/instagram/_remotion/node_modules/
+social-content/instagram/_remotion/out/
+social-content/instagram/_remotion/public/
