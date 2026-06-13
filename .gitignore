@@ -18,12 +18,16 @@
 # misc
 .DS_Store
 *.pem
+*.key
+serviceAccountKey.json
 
 # debug
 npm-debug.log*
 
-# env files
+# env files (excluir TODA variante excepto el ejemplo template)
 .env
+.env.*
+!.env.example
 .env*.local
 
 # claude local settings (may contain keys from past commands)

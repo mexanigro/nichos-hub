@@ -55,24 +55,62 @@ async function runOne(clientDoc: FirebaseFirestore.QueryDocumentSnapshot) {
   }
 
   const externalId = `${clientId}-${Date.now()}`;
-  const result = await chargeToken({
-    token: c.cardcomToken,
-    cardValidityMonth: c.cardcomTokenExpMonth,
-    cardValidityYear: c.cardcomTokenExpYear,
+  const now = FieldValue.serverTimestamp();
+
+  // Write-intent-first: crear el registro en "pending" ANTES de cobrar.
+  // Si el write-after-charge falla, al menos queda evidencia del intento de cobro.
+  // Un proceso de reconciliación puede buscar docs "pending" con más de X horas
+  // y verificar contra Cardcom si el cobro efectivamente ocurrió.
+  const paymentRef = db.collection("hub_payments").doc();
+  await paymentRef.set({
+    clientId,
     amount,
-    productName: tier !== "base" ? `Web+CRM (${tier})` : plan === "completo" ? "Web+CRM+Agente" : "Web+CRM",
-    customerEmail: c.email || undefined,
-    customerName: c.businessName || c.adminEmail || undefined,
-    language: "he",
+    currency: "ILS",
+    type: "subscription_recurring",
+    status: "pending",
     externalId,
+    createdAt: now,
   });
 
-  const now = FieldValue.serverTimestamp();
+  let result: Awaited<ReturnType<typeof chargeToken>>;
+  try {
+    result = await chargeToken({
+      token: c.cardcomToken,
+      cardValidityMonth: c.cardcomTokenExpMonth,
+      cardValidityYear: c.cardcomTokenExpYear,
+      amount,
+      productName: tier !== "base" ? `Web+CRM (${tier})` : plan === "completo" ? "Web+CRM+Agente" : "Web+CRM",
+      customerEmail: c.email || undefined,
+      customerName: c.businessName || c.adminEmail || undefined,
+      language: "he",
+      externalId,
+    });
+  } catch (err) {
+    // La llamada a Cardcom lanzó una excepción — confirmar como fallo en Firestore
+    const errMsg = err instanceof Error ? err.message : "charge_exception";
+    await paymentRef.update({ status: "failed", error: errMsg });
+    await db.collection("hub_clients").doc(clientId).update({
+      paymentStatus: "past_due",
+      pastDueAt: c.pastDueAt || now,
+      pastDueReason: "charge_exception",
+      nextChargeAt: Timestamp.fromDate(new Date(Date.now() + 24 * 60 * 60 * 1000)),
+      updatedAt: now,
+    });
+    return { clientId, ok: false, reason: "charge_exception" };
+  }
+
   const next = new Date();
   next.setMonth(next.getMonth() + 1);
   const nextChargeTimestamp = Timestamp.fromDate(next);
 
   if (result.success) {
+    // Confirmar pago exitoso — actualizar el doc pendiente
+    await paymentRef.update({
+      status: "success",
+      cardcomTransactionId: result.transactionId || null,
+      approvalNumber: result.approvalNumber || null,
+    });
+
     await db.collection("hub_clients").doc(clientId).update({
       paymentStatus: "active",
       lastChargedAt: now,
@@ -83,41 +121,20 @@ async function runOne(clientDoc: FirebaseFirestore.QueryDocumentSnapshot) {
       updatedAt: now,
     });
 
-    await db.collection("hub_payments").add({
-      clientId,
-      amount,
-      currency: "ILS",
-      type: "subscription_recurring",
-      status: "success",
-      cardcomTransactionId: result.transactionId || null,
-      approvalNumber: result.approvalNumber || null,
-      externalId,
-      createdAt: now,
-    });
-
     return { clientId, ok: true, transactionId: result.transactionId };
   }
 
-  // Falla: marcar past_due. No suspendemos en el primer fallo — damos al menos
-  // 2-3 reintentos en dias subsiguientes antes de cortar el servicio.
+  // Falla reportada por Cardcom — marcar past_due. No suspendemos en el primer
+  // fallo — damos al menos 2-3 reintentos en dias subsiguientes.
+  await paymentRef.update({ status: "failed", error: result.error || null });
+
   await db.collection("hub_clients").doc(clientId).update({
     paymentStatus: "past_due",
     pastDueAt: c.pastDueAt || now,
     pastDueReason: result.error || "charge_failed",
-    // Reintentar maniana
+    // Reintentar mañana
     nextChargeAt: Timestamp.fromDate(new Date(Date.now() + 24 * 60 * 60 * 1000)),
     updatedAt: now,
-  });
-
-  await db.collection("hub_payments").add({
-    clientId,
-    amount,
-    currency: "ILS",
-    type: "subscription_recurring",
-    status: "failed",
-    error: result.error || null,
-    externalId,
-    createdAt: now,
   });
 
   return { clientId, ok: false, reason: result.error };

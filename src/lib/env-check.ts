@@ -55,6 +55,13 @@ export function checkEnvironment(): void {
       `\n❌ CRITICAL: Missing required environment variables:\n${missing.map((m) => `   - ${m}`).join("\n")}\n` +
       `The app may malfunction without these. Check your .env.local or Railway env vars.\n`,
     );
+
+    const isProduction = process.env.NODE_ENV === "production";
+    const isDemoMode = process.env.DEMO_MODE === "true";
+    if (isProduction && !isDemoMode) {
+      console.error("💀 Exiting — cannot start in production without required environment variables.");
+      process.exit(1);
+    }
   }
 
   if (warnings.length > 0) {

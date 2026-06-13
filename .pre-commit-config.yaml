@@ -1,0 +1,23 @@
+# Pre-commit hooks para detección de secretos.
+# Requiere: pip install pre-commit gitleaks (o brew install gitleaks)
+# Activar: pre-commit install
+# Correr manualmente: pre-commit run --all-files
+#
+# Alternativa sin Python: ver scripts/check-secrets.sh
+# Instalar como git hook: cp scripts/check-secrets.sh .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
+
+repos:
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.27.2
+    hooks:
+      - id: gitleaks
+        name: Detect secrets with gitleaks
+        description: Scan for hardcoded secrets and API keys
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-added-large-files
+        args: ["--maxkb=500"]
+      - id: detect-private-key
+        name: Detect private keys

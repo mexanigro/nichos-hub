@@ -16,10 +16,30 @@ function slugify(name: string): string {
 
 const VALID_NICHES = ["barberia", "estetica", "tattoo", "nails", "cafeteria", "remodelaciones", "employment", "otro"];
 
+const ALLOWED_ORIGINS = [
+  "arzac.studio",
+  "https://nichos-hub-production.up.railway.app",
+  "localhost",
+  "127.0.0.1",
+];
+
+function isAllowedOrigin(req: NextRequest): boolean {
+  const origin = req.headers.get("origin") || req.headers.get("referer") || "";
+  if (!origin) return false;
+  return ALLOWED_ORIGINS.some((allowed) => origin.includes(allowed));
+}
+
 export async function POST(req: NextRequest) {
   const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "anonymous";
-  if (isRateLimited(ip, "onboarding", 5, 60_000)) {
+
+  // 3 requests per hour per IP — triggers a full Vercel deploy, must be strict
+  if (isRateLimited(ip, "onboarding", 3, 3_600_000)) {
     return NextResponse.json({ error: "Rate limited" }, { status: 429 });
+  }
+
+  // Reject requests not originating from the legitimate frontend
+  if (!isAllowedOrigin(req)) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
   const session = await auth();

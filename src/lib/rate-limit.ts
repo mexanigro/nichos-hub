@@ -6,7 +6,8 @@
 const windows = new Map<string, number[]>();
 
 const CLEANUP_INTERVAL_MS = 5 * 60_000;
-const MAX_STALE_MS = 10 * 60_000;
+// Must be >= the longest windowMs used in any isRateLimited call (currently 1h for onboarding)
+const MAX_STALE_MS = 4 * 60 * 60_000;
 let lastCleanup = Date.now();
 
 function cleanup(): void {

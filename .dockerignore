@@ -1,0 +1,34 @@
+# Secret files — never include in Docker image
+.env
+.env.*
+.env*.local
+*.pem
+*.key
+serviceAccountKey.json
+
+# Git history — reduces image size and hides internal history
+.git
+.gitignore
+
+# Dev artifacts
+node_modules/
+.next/cache/
+.DS_Store
+npm-debug.log*
+
+# Local databases and dev assets
+ruvector.db
+social-content/instagram/_upscale-staging/
+social-content/instagram/_remotion/node_modules/
+social-content/instagram/_remotion/out/
+social-content/instagram/_remotion/public/
+
+# Test and CI artifacts
+test-results/
+e2e/
+playwright.config.ts
+.playwright-mcp/
+
+# Claude / dev tooling
+.claude/
+*.md
