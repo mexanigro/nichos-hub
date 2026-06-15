@@ -48,6 +48,9 @@ export function Header() {
     >
       <div className="container at-header-inner">
         <a className="at-brand" href="/">
+          <span className="at-brand-face" aria-hidden="true">
+            <img src="/mascot/hedgehog/processed/face.png" alt="" width={34} height={34} loading="eager" decoding="async" />
+          </span>
           <LogoMark size={22} color="var(--at-ink)" />
           <span className="wm">
             Arzac <em>studio</em>

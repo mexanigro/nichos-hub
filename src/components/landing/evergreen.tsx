@@ -1,6 +1,7 @@
 "use client";
 import { useT } from "@/lib/i18n/context";
 import { useReveal } from "@/hooks/use-scroll-reveal";
+import { Mascot } from "./mascot";
 
 export function Evergreen() {
   const { t } = useT();
@@ -9,6 +10,7 @@ export function Evergreen() {
 
   return (
     <section className="at-fresh" ref={reveal} data-reveal>
+      <Mascot variant="evergreen" />
       <div className="container">
         <div className="at-fresh-wrap">
           <div>

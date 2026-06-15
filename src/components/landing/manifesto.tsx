@@ -1,12 +1,14 @@
 "use client";
 import { useT } from "@/lib/i18n/context";
 import { useReveal } from "@/hooks/use-scroll-reveal";
+import { Mascot } from "./mascot";
 
 export function Manifesto() {
   const { t } = useT();
   const reveal = useReveal<HTMLElement>();
   return (
     <section className="at-mani" ref={reveal} data-reveal>
+      <Mascot variant="manifesto" />
       <div className="container">
         <div className="row">
           <div>

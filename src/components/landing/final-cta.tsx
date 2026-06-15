@@ -1,6 +1,7 @@
 "use client";
 import { useT } from "@/lib/i18n/context";
 import { useReveal } from "@/hooks/use-scroll-reveal";
+import { Mascot } from "./mascot";
 
 export function FinalCta() {
   const { t } = useT();
@@ -9,6 +10,7 @@ export function FinalCta() {
     <div className="container at-final-wrap">
       <section className="at-final" ref={reveal} data-reveal>
         <span className="ornament">→</span>
+        <Mascot variant="final" />
         <h2>{t.final.a}<br /><em>{t.final.b}</em></h2>
         <div className="row">
           <a

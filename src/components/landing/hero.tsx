@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useT } from "@/lib/i18n/context";
+import { Mascot } from "./mascot";
 
 const WA_HREF = `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "972557719141"}`;
 
@@ -70,6 +71,7 @@ export function Hero() {
                 <span>nails · Ramat Gan</span>
               </div>
             </div>
+            <Mascot variant="hero" mouseFollow delayMs={350} />
           </div>
         </div>
       </div>

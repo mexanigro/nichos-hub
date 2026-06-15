@@ -143,7 +143,7 @@ body:has(.at) {
 .at-hero-ribbon-inner span::after { content: "✦"; margin-inline-start: 24px; opacity: 0.55; }
 
 /* evergreen / fresh section */
-.at-fresh { padding-block: 56px 64px; background: var(--at-ink); color: var(--at-paper); }
+.at-fresh { padding-block: 56px 100px; background: var(--at-ink); color: var(--at-paper); position: relative; overflow: hidden; }
 .at-fresh-wrap { display: flex; flex-direction: column; gap: 32px; }
 .at-fresh h2 { font-family: var(--at-serif); font-weight: 400; font-size: 40px; line-height: 1.0; letter-spacing: -0.03em; margin: 12px 0 0; max-width: 18ch; color: var(--at-paper); }
 .at-fresh h2 em { color: var(--at-accent); font-style: italic; }
@@ -296,7 +296,7 @@ body:has(.at) {
 .at-stack-item:hover .at-stack-label { color: var(--at-ink); }
 
 /* manifesto */
-.at-mani { padding-block: 72px; background: var(--at-ink); color: var(--at-paper); }
+.at-mani { padding-block: 72px 108px; background: var(--at-ink); color: var(--at-paper); position: relative; overflow: hidden; isolation: isolate; }
 .at-mani .row { display: flex; flex-direction: column; gap: 24px; }
 .at-mani h2 { font-family: var(--at-serif); font-weight: 400; font-size: 40px; line-height: 1.0; letter-spacing: -0.03em; margin: 0; max-width: 16ch; color: var(--at-paper); }
 .at-mani h2 em { color: var(--at-accent); font-style: italic; }
@@ -404,7 +404,7 @@ body:has(.at) {
 
 /* final CTA */
 .at-final-wrap { padding-block: 32px 56px; }
-.at-final { background: var(--at-ink); color: var(--at-paper); border-radius: 22px; padding: 56px 24px; position: relative; overflow: hidden; }
+.at-final { background: var(--at-ink); color: var(--at-paper); border-radius: 22px; padding: 56px 24px 116px; position: relative; overflow: hidden; }
 .at-final h2 { font-family: var(--at-serif); font-weight: 400; font-size: 44px; line-height: 1.0; letter-spacing: -0.03em; margin: 0; max-width: 14ch; }
 .at-final h2 em { color: var(--at-accent); font-style: italic; }
 .at-final .ornament { position: absolute; right: -8%; top: -10%; font-family: var(--at-serif); font-style: italic; font-size: 280px; color: rgba(244,240,232,0.04); line-height: 1; pointer-events: none; user-select: none; }
@@ -431,6 +431,63 @@ body:has(.at) {
 .at-wa-fab .lbl { position: absolute; right: 64px; top: 50%; transform: translateY(-50%); background: var(--at-ink); color: var(--at-paper); font-family: var(--at-sans); font-size: 13px; font-weight: 500; padding: 8px 12px; border-radius: 10px; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity .2s; }
 .at-wa-fab:hover .lbl { opacity: 1; }
 
+/* ── Mascot (plush hedgehog companion) ─────────────────────────────────
+   Decorative, pointer-events:none, aria-hidden. Three transform layers so
+   entrance (reveal), idle float and breathe, and cursor-follow never collide:
+   .at-mascot (reveal) > .at-mascot-follow (cursor) > .at-mascot-float (idle)
+   > .at-mascot-img (breathe). Horizontal anchoring is logical (RTL mirrors). */
+.at-mascot { position: absolute; z-index: 4; pointer-events: none; width: var(--m-w, 96px); line-height: 0; }
+.at-mascot-follow { will-change: transform; }
+.at-mascot-float { transform-origin: 50% 100%; animation: at-mascot-float var(--m-float, 6.5s) ease-in-out infinite; animation-delay: var(--m-fdelay, 0s); }
+.at-mascot-img { display: block; width: 100%; height: auto; transform-origin: 50% 92%; animation: at-mascot-breathe 4.4s ease-in-out infinite; filter: var(--m-shadow, drop-shadow(0 12px 16px rgba(27,24,22,0.20))); }
+/* mirror the pose in RTL so the hedgehog faces "into" the composition */
+.at[dir="rtl"] .at-mascot-img { transform: scaleX(-1); }
+.at[dir="rtl"] .at-mascot-img { animation-name: at-mascot-breathe-rtl; }
+
+@keyframes at-mascot-float { 0%, 100% { transform: translateY(0) rotate(-1.6deg); } 50% { transform: translateY(-7px) rotate(1.6deg); } }
+@keyframes at-mascot-breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.022, 1.028); } }
+@keyframes at-mascot-breathe-rtl { 0%, 100% { transform: scaleX(-1) scaleY(1); } 50% { transform: scale(-1.022, 1.028); } }
+
+/* contact shadow (light sections) vs warm glow (dark sections) */
+.at-mascot--evergreen, .at-mascot--manifesto, .at-mascot--final, .at-mascot--footer { --m-shadow: drop-shadow(0 0 30px rgba(216,164,132,0.42)) drop-shadow(0 14px 18px rgba(0,0,0,0.34)); }
+
+/* ── Hero: peeking companion leaning on the phone/ribbon ── */
+.at-mascot--hero { --m-w: 104px; --m-fdelay: -2s; inset-inline-start: 50%; margin-inline-start: -176px; bottom: 40px; z-index: 3; }
+
+/* ── Evergreen + Manifesto rest in the bottom band, anchored to the physical
+   LEFT so they never collide with the fixed bottom-right WhatsApp FAB in any
+   reading direction (the FAB uses physical `right`, not a logical prop). ── */
+.at-mascot--evergreen { --m-w: 66px; bottom: 16px; left: 14px; }
+.at-mascot--manifesto { --m-w: 66px; --m-float: 7.5s; bottom: 18px; left: 14px; }
+
+/* ── FinalCta: mobile = cheering below the CTA, centered via logical insets +
+   auto margins (direction-agnostic); desktop = bottom-end corner of the card. ── */
+.at-mascot--final { --m-w: 78px; --m-float: 6s; bottom: 18px; inset-inline: 0; margin-inline: auto; }
+
+/* ── Footer: tiny resting cameo beside the status line ── */
+.at-mascot--footer { --m-w: 30px; position: static; display: inline-block; vertical-align: middle; margin-inline-end: 6px; }
+.at-mascot--footer .at-mascot-float { animation: none; } /* resting — no bob at this size */
+.at-mascot--footer .at-mascot-img { filter: drop-shadow(0 3px 5px rgba(27,24,22,0.16)); }
+
+/* ── Navbar: small circular face for constant brand presence (tryholo pattern) ── */
+/* hidden on the space-constrained mobile bar; shown on desktop for presence */
+.at-brand-face { display: none; width: 34px; height: 34px; border-radius: 50%; overflow: hidden; flex-shrink: 0; background: var(--at-bg-2); box-shadow: 0 1px 4px rgba(27,24,22,0.16), inset 0 0 0 1px rgba(27,24,22,0.05); transition: transform .25s cubic-bezier(0.23,1,0.32,1); }
+.at-brand-face img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.at-brand:hover .at-brand-face { transform: scale(1.08) rotate(-3deg); }
+.at[data-vp="desktop"] .at-brand-face { display: inline-flex; }
+
+/* ── FinalCta cheer: the hedgehog gets excited while the CTA is hovered ── */
+@keyframes at-mascot-cheer {
+  0% { transform: translateY(0) rotate(0deg); }
+  20% { transform: translateY(-12px) rotate(-5deg); }
+  45% { transform: translateY(0) rotate(0deg); }
+  62% { transform: translateY(-7px) rotate(4deg); }
+  85%, 100% { transform: translateY(0) rotate(0deg); }
+}
+@media (hover: hover) and (pointer: fine) {
+  .at-final:has(.btn:hover, .btn:focus-visible) .at-mascot--final .at-mascot-float { animation: at-mascot-cheer 1.15s cubic-bezier(0.23,1,0.32,1) infinite; }
+}
+
 /* ── Desktop overrides ── */
 .at[data-vp="desktop"] .container { padding-inline: 56px; }
 .at[data-vp="desktop"] .at-section { padding-block: 110px; }
@@ -454,7 +511,7 @@ body:has(.at) {
 .at[data-vp="desktop"] .at-hero-teaser { margin-top: 0; }
 .at[data-vp="desktop"] .at-hero-phone { max-width: 360px; justify-self: end; }
 .at[data-vp="desktop"] .at-btn-primary { padding: 14px 22px; font-size: 15.5px; }
-.at[data-vp="desktop"] .at-fresh { padding-block: 110px; }
+.at[data-vp="desktop"] .at-fresh { padding-block: 110px 156px; }
 .at[data-vp="desktop"] .at-fresh-wrap { display: grid; grid-template-columns: 1.1fr 1fr; gap: 56px; align-items: start; }
 .at[data-vp="desktop"] .at-fresh h2 { font-size: 72px; }
 .at[data-vp="desktop"] .at-fresh-counter .num { font-size: 140px; }
@@ -505,7 +562,7 @@ body:has(.at) {
 .at[data-vp="desktop"] .at-stack-scroll { gap: 56px; }
 .at[data-vp="desktop"] .at-stack-icon { width: 26px; height: 26px; }
 .at[data-vp="desktop"] .at-stack-label { font-size: 15.5px; }
-.at[data-vp="desktop"] .at-mani { padding-block: 120px; }
+.at[data-vp="desktop"] .at-mani { padding-block: 120px 168px; }
 .at[data-vp="desktop"] .at-mani .row { display: grid; grid-template-columns: 1.1fr 1fr; gap: 56px; align-items: start; }
 .at[data-vp="desktop"] .at-mani h2 { font-size: 72px; }
 .at[data-vp="desktop"] .at-mani-body { font-size: 17px; }
@@ -532,6 +589,13 @@ body:has(.at) {
 .at[data-vp="desktop"] .at-foot .center { justify-self: center; }
 .at[data-vp="desktop"] .at-foot .right { justify-self: end; }
 .at[data-vp="desktop"] .at-wa-fab { right: 28px; bottom: 28px; width: 60px; height: 60px; }
+
+/* mascot — desktop sizes/positions */
+.at[data-vp="desktop"] .at-mascot--hero { --m-w: 188px; margin-inline-start: -276px; bottom: 6px; }
+.at[data-vp="desktop"] .at-mascot--evergreen { --m-w: 106px; bottom: 26px; left: 44px; }
+.at[data-vp="desktop"] .at-mascot--manifesto { --m-w: 124px; bottom: 30px; left: 40px; }
+.at[data-vp="desktop"] .at-mascot--final { --m-w: 132px; bottom: 34px; inset-inline-start: auto; inset-inline-end: 56px; margin-inline: 0; }
+.at[data-vp="desktop"] .at-mascot--footer { --m-w: 52px; }
 
 /* ── Scroll reveal ── */
 [data-reveal] { opacity: 0; transform: translateY(20px); transition: opacity 0.55s cubic-bezier(0.23, 1, 0.32, 1), transform 0.55s cubic-bezier(0.23, 1, 0.32, 1); }

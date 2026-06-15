@@ -1,5 +1,6 @@
 "use client";
 import { useT } from "@/lib/i18n/context";
+import { Mascot } from "./mascot";
 
 const LEGAL_HREFS = ["/privacy", "/terms", "mailto:website@arzac.studio"];
 
@@ -15,6 +16,7 @@ export function Footer() {
           ))}
         </nav>
         <div className="right">
+          <Mascot variant="footer" delayMs={0} />
           <span className="dot" aria-hidden="true" /> {t.statusLine}
         </div>
       </div>
