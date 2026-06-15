@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useT } from "@/lib/i18n/context";
 import { useReveal } from "@/hooks/use-scroll-reveal";
+import { AutoRotatingTabs } from "./auto-rotating-tabs";
 
 const CRM_M = [
   { id: "dashboard", labelKey: "dashboard" as const, img: "/landing/crm-m-dashboard.png" },
@@ -39,31 +40,7 @@ export function CrmSection() {
     ...v,
     label: t.crm.tabs[v.labelKey],
   }));
-  const [active, setActive] = useState(views[0].id);
-  const [paused, setPaused] = useState(false);
   const reveal = useReveal<HTMLElement>();
-
-  useEffect(() => {
-    setActive(views[0].id);
-    setPaused(false);
-  }, [isDesktop]);
-
-  useEffect(() => {
-    if (paused) return;
-    const tick = setInterval(() => {
-      setActive((prev) => {
-        const idx = views.findIndex((v) => v.id === prev);
-        return views[(idx + 1) % views.length].id;
-      });
-    }, 3500);
-    return () => clearInterval(tick);
-  }, [paused, views]);
-
-  function pick(id: string) {
-    setActive(id);
-    setPaused(true);
-    setTimeout(() => setPaused(false), 9000);
-  }
 
   return (
     <section className="at-section" id="crm" ref={reveal} data-reveal>
@@ -102,72 +79,67 @@ export function CrmSection() {
           </div>
 
           <div className="at-crm-scene">
-            <div className="at-crm-tabs" role="tablist">
-              {views.map((v) => (
-                <button
-                  key={v.id}
-                  role="tab"
-                  aria-selected={v.id === active}
-                  className={`at-crm-tab${v.id === active ? " on" : ""}`}
-                  onClick={() => pick(v.id)}
-                >
-                  {v.label}
-                </button>
-              ))}
-            </div>
-
-            {isDesktop ? (
-              <div className="at-crm-browser">
-                <div className="chrome">
-                  <span className="dots">
-                    <i />
-                    <i />
-                    <i />
-                  </span>
-                  <span className="url">crm.arzac.studio</span>
-                </div>
-                <div className="frame" role="tabpanel">
-                  {views.map((v) => (
-                    <Image
-                      key={v.id}
-                      src={v.img}
-                      alt={`CRM · ${v.label}`}
-                      fill
-                      sizes="(max-width: 1024px) 100vw, 720px"
-                      className={v.id === active ? "active" : ""}
-                      style={{ objectFit: "cover", objectPosition: "top" }}
-                      loading={v.id === active ? undefined : "lazy"}
-                    />
-                  ))}
-                </div>
-              </div>
-            ) : (
-              <div className="at-crm-mobcard">
-                <div className="topbar">
-                  <span className="dots">
-                    <i />
-                    <i />
-                    <i />
-                  </span>
-                  <span className="url">crm.arzac.studio</span>
-                </div>
-                <div className="crm-imgs" role="tabpanel">
-                  {views.map((v, i) => (
-                    <Image
-                      key={v.id}
-                      src={v.img}
-                      alt={`CRM · ${v.label}`}
-                      width={390}
-                      height={0}
-                      sizes="(max-width: 1024px) 100vw, 390px"
-                      style={{ width: "100%", height: "auto" }}
-                      className={v.id === active ? "active" : ""}
-                      loading={i === 0 ? undefined : "lazy"}
-                    />
-                  ))}
-                </div>
-              </div>
-            )}
+            <AutoRotatingTabs
+              tabs={views.map((v) => ({ id: v.id, label: v.label }))}
+              resetKey={isDesktop ? "d" : "m"}
+              tabsClassName="at-crm-tabs"
+              tabClassName="at-crm-tab"
+            >
+              {(active) =>
+                isDesktop ? (
+                  <div className="at-crm-browser">
+                    <div className="chrome">
+                      <span className="dots">
+                        <i />
+                        <i />
+                        <i />
+                      </span>
+                      <span className="url">crm.arzac.studio</span>
+                    </div>
+                    <div className="frame" role="tabpanel">
+                      {views.map((v) => (
+                        <Image
+                          key={v.id}
+                          src={v.img}
+                          alt={`CRM · ${v.label}`}
+                          fill
+                          sizes="(max-width: 1024px) 100vw, 720px"
+                          className={v.id === active ? "active" : ""}
+                          style={{ objectFit: "cover", objectPosition: "top" }}
+                          loading={v.id === active ? undefined : "lazy"}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <div className="at-crm-mobcard">
+                    <div className="topbar">
+                      <span className="dots">
+                        <i />
+                        <i />
+                        <i />
+                      </span>
+                      <span className="url">crm.arzac.studio</span>
+                    </div>
+                    <div className="crm-imgs" role="tabpanel">
+                      {views.map((v, i) => (
+                        <Image
+                          key={v.id}
+                          src={v.img}
+                          alt={`CRM · ${v.label}`}
+                          width={390}
+                          height={0}
+                          sizes="(max-width: 1024px) 100vw, 390px"
+                          style={{ width: "100%", height: "auto" }}
+                          className={v.id === active ? "active" : ""}
+                          loading={i === 0 ? undefined : "lazy"}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                )
+              }
+            </AutoRotatingTabs>
           </div>
         </div>
       </div>
