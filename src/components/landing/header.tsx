@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useT } from "@/lib/i18n/context";
 import { LogoMark } from "./logo-mark";
 import { LangSwitch } from "./lang-switch";
@@ -7,34 +7,16 @@ import { LangSwitch } from "./lang-switch";
 export function Header() {
   const { t } = useT();
   const [scrolled, setScrolled] = useState(false);
-  const [hidden, setHidden] = useState(false);
-  const lastY = useRef(0);
-  const accum = useRef(0);
 
+  // Navbar no-sticky: solo seguimos un leve cambio de borde al empezar a
+  // scrollear. Sin auto-hide (el header scrollea con la página).
   useEffect(() => {
     let ticking = false;
     function onScroll() {
       if (ticking) return;
       ticking = true;
       requestAnimationFrame(() => {
-        const y = window.scrollY;
-        const delta = y - lastY.current;
-        setScrolled(y > 14);
-
-        if (y < 80) {
-          setHidden(false);
-          accum.current = 0;
-        } else if (Math.abs(delta) > 2) {
-          if (delta > 0) {
-            accum.current = Math.max(0, accum.current) + delta;
-            if (accum.current > 40) setHidden(true);
-          } else {
-            accum.current = Math.min(0, accum.current) + delta;
-            if (accum.current < -20) setHidden(false);
-          }
-        }
-
-        lastY.current = y;
+        setScrolled(window.scrollY > 14);
         ticking = false;
       });
     }
@@ -43,9 +25,7 @@ export function Header() {
   }, []);
 
   return (
-    <header
-      className={`at-header${scrolled ? " is-scrolled" : ""}${hidden ? " is-hidden" : ""}`}
-    >
+    <header className={`at-header${scrolled ? " is-scrolled" : ""}`}>
       <div className="container at-header-inner">
         <a className="at-brand" href="/">
           <span className="at-brand-face" aria-hidden="true">
