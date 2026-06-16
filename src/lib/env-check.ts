@@ -4,12 +4,16 @@
  * misconfigurations before they cause cryptic runtime errors.
  */
 
-const REQUIRED_GROUPS: Record<string, string[]> = {
+// Each entry is either a required var name, or an array of acceptable
+// alternatives (any one present satisfies the requirement). The Auth secret
+// uses alternatives because next-auth v5 reads `AUTH_SECRET ?? NEXTAUTH_SECRET`
+// (see next-auth/lib/env.js); production may use the legacy NEXTAUTH_SECRET.
+const REQUIRED_GROUPS: Record<string, (string | string[])[]> = {
   Auth: [
     "OWNER_EMAIL",
     "GOOGLE_CLIENT_ID",
     "GOOGLE_CLIENT_SECRET",
-    "AUTH_SECRET",
+    ["AUTH_SECRET", "NEXTAUTH_SECRET"],
   ],
   Firebase: [
     "FIREBASE_PROJECT_ID",
@@ -38,8 +42,10 @@ export function checkEnvironment(): void {
 
   for (const [group, vars] of Object.entries(REQUIRED_GROUPS)) {
     for (const v of vars) {
-      if (!process.env[v]) {
-        missing.push(`[${group}] ${v}`);
+      const alternatives = Array.isArray(v) ? v : [v];
+      const satisfied = alternatives.some((name) => process.env[name]);
+      if (!satisfied) {
+        missing.push(`[${group}] ${alternatives.join(" or ")}`);
       }
     }
   }
