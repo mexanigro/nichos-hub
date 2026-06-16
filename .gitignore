@@ -45,3 +45,6 @@ social-content/instagram/_upscale-staging/
 social-content/instagram/_remotion/node_modules/
 social-content/instagram/_remotion/out/
 social-content/instagram/_remotion/public/
+
+# mascot 3D staging (frames/raw gen)
+public/mascot/hedgehog/_gen/

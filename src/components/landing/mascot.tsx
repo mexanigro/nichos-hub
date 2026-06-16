@@ -33,7 +33,7 @@ const POSES: Record<Variant, PoseConfig> = {
   hero: { src: `${DIR}/hero-doze-poster.png`, w: 760, h: 760, alt: "", video: `${DIR}/hero-doze.webm` },
   evergreen: { src: `${DIR}/05-curled-A-deep.png`, w: 760, h: 827, alt: "" },
   manifesto: { src: `${DIR}/07-relaxed.png`, w: 760, h: 880, alt: "" },
-  final: { src: `${DIR}/01-belly-flower.png`, w: 760, h: 888, alt: "" },
+  final: { src: `${DIR}/01-belly-flower.png`, w: 760, h: 888, alt: "", video: `${DIR}/01-doze.webm` },
   footer: { src: `${DIR}/05-curled-A-deep.png`, w: 760, h: 827, alt: "" },
   // Scattered cameos en posiciones variadas (no al pie de la sección).
   showcase: { src: `${DIR}/02-belly-A-green.png`, w: 685, h: 760, alt: "" },
