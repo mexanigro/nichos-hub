@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import type { CSSProperties } from "react";
 import Image from "next/image";
 import { useT } from "@/lib/i18n/context";
 import { useReveal } from "@/hooks/use-scroll-reveal";
@@ -42,6 +43,7 @@ export function CrmSection() {
     label: t.crm.tabs[v.labelKey],
   }));
   const reveal = useReveal<HTMLElement>();
+  const bulletsRef = useReveal<HTMLDivElement>();
 
   return (
     <section className="at-section" id="crm" ref={reveal} data-reveal>
@@ -70,9 +72,9 @@ export function CrmSection() {
         )}
 
         <div className="at-crm-wrap">
-          <div className="at-crm-bullets">
+          <div className="at-crm-bullets" ref={bulletsRef} data-stagger>
             {t.crm.bullets.map((b, i) => (
-              <div className="at-crm-bullet" key={i}>
+              <div className="at-crm-bullet" key={i} style={{ "--si": i } as CSSProperties}>
                 <span className="n">{String(i + 1).padStart(2, "0")}</span>
                 <span>{b}</span>
               </div>

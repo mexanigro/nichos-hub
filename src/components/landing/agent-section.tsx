@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
+import type { CSSProperties } from "react";
 import { useT } from "@/lib/i18n/context";
 import { useReveal } from "@/hooks/use-scroll-reveal";
 import { SectionCta } from "./section-cta";
@@ -165,6 +166,7 @@ const REASON_ICONS = [
 export function AgentSection() {
   const { t } = useT();
   const reveal = useReveal<HTMLElement>();
+  const reasonsRef = useReveal<HTMLDivElement>();
   return (
     <section className="at-section alt" id="agent" ref={reveal} data-reveal>
       <div className="container">
@@ -192,9 +194,9 @@ export function AgentSection() {
         )}
 
         <div className="at-agent-wrap">
-          <div className="at-agent-reasons">
+          <div className="at-agent-reasons" ref={reasonsRef} data-stagger>
             {t.agent.reasons.map((r, i) => (
-              <div className="at-reason" key={i}>
+              <div className="at-reason" key={i} style={{ "--si": i } as CSSProperties}>
                 <div className="ico" aria-hidden="true">{REASON_ICONS[i]}</div>
                 <div>
                   <h3>{r.t}</h3>
