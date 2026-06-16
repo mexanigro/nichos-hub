@@ -7,25 +7,42 @@ import { LangSwitch } from "./lang-switch";
 export function Header() {
   const { t } = useT();
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
 
-  // Navbar no-sticky: solo seguimos un leve cambio de borde al empezar a
-  // scrollear. Sin auto-hide (el header scrollea con la página).
+  // Navbar inteligente (sticky auto-hide): persigue el scroll, se esconde al
+  // bajar y reaparece al subir. Bajo prefers-reduced-motion queda siempre
+  // visible (nunca aplica is-hidden). El cambio de fondo/sombra (is-scrolled)
+  // mejora la legibilidad cuando flota sobre el contenido.
   useEffect(() => {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let lastY = window.scrollY;
     let ticking = false;
+    function update() {
+      const y = window.scrollY;
+      setScrolled(y > 14);
+      if (!reduce) {
+        const delta = y - lastY;
+        if (Math.abs(delta) > 6) {
+          // Esconder al bajar pasada la zona del hero; mostrar al subir.
+          if (delta > 0 && y > 140) setHidden(true);
+          else if (delta < 0) setHidden(false);
+          lastY = y;
+        }
+        if (y <= 140) setHidden(false); // cerca del top siempre visible
+      }
+      ticking = false;
+    }
     function onScroll() {
       if (ticking) return;
       ticking = true;
-      requestAnimationFrame(() => {
-        setScrolled(window.scrollY > 14);
-        ticking = false;
-      });
+      requestAnimationFrame(update);
     }
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
-    <header className={`at-header${scrolled ? " is-scrolled" : ""}`}>
+    <header className={`at-header${scrolled ? " is-scrolled" : ""}${hidden ? " is-hidden" : ""}`}>
       <div className="container at-header-inner">
         <a className="at-brand" href="/">
           <span className="at-brand-face" aria-hidden="true">

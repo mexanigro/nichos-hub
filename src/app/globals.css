@@ -45,6 +45,9 @@
 body:has(.at) {
   background: #ece7df;
 }
+/* Anchors no quedan tapados por el navbar sticky (alto 56px mobile / 76px desktop). */
+html:has(.at) { scroll-padding-top: 68px; }
+@media (min-width: 1024px) { html:has(.at) { scroll-padding-top: 88px; } }
 
 .at {
   --at-bg: #ece7df;
@@ -67,7 +70,7 @@ body:has(.at) {
   background: var(--at-bg); color: var(--at-ink);
   font-family: var(--at-sans); font-size: 15px; line-height: 1.55;
   -webkit-tap-highlight-color: transparent; touch-action: manipulation;
-  -webkit-font-smoothing: antialiased; overflow: hidden;
+  -webkit-font-smoothing: antialiased; overflow-x: clip;
 }
 .at[dir="rtl"] { text-align: right; }
 .at *, .at *::before, .at *::after { box-sizing: border-box; }
@@ -102,10 +105,16 @@ body:has(.at) {
 .at .at-why .body em { font-style: italic; color: var(--at-accent); }
 
 /* header (scroll-aware) */
-/* Non-sticky: el navbar scrollea con la página (decisión de Liam). */
-.at-header { position: relative; z-index: 30; background: transparent; border-bottom: 1px solid var(--at-line-2); transition: background .25s, border-color .25s; }
-.at-header.is-scrolled { border-bottom-color: var(--at-line); }
-.at-header.is-hidden { transform: none; }
+/* Navbar inteligente: sticky que persigue el scroll, se esconde al bajar y
+   reaparece al subir (clase is-hidden desde header.tsx). is-scrolled le da
+   fondo+sombra al flotar sobre el contenido. Reduced-motion lo deja fijo. */
+.at-header { position: sticky; top: 0; z-index: 40; background: transparent; border-bottom: 1px solid transparent; transition: transform .26s cubic-bezier(0.23,1,0.32,1), background .25s ease, border-color .25s ease, box-shadow .25s ease; will-change: transform; }
+.at-header.is-scrolled { background: color-mix(in oklab, var(--at-paper) 92%, transparent); -webkit-backdrop-filter: saturate(1.08) blur(10px); backdrop-filter: saturate(1.08) blur(10px); border-bottom-color: var(--at-line); box-shadow: 0 10px 30px -22px rgba(27,24,22,0.35); }
+.at-header.is-hidden { transform: translateY(-100%); }
+@media (prefers-reduced-motion: reduce) {
+  .at-header { transition: background .25s ease, border-color .25s ease; }
+  .at-header.is-hidden { transform: none; }
+}
 .at-header-inner { display: flex; align-items: center; justify-content: space-between; gap: 8px; height: 56px; }
 .at-brand { display: inline-flex; align-items: center; gap: 8px; flex-shrink: 0; }
 .at-brand .wm { font-family: var(--at-serif); font-size: 19px; letter-spacing: -0.01em; line-height: 1; white-space: nowrap; }
