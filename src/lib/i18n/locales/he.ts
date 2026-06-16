@@ -233,7 +233,7 @@ export const he: Translations = {
         ],
       },
     ],
-    stamp: "",
+    stamp: "מומלץ",
     redesignHighlight: "עיצוב מחדש לאתר כל 90 יום — בחינם",
     setupLabel: "הקמה",
     setupValue: "₪0",

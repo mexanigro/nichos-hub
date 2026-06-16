@@ -329,12 +329,19 @@ body:has(.at) {
 .at-step .stp-d { font-size: 14.5px; color: var(--at-ink-2); line-height: 1.55; max-width: 56ch; }
 
 /* pricing */
-.at-plans { display: grid; grid-template-columns: 1fr; gap: 18px; }
-.at-plan { background: var(--at-paper); border: 1px solid var(--at-line); border-radius: 22px; padding: 24px; display: flex; flex-direction: column; gap: 16px; position: relative; box-shadow: 0 22px 40px -32px rgba(27,24,22,0.2); }
+/* Pricing como carrusel horizontal con scroll-snap: los 2 primeros planes
+   quedan prominentes y Pro/Enterprise se alcanzan scrolleando (estilo SaaS). */
+.at-plans-wrap { position: relative; }
+.at-plans { display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; padding-block: 6px 12px; scrollbar-width: none; -webkit-overflow-scrolling: touch; scroll-padding-inline: 2px; }
+.at-plans::-webkit-scrollbar { display: none; }
+/* fade + "hay más" en el borde inicial-final según dirección */
+.at-plans-wrap::after { content: ""; position: absolute; inset-block: 0; inset-inline-end: 0; width: 56px; background: linear-gradient(to right, transparent, var(--at-paper)); pointer-events: none; opacity: 0.9; }
+.at[dir="rtl"] .at-plans-wrap::after { background: linear-gradient(to left, transparent, var(--at-paper)); }
+.at-plan { flex: 0 0 86%; max-width: 460px; scroll-snap-align: start; background: var(--at-paper); border: 1px solid var(--at-line); border-radius: 22px; padding: 24px; display: flex; flex-direction: column; gap: 16px; position: relative; box-shadow: 0 22px 40px -32px rgba(27,24,22,0.2); }
 .at-plan.hl { background: var(--at-ink); color: var(--at-paper); border-color: var(--at-ink); }
 .at-plan .tag { font-family: var(--at-mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--at-ink-3); }
 .at-plan.hl .tag { color: rgba(244,240,232,0.6); }
-.at-plan .stamp { position: absolute; top: 18px; right: 18px; background: var(--at-accent); color: var(--at-paper); border-radius: 999px; padding: 5px 12px; font-family: var(--at-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; transform: rotate(3deg); }
+.at-plan .stamp { position: absolute; top: 16px; inset-inline-end: 16px; background: var(--at-accent); color: var(--at-paper); border-radius: 999px; padding: 5px 12px; font-family: var(--at-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; box-shadow: 0 6px 16px -6px rgba(179,82,46,0.5); z-index: 1; }
 .at-plan .name { font-family: var(--at-serif); font-size: 28px; line-height: 1; letter-spacing: -0.02em; font-weight: 400; margin: 0; }
 .at-plan .name em { font-style: italic; color: var(--at-accent); }
 .at-plan .tagline { font-size: 14px; color: var(--at-ink-2); margin-top: -4px; }
@@ -571,7 +578,7 @@ body:has(.at) {
 .at[data-vp="desktop"] .at-step .stp-body { display: contents; }
 .at[data-vp="desktop"] .at-step .stp-name { font-size: 44px; }
 .at[data-vp="desktop"] .at-step .stp-t { order: 4; justify-content: flex-end; text-align: end; }
-.at[data-vp="desktop"] .at-plans { grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.at[data-vp="desktop"] .at-plan { flex: 0 0 440px; max-width: 440px; }
 .at[data-vp="desktop"] .at-plan { padding: 24px 20px 22px; }
 .at[data-vp="desktop"] .at-plan .name { font-size: 28px; }
 .at[data-vp="desktop"] .at-plan .price .v { font-size: 54px; }

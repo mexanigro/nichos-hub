@@ -233,7 +233,7 @@ export const es: Translations = {
         ],
       },
     ],
-    stamp: "",
+    stamp: "Recomendado",
     redesignHighlight: "Rediseño de tu web cada 90 días — gratis",
     setupLabel: "Setup",
     setupValue: "₪0",

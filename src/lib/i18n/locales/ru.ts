@@ -233,7 +233,7 @@ export const ru: Translations = {
         ],
       },
     ],
-    stamp: "",
+    stamp: "Рекомендуем",
     redesignHighlight: "Редизайн сайта каждые 90 дней — бесплатно",
     setupLabel: "Подключение",
     setupValue: "₪0",

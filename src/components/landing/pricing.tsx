@@ -19,11 +19,16 @@ export function Pricing() {
           <p>{t.pricing.sub}</p>
         </div>
 
+        <div className="at-plans-wrap">
         <div className="at-plans" ref={staggerRef} data-stagger>
           {t.pricing.plans.map((p, i) => {
             const planId = p.planId || "base";
+            // El plan destacado dentro del par prominente es Base (la oferta núcleo);
+            // Pro/Enterprise quedan accesibles vía scroll horizontal.
+            const recommended = planId === "base";
             return (
-            <div className={`at-plan${p.highlight ? " hl" : ""}`} key={i} style={{ "--si": i } as React.CSSProperties}>
+            <div className={`at-plan${recommended ? " hl" : ""}`} key={i} style={{ "--si": i } as React.CSSProperties}>
+              {recommended && t.pricing.stamp && <span className="stamp">{t.pricing.stamp}</span>}
               <span className="tag">/{(i + 1).toString().padStart(2, "0")} · {p.tag}</span>
               <h3 className="name">{p.name}</h3>
               <p className="tagline">{p.tagline}</p>
@@ -54,6 +59,7 @@ export function Pricing() {
             </div>
             );
           })}
+        </div>
         </div>
         <div className="at-pricing-note">{t.pricing.note}</div>
       </div>
