@@ -49,9 +49,9 @@ export const es: Translations = {
 
   crm: {
     eyebrow: "CRM + Socio IA",
-    title: "No es un CRM. Es un CRM ",
-    titleEm: "con inteligencia.",
-    sub: "Tu segundo empleado de IA. Analiza clientes, sugiere acciones y automatiza lo que antes hacías a mano. Como tener un socio que entiende tu negocio y trabaja 24/7.",
+    title: "Todo tu negocio, ",
+    titleEm: "claro de un vistazo.",
+    sub: "Mirás los turnos, clientes e ingresos del día en una sola pantalla. Y una IA que trabaja con vos: te marca qué cliente no volvió, a quién contactar y cuándo. Como un socio que entiende tu negocio y no descansa.",
     why: "Un CRM normal guarda datos. Este los lee, los entiende y actúa. La IA detecta clientes que no vuelven, sugiere el mejor momento para contactarlos y automatiza campañas de seguimiento. No te dice lo que ya sabés — te muestra lo que todavía no viste.",
     bullets: [
       "IA que analiza tu negocio y te recomienda qué hacer",
@@ -87,8 +87,8 @@ export const es: Translations = {
 
   agent: {
     eyebrow: "Agente IA · WhatsApp + Voz",
-    title: "Un agente IA que ",
-    titleEm: "conoce tu negocio como vos.",
+    title: "Agenda clientes ",
+    titleEm: "mientras dormís.",
     sub: "Tu primer empleado de IA. Se presenta como tu negocio, responde WhatsApp y llamadas, toma turnos reales y gestiona reservas. Cinco idiomas, cero descansos, la mejor onda siempre.",
     why: "El 60% de los mensajes de WhatsApp y el 40% de las llamadas a negocios locales se pierden fuera de horario. Sin agente, esos clientes reservan en otro lado. Con agente, cada mensaje y cada llamada se responde en segundos, cada hora, cada día.",
     reasons: [

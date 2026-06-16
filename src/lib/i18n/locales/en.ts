@@ -49,9 +49,9 @@ export const en: Translations = {
 
   crm: {
     eyebrow: "CRM + AI Partner",
-    title: "Not just a CRM. A CRM ",
-    titleEm: "with intelligence.",
-    sub: "Your second AI employee. Analyzes clients, suggests actions and automates what you used to do by hand. Like having a partner who understands your business and works 24/7.",
+    title: "Your whole business, ",
+    titleEm: "clear at a glance.",
+    sub: "See today's bookings, clients and revenue on one screen. Plus an AI that works with you: it flags which client hasn't come back, who to contact and when. Like a partner who gets your business and never rests.",
     why: "A regular CRM stores data. This one reads it, understands it and acts. The AI detects clients who haven't returned, suggests the best time to reach out and automates follow-up campaigns. It doesn't tell you what you already know — it shows you what you haven't seen yet.",
     bullets: [
       "AI that analyzes your business and recommends what to do",
@@ -87,8 +87,8 @@ export const en: Translations = {
 
   agent: {
     eyebrow: "AI Agent · WhatsApp + Voice",
-    title: "An AI agent that ",
-    titleEm: "knows your business like you do.",
+    title: "Books clients ",
+    titleEm: "while you sleep.",
     sub: "Your first AI employee. Introduces itself as your business, replies on WhatsApp and phone calls, takes real bookings and manages appointments. Five languages, zero breaks, always the best attitude.",
     why: "60% of WhatsApp messages and 40% of phone calls to local businesses go unanswered after hours. Without an agent, those clients book somewhere else. With one, every message and every call gets answered in seconds — 24/7, every day.",
     reasons: [
