@@ -38,14 +38,44 @@ interface MascotProps {
   variant: Variant;
   /** Hero only: head/body leans subtly toward the cursor within the hero. */
   mouseFollow?: boolean;
+  /** Hero only: the mascot drifts up + fades as the hero scrolls out (parallax). */
+  scrollParallax?: boolean;
   /** Reveal transition delay so the mascot enters after the section content. */
   delayMs?: number;
 }
 
-export function Mascot({ variant, mouseFollow = false, delayMs = 250 }: MascotProps) {
+export function Mascot({ variant, mouseFollow = false, scrollParallax = false, delayMs = 250 }: MascotProps) {
   const reveal = useReveal<HTMLDivElement>();
   const followRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
   const pose = POSES[variant];
+
+  // Scroll-anchored parallax: as the hero scrolls out of view the mascot drifts
+  // up and fades, reacting naturally to scroll. Own transform layer (no clash
+  // with reveal/mouse/idle). Disabled under reduced-motion.
+  useEffect(() => {
+    if (!scrollParallax) return;
+    const el = scrollRef.current;
+    if (!el) return;
+    const anchor = el.closest<HTMLElement>(".at-hero");
+    if (!anchor) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    let raf = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const r = anchor.getBoundingClientRect();
+        const p = Math.min(1, Math.max(0, -r.top / (r.height || 1))); // 0 in-view → 1 scrolled out
+        if (p <= 0) { el.style.transform = ""; el.style.opacity = ""; return; }
+        el.style.transform = `translate3d(0, ${(-p * 64).toFixed(1)}px, 0)`;
+        el.style.opacity = String((1 - p * 0.9).toFixed(3));
+      });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => { window.removeEventListener("scroll", onScroll); cancelAnimationFrame(raf); };
+  }, [scrollParallax]);
 
   // Subtle cursor-follow: lerp a small translate + tilt toward the pointer.
   // Decorative, hero/desktop only, disabled for touch + reduced-motion.
@@ -104,6 +134,7 @@ export function Mascot({ variant, mouseFollow = false, delayMs = 250 }: MascotPr
       aria-hidden="true"
       style={delayMs ? { transitionDelay: `${delayMs}ms` } : undefined}
     >
+      <div ref={scrollRef} className="at-mascot-scroll">
       <div ref={followRef} className="at-mascot-follow">
         <div className="at-mascot-float">
           <Image
@@ -117,6 +148,7 @@ export function Mascot({ variant, mouseFollow = false, delayMs = 250 }: MascotPr
             sizes="(max-width: 1024px) 120px, 200px"
           />
         </div>
+      </div>
       </div>
     </div>
   );

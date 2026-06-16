@@ -71,7 +71,7 @@ export function Hero() {
                 <span>nails · Ramat Gan</span>
               </div>
             </div>
-            <Mascot variant="hero" mouseFollow delayMs={350} />
+            <Mascot variant="hero" mouseFollow scrollParallax delayMs={350} />
           </div>
         </div>
       </div>
