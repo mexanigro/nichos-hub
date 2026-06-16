@@ -5,6 +5,7 @@ import { useT } from "@/lib/i18n/context";
 import { SITES } from "@/lib/sites";
 import { useReveal } from "@/hooks/use-scroll-reveal";
 import { SectionCta } from "./section-cta";
+import { Mascot } from "./mascot";
 
 export function Showcase() {
   const { t } = useT();
@@ -125,6 +126,7 @@ export function Showcase() {
         </div>
         <SectionCta to="pricing" />
       </div>
+      <Mascot variant="showcase" />
     </section>
   );
 }

@@ -485,6 +485,15 @@ html:has(.at) { scroll-padding-top: 68px; }
    auto margins (direction-agnostic); desktop = bottom-end corner of the card. ── */
 .at-mascot--final { --m-w: 78px; --m-float: 6s; bottom: 18px; inset-inline: 0; margin-inline: auto; }
 
+/* ── Scattered cameos: posiciones VARIADAS (no al pie). Asoman desde el gutter,
+   lejos de la esquina inferior-derecha del FAB. ── */
+/* Showcase: asoma desde el gutter superior-derecho, mirando la galería. */
+#work { position: relative; }
+.at-mascot--showcase { --m-w: 50px; --m-float: 7s; top: 30px; inset-inline-end: -8px; z-index: 5; }
+/* Agent: asoma desde el borde izquierdo, a media altura. */
+#agent { position: relative; }
+.at-mascot--agent { --m-w: 52px; --m-float: 8s; --m-fdelay: -3s; top: 46%; inset-inline-start: -12px; z-index: 5; }
+
 /* ── Footer: tiny resting cameo beside the status line ── */
 .at-mascot--footer { --m-w: 30px; position: static; display: inline-block; vertical-align: middle; margin-inline-end: 6px; }
 .at-mascot--footer .at-mascot-float { animation: none; } /* resting — no bob at this size */
@@ -617,6 +626,8 @@ html:has(.at) { scroll-padding-top: 68px; }
 .at[data-vp="desktop"] .at-mascot--manifesto { --m-w: 124px; bottom: 30px; left: 40px; }
 .at[data-vp="desktop"] .at-mascot--final { --m-w: 132px; bottom: 34px; inset-inline-start: auto; inset-inline-end: 56px; margin-inline: 0; }
 .at[data-vp="desktop"] .at-mascot--footer { --m-w: 52px; }
+.at[data-vp="desktop"] .at-mascot--showcase { --m-w: 92px; top: 48px; inset-inline-end: -28px; }
+.at[data-vp="desktop"] .at-mascot--agent { --m-w: 96px; top: 42%; inset-inline-start: -34px; }
 
 /* ── Scroll reveal ── */
 [data-reveal] { opacity: 0; transform: translateY(20px); transition: opacity 0.55s cubic-bezier(0.23, 1, 0.32, 1), transform 0.55s cubic-bezier(0.23, 1, 0.32, 1); }

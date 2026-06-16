@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { useT } from "@/lib/i18n/context";
 import { useReveal } from "@/hooks/use-scroll-reveal";
 import { SectionCta } from "./section-cta";
+import { Mascot } from "./mascot";
 
 function AnimatedChat({
   messages,
@@ -245,6 +246,7 @@ export function AgentSection() {
         </div>
         <SectionCta to="whatsapp" />
       </div>
+      <Mascot variant="agent" />
     </section>
   );
 }
