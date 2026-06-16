@@ -52,6 +52,7 @@ export function Hero() {
                   src="/landing/hero-onyx-steel-vertical.png"
                   alt="Onyx & Steel barbershop"
                   fill
+                  sizes="(max-width: 1024px) 280px, 360px"
                   style={{ objectFit: "cover" }}
                   priority
                 />

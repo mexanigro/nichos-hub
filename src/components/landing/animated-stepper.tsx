@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useLayoutEffect, useEffect, useCallback } from "react";
+import { useRef, useLayoutEffect, useEffect, useState, useCallback } from "react";
 import { motion, useScroll, useMotionValueEvent, useReducedMotion } from "framer-motion";
 import { useReveal } from "@/hooks/use-scroll-reveal";
 
@@ -47,6 +47,10 @@ export function AnimatedStepper({ steps }: { steps: StepperStep[] }) {
   const lineRef = useRef<HTMLDivElement>(null);
   const dotRefs = useRef<(HTMLElement | null)[]>([]);
   const reduce = useReducedMotion();
+  // Evita hydration mismatch: framer-motion emite transform en SSR pero el
+  // cliente lo aplica post-hidratación. Render plano (matchea SSR) hasta montar.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
 
   const { scrollYProgress } = useScroll({
     target: wrapRef,
@@ -116,10 +120,14 @@ export function AnimatedStepper({ steps }: { steps: StepperStep[] }) {
     <div className="at-stepper" ref={wrapRef}>
       <div className="at-stepper-line" ref={lineRef} aria-hidden="true">
         <span className="rail" />
-        <motion.span
-          className="rail-fill"
-          style={{ scaleY: reduce ? 1 : scrollYProgress }}
-        />
+        {mounted ? (
+          <motion.span
+            className="rail-fill"
+            style={{ scaleY: reduce ? 1 : scrollYProgress }}
+          />
+        ) : (
+          <span className="rail-fill" style={{ transform: "scaleY(0)" }} />
+        )}
       </div>
       <div className="at-proc-grid">
         {steps.map((s, i) => (
