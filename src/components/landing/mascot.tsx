@@ -11,7 +11,7 @@
  * - LCP-safe: lazy-loaded, never `priority`; enters after the hero LCP via reveal delay.
  * - Layering: sits below the sticky header (z<30) and never in the WhatsApp FAB corner.
  */
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useReveal } from "@/hooks/use-scroll-reveal";
 
@@ -24,10 +24,13 @@ interface PoseConfig {
   w: number; // intrinsic width of the processed asset
   h: number; // intrinsic height
   alt: string;
+  /** Optional transparent WebM loop (real motion, e.g. a gentle blink/doze).
+   *  Shown only after mount and when motion is allowed; `src` is the poster/fallback. */
+  video?: string;
 }
 
 const POSES: Record<Variant, PoseConfig> = {
-  hero: { src: `${DIR}/04-curled-A.png`, w: 760, h: 827, alt: "" },
+  hero: { src: `${DIR}/hero-doze-poster.png`, w: 760, h: 760, alt: "", video: `${DIR}/hero-doze.webm` },
   evergreen: { src: `${DIR}/05-curled-A-deep.png`, w: 760, h: 827, alt: "" },
   manifesto: { src: `${DIR}/07-relaxed.png`, w: 760, h: 880, alt: "" },
   final: { src: `${DIR}/01-belly-flower.png`, w: 760, h: 888, alt: "" },
@@ -49,6 +52,15 @@ export function Mascot({ variant, mouseFollow = false, scrollParallax = false, d
   const followRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const pose = POSES[variant];
+
+  // Show the motion video only after mount and when motion is allowed (SSR/first
+  // paint render the poster image → no hydration mismatch; reduced-motion = static).
+  const [useVideo, setUseVideo] = useState(false);
+  useEffect(() => {
+    if (pose.video && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setUseVideo(true);
+    }
+  }, [pose.video]);
 
   // Scroll-anchored parallax: as the hero scrolls out of view the mascot drifts
   // up and fades, reacting naturally to scroll. Own transform layer (no clash
@@ -137,16 +149,33 @@ export function Mascot({ variant, mouseFollow = false, scrollParallax = false, d
       <div ref={scrollRef} className="at-mascot-scroll">
       <div ref={followRef} className="at-mascot-follow">
         <div className="at-mascot-float">
-          <Image
-            className="at-mascot-img"
-            src={pose.src}
-            width={pose.w}
-            height={pose.h}
-            alt={pose.alt}
-            loading="lazy"
-            draggable={false}
-            sizes="(max-width: 1024px) 120px, 200px"
-          />
+          {useVideo && pose.video ? (
+            <video
+              className="at-mascot-img"
+              width={pose.w}
+              height={pose.h}
+              poster={pose.src}
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+              aria-hidden="true"
+            >
+              <source src={pose.video} type="video/webm" />
+            </video>
+          ) : (
+            <Image
+              className="at-mascot-img"
+              src={pose.src}
+              width={pose.w}
+              height={pose.h}
+              alt={pose.alt}
+              loading="lazy"
+              draggable={false}
+              sizes="(max-width: 1024px) 120px, 200px"
+            />
+          )}
         </div>
       </div>
       </div>
