@@ -31,9 +31,9 @@ export const en: Translations = {
 
   showcase: {
     eyebrow: "Live work",
-    title: "See how our ",
-    titleEm: "sites look.",
-    sub: "See some of our work.",
+    title: "Real sites, ",
+    titleEm: "working right now.",
+    sub: "Live sites already bringing in clients for barbershops, tattoo studios, nail artists, beauty salons and cafés.",
     why: "A professional site isn't just about looking good. Every section is designed to get your visitors to do what you need: book, inquire or buy. Design that guides, copy that convinces and a call-to-action that works.",
     pickHint: "Pick a niche →",
     open: "Visit live",

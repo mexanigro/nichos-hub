@@ -31,9 +31,9 @@ export const es: Translations = {
 
   showcase: {
     eyebrow: "Trabajo en vivo",
-    title: "Hecho en nuestro estudio, ",
-    titleEm: "entregado rápido.",
-    sub: "Mirá algunos de nuestros trabajos.",
+    title: "Sitios reales, ",
+    titleEm: "trabajando ahora mismo.",
+    sub: "Webs en vivo que ya reciben clientes: barberías, tattoo, nails, estética y cafés.",
     why: "Una web profesional no es solo verse bien. Cada sección está pensada para que tus visitantes hagan lo que necesitás: reservar, consultar o comprar. Diseño que guía, texto que convence y un botón de acción que funciona.",
     pickHint: "Elegí una web →",
     open: "Abrir",
