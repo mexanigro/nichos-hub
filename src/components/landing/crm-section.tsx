@@ -146,7 +146,7 @@ export function CrmSection() {
           </div>
         </div>
       </div>
-      <Mascot variant="crm" />
+      <Mascot variant="crm" drift />
     </section>
   );
 }

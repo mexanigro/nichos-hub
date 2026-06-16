@@ -126,7 +126,7 @@ export function Showcase() {
         </div>
         <SectionCta to="pricing" />
       </div>
-      <Mascot variant="showcase" />
+      <Mascot variant="showcase" drift />
     </section>
   );
 }

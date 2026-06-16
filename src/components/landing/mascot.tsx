@@ -47,11 +47,14 @@ interface MascotProps {
   mouseFollow?: boolean;
   /** Hero only: the mascot drifts up + fades as the hero scrolls out (parallax). */
   scrollParallax?: boolean;
+  /** Scattered cameos: gentle scroll-reactive parallax (the hedgehog "travels"
+   *  with the page) based on its own viewport position. Subtle, gutter-only. */
+  drift?: boolean;
   /** Reveal transition delay so the mascot enters after the section content. */
   delayMs?: number;
 }
 
-export function Mascot({ variant, mouseFollow = false, scrollParallax = false, delayMs = 250 }: MascotProps) {
+export function Mascot({ variant, mouseFollow = false, scrollParallax = false, drift = false, delayMs = 250 }: MascotProps) {
   const reveal = useReveal<HTMLDivElement>();
   const followRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -107,6 +110,32 @@ export function Mascot({ variant, mouseFollow = false, scrollParallax = false, d
     onScroll();
     return () => { window.removeEventListener("scroll", onScroll); cancelAnimationFrame(raf); };
   }, [scrollParallax]);
+
+  // Gentle scroll-reactive drift for scattered cameos: the hedgehog "travels"
+  // with the page (subtle ±12px parallax based on its own viewport position),
+  // adding depth/life. Own transform layer (scrollRef) so it composes with the
+  // idle float/breathe without clashing. Disabled under reduced-motion.
+  useEffect(() => {
+    if (!drift) return;
+    const el = scrollRef.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    let raf = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const r = el.getBoundingClientRect();
+        const vh = window.innerHeight || 1;
+        const center = r.top + r.height / 2;
+        const p = Math.max(-1, Math.min(1, (vh / 2 - center) / (vh / 2))); // -1 below → 0 centered → 1 above
+        el.style.transform = `translate3d(0, ${(p * 12).toFixed(1)}px, 0)`;
+      });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => { window.removeEventListener("scroll", onScroll); cancelAnimationFrame(raf); };
+  }, [drift]);
 
   // Subtle cursor-follow: lerp a small translate + tilt toward the pointer.
   // Decorative, hero/desktop only, disabled for touch + reduced-motion.

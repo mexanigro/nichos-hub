@@ -248,7 +248,7 @@ export function AgentSection() {
         </div>
         <SectionCta to="whatsapp" />
       </div>
-      <Mascot variant="agent" />
+      <Mascot variant="agent" drift />
     </section>
   );
 }
