@@ -57,13 +57,28 @@ export function Mascot({ variant, mouseFollow = false, scrollParallax = false, d
   const scrollRef = useRef<HTMLDivElement>(null);
   const pose = POSES[variant];
 
-  // Show the motion video only after mount and when motion is allowed (SSR/first
-  // paint render the poster image → no hydration mismatch; reduced-motion = static).
+  // Show the motion video only when motion is allowed AND the mascot is near the
+  // viewport (SSR/first paint render the poster image → no hydration mismatch;
+  // reduced-motion = static). Lazy activation avoids loading the below-the-fold
+  // video assets on initial page load (perf): each ~200-450KB WebM only fetches
+  // when its section is approached.
   const [useVideo, setUseVideo] = useState(false);
   useEffect(() => {
-    if (pose.video && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setUseVideo(true);
-    }
+    if (!pose.video) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const el = scrollRef.current;
+    if (!el) { setUseVideo(true); return; }
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          setUseVideo(true);
+          io.disconnect();
+        }
+      },
+      { rootMargin: "400px 0px 400px 0px" }
+    );
+    io.observe(el);
+    return () => io.disconnect();
   }, [pose.video]);
 
   // Scroll-anchored parallax: as the hero scrolls out of view the mascot drifts
