@@ -4,11 +4,11 @@ export const es: Translations = {
   nav: { work: "Trabajo", crm: "CRM", agent: "Agente", how: "Cómo", pricing: "Precio", faq: "FAQ", start: "Empezar" },
 
   hero: {
-    eyebrow: "Estudio · Web + CRM con IA + Agente IA 24/7",
-    h1a: "Creamos la ",
-    h1b: "presencia digital",
-    h1c: " que tu negocio necesita.",
-    sub: "Web profesional, CRM con inteligencia artificial y un agente IA que atiende WhatsApp y llamadas por vos 24/7. Son dos empleados de IA que conocen tu negocio y nunca duermen. La marca te la regalamos si no la tenés. Desde ₪480/mes, cero setup.",
+    eyebrow: "Tu equipo digital que nunca duerme",
+    h1a: "Tu negocio ",
+    h1b: "responde a cada cliente",
+    h1c: ", de día y de noche.",
+    sub: "Un sitio web profesional con CRM y una IA que responde WhatsApp y el teléfono por vos, 24/7: contesta en segundos, agenda turnos de día y de noche y hace que no se te escape ningún cliente. ¿No tenés logo ni contenido? Va por nuestra cuenta. Desde ₪480/mes, cero setup.",
     cta: "Empezar por WhatsApp",
     ghost: "Ver webs en vivo",
     ribbon: "enviado esta semana",
