@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useT } from "@/lib/i18n/context";
 import { useReveal } from "@/hooks/use-scroll-reveal";
 import { AutoRotatingTabs } from "./auto-rotating-tabs";
+import { Mascot } from "./mascot";
 
 const CRM_M = [
   { id: "dashboard", labelKey: "dashboard" as const, img: "/landing/crm-m-dashboard.png" },
@@ -143,6 +144,7 @@ export function CrmSection() {
           </div>
         </div>
       </div>
+      <Mascot variant="crm" />
     </section>
   );
 }

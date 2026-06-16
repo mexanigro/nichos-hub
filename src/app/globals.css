@@ -493,6 +493,9 @@ html:has(.at) { scroll-padding-top: 68px; }
 /* Agent: asoma desde el borde izquierdo, a media altura. */
 #agent { position: relative; }
 .at-mascot--agent { --m-w: 52px; --m-float: 8s; --m-fdelay: -3s; top: 46%; inset-inline-start: -12px; z-index: 5; }
+/* CRM: asoma desde la esquina superior opuesta a Showcase. */
+#crm { position: relative; }
+.at-mascot--crm { --m-w: 48px; --m-float: 7.5s; --m-fdelay: -1.5s; top: 26px; inset-inline-start: -10px; z-index: 5; }
 
 /* ── Footer: tiny resting cameo beside the status line ── */
 .at-mascot--footer { --m-w: 30px; position: static; display: inline-block; vertical-align: middle; margin-inline-end: 6px; }
@@ -620,7 +623,7 @@ html:has(.at) { scroll-padding-top: 68px; }
 .at[data-vp="desktop"] .at-foot .right { justify-self: end; }
 .at[data-vp="desktop"] .at-wa-fab { right: 28px; bottom: 28px; width: 60px; height: 60px; }
 
-/* mascot — desktop sizes/positions */
+/* mascot — desktop sizes/positions (scattered cameos incl. crm) */
 .at[data-vp="desktop"] .at-mascot--hero { --m-w: 188px; margin-inline-start: -276px; bottom: 6px; }
 .at[data-vp="desktop"] .at-mascot--evergreen { --m-w: 106px; bottom: 26px; left: 44px; }
 .at[data-vp="desktop"] .at-mascot--manifesto { --m-w: 124px; bottom: 30px; left: 40px; }
@@ -628,6 +631,7 @@ html:has(.at) { scroll-padding-top: 68px; }
 .at[data-vp="desktop"] .at-mascot--footer { --m-w: 52px; }
 .at[data-vp="desktop"] .at-mascot--showcase { --m-w: 92px; top: 48px; inset-inline-end: -28px; }
 .at[data-vp="desktop"] .at-mascot--agent { --m-w: 96px; top: 42%; inset-inline-start: -34px; }
+.at[data-vp="desktop"] .at-mascot--crm { --m-w: 86px; top: 30px; inset-inline-start: -30px; }
 
 /* ── Scroll reveal ── */
 [data-reveal] { opacity: 0; transform: translateY(20px); transition: opacity 0.55s cubic-bezier(0.23, 1, 0.32, 1), transform 0.55s cubic-bezier(0.23, 1, 0.32, 1); }

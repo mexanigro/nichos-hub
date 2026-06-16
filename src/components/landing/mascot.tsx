@@ -17,7 +17,7 @@ import { useReveal } from "@/hooks/use-scroll-reveal";
 
 const DIR = "/mascot/hedgehog/processed";
 
-type Variant = "hero" | "evergreen" | "manifesto" | "final" | "footer" | "showcase" | "agent";
+type Variant = "hero" | "evergreen" | "manifesto" | "final" | "footer" | "showcase" | "agent" | "crm";
 
 interface PoseConfig {
   src: string;
@@ -38,6 +38,7 @@ const POSES: Record<Variant, PoseConfig> = {
   // Scattered cameos en posiciones variadas (no al pie de la sección).
   showcase: { src: `${DIR}/02-belly-A-green.png`, w: 685, h: 760, alt: "" },
   agent: { src: `${DIR}/06-cozy-green.png`, w: 653, h: 760, alt: "" },
+  crm: { src: `${DIR}/03-belly-A-warm.png`, w: 673, h: 760, alt: "" },
 };
 
 interface MascotProps {
