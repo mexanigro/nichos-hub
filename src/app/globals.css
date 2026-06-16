@@ -131,6 +131,10 @@ body:has(.at) {
 .at-btn-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--at-ink); color: var(--at-paper); border: 0; cursor: pointer; padding: 13px 20px; border-radius: 999px; font-size: 15px; font-weight: 500; transition: background .15s; }
 .at-btn-primary:hover { background: var(--at-accent); }
 .at-btn-link { display: inline-flex; align-items: center; gap: 6px; color: var(--at-ink); font-size: 14px; padding: 13px 4px; background: transparent; border: 0; cursor: pointer; }
+/* CTA contextual al final de secciones clave */
+.at-section-cta { margin-top: 36px; display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+.at-section-cta .at-btn-link { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--at-line); }
+.at[data-vp="desktop"] .at-section-cta { margin-top: 44px; }
 .at-btn-link::after { content: "↓"; font-family: var(--at-serif); font-style: italic; font-size: 17px; line-height: 1; }
 .at-btn-link.no-arrow::after { content: ""; }
 

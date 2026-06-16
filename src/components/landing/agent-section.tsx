@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useT } from "@/lib/i18n/context";
 import { useReveal } from "@/hooks/use-scroll-reveal";
+import { SectionCta } from "./section-cta";
 
 function AnimatedChat({
   messages,
@@ -242,6 +243,7 @@ export function AgentSection() {
             <div className="home-ind" />
           </div>
         </div>
+        <SectionCta to="whatsapp" />
       </div>
     </section>
   );

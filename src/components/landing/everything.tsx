@@ -1,6 +1,7 @@
 "use client";
 import { useT } from "@/lib/i18n/context";
 import { useReveal } from "@/hooks/use-scroll-reveal";
+import { SectionCta } from "./section-cta";
 import React from "react";
 
 const ICONS = [
@@ -69,6 +70,7 @@ export function Everything() {
             ))}
           </div>
         </div>
+        <SectionCta to="pricing" />
       </div>
     </section>
   );
