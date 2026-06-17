@@ -57,8 +57,10 @@ Cardcom Low Profile. Flujo: firma contrato -> pending -> redirect Cardcom -> ver
 
 Moneda ILS (₪). Planes en `src/lib/pricing.ts` y contratos en `src/lib/contracts.ts`:
 
+- **Solo Web** — 480 NIS/mes: solo landing (sin CRM ni agente). `solo_web` en `pricing.ts`.
 - **Base** — 770 NIS/mes: web + CRM + agente WhatsApp (hasta 100 turnos/mes).
 - **Pro** — 960 NIS/mes: Base + llamadas de voz IA + WhatsApp avanzado (hasta 300 turnos/mes).
+- **Enterprise** — 1270 NIS/mes: ilimitado (turnos sin límite).
 
 Terminal Cardcom: **189298** (prod, via `CARDCOM_TERMINAL`), **1000** (sandbox, hardcodeado en `src/lib/cardcom.ts` cuando `CARDCOM_SANDBOX=true`). Tarjeta de prueba sandbox: 4580280000000008 CVV 123 (menos de 5000 NIS = exito).
 
