@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "test": "node --experimental-strip-types --test \"src/**/*.test.ts\"",
     "test:client-config": "node --experimental-strip-types --test src/lib/client-config/services.test.ts",
     "test:e2e:cardcom": "npx playwright test e2e/cardcom-sandbox.spec.ts",
     "capture-wizard-refs": "node scripts/capture-wizard-refs.mjs",
