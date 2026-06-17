@@ -101,9 +101,11 @@ const jsonLd = {
       areaServed: { "@type": "Country", name: "IL" },
       founder: { "@type": "Person", name: "Liam Arzac" },
       knowsLanguage: ["he", "en", "ru", "es", "ar"],
+      telephone: "+972557719141",
       contactPoint: {
         "@type": "ContactPoint",
         email: "website@arzac.studio",
+        telephone: "+972557719141",
         contactType: "sales",
         availableLanguage: ["Hebrew", "English", "Russian", "Spanish", "Arabic"],
       },
