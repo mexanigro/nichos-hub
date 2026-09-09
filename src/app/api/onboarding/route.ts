@@ -116,6 +116,7 @@ export async function POST(req: NextRequest) {
     const branding = resolveBranding({ niche: deployNiche, colors });
 
     await db.collection("config").doc(slug).set({
+      language: locale,
       business: { type: deployNiche, mode: businessMode, name: businessName },
       brand: {
         name: businessName,

@@ -5,7 +5,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/firebase-admin";
 import { withAgentAuth } from "@/lib/with-agent-auth";
 import {
-  parse,
   startOfDay,
   setHours,
   setMinutes,

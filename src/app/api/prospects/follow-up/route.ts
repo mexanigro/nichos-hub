@@ -38,7 +38,7 @@ export const GET = withOwner(async (req) => {
       ...data,
       createdAt: data.createdAt?.toDate?.()?.toISOString?.() ?? data.createdAt,
       updatedAt: data.updatedAt?.toDate?.()?.toISOString?.() ?? data.updatedAt,
-    } as Record<string, any> & { id: string };
+    } as Record<string, unknown> & { id: string };
   });
 
   if (pendingOnly) {

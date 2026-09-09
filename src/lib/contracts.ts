@@ -5,21 +5,10 @@ export type ContractLang = "en" | "es" | "ru" | "he" | "ar";
 const CONTRACT_VERSION = "7.0";
 
 /* ═══════════════════════════════════════════════════════════════════════════
- * PLAN DETAILS (shared across all languages)
- * ═══════════════════════════════════════════════════════════════════════════ */
-
-const PLAN_TABLE = {
-  solo_web: { price: 480, bookings: null },
-  base: { price: 770, bookings: 100 },
-  pro: { price: 960, bookings: 300 },
-  enterprise: { price: 1270, bookings: "unlimited" },
-} as const;
-
-/* ═══════════════════════════════════════════════════════════════════════════
  * ENGLISH CONTRACT
  * ═══════════════════════════════════════════════════════════════════════════ */
 
-function EN(plan: PlanType): string {
+function EN(): string {
   return `SERVICE AGREEMENT — WEBSITE, CRM & AI AGENTS
 Arzac Studio — Subscription Plans
 
@@ -135,7 +124,7 @@ This agreement is governed by Israeli law. Exclusive jurisdiction: competent cou
  * HEBREW CONTRACT
  * ═══════════════════════════════════════════════════════════════════════════ */
 
-function HE(plan: PlanType): string {
+function HE(): string {
   return `הסכם מתן שירות בניית אתרים, תחזוקה, אירוח וסוכני בינה מלאכותית
 
 שנערך ונחתם ביום _____ לחודש _____ שנת _____
@@ -287,7 +276,7 @@ function HE(plan: PlanType): string {
  * RUSSIAN CONTRACT
  * ═══════════════════════════════════════════════════════════════════════════ */
 
-function RU(plan: PlanType): string {
+function RU(): string {
   return `ДОГОВОР НА ОКАЗАНИЕ УСЛУГ — САЙТ, CRM И ИИ-АГЕНТЫ
 Arzac Studio — Тарифные планы
 
@@ -403,7 +392,7 @@ Arzac Studio — Тарифные планы
  * SPANISH CONTRACT
  * ═══════════════════════════════════════════════════════════════════════════ */
 
-function ES(plan: PlanType): string {
+function ES(): string {
   return `ACUERDO DE SERVICIOS — SITIO WEB, CRM Y AGENTES IA
 Arzac Studio — Planes de Suscripcion
 
@@ -519,7 +508,7 @@ Este acuerdo se rige por la ley israeli. Jurisdiccion exclusiva: tribunales comp
  * ARABIC CONTRACT
  * ═══════════════════════════════════════════════════════════════════════════ */
 
-function AR(plan: PlanType): string {
+function AR(): string {
   return `اتفاقية تقديم خدمات — موقع إلكتروني، CRM ووكلاء ذكاء اصطناعي
 Arzac Studio — خطط الاشتراك
 

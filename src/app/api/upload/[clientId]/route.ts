@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { randomUUID } from "crypto";
 import { withOwner } from "@/lib/auth";
 import { getStorageBucket } from "@/lib/firebase-admin";

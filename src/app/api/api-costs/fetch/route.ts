@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { withOwner } from "@/lib/auth";
 import { db } from "@/lib/firebase-admin";
 import { FieldValue } from "firebase-admin/firestore";
@@ -63,7 +63,7 @@ async function persistResult(serviceId: string, result: FetchResult): Promise<vo
   }
 }
 
-export const POST = withOwner(async (_req: NextRequest, _session, _ctx) => {
+export const POST = withOwner(async () => {
   const snap = await db.collection("hub_api_keys").doc("keys").get();
   const keys = (snap.data() ?? {}) as StoredKeys;
 

@@ -49,6 +49,7 @@ export const INITIAL_AMOUNT = PLAN_AMOUNT;
 /** @deprecated — use PLAN_AMOUNT */
 export const RECURRING_AMOUNT = PLAN_AMOUNT;
 /** @deprecated */
-export function getPaymentAmount(_isInitial: boolean): number {
+export function getPaymentAmount(_isInitial: boolean): number;
+export function getPaymentAmount(): number {
   return PLAN_AMOUNT;
 }
