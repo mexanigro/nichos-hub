@@ -1,0 +1,545 @@
+[
+  {
+    "name": "server-normal: arranque efectivo",
+    "valid": true,
+    "evidence": {
+      "exit": null
+    }
+  },
+  {
+    "name": "server-normal: ejecución",
+    "valid": false,
+    "evidence": "SyntaxError: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON"
+  },
+  {
+    "name": "server-normal: cero intentos externos",
+    "valid": true,
+    "evidence": {
+      "audit": ""
+    }
+  },
+  {
+    "name": "server-normal: proceso terminado",
+    "valid": true,
+    "evidence": {
+      "exit": null,
+      "signal": "SIGTERM"
+    }
+  },
+  {
+    "name": "api-normal: arranque efectivo",
+    "valid": true,
+    "evidence": {
+      "exit": null
+    }
+  },
+  {
+    "name": "api-normal: live",
+    "valid": false,
+    "evidence": {
+      "code": 503,
+      "body": {
+        "error": "API bootstrap failed",
+        "message": "[Template Setup] Missing required environment variables: GEMINI_API_KEY. Set them in Vercel Project Settings → Environment Variables.",
+        "hint": "Set CLIENT_ID in Vercel Project Settings → Environment Variables."
+      },
+      "headers": {
+        "connection": "keep-alive",
+        "content-length": "257",
+        "content-security-policy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://apis.google.com https://js.stripe.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://*.firebase.google.com https://*.stripe.com wss://*.firebaseio.com https://www.googletagmanager.com https://*.google-analytics.com; frame-src https://js.stripe.com https://*.cardcom.solutions https://*.firebaseapp.com https://accounts.google.com https://www.google.com; object-src 'none'; base-uri 'self'",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 14:46:54 GMT",
+        "etag": "W/\"101-4eaIhqJQcXtvJGxg+a2k7UOgG4Y\"",
+        "keep-alive": "timeout=5",
+        "permissions-policy": "camera=(), microphone=(), geolocation=()",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+        "x-client-id": "tenant-control",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY"
+      },
+      "ms": 5
+    }
+  },
+  {
+    "name": "api-normal: ready",
+    "valid": false,
+    "evidence": {
+      "code": 200,
+      "body": {
+        "status": "ok",
+        "clientId": "tenant-control"
+      },
+      "headers": {
+        "connection": "keep-alive",
+        "content-length": "43",
+        "content-security-policy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://apis.google.com https://js.stripe.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://*.firebase.google.com https://*.stripe.com wss://*.firebaseio.com https://www.googletagmanager.com https://*.google-analytics.com; frame-src https://js.stripe.com https://*.cardcom.solutions https://*.firebaseapp.com https://accounts.google.com https://www.google.com; object-src 'none'; base-uri 'self'",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 14:46:55 GMT",
+        "etag": "W/\"2b-w3vWkp6+Mi4aefyguPYPCKJQnks\"",
+        "keep-alive": "timeout=5",
+        "permissions-policy": "camera=(), microphone=(), geolocation=()",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+        "x-client-id": "tenant-control",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY"
+      },
+      "ms": 4
+    }
+  },
+  {
+    "name": "api-normal: consumidor ready",
+    "valid": true,
+    "evidence": {
+      "expected": 200
+    }
+  },
+  {
+    "name": "api-normal: trial",
+    "valid": false,
+    "evidence": {
+      "code": 200,
+      "body": {
+        "status": "ok",
+        "clientId": "tenant-control"
+      },
+      "headers": {
+        "connection": "keep-alive",
+        "content-length": "43",
+        "content-security-policy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://apis.google.com https://js.stripe.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://*.firebase.google.com https://*.stripe.com wss://*.firebaseio.com https://www.googletagmanager.com https://*.google-analytics.com; frame-src https://js.stripe.com https://*.cardcom.solutions https://*.firebaseapp.com https://accounts.google.com https://www.google.com; object-src 'none'; base-uri 'self'",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 14:46:55 GMT",
+        "etag": "W/\"2b-w3vWkp6+Mi4aefyguPYPCKJQnks\"",
+        "keep-alive": "timeout=5",
+        "permissions-policy": "camera=(), microphone=(), geolocation=()",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+        "x-client-id": "tenant-control",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY"
+      },
+      "ms": 4
+    }
+  },
+  {
+    "name": "api-normal: maintenance",
+    "valid": false,
+    "evidence": {
+      "code": 200,
+      "body": {
+        "status": "ok",
+        "clientId": "tenant-control"
+      },
+      "headers": {
+        "connection": "keep-alive",
+        "content-length": "43",
+        "content-security-policy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://apis.google.com https://js.stripe.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://*.firebase.google.com https://*.stripe.com wss://*.firebaseio.com https://www.googletagmanager.com https://*.google-analytics.com; frame-src https://js.stripe.com https://*.cardcom.solutions https://*.firebaseapp.com https://accounts.google.com https://www.google.com; object-src 'none'; base-uri 'self'",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 14:46:55 GMT",
+        "etag": "W/\"2b-w3vWkp6+Mi4aefyguPYPCKJQnks\"",
+        "keep-alive": "timeout=5",
+        "permissions-policy": "camera=(), microphone=(), geolocation=()",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+        "x-client-id": "tenant-control",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY"
+      },
+      "ms": 3
+    }
+  },
+  {
+    "name": "api-normal: failed",
+    "valid": false,
+    "evidence": {
+      "code": 200,
+      "body": {
+        "status": "ok",
+        "clientId": "tenant-control"
+      },
+      "headers": {
+        "connection": "keep-alive",
+        "content-length": "43",
+        "content-security-policy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://apis.google.com https://js.stripe.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://*.firebase.google.com https://*.stripe.com wss://*.firebaseio.com https://www.googletagmanager.com https://*.google-analytics.com; frame-src https://js.stripe.com https://*.cardcom.solutions https://*.firebaseapp.com https://accounts.google.com https://www.google.com; object-src 'none'; base-uri 'self'",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 14:46:55 GMT",
+        "etag": "W/\"2b-w3vWkp6+Mi4aefyguPYPCKJQnks\"",
+        "keep-alive": "timeout=5",
+        "permissions-policy": "camera=(), microphone=(), geolocation=()",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+        "x-client-id": "tenant-control",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY"
+      },
+      "ms": 4
+    }
+  },
+  {
+    "name": "api-normal: consumidor failed",
+    "valid": false,
+    "evidence": {
+      "expected": 503
+    }
+  },
+  {
+    "name": "api-normal: ready",
+    "valid": false,
+    "evidence": {
+      "code": 200,
+      "body": {
+        "status": "ok",
+        "clientId": "tenant-control"
+      },
+      "headers": {
+        "connection": "keep-alive",
+        "content-length": "43",
+        "content-security-policy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://apis.google.com https://js.stripe.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://*.firebase.google.com https://*.stripe.com wss://*.firebaseio.com https://www.googletagmanager.com https://*.google-analytics.com; frame-src https://js.stripe.com https://*.cardcom.solutions https://*.firebaseapp.com https://accounts.google.com https://www.google.com; object-src 'none'; base-uri 'self'",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 14:46:55 GMT",
+        "etag": "W/\"2b-w3vWkp6+Mi4aefyguPYPCKJQnks\"",
+        "keep-alive": "timeout=5",
+        "permissions-policy": "camera=(), microphone=(), geolocation=()",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+        "x-client-id": "tenant-control",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY"
+      },
+      "ms": 3
+    }
+  },
+  {
+    "name": "api-normal: consumidor ready",
+    "valid": true,
+    "evidence": {
+      "expected": 200
+    }
+  },
+  {
+    "name": "api-normal: missing",
+    "valid": false,
+    "evidence": {
+      "code": 200,
+      "body": {
+        "status": "ok",
+        "clientId": "tenant-control"
+      },
+      "headers": {
+        "connection": "keep-alive",
+        "content-length": "43",
+        "content-security-policy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://apis.google.com https://js.stripe.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://*.firebase.google.com https://*.stripe.com wss://*.firebaseio.com https://www.googletagmanager.com https://*.google-analytics.com; frame-src https://js.stripe.com https://*.cardcom.solutions https://*.firebaseapp.com https://accounts.google.com https://www.google.com; object-src 'none'; base-uri 'self'",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 14:46:55 GMT",
+        "etag": "W/\"2b-w3vWkp6+Mi4aefyguPYPCKJQnks\"",
+        "keep-alive": "timeout=5",
+        "permissions-policy": "camera=(), microphone=(), geolocation=()",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+        "x-client-id": "tenant-control",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY"
+      },
+      "ms": 5
+    }
+  },
+  {
+    "name": "api-normal: blocked",
+    "valid": false,
+    "evidence": {
+      "code": 200,
+      "body": {
+        "status": "ok",
+        "clientId": "tenant-control"
+      },
+      "headers": {
+        "connection": "keep-alive",
+        "content-length": "43",
+        "content-security-policy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://apis.google.com https://js.stripe.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://*.firebase.google.com https://*.stripe.com wss://*.firebaseio.com https://www.googletagmanager.com https://*.google-analytics.com; frame-src https://js.stripe.com https://*.cardcom.solutions https://*.firebaseapp.com https://accounts.google.com https://www.google.com; object-src 'none'; base-uri 'self'",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 14:46:55 GMT",
+        "etag": "W/\"2b-w3vWkp6+Mi4aefyguPYPCKJQnks\"",
+        "keep-alive": "timeout=5",
+        "permissions-policy": "camera=(), microphone=(), geolocation=()",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+        "x-client-id": "tenant-control",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY"
+      },
+      "ms": 3
+    }
+  },
+  {
+    "name": "api-normal: unknown",
+    "valid": false,
+    "evidence": {
+      "code": 200,
+      "body": {
+        "status": "ok",
+        "clientId": "tenant-control"
+      },
+      "headers": {
+        "connection": "keep-alive",
+        "content-length": "43",
+        "content-security-policy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://apis.google.com https://js.stripe.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://*.firebase.google.com https://*.stripe.com wss://*.firebaseio.com https://www.googletagmanager.com https://*.google-analytics.com; frame-src https://js.stripe.com https://*.cardcom.solutions https://*.firebaseapp.com https://accounts.google.com https://www.google.com; object-src 'none'; base-uri 'self'",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 14:46:55 GMT",
+        "etag": "W/\"2b-w3vWkp6+Mi4aefyguPYPCKJQnks\"",
+        "keep-alive": "timeout=5",
+        "permissions-policy": "camera=(), microphone=(), geolocation=()",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+        "x-client-id": "tenant-control",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY"
+      },
+      "ms": 4
+    }
+  },
+  {
+    "name": "api-normal: loader-failed",
+    "valid": false,
+    "evidence": {
+      "code": 200,
+      "body": {
+        "status": "ok",
+        "clientId": "tenant-control"
+      },
+      "headers": {
+        "connection": "keep-alive",
+        "content-length": "43",
+        "content-security-policy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://apis.google.com https://js.stripe.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://*.firebase.google.com https://*.stripe.com wss://*.firebaseio.com https://www.googletagmanager.com https://*.google-analytics.com; frame-src https://js.stripe.com https://*.cardcom.solutions https://*.firebaseapp.com https://accounts.google.com https://www.google.com; object-src 'none'; base-uri 'self'",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 14:46:55 GMT",
+        "etag": "W/\"2b-w3vWkp6+Mi4aefyguPYPCKJQnks\"",
+        "keep-alive": "timeout=5",
+        "permissions-policy": "camera=(), microphone=(), geolocation=()",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+        "x-client-id": "tenant-control",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY"
+      },
+      "ms": 3
+    }
+  },
+  {
+    "name": "api-normal: pending",
+    "valid": false,
+    "evidence": {
+      "code": 200,
+      "body": {
+        "status": "ok",
+        "clientId": "tenant-control"
+      },
+      "headers": {
+        "connection": "keep-alive",
+        "content-length": "43",
+        "content-security-policy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://apis.google.com https://js.stripe.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://*.firebase.google.com https://*.stripe.com wss://*.firebaseio.com https://www.googletagmanager.com https://*.google-analytics.com; frame-src https://js.stripe.com https://*.cardcom.solutions https://*.firebaseapp.com https://accounts.google.com https://www.google.com; object-src 'none'; base-uri 'self'",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 14:46:55 GMT",
+        "etag": "W/\"2b-w3vWkp6+Mi4aefyguPYPCKJQnks\"",
+        "keep-alive": "timeout=5",
+        "permissions-policy": "camera=(), microphone=(), geolocation=()",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+        "x-client-id": "tenant-control",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY"
+      },
+      "ms": 5
+    }
+  },
+  {
+    "name": "api-normal: pendiente compartido pending",
+    "valid": false,
+    "evidence": {
+      "before": "",
+      "after": ""
+    }
+  },
+  {
+    "name": "api-normal: live durante pending",
+    "valid": false,
+    "evidence": {
+      "code": 503,
+      "body": {
+        "error": "API bootstrap failed",
+        "message": "[Template Setup] Missing required environment variables: GEMINI_API_KEY. Set them in Vercel Project Settings → Environment Variables.",
+        "hint": "Set CLIENT_ID in Vercel Project Settings → Environment Variables."
+      },
+      "headers": {
+        "connection": "keep-alive",
+        "content-length": "257",
+        "content-security-policy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://apis.google.com https://js.stripe.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://*.firebase.google.com https://*.stripe.com wss://*.firebaseio.com https://www.googletagmanager.com https://*.google-analytics.com; frame-src https://js.stripe.com https://*.cardcom.solutions https://*.firebaseapp.com https://accounts.google.com https://www.google.com; object-src 'none'; base-uri 'self'",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 14:46:55 GMT",
+        "etag": "W/\"101-4eaIhqJQcXtvJGxg+a2k7UOgG4Y\"",
+        "keep-alive": "timeout=5",
+        "permissions-policy": "camera=(), microphone=(), geolocation=()",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+        "x-client-id": "tenant-control",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY"
+      },
+      "ms": 3
+    }
+  },
+  {
+    "name": "api-normal: ready",
+    "valid": false,
+    "evidence": {
+      "code": 200,
+      "body": {
+        "status": "ok",
+        "clientId": "tenant-control"
+      },
+      "headers": {
+        "connection": "keep-alive",
+        "content-length": "43",
+        "content-security-policy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://apis.google.com https://js.stripe.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://*.firebase.google.com https://*.stripe.com wss://*.firebaseio.com https://www.googletagmanager.com https://*.google-analytics.com; frame-src https://js.stripe.com https://*.cardcom.solutions https://*.firebaseapp.com https://accounts.google.com https://www.google.com; object-src 'none'; base-uri 'self'",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 14:46:55 GMT",
+        "etag": "W/\"2b-w3vWkp6+Mi4aefyguPYPCKJQnks\"",
+        "keep-alive": "timeout=5",
+        "permissions-policy": "camera=(), microphone=(), geolocation=()",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+        "x-client-id": "tenant-control",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY"
+      },
+      "ms": 3
+    }
+  },
+  {
+    "name": "api-normal: consumidor ready",
+    "valid": true,
+    "evidence": {
+      "expected": 200
+    }
+  },
+  {
+    "name": "api-normal: loader-pending",
+    "valid": false,
+    "evidence": {
+      "code": 200,
+      "body": {
+        "status": "ok",
+        "clientId": "tenant-control"
+      },
+      "headers": {
+        "connection": "keep-alive",
+        "content-length": "43",
+        "content-security-policy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://apis.google.com https://js.stripe.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://*.firebase.google.com https://*.stripe.com wss://*.firebaseio.com https://www.googletagmanager.com https://*.google-analytics.com; frame-src https://js.stripe.com https://*.cardcom.solutions https://*.firebaseapp.com https://accounts.google.com https://www.google.com; object-src 'none'; base-uri 'self'",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 14:46:55 GMT",
+        "etag": "W/\"2b-w3vWkp6+Mi4aefyguPYPCKJQnks\"",
+        "keep-alive": "timeout=5",
+        "permissions-policy": "camera=(), microphone=(), geolocation=()",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+        "x-client-id": "tenant-control",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY"
+      },
+      "ms": 2
+    }
+  },
+  {
+    "name": "api-normal: pendiente compartido loader-pending",
+    "valid": false,
+    "evidence": {
+      "before": "",
+      "after": ""
+    }
+  },
+  {
+    "name": "api-normal: live durante loader-pending",
+    "valid": false,
+    "evidence": {
+      "code": 503,
+      "body": {
+        "error": "API bootstrap failed",
+        "message": "[Template Setup] Missing required environment variables: GEMINI_API_KEY. Set them in Vercel Project Settings → Environment Variables.",
+        "hint": "Set CLIENT_ID in Vercel Project Settings → Environment Variables."
+      },
+      "headers": {
+        "connection": "keep-alive",
+        "content-length": "257",
+        "content-security-policy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://apis.google.com https://js.stripe.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://*.firebase.google.com https://*.stripe.com wss://*.firebaseio.com https://www.googletagmanager.com https://*.google-analytics.com; frame-src https://js.stripe.com https://*.cardcom.solutions https://*.firebaseapp.com https://accounts.google.com https://www.google.com; object-src 'none'; base-uri 'self'",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 14:46:55 GMT",
+        "etag": "W/\"101-4eaIhqJQcXtvJGxg+a2k7UOgG4Y\"",
+        "keep-alive": "timeout=5",
+        "permissions-policy": "camera=(), microphone=(), geolocation=()",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+        "x-client-id": "tenant-control",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY"
+      },
+      "ms": 3
+    }
+  },
+  {
+    "name": "api-normal: ready",
+    "valid": false,
+    "evidence": {
+      "code": 200,
+      "body": {
+        "status": "ok",
+        "clientId": "tenant-control"
+      },
+      "headers": {
+        "connection": "keep-alive",
+        "content-length": "43",
+        "content-security-policy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://apis.google.com https://js.stripe.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://*.firebase.google.com https://*.stripe.com wss://*.firebaseio.com https://www.googletagmanager.com https://*.google-analytics.com; frame-src https://js.stripe.com https://*.cardcom.solutions https://*.firebaseapp.com https://accounts.google.com https://www.google.com; object-src 'none'; base-uri 'self'",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 14:46:55 GMT",
+        "etag": "W/\"2b-w3vWkp6+Mi4aefyguPYPCKJQnks\"",
+        "keep-alive": "timeout=5",
+        "permissions-policy": "camera=(), microphone=(), geolocation=()",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+        "x-client-id": "tenant-control",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY"
+      },
+      "ms": 3
+    }
+  },
+  {
+    "name": "api-normal: consumidor ready",
+    "valid": true,
+    "evidence": {
+      "expected": 200
+    }
+  },
+  {
+    "name": "api-normal: cero intentos externos",
+    "valid": true,
+    "evidence": {
+      "audit": ""
+    }
+  },
+  {
+    "name": "api-normal: proceso terminado",
+    "valid": true,
+    "evidence": {
+      "exit": null,
+      "signal": "SIGTERM"
+    }
+  },
+  {
+    "name": "observador sensible",
+    "valid": true,
+    "evidence": {
+      "exit": 0,
+      "audit": "{\"blocked\":\"fetch\"}\n"
+    }
+  }
+]

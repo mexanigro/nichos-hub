@@ -1,0 +1,16 @@
+{
+  "syntax": true,
+  "typescript": "6.0.3",
+  "sourceFiles": [
+    {
+      "file": "src/services/tenant.ts",
+      "sha256": "04d6d1158429dae659058c83ac6f3faf6f3cdece0308a5c4a7d28b858234f2cc"
+    },
+    {
+      "file": "src/main.tsx",
+      "sha256": "4883b83ea30830dc5e0f6961d711e6f84fb6cacdbbaa52c6a25790801dee8ec3"
+    }
+  ],
+  "controlledImportsResolved": true,
+  "basicAppMount": true
+}

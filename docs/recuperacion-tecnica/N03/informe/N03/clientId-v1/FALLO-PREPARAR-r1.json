@@ -1,0 +1,6 @@
+{
+  "productChanged": false,
+  "action": "Eliminar referencia inexistente; validar copias por hash; completar preflight",
+  "error": "ENOENT copia D05/firebase-applet-config.json; ejecutar.ps1 aún no copiado",
+  "stage": "preparar-http"
+}

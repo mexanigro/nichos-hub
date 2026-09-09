@@ -1,0 +1,7 @@
+{
+  "operacion": "tsc --noEmit -p ../tsconfig.json",
+  "exit": 0,
+  "includeNuevo": "C:\\Users\\liama\\Desktop\\Nichos\\Barber-shop-template-main\\src\\vite-env.d.ts",
+  "configSha256": "3B08694F5606DC264E48BAB1CC9AEFA4B1317D94FCE1EFBBB13596AF85E3F3B4",
+  "preimagenSha256": "5865A7F3DB0C7A01B39FE1230B263D927FD358CDD382030E76832BD6CBE0433B"
+}

@@ -1,0 +1,15 @@
+const fs=require('node:fs'),p=require('node:path'),crypto=require('node:crypto');
+const d=__dirname,sha=b=>crypto.createHash('sha256').update(b).digest('hex');
+const previous=JSON.parse(fs.readFileSync(p.join(d,'COPIA-P0.json'),'utf8')).manifest;
+fs.mkdirSync(p.join(d,'mutacion/node_modules'),{recursive:true});
+const hashes=[];
+for(const file of new Map(previous.concat([{path:'tsconfig.json'}]).map(x=>[x.path,x])).values()){
+ const target=p.join(d,'mutacion',file.path),selected=['api/index.ts','src/lib/notify-agentkit.ts'].includes(file.path);
+ const origin=p.join(d,selected?'preimagenes-producto-p1':'copia',file.path),bytes=fs.readFileSync(origin);
+ fs.mkdirSync(p.dirname(target),{recursive:true});
+ if(fs.existsSync(target)){if(sha(fs.readFileSync(target))!==sha(bytes))throw Error('copia parcial distinta');}
+ else fs.writeFileSync(target,bytes,{flag:'wx'});
+ if(selected){const current=fs.readFileSync(p.join(d,'copia',file.path));if(sha(bytes)===sha(current))throw Error('mutación ausente');hashes.push({path:file.path,current:sha(current),mutant:sha(bytes)});}
+}
+fs.writeFileSync(p.join(d,'MUTACION.json'),JSON.stringify({scope:'copia mutacion; selector original restaurado en ambos archivos',hashes,productUntouched:true},null,2),{flag:'wx'});
+console.log(JSON.stringify({mutations:hashes.length}));

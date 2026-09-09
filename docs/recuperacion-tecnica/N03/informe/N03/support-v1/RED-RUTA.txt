@@ -1,0 +1,14 @@
+[
+  {
+    "criterio": "A1 registro API",
+    "ok": false
+  },
+  {
+    "criterio": "A1 registro server",
+    "ok": true
+  },
+  {
+    "criterio": "consumidor vigente",
+    "ok": true
+  }
+]

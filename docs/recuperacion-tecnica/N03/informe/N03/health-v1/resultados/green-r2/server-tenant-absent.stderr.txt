@@ -1,0 +1,2 @@
+[BUNKER] CRITICAL: CLIENT_ID is not set. Tenant scoping is broken.
+[Bootstrap] Server initialization failed

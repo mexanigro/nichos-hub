@@ -1,0 +1,20 @@
+{"name":"server-incomplete: arranque efectivo","valid":true,"evidence":{"exit":null}}
+{"name":"server-incomplete: live sin cuota ni DB","valid":true,"evidence":{"unchanged":true,"calls":4}}
+{"name":"server-incomplete: permitidas","valid":true,"evidence":{"codes":[503,503,503],"elapsed":11}}
+{"name":"server-incomplete: carga controlada","valid":true,"evidence":{"delta":""}}
+{"name":"server-incomplete: exceso429 antes de DB","valid":true,"evidence":{"codes":[429,429],"delta":""}}
+{"name":"server-incomplete: IP independiente","valid":true,"evidence":{"code":503}}
+{"name":"server-incomplete: guard funcional","valid":true,"evidence":{"code":503}}
+{"name":"server-incomplete: cero intentos externos","valid":true,"evidence":{"audit":""}}
+{"name":"server-incomplete: proceso terminado","valid":true,"evidence":{"exit":null,"signal":"SIGTERM"}}
+{"name":"api-incomplete: arranque efectivo","valid":true,"evidence":{"exit":null}}
+{"name":"api-incomplete: live sin cuota ni DB","valid":true,"evidence":{"unchanged":true,"calls":4}}
+{"name":"api-incomplete: permitidas","valid":true,"evidence":{"codes":[503,503,503],"elapsed":6}}
+{"name":"api-incomplete: carga controlada","valid":true,"evidence":{"delta":""}}
+{"name":"api-incomplete: exceso429 antes de DB","valid":true,"evidence":{"codes":[429,429],"delta":""}}
+{"name":"api-incomplete: IP independiente","valid":true,"evidence":{"code":503}}
+{"name":"api-incomplete: guard funcional","valid":true,"evidence":{"code":503}}
+{"name":"api-incomplete: cero intentos externos","valid":true,"evidence":{"audit":""}}
+{"name":"api-incomplete: proceso terminado","valid":true,"evidence":{"exit":null,"signal":"SIGTERM"}}
+{"name":"observador sensible","valid":true,"evidence":{"exit":0,"audit":"{\"blocked\":\"fetch\"}\n"}}
+{"passed":19,"failed":0}

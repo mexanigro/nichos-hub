@@ -1,0 +1,218 @@
+[
+  {
+    "name": "server arranque real",
+    "valid": true,
+    "evidence": {}
+  },
+  {
+    "name": "server provider exacto {\"status\":\"active\",\"configError\":true}",
+    "valid": true,
+    "evidence": {
+      "http": 200,
+      "body": {
+        "status": "active",
+        "active": true
+      },
+      "elapsed": 6
+    }
+  },
+  {
+    "name": "server provider exacto {\"status\":\"active\",\"provider\":\"invalid\"}",
+    "valid": true,
+    "evidence": {
+      "http": 200,
+      "body": {
+        "status": "active",
+        "active": true
+      },
+      "elapsed": 5
+    }
+  },
+  {
+    "name": "server provider exacto {\"status\":\"trial\",\"provider\":\"none\"}",
+    "valid": true,
+    "evidence": {
+      "http": 200,
+      "body": {
+        "status": "trial",
+        "active": true
+      },
+      "elapsed": 4
+    }
+  },
+  {
+    "name": "server webhook antes guard con firma rechazada",
+    "valid": true,
+    "evidence": {
+      "http": 400,
+      "body": "Webhook verification failed"
+    }
+  },
+  {
+    "name": "server status verificado con cache provider discordante",
+    "valid": true,
+    "evidence": {
+      "http": 200,
+      "body": {
+        "status": "trial",
+        "active": true
+      },
+      "elapsed": 4
+    }
+  },
+  {
+    "name": "server webhook conserva excepción con tenant suspended",
+    "valid": true,
+    "evidence": {
+      "http": 400,
+      "body": "Webhook verification failed"
+    }
+  },
+  {
+    "name": "server auth posterior preservada",
+    "valid": true,
+    "evidence": {
+      "http": 401,
+      "body": {
+        "error": "Unauthorized"
+      }
+    }
+  },
+  {
+    "name": "server límite efectivo sin consumidor nuevo",
+    "valid": true,
+    "evidence": {
+      "last": {
+        "http": 429,
+        "body": {
+          "error": "Too many requests. Please try again shortly."
+        },
+        "elapsed": 4
+      },
+      "excess": {
+        "http": 429,
+        "body": {
+          "error": "Too many requests. Please try again shortly."
+        },
+        "elapsed": 2
+      }
+    }
+  },
+  {
+    "name": "server exterior real bloqueado",
+    "valid": true,
+    "evidence": ""
+  },
+  {
+    "name": "api arranque real",
+    "valid": true,
+    "evidence": {}
+  },
+  {
+    "name": "api provider exacto {\"status\":\"active\",\"configError\":true}",
+    "valid": true,
+    "evidence": {
+      "http": 200,
+      "body": {
+        "clientId": "tenant-control",
+        "status": "active",
+        "paymentProvider": "cardcom",
+        "active": true
+      },
+      "elapsed": 10
+    }
+  },
+  {
+    "name": "api provider exacto {\"status\":\"active\",\"provider\":\"invalid\"}",
+    "valid": true,
+    "evidence": {
+      "http": 200,
+      "body": {
+        "clientId": "tenant-control",
+        "status": "active",
+        "paymentProvider": "cardcom",
+        "active": true
+      },
+      "elapsed": 6
+    }
+  },
+  {
+    "name": "api provider exacto {\"status\":\"trial\",\"provider\":\"none\"}",
+    "valid": true,
+    "evidence": {
+      "http": 200,
+      "body": {
+        "clientId": "tenant-control",
+        "status": "trial",
+        "paymentProvider": "none",
+        "active": true
+      },
+      "elapsed": 6
+    }
+  },
+  {
+    "name": "api webhook antes guard con firma rechazada",
+    "valid": true,
+    "evidence": {
+      "http": 400,
+      "body": "Webhook verification failed"
+    }
+  },
+  {
+    "name": "api status verificado con cache provider discordante",
+    "valid": true,
+    "evidence": {
+      "http": 200,
+      "body": {
+        "clientId": "tenant-control",
+        "status": "trial",
+        "paymentProvider": "none",
+        "active": true
+      },
+      "elapsed": 4
+    }
+  },
+  {
+    "name": "api webhook conserva excepción con tenant suspended",
+    "valid": true,
+    "evidence": {
+      "http": 400,
+      "body": "Webhook verification failed"
+    }
+  },
+  {
+    "name": "api auth posterior preservada",
+    "valid": true,
+    "evidence": {
+      "http": 401,
+      "body": {
+        "error": "Unauthorized"
+      }
+    }
+  },
+  {
+    "name": "api límite efectivo sin consumidor nuevo",
+    "valid": true,
+    "evidence": {
+      "last": {
+        "http": 429,
+        "body": {
+          "error": "Too many requests. Please try again shortly."
+        },
+        "elapsed": 2
+      },
+      "excess": {
+        "http": 429,
+        "body": {
+          "error": "Too many requests. Please try again shortly."
+        },
+        "elapsed": 3
+      }
+    }
+  },
+  {
+    "name": "api exterior real bloqueado",
+    "valid": true,
+    "evidence": ""
+  }
+]

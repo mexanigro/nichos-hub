@@ -1,0 +1,271 @@
+TAP version 13
+# Subtest: server.ts: válido persiste tenant y campos de servidor y devuelve id
+ok 1 - server.ts: válido persiste tenant y campos de servidor y devuelve id
+  ---
+  duration_ms: 136.7578
+  type: 'test'
+  ...
+# Subtest: server.ts: denegado no carga DB ni escribe
+ok 2 - server.ts: denegado no carga DB ni escribe
+  ---
+  duration_ms: 60.626
+  type: 'test'
+  ...
+# Subtest: server.ts: inválido "" sin persistencia
+ok 3 - server.ts: inválido "" sin persistencia
+  ---
+  duration_ms: 33.1069
+  type: 'test'
+  ...
+# Subtest: server.ts: inválido "   " sin persistencia
+ok 4 - server.ts: inválido "   " sin persistencia
+  ---
+  duration_ms: 31.7863
+  type: 'test'
+  ...
+# Subtest: server.ts: inválido 17 sin persistencia
+ok 5 - server.ts: inválido 17 sin persistencia
+  ---
+  duration_ms: 49.0121
+  type: 'test'
+  ...
+# Subtest: server.ts: inválido null sin persistencia
+ok 6 - server.ts: inválido null sin persistencia
+  ---
+  duration_ms: 26.1728
+  type: 'test'
+  ...
+# Subtest: server.ts: no-db después de auth no devuelve éxito
+ok 7 - server.ts: no-db después de auth no devuelve éxito
+  ---
+  duration_ms: 29.0175
+  type: 'test'
+  ...
+# Subtest: server.ts: write-error después de auth no devuelve éxito
+ok 8 - server.ts: write-error después de auth no devuelve éxito
+  ---
+  duration_ms: 24.5254
+  type: 'test'
+  ...
+# Subtest: server.ts: conserva límite5000
+ok 9 - server.ts: conserva límite5000
+  ---
+  duration_ms: 29.2177
+  type: 'test'
+  ...
+# Subtest: api/index.ts: válido persiste tenant y campos de servidor y devuelve id
+not ok 10 - api/index.ts: válido persiste tenant y campos de servidor y devuelve id
+  ---
+  duration_ms: 49.0657
+  type: 'test'
+  location: 'C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\support-v1\\acceptance-handler.cjs:49:3'
+  failureType: 'testCodeFailure'
+  error: 'api/index.ts: falta registro real POST /api/support/message'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  operator: '=='
+  stack: |-
+    install (C:\Users\liama\Desktop\Nichos\recuperacion-tecnica\informe\N03\support-v1\acceptance-handler.cjs:19:10)
+    invoke (C:\Users\liama\Desktop\Nichos\recuperacion-tecnica\informe\N03\support-v1\acceptance-handler.cjs:43:13)
+    TestContext.<anonymous> (C:\Users\liama\Desktop\Nichos\recuperacion-tecnica\informe\N03\support-v1\acceptance-handler.cjs:50:21)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: api/index.ts: denegado no carga DB ni escribe
+not ok 11 - api/index.ts: denegado no carga DB ni escribe
+  ---
+  duration_ms: 33.1963
+  type: 'test'
+  location: 'C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\support-v1\\acceptance-handler.cjs:58:3'
+  failureType: 'testCodeFailure'
+  error: 'api/index.ts: falta registro real POST /api/support/message'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  operator: '=='
+  stack: |-
+    install (C:\Users\liama\Desktop\Nichos\recuperacion-tecnica\informe\N03\support-v1\acceptance-handler.cjs:19:10)
+    invoke (C:\Users\liama\Desktop\Nichos\recuperacion-tecnica\informe\N03\support-v1\acceptance-handler.cjs:43:13)
+    TestContext.<anonymous> (C:\Users\liama\Desktop\Nichos\recuperacion-tecnica\informe\N03\support-v1\acceptance-handler.cjs:59:21)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: api/index.ts: inválido "" sin persistencia
+not ok 12 - api/index.ts: inválido "" sin persistencia
+  ---
+  duration_ms: 29.8269
+  type: 'test'
+  location: 'C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\support-v1\\acceptance-handler.cjs:61:48'
+  failureType: 'testCodeFailure'
+  error: 'api/index.ts: falta registro real POST /api/support/message'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  operator: '=='
+  stack: |-
+    install (C:\Users\liama\Desktop\Nichos\recuperacion-tecnica\informe\N03\support-v1\acceptance-handler.cjs:19:10)
+    invoke (C:\Users\liama\Desktop\Nichos\recuperacion-tecnica\informe\N03\support-v1\acceptance-handler.cjs:43:13)
+    TestContext.<anonymous> (C:\Users\liama\Desktop\Nichos\recuperacion-tecnica\informe\N03\support-v1\acceptance-handler.cjs:62:21)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: api/index.ts: inválido "   " sin persistencia
+not ok 13 - api/index.ts: inválido "   " sin persistencia
+  ---
+  duration_ms: 29.7669
+  type: 'test'
+  location: 'C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\support-v1\\acceptance-handler.cjs:61:48'
+  failureType: 'testCodeFailure'
+  error: 'api/index.ts: falta registro real POST /api/support/message'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  operator: '=='
+  stack: |-
+    install (C:\Users\liama\Desktop\Nichos\recuperacion-tecnica\informe\N03\support-v1\acceptance-handler.cjs:19:10)
+    invoke (C:\Users\liama\Desktop\Nichos\recuperacion-tecnica\informe\N03\support-v1\acceptance-handler.cjs:43:13)
+    TestContext.<anonymous> (C:\Users\liama\Desktop\Nichos\recuperacion-tecnica\informe\N03\support-v1\acceptance-handler.cjs:62:21)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: api/index.ts: inválido 17 sin persistencia
+not ok 14 - api/index.ts: inválido 17 sin persistencia
+  ---
+  duration_ms: 27.7261
+  type: 'test'
+  location: 'C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\support-v1\\acceptance-handler.cjs:61:48'
+  failureType: 'testCodeFailure'
+  error: 'api/index.ts: falta registro real POST /api/support/message'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  operator: '=='
+  stack: |-
+    install (C:\Users\liama\Desktop\Nichos\recuperacion-tecnica\informe\N03\support-v1\acceptance-handler.cjs:19:10)
+    invoke (C:\Users\liama\Desktop\Nichos\recuperacion-tecnica\informe\N03\support-v1\acceptance-handler.cjs:43:13)
+    TestContext.<anonymous> (C:\Users\liama\Desktop\Nichos\recuperacion-tecnica\informe\N03\support-v1\acceptance-handler.cjs:62:21)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: api/index.ts: inválido null sin persistencia
+not ok 15 - api/index.ts: inválido null sin persistencia
+  ---
+  duration_ms: 29.2601
+  type: 'test'
+  location: 'C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\support-v1\\acceptance-handler.cjs:61:48'
+  failureType: 'testCodeFailure'
+  error: 'api/index.ts: falta registro real POST /api/support/message'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  operator: '=='
+  stack: |-
+    install (C:\Users\liama\Desktop\Nichos\recuperacion-tecnica\informe\N03\support-v1\acceptance-handler.cjs:19:10)
+    invoke (C:\Users\liama\Desktop\Nichos\recuperacion-tecnica\informe\N03\support-v1\acceptance-handler.cjs:43:13)
+    TestContext.<anonymous> (C:\Users\liama\Desktop\Nichos\recuperacion-tecnica\informe\N03\support-v1\acceptance-handler.cjs:62:21)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: api/index.ts: no-db después de auth no devuelve éxito
+not ok 16 - api/index.ts: no-db después de auth no devuelve éxito
+  ---
+  duration_ms: 28.2113
+  type: 'test'
+  location: 'C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\support-v1\\acceptance-handler.cjs:64:70'
+  failureType: 'testCodeFailure'
+  error: 'api/index.ts: falta registro real POST /api/support/message'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  operator: '=='
+  stack: |-
+    install (C:\Users\liama\Desktop\Nichos\recuperacion-tecnica\informe\N03\support-v1\acceptance-handler.cjs:19:10)
+    invoke (C:\Users\liama\Desktop\Nichos\recuperacion-tecnica\informe\N03\support-v1\acceptance-handler.cjs:43:13)
+    TestContext.<anonymous> (C:\Users\liama\Desktop\Nichos\recuperacion-tecnica\informe\N03\support-v1\acceptance-handler.cjs:65:21)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: api/index.ts: write-error después de auth no devuelve éxito
+not ok 17 - api/index.ts: write-error después de auth no devuelve éxito
+  ---
+  duration_ms: 25.4731
+  type: 'test'
+  location: 'C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\support-v1\\acceptance-handler.cjs:64:70'
+  failureType: 'testCodeFailure'
+  error: 'api/index.ts: falta registro real POST /api/support/message'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  operator: '=='
+  stack: |-
+    install (C:\Users\liama\Desktop\Nichos\recuperacion-tecnica\informe\N03\support-v1\acceptance-handler.cjs:19:10)
+    invoke (C:\Users\liama\Desktop\Nichos\recuperacion-tecnica\informe\N03\support-v1\acceptance-handler.cjs:43:13)
+    TestContext.<anonymous> (C:\Users\liama\Desktop\Nichos\recuperacion-tecnica\informe\N03\support-v1\acceptance-handler.cjs:65:21)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: api/index.ts: conserva límite5000
+not ok 18 - api/index.ts: conserva límite5000
+  ---
+  duration_ms: 26.0776
+  type: 'test'
+  location: 'C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\support-v1\\acceptance-handler.cjs:67:3'
+  failureType: 'testCodeFailure'
+  error: 'api/index.ts: falta registro real POST /api/support/message'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  operator: '=='
+  stack: |-
+    install (C:\Users\liama\Desktop\Nichos\recuperacion-tecnica\informe\N03\support-v1\acceptance-handler.cjs:19:10)
+    invoke (C:\Users\liama\Desktop\Nichos\recuperacion-tecnica\informe\N03\support-v1\acceptance-handler.cjs:43:13)
+    TestContext.<anonymous> (C:\Users\liama\Desktop\Nichos\recuperacion-tecnica\informe\N03\support-v1\acceptance-handler.cjs:68:21)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..18
+# tests 18
+# suites 0
+# pass 9
+# fail 9
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 943.0233

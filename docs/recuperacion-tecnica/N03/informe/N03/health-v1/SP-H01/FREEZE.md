@@ -1,0 +1,3 @@
+# Freeze SP-H01 — P0
+Autorización expresa del usuario para ampliar únicamente el contrato health-v1 con SP-H01 y ejecutar corrección. Método r2 hash F090F5F8E5429BC7FCB74D187E105A14E3D1153D37D40B9036436B0E885B0C7D. Revisión independiente /root/refutar_soporte: sin BLOCKERS; MATERIAL sondeo sin consumir health y HEAD compartido incorporados. Perspectiva: orden efectivo y cuota/efectos, faltante en revisión anterior.
+RED runtime completo:17PASS/4FAIL, exit1; ambos GET exceso+prefijo/API producen200 con dos loader/read nuevos; HEAD exceso200 con otro loader/read. Positivos y liveness pasan. P0 alcanzado, contrato S1–S5 y A1–A6 con precisión de solicitudes permitidas congelado. Producto aún no modificado al sellar. Cuota70/74, sin resets.

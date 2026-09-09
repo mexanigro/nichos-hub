@@ -1,0 +1,44 @@
+[
+  {
+    "name": "server arranque real",
+    "valid": true,
+    "evidence": {}
+  },
+  {
+    "name": "server configuración necesaria ausente rechaza antes consumidor",
+    "valid": true,
+    "evidence": {
+      "http": 503,
+      "body": {
+        "error": "Tenant state unavailable."
+      },
+      "elapsed": 187
+    }
+  },
+  {
+    "name": "server exterior real bloqueado",
+    "valid": true,
+    "evidence": ""
+  },
+  {
+    "name": "api arranque real",
+    "valid": true,
+    "evidence": {}
+  },
+  {
+    "name": "api configuración necesaria ausente rechaza antes consumidor",
+    "valid": true,
+    "evidence": {
+      "http": 503,
+      "body": {
+        "error": "Tenant state unavailable."
+      },
+      "elapsed": 237
+    }
+  },
+  {
+    "name": "api exterior real bloqueado",
+    "valid": true,
+    "evidence": ""
+  }
+]

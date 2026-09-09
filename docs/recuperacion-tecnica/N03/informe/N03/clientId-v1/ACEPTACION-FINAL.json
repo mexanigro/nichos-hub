@@ -1,0 +1,14 @@
+{
+  "result": "GREEN",
+  "gates": 4,
+  "total": 4,
+  "functions": 142,
+  "http": 110,
+  "parity": 19,
+  "types": 0,
+  "mutationExpectedFailures": 12,
+  "conservationChecks": 366,
+  "preservedTemplate": 331,
+  "usage": 77,
+  "totalCeiling": 80
+}

@@ -1,0 +1,8 @@
+import fs from 'node:fs';
+export async function resolve(specifier, context, nextResolve) {
+ if(specifier==='firebase-admin/app'||specifier==='firebase-admin/firestore') {
+  while(fs.readFileSync(process.env.HEALTH_MODE_FILE,'utf8').trim()==='loader-pending') await new Promise(r=>setTimeout(r,20));
+  return {url:'file:///control/firebase-fixture.mjs',shortCircuit:true};
+ }
+ return nextResolve(specifier,context);
+}

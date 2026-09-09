@@ -1,0 +1,367 @@
+{
+  "passed": 24,
+  "failed": 0,
+  "results": [
+    {
+      "name": "estado \"active\"",
+      "valid": true,
+      "evidence": {
+        "http": 200,
+        "next": 1,
+        "locals": {
+          "tenantAccessStatus": "active"
+        },
+        "body": null,
+        "done": {}
+      }
+    },
+    {
+      "name": "estado \"trial\"",
+      "valid": true,
+      "evidence": {
+        "http": 200,
+        "next": 1,
+        "locals": {
+          "tenantAccessStatus": "trial"
+        },
+        "body": null,
+        "done": {}
+      }
+    },
+    {
+      "name": "estado \"maintenance\"",
+      "valid": true,
+      "evidence": {
+        "http": 200,
+        "next": 1,
+        "locals": {
+          "tenantAccessStatus": "maintenance"
+        },
+        "body": null,
+        "done": {}
+      }
+    },
+    {
+      "name": "estado \"suspended\"",
+      "valid": true,
+      "evidence": {
+        "http": 423,
+        "next": 0,
+        "locals": {},
+        "body": {
+          "error": "Tenant is suspended. Service is blocked."
+        },
+        "done": {}
+      }
+    },
+    {
+      "name": "estado \"archived\"",
+      "valid": true,
+      "evidence": {
+        "http": 423,
+        "next": 0,
+        "locals": {},
+        "body": {
+          "error": "Tenant is archived. Service is blocked."
+        },
+        "done": {}
+      }
+    },
+    {
+      "name": "estado undefined",
+      "valid": true,
+      "evidence": {
+        "http": 503,
+        "next": 0,
+        "locals": {},
+        "body": {
+          "error": "Tenant state unavailable."
+        },
+        "done": {}
+      }
+    },
+    {
+      "name": "estado null",
+      "valid": true,
+      "evidence": {
+        "http": 503,
+        "next": 0,
+        "locals": {},
+        "body": {
+          "error": "Tenant state unavailable."
+        },
+        "done": {}
+      }
+    },
+    {
+      "name": "estado \"\"",
+      "valid": true,
+      "evidence": {
+        "http": 503,
+        "next": 0,
+        "locals": {},
+        "body": {
+          "error": "Tenant state unavailable."
+        },
+        "done": {}
+      }
+    },
+    {
+      "name": "estado \"ACTIVE\"",
+      "valid": true,
+      "evidence": {
+        "http": 503,
+        "next": 0,
+        "locals": {},
+        "body": {
+          "error": "Tenant state unavailable."
+        },
+        "done": {}
+      }
+    },
+    {
+      "name": "estado \" active \"",
+      "valid": true,
+      "evidence": {
+        "http": 503,
+        "next": 0,
+        "locals": {},
+        "body": {
+          "error": "Tenant state unavailable."
+        },
+        "done": {}
+      }
+    },
+    {
+      "name": "estado 42",
+      "valid": true,
+      "evidence": {
+        "http": 503,
+        "next": 0,
+        "locals": {},
+        "body": {
+          "error": "Tenant state unavailable."
+        },
+        "done": {}
+      }
+    },
+    {
+      "name": "estado {}",
+      "valid": true,
+      "evidence": {
+        "http": 503,
+        "next": 0,
+        "locals": {},
+        "body": {
+          "error": "Tenant state unavailable."
+        },
+        "done": {}
+      }
+    },
+    {
+      "name": "estado \"unknown\"",
+      "valid": true,
+      "evidence": {
+        "http": 503,
+        "next": 0,
+        "locals": {},
+        "body": {
+          "error": "Tenant state unavailable."
+        },
+        "done": {}
+      }
+    },
+    {
+      "name": "fallo no cachea y recuperación",
+      "valid": true,
+      "evidence": {
+        "a": {
+          "http": 503,
+          "next": 0,
+          "locals": {},
+          "body": {
+            "error": "Tenant state unavailable."
+          },
+          "done": {}
+        },
+        "b": {
+          "http": 200,
+          "next": 1,
+          "locals": {
+            "tenantAccessStatus": "trial"
+          },
+          "body": null,
+          "done": {}
+        }
+      }
+    },
+    {
+      "name": "cache válida active",
+      "valid": true,
+      "evidence": {
+        "reads": 1,
+        "b": {
+          "http": 200,
+          "next": 1,
+          "locals": {
+            "tenantAccessStatus": "active"
+          },
+          "body": null,
+          "done": {}
+        }
+      }
+    },
+    {
+      "name": "frontera T0+30000 y fallo active",
+      "valid": true,
+      "evidence": {
+        "reads": 2,
+        "d": {
+          "http": 503,
+          "next": 0,
+          "locals": {},
+          "body": {
+            "error": "Tenant state unavailable."
+          },
+          "done": {}
+        }
+      }
+    },
+    {
+      "name": "cache válida suspended",
+      "valid": true,
+      "evidence": {
+        "reads": 1,
+        "b": {
+          "http": 423,
+          "next": 0,
+          "locals": {},
+          "body": {
+            "error": "Tenant is suspended. Service is blocked."
+          },
+          "done": {}
+        }
+      }
+    },
+    {
+      "name": "frontera T0+30000 y fallo suspended",
+      "valid": true,
+      "evidence": {
+        "reads": 2,
+        "d": {
+          "http": 503,
+          "next": 0,
+          "locals": {},
+          "body": {
+            "error": "Tenant state unavailable."
+          },
+          "done": {}
+        }
+      }
+    },
+    {
+      "name": "plazo compartido y un lector",
+      "valid": true,
+      "evidence": {
+        "a": {
+          "http": 503,
+          "next": 0,
+          "locals": {},
+          "body": {
+            "error": "Tenant state unavailable."
+          },
+          "done": {}
+        },
+        "b": {
+          "http": 503,
+          "next": 0,
+          "locals": {},
+          "body": {
+            "error": "Tenant state unavailable."
+          },
+          "done": {}
+        },
+        "reads": 1
+      }
+    },
+    {
+      "name": "timeout conserva flight sin nueva lectura",
+      "valid": true,
+      "evidence": {
+        "http": 503,
+        "next": 0,
+        "locals": {},
+        "body": {
+          "error": "Tenant state unavailable."
+        },
+        "done": {}
+      }
+    },
+    {
+      "name": "tardía no cachea ni habilita",
+      "valid": true,
+      "evidence": {
+        "e": {
+          "http": 200,
+          "next": 1,
+          "locals": {
+            "tenantAccessStatus": "maintenance"
+          },
+          "body": null,
+          "done": {}
+        },
+        "reads": 2
+      }
+    },
+    {
+      "name": "nueva lectura recupera",
+      "valid": true,
+      "evidence": {
+        "http": 200,
+        "next": 1,
+        "locals": {
+          "tenantAccessStatus": "maintenance"
+        },
+        "body": null,
+        "done": {}
+      }
+    },
+    {
+      "name": "resolución tardía antes del timer rechazada",
+      "valid": true,
+      "evidence": {
+        "http": 503,
+        "next": 0,
+        "locals": {},
+        "body": {
+          "error": "Tenant state unavailable."
+        },
+        "done": {}
+      }
+    },
+    {
+      "name": "concurrencia bloqueada comparte lectura",
+      "valid": true,
+      "evidence": {
+        "a": {
+          "http": 423,
+          "next": 0,
+          "locals": {},
+          "body": {
+            "error": "Tenant is archived. Service is blocked."
+          },
+          "done": {}
+        },
+        "b": {
+          "http": 423,
+          "next": 0,
+          "locals": {},
+          "body": {
+            "error": "Tenant is archived. Service is blocked."
+          },
+          "done": {}
+        }
+      }
+    }
+  ]
+}

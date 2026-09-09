@@ -1,0 +1,73 @@
+const { test } = require('node:test');
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const vm = require('node:vm');
+const repo = process.env.N03_REPO || 'C:/Users/liama/Desktop/Nichos/Barber-shop-template-main';
+const ts = require(path.join(repo, 'node_modules/typescript/lib/typescript.js'));
+function js(source) { return ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } }).outputText; }
+function install(runtime, mode) {
+  const source = fs.readFileSync(path.join(repo, runtime), 'utf8');
+  const ast = ts.createSourceFile(runtime, source, ts.ScriptTarget.Latest, true);
+  let route, sanitizer;
+  function visit(n) {
+    if (ts.isCallExpression(n) && n.expression.getText(ast) === 'app.post' && n.arguments[0]?.text === '/api/support/message') route = n.getText(ast);
+    if (ts.isFunctionDeclaration(n) && n.name?.text === 'sanitizeText') sanitizer = n.getText(ast);
+    ts.forEachChild(n, visit);
+  }
+  visit(ast);
+  assert.ok(route, `${runtime}: falta registro real POST /api/support/message`);
+  const writes = []; let loads = 0, handler;
+  const db = { collection(name) { assert.equal(name, 'provider_messages'); return { async add(data) {
+    if (mode === 'write-error') throw Error('fallo preparado');
+    writes.push(data); return { id: 'support-id' };
+  } }; } };
+  const context = {
+    exports: {}, console: { error() {} }, CLIENT_ID: 'tenant-control',
+    requireAdminAuth: async (req, res) => {
+      if (mode === 'denied') { res.status(401).json({ error: 'Unauthorized' }); return null; }
+      return { email: 'owner@control.invalid', uid: 'uid', role: 'owner' };
+    },
+    getAdminDb: async () => { loads++; return mode === 'no-db' ? null : db; },
+    loadAdminFirestore: async () => { loads++; return mode === 'no-db' ? null : { db }; },
+    app: { post(_path, fn) { handler = fn; } },
+  };
+  const shared = path.join(repo, 'src/lib/api/support-handler.ts');
+  if (fs.existsSync(shared)) {
+    vm.runInNewContext(js(fs.readFileSync(shared, 'utf8')), context, { timeout: 1000 });
+    context.createSupportHandler = context.exports.createSupportHandler;
+  }
+  vm.runInNewContext(js(sanitizer + '\n' + route), context, { timeout: 1000 });
+  return { handler, writes, loads: () => loads };
+}
+async function invoke(runtime, mode = 'ok', body = { message: '  hola   mundo  ', clientId: 'AJENO', sender: 'owner', status: 'read' }) {
+  const c = install(runtime, mode);
+  const res = { code: 200, data: null, status(code) { this.code = code; return this; }, json(data) { this.data = data; return this; } };
+  await c.handler({ body }, res);
+  return { ...c, res };
+}
+for (const runtime of ['server.ts', 'api/index.ts']) {
+  test(`${runtime}: válido persiste tenant y campos de servidor y devuelve id`, async () => {
+    const c = await invoke(runtime);
+    assert.equal(c.res.code, 200); assert.equal(c.res.data.id, 'support-id'); assert.equal(c.res.data.success, true);
+    assert.equal(c.writes.length, 1);
+    const row = c.writes[0];
+    assert.equal(row.message, 'hola mundo'); assert.equal(row.clientId, 'tenant-control');
+    assert.equal(row.businessName, 'tenant-control'); assert.equal(row.sender, 'client'); assert.equal(row.status, 'new');
+    assert.equal(Object.prototype.toString.call(row.createdAt), '[object Date]');
+  });
+  test(`${runtime}: denegado no carga DB ni escribe`, async () => {
+    const c = await invoke(runtime, 'denied'); assert.equal(c.res.code, 401); assert.equal(c.loads(), 0); assert.equal(c.writes.length, 0);
+  });
+  for (const message of ['', '   ', 17, null]) test(`${runtime}: inválido ${JSON.stringify(message)} sin persistencia`, async () => {
+    const c = await invoke(runtime, 'ok', { message }); assert.equal(c.res.code, 400); assert.equal(c.loads(), 0); assert.equal(c.writes.length, 0);
+  });
+  for (const [mode, code] of [['no-db', 503], ['write-error', 500]]) test(`${runtime}: ${mode} después de auth no devuelve éxito`, async () => {
+    const c = await invoke(runtime, mode); assert.equal(c.res.code, code); assert.ok(c.res.data.error); assert.ok(!c.res.data.id); assert.equal(c.writes.length, 0);
+  });
+  test(`${runtime}: conserva límite5000`, async () => {
+    const c = await invoke(runtime, 'ok', { message: 'a'.repeat(5001) }); assert.equal(c.writes[0].message.length, 5000);
+  });
+}
+// Registro real por AST, handler real, auth/DB/res simulados. NO HTTP/bootstrap/SDK.
+module.exports = { install };

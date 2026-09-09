@@ -1,0 +1,796 @@
+[
+  {
+    "name": "server arranque real",
+    "valid": true,
+    "evidence": {}
+  },
+  {
+    "name": "server active",
+    "valid": true,
+    "evidence": {
+      "http": 503,
+      "body": {
+        "error": "AI service is disabled."
+      },
+      "elapsed": 418
+    }
+  },
+  {
+    "name": "server status público active",
+    "valid": true,
+    "evidence": {
+      "http": 200,
+      "body": {
+        "status": "active",
+        "active": true
+      },
+      "elapsed": 5
+    }
+  },
+  {
+    "name": "server trial",
+    "valid": true,
+    "evidence": {
+      "http": 503,
+      "body": {
+        "error": "AI service is disabled."
+      },
+      "elapsed": 7
+    }
+  },
+  {
+    "name": "server status público trial",
+    "valid": true,
+    "evidence": {
+      "http": 200,
+      "body": {
+        "status": "trial",
+        "active": true
+      },
+      "elapsed": 4
+    }
+  },
+  {
+    "name": "server maintenance",
+    "valid": true,
+    "evidence": {
+      "http": 503,
+      "body": {
+        "error": "AI service is disabled."
+      },
+      "elapsed": 6
+    }
+  },
+  {
+    "name": "server status público maintenance",
+    "valid": true,
+    "evidence": {
+      "http": 200,
+      "body": {
+        "status": "maintenance",
+        "active": true
+      },
+      "elapsed": 4
+    }
+  },
+  {
+    "name": "server suspended",
+    "valid": true,
+    "evidence": {
+      "http": 423,
+      "body": {
+        "error": "Tenant is suspended. Service is blocked."
+      },
+      "elapsed": 6
+    }
+  },
+  {
+    "name": "server archived",
+    "valid": true,
+    "evidence": {
+      "http": 423,
+      "body": {
+        "error": "Tenant is archived. Service is blocked."
+      },
+      "elapsed": 5
+    }
+  },
+  {
+    "name": "server missing",
+    "valid": true,
+    "evidence": {
+      "http": 503,
+      "body": {
+        "error": "Tenant state unavailable."
+      },
+      "elapsed": 6
+    }
+  },
+  {
+    "name": "server absent",
+    "valid": true,
+    "evidence": {
+      "http": 503,
+      "body": {
+        "error": "Tenant state unavailable."
+      },
+      "elapsed": 5
+    }
+  },
+  {
+    "name": "server null",
+    "valid": true,
+    "evidence": {
+      "http": 503,
+      "body": {
+        "error": "Tenant state unavailable."
+      },
+      "elapsed": 8
+    }
+  },
+  {
+    "name": "server invalid",
+    "valid": true,
+    "evidence": {
+      "http": 503,
+      "body": {
+        "error": "Tenant state unavailable."
+      },
+      "elapsed": 5
+    }
+  },
+  {
+    "name": "server empty",
+    "valid": true,
+    "evidence": {
+      "http": 503,
+      "body": {
+        "error": "Tenant state unavailable."
+      },
+      "elapsed": 5
+    }
+  },
+  {
+    "name": "server unknown",
+    "valid": true,
+    "evidence": {
+      "http": 503,
+      "body": {
+        "error": "Tenant state unavailable."
+      },
+      "elapsed": 4
+    }
+  },
+  {
+    "name": "server error",
+    "valid": true,
+    "evidence": {
+      "http": 503,
+      "body": {
+        "error": "Tenant state unavailable."
+      },
+      "elapsed": 5
+    }
+  },
+  {
+    "name": "server config optional",
+    "valid": true,
+    "evidence": {
+      "http": 503,
+      "body": {
+        "error": "AI service is disabled."
+      },
+      "elapsed": 5
+    }
+  },
+  {
+    "name": "server status público config optional",
+    "valid": true,
+    "evidence": {
+      "http": 200,
+      "body": {
+        "status": "active",
+        "active": true
+      },
+      "elapsed": 2
+    }
+  },
+  {
+    "name": "server sdk failure",
+    "valid": true,
+    "evidence": {
+      "http": 503,
+      "body": {
+        "error": "Tenant state unavailable."
+      },
+      "elapsed": 5
+    }
+  },
+  {
+    "name": "server sdk absent",
+    "valid": true,
+    "evidence": {
+      "http": 503,
+      "body": {
+        "error": "Tenant state unavailable."
+      },
+      "elapsed": 4
+    }
+  },
+  {
+    "name": "server cache vigente no relee",
+    "valid": true,
+    "evidence": {
+      "fresh": {
+        "http": 503,
+        "body": {
+          "error": "AI service is disabled."
+        },
+        "elapsed": 4
+      },
+      "reads": 14
+    }
+  },
+  {
+    "name": "server cache vencida suspensión",
+    "valid": true,
+    "evidence": {
+      "http": 423,
+      "body": {
+        "error": "Tenant is suspended. Service is blocked."
+      },
+      "elapsed": 3
+    }
+  },
+  {
+    "name": "server vencida falla sin permiso",
+    "valid": true,
+    "evidence": {
+      "http": 503,
+      "body": {
+        "error": "Tenant state unavailable."
+      },
+      "elapsed": 5
+    }
+  },
+  {
+    "name": "server deadline completo compartido delay",
+    "valid": true,
+    "evidence": {
+      "pair": [
+        {
+          "http": 503,
+          "body": {
+            "error": "Tenant state unavailable."
+          },
+          "elapsed": 1504
+        },
+        {
+          "http": 503,
+          "body": {
+            "error": "Tenant state unavailable."
+          },
+          "elapsed": 255
+        }
+      ]
+    }
+  },
+  {
+    "name": "server pendiente no reinicia delay",
+    "valid": true,
+    "evidence": {
+      "third": {
+        "http": 503,
+        "body": {
+          "error": "Tenant state unavailable."
+        },
+        "elapsed": 5
+      }
+    }
+  },
+  {
+    "name": "server resultado tardío no habilita delay",
+    "valid": true,
+    "evidence": {
+      "http": 423,
+      "body": {
+        "error": "Tenant is suspended. Service is blocked."
+      },
+      "elapsed": 4
+    }
+  },
+  {
+    "name": "server deadline completo compartido sdkDelay",
+    "valid": true,
+    "evidence": {
+      "pair": [
+        {
+          "http": 503,
+          "body": {
+            "error": "Tenant state unavailable."
+          },
+          "elapsed": 1504
+        },
+        {
+          "http": 503,
+          "body": {
+            "error": "Tenant state unavailable."
+          },
+          "elapsed": 254
+        }
+      ]
+    }
+  },
+  {
+    "name": "server pendiente no reinicia sdkDelay",
+    "valid": true,
+    "evidence": {
+      "third": {
+        "http": 503,
+        "body": {
+          "error": "Tenant state unavailable."
+        },
+        "elapsed": 3
+      }
+    }
+  },
+  {
+    "name": "server resultado tardío no habilita sdkDelay",
+    "valid": true,
+    "evidence": {
+      "http": 423,
+      "body": {
+        "error": "Tenant is suspended. Service is blocked."
+      },
+      "elapsed": 5
+    }
+  },
+  {
+    "name": "server origen antes de consumidor",
+    "valid": true,
+    "evidence": {
+      "http": 403,
+      "body": {
+        "error": "Untrusted origin."
+      },
+      "elapsed": 2
+    }
+  },
+  {
+    "name": "server salud independiente",
+    "valid": true,
+    "evidence": {
+      "live": {
+        "http": 200,
+        "body": {
+          "status": "ok"
+        },
+        "elapsed": 2
+      },
+      "health": {
+        "http": 503,
+        "body": {
+          "status": "unavailable"
+        },
+        "elapsed": 4
+      }
+    }
+  },
+  {
+    "name": "server exterior real bloqueado",
+    "valid": true,
+    "evidence": ""
+  },
+  {
+    "name": "api arranque real",
+    "valid": true,
+    "evidence": {}
+  },
+  {
+    "name": "api active",
+    "valid": true,
+    "evidence": {
+      "http": 503,
+      "body": {
+        "error": "AI service is disabled."
+      },
+      "elapsed": 356
+    }
+  },
+  {
+    "name": "api status público active",
+    "valid": true,
+    "evidence": {
+      "http": 200,
+      "body": {
+        "clientId": "tenant-control",
+        "status": "active",
+        "paymentProvider": "stripe",
+        "active": true
+      },
+      "elapsed": 4
+    }
+  },
+  {
+    "name": "api trial",
+    "valid": true,
+    "evidence": {
+      "http": 503,
+      "body": {
+        "error": "AI service is disabled."
+      },
+      "elapsed": 5
+    }
+  },
+  {
+    "name": "api status público trial",
+    "valid": true,
+    "evidence": {
+      "http": 200,
+      "body": {
+        "clientId": "tenant-control",
+        "status": "trial",
+        "paymentProvider": "stripe",
+        "active": true
+      },
+      "elapsed": 3
+    }
+  },
+  {
+    "name": "api maintenance",
+    "valid": true,
+    "evidence": {
+      "http": 503,
+      "body": {
+        "error": "AI service is disabled."
+      },
+      "elapsed": 6
+    }
+  },
+  {
+    "name": "api status público maintenance",
+    "valid": true,
+    "evidence": {
+      "http": 200,
+      "body": {
+        "clientId": "tenant-control",
+        "status": "maintenance",
+        "paymentProvider": "stripe",
+        "active": true
+      },
+      "elapsed": 3
+    }
+  },
+  {
+    "name": "api suspended",
+    "valid": true,
+    "evidence": {
+      "http": 423,
+      "body": {
+        "error": "Tenant is suspended. Service is blocked."
+      },
+      "elapsed": 5
+    }
+  },
+  {
+    "name": "api archived",
+    "valid": true,
+    "evidence": {
+      "http": 423,
+      "body": {
+        "error": "Tenant is archived. Service is blocked."
+      },
+      "elapsed": 6
+    }
+  },
+  {
+    "name": "api missing",
+    "valid": true,
+    "evidence": {
+      "http": 503,
+      "body": {
+        "error": "Tenant state unavailable."
+      },
+      "elapsed": 6
+    }
+  },
+  {
+    "name": "api absent",
+    "valid": true,
+    "evidence": {
+      "http": 503,
+      "body": {
+        "error": "Tenant state unavailable."
+      },
+      "elapsed": 4
+    }
+  },
+  {
+    "name": "api null",
+    "valid": true,
+    "evidence": {
+      "http": 503,
+      "body": {
+        "error": "Tenant state unavailable."
+      },
+      "elapsed": 4
+    }
+  },
+  {
+    "name": "api invalid",
+    "valid": true,
+    "evidence": {
+      "http": 503,
+      "body": {
+        "error": "Tenant state unavailable."
+      },
+      "elapsed": 5
+    }
+  },
+  {
+    "name": "api empty",
+    "valid": true,
+    "evidence": {
+      "http": 503,
+      "body": {
+        "error": "Tenant state unavailable."
+      },
+      "elapsed": 4
+    }
+  },
+  {
+    "name": "api unknown",
+    "valid": true,
+    "evidence": {
+      "http": 503,
+      "body": {
+        "error": "Tenant state unavailable."
+      },
+      "elapsed": 4
+    }
+  },
+  {
+    "name": "api error",
+    "valid": true,
+    "evidence": {
+      "http": 503,
+      "body": {
+        "error": "Tenant state unavailable."
+      },
+      "elapsed": 5
+    }
+  },
+  {
+    "name": "api config optional",
+    "valid": true,
+    "evidence": {
+      "http": 503,
+      "body": {
+        "error": "AI service is disabled."
+      },
+      "elapsed": 4
+    }
+  },
+  {
+    "name": "api status público config optional",
+    "valid": false,
+    "evidence": {
+      "http": 200,
+      "body": {
+        "clientId": "tenant-control",
+        "status": "active",
+        "paymentProvider": "cardcom",
+        "active": true
+      },
+      "elapsed": 3
+    }
+  },
+  {
+    "name": "api token absent",
+    "valid": true,
+    "evidence": {
+      "http": 503,
+      "body": {
+        "error": "Tenant state unavailable."
+      },
+      "elapsed": 4
+    }
+  },
+  {
+    "name": "api http403",
+    "valid": true,
+    "evidence": {
+      "http": 503,
+      "body": {
+        "error": "Tenant state unavailable."
+      },
+      "elapsed": 3
+    }
+  },
+  {
+    "name": "api http500",
+    "valid": true,
+    "evidence": {
+      "http": 503,
+      "body": {
+        "error": "Tenant state unavailable."
+      },
+      "elapsed": 4
+    }
+  },
+  {
+    "name": "api json failure",
+    "valid": true,
+    "evidence": {
+      "http": 503,
+      "body": {
+        "error": "Tenant state unavailable."
+      },
+      "elapsed": 4
+    }
+  },
+  {
+    "name": "api cache vigente no relee",
+    "valid": true,
+    "evidence": {
+      "fresh": {
+        "http": 503,
+        "body": {
+          "error": "AI service is disabled."
+        },
+        "elapsed": 2
+      },
+      "reads": 21
+    }
+  },
+  {
+    "name": "api cache vencida suspensión",
+    "valid": true,
+    "evidence": {
+      "http": 423,
+      "body": {
+        "error": "Tenant is suspended. Service is blocked."
+      },
+      "elapsed": 3
+    }
+  },
+  {
+    "name": "api vencida falla sin permiso",
+    "valid": true,
+    "evidence": {
+      "http": 503,
+      "body": {
+        "error": "Tenant state unavailable."
+      },
+      "elapsed": 3
+    }
+  },
+  {
+    "name": "api deadline completo compartido delay",
+    "valid": true,
+    "evidence": {
+      "pair": [
+        {
+          "http": 503,
+          "body": {
+            "error": "Tenant state unavailable."
+          },
+          "elapsed": 1504
+        },
+        {
+          "http": 503,
+          "body": {
+            "error": "Tenant state unavailable."
+          },
+          "elapsed": 254
+        }
+      ]
+    }
+  },
+  {
+    "name": "api pendiente no reinicia delay",
+    "valid": true,
+    "evidence": {
+      "third": {
+        "http": 503,
+        "body": {
+          "error": "Tenant state unavailable."
+        },
+        "elapsed": 3
+      }
+    }
+  },
+  {
+    "name": "api resultado tardío no habilita delay",
+    "valid": true,
+    "evidence": {
+      "http": 423,
+      "body": {
+        "error": "Tenant is suspended. Service is blocked."
+      },
+      "elapsed": 4
+    }
+  },
+  {
+    "name": "api deadline completo compartido tokenDelay",
+    "valid": true,
+    "evidence": {
+      "pair": [
+        {
+          "http": 503,
+          "body": {
+            "error": "Tenant state unavailable."
+          },
+          "elapsed": 1504
+        },
+        {
+          "http": 503,
+          "body": {
+            "error": "Tenant state unavailable."
+          },
+          "elapsed": 255
+        }
+      ]
+    }
+  },
+  {
+    "name": "api pendiente no reinicia tokenDelay",
+    "valid": true,
+    "evidence": {
+      "third": {
+        "http": 503,
+        "body": {
+          "error": "Tenant state unavailable."
+        },
+        "elapsed": 6
+      }
+    }
+  },
+  {
+    "name": "api resultado tardío no habilita tokenDelay",
+    "valid": true,
+    "evidence": {
+      "http": 423,
+      "body": {
+        "error": "Tenant is suspended. Service is blocked."
+      },
+      "elapsed": 4
+    }
+  },
+  {
+    "name": "api origen antes de consumidor",
+    "valid": true,
+    "evidence": {
+      "http": 403,
+      "body": {
+        "error": "Untrusted origin."
+      },
+      "elapsed": 3
+    }
+  },
+  {
+    "name": "api salud independiente",
+    "valid": true,
+    "evidence": {
+      "live": {
+        "http": 200,
+        "body": {
+          "status": "ok"
+        },
+        "elapsed": 2
+      },
+      "health": {
+        "http": 503,
+        "body": {
+          "status": "unavailable"
+        },
+        "elapsed": 2
+      }
+    }
+  },
+  {
+    "name": "api exterior real bloqueado",
+    "valid": true,
+    "evidence": ""
+  }
+]

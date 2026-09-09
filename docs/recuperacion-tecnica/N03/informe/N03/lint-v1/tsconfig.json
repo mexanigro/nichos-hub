@@ -1,0 +1,13 @@
+{
+  "extends": "C:/Users/liama/Desktop/Nichos-hub/tsconfig.json",
+  "include": [
+    "C:/Users/liama/Desktop/Nichos-hub/src/app/api/api-costs/fetch/route.ts",
+    "C:/Users/liama/Desktop/Nichos-hub/src/app/api/appointments/[id]/cancel/route.ts",
+    "C:/Users/liama/Desktop/Nichos-hub/src/app/api/prospects/follow-up/route.ts",
+    "C:/Users/liama/Desktop/Nichos-hub/src/app/api/upload/[clientId]/route.ts",
+    "C:/Users/liama/Desktop/Nichos-hub/src/lib/contracts.ts",
+    "C:/Users/liama/Desktop/Nichos-hub/src/lib/pricing.ts",
+    "C:/Users/liama/Desktop/Nichos-hub/next-env.d.ts"
+  ],
+  "exclude": []
+}

@@ -1,0 +1,18 @@
+{"name":"server-no-keys: arranque efectivo","valid":true,"evidence":{"exit":null}}
+{"name":"server-no-keys: cero intentos IA sin habilitación","valid":true,"evidence":{"status":503,"audit":""}}
+{"name":"server-no-keys: cero intentos externos","valid":true,"evidence":{"audit":""}}
+{"name":"server-no-keys: proceso terminado","valid":true,"evidence":{"exit":null,"signal":"SIGTERM"}}
+{"name":"server-keys: arranque efectivo","valid":true,"evidence":{"exit":null}}
+{"name":"server-keys: cero intentos IA sin habilitación","valid":false,"evidence":{"status":502,"audit":"{\"blocked\":\"fetch:generativelanguage.googleapis.com\"}\n"}}
+{"name":"server-keys: cero intentos externos","valid":false,"evidence":{"audit":"{\"blocked\":\"fetch:generativelanguage.googleapis.com\"}\n"}}
+{"name":"server-keys: proceso terminado","valid":true,"evidence":{"exit":null,"signal":"SIGTERM"}}
+{"name":"api-no-keys: arranque efectivo","valid":true,"evidence":{"exit":null}}
+{"name":"api-no-keys: cero intentos IA sin habilitación","valid":true,"evidence":{"status":503,"audit":""}}
+{"name":"api-no-keys: cero intentos externos","valid":true,"evidence":{"audit":""}}
+{"name":"api-no-keys: proceso terminado","valid":true,"evidence":{"exit":null,"signal":"SIGTERM"}}
+{"name":"api-keys: arranque efectivo","valid":true,"evidence":{"exit":null}}
+{"name":"api-keys: cero intentos IA sin habilitación","valid":false,"evidence":{"status":502,"audit":"{\"blocked\":\"fetch:generativelanguage.googleapis.com\"}\n"}}
+{"name":"api-keys: cero intentos externos","valid":false,"evidence":{"audit":"{\"blocked\":\"fetch:generativelanguage.googleapis.com\"}\n"}}
+{"name":"api-keys: proceso terminado","valid":true,"evidence":{"exit":null,"signal":"SIGTERM"}}
+{"name":"observador sensible","valid":true,"evidence":{"exit":0,"audit":"{\"blocked\":\"fetch:outside.invalid\"}\n"}}
+{"passed":13,"failed":4}

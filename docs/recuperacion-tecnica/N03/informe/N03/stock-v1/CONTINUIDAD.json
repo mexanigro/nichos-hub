@@ -1,0 +1,27 @@
+[
+  {
+    "path": "server.ts",
+    "sha256": "EC7759885150C3A89F7A8A4907517E4BC591C7999E74C89EFD63DEA0C5BD7E52",
+    "igual": true
+  },
+  {
+    "path": "api/index.ts",
+    "sha256": "9A4439676288E6A970D89FB820E9D6A5485676F47AA55C76411B997C09E9E585",
+    "igual": true
+  },
+  {
+    "path": "src/services/support.ts",
+    "sha256": "994F9C859F652A44F767C9410A9BAECA78D47879B93EE98504BC12CF2205E1F9",
+    "igual": true
+  },
+  {
+    "path": "src/lib/api/support-handler.ts",
+    "sha256": "247B2B1C84548124972D6B0C19407C54771A94006ECF5F11CB7EF196E27C8B86",
+    "igual": true
+  },
+  {
+    "path": "tests/api-parity.test.ts",
+    "sha256": "30CFD35313887975865DA532C8B79BE574B0BE71FB7964F2E718FAB4B01D9520",
+    "igual": true
+  }
+]

@@ -1,0 +1,3 @@
+docker: Error response from daemon: failed to create task for container: failed to create shim task: OCI runtime create failed: runc create failed: unable to start container process: error during container init: error mounting "/run/desktop/mnt/host/c/Users/liama/Desktop/Nichos/Barber-shop-template-main/node_modules" to rootfs at "/template/node_modules": create mountpoint for /template/node_modules mount: make mountpoint "/template/node_modules": mkdirat /var/lib/docker/rootfs/overlayfs/6239f60c0a741ca840e1743fb52d9269efdb25d4a4913ba43d299128b9628deb/template/node_modules: read-only file system
+
+Run 'docker run --help' for more information

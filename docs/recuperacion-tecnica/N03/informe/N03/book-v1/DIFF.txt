@@ -1,0 +1,141 @@
+diff --git a/api/index.ts b/api/index.ts
+index b176e41..32286e1 100644
+--- a/api/index.ts
++++ b/api/index.ts
+@@ -1,3 +1,4 @@
++import { createBookingHandler } from "../src/lib/api/booking-handler.js";
+ /**
+  * Vercel Serverless Function.
+  *
+@@ -5182,6 +5183,8 @@ ${toolsFragment}`;
+     res.json({ available: true, date, serviceId });
+   });
+ 
++  app.post("/api/book", createBookingHandler({ clientId: CLIENT_ID, loadContext: loadAdminFirestore }));
++
+   app.post("/api/bookings/validate", async (req, res) => {
+     const { serviceId, date, time, clientName, clientPhone, duration } = req.body ?? {};
+     const errors: string[] = [];
+diff --git a/server.ts b/server.ts
+index ca72b64..b41fb27 100644
+--- a/server.ts
++++ b/server.ts
+@@ -1,3 +1,4 @@
++import { createBookingHandler } from "./src/lib/api/booking-handler.js";
+ import express from "express";
+ import path from "path";
+ import { fileURLToPath } from "url";
+@@ -113,8 +114,6 @@ import {
+   verifyFirebaseIdToken,
+ } from "./src/lib/api/admin-auth";
+ import {
+-  BookingConflictError,
+-  createBookingWithManifest,
+   isValidBookingDate,
+   isValidBookingDuration,
+   isValidBookingTime,
+@@ -3738,83 +3737,15 @@ BOOKING — CRITICAL RULES:
+ 
+   // C-3 FIX: Public booking goes through server-side endpoint with Admin SDK.
+   // Firestore rules no longer allow unauthenticated appointment/manifest creation.
+-  app.post("/api/book", async (req, res) => {
+-    try {
+-      const body = req.body ?? {};
+-      const customerName = sanitizeText(body.customerName, 120);
+-      const customerEmail = sanitizeText(body.customerEmail, 200).toLowerCase();
+-      const customerPhone = sanitizeText(body.customerPhone, 40);
+-      const serviceId = sanitizeText(body.serviceId, 120);
+-      const staffId = sanitizeText(body.staffId, 120);
+-      const date = sanitizeText(body.date, 20);
+-      const time = sanitizeText(body.time, 10);
+-      const duration = typeof body.duration === "number" && Number.isFinite(body.duration) ? body.duration : 0;
+-      const status = body.status === "confirmed" ? "confirmed" : "pending";
+-      const paymentStatus = body.paymentStatus === "pending" ? "pending" : undefined;
+-
+-      if (!customerName || !customerEmail || !serviceId || !staffId || !date || !time || !duration) {
+-        return res.status(400).json({ error: "Missing required booking fields." });
+-      }
+-      if (!isValidBookingDuration(duration)) {
+-        return res.status(400).json({ error: "duration must be an integer between 5 and 480 minutes." });
+-      }
+-      if (!isValidEmail(customerEmail)) {
+-        return res.status(400).json({ error: "Invalid email." });
+-      }
+-      if (!isValidBookingDate(date) || !isValidBookingTime(time)) {
+-        return res.status(400).json({ error: "Invalid date or time format." });
+-      }
+-
++  app.post("/api/book", createBookingHandler({
++    clientId: CLIENT_ID,
++    loadContext: async () => {
+       const db = await getAdminDb();
+-      if (!db) {
+-        return res.status(503).json({ error: "Database not available." });
+-      }
+-
++      if (!db) return null;
+       const { FieldValue } = await import("firebase-admin/firestore");
+-      const appointmentFields: Record<string, unknown> = {
+-        customerName, customerEmail, customerPhone,
+-        serviceId, status,
+-      };
+-      if (paymentStatus) appointmentFields.paymentStatus = paymentStatus;
+-
+-      const appointmentId = await createBookingWithManifest({
+-        db, FieldValue,
+-        clientId: CLIENT_ID,
+-        staffId, date, time, duration,
+-        appointmentFields,
+-      });
+-
+-      // Fire-and-forget customer upsert
+-      try {
+-        const custQuery = await db.collection("customers")
+-          .where("clientId", "==", CLIENT_ID)
+-          .where("email", "==", customerEmail)
+-          .limit(1)
+-          .get();
+-
+-        if (custQuery.empty) {
+-          await db.collection("customers").add({
+-            clientId: CLIENT_ID,
+-            email: customerEmail,
+-            fullName: customerName,
+-            phone: customerPhone,
+-            source: "booking",
+-            createdAt: FieldValue.serverTimestamp(),
+-          });
+-        }
+-      } catch (err) {
+-        console.warn("[Book] customer upsert failed (non-fatal):", err instanceof Error ? err.message : err);
+-      }
+-
+-      res.json({ success: true, appointmentId });
+-    } catch (error: unknown) {
+-      if (error instanceof BookingConflictError) {
+-        return res.status(409).json({ error: "This time slot is no longer available." });
+-      }
+-      console.error("[Book] failed:", error);
+-      res.status(500).json({ error: "Failed to create booking." });
+-    }
+-  });
++      return { db, FieldValue };
++    },
++  }));
+ 
+   // C-2 FIX: /api/notify-booking now validates all data against the Firestore
+   // appointment document. Contact details (email, phone) are read from the
+diff --git a/tests/api-parity.test.ts b/tests/api-parity.test.ts
+index ee89d50..ced75ad 100644
+--- a/tests/api-parity.test.ts
++++ b/tests/api-parity.test.ts
+@@ -54,9 +54,6 @@ function extractRoutes(src: string): Set<string> {
+ // Intentional differences. Anything NOT listed here must exist in BOTH
+ // runtimes — extend these lists consciously, with a reason.
+ const ONLY_IN_SERVER = new Set([
+-  // Booking write-path runs through firebase-admin transactions; the Vercel
+-  // runtime books via the admin chat tool / client SDK instead.
+-  "POST /api/book",
+   "POST /api/support/message",
+   // Stock admin endpoints not yet ported to the serverless runtime.
+   "POST /api/stock/add",

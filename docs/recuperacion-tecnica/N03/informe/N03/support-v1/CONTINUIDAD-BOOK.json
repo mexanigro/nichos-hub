@@ -1,0 +1,27 @@
+[
+  {
+    "path": "server.ts",
+    "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\support-v1\\preimagenes\\producto__server.ts",
+    "igualBook": true
+  },
+  {
+    "path": "api/index.ts",
+    "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\support-v1\\preimagenes\\producto__api__index.ts",
+    "igualBook": true
+  },
+  {
+    "path": "src/lib/api/booking-handler.ts",
+    "source": "C:\\Users\\liama\\Desktop\\Nichos\\Barber-shop-template-main\\src\\lib\\api\\booking-handler.ts",
+    "igualBook": true
+  },
+  {
+    "path": "tests/api-parity.test.ts",
+    "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\support-v1\\preimagenes\\producto__tests__api-parity.test.ts",
+    "igualBook": true
+  },
+  {
+    "path": "tests/booking-handler.test.ts",
+    "source": "C:\\Users\\liama\\Desktop\\Nichos\\Barber-shop-template-main\\tests\\booking-handler.test.ts",
+    "igualBook": true
+  }
+]

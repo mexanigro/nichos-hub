@@ -1,0 +1,1412 @@
+[
+  {
+    "name": "server-normal: arranque efectivo",
+    "valid": true,
+    "evidence": {
+      "exit": null
+    }
+  },
+  {
+    "name": "server-normal: live",
+    "valid": true,
+    "evidence": {
+      "code": 200,
+      "body": {
+        "status": "ok"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "15",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:13:26 GMT",
+        "etag": "W/\"f-VaSQ4oDUiZblZNAEkkN+sX+q3Sg\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 2
+    }
+  },
+  {
+    "name": "server-normal: ready",
+    "valid": true,
+    "evidence": {
+      "code": 200,
+      "body": {
+        "status": "ok"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "15",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:13:26 GMT",
+        "etag": "W/\"f-VaSQ4oDUiZblZNAEkkN+sX+q3Sg\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 5
+    }
+  },
+  {
+    "name": "server-normal: consumidor ready",
+    "valid": true,
+    "evidence": {
+      "expected": 200
+    }
+  },
+  {
+    "name": "server-normal: trial",
+    "valid": true,
+    "evidence": {
+      "code": 200,
+      "body": {
+        "status": "ok"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "15",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:13:27 GMT",
+        "etag": "W/\"f-VaSQ4oDUiZblZNAEkkN+sX+q3Sg\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 5
+    }
+  },
+  {
+    "name": "server-normal: maintenance",
+    "valid": true,
+    "evidence": {
+      "code": 200,
+      "body": {
+        "status": "ok"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "15",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:13:27 GMT",
+        "etag": "W/\"f-VaSQ4oDUiZblZNAEkkN+sX+q3Sg\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 3
+    }
+  },
+  {
+    "name": "server-normal: failed",
+    "valid": true,
+    "evidence": {
+      "code": 503,
+      "body": {
+        "status": "unavailable"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "24",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:13:27 GMT",
+        "etag": "W/\"18-LBCk8AUyxWRHlNU0M3rkMOn1Li8\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 3
+    }
+  },
+  {
+    "name": "server-normal: consumidor failed",
+    "valid": true,
+    "evidence": {
+      "expected": 503
+    }
+  },
+  {
+    "name": "server-normal: ready",
+    "valid": true,
+    "evidence": {
+      "code": 200,
+      "body": {
+        "status": "ok"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "15",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:13:27 GMT",
+        "etag": "W/\"f-VaSQ4oDUiZblZNAEkkN+sX+q3Sg\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 5
+    }
+  },
+  {
+    "name": "server-normal: consumidor ready",
+    "valid": true,
+    "evidence": {
+      "expected": 200
+    }
+  },
+  {
+    "name": "server-normal: missing",
+    "valid": true,
+    "evidence": {
+      "code": 503,
+      "body": {
+        "status": "unavailable"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "24",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:13:27 GMT",
+        "etag": "W/\"18-LBCk8AUyxWRHlNU0M3rkMOn1Li8\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 4
+    }
+  },
+  {
+    "name": "server-normal: blocked",
+    "valid": true,
+    "evidence": {
+      "code": 503,
+      "body": {
+        "status": "unavailable"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "24",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:13:27 GMT",
+        "etag": "W/\"18-LBCk8AUyxWRHlNU0M3rkMOn1Li8\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 5
+    }
+  },
+  {
+    "name": "server-normal: unknown",
+    "valid": true,
+    "evidence": {
+      "code": 503,
+      "body": {
+        "status": "unavailable"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "24",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:13:27 GMT",
+        "etag": "W/\"18-LBCk8AUyxWRHlNU0M3rkMOn1Li8\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 6
+    }
+  },
+  {
+    "name": "server-normal: loader-failed",
+    "valid": true,
+    "evidence": {
+      "code": 503,
+      "body": {
+        "status": "unavailable"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "24",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:13:27 GMT",
+        "etag": "W/\"18-LBCk8AUyxWRHlNU0M3rkMOn1Li8\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 3
+    }
+  },
+  {
+    "name": "server-normal: pending",
+    "valid": true,
+    "evidence": {
+      "code": 503,
+      "body": {
+        "status": "unavailable"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "24",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:13:28 GMT",
+        "etag": "W/\"18-LBCk8AUyxWRHlNU0M3rkMOn1Li8\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 1505
+    }
+  },
+  {
+    "name": "server-normal: pendiente compartido pending",
+    "valid": true,
+    "evidence": {
+      "before": "loader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nloader\nread\n",
+      "after": "loader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nloader\nread\n"
+    }
+  },
+  {
+    "name": "server-normal: live durante pending",
+    "valid": true,
+    "evidence": {
+      "code": 200,
+      "body": {
+        "status": "ok"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "15",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:13:30 GMT",
+        "etag": "W/\"f-VaSQ4oDUiZblZNAEkkN+sX+q3Sg\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 2
+    }
+  },
+  {
+    "name": "server-normal: ready",
+    "valid": true,
+    "evidence": {
+      "code": 200,
+      "body": {
+        "status": "ok"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "15",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:13:30 GMT",
+        "etag": "W/\"f-VaSQ4oDUiZblZNAEkkN+sX+q3Sg\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 4
+    }
+  },
+  {
+    "name": "server-normal: consumidor ready",
+    "valid": true,
+    "evidence": {
+      "expected": 200
+    }
+  },
+  {
+    "name": "server-normal: loader-pending",
+    "valid": true,
+    "evidence": {
+      "code": 503,
+      "body": {
+        "status": "unavailable"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "24",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:13:31 GMT",
+        "etag": "W/\"18-LBCk8AUyxWRHlNU0M3rkMOn1Li8\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 1504
+    }
+  },
+  {
+    "name": "server-normal: pendiente compartido loader-pending",
+    "valid": true,
+    "evidence": {
+      "before": "loader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nloader\nread\nloader\nread\nloader\nread\n",
+      "after": "loader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nloader\nread\nloader\nread\nloader\nread\n"
+    }
+  },
+  {
+    "name": "server-normal: live durante loader-pending",
+    "valid": true,
+    "evidence": {
+      "code": 200,
+      "body": {
+        "status": "ok"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "15",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:13:33 GMT",
+        "etag": "W/\"f-VaSQ4oDUiZblZNAEkkN+sX+q3Sg\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 3
+    }
+  },
+  {
+    "name": "server-normal: ready",
+    "valid": true,
+    "evidence": {
+      "code": 200,
+      "body": {
+        "status": "ok"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "15",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:13:33 GMT",
+        "etag": "W/\"f-VaSQ4oDUiZblZNAEkkN+sX+q3Sg\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 4
+    }
+  },
+  {
+    "name": "server-normal: consumidor ready",
+    "valid": true,
+    "evidence": {
+      "expected": 200
+    }
+  },
+  {
+    "name": "server-normal: cero intentos externos",
+    "valid": true,
+    "evidence": {
+      "audit": ""
+    }
+  },
+  {
+    "name": "server-normal: proceso terminado",
+    "valid": true,
+    "evidence": {
+      "exit": null,
+      "signal": "SIGTERM"
+    }
+  },
+  {
+    "name": "server-absent: arranque efectivo",
+    "valid": true,
+    "evidence": {
+      "exit": null
+    }
+  },
+  {
+    "name": "server-absent: live",
+    "valid": true,
+    "evidence": {
+      "code": 200,
+      "body": {
+        "status": "ok"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "15",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:13:43 GMT",
+        "etag": "W/\"f-VaSQ4oDUiZblZNAEkkN+sX+q3Sg\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 3
+    }
+  },
+  {
+    "name": "server-absent: no listo",
+    "valid": true,
+    "evidence": {
+      "code": 503,
+      "body": {
+        "status": "unavailable"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "24",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:13:43 GMT",
+        "etag": "W/\"18-LBCk8AUyxWRHlNU0M3rkMOn1Li8\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 3
+    }
+  },
+  {
+    "name": "server-absent: cero intentos externos",
+    "valid": true,
+    "evidence": {
+      "audit": ""
+    }
+  },
+  {
+    "name": "server-absent: proceso terminado",
+    "valid": true,
+    "evidence": {
+      "exit": null,
+      "signal": "SIGTERM"
+    }
+  },
+  {
+    "name": "server-tenant-absent: arranque efectivo",
+    "valid": true,
+    "evidence": {
+      "exit": null
+    }
+  },
+  {
+    "name": "server-tenant-absent: live",
+    "valid": true,
+    "evidence": {
+      "code": 200,
+      "body": {
+        "status": "ok"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "15",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:13:54 GMT",
+        "etag": "W/\"f-VaSQ4oDUiZblZNAEkkN+sX+q3Sg\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 2
+    }
+  },
+  {
+    "name": "server-tenant-absent: no listo",
+    "valid": true,
+    "evidence": {
+      "code": 503,
+      "body": {
+        "status": "unavailable"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "24",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:13:54 GMT",
+        "etag": "W/\"18-LBCk8AUyxWRHlNU0M3rkMOn1Li8\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 3
+    }
+  },
+  {
+    "name": "server-tenant-absent: bloqueo parcial",
+    "valid": true,
+    "evidence": {
+      "code": 503,
+      "body": {
+        "status": "unavailable"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "24",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:13:54 GMT",
+        "etag": "W/\"18-LBCk8AUyxWRHlNU0M3rkMOn1Li8\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 3
+    }
+  },
+  {
+    "name": "server-tenant-absent: cero intentos externos",
+    "valid": true,
+    "evidence": {
+      "audit": ""
+    }
+  },
+  {
+    "name": "server-tenant-absent: proceso terminado",
+    "valid": true,
+    "evidence": {
+      "exit": null,
+      "signal": "SIGTERM"
+    }
+  },
+  {
+    "name": "server-early: arranque efectivo",
+    "valid": true,
+    "evidence": {
+      "exit": null
+    }
+  },
+  {
+    "name": "server-early: live",
+    "valid": true,
+    "evidence": {
+      "code": 200,
+      "body": {
+        "status": "ok"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "15",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:14:05 GMT",
+        "etag": "W/\"f-VaSQ4oDUiZblZNAEkkN+sX+q3Sg\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 2
+    }
+  },
+  {
+    "name": "server-early: no listo",
+    "valid": true,
+    "evidence": {
+      "code": 503,
+      "body": {
+        "status": "unavailable"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "24",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:14:05 GMT",
+        "etag": "W/\"18-LBCk8AUyxWRHlNU0M3rkMOn1Li8\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 2
+    }
+  },
+  {
+    "name": "server-early: bloqueo parcial",
+    "valid": true,
+    "evidence": {
+      "code": 503,
+      "body": {
+        "status": "unavailable"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "24",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:14:05 GMT",
+        "etag": "W/\"18-LBCk8AUyxWRHlNU0M3rkMOn1Li8\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 3
+    }
+  },
+  {
+    "name": "server-early: cero intentos externos",
+    "valid": true,
+    "evidence": {
+      "audit": ""
+    }
+  },
+  {
+    "name": "server-early: proceso terminado",
+    "valid": true,
+    "evidence": {
+      "exit": null,
+      "signal": "SIGTERM"
+    }
+  },
+  {
+    "name": "server-late: arranque efectivo",
+    "valid": true,
+    "evidence": {
+      "exit": null
+    }
+  },
+  {
+    "name": "server-late: live",
+    "valid": true,
+    "evidence": {
+      "code": 200,
+      "body": {
+        "status": "ok"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "15",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:14:16 GMT",
+        "etag": "W/\"f-VaSQ4oDUiZblZNAEkkN+sX+q3Sg\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 3
+    }
+  },
+  {
+    "name": "server-late: no listo",
+    "valid": true,
+    "evidence": {
+      "code": 503,
+      "body": {
+        "status": "unavailable"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "24",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:14:16 GMT",
+        "etag": "W/\"18-LBCk8AUyxWRHlNU0M3rkMOn1Li8\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 2
+    }
+  },
+  {
+    "name": "server-late: bloqueo parcial",
+    "valid": true,
+    "evidence": {
+      "code": 503,
+      "body": {
+        "status": "unavailable"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "24",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:14:16 GMT",
+        "etag": "W/\"18-LBCk8AUyxWRHlNU0M3rkMOn1Li8\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 3
+    }
+  },
+  {
+    "name": "server-late: cero intentos externos",
+    "valid": true,
+    "evidence": {
+      "audit": ""
+    }
+  },
+  {
+    "name": "server-late: proceso terminado",
+    "valid": true,
+    "evidence": {
+      "exit": null,
+      "signal": "SIGTERM"
+    }
+  },
+  {
+    "name": "api-normal: arranque efectivo",
+    "valid": true,
+    "evidence": {
+      "exit": null
+    }
+  },
+  {
+    "name": "api-normal: live",
+    "valid": true,
+    "evidence": {
+      "code": 200,
+      "body": {
+        "status": "ok"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "15",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:14:26 GMT",
+        "etag": "W/\"f-VaSQ4oDUiZblZNAEkkN+sX+q3Sg\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 2
+    }
+  },
+  {
+    "name": "api-normal: ready",
+    "valid": true,
+    "evidence": {
+      "code": 200,
+      "body": {
+        "status": "ok"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "15",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:14:26 GMT",
+        "etag": "W/\"f-VaSQ4oDUiZblZNAEkkN+sX+q3Sg\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 4
+    }
+  },
+  {
+    "name": "api-normal: consumidor ready",
+    "valid": true,
+    "evidence": {
+      "expected": 200
+    }
+  },
+  {
+    "name": "api-normal: trial",
+    "valid": true,
+    "evidence": {
+      "code": 200,
+      "body": {
+        "status": "ok"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "15",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:14:27 GMT",
+        "etag": "W/\"f-VaSQ4oDUiZblZNAEkkN+sX+q3Sg\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 5
+    }
+  },
+  {
+    "name": "api-normal: maintenance",
+    "valid": true,
+    "evidence": {
+      "code": 200,
+      "body": {
+        "status": "ok"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "15",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:14:27 GMT",
+        "etag": "W/\"f-VaSQ4oDUiZblZNAEkkN+sX+q3Sg\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 3
+    }
+  },
+  {
+    "name": "api-normal: failed",
+    "valid": true,
+    "evidence": {
+      "code": 503,
+      "body": {
+        "status": "unavailable"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "24",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:14:27 GMT",
+        "etag": "W/\"18-LBCk8AUyxWRHlNU0M3rkMOn1Li8\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 4
+    }
+  },
+  {
+    "name": "api-normal: consumidor failed",
+    "valid": true,
+    "evidence": {
+      "expected": 503
+    }
+  },
+  {
+    "name": "api-normal: ready",
+    "valid": true,
+    "evidence": {
+      "code": 200,
+      "body": {
+        "status": "ok"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "15",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:14:27 GMT",
+        "etag": "W/\"f-VaSQ4oDUiZblZNAEkkN+sX+q3Sg\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 3
+    }
+  },
+  {
+    "name": "api-normal: consumidor ready",
+    "valid": true,
+    "evidence": {
+      "expected": 200
+    }
+  },
+  {
+    "name": "api-normal: missing",
+    "valid": true,
+    "evidence": {
+      "code": 503,
+      "body": {
+        "status": "unavailable"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "24",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:14:27 GMT",
+        "etag": "W/\"18-LBCk8AUyxWRHlNU0M3rkMOn1Li8\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 5
+    }
+  },
+  {
+    "name": "api-normal: blocked",
+    "valid": true,
+    "evidence": {
+      "code": 503,
+      "body": {
+        "status": "unavailable"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "24",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:14:27 GMT",
+        "etag": "W/\"18-LBCk8AUyxWRHlNU0M3rkMOn1Li8\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 3
+    }
+  },
+  {
+    "name": "api-normal: unknown",
+    "valid": true,
+    "evidence": {
+      "code": 503,
+      "body": {
+        "status": "unavailable"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "24",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:14:27 GMT",
+        "etag": "W/\"18-LBCk8AUyxWRHlNU0M3rkMOn1Li8\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 4
+    }
+  },
+  {
+    "name": "api-normal: loader-failed",
+    "valid": true,
+    "evidence": {
+      "code": 503,
+      "body": {
+        "status": "unavailable"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "24",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:14:27 GMT",
+        "etag": "W/\"18-LBCk8AUyxWRHlNU0M3rkMOn1Li8\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 3
+    }
+  },
+  {
+    "name": "api-normal: pending",
+    "valid": true,
+    "evidence": {
+      "code": 503,
+      "body": {
+        "status": "unavailable"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "24",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:14:28 GMT",
+        "etag": "W/\"18-LBCk8AUyxWRHlNU0M3rkMOn1Li8\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 1502
+    }
+  },
+  {
+    "name": "api-normal: pendiente compartido pending",
+    "valid": true,
+    "evidence": {
+      "before": "loader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nloader\nread\n",
+      "after": "loader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nloader\nread\n"
+    }
+  },
+  {
+    "name": "api-normal: live durante pending",
+    "valid": true,
+    "evidence": {
+      "code": 200,
+      "body": {
+        "status": "ok"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "15",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:14:30 GMT",
+        "etag": "W/\"f-VaSQ4oDUiZblZNAEkkN+sX+q3Sg\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 3
+    }
+  },
+  {
+    "name": "api-normal: ready",
+    "valid": true,
+    "evidence": {
+      "code": 200,
+      "body": {
+        "status": "ok"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "15",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:14:30 GMT",
+        "etag": "W/\"f-VaSQ4oDUiZblZNAEkkN+sX+q3Sg\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 3
+    }
+  },
+  {
+    "name": "api-normal: consumidor ready",
+    "valid": true,
+    "evidence": {
+      "expected": 200
+    }
+  },
+  {
+    "name": "api-normal: loader-pending",
+    "valid": true,
+    "evidence": {
+      "code": 503,
+      "body": {
+        "status": "unavailable"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "24",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:14:31 GMT",
+        "etag": "W/\"18-LBCk8AUyxWRHlNU0M3rkMOn1Li8\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 1503
+    }
+  },
+  {
+    "name": "api-normal: pendiente compartido loader-pending",
+    "valid": true,
+    "evidence": {
+      "before": "loader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nloader\nread\nloader\nread\nloader\nread\n",
+      "after": "loader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nloader\nread\nloader\nread\nloader\nread\n"
+    }
+  },
+  {
+    "name": "api-normal: live durante loader-pending",
+    "valid": true,
+    "evidence": {
+      "code": 200,
+      "body": {
+        "status": "ok"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "15",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:14:33 GMT",
+        "etag": "W/\"f-VaSQ4oDUiZblZNAEkkN+sX+q3Sg\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 3
+    }
+  },
+  {
+    "name": "api-normal: ready",
+    "valid": true,
+    "evidence": {
+      "code": 200,
+      "body": {
+        "status": "ok"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "15",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:14:33 GMT",
+        "etag": "W/\"f-VaSQ4oDUiZblZNAEkkN+sX+q3Sg\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 4
+    }
+  },
+  {
+    "name": "api-normal: consumidor ready",
+    "valid": true,
+    "evidence": {
+      "expected": 200
+    }
+  },
+  {
+    "name": "api-normal: cero intentos externos",
+    "valid": true,
+    "evidence": {
+      "audit": ""
+    }
+  },
+  {
+    "name": "api-normal: proceso terminado",
+    "valid": true,
+    "evidence": {
+      "exit": null,
+      "signal": "SIGTERM"
+    }
+  },
+  {
+    "name": "api-absent: arranque efectivo",
+    "valid": true,
+    "evidence": {
+      "exit": null
+    }
+  },
+  {
+    "name": "api-absent: live",
+    "valid": true,
+    "evidence": {
+      "code": 200,
+      "body": {
+        "status": "ok"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "15",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:14:43 GMT",
+        "etag": "W/\"f-VaSQ4oDUiZblZNAEkkN+sX+q3Sg\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 2
+    }
+  },
+  {
+    "name": "api-absent: no listo",
+    "valid": true,
+    "evidence": {
+      "code": 503,
+      "body": {
+        "status": "unavailable"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "24",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:14:43 GMT",
+        "etag": "W/\"18-LBCk8AUyxWRHlNU0M3rkMOn1Li8\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 2
+    }
+  },
+  {
+    "name": "api-absent: cero intentos externos",
+    "valid": true,
+    "evidence": {
+      "audit": ""
+    }
+  },
+  {
+    "name": "api-absent: proceso terminado",
+    "valid": true,
+    "evidence": {
+      "exit": null,
+      "signal": "SIGTERM"
+    }
+  },
+  {
+    "name": "api-tenant-absent: arranque efectivo",
+    "valid": true,
+    "evidence": {
+      "exit": null
+    }
+  },
+  {
+    "name": "api-tenant-absent: live",
+    "valid": true,
+    "evidence": {
+      "code": 200,
+      "body": {
+        "status": "ok"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "15",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:14:54 GMT",
+        "etag": "W/\"f-VaSQ4oDUiZblZNAEkkN+sX+q3Sg\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 2
+    }
+  },
+  {
+    "name": "api-tenant-absent: no listo",
+    "valid": true,
+    "evidence": {
+      "code": 503,
+      "body": {
+        "status": "unavailable"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "24",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:14:54 GMT",
+        "etag": "W/\"18-LBCk8AUyxWRHlNU0M3rkMOn1Li8\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 3
+    }
+  },
+  {
+    "name": "api-tenant-absent: bloqueo parcial",
+    "valid": true,
+    "evidence": {
+      "code": 503,
+      "body": {
+        "status": "unavailable"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "24",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:14:54 GMT",
+        "etag": "W/\"18-LBCk8AUyxWRHlNU0M3rkMOn1Li8\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 3
+    }
+  },
+  {
+    "name": "api-tenant-absent: cero intentos externos",
+    "valid": true,
+    "evidence": {
+      "audit": ""
+    }
+  },
+  {
+    "name": "api-tenant-absent: proceso terminado",
+    "valid": true,
+    "evidence": {
+      "exit": null,
+      "signal": "SIGTERM"
+    }
+  },
+  {
+    "name": "api-early: arranque efectivo",
+    "valid": true,
+    "evidence": {
+      "exit": null
+    }
+  },
+  {
+    "name": "api-early: live",
+    "valid": true,
+    "evidence": {
+      "code": 200,
+      "body": {
+        "status": "ok"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "15",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:15:05 GMT",
+        "etag": "W/\"f-VaSQ4oDUiZblZNAEkkN+sX+q3Sg\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 2
+    }
+  },
+  {
+    "name": "api-early: no listo",
+    "valid": true,
+    "evidence": {
+      "code": 503,
+      "body": {
+        "status": "unavailable"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "24",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:15:05 GMT",
+        "etag": "W/\"18-LBCk8AUyxWRHlNU0M3rkMOn1Li8\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 3
+    }
+  },
+  {
+    "name": "api-early: bloqueo parcial",
+    "valid": true,
+    "evidence": {
+      "code": 503,
+      "body": {
+        "status": "unavailable"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "24",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:15:05 GMT",
+        "etag": "W/\"18-LBCk8AUyxWRHlNU0M3rkMOn1Li8\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 2
+    }
+  },
+  {
+    "name": "api-early: cero intentos externos",
+    "valid": true,
+    "evidence": {
+      "audit": ""
+    }
+  },
+  {
+    "name": "api-early: proceso terminado",
+    "valid": true,
+    "evidence": {
+      "exit": null,
+      "signal": "SIGTERM"
+    }
+  },
+  {
+    "name": "api-late: arranque efectivo",
+    "valid": true,
+    "evidence": {
+      "exit": null
+    }
+  },
+  {
+    "name": "api-late: live",
+    "valid": true,
+    "evidence": {
+      "code": 200,
+      "body": {
+        "status": "ok"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "15",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:15:15 GMT",
+        "etag": "W/\"f-VaSQ4oDUiZblZNAEkkN+sX+q3Sg\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 1
+    }
+  },
+  {
+    "name": "api-late: no listo",
+    "valid": true,
+    "evidence": {
+      "code": 503,
+      "body": {
+        "status": "unavailable"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "24",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:15:15 GMT",
+        "etag": "W/\"18-LBCk8AUyxWRHlNU0M3rkMOn1Li8\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 3
+    }
+  },
+  {
+    "name": "api-late: bloqueo parcial",
+    "valid": true,
+    "evidence": {
+      "code": 503,
+      "body": {
+        "status": "unavailable"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "24",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 15:15:15 GMT",
+        "etag": "W/\"18-LBCk8AUyxWRHlNU0M3rkMOn1Li8\"",
+        "keep-alive": "timeout=5"
+      },
+      "ms": 2
+    }
+  },
+  {
+    "name": "api-late: cero intentos externos",
+    "valid": true,
+    "evidence": {
+      "audit": ""
+    }
+  },
+  {
+    "name": "api-late: proceso terminado",
+    "valid": true,
+    "evidence": {
+      "exit": null,
+      "signal": "SIGTERM"
+    }
+  },
+  {
+    "name": "observador sensible",
+    "valid": true,
+    "evidence": {
+      "exit": 0,
+      "audit": "{\"blocked\":\"fetch\"}\n"
+    }
+  }
+]

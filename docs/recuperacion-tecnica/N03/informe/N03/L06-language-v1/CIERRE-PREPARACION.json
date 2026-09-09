@@ -1,0 +1,16 @@
+{
+  "redChecks": 17,
+  "baselineCases": 10,
+  "result": "GREEN_PREPARACION",
+  "implementationGates": "0/4",
+  "repair": "RED_NO_IMPLEMENTADA",
+  "proposalSha256": "2dea37de48ace9bc3b4f227479f60f7319d6957fefa062d350e4b62d306371cf",
+  "preservedBaselineCases": 10,
+  "verifiedRecords": 6,
+  "expandedCases": 14,
+  "resets": 0,
+  "verifiedLinks": 8,
+  "unmodifiedHubSources": 5,
+  "usageCheckpoint": 78,
+  "totalCapN03": 80
+}

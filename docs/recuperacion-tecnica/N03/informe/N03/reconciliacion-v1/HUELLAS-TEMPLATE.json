@@ -1,0 +1,1330 @@
+[
+  {
+    "path": "api/index.ts",
+    "valid": true
+  },
+  {
+    "path": "package.json",
+    "valid": true
+  },
+  {
+    "path": "server.ts",
+    "valid": true
+  },
+  {
+    "path": "src/App.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/3d-impact/ambient-particles.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/3d-impact/cta-button-3d.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/3d-impact/DemoPage.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/3d-impact/hero-object-3d.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/3d-impact/index.ts",
+    "valid": true
+  },
+  {
+    "path": "src/components/3d-impact/paper-card.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/3d-impact/splash-impact-reveal-3d.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/3d-impact/splash-impact-scale.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/3d-impact/splash-impact-split.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/about/AboutPage.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/admin/AdminDashboard.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/admin/AdminLoginPanel.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/admin/AppointmentCalendar.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/admin/BusinessRulesTab.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/admin/CustomerDetailPanel.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/admin/CustomersKanban.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/admin/CustomersTab.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/admin/DashboardTab.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/admin/InboxTab.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/admin/KnowledgeTab.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/admin/MetricsDashboard.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/admin/NotificationLogsTab.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/admin/PaymentsTab.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/admin/ProtectedRoute.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/admin/StaffLogistics.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/admin/StockTab.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/admin/SupportTab.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/admin/TasksTab.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/admin/UnauthorizedAdmin.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/admin/UsersTab.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/booking/BookingWizard.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/branding/logo-svg.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/chat/Chatbot.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/dev/VariantsPreview.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/dev/WizardRefsPreview.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/ErrorBoundary.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/gallery/GalleryPage.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/Ambience.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/aura/aura-before-after.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/aura/aura-contact.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/aura/aura-faq.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/aura/aura-hero.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/aura/aura-instagram.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/aura/aura-services.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/aura/aura-team.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/aura/aura-testimonials.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/aura/aura-why-choose-us.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/aura/index.ts",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/BeforeAfter.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/booking-form-map-hours-3d.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/BusinessHours.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/contact/contact-v2.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/contact/contact-v3.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/contact/contact-v4.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/contact/contact-v5.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/contact/estetica/contact-form.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/contact/estetica/contact-v2.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/contact/estetica/contact-v3.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/contact/estetica/contact-v4.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/contact/estetica/contact-v5.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/ContactHub.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/employment/AudienceChoice.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/employment/business/BusinessBenefits.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/employment/business/BusinessFAQ.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/employment/business/BusinessHero.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/employment/business/BusinessProcess.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/employment/business/BusinessRegistrationForm.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/employment/business/BusinessTestimonials.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/employment/business/useBusinessLocale.ts",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/employment/business/WorkerCategories.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/employment/EmploymentHero.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/employment/HowItWorks.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/employment/index.ts",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/employment/JobCategories.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/employment/RegistrationWizard.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/faq/estetica/faq-v2.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/faq/estetica/faq-v3.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/faq/estetica/faq-v4.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/faq/estetica/faq-v5.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/faq/faq-v2.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/faq/faq-v3.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/faq/faq-v4.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/faq/faq-v5.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/FAQ.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/gallery/estetica/gallery-v2.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/gallery/estetica/gallery-v3.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/gallery/estetica/gallery-v4.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/gallery/estetica/gallery-v5.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/gallery/gallery-v2.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/gallery/gallery-v3.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/gallery/gallery-v4.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/gallery/gallery-v5.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/gallery-bento-stats.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/gallery-grid-with-filters.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/gallery-portrait-bento-3d-cameo.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/Gallery.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/GalleryTeaser.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/hero/estetica/hero-v2.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/hero/estetica/hero-v3.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/hero/estetica/hero-v4.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/hero/estetica/hero-v5.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/hero/floating-cards.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/hero/hero-v2.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/hero/hero-v3.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/hero/hero-v4.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/hero/hero-v5.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/hero/stats-bar-v2.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/hero/stats-bar-v3.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/hero/stats-bar-v4.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/hero/stats-bar-v5.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/hero/stats-bar.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/hero/title-with-italic.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/hero-variant-3d-object.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/Hero.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/instagram/estetica/instagram-v2.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/instagram/estetica/instagram-v3.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/instagram/estetica/instagram-v4.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/instagram/estetica/instagram-v5.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/instagram/instagram-v2.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/instagram/instagram-v3.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/instagram/instagram-v4.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/instagram/instagram-v5.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/InstagramFeed.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/InstagramTeaser.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/LandingBackdrop.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/Location.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/Menu.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/Philosophy.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/Portfolio.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/Process.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/QuickInquiry.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/SectionDivider.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/services/estetica/services-v2.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/services/estetica/services-v3.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/services/estetica/services-v4.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/services/estetica/services-v5.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/services/services-v2.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/services/services-v3.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/services/services-v4.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/services/services-v5.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/services-card-stack-tabs.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/services-list-with-icons.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/services-treatment-card-grid.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/Services.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/team/estetica/team-v2.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/team/estetica/team-v3.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/team/estetica/team-v4.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/team/estetica/team-v5.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/team/team-v2.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/team/team-v3.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/team/team-v4.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/team/team-v5.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/Team.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/testimonials/estetica/testimonials-v2.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/testimonials/estetica/testimonials-v3.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/testimonials/estetica/testimonials-v4.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/testimonials/estetica/testimonials-v5.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/testimonials/testimonials-v2.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/testimonials/testimonials-v3.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/testimonials/testimonials-v4.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/testimonials/testimonials-v5.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/Testimonials.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/why-choose-us/estetica/why-choose-us-v2.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/why-choose-us/estetica/why-choose-us-v3.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/why-choose-us/estetica/why-choose-us-v4.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/why-choose-us/estetica/why-choose-us-v5.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/why-choose-us/why-choose-us-v2.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/why-choose-us/why-choose-us-v3.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/why-choose-us/why-choose-us-v4.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/why-choose-us/why-choose-us-v5.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/why-choose-us-icon-grid-3d.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/landing/WhyChooseUs.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/layout/footer/footer-v2.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/layout/footer/footer-v3.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/layout/footer/footer-v4.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/layout/footer/footer-v5.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/layout/Footer.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/layout/navbar/navbar-v2.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/layout/navbar/navbar-v3.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/layout/navbar/navbar-v4.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/layout/navbar/navbar-v5.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/layout/Navbar.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/layout/ScrollToTop.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/layout/splash/index.ts",
+    "valid": true
+  },
+  {
+    "path": "src/components/layout/splash/SplashCafeteria.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/layout/splash/SplashClassic.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/layout/splash/SplashCurtain.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/layout/splash/SplashFadeScale.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/layout/splash/SplashGradientSweep.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/layout/splash/SplashMinimalPulse.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/layout/splash/SplashParticles.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/layout/splash/SplashPulse.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/layout/splash/SplashRemodelaciones.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/layout/splash/SplashTypewriter.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/layout/splash/SplashVortex.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/layout/splash/types.ts",
+    "valid": true
+  },
+  {
+    "path": "src/components/layout/SplashScreen.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/legal/LegalPage.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/portfolio/ProjectsPage.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/ProductTour.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/QuoteRequestModal.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/services/ServicesPage.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/shared/PolicyModal.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/staff/StaffProfilePage.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/theme/ThemeProvider.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/theme/ThemeToggle.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/TourButton.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/ui/AccessibilityWidget.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/ui/BrandLogo.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/ui/calendar.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/ui/LanguageSwitcher.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/components/ui/Toast.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/config/demo-data.ts",
+    "valid": true
+  },
+  {
+    "path": "src/config/env.ts",
+    "valid": true
+  },
+  {
+    "path": "src/config/envQuotes.ts",
+    "valid": true
+  },
+  {
+    "path": "src/config/legalContent.ts",
+    "valid": true
+  },
+  {
+    "path": "src/config/locale.ts",
+    "valid": true
+  },
+  {
+    "path": "src/config/locales/ar.ts",
+    "valid": true
+  },
+  {
+    "path": "src/config/locales/en.ts",
+    "valid": true
+  },
+  {
+    "path": "src/config/locales/he.ts",
+    "valid": true
+  },
+  {
+    "path": "src/config/locales/ru.ts",
+    "valid": true
+  },
+  {
+    "path": "src/config/localeTypes.ts",
+    "valid": true
+  },
+  {
+    "path": "src/config/presets/barberia.ar.ts",
+    "valid": true
+  },
+  {
+    "path": "src/config/presets/barberia.en.ts",
+    "valid": true
+  },
+  {
+    "path": "src/config/presets/barberia.he.ts",
+    "valid": true
+  },
+  {
+    "path": "src/config/presets/barberia.ru.ts",
+    "valid": true
+  },
+  {
+    "path": "src/config/presets/cafeteria.ar.ts",
+    "valid": true
+  },
+  {
+    "path": "src/config/presets/cafeteria.en.ts",
+    "valid": true
+  },
+  {
+    "path": "src/config/presets/cafeteria.he.ts",
+    "valid": true
+  },
+  {
+    "path": "src/config/presets/cafeteria.ru.ts",
+    "valid": true
+  },
+  {
+    "path": "src/config/presets/employment.ar.ts",
+    "valid": true
+  },
+  {
+    "path": "src/config/presets/employment.en.ts",
+    "valid": true
+  },
+  {
+    "path": "src/config/presets/employment.he.ts",
+    "valid": true
+  },
+  {
+    "path": "src/config/presets/employment.ru.ts",
+    "valid": true
+  },
+  {
+    "path": "src/config/presets/estetica.ar.ts",
+    "valid": true
+  },
+  {
+    "path": "src/config/presets/estetica.en.ts",
+    "valid": true
+  },
+  {
+    "path": "src/config/presets/estetica.he.ts",
+    "valid": true
+  },
+  {
+    "path": "src/config/presets/estetica.ru.ts",
+    "valid": true
+  },
+  {
+    "path": "src/config/presets/nails.ar.ts",
+    "valid": true
+  },
+  {
+    "path": "src/config/presets/nails.en.ts",
+    "valid": true
+  },
+  {
+    "path": "src/config/presets/nails.he.ts",
+    "valid": true
+  },
+  {
+    "path": "src/config/presets/nails.ru.ts",
+    "valid": true
+  },
+  {
+    "path": "src/config/presets/remodelaciones.ar.ts",
+    "valid": true
+  },
+  {
+    "path": "src/config/presets/remodelaciones.en.ts",
+    "valid": true
+  },
+  {
+    "path": "src/config/presets/remodelaciones.he.ts",
+    "valid": true
+  },
+  {
+    "path": "src/config/presets/remodelaciones.ru.ts",
+    "valid": true
+  },
+  {
+    "path": "src/config/presets/tattoo.ar.ts",
+    "valid": true
+  },
+  {
+    "path": "src/config/presets/tattoo.en.ts",
+    "valid": true
+  },
+  {
+    "path": "src/config/presets/tattoo.he.ts",
+    "valid": true
+  },
+  {
+    "path": "src/config/presets/tattoo.ru.ts",
+    "valid": true
+  },
+  {
+    "path": "src/config/presets/themes.ts",
+    "valid": true
+  },
+  {
+    "path": "src/config/site.ts",
+    "valid": true
+  },
+  {
+    "path": "src/config/tenant.ts",
+    "valid": true
+  },
+  {
+    "path": "src/config/tour.config.ts",
+    "valid": true
+  },
+  {
+    "path": "src/config/tour.translations.ts",
+    "valid": true
+  },
+  {
+    "path": "src/config/uiLanguage.ts",
+    "valid": true
+  },
+  {
+    "path": "src/constants.ts",
+    "valid": true
+  },
+  {
+    "path": "src/contexts/LanguageContext.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/hooks/use-hero-object.ts",
+    "valid": true
+  },
+  {
+    "path": "src/hooks/use-paper-spring.ts",
+    "valid": true
+  },
+  {
+    "path": "src/hooks/useAdminAccess.ts",
+    "valid": true
+  },
+  {
+    "path": "src/hooks/useModalA11y.ts",
+    "valid": true
+  },
+  {
+    "path": "src/hooks/useSchema.ts",
+    "valid": true
+  },
+  {
+    "path": "src/hooks/useSEO.ts",
+    "valid": true
+  },
+  {
+    "path": "src/hooks/useSwipeNavigation.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/3d-impact-utils.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/admin-auth.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/admin-users.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/ai/admin-tools.test.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/ai/admin-tools.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/ai/stock-tools.test.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/ai/stock-tools.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/ai/tasks-tools.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/api/admin-auth.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/api/booking-handler.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/api/booking-validation.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/api/optional-services.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/api/payment-gateways.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/api/runtime-health.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/api/stock-handlers.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/api/support-handler.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/appointment-notify-client.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/booking.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/crm-metrics.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/crm-store.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/currency.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/customer-pipeline.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/dateLocale.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/employment-audience.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/exportCsv.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/firebase.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/google-auth.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/hours-display.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/intent-router.test.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/intent-router.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/interpolate.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/knowledge-rag.test.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/knowledge-rag.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/lucide-icons.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/motion.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/notification-channels.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/notify-agentkit.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/payment/types.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/sanitize.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/schedulingRules.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/section-presence.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/section-variants.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/seo-defaults.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/site-theme.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/splash-session.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/staff.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/tasks.test.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/tasks.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/typography.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/utils.ts",
+    "valid": true
+  },
+  {
+    "path": "src/lib/whatsapp-inbox.ts",
+    "valid": true
+  },
+  {
+    "path": "src/main.tsx",
+    "valid": true
+  },
+  {
+    "path": "src/services/ai.ts",
+    "valid": true
+  },
+  {
+    "path": "src/services/customers.ts",
+    "valid": true
+  },
+  {
+    "path": "src/services/db.ts",
+    "valid": true
+  },
+  {
+    "path": "src/services/inbox.ts",
+    "valid": true
+  },
+  {
+    "path": "src/services/notificationLogs.ts",
+    "valid": true
+  },
+  {
+    "path": "src/services/stock.ts",
+    "valid": true
+  },
+  {
+    "path": "src/services/support.ts",
+    "valid": true
+  },
+  {
+    "path": "src/services/tenant.ts",
+    "valid": true
+  },
+  {
+    "path": "src/types.ts",
+    "valid": true
+  },
+  {
+    "path": "src/vite-env.d.ts",
+    "valid": true
+  },
+  {
+    "path": "tsconfig.json",
+    "valid": true
+  }
+]

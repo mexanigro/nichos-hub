@@ -1,0 +1,49 @@
+import fs from 'node:fs';
+import {spawn} from 'node:child_process';
+import {createRequire} from 'node:module';
+import vm from 'node:vm';
+import {generateKeyPairSync,sign} from 'node:crypto';
+const {privateKey,publicKey}=generateKeyPairSync('rsa',{modulusLength:2048,publicKeyEncoding:{type:'spki',format:'pem'},privateKeyEncoding:{type:'pkcs8',format:'pem'}});fs.writeFileSync('/tmp/public.pem',publicKey);
+const enc=x=>Buffer.from(JSON.stringify(x)).toString('base64url'),now=Math.floor(Date.now()/1000);const data=enc({alg:'RS256',kid:'fixture'})+'.'+enc({sub:'synthetic-user',email:'owner@example.invalid',email_verified:true,iss:'https://securetoken.google.com/isolated',aud:'isolated',iat:now,exp:now+3600});const token=data+'.'+sign('RSA-SHA256',Buffer.from(data),privateKey).toString('base64url');
+const ts=createRequire('/app/package.json')('typescript');
+const results=[];
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+const check=(name,valid,evidence)=>{results.push({name,valid,evidence});console.log(JSON.stringify(results.at(-1)));};
+for(const runtime of ['server','api']){
+ const port=runtime==='server'?3000:3001;
+ const eventsFile='/tmp/events-'+runtime,auditFile='/tmp/audit-'+runtime;
+ fs.writeFileSync(eventsFile,'');fs.writeFileSync(auditFile,'');
+ const env={PATH:process.env.PATH,HOME:'/tmp',TMPDIR:'/tmp',NODE_PATH:process.env.NODE_PATH,TSX_DISABLE_CACHE:'1',NODE_ENV:'production',APP_URL:'http://isolated.invalid',CLIENT_ID:'tenant-control',FIREBASE_PROJECT_ID:'isolated',VITE_FIREBASE_PROJECT_ID:'isolated',FIREBASE_SERVICE_ACCOUNT_EMAIL:'fixture@example.invalid',FIREBASE_SERVICE_ACCOUNT_KEY:privateKey,FIREBASE_ADMIN_PROJECT_ID:'isolated',FIREBASE_ADMIN_CLIENT_EMAIL:'fixture@example.invalid',FIREBASE_ADMIN_PRIVATE_KEY:'synthetic-fixture',EMAIL_PROVIDER_API_KEY:'re_synthetic',BUSINESS_OWNER_EMAIL:'owner@example.invalid',D05_EVENTS:eventsFile,HEALTH_AUDIT_FILE:auditFile};
+ const child=spawn(process.execPath,['--import','/app/node_modules/tsx/dist/loader.mjs','--import','/control/preload-recorridos.mjs',runtime==='server'?'/app/server.ts':'/control/api-worker.mjs'],{env,cwd:'/app'});
+ let stdout='',stderr='';child.stdout.on('data',b=>stdout+=b);child.stderr.on('data',b=>stderr+=b);
+ const request=async(path,body,headers={})=>{const response=await fetch(`http://127.0.0.1:${port}${path}`,{method:'POST',headers:{'content-type':'application/json',origin:env.APP_URL,...Object.fromEntries(Object.entries(headers).map(([k,v])=>[k.toLowerCase(),v]))},body:JSON.stringify(body),signal:AbortSignal.timeout(5000)});return {status:response.status,body:await response.json()};};
+ const events=()=>fs.readFileSync(eventsFile,'utf8').trim().split('\n').filter(Boolean).map(JSON.parse);
+ try{
+  let up=false;for(let i=0;i<450;i++){if(child.exitCode!==null)break;try{const r=await fetch(`http://127.0.0.1:${port}/api/live`);if(r.ok){up=true;break;}}catch{}await sleep(100);}
+  check(runtime+': arranque real',up,{});if(!up)continue;
+  const contact=await request('/api/contact',{name:'Control',email:'customer@example.invalid',message:'Consulta controlada'});
+  await sleep(300);check(runtime+': contacto conserva respuesta',contact.status===200&&contact.body.success===true,contact);
+  check(runtime+': contacto conserva email al dueño',events().some(e=>e.kind==='email'&&JSON.stringify(e.to).includes('owner@example.invalid')),events().filter(e=>e.kind==='email'));
+  const booking={customerName:'Control',customerEmail:'customer@example.invalid',customerPhone:'+972501234567',serviceId:'haircut',staffId:'staff-control',date:'2026-12-20',time:'12:00',duration:30};
+  const booked=await request('/api/book',booking);check(runtime+': reserva confirmada después de commit simulado',booked.status===200&&events().some(e=>e.kind==='commit'&&e.result===booked.body.appointmentId),booked);
+  const notified=await request('/api/notify-booking',{appointmentId:booked.body.appointmentId,details:{...booking,staff:'Staff',service:'Haircut'}});
+  await sleep(300);check(runtime+': notificación de reserva acepta documento realmente creado',notified.status===200&&notified.body.success===true,notified);
+  check(runtime+': reserva notifica email al cliente sin agente',events().some(e=>e.kind==='email'&&JSON.stringify(e.to).includes('customer@example.invalid')),events().filter(e=>e.kind==='email'));
+  const module={exports:{}};const pending=[];
+  vm.runInNewContext(ts.transpileModule(fs.readFileSync('/app/src/lib/appointment-notify-client.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS}}).outputText,{module,exports:module.exports,console,require:()=>({auth:{currentUser:{getIdToken:async()=>token}}}),fetch:(path,options)=>{const p=request(path,JSON.parse(options.body),options.headers).then(r=>{check(runtime+': consumidor CRM '+JSON.parse(options.body).action,r.status===200&&r.body.success===true,r);return {ok:r.status===200,status:r.status,text:async()=>JSON.stringify(r.body)};});pending.push(p);return p;}});
+  const appt={customerEmail:'customer@example.invalid',date:booking.date,time:booking.time,customerName:'Control',customerPhone:booking.customerPhone,serviceName:'Haircut'};
+  for(const [method,subject] of [['notifyAppointmentBooked','Booking Confirmed'],['notifyAppointmentCancelled','Appointment Cancelled'],['notifyAppointmentRescheduled','Appointment Rescheduled']]){
+   const before=events().filter(e=>e.kind==='email').length;
+   if(method==='notifyAppointmentRescheduled')module.exports[method](appt,{...appt,time:'13:00'});else module.exports[method](appt);
+   await sleep(100);await Promise.all(pending);await sleep(200);
+   const fresh=events().filter(e=>e.kind==='email').slice(before);
+   check(runtime+': consumidor '+method+' notifica destinatario y evento',fresh.length===1&&JSON.stringify(fresh[0].to).includes('customer@example.invalid')&&fresh[0].subject.startsWith(subject),fresh);
+  }
+  const before=events().filter(e=>e.kind==='email').length;module.exports.notifyAppointmentBooked({...appt,customerEmail:undefined});await sleep(300);check(runtime+': walk-in sin email no inventa destinatario',events().filter(e=>e.kind==='email').length===before,{});
+  const dashboard=fs.readFileSync('/app/src/components/admin/AdminDashboard.tsx','utf8');const tree=ts.createSourceFile('dashboard.tsx',dashboard,ts.ScriptTarget.Latest,true,ts.ScriptKind.TSX);let callers=[];function visit(n){if(ts.isCallExpression(n)&&['notifyAppointmentCancelled','notifyAppointmentRescheduled'].includes(n.expression.getText(tree))){const args=[...n.arguments].filter(ts.isObjectLiteralExpression);callers.push({name:n.expression.getText(tree),valid:args.length===(n.expression.getText(tree)==='notifyAppointmentCancelled'?1:2)&&args.every(a=>a.properties.some(prop=>ts.isPropertyAssignment(prop)&&prop.name.getText(tree)==='customerEmail'&&prop.initializer.getText(tree)==='prev.customerEmail'))});}ts.forEachChild(n,visit);}visit(tree);check(runtime+': callers cancel/reschedule conservan email en argumentos efectivos',callers.length===2&&callers.every(c=>c.valid),callers);
+  check(runtime+': base sin intentos IA agente simulados',!events().some(e=>e.kind==='ai'||e.kind==='agent'),events().filter(e=>e.kind==='ai'||e.kind==='agent'));
+  check(runtime+': cero intentos externos no simulados',fs.readFileSync(auditFile,'utf8')==='',fs.readFileSync(auditFile,'utf8'));
+ }catch(error){check(runtime+': ejecución',false,String(error));}
+ finally{child.kill('SIGTERM');await new Promise(resolve=>child.exitCode!==null||child.signalCode!==null?resolve():child.once('exit',resolve));fs.writeFileSync('/salida/'+runtime+'.stdout.txt',stdout);fs.writeFileSync('/salida/'+runtime+'.stderr.txt',stderr);fs.copyFileSync(eventsFile,'/salida/'+runtime+'.events.jsonl');}
+}
+fs.writeFileSync('/salida/RESULTADOS.json',JSON.stringify(results,null,2));console.log(JSON.stringify({passed:results.filter(r=>r.valid).length,failed:results.filter(r=>!r.valid).length}));process.exitCode=results.every(r=>r.valid)?0:1;

@@ -1,0 +1,1 @@
+[{"runtime":"server.ts","routes":37,"policy":["getAdminDb","getClientIp","RATE_LIMIT_WINDOW_MS","RATE_LIMIT_MAX_PER_WINDOW","rateLimitStore","rateLimit"],"identical":true},{"runtime":"api/index.ts","routes":40,"policy":["getClientIp","RATE_LIMIT_WINDOW_MS","RATE_LIMIT_MAX_PER_WINDOW","rateLimitStore","rateLimit","loadAdminFirestore"],"identical":true}]

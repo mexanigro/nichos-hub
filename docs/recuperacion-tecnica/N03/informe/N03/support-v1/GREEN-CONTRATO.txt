@@ -1,0 +1,184 @@
+TAP version 13
+# Subtest: usuario autenticado transmite token y devuelve id
+ok 1 - usuario autenticado transmite token y devuelve id
+  ---
+  duration_ms: 2.0701
+  type: 'test'
+  ...
+# Subtest: Firebase ausente: no envía y devuelve vacío
+ok 2 - Firebase ausente: no envía y devuelve vacío
+  ---
+  duration_ms: 0.733
+  type: 'test'
+  ...
+# Subtest: sin usuario: no envía y devuelve vacío
+ok 3 - sin usuario: no envía y devuelve vacío
+  ---
+  duration_ms: 0.7967
+  type: 'test'
+  ...
+# Subtest: token vacío: no envía y devuelve vacío
+ok 4 - token vacío: no envía y devuelve vacío
+  ---
+  duration_ms: 1.2204
+  type: 'test'
+  ...
+# Subtest: token fallido: no envía y devuelve vacío
+ok 5 - token fallido: no envía y devuelve vacío
+  ---
+  duration_ms: 1.1057
+  type: 'test'
+  ...
+# Subtest: respuesta HTTP rechazada no anuncia éxito
+ok 6 - respuesta HTTP rechazada no anuncia éxito
+  ---
+  duration_ms: 0.7332
+  type: 'test'
+  ...
+# Subtest: server.ts: válido persiste tenant y campos de servidor y devuelve id
+ok 7 - server.ts: válido persiste tenant y campos de servidor y devuelve id
+  ---
+  duration_ms: 148.2231
+  type: 'test'
+  ...
+# Subtest: server.ts: denegado no carga DB ni escribe
+ok 8 - server.ts: denegado no carga DB ni escribe
+  ---
+  duration_ms: 63.0169
+  type: 'test'
+  ...
+# Subtest: server.ts: inválido "" sin persistencia
+ok 9 - server.ts: inválido "" sin persistencia
+  ---
+  duration_ms: 36.1689
+  type: 'test'
+  ...
+# Subtest: server.ts: inválido "   " sin persistencia
+ok 10 - server.ts: inválido "   " sin persistencia
+  ---
+  duration_ms: 36.434
+  type: 'test'
+  ...
+# Subtest: server.ts: inválido 17 sin persistencia
+ok 11 - server.ts: inválido 17 sin persistencia
+  ---
+  duration_ms: 51.1555
+  type: 'test'
+  ...
+# Subtest: server.ts: inválido null sin persistencia
+ok 12 - server.ts: inválido null sin persistencia
+  ---
+  duration_ms: 31.0105
+  type: 'test'
+  ...
+# Subtest: server.ts: no-db después de auth no devuelve éxito
+ok 13 - server.ts: no-db después de auth no devuelve éxito
+  ---
+  duration_ms: 32.1946
+  type: 'test'
+  ...
+# Subtest: server.ts: write-error después de auth no devuelve éxito
+ok 14 - server.ts: write-error después de auth no devuelve éxito
+  ---
+  duration_ms: 28.6716
+  type: 'test'
+  ...
+# Subtest: server.ts: conserva límite5000
+ok 15 - server.ts: conserva límite5000
+  ---
+  duration_ms: 28.1256
+  type: 'test'
+  ...
+# Subtest: api/index.ts: válido persiste tenant y campos de servidor y devuelve id
+ok 16 - api/index.ts: válido persiste tenant y campos de servidor y devuelve id
+  ---
+  duration_ms: 57.7864
+  type: 'test'
+  ...
+# Subtest: api/index.ts: denegado no carga DB ni escribe
+ok 17 - api/index.ts: denegado no carga DB ni escribe
+  ---
+  duration_ms: 46.5933
+  type: 'test'
+  ...
+# Subtest: api/index.ts: inválido "" sin persistencia
+ok 18 - api/index.ts: inválido "" sin persistencia
+  ---
+  duration_ms: 38.9731
+  type: 'test'
+  ...
+# Subtest: api/index.ts: inválido "   " sin persistencia
+ok 19 - api/index.ts: inválido "   " sin persistencia
+  ---
+  duration_ms: 36.6329
+  type: 'test'
+  ...
+# Subtest: api/index.ts: inválido 17 sin persistencia
+ok 20 - api/index.ts: inválido 17 sin persistencia
+  ---
+  duration_ms: 35.0433
+  type: 'test'
+  ...
+# Subtest: api/index.ts: inválido null sin persistencia
+ok 21 - api/index.ts: inválido null sin persistencia
+  ---
+  duration_ms: 43.4752
+  type: 'test'
+  ...
+# Subtest: api/index.ts: no-db después de auth no devuelve éxito
+ok 22 - api/index.ts: no-db después de auth no devuelve éxito
+  ---
+  duration_ms: 34.4934
+  type: 'test'
+  ...
+# Subtest: api/index.ts: write-error después de auth no devuelve éxito
+ok 23 - api/index.ts: write-error después de auth no devuelve éxito
+  ---
+  duration_ms: 33.4042
+  type: 'test'
+  ...
+# Subtest: api/index.ts: conserva límite5000
+ok 24 - api/index.ts: conserva límite5000
+  ---
+  duration_ms: 36.3401
+  type: 'test'
+  ...
+# Subtest: server.ts: consumidor real a handler registrado devuelve id
+ok 25 - server.ts: consumidor real a handler registrado devuelve id
+  ---
+  duration_ms: 24.9272
+  type: 'test'
+  ...
+# Subtest: api/index.ts: consumidor real a handler registrado devuelve id
+ok 26 - api/index.ts: consumidor real a handler registrado devuelve id
+  ---
+  duration_ms: 35.6941
+  type: 'test'
+  ...
+# Subtest: server.ts: factory compartida importada y registrada
+ok 27 - server.ts: factory compartida importada y registrada
+  ---
+  duration_ms: 1.3447
+  type: 'test'
+  ...
+# Subtest: api/index.ts: factory compartida importada y registrada
+ok 28 - api/index.ts: factory compartida importada y registrada
+  ---
+  duration_ms: 1.0015
+  type: 'test'
+  ...
+# Subtest: consumidor importa auth del módulo Firebase real
+ok 29 - consumidor importa auth del módulo Firebase real
+  ---
+  duration_ms: 0.2592
+  type: 'test'
+  ...
+1..29
+# tests 29
+# suites 0
+# pass 29
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1136.0959

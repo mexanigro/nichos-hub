@@ -1,0 +1,36 @@
+{
+  "files": [
+    {
+      "path": "CONSUMO.json",
+      "bytes": 225,
+      "sha256": "71F7AF74C9EEB6377CA2249C82D4BA4387FAC09944B6D0F5192D78EDBA582157"
+    },
+    {
+      "path": "CONTINUIDAD.json",
+      "bytes": 753,
+      "sha256": "AFF0425A6EC50BD59ECED89966704E66A63904EE44151084A3E808EDD8BEA0C1"
+    },
+    {
+      "path": "INFORME.md",
+      "bytes": 5273,
+      "sha256": "6121B8DDB658A0F7DEB48E9B20F6427F256BFDE270B699F361A7F8FB06E614CB"
+    },
+    {
+      "path": "preimagenes\\indice__CALENDARIO.md",
+      "bytes": 9185,
+      "sha256": "532DC04F973401B1C50E3BE22430B065F9DB959D279867A62345DA457EB316FF"
+    },
+    {
+      "path": "preimagenes\\indice__README.md",
+      "bytes": 10228,
+      "sha256": "D08BD96DC3EE64EFC448212560FEF819599F7AFC8C1DB17FD0CA999FACA4FB49"
+    },
+    {
+      "path": "preimagenes\\indice__tareas__N03.md",
+      "bytes": 13585,
+      "sha256": "BB3D6E3764CC2BB15BAD8E56F1709BA9817B4DC941A2C67F6ED9CD2A1FC908CB"
+    }
+  ],
+  "scope": "N03 stock-v1 retoma, sin producto",
+  "continuidadIgual": true
+}

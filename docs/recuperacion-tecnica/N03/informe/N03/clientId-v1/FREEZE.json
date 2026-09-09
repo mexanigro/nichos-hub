@@ -1,0 +1,17 @@
+{
+  "refutation": "BASELINE-Y-REFUTACION.md",
+  "blockers": 0,
+  "red": "FUNCIONES-red-p0.json:134pass/8RED",
+  "http": "5E04E2A9EC9A252DF8A352F810D3A32E2C281F40831B768777998572F7D3F914",
+  "baseline": "baseline-r2 payloads y auth observados; baseline-permissions Docker0",
+  "scope": [
+    "src/lib/notify-agentkit.ts",
+    "api/index.ts",
+    "README.md",
+    ".env.example"
+  ],
+  "date": "2026-09-09T18:31:30.9630784Z",
+  "gate": "P0",
+  "functions": "49464A770706853F53177510D8BB0B0714909FA466ED3CEF8D5E9B0C14C88F71",
+  "contract": "7834B43572F0C8114BBA58084236817B50A6D067E6965D189E7F570A4EBA034C"
+}

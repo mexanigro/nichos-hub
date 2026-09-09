@@ -1,0 +1,19 @@
+{
+  "result": "GREEN",
+  "gates": 4,
+  "total": 4,
+  "checks": 34,
+  "scenarios": 14,
+  "typesExit": 0,
+  "lintErrors": 0,
+  "lintWarnings": 0,
+  "mutationExpectedFailures": 17,
+  "mutationPositiveControls": 17,
+  "instrumentFailures": 0,
+  "sourceSha256": "e84e50cce05bb87e831094de50f1c362213b4a1597e2f54f22899a31216c21bd",
+  "closureSha256": "7f2b0356444ecb274775aa82ea63170a4515eebf94f1d0bc56f09be6657fbcd3",
+  "usage": 78,
+  "totalCapN03": 80,
+  "N03": "en_curso",
+  "awaitingReview": true
+}

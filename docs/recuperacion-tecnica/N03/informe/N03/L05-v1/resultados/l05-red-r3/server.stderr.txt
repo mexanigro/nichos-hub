@@ -1,0 +1,30 @@
+  ✗  GEMINI_API_KEY                   → AI chat & style consultation (DISABLED — add key to .env)
+  ✗  STRIPE_SECRET_KEY                → Stripe payments (DISABLED — add key to .env)
+  ✗  STRIPE_WEBHOOK_SECRET            → Stripe webhook verification (DISABLED — add key to .env)
+  ✗  VITE_STRIPE_PUBLISHABLE_KEY      → Stripe frontend (DISABLED — add key to .env)
+  ✗  EMAIL_PROVIDER_API_KEY           → Email notifications (Resend) (DISABLED — add key to .env)
+  ✗  BUSINESS_OWNER_EMAIL             → Notification recipient (DISABLED — add key to .env)
+  ✗  VITE_ADMIN_EMAIL                 → Admin panel access (DISABLED — add key to .env)
+  ✗  WHATSAPP_AGENT_URL               → WhatsApp agent integration (leads + bookings) (DISABLED — add key to .env)
+  ✗  AGENT_API_SECRET                 → WhatsApp agent auth (must match agentkit) (DISABLED — add key to .env)
+  ✗  BUSINESS_OWNER_PHONE             → WhatsApp admin notifications recipient (DISABLED — add key to .env)
+  ✗  NICHOS_HUB_URL                   → Hub booking tier tracking (DISABLED — add key to .env)
+[Template Setup] Some features are disabled. See above for missing keys.
+
+[Tenant Guard] Failed to read client status: Error: synthetic-read
+    at clientData (file:///control/fixture.mjs:5:118)
+    at Object.get (file:///control/fixture.mjs:12:30)
+    at getClientRuntimeState (/app/server.ts:271:64)
+    at async enforceClientActive (/app/server.ts:615:22)
+[Tenant Guard] Failed to read client status: Error: synthetic-sdk
+    at getFirestore (file:///control/fixture.mjs:26:140)
+    at getAdminDb (/app/server.ts:257:10)
+    at async getClientRuntimeState (/app/server.ts:266:16)
+    at async enforceClientActive (/app/server.ts:615:22)
+[Tenant Guard] Admin SDK not configured — skipping kill-switch check, defaulting to active.
+[Tenant Guard] Failed to read client status: Error: synthetic-read
+    at clientData (file:///control/fixture.mjs:5:118)
+    at Object.get (file:///control/fixture.mjs:12:30)
+    at getClientRuntimeState (/app/server.ts:271:64)
+    at async enforceClientActive (/app/server.ts:615:22)
+[Security] Blocked request from untrusted origin: http://foreign.invalid

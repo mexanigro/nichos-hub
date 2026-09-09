@@ -1,0 +1,22 @@
+[
+  {
+    "sha256": "BE550CC148684BC362FD94BA8804F7D8A92CC494FA2AEF3BB6E09D0168744C11",
+    "path": "indice.md",
+    "bytes": 11589
+  },
+  {
+    "sha256": "9386A52ACEC1606F9AABD615ACC1801A8BBDD7FCE4D2A9CF6D487A62144BCCBC",
+    "path": "N03.md",
+    "bytes": 14955
+  },
+  {
+    "sha256": "035C058628F0815907B94183111F10CB0FFE108683EF8525307F17713F15AF59",
+    "path": "preload-anterior.mjs",
+    "bytes": 2788
+  },
+  {
+    "sha256": "BE09A9A85C3DBEF1C769B46D8122BFA8459686564FACFC327C29FB741BC30B94",
+    "path": "runner-origen-ausente.mjs",
+    "bytes": 5080
+  }
+]

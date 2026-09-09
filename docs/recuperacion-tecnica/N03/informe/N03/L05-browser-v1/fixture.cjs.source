@@ -1,0 +1,29 @@
+// Dependencias sintéticas del arranque; no carga Firebase ni credenciales.
+function installFixture(scenario) {
+  window.__scenario = scenario;
+  window.__viteEnv = { VITE_DISABLE_FIRESTORE_SITE_OVERRIDE: scenario.disableOverlay || "" };
+  window.__fixture = { reads: [], pending: {}, commits: 0, overlays: [] };
+  window.__read = function (ref, server) {
+    const f = window.__fixture;
+    if (ref.db !== 'synthetic-db' || ref.id !== 'synthetic-tenant') throw Error('selector alterado');
+    const spec = scenario[ref.collection] || {};
+    f.reads.push({ collection: ref.collection, server, at: Date.now() });
+    if (spec.syncError) throw Error('synthetic synchronous failure');
+    return new Promise((resolve, reject) => {
+      const finish = () => {
+        if (!server && ref.collection === 'clients' && spec.cachedStatus) {
+          resolve({ exists: () => true, data: () => ({ status: spec.cachedStatus }) }); return;
+        }
+        if (spec.error) { reject(Object.assign(new Error('synthetic read failure'), { code: spec.error })); return; }
+        resolve({ exists: () => spec.exists !== false, data: () => {
+          if (spec.dataError) throw Error('synthetic malformed snapshot');
+          return ref.collection === 'clients' ? { status: spec.status } : structuredClone(spec.data || {});
+        } });
+      };
+      if (spec.pending) f.pending[ref.collection] = finish;
+      else if (spec.delay) setTimeout(finish, spec.delay);
+      else finish();
+    });
+  };
+}
+module.exports = { installFixture };

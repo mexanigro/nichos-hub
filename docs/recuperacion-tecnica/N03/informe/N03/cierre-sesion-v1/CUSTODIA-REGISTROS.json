@@ -1,0 +1,37 @@
+[
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\indice\\tareas\\N03.md",
+    "preimage": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\preimagenes-registros\\indice\\tareas\\N03.md",
+    "sha256": "0104e369359881ac13b887a8d4a17ab2389115c737f84721fdc1d9c6f3fefeaa"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\indice\\README.md",
+    "preimage": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\preimagenes-registros\\indice\\README.md",
+    "sha256": "c15fdb3821545e796f71c5306741807bbafa4957c0c1cf92471505593ef37ad6"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\indice\\PENDIENTES.md",
+    "preimage": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\preimagenes-registros\\indice\\PENDIENTES.md",
+    "sha256": "faa3c54aea76ddb5ab31e0f5c5b3cc493f2219845175c017fa9333da314fd8df"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\indice\\CALENDARIO.md",
+    "preimage": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\preimagenes-registros\\indice\\CALENDARIO.md",
+    "sha256": "f341a09d40892816210138f521bb26844a4070fb56908289c7f994697a414c53"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\BALANCE.md",
+    "preimage": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\preimagenes-registros\\informe\\N03\\reconciliacion-v1\\BALANCE.md",
+    "sha256": "fd2892df5766a473bc299731240df003a1f6238a2dd25731e7fc943eba0cfc1d"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\INFORME.md",
+    "preimage": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\preimagenes-registros\\informe\\N03\\W-NEXT-v1\\INFORME.md",
+    "sha256": "4fd5652ea6ac099b251108d0301496f3d08bcd4a1be50a65329ef71a33c1b16c"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\PROPUESTA.md",
+    "preimage": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\preimagenes-registros\\informe\\N03\\W-NEXT-v1\\PROPUESTA.md",
+    "sha256": "7eb6ce8531286ba0f7e0212dc94ccafbb30752b41c68dcecac687e35161d2acb"
+  }
+]

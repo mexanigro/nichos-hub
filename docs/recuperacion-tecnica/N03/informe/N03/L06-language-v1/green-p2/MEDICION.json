@@ -1,0 +1,2392 @@
+[
+  {
+    "mode": "valid",
+    "input": "he",
+    "hubLanguage": "he",
+    "configLanguage": "he",
+    "propagatedLanguage": "he",
+    "response": {
+      "status": 200,
+      "body": {
+        "clientId": "demo-synthetic-00000000",
+        "hubDocId": "hub-control"
+      }
+    },
+    "writes": [
+      {
+        "collection": "hub_clients",
+        "id": "hub-control",
+        "data": {
+          "clientId": "demo-synthetic-00000000",
+          "name": "Synthetic",
+          "businessName": "Synthetic",
+          "niche": "barberia",
+          "customNiche": "",
+          "businessMode": "team",
+          "status": "demo",
+          "domain": "demo-synthetic-00000000.arzac.studio",
+          "createdAt": "2026-09-09T00:00:00.000Z",
+          "contact": {
+            "whatsapp": "",
+            "email": "",
+            "address": "",
+            "instagram": ""
+          },
+          "description": "",
+          "colors": "",
+          "logoCreate": false,
+          "logoDataUrl": null,
+          "language": "he",
+          "leadEmail": "synthetic@example.invalid"
+        }
+      },
+      {
+        "collection": "clients",
+        "id": "demo-synthetic-00000000",
+        "data": {
+          "status": "active"
+        }
+      },
+      {
+        "collection": "config",
+        "id": "demo-synthetic-00000000",
+        "data": {
+          "language": "he",
+          "business": {
+            "type": "barberia",
+            "mode": "team",
+            "name": "Synthetic"
+          },
+          "brand": {
+            "name": "Synthetic",
+            "tagline": ""
+          },
+          "contact": {
+            "phone": "",
+            "email": "",
+            "address": {
+              "street": ""
+            },
+            "instagram": ""
+          },
+          "features": {
+            "fixture": true
+          },
+          "activeTheme": "fixture-theme",
+          "splash": {
+            "enabled": true,
+            "variant": "fixture-splash"
+          },
+          "brandingInput": {
+            "colors": "",
+            "logoCreate": false,
+            "instagram": ""
+          }
+        }
+      },
+      {
+        "collection": "hub_clients",
+        "id": "hub-control",
+        "update": {
+          "vercelProjectId": "project-control",
+          "vercelProjectName": "demo-synthetic-00000000",
+          "domain": "demo-synthetic-00000000.arzac.studio",
+          "deployStatus": "building",
+          "deployError": null
+        }
+      }
+    ],
+    "triggers": [
+      {
+        "url": "http://localhost/api/deploy",
+        "method": "POST",
+        "headers": {
+          "Content-Type": "application/json",
+          "x-deploy-secret": "synthetic-secret"
+        },
+        "body": {
+          "clientId": "demo-synthetic-00000000",
+          "niche": "barberia",
+          "hubDocId": "hub-control"
+        }
+      }
+    ],
+    "requests": [
+      {
+        "path": "/v1/projects",
+        "method": "POST",
+        "body": {
+          "name": "demo-synthetic-00000000",
+          "gitRepository": {
+            "repo": "synthetic/template",
+            "type": "github"
+          },
+          "framework": "vite"
+        }
+      },
+      {
+        "path": "/v3/projects/project-control/env",
+        "method": "POST",
+        "body": [
+          {
+            "key": "VITE_CLIENT_ID",
+            "value": "demo-synthetic-00000000",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_ACTIVE_NICHE",
+            "value": "barberia",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_DEMO_MODE",
+            "value": "false",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_UI_LANGUAGE",
+            "value": "he",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_FIREBASE_API_KEY",
+            "value": "synthetic",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_FIREBASE_AUTH_DOMAIN",
+            "value": "synthetic.invalid",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_FIREBASE_PROJECT_ID",
+            "value": "synthetic-project",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "EMAIL_FROM_ADDRESS",
+            "value": "noreply@arzac.studio",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          }
+        ]
+      },
+      {
+        "path": "/v9/projects/project-control/domains",
+        "method": "POST",
+        "body": {
+          "name": "demo-synthetic-00000000.arzac.studio"
+        }
+      },
+      {
+        "path": "/v13/deployments",
+        "method": "POST",
+        "body": {
+          "name": "demo-synthetic-00000000",
+          "project": "project-control",
+          "target": "production",
+          "gitSource": {
+            "type": "github",
+            "org": "synthetic",
+            "repo": "template",
+            "ref": "main"
+          }
+        }
+      }
+    ],
+    "aiAttempts": 0,
+    "realNetworkCalls": 0
+  },
+  {
+    "mode": "valid",
+    "input": "en",
+    "hubLanguage": "en",
+    "configLanguage": "en",
+    "propagatedLanguage": "en",
+    "response": {
+      "status": 200,
+      "body": {
+        "clientId": "demo-synthetic-00000000",
+        "hubDocId": "hub-control"
+      }
+    },
+    "writes": [
+      {
+        "collection": "hub_clients",
+        "id": "hub-control",
+        "data": {
+          "clientId": "demo-synthetic-00000000",
+          "name": "Synthetic",
+          "businessName": "Synthetic",
+          "niche": "barberia",
+          "customNiche": "",
+          "businessMode": "team",
+          "status": "demo",
+          "domain": "demo-synthetic-00000000.arzac.studio",
+          "createdAt": "2026-09-09T00:00:00.000Z",
+          "contact": {
+            "whatsapp": "",
+            "email": "",
+            "address": "",
+            "instagram": ""
+          },
+          "description": "",
+          "colors": "",
+          "logoCreate": false,
+          "logoDataUrl": null,
+          "language": "en",
+          "leadEmail": "synthetic@example.invalid"
+        }
+      },
+      {
+        "collection": "clients",
+        "id": "demo-synthetic-00000000",
+        "data": {
+          "status": "active"
+        }
+      },
+      {
+        "collection": "config",
+        "id": "demo-synthetic-00000000",
+        "data": {
+          "language": "en",
+          "business": {
+            "type": "barberia",
+            "mode": "team",
+            "name": "Synthetic"
+          },
+          "brand": {
+            "name": "Synthetic",
+            "tagline": ""
+          },
+          "contact": {
+            "phone": "",
+            "email": "",
+            "address": {
+              "street": ""
+            },
+            "instagram": ""
+          },
+          "features": {
+            "fixture": true
+          },
+          "activeTheme": "fixture-theme",
+          "splash": {
+            "enabled": true,
+            "variant": "fixture-splash"
+          },
+          "brandingInput": {
+            "colors": "",
+            "logoCreate": false,
+            "instagram": ""
+          }
+        }
+      },
+      {
+        "collection": "hub_clients",
+        "id": "hub-control",
+        "update": {
+          "vercelProjectId": "project-control",
+          "vercelProjectName": "demo-synthetic-00000000",
+          "domain": "demo-synthetic-00000000.arzac.studio",
+          "deployStatus": "building",
+          "deployError": null
+        }
+      }
+    ],
+    "triggers": [
+      {
+        "url": "http://localhost/api/deploy",
+        "method": "POST",
+        "headers": {
+          "Content-Type": "application/json",
+          "x-deploy-secret": "synthetic-secret"
+        },
+        "body": {
+          "clientId": "demo-synthetic-00000000",
+          "niche": "barberia",
+          "hubDocId": "hub-control"
+        }
+      }
+    ],
+    "requests": [
+      {
+        "path": "/v1/projects",
+        "method": "POST",
+        "body": {
+          "name": "demo-synthetic-00000000",
+          "gitRepository": {
+            "repo": "synthetic/template",
+            "type": "github"
+          },
+          "framework": "vite"
+        }
+      },
+      {
+        "path": "/v3/projects/project-control/env",
+        "method": "POST",
+        "body": [
+          {
+            "key": "VITE_CLIENT_ID",
+            "value": "demo-synthetic-00000000",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_ACTIVE_NICHE",
+            "value": "barberia",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_DEMO_MODE",
+            "value": "false",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_UI_LANGUAGE",
+            "value": "en",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_FIREBASE_API_KEY",
+            "value": "synthetic",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_FIREBASE_AUTH_DOMAIN",
+            "value": "synthetic.invalid",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_FIREBASE_PROJECT_ID",
+            "value": "synthetic-project",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "EMAIL_FROM_ADDRESS",
+            "value": "noreply@arzac.studio",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          }
+        ]
+      },
+      {
+        "path": "/v9/projects/project-control/domains",
+        "method": "POST",
+        "body": {
+          "name": "demo-synthetic-00000000.arzac.studio"
+        }
+      },
+      {
+        "path": "/v13/deployments",
+        "method": "POST",
+        "body": {
+          "name": "demo-synthetic-00000000",
+          "project": "project-control",
+          "target": "production",
+          "gitSource": {
+            "type": "github",
+            "org": "synthetic",
+            "repo": "template",
+            "ref": "main"
+          }
+        }
+      }
+    ],
+    "aiAttempts": 0,
+    "realNetworkCalls": 0
+  },
+  {
+    "mode": "valid",
+    "input": "ru",
+    "hubLanguage": "ru",
+    "configLanguage": "ru",
+    "propagatedLanguage": "ru",
+    "response": {
+      "status": 200,
+      "body": {
+        "clientId": "demo-synthetic-00000000",
+        "hubDocId": "hub-control"
+      }
+    },
+    "writes": [
+      {
+        "collection": "hub_clients",
+        "id": "hub-control",
+        "data": {
+          "clientId": "demo-synthetic-00000000",
+          "name": "Synthetic",
+          "businessName": "Synthetic",
+          "niche": "barberia",
+          "customNiche": "",
+          "businessMode": "team",
+          "status": "demo",
+          "domain": "demo-synthetic-00000000.arzac.studio",
+          "createdAt": "2026-09-09T00:00:00.000Z",
+          "contact": {
+            "whatsapp": "",
+            "email": "",
+            "address": "",
+            "instagram": ""
+          },
+          "description": "",
+          "colors": "",
+          "logoCreate": false,
+          "logoDataUrl": null,
+          "language": "ru",
+          "leadEmail": "synthetic@example.invalid"
+        }
+      },
+      {
+        "collection": "clients",
+        "id": "demo-synthetic-00000000",
+        "data": {
+          "status": "active"
+        }
+      },
+      {
+        "collection": "config",
+        "id": "demo-synthetic-00000000",
+        "data": {
+          "language": "ru",
+          "business": {
+            "type": "barberia",
+            "mode": "team",
+            "name": "Synthetic"
+          },
+          "brand": {
+            "name": "Synthetic",
+            "tagline": ""
+          },
+          "contact": {
+            "phone": "",
+            "email": "",
+            "address": {
+              "street": ""
+            },
+            "instagram": ""
+          },
+          "features": {
+            "fixture": true
+          },
+          "activeTheme": "fixture-theme",
+          "splash": {
+            "enabled": true,
+            "variant": "fixture-splash"
+          },
+          "brandingInput": {
+            "colors": "",
+            "logoCreate": false,
+            "instagram": ""
+          }
+        }
+      },
+      {
+        "collection": "hub_clients",
+        "id": "hub-control",
+        "update": {
+          "vercelProjectId": "project-control",
+          "vercelProjectName": "demo-synthetic-00000000",
+          "domain": "demo-synthetic-00000000.arzac.studio",
+          "deployStatus": "building",
+          "deployError": null
+        }
+      }
+    ],
+    "triggers": [
+      {
+        "url": "http://localhost/api/deploy",
+        "method": "POST",
+        "headers": {
+          "Content-Type": "application/json",
+          "x-deploy-secret": "synthetic-secret"
+        },
+        "body": {
+          "clientId": "demo-synthetic-00000000",
+          "niche": "barberia",
+          "hubDocId": "hub-control"
+        }
+      }
+    ],
+    "requests": [
+      {
+        "path": "/v1/projects",
+        "method": "POST",
+        "body": {
+          "name": "demo-synthetic-00000000",
+          "gitRepository": {
+            "repo": "synthetic/template",
+            "type": "github"
+          },
+          "framework": "vite"
+        }
+      },
+      {
+        "path": "/v3/projects/project-control/env",
+        "method": "POST",
+        "body": [
+          {
+            "key": "VITE_CLIENT_ID",
+            "value": "demo-synthetic-00000000",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_ACTIVE_NICHE",
+            "value": "barberia",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_DEMO_MODE",
+            "value": "false",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_UI_LANGUAGE",
+            "value": "ru",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_FIREBASE_API_KEY",
+            "value": "synthetic",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_FIREBASE_AUTH_DOMAIN",
+            "value": "synthetic.invalid",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_FIREBASE_PROJECT_ID",
+            "value": "synthetic-project",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "EMAIL_FROM_ADDRESS",
+            "value": "noreply@arzac.studio",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          }
+        ]
+      },
+      {
+        "path": "/v9/projects/project-control/domains",
+        "method": "POST",
+        "body": {
+          "name": "demo-synthetic-00000000.arzac.studio"
+        }
+      },
+      {
+        "path": "/v13/deployments",
+        "method": "POST",
+        "body": {
+          "name": "demo-synthetic-00000000",
+          "project": "project-control",
+          "target": "production",
+          "gitSource": {
+            "type": "github",
+            "org": "synthetic",
+            "repo": "template",
+            "ref": "main"
+          }
+        }
+      }
+    ],
+    "aiAttempts": 0,
+    "realNetworkCalls": 0
+  },
+  {
+    "mode": "valid",
+    "input": "ar",
+    "hubLanguage": "ar",
+    "configLanguage": "ar",
+    "propagatedLanguage": "ar",
+    "response": {
+      "status": 200,
+      "body": {
+        "clientId": "demo-synthetic-00000000",
+        "hubDocId": "hub-control"
+      }
+    },
+    "writes": [
+      {
+        "collection": "hub_clients",
+        "id": "hub-control",
+        "data": {
+          "clientId": "demo-synthetic-00000000",
+          "name": "Synthetic",
+          "businessName": "Synthetic",
+          "niche": "barberia",
+          "customNiche": "",
+          "businessMode": "team",
+          "status": "demo",
+          "domain": "demo-synthetic-00000000.arzac.studio",
+          "createdAt": "2026-09-09T00:00:00.000Z",
+          "contact": {
+            "whatsapp": "",
+            "email": "",
+            "address": "",
+            "instagram": ""
+          },
+          "description": "",
+          "colors": "",
+          "logoCreate": false,
+          "logoDataUrl": null,
+          "language": "ar",
+          "leadEmail": "synthetic@example.invalid"
+        }
+      },
+      {
+        "collection": "clients",
+        "id": "demo-synthetic-00000000",
+        "data": {
+          "status": "active"
+        }
+      },
+      {
+        "collection": "config",
+        "id": "demo-synthetic-00000000",
+        "data": {
+          "language": "ar",
+          "business": {
+            "type": "barberia",
+            "mode": "team",
+            "name": "Synthetic"
+          },
+          "brand": {
+            "name": "Synthetic",
+            "tagline": ""
+          },
+          "contact": {
+            "phone": "",
+            "email": "",
+            "address": {
+              "street": ""
+            },
+            "instagram": ""
+          },
+          "features": {
+            "fixture": true
+          },
+          "activeTheme": "fixture-theme",
+          "splash": {
+            "enabled": true,
+            "variant": "fixture-splash"
+          },
+          "brandingInput": {
+            "colors": "",
+            "logoCreate": false,
+            "instagram": ""
+          }
+        }
+      },
+      {
+        "collection": "hub_clients",
+        "id": "hub-control",
+        "update": {
+          "vercelProjectId": "project-control",
+          "vercelProjectName": "demo-synthetic-00000000",
+          "domain": "demo-synthetic-00000000.arzac.studio",
+          "deployStatus": "building",
+          "deployError": null
+        }
+      }
+    ],
+    "triggers": [
+      {
+        "url": "http://localhost/api/deploy",
+        "method": "POST",
+        "headers": {
+          "Content-Type": "application/json",
+          "x-deploy-secret": "synthetic-secret"
+        },
+        "body": {
+          "clientId": "demo-synthetic-00000000",
+          "niche": "barberia",
+          "hubDocId": "hub-control"
+        }
+      }
+    ],
+    "requests": [
+      {
+        "path": "/v1/projects",
+        "method": "POST",
+        "body": {
+          "name": "demo-synthetic-00000000",
+          "gitRepository": {
+            "repo": "synthetic/template",
+            "type": "github"
+          },
+          "framework": "vite"
+        }
+      },
+      {
+        "path": "/v3/projects/project-control/env",
+        "method": "POST",
+        "body": [
+          {
+            "key": "VITE_CLIENT_ID",
+            "value": "demo-synthetic-00000000",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_ACTIVE_NICHE",
+            "value": "barberia",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_DEMO_MODE",
+            "value": "false",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_UI_LANGUAGE",
+            "value": "ar",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_FIREBASE_API_KEY",
+            "value": "synthetic",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_FIREBASE_AUTH_DOMAIN",
+            "value": "synthetic.invalid",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_FIREBASE_PROJECT_ID",
+            "value": "synthetic-project",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "EMAIL_FROM_ADDRESS",
+            "value": "noreply@arzac.studio",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          }
+        ]
+      },
+      {
+        "path": "/v9/projects/project-control/domains",
+        "method": "POST",
+        "body": {
+          "name": "demo-synthetic-00000000.arzac.studio"
+        }
+      },
+      {
+        "path": "/v13/deployments",
+        "method": "POST",
+        "body": {
+          "name": "demo-synthetic-00000000",
+          "project": "project-control",
+          "target": "production",
+          "gitSource": {
+            "type": "github",
+            "org": "synthetic",
+            "repo": "template",
+            "ref": "main"
+          }
+        }
+      }
+    ],
+    "aiAttempts": 0,
+    "realNetworkCalls": 0
+  },
+  {
+    "mode": "valid",
+    "input": "es",
+    "hubLanguage": "es",
+    "configLanguage": "es",
+    "propagatedLanguage": "es",
+    "response": {
+      "status": 200,
+      "body": {
+        "clientId": "demo-synthetic-00000000",
+        "hubDocId": "hub-control"
+      }
+    },
+    "writes": [
+      {
+        "collection": "hub_clients",
+        "id": "hub-control",
+        "data": {
+          "clientId": "demo-synthetic-00000000",
+          "name": "Synthetic",
+          "businessName": "Synthetic",
+          "niche": "barberia",
+          "customNiche": "",
+          "businessMode": "team",
+          "status": "demo",
+          "domain": "demo-synthetic-00000000.arzac.studio",
+          "createdAt": "2026-09-09T00:00:00.000Z",
+          "contact": {
+            "whatsapp": "",
+            "email": "",
+            "address": "",
+            "instagram": ""
+          },
+          "description": "",
+          "colors": "",
+          "logoCreate": false,
+          "logoDataUrl": null,
+          "language": "es",
+          "leadEmail": "synthetic@example.invalid"
+        }
+      },
+      {
+        "collection": "clients",
+        "id": "demo-synthetic-00000000",
+        "data": {
+          "status": "active"
+        }
+      },
+      {
+        "collection": "config",
+        "id": "demo-synthetic-00000000",
+        "data": {
+          "language": "es",
+          "business": {
+            "type": "barberia",
+            "mode": "team",
+            "name": "Synthetic"
+          },
+          "brand": {
+            "name": "Synthetic",
+            "tagline": ""
+          },
+          "contact": {
+            "phone": "",
+            "email": "",
+            "address": {
+              "street": ""
+            },
+            "instagram": ""
+          },
+          "features": {
+            "fixture": true
+          },
+          "activeTheme": "fixture-theme",
+          "splash": {
+            "enabled": true,
+            "variant": "fixture-splash"
+          },
+          "brandingInput": {
+            "colors": "",
+            "logoCreate": false,
+            "instagram": ""
+          }
+        }
+      },
+      {
+        "collection": "hub_clients",
+        "id": "hub-control",
+        "update": {
+          "vercelProjectId": "project-control",
+          "vercelProjectName": "demo-synthetic-00000000",
+          "domain": "demo-synthetic-00000000.arzac.studio",
+          "deployStatus": "building",
+          "deployError": null
+        }
+      }
+    ],
+    "triggers": [
+      {
+        "url": "http://localhost/api/deploy",
+        "method": "POST",
+        "headers": {
+          "Content-Type": "application/json",
+          "x-deploy-secret": "synthetic-secret"
+        },
+        "body": {
+          "clientId": "demo-synthetic-00000000",
+          "niche": "barberia",
+          "hubDocId": "hub-control"
+        }
+      }
+    ],
+    "requests": [
+      {
+        "path": "/v1/projects",
+        "method": "POST",
+        "body": {
+          "name": "demo-synthetic-00000000",
+          "gitRepository": {
+            "repo": "synthetic/template",
+            "type": "github"
+          },
+          "framework": "vite"
+        }
+      },
+      {
+        "path": "/v3/projects/project-control/env",
+        "method": "POST",
+        "body": [
+          {
+            "key": "VITE_CLIENT_ID",
+            "value": "demo-synthetic-00000000",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_ACTIVE_NICHE",
+            "value": "barberia",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_DEMO_MODE",
+            "value": "false",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_UI_LANGUAGE",
+            "value": "es",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_FIREBASE_API_KEY",
+            "value": "synthetic",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_FIREBASE_AUTH_DOMAIN",
+            "value": "synthetic.invalid",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_FIREBASE_PROJECT_ID",
+            "value": "synthetic-project",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "EMAIL_FROM_ADDRESS",
+            "value": "noreply@arzac.studio",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          }
+        ]
+      },
+      {
+        "path": "/v9/projects/project-control/domains",
+        "method": "POST",
+        "body": {
+          "name": "demo-synthetic-00000000.arzac.studio"
+        }
+      },
+      {
+        "path": "/v13/deployments",
+        "method": "POST",
+        "body": {
+          "name": "demo-synthetic-00000000",
+          "project": "project-control",
+          "target": "production",
+          "gitSource": {
+            "type": "github",
+            "org": "synthetic",
+            "repo": "template",
+            "ref": "main"
+          }
+        }
+      }
+    ],
+    "aiAttempts": 0,
+    "realNetworkCalls": 0
+  },
+  {
+    "mode": "valid",
+    "input": null,
+    "hubLanguage": "en",
+    "configLanguage": "en",
+    "propagatedLanguage": "en",
+    "response": {
+      "status": 200,
+      "body": {
+        "clientId": "demo-synthetic-00000000",
+        "hubDocId": "hub-control"
+      }
+    },
+    "writes": [
+      {
+        "collection": "hub_clients",
+        "id": "hub-control",
+        "data": {
+          "clientId": "demo-synthetic-00000000",
+          "name": "Synthetic",
+          "businessName": "Synthetic",
+          "niche": "barberia",
+          "customNiche": "",
+          "businessMode": "team",
+          "status": "demo",
+          "domain": "demo-synthetic-00000000.arzac.studio",
+          "createdAt": "2026-09-09T00:00:00.000Z",
+          "contact": {
+            "whatsapp": "",
+            "email": "",
+            "address": "",
+            "instagram": ""
+          },
+          "description": "",
+          "colors": "",
+          "logoCreate": false,
+          "logoDataUrl": null,
+          "language": "en",
+          "leadEmail": "synthetic@example.invalid"
+        }
+      },
+      {
+        "collection": "clients",
+        "id": "demo-synthetic-00000000",
+        "data": {
+          "status": "active"
+        }
+      },
+      {
+        "collection": "config",
+        "id": "demo-synthetic-00000000",
+        "data": {
+          "language": "en",
+          "business": {
+            "type": "barberia",
+            "mode": "team",
+            "name": "Synthetic"
+          },
+          "brand": {
+            "name": "Synthetic",
+            "tagline": ""
+          },
+          "contact": {
+            "phone": "",
+            "email": "",
+            "address": {
+              "street": ""
+            },
+            "instagram": ""
+          },
+          "features": {
+            "fixture": true
+          },
+          "activeTheme": "fixture-theme",
+          "splash": {
+            "enabled": true,
+            "variant": "fixture-splash"
+          },
+          "brandingInput": {
+            "colors": "",
+            "logoCreate": false,
+            "instagram": ""
+          }
+        }
+      },
+      {
+        "collection": "hub_clients",
+        "id": "hub-control",
+        "update": {
+          "vercelProjectId": "project-control",
+          "vercelProjectName": "demo-synthetic-00000000",
+          "domain": "demo-synthetic-00000000.arzac.studio",
+          "deployStatus": "building",
+          "deployError": null
+        }
+      }
+    ],
+    "triggers": [
+      {
+        "url": "http://localhost/api/deploy",
+        "method": "POST",
+        "headers": {
+          "Content-Type": "application/json",
+          "x-deploy-secret": "synthetic-secret"
+        },
+        "body": {
+          "clientId": "demo-synthetic-00000000",
+          "niche": "barberia",
+          "hubDocId": "hub-control"
+        }
+      }
+    ],
+    "requests": [
+      {
+        "path": "/v1/projects",
+        "method": "POST",
+        "body": {
+          "name": "demo-synthetic-00000000",
+          "gitRepository": {
+            "repo": "synthetic/template",
+            "type": "github"
+          },
+          "framework": "vite"
+        }
+      },
+      {
+        "path": "/v3/projects/project-control/env",
+        "method": "POST",
+        "body": [
+          {
+            "key": "VITE_CLIENT_ID",
+            "value": "demo-synthetic-00000000",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_ACTIVE_NICHE",
+            "value": "barberia",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_DEMO_MODE",
+            "value": "false",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_UI_LANGUAGE",
+            "value": "en",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_FIREBASE_API_KEY",
+            "value": "synthetic",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_FIREBASE_AUTH_DOMAIN",
+            "value": "synthetic.invalid",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_FIREBASE_PROJECT_ID",
+            "value": "synthetic-project",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "EMAIL_FROM_ADDRESS",
+            "value": "noreply@arzac.studio",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          }
+        ]
+      },
+      {
+        "path": "/v9/projects/project-control/domains",
+        "method": "POST",
+        "body": {
+          "name": "demo-synthetic-00000000.arzac.studio"
+        }
+      },
+      {
+        "path": "/v13/deployments",
+        "method": "POST",
+        "body": {
+          "name": "demo-synthetic-00000000",
+          "project": "project-control",
+          "target": "production",
+          "gitSource": {
+            "type": "github",
+            "org": "synthetic",
+            "repo": "template",
+            "ref": "main"
+          }
+        }
+      }
+    ],
+    "aiAttempts": 0,
+    "realNetworkCalls": 0
+  },
+  {
+    "mode": "valid",
+    "input": "  ru  ",
+    "hubLanguage": "ru",
+    "configLanguage": "ru",
+    "propagatedLanguage": "ru",
+    "response": {
+      "status": 200,
+      "body": {
+        "clientId": "demo-synthetic-00000000",
+        "hubDocId": "hub-control"
+      }
+    },
+    "writes": [
+      {
+        "collection": "hub_clients",
+        "id": "hub-control",
+        "data": {
+          "clientId": "demo-synthetic-00000000",
+          "name": "Synthetic",
+          "businessName": "Synthetic",
+          "niche": "barberia",
+          "customNiche": "",
+          "businessMode": "team",
+          "status": "demo",
+          "domain": "demo-synthetic-00000000.arzac.studio",
+          "createdAt": "2026-09-09T00:00:00.000Z",
+          "contact": {
+            "whatsapp": "",
+            "email": "",
+            "address": "",
+            "instagram": ""
+          },
+          "description": "",
+          "colors": "",
+          "logoCreate": false,
+          "logoDataUrl": null,
+          "language": "ru",
+          "leadEmail": "synthetic@example.invalid"
+        }
+      },
+      {
+        "collection": "clients",
+        "id": "demo-synthetic-00000000",
+        "data": {
+          "status": "active"
+        }
+      },
+      {
+        "collection": "config",
+        "id": "demo-synthetic-00000000",
+        "data": {
+          "language": "ru",
+          "business": {
+            "type": "barberia",
+            "mode": "team",
+            "name": "Synthetic"
+          },
+          "brand": {
+            "name": "Synthetic",
+            "tagline": ""
+          },
+          "contact": {
+            "phone": "",
+            "email": "",
+            "address": {
+              "street": ""
+            },
+            "instagram": ""
+          },
+          "features": {
+            "fixture": true
+          },
+          "activeTheme": "fixture-theme",
+          "splash": {
+            "enabled": true,
+            "variant": "fixture-splash"
+          },
+          "brandingInput": {
+            "colors": "",
+            "logoCreate": false,
+            "instagram": ""
+          }
+        }
+      },
+      {
+        "collection": "hub_clients",
+        "id": "hub-control",
+        "update": {
+          "vercelProjectId": "project-control",
+          "vercelProjectName": "demo-synthetic-00000000",
+          "domain": "demo-synthetic-00000000.arzac.studio",
+          "deployStatus": "building",
+          "deployError": null
+        }
+      }
+    ],
+    "triggers": [
+      {
+        "url": "http://localhost/api/deploy",
+        "method": "POST",
+        "headers": {
+          "Content-Type": "application/json",
+          "x-deploy-secret": "synthetic-secret"
+        },
+        "body": {
+          "clientId": "demo-synthetic-00000000",
+          "niche": "barberia",
+          "hubDocId": "hub-control"
+        }
+      }
+    ],
+    "requests": [
+      {
+        "path": "/v1/projects",
+        "method": "POST",
+        "body": {
+          "name": "demo-synthetic-00000000",
+          "gitRepository": {
+            "repo": "synthetic/template",
+            "type": "github"
+          },
+          "framework": "vite"
+        }
+      },
+      {
+        "path": "/v3/projects/project-control/env",
+        "method": "POST",
+        "body": [
+          {
+            "key": "VITE_CLIENT_ID",
+            "value": "demo-synthetic-00000000",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_ACTIVE_NICHE",
+            "value": "barberia",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_DEMO_MODE",
+            "value": "false",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_UI_LANGUAGE",
+            "value": "ru",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_FIREBASE_API_KEY",
+            "value": "synthetic",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_FIREBASE_AUTH_DOMAIN",
+            "value": "synthetic.invalid",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_FIREBASE_PROJECT_ID",
+            "value": "synthetic-project",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "EMAIL_FROM_ADDRESS",
+            "value": "noreply@arzac.studio",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          }
+        ]
+      },
+      {
+        "path": "/v9/projects/project-control/domains",
+        "method": "POST",
+        "body": {
+          "name": "demo-synthetic-00000000.arzac.studio"
+        }
+      },
+      {
+        "path": "/v13/deployments",
+        "method": "POST",
+        "body": {
+          "name": "demo-synthetic-00000000",
+          "project": "project-control",
+          "target": "production",
+          "gitSource": {
+            "type": "github",
+            "org": "synthetic",
+            "repo": "template",
+            "ref": "main"
+          }
+        }
+      }
+    ],
+    "aiAttempts": 0,
+    "realNetworkCalls": 0
+  },
+  {
+    "mode": "valid",
+    "input": "EN",
+    "hubLanguage": "EN",
+    "configLanguage": "EN",
+    "propagatedLanguage": "en",
+    "response": {
+      "status": 200,
+      "body": {
+        "clientId": "demo-synthetic-00000000",
+        "hubDocId": "hub-control"
+      }
+    },
+    "writes": [
+      {
+        "collection": "hub_clients",
+        "id": "hub-control",
+        "data": {
+          "clientId": "demo-synthetic-00000000",
+          "name": "Synthetic",
+          "businessName": "Synthetic",
+          "niche": "barberia",
+          "customNiche": "",
+          "businessMode": "team",
+          "status": "demo",
+          "domain": "demo-synthetic-00000000.arzac.studio",
+          "createdAt": "2026-09-09T00:00:00.000Z",
+          "contact": {
+            "whatsapp": "",
+            "email": "",
+            "address": "",
+            "instagram": ""
+          },
+          "description": "",
+          "colors": "",
+          "logoCreate": false,
+          "logoDataUrl": null,
+          "language": "EN",
+          "leadEmail": "synthetic@example.invalid"
+        }
+      },
+      {
+        "collection": "clients",
+        "id": "demo-synthetic-00000000",
+        "data": {
+          "status": "active"
+        }
+      },
+      {
+        "collection": "config",
+        "id": "demo-synthetic-00000000",
+        "data": {
+          "language": "EN",
+          "business": {
+            "type": "barberia",
+            "mode": "team",
+            "name": "Synthetic"
+          },
+          "brand": {
+            "name": "Synthetic",
+            "tagline": ""
+          },
+          "contact": {
+            "phone": "",
+            "email": "",
+            "address": {
+              "street": ""
+            },
+            "instagram": ""
+          },
+          "features": {
+            "fixture": true
+          },
+          "activeTheme": "fixture-theme",
+          "splash": {
+            "enabled": true,
+            "variant": "fixture-splash"
+          },
+          "brandingInput": {
+            "colors": "",
+            "logoCreate": false,
+            "instagram": ""
+          }
+        }
+      },
+      {
+        "collection": "hub_clients",
+        "id": "hub-control",
+        "update": {
+          "vercelProjectId": "project-control",
+          "vercelProjectName": "demo-synthetic-00000000",
+          "domain": "demo-synthetic-00000000.arzac.studio",
+          "deployStatus": "building",
+          "deployError": null
+        }
+      }
+    ],
+    "triggers": [
+      {
+        "url": "http://localhost/api/deploy",
+        "method": "POST",
+        "headers": {
+          "Content-Type": "application/json",
+          "x-deploy-secret": "synthetic-secret"
+        },
+        "body": {
+          "clientId": "demo-synthetic-00000000",
+          "niche": "barberia",
+          "hubDocId": "hub-control"
+        }
+      }
+    ],
+    "requests": [
+      {
+        "path": "/v1/projects",
+        "method": "POST",
+        "body": {
+          "name": "demo-synthetic-00000000",
+          "gitRepository": {
+            "repo": "synthetic/template",
+            "type": "github"
+          },
+          "framework": "vite"
+        }
+      },
+      {
+        "path": "/v3/projects/project-control/env",
+        "method": "POST",
+        "body": [
+          {
+            "key": "VITE_CLIENT_ID",
+            "value": "demo-synthetic-00000000",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_ACTIVE_NICHE",
+            "value": "barberia",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_DEMO_MODE",
+            "value": "false",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_UI_LANGUAGE",
+            "value": "en",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_FIREBASE_API_KEY",
+            "value": "synthetic",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_FIREBASE_AUTH_DOMAIN",
+            "value": "synthetic.invalid",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_FIREBASE_PROJECT_ID",
+            "value": "synthetic-project",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "EMAIL_FROM_ADDRESS",
+            "value": "noreply@arzac.studio",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          }
+        ]
+      },
+      {
+        "path": "/v9/projects/project-control/domains",
+        "method": "POST",
+        "body": {
+          "name": "demo-synthetic-00000000.arzac.studio"
+        }
+      },
+      {
+        "path": "/v13/deployments",
+        "method": "POST",
+        "body": {
+          "name": "demo-synthetic-00000000",
+          "project": "project-control",
+          "target": "production",
+          "gitSource": {
+            "type": "github",
+            "org": "synthetic",
+            "repo": "template",
+            "ref": "main"
+          }
+        }
+      }
+    ],
+    "aiAttempts": 0,
+    "realNetworkCalls": 0
+  },
+  {
+    "mode": "valid",
+    "input": "bad",
+    "hubLanguage": "bad",
+    "configLanguage": "bad",
+    "propagatedLanguage": "he",
+    "response": {
+      "status": 200,
+      "body": {
+        "clientId": "demo-synthetic-00000000",
+        "hubDocId": "hub-control"
+      }
+    },
+    "writes": [
+      {
+        "collection": "hub_clients",
+        "id": "hub-control",
+        "data": {
+          "clientId": "demo-synthetic-00000000",
+          "name": "Synthetic",
+          "businessName": "Synthetic",
+          "niche": "barberia",
+          "customNiche": "",
+          "businessMode": "team",
+          "status": "demo",
+          "domain": "demo-synthetic-00000000.arzac.studio",
+          "createdAt": "2026-09-09T00:00:00.000Z",
+          "contact": {
+            "whatsapp": "",
+            "email": "",
+            "address": "",
+            "instagram": ""
+          },
+          "description": "",
+          "colors": "",
+          "logoCreate": false,
+          "logoDataUrl": null,
+          "language": "bad",
+          "leadEmail": "synthetic@example.invalid"
+        }
+      },
+      {
+        "collection": "clients",
+        "id": "demo-synthetic-00000000",
+        "data": {
+          "status": "active"
+        }
+      },
+      {
+        "collection": "config",
+        "id": "demo-synthetic-00000000",
+        "data": {
+          "language": "bad",
+          "business": {
+            "type": "barberia",
+            "mode": "team",
+            "name": "Synthetic"
+          },
+          "brand": {
+            "name": "Synthetic",
+            "tagline": ""
+          },
+          "contact": {
+            "phone": "",
+            "email": "",
+            "address": {
+              "street": ""
+            },
+            "instagram": ""
+          },
+          "features": {
+            "fixture": true
+          },
+          "activeTheme": "fixture-theme",
+          "splash": {
+            "enabled": true,
+            "variant": "fixture-splash"
+          },
+          "brandingInput": {
+            "colors": "",
+            "logoCreate": false,
+            "instagram": ""
+          }
+        }
+      },
+      {
+        "collection": "hub_clients",
+        "id": "hub-control",
+        "update": {
+          "vercelProjectId": "project-control",
+          "vercelProjectName": "demo-synthetic-00000000",
+          "domain": "demo-synthetic-00000000.arzac.studio",
+          "deployStatus": "building",
+          "deployError": null
+        }
+      }
+    ],
+    "triggers": [
+      {
+        "url": "http://localhost/api/deploy",
+        "method": "POST",
+        "headers": {
+          "Content-Type": "application/json",
+          "x-deploy-secret": "synthetic-secret"
+        },
+        "body": {
+          "clientId": "demo-synthetic-00000000",
+          "niche": "barberia",
+          "hubDocId": "hub-control"
+        }
+      }
+    ],
+    "requests": [
+      {
+        "path": "/v1/projects",
+        "method": "POST",
+        "body": {
+          "name": "demo-synthetic-00000000",
+          "gitRepository": {
+            "repo": "synthetic/template",
+            "type": "github"
+          },
+          "framework": "vite"
+        }
+      },
+      {
+        "path": "/v3/projects/project-control/env",
+        "method": "POST",
+        "body": [
+          {
+            "key": "VITE_CLIENT_ID",
+            "value": "demo-synthetic-00000000",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_ACTIVE_NICHE",
+            "value": "barberia",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_DEMO_MODE",
+            "value": "false",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_UI_LANGUAGE",
+            "value": "he",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_FIREBASE_API_KEY",
+            "value": "synthetic",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_FIREBASE_AUTH_DOMAIN",
+            "value": "synthetic.invalid",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_FIREBASE_PROJECT_ID",
+            "value": "synthetic-project",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "EMAIL_FROM_ADDRESS",
+            "value": "noreply@arzac.studio",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          }
+        ]
+      },
+      {
+        "path": "/v9/projects/project-control/domains",
+        "method": "POST",
+        "body": {
+          "name": "demo-synthetic-00000000.arzac.studio"
+        }
+      },
+      {
+        "path": "/v13/deployments",
+        "method": "POST",
+        "body": {
+          "name": "demo-synthetic-00000000",
+          "project": "project-control",
+          "target": "production",
+          "gitSource": {
+            "type": "github",
+            "org": "synthetic",
+            "repo": "template",
+            "ref": "main"
+          }
+        }
+      }
+    ],
+    "aiAttempts": 0,
+    "realNetworkCalls": 0
+  },
+  {
+    "mode": "valid",
+    "input": " ",
+    "hubLanguage": "",
+    "configLanguage": "",
+    "propagatedLanguage": "he",
+    "response": {
+      "status": 200,
+      "body": {
+        "clientId": "demo-synthetic-00000000",
+        "hubDocId": "hub-control"
+      }
+    },
+    "writes": [
+      {
+        "collection": "hub_clients",
+        "id": "hub-control",
+        "data": {
+          "clientId": "demo-synthetic-00000000",
+          "name": "Synthetic",
+          "businessName": "Synthetic",
+          "niche": "barberia",
+          "customNiche": "",
+          "businessMode": "team",
+          "status": "demo",
+          "domain": "demo-synthetic-00000000.arzac.studio",
+          "createdAt": "2026-09-09T00:00:00.000Z",
+          "contact": {
+            "whatsapp": "",
+            "email": "",
+            "address": "",
+            "instagram": ""
+          },
+          "description": "",
+          "colors": "",
+          "logoCreate": false,
+          "logoDataUrl": null,
+          "language": "",
+          "leadEmail": "synthetic@example.invalid"
+        }
+      },
+      {
+        "collection": "clients",
+        "id": "demo-synthetic-00000000",
+        "data": {
+          "status": "active"
+        }
+      },
+      {
+        "collection": "config",
+        "id": "demo-synthetic-00000000",
+        "data": {
+          "language": "",
+          "business": {
+            "type": "barberia",
+            "mode": "team",
+            "name": "Synthetic"
+          },
+          "brand": {
+            "name": "Synthetic",
+            "tagline": ""
+          },
+          "contact": {
+            "phone": "",
+            "email": "",
+            "address": {
+              "street": ""
+            },
+            "instagram": ""
+          },
+          "features": {
+            "fixture": true
+          },
+          "activeTheme": "fixture-theme",
+          "splash": {
+            "enabled": true,
+            "variant": "fixture-splash"
+          },
+          "brandingInput": {
+            "colors": "",
+            "logoCreate": false,
+            "instagram": ""
+          }
+        }
+      },
+      {
+        "collection": "hub_clients",
+        "id": "hub-control",
+        "update": {
+          "vercelProjectId": "project-control",
+          "vercelProjectName": "demo-synthetic-00000000",
+          "domain": "demo-synthetic-00000000.arzac.studio",
+          "deployStatus": "building",
+          "deployError": null
+        }
+      }
+    ],
+    "triggers": [
+      {
+        "url": "http://localhost/api/deploy",
+        "method": "POST",
+        "headers": {
+          "Content-Type": "application/json",
+          "x-deploy-secret": "synthetic-secret"
+        },
+        "body": {
+          "clientId": "demo-synthetic-00000000",
+          "niche": "barberia",
+          "hubDocId": "hub-control"
+        }
+      }
+    ],
+    "requests": [
+      {
+        "path": "/v1/projects",
+        "method": "POST",
+        "body": {
+          "name": "demo-synthetic-00000000",
+          "gitRepository": {
+            "repo": "synthetic/template",
+            "type": "github"
+          },
+          "framework": "vite"
+        }
+      },
+      {
+        "path": "/v3/projects/project-control/env",
+        "method": "POST",
+        "body": [
+          {
+            "key": "VITE_CLIENT_ID",
+            "value": "demo-synthetic-00000000",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_ACTIVE_NICHE",
+            "value": "barberia",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_DEMO_MODE",
+            "value": "false",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_UI_LANGUAGE",
+            "value": "he",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_FIREBASE_API_KEY",
+            "value": "synthetic",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_FIREBASE_AUTH_DOMAIN",
+            "value": "synthetic.invalid",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "VITE_FIREBASE_PROJECT_ID",
+            "value": "synthetic-project",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          },
+          {
+            "key": "EMAIL_FROM_ADDRESS",
+            "value": "noreply@arzac.studio",
+            "target": [
+              "production",
+              "preview"
+            ],
+            "type": "plain"
+          }
+        ]
+      },
+      {
+        "path": "/v9/projects/project-control/domains",
+        "method": "POST",
+        "body": {
+          "name": "demo-synthetic-00000000.arzac.studio"
+        }
+      },
+      {
+        "path": "/v13/deployments",
+        "method": "POST",
+        "body": {
+          "name": "demo-synthetic-00000000",
+          "project": "project-control",
+          "target": "production",
+          "gitSource": {
+            "type": "github",
+            "org": "synthetic",
+            "repo": "template",
+            "ref": "main"
+          }
+        }
+      }
+    ],
+    "aiAttempts": 0,
+    "realNetworkCalls": 0
+  },
+  {
+    "mode": "rate",
+    "input": "en",
+    "configLanguage": null,
+    "response": {
+      "status": 429,
+      "body": {
+        "error": "Rate limited"
+      }
+    },
+    "writes": [],
+    "triggers": [],
+    "requests": [],
+    "aiAttempts": 0,
+    "realNetworkCalls": 0
+  },
+  {
+    "mode": "origin",
+    "input": "en",
+    "configLanguage": null,
+    "response": {
+      "status": 403,
+      "body": {
+        "error": "Forbidden"
+      }
+    },
+    "writes": [],
+    "triggers": [],
+    "requests": [],
+    "aiAttempts": 0,
+    "realNetworkCalls": 0
+  },
+  {
+    "mode": "invalid",
+    "input": "en",
+    "configLanguage": null,
+    "response": {
+      "status": 400,
+      "body": {
+        "error": "Business name is required (min 2 chars)"
+      }
+    },
+    "writes": [],
+    "triggers": [],
+    "requests": [],
+    "aiAttempts": 0,
+    "realNetworkCalls": 0
+  },
+  {
+    "mode": "config-failure",
+    "input": "en",
+    "hubLanguage": "en",
+    "configLanguage": null,
+    "response": {
+      "status": 500,
+      "body": {
+        "error": "Internal error"
+      }
+    },
+    "writes": [
+      {
+        "collection": "hub_clients",
+        "id": "hub-control",
+        "data": {
+          "clientId": "demo-synthetic-00000000",
+          "name": "Synthetic",
+          "businessName": "Synthetic",
+          "niche": "barberia",
+          "customNiche": "",
+          "businessMode": "team",
+          "status": "demo",
+          "domain": "demo-synthetic-00000000.arzac.studio",
+          "createdAt": "2026-09-09T00:00:00.000Z",
+          "contact": {
+            "whatsapp": "",
+            "email": "",
+            "address": "",
+            "instagram": ""
+          },
+          "description": "",
+          "colors": "",
+          "logoCreate": false,
+          "logoDataUrl": null,
+          "language": "en",
+          "leadEmail": "synthetic@example.invalid"
+        }
+      },
+      {
+        "collection": "clients",
+        "id": "demo-synthetic-00000000",
+        "data": {
+          "status": "active"
+        }
+      }
+    ],
+    "triggers": [],
+    "requests": [],
+    "aiAttempts": 0,
+    "realNetworkCalls": 0
+  }
+]

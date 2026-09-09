@@ -1,0 +1,18 @@
+import fs from 'node:fs';
+const records = new Map([['clients/tenant-control',{status:'active'}]]);
+records.set('admin_users/owner@example.invalid',{clientId:'tenant-control',role:'owner',status:'active'});
+records.set('admin_users/foreign@example.invalid',{clientId:'other-tenant',role:'owner',status:'active'});
+records.set('config/tenant-control',{notifications:{channels:{new_lead_owner:'both',new_booking_owner:'both'}}});
+export function readRecord(path){return records.get(path);}
+export function writeRecord(path,data){records.set(path,data);event('write',{path,data});}
+let sequence=0;
+const event=(kind,data)=>fs.appendFileSync(process.env.D05_EVENTS,JSON.stringify({kind,...data})+'\n');
+function ref(path){return {path,id:path.split('/').at(-1),async get(){event('read',{path});return {exists:records.has(path),data:()=>records.get(path)};},async set(data){records.set(path,data);event('write',{path,data});},collection:name=>collection(path+'/'+name)};}
+function collection(path){return {doc:id=>ref(path+'/'+(id||'generated-'+(++sequence))),async add(data){const r=this.doc();await r.set(data);return r;},where(){return this;},limit(){return this;},async get(){return {empty:true,docs:[]};}};}
+const db={collection,async runTransaction(callback){const writes=[];const result=await callback({get:r=>r.get(),set:(r,data)=>writes.push([r,data])});for(const [r,data] of writes)await r.set(data);event('commit',{result});return result;}};
+export function getApps(){return [];}
+export function cert(){return {};}
+export function initializeApp(){return {};}
+export function getFirestore(){return db;}
+export const FieldValue={serverTimestamp:()=>0};
+export const Timestamp={now:()=>0};

@@ -1,0 +1,9 @@
+{
+  "usedPercent": 74,
+  "ceilingPercent": 80,
+  "scope": "TOTAL N03",
+  "previousCheckpoint": 73,
+  "priorServerClose": 75,
+  "resetsUsed": 0,
+  "note": "Dato final; referencias73 en registros son checkpoint anterior de esta preparación. No se infiere causa de la diferencia con75 histórico."
+}

@@ -1,0 +1,17 @@
+{
+  "result": "GREEN",
+  "gates": 4,
+  "total": 4,
+  "functions": 142,
+  "http": 110,
+  "parity": 19,
+  "types": 0,
+  "mutationExpectedFailures": 12,
+  "conservationChecks": 366,
+  "preservedTemplate": 331,
+  "usage": 77,
+  "totalCeiling": 80,
+  "closureSha256": "b2e03b5e5dd6d0ba3e6821ceda403425ee6b738ca0ddffac00c0bf7ccd0a0542",
+  "N03": "en_curso",
+  "awaitingReview": true
+}

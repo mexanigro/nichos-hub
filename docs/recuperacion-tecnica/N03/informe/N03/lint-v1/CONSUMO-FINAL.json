@@ -1,0 +1,45 @@
+{
+  "usedPercent": 74,
+  "ceilingPercent": 74,
+  "scope": "TOTAL N03",
+  "resetsUsed": 0,
+  "technicalWorkStopped": true,
+  "records": [
+    {
+      "path": "indice/tareas/N03.md",
+      "preimage": "informe\\N03\\lint-v1\\preimagenes-consumo-final\\indice\\tareas\\N03.md",
+      "sha256Before": "5719d7220249bb3101a487c517372b22fe655bb50ff0ec92ddbc55c88d2ecee1",
+      "sha256After": "c44f3d02c2922f85acb0765597380a0a56dc8b460a1a8f4ccf32279f4646604c"
+    },
+    {
+      "path": "indice/README.md",
+      "preimage": "informe\\N03\\lint-v1\\preimagenes-consumo-final\\indice\\README.md",
+      "sha256Before": "5db4ecdb5c119288da9783e58f4ff6bdeff048d58c19f4d0bbf57390869132cf",
+      "sha256After": "4bc6b0e5e3f96db31626926a7c84c3a50fe4ad8cee35374b9496755403473cf3"
+    },
+    {
+      "path": "indice/PENDIENTES.md",
+      "preimage": "informe\\N03\\lint-v1\\preimagenes-consumo-final\\indice\\PENDIENTES.md",
+      "sha256Before": "baa7086864cb5ec03bc3b89219d6b7a2ce8ab52f2edc93506e5ab582c453825b",
+      "sha256After": "1678204123e683a56a3760f784c39c535d4a5db01146c21df33e76a2bf56568b"
+    },
+    {
+      "path": "indice/CALENDARIO.md",
+      "preimage": "informe\\N03\\lint-v1\\preimagenes-consumo-final\\indice\\CALENDARIO.md",
+      "sha256Before": "8a6b42f546c4d6fae13bd44b4f7f81a2f542c8453861f0223b6bd132e8a4ed04",
+      "sha256After": "6e86432183fb8c1d81f5cf0599a0a5d83f07211b7e51ad15ef16870bc47e8743"
+    },
+    {
+      "path": "informe/N03/lint-v1/INFORME.md",
+      "preimage": "informe\\N03\\lint-v1\\preimagenes-consumo-final\\informe\\N03\\lint-v1\\INFORME.md",
+      "sha256Before": "acbdb5649ddadda5c05b5b8588151fc07b503d7fe760b5ae3b657f09ef336164",
+      "sha256After": "e350f9dd02865f46647115516af805a2b3286ae7fdf8f4a2bb095e62c1eeebb6"
+    },
+    {
+      "path": "historial/2026-09-09-N03-lint-v1-cierre-local.md",
+      "preimage": "informe\\N03\\lint-v1\\preimagenes-consumo-final\\historial\\2026-09-09-N03-lint-v1-cierre-local.md",
+      "sha256Before": "6f797451bed4419b7c7d6dc1d53e315b037aa95ef3823a211567aaee5c71a0e9",
+      "sha256After": "0dac3d222d5c681d497d30d3b4622b6320d33ba43b24400381c75476372ac325"
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+TAP version 13
+# Subtest: usuario autenticado transmite token y devuelve id
+not ok 1 - usuario autenticado transmite token y devuelve id
+  ---
+  duration_ms: 3.0094
+  type: 'test'
+  location: 'C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\support-v1\\acceptance-consumer.cjs:21:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + undefined
+    - 'Bearer token-sintetico'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'Bearer token-sintetico'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\liama\Desktop\Nichos\recuperacion-tecnica\informe\N03\support-v1\acceptance-consumer.cjs:26:10)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: Firebase ausente: no envía y devuelve vacío
+not ok 2 - Firebase ausente: no envía y devuelve vacío
+  ---
+  duration_ms: 1.2144
+  type: 'test'
+  location: 'C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\support-v1\\acceptance-consumer.cjs:34:4'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    'support-id' !== ''
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: ''
+  actual: 'support-id'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\liama\Desktop\Nichos\recuperacion-tecnica\informe\N03\support-v1\acceptance-consumer.cjs:36:10)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: sin usuario: no envía y devuelve vacío
+not ok 3 - sin usuario: no envía y devuelve vacío
+  ---
+  duration_ms: 1.57
+  type: 'test'
+  location: 'C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\support-v1\\acceptance-consumer.cjs:34:4'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    'support-id' !== ''
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: ''
+  actual: 'support-id'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\liama\Desktop\Nichos\recuperacion-tecnica\informe\N03\support-v1\acceptance-consumer.cjs:36:10)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: token vacío: no envía y devuelve vacío
+not ok 4 - token vacío: no envía y devuelve vacío
+  ---
+  duration_ms: 0.9408
+  type: 'test'
+  location: 'C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\support-v1\\acceptance-consumer.cjs:34:4'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    'support-id' !== ''
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: ''
+  actual: 'support-id'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\liama\Desktop\Nichos\recuperacion-tecnica\informe\N03\support-v1\acceptance-consumer.cjs:36:10)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: token fallido: no envía y devuelve vacío
+not ok 5 - token fallido: no envía y devuelve vacío
+  ---
+  duration_ms: 0.9953
+  type: 'test'
+  location: 'C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\support-v1\\acceptance-consumer.cjs:34:4'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    'support-id' !== ''
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: ''
+  actual: 'support-id'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\liama\Desktop\Nichos\recuperacion-tecnica\informe\N03\support-v1\acceptance-consumer.cjs:36:10)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: respuesta HTTP rechazada no anuncia éxito
+ok 6 - respuesta HTTP rechazada no anuncia éxito
+  ---
+  duration_ms: 1.3034
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 1
+# fail 5
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 84.6238

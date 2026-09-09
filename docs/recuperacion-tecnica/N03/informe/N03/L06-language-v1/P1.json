@@ -1,0 +1,8 @@
+{
+  "gate": "P1",
+  "reached": true,
+  "path": "src/app/api/onboarding/route.ts",
+  "before": "cf8a3170535b7ec0296fc5fc3218c466825acd8641cdf003a9412ee900e127e8",
+  "after": "e84e50cce05bb87e831094de50f1c362213b4a1597e2f54f22899a31216c21bd",
+  "onlyPropertyAdded": true
+}

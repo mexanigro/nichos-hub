@@ -1,0 +1,4 @@
+
+[Template Setup] ─── Service Configuration Status ───
+  ✓  [REQUIRED] FIREBASE_PROJECT_ID                  → Firestore access (tenant config, kill-switch)
+  ✓  [REQUIRED] CLIENT_ID                            → Tenant scoping

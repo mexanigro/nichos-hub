@@ -1,0 +1,24 @@
+import { register, createRequire, syncBuiltinESMExports } from 'node:module';
+import fs from 'node:fs';
+import net from 'node:net';
+import http from 'node:http';
+import https from 'node:https';
+import dns from 'node:dns';
+import dgram from 'node:dgram';
+register('file:///control/firebase-hooks.mjs', import.meta.url);
+const audit = [];
+function deny(kind) { audit.push(kind); fs.appendFileSync(process.env.HEALTH_AUDIT_FILE, JSON.stringify({ blocked: kind })+'\n'); throw Error('EXTERNAL_BLOCKED'); }
+const local = host => ['127.0.0.1', 'localhost', '::1'].includes(host);
+const nativeFetch = globalThis.fetch;
+globalThis.fetch = (url, ...args) => { if (!local(new URL(typeof url === 'string' ? url : url.url || url).hostname)) return Promise.reject((() => { try { deny('fetch:'+new URL(typeof url === 'string' ? url : url.url || url).hostname); } catch(e) { return e; } })()); return nativeFetch(url, ...args); };
+for (const module of [http, https]) for (const method of ['request', 'get']) { const original = module[method]; module[method] = function(...args) { const target = args[0]; const host = typeof target === 'string' || target instanceof URL ? new URL(target).hostname : target?.hostname || target?.host; if (!local(host)) deny('http'); return original.apply(this,args); }; }
+const connect = net.Socket.prototype.connect;
+net.Socket.prototype.connect = function(...args) { const value = args[0]; const options = Array.isArray(value) ? value[0] : value; const host = typeof options === 'object' ? options.host : typeof args[1] === 'string' ? args[1] : 'localhost'; if (typeof options === 'object' && options.path) deny('socket_path'); if (!local(host || 'localhost')) deny('socket'); return connect.apply(this,args); };
+const lookup = dns.lookup; dns.lookup = function(host,...args){if(!local(host)&&host!=='0.0.0.0')deny('dns');return lookup.call(this,host,...args);};
+for(const name of ['resolve','resolve4','resolve6']) dns[name]=()=>deny('dns');
+dgram.createSocket=()=>deny('udp');
+syncBuiltinESMExports();
+const require = createRequire('/app/package.json'); const express = require('express');
+if (process.env.HEALTH_BOOT_FAIL === 'early') { const original = express.application.disable; express.application.disable = function(name){ if(name === 'x-powered-by') throw Error('PRIVATE_SENTINEL_boot_early'); return original.call(this,name); }; }
+if (process.env.HEALTH_BOOT_FAIL === 'late') { const original = express.application.post; express.application.post = function(route,...args){if(route === '/api/book')throw Error('PRIVATE_SENTINEL_boot_late');return original.call(this,route,...args);}; }
+for(const name of ['lookup','resolve','resolve4','resolve6','resolveAny','resolveCname','resolveMx','resolveTxt','resolveNs','resolveSoa','resolveSrv','reverse']) { if(dns.promises[name]) dns.promises[name]=async()=>deny('dns_promises'); }

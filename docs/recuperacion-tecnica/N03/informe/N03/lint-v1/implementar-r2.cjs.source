@@ -1,0 +1,14 @@
+const fs=require('fs'),path=require('path'),crypto=require('crypto');const d=__dirname,root='C:/Users/liama/Desktop/Nichos-hub',hash=s=>crypto.createHash('sha256').update(s).digest('hex');
+const frozen=['CONTRATO.md','FREEZE.md','acceptance.cjs','tsconfig.json'].map(f=>({path:f,sha256:hash(fs.readFileSync(path.join(d,f)))}));if(JSON.stringify(JSON.parse(fs.readFileSync(path.join(d,'FREEZE.json'),'utf8')))!==JSON.stringify(frozen))throw Error('freeze drift');
+const sources=JSON.parse(fs.readFileSync(path.join(d,'FUENTES.json'),'utf8'));const changed=[];
+for(const e of sources){let s=fs.readFileSync(path.join(root,e.path),'utf8');if(hash(Buffer.from(s))!==e.sha256)throw Error('drift '+e.path);
+ if(e.path.includes('api-costs/fetch'))s=s.replace('NextRequest, NextResponse','NextResponse').replace('async (_req: NextRequest, _session, _ctx) =>','async () =>');
+ else if(e.path.includes('appointments/'))s=s.replace(/^  parse,\r?\n/m,'');
+ else if(e.path.includes('upload/'))s=s.replace('NextRequest, NextResponse','NextResponse');
+ else if(e.path.includes('prospects/'))s=s.replace('Record<string, any> & { id: string }','Record<string, unknown> & { id: string }');
+ else if(e.path.endsWith('contracts.ts')){const start=s.indexOf('/*'),table=s.indexOf('const PLAN_TABLE'),end=s.indexOf('/*',table);if(start<0||table<start||end<table)throw Error('table anchor');s=s.slice(0,start)+s.slice(end);for(const lang of ['EN','HE','RU','ES','AR']){const old=`function ${lang}(plan: PlanType): string`;if(!s.includes(old))throw Error(lang);s=s.replace(old,`function ${lang}(): string`);}}
+ else if(e.path.endsWith('pricing.ts'))s=s.replace('export function getPaymentAmount(_isInitial: boolean): number {','export function getPaymentAmount(_isInitial: boolean): number;\r\nexport function getPaymentAmount(): number {');
+ if(hash(Buffer.from(s))===e.sha256)throw Error('no change '+e.path);changed.push([e.path,s]);
+}
+for(const [f,s] of changed)fs.writeFileSync(path.join(root,f),s);
+console.log('Seis archivos modificados con preimágenes verificadas.');

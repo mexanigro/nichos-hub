@@ -1,0 +1,3 @@
+# N03 / health-v1 — SP-H01 resuelto localmente
+El usuario reabrió exclusivamente health-v1 para recuperar el limitador perdido al adelantar salud y autorizó la adenda. La revisión anterior no comparó middleware protectores: single-flight no limita lecturas sucesivas. RED en ambos runtimes, refutación/freeze y reparación acotada con limitador real/configuración/IP/ruta conservados. Live ilimitado y sin DB explícito.207controles GREEN, tipos0, paridad3/3 y desarme con4fallos esperados. Preimágenes/evidencia anterior conservadas. Consumo70→71%, techo total74 sin resets; sin remoto/install/commit/push/deploy. Health-v1 cierra localmente con adenda; N03 sigue en curso, sin otras reparaciones.
+[Acta y contrato vigente](../informe/N03/health-v1/SP-H01/INFORME.md).

@@ -1,0 +1,32 @@
+[
+  {
+    "path": "informe/N03/appointment-notify-auth-v1/INFORME.md",
+    "before": "e7397a1c8afaa737fcfd99d9ab805a40808a2a90e3ada9c60c332edbcf9a71a7",
+    "after": "af7961ef39058c7f68cbf891264789801ab06304b5181f3cfc2dd32e6b3299d0",
+    "preimage": "informe\\N03\\appointment-notify-auth-v1\\preimagenes-registros-cierre\\informe\\N03\\appointment-notify-auth-v1\\INFORME.md"
+  },
+  {
+    "path": "indice/tareas/N03.md",
+    "before": "10213c3d6d70b34d3b1ef9c753e832470b0d4809683bf3160cee77f2abd049f3",
+    "after": "62e48fdd3b0921c1a0db8056b09a863cee0bb536a7b73a9987a39705baf0dcb2",
+    "preimage": "informe\\N03\\appointment-notify-auth-v1\\preimagenes-registros-cierre\\indice\\tareas\\N03.md"
+  },
+  {
+    "path": "indice/README.md",
+    "before": "f603d87acb1c6203ee4285e066d43644c0997d7060b3bd7589666d44061eb2f5",
+    "after": "042dfe18741d67ae3373d2a1c0df1100d6e9c983486b749ddfb108288790a5d5",
+    "preimage": "informe\\N03\\appointment-notify-auth-v1\\preimagenes-registros-cierre\\indice\\README.md"
+  },
+  {
+    "path": "indice/PENDIENTES.md",
+    "before": "b043bb777227d2a2d2915ec9b3c7e53c8e3a3465476043c52b8b229b0a8dbf23",
+    "after": "c6974ba9673b0fed7fedb886c57a4415f9247dea683745fb186b271888c27329",
+    "preimage": "informe\\N03\\appointment-notify-auth-v1\\preimagenes-registros-cierre\\indice\\PENDIENTES.md"
+  },
+  {
+    "path": "indice/CALENDARIO.md",
+    "before": "f1cd1a04d9dfe94754afcc204d32cca9344dab8642d08b211485b0d344154710",
+    "after": "2f34d787d68eb770d9df4ed84a7fb489d40ea30230d316bca8b641e4bc488a56",
+    "preimage": "informe\\N03\\appointment-notify-auth-v1\\preimagenes-registros-cierre\\indice\\CALENDARIO.md"
+  }
+]

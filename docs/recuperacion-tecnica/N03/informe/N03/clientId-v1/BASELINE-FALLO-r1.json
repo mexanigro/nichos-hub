@@ -1,0 +1,7 @@
+{
+  "source": "runner D05 original concede450x100ms=45s",
+  "previous": "resultados/baseline",
+  "error": "Baseline sin arranque tras10s; stdout/stderr vacíos en ambos",
+  "action": "Restaurar45s para única continuación baseline",
+  "productChanges": 0
+}

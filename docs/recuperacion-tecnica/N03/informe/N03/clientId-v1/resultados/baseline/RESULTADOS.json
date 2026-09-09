@@ -1,0 +1,20 @@
+[
+  {
+    "name": "server-mirrors:startup",
+    "valid": false
+  },
+  {
+    "name": "server-mirrors:instrument",
+    "valid": false,
+    "evidence": "Error: startup"
+  },
+  {
+    "name": "api-mirrors:startup",
+    "valid": false
+  },
+  {
+    "name": "api-mirrors:instrument",
+    "valid": false,
+    "evidence": "Error: startup"
+  }
+]

@@ -1,0 +1,2441 @@
+[
+  {
+    "name": "server-mirrors:startup",
+    "valid": true
+  },
+  {
+    "name": "server-mirrors:base-results",
+    "valid": true,
+    "evidence": [
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Thank you! Your message has been received."
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      }
+    ]
+  },
+  {
+    "name": "server-mirrors:agent-count",
+    "valid": true,
+    "evidence": 4
+  },
+  {
+    "name": "server-mirrors:identity",
+    "valid": true,
+    "evidence": [
+      "tenant-control",
+      "tenant-control",
+      "tenant-control",
+      "tenant-control"
+    ]
+  },
+  {
+    "name": "server-mirrors:auth",
+    "valid": true
+  },
+  {
+    "name": "server-mirrors:payload-preserved",
+    "valid": true,
+    "evidence": [
+      {
+        "kind": "agent",
+        "path": "/webhook/lead",
+        "clientId": "tenant-control",
+        "payload": {
+          "clientId": "tenant-control",
+          "nombre": "Control",
+          "telefono": null,
+          "email": "customer@example.invalid",
+          "mensaje": "Consulta controlada",
+          "fuente": "web_contact",
+          "adminPhones": [
+            "+972500000000"
+          ]
+        },
+        "authCorrect": true
+      },
+      {
+        "kind": "agent",
+        "path": "/notify",
+        "type": "appointment_booked",
+        "clientId": "tenant-control",
+        "payload": {
+          "clientId": "tenant-control",
+          "type": "appointment_booked",
+          "adminPhones": [
+            "+972500000000"
+          ],
+          "staffPhones": [],
+          "customerPhone": "+972500000001",
+          "message": "Nuevo turno: Control (+972500000001)\nHaircut el 2026-12-20 a las 12:00",
+          "staffMessage": "Turno asignado\nCliente: Control (+972500000001)\nServicio: Haircut\nCuando: 2026-12-20 12:00",
+          "customerMessage": "Turno confirmado: Haircut el 2026-12-20 a las 12:00.",
+          "appointment": {
+            "date": "2026-12-20",
+            "time": "12:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          },
+          "variables": {
+            "1": "Haircut",
+            "2": "2026-12-20",
+            "3": "12:00",
+            "4": ""
+          }
+        },
+        "authCorrect": true
+      },
+      {
+        "kind": "agent",
+        "path": "/notify",
+        "type": "appointment_cancelled",
+        "clientId": "tenant-control",
+        "payload": {
+          "clientId": "tenant-control",
+          "type": "appointment_cancelled",
+          "adminPhones": [
+            "+972500000000"
+          ],
+          "staffPhones": [],
+          "customerPhone": "+972500000001",
+          "message": "Turno cancelado: Control - Haircut el 2026-12-20 12:00",
+          "staffMessage": "Turno cancelado: Control el 2026-12-20 12:00",
+          "customerMessage": "Tu turno de Haircut del 2026-12-20 a las 12:00 fue cancelado.",
+          "appointment": {
+            "date": "2026-12-20",
+            "time": "12:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          }
+        },
+        "authCorrect": true
+      },
+      {
+        "kind": "agent",
+        "path": "/notify",
+        "type": "appointment_rescheduled",
+        "clientId": "tenant-control",
+        "payload": {
+          "clientId": "tenant-control",
+          "type": "appointment_rescheduled",
+          "adminPhones": [
+            "+972500000000"
+          ],
+          "staffPhones": [],
+          "customerPhone": "+972500000001",
+          "message": "Turno reprogramado: Control - Haircut ahora el 2026-12-20 12:00",
+          "staffMessage": "Turno reprogramado: Control 2026-12-20 12:00 (antes 2026-12-20 11:00)",
+          "customerMessage": "Tu turno fue reprogramado: Haircut ahora el 2026-12-20 a las 12:00.",
+          "oldAppointment": {
+            "date": "2026-12-20",
+            "time": "11:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          },
+          "appointment": {
+            "date": "2026-12-20",
+            "time": "12:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          },
+          "variables": {
+            "1": "Haircut",
+            "2": "2026-12-20",
+            "3": "12:00",
+            "4": ""
+          }
+        },
+        "authCorrect": true
+      }
+    ]
+  },
+  {
+    "name": "server-mirrors:auth-preserved",
+    "valid": true,
+    "evidence": {
+      "status": 401,
+      "body": {
+        "error": "Unauthorized"
+      }
+    }
+  },
+  {
+    "name": "server-mirrors:origin-reject",
+    "valid": true,
+    "evidence": {
+      "status": 403,
+      "body": {
+        "error": "Untrusted origin."
+      }
+    }
+  },
+  {
+    "name": "server-mirrors:auth-effect-preserved",
+    "valid": true,
+    "evidence": {
+      "noEffect": true
+    }
+  },
+  {
+    "name": "server-mirrors:no-external",
+    "valid": true
+  },
+  {
+    "name": "server-only-next:startup",
+    "valid": true
+  },
+  {
+    "name": "server-only-next:base-results",
+    "valid": true,
+    "evidence": [
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Thank you! Your message has been received."
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      }
+    ]
+  },
+  {
+    "name": "server-only-next:agent-count",
+    "valid": true,
+    "evidence": 4
+  },
+  {
+    "name": "server-only-next:identity",
+    "valid": true,
+    "evidence": [
+      "tenant-control",
+      "tenant-control",
+      "tenant-control",
+      "tenant-control"
+    ]
+  },
+  {
+    "name": "server-only-next:auth",
+    "valid": true
+  },
+  {
+    "name": "server-only-next:payload-preserved",
+    "valid": true,
+    "evidence": [
+      {
+        "kind": "agent",
+        "path": "/webhook/lead",
+        "clientId": "tenant-control",
+        "payload": {
+          "clientId": "tenant-control",
+          "nombre": "Control",
+          "telefono": null,
+          "email": "customer@example.invalid",
+          "mensaje": "Consulta controlada",
+          "fuente": "web_contact",
+          "adminPhones": [
+            "+972500000000"
+          ]
+        },
+        "authCorrect": true
+      },
+      {
+        "kind": "agent",
+        "path": "/notify",
+        "type": "appointment_booked",
+        "clientId": "tenant-control",
+        "payload": {
+          "clientId": "tenant-control",
+          "type": "appointment_booked",
+          "adminPhones": [
+            "+972500000000"
+          ],
+          "staffPhones": [],
+          "customerPhone": "+972500000001",
+          "message": "Nuevo turno: Control (+972500000001)\nHaircut el 2026-12-20 a las 12:00",
+          "staffMessage": "Turno asignado\nCliente: Control (+972500000001)\nServicio: Haircut\nCuando: 2026-12-20 12:00",
+          "customerMessage": "Turno confirmado: Haircut el 2026-12-20 a las 12:00.",
+          "appointment": {
+            "date": "2026-12-20",
+            "time": "12:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          },
+          "variables": {
+            "1": "Haircut",
+            "2": "2026-12-20",
+            "3": "12:00",
+            "4": ""
+          }
+        },
+        "authCorrect": true
+      },
+      {
+        "kind": "agent",
+        "path": "/notify",
+        "type": "appointment_cancelled",
+        "clientId": "tenant-control",
+        "payload": {
+          "clientId": "tenant-control",
+          "type": "appointment_cancelled",
+          "adminPhones": [
+            "+972500000000"
+          ],
+          "staffPhones": [],
+          "customerPhone": "+972500000001",
+          "message": "Turno cancelado: Control - Haircut el 2026-12-20 12:00",
+          "staffMessage": "Turno cancelado: Control el 2026-12-20 12:00",
+          "customerMessage": "Tu turno de Haircut del 2026-12-20 a las 12:00 fue cancelado.",
+          "appointment": {
+            "date": "2026-12-20",
+            "time": "12:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          }
+        },
+        "authCorrect": true
+      },
+      {
+        "kind": "agent",
+        "path": "/notify",
+        "type": "appointment_rescheduled",
+        "clientId": "tenant-control",
+        "payload": {
+          "clientId": "tenant-control",
+          "type": "appointment_rescheduled",
+          "adminPhones": [
+            "+972500000000"
+          ],
+          "staffPhones": [],
+          "customerPhone": "+972500000001",
+          "message": "Turno reprogramado: Control - Haircut ahora el 2026-12-20 12:00",
+          "staffMessage": "Turno reprogramado: Control 2026-12-20 12:00 (antes 2026-12-20 11:00)",
+          "customerMessage": "Tu turno fue reprogramado: Haircut ahora el 2026-12-20 a las 12:00.",
+          "oldAppointment": {
+            "date": "2026-12-20",
+            "time": "11:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          },
+          "appointment": {
+            "date": "2026-12-20",
+            "time": "12:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          },
+          "variables": {
+            "1": "Haircut",
+            "2": "2026-12-20",
+            "3": "12:00",
+            "4": ""
+          }
+        },
+        "authCorrect": true
+      }
+    ]
+  },
+  {
+    "name": "server-only-next:no-external",
+    "valid": true
+  },
+  {
+    "name": "server-spaces:startup",
+    "valid": true
+  },
+  {
+    "name": "server-spaces:base-results",
+    "valid": true,
+    "evidence": [
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Thank you! Your message has been received."
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      }
+    ]
+  },
+  {
+    "name": "server-spaces:agent-count",
+    "valid": true,
+    "evidence": 4
+  },
+  {
+    "name": "server-spaces:identity",
+    "valid": true,
+    "evidence": [
+      "tenant-control",
+      "tenant-control",
+      "tenant-control",
+      "tenant-control"
+    ]
+  },
+  {
+    "name": "server-spaces:auth",
+    "valid": true
+  },
+  {
+    "name": "server-spaces:payload-preserved",
+    "valid": true,
+    "evidence": [
+      {
+        "kind": "agent",
+        "path": "/webhook/lead",
+        "clientId": "tenant-control",
+        "payload": {
+          "clientId": "tenant-control",
+          "nombre": "Control",
+          "telefono": null,
+          "email": "customer@example.invalid",
+          "mensaje": "Consulta controlada",
+          "fuente": "web_contact",
+          "adminPhones": [
+            "+972500000000"
+          ]
+        },
+        "authCorrect": true
+      },
+      {
+        "kind": "agent",
+        "path": "/notify",
+        "type": "appointment_booked",
+        "clientId": "tenant-control",
+        "payload": {
+          "clientId": "tenant-control",
+          "type": "appointment_booked",
+          "adminPhones": [
+            "+972500000000"
+          ],
+          "staffPhones": [],
+          "customerPhone": "+972500000001",
+          "message": "Nuevo turno: Control (+972500000001)\nHaircut el 2026-12-20 a las 12:00",
+          "staffMessage": "Turno asignado\nCliente: Control (+972500000001)\nServicio: Haircut\nCuando: 2026-12-20 12:00",
+          "customerMessage": "Turno confirmado: Haircut el 2026-12-20 a las 12:00.",
+          "appointment": {
+            "date": "2026-12-20",
+            "time": "12:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          },
+          "variables": {
+            "1": "Haircut",
+            "2": "2026-12-20",
+            "3": "12:00",
+            "4": ""
+          }
+        },
+        "authCorrect": true
+      },
+      {
+        "kind": "agent",
+        "path": "/notify",
+        "type": "appointment_cancelled",
+        "clientId": "tenant-control",
+        "payload": {
+          "clientId": "tenant-control",
+          "type": "appointment_cancelled",
+          "adminPhones": [
+            "+972500000000"
+          ],
+          "staffPhones": [],
+          "customerPhone": "+972500000001",
+          "message": "Turno cancelado: Control - Haircut el 2026-12-20 12:00",
+          "staffMessage": "Turno cancelado: Control el 2026-12-20 12:00",
+          "customerMessage": "Tu turno de Haircut del 2026-12-20 a las 12:00 fue cancelado.",
+          "appointment": {
+            "date": "2026-12-20",
+            "time": "12:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          }
+        },
+        "authCorrect": true
+      },
+      {
+        "kind": "agent",
+        "path": "/notify",
+        "type": "appointment_rescheduled",
+        "clientId": "tenant-control",
+        "payload": {
+          "clientId": "tenant-control",
+          "type": "appointment_rescheduled",
+          "adminPhones": [
+            "+972500000000"
+          ],
+          "staffPhones": [],
+          "customerPhone": "+972500000001",
+          "message": "Turno reprogramado: Control - Haircut ahora el 2026-12-20 12:00",
+          "staffMessage": "Turno reprogramado: Control 2026-12-20 12:00 (antes 2026-12-20 11:00)",
+          "customerMessage": "Tu turno fue reprogramado: Haircut ahora el 2026-12-20 a las 12:00.",
+          "oldAppointment": {
+            "date": "2026-12-20",
+            "time": "11:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          },
+          "appointment": {
+            "date": "2026-12-20",
+            "time": "12:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          },
+          "variables": {
+            "1": "Haircut",
+            "2": "2026-12-20",
+            "3": "12:00",
+            "4": ""
+          }
+        },
+        "authCorrect": true
+      }
+    ]
+  },
+  {
+    "name": "server-spaces:no-external",
+    "valid": true
+  },
+  {
+    "name": "server-conflict:startup",
+    "valid": true
+  },
+  {
+    "name": "server-conflict:base-results",
+    "valid": true,
+    "evidence": [
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Thank you! Your message has been received."
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      }
+    ]
+  },
+  {
+    "name": "server-conflict:agent-count",
+    "valid": true,
+    "evidence": 4
+  },
+  {
+    "name": "server-conflict:identity",
+    "valid": true,
+    "evidence": [
+      "tenant-control",
+      "tenant-control",
+      "tenant-control",
+      "tenant-control"
+    ]
+  },
+  {
+    "name": "server-conflict:auth",
+    "valid": true
+  },
+  {
+    "name": "server-conflict:payload-preserved",
+    "valid": true,
+    "evidence": [
+      {
+        "kind": "agent",
+        "path": "/webhook/lead",
+        "clientId": "tenant-control",
+        "payload": {
+          "clientId": "tenant-control",
+          "nombre": "Control",
+          "telefono": null,
+          "email": "customer@example.invalid",
+          "mensaje": "Consulta controlada",
+          "fuente": "web_contact",
+          "adminPhones": [
+            "+972500000000"
+          ]
+        },
+        "authCorrect": true
+      },
+      {
+        "kind": "agent",
+        "path": "/notify",
+        "type": "appointment_booked",
+        "clientId": "tenant-control",
+        "payload": {
+          "clientId": "tenant-control",
+          "type": "appointment_booked",
+          "adminPhones": [
+            "+972500000000"
+          ],
+          "staffPhones": [],
+          "customerPhone": "+972500000001",
+          "message": "Nuevo turno: Control (+972500000001)\nHaircut el 2026-12-20 a las 12:00",
+          "staffMessage": "Turno asignado\nCliente: Control (+972500000001)\nServicio: Haircut\nCuando: 2026-12-20 12:00",
+          "customerMessage": "Turno confirmado: Haircut el 2026-12-20 a las 12:00.",
+          "appointment": {
+            "date": "2026-12-20",
+            "time": "12:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          },
+          "variables": {
+            "1": "Haircut",
+            "2": "2026-12-20",
+            "3": "12:00",
+            "4": ""
+          }
+        },
+        "authCorrect": true
+      },
+      {
+        "kind": "agent",
+        "path": "/notify",
+        "type": "appointment_cancelled",
+        "clientId": "tenant-control",
+        "payload": {
+          "clientId": "tenant-control",
+          "type": "appointment_cancelled",
+          "adminPhones": [
+            "+972500000000"
+          ],
+          "staffPhones": [],
+          "customerPhone": "+972500000001",
+          "message": "Turno cancelado: Control - Haircut el 2026-12-20 12:00",
+          "staffMessage": "Turno cancelado: Control el 2026-12-20 12:00",
+          "customerMessage": "Tu turno de Haircut del 2026-12-20 a las 12:00 fue cancelado.",
+          "appointment": {
+            "date": "2026-12-20",
+            "time": "12:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          }
+        },
+        "authCorrect": true
+      },
+      {
+        "kind": "agent",
+        "path": "/notify",
+        "type": "appointment_rescheduled",
+        "clientId": "tenant-control",
+        "payload": {
+          "clientId": "tenant-control",
+          "type": "appointment_rescheduled",
+          "adminPhones": [
+            "+972500000000"
+          ],
+          "staffPhones": [],
+          "customerPhone": "+972500000001",
+          "message": "Turno reprogramado: Control - Haircut ahora el 2026-12-20 12:00",
+          "staffMessage": "Turno reprogramado: Control 2026-12-20 12:00 (antes 2026-12-20 11:00)",
+          "customerMessage": "Tu turno fue reprogramado: Haircut ahora el 2026-12-20 a las 12:00.",
+          "oldAppointment": {
+            "date": "2026-12-20",
+            "time": "11:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          },
+          "appointment": {
+            "date": "2026-12-20",
+            "time": "12:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          },
+          "variables": {
+            "1": "Haircut",
+            "2": "2026-12-20",
+            "3": "12:00",
+            "4": ""
+          }
+        },
+        "authCorrect": true
+      }
+    ]
+  },
+  {
+    "name": "server-conflict:no-external",
+    "valid": true
+  },
+  {
+    "name": "server-denied-0:startup",
+    "valid": true
+  },
+  {
+    "name": "server-denied-0:base-results",
+    "valid": true,
+    "evidence": [
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Thank you! Your message has been received."
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      }
+    ]
+  },
+  {
+    "name": "server-denied-0:agent-count",
+    "valid": true,
+    "evidence": 0
+  },
+  {
+    "name": "server-denied-0:identity",
+    "valid": true,
+    "evidence": []
+  },
+  {
+    "name": "server-denied-0:auth",
+    "valid": true
+  },
+  {
+    "name": "server-denied-0:base-email",
+    "valid": true,
+    "evidence": [
+      {
+        "kind": "email",
+        "to": "owner@example.invalid",
+        "subject": "Website Inquiry: General Contact"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Booking Confirmed: Haircut on 2026-12-20"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Appointment Cancelled: Haircut on 2026-12-20"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Appointment Rescheduled: Haircut"
+      }
+    ]
+  },
+  {
+    "name": "server-denied-0:email-and-response-per-event",
+    "valid": true,
+    "evidence": [
+      {
+        "event": "contact",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "message": "Thank you! Your message has been received."
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "owner@example.invalid",
+            "subject": "Website Inquiry: General Contact"
+          }
+        ]
+      },
+      {
+        "event": "booked",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "customer@example.invalid",
+            "subject": "Booking Confirmed: Haircut on 2026-12-20"
+          }
+        ]
+      },
+      {
+        "event": "cancelled",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "customer@example.invalid",
+            "subject": "Appointment Cancelled: Haircut on 2026-12-20"
+          }
+        ]
+      },
+      {
+        "event": "rescheduled",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "customer@example.invalid",
+            "subject": "Appointment Rescheduled: Haircut"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "server-denied-0:no-external",
+    "valid": true
+  },
+  {
+    "name": "server-denied-1:startup",
+    "valid": true
+  },
+  {
+    "name": "server-denied-1:base-results",
+    "valid": true,
+    "evidence": [
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Thank you! Your message has been received."
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      }
+    ]
+  },
+  {
+    "name": "server-denied-1:agent-count",
+    "valid": true,
+    "evidence": 0
+  },
+  {
+    "name": "server-denied-1:identity",
+    "valid": true,
+    "evidence": []
+  },
+  {
+    "name": "server-denied-1:auth",
+    "valid": true
+  },
+  {
+    "name": "server-denied-1:base-email",
+    "valid": true,
+    "evidence": [
+      {
+        "kind": "email",
+        "to": "owner@example.invalid",
+        "subject": "Website Inquiry: General Contact"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Booking Confirmed: Haircut on 2026-12-20"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Appointment Cancelled: Haircut on 2026-12-20"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Appointment Rescheduled: Haircut"
+      }
+    ]
+  },
+  {
+    "name": "server-denied-1:email-and-response-per-event",
+    "valid": true,
+    "evidence": [
+      {
+        "event": "contact",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "message": "Thank you! Your message has been received."
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "owner@example.invalid",
+            "subject": "Website Inquiry: General Contact"
+          }
+        ]
+      },
+      {
+        "event": "booked",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "customer@example.invalid",
+            "subject": "Booking Confirmed: Haircut on 2026-12-20"
+          }
+        ]
+      },
+      {
+        "event": "cancelled",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "customer@example.invalid",
+            "subject": "Appointment Cancelled: Haircut on 2026-12-20"
+          }
+        ]
+      },
+      {
+        "event": "rescheduled",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "customer@example.invalid",
+            "subject": "Appointment Rescheduled: Haircut"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "server-denied-1:no-external",
+    "valid": true
+  },
+  {
+    "name": "server-denied-2:startup",
+    "valid": true
+  },
+  {
+    "name": "server-denied-2:base-results",
+    "valid": true,
+    "evidence": [
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Thank you! Your message has been received."
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      }
+    ]
+  },
+  {
+    "name": "server-denied-2:agent-count",
+    "valid": true,
+    "evidence": 0
+  },
+  {
+    "name": "server-denied-2:identity",
+    "valid": true,
+    "evidence": []
+  },
+  {
+    "name": "server-denied-2:auth",
+    "valid": true
+  },
+  {
+    "name": "server-denied-2:base-email",
+    "valid": true,
+    "evidence": [
+      {
+        "kind": "email",
+        "to": "owner@example.invalid",
+        "subject": "Website Inquiry: General Contact"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Booking Confirmed: Haircut on 2026-12-20"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Appointment Cancelled: Haircut on 2026-12-20"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Appointment Rescheduled: Haircut"
+      }
+    ]
+  },
+  {
+    "name": "server-denied-2:email-and-response-per-event",
+    "valid": true,
+    "evidence": [
+      {
+        "event": "contact",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "message": "Thank you! Your message has been received."
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "owner@example.invalid",
+            "subject": "Website Inquiry: General Contact"
+          }
+        ]
+      },
+      {
+        "event": "booked",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "customer@example.invalid",
+            "subject": "Booking Confirmed: Haircut on 2026-12-20"
+          }
+        ]
+      },
+      {
+        "event": "cancelled",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "customer@example.invalid",
+            "subject": "Appointment Cancelled: Haircut on 2026-12-20"
+          }
+        ]
+      },
+      {
+        "event": "rescheduled",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "customer@example.invalid",
+            "subject": "Appointment Rescheduled: Haircut"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "server-denied-2:no-external",
+    "valid": true
+  },
+  {
+    "name": "api-mirrors:startup",
+    "valid": true
+  },
+  {
+    "name": "api-mirrors:base-results",
+    "valid": true,
+    "evidence": [
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Thank you! Your message has been received."
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      }
+    ]
+  },
+  {
+    "name": "api-mirrors:agent-count",
+    "valid": true,
+    "evidence": 4
+  },
+  {
+    "name": "api-mirrors:identity",
+    "valid": true,
+    "evidence": [
+      "tenant-control",
+      "tenant-control",
+      "tenant-control",
+      "tenant-control"
+    ]
+  },
+  {
+    "name": "api-mirrors:auth",
+    "valid": true
+  },
+  {
+    "name": "api-mirrors:payload-preserved",
+    "valid": true,
+    "evidence": [
+      {
+        "kind": "agent",
+        "path": "/webhook/lead",
+        "clientId": "tenant-control",
+        "payload": {
+          "clientId": "tenant-control",
+          "nombre": "Control",
+          "telefono": null,
+          "email": "customer@example.invalid",
+          "mensaje": "Consulta controlada",
+          "fuente": "web_contact",
+          "adminPhones": [
+            "+972500000000"
+          ]
+        },
+        "authCorrect": true
+      },
+      {
+        "kind": "agent",
+        "path": "/notify",
+        "type": "appointment_booked",
+        "clientId": "tenant-control",
+        "payload": {
+          "clientId": "tenant-control",
+          "type": "appointment_booked",
+          "adminPhones": [
+            "+972500000000"
+          ],
+          "staffPhones": [],
+          "customerPhone": "+972500000001",
+          "message": "Nuevo turno: Control (+972500000001)\nHaircut el 2026-12-20 a las 12:00",
+          "staffMessage": "Turno asignado\nCliente: Control (+972500000001)\nServicio: Haircut\nCuando: 2026-12-20 12:00",
+          "customerMessage": "Turno confirmado: Haircut el 2026-12-20 a las 12:00.",
+          "appointment": {
+            "date": "2026-12-20",
+            "time": "12:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          },
+          "variables": {
+            "1": "Haircut",
+            "2": "2026-12-20",
+            "3": "12:00",
+            "4": ""
+          }
+        },
+        "authCorrect": true
+      },
+      {
+        "kind": "agent",
+        "path": "/notify",
+        "type": "appointment_cancelled",
+        "clientId": "tenant-control",
+        "payload": {
+          "clientId": "tenant-control",
+          "type": "appointment_cancelled",
+          "adminPhones": [
+            "+972500000000"
+          ],
+          "staffPhones": [],
+          "customerPhone": "+972500000001",
+          "message": "Turno cancelado: Control - Haircut el 2026-12-20 12:00",
+          "staffMessage": "Turno cancelado: Control el 2026-12-20 12:00",
+          "customerMessage": "Tu turno de Haircut del 2026-12-20 a las 12:00 fue cancelado.",
+          "appointment": {
+            "date": "2026-12-20",
+            "time": "12:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          }
+        },
+        "authCorrect": true
+      },
+      {
+        "kind": "agent",
+        "path": "/notify",
+        "type": "appointment_rescheduled",
+        "clientId": "tenant-control",
+        "payload": {
+          "clientId": "tenant-control",
+          "type": "appointment_rescheduled",
+          "adminPhones": [
+            "+972500000000"
+          ],
+          "staffPhones": [],
+          "customerPhone": "+972500000001",
+          "message": "Turno reprogramado: Control - Haircut ahora el 2026-12-20 12:00",
+          "staffMessage": "Turno reprogramado: Control 2026-12-20 12:00 (antes 2026-12-20 11:00)",
+          "customerMessage": "Tu turno fue reprogramado: Haircut ahora el 2026-12-20 a las 12:00.",
+          "oldAppointment": {
+            "date": "2026-12-20",
+            "time": "11:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          },
+          "appointment": {
+            "date": "2026-12-20",
+            "time": "12:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          },
+          "variables": {
+            "1": "Haircut",
+            "2": "2026-12-20",
+            "3": "12:00",
+            "4": ""
+          }
+        },
+        "authCorrect": true
+      }
+    ]
+  },
+  {
+    "name": "api-mirrors:auth-preserved",
+    "valid": true,
+    "evidence": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "agentNotified": true
+      }
+    }
+  },
+  {
+    "name": "api-mirrors:origin-reject",
+    "valid": true,
+    "evidence": {
+      "status": 403,
+      "body": {
+        "error": "Untrusted origin."
+      }
+    }
+  },
+  {
+    "name": "api-mirrors:auth-effect-preserved",
+    "valid": true,
+    "evidence": {
+      "noEffect": false
+    }
+  },
+  {
+    "name": "api-mirrors:no-external",
+    "valid": true
+  },
+  {
+    "name": "api-only-next:startup",
+    "valid": true
+  },
+  {
+    "name": "api-only-next:base-results",
+    "valid": true,
+    "evidence": [
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Thank you! Your message has been received."
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      }
+    ]
+  },
+  {
+    "name": "api-only-next:agent-count",
+    "valid": true,
+    "evidence": 4
+  },
+  {
+    "name": "api-only-next:identity",
+    "valid": true,
+    "evidence": [
+      "tenant-control",
+      "tenant-control",
+      "tenant-control",
+      "tenant-control"
+    ]
+  },
+  {
+    "name": "api-only-next:auth",
+    "valid": true
+  },
+  {
+    "name": "api-only-next:payload-preserved",
+    "valid": true,
+    "evidence": [
+      {
+        "kind": "agent",
+        "path": "/webhook/lead",
+        "clientId": "tenant-control",
+        "payload": {
+          "clientId": "tenant-control",
+          "nombre": "Control",
+          "telefono": null,
+          "email": "customer@example.invalid",
+          "mensaje": "Consulta controlada",
+          "fuente": "web_contact",
+          "adminPhones": [
+            "+972500000000"
+          ]
+        },
+        "authCorrect": true
+      },
+      {
+        "kind": "agent",
+        "path": "/notify",
+        "type": "appointment_booked",
+        "clientId": "tenant-control",
+        "payload": {
+          "clientId": "tenant-control",
+          "type": "appointment_booked",
+          "adminPhones": [
+            "+972500000000"
+          ],
+          "staffPhones": [],
+          "customerPhone": "+972500000001",
+          "message": "Nuevo turno: Control (+972500000001)\nHaircut el 2026-12-20 a las 12:00",
+          "staffMessage": "Turno asignado\nCliente: Control (+972500000001)\nServicio: Haircut\nCuando: 2026-12-20 12:00",
+          "customerMessage": "Turno confirmado: Haircut el 2026-12-20 a las 12:00.",
+          "appointment": {
+            "date": "2026-12-20",
+            "time": "12:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          },
+          "variables": {
+            "1": "Haircut",
+            "2": "2026-12-20",
+            "3": "12:00",
+            "4": ""
+          }
+        },
+        "authCorrect": true
+      },
+      {
+        "kind": "agent",
+        "path": "/notify",
+        "type": "appointment_cancelled",
+        "clientId": "tenant-control",
+        "payload": {
+          "clientId": "tenant-control",
+          "type": "appointment_cancelled",
+          "adminPhones": [
+            "+972500000000"
+          ],
+          "staffPhones": [],
+          "customerPhone": "+972500000001",
+          "message": "Turno cancelado: Control - Haircut el 2026-12-20 12:00",
+          "staffMessage": "Turno cancelado: Control el 2026-12-20 12:00",
+          "customerMessage": "Tu turno de Haircut del 2026-12-20 a las 12:00 fue cancelado.",
+          "appointment": {
+            "date": "2026-12-20",
+            "time": "12:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          }
+        },
+        "authCorrect": true
+      },
+      {
+        "kind": "agent",
+        "path": "/notify",
+        "type": "appointment_rescheduled",
+        "clientId": "tenant-control",
+        "payload": {
+          "clientId": "tenant-control",
+          "type": "appointment_rescheduled",
+          "adminPhones": [
+            "+972500000000"
+          ],
+          "staffPhones": [],
+          "customerPhone": "+972500000001",
+          "message": "Turno reprogramado: Control - Haircut ahora el 2026-12-20 12:00",
+          "staffMessage": "Turno reprogramado: Control 2026-12-20 12:00 (antes 2026-12-20 11:00)",
+          "customerMessage": "Tu turno fue reprogramado: Haircut ahora el 2026-12-20 a las 12:00.",
+          "oldAppointment": {
+            "date": "2026-12-20",
+            "time": "11:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          },
+          "appointment": {
+            "date": "2026-12-20",
+            "time": "12:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          },
+          "variables": {
+            "1": "Haircut",
+            "2": "2026-12-20",
+            "3": "12:00",
+            "4": ""
+          }
+        },
+        "authCorrect": true
+      }
+    ]
+  },
+  {
+    "name": "api-only-next:no-external",
+    "valid": true
+  },
+  {
+    "name": "api-spaces:startup",
+    "valid": true
+  },
+  {
+    "name": "api-spaces:base-results",
+    "valid": true,
+    "evidence": [
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Thank you! Your message has been received."
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      }
+    ]
+  },
+  {
+    "name": "api-spaces:agent-count",
+    "valid": true,
+    "evidence": 4
+  },
+  {
+    "name": "api-spaces:identity",
+    "valid": true,
+    "evidence": [
+      "tenant-control",
+      "tenant-control",
+      "tenant-control",
+      "tenant-control"
+    ]
+  },
+  {
+    "name": "api-spaces:auth",
+    "valid": true
+  },
+  {
+    "name": "api-spaces:payload-preserved",
+    "valid": true,
+    "evidence": [
+      {
+        "kind": "agent",
+        "path": "/webhook/lead",
+        "clientId": "tenant-control",
+        "payload": {
+          "clientId": "tenant-control",
+          "nombre": "Control",
+          "telefono": null,
+          "email": "customer@example.invalid",
+          "mensaje": "Consulta controlada",
+          "fuente": "web_contact",
+          "adminPhones": [
+            "+972500000000"
+          ]
+        },
+        "authCorrect": true
+      },
+      {
+        "kind": "agent",
+        "path": "/notify",
+        "type": "appointment_booked",
+        "clientId": "tenant-control",
+        "payload": {
+          "clientId": "tenant-control",
+          "type": "appointment_booked",
+          "adminPhones": [
+            "+972500000000"
+          ],
+          "staffPhones": [],
+          "customerPhone": "+972500000001",
+          "message": "Nuevo turno: Control (+972500000001)\nHaircut el 2026-12-20 a las 12:00",
+          "staffMessage": "Turno asignado\nCliente: Control (+972500000001)\nServicio: Haircut\nCuando: 2026-12-20 12:00",
+          "customerMessage": "Turno confirmado: Haircut el 2026-12-20 a las 12:00.",
+          "appointment": {
+            "date": "2026-12-20",
+            "time": "12:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          },
+          "variables": {
+            "1": "Haircut",
+            "2": "2026-12-20",
+            "3": "12:00",
+            "4": ""
+          }
+        },
+        "authCorrect": true
+      },
+      {
+        "kind": "agent",
+        "path": "/notify",
+        "type": "appointment_cancelled",
+        "clientId": "tenant-control",
+        "payload": {
+          "clientId": "tenant-control",
+          "type": "appointment_cancelled",
+          "adminPhones": [
+            "+972500000000"
+          ],
+          "staffPhones": [],
+          "customerPhone": "+972500000001",
+          "message": "Turno cancelado: Control - Haircut el 2026-12-20 12:00",
+          "staffMessage": "Turno cancelado: Control el 2026-12-20 12:00",
+          "customerMessage": "Tu turno de Haircut del 2026-12-20 a las 12:00 fue cancelado.",
+          "appointment": {
+            "date": "2026-12-20",
+            "time": "12:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          }
+        },
+        "authCorrect": true
+      },
+      {
+        "kind": "agent",
+        "path": "/notify",
+        "type": "appointment_rescheduled",
+        "clientId": "tenant-control",
+        "payload": {
+          "clientId": "tenant-control",
+          "type": "appointment_rescheduled",
+          "adminPhones": [
+            "+972500000000"
+          ],
+          "staffPhones": [],
+          "customerPhone": "+972500000001",
+          "message": "Turno reprogramado: Control - Haircut ahora el 2026-12-20 12:00",
+          "staffMessage": "Turno reprogramado: Control 2026-12-20 12:00 (antes 2026-12-20 11:00)",
+          "customerMessage": "Tu turno fue reprogramado: Haircut ahora el 2026-12-20 a las 12:00.",
+          "oldAppointment": {
+            "date": "2026-12-20",
+            "time": "11:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          },
+          "appointment": {
+            "date": "2026-12-20",
+            "time": "12:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          },
+          "variables": {
+            "1": "Haircut",
+            "2": "2026-12-20",
+            "3": "12:00",
+            "4": ""
+          }
+        },
+        "authCorrect": true
+      }
+    ]
+  },
+  {
+    "name": "api-spaces:no-external",
+    "valid": true
+  },
+  {
+    "name": "api-conflict:startup",
+    "valid": true
+  },
+  {
+    "name": "api-conflict:base-results",
+    "valid": true,
+    "evidence": [
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Thank you! Your message has been received."
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      }
+    ]
+  },
+  {
+    "name": "api-conflict:agent-count",
+    "valid": true,
+    "evidence": 4
+  },
+  {
+    "name": "api-conflict:identity",
+    "valid": true,
+    "evidence": [
+      "tenant-control",
+      "tenant-control",
+      "tenant-control",
+      "tenant-control"
+    ]
+  },
+  {
+    "name": "api-conflict:auth",
+    "valid": true
+  },
+  {
+    "name": "api-conflict:payload-preserved",
+    "valid": true,
+    "evidence": [
+      {
+        "kind": "agent",
+        "path": "/webhook/lead",
+        "clientId": "tenant-control",
+        "payload": {
+          "clientId": "tenant-control",
+          "nombre": "Control",
+          "telefono": null,
+          "email": "customer@example.invalid",
+          "mensaje": "Consulta controlada",
+          "fuente": "web_contact",
+          "adminPhones": [
+            "+972500000000"
+          ]
+        },
+        "authCorrect": true
+      },
+      {
+        "kind": "agent",
+        "path": "/notify",
+        "type": "appointment_booked",
+        "clientId": "tenant-control",
+        "payload": {
+          "clientId": "tenant-control",
+          "type": "appointment_booked",
+          "adminPhones": [
+            "+972500000000"
+          ],
+          "staffPhones": [],
+          "customerPhone": "+972500000001",
+          "message": "Nuevo turno: Control (+972500000001)\nHaircut el 2026-12-20 a las 12:00",
+          "staffMessage": "Turno asignado\nCliente: Control (+972500000001)\nServicio: Haircut\nCuando: 2026-12-20 12:00",
+          "customerMessage": "Turno confirmado: Haircut el 2026-12-20 a las 12:00.",
+          "appointment": {
+            "date": "2026-12-20",
+            "time": "12:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          },
+          "variables": {
+            "1": "Haircut",
+            "2": "2026-12-20",
+            "3": "12:00",
+            "4": ""
+          }
+        },
+        "authCorrect": true
+      },
+      {
+        "kind": "agent",
+        "path": "/notify",
+        "type": "appointment_cancelled",
+        "clientId": "tenant-control",
+        "payload": {
+          "clientId": "tenant-control",
+          "type": "appointment_cancelled",
+          "adminPhones": [
+            "+972500000000"
+          ],
+          "staffPhones": [],
+          "customerPhone": "+972500000001",
+          "message": "Turno cancelado: Control - Haircut el 2026-12-20 12:00",
+          "staffMessage": "Turno cancelado: Control el 2026-12-20 12:00",
+          "customerMessage": "Tu turno de Haircut del 2026-12-20 a las 12:00 fue cancelado.",
+          "appointment": {
+            "date": "2026-12-20",
+            "time": "12:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          }
+        },
+        "authCorrect": true
+      },
+      {
+        "kind": "agent",
+        "path": "/notify",
+        "type": "appointment_rescheduled",
+        "clientId": "tenant-control",
+        "payload": {
+          "clientId": "tenant-control",
+          "type": "appointment_rescheduled",
+          "adminPhones": [
+            "+972500000000"
+          ],
+          "staffPhones": [],
+          "customerPhone": "+972500000001",
+          "message": "Turno reprogramado: Control - Haircut ahora el 2026-12-20 12:00",
+          "staffMessage": "Turno reprogramado: Control 2026-12-20 12:00 (antes 2026-12-20 11:00)",
+          "customerMessage": "Tu turno fue reprogramado: Haircut ahora el 2026-12-20 a las 12:00.",
+          "oldAppointment": {
+            "date": "2026-12-20",
+            "time": "11:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          },
+          "appointment": {
+            "date": "2026-12-20",
+            "time": "12:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          },
+          "variables": {
+            "1": "Haircut",
+            "2": "2026-12-20",
+            "3": "12:00",
+            "4": ""
+          }
+        },
+        "authCorrect": true
+      }
+    ]
+  },
+  {
+    "name": "api-conflict:no-external",
+    "valid": true
+  },
+  {
+    "name": "api-denied-0:startup",
+    "valid": true
+  },
+  {
+    "name": "api-denied-0:base-results",
+    "valid": true,
+    "evidence": [
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Thank you! Your message has been received."
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      }
+    ]
+  },
+  {
+    "name": "api-denied-0:agent-count",
+    "valid": true,
+    "evidence": 0
+  },
+  {
+    "name": "api-denied-0:identity",
+    "valid": true,
+    "evidence": []
+  },
+  {
+    "name": "api-denied-0:auth",
+    "valid": true
+  },
+  {
+    "name": "api-denied-0:base-email",
+    "valid": true,
+    "evidence": [
+      {
+        "kind": "email",
+        "to": "owner@example.invalid",
+        "subject": "Website Inquiry: General Contact"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Booking Confirmed: Haircut on 2026-12-20"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Appointment Cancelled: Haircut on 2026-12-20"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Appointment Rescheduled: Haircut"
+      }
+    ]
+  },
+  {
+    "name": "api-denied-0:email-and-response-per-event",
+    "valid": true,
+    "evidence": [
+      {
+        "event": "contact",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "message": "Thank you! Your message has been received."
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "owner@example.invalid",
+            "subject": "Website Inquiry: General Contact"
+          }
+        ]
+      },
+      {
+        "event": "booked",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "customer@example.invalid",
+            "subject": "Booking Confirmed: Haircut on 2026-12-20"
+          }
+        ]
+      },
+      {
+        "event": "cancelled",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "customer@example.invalid",
+            "subject": "Appointment Cancelled: Haircut on 2026-12-20"
+          }
+        ]
+      },
+      {
+        "event": "rescheduled",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "customer@example.invalid",
+            "subject": "Appointment Rescheduled: Haircut"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "api-denied-0:no-external",
+    "valid": true
+  },
+  {
+    "name": "api-denied-1:startup",
+    "valid": true
+  },
+  {
+    "name": "api-denied-1:base-results",
+    "valid": true,
+    "evidence": [
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Thank you! Your message has been received."
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      }
+    ]
+  },
+  {
+    "name": "api-denied-1:agent-count",
+    "valid": true,
+    "evidence": 0
+  },
+  {
+    "name": "api-denied-1:identity",
+    "valid": true,
+    "evidence": []
+  },
+  {
+    "name": "api-denied-1:auth",
+    "valid": true
+  },
+  {
+    "name": "api-denied-1:base-email",
+    "valid": true,
+    "evidence": [
+      {
+        "kind": "email",
+        "to": "owner@example.invalid",
+        "subject": "Website Inquiry: General Contact"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Booking Confirmed: Haircut on 2026-12-20"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Appointment Cancelled: Haircut on 2026-12-20"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Appointment Rescheduled: Haircut"
+      }
+    ]
+  },
+  {
+    "name": "api-denied-1:email-and-response-per-event",
+    "valid": true,
+    "evidence": [
+      {
+        "event": "contact",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "message": "Thank you! Your message has been received."
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "owner@example.invalid",
+            "subject": "Website Inquiry: General Contact"
+          }
+        ]
+      },
+      {
+        "event": "booked",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "customer@example.invalid",
+            "subject": "Booking Confirmed: Haircut on 2026-12-20"
+          }
+        ]
+      },
+      {
+        "event": "cancelled",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "customer@example.invalid",
+            "subject": "Appointment Cancelled: Haircut on 2026-12-20"
+          }
+        ]
+      },
+      {
+        "event": "rescheduled",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "customer@example.invalid",
+            "subject": "Appointment Rescheduled: Haircut"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "api-denied-1:no-external",
+    "valid": true
+  },
+  {
+    "name": "api-denied-2:startup",
+    "valid": true
+  },
+  {
+    "name": "api-denied-2:base-results",
+    "valid": true,
+    "evidence": [
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Thank you! Your message has been received."
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      }
+    ]
+  },
+  {
+    "name": "api-denied-2:agent-count",
+    "valid": true,
+    "evidence": 0
+  },
+  {
+    "name": "api-denied-2:identity",
+    "valid": true,
+    "evidence": []
+  },
+  {
+    "name": "api-denied-2:auth",
+    "valid": true
+  },
+  {
+    "name": "api-denied-2:base-email",
+    "valid": true,
+    "evidence": [
+      {
+        "kind": "email",
+        "to": "owner@example.invalid",
+        "subject": "Website Inquiry: General Contact"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Booking Confirmed: Haircut on 2026-12-20"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Appointment Cancelled: Haircut on 2026-12-20"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Appointment Rescheduled: Haircut"
+      }
+    ]
+  },
+  {
+    "name": "api-denied-2:email-and-response-per-event",
+    "valid": true,
+    "evidence": [
+      {
+        "event": "contact",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "message": "Thank you! Your message has been received."
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "owner@example.invalid",
+            "subject": "Website Inquiry: General Contact"
+          }
+        ]
+      },
+      {
+        "event": "booked",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "customer@example.invalid",
+            "subject": "Booking Confirmed: Haircut on 2026-12-20"
+          }
+        ]
+      },
+      {
+        "event": "cancelled",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "customer@example.invalid",
+            "subject": "Appointment Cancelled: Haircut on 2026-12-20"
+          }
+        ]
+      },
+      {
+        "event": "rescheduled",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "customer@example.invalid",
+            "subject": "Appointment Rescheduled: Haircut"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "api-denied-2:no-external",
+    "valid": true
+  }
+]

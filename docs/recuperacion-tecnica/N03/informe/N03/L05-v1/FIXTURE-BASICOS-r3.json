@@ -1,0 +1,34 @@
+[
+  {
+    "name": "cliente activo",
+    "valid": true
+  },
+  {
+    "name": "documento ausente",
+    "valid": true
+  },
+  {
+    "name": "suspendido",
+    "valid": true
+  },
+  {
+    "name": "fallo lectura",
+    "valid": true
+  },
+  {
+    "name": "proveedor",
+    "valid": true
+  },
+  {
+    "name": "fallo config",
+    "valid": true
+  },
+  {
+    "name": "SDK ausente",
+    "valid": true
+  },
+  {
+    "name": "tenant ajeno",
+    "valid": true
+  }
+]

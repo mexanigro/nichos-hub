@@ -1,0 +1,11 @@
+{
+  "result": "PASS_ENTREGA_LOCAL",
+  "tests": 34,
+  "passed": 34,
+  "parityRed": true,
+  "mutationCaught": true,
+  "typecheckExit": 0,
+  "containersAbsent": true,
+  "linksChecked": 6,
+  "scope": "No valida bootstrap global ni persistencia remota; N03 en_curso"
+}

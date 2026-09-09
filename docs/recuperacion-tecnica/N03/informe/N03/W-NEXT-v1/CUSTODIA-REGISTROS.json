@@ -1,0 +1,38 @@
+[
+  {
+    "path": "informe/N03/L06-language-v1/INFORME.md",
+    "before": "67c4a95270fff795a5f455ef4352701df83a9702e6d25f7de314b10027a72511",
+    "after": "5f720930ffe867314858c3c6b175df767faf4630f311fb2f8885d9f2d754f4be",
+    "preimage": "informe\\N03\\W-NEXT-v1\\preimagenes-registros\\informe\\N03\\L06-language-v1\\INFORME.md"
+  },
+  {
+    "path": "informe/N03/reconciliacion-v1/BALANCE.md",
+    "before": "d165329d5c7f7af086d55806f011b56c1e11e607ad1db717a04cc246536b4b74",
+    "after": "fd2892df5766a473bc299731240df003a1f6238a2dd25731e7fc943eba0cfc1d",
+    "preimage": "informe\\N03\\W-NEXT-v1\\preimagenes-registros\\informe\\N03\\reconciliacion-v1\\BALANCE.md"
+  },
+  {
+    "path": "indice/tareas/N03.md",
+    "before": "b4980e1a7754c369643a2cd1ac72b0f7abe3e1ed570c80f3fccfb47d107528b1",
+    "after": "0104e369359881ac13b887a8d4a17ab2389115c737f84721fdc1d9c6f3fefeaa",
+    "preimage": "informe\\N03\\W-NEXT-v1\\preimagenes-registros\\indice\\tareas\\N03.md"
+  },
+  {
+    "path": "indice/README.md",
+    "before": "00ad433075dea2f387229b371491a20c404542ad8c81c80ef414d7132794d84c",
+    "after": "c15fdb3821545e796f71c5306741807bbafa4957c0c1cf92471505593ef37ad6",
+    "preimage": "informe\\N03\\W-NEXT-v1\\preimagenes-registros\\indice\\README.md"
+  },
+  {
+    "path": "indice/PENDIENTES.md",
+    "before": "221343f3433fa52d6b98d0b8b9be96ede4422f9c762335c02321321b90ed9219",
+    "after": "faa3c54aea76ddb5ab31e0f5c5b3cc493f2219845175c017fa9333da314fd8df",
+    "preimage": "informe\\N03\\W-NEXT-v1\\preimagenes-registros\\indice\\PENDIENTES.md"
+  },
+  {
+    "path": "indice/CALENDARIO.md",
+    "before": "b27d8884478b2309f5e1cb5eace36f74ced066d179f52a71191ae20068f117db",
+    "after": "f341a09d40892816210138f521bb26844a4070fb56908289c7f994697a414c53",
+    "preimage": "informe\\N03\\W-NEXT-v1\\preimagenes-registros\\indice\\CALENDARIO.md"
+  }
+]

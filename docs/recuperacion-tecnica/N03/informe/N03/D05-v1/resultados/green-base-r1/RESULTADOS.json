@@ -1,0 +1,352 @@
+[
+  {
+    "name": "server: arranque real",
+    "valid": true,
+    "evidence": {}
+  },
+  {
+    "name": "server: contacto conserva respuesta",
+    "valid": true,
+    "evidence": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "message": "Thank you! Your message has been received."
+      }
+    }
+  },
+  {
+    "name": "server: contacto conserva email al dueño",
+    "valid": true,
+    "evidence": [
+      {
+        "kind": "email",
+        "to": "owner@example.invalid",
+        "subject": "Website Inquiry: General Contact"
+      }
+    ]
+  },
+  {
+    "name": "server: reserva confirmada después de commit simulado",
+    "valid": true,
+    "evidence": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "appointmentId": "generated-3"
+      }
+    }
+  },
+  {
+    "name": "server: notificación de reserva acepta documento realmente creado",
+    "valid": true,
+    "evidence": {
+      "status": 200,
+      "body": {
+        "success": true
+      }
+    }
+  },
+  {
+    "name": "server: reserva notifica email al cliente sin agente",
+    "valid": true,
+    "evidence": [
+      {
+        "kind": "email",
+        "to": "owner@example.invalid",
+        "subject": "Website Inquiry: General Contact"
+      },
+      {
+        "kind": "email",
+        "to": "owner@example.invalid",
+        "subject": "New Booking Request"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Booking Confirmed: haircut on 2026-12-20"
+      }
+    ]
+  },
+  {
+    "name": "server: consumidor CRM booked",
+    "valid": true,
+    "evidence": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "agentNotified": false
+      }
+    }
+  },
+  {
+    "name": "server: consumidor notifyAppointmentBooked notifica destinatario y evento",
+    "valid": true,
+    "evidence": [
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Booking Confirmed: Haircut on 2026-12-20"
+      }
+    ]
+  },
+  {
+    "name": "server: consumidor CRM cancelled",
+    "valid": true,
+    "evidence": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "agentNotified": false
+      }
+    }
+  },
+  {
+    "name": "server: consumidor notifyAppointmentCancelled notifica destinatario y evento",
+    "valid": true,
+    "evidence": [
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Appointment Cancelled: Haircut on 2026-12-20"
+      }
+    ]
+  },
+  {
+    "name": "server: consumidor CRM rescheduled",
+    "valid": true,
+    "evidence": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "agentNotified": false
+      }
+    }
+  },
+  {
+    "name": "server: consumidor notifyAppointmentRescheduled notifica destinatario y evento",
+    "valid": true,
+    "evidence": [
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Appointment Rescheduled: Haircut"
+      }
+    ]
+  },
+  {
+    "name": "server: consumidor CRM booked",
+    "valid": true,
+    "evidence": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "agentNotified": false
+      }
+    }
+  },
+  {
+    "name": "server: walk-in sin email no inventa destinatario",
+    "valid": true,
+    "evidence": {}
+  },
+  {
+    "name": "server: callers cancel/reschedule conservan email en argumentos efectivos",
+    "valid": true,
+    "evidence": [
+      {
+        "name": "notifyAppointmentCancelled",
+        "valid": true
+      },
+      {
+        "name": "notifyAppointmentRescheduled",
+        "valid": true
+      }
+    ]
+  },
+  {
+    "name": "server: base sin intentos IA agente simulados",
+    "valid": true,
+    "evidence": []
+  },
+  {
+    "name": "server: cero intentos externos no simulados",
+    "valid": true,
+    "evidence": ""
+  },
+  {
+    "name": "api: arranque real",
+    "valid": true,
+    "evidence": {}
+  },
+  {
+    "name": "api: contacto conserva respuesta",
+    "valid": true,
+    "evidence": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "message": "Thank you! Your message has been received."
+      }
+    }
+  },
+  {
+    "name": "api: contacto conserva email al dueño",
+    "valid": true,
+    "evidence": [
+      {
+        "kind": "email",
+        "to": "owner@example.invalid",
+        "subject": "Website Inquiry: General Contact"
+      }
+    ]
+  },
+  {
+    "name": "api: reserva confirmada después de commit simulado",
+    "valid": true,
+    "evidence": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "appointmentId": "generated-1"
+      }
+    }
+  },
+  {
+    "name": "api: notificación de reserva acepta documento realmente creado",
+    "valid": true,
+    "evidence": {
+      "status": 200,
+      "body": {
+        "success": true
+      }
+    }
+  },
+  {
+    "name": "api: reserva notifica email al cliente sin agente",
+    "valid": true,
+    "evidence": [
+      {
+        "kind": "email",
+        "to": "owner@example.invalid",
+        "subject": "Website Inquiry: General Contact"
+      },
+      {
+        "kind": "email",
+        "to": "owner@example.invalid",
+        "subject": "New Booking Request"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Booking Confirmed: Haircut on 2026-12-20"
+      }
+    ]
+  },
+  {
+    "name": "api: consumidor CRM booked",
+    "valid": true,
+    "evidence": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "agentNotified": false
+      }
+    }
+  },
+  {
+    "name": "api: consumidor notifyAppointmentBooked notifica destinatario y evento",
+    "valid": true,
+    "evidence": [
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Booking Confirmed: Haircut on 2026-12-20"
+      }
+    ]
+  },
+  {
+    "name": "api: consumidor CRM cancelled",
+    "valid": true,
+    "evidence": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "agentNotified": false
+      }
+    }
+  },
+  {
+    "name": "api: consumidor notifyAppointmentCancelled notifica destinatario y evento",
+    "valid": true,
+    "evidence": [
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Appointment Cancelled: Haircut on 2026-12-20"
+      }
+    ]
+  },
+  {
+    "name": "api: consumidor CRM rescheduled",
+    "valid": true,
+    "evidence": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "agentNotified": false
+      }
+    }
+  },
+  {
+    "name": "api: consumidor notifyAppointmentRescheduled notifica destinatario y evento",
+    "valid": true,
+    "evidence": [
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Appointment Rescheduled: Haircut"
+      }
+    ]
+  },
+  {
+    "name": "api: consumidor CRM booked",
+    "valid": true,
+    "evidence": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "agentNotified": false
+      }
+    }
+  },
+  {
+    "name": "api: walk-in sin email no inventa destinatario",
+    "valid": true,
+    "evidence": {}
+  },
+  {
+    "name": "api: callers cancel/reschedule conservan email en argumentos efectivos",
+    "valid": true,
+    "evidence": [
+      {
+        "name": "notifyAppointmentCancelled",
+        "valid": true
+      },
+      {
+        "name": "notifyAppointmentRescheduled",
+        "valid": true
+      }
+    ]
+  },
+  {
+    "name": "api: base sin intentos IA agente simulados",
+    "valid": true,
+    "evidence": []
+  },
+  {
+    "name": "api: cero intentos externos no simulados",
+    "valid": true,
+    "evidence": ""
+  }
+]

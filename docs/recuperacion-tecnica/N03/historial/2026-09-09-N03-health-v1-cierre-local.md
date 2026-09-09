@@ -1,0 +1,3 @@
+# N03 health-v1 — cierre local, 2026-09-09
+Liam aceptó stock-v1 y autorizó arranque/salud sin IA/agente, techo total74 sin resets. Siete fases cumplidas con contrato congelado;112/112controles locales, tipos0, paridad3/3 y mutación detectada en ambos runtimes. Readiness acotada a bootstrap y lectura Admin del tenant, live independiente. Preimágenes y fuentes previas conservadas, revisión independiente integrada. Consumo69→70%. No se certifica remoto ni todas las funciones base. N03 sigue en curso; entregas anteriores conservadas; no se abrió otra reparación.
+[Informe y retoma](../informe/N03/health-v1/INFORME.md).

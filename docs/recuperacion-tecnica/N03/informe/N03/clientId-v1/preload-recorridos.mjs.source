@@ -1,0 +1,27 @@
+import './preload.mjs';
+import {register} from 'node:module';
+import fs from 'node:fs';
+import {readRecord,writeRecord} from './fixture-recorridos.mjs';
+register('file:///control/hooks-recorridos.mjs',import.meta.url);
+const guardedFetch=globalThis.fetch;
+globalThis.fetch=async(url,options={})=>{
+ const u=new URL(typeof url==='string'?url:url.url||url);
+ const record=(kind,data={})=>fs.appendFileSync(process.env.D05_EVENTS,JSON.stringify({kind,...data})+'\n');
+ if(u.hostname==='www.googleapis.com')return Response.json({fixture:fs.readFileSync('/tmp/public.pem','utf8')},{headers:{'cache-control':'max-age=3600'}});
+ if(u.hostname==='oauth2.googleapis.com')return Response.json({access_token:'synthetic-access',expires_in:3600});
+ if(u.hostname==='firestore.googleapis.com'){
+  const path=decodeURIComponent(u.pathname.split('/documents/')[1]||'');
+  const encode=v=>typeof v==='string'?{stringValue:v}:typeof v==='number'?{integerValue:String(v)}:v&&typeof v==='object'?{mapValue:{fields:Object.fromEntries(Object.entries(v).map(([k,x])=>[k,encode(x)]))}}:{nullValue:null};
+  if(options.method==='POST'){const body=JSON.parse(options.body||'{}');record('rest-write',{path});return Response.json({name:path+'/rest-control',...body});}
+  const data=readRecord(path);return data?Response.json({fields:Object.fromEntries(Object.entries(data).map(([k,v])=>[k,encode(v)]))}):Response.json({error:'missing'},{status:404});
+ }
+ if(u.hostname==='generativelanguage.googleapis.com'){record('ai');return Response.json({candidates:[{content:{parts:[{text:'Respuesta controlada'}]}}]});}
+ if(u.hostname==='agent.invalid'){const body=JSON.parse(options.body||'{}');record('agent',{path:u.pathname,type:body.type,clientId:body.clientId,payload:body,authCorrect:options.headers['x-agent-secret']==='synthetic-secret'});return Response.json({success:true});}
+ if(u.hostname==='api.resend.com'){
+ 
+  const body=JSON.parse(options.body||'{}');
+  fs.appendFileSync(process.env.D05_EVENTS,JSON.stringify({kind:'email',to:body.to,subject:body.subject})+'\n');
+  return Response.json({id:'simulated-email'});
+ }
+ return guardedFetch(url,options);
+};

@@ -1,0 +1,10 @@
+
+[Template Setup] ─── Service Configuration Status ───
+  ✓  [REQUIRED] FIREBASE_PROJECT_ID                  → Firestore access (tenant config, kill-switch)
+  ✓  [REQUIRED] CLIENT_ID                            → Tenant scoping
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active

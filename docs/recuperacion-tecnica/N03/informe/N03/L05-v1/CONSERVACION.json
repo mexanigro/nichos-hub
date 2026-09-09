@@ -1,0 +1,22 @@
+{
+  "valid": true,
+  "results": [
+    {
+      "name": "template entregas aceptadas",
+      "count": 332,
+      "drift": []
+    },
+    {
+      "name": "hub lint-v1 aceptada",
+      "count": 6,
+      "drift": []
+    }
+  ],
+  "proposalLinks": 4,
+  "positiveControls": 12,
+  "observations": 43,
+  "proposedFailures": 25,
+  "templateHead": "46345f4505756599d69ae6cbc9d588271aba6b65",
+  "hubHead": "60736c003b1e948ab45572f26c37e3b5aa286165",
+  "productionChanges": 0
+}

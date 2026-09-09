@@ -1,0 +1,46 @@
+const fs=require('node:fs'),p=require('node:path'),crypto=require('node:crypto'),{spawnSync}=require('node:child_process');
+const d=__dirname,control=p.resolve(d,'../clientId-v1'),product=p.resolve(d,'../../../../Barber-shop-template-main');
+const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
+const read=file=>JSON.parse(fs.readFileSync(file,'utf8').replace(/^\uFEFF/,''));
+const write=(file,data)=>{fs.mkdirSync(p.dirname(file),{recursive:true});fs.writeFileSync(file,data,{flag:'wx'});};
+const rows=read(p.join(d,'FUENTES-P0.json'));
+const anchor='  app.post("/api/appointment/notify", async (req, res) => {\n';
+const addition='    const auth = await requireAdminAuth(req, res);\n    if (!auth) return;\n';
+if(process.argv[2]==='freeze'){
+ for(const row of rows)if(sha(fs.readFileSync(p.join(product,row.path)))!==row.sha256)throw Error('drift '+row.path);
+ const prepared=read(p.join(d,'CIERRE-PREPARACION.json'));
+ if(sha(fs.readFileSync(p.join(d,'PROPUESTA.md')))!==prepared.proposalSha256)throw Error('proposal changed');
+ const git=[];
+ for(const repo of [product,'C:/Users/liama/Desktop/Nichos-hub']){
+  const call=args=>{const r=spawnSync('git',['-C',repo,...args],{encoding:'utf8'});if(r.status!==0)throw Error(r.stderr);return r.stdout;};
+  const branch=call(['branch','--show-current']).trim(),worktrees=call(['worktree','list','--porcelain']);
+  if(branch!=='main'||(worktrees.match(/^worktree /gm)||[]).length!==1)throw Error('git context');
+  git.push({repo,branch,head:call(['rev-parse','HEAD']).trim(),worktrees,status:call(['status','--porcelain=v1'])});
+ }
+ const instruments=[];
+ for(const name of fs.readdirSync(control).filter(n=>/\.(mjs|cjs|ps1)$/.test(n)||n==='tsconfig.json')){
+  if(/\.(mjs|cjs)$/.test(name)){const r=spawnSync(process.execPath,['--check',p.join(control,name)],{encoding:'utf8'});if(r.status!==0)throw Error('syntax '+name+': '+r.stderr);}
+  instruments.push({name,sha256:sha(fs.readFileSync(p.join(control,name)))});
+ }
+ write(p.join(d,'REVISION-EXTERNA-PREPARACION.md'),`# Revisión externa trasladada por Liam\n\nProcedencia: mensaje de autorización P0→P3 en esta conversación, 2026-09-09. Separada de Harvey, cuya refutación interna permanece en INFORME.md. Resumen trasladado: 333 fuentes conservadas; baseline con 30 solicitudes adversas indebidamente aceptadas en API y 60 comprobaciones fallidas; referencia ampliada54/54; mutador comprobado en memoria con conservación exacta de bytes. Ambos repositorios en main, un único worktree registrado cada uno.\n\nEl integrador verificó vigencia de las333 fuentes y estado Git al congelar; no atribuye a sí mismo una repetición de la revisión externa. Liam aprobó la propuesta y autorizó completar P0→P3 exclusivamente con las dos instrucciones indicadas. N03 sigue abierta; N04 conserva identidad/entorno reales y permanece la condición previa al despliegue por prestaciones de tenant. Techo80%TOTAL, inicio77%, sin resets.\n`);
+ write(p.join(d,'CONTEXTO-GIT-P0.json'),JSON.stringify(git,null,2));
+ write(p.join(d,'FREEZE.json'),JSON.stringify({gate:'P0',reached:true,date:new Date().toISOString(),authorization:'Liam: propuesta aprobada y completar P0→P3 sin otra pausa salvo bloqueo o cambio de alcance',contract:'PROPUESTA.md',contractSha256:prepared.proposalSha256,scope:['api/index.ts: dos instrucciones al comienzo de POST /api/appointment/notify'],sources:rows.map(({path,sha256})=>({path,sha256})),instruments,baseline:'../clientId-v1/resultados/auth-baseline-v1',reference:'../clientId-v1/resultados/auth-reference-v1',usage:77,totalCeiling:80,blockers:[],materialFindings:'resueltos en preparación; no contrato nuevo'},null,2));
+ console.log('P0: fuentes vigentes, refutación conservada, contrato congelado');
+}else if(process.argv[2]==='implement'){
+ if(!read(p.join(d,'FREEZE.json')).reached)throw Error('no freeze');
+ const file=p.join(product,'api/index.ts'),bytes=fs.readFileSync(file),before=bytes.toString('utf8');
+ if(sha(bytes)!==rows.find(x=>x.path==='api/index.ts').sha256||before.split(anchor).length!==2)throw Error('API drift/anchor');
+ const after=before.replace(anchor,anchor+addition);
+ write(p.join(d,'preimagenes-p1/api/index.ts'),bytes);
+ if(sha(fs.readFileSync(p.join(d,'preimagenes-p1/api/index.ts')))!==sha(bytes))throw Error('preimage');
+ fs.writeFileSync(file,after);
+ if(!fs.readFileSync(file).equals(Buffer.from(after)))throw Error('write');
+ const destination=p.join(control,'copia-auth-green');
+ fs.mkdirSync(destination);fs.mkdirSync(p.join(destination,'node_modules'));
+ const copied=[];
+ for(const row of rows){const source=p.join(product,row.path),b=fs.readFileSync(source),target=p.join(destination,row.path);if(row.path!=='api/index.ts'&&sha(b)!==row.sha256)throw Error('foreign drift '+row.path);write(target,b);copied.push({path:row.path,sha256:sha(b)});}
+ const test='tests/api-parity.test.ts';write(p.join(destination,test),fs.readFileSync(p.join(product,test)));
+ write(p.join(d,'FUENTES-P1.json'),JSON.stringify(copied,null,2));
+ write(p.join(d,'P1.json'),JSON.stringify({gate:'P1',reached:true,path:'api/index.ts',before:sha(bytes),after:sha(after),onlyExactInsertion:true,preimage:'preimagenes-p1/api/index.ts',sourcesCopied:copied.length,parityTestSha256:sha(fs.readFileSync(p.join(destination,test)))},null,2));
+ console.log('P1: dos instrucciones añadidas, preimagen verificada, copia aislada nueva');
+}else throw Error('freeze | implement');

@@ -1,0 +1,41 @@
+
+[Template Setup] ─── Service Configuration Status ───
+  ✓  EMAIL_PROVIDER_API_KEY           → Email notifications (Resend)
+  ✓  BUSINESS_OWNER_EMAIL             → Notification recipient
+  ✓  CLIENT_ID / NEXT_PUBLIC_CLIENT_ID → Tenant scoping
+  ✓  BUSINESS_OWNER_PHONE             → WhatsApp admin notifications recipient
+Server running on http://localhost:3000
+[enforceClientActive] calling getClientRuntimeState
+[Admin SDK] PROJECT_ID: true CLIENT_EMAIL: true PRIVATE_KEY: true
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[Admin SDK] PROJECT_ID: true CLIENT_EMAIL: true PRIVATE_KEY: true
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[Admin SDK] PROJECT_ID: true CLIENT_EMAIL: true PRIVATE_KEY: true
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[Admin SDK] PROJECT_ID: true CLIENT_EMAIL: true PRIVATE_KEY: true
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[Admin SDK] PROJECT_ID: true CLIENT_EMAIL: true PRIVATE_KEY: true
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[Contact Form] Received inquiry from Control (customer@example.invalid)
+[Admin SDK] PROJECT_ID: true CLIENT_EMAIL: true PRIVATE_KEY: true
+[Admin SDK] PROJECT_ID: true CLIENT_EMAIL: true PRIVATE_KEY: true
+[Notification Layer] Processing contact notification...
+[Notification Layer] Email sent successfully: simulated-email
+[Admin SDK] PROJECT_ID: true CLIENT_EMAIL: true PRIVATE_KEY: true
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[Admin SDK] PROJECT_ID: true CLIENT_EMAIL: true PRIVATE_KEY: true
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[Admin SDK] PROJECT_ID: true CLIENT_EMAIL: true PRIVATE_KEY: true
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[Admin SDK] PROJECT_ID: true CLIENT_EMAIL: true PRIVATE_KEY: true

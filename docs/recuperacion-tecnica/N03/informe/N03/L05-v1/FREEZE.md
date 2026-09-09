@@ -1,0 +1,13 @@
+# P0 — contrato congelado antes de producto
+
+2026-09-09. Autorizaciones vigentes de Liam: política y construcción P0→P3, tres archivos de producto, techo80% TOTAL N03 sin resets. Rigen PROPUESTA.md A1–A6 y DECISION-APROBADA.md; plazo completo1500ms desde antes de token/SDK, concurrentes comparten plazo y lectura; cache30s desde inicio; tardía no renueva ni habilita. Sin nuevo contrato de pagos/browser/selectores.
+
+Corrección de fixture autorizada: una llave faltante y bloque legible, preimagen física conservada. Sintaxis10/10 archivos del arnés; fixture8/8 casos básicos. Reproduce en archivo la corrección que el segundo pensamiento había verificado en memoria, según procedencia informada por Liam. No atribuirle ejecución local anterior.
+
+Corrida única nueva l05-red-r3: ambos runtimes arrancan;31PASS/35FAIL. Los fallos son contractuales: guard original deja llegar al consumidor bajo ausencia/error y no cumple tiempos/cache nueva. Cero fallos de instrumento; no reinicia reconocimiento ni sondeo previo. Resultados l05-red/l05-red-r2 conservados como fallos del instrumento, no falsos RED funcionales.
+
+Refutación independiente /root/refutar_soporte: diseño viable; deadline incluye token/SDK, verificar tarde aun antes del timer y mantener flight hasta asentarse. MATERIAL de instrumento: OR permisivo de provider sustituido por valor exacto stripe o tranzila según configError; estado público legacy discordante queda refutado por comparación AST exacta del callback que sólo toma status de res.locals y preserva getter/cache/provider por separado. conservar.cjs exige esa conexión y cuerpos/registro intactos; runner valida además resultados públicos. No se debilitan oráculos para hacer pasar producto.
+
+Instrumentos congelados: aceptacion-unidad.cjs, runner.mjs, fixture.mjs, preload-l05.mjs, firebase-hooks.mjs, conservar.cjs y tsconfig.json. Conservación AST se ejecutará sobre producto final; políticas pendientes de construir continúan NO_VERIFICADAS hasta P2/P3. La revisión identifica riesgos relevantes de consumidor/caché/proveedor y controles positivos/adversos/tardíos; no quedan BLOCKERS para implementar. No se promete certificación remota, aislamiento browser ni timeout de la consulta legacy de proveedor posterior a la decisión de acceso.
+
+P1: módulo compartido más dos adaptadores y conexiones. P2: unidad temporal y runtimes completos con fixtures/salidas bloqueadas. P3: mutación aislada, tipos/paridad pertinentes, conservación/revisión y registros. Únicamente cierre local L05 servidor; N03 sigue en curso y conserva prestaciones por tenant como condición previa al despliegue.

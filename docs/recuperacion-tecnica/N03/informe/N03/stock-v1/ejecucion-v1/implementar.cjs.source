@@ -1,0 +1,68 @@
+const fs = require('node:fs'), path = require('node:path'), crypto = require('node:crypto');
+const repo = 'C:/Users/liama/Desktop/Nichos/Barber-shop-template-main';
+const out = __dirname;
+const ts = require(path.join(repo, 'node_modules/typescript/lib/typescript.js'));
+const hash = p => crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');
+for (const row of JSON.parse(fs.readFileSync(path.join(out, 'CUSTODIA.json'), 'utf8').replace(/^\uFEFF/, ''))) if (hash(path.join(repo, row.path)).toUpperCase() !== row.sha256) throw Error(`Deriva: ${row.path}`);
+const server = fs.readFileSync(path.join(repo, 'server.ts'), 'utf8');
+const api = fs.readFileSync(path.join(repo, 'api/index.ts'), 'utf8');
+const parity = fs.readFileSync(path.join(repo, 'tests/api-parity.test.ts'), 'utf8');
+const ast = ts.createSourceFile('server.ts', server, ts.ScriptTarget.Latest, true);
+const callbacks = {};
+function visit(n) {
+  if (ts.isCallExpression(n) && ['app.post', 'app.get'].includes(n.expression.getText(ast)) && ['/api/stock/add', '/api/stock/items'].includes(n.arguments[0]?.text)) callbacks[n.arguments[0].text] = n.arguments.at(-1).getText(ast);
+  ts.forEachChild(n, visit);
+}
+visit(ast);
+function adapt(body) {
+  return body.replace(/\bCLIENT_ID\b/g, 'deps.clientId').replace('"deps.clientId is not configured."', '"CLIENT_ID is not configured."')
+    .replace(/\brequireAdminAuth\b/g, 'deps.authenticate').replace(/\bgetAdminDb\b/g, 'deps.loadDb')
+    .replace(/FirebaseFirestore\.DocumentData/g, 'DocumentData');
+}
+let add = adapt(callbacks['/api/stock/add']);
+add = add.replace('const { Timestamp } = await import("firebase-admin/firestore");', 'const Timestamp = await deps.loadTimestamp();');
+add = add.replace('await db.runTransaction(async (tx) => {', 'const committedResult = await db.runTransaction(async (tx) => {');
+const oldPush = 'results.push({ itemId: item.itemId, ok: true, previousQuantity, newQuantity });';
+if (!add.includes(oldPush)) throw Error('Resultado tx no localizado');
+add = add.replace(oldPush, 'return { itemId: item.itemId, ok: true, previousQuantity, newQuantity };');
+const txEnd = /          \}\);\r?\n        \} catch/;
+if (!txEnd.test(add)) throw Error('Fin transacción ausente');
+add = add.replace(txEnd, '          });\n          results.push(committedResult);\n        } catch');
+let items = adapt(callbacks['/api/stock/items']).replace(/\blistStockItemsByClient\b/g, 'deps.listItems').replace(/\bfuzzyMatchStock\b/g, 'deps.matchItems');
+const header = `import type { Request, Response, RequestHandler } from "express";
+import type { Firestore, Timestamp, DocumentData } from "firebase-admin/firestore";
+import type { StockItemRow, StockMatchResult } from "../ai/stock-tools.js";
+
+type StockDependencies = {
+  clientId: string;
+  authenticate: (req: Request, res: Response) => Promise<{ email: string } | null>;
+  loadDb: () => Promise<Firestore | null>;
+};
+type StockAddDependencies = StockDependencies & {
+  loadTimestamp: () => Promise<typeof Timestamp>;
+};
+type StockItemsDependencies = StockDependencies & {
+  listItems: (db: Firestore, clientId: string) => Promise<StockItemRow[]>;
+  matchItems: (items: StockItemRow[], search: string) => StockMatchResult;
+};
+
+`;
+const moduleSource = header + '/** Añade stock y auditoría; publica cada éxito sólo después del commit. */\nexport function createStockAddHandler(deps: StockAddDependencies): RequestHandler {\n  return ' + add + ';\n}\n\n/** Consulta stock flat del tenant usando los criterios de búsqueda existentes. */\nexport function createStockItemsHandler(deps: StockItemsDependencies): RequestHandler {\n  return ' + items + ';\n}\n';
+function registrations(db) {
+ return `  // Rutas HTTP de stock; StockTab conserva su servicio Firestore independiente.\n  app.post("/api/stock/add", express.json({ limit: "16kb" }), createStockAddHandler({ clientId: CLIENT_ID, authenticate: requireAdminAuth, loadDb: ${db}, loadTimestamp: async () => (await import("firebase-admin/firestore")).Timestamp }));\n  app.get("/api/stock/items", createStockItemsHandler({ clientId: CLIENT_ID, authenticate: requireAdminAuth, loadDb: ${db}, listItems: listStockItemsByClient, matchItems: fuzzyMatchStock }));\n\n`;
+}
+const start = server.indexOf('  // ── Stock: manual ADD'), end = server.indexOf('  // ── WhatsApp inbox:', start);
+if (start < 0 || end < 0) throw Error('Anclas server ausentes');
+const newServer = 'import { createStockAddHandler, createStockItemsHandler } from "./src/lib/api/stock-handlers.js";\n' + server.slice(0, start) + registrations('getAdminDb') + server.slice(end);
+const apiAnchor = api.indexOf('  // ── Stock: migrate legacy');
+if (apiAnchor < 0) throw Error('Ancla API ausente');
+let newApi = 'import { createStockAddHandler, createStockItemsHandler } from "../src/lib/api/stock-handlers.js";\n' + api.slice(0, apiAnchor) + registrations('async () => (await loadAdminFirestore())?.db ?? null') + api.slice(apiAnchor);
+newApi = newApi.replace('  dispatchStockAction,', '  dispatchStockAction,\n  listStockItemsByClient,\n  fuzzyMatchStock,');
+let newParity = parity.replace(/  \/\/ Stock admin endpoints not yet ported to the serverless runtime\.\r?\n/, '').replace(/  "POST \/api\/stock\/add",\r?\n/, '').replace(/  "GET \/api\/stock\/items",\r?\n/, '');
+const modulePath = path.join(repo, 'src/lib/api/stock-handlers.ts');
+if (fs.existsSync(modulePath)) throw Error('Módulo ya existente');
+fs.writeFileSync(modulePath, moduleSource);
+fs.writeFileSync(path.join(repo, 'server.ts'), newServer);
+fs.writeFileSync(path.join(repo, 'api/index.ts'), newApi);
+fs.writeFileSync(path.join(repo, 'tests/api-parity.test.ts'), newParity);
+console.log('Cuatro archivos de producto/prueba modificados, preimágenes verificadas.');

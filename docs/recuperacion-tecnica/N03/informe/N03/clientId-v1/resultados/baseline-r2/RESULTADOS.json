@@ -1,0 +1,173 @@
+[
+  {
+    "name": "server-mirrors:startup",
+    "valid": true
+  },
+  {
+    "name": "server-mirrors:base-results",
+    "valid": true,
+    "evidence": [
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Thank you! Your message has been received."
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      }
+    ]
+  },
+  {
+    "name": "server-mirrors:agent-count",
+    "valid": true,
+    "evidence": 4
+  },
+  {
+    "name": "server-mirrors:identity",
+    "valid": true,
+    "evidence": [
+      "tenant-control",
+      "tenant-control",
+      "tenant-control",
+      "tenant-control"
+    ]
+  },
+  {
+    "name": "server-mirrors:auth",
+    "valid": true
+  },
+  {
+    "name": "server-mirrors:auth-reject",
+    "valid": true,
+    "evidence": {
+      "status": 401,
+      "body": {
+        "error": "Unauthorized"
+      }
+    }
+  },
+  {
+    "name": "server-mirrors:origin-reject",
+    "valid": true,
+    "evidence": {
+      "status": 403,
+      "body": {
+        "error": "Untrusted origin."
+      }
+    }
+  },
+  {
+    "name": "server-mirrors:rejected-no-effect",
+    "valid": true
+  },
+  {
+    "name": "server-mirrors:no-external",
+    "valid": true
+  },
+  {
+    "name": "api-mirrors:startup",
+    "valid": true
+  },
+  {
+    "name": "api-mirrors:base-results",
+    "valid": true,
+    "evidence": [
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Thank you! Your message has been received."
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      }
+    ]
+  },
+  {
+    "name": "api-mirrors:agent-count",
+    "valid": true,
+    "evidence": 4
+  },
+  {
+    "name": "api-mirrors:identity",
+    "valid": true,
+    "evidence": [
+      "tenant-control",
+      "tenant-control",
+      "tenant-control",
+      "tenant-control"
+    ]
+  },
+  {
+    "name": "api-mirrors:auth",
+    "valid": true
+  },
+  {
+    "name": "api-mirrors:auth-reject",
+    "valid": false,
+    "evidence": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "agentNotified": true
+      }
+    }
+  },
+  {
+    "name": "api-mirrors:origin-reject",
+    "valid": true,
+    "evidence": {
+      "status": 403,
+      "body": {
+        "error": "Untrusted origin."
+      }
+    }
+  },
+  {
+    "name": "api-mirrors:rejected-no-effect",
+    "valid": false
+  },
+  {
+    "name": "api-mirrors:no-external",
+    "valid": true
+  }
+]

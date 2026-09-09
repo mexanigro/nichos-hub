@@ -1,0 +1,16 @@
+{
+  "preparation": "measured",
+  "repair": "RED",
+  "requests": 84,
+  "controls": 198,
+  "passed": 138,
+  "expectedFailures": 60,
+  "instrumentFailures": 0,
+  "startups": 4,
+  "positiveReferenceRequests": 12,
+  "positiveReferenceControls": 54,
+  "positiveReferencePassed": 54,
+  "preservedSources": 333,
+  "usage": 77,
+  "cap": 80
+}

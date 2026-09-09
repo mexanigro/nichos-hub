@@ -1,0 +1,271 @@
+[
+  {
+    "repo": "template",
+    "rel": "server.ts",
+    "baseline": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\book-v1\\preimagenes\\Barber-shop-template-main__server.ts",
+    "baselineSha256": "a00033e1d8e40f42de617124310973a339ab837f48aeb22fb145761e2c43b0ef",
+    "workingSha256": "48a5d4a415c704d1f7c5ff609d96c4e214d107fa0020b0c5d7d30d51ac84e80f",
+    "headBlob": "ca72b6438e6f2cee74ff0eb8bead00fd7a55c4f7",
+    "stagedSha256": "d686321d5921b82558d614393711c0a9d28962ab854e7ca9c17a1e1a21465388",
+    "mixed": false
+  },
+  {
+    "repo": "template",
+    "rel": "api/index.ts",
+    "baseline": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\book-v1\\preimagenes\\Barber-shop-template-main__api__index.ts",
+    "baselineSha256": "b6ff50ba8fe504891f8e1d31cf5e7d87973e120f2d56ccbdf3d8504c5f06cccf",
+    "workingSha256": "1dbc951f710e2f3e586247faf79ae65d76714eb52fcf768001d929a8521a646f",
+    "headBlob": "b176e41a1c53580521a92b88536d6a5680470e0f",
+    "stagedSha256": "fd78affeb10a0148425f246a82903f04399cb9b189c6af6fe9baa334dcf780ca",
+    "mixed": false
+  },
+  {
+    "repo": "template",
+    "rel": "tests/api-parity.test.ts",
+    "baseline": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\book-v1\\preimagenes\\Barber-shop-template-main__tests__api-parity.test.ts",
+    "baselineSha256": "4e38da3e5d481f1d6495065300861f26f0f1944bcd7ca37f614da234136d2ac7",
+    "workingSha256": "0a949fe9243632c60d0119affe1a1573d564761cb03fbbca3318dd1a8964925a",
+    "headBlob": "ee89d501435db52ee5012628dc76d5c09475b241",
+    "stagedSha256": "0a949fe9243632c60d0119affe1a1573d564761cb03fbbca3318dd1a8964925a",
+    "mixed": false
+  },
+  {
+    "repo": "template",
+    "rel": "src/services/support.ts",
+    "baseline": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\support-v1\\preimagenes\\producto__src__services__support.ts",
+    "baselineSha256": "6be65d71a870e7681dbece49360498caa2efd009208857927340285d389c680d",
+    "workingSha256": "994f9c859f652a44f767c9410a9baeca78d47879b93ee98504bc12cf2205e1f9",
+    "headBlob": "6df6ebce4ffbd63f37aedc29336ed8ac1e969e22",
+    "stagedSha256": "2573b6844362eaa430ab630a97e31975175c35e786827e75ff26b9d125925e86",
+    "mixed": false
+  },
+  {
+    "repo": "template",
+    "rel": "src/lib/notify-agentkit.ts",
+    "baseline": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\D05-v1\\preimagenes\\producto-01\\src\\lib\\notify-agentkit.ts",
+    "baselineSha256": "87bb36fdafcefd4bde18a923f9317e4b11605911ffa4d8e4912c336361ac7d43",
+    "workingSha256": "d1b6a2d411716f68aa6668f9eca73830b656e7651356d8250edc98178c23ef9f",
+    "headBlob": "249711786939bb033cde882b2e5d4f4f5ba9c04a",
+    "stagedSha256": "bac370a564afa53ee2c33a90c0748ba21b964158c558b8c4ae6d3a6c297f7fb5",
+    "mixed": false
+  },
+  {
+    "repo": "template",
+    "rel": "src/lib/appointment-notify-client.ts",
+    "baseline": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\D05-v1\\preimagenes\\producto-01\\src\\lib\\appointment-notify-client.ts",
+    "baselineSha256": "cd0d46f19fe4aaf9c3f16c2fa043500e18488acfc5a4aa0e27f9c508e11c38ac",
+    "workingSha256": "9f900eaad61a3da294ed4cb552eca1efce9440c08f45bd455582e4143e7d605b",
+    "headBlob": "45a5344ca072c1bae4cd4bb843393243bf81b8de",
+    "stagedSha256": "ba31c846e3606b61c1d668026d1c71ae9d64c54d63983ce3e110dfbc173365a0",
+    "mixed": false
+  },
+  {
+    "repo": "template",
+    "rel": "src/components/admin/AdminDashboard.tsx",
+    "baseline": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\D05-v1\\preimagenes\\producto-01\\src\\components\\admin\\AdminDashboard.tsx",
+    "baselineSha256": "a6859a3c012b81b5eb87479e57be867c482ddbbc6a72370e93d0fce6dacb0356",
+    "workingSha256": "b46c75ad579f988fae8f8b02610218a7516695aa80754bf0ba043befd2600f5e",
+    "headBlob": "69899af633678c5dd5966aa035200b12d2efe210",
+    "stagedSha256": "b8400d880409770b95af1ba744b9728928aeb5817d3be338594193402023b431",
+    "mixed": "dashboard"
+  },
+  {
+    "repo": "template",
+    "rel": "src/main.tsx",
+    "baseline": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L05-browser-v1\\preimagenes-producto-p1\\src\\main.tsx",
+    "baselineSha256": "4883b83ea30830dc5e0f6961d711e6f84fb6cacdbbaa52c6a25790801dee8ec3",
+    "workingSha256": "60ae64853cd3b1234b273430e0511f96d9bae5815f78ffd1eb66df7ad2940454",
+    "headBlob": "172430517670ed373d2926cd355b5dbf1fe3de19",
+    "stagedSha256": "60ae64853cd3b1234b273430e0511f96d9bae5815f78ffd1eb66df7ad2940454",
+    "mixed": false
+  },
+  {
+    "repo": "template",
+    "rel": "src/services/tenant.ts",
+    "baseline": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L05-browser-v1\\preimagenes-producto-p1\\src\\services\\tenant.ts",
+    "baselineSha256": "04d6d1158429dae659058c83ac6f3faf6f3cdece0308a5c4a7d28b858234f2cc",
+    "workingSha256": "09cad0c18f9702fc5791fda18aae1678a14384b90d7c772eb19e2eff839bbea7",
+    "headBlob": "86e7b2725b58ef3feae6e1fd6d88dd87c0d5e4fd",
+    "stagedSha256": "def726adf36ea8fe28bd8a70eb13c610fa9270b1d2cbfde244e0e1978acd1cce",
+    "mixed": false
+  },
+  {
+    "repo": "template",
+    "rel": "src/config/locales/ar.ts",
+    "baseline": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L05-browser-v1\\preimagenes-producto-p1\\src\\config\\locales\\ar.ts",
+    "baselineSha256": "823925df03c3276feb11fd48cc620a36779488a5514131f443854c9011d72e54",
+    "workingSha256": "c7418be9955f639dda8114d12ce8fe94ebadeba22d140d13ee411cc9d994ed13",
+    "headBlob": "942cddae6c05858c8cf844b1a350d0a0a504d05a",
+    "stagedSha256": "44fd2810f231233cc91687aa3230f64c2430d8786efadbcc9d29c5012e6bc072",
+    "mixed": "locale"
+  },
+  {
+    "repo": "template",
+    "rel": "src/config/locales/en.ts",
+    "baseline": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L05-browser-v1\\preimagenes-producto-p1\\src\\config\\locales\\en.ts",
+    "baselineSha256": "ff2371c64a6bdc87bfed2f9c43943f81155edec9a3a735a82126252cff614925",
+    "workingSha256": "b6c4bd93cfd61e7404578dd75e577ef1eec6ab32621386fad94bc25a06a4a128",
+    "headBlob": "618e615c324905bc99a22f5657df98eb2bfa48e0",
+    "stagedSha256": "189f637adece3301cbbe7648676c5d1bfa48b16e8e8f28827f6509d5f28c0af0",
+    "mixed": "locale"
+  },
+  {
+    "repo": "template",
+    "rel": "src/config/locales/he.ts",
+    "baseline": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L05-browser-v1\\preimagenes-producto-p1\\src\\config\\locales\\he.ts",
+    "baselineSha256": "510063436001c1aec2ec362cd52cc493f1b0effc5e5e0e5b4cdadb468560e40b",
+    "workingSha256": "03bf0243cc99648135b46dec9ebb8637919af91ddb0c971f591a1ef929e0a355",
+    "headBlob": "18af248893346e4842f57507e6ba1cb1d759ca3f",
+    "stagedSha256": "d0602c1efa5bcd7bd6fab9fbc507bd18e7d1c2f2b6e12cdfb2bd9998027ec78d",
+    "mixed": "locale"
+  },
+  {
+    "repo": "template",
+    "rel": "src/config/locales/ru.ts",
+    "baseline": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L05-browser-v1\\preimagenes-producto-p1\\src\\config\\locales\\ru.ts",
+    "baselineSha256": "a7453913aa7df76b75683dc07e542035641d1e122dcef4c2db5c58b72c08ab8b",
+    "workingSha256": "580fff512ce251704f60eccffdeed1092e827114ed6690a6b450a054d7cb60a5",
+    "headBlob": "876ee0bcfb720dd26f7f479efd3511458185ae15",
+    "stagedSha256": "06afa0167bc47dbb6ae4c245908225505881ff1a16d1fdb1f38ada7d2ae5a8c3",
+    "mixed": "locale"
+  },
+  {
+    "repo": "template",
+    "rel": "README.md",
+    "baseline": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\clientId-v1\\preimagenes-producto-p1\\README.md",
+    "baselineSha256": "c3981d78f940050bc5f7963961827cb4eb12a6dcec1537761855114fee00c4e7",
+    "workingSha256": "cfc29a33e8f00e4804378173ecfd23d6a660198b032274c7db8119b8bb500d77",
+    "headBlob": "199eb9b58cf90f3be2a995c79f032d9bf32433bd",
+    "stagedSha256": "cfc29a33e8f00e4804378173ecfd23d6a660198b032274c7db8119b8bb500d77",
+    "mixed": false
+  },
+  {
+    "repo": "template",
+    "rel": ".env.example",
+    "baseline": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\clientId-v1\\preimagenes-producto-p1\\.env.example",
+    "baselineSha256": "ecfe793bbcd23f1a2856aaf962c688a210a0ee432b33eb933e6f25b277646ba1",
+    "workingSha256": "e6e5c4230954033dcc32127b5e7e5e6878e1a7aee41769e7d16edbcd1d70e5ae",
+    "headBlob": "23b15bc20501af7cd343af623ecb366868687ff1",
+    "stagedSha256": "9561ab575f0f49b667e8dcb5a4d509c842797f51e131a32f16c62d56925de989",
+    "mixed": false
+  },
+  {
+    "repo": "hub",
+    "rel": "src/app/api/api-costs/fetch/route.ts",
+    "baseline": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\lint-v1\\preimagenes\\src\\app\\api\\api-costs\\fetch\\route.ts",
+    "baselineSha256": "71fc76cb1a8103fd1988067f8ad781a58bdae1896bd6539aaca2d504230a1fef",
+    "workingSha256": "78c0eacce2cb138ebb15b567720d53fd762bff0c273c48b8ffa16ea677439546",
+    "headBlob": "f441740dff4eb33054dd98ebbb6f54827e9f2990",
+    "stagedSha256": "78c0eacce2cb138ebb15b567720d53fd762bff0c273c48b8ffa16ea677439546",
+    "mixed": false
+  },
+  {
+    "repo": "hub",
+    "rel": "src/app/api/appointments/[id]/cancel/route.ts",
+    "baseline": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\lint-v1\\preimagenes\\src\\app\\api\\appointments\\[id]\\cancel\\route.ts",
+    "baselineSha256": "c5a4e69faff6d739d347f7c0bd01c1d80af230f1e740d50a5c424a3a5f27d380",
+    "workingSha256": "1b74bf362be7e8b91af59e44d6f57688460e9408f3a5347744a02dcd681550e9",
+    "headBlob": "dda00cec23a9a296edee9c6ce058f69fad8ab230",
+    "stagedSha256": "1b74bf362be7e8b91af59e44d6f57688460e9408f3a5347744a02dcd681550e9",
+    "mixed": false
+  },
+  {
+    "repo": "hub",
+    "rel": "src/app/api/prospects/follow-up/route.ts",
+    "baseline": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\lint-v1\\preimagenes\\src\\app\\api\\prospects\\follow-up\\route.ts",
+    "baselineSha256": "5dc52702c29c7b12d3fbcbdfd236904923db420ba4e10ebc64823c4749e618af",
+    "workingSha256": "f5e166312cd1459d260f0fdd499d259446177e4f1ed09ca08865336893e2d360",
+    "headBlob": "18984ba7446a05db24ca9fd1e0739acb7187c215",
+    "stagedSha256": "f5e166312cd1459d260f0fdd499d259446177e4f1ed09ca08865336893e2d360",
+    "mixed": false
+  },
+  {
+    "repo": "hub",
+    "rel": "src/app/api/upload/[clientId]/route.ts",
+    "baseline": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\lint-v1\\preimagenes\\src\\app\\api\\upload\\[clientId]\\route.ts",
+    "baselineSha256": "c487e4e4157d42eb219cb8e0c254cf916a2e020beefde6f6b2a8db1e714c7495",
+    "workingSha256": "de651ed0335099d48965dd526469a6b2d507fca4fb2bdadc0063c74b7c445b99",
+    "headBlob": "c2b73ec92141cf735f24bb8461520030eafe03be",
+    "stagedSha256": "de651ed0335099d48965dd526469a6b2d507fca4fb2bdadc0063c74b7c445b99",
+    "mixed": false
+  },
+  {
+    "repo": "hub",
+    "rel": "src/lib/contracts.ts",
+    "baseline": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\lint-v1\\preimagenes\\src\\lib\\contracts.ts",
+    "baselineSha256": "bfdb66fcfb2af33ce2f432c4c5afc86b755b48ccc8f8dc3f387e6e58ed94a94f",
+    "workingSha256": "647f679154128c971315201fce095351a217bbc959f537d867fd4f39940aeb4b",
+    "headBlob": "1beafc737562ae3c501d58cd786f298851dad54c",
+    "stagedSha256": "44b6ce14b903bdd97e01763edcce351951fee000b39733ee513f24b7312fbbf2",
+    "mixed": false
+  },
+  {
+    "repo": "hub",
+    "rel": "src/lib/pricing.ts",
+    "baseline": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\lint-v1\\preimagenes\\src\\lib\\pricing.ts",
+    "baselineSha256": "5d84835009b9f8b4c9f63336c739e91924168a0ecc253347bb8c27e95e15e4ac",
+    "workingSha256": "b587bd75057108ecee0c77727fa6588803dbecbe13279c7ec2fda0f72af4b6a7",
+    "headBlob": "810d957894ea8b810a1207e9eb5bdb1c176cce74",
+    "stagedSha256": "e69b01c0a3150e61f99216155b1dfab98d2e244a060f2a71b0db17a87123efb3",
+    "mixed": false
+  },
+  {
+    "repo": "hub",
+    "rel": "src/app/api/onboarding/route.ts",
+    "baseline": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L06-language-v1\\preimagenes-p1\\src\\app\\api\\onboarding\\route.ts",
+    "baselineSha256": "cf8a3170535b7ec0296fc5fc3218c466825acd8641cdf003a9412ee900e127e8",
+    "workingSha256": "e84e50cce05bb87e831094de50f1c362213b4a1597e2f54f22899a31216c21bd",
+    "headBlob": "05e472f445fedfb6e48030dea1eb545d141346b9",
+    "stagedSha256": "e84e50cce05bb87e831094de50f1c362213b4a1597e2f54f22899a31216c21bd",
+    "mixed": false
+  },
+  {
+    "repo": "template",
+    "rel": "src/lib/api/booking-handler.ts",
+    "new": true,
+    "workingSha256": "d7bff4865597d29a48cf765c464d579faf38ed24b9f09405415c24ec9bf2dd33",
+    "stagedSha256": "d7bff4865597d29a48cf765c464d579faf38ed24b9f09405415c24ec9bf2dd33"
+  },
+  {
+    "repo": "template",
+    "rel": "src/lib/api/support-handler.ts",
+    "new": true,
+    "workingSha256": "247b2b1c84548124972d6b0c19407c54771a94006ecf5f11cb7ef196e27c8b86",
+    "stagedSha256": "247b2b1c84548124972d6b0c19407c54771a94006ecf5f11cb7ef196e27c8b86"
+  },
+  {
+    "repo": "template",
+    "rel": "src/lib/api/stock-handlers.ts",
+    "new": true,
+    "workingSha256": "575131cd558e77dafbe1727d0e80e0a17c8e0290c695d744f89a903a6b4e651f",
+    "stagedSha256": "575131cd558e77dafbe1727d0e80e0a17c8e0290c695d744f89a903a6b4e651f"
+  },
+  {
+    "repo": "template",
+    "rel": "src/lib/api/runtime-health.ts",
+    "new": true,
+    "workingSha256": "b76346f328ac7934b0bd292bf5f9d2fb365bb375db65e0ead9adc9d3a41d591c",
+    "stagedSha256": "b76346f328ac7934b0bd292bf5f9d2fb365bb375db65e0ead9adc9d3a41d591c"
+  },
+  {
+    "repo": "template",
+    "rel": "src/lib/api/optional-services.ts",
+    "new": true,
+    "workingSha256": "db03ebf2b43e87b10375b7f8f9decb680bb94642e74fb20921eb93725a3f42f9",
+    "stagedSha256": "db03ebf2b43e87b10375b7f8f9decb680bb94642e74fb20921eb93725a3f42f9"
+  },
+  {
+    "repo": "template",
+    "rel": "src/lib/api/tenant-access.ts",
+    "new": true,
+    "workingSha256": "98e914224316040091677e4ebbb3b0811cedb4bd671f3cf49477bbe2767faecc",
+    "stagedSha256": "98e914224316040091677e4ebbb3b0811cedb4bd671f3cf49477bbe2767faecc"
+  },
+  {
+    "repo": "template",
+    "rel": "tests/booking-handler.test.ts",
+    "new": true,
+    "workingSha256": "6d7f6e4409486d1436e61055e515306149998cff638ac936de2977110199876a",
+    "stagedSha256": "49557d6b39d1f345bb92d187194156090404e54543b42696a6776c2050a7a312"
+  }
+]

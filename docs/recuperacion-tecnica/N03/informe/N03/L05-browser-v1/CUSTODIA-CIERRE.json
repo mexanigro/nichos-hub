@@ -1,0 +1,32 @@
+[
+  {
+    "path": "informe/N03/L05-browser-v1/INFORME.md",
+    "preimage": "informe\\N03\\L05-browser-v1\\preimagenes-registros-cierre\\informe\\N03\\L05-browser-v1\\INFORME.md",
+    "sha256Before": "28642ae21c2cac218cffb2cf78d5e217e8cda9bcafa5c9e6abd2105f93147eeb",
+    "sha256After": "3fdd22a42bdc6724058402bd7797adfd0a6e830f108b59587868929afe3d416e"
+  },
+  {
+    "path": "indice/tareas/N03.md",
+    "preimage": "informe\\N03\\L05-browser-v1\\preimagenes-registros-cierre\\indice\\tareas\\N03.md",
+    "sha256Before": "9db55210bdd48f2aa3a2cb5c1a4cd1165b043f638450e323a053c821d252640a",
+    "sha256After": "eaaf64261906d4137ef9ed0afb88195299ea1a8ed03e46d74535cd9bc2ea4447"
+  },
+  {
+    "path": "indice/README.md",
+    "preimage": "informe\\N03\\L05-browser-v1\\preimagenes-registros-cierre\\indice\\README.md",
+    "sha256Before": "8d5eaeea11a38389da7d241acc799603c5aff9343f3e27905b70ca98b9df8678",
+    "sha256After": "08ffd9060483439d01a943c868e2a17500986644350bf57629e39e726893b6be"
+  },
+  {
+    "path": "indice/PENDIENTES.md",
+    "preimage": "informe\\N03\\L05-browser-v1\\preimagenes-registros-cierre\\indice\\PENDIENTES.md",
+    "sha256Before": "72569aaa6084c11f4d965b69841c29afb941a2b4ec3b269b49510446b466f761",
+    "sha256After": "f0f20ab6abbc6c8eb6bac7ab54b17484044bd3e7c621d005774424f7812881d7"
+  },
+  {
+    "path": "indice/CALENDARIO.md",
+    "preimage": "informe\\N03\\L05-browser-v1\\preimagenes-registros-cierre\\indice\\CALENDARIO.md",
+    "sha256Before": "e7aa1034c905a1105faa02bd009e51b0a5f94ec6c7ba0d072a02a873a0dd8df7",
+    "sha256After": "9ebe38b084e70e716d40c8ce6a9c80334d2e850db19850f3c3d7dc24c6bb8b94"
+  }
+]

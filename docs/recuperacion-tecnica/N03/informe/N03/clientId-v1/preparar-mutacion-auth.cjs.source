@@ -1,0 +1,41 @@
+// Preparado para P3. Sólo crea una copia nueva; nunca escribe el producto ni una copia existente.
+const fs=require('node:fs'),p=require('node:path'),crypto=require('node:crypto');
+const control=__dirname,report=p.resolve(control,'../appointment-notify-auth-v1');
+const product=p.resolve(control,'../../../../Barber-shop-template-main');
+const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
+const anchor='  app.post("/api/appointment/notify", async (req, res) => {\n';
+const guard='    const auth = await requireAdminAuth(req, res);\n    if (!auth) return;\n';
+function disarm(source){
+ const route=anchor.slice(0,-1);
+ if(source.split(route).length!==2)throw Error('ruta no única');
+ const start=source.indexOf(route)+route.length;
+ const match=/^(\r?\n)(    const auth = await requireAdminAuth\(req, res\);\r?\n    if \(!auth\) return;\r?\n)/.exec(source.slice(start));
+ if(!match)throw Error('guard ausente o distinto');
+ // Conserva cada byte externo al guard, incluso cuando el archivo mezcla LF y CRLF.
+ return source.slice(0,start)+match[1]+source.slice(start+match[0].length);
+}
+if(process.argv[2]==='--check'){
+ if(!fs.existsSync(p.join(product,'api/index.ts')))throw Error('ruta producto no resuelta');
+ const server=fs.readFileSync(p.join(control,'copia/server.ts'),'utf8');
+ const api=fs.readFileSync(p.join(control,'copia/api/index.ts'),'utf8');
+ if(disarm(server)===server)throw Error('mutación no ocurrió');
+ let rejected=false;try{disarm(api);}catch{rejected=true;}
+ if(!rejected)throw Error('original API inesperadamente protegido');
+ const protectedApi=api.replace(anchor,anchor+guard);
+ if(protectedApi===api||disarm(protectedApi)!==api)throw Error('mutación altera bytes ajenos');
+ console.log(JSON.stringify({serverAnchor:true,originalApiHasNoGuard:true,apiInsertRemoveExactBytes:true,productWritten:false}));
+}else if(process.argv[2]==='--create'){
+ const rows=JSON.parse(fs.readFileSync(p.join(report,'FUENTES-P0.json'),'utf8').replace(/^\uFEFF/,''));
+ const destination=p.join(control,'copia-auth-mutacion');
+ if(fs.existsSync(destination))throw Error('destino existente: conservar, no sobrescribir');
+ const api=fs.readFileSync(p.join(product,'api/index.ts'),'utf8'),mutated=disarm(api);
+ const prior=fs.readFileSync(p.join(report,'preimagenes-producto/api/index.ts'),'utf8');
+ if(mutated!==prior)throw Error('diff final excede las dos instrucciones autorizables');
+ for(const row of rows){const bytes=fs.readFileSync(p.join(product,row.path));if(row.path!=='api/index.ts'&&sha(bytes)!==row.sha256)throw Error('fuente ajena cambió: '+row.path);}
+ fs.mkdirSync(destination);fs.mkdirSync(p.join(destination,'node_modules'));
+ for(const row of rows){const file=p.join(destination,row.path);fs.mkdirSync(p.dirname(file),{recursive:true});fs.copyFileSync(p.join(product,row.path),file,fs.constants.COPYFILE_EXCL);}
+ fs.writeFileSync(p.join(destination,'api/index.pre-mutacion.txt'),api,{flag:'wx'});
+ fs.writeFileSync(p.join(destination,'api/index.ts'),mutated);
+ fs.writeFileSync(p.join(destination,'MUTACION.json'),JSON.stringify({path:'api/index.ts',before:sha(api),after:sha(mutated),onlyGuardRemoved:true}));
+ console.log(destination);
+}else throw Error('Usar --check en preparación; --create exclusivamente tras autorización e implementación');

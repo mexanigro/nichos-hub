@@ -1,0 +1,13 @@
+const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),assert=require('node:assert/strict');
+const root=__dirname,repo='C:/Users/liama/Desktop/Nichos/Barber-shop-template-main';
+const json=p=>JSON.parse(fs.readFileSync(path.join(root,p),'utf8').replace(/^\uFEFF/,''));
+const hash=p=>crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex').toUpperCase();
+for(const [name,count] of [['green-r2',99],['incompleta',13]]){const results=json(`resultados/${name}/RESULTADOS.json`);assert.equal(results.length,count);assert(results.every(r=>r.valid));const state=json(`resultados/${name}/ESTADO.json`);assert.equal(state.exit,0);assert.equal(state.timeout,false);assert(json(`resultados/${name}/DISPOSICION.json`).eliminado);}
+const failures=json('resultados/mutacion/RESULTADOS.json').filter(r=>!r.valid).map(r=>r.name);assert.deepEqual(failures,['server-early: no listo','api-early: no listo']);assert.equal(json('resultados/mutacion/ESTADO.json').exit,1);assert(json('resultados/mutacion/DISPOSICION.json').eliminado);
+for(const f of ['TIPOS-final','PARIDAD-r1','PARIDAD-imports','CONSERVACION-AST-r2'])assert.equal(json(`resultados/${f}-ESTADO.json`).exit,0);
+for(const row of json('FUENTES-CIERRE.json'))assert.equal(hash(path.join(repo,row.path)),row.sha256);
+for(const row of json('CONTRATO-HUELLAS.json'))assert.equal(hash(row.Path),row.Hash);
+const audit=json('AUDITORIA-CIERRE.json');assert.equal(audit.preserved,328);assert(audit.executedAstEquivalent&&audit.consumerExact&&audit.loaderAstExact&&audit.frozenContractExact);
+const custody=[];function walk(dir){for(const entry of fs.readdirSync(dir,{withFileTypes:true})){const p=path.join(dir,entry.name);if(entry.isDirectory())walk(p);else custody.push({path:path.relative(root,p),bytes:fs.statSync(p).size,sha256:hash(p)});}}walk(path.join(root,'preimagenes'));fs.writeFileSync(path.join(root,'CUSTODIA-CIERRE.json'),JSON.stringify(custody,null,2));
+const seal={result:'GREEN',gates:{P0:'GREEN',P1:'GREEN',P2:'GREEN',P3:'GREEN'},tests:{runtime:99,incomplete:13,mutationExpectedFailures:2,typesExit:0,parityPassed:3},blockers:[],N03:'en_curso',usage:json('CONSUMO-CIERRE.json'),sources:json('FUENTES-CIERRE.json'),custodyCount:custody.length};
+fs.writeFileSync(path.join(root,'SELLO-CIERRE.json'),JSON.stringify(seal,null,2));console.log(JSON.stringify(seal));

@@ -1,0 +1,9 @@
+{
+  "extends": "C:/Users/liama/Desktop/Nichos-hub/tsconfig.json",
+  "include": [
+    "C:/Users/liama/Desktop/Nichos-hub/src/app/api/onboarding/route.ts",
+    "C:/Users/liama/Desktop/Nichos-hub/src/lib/deploy.ts",
+    "C:/Users/liama/Desktop/Nichos-hub/next-env.d.ts"
+  ],
+  "exclude": []
+}

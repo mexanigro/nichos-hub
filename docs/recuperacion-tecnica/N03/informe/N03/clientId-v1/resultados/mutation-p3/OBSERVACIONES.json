@@ -1,0 +1,1214 @@
+[
+  {
+    "runtime": "server",
+    "scenario": "mirrors",
+    "responses": [
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Thank you! Your message has been received."
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      }
+    ],
+    "sent": [
+      {
+        "kind": "agent",
+        "path": "/webhook/lead",
+        "clientId": "tenant-control",
+        "payload": {
+          "clientId": "tenant-control",
+          "nombre": "Control",
+          "telefono": null,
+          "email": "customer@example.invalid",
+          "mensaje": "Consulta controlada",
+          "fuente": "web_contact",
+          "adminPhones": [
+            "+972500000000"
+          ]
+        },
+        "authCorrect": true
+      },
+      {
+        "kind": "agent",
+        "path": "/notify",
+        "type": "appointment_booked",
+        "clientId": "tenant-control",
+        "payload": {
+          "clientId": "tenant-control",
+          "type": "appointment_booked",
+          "adminPhones": [
+            "+972500000000"
+          ],
+          "staffPhones": [],
+          "customerPhone": "+972500000001",
+          "message": "Nuevo turno: Control (+972500000001)\nHaircut el 2026-12-20 a las 12:00",
+          "staffMessage": "Turno asignado\nCliente: Control (+972500000001)\nServicio: Haircut\nCuando: 2026-12-20 12:00",
+          "customerMessage": "Turno confirmado: Haircut el 2026-12-20 a las 12:00.",
+          "appointment": {
+            "date": "2026-12-20",
+            "time": "12:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          },
+          "variables": {
+            "1": "Haircut",
+            "2": "2026-12-20",
+            "3": "12:00",
+            "4": ""
+          }
+        },
+        "authCorrect": true
+      },
+      {
+        "kind": "agent",
+        "path": "/notify",
+        "type": "appointment_cancelled",
+        "clientId": "tenant-control",
+        "payload": {
+          "clientId": "tenant-control",
+          "type": "appointment_cancelled",
+          "adminPhones": [
+            "+972500000000"
+          ],
+          "staffPhones": [],
+          "customerPhone": "+972500000001",
+          "message": "Turno cancelado: Control - Haircut el 2026-12-20 12:00",
+          "staffMessage": "Turno cancelado: Control el 2026-12-20 12:00",
+          "customerMessage": "Tu turno de Haircut del 2026-12-20 a las 12:00 fue cancelado.",
+          "appointment": {
+            "date": "2026-12-20",
+            "time": "12:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          }
+        },
+        "authCorrect": true
+      },
+      {
+        "kind": "agent",
+        "path": "/notify",
+        "type": "appointment_rescheduled",
+        "clientId": "tenant-control",
+        "payload": {
+          "clientId": "tenant-control",
+          "type": "appointment_rescheduled",
+          "adminPhones": [
+            "+972500000000"
+          ],
+          "staffPhones": [],
+          "customerPhone": "+972500000001",
+          "message": "Turno reprogramado: Control - Haircut ahora el 2026-12-20 12:00",
+          "staffMessage": "Turno reprogramado: Control 2026-12-20 12:00 (antes 2026-12-20 11:00)",
+          "customerMessage": "Tu turno fue reprogramado: Haircut ahora el 2026-12-20 a las 12:00.",
+          "oldAppointment": {
+            "date": "2026-12-20",
+            "time": "11:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          },
+          "appointment": {
+            "date": "2026-12-20",
+            "time": "12:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          },
+          "variables": {
+            "1": "Haircut",
+            "2": "2026-12-20",
+            "3": "12:00",
+            "4": ""
+          }
+        },
+        "authCorrect": true
+      }
+    ],
+    "email": [
+      {
+        "kind": "email",
+        "to": "owner@example.invalid",
+        "subject": "Website Inquiry: General Contact"
+      }
+    ],
+    "perRequest": [
+      {
+        "event": "contact",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "message": "Thank you! Your message has been received."
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "owner@example.invalid",
+            "subject": "Website Inquiry: General Contact"
+          }
+        ]
+      },
+      {
+        "event": "booked",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": true
+          }
+        },
+        "email": []
+      },
+      {
+        "event": "cancelled",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": true
+          }
+        },
+        "email": []
+      },
+      {
+        "event": "rescheduled",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": true
+          }
+        },
+        "email": []
+      }
+    ]
+  },
+  {
+    "runtime": "server",
+    "scenario": "only-next",
+    "responses": [
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Thank you! Your message has been received."
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      }
+    ],
+    "sent": [],
+    "email": [
+      {
+        "kind": "email",
+        "to": "owner@example.invalid",
+        "subject": "Website Inquiry: General Contact"
+      }
+    ],
+    "perRequest": [
+      {
+        "event": "contact",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "message": "Thank you! Your message has been received."
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "owner@example.invalid",
+            "subject": "Website Inquiry: General Contact"
+          }
+        ]
+      },
+      {
+        "event": "booked",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": []
+      },
+      {
+        "event": "cancelled",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": []
+      },
+      {
+        "event": "rescheduled",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": []
+      }
+    ]
+  },
+  {
+    "runtime": "server",
+    "scenario": "spaces",
+    "responses": [
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Thank you! Your message has been received."
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      }
+    ],
+    "sent": [],
+    "email": [
+      {
+        "kind": "email",
+        "to": "owner@example.invalid",
+        "subject": "Website Inquiry: General Contact"
+      }
+    ],
+    "perRequest": [
+      {
+        "event": "contact",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "message": "Thank you! Your message has been received."
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "owner@example.invalid",
+            "subject": "Website Inquiry: General Contact"
+          }
+        ]
+      },
+      {
+        "event": "booked",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": []
+      },
+      {
+        "event": "cancelled",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": []
+      },
+      {
+        "event": "rescheduled",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": []
+      }
+    ]
+  },
+  {
+    "runtime": "server",
+    "scenario": "conflict",
+    "responses": [
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Thank you! Your message has been received."
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      }
+    ],
+    "sent": [
+      {
+        "kind": "agent",
+        "path": "/webhook/lead",
+        "clientId": "other-tenant",
+        "payload": {
+          "clientId": "other-tenant",
+          "nombre": "Control",
+          "telefono": null,
+          "email": "customer@example.invalid",
+          "mensaje": "Consulta controlada",
+          "fuente": "web_contact",
+          "adminPhones": [
+            "+972500000000"
+          ]
+        },
+        "authCorrect": true
+      },
+      {
+        "kind": "agent",
+        "path": "/notify",
+        "type": "appointment_booked",
+        "clientId": "other-tenant",
+        "payload": {
+          "clientId": "other-tenant",
+          "type": "appointment_booked",
+          "adminPhones": [
+            "+972500000000"
+          ],
+          "staffPhones": [],
+          "customerPhone": "+972500000001",
+          "message": "Nuevo turno: Control (+972500000001)\nHaircut el 2026-12-20 a las 12:00",
+          "staffMessage": "Turno asignado\nCliente: Control (+972500000001)\nServicio: Haircut\nCuando: 2026-12-20 12:00",
+          "customerMessage": "Turno confirmado: Haircut el 2026-12-20 a las 12:00.",
+          "appointment": {
+            "date": "2026-12-20",
+            "time": "12:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          },
+          "variables": {
+            "1": "Haircut",
+            "2": "2026-12-20",
+            "3": "12:00",
+            "4": ""
+          }
+        },
+        "authCorrect": true
+      },
+      {
+        "kind": "agent",
+        "path": "/notify",
+        "type": "appointment_cancelled",
+        "clientId": "other-tenant",
+        "payload": {
+          "clientId": "other-tenant",
+          "type": "appointment_cancelled",
+          "adminPhones": [
+            "+972500000000"
+          ],
+          "staffPhones": [],
+          "customerPhone": "+972500000001",
+          "message": "Turno cancelado: Control - Haircut el 2026-12-20 12:00",
+          "staffMessage": "Turno cancelado: Control el 2026-12-20 12:00",
+          "customerMessage": "Tu turno de Haircut del 2026-12-20 a las 12:00 fue cancelado.",
+          "appointment": {
+            "date": "2026-12-20",
+            "time": "12:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          }
+        },
+        "authCorrect": true
+      },
+      {
+        "kind": "agent",
+        "path": "/notify",
+        "type": "appointment_rescheduled",
+        "clientId": "other-tenant",
+        "payload": {
+          "clientId": "other-tenant",
+          "type": "appointment_rescheduled",
+          "adminPhones": [
+            "+972500000000"
+          ],
+          "staffPhones": [],
+          "customerPhone": "+972500000001",
+          "message": "Turno reprogramado: Control - Haircut ahora el 2026-12-20 12:00",
+          "staffMessage": "Turno reprogramado: Control 2026-12-20 12:00 (antes 2026-12-20 11:00)",
+          "customerMessage": "Tu turno fue reprogramado: Haircut ahora el 2026-12-20 a las 12:00.",
+          "oldAppointment": {
+            "date": "2026-12-20",
+            "time": "11:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          },
+          "appointment": {
+            "date": "2026-12-20",
+            "time": "12:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          },
+          "variables": {
+            "1": "Haircut",
+            "2": "2026-12-20",
+            "3": "12:00",
+            "4": ""
+          }
+        },
+        "authCorrect": true
+      }
+    ],
+    "email": [
+      {
+        "kind": "email",
+        "to": "owner@example.invalid",
+        "subject": "Website Inquiry: General Contact"
+      }
+    ],
+    "perRequest": [
+      {
+        "event": "contact",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "message": "Thank you! Your message has been received."
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "owner@example.invalid",
+            "subject": "Website Inquiry: General Contact"
+          }
+        ]
+      },
+      {
+        "event": "booked",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": true
+          }
+        },
+        "email": []
+      },
+      {
+        "event": "cancelled",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": true
+          }
+        },
+        "email": []
+      },
+      {
+        "event": "rescheduled",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": true
+          }
+        },
+        "email": []
+      }
+    ]
+  },
+  {
+    "runtime": "api",
+    "scenario": "mirrors",
+    "responses": [
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Thank you! Your message has been received."
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      }
+    ],
+    "sent": [
+      {
+        "kind": "agent",
+        "path": "/webhook/lead",
+        "clientId": "tenant-control",
+        "payload": {
+          "clientId": "tenant-control",
+          "nombre": "Control",
+          "telefono": null,
+          "email": "customer@example.invalid",
+          "mensaje": "Consulta controlada",
+          "fuente": "web_contact",
+          "adminPhones": [
+            "+972500000000"
+          ]
+        },
+        "authCorrect": true
+      },
+      {
+        "kind": "agent",
+        "path": "/notify",
+        "type": "appointment_booked",
+        "clientId": "tenant-control",
+        "payload": {
+          "clientId": "tenant-control",
+          "type": "appointment_booked",
+          "adminPhones": [
+            "+972500000000"
+          ],
+          "staffPhones": [],
+          "customerPhone": "+972500000001",
+          "message": "Nuevo turno: Control (+972500000001)\nHaircut el 2026-12-20 a las 12:00",
+          "staffMessage": "Turno asignado\nCliente: Control (+972500000001)\nServicio: Haircut\nCuando: 2026-12-20 12:00",
+          "customerMessage": "Turno confirmado: Haircut el 2026-12-20 a las 12:00.",
+          "appointment": {
+            "date": "2026-12-20",
+            "time": "12:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          },
+          "variables": {
+            "1": "Haircut",
+            "2": "2026-12-20",
+            "3": "12:00",
+            "4": ""
+          }
+        },
+        "authCorrect": true
+      },
+      {
+        "kind": "agent",
+        "path": "/notify",
+        "type": "appointment_cancelled",
+        "clientId": "tenant-control",
+        "payload": {
+          "clientId": "tenant-control",
+          "type": "appointment_cancelled",
+          "adminPhones": [
+            "+972500000000"
+          ],
+          "staffPhones": [],
+          "customerPhone": "+972500000001",
+          "message": "Turno cancelado: Control - Haircut el 2026-12-20 12:00",
+          "staffMessage": "Turno cancelado: Control el 2026-12-20 12:00",
+          "customerMessage": "Tu turno de Haircut del 2026-12-20 a las 12:00 fue cancelado.",
+          "appointment": {
+            "date": "2026-12-20",
+            "time": "12:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          }
+        },
+        "authCorrect": true
+      },
+      {
+        "kind": "agent",
+        "path": "/notify",
+        "type": "appointment_rescheduled",
+        "clientId": "tenant-control",
+        "payload": {
+          "clientId": "tenant-control",
+          "type": "appointment_rescheduled",
+          "adminPhones": [
+            "+972500000000"
+          ],
+          "staffPhones": [],
+          "customerPhone": "+972500000001",
+          "message": "Turno reprogramado: Control - Haircut ahora el 2026-12-20 12:00",
+          "staffMessage": "Turno reprogramado: Control 2026-12-20 12:00 (antes 2026-12-20 11:00)",
+          "customerMessage": "Tu turno fue reprogramado: Haircut ahora el 2026-12-20 a las 12:00.",
+          "oldAppointment": {
+            "date": "2026-12-20",
+            "time": "11:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          },
+          "appointment": {
+            "date": "2026-12-20",
+            "time": "12:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          },
+          "variables": {
+            "1": "Haircut",
+            "2": "2026-12-20",
+            "3": "12:00",
+            "4": ""
+          }
+        },
+        "authCorrect": true
+      }
+    ],
+    "email": [
+      {
+        "kind": "email",
+        "to": "owner@example.invalid",
+        "subject": "Website Inquiry: General Contact"
+      }
+    ],
+    "perRequest": [
+      {
+        "event": "contact",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "message": "Thank you! Your message has been received."
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "owner@example.invalid",
+            "subject": "Website Inquiry: General Contact"
+          }
+        ]
+      },
+      {
+        "event": "booked",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": true
+          }
+        },
+        "email": []
+      },
+      {
+        "event": "cancelled",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": true
+          }
+        },
+        "email": []
+      },
+      {
+        "event": "rescheduled",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": true
+          }
+        },
+        "email": []
+      }
+    ]
+  },
+  {
+    "runtime": "api",
+    "scenario": "only-next",
+    "responses": [
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Thank you! Your message has been received."
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      }
+    ],
+    "sent": [],
+    "email": [
+      {
+        "kind": "email",
+        "to": "owner@example.invalid",
+        "subject": "Website Inquiry: General Contact"
+      }
+    ],
+    "perRequest": [
+      {
+        "event": "contact",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "message": "Thank you! Your message has been received."
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "owner@example.invalid",
+            "subject": "Website Inquiry: General Contact"
+          }
+        ]
+      },
+      {
+        "event": "booked",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": []
+      },
+      {
+        "event": "cancelled",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": []
+      },
+      {
+        "event": "rescheduled",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": []
+      }
+    ]
+  },
+  {
+    "runtime": "api",
+    "scenario": "spaces",
+    "responses": [
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Thank you! Your message has been received."
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      }
+    ],
+    "sent": [],
+    "email": [
+      {
+        "kind": "email",
+        "to": "owner@example.invalid",
+        "subject": "Website Inquiry: General Contact"
+      }
+    ],
+    "perRequest": [
+      {
+        "event": "contact",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "message": "Thank you! Your message has been received."
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "owner@example.invalid",
+            "subject": "Website Inquiry: General Contact"
+          }
+        ]
+      },
+      {
+        "event": "booked",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": []
+      },
+      {
+        "event": "cancelled",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": []
+      },
+      {
+        "event": "rescheduled",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": []
+      }
+    ]
+  },
+  {
+    "runtime": "api",
+    "scenario": "conflict",
+    "responses": [
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Thank you! Your message has been received."
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      }
+    ],
+    "sent": [
+      {
+        "kind": "agent",
+        "path": "/webhook/lead",
+        "clientId": "other-tenant",
+        "payload": {
+          "clientId": "other-tenant",
+          "nombre": "Control",
+          "telefono": null,
+          "email": "customer@example.invalid",
+          "mensaje": "Consulta controlada",
+          "fuente": "web_contact",
+          "adminPhones": [
+            "+972500000000"
+          ]
+        },
+        "authCorrect": true
+      },
+      {
+        "kind": "agent",
+        "path": "/notify",
+        "type": "appointment_booked",
+        "clientId": "other-tenant",
+        "payload": {
+          "clientId": "other-tenant",
+          "type": "appointment_booked",
+          "adminPhones": [
+            "+972500000000"
+          ],
+          "staffPhones": [],
+          "customerPhone": "+972500000001",
+          "message": "Nuevo turno: Control (+972500000001)\nHaircut el 2026-12-20 a las 12:00",
+          "staffMessage": "Turno asignado\nCliente: Control (+972500000001)\nServicio: Haircut\nCuando: 2026-12-20 12:00",
+          "customerMessage": "Turno confirmado: Haircut el 2026-12-20 a las 12:00.",
+          "appointment": {
+            "date": "2026-12-20",
+            "time": "12:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          },
+          "variables": {
+            "1": "Haircut",
+            "2": "2026-12-20",
+            "3": "12:00",
+            "4": ""
+          }
+        },
+        "authCorrect": true
+      },
+      {
+        "kind": "agent",
+        "path": "/notify",
+        "type": "appointment_cancelled",
+        "clientId": "other-tenant",
+        "payload": {
+          "clientId": "other-tenant",
+          "type": "appointment_cancelled",
+          "adminPhones": [
+            "+972500000000"
+          ],
+          "staffPhones": [],
+          "customerPhone": "+972500000001",
+          "message": "Turno cancelado: Control - Haircut el 2026-12-20 12:00",
+          "staffMessage": "Turno cancelado: Control el 2026-12-20 12:00",
+          "customerMessage": "Tu turno de Haircut del 2026-12-20 a las 12:00 fue cancelado.",
+          "appointment": {
+            "date": "2026-12-20",
+            "time": "12:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          }
+        },
+        "authCorrect": true
+      },
+      {
+        "kind": "agent",
+        "path": "/notify",
+        "type": "appointment_rescheduled",
+        "clientId": "other-tenant",
+        "payload": {
+          "clientId": "other-tenant",
+          "type": "appointment_rescheduled",
+          "adminPhones": [
+            "+972500000000"
+          ],
+          "staffPhones": [],
+          "customerPhone": "+972500000001",
+          "message": "Turno reprogramado: Control - Haircut ahora el 2026-12-20 12:00",
+          "staffMessage": "Turno reprogramado: Control 2026-12-20 12:00 (antes 2026-12-20 11:00)",
+          "customerMessage": "Tu turno fue reprogramado: Haircut ahora el 2026-12-20 a las 12:00.",
+          "oldAppointment": {
+            "date": "2026-12-20",
+            "time": "11:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          },
+          "appointment": {
+            "date": "2026-12-20",
+            "time": "12:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          },
+          "variables": {
+            "1": "Haircut",
+            "2": "2026-12-20",
+            "3": "12:00",
+            "4": ""
+          }
+        },
+        "authCorrect": true
+      }
+    ],
+    "email": [
+      {
+        "kind": "email",
+        "to": "owner@example.invalid",
+        "subject": "Website Inquiry: General Contact"
+      }
+    ],
+    "perRequest": [
+      {
+        "event": "contact",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "message": "Thank you! Your message has been received."
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "owner@example.invalid",
+            "subject": "Website Inquiry: General Contact"
+          }
+        ]
+      },
+      {
+        "event": "booked",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": true
+          }
+        },
+        "email": []
+      },
+      {
+        "event": "cancelled",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": true
+          }
+        },
+        "email": []
+      },
+      {
+        "event": "rescheduled",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": true
+          }
+        },
+        "email": []
+      }
+    ]
+  }
+]

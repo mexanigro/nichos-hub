@@ -1,0 +1,92 @@
+const fs=require('node:fs'),p=require('node:path'),c=require('node:crypto'),{spawnSync}=require('node:child_process');
+const d=__dirname,root=p.resolve(d,'../../..'),control=p.resolve(d,'../clientId-v1'),product=p.resolve(root,'../Barber-shop-template-main');
+const sha=b=>c.createHash('sha256').update(b).digest('hex');
+const read=file=>JSON.parse(fs.readFileSync(file,'utf8').replace(/^\uFEFF/,''));
+const write=(file,value)=>{fs.mkdirSync(p.dirname(file),{recursive:true});fs.writeFileSync(file,value,{flag:'wx'});};
+const checks=[];function check(name,valid){checks.push({name,valid});if(!valid)throw Error(name);}
+const freeze=read(p.join(d,'FREEZE.json'));
+check('contrato conservado',sha(fs.readFileSync(p.join(d,'PROPUESTA.md')))===freeze.contractSha256);
+for(const item of freeze.instruments)check('instrumento '+item.name,sha(fs.readFileSync(p.join(control,item.name)))===item.sha256);
+const finalSources=read(p.join(d,'FUENTES-P1.json'));
+for(const row of finalSources){
+ const before=freeze.sources.find(x=>x.path===row.path);
+ check('producto '+row.path,sha(fs.readFileSync(p.join(product,row.path)))===row.sha256);
+ check('copia GREEN '+row.path,sha(fs.readFileSync(p.join(control,'copia-auth-green',row.path)))===row.sha256);
+ check('copia mutación '+row.path,sha(fs.readFileSync(p.join(control,'copia-auth-mutacion',row.path)))===(row.path==='api/index.ts'?before.sha256:row.sha256));
+ if(row.path!=='api/index.ts')check('conservación '+row.path,row.sha256===before.sha256);
+}
+const api=fs.readFileSync(p.join(product,'api/index.ts'),'utf8'),before=fs.readFileSync(p.join(d,'preimagenes-p1/api/index.ts'),'utf8');
+const anchor='  app.post("/api/appointment/notify", async (req, res) => {\n';
+const added='    const auth = await requireAdminAuth(req, res);\n    if (!auth) return;\n';
+check('diff exacto dos instrucciones',api===before.replace(anchor,anchor+added)&&api.length-before.length===74);
+for(const row of read(p.join(control,'VERIFICACION-CIERRE.json')).docs)check('documento producto '+row.path,sha(fs.readFileSync(p.join(product,row.path)))===row.sha256.toLowerCase());
+const green=read(p.join(control,'resultados/auth-green-p2/RESULTADOS.json'));
+const mutant=read(p.join(control,'resultados/auth-mutation-p3/RESULTADOS.json'));
+check('HTTP270 GREEN',green.length===270&&green.every(x=>x.valid));
+const failed=mutant.filter(x=>!x.valid);
+check('mutación90 fallos esperados',mutant.length===270&&failed.length===90&&failed.every(x=>/^api-agent-(true|false):(?:booked|cancelled|rescheduled):(?:missing|invalid|foreign-tenant|unlisted|unverified):(?:status|no-effects|generic-body)$/.test(x.name)));
+check('arranques mutación',mutant.filter(x=>x.name.endsWith(':startup')&&x.valid).length===4);
+check('sin fallos instrumento',!mutant.some(x=>x.name.endsWith(':instrument'))&&!green.some(x=>x.name.endsWith(':instrument')));
+for(const run of ['auth-green-p2','auth-parity-p2','auth-mutation-p3']){
+ const state=read(p.join(control,'resultados',run,'ESTADO.json')),exit=run==='auth-mutation-p3'?1:0;
+ check('docker '+run,state.exit===exit&&state.state.ExitCode===exit&&!state.timeout);
+ check('disposición '+run,read(p.join(control,'resultados',run,'DISPOSICION.json')).eliminado);
+}
+check('tipos0',read(p.join(d,'TIPOS-P2.json')).exit===0);
+check('paridad0',read(p.join(control,'resultados/auth-parity-p2/PARITY.json')).exit===0);
+check('paridad19',/# pass 19\s/.test(fs.readFileSync(p.join(control,'resultados/auth-parity-p2/parity.stdout.txt'),'utf8')));
+for(const repo of [product,'C:/Users/liama/Desktop/Nichos-hub']){
+ const branch=spawnSync('git',['-C',repo,'branch','--show-current'],{encoding:'utf8'}),trees=spawnSync('git',['-C',repo,'worktree','list','--porcelain'],{encoding:'utf8'});
+ check('main y único worktree '+repo,branch.status===0&&branch.stdout.trim()==='main'&&trees.status===0&&(trees.stdout.match(/^worktree /gm)||[]).length===1);
+}
+write(p.join(d,'CONSERVACION-FINAL.json'),JSON.stringify(checks,null,2));
+write(p.join(d,'FUENTES-FINALES.json'),JSON.stringify(finalSources,null,2));
+write(p.join(d,'REVISION-FINAL.md'),`# Revisión final interna\n\nProcedencia: Harvey, /root/refutar_soporte, lectura independiente de la versión final y su preimagen en esta conversación. Sin BLOCKERS ni MATERIAL restantes. Confirmó inserción única de74bytes y recuperación exacta de preimagen al retirarla; guard antes de cuerpo/notificaciones. SHA revisado:1dbc951f710e2f3e586247faf79ae65d76714eb52fcf768001d929a8521a646f. No ejecutó pruebas; integrador comprobó HTTP270, tipos0, paridad19 y mutación90fallos esperados/180positivos. Revisión externa de preparación separada en REVISION-EXTERNA-PREPARACION.md.\n\nClaridad/alcance: ninguna función, política de roles, fallback o ruta nueva. Mismo patrón que server.ts, guard efectivo ya usado en otras rutas. Sin normalizar saltos mixtos ni modificar bytes ajenos. No hay solución temporal oculta; el nuevo punto de control protege las tres ramas antes del primer efecto del handler. No certifica identidad/entorno reales ni reglas Firestore.\n`);
+check('SHA revisión coincide',sha(Buffer.from(api))==='1dbc951f710e2f3e586247faf79ae65d76714eb52fcf768001d929a8521a646f');
+const closure=`# N03 appointment-notify-auth-v1 — GREEN local para revisión
+
+## Cambio y resultado
+
+Exclusivamente api/index.ts: añadidas74bytes, las dos instrucciones autorizadas al inicio de POST /api/appointment/notify: requireAdminAuth y retorno si no autoriza. Vercel ahora rechaza antes de procesar acciones o emitir notificaciones, siguiendo el guard existente de server.ts. Autenticador, roles, selectores, mensajes, payloads, canales, límites, tenant y orden global intactos. Ninguna otra ruta modificada.
+
+[Contrato aprobado](PROPUESTA.md), [freeze anterior a producto](FREEZE.json), [preimagen y P1](P1.json). P0→P1→P2→P3:4/4. Reparación GREEN exclusivamente local; se entrega para revisión, sin atribuir aceptación final a Liam. N03 sigue abierta.
+
+## Evidencia final
+
+- [Contrato HTTP](../clientId-v1/resultados/auth-green-p2/RESULTADOS.json):270/270,84peticiones,4arranques efectivos (server/API × agente true/false). Token ausente/inválido401; usuario de tenant ajeno/sin registro/email no verificado403. Sesenta peticiones adversas rechazadas sin efectos observados; doce rechazos adicionales de origen ajeno. Cuerpos genéricos exactos comprobados. Doce positivos conservan request,respuesta,eventos y payloads de referencia por runtime/acción/modo.
+- [Referencia vigente](../clientId-v1/resultados/auth-reference-v1/OBSERVACIONES.json): tres exports reales de CRM, booked/cancelled/rescheduled, método POST y Bearer; agente habilitado con identidad/payload/auth correctos y deshabilitado con email base conservado. Se reutilizó la referencia54/54 y el RED original; no se repitió preparación ni suites aceptadas ajenas.
+- [Tipos](TIPOS-P2.json):exit0, arnés existente clientId-v1/tsconfig.json con vite-env, sin relajar compilador. [Paridad](../clientId-v1/resultados/auth-parity-p2/PARITY.json):19/19,exit0; sin excepciones cambiadas. La paridad estructural no reemplaza prueba de autenticación.
+- [Mutación](../clientId-v1/copia-auth-mutacion/MUTACION.json), [HTTP mutante](../clientId-v1/resultados/auth-mutation-p3/RESULTADOS.json): se retiraron únicamente las dos instrucciones en copia nueva.90fallos esperados (30peticiones API indebidas × status/cuerpo/sin efectos) y180positivos. Los4arranques aprobaron, cero fallos de instrumento. Server y positivos legítimos se conservan. API mutante recupera exactamente la preimagen, producto final permanece protegido.
+- [Conservación](CONSERVACION-FINAL.json):333 fuentes finales coinciden con copia GREEN;332 permanecen iguales a preparación y API cambia sólo las dos instrucciones. Copia mutante coincide salvo retorno de API a preimagen. README/.env.example intactos, instrumentos congelados sin cambios. [Manifiesto final](FUENTES-FINALES.json). Ambos repositorios siguen main con un único worktree, sin creación de ramas/worktrees.
+
+Docker: imagen/montajes/dependencias existentes, --pull=never,--network=none,read-only,env saneado y credenciales sintéticas. Preflight integrado comprobó sintaxis/imports/dependencias/fixture antes de cada corrida. ESTADO.json acredita exits0 GREEN/paridad y1 esperado mutación, sin timeout; DISPOSICION.json confirma eliminación de contenedores. Ningún envío real, instalación u operación remota. La ventana local de efectos es150ms con dependencias simuladas inmediatas; no se afirma certificación de latencias o persistencia remotas.
+
+## Revisión y avance por gate
+
+P0: fuentes y Git vigentes, autorización/revisión externa incorporadas, refutación previa conservada, contrato congelado. P1: preimagen física verificada, inserción exacta y copia aislada nueva. P2: contrato270 GREEN,tipos0,paridad19. P3: mutación sensible90fallos,conservación/revisión final y registros completos. Cada ciclo produjo avance material; no hubo fallo del arnés ni reintentos durante esta implementación. Fallos históricos permanecen conservados.
+
+[Revisión interna final](REVISION-FINAL.md) y [revisión externa de preparación trasladada por Liam](REVISION-EXTERNA-PREPARACION.md) separadas. Materiales previos del comparador email y mutador por bytes resueltos antes del freeze; sin BLOCKERS/MATERIAL restantes de esta entrega. Las propiedades declaradas en prosa se verifican por consumidor HTTP y guard desarmado; no se amplían conclusiones a otras rutas.
+
+## Límites y retoma
+
+N03 permanece en curso. Esta reparación local satisface el pendiente de conexión del guard; N04 conserva certificación de identidad/entorno reales y acceso a datos. Sigue vigente la condición previa al despliegue: evidencia de prestaciones por tenant y decisión de Liam. No se modifican compromisos, configuraciones reales, reglas Firestore ni pagos.
+
+Consumo: inicio77%,checkpointP2/cierre78%,techo80%TOTAL N03 compartido,sin resets. Sin commit,push,deploy ni operaciones remotas. Ninguna retoma técnica pendiente de esta reparación; detenerse para revisión. No iniciar otra obligación.
+`;
+write(p.join(d,'CIERRE-LOCAL.md'),closure);
+const custody=[];
+function update(rel,notice){
+ const file=p.join(root,rel),before=fs.readFileSync(file),pre=p.join(d,'preimagenes-registros-cierre',rel);
+ write(pre,before);check('custodia '+rel,sha(fs.readFileSync(pre))===sha(before));
+ fs.writeFileSync(file,before.toString('utf8').replace('\n','\n\n'+notice+'\n'));
+ custody.push({path:rel,before:sha(before),after:sha(fs.readFileSync(file)),preimage:p.relative(root,pre)});
+}
+update('informe/N03/appointment-notify-auth-v1/INFORME.md','**Reparación ahora GREEN local4/4, para revisión.** [Cierre y evidencia](CIERRE-LOCAL.md):270HTTP,tipos0,paridad19,mutación90fallos esperados sin error de instrumento. Sólo dos instrucciones en api/index.ts; revisión externa de preparación separada de Harvey. N03 abierta,N04 identidad/entorno reales y prestaciones por tenant antes de deploy pendientes. Consumo78%/80%TOTAL,sin resets. Preparación inferior histórica, conservada.');
+for(const rel of ['indice/tareas/N03.md','indice/README.md','indice/PENDIENTES.md','indice/CALENDARIO.md']){
+ const prefix=rel.includes('/tareas/')?'../../':'../';
+ update(rel,`**N03 appointment-notify-auth-v1: GREEN local4/4, para revisión.** [Cierre,evidencia y límites](${prefix}informe/N03/appointment-notify-auth-v1/CIERRE-LOCAL.md). API conecta guard existente con dos instrucciones;270HTTP,tipos0,paridad19,mutación90fallos esperados/180positivos,333fuentes finales verificadas. Pendiente local de esta ruta resuelto; N04 conserva identidad/entorno reales. N03 sigue abierta; condición previa al despliegue por prestaciones de tenant vigente. Revisión externa preparada e interna Harvey separadas. Consumo78%/80%TOTAL,sin resets. Detenido para revisión,sin otra reparación. Cortes inferiores históricos.`);
+}
+write(p.join(root,'historial/2026-09-09-N03-appointment-notify-auth-cierre-local.md'),`# N03 — appointment-notify-auth-v1 GREEN local\n\nLiam autorizó P0→P3; fuentes vigentes, revisión externa trasladada separada de Harvey y contrato congelado. Sólo dos instrucciones al inicio del handler API,preimagen verificada. [Cierre](../informe/N03/appointment-notify-auth-v1/CIERRE-LOCAL.md):270HTTP,tipos0,paridad19,mutación90fallos esperados/180positivos sin errores de instrumento,333fuentes finales comprobadas.4/4gates; no reintentos ni ampliación.\n\nReparación local terminada para revisión; N03 sigue abierta. N04 conserva identidad/entorno reales y permanece condición de prestaciones por tenant antes de despliegue. Ambos repos main,un worktree cada uno. Consumo77→78%/80%TOTAL,sin resets. Sin operaciones remotas,instalaciones,commit,push/deploy. No otra reparación.\n`);
+write(p.join(d,'CUSTODIA-CIERRE.json'),JSON.stringify(custody,null,2));
+write(p.join(d,'ACEPTACION-FINAL.json'),JSON.stringify({result:'GREEN',gates:4,totalGates:4,http:270,requests:84,typesExit:0,parity:19,mutationExpectedFailures:90,mutationPositiveControls:180,instrumentFailures:0,sources:333,unchangedSources:332,apiSha256:sha(api),closureSha256:sha(closure),usage:78,totalCeilingN03:80,N03:'en_curso',awaitingReview:true},null,2));
+console.log(JSON.stringify({result:'GREEN',gates:'4/4',http:270,mutationExpectedFailures:90}));

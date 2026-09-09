@@ -1,0 +1,4 @@
+{
+  "exit": 0,
+  "command": "node template/node_modules/typescript/bin/tsc --project ../clientId-v1/tsconfig.json --pretty false"
+}

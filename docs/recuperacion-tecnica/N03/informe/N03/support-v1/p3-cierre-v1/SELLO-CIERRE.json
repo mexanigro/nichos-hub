@@ -1,0 +1,110 @@
+{
+  "gates": "4/4",
+  "productoModificadoEnP3": false,
+  "result": "GREEN",
+  "registrosActualizados": [
+    {
+      "path": "informe/N03/support-v1/INFORME.md",
+      "sha256": "1B1D80DDD2C509A669623B731A3D7CC8759F256C5C72E7081215A168D6855D48"
+    },
+    {
+      "path": "informe/N03/support-v1/REVISION.md",
+      "sha256": "3608EBA8EDD7B5070460F54D93D6B26CFE3F75B98EAC7411E541DB075BE17BBB"
+    },
+    {
+      "path": "informe/N03/support-v1/tsconfig.json",
+      "sha256": "3B08694F5606DC264E48BAB1CC9AEFA4B1317D94FCE1EFBBB13596AF85E3F3B4"
+    },
+    {
+      "path": "indice/README.md",
+      "sha256": "D08BD96DC3EE64EFC448212560FEF819599F7AFC8C1DB17FD0CA999FACA4FB49"
+    },
+    {
+      "path": "indice/CALENDARIO.md",
+      "sha256": "532DC04F973401B1C50E3BE22430B065F9DB959D279867A62345DA457EB316FF"
+    },
+    {
+      "path": "indice/tareas/N03.md",
+      "sha256": "BB3D6E3764CC2BB15BAD8E56F1709BA9817B4DC941A2C67F6ED9CD2A1FC908CB"
+    },
+    {
+      "path": "historial/2026-09-09-N03-support-v1-cierre-P3.md",
+      "sha256": "4005972E11497E944C581007D19808492E284241DCCD1BD8AE54D12E395DE13A"
+    }
+  ],
+  "referenciasComprobadas": 10,
+  "evidenciaP3": [
+    {
+      "path": "CONSUMO.json",
+      "bytes": 159,
+      "sha256": "0D492ED0820D3D8F8379BC782FACAA49748F5242C1E8C5D84030F61269D3FE98"
+    },
+    {
+      "path": "HUELLAS-VERIFICADAS.json",
+      "bytes": 2510,
+      "sha256": "98DFB699FB8308FB8F609A89C38DF043FDD17D6B2D9040C706742B733B0ADF4F"
+    },
+    {
+      "path": "PARIDAD-ESTADO.json",
+      "bytes": 302,
+      "sha256": "43F3A7F628E2AA456388A1F719B8E6C7FE20CCB2D0A48E35B1380F5A6DA90A37"
+    },
+    {
+      "path": "PARIDAD.txt",
+      "bytes": 617,
+      "sha256": "A6C41EBEE354CE284011B94F5B51FFC1D48EA3F754A776A81D2AEFFA700BEFEC"
+    },
+    {
+      "path": "REVISION-FINAL.md",
+      "bytes": 2996,
+      "sha256": "4A275555C31D039EB9F72B83A1996B7B0A94FC122AC0110FCA3B95F6C70590EA"
+    },
+    {
+      "path": "TIPOS-ESTADO.json",
+      "bytes": 351,
+      "sha256": "66C494D1503351ED2FC4DF04A1217BEA5F810C67597D3C6F28F0532C5A7D72E5"
+    },
+    {
+      "path": "TIPOS.txt",
+      "bytes": 0,
+      "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+    },
+    {
+      "path": "preimagenes\\HUELLAS-serializacion-incompleta.json",
+      "bytes": 140,
+      "sha256": "7C8888118007571E04DFA166359A7537E70CAFDCF7ED418C708A575E908F3EC2"
+    },
+    {
+      "path": "preimagenes\\indice__CALENDARIO.md",
+      "bytes": 9288,
+      "sha256": "AEE84585BA525E4E54F64AD56071EF015657852F8296F370E0BCE25EFDF970B5"
+    },
+    {
+      "path": "preimagenes\\indice__README.md",
+      "bytes": 10329,
+      "sha256": "18AB2C532671A239A8A57588206EE196215E234A91ED38A90814B143A0B152C5"
+    },
+    {
+      "path": "preimagenes\\indice__tareas__N03.md",
+      "bytes": 13686,
+      "sha256": "67803CFEE55812EB19B5F57AFD2FCA5A27DE67270F2CE7AB226D58F5ABC1BE90"
+    },
+    {
+      "path": "preimagenes\\informe__N03__support-v1__INFORME.md",
+      "bytes": 5635,
+      "sha256": "6F1FA8787BE66827C78CF8D96C570CD4BA6A1C8D75D2A6194EB3870DCFA2DEDC"
+    },
+    {
+      "path": "preimagenes\\informe__N03__support-v1__REVISION.md",
+      "bytes": 1800,
+      "sha256": "19FFFB9EBB9159F7CB32F34486A505089EB6795679AFEE842349A300237FF1F8"
+    },
+    {
+      "path": "preimagenes\\tsconfig.json",
+      "bytes": 370,
+      "sha256": "5865A7F3DB0C7A01B39FE1230B263D927FD358CDD382030E76832BD6CBE0433B"
+    }
+  ],
+  "scope": "N03 support-v1 local; N03 sigue en curso",
+  "resultadosPreviosSobrescritos": false
+}

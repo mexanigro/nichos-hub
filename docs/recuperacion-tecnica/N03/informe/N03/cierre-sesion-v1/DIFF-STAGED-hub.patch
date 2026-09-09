@@ -1,0 +1,143 @@
+diff --git a/src/app/api/api-costs/fetch/route.ts b/src/app/api/api-costs/fetch/route.ts
+index f441740..f292800 100644
+--- a/src/app/api/api-costs/fetch/route.ts
++++ b/src/app/api/api-costs/fetch/route.ts
+@@ -1,4 +1,4 @@
+-import { NextRequest, NextResponse } from "next/server";
++import { NextResponse } from "next/server";
+ import { withOwner } from "@/lib/auth";
+ import { db } from "@/lib/firebase-admin";
+ import { FieldValue } from "firebase-admin/firestore";
+@@ -63,7 +63,7 @@ async function persistResult(serviceId: string, result: FetchResult): Promise<vo
+   }
+ }
+ 
+-export const POST = withOwner(async (_req: NextRequest, _session, _ctx) => {
++export const POST = withOwner(async () => {
+   const snap = await db.collection("hub_api_keys").doc("keys").get();
+   const keys = (snap.data() ?? {}) as StoredKeys;
+ 
+diff --git a/src/app/api/appointments/[id]/cancel/route.ts b/src/app/api/appointments/[id]/cancel/route.ts
+index dda00ce..86d577d 100644
+--- a/src/app/api/appointments/[id]/cancel/route.ts
++++ b/src/app/api/appointments/[id]/cancel/route.ts
+@@ -5,7 +5,6 @@ import { NextRequest, NextResponse } from "next/server";
+ import { db } from "@/lib/firebase-admin";
+ import { withAgentAuth } from "@/lib/with-agent-auth";
+ import {
+-  parse,
+   startOfDay,
+   setHours,
+   setMinutes,
+diff --git a/src/app/api/onboarding/route.ts b/src/app/api/onboarding/route.ts
+index 05e472f..a7ed4b2 100644
+--- a/src/app/api/onboarding/route.ts
++++ b/src/app/api/onboarding/route.ts
+@@ -116,6 +116,7 @@ export async function POST(req: NextRequest) {
+     const branding = resolveBranding({ niche: deployNiche, colors });
+ 
+     await db.collection("config").doc(slug).set({
++      language: locale,
+       business: { type: deployNiche, mode: businessMode, name: businessName },
+       brand: {
+         name: businessName,
+diff --git a/src/app/api/prospects/follow-up/route.ts b/src/app/api/prospects/follow-up/route.ts
+index 18984ba..54aa1b4 100644
+--- a/src/app/api/prospects/follow-up/route.ts
++++ b/src/app/api/prospects/follow-up/route.ts
+@@ -38,7 +38,7 @@ export const GET = withOwner(async (req) => {
+       ...data,
+       createdAt: data.createdAt?.toDate?.()?.toISOString?.() ?? data.createdAt,
+       updatedAt: data.updatedAt?.toDate?.()?.toISOString?.() ?? data.updatedAt,
+-    } as Record<string, any> & { id: string };
++    } as Record<string, unknown> & { id: string };
+   });
+ 
+   if (pendingOnly) {
+diff --git a/src/app/api/upload/[clientId]/route.ts b/src/app/api/upload/[clientId]/route.ts
+index c2b73ec..9195348 100644
+--- a/src/app/api/upload/[clientId]/route.ts
++++ b/src/app/api/upload/[clientId]/route.ts
+@@ -1,4 +1,4 @@
+-import { NextRequest, NextResponse } from "next/server";
++import { NextResponse } from "next/server";
+ import { randomUUID } from "crypto";
+ import { withOwner } from "@/lib/auth";
+ import { getStorageBucket } from "@/lib/firebase-admin";
+diff --git a/src/lib/contracts.ts b/src/lib/contracts.ts
+index 1beafc7..d7778ca 100644
+--- a/src/lib/contracts.ts
++++ b/src/lib/contracts.ts
+@@ -4,22 +4,11 @@ export type ContractLang = "en" | "es" | "ru" | "he" | "ar";
+ 
+ const CONTRACT_VERSION = "7.0";
+ 
+-/* ═══════════════════════════════════════════════════════════════════════════
+- * PLAN DETAILS (shared across all languages)
+- * ═══════════════════════════════════════════════════════════════════════════ */
+-
+-const PLAN_TABLE = {
+-  solo_web: { price: 480, bookings: null },
+-  base: { price: 770, bookings: 100 },
+-  pro: { price: 960, bookings: 300 },
+-  enterprise: { price: 1270, bookings: "unlimited" },
+-} as const;
+-
+ /* ═══════════════════════════════════════════════════════════════════════════
+  * ENGLISH CONTRACT
+  * ═══════════════════════════════════════════════════════════════════════════ */
+ 
+-function EN(plan: PlanType): string {
++function EN(): string {
+   return `SERVICE AGREEMENT — WEBSITE, CRM & AI AGENTS
+ Arzac Studio — Subscription Plans
+ 
+@@ -135,7 +124,7 @@ This agreement is governed by Israeli law. Exclusive jurisdiction: competent cou
+  * HEBREW CONTRACT
+  * ═══════════════════════════════════════════════════════════════════════════ */
+ 
+-function HE(plan: PlanType): string {
++function HE(): string {
+   return `הסכם מתן שירות בניית אתרים, תחזוקה, אירוח וסוכני בינה מלאכותית
+ 
+ שנערך ונחתם ביום _____ לחודש _____ שנת _____
+@@ -287,7 +276,7 @@ function HE(plan: PlanType): string {
+  * RUSSIAN CONTRACT
+  * ═══════════════════════════════════════════════════════════════════════════ */
+ 
+-function RU(plan: PlanType): string {
++function RU(): string {
+   return `ДОГОВОР НА ОКАЗАНИЕ УСЛУГ — САЙТ, CRM И ИИ-АГЕНТЫ
+ Arzac Studio — Тарифные планы
+ 
+@@ -403,7 +392,7 @@ Arzac Studio — Тарифные планы
+  * SPANISH CONTRACT
+  * ═══════════════════════════════════════════════════════════════════════════ */
+ 
+-function ES(plan: PlanType): string {
++function ES(): string {
+   return `ACUERDO DE SERVICIOS — SITIO WEB, CRM Y AGENTES IA
+ Arzac Studio — Planes de Suscripcion
+ 
+@@ -519,7 +508,7 @@ Este acuerdo se rige por la ley israeli. Jurisdiccion exclusiva: tribunales comp
+  * ARABIC CONTRACT
+  * ═══════════════════════════════════════════════════════════════════════════ */
+ 
+-function AR(plan: PlanType): string {
++function AR(): string {
+   return `اتفاقية تقديم خدمات — موقع إلكتروني، CRM ووكلاء ذكاء اصطناعي
+ Arzac Studio — خطط الاشتراك
+ 
+diff --git a/src/lib/pricing.ts b/src/lib/pricing.ts
+index 810d957..016167b 100644
+--- a/src/lib/pricing.ts
++++ b/src/lib/pricing.ts
+@@ -49,6 +49,7 @@ export const INITIAL_AMOUNT = PLAN_AMOUNT;
+ /** @deprecated — use PLAN_AMOUNT */
+ export const RECURRING_AMOUNT = PLAN_AMOUNT;
+ /** @deprecated */
+-export function getPaymentAmount(_isInitial: boolean): number {
++export function getPaymentAmount(_isInitial: boolean): number;
++export function getPaymentAmount(): number {
+   return PLAN_AMOUNT;
+ }

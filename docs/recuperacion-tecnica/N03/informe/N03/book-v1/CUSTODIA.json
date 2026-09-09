@@ -1,0 +1,57 @@
+[
+  {
+    "path": "C:/Users/liama/Desktop/Nichos/Barber-shop-template-main/server.ts",
+    "preimage": "preimagenes/Barber-shop-template-main__server.ts",
+    "sha256": "a00033e1d8e40f42de617124310973a339ab837f48aeb22fb145761e2c43b0ef"
+  },
+  {
+    "path": "C:/Users/liama/Desktop/Nichos/Barber-shop-template-main/api/index.ts",
+    "preimage": "preimagenes/Barber-shop-template-main__api__index.ts",
+    "sha256": "b6ff50ba8fe504891f8e1d31cf5e7d87973e120f2d56ccbdf3d8504c5f06cccf"
+  },
+  {
+    "path": "C:/Users/liama/Desktop/Nichos/Barber-shop-template-main/tests/api-parity.test.ts",
+    "preimage": "preimagenes/Barber-shop-template-main__tests__api-parity.test.ts",
+    "sha256": "4e38da3e5d481f1d6495065300861f26f0f1944bcd7ca37f614da234136d2ac7"
+  },
+  {
+    "path": "C:/Users/liama/Desktop/Nichos/recuperacion-tecnica/indice/README.md",
+    "preimage": "preimagenes/recuperacion-tecnica__indice__README.md",
+    "sha256": "207f01d845c033e2e95c6170805486798c48e19f2afeeb67afd9015cafdc6abc"
+  },
+  {
+    "path": "C:/Users/liama/Desktop/Nichos/recuperacion-tecnica/indice/CALENDARIO.md",
+    "preimage": "preimagenes/recuperacion-tecnica__indice__CALENDARIO.md",
+    "sha256": "6b4d2e195485eee13462febb162a2d45de28960f7518c90df408b851de27ce30"
+  },
+  {
+    "path": "C:/Users/liama/Desktop/Nichos/recuperacion-tecnica/indice/PENDIENTES.md",
+    "preimage": "preimagenes/recuperacion-tecnica__indice__PENDIENTES.md",
+    "sha256": "5dcb4b43a87e5b44a1d80df5aea0fb1a7d0d3c1740270d790e0c8c3929d01ea9"
+  },
+  {
+    "path": "C:/Users/liama/Desktop/Nichos/recuperacion-tecnica/indice/tareas/N02.md",
+    "preimage": "preimagenes/recuperacion-tecnica__indice__tareas__N02.md",
+    "sha256": "801edf94c313c6acfe340b8f1832a8a2bed62f0381fb8d213ff10caee21a9c6c"
+  },
+  {
+    "path": "C:/Users/liama/Desktop/Nichos/recuperacion-tecnica/indice/tareas/N03.md",
+    "preimage": "preimagenes/recuperacion-tecnica__indice__tareas__N03.md",
+    "sha256": "072a8b8eb00008e6f0147f4e605b22a14950aaea39d76e28689d0eddc386525d"
+  },
+  {
+    "path": "C:/Users/liama/Desktop/Nichos/recuperacion-tecnica/indice/tareas/N04.md",
+    "preimage": "preimagenes/recuperacion-tecnica__indice__tareas__N04.md",
+    "sha256": "de2862ddf4c02b5a3f00912e3552dbfb783ed2c696038f1b79f1be3ee4823b24"
+  },
+  {
+    "path": "C:/Users/liama/Desktop/Nichos/recuperacion-tecnica/indice/tareas/N06.md",
+    "preimage": "preimagenes/recuperacion-tecnica__indice__tareas__N06.md",
+    "sha256": "aff32e3d3540af6ef96a80d248648f1a8b841bdd3cbb11e2e9651628ff6ebbb1"
+  },
+  {
+    "path": "C:/Users/liama/Desktop/Nichos/recuperacion-tecnica/indice/tareas/N10.md",
+    "preimage": "preimagenes/recuperacion-tecnica__indice__tareas__N10.md",
+    "sha256": "d870f4020837b6b26c10aa72b94d5d278ecba8cebfe67e9bef85a51773b79975"
+  }
+]

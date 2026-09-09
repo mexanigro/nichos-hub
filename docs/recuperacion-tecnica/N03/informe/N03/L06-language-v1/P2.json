@@ -1,0 +1,11 @@
+{
+  "gate": "P2",
+  "lintErrors": 0,
+  "usage": 78,
+  "reached": true,
+  "scenarios": 14,
+  "checks": 34,
+  "lintExit": 0,
+  "typesExit": 0,
+  "lintWarnings": 0
+}

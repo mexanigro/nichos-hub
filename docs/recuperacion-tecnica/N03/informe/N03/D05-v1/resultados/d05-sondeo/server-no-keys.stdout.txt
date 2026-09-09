@@ -1,0 +1,4 @@
+
+[Template Setup] ─── Service Configuration Status ───
+  ✓  CLIENT_ID / NEXT_PUBLIC_CLIENT_ID → Tenant scoping
+Server running on http://localhost:3000

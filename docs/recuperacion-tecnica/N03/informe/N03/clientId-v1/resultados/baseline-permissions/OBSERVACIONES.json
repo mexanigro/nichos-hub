@@ -1,0 +1,764 @@
+[
+  {
+    "runtime": "server",
+    "scenario": "denied-0",
+    "responses": [
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Thank you! Your message has been received."
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      }
+    ],
+    "sent": [],
+    "email": [
+      {
+        "kind": "email",
+        "to": "owner@example.invalid",
+        "subject": "Website Inquiry: General Contact"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Booking Confirmed: Haircut on 2026-12-20"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Appointment Cancelled: Haircut on 2026-12-20"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Appointment Rescheduled: Haircut"
+      }
+    ],
+    "perRequest": [
+      {
+        "event": "contact",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "message": "Thank you! Your message has been received."
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "owner@example.invalid",
+            "subject": "Website Inquiry: General Contact"
+          }
+        ]
+      },
+      {
+        "event": "booked",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "customer@example.invalid",
+            "subject": "Booking Confirmed: Haircut on 2026-12-20"
+          }
+        ]
+      },
+      {
+        "event": "cancelled",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "customer@example.invalid",
+            "subject": "Appointment Cancelled: Haircut on 2026-12-20"
+          }
+        ]
+      },
+      {
+        "event": "rescheduled",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "customer@example.invalid",
+            "subject": "Appointment Rescheduled: Haircut"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "runtime": "server",
+    "scenario": "denied-1",
+    "responses": [
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Thank you! Your message has been received."
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      }
+    ],
+    "sent": [],
+    "email": [
+      {
+        "kind": "email",
+        "to": "owner@example.invalid",
+        "subject": "Website Inquiry: General Contact"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Booking Confirmed: Haircut on 2026-12-20"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Appointment Cancelled: Haircut on 2026-12-20"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Appointment Rescheduled: Haircut"
+      }
+    ],
+    "perRequest": [
+      {
+        "event": "contact",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "message": "Thank you! Your message has been received."
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "owner@example.invalid",
+            "subject": "Website Inquiry: General Contact"
+          }
+        ]
+      },
+      {
+        "event": "booked",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "customer@example.invalid",
+            "subject": "Booking Confirmed: Haircut on 2026-12-20"
+          }
+        ]
+      },
+      {
+        "event": "cancelled",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "customer@example.invalid",
+            "subject": "Appointment Cancelled: Haircut on 2026-12-20"
+          }
+        ]
+      },
+      {
+        "event": "rescheduled",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "customer@example.invalid",
+            "subject": "Appointment Rescheduled: Haircut"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "runtime": "server",
+    "scenario": "denied-2",
+    "responses": [
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Thank you! Your message has been received."
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      }
+    ],
+    "sent": [],
+    "email": [
+      {
+        "kind": "email",
+        "to": "owner@example.invalid",
+        "subject": "Website Inquiry: General Contact"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Booking Confirmed: Haircut on 2026-12-20"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Appointment Cancelled: Haircut on 2026-12-20"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Appointment Rescheduled: Haircut"
+      }
+    ],
+    "perRequest": [
+      {
+        "event": "contact",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "message": "Thank you! Your message has been received."
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "owner@example.invalid",
+            "subject": "Website Inquiry: General Contact"
+          }
+        ]
+      },
+      {
+        "event": "booked",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "customer@example.invalid",
+            "subject": "Booking Confirmed: Haircut on 2026-12-20"
+          }
+        ]
+      },
+      {
+        "event": "cancelled",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "customer@example.invalid",
+            "subject": "Appointment Cancelled: Haircut on 2026-12-20"
+          }
+        ]
+      },
+      {
+        "event": "rescheduled",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "customer@example.invalid",
+            "subject": "Appointment Rescheduled: Haircut"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "runtime": "api",
+    "scenario": "denied-0",
+    "responses": [
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Thank you! Your message has been received."
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      }
+    ],
+    "sent": [],
+    "email": [
+      {
+        "kind": "email",
+        "to": "owner@example.invalid",
+        "subject": "Website Inquiry: General Contact"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Booking Confirmed: Haircut on 2026-12-20"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Appointment Cancelled: Haircut on 2026-12-20"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Appointment Rescheduled: Haircut"
+      }
+    ],
+    "perRequest": [
+      {
+        "event": "contact",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "message": "Thank you! Your message has been received."
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "owner@example.invalid",
+            "subject": "Website Inquiry: General Contact"
+          }
+        ]
+      },
+      {
+        "event": "booked",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "customer@example.invalid",
+            "subject": "Booking Confirmed: Haircut on 2026-12-20"
+          }
+        ]
+      },
+      {
+        "event": "cancelled",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "customer@example.invalid",
+            "subject": "Appointment Cancelled: Haircut on 2026-12-20"
+          }
+        ]
+      },
+      {
+        "event": "rescheduled",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "customer@example.invalid",
+            "subject": "Appointment Rescheduled: Haircut"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "runtime": "api",
+    "scenario": "denied-1",
+    "responses": [
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Thank you! Your message has been received."
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      }
+    ],
+    "sent": [],
+    "email": [
+      {
+        "kind": "email",
+        "to": "owner@example.invalid",
+        "subject": "Website Inquiry: General Contact"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Booking Confirmed: Haircut on 2026-12-20"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Appointment Cancelled: Haircut on 2026-12-20"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Appointment Rescheduled: Haircut"
+      }
+    ],
+    "perRequest": [
+      {
+        "event": "contact",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "message": "Thank you! Your message has been received."
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "owner@example.invalid",
+            "subject": "Website Inquiry: General Contact"
+          }
+        ]
+      },
+      {
+        "event": "booked",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "customer@example.invalid",
+            "subject": "Booking Confirmed: Haircut on 2026-12-20"
+          }
+        ]
+      },
+      {
+        "event": "cancelled",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "customer@example.invalid",
+            "subject": "Appointment Cancelled: Haircut on 2026-12-20"
+          }
+        ]
+      },
+      {
+        "event": "rescheduled",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "customer@example.invalid",
+            "subject": "Appointment Rescheduled: Haircut"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "runtime": "api",
+    "scenario": "denied-2",
+    "responses": [
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Thank you! Your message has been received."
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      }
+    ],
+    "sent": [],
+    "email": [
+      {
+        "kind": "email",
+        "to": "owner@example.invalid",
+        "subject": "Website Inquiry: General Contact"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Booking Confirmed: Haircut on 2026-12-20"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Appointment Cancelled: Haircut on 2026-12-20"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Appointment Rescheduled: Haircut"
+      }
+    ],
+    "perRequest": [
+      {
+        "event": "contact",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "message": "Thank you! Your message has been received."
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "owner@example.invalid",
+            "subject": "Website Inquiry: General Contact"
+          }
+        ]
+      },
+      {
+        "event": "booked",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "customer@example.invalid",
+            "subject": "Booking Confirmed: Haircut on 2026-12-20"
+          }
+        ]
+      },
+      {
+        "event": "cancelled",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "customer@example.invalid",
+            "subject": "Appointment Cancelled: Haircut on 2026-12-20"
+          }
+        ]
+      },
+      {
+        "event": "rescheduled",
+        "response": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "agentNotified": false
+          }
+        },
+        "email": [
+          {
+            "kind": "email",
+            "to": "customer@example.invalid",
+            "subject": "Appointment Rescheduled: Haircut"
+          }
+        ]
+      }
+    ]
+  }
+]

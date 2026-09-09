@@ -1,0 +1,10 @@
+# Refutación y estado de aceptación
+Revisor independiente /root/refutar_soporte, solo lectura. MATERIAL resuelto en plan: 503 sólo después de auth satisfactoria; DB ausente durante lookup deniega403. Confirmado por integrador en admin-auth.ts:146-168 y server.ts:385-402. No alterar permisos.
+MATERIAL: auth exportado puede ser null. Usar auth?.currentUser/getIdToken, token vacío o fallido no envía. Patrón existente TasksTab.tsx:37-45; SupportTab.tsx:98-109 anuncia envío sólo con id. Confirmados por integrador. Body ajeno no modifica clientId/sender/status.
+Contrato inicial de handler y consumidor aislados era insuficiente para el recorrido: se agregó conexión del método real sendMessage a la declaración app.post real extraída por AST. Transporte, auth y Firestore simulados; NO HTTP/socket/bootstrap/SDK/remoto. Es validación local de conexión, no certificación alojada.
+Control handler inicial:18casos,9serverPASS/9APIRED por ruta ausente, exit1. Consumidor inicial:6casos,1PASS/5RED, exit1; primer fallo Authorization undefined frente al token sintético esperado. No fallo de importación.
+A3 revisado: válido200 con id; denegado no carga almacenamiento; inválido400; almacenamiento503 sólo tras auth; fallo500; límite5000; identidad de servidor. Control del lookup real y Firebase permanecen N04, sin modificarlo aquí.
+A2 usa ejecución del cuerpo real extraído y conexión al handler registrado, sin cargar Firebase real. La ausencia de import auth debe comprobarse adicionalmente en fuentes finales para evitar un verde por inyección aislada. A5 tipos/imports requiere ejecutor aislado existente antes de cierre.
+P0 no se declara alcanzado hasta completar comprobación del arnés final y freeze. El plan mantiene cuatro gates. No producción cambiada todavía.
+## Cierre P3 vigente
+Revisión final integrada y trazada en [p3-cierre-v1/REVISION-FINAL.md](p3-cierre-v1/REVISION-FINAL.md). Las menciones anteriores a preparación son históricas. Contrato local completo GREEN; producto y controles previos sin deriva.

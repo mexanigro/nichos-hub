@@ -1,0 +1,27 @@
+[
+  {
+    "path": "informe\\N03\\D05-v1\\INFORME.md",
+    "bytes": 3720,
+    "sha256": "89bcd929414a54b0e7f3228101f6570e70ef83e99852ecb60b3b3cfd1281268d"
+  },
+  {
+    "path": "informe\\N03\\D05-v1\\PLAN.md",
+    "bytes": 2977,
+    "sha256": "5135b879ff8a3b325312258b3c1fab86d17dc7e7da7cde6230809aa2145ec1a2"
+  },
+  {
+    "path": "indice\\tareas\\N03.md",
+    "bytes": 15495,
+    "sha256": "628b2caf2b750fee5e79fa91f9f4814ee34d4a5ad578a617084b2d5a3c17a1ff"
+  },
+  {
+    "path": "indice\\README.md",
+    "bytes": 12126,
+    "sha256": "f661e1f1238688872543e680c7fba70b2245402bd478c1a6fa578fad7bfee422"
+  },
+  {
+    "path": "indice\\PENDIENTES.md",
+    "bytes": 9911,
+    "sha256": "72e9fd5583ed8d511d86da9472bf797150a34fa97bff54e0cf5da60d2d801009"
+  }
+]

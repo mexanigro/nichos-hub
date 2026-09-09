@@ -1,0 +1,17 @@
+const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),cp=require('node:child_process');
+const repo='C:/Users/liama/Desktop/Nichos-hub', prefix='docs/recuperacion-tecnica/N03/',root=__dirname;
+const manifest=JSON.parse(fs.readFileSync(path.join(repo,prefix,'ARCHIVO.json'),'utf8'));
+const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
+const paths=manifest.files.map(e=>prefix+e.archive).concat(prefix+'ARCHIVO.json',prefix+'README.md');
+for(const e of manifest.files) if(hash(fs.readFileSync(path.join(repo,prefix,e.archive)))!==e.sha256) throw Error('Copia difiere '+e.archive);
+if(paths.some(p=>/\.(?:ts|tsx)$/.test(p))) throw Error('Código de archivo entraría a compilación');
+const run=(args)=>cp.execFileSync('git',args,{cwd:repo,maxBuffer:32*1024*1024});
+if(run(['diff','--cached','--name-only']).toString().trim()) throw Error('Índice no vacío');
+for(let i=0;i<paths.length;i+=50) run(['-c','core.autocrlf=false','add','-f','--',...paths.slice(i,i+50)]);
+const staged=run(['diff','--cached','--name-only','-z']).toString('utf8').split('\0').filter(Boolean);
+if(staged.length!==paths.length || staged.some(p=>!paths.includes(p))) throw Error('Población índice incorrecta');
+const check=cp.spawnSync('git',['diff','--cached','--check'],{cwd:repo,encoding:'utf8',maxBuffer:32*1024*1024});
+fs.writeFileSync(path.join(root,'CHECK-ARCHIVO.txt'),check.stdout+check.stderr);
+const issues=check.stdout.split('\n').filter(l=>l.startsWith(prefix));
+fs.writeFileSync(path.join(root,'REVISION-ARCHIVO.json'),JSON.stringify({files:paths.length,bytes:manifest.files.reduce((s,r)=>s+r.bytes,0),byteCustody:true,compilerSourcesAdded:0,diffCheckExit:check.status,whitespaceLocations:issues.length,disposition:'Conservar bytes históricos de evidencia; no normalizar logs/preimágenes para esconder whitespace. Producto diff --check0 verificado antes de commit. Sin cambio de política Git/lint.',stagedPaths:staged},null,2)+'\n');
+console.log(JSON.stringify({files:paths.length,checkExit:check.status,whitespaceLocations:issues.length,shortstat:run(['diff','--cached','--shortstat']).toString()}));

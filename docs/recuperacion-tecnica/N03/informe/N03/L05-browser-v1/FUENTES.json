@@ -1,0 +1,38 @@
+[
+  {
+    "path": "src/services/tenant.ts",
+    "sha256": "04d6d1158429dae659058c83ac6f3faf6f3cdece0308a5c4a7d28b858234f2cc"
+  },
+  {
+    "path": "src/main.tsx",
+    "sha256": "4883b83ea30830dc5e0f6961d711e6f84fb6cacdbbaa52c6a25790801dee8ec3"
+  },
+  {
+    "path": "src/lib/firebase.ts",
+    "sha256": "c4ae4c45fa95fd356e684aa50baad6fc3b893b3f1fb2e8920dfc0297eb646595"
+  },
+  {
+    "path": "src/config/locales/en.ts",
+    "sha256": "ff2371c64a6bdc87bfed2f9c43943f81155edec9a3a735a82126252cff614925"
+  },
+  {
+    "path": "src/config/locales/he.ts",
+    "sha256": "510063436001c1aec2ec362cd52cc493f1b0effc5e5e0e5b4cdadb468560e40b"
+  },
+  {
+    "path": "src/config/locales/ru.ts",
+    "sha256": "a7453913aa7df76b75683dc07e542035641d1e122dcef4c2db5c58b72c08ab8b"
+  },
+  {
+    "path": "src/config/locales/ar.ts",
+    "sha256": "823925df03c3276feb11fd48cc620a36779488a5514131f443854c9011d72e54"
+  },
+  {
+    "path": "AGENTS.md",
+    "sha256": "01c4b618db4f49464b77c7bb213b0cf924186f08e88a0da239f6825b2653ba72"
+  },
+  {
+    "path": "README.md",
+    "sha256": "c3981d78f940050bc5f7963961827cb4eb12a6dcec1537761855114fee00c4e7"
+  }
+]

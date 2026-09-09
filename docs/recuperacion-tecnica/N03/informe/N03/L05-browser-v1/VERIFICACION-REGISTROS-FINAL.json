@@ -1,0 +1,34 @@
+{
+  "resets": 0,
+  "usage": 75,
+  "result": "GREEN",
+  "recordsVerified": 5,
+  "syntax": [
+    {
+      "file": "browser-contract.cjs",
+      "exit": 0
+    },
+    {
+      "file": "cierre-validaciones.cjs",
+      "exit": 0
+    },
+    {
+      "file": "fixture.cjs",
+      "exit": 0
+    },
+    {
+      "file": "registrar-cierre.cjs",
+      "exit": 0
+    },
+    {
+      "file": "registrar.cjs",
+      "exit": 0
+    },
+    {
+      "file": "sondeo.cjs",
+      "exit": 0
+    }
+  ],
+  "ceiling": 80,
+  "templateSourcesVerified": 333
+}

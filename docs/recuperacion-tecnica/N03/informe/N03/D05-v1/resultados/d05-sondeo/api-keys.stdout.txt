@@ -1,0 +1,7 @@
+
+[Template Setup] ─── Service Configuration Status ───
+  ✓  [REQUIRED] FIREBASE_PROJECT_ID                  → Firestore access (tenant config, kill-switch)
+  ✓  [REQUIRED] CLIENT_ID                            → Tenant scoping
+  ✓  [optional] GEMINI_API_KEY                       → AI chat & style consultation
+[Template Setup] All required integrations configured.
+

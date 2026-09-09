@@ -1,0 +1,18 @@
+{
+  "templateSourcesVerified": 333,
+  "resets": 0,
+  "docs": [
+    {
+      "sha256": "CFC29A33E8F00E4804378173ECFD23D6A660198B032274C7DB8119B8BB500D77",
+      "path": "README.md"
+    },
+    {
+      "sha256": "E6E5C4230954033DCC32127B5E7E5E6878E1A7AEE41769E7D16EDBCD1D70E5AE",
+      "path": ".env.example"
+    }
+  ],
+  "usage": 77,
+  "recordsVerified": 5,
+  "result": "GREEN",
+  "totalCeiling": 80
+}

@@ -1,0 +1,8 @@
+[
+  "server.ts",
+  "api/index.ts",
+  "src/lib/notify-agentkit.ts",
+  "src/lib/appointment-notify-client.ts",
+  "src/components/admin/AdminDashboard.tsx",
+  "src/lib/api/optional-services.ts"
+]

@@ -1,0 +1,16 @@
+const fs=require('node:fs'),p=require('node:path'),c=require('node:crypto');
+const d=__dirname,old=p.join(d,'../D05-v1'),root='C:/Users/liama/Desktop/Nichos/Barber-shop-template-main';
+const sha=b=>c.createHash('sha256').update(b).digest('hex');
+const write=(f,b)=>{fs.mkdirSync(p.dirname(f),{recursive:true});if(fs.existsSync(f)){if(sha(fs.readFileSync(f))!==sha(b))throw Error('copia distinta '+f);return;}fs.writeFileSync(f,b,{flag:'wx'})};
+const manifest=JSON.parse(fs.readFileSync(p.join(d,'../L05-browser-v1/FUENTES-FINALES.json'),'utf8'));
+// El bind readonly de /app debe contener el punto del montaje anidado.
+fs.mkdirSync(p.join(d,'copia','node_modules'),{recursive:true});
+for(const file of manifest){const b=fs.readFileSync(p.join(root,file.path));if(sha(b)!==file.sha256)throw Error('deriva '+file.path);write(p.join(d,'copia',file.path),b);}
+for(const file of ['tsconfig.json'])if(!fs.existsSync(p.join(d,'copia',file)))write(p.join(d,'copia',file),fs.readFileSync(p.join(old,'copia',file)));
+for(const file of ['ejecutar.ps1','preload.mjs','preload-recorridos.mjs','hooks-recorridos.mjs','firebase-hooks.mjs','firebase-fixture.mjs','fixture-recorridos.mjs','api-worker.mjs']) {
+  let content=fs.readFileSync(p.join(old,file),'utf8');
+  if(file==='preload-recorridos.mjs')content=content.replace("record('agent',{path:u.pathname,type:body.type,clientId:body.clientId})","record('agent',{path:u.pathname,type:body.type,clientId:body.clientId,payload:body,authCorrect:options.headers['x-agent-secret']==='synthetic-secret'})");
+  write(p.join(d,file),content);
+}
+write(p.join(d,'COPIA-P0.json'),JSON.stringify({sources:manifest.length,manifest,external:'Docker --network=none; /app sólo copia allowlist sin .env; deps existentes readonly; env -i'},null,2));
+console.log(JSON.stringify({copied:manifest.length,envFiles:0}));

@@ -1,0 +1,17 @@
+{
+  "status": "preparada para decisión; no implementada",
+  "linksVerified": 4,
+  "usedPercent": 74,
+  "previousReportedPercent": 75,
+  "ceilingPercent": 80,
+  "budgetScope": "TOTAL N03",
+  "resetsUsed": 0,
+  "serverAcceptanceIntegrated": true,
+  "externalReviewRelayedBy": "Liam",
+  "externalReviewConversation": "Supervisar revisión N03",
+  "nextAction": "decisión única de política navegador y superficie propuesta",
+  "checkpointsThisTurn": [
+    73,
+    74
+  ]
+}

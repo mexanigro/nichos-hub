@@ -1,0 +1,11 @@
+{
+  "at": "2026-09-09T13:41:38.5853298Z",
+  "baseline": 62,
+  "startObserved": 67,
+  "finalObserved": 67,
+  "objective": 67,
+  "preventiveStop": 69,
+  "maximum": 71,
+  "resetsUsed": 0,
+  "note": "Cuota semanal compartida y redondeada; sin atribucion exacta a esta tarea."
+}

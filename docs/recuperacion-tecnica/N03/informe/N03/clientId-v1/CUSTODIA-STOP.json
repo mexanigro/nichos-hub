@@ -1,0 +1,32 @@
+[
+  {
+    "path": "informe/N03/clientId-v1/INFORME.md",
+    "before": "a78a6c42d6bd11ef2073cc0e60382dee8261594ce2ad2ace27ff6cf59770c83b",
+    "after": "48123b5d498f6846e952445ac727fe6de4b14d3c9fa5121fcd1b395c35cedd6d",
+    "preimage": "informe\\N03\\clientId-v1\\preimagenes-registros-stop\\informe\\N03\\clientId-v1\\INFORME.md"
+  },
+  {
+    "path": "indice/tareas/N03.md",
+    "before": "bd7b2ad25d7ac94715bd0ad9c948b3cbac7f54a52e67e118bd18d72089743e6a",
+    "after": "0a7659e61adda93005837f30f29673206f6ea7764545d74b6de4f1a65286a817",
+    "preimage": "informe\\N03\\clientId-v1\\preimagenes-registros-stop\\indice\\tareas\\N03.md"
+  },
+  {
+    "path": "indice/README.md",
+    "before": "48e1c26cac8800fb9722de09f6e9f717e986bee4325a93548451d09b8ce4f48f",
+    "after": "d10455b5ba581866519c682ee127eed1ba666b1724176b69df8b6b4cbab28e84",
+    "preimage": "informe\\N03\\clientId-v1\\preimagenes-registros-stop\\indice\\README.md"
+  },
+  {
+    "path": "indice/PENDIENTES.md",
+    "before": "43f355a10bd881209c54de43f0d1aab9bbc08c0a425bf64d1e3cd589f7e3bab2",
+    "after": "25d3181b1674b24e082eff4f08b65930c9417c4f2013081e0c2ca6c15a15d1ac",
+    "preimage": "informe\\N03\\clientId-v1\\preimagenes-registros-stop\\indice\\PENDIENTES.md"
+  },
+  {
+    "path": "indice/CALENDARIO.md",
+    "before": "b85eae21fa2e64f59aab0983b016a415804cde294d098107ef12e9f2c29e2f36",
+    "after": "98b6ff0c44e735a48300da85ed9574f96ab673a05dfa00a0725b137ef2b98a71",
+    "preimage": "informe\\N03\\clientId-v1\\preimagenes-registros-stop\\indice\\CALENDARIO.md"
+  }
+]

@@ -1,0 +1,3 @@
+{"name":"server arranque real","valid":false,"evidence":{}}
+{"name":"api arranque real","valid":false,"evidence":{}}
+{"passed":0,"failed":2}

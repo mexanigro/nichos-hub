@@ -1,0 +1,42 @@
+[
+  {
+    "file": "PROPUESTA.md",
+    "sha256": "d0c3336de0c460ec46f69e5db54666e9a62f97c1010071b80a34317c3b0d5654"
+  },
+  {
+    "file": "DECISION-APROBADA.md",
+    "sha256": "b1b46775048d15f7030f2891ac77d2990d7cc93c262cdc1b7f3f87c996cad51a"
+  },
+  {
+    "file": "FREEZE.md",
+    "sha256": "31d34e9934671d3bba248d26055dce408e123036cc97324c19f17abcef409a09"
+  },
+  {
+    "file": "aceptacion-unidad.cjs",
+    "sha256": "e4cf2d2c77a71f33f89824bc8aeeaaff8e5375a6b602e2b08f91512237731863"
+  },
+  {
+    "file": "runner.mjs",
+    "sha256": "b3070f99e359668e96834e458e0b318b30ce08595cee750f762666688ff4df94"
+  },
+  {
+    "file": "fixture.mjs",
+    "sha256": "36dbeb77a6616c223cde1844747c2e12116e250432b71226b354d5d7bff4ec52"
+  },
+  {
+    "file": "preload-l05.mjs",
+    "sha256": "f4950c4cbdd9e25436a06ad2875bc2cdd12b44b3c6d5f24af90cd35f6ebff7ea"
+  },
+  {
+    "file": "firebase-hooks.mjs",
+    "sha256": "0c471aab6c8df8a2f7531cd20e3e62028e1b049be0c3979115dd1d633170008e"
+  },
+  {
+    "file": "conservar.cjs",
+    "sha256": "d345571624f4e523c13163bbf9caeadc2dc455ca66c46c134491642f0cb4bd19"
+  },
+  {
+    "file": "tsconfig.json",
+    "sha256": "f410b09f4d1312746b50aff378ee37d73c59bd4baa580ec0eeec607c0d9a8bb7"
+  }
+]

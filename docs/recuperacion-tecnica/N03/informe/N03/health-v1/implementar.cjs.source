@@ -1,0 +1,21 @@
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const repo='C:/Users/liama/Desktop/Nichos/Barber-shop-template-main';
+for(const name of ['server.ts','api/index.ts']) {
+ const file=path.join(repo,name);let s=fs.readFileSync(file,'utf8');assert.equal(s,fs.readFileSync(path.join(__dirname,'preimagenes',name.replaceAll('/','__')),'utf8'));
+ s=`import { installRuntimeHealth } from "${name==='server.ts'?'./':'../'}src/lib/api/runtime-health.js";\n`+s;
+ if(name==='server.ts'){
+ s=s.replace(/  \/\/ M-3 FIX: Health check no longer exposes clientId\.\r?\n  app.get\("\/api\/health",[\s\S]*?\r?\n  \}\);\r?\n/,'');
+ s=s.replace('  registerExpressRoutes(app, PORT);','  const health = installRuntimeHealth(app, CLIENT_ID, getAdminDb);\n  try {\n  registerExpressRoutes(app, PORT);');
+ s=s.replace('  app.listen(PORT, "0.0.0.0", () => {','    logStartupStatus();\n    health.complete();\n  } catch {\n    health.fail();\n    console.error("[Bootstrap] Server initialization failed");\n  }\n\n  app.listen(PORT, "0.0.0.0", () => {');
+ s=s.replace('    logStartupStatus();\r\n  });','  });');
+ }else{
+ s=s.replace('    { key: process.env.GEMINI_API_KEY,              label: "GEMINI_API_KEY",       feature: "AI chat & style consultation" },\r\n','');
+ s=s.replace('  const optional = [','  const optional = [\n    { key: process.env.GEMINI_API_KEY, label: "GEMINI_API_KEY", feature: "AI chat & style consultation" },');
+ s=s.replace(/  \/\/ Health check — registered BEFORE enforceClientActive[\s\S]*?  app.get\("\/api\/health",[\s\S]*?\r?\n  \}\);\r?\n/,'');
+ const start=s.indexOf('  async function loadAdminFirestore()');const end=s.indexOf('\n  // Rutas HTTP de stock',start);assert(start>0&&end>start);const loader=s.slice(start,end).trimEnd();s=s.slice(0,start)+s.slice(end);s=s.replace('function registerExpressRoutes(app: Express, port: number): void {',loader.split('\n').map(l=>l.startsWith('  ')?l.slice(2):l).join('\n')+'\n\nfunction registerExpressRoutes(app: Express, port: number): void {');
+ const begin=s.lastIndexOf('const app = express();');const finish=s.indexOf('export default function handler',begin);assert(begin>0&&finish>begin);s=s.slice(0,begin)+`const app = express();\nconst health = installRuntimeHealth(app, CLIENT_ID, async () => (await loadAdminFirestore())?.db ?? null);\ntry {\n  registerExpressRoutes(app, 3000);\n  logStartupStatus();\n  health.complete();\n} catch {\n  health.fail();\n  console.error("[Bootstrap] API initialization failed");\n}\n\n`+s.slice(finish);
+ }
+ fs.writeFileSync(file,s);
+ fs.copyFileSync(file,path.join(__dirname,'copia',name));
+}
+fs.copyFileSync(path.join(repo,'src/lib/api/runtime-health.ts'),path.join(__dirname,'copia/src/lib/api/runtime-health.ts'));

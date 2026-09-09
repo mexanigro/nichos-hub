@@ -1,0 +1,5 @@
+# N03 clientId-v1 — implementación autorizada, STOP P0
+
+Liam aprobó los dos selectores C→N→V con trim previo y documentación pertinente. Se preparó arnés HTTP aislado reutilizando D05, sin producto. Primer fallo ENOENT de archivo inexistente en copiaD05; única corrección y copia333 verificada. Preflight Docker falló125 porque /app readonly no contiene punto node_modules. Contenedor creado no arrancó,Pid0 y eliminado. Detector obliga detener; no encadenar otro intento.
+
+[Retoma exacta](../informe/N03/clientId-v1/STOP-P0.md): crear directorio vacío en copia aislada, sin aflojar readonly/network=none; verificar arnés y nueva corrida cuando Liam indique retomar. Política/budget vigentes, no reconfirmarlos. Baseline/refutación/freeze pendientes;0/4 gates. Revisión interna Harvey sólo lectura precisó baseline comparable y permisos/config incompleta, sin pruebas nuevas atribuibles.333 fuentes y13 pertinentes conservadas; registros/preimágenes preservados. N03 en curso;consumo76%/80% TOTAL,sin resets. Sin remoto,instalaciones,producto,.env,commit,push,deploy. Prestaciones por tenant antes de despliegue siguen pendientes.

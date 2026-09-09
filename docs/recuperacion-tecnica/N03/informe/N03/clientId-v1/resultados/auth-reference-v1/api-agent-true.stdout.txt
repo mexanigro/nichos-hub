@@ -1,0 +1,8 @@
+
+[Template Setup] ─── Service Configuration Status ───
+  ✓  [REQUIRED] FIREBASE_PROJECT_ID                  → Firestore access (tenant config, kill-switch)
+  ✓  [REQUIRED] CLIENT_ID                            → Tenant scoping
+  ✓  [optional] EMAIL_PROVIDER_API_KEY               → Email notifications (Resend)
+  ✓  [optional] BUSINESS_OWNER_EMAIL                 → Notification recipient
+[Template Setup] All required integrations configured.
+

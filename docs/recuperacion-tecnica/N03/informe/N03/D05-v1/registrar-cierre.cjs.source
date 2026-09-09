@@ -1,0 +1,41 @@
+const fs=require('fs'),path=require('path'),crypto=require('crypto');const d=__dirname,r=path.resolve(d,'../../..');
+const audit=JSON.parse(fs.readFileSync(path.join(d,'AUDITORIA-FINAL-r2.json'),'utf8'));if(!audit.valid)throw Error('audit RED');
+const readJson=f=>JSON.parse(fs.readFileSync(f,'utf8').replace(/^\uFEFF/,''));for(const f of ['TIPOS-P1-r2-ESTADO.json','PARIDAD-ESTADO.json'])if(readJson(path.join(d,'resultados',f)).exit!==0)throw Error(f);
+const pre=path.join(d,'preimagenes','cierre-01');fs.mkdirSync(pre);const custody=[];
+function save(file,text){if(fs.existsSync(file)){const rel=path.relative(r,file);const dest=path.join(pre,rel);fs.mkdirSync(path.dirname(dest),{recursive:true});const bytes=fs.readFileSync(file);fs.writeFileSync(dest,bytes);custody.push({path:rel,bytes:bytes.length,sha256:crypto.createHash('sha256').update(bytes).digest('hex')});}fs.writeFileSync(file,text);}
+const report=`# N03 D05 — GREEN local, 4/4 gates
+
+Política aprobada por Liam en esta tarea: AI_ENABLED y AGENT_ENABLED independientes, administrados exclusivamente en el entorno servidor del tenant. Sólo true exacto habilita. Ausencia/false/valor inválido deniega aunque haya credenciales; navegador, petición, preferencias públicas y canales no autorizan. La base nueva mantiene ambos deshabilitados. [Contrato congelado](FREEZE.md), [huellas](CONTRATO-CONGELADO.json), [revisión y procedencia](REVISION-FINAL.md).
+
+## Resultado y gates
+
+P0: reconocimiento previo reutilizado, política aprobada, contrato ejecutable RED, refutación incorporada y freeze antes de producto. P1: seis archivos, controles y conexiones mínimos, tipos0. P2: contrato222/222, observador y mutación sensibles. P3: salud21/21, paridad3/3, auditoría13/13, revisión y registros. Sin BLOCKERS locales. N03 completa sigue en curso.
+
+Permisos compartidos protegen analyze/chat/action/upload y salidas al agente sin desplazar auth, origen, cuota ni tenant. Sin agente, los cinco avisos base examinados usan email antes de cache/preferencias. Con agente habilitado se preservan canales anteriores. El helper CRM transmite token y el email existente; cancelación/reprogramación conservan ese dato. Notify-booking local admite serviceId del documento como respaldo del nombre, conservando destinatario y control tenant persistidos. Book-v1, support-v1, stock-v1 y health-v1/SP-H01 intactas.
+
+## Acceptance y sensibilidad
+
+- [Server94/94](resultados/green-server-r1/RESULTADOS.json) y [API94/94](resultados/green-api-r1/RESULTADOS.json): siete escenarios por runtime; sin claves, claves sin permisos, false, inválidos, IA sola, agente solo e incompletos. Arranque completo, salidas simuladas contadas, directo/visitante, auth401, tenant403, origen403, límite429 antes del proveedor, contacto/reserva/CRM y observador. Configuración incompleta produce503 IA y agentNotified=false; no éxito ficticio del servicio.
+- [Consumidores34/34](resultados/green-base-r1/RESULTADOS.json): reserva/commit simulado/documento real del handler, notificación posterior, email al dueño/cliente, helper CRM transp compilado→HTTP→runtime real, evento/destinatario de booked/cancelled/rescheduled, callers por AST y walk-in sin email. [Auditoría13/13](AUDITORIA-FINAL-r2.json) añade persistencia controlada de contacto, ausencia/fallo de token sin solicitud y conservación física.
+- [Mutación](resultados/mutacion-permisos/RESULTADOS.json): sólo predicado de permisos desarmado en copia aislada;11PASS/18FAIL esperados. Ambos servicios consumen sin permiso y el contrato lo detecta en ambos runtimes; auth/tenant/origen/cuota siguen PASS. Producto no mutado.
+- [Regresión salud21/21](resultados/health-protecciones/RESULTADOS.json): límite configurable antes de sonda, HEAD comparte cuota, exceso sin nueva carga/lectura, live sin cuota/DB. Bootstrap incompleto/fallido y demás evidencia de health conservados por huella/cuerpos AST sin repetir lo vigente.
+- [Tipos0](resultados/TIPOS-P1-r2-ESTADO.json), incluye Vite desde el inicio sin relajar opciones; [paridad3/3](resultados/PARIDAD.txt), ninguna excepción nueva. No son la suite completa de paridad.
+
+Cada corrida conserva stdout/stderr, exit, timeout y disposición. Todos los positivos finales exit0 sin timeout; mutación exit1 esperado. Docker con imagen local fija, network none, filesystem readonly, entorno vacío y datos/credenciales sintéticos. Cero operaciones remotas reales. Los mocks no certifican transacciones/persistencia remota, entrega real ni navegador completo.
+
+## Rojo conservado y trazabilidad
+
+[Rojo previo](resultados/d05-sondeo-origen/RESULTADOS.json)13PASS/4FAIL prueba intentosGemini con claves. Matriz inicial96PASS72FAIL y base inicial14PASS6FAIL incorporaron agente y desconexiones reales. Base refinada19PASS15FAIL conserva emails/argumentos por evento antes de producto. La corrida con Content-Type duplicado es instrumento inválido, conservado y corregido antes del freeze. Auditoría inicial confundía lecturas generales de config con preferencias; r2 verifica orden AST y no altera el contrato ni producto. [Conservación](CONSERVACION-P3.json), [332 fuentes finales](FUENTES-FINALES-r2.json), [preimágenes](PREIMAGENES-PRODUCTO.json). HEAD46345f4505756599d69ae6cbc9d588271aba6b65 sin cambio.
+
+## Condición de despliegue y continuidad
+
+Antes de desplegar, presentar qué tenants y servicios deben conservar prestaciones, evidencia y decisión de Liam sobre excepciones. No inferir compromisos de claves o planes históricos; no se clasificaron ni modificaron entornos reales. Walk-ins sin email mantienen operación; no se inventan destinatarios ni se promete notificación al cliente por otro canal. No se añadieron canales comerciales, precios, facturación o provisioning.
+
+Entrega D05 local cerrada; N03 conserva sus otras obligaciones y validaciones de etapas siguientes. Consumo observado72%, techo TOTAL74% para TODO N03, sin resets ni nuevo pedido de presupuesto. Sin instalaciones, remoto, commit, push o deploy. La preparación histórica se conserva en preimágenes/cierre-01.
+`;
+save(path.join(d,'INFORME.md'),report);
+save(path.join(d,'PLAN.md'),'# N03 D05 — plan ejecutado\n\nEstado vigente: GREEN local,4/4. Política autorizada, alcance finito y aceptación congelada en [FREEZE.md](FREEZE.md); resultados en [INFORME.md](INFORME.md). El plan propuesto anterior permanece en preimágenes/cierre-01. N03 sigue en curso y conserva condición de despliegue y techo TOTAL74%, sin resets.\n');
+for(const rel of ['indice/tareas/N03.md','indice/README.md','indice/PENDIENTES.md']){const file=path.join(r,rel);let text=fs.readFileSync(file,'utf8');const link=rel.includes('/tareas/')?'../../informe/N03/D05-v1/INFORME.md':'../informe/N03/D05-v1/INFORME.md';const current='**N03 D05 cerrada localmente — GREEN, 4/4.** Permisos servidor AI_ENABLED/AGENT_ENABLED independientes, sólo true; claves o datos del visitante no habilitan. Contrato222/222, salud21/21, tipos0, paridad3/3 y mutación18fallos esperados. [Informe, evidencia y límites]('+link+'). Antes de despliegue: presentar tenants/servicios a conservar, evidencia y decisión de Liam sobre excepciones; sin inferir compromisos. N03 sigue en curso; entregas previas conservadas. Techo TOTAL74% para TODO N03, observado72%, sin resets. Los estados anteriores siguientes son históricos.\n';if(text.includes('**N03 D05 en preparación'))text=text.replace(/\*\*N03 D05 en preparación[^\r\n]*/,current);else text=text.replace(/^(#[^\r\n]*\r?\n)/,'$1\n'+current);save(file,text);}
+const history=path.join(r,'historial/2026-09-09-N03-D05-cierre-local.md');if(fs.existsSync(history))throw Error('history exists');fs.writeFileSync(history,'# N03 D05 — cierre exclusivamente local\n\n'+report.slice(report.indexOf('Política aprobada'))+'\n[Informe canónico](../informe/N03/D05-v1/INFORME.md).\n');
+fs.writeFileSync(path.join(d,'CUSTODIA-CIERRE.json'),JSON.stringify(custody,null,2));
+console.log('Informe, plan, ficha, índice, pendientes e historial actualizados; D05 local GREEN, N03 en curso.');

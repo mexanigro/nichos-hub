@@ -1,0 +1,19 @@
+{
+  "date": "2026-09-09T17:49:45.5796871Z",
+  "redEvidence": "SONDEO.json conservado",
+  "scope": [
+    "src/services/tenant.ts",
+    "src/main.tsx",
+    "src/config/locales/en.ts",
+    "src/config/locales/he.ts",
+    "src/config/locales/ru.ts",
+    "src/config/locales/ar.ts"
+  ],
+  "harness": "E506C486165F61B4ED74BC12CF7BCB4E05A499A8FBE8B87DA5540F69DAB85BA3",
+  "contract": "2D25497EE35076F0F3ADA6F9631D6D8A52EAF02A54D65C16EFA15B11737B1EF4",
+  "fixture": "C0C233DC3AFDDC8CE92968B3BB06858A71CFD6959C99324AE1ADBBAE33EEE601",
+  "approvedBy": "Liam, orden actual",
+  "blockers": 0,
+  "preflight": "PREFLIGHT-freeze.json",
+  "gate": "P0"
+}

@@ -1,0 +1,38 @@
+const fs=require('node:fs'),p=require('node:path'),c=require('node:crypto');
+const d=__dirname,root='C:/Users/liama/Desktop/Nichos/Barber-shop-template-main';
+const sha=b=>c.createHash('sha256').update(b).digest('hex');
+const json=rel=>JSON.parse(fs.readFileSync(p.join(d,rel),'utf8').replace(/^\uFEFF/,''));
+const checks=[];const check=(name,pass)=>{checks.push({name,pass});if(!pass)throw Error(name)};
+const save=(file,value)=>fs.writeFileSync(p.join(d,file),JSON.stringify(value,null,2),{flag:'wx'});
+const frozen=json('FREEZE.json');
+check('frozen-contract',sha(fs.readFileSync(p.join(d,'CONTRATO-IMPLEMENTACION.md')))===frozen.contract.toLowerCase());
+check('frozen-http',sha(fs.readFileSync(p.join(d,'runner-http.mjs')))===frozen.http.toLowerCase());
+check('frozen-functions',sha(fs.readFileSync(p.join(d,'control-funciones.cjs')))===frozen.functions.toLowerCase());
+const sourceScope=['api/index.ts','src/lib/notify-agentkit.ts'];
+const oldLine='  const clientId = (process.env.CLIENT_ID || process.env.VITE_CLIENT_ID || "").trim();';
+const newLine='  const clientId =\n    process.env.CLIENT_ID?.trim() ||\n    process.env.NEXT_PUBLIC_CLIENT_ID?.trim() ||\n    process.env.VITE_CLIENT_ID?.trim() ||\n    "";';
+for(const file of sourceScope){
+ const old=fs.readFileSync(p.join(d,'preimagenes-producto-p1',file),'utf8').replace(/\r\n/g,'\n');
+ const current=fs.readFileSync(p.join(root,file),'utf8').replace(/\r\n/g,'\n');
+ check('single-selector-only:'+file,old.split(oldLine).length===2&&old.replace(oldLine,newLine)===current);
+ check('tested-copy:'+file,sha(fs.readFileSync(p.join(root,file)))===sha(fs.readFileSync(p.join(d,'copia',file))));
+ check('mutant-is-preimage:'+file,sha(fs.readFileSync(p.join(d,'mutacion',file)))===sha(fs.readFileSync(p.join(d,'preimagenes-producto-p1',file))));
+}
+const previous=json('../L05-browser-v1/FUENTES-FINALES.json');let preserved=0;
+const final=previous.map(row=>{const current=sha(fs.readFileSync(p.join(root,row.path)));if(!sourceScope.includes(row.path)){check('preserved:'+row.path,current===row.sha256);preserved++;}return {path:row.path,sha256:current};});
+for(const row of json('PREIMAGENES-P1.json'))check('preimage:'+row.path,sha(fs.readFileSync(p.join(d,'preimagenes-producto-p1',row.path)))===row.sha256.toLowerCase());
+for(const row of json('../lint-v1/FUENTES-FINALES.json'))check('hub-preserved:'+row.path,sha(fs.readFileSync(p.join('C:/Users/liama/Desktop/Nichos-hub',row.path)))===row.sha256);
+const functions=json('FUNCIONES-green-p2.json');check('functions-green',functions.failed===0);
+const http=json('resultados/green-p2/RESULTADOS.json');check('http-green',http.every(x=>x.valid));
+const mutation=json('resultados/mutation-p3/RESULTADOS.json');
+check('mutation-effective',mutation.some(x=>!x.valid)&&['server','api'].every(runtime=>['only-next','spaces','conflict'].every(name=>mutation.some(x=>x.name.startsWith(runtime+'-'+name+':')&&!x.valid))));
+check('mutation-startup-not-instrument',mutation.filter(x=>x.name.endsWith(':startup')).length===8&&mutation.filter(x=>x.name.endsWith(':startup')).every(x=>x.valid)&&!mutation.some(x=>x.name.endsWith(':instrument')));
+for(const name of ['preflight-r2','baseline-permissions','green-p2','parity-p3-r2','mutation-p3']){
+ const state=json('resultados/'+name+'/ESTADO.json');check('docker:'+name,state.exit===(name==='mutation-p3'?1:0)&&state.state.ExitCode===state.exit&&!state.timeout);
+ check('container-removed:'+name,json('resultados/'+name+'/DISPOSICION.json').eliminado===true);
+}
+check('types',json('TIPOS.json').exit===0);check('parity',json('resultados/parity-p3-r2/PARITY.json').exit===0);
+save('FUENTES-FINALES.json',final);
+save('CONSERVACION-FINAL.json',{valid:true,checks,preservedTemplate:preserved,totalTemplate:final.length,changed:sourceScope,docs:['README.md','.env.example']});
+save('ACEPTACION-FINAL.json',{result:'GREEN',gates:4,total:4,functions:functions.passed,http:http.length,parity:19,types:0,mutationExpectedFailures:mutation.filter(x=>!x.valid).length,conservationChecks:checks.length,preservedTemplate:preserved,usage:77,totalCeiling:80});
+console.log(JSON.stringify({result:'GREEN',functions:functions.passed,http:http.length,mutationFailures:mutation.filter(x=>!x.valid).length,conservation:checks.length,preserved}));

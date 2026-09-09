@@ -1,0 +1,2 @@
+# Nota del sello final
+El primer sello auxiliar (resultados/CIERRE.txt) falló en su lector AST: intentó leer el primer argumento de una llamada get() sin argumentos. No fue un fallo de producto ni del Acceptance Contract. La traza aportó la causa exacta; sellar-r2.cjs añade sólo la comprobación de existencia del argumento. Una corrección, sin repetición ciega: resultados/CIERRE-r2.txt y SELLO-CIERRE.json confirman GREEN y núcleo readiness conservado. sellar.cjs y su error se conservan; no se cambió producto ni el contrato congelado. No invalida las corridas207/207.

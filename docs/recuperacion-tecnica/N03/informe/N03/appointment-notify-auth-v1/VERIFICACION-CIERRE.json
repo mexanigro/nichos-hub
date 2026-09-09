@@ -1,0 +1,11 @@
+{
+  "result": "GREEN",
+  "resets": 0,
+  "records": 5,
+  "usage": 78,
+  "links": 13,
+  "gates": "4/4",
+  "apiFinalVerified": true,
+  "closureVerified": true,
+  "totalCapN03": 80
+}

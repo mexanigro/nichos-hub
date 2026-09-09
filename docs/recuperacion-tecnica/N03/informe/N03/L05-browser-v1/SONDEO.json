@@ -1,0 +1,564 @@
+{
+  "kind": "preparation-only",
+  "cases": 20,
+  "results": [
+    {
+      "scenario": {
+        "name": "active",
+        "status": "active"
+      },
+      "result": {
+        "mounts": 1,
+        "appInRender": true,
+        "settled": true,
+        "error": null,
+        "reads": [
+          {
+            "collection": "clients",
+            "id": "tenant-control"
+          },
+          {
+            "collection": "config",
+            "id": "tenant-control"
+          }
+        ],
+        "overlays": 1,
+        "blockedView": false
+      }
+    },
+    {
+      "scenario": {
+        "name": "trial",
+        "status": "trial"
+      },
+      "result": {
+        "mounts": 1,
+        "appInRender": true,
+        "settled": true,
+        "error": null,
+        "reads": [
+          {
+            "collection": "clients",
+            "id": "tenant-control"
+          },
+          {
+            "collection": "config",
+            "id": "tenant-control"
+          }
+        ],
+        "overlays": 1,
+        "blockedView": false
+      }
+    },
+    {
+      "scenario": {
+        "name": "maintenance",
+        "status": "maintenance"
+      },
+      "result": {
+        "mounts": 1,
+        "appInRender": true,
+        "settled": true,
+        "error": null,
+        "reads": [
+          {
+            "collection": "clients",
+            "id": "tenant-control"
+          },
+          {
+            "collection": "config",
+            "id": "tenant-control"
+          }
+        ],
+        "overlays": 1,
+        "blockedView": false
+      }
+    },
+    {
+      "scenario": {
+        "name": "suspended",
+        "status": "suspended"
+      },
+      "result": {
+        "mounts": 0,
+        "appInRender": false,
+        "settled": true,
+        "error": null,
+        "reads": [
+          {
+            "collection": "clients",
+            "id": "tenant-control"
+          },
+          {
+            "collection": "config",
+            "id": "tenant-control"
+          }
+        ],
+        "overlays": 1,
+        "blockedView": true
+      }
+    },
+    {
+      "scenario": {
+        "name": "archived",
+        "status": "archived"
+      },
+      "result": {
+        "mounts": 0,
+        "appInRender": false,
+        "settled": true,
+        "error": null,
+        "reads": [
+          {
+            "collection": "clients",
+            "id": "tenant-control"
+          },
+          {
+            "collection": "config",
+            "id": "tenant-control"
+          }
+        ],
+        "overlays": 1,
+        "blockedView": true
+      }
+    },
+    {
+      "scenario": {
+        "name": "missing",
+        "missing": true
+      },
+      "result": {
+        "mounts": 1,
+        "appInRender": true,
+        "settled": true,
+        "error": null,
+        "reads": [
+          {
+            "collection": "clients",
+            "id": "tenant-control"
+          },
+          {
+            "collection": "config",
+            "id": "tenant-control"
+          }
+        ],
+        "overlays": 1,
+        "blockedView": false
+      }
+    },
+    {
+      "scenario": {
+        "name": "status-absent"
+      },
+      "result": {
+        "mounts": 1,
+        "appInRender": true,
+        "settled": true,
+        "error": null,
+        "reads": [
+          {
+            "collection": "clients",
+            "id": "tenant-control"
+          },
+          {
+            "collection": "config",
+            "id": "tenant-control"
+          }
+        ],
+        "overlays": 1,
+        "blockedView": false
+      }
+    },
+    {
+      "scenario": {
+        "name": "status-null",
+        "status": null
+      },
+      "result": {
+        "mounts": 1,
+        "appInRender": true,
+        "settled": true,
+        "error": null,
+        "reads": [
+          {
+            "collection": "clients",
+            "id": "tenant-control"
+          },
+          {
+            "collection": "config",
+            "id": "tenant-control"
+          }
+        ],
+        "overlays": 1,
+        "blockedView": false
+      }
+    },
+    {
+      "scenario": {
+        "name": "status-empty",
+        "status": ""
+      },
+      "result": {
+        "mounts": 1,
+        "appInRender": true,
+        "settled": true,
+        "error": null,
+        "reads": [
+          {
+            "collection": "clients",
+            "id": "tenant-control"
+          },
+          {
+            "collection": "config",
+            "id": "tenant-control"
+          }
+        ],
+        "overlays": 1,
+        "blockedView": false
+      }
+    },
+    {
+      "scenario": {
+        "name": "status-invalid",
+        "status": 42
+      },
+      "result": {
+        "mounts": 1,
+        "appInRender": true,
+        "settled": true,
+        "error": null,
+        "reads": [
+          {
+            "collection": "clients",
+            "id": "tenant-control"
+          },
+          {
+            "collection": "config",
+            "id": "tenant-control"
+          }
+        ],
+        "overlays": 1,
+        "blockedView": false
+      }
+    },
+    {
+      "scenario": {
+        "name": "status-unknown",
+        "status": "unknown"
+      },
+      "result": {
+        "mounts": 1,
+        "appInRender": true,
+        "settled": true,
+        "error": null,
+        "reads": [
+          {
+            "collection": "clients",
+            "id": "tenant-control"
+          },
+          {
+            "collection": "config",
+            "id": "tenant-control"
+          }
+        ],
+        "overlays": 1,
+        "blockedView": false
+      }
+    },
+    {
+      "scenario": {
+        "name": "permission-denied",
+        "statusError": "permission-denied"
+      },
+      "result": {
+        "mounts": 1,
+        "appInRender": true,
+        "settled": true,
+        "error": null,
+        "reads": [
+          {
+            "collection": "clients",
+            "id": "tenant-control"
+          },
+          {
+            "collection": "config",
+            "id": "tenant-control"
+          }
+        ],
+        "overlays": 1,
+        "blockedView": false
+      }
+    },
+    {
+      "scenario": {
+        "name": "read-failed",
+        "statusError": "unavailable"
+      },
+      "result": {
+        "mounts": 1,
+        "appInRender": true,
+        "settled": true,
+        "error": null,
+        "reads": [
+          {
+            "collection": "clients",
+            "id": "tenant-control"
+          },
+          {
+            "collection": "config",
+            "id": "tenant-control"
+          }
+        ],
+        "overlays": 1,
+        "blockedView": false
+      }
+    },
+    {
+      "scenario": {
+        "name": "static-no-firebase",
+        "noFirebase": true
+      },
+      "result": {
+        "mounts": 1,
+        "appInRender": true,
+        "settled": true,
+        "error": null,
+        "reads": [],
+        "overlays": 0,
+        "blockedView": false
+      }
+    },
+    {
+      "scenario": {
+        "name": "config-error-active",
+        "status": "active",
+        "configError": true
+      },
+      "result": {
+        "mounts": 1,
+        "appInRender": true,
+        "settled": true,
+        "error": null,
+        "reads": [
+          {
+            "collection": "clients",
+            "id": "tenant-control"
+          },
+          {
+            "collection": "config",
+            "id": "tenant-control"
+          }
+        ],
+        "overlays": 0,
+        "blockedView": false
+      }
+    },
+    {
+      "scenario": {
+        "name": "config-error-suspended",
+        "status": "suspended",
+        "configError": true
+      },
+      "result": {
+        "mounts": 0,
+        "appInRender": false,
+        "settled": true,
+        "error": null,
+        "reads": [
+          {
+            "collection": "clients",
+            "id": "tenant-control"
+          },
+          {
+            "collection": "config",
+            "id": "tenant-control"
+          }
+        ],
+        "overlays": 0,
+        "blockedView": true
+      }
+    },
+    {
+      "scenario": {
+        "name": "config-error-missing",
+        "missing": true,
+        "configError": true
+      },
+      "result": {
+        "mounts": 1,
+        "appInRender": true,
+        "settled": true,
+        "error": null,
+        "reads": [
+          {
+            "collection": "clients",
+            "id": "tenant-control"
+          },
+          {
+            "collection": "config",
+            "id": "tenant-control"
+          }
+        ],
+        "overlays": 0,
+        "blockedView": false
+      }
+    },
+    {
+      "scenario": {
+        "name": "status-pending",
+        "status": "active",
+        "pendingStatus": true
+      },
+      "observationWindowMs": 75,
+      "pending": {
+        "mounts": 0,
+        "appInRender": false,
+        "settled": false,
+        "error": null,
+        "reads": [
+          {
+            "collection": "clients",
+            "id": "tenant-control"
+          },
+          {
+            "collection": "config",
+            "id": "tenant-control"
+          }
+        ],
+        "overlays": 0,
+        "blockedView": false
+      },
+      "afterRelease": {
+        "mounts": 1,
+        "appInRender": true,
+        "settled": true,
+        "error": null,
+        "reads": [
+          {
+            "collection": "clients",
+            "id": "tenant-control"
+          },
+          {
+            "collection": "config",
+            "id": "tenant-control"
+          }
+        ],
+        "overlays": 1,
+        "blockedView": false
+      }
+    },
+    {
+      "scenario": {
+        "name": "config-pending-active",
+        "status": "active",
+        "pendingConfig": true
+      },
+      "observationWindowMs": 75,
+      "pending": {
+        "mounts": 0,
+        "appInRender": false,
+        "settled": false,
+        "error": null,
+        "reads": [
+          {
+            "collection": "clients",
+            "id": "tenant-control"
+          },
+          {
+            "collection": "config",
+            "id": "tenant-control"
+          }
+        ],
+        "overlays": 0,
+        "blockedView": false
+      },
+      "afterRelease": {
+        "mounts": 1,
+        "appInRender": true,
+        "settled": true,
+        "error": null,
+        "reads": [
+          {
+            "collection": "clients",
+            "id": "tenant-control"
+          },
+          {
+            "collection": "config",
+            "id": "tenant-control"
+          }
+        ],
+        "overlays": 1,
+        "blockedView": false
+      }
+    },
+    {
+      "scenario": {
+        "name": "config-pending-suspended",
+        "status": "suspended",
+        "pendingConfig": true
+      },
+      "observationWindowMs": 75,
+      "pending": {
+        "mounts": 0,
+        "appInRender": false,
+        "settled": false,
+        "error": null,
+        "reads": [
+          {
+            "collection": "clients",
+            "id": "tenant-control"
+          },
+          {
+            "collection": "config",
+            "id": "tenant-control"
+          }
+        ],
+        "overlays": 0,
+        "blockedView": false
+      },
+      "afterRelease": {
+        "mounts": 0,
+        "appInRender": false,
+        "settled": true,
+        "error": null,
+        "reads": [
+          {
+            "collection": "clients",
+            "id": "tenant-control"
+          },
+          {
+            "collection": "config",
+            "id": "tenant-control"
+          }
+        ],
+        "overlays": 1,
+        "blockedView": true
+      }
+    }
+  ],
+  "sensitivity": {
+    "source": "copia compilada en memoria de main.tsx",
+    "mainOriginal": "4883b83ea30830dc5e0f6961d711e6f84fb6cacdbbaa52c6a25790801dee8ec3",
+    "mutantCompiled": "067f6a31be341a2f3ef44384610ada0ab6d2ede41ba4c88c74f0afbc2df2b14c",
+    "mounts": 1,
+    "appInRender": true,
+    "settled": true,
+    "error": null,
+    "reads": [
+      {
+        "collection": "clients",
+        "id": "tenant-control"
+      },
+      {
+        "collection": "config",
+        "id": "tenant-control"
+      }
+    ],
+    "overlays": 1,
+    "blockedView": false
+  },
+  "productChanged": false,
+  "realBrowser": false,
+  "realReactCommit": false,
+  "scope": "Ejecución del bootstrap real y llamada createRoot.render con App; DOM/React/imports externos simulados"
+}

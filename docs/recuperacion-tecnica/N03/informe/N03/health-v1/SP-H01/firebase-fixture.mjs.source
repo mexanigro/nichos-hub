@@ -1,0 +1,13 @@
+import fs from 'node:fs';
+function mode() { return fs.readFileSync(process.env.HEALTH_MODE_FILE, 'utf8').trim(); }
+const db = { collection(name) { if (name !== 'clients') throw Error('unexpected_collection'); return { doc(id) { if (id !== 'tenant-control') throw Error('unexpected_tenant'); return { async get() {
+ fs.appendFileSync(process.env.HEALTH_COUNT_FILE,'read\n'); const current = mode(); if (current === 'failed') throw Error('PRIVATE_SENTINEL_database');
+ if (current === 'pending') await new Promise(resolve => { const timer = setInterval(() => { if (mode() !== 'pending') { clearInterval(timer); resolve(); } }, 20); });
+ const state = mode(); return { exists: state !== 'missing', data: () => ({ status: state === 'blocked' ? 'suspended' : state === 'unknown' ? 'unrecognized' : ['trial','maintenance'].includes(state) ? state : 'active' }) };
+} }; } }; } };
+export function getApps() { return []; }
+export function cert() { return {}; }
+export function initializeApp() { return {}; }
+export function getFirestore() { fs.appendFileSync(process.env.HEALTH_COUNT_FILE,'loader\n'); if(mode()==='loader-failed')throw Error('PRIVATE_SENTINEL_loader'); return db; }
+export const FieldValue = { serverTimestamp: () => 0 };
+export const Timestamp = { now: () => 0 };

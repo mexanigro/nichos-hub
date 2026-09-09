@@ -1,0 +1,120 @@
+const { test } = require('node:test');
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const vm = require('node:vm');
+const repo = 'C:/Users/liama/Desktop/Nichos/Barber-shop-template-main';
+const ts = require(path.join(repo, 'node_modules/typescript/lib/typescript.js'));
+const express = require(path.join(repo, 'node_modules/express'));
+const compile = source => ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } }).outputText;
+function functions(source, names) {
+  const ast = ts.createSourceFile('source.ts', source, ts.ScriptTarget.Latest, true);
+  return ast.statements.filter(n => ts.isFunctionDeclaration(n) && names.includes(n.name?.text)).map(n => n.getText(ast)).join('\n');
+}
+function store(mode = 'ok') {
+  const committed = [], reads = [], queries = [];
+  let loads = 0, callbacks = 0;
+  const data = new Map([
+    ['stock_items/item', { clientId: 'tenant', name: 'Café', quantity: 10 }],
+    ['stock_items/foreign', { clientId: 'other', name: 'Ajeno', quantity: 100 }],
+    ['stock/tenant/items/legacy', { quantity: 3 }],
+    ['stock/tenant/items/foreign', { quantity: 50 }],
+  ]);
+  const list = Array.from({ length: 55 }, (_, i) => ({ id: `i${i}`, data: { clientId: 'tenant', name: i === 0 ? 'Café único' : `Crema corporal ${i}`, quantity: i } })).concat([{ id: 'foreign', data: { clientId: 'other', name: 'Secreto', quantity: 9 } }]);
+  function ref(p) {
+    return { path: p, doc(id = 'movement') { return ref(`${p}/${id}`); }, collection(name) { return ref(`${p}/${name}`); },
+      where(field, op, value) { queries.push({ p, field, op, value }); return { async get() {
+        if (mode === 'read-error') throw Error('read_failed');
+        const rows = list.filter(row => row.data[field] === value);
+        return { forEach(fn) { rows.forEach(row => fn({ id: row.id, data: () => row.data })); } };
+      } }; },
+    };
+  }
+  const db = { collection: ref, async runTransaction(callback) {
+    let result, pending;
+    const attempts = mode === 'retry' ? 2 : 1;
+    for (let attempt = 0; attempt < attempts; attempt++) {
+      callbacks++; pending = [];
+      result = await callback({
+        async get(r) { reads.push(r.path); if (mode === 'read-error') throw Error('read_failed');
+          let row = data.get(r.path); if (row && mode === 'retry' && attempt === 1) row = { ...row, quantity: 20 };
+          return { exists: !!row, data: () => row };
+        },
+        update(r, value) { pending.push({ method: 'update', path: r.path, value }); },
+        set(r, value) { pending.push({ method: 'set', path: r.path, value }); },
+      });
+    }
+    if (mode === 'commit-error') throw Error('commit_failed');
+    committed.push(...pending); return result;
+  } };
+  return { db, committed, reads, queries, callbacks: () => callbacks, loads: () => loads, async loadDb() { loads++; if (mode === 'load-error') throw Error('load_failed'); return mode === 'no-db' ? null : db; } };
+}
+function install(runtime, operation, mode = 'ok', tenant = 'tenant') {
+  const source = fs.readFileSync(path.join(repo, runtime), 'utf8');
+  const ast = ts.createSourceFile(runtime, source, ts.ScriptTarget.Latest, true);
+  const method = operation === 'add' ? 'post' : 'get', routePath = `/api/stock/${operation}`;
+  let route;
+  function visit(n) { if (ts.isCallExpression(n) && n.expression.getText(ast) === `app.${method}` && n.arguments[0]?.text === routePath) route = n.getText(ast); ts.forEachChild(n, visit); }
+  visit(ast); assert.ok(route, `${runtime}: falta ${method.toUpperCase()} ${routePath}`);
+  const s = store(mode); let middleware;
+  const timestamp = { now: () => ({ sentinel: 'timestamp' }) };
+  const context = { exports: {}, console: { log() {}, error() {} }, CLIENT_ID: tenant,
+    require: name => { assert.equal(name, 'firebase-admin/firestore'); return { Timestamp: timestamp }; },
+    requireAdminAuth: async (req, res) => { if (mode === 'denied') { res.status(401).json({ error: 'Unauthorized' }); return null; } if (mode === 'foreign-auth') { res.status(403).json({ error: 'Forbidden' }); return null; } return { email: 'owner@control.invalid' }; },
+    getAdminDb: s.loadDb, loadAdminFirestore: async () => { const db = await s.loadDb(); return db ? { db } : null; },
+    express, app: { [method](_p, ...handlers) { middleware = handlers; } },
+  };
+  vm.runInNewContext(compile(functions(fs.readFileSync(path.join(repo, 'src/lib/ai/stock-tools.ts'), 'utf8'), ['normaliseItemName', 'rowFromDoc', 'listStockItemsByClient', 'fuzzyMatchStock'])), context, { timeout: 1000 });
+  const shared = path.join(repo, 'src/lib/api/stock-handlers.ts');
+  if (fs.existsSync(shared)) {
+    let module = fs.readFileSync(shared, 'utf8');
+    if (process.env.STOCK_MUTATE === 'tenant') {
+      const needle = 'if (layout === "flat" && data.clientId !== deps.clientId)';
+      assert.ok(module.includes(needle), 'Mutación debe cambiar guard real');
+      module = module.replace(needle, 'if (false)');
+    }
+    vm.runInNewContext(compile(module), context, { timeout: 1000 });
+    Object.assign(context, context.exports);
+  }
+  vm.runInNewContext(compile(route), context, { timeout: 1000 });
+  return { ...s, middleware, handler: middleware.at(-1), source };
+}
+async function invoke(runtime, operation, mode = 'ok', body = { items: [{ itemId: 'item', quantity: 2 }], clientId: 'other' }, query = {}, tenant = 'tenant') {
+  const s = install(runtime, operation, mode, tenant);
+  const res = { code: 200, data: null, status(code) { this.code = code; return this; }, json(data) { this.data = JSON.parse(JSON.stringify(data)); return this; } };
+  await s.handler({ body, query }, res); return { ...s, res };
+}
+for (const runtime of ['server.ts', 'api/index.ts']) {
+  for (const op of ['add', 'items']) {
+    for (const [mode, status] of [['denied', 401], ['foreign-auth', 403]]) test(`${runtime} ${op} ${mode}: auth antes de DB`, async () => {
+      const r = await invoke(runtime, op, mode); assert.equal(r.res.code, status); assert.equal(r.loads(), 0); assert.equal(r.committed.length, 0);
+    });
+    test(`${runtime} ${op} tenant vacío`, async () => { const r = await invoke(runtime, op, 'ok', {}, {}, ''); assert.equal(r.res.code, 400); assert.equal(r.loads(), 0); });
+    for (const [mode, status] of [['no-db', 503], ['load-error', 500]]) test(`${runtime} ${op} ${mode}`, async () => { const r = await invoke(runtime, op, mode); assert.equal(r.res.code, status); assert.equal(r.committed.length, 0); });
+  }
+  test(`${runtime} add flat válido: campos, coerción y auditoría`, async () => {
+    const r = await invoke(runtime, 'add', 'ok', { clientId: 'other', items: [{ itemId: ' item ', quantity: '2.5', reason: 'r'.repeat(201), performedBy: 'other' }] });
+    assert.equal(r.res.code, 200); assert.equal(r.res.data.ok, true); assert.deepEqual(r.res.data.results, [{ itemId: 'item', ok: true, previousQuantity: 10, newQuantity: 12.5 }]);
+    assert.equal(r.committed.length, 2); assert.equal(r.committed[0].value.quantity, 12.5);
+    const m = r.committed[1]; assert.equal(m.path, 'stock_movements/movement'); assert.equal(m.value.clientId, 'tenant'); assert.equal(m.value.performedBy, 'owner@control.invalid'); assert.equal(m.value.reason.length, 200); assert.equal(m.value.type, 'add'); assert.equal(m.value.itemId, 'item'); assert.equal(m.value.quantity, 2.5); assert.equal(m.value.previousQuantity, 10); assert.equal(m.value.createdAt.sentinel, 'timestamp'); assert.equal(r.committed[0].value.updatedAt.sentinel, 'timestamp');
+  });
+  test(`${runtime} add legacy válido`, async () => { const r = await invoke(runtime, 'add', 'ok', { items: [{ itemId: 'legacy', quantity: 2 }] }); assert.equal(r.res.code, 200); assert.equal(r.committed[0].path, 'stock/tenant/items/legacy'); assert.equal(r.committed[1].path, 'stock/tenant/movements/movement'); assert.equal(r.committed[1].value.reason, 'manual add'); assert.ok(!('clientId' in r.committed[1].value)); });
+  test(`${runtime} add flat ajeno no fallback ni writes`, async () => { const r = await invoke(runtime, 'add', 'ok', { items: [{ itemId: 'foreign', quantity: 2 }] }); assert.equal(r.res.code, 207); assert.equal(r.res.data.results[0].error, 'forbidden'); assert.equal(r.committed.length, 0); assert.deepEqual(r.reads, ['stock_items/foreign']); });
+  for (const [name, body, status] of [ ['ausente', {}, 400], ['vacío', { items: [] }, 400], ['no array', { items: {} }, 400], ['límite', { items: Array(51).fill({ itemId: 'item', quantity: 1 }) }, 413], ['id', { items: [{ itemId: ' ', quantity: 1 }] }, 400], ['cero', { items: [{ itemId: 'item', quantity: 0 }] }, 400], ['negativo', { items: [{ itemId: 'item', quantity: -1 }] }, 400], ['nan', { items: [{ itemId: 'item', quantity: 'bad' }] }, 400], ['infinito', { items: [{ itemId: 'item', quantity: Infinity }] }, 400] ]) test(`${runtime} add inválido ${name}`, async () => { const r = await invoke(runtime, 'add', 'ok', body); assert.equal(r.res.code, status); assert.equal(r.loads(), 0); });
+  for (const mode of ['read-error', 'commit-error']) test(`${runtime} add ${mode}: una fila fallida sin éxito`, async () => { const r = await invoke(runtime, 'add', mode); assert.equal(r.res.code, 207); assert.equal(r.res.data.results.length, 1); assert.equal(r.res.data.results[0].ok, false); assert.equal(r.committed.length, 0); });
+  test(`${runtime} add retry: último intento y una fila`, async () => { const r = await invoke(runtime, 'add', 'retry'); assert.equal(r.callbacks(), 2); assert.deepEqual(r.res.data.results, [{ itemId: 'item', ok: true, previousQuantity: 20, newQuantity: 22 }]); assert.equal(r.committed.length, 2); assert.equal(r.committed[0].value.quantity, 22); });
+  test(`${runtime} add mixto conserva orden207`, async () => { const r = await invoke(runtime, 'add', 'ok', { items: [{ itemId: 'item', quantity: 1 }, { itemId: 'missing', quantity: 1 }] }); assert.equal(r.res.code, 207); assert.deepEqual(r.res.data.results.map(x => [x.itemId, x.ok]), [['item', true], ['missing', false]]); assert.equal(r.res.data.results[1].error, 'not_found'); assert.equal(r.committed.length, 2); });
+  for (const query of [{ clientId: 'other' }, { search: ['x'] }, { search: null }]) test(`${runtime} items sin búsqueda/string: tenant y cap`, async () => { const r = await invoke(runtime, 'items', 'ok', {}, query); assert.equal(r.res.data.total, 55); assert.equal(r.res.data.items.length, 50); assert.ok(r.res.data.items.every(x => x.id !== 'foreign')); assert.deepEqual(r.queries, [{ p: 'stock_items', field: 'clientId', op: '==', value: 'tenant' }]); assert.equal(r.committed.length, 0); });
+  for (const [search, total, size] of [[' CAFE UNICO ', 1, 1], ['ausente', 0, 0], ['crema', 54, 50], ['corporal crema', 54, 50]]) test(`${runtime} items fuzzy ${search}`, async () => { const r = await invoke(runtime, 'items', 'ok', {}, { search }); assert.equal(r.res.code, 200); assert.equal(r.res.data.total, total); assert.equal(r.res.data.items.length, size); });
+  test(`${runtime} items lectura falla500`, async () => { const r = await invoke(runtime, 'items', 'read-error'); assert.equal(r.res.code, 500); assert.ok(r.res.data.error); });
+  test(`${runtime} registra factories importadas`, () => { const source = fs.readFileSync(path.join(repo, runtime), 'utf8'); assert.match(source, /import\s*\{[^}]*createStockAddHandler[^}]*createStockItemsHandler[^}]*\}\s*from\s*["'][^"']*stock-handlers\.js["']/); assert.match(source, /app\.post\("\/api\/stock\/add", express\.json\(\{ limit: "16kb" \}\), createStockAddHandler\(/); assert.match(source, /app\.get\("\/api\/stock\/items", createStockItemsHandler\(/); });
+  test(`${runtime} parser HTTP real: válido, JSON roto y más16kb`, async () => {
+    const s = install(runtime, 'add'); const app = express(); app.post('/api/stock/add', ...s.middleware); app.use((err, req, res, next) => res.status(err.status || 500).json({ error: 'parser' }));
+    const server = await new Promise(resolve => { const v = app.listen(0, '127.0.0.1', () => resolve(v)); });
+    try { const url = `http://127.0.0.1:${server.address().port}/api/stock/add`;
+      for (const [body, status] of [[JSON.stringify({ items: [{ itemId: 'item', quantity: 1 }] }), 200], ['{', 400], [JSON.stringify({ items: [], extra: 'x'.repeat(17000) }), 413]]) { const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body }); assert.equal(res.status, status); await res.text(); }
+      assert.equal(s.loads(), 1);
+    } finally { await new Promise(resolve => server.close(resolve)); }
+  });
+}
+// Transacciones simuladas separan callback/commit. No certifican persistencia real.

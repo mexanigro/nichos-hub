@@ -1,0 +1,55 @@
+const fs = require('node:fs'), path = require('node:path'), crypto = require('node:crypto');
+const d = __dirname, recovery = path.resolve(d, '../../..');
+const template = 'C:/Users/liama/Desktop/Nichos/Barber-shop-template-main';
+const hub = 'C:/Users/liama/Desktop/Nichos-hub';
+const read = file => fs.readFileSync(file, 'utf8').replace(/^\uFEFF/, '');
+const json = file => JSON.parse(read(file));
+const hash = b => crypto.createHash('sha256').update(b).digest('hex');
+const save = (file, value) => fs.writeFileSync(path.join(d, file), JSON.stringify(value, null, 2), { flag: 'wx' });
+const checks = [];
+function check(name, pass) { checks.push({ name, pass }); if (!pass) throw Error(name); }
+const scope = json(path.join(d, 'PREIMAGENES-P1.json'));
+const previous = json(path.join(d, '../D05-v1/FUENTES-FINALES-r2.json'));
+const server = json(path.join(d, '../L05-v1/FUENTES-FINALES-L05.json'));
+const expected = new Map(previous.concat(server).map(x => [x.path, x.sha256.toLowerCase()]));
+const final = [];
+for (const [file, sha] of expected) {
+  const current = hash(fs.readFileSync(path.join(template, file)));
+  if (!scope.some(x => x.path === file)) check('preserved:' + file, current === sha);
+  final.push({ path: file, sha256: current });
+}
+for (const file of scope) check('preimage:' + file.path, hash(fs.readFileSync(path.join(d, 'preimagenes-producto-p1', file.path))) === file.sha256.toLowerCase());
+for (const file of json(path.join(d, '../lint-v1/FUENTES-FINALES.json'))) check('hub-preserved:' + file.path, hash(fs.readFileSync(path.join(hub, file.path))) === file.sha256);
+const source = (base, file) => read(path.join(base, file)).replace(/\r\n/g, '\n');
+const before = file => source(path.join(d, 'preimagenes-producto-p1'), file);
+const current = file => source(template, file);
+const tenantBefore = before('src/services/tenant.ts'), tenantAfter = current('src/services/tenant.ts');
+const helperRange = text => text.slice(text.indexOf('const KNOWN_NICHES'), text.indexOf('export type TenantBootstrapResult'));
+check('helpers-filters-normalization-identical', helperRange(tenantBefore) === helperRange(tenantAfter));
+const mergeRange = text => { const start = text.indexOf('    const disable ='); return text.slice(start, text.indexOf('\n  return {', start)); };
+check('merge-branches-identical', mergeRange(tenantBefore) === mergeRange(tenantAfter));
+const mainBefore = before('src/main.tsx'), mainAfter = current('src/main.tsx');
+check('suspension-and-providers-identical', mainBefore.slice(mainBefore.indexOf('  if (tenant.suspended)')) === mainAfter.slice(mainAfter.indexOf('  if (tenant.suspended)')));
+for (const lang of ['en','he','ru','ar']) {
+  const file = `src/config/locales/${lang}.ts`;
+  check('locale-only-two-new-strings:' + lang, current(file).replace(/  tenantAccess: \{\n    unavailable: .*\n    reload: .*\n  \},\n/, '') === before(file));
+}
+const first = json(path.join(d, 'RESULTADOS-green-p2.json'));
+const merge = json(path.join(d, 'RESULTADOS-green-merge-only.json'));
+const acceptance = new Map(first.results.map(x => [x.name, { ...x, evidence: 'RESULTADOS-green-p2.json' }]));
+for (const result of merge.results) acceptance.set(result.name, { ...result, evidence: 'RESULTADOS-green-merge-only.json' });
+check('complete-acceptance-green', [...acceptance.values()].every(x => x.pass));
+const sourceSet = files => files.map(x => `${x.path}:${x.sha256}`).sort();
+check('same-tested-sources', JSON.stringify(sourceSet(first.loaded)) === JSON.stringify(sourceSet(merge.loaded)));
+for (const file of first.loaded) check('tested-source:' + file.path, hash(read(path.join(template, file.path))) === file.sha256);
+const mutation = json(path.join(d, 'RESULTADOS-mutation-p3.json'));
+check('mutation-no-instrument-failure', mutation.errors.length === 0 && mutation.external.length === 0);
+check('mutation-effective', ['no-firebase','missing','cached-active-server-failed','clients-deadline'].every(name => mutation.results.some(x => x.name === name && !x.pass)));
+check('mutation-positive-controls-preserved', ['active','trial','maintenance','suspended','archived'].every(name => mutation.results.some(x => x.name === name && x.pass)));
+check('types', json(path.join(d, 'TIPOS-p2.json')).exit === 0);
+save('FUENTES-FINALES.json', final);
+save('CONSERVACION-FINAL.json', { pass: true, checks, templateTotal: final.length, changedScope: scope.map(x=>x.path), hubPreserved:6 });
+save('ACEPTACION-FINAL.json', { result:'GREEN', uniqueControls: acceptance.size, results:[...acceptance.values()],
+  mutation: { failedAsExpected: mutation.failed, passed:mutation.passed, copy:'bundle compilado en memoria, original intacto', replacement:'salidas unavailable sustituidas por allowed/active' }, types:0,
+  limits:'React/ReactDOM y Chromium reales; main/tenant/site/locales reales; App marcador y Firebase/providers controlados. Sin certificación de App completa, imports ni Firestore remoto.' });
+console.log(JSON.stringify({ result:'GREEN', browser: acceptance.size, mutationFailures:mutation.failed, conservation:checks.length, templateFiles:final.length, types:0 }));

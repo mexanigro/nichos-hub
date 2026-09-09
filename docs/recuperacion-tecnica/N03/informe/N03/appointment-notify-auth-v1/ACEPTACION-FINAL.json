@@ -1,0 +1,20 @@
+{
+  "result": "GREEN",
+  "gates": 4,
+  "totalGates": 4,
+  "http": 270,
+  "requests": 84,
+  "typesExit": 0,
+  "parity": 19,
+  "mutationExpectedFailures": 90,
+  "mutationPositiveControls": 180,
+  "instrumentFailures": 0,
+  "sources": 333,
+  "unchangedSources": 332,
+  "apiSha256": "1dbc951f710e2f3e586247faf79ae65d76714eb52fcf768001d929a8521a646f",
+  "closureSha256": "f25b8ff6985aa6b7c30697a701c140dd537607a3bc2d978cd5e9afd4dd9821f3",
+  "usage": 78,
+  "totalCeilingN03": 80,
+  "N03": "en_curso",
+  "awaitingReview": true
+}

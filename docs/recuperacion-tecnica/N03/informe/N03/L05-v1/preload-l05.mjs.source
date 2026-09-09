@@ -1,0 +1,12 @@
+import './preload.mjs';
+import {createRequire} from 'node:module';
+import {config,event,clientData} from './fixture.mjs';
+const originalNow=Date.now;Date.now=()=>originalNow()+(config().offset||0);
+const guardedFetch=globalThis.fetch;
+globalThis.fetch=async(url,options)=>{const u=new URL(typeof url==='string'?url:url.url||url);
+ if(u.hostname==='oauth2.googleapis.com'){event('token');const x=config();if(x.tokenDelay)await new Promise(r=>setTimeout(r,x.tokenDelay));return x.noToken?new Response('synthetic-token-error',{status:500}):Response.json({access_token:'synthetic-token',expires_in:3600});}
+ if(u.hostname==='firestore.googleapis.com'){if(u.pathname.endsWith('/clients/tenant-control')){const x=config();if(x.httpError){event('client');return new Response('synthetic-http',{status:x.httpError})}if(x.jsonError){event('client');return new Response('{invalid',{status:200})}const data=await clientData();if(!data)return new Response('missing',{status:404});return Response.json({fields:{status:typeof data.status==='string'?{stringValue:data.status}:{nullValue:null},defaultPaymentProvider:{stringValue:'tranzila'}}});}if(u.pathname.endsWith('/config/tenant-control')){event('config');if(config().configError)return new Response('synthetic-config',{status:500});return Response.json({fields:{payment:{mapValue:{fields:{provider:{stringValue:config().provider||'stripe'}}}}}});}throw Error('unexpected Firestore path');}
+ return guardedFetch(url,options);
+};
+const require=createRequire('/app/package.json'),express=require('express');const post=express.application.post;
+express.application.post=function(route,...handlers){if(route==='/api/ai/chat'){const last=handlers.pop();handlers.push(function(req,res,next){event('consumer');return last(req,res,next)});}return post.call(this,route,...handlers)};

@@ -1,0 +1,332 @@
+[
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\preimagenes\\hub\\src\\app\\api\\api-costs\\fetch\\route.ts",
+    "bytes": 3053,
+    "sha256": "78c0eacce2cb138ebb15b567720d53fd762bff0c273c48b8ffa16ea677439546"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\preimagenes\\hub\\src\\app\\api\\appointments\\[id]\\cancel\\route.ts",
+    "bytes": 3494,
+    "sha256": "1b74bf362be7e8b91af59e44d6f57688460e9408f3a5347744a02dcd681550e9"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\preimagenes\\hub\\src\\app\\api\\onboarding\\route.ts",
+    "bytes": 7480,
+    "sha256": "e84e50cce05bb87e831094de50f1c362213b4a1597e2f54f22899a31216c21bd"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\preimagenes\\hub\\src\\app\\api\\prospects\\follow-up\\route.ts",
+    "bytes": 4263,
+    "sha256": "f5e166312cd1459d260f0fdd499d259446177e4f1ed09ca08865336893e2d360"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\preimagenes\\hub\\src\\app\\api\\upload\\[clientId]\\route.ts",
+    "bytes": 3796,
+    "sha256": "de651ed0335099d48965dd526469a6b2d507fca4fb2bdadc0063c74b7c445b99"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\preimagenes\\hub\\src\\lib\\contracts.ts",
+    "bytes": 51377,
+    "sha256": "647f679154128c971315201fce095351a217bbc959f537d867fd4f39940aeb4b"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\preimagenes\\hub\\src\\lib\\pricing.ts",
+    "bytes": 1626,
+    "sha256": "b587bd75057108ecee0c77727fa6588803dbecbe13279c7ec2fda0f72af4b6a7"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\preimagenes\\template\\.env.example",
+    "bytes": 9629,
+    "sha256": "e6e5c4230954033dcc32127b5e7e5e6878e1a7aee41769e7d16edbcd1d70e5ae"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\preimagenes\\template\\api\\index.ts",
+    "bytes": 228609,
+    "sha256": "1dbc951f710e2f3e586247faf79ae65d76714eb52fcf768001d929a8521a646f"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\preimagenes\\template\\README.md",
+    "bytes": 4082,
+    "sha256": "cfc29a33e8f00e4804378173ecfd23d6a660198b032274c7db8119b8bb500d77"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\preimagenes\\template\\server.ts",
+    "bytes": 174105,
+    "sha256": "48a5d4a415c704d1f7c5ff609d96c4e214d107fa0020b0c5d7d30d51ac84e80f"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\preimagenes\\template\\src\\components\\admin\\AdminDashboard.tsx",
+    "bytes": 72061,
+    "sha256": "b46c75ad579f988fae8f8b02610218a7516695aa80754bf0ba043befd2600f5e"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\preimagenes\\template\\src\\config\\locales\\ar.ts",
+    "bytes": 47453,
+    "sha256": "c7418be9955f639dda8114d12ce8fe94ebadeba22d140d13ee411cc9d994ed13"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\preimagenes\\template\\src\\config\\locales\\en.ts",
+    "bytes": 37952,
+    "sha256": "b6c4bd93cfd61e7404578dd75e577ef1eec6ab32621386fad94bc25a06a4a128"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\preimagenes\\template\\src\\config\\locales\\he.ts",
+    "bytes": 44949,
+    "sha256": "03bf0243cc99648135b46dec9ebb8637919af91ddb0c971f591a1ef929e0a355"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\preimagenes\\template\\src\\config\\locales\\ru.ts",
+    "bytes": 53344,
+    "sha256": "580fff512ce251704f60eccffdeed1092e827114ed6690a6b450a054d7cb60a5"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\preimagenes\\template\\src\\lib\\api\\booking-handler.ts",
+    "bytes": 4088,
+    "sha256": "d7bff4865597d29a48cf765c464d579faf38ed24b9f09405415c24ec9bf2dd33"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\preimagenes\\template\\src\\lib\\api\\optional-services.ts",
+    "bytes": 737,
+    "sha256": "db03ebf2b43e87b10375b7f8f9decb680bb94642e74fb20921eb93725a3f42f9"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\preimagenes\\template\\src\\lib\\api\\runtime-health.ts",
+    "bytes": 2479,
+    "sha256": "b76346f328ac7934b0bd292bf5f9d2fb365bb375db65e0ead9adc9d3a41d591c"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\preimagenes\\template\\src\\lib\\api\\stock-handlers.ts",
+    "bytes": 6073,
+    "sha256": "575131cd558e77dafbe1727d0e80e0a17c8e0290c695d744f89a903a6b4e651f"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\preimagenes\\template\\src\\lib\\api\\support-handler.ts",
+    "bytes": 1369,
+    "sha256": "247b2b1c84548124972d6b0c19407c54771a94006ecf5f11cb7ef196e27c8b86"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\preimagenes\\template\\src\\lib\\api\\tenant-access.ts",
+    "bytes": 2356,
+    "sha256": "98e914224316040091677e4ebbb3b0811cedb4bd671f3cf49477bbe2767faecc"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\preimagenes\\template\\src\\lib\\appointment-notify-client.ts",
+    "bytes": 1589,
+    "sha256": "9f900eaad61a3da294ed4cb552eca1efce9440c08f45bd455582e4143e7d605b"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\preimagenes\\template\\src\\lib\\notify-agentkit.ts",
+    "bytes": 9668,
+    "sha256": "d1b6a2d411716f68aa6668f9eca73830b656e7651356d8250edc98178c23ef9f"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\preimagenes\\template\\src\\main.tsx",
+    "bytes": 3911,
+    "sha256": "60ae64853cd3b1234b273430e0511f96d9bae5815f78ffd1eb66df7ad2940454"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\preimagenes\\template\\src\\services\\support.ts",
+    "bytes": 2650,
+    "sha256": "994f9c859f652a44f767c9410a9baeca78d47879b93ee98504bc12cf2205e1f9"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\preimagenes\\template\\src\\services\\tenant.ts",
+    "bytes": 7990,
+    "sha256": "09cad0c18f9702fc5791fda18aae1678a14384b90d7c772eb19e2eff839bbea7"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\preimagenes\\template\\tests\\api-parity.test.ts",
+    "bytes": 12607,
+    "sha256": "0a949fe9243632c60d0119affe1a1573d564761cb03fbbca3318dd1a8964925a"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\preimagenes\\template\\tests\\booking-handler.test.ts",
+    "bytes": 6647,
+    "sha256": "6d7f6e4409486d1436e61055e515306149998cff638ac936de2977110199876a"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\preimagenes-registros\\indice\\CALENDARIO.md",
+    "bytes": 20585,
+    "sha256": "f341a09d40892816210138f521bb26844a4070fb56908289c7f994697a414c53"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\preimagenes-registros\\indice\\PENDIENTES.md",
+    "bytes": 21549,
+    "sha256": "faa3c54aea76ddb5ab31e0f5c5b3cc493f2219845175c017fa9333da314fd8df"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\preimagenes-registros\\indice\\README.md",
+    "bytes": 23229,
+    "sha256": "c15fdb3821545e796f71c5306741807bbafa4957c0c1cf92471505593ef37ad6"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\preimagenes-registros\\indice\\tareas\\N03.md",
+    "bytes": 26652,
+    "sha256": "0104e369359881ac13b887a8d4a17ab2389115c737f84721fdc1d9c6f3fefeaa"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\preimagenes-registros\\informe\\N03\\reconciliacion-v1\\BALANCE.md",
+    "bytes": 11994,
+    "sha256": "fd2892df5766a473bc299731240df003a1f6238a2dd25731e7fc943eba0cfc1d"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\preimagenes-registros\\informe\\N03\\W-NEXT-v1\\INFORME.md",
+    "bytes": 3515,
+    "sha256": "4fd5652ea6ac099b251108d0301496f3d08bcd4a1be50a65329ef71a33c1b16c"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\preimagenes-registros\\informe\\N03\\W-NEXT-v1\\PROPUESTA.md",
+    "bytes": 6494,
+    "sha256": "7eb6ce8531286ba0f7e0212dc94ccafbb30752b41c68dcecac687e35161d2acb"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\preimagenes-registros\\RETOMA-antes-archivo.md",
+    "bytes": 9806,
+    "sha256": "28b2630ea0196da8e63bf3f2b403fa966b64bfa8111e3d0a36680e33b29d6122"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\indice-producto\\hub\\src\\app\\api\\api-costs\\fetch\\route.ts",
+    "bytes": 3053,
+    "sha256": "78c0eacce2cb138ebb15b567720d53fd762bff0c273c48b8ffa16ea677439546"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\indice-producto\\hub\\src\\app\\api\\appointments\\[id]\\cancel\\route.ts",
+    "bytes": 3494,
+    "sha256": "1b74bf362be7e8b91af59e44d6f57688460e9408f3a5347744a02dcd681550e9"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\indice-producto\\hub\\src\\app\\api\\onboarding\\route.ts",
+    "bytes": 7480,
+    "sha256": "e84e50cce05bb87e831094de50f1c362213b4a1597e2f54f22899a31216c21bd"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\indice-producto\\hub\\src\\app\\api\\prospects\\follow-up\\route.ts",
+    "bytes": 4263,
+    "sha256": "f5e166312cd1459d260f0fdd499d259446177e4f1ed09ca08865336893e2d360"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\indice-producto\\hub\\src\\app\\api\\upload\\[clientId]\\route.ts",
+    "bytes": 3796,
+    "sha256": "de651ed0335099d48965dd526469a6b2d507fca4fb2bdadc0063c74b7c445b99"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\indice-producto\\hub\\src\\lib\\contracts.ts",
+    "bytes": 50732,
+    "sha256": "44b6ce14b903bdd97e01763edcce351951fee000b39733ee513f24b7312fbbf2"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\indice-producto\\hub\\src\\lib\\pricing.ts",
+    "bytes": 1571,
+    "sha256": "e69b01c0a3150e61f99216155b1dfab98d2e244a060f2a71b0db17a87123efb3"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\indice-producto\\template\\.env.example",
+    "bytes": 9467,
+    "sha256": "9561ab575f0f49b667e8dcb5a4d509c842797f51e131a32f16c62d56925de989"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\indice-producto\\template\\api\\index.ts",
+    "bytes": 228599,
+    "sha256": "fd78affeb10a0148425f246a82903f04399cb9b189c6af6fe9baa334dcf780ca"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\indice-producto\\template\\README.md",
+    "bytes": 4082,
+    "sha256": "cfc29a33e8f00e4804378173ecfd23d6a660198b032274c7db8119b8bb500d77"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\indice-producto\\template\\server.ts",
+    "bytes": 174096,
+    "sha256": "d686321d5921b82558d614393711c0a9d28962ab854e7ca9c17a1e1a21465388"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\indice-producto\\template\\src\\components\\admin\\AdminDashboard.tsx",
+    "bytes": 69773,
+    "sha256": "b8400d880409770b95af1ba744b9728928aeb5817d3be338594193402023b431"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\indice-producto\\template\\src\\config\\locales\\ar.ts",
+    "bytes": 46248,
+    "sha256": "44fd2810f231233cc91687aa3230f64c2430d8786efadbcc9d29c5012e6bc072"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\indice-producto\\template\\src\\config\\locales\\en.ts",
+    "bytes": 36796,
+    "sha256": "189f637adece3301cbbe7648676c5d1bfa48b16e8e8f28827f6509d5f28c0af0"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\indice-producto\\template\\src\\config\\locales\\he.ts",
+    "bytes": 43762,
+    "sha256": "d0602c1efa5bcd7bd6fab9fbc507bd18e7d1c2f2b6e12cdfb2bd9998027ec78d"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\indice-producto\\template\\src\\config\\locales\\ru.ts",
+    "bytes": 52098,
+    "sha256": "06afa0167bc47dbb6ae4c245908225505881ff1a16d1fdb1f38ada7d2ae5a8c3"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\indice-producto\\template\\src\\lib\\api\\booking-handler.ts",
+    "bytes": 4088,
+    "sha256": "d7bff4865597d29a48cf765c464d579faf38ed24b9f09405415c24ec9bf2dd33"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\indice-producto\\template\\src\\lib\\api\\optional-services.ts",
+    "bytes": 737,
+    "sha256": "db03ebf2b43e87b10375b7f8f9decb680bb94642e74fb20921eb93725a3f42f9"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\indice-producto\\template\\src\\lib\\api\\runtime-health.ts",
+    "bytes": 2479,
+    "sha256": "b76346f328ac7934b0bd292bf5f9d2fb365bb375db65e0ead9adc9d3a41d591c"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\indice-producto\\template\\src\\lib\\api\\stock-handlers.ts",
+    "bytes": 6073,
+    "sha256": "575131cd558e77dafbe1727d0e80e0a17c8e0290c695d744f89a903a6b4e651f"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\indice-producto\\template\\src\\lib\\api\\support-handler.ts",
+    "bytes": 1369,
+    "sha256": "247b2b1c84548124972d6b0c19407c54771a94006ecf5f11cb7ef196e27c8b86"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\indice-producto\\template\\src\\lib\\api\\tenant-access.ts",
+    "bytes": 2356,
+    "sha256": "98e914224316040091677e4ebbb3b0811cedb4bd671f3cf49477bbe2767faecc"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\indice-producto\\template\\src\\lib\\appointment-notify-client.ts",
+    "bytes": 1585,
+    "sha256": "ba31c846e3606b61c1d668026d1c71ae9d64c54d63983ce3e110dfbc173365a0"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\indice-producto\\template\\src\\lib\\notify-agentkit.ts",
+    "bytes": 9405,
+    "sha256": "bac370a564afa53ee2c33a90c0748ba21b964158c558b8c4ae6d3a6c297f7fb5"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\indice-producto\\template\\src\\main.tsx",
+    "bytes": 3911,
+    "sha256": "60ae64853cd3b1234b273430e0511f96d9bae5815f78ffd1eb66df7ad2940454"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\indice-producto\\template\\src\\services\\support.ts",
+    "bytes": 2646,
+    "sha256": "2573b6844362eaa430ab630a97e31975175c35e786827e75ff26b9d125925e86"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\indice-producto\\template\\src\\services\\tenant.ts",
+    "bytes": 7835,
+    "sha256": "def726adf36ea8fe28bd8a70eb13c610fa9270b1d2cbfde244e0e1978acd1cce"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\indice-producto\\template\\tests\\api-parity.test.ts",
+    "bytes": 12607,
+    "sha256": "0a949fe9243632c60d0119affe1a1573d564761cb03fbbca3318dd1a8964925a"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\indice-producto\\template\\tests\\booking-handler.test.ts",
+    "bytes": 6646,
+    "sha256": "49557d6b39d1f345bb92d187194156090404e54543b42696a6776c2050a7a312"
+  }
+]

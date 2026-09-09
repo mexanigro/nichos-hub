@@ -1,0 +1,7 @@
+{
+  "exit": 1,
+  "phase": "preflight",
+  "error": "Identifier 'site_1' has already been declared",
+  "productExecuted": false,
+  "cause": "Dos módulos compilados compartían alcance léxico VM"
+}

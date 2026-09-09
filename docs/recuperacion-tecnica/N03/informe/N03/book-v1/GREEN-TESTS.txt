@@ -1,0 +1,232 @@
+TAP version 13
+# [Cardcom] webhook rechazado: notificationToken no configurado
+# [Cardcom] Webhook token mismatch — rejecting
+# [Cardcom] Webhook token mismatch — rejecting
+# [Cardcom] Webhook clientId mismatch — rejecting
+# [Auth] FIREBASE_PROJECT_ID not set — cannot verify ID token. Fix deployment env vars immediately.
+# Subtest: route parity between server.ts and api/index.ts
+ok 1 - route parity between server.ts and api/index.ts
+  ---
+  duration_ms: 1.842572
+  type: 'test'
+  ...
+# Subtest: both runtimes consume the shared src/lib/api modules
+ok 2 - both runtimes consume the shared src/lib/api modules
+  ---
+  duration_ms: 0.571123
+  type: 'test'
+  ...
+# Subtest: the inline duplicates stay deleted
+ok 3 - the inline duplicates stay deleted
+  ---
+  duration_ms: 0.654346
+  type: 'test'
+  ...
+# Subtest: cardcom webhook: rejected when notificationToken is not configured
+ok 4 - cardcom webhook: rejected when notificationToken is not configured
+  ---
+  duration_ms: 0.821842
+  type: 'test'
+  ...
+# Subtest: cardcom webhook: rejected on token mismatch
+ok 5 - cardcom webhook: rejected on token mismatch
+  ---
+  duration_ms: 0.239907
+  type: 'test'
+  ...
+# Subtest: cardcom webhook: rejected on clientId mismatch (cross-tenant)
+ok 6 - cardcom webhook: rejected on clientId mismatch (cross-tenant)
+  ---
+  duration_ms: 0.200731
+  type: 'test'
+  ...
+# Subtest: cardcom webhook: accepted with valid token + matching tenant
+ok 7 - cardcom webhook: accepted with valid token + matching tenant
+  ---
+  duration_ms: 0.224939
+  type: 'test'
+  ...
+# Subtest: cardcom webhook: failed payment is not an event
+ok 8 - cardcom webhook: failed payment is not an event
+  ---
+  duration_ms: 0.131526
+  type: 'test'
+  ...
+# Subtest: manual + stub gateways never verify webhooks and refuse checkout
+ok 9 - manual + stub gateways never verify webhooks and refuse checkout
+  ---
+  duration_ms: 0.562206
+  type: 'test'
+  ...
+# Subtest: createCredentialCache caches within TTL
+ok 10 - createCredentialCache caches within TTL
+  ---
+  duration_ms: 0.66692
+  type: 'test'
+  ...
+# Subtest: manifest window math includes the 10-minute buffer
+ok 11 - manifest window math includes the 10-minute buffer
+  ---
+  duration_ms: 0.199158
+  type: 'test'
+  ...
+# Subtest: manifest conflict detection (overlap and boundary cases)
+ok 12 - manifest conflict detection (overlap and boundary cases)
+  ---
+  duration_ms: 0.145965
+  type: 'test'
+  ...
+# Subtest: booking field validators (duration cap 5–480, formats)
+ok 13 - booking field validators (duration cap 5–480, formats)
+  ---
+  duration_ms: 0.213095
+  type: 'test'
+  ...
+# Subtest: BookingConflictError carries the 409 semantics message
+ok 14 - BookingConflictError carries the 409 semantics message
+  ---
+  duration_ms: 0.171885
+  type: 'test'
+  ...
+# Subtest: requireAdminAuth: 401 without Authorization header, lookup never called
+ok 15 - requireAdminAuth: 401 without Authorization header, lookup never called
+  ---
+  duration_ms: 0.193678
+  type: 'test'
+  ...
+# Subtest: requireAdminAuth: 401 on non-Bearer header
+ok 16 - requireAdminAuth: 401 on non-Bearer header
+  ---
+  duration_ms: 0.117229
+  type: 'test'
+  ...
+# Subtest: requireAdminAuth: 401 on malformed token (no network, no lookup)
+ok 17 - requireAdminAuth: 401 on malformed token (no network, no lookup)
+  ---
+  duration_ms: 0.335844
+  type: 'test'
+  ...
+# Subtest: base64UrlDecode roundtrip
+ok 18 - base64UrlDecode roundtrip
+  ---
+  duration_ms: 0.235298
+  type: 'test'
+  ...
+# Subtest: admin-auth module enforces M-2 and has no env-allowlist fallback
+ok 19 - admin-auth module enforces M-2 and has no env-allowlist fallback
+  ---
+  duration_ms: 4.157094
+  type: 'test'
+  ...
+# Subtest: ambos runtimes registran el handler compartido sin excepción de paridad
+ok 20 - ambos runtimes registran el handler compartido sin excepción de paridad
+  ---
+  duration_ms: 415.244068
+  type: 'test'
+  ...
+# Subtest: BookingWizard recibe éxito sólo tras persistir; identidad no viene del body
+ok 21 - BookingWizard recibe éxito sólo tras persistir; identidad no viene del body
+  ---
+  duration_ms: 747.718524
+  type: 'test'
+  ...
+# Subtest: defaults de estado y paymentStatus conservados
+ok 22 - defaults de estado y paymentStatus conservados
+  ---
+  duration_ms: 68.722087
+  type: 'test'
+  ...
+# Subtest: inválido nombre:400 sin cargar persistencia
+ok 23 - inválido nombre:400 sin cargar persistencia
+  ---
+  duration_ms: 51.779935
+  type: 'test'
+  ...
+# Subtest: inválido email:400 sin cargar persistencia
+ok 24 - inválido email:400 sin cargar persistencia
+  ---
+  duration_ms: 52.721562
+  type: 'test'
+  ...
+# Subtest: inválido fecha:400 sin cargar persistencia
+ok 25 - inválido fecha:400 sin cargar persistencia
+  ---
+  duration_ms: 60.110708
+  type: 'test'
+  ...
+# Subtest: inválido hora:400 sin cargar persistencia
+ok 26 - inválido hora:400 sin cargar persistencia
+  ---
+  duration_ms: 49.907549
+  type: 'test'
+  ...
+# Subtest: inválido duracion:400 sin cargar persistencia
+ok 27 - inválido duracion:400 sin cargar persistencia
+  ---
+  duration_ms: 49.549265
+  type: 'test'
+  ...
+# Subtest: inválido fraccion:400 sin cargar persistencia
+ok 28 - inválido fraccion:400 sin cargar persistencia
+  ---
+  duration_ms: 43.490212
+  type: 'test'
+  ...
+# Subtest: inválido staff:400 sin cargar persistencia
+ok 29 - inválido staff:400 sin cargar persistencia
+  ---
+  duration_ms: 54.052754
+  type: 'test'
+  ...
+# Subtest: no-db: nunca éxito ni upsert posterior
+ok 30 - no-db: nunca éxito ni upsert posterior
+  ---
+  duration_ms: 45.891265
+  type: 'test'
+  ...
+# Subtest: conflict: nunca éxito ni upsert posterior
+ok 31 - conflict: nunca éxito ni upsert posterior
+  ---
+  duration_ms: 40.967839
+  type: 'test'
+  ...
+# [Book] failed: Error: read failure
+#     at Object.get (/template/tests/booking-handler.test.ts:30:59)
+#     at <anonymous> (/template/src/lib/api/booking-validation.ts:125:35)
+#     at Object.runTransaction (/template/tests/booking-handler.test.ts:29:28)
+#     at createBookingWithManifest (/template/src/lib/api/booking-validation.ts:124:42)
+#     at <anonymous> (/template/src/lib/api/booking-handler.ts:57:35)
+#     at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+# Subtest: read: nunca éxito ni upsert posterior
+ok 32 - read: nunca éxito ni upsert posterior
+  ---
+  duration_ms: 50.814634
+  type: 'test'
+  ...
+# [Book] failed: Error: commit failure
+#     at Object.runTransaction (/template/tests/booking-handler.test.ts:33:36)
+#     at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+#     at async createBookingWithManifest (/template/src/lib/api/booking-validation.ts:124:33)
+#     at async <anonymous> (/template/src/lib/api/booking-handler.ts:57:29)
+# Subtest: commit: nunca éxito ni upsert posterior
+ok 33 - commit: nunca éxito ni upsert posterior
+  ---
+  duration_ms: 41.372063
+  type: 'test'
+  ...
+# [Book] customer upsert failed (non-fatal): customer failure
+# Subtest: fallo del upsert no revierte éxito de reserva confirmada
+ok 34 - fallo del upsert no revierte éxito de reserva confirmada
+  ---
+  duration_ms: 40.948515
+  type: 'test'
+  ...
+1..34
+# tests 34
+# suites 0
+# pass 34
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 16592.346986

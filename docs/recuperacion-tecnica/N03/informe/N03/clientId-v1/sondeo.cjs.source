@@ -1,0 +1,102 @@
+const fs = require('node:fs'), path = require('node:path'), vm = require('node:vm'), crypto = require('node:crypto');
+const ts = require('C:/Users/liama/Desktop/Nichos-hub/node_modules/typescript');
+const root = 'C:/Users/liama/Desktop/Nichos/Barber-shop-template-main';
+const d = __dirname, mode = process.argv[2];
+const hash = b => crypto.createHash('sha256').update(b).digest('hex');
+const write = (name, data) => fs.writeFileSync(path.join(d,name), JSON.stringify(data,null,2),{flag:'wx'});
+const files = ['src/config/tenant.ts','src/config/env.ts','vite.config.ts','server.ts','api/index.ts','src/lib/notify-agentkit.ts','src/lib/api/optional-services.ts','src/services/tenant.ts','src/services/db.ts','src/components/booking/BookingWizard.tsx','src/lib/api/booking-handler.ts','.env.example','README.md'];
+const sources = Object.fromEntries(files.map(f=>[f,fs.readFileSync(path.join(root,f),'utf8')]));
+const asts = Object.fromEntries(files.filter(f=>/\.tsx?$/.test(f)).map(f=>{
+  const ast = ts.createSourceFile(f,sources[f],ts.ScriptTarget.Latest,true,f.endsWith('tsx')?ts.ScriptKind.TSX:ts.ScriptKind.TS);
+  if(ast.parseDiagnostics.length) throw Error('sintaxis producto '+f);
+  return [f,ast];
+}));
+function fragment(file,name) {
+  const found=[]; const ast=asts[file];
+  for(const node of ast.statements) {
+    if(ts.isFunctionDeclaration(node) && node.name?.text===name) found.push(node.getText(ast));
+    if(ts.isVariableStatement(node)) for(const dec of node.declarationList.declarations) if(dec.name.getText(ast)===name) found.push(`const ${dec.getText(ast)};`);
+  }
+  if(found.length!==1) throw Error('ancla no única '+file+':'+name);
+  return found[0];
+}
+function compile(code) {
+  const result=ts.transpileModule(code.replaceAll('import.meta.env','__viteEnv'),{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.CommonJS},reportDiagnostics:true});
+  if(result.diagnostics.some(x=>x.category===ts.DiagnosticCategory.Error)) throw Error('transpilación');
+  new vm.Script(result.outputText); return result.outputText;
+}
+const browserCode=compile(fragment('src/config/tenant.ts','resolveClientId')+'\nglobalThis.result=resolveClientId();');
+const allowed=fragment('src/lib/api/optional-services.ts','isOptionalServiceEnabled');
+const fragments={};
+for(const runtime of ['server.ts','api/index.ts']) {
+  const agent=runtime==='server.ts'?'src/lib/notify-agentkit.ts':runtime;
+  const client=fragment(runtime,'CLIENT_ID');
+  const attach=fragment(runtime,'attachTenantContext');
+  const requestHelpers=runtime==='api/index.ts'?fragment(runtime,'sanitizeText')+'\n'+fragment(runtime,'resolveRequestClientId'):'';
+  const source=[client,allowed,fragment(agent,'AGENTKIT_TIMEOUT_MS'),fragment(agent,'getAgentkitConfig'),fragment(agent,'postToAgent'),fragment(agent,'notifyAgentLeadCreated'),requestHelpers,attach].join('\n');
+  fragments[runtime]=compile(source+'\nglobalThis.api={clientId:CLIENT_ID,getAgentkitConfig,notifyAgentLeadCreated,attachTenantContext};');
+}
+function box(env) {return {exports:{},process:{env},__viteEnv:env,console:{warn(){},error(){}},setTimeout,clearTimeout,AbortController};}
+async function measure(input,agentEnabled='true') {
+  const browser=box(input); vm.runInNewContext(browserCode,browser,{timeout:500});
+  const out={input,browser:browser.result,runtimes:{}};
+  for(const runtime of Object.keys(fragments)) {
+    const sandbox=box({...input,AGENT_ENABLED:agentEnabled,WHATSAPP_AGENT_URL:'https://synthetic.invalid',AGENT_API_SECRET:'synthetic-only'});
+    const attempts=[];
+    sandbox.fetch=async (_url,options)=>{ attempts.push({clientId:JSON.parse(options.body).clientId});return {ok:true}; };
+    vm.runInNewContext(fragments[runtime],sandbox,{timeout:500});
+    const cfg=sandbox.api.getAgentkitConfig();
+    const delivered=await sandbox.api.notifyAgentLeadCreated({nombre:'Synthetic',adminPhones:[]});
+    const headers=[];
+    for(const header of [undefined,browser.result,'visitor-other']) {
+      let status=200,continued=false,payload,selected;
+      const response={status(n){status=n;return this},json(x){payload=x;return this},setHeader(_key,value){selected=value}};
+      sandbox.api.attachTenantContext({headers:{'x-client-id':header}},response,()=>{continued=true});
+      headers.push({header:header??null,status,continued,selected:selected??null,payload:payload??null});
+    }
+    out.runtimes[runtime]={selected:sandbox.api.clientId,agent:cfg?.clientId??null,delivered,attempts,headers};
+  }
+  return out;
+}
+async function main() {
+  if(mode==='preflight') {
+    const baseline=await measure({CLIENT_ID:' synthetic-a ',NEXT_PUBLIC_CLIENT_ID:'synthetic-a',VITE_CLIENT_ID:'synthetic-a'});
+    if(baseline.browser!=='synthetic-a'||Object.values(baseline.runtimes).some(x=>x.selected!=='synthetic-a'||x.attempts[0]?.clientId!=='synthetic-a')) throw Error('control positivo');
+    const disabled=await measure({CLIENT_ID:'synthetic-a'},'false');
+    if(Object.values(disabled.runtimes).some(x=>x.attempts.length)) throw Error('control permiso');
+    const mutant=browserCode.replace('fromVite || fromNextPublic','fromNextPublic || fromVite');
+    if(mutant===browserCode) throw Error('mutación sin ancla');
+    const originalBox=box({VITE_CLIENT_ID:'synthetic-v',NEXT_PUBLIC_CLIENT_ID:'synthetic-n'}), mutantBox=box(originalBox.__viteEnv);
+    vm.runInNewContext(browserCode,originalBox);vm.runInNewContext(mutant,mutantBox);
+    if(originalBox.result===mutantBox.result) throw Error('observador insensible');
+    const previous=JSON.parse(fs.readFileSync(path.join(d,'../L05-browser-v1/FUENTES-FINALES.json'),'utf8'));
+    for(const x of previous) if(hash(fs.readFileSync(path.join(root,x.path)))!==x.sha256) throw Error('deriva entrega aceptada '+x.path);
+    const manifest=[];
+    for(const file of files) {const bytes=fs.readFileSync(path.join(root,file));const target=path.join(d,'preimagenes',file);fs.mkdirSync(path.dirname(target),{recursive:true});fs.writeFileSync(target,bytes,{flag:'wx'});if(hash(fs.readFileSync(target))!==hash(bytes))throw Error('custodia');manifest.push({path:file,sha256:hash(bytes)});}
+    write('PREFLIGHT.json',{typescript:ts.version,syntax:true,imports:'TypeScript/node instalados; fragmentos AST sin imports producto ni SDK',positive:baseline,disabled,sensitivity:{original:originalBox.result,mutated:mutantBox.result},preservedTemplateSources:previous.length,manifest});
+    write('FRAGMENTOS.json',{browser:fragment('src/config/tenant.ts','resolveClientId'),server:fragment('server.ts','CLIENT_ID'),api:fragment('api/index.ts','CLIENT_ID'),agentServer:fragment('src/lib/notify-agentkit.ts','getAgentkitConfig'),agentApi:fragment('api/index.ts','getAgentkitConfig')});
+    console.log(JSON.stringify({preflight:true,preserved:previous.length,sensitivity:true})); return;
+  }
+  if(mode!=='measure') throw Error('preflight|measure');
+  const pre=JSON.parse(fs.readFileSync(path.join(d,'PREFLIGHT.json'),'utf8'));
+  for(const f of pre.manifest) if(hash(fs.readFileSync(path.join(root,f.path)))!==f.sha256) throw Error('deriva preflight');
+  const cases=[
+    ['absent',{}],['empty',{CLIENT_ID:'',NEXT_PUBLIC_CLIENT_ID:'',VITE_CLIENT_ID:''}],['spaces',{CLIENT_ID:'  ',NEXT_PUBLIC_CLIENT_ID:'\t ',VITE_CLIENT_ID:' '}],
+    ['only-client',{CLIENT_ID:'synthetic-c'}],['only-next',{NEXT_PUBLIC_CLIENT_ID:'synthetic-n'}],['only-vite',{VITE_CLIENT_ID:'synthetic-v'}],
+    ['mirrors',{CLIENT_ID:'synthetic-a',NEXT_PUBLIC_CLIENT_ID:'synthetic-a',VITE_CLIENT_ID:'synthetic-a'}],
+    ['padded-mirrors',{CLIENT_ID:' synthetic-a ',NEXT_PUBLIC_CLIENT_ID:'\tsynthetic-a ',VITE_CLIENT_ID:' synthetic-a\n'}],
+    ['client-spaces-vite',{CLIENT_ID:' ',VITE_CLIENT_ID:'synthetic-v'}],['client-empty-vite',{CLIENT_ID:'',VITE_CLIENT_ID:'synthetic-v'}],
+    ['client-spaces-mirrors',{CLIENT_ID:' ',NEXT_PUBLIC_CLIENT_ID:'synthetic-a',VITE_CLIENT_ID:'synthetic-a'}],
+    ['next-spaces-vite',{NEXT_PUBLIC_CLIENT_ID:' ',VITE_CLIENT_ID:'synthetic-v'}],
+    ['conflict-next-vite',{NEXT_PUBLIC_CLIENT_ID:'synthetic-n',VITE_CLIENT_ID:'synthetic-v'}],
+    ['conflict-client-vite',{CLIENT_ID:'synthetic-c',VITE_CLIENT_ID:'synthetic-v'}],
+    ['conflict-client-next',{CLIENT_ID:'synthetic-c',NEXT_PUBLIC_CLIENT_ID:'synthetic-n'}],
+    ['conflict-all',{CLIENT_ID:'synthetic-c',NEXT_PUBLIC_CLIENT_ID:'synthetic-n',VITE_CLIENT_ID:'synthetic-v'}],
+    ['case-sensitive',{CLIENT_ID:'SYNTHETIC',NEXT_PUBLIC_CLIENT_ID:'synthetic',VITE_CLIENT_ID:'synthetic'}],
+    ['internal-spaces',{CLIENT_ID:'synthetic a',NEXT_PUBLIC_CLIENT_ID:'synthetic a',VITE_CLIENT_ID:'synthetic a'}],
+  ];
+  const results=[];for(const [name,input]of cases) results.push({name,...await measure(input)});
+  write('MEDICION.json',{cases:results.length,consumerSelections:results.length*5,results,scope:'Fragmentos AST actuales ejecutados: selección, middleware tenant y lead→postToAgent con fetch simulado. No arranque runtimes/Firestore/entrega real/build Vite. Ningún fetch real accesible al fragmento.',productChanges:0});
+  console.log(JSON.stringify({cases:results.length,selections:results.length*5,externalCalls:0,productChanges:0}));
+}
+main().catch(error=>{write('FALLO-'+mode+'.json',{error:String(error),stack:error.stack});console.error(error);process.exitCode=1});

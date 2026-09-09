@@ -1,0 +1,38 @@
+[
+  {
+    "path": "informe/N03/L06-language-v1/INFORME.md",
+    "before": "3eb2e77821915de4a1d7ca702b2fb7bbac608036e342d0d13ca2dc62a8b687e7",
+    "after": "67c4a95270fff795a5f455ef4352701df83a9702e6d25f7de314b10027a72511",
+    "preimage": "informe\\N03\\L06-language-v1\\preimagenes-registros-cierre\\informe\\N03\\L06-language-v1\\INFORME.md"
+  },
+  {
+    "path": "informe/N03/reconciliacion-v1/BALANCE.md",
+    "before": "59d9264d3d131b88eabe7a38b822e6162e9b24fa1f0b6da126acdf68583d5643",
+    "after": "d165329d5c7f7af086d55806f011b56c1e11e607ad1db717a04cc246536b4b74",
+    "preimage": "informe\\N03\\L06-language-v1\\preimagenes-registros-cierre\\informe\\N03\\reconciliacion-v1\\BALANCE.md"
+  },
+  {
+    "path": "indice/tareas/N03.md",
+    "before": "cf2af8941160413c7a94a394c98ad4c5e735ac39f9f83df2f843d9259ccd5c64",
+    "after": "b4980e1a7754c369643a2cd1ac72b0f7abe3e1ed570c80f3fccfb47d107528b1",
+    "preimage": "informe\\N03\\L06-language-v1\\preimagenes-registros-cierre\\indice\\tareas\\N03.md"
+  },
+  {
+    "path": "indice/README.md",
+    "before": "fb6c81a9a9809e14d30b5e282654dd3826924ad6d703a619ddf000fee8330d13",
+    "after": "00ad433075dea2f387229b371491a20c404542ad8c81c80ef414d7132794d84c",
+    "preimage": "informe\\N03\\L06-language-v1\\preimagenes-registros-cierre\\indice\\README.md"
+  },
+  {
+    "path": "indice/PENDIENTES.md",
+    "before": "4a4e5664301a5625789ad3693095e5fa4b1808f89e46c0464146c6ac2d4ac488",
+    "after": "221343f3433fa52d6b98d0b8b9be96ede4422f9c762335c02321321b90ed9219",
+    "preimage": "informe\\N03\\L06-language-v1\\preimagenes-registros-cierre\\indice\\PENDIENTES.md"
+  },
+  {
+    "path": "indice/CALENDARIO.md",
+    "before": "317cee938100c1f42c544a857f398bddb4ce75a0c75925e53ca33d09d096f845",
+    "after": "b27d8884478b2309f5e1cb5eace36f74ced066d179f52a71191ae20068f117db",
+    "preimage": "informe\\N03\\L06-language-v1\\preimagenes-registros-cierre\\indice\\CALENDARIO.md"
+  }
+]

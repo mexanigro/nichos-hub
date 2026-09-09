@@ -1,0 +1,16 @@
+
+[Template Setup] ─── Service Configuration Status ───
+  ✓  EMAIL_PROVIDER_API_KEY           → Email notifications (Resend)
+  ✓  BUSINESS_OWNER_EMAIL             → Notification recipient
+  ✓  CLIENT_ID / NEXT_PUBLIC_CLIENT_ID → Tenant scoping
+  ✓  WHATSAPP_AGENT_URL               → WhatsApp agent integration (leads + bookings)
+  ✓  AGENT_API_SECRET                 → WhatsApp agent auth (must match agentkit)
+  ✓  BUSINESS_OWNER_PHONE             → WhatsApp admin notifications recipient
+Server running on http://localhost:3000
+[Admin SDK] PROJECT_ID: true CLIENT_EMAIL: true PRIVATE_KEY: true
+[Admin SDK] PROJECT_ID: true CLIENT_EMAIL: true PRIVATE_KEY: true
+[Admin SDK] PROJECT_ID: true CLIENT_EMAIL: true PRIVATE_KEY: true
+[Admin SDK] PROJECT_ID: true CLIENT_EMAIL: true PRIVATE_KEY: true
+[Admin SDK] PROJECT_ID: true CLIENT_EMAIL: true PRIVATE_KEY: true
+[Admin SDK] PROJECT_ID: true CLIENT_EMAIL: true PRIVATE_KEY: true
+[Admin SDK] PROJECT_ID: true CLIENT_EMAIL: true PRIVATE_KEY: true

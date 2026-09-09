@@ -1,0 +1,33 @@
+// Preparación local: fragmento exacto del detector instalado y callback actual. No inicia build ni proveedores.
+const fs=require('node:fs'),p=require('node:path'),vm=require('node:vm'),crypto=require('node:crypto');
+const hub='C:/Users/liama/Desktop/Nichos-hub',d=__dirname,ts=require(p.join(hub,'node_modules/typescript'));
+const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
+const paths=['src/middleware.ts','src/auth.config.ts','package.json','node_modules/next/package.json','node_modules/next/dist/build/index.js','node_modules/next/dist/build/analysis/get-page-static-info.js'];
+const inputs=paths.map(path=>({path,bytes:fs.readFileSync(p.join(hub,path))}));
+const build=inputs.find(x=>x.path.endsWith('build/index.js')).bytes.toString('utf8');
+const start=build.indexOf('            let instrumentationHookFilePath;'),end=build.indexOf('            const hasInstrumentationHook =',start);
+if(start<0||end<start)throw Error('detector no encontrado');
+const detector=build.slice(start,end);new vm.Script(detector);
+const middleware=inputs[0].bytes.toString('utf8');
+const compiled=ts.transpileModule(middleware,{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022},reportDiagnostics:true});
+if(compiled.diagnostics?.some(x=>x.category===ts.DiagnosticCategory.Error))throw Error('transpile');new vm.Script(compiled.outputText);
+const warnings=[];
+const rootPaths=fs.readdirSync(p.join(hub,'src')).filter(n=>/^(middleware|proxy)\.(ts|js)$/.test(n)).map(n=>'/src/'+n);
+vm.runInNewContext(detector,{rootPaths,rootDir:'/control',_path:{default:p.posix},_constants:{MIDDLEWARE_FILENAME:'middleware',PROXY_FILENAME:'proxy',INSTRUMENTATION_HOOK_FILENAME:'instrumentation'},_normalizepathsep:{normalizePathSep:x=>x},_log:{warnOnce:x=>warnings.push(x)},process:{cwd:()=>'/control'}},{timeout:1000});
+if(rootPaths.length!==1||rootPaths[0]!=='/src/middleware.ts'||warnings.length!==1||!warnings[0].includes('deprecated'))throw Error('estado distinto del esperado');
+const exportsObject={};let wrapperCalls=0;
+vm.runInNewContext(compiled.outputText,{exports:exportsObject,require:name=>{
+ if(name==='next-auth')return ()=>({auth:fn=>{wrapperCalls++;return fn;}});
+ if(name==='next/server')return {NextResponse:{next:()=>({kind:'next'}),json:(body,opts)=>({kind:'json',body,status:opts.status}),redirect:url=>({kind:'redirect',url:String(url)})}};
+ if(name==='@/auth.config')return {authConfig:{synthetic:true}};
+ throw Error('import no permitido '+name);
+},URL,process:{env:{OWNER_EMAIL:' Owner@example.invalid ,second@example.invalid '}}},{timeout:1000});
+if(wrapperCalls!==1||typeof exportsObject.default!=='function')throw Error('callback no registrado');
+const scenarios=[['/',null,false],['/onboarding/preview',null,false],['/clients',null,false],['/api/private',null,false],['/clients','other@example.invalid',false],['/clients','OWNER@example.invalid',false],['/api/private','second@example.invalid',false],['/api/whatsapp-config/x',null,true],['/api/whatsapp-config/x',null,false],['/api/private',null,true]];
+const observations=scenarios.map(([pathname,email,agent])=>({pathname,email,agent,result:exportsObject.default({nextUrl:{pathname},url:'http://isolated.invalid'+pathname,auth:email?{user:{email}}:null,headers:new Headers(agent?{'x-agent-secret':'synthetic'}:{})})}));
+const kinds=['next','next','redirect','json','redirect','next','next','next','json','json'];
+if(observations.some((r,i)=>r.result.kind!==kinds[i]))throw Error('baseline inesperado');
+for(const input of inputs){const dest=p.join(d,'preimagenes',input.path);fs.mkdirSync(p.dirname(dest),{recursive:true});fs.writeFileSync(dest,input.bytes,{flag:'wx'});}
+fs.writeFileSync(p.join(d,'FUENTES.json'),JSON.stringify(inputs.map(({path,bytes})=>({path,sha256:sha(bytes)})),null,2),{flag:'wx'});
+fs.writeFileSync(p.join(d,'MEDICION.json'),JSON.stringify({installedNext:JSON.parse(inputs[3].bytes).version,rootPaths,warnings,detectorSha256:sha(detector),preflight:{syntax:true,typescript:ts.version,imports:'whitelist',noRealFetch:true},callbackCases:observations,matcher:exportsObject.config,limits:'Detector exacto ejecutado aislado; callback real con NextAuth/NextResponse simulados. No build ni wrapper/auth/registro HTTP real certificados.'},null,2),{flag:'wx'});
+console.log(JSON.stringify({warningReproduced:true,callbackCases:observations.length,productModified:false}));

@@ -1,0 +1,37 @@
+[
+  {
+    "path": "src/components/admin/StockTab.tsx",
+    "sha256": "4D35BA8B59444381DA1A9AF3888AF3FBD6E21E2113FB313686A9534EF4E6B55C",
+    "igual": true
+  },
+  {
+    "path": "src/services/stock.ts",
+    "sha256": "598F24B65868E6C825CED60138AE80BF0395E82FEBA932CAEF6E4EF511881A7E",
+    "igual": true
+  },
+  {
+    "path": "src/lib/ai/stock-tools.ts",
+    "sha256": "A9718EA17E8CC74A71968E373DD8CCD02552539EE87C96007B5D7DA6B8BC77C9",
+    "igual": true
+  },
+  {
+    "path": "src/lib/api/booking-handler.ts",
+    "sha256": "D7BFF4865597D29A48CF765C464D579FAF38ED24B9F09405415C24EC9BF2DD33",
+    "igual": true
+  },
+  {
+    "path": "tests/booking-handler.test.ts",
+    "sha256": "6D7F6E4409486D1436E61055E515306149998CFF638AC936DE2977110199876A",
+    "igual": true
+  },
+  {
+    "path": "src/lib/api/support-handler.ts",
+    "sha256": "247B2B1C84548124972D6B0C19407C54771A94006ECF5F11CB7EF196E27C8B86",
+    "igual": true
+  },
+  {
+    "path": "src/services/support.ts",
+    "sha256": "994F9C859F652A44F767C9410A9BAECA78D47879B93EE98504BC12CF2205E1F9",
+    "igual": true
+  }
+]

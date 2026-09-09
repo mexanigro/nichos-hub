@@ -1,0 +1,1176 @@
+[
+  {
+    "name": "server-absent: runtime completo",
+    "valid": true,
+    "evidence": {}
+  },
+  {
+    "name": "server-absent: permiso IA exacto e independiente",
+    "valid": true,
+    "evidence": {
+      "response": {
+        "status": 503,
+        "body": {
+          "error": "AI features are not configured on the server."
+        }
+      },
+      "attempts": 0
+    }
+  },
+  {
+    "name": "server-absent: ruta directa /api/ai/analyze",
+    "valid": true,
+    "evidence": {
+      "status": 503,
+      "body": {
+        "error": "AI features are not configured on the server."
+      }
+    }
+  },
+  {
+    "name": "server-absent: ruta directa /api/ai/action",
+    "valid": false,
+    "evidence": {
+      "status": 400,
+      "body": {
+        "error": "Unknown action type: invalid"
+      }
+    }
+  },
+  {
+    "name": "server-absent: ruta directa /api/knowledge/upload",
+    "valid": true,
+    "evidence": {
+      "status": 503,
+      "body": {
+        "error": "AI features are not configured on the server."
+      }
+    }
+  },
+  {
+    "name": "server-absent: auth tenant origen preservados",
+    "valid": true,
+    "evidence": {
+      "noAuth": {
+        "status": 401,
+        "body": {
+          "error": "Unauthorized"
+        }
+      },
+      "foreign": {
+        "status": 403,
+        "body": {
+          "error": "Forbidden"
+        }
+      },
+      "origin": {
+        "status": 403,
+        "body": {
+          "error": "Untrusted origin."
+        }
+      }
+    }
+  },
+  {
+    "name": "server-absent: contacto base",
+    "valid": true,
+    "evidence": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "message": "Thank you! Your message has been received."
+      }
+    }
+  },
+  {
+    "name": "server-absent: reserva y notificación efectiva",
+    "valid": false,
+    "evidence": {
+      "booked": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "appointmentId": "generated-3"
+        }
+      },
+      "bookingNotice": {
+        "status": 400,
+        "body": {
+          "error": "Appointment data is incomplete."
+        }
+      },
+      "agents": 0,
+      "emails": 0
+    }
+  },
+  {
+    "name": "server-absent: CRM booked",
+    "valid": false,
+    "evidence": {
+      "r": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      "emails": 0,
+      "agents": 0
+    }
+  },
+  {
+    "name": "server-absent: CRM cancelled",
+    "valid": false,
+    "evidence": {
+      "r": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      "emails": 0,
+      "agents": 0
+    }
+  },
+  {
+    "name": "server-absent: CRM rescheduled",
+    "valid": false,
+    "evidence": {
+      "r": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      "emails": 0,
+      "agents": 0
+    }
+  },
+  {
+    "name": "server-absent: permiso agente exacto e independiente",
+    "valid": true,
+    "evidence": {
+      "attempts": 0
+    }
+  },
+  {
+    "name": "server-absent: sin exterior real",
+    "valid": true,
+    "evidence": ""
+  },
+  {
+    "name": "server-keys: runtime completo",
+    "valid": true,
+    "evidence": {}
+  },
+  {
+    "name": "server-keys: permiso IA exacto e independiente",
+    "valid": false,
+    "evidence": {
+      "response": {
+        "status": 200,
+        "body": {
+          "text": "Respuesta controlada"
+        }
+      },
+      "attempts": 1
+    }
+  },
+  {
+    "name": "server-keys: ruta directa /api/ai/analyze",
+    "valid": false,
+    "evidence": {
+      "status": 400,
+      "body": {
+        "error": "Body \"type\" must be \"strategic\", \"style\", or \"crm\"."
+      }
+    }
+  },
+  {
+    "name": "server-keys: ruta directa /api/ai/action",
+    "valid": false,
+    "evidence": {
+      "status": 400,
+      "body": {
+        "error": "Unknown action type: invalid"
+      }
+    }
+  },
+  {
+    "name": "server-keys: ruta directa /api/knowledge/upload",
+    "valid": false,
+    "evidence": {
+      "status": 400,
+      "body": {
+        "error": "title is required"
+      }
+    }
+  },
+  {
+    "name": "server-keys: auth tenant origen preservados",
+    "valid": true,
+    "evidence": {
+      "noAuth": {
+        "status": 401,
+        "body": {
+          "error": "Unauthorized"
+        }
+      },
+      "foreign": {
+        "status": 403,
+        "body": {
+          "error": "Forbidden"
+        }
+      },
+      "origin": {
+        "status": 403,
+        "body": {
+          "error": "Untrusted origin."
+        }
+      }
+    }
+  },
+  {
+    "name": "server-keys: contacto base",
+    "valid": true,
+    "evidence": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "message": "Thank you! Your message has been received."
+      }
+    }
+  },
+  {
+    "name": "server-keys: reserva y notificación efectiva",
+    "valid": false,
+    "evidence": {
+      "booked": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "appointmentId": "generated-4"
+        }
+      },
+      "bookingNotice": {
+        "status": 400,
+        "body": {
+          "error": "Appointment data is incomplete."
+        }
+      },
+      "agents": 0,
+      "emails": 0
+    }
+  },
+  {
+    "name": "server-keys: CRM booked",
+    "valid": false,
+    "evidence": {
+      "r": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      },
+      "emails": 0,
+      "agents": 1
+    }
+  },
+  {
+    "name": "server-keys: CRM cancelled",
+    "valid": false,
+    "evidence": {
+      "r": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      },
+      "emails": 0,
+      "agents": 1
+    }
+  },
+  {
+    "name": "server-keys: CRM rescheduled",
+    "valid": false,
+    "evidence": {
+      "r": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      },
+      "emails": 0,
+      "agents": 1
+    }
+  },
+  {
+    "name": "server-keys: permiso agente exacto e independiente",
+    "valid": false,
+    "evidence": {
+      "attempts": 4
+    }
+  },
+  {
+    "name": "server-keys: límite efectivo antes del proveedor",
+    "valid": true,
+    "evidence": {
+      "last": {
+        "status": 429,
+        "body": {
+          "error": "AI rate limit exceeded. Please try again shortly."
+        }
+      },
+      "excess": {
+        "status": 429,
+        "body": {
+          "error": "AI rate limit exceeded. Please try again shortly."
+        }
+      },
+      "attempts": 16
+    }
+  },
+  {
+    "name": "server-keys: sin exterior real",
+    "valid": true,
+    "evidence": ""
+  },
+  {
+    "name": "server-false: runtime completo",
+    "valid": true,
+    "evidence": {}
+  },
+  {
+    "name": "server-false: permiso IA exacto e independiente",
+    "valid": false,
+    "evidence": {
+      "response": {
+        "status": 200,
+        "body": {
+          "text": "Respuesta controlada"
+        }
+      },
+      "attempts": 1
+    }
+  },
+  {
+    "name": "server-false: ruta directa /api/ai/analyze",
+    "valid": false,
+    "evidence": {
+      "status": 400,
+      "body": {
+        "error": "Body \"type\" must be \"strategic\", \"style\", or \"crm\"."
+      }
+    }
+  },
+  {
+    "name": "server-false: ruta directa /api/ai/action",
+    "valid": false,
+    "evidence": {
+      "status": 400,
+      "body": {
+        "error": "Unknown action type: invalid"
+      }
+    }
+  },
+  {
+    "name": "server-false: ruta directa /api/knowledge/upload",
+    "valid": false,
+    "evidence": {
+      "status": 400,
+      "body": {
+        "error": "title is required"
+      }
+    }
+  },
+  {
+    "name": "server-false: auth tenant origen preservados",
+    "valid": true,
+    "evidence": {
+      "noAuth": {
+        "status": 401,
+        "body": {
+          "error": "Unauthorized"
+        }
+      },
+      "foreign": {
+        "status": 403,
+        "body": {
+          "error": "Forbidden"
+        }
+      },
+      "origin": {
+        "status": 403,
+        "body": {
+          "error": "Untrusted origin."
+        }
+      }
+    }
+  },
+  {
+    "name": "server-false: contacto base",
+    "valid": true,
+    "evidence": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "message": "Thank you! Your message has been received."
+      }
+    }
+  },
+  {
+    "name": "server-false: reserva y notificación efectiva",
+    "valid": false,
+    "evidence": {
+      "booked": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "appointmentId": "generated-4"
+        }
+      },
+      "bookingNotice": {
+        "status": 400,
+        "body": {
+          "error": "Appointment data is incomplete."
+        }
+      },
+      "agents": 0,
+      "emails": 0
+    }
+  },
+  {
+    "name": "server-false: CRM booked",
+    "valid": false,
+    "evidence": {
+      "r": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      },
+      "emails": 0,
+      "agents": 1
+    }
+  },
+  {
+    "name": "server-false: CRM cancelled",
+    "valid": false,
+    "evidence": {
+      "r": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      },
+      "emails": 0,
+      "agents": 1
+    }
+  },
+  {
+    "name": "server-false: CRM rescheduled",
+    "valid": false,
+    "evidence": {
+      "r": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      },
+      "emails": 0,
+      "agents": 1
+    }
+  },
+  {
+    "name": "server-false: permiso agente exacto e independiente",
+    "valid": false,
+    "evidence": {
+      "attempts": 4
+    }
+  },
+  {
+    "name": "server-false: sin exterior real",
+    "valid": true,
+    "evidence": ""
+  },
+  {
+    "name": "server-invalid: runtime completo",
+    "valid": true,
+    "evidence": {}
+  },
+  {
+    "name": "server-invalid: permiso IA exacto e independiente",
+    "valid": false,
+    "evidence": {
+      "response": {
+        "status": 200,
+        "body": {
+          "text": "Respuesta controlada"
+        }
+      },
+      "attempts": 1
+    }
+  },
+  {
+    "name": "server-invalid: ruta directa /api/ai/analyze",
+    "valid": false,
+    "evidence": {
+      "status": 400,
+      "body": {
+        "error": "Body \"type\" must be \"strategic\", \"style\", or \"crm\"."
+      }
+    }
+  },
+  {
+    "name": "server-invalid: ruta directa /api/ai/action",
+    "valid": false,
+    "evidence": {
+      "status": 400,
+      "body": {
+        "error": "Unknown action type: invalid"
+      }
+    }
+  },
+  {
+    "name": "server-invalid: ruta directa /api/knowledge/upload",
+    "valid": false,
+    "evidence": {
+      "status": 400,
+      "body": {
+        "error": "title is required"
+      }
+    }
+  },
+  {
+    "name": "server-invalid: auth tenant origen preservados",
+    "valid": true,
+    "evidence": {
+      "noAuth": {
+        "status": 401,
+        "body": {
+          "error": "Unauthorized"
+        }
+      },
+      "foreign": {
+        "status": 403,
+        "body": {
+          "error": "Forbidden"
+        }
+      },
+      "origin": {
+        "status": 403,
+        "body": {
+          "error": "Untrusted origin."
+        }
+      }
+    }
+  },
+  {
+    "name": "server-invalid: contacto base",
+    "valid": true,
+    "evidence": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "message": "Thank you! Your message has been received."
+      }
+    }
+  },
+  {
+    "name": "server-invalid: reserva y notificación efectiva",
+    "valid": false,
+    "evidence": {
+      "booked": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "appointmentId": "generated-4"
+        }
+      },
+      "bookingNotice": {
+        "status": 400,
+        "body": {
+          "error": "Appointment data is incomplete."
+        }
+      },
+      "agents": 0,
+      "emails": 0
+    }
+  },
+  {
+    "name": "server-invalid: CRM booked",
+    "valid": false,
+    "evidence": {
+      "r": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      },
+      "emails": 0,
+      "agents": 1
+    }
+  },
+  {
+    "name": "server-invalid: CRM cancelled",
+    "valid": false,
+    "evidence": {
+      "r": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      },
+      "emails": 0,
+      "agents": 1
+    }
+  },
+  {
+    "name": "server-invalid: CRM rescheduled",
+    "valid": false,
+    "evidence": {
+      "r": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      },
+      "emails": 0,
+      "agents": 1
+    }
+  },
+  {
+    "name": "server-invalid: permiso agente exacto e independiente",
+    "valid": false,
+    "evidence": {
+      "attempts": 4
+    }
+  },
+  {
+    "name": "server-invalid: sin exterior real",
+    "valid": true,
+    "evidence": ""
+  },
+  {
+    "name": "server-ai: runtime completo",
+    "valid": true,
+    "evidence": {}
+  },
+  {
+    "name": "server-ai: permiso IA exacto e independiente",
+    "valid": true,
+    "evidence": {
+      "response": {
+        "status": 200,
+        "body": {
+          "text": "Respuesta controlada"
+        }
+      },
+      "attempts": 1
+    }
+  },
+  {
+    "name": "server-ai: ruta directa /api/ai/analyze",
+    "valid": true,
+    "evidence": {
+      "status": 400,
+      "body": {
+        "error": "Body \"type\" must be \"strategic\", \"style\", or \"crm\"."
+      }
+    }
+  },
+  {
+    "name": "server-ai: ruta directa /api/ai/action",
+    "valid": true,
+    "evidence": {
+      "status": 400,
+      "body": {
+        "error": "Unknown action type: invalid"
+      }
+    }
+  },
+  {
+    "name": "server-ai: ruta directa /api/knowledge/upload",
+    "valid": true,
+    "evidence": {
+      "status": 400,
+      "body": {
+        "error": "title is required"
+      }
+    }
+  },
+  {
+    "name": "server-ai: auth tenant origen preservados",
+    "valid": true,
+    "evidence": {
+      "noAuth": {
+        "status": 401,
+        "body": {
+          "error": "Unauthorized"
+        }
+      },
+      "foreign": {
+        "status": 403,
+        "body": {
+          "error": "Forbidden"
+        }
+      },
+      "origin": {
+        "status": 403,
+        "body": {
+          "error": "Untrusted origin."
+        }
+      }
+    }
+  },
+  {
+    "name": "server-ai: contacto base",
+    "valid": true,
+    "evidence": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "message": "Thank you! Your message has been received."
+      }
+    }
+  },
+  {
+    "name": "server-ai: reserva y notificación efectiva",
+    "valid": false,
+    "evidence": {
+      "booked": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "appointmentId": "generated-4"
+        }
+      },
+      "bookingNotice": {
+        "status": 400,
+        "body": {
+          "error": "Appointment data is incomplete."
+        }
+      },
+      "agents": 0,
+      "emails": 0
+    }
+  },
+  {
+    "name": "server-ai: CRM booked",
+    "valid": false,
+    "evidence": {
+      "r": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      },
+      "emails": 0,
+      "agents": 1
+    }
+  },
+  {
+    "name": "server-ai: CRM cancelled",
+    "valid": false,
+    "evidence": {
+      "r": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      },
+      "emails": 0,
+      "agents": 1
+    }
+  },
+  {
+    "name": "server-ai: CRM rescheduled",
+    "valid": false,
+    "evidence": {
+      "r": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      },
+      "emails": 0,
+      "agents": 1
+    }
+  },
+  {
+    "name": "server-ai: permiso agente exacto e independiente",
+    "valid": false,
+    "evidence": {
+      "attempts": 4
+    }
+  },
+  {
+    "name": "server-ai: límite efectivo antes del proveedor",
+    "valid": true,
+    "evidence": {
+      "last": {
+        "status": 429,
+        "body": {
+          "error": "AI rate limit exceeded. Please try again shortly."
+        }
+      },
+      "excess": {
+        "status": 429,
+        "body": {
+          "error": "AI rate limit exceeded. Please try again shortly."
+        }
+      },
+      "attempts": 16
+    }
+  },
+  {
+    "name": "server-ai: sin exterior real",
+    "valid": true,
+    "evidence": ""
+  },
+  {
+    "name": "server-agent: runtime completo",
+    "valid": true,
+    "evidence": {}
+  },
+  {
+    "name": "server-agent: permiso IA exacto e independiente",
+    "valid": false,
+    "evidence": {
+      "response": {
+        "status": 200,
+        "body": {
+          "text": "Respuesta controlada"
+        }
+      },
+      "attempts": 1
+    }
+  },
+  {
+    "name": "server-agent: ruta directa /api/ai/analyze",
+    "valid": false,
+    "evidence": {
+      "status": 400,
+      "body": {
+        "error": "Body \"type\" must be \"strategic\", \"style\", or \"crm\"."
+      }
+    }
+  },
+  {
+    "name": "server-agent: ruta directa /api/ai/action",
+    "valid": false,
+    "evidence": {
+      "status": 400,
+      "body": {
+        "error": "Unknown action type: invalid"
+      }
+    }
+  },
+  {
+    "name": "server-agent: ruta directa /api/knowledge/upload",
+    "valid": false,
+    "evidence": {
+      "status": 400,
+      "body": {
+        "error": "title is required"
+      }
+    }
+  },
+  {
+    "name": "server-agent: auth tenant origen preservados",
+    "valid": true,
+    "evidence": {
+      "noAuth": {
+        "status": 401,
+        "body": {
+          "error": "Unauthorized"
+        }
+      },
+      "foreign": {
+        "status": 403,
+        "body": {
+          "error": "Forbidden"
+        }
+      },
+      "origin": {
+        "status": 403,
+        "body": {
+          "error": "Untrusted origin."
+        }
+      }
+    }
+  },
+  {
+    "name": "server-agent: contacto base",
+    "valid": true,
+    "evidence": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "message": "Thank you! Your message has been received."
+      }
+    }
+  },
+  {
+    "name": "server-agent: reserva y notificación efectiva",
+    "valid": false,
+    "evidence": {
+      "booked": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "appointmentId": "generated-4"
+        }
+      },
+      "bookingNotice": {
+        "status": 400,
+        "body": {
+          "error": "Appointment data is incomplete."
+        }
+      },
+      "agents": 0,
+      "emails": 0
+    }
+  },
+  {
+    "name": "server-agent: CRM booked",
+    "valid": true,
+    "evidence": {
+      "r": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      },
+      "emails": 0,
+      "agents": 1
+    }
+  },
+  {
+    "name": "server-agent: CRM cancelled",
+    "valid": true,
+    "evidence": {
+      "r": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      },
+      "emails": 0,
+      "agents": 1
+    }
+  },
+  {
+    "name": "server-agent: CRM rescheduled",
+    "valid": true,
+    "evidence": {
+      "r": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      },
+      "emails": 0,
+      "agents": 1
+    }
+  },
+  {
+    "name": "server-agent: permiso agente exacto e independiente",
+    "valid": true,
+    "evidence": {
+      "attempts": 4
+    }
+  },
+  {
+    "name": "server-agent: sin exterior real",
+    "valid": true,
+    "evidence": ""
+  },
+  {
+    "name": "server-incomplete: runtime completo",
+    "valid": true,
+    "evidence": {}
+  },
+  {
+    "name": "server-incomplete: permiso IA exacto e independiente",
+    "valid": true,
+    "evidence": {
+      "response": {
+        "status": 503,
+        "body": {
+          "error": "AI features are not configured on the server."
+        }
+      },
+      "attempts": 0
+    }
+  },
+  {
+    "name": "server-incomplete: ruta directa /api/ai/analyze",
+    "valid": true,
+    "evidence": {
+      "status": 503,
+      "body": {
+        "error": "AI features are not configured on the server."
+      }
+    }
+  },
+  {
+    "name": "server-incomplete: ruta directa /api/ai/action",
+    "valid": true,
+    "evidence": {
+      "status": 400,
+      "body": {
+        "error": "Unknown action type: invalid"
+      }
+    }
+  },
+  {
+    "name": "server-incomplete: ruta directa /api/knowledge/upload",
+    "valid": true,
+    "evidence": {
+      "status": 503,
+      "body": {
+        "error": "AI features are not configured on the server."
+      }
+    }
+  },
+  {
+    "name": "server-incomplete: auth tenant origen preservados",
+    "valid": true,
+    "evidence": {
+      "noAuth": {
+        "status": 401,
+        "body": {
+          "error": "Unauthorized"
+        }
+      },
+      "foreign": {
+        "status": 403,
+        "body": {
+          "error": "Forbidden"
+        }
+      },
+      "origin": {
+        "status": 403,
+        "body": {
+          "error": "Untrusted origin."
+        }
+      }
+    }
+  },
+  {
+    "name": "server-incomplete: contacto base",
+    "valid": true,
+    "evidence": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "message": "Thank you! Your message has been received."
+      }
+    }
+  },
+  {
+    "name": "server-incomplete: reserva y notificación efectiva",
+    "valid": false,
+    "evidence": {
+      "booked": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "appointmentId": "generated-3"
+        }
+      },
+      "bookingNotice": {
+        "status": 400,
+        "body": {
+          "error": "Appointment data is incomplete."
+        }
+      },
+      "agents": 0,
+      "emails": 0
+    }
+  },
+  {
+    "name": "server-incomplete: CRM booked",
+    "valid": true,
+    "evidence": {
+      "r": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      "emails": 0,
+      "agents": 0
+    }
+  },
+  {
+    "name": "server-incomplete: CRM cancelled",
+    "valid": true,
+    "evidence": {
+      "r": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      "emails": 0,
+      "agents": 0
+    }
+  },
+  {
+    "name": "server-incomplete: CRM rescheduled",
+    "valid": true,
+    "evidence": {
+      "r": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      "emails": 0,
+      "agents": 0
+    }
+  },
+  {
+    "name": "server-incomplete: permiso agente exacto e independiente",
+    "valid": true,
+    "evidence": {
+      "attempts": 0
+    }
+  },
+  {
+    "name": "server-incomplete: sin exterior real",
+    "valid": true,
+    "evidence": ""
+  },
+  {
+    "name": "observador positivo IA agente y exterior bloqueado",
+    "valid": true,
+    "evidence": {
+      "exit": 0,
+      "events": "{\"kind\":\"ai\"}\n{\"kind\":\"agent\",\"path\":\"/control\"}\n",
+      "audit": "{\"blocked\":\"fetch:outside.invalid\"}\n"
+    }
+  }
+]

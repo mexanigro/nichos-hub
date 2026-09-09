@@ -1,0 +1,3 @@
+# N03 D05 — preparación y bloqueo de autoridad
+Orden vigente: base sin consumo por claves, presupuesto TOTAL74% para todo N03 sin resets. Reconocimiento focal y contraste independiente encontraron fuente de habilitación ambigua frente a compromisos existentes. Sondeo efectivo ambos runtimes: sin clave503/0intentos; con clave sintética un intentoGemini por runtime, bloqueado antes de red.13PASS/4FAIL sobre dos intentos. Primer sondeo403 por Origin no se usó como verde; corregido con origen sintético válido. No producto ni freeze. Gates0/4; decisión exacta sobre opt-ins servidor y tenants sin clasificación antes de implementar. Consumo71%; entregas previas conservadas. Sin remoto/install/commit/push/deploy/reset.
+[Informe y decisión](../informe/N03/D05-v1/INFORME.md).

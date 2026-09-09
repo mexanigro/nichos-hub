@@ -1,0 +1,30 @@
+[
+  {
+    "path": "indice/tareas/N03.md",
+    "preimage": "informe\\N03\\lint-v1\\preimagenes-registros\\indice\\tareas\\N03.md",
+    "bytesBefore": 16387,
+    "sha256Before": "32b7b12228e6173771cfd4949810b78cfa2bfd6c2c40da1461e18e2b8fccd457",
+    "sha256After": "5719d7220249bb3101a487c517372b22fe655bb50ff0ec92ddbc55c88d2ecee1"
+  },
+  {
+    "path": "indice/README.md",
+    "preimage": "informe\\N03\\lint-v1\\preimagenes-registros\\indice\\README.md",
+    "bytesBefore": 13012,
+    "sha256Before": "1a14f5fe5e9e5edb045f62124caa73310a8f51b10ef5dbbff6fc34c48c42e232",
+    "sha256After": "5db4ecdb5c119288da9783e58f4ff6bdeff048d58c19f4d0bbf57390869132cf"
+  },
+  {
+    "path": "indice/PENDIENTES.md",
+    "preimage": "informe\\N03\\lint-v1\\preimagenes-registros\\indice\\PENDIENTES.md",
+    "bytesBefore": 11332,
+    "sha256Before": "b4fa721d2866a58318b46a29b0490f10ad7621f74c1acc6537baa9e2162a6ddb",
+    "sha256After": "baa7086864cb5ec03bc3b89219d6b7a2ce8ab52f2edc93506e5ab582c453825b"
+  },
+  {
+    "path": "indice/CALENDARIO.md",
+    "preimage": "informe\\N03\\lint-v1\\preimagenes-registros\\indice\\CALENDARIO.md",
+    "bytesBefore": 10368,
+    "sha256Before": "3c5eb0c80f8997de4364f1abd62821f551436d76d9c371ed38218aa44c65f471",
+    "sha256After": "8a6b42f546c4d6fae13bd44b4f7f81a2f542c8453861f0223b6bd132e8a4ed04"
+  }
+]

@@ -1,0 +1,72 @@
+
+[Template Setup] ─── Service Configuration Status ───
+  ✓  [REQUIRED] FIREBASE_PROJECT_ID                  → Firestore access (tenant config, kill-switch)
+  ✓  [REQUIRED] CLIENT_ID                            → Tenant scoping
+[Template Setup] All required integrations configured.
+
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: trial
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: trial
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: maintenance
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: maintenance
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: suspended
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: archived
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: suspended
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active

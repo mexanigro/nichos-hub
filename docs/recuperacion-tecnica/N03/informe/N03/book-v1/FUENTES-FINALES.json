@@ -1,0 +1,34 @@
+{
+  "files": [
+    {
+      "path": "server.ts",
+      "sha256": "9A9AFF88177A7493B729C6A504E66D0A2AF6B18B1F987B3C6FFE254028241221"
+    },
+    {
+      "path": "api/index.ts",
+      "sha256": "1E720F5A9CC62781F1B2CDA7769D3E7A36BE78C243388DAF2D9288949CE37C7E"
+    },
+    {
+      "path": "src/lib/api/booking-handler.ts",
+      "sha256": "D7BFF4865597D29A48CF765C464D579FAF38ED24B9F09405415C24EC9BF2DD33"
+    },
+    {
+      "path": "tests/api-parity.test.ts",
+      "sha256": "22F3339F05B0FD691E2EC8BA321CFA95FD5E22BDB703477903CADCB6F9988370"
+    },
+    {
+      "path": "tests/booking-handler.test.ts",
+      "sha256": "6D7F6E4409486D1436E61055E515306149998CFF638AC936DE2977110199876A"
+    }
+  ],
+  "preservedForeignFiles": [
+    "src/components/admin/AdminDashboard.tsx",
+    "src/services/db.ts",
+    "src/config/locales/ar.ts",
+    "src/config/locales/en.ts",
+    "src/config/locales/he.ts",
+    "src/config/locales/ru.ts"
+  ],
+  "clarityOnlyAfterTests": "Comentario precisa transaccion simulada; import no usado retirado, sin cambio ejecutable. Pruebas previas conservadas.",
+  "mutationRestored": true
+}

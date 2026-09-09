@@ -1,0 +1,6 @@
+const fs=require('fs'),path=require('path');const d=__dirname;
+let code=fs.readFileSync(path.join(d,'auditoria-final.cjs'),'utf8');
+const old="check(runtime+': base no carga preferencias agente',!events.some(e=>e.kind==='read'&&e.path.startsWith('config/')),{});";
+if(!code.includes(old))throw Error('audit anchor');
+code=code.replace(old,`const source=ts.createSourceFile('runtime.ts',fs.readFileSync(path.join(root,runtime==='server'?'server.ts':'api/index.ts'),'utf8'),ts.ScriptTarget.Latest,true);const channels=source.statements.find(n=>ts.isFunctionDeclaration(n)&&n.name?.text==='getChannelConfig');const first=channels?.body?.statements[0];check(runtime+': resolución de canales base antes de cache/config',!!first&&ts.isIfStatement(first)&&first.expression.getText(source)==='!isOptionalServiceEnabled("agent")'&&first.thenStatement.getText(source)==='return baseNotificationChannels();',{});`);
+code=code.replaceAll('AUDITORIA-FINAL.json','AUDITORIA-FINAL-r2.json').replaceAll('FUENTES-FINALES.json','FUENTES-FINALES-r2.json');new Function('require','__dirname',code)(require,d);

@@ -1,0 +1,58 @@
+const fs=require('node:fs'),p=require('node:path'),c=require('node:crypto');
+const d=__dirname,root=p.resolve(d,'../../..'),prior=p.resolve(d,'../clientId-v1'),product=p.resolve(root,'../Barber-shop-template-main');
+const sha=b=>c.createHash('sha256').update(b).digest('hex');
+const read=file=>JSON.parse(fs.readFileSync(file,'utf8').replace(/^\uFEFF/,''));
+const write=(file,value)=>{fs.mkdirSync(p.dirname(file),{recursive:true});fs.writeFileSync(file,value,{flag:'wx'});};
+const baseline=read(p.join(prior,'resultados/auth-baseline-v1/RESULTADOS.json'));
+const reference=read(p.join(prior,'resultados/auth-reference-v1/RESULTADOS.json'));
+const observations=read(p.join(prior,'resultados/auth-baseline-v1/OBSERVACIONES.json'));
+const refs=read(p.join(prior,'resultados/auth-reference-v1/OBSERVACIONES.json'));
+if(baseline.length!==198||baseline.filter(x=>!x.valid).length!==60||baseline.some(x=>!x.valid&&!/^api-agent-(true|false):(?:booked|cancelled|rescheduled):(?:missing|invalid|foreign-tenant|unlisted|unverified):(?:status|no-effects)$/.test(x.name)))throw Error('baseline inesperado');
+if(reference.length!==54||reference.some(x=>!x.valid)||refs.length!==12)throw Error('referencia inválida');
+for(const run of ['auth-preflight-v1','auth-baseline-v1','auth-reference-v1']){
+ const state=read(p.join(prior,'resultados',run,'ESTADO.json'));
+ if(state.timeout||state.state.ExitCode!==(run==='auth-baseline-v1'?1:0)||!read(p.join(prior,'resultados',run,'DISPOSICION.json')).eliminado)throw Error('docker '+run);
+}
+const sourceRows=read(p.join(d,'FUENTES-P0.json'));
+if(sourceRows.length!==333||sourceRows.some(x=>sha(fs.readFileSync(p.join(product,x.path)))!==x.sha256))throw Error('producto cambió');
+const referenceChecks=[];
+for(const row of refs){
+ const old=observations.find(x=>x.runtime===row.runtime&&x.agent===row.agent&&x.action===row.action&&x.case==='legitimate');
+ const withoutPayload=row.effects.filter(x=>x.kind!=='email-payload');
+ const valid=JSON.stringify({...row,effects:withoutPayload})===JSON.stringify(old);
+ referenceChecks.push({runtime:row.runtime,agent:row.agent,action:row.action,previousReferencePreserved:valid,emailPayloadCaptured:row.agent!=='false'||row.effects.some(e=>e.kind==='email-payload'&&e.payload.html)});
+}
+if(referenceChecks.some(x=>!x.previousReferencePreserved||!x.emailPayloadCaptured))throw Error('conservación entre baselines');
+write(p.join(d,'CONSERVACION-REFERENCIA.json'),JSON.stringify(referenceChecks,null,2));
+const accepted=`# clientId-v1 — aceptación de Liam y revisión externa trasladada
+
+Procedencia: mensaje de Liam en esta conversación, 2026-09-09: acepta el cierre local clientId-v1 y traslada esta revisión externa, expresamente separada de Harvey. No se atribuye al integrador una reejecución de esos controles externos ni se inventa un archivo original del revisor.
+
+Resumen trasladado: diff limitado a dos selectores y documentación; 142 controles y tipos reejecutados correctamente; 333 huellas finales coincidentes. Objeto vinculado: CIERRE-LOCAL.md, SHA256 ${sha(fs.readFileSync(p.join(prior,'CIERRE-LOCAL.md')))}. La revisión interna de Harvey permanece en REVISION-FINAL.md, con su procedencia y límites propios.
+
+Aceptación local incorporada. En esta continuación se verificó de nuevo la coincidencia de las 333 fuentes contra FUENTES-FINALES.json; no se repitieron las suites de clientId-v1. N03 sigue abierta. El hallazgo appointment/notify se recibe como reparación LOCAL pendiente de N03; N04 conserva certificación de identidad/entorno reales. Esto corrige la adjudicación demasiado amplia a N04 del cierre anterior sin sobrescribirla.
+`;
+write(p.join(prior,'ACEPTACION-Y-REVISION-EXTERNA.md'),accepted);
+const custody=[];
+function update(rel,notice){
+ const file=p.join(root,rel),before=fs.readFileSync(file),pre=p.join(d,'preimagenes-registros',rel);
+ write(pre,before);if(sha(fs.readFileSync(pre))!==sha(before))throw Error('preimagen');
+ fs.writeFileSync(file,before.toString('utf8').replace('\n','\n\n'+notice+'\n'));
+ custody.push({path:rel,before:sha(before),after:sha(fs.readFileSync(file)),preimage:p.relative(root,pre)});
+}
+update('informe/N03/clientId-v1/INFORME.md','**clientId-v1 aceptada GREEN local por Liam.** [Aceptación y revisión externa trasladada, separada de Harvey](ACEPTACION-Y-REVISION-EXTERNA.md). La reparación de auth POST /api/appointment/notify es pendiente LOCAL de N03; N04 conserva identidad/entorno reales. [Propuesta acotada](../appointment-notify-auth-v1/PROPUESTA.md), aún sin implementar. Estados inferiores históricos.');
+for(const rel of ['indice/tareas/N03.md','indice/README.md','indice/PENDIENTES.md','indice/CALENDARIO.md']){
+ const prefix=rel.includes('/tareas/')?'../../':'../';
+ update(rel,`**N03 vigente: clientId-v1 aceptada; autenticación appointment/notify preparada, reparación pendiente.** [Única propuesta y contrato](${prefix}informe/N03/appointment-notify-auth-v1/PROPUESTA.md), [evidencia/refutación](${prefix}informe/N03/appointment-notify-auth-v1/INFORME.md). Vercel permite las tres acciones sin autorización; server las rechaza. Reparación LOCAL en N03: conectar guard existente en api/index.ts, pendiente autorización de implementación. N04 conserva certificación de identidad/entorno reales; corrige destino íntegro anterior a N04. [Aceptación externa clientId, separada de Harvey](${prefix}informe/N03/clientId-v1/ACEPTACION-Y-REVISION-EXTERNA.md). Sin producto editado; demás entregas intactas. N03 abierta, condición previa al despliegue por prestaciones de tenant vigente. Consumo observado77%/80% TOTAL, sin resets. Detenido para revisión; cortes inferiores históricos.`);
+}
+write(p.join(d,'CUSTODIA-REGISTROS.json'),JSON.stringify(custody,null,2));
+write(p.join(root,'historial/2026-09-09-N03-appointment-notify-auth-preparacion.md'),`# N03 — aceptación clientId y preparación de autenticación
+
+Liam aceptó clientId-v1 GREEN local y trasladó revisión externa (dos selectores/documentación,142 controles/tipos repetidos,333 huellas), registrada separada de Harvey. Se preparó exclusivamente el guard faltante en POST/api/appointment/notify de api/index.ts. [Propuesta](../informe/N03/appointment-notify-auth-v1/PROPUESTA.md), [informe](../informe/N03/appointment-notify-auth-v1/INFORME.md).
+
+Reutilizado arnés clientId sin instalaciones/remoto. Preflight Docker0; baseline84 peticiones,4 arranques,198 controles:138PASS/60FAIL funcionales esperados sólo API. Refutación material resolvió comparación de positivos y captura email: única repetición afectada12 peticiones/54PASS.333 fuentes intactas; preimágenes y fallos anteriores conservados. Mutación preparada en memoria, ejecución sobre producto final pendiente.
+
+Reparación local pendiente N03, certificación real identidad/entorno N04. No producto modificado, freeze ni implementación. Única retoma: aprobación de las dos instrucciones y contrato, luego P0→P3. Condición de prestaciones por tenant antes de deploy intacta; N03 sigue en curso. Consumo77%/80%TOTAL, sin resets/commit/push/deploy.
+`);
+write(p.join(d,'RESUMEN-MEDICION.json'),JSON.stringify({preparation:'measured',repair:'RED',requests:84,controls:198,passed:138,expectedFailures:60,instrumentFailures:0,startups:4,positiveReferenceRequests:12,positiveReferenceControls:54,positiveReferencePassed:54,preservedSources:333,usage:77,cap:80},null,2));
+console.log(JSON.stringify({registered:true,sources:333,referenceChecks:12,records:custody.length}));

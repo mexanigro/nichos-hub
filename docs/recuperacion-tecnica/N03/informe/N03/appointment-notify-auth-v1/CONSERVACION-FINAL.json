@@ -1,0 +1,5490 @@
+[
+  {
+    "name": "contrato conservado",
+    "valid": true
+  },
+  {
+    "name": "instrumento api-worker.mjs",
+    "valid": true
+  },
+  {
+    "name": "instrumento control-funciones.cjs",
+    "valid": true
+  },
+  {
+    "name": "instrumento ejecutar.ps1",
+    "valid": true
+  },
+  {
+    "name": "instrumento firebase-fixture.mjs",
+    "valid": true
+  },
+  {
+    "name": "instrumento firebase-hooks.mjs",
+    "valid": true
+  },
+  {
+    "name": "instrumento fixture-recorridos.mjs",
+    "valid": true
+  },
+  {
+    "name": "instrumento hooks-recorridos.mjs",
+    "valid": true
+  },
+  {
+    "name": "instrumento preload-auth.mjs",
+    "valid": true
+  },
+  {
+    "name": "instrumento preload-recorridos.mjs",
+    "valid": true
+  },
+  {
+    "name": "instrumento preload.mjs",
+    "valid": true
+  },
+  {
+    "name": "instrumento preparar-http.cjs",
+    "valid": true
+  },
+  {
+    "name": "instrumento preparar-mutacion-auth.cjs",
+    "valid": true
+  },
+  {
+    "name": "instrumento preparar-mutacion.cjs",
+    "valid": true
+  },
+  {
+    "name": "instrumento registrar-cierre.cjs",
+    "valid": true
+  },
+  {
+    "name": "instrumento registrar-stop.cjs",
+    "valid": true
+  },
+  {
+    "name": "instrumento registrar.cjs",
+    "valid": true
+  },
+  {
+    "name": "instrumento runner-auth-prep.mjs",
+    "valid": true
+  },
+  {
+    "name": "instrumento runner-http.mjs",
+    "valid": true
+  },
+  {
+    "name": "instrumento runner-parity.mjs",
+    "valid": true
+  },
+  {
+    "name": "instrumento sondeo.cjs",
+    "valid": true
+  },
+  {
+    "name": "instrumento tsconfig.json",
+    "valid": true
+  },
+  {
+    "name": "instrumento verificar-cierre.cjs",
+    "valid": true
+  },
+  {
+    "name": "producto api/index.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN api/index.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación api/index.ts",
+    "valid": true
+  },
+  {
+    "name": "producto package.json",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN package.json",
+    "valid": true
+  },
+  {
+    "name": "copia mutación package.json",
+    "valid": true
+  },
+  {
+    "name": "conservación package.json",
+    "valid": true
+  },
+  {
+    "name": "producto server.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN server.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación server.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación server.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/App.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/App.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/App.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/App.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/3d-impact/ambient-particles.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/3d-impact/ambient-particles.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/3d-impact/ambient-particles.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/3d-impact/ambient-particles.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/3d-impact/cta-button-3d.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/3d-impact/cta-button-3d.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/3d-impact/cta-button-3d.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/3d-impact/cta-button-3d.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/3d-impact/DemoPage.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/3d-impact/DemoPage.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/3d-impact/DemoPage.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/3d-impact/DemoPage.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/3d-impact/hero-object-3d.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/3d-impact/hero-object-3d.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/3d-impact/hero-object-3d.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/3d-impact/hero-object-3d.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/3d-impact/index.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/3d-impact/index.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/3d-impact/index.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/3d-impact/index.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/3d-impact/paper-card.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/3d-impact/paper-card.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/3d-impact/paper-card.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/3d-impact/paper-card.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/3d-impact/splash-impact-reveal-3d.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/3d-impact/splash-impact-reveal-3d.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/3d-impact/splash-impact-reveal-3d.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/3d-impact/splash-impact-reveal-3d.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/3d-impact/splash-impact-scale.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/3d-impact/splash-impact-scale.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/3d-impact/splash-impact-scale.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/3d-impact/splash-impact-scale.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/3d-impact/splash-impact-split.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/3d-impact/splash-impact-split.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/3d-impact/splash-impact-split.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/3d-impact/splash-impact-split.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/about/AboutPage.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/about/AboutPage.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/about/AboutPage.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/about/AboutPage.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/admin/AdminDashboard.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/admin/AdminDashboard.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/admin/AdminDashboard.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/admin/AdminDashboard.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/admin/AdminLoginPanel.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/admin/AdminLoginPanel.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/admin/AdminLoginPanel.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/admin/AdminLoginPanel.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/admin/AppointmentCalendar.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/admin/AppointmentCalendar.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/admin/AppointmentCalendar.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/admin/AppointmentCalendar.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/admin/BusinessRulesTab.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/admin/BusinessRulesTab.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/admin/BusinessRulesTab.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/admin/BusinessRulesTab.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/admin/CustomerDetailPanel.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/admin/CustomerDetailPanel.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/admin/CustomerDetailPanel.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/admin/CustomerDetailPanel.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/admin/CustomersKanban.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/admin/CustomersKanban.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/admin/CustomersKanban.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/admin/CustomersKanban.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/admin/CustomersTab.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/admin/CustomersTab.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/admin/CustomersTab.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/admin/CustomersTab.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/admin/DashboardTab.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/admin/DashboardTab.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/admin/DashboardTab.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/admin/DashboardTab.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/admin/InboxTab.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/admin/InboxTab.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/admin/InboxTab.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/admin/InboxTab.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/admin/KnowledgeTab.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/admin/KnowledgeTab.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/admin/KnowledgeTab.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/admin/KnowledgeTab.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/admin/MetricsDashboard.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/admin/MetricsDashboard.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/admin/MetricsDashboard.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/admin/MetricsDashboard.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/admin/NotificationLogsTab.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/admin/NotificationLogsTab.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/admin/NotificationLogsTab.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/admin/NotificationLogsTab.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/admin/PaymentsTab.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/admin/PaymentsTab.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/admin/PaymentsTab.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/admin/PaymentsTab.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/admin/ProtectedRoute.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/admin/ProtectedRoute.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/admin/ProtectedRoute.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/admin/ProtectedRoute.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/admin/StaffLogistics.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/admin/StaffLogistics.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/admin/StaffLogistics.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/admin/StaffLogistics.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/admin/StockTab.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/admin/StockTab.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/admin/StockTab.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/admin/StockTab.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/admin/SupportTab.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/admin/SupportTab.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/admin/SupportTab.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/admin/SupportTab.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/admin/TasksTab.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/admin/TasksTab.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/admin/TasksTab.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/admin/TasksTab.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/admin/UnauthorizedAdmin.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/admin/UnauthorizedAdmin.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/admin/UnauthorizedAdmin.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/admin/UnauthorizedAdmin.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/admin/UsersTab.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/admin/UsersTab.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/admin/UsersTab.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/admin/UsersTab.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/booking/BookingWizard.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/booking/BookingWizard.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/booking/BookingWizard.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/booking/BookingWizard.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/branding/logo-svg.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/branding/logo-svg.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/branding/logo-svg.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/branding/logo-svg.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/chat/Chatbot.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/chat/Chatbot.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/chat/Chatbot.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/chat/Chatbot.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/dev/VariantsPreview.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/dev/VariantsPreview.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/dev/VariantsPreview.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/dev/VariantsPreview.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/dev/WizardRefsPreview.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/dev/WizardRefsPreview.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/dev/WizardRefsPreview.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/dev/WizardRefsPreview.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/ErrorBoundary.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/ErrorBoundary.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/ErrorBoundary.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/ErrorBoundary.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/gallery/GalleryPage.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/gallery/GalleryPage.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/gallery/GalleryPage.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/gallery/GalleryPage.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/Ambience.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/Ambience.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/Ambience.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/Ambience.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/aura/aura-before-after.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/aura/aura-before-after.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/aura/aura-before-after.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/aura/aura-before-after.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/aura/aura-contact.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/aura/aura-contact.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/aura/aura-contact.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/aura/aura-contact.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/aura/aura-faq.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/aura/aura-faq.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/aura/aura-faq.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/aura/aura-faq.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/aura/aura-hero.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/aura/aura-hero.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/aura/aura-hero.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/aura/aura-hero.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/aura/aura-instagram.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/aura/aura-instagram.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/aura/aura-instagram.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/aura/aura-instagram.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/aura/aura-services.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/aura/aura-services.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/aura/aura-services.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/aura/aura-services.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/aura/aura-team.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/aura/aura-team.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/aura/aura-team.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/aura/aura-team.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/aura/aura-testimonials.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/aura/aura-testimonials.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/aura/aura-testimonials.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/aura/aura-testimonials.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/aura/aura-why-choose-us.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/aura/aura-why-choose-us.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/aura/aura-why-choose-us.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/aura/aura-why-choose-us.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/aura/index.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/aura/index.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/aura/index.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/aura/index.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/BeforeAfter.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/BeforeAfter.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/BeforeAfter.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/BeforeAfter.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/booking-form-map-hours-3d.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/booking-form-map-hours-3d.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/booking-form-map-hours-3d.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/booking-form-map-hours-3d.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/BusinessHours.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/BusinessHours.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/BusinessHours.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/BusinessHours.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/contact/contact-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/contact/contact-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/contact/contact-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/contact/contact-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/contact/contact-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/contact/contact-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/contact/contact-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/contact/contact-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/contact/contact-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/contact/contact-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/contact/contact-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/contact/contact-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/contact/contact-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/contact/contact-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/contact/contact-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/contact/contact-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/contact/estetica/contact-form.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/contact/estetica/contact-form.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/contact/estetica/contact-form.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/contact/estetica/contact-form.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/contact/estetica/contact-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/contact/estetica/contact-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/contact/estetica/contact-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/contact/estetica/contact-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/contact/estetica/contact-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/contact/estetica/contact-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/contact/estetica/contact-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/contact/estetica/contact-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/contact/estetica/contact-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/contact/estetica/contact-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/contact/estetica/contact-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/contact/estetica/contact-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/contact/estetica/contact-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/contact/estetica/contact-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/contact/estetica/contact-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/contact/estetica/contact-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/ContactHub.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/ContactHub.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/ContactHub.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/ContactHub.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/employment/AudienceChoice.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/employment/AudienceChoice.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/employment/AudienceChoice.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/employment/AudienceChoice.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/employment/business/BusinessBenefits.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/employment/business/BusinessBenefits.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/employment/business/BusinessBenefits.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/employment/business/BusinessBenefits.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/employment/business/BusinessFAQ.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/employment/business/BusinessFAQ.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/employment/business/BusinessFAQ.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/employment/business/BusinessFAQ.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/employment/business/BusinessHero.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/employment/business/BusinessHero.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/employment/business/BusinessHero.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/employment/business/BusinessHero.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/employment/business/BusinessProcess.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/employment/business/BusinessProcess.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/employment/business/BusinessProcess.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/employment/business/BusinessProcess.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/employment/business/BusinessRegistrationForm.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/employment/business/BusinessRegistrationForm.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/employment/business/BusinessRegistrationForm.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/employment/business/BusinessRegistrationForm.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/employment/business/BusinessTestimonials.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/employment/business/BusinessTestimonials.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/employment/business/BusinessTestimonials.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/employment/business/BusinessTestimonials.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/employment/business/useBusinessLocale.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/employment/business/useBusinessLocale.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/employment/business/useBusinessLocale.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/employment/business/useBusinessLocale.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/employment/business/WorkerCategories.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/employment/business/WorkerCategories.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/employment/business/WorkerCategories.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/employment/business/WorkerCategories.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/employment/EmploymentHero.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/employment/EmploymentHero.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/employment/EmploymentHero.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/employment/EmploymentHero.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/employment/HowItWorks.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/employment/HowItWorks.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/employment/HowItWorks.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/employment/HowItWorks.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/employment/index.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/employment/index.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/employment/index.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/employment/index.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/employment/JobCategories.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/employment/JobCategories.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/employment/JobCategories.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/employment/JobCategories.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/employment/RegistrationWizard.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/employment/RegistrationWizard.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/employment/RegistrationWizard.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/employment/RegistrationWizard.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/faq/estetica/faq-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/faq/estetica/faq-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/faq/estetica/faq-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/faq/estetica/faq-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/faq/estetica/faq-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/faq/estetica/faq-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/faq/estetica/faq-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/faq/estetica/faq-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/faq/estetica/faq-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/faq/estetica/faq-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/faq/estetica/faq-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/faq/estetica/faq-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/faq/estetica/faq-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/faq/estetica/faq-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/faq/estetica/faq-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/faq/estetica/faq-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/faq/faq-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/faq/faq-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/faq/faq-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/faq/faq-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/faq/faq-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/faq/faq-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/faq/faq-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/faq/faq-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/faq/faq-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/faq/faq-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/faq/faq-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/faq/faq-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/faq/faq-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/faq/faq-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/faq/faq-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/faq/faq-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/FAQ.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/FAQ.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/FAQ.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/FAQ.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/gallery/estetica/gallery-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/gallery/estetica/gallery-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/gallery/estetica/gallery-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/gallery/estetica/gallery-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/gallery/estetica/gallery-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/gallery/estetica/gallery-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/gallery/estetica/gallery-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/gallery/estetica/gallery-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/gallery/estetica/gallery-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/gallery/estetica/gallery-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/gallery/estetica/gallery-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/gallery/estetica/gallery-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/gallery/estetica/gallery-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/gallery/estetica/gallery-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/gallery/estetica/gallery-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/gallery/estetica/gallery-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/gallery/gallery-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/gallery/gallery-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/gallery/gallery-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/gallery/gallery-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/gallery/gallery-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/gallery/gallery-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/gallery/gallery-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/gallery/gallery-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/gallery/gallery-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/gallery/gallery-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/gallery/gallery-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/gallery/gallery-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/gallery/gallery-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/gallery/gallery-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/gallery/gallery-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/gallery/gallery-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/gallery-bento-stats.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/gallery-bento-stats.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/gallery-bento-stats.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/gallery-bento-stats.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/gallery-grid-with-filters.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/gallery-grid-with-filters.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/gallery-grid-with-filters.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/gallery-grid-with-filters.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/gallery-portrait-bento-3d-cameo.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/gallery-portrait-bento-3d-cameo.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/gallery-portrait-bento-3d-cameo.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/gallery-portrait-bento-3d-cameo.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/Gallery.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/Gallery.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/Gallery.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/Gallery.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/GalleryTeaser.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/GalleryTeaser.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/GalleryTeaser.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/GalleryTeaser.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/hero/estetica/hero-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/hero/estetica/hero-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/hero/estetica/hero-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/hero/estetica/hero-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/hero/estetica/hero-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/hero/estetica/hero-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/hero/estetica/hero-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/hero/estetica/hero-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/hero/estetica/hero-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/hero/estetica/hero-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/hero/estetica/hero-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/hero/estetica/hero-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/hero/estetica/hero-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/hero/estetica/hero-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/hero/estetica/hero-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/hero/estetica/hero-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/hero/floating-cards.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/hero/floating-cards.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/hero/floating-cards.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/hero/floating-cards.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/hero/hero-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/hero/hero-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/hero/hero-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/hero/hero-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/hero/hero-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/hero/hero-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/hero/hero-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/hero/hero-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/hero/hero-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/hero/hero-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/hero/hero-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/hero/hero-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/hero/hero-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/hero/hero-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/hero/hero-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/hero/hero-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/hero/stats-bar-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/hero/stats-bar-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/hero/stats-bar-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/hero/stats-bar-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/hero/stats-bar-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/hero/stats-bar-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/hero/stats-bar-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/hero/stats-bar-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/hero/stats-bar-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/hero/stats-bar-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/hero/stats-bar-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/hero/stats-bar-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/hero/stats-bar-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/hero/stats-bar-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/hero/stats-bar-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/hero/stats-bar-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/hero/stats-bar.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/hero/stats-bar.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/hero/stats-bar.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/hero/stats-bar.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/hero/title-with-italic.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/hero/title-with-italic.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/hero/title-with-italic.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/hero/title-with-italic.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/hero-variant-3d-object.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/hero-variant-3d-object.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/hero-variant-3d-object.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/hero-variant-3d-object.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/Hero.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/Hero.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/Hero.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/Hero.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/instagram/estetica/instagram-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/instagram/estetica/instagram-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/instagram/estetica/instagram-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/instagram/estetica/instagram-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/instagram/estetica/instagram-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/instagram/estetica/instagram-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/instagram/estetica/instagram-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/instagram/estetica/instagram-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/instagram/estetica/instagram-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/instagram/estetica/instagram-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/instagram/estetica/instagram-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/instagram/estetica/instagram-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/instagram/estetica/instagram-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/instagram/estetica/instagram-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/instagram/estetica/instagram-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/instagram/estetica/instagram-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/instagram/instagram-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/instagram/instagram-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/instagram/instagram-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/instagram/instagram-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/instagram/instagram-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/instagram/instagram-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/instagram/instagram-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/instagram/instagram-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/instagram/instagram-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/instagram/instagram-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/instagram/instagram-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/instagram/instagram-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/instagram/instagram-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/instagram/instagram-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/instagram/instagram-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/instagram/instagram-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/InstagramFeed.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/InstagramFeed.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/InstagramFeed.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/InstagramFeed.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/InstagramTeaser.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/InstagramTeaser.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/InstagramTeaser.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/InstagramTeaser.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/LandingBackdrop.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/LandingBackdrop.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/LandingBackdrop.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/LandingBackdrop.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/Location.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/Location.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/Location.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/Location.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/Menu.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/Menu.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/Menu.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/Menu.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/Philosophy.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/Philosophy.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/Philosophy.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/Philosophy.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/Portfolio.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/Portfolio.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/Portfolio.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/Portfolio.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/Process.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/Process.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/Process.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/Process.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/QuickInquiry.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/QuickInquiry.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/QuickInquiry.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/QuickInquiry.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/SectionDivider.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/SectionDivider.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/SectionDivider.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/SectionDivider.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/services/estetica/services-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/services/estetica/services-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/services/estetica/services-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/services/estetica/services-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/services/estetica/services-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/services/estetica/services-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/services/estetica/services-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/services/estetica/services-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/services/estetica/services-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/services/estetica/services-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/services/estetica/services-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/services/estetica/services-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/services/estetica/services-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/services/estetica/services-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/services/estetica/services-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/services/estetica/services-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/services/services-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/services/services-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/services/services-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/services/services-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/services/services-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/services/services-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/services/services-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/services/services-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/services/services-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/services/services-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/services/services-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/services/services-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/services/services-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/services/services-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/services/services-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/services/services-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/services-card-stack-tabs.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/services-card-stack-tabs.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/services-card-stack-tabs.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/services-card-stack-tabs.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/services-list-with-icons.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/services-list-with-icons.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/services-list-with-icons.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/services-list-with-icons.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/services-treatment-card-grid.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/services-treatment-card-grid.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/services-treatment-card-grid.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/services-treatment-card-grid.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/Services.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/Services.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/Services.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/Services.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/team/estetica/team-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/team/estetica/team-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/team/estetica/team-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/team/estetica/team-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/team/estetica/team-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/team/estetica/team-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/team/estetica/team-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/team/estetica/team-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/team/estetica/team-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/team/estetica/team-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/team/estetica/team-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/team/estetica/team-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/team/estetica/team-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/team/estetica/team-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/team/estetica/team-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/team/estetica/team-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/team/team-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/team/team-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/team/team-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/team/team-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/team/team-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/team/team-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/team/team-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/team/team-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/team/team-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/team/team-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/team/team-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/team/team-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/team/team-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/team/team-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/team/team-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/team/team-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/Team.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/Team.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/Team.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/Team.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/testimonials/estetica/testimonials-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/testimonials/estetica/testimonials-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/testimonials/estetica/testimonials-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/testimonials/estetica/testimonials-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/testimonials/estetica/testimonials-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/testimonials/estetica/testimonials-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/testimonials/estetica/testimonials-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/testimonials/estetica/testimonials-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/testimonials/estetica/testimonials-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/testimonials/estetica/testimonials-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/testimonials/estetica/testimonials-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/testimonials/estetica/testimonials-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/testimonials/estetica/testimonials-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/testimonials/estetica/testimonials-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/testimonials/estetica/testimonials-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/testimonials/estetica/testimonials-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/testimonials/testimonials-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/testimonials/testimonials-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/testimonials/testimonials-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/testimonials/testimonials-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/testimonials/testimonials-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/testimonials/testimonials-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/testimonials/testimonials-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/testimonials/testimonials-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/testimonials/testimonials-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/testimonials/testimonials-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/testimonials/testimonials-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/testimonials/testimonials-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/testimonials/testimonials-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/testimonials/testimonials-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/testimonials/testimonials-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/testimonials/testimonials-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/Testimonials.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/Testimonials.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/Testimonials.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/Testimonials.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/why-choose-us/estetica/why-choose-us-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/why-choose-us/estetica/why-choose-us-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/why-choose-us/estetica/why-choose-us-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/why-choose-us/estetica/why-choose-us-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/why-choose-us/estetica/why-choose-us-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/why-choose-us/estetica/why-choose-us-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/why-choose-us/estetica/why-choose-us-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/why-choose-us/estetica/why-choose-us-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/why-choose-us/estetica/why-choose-us-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/why-choose-us/estetica/why-choose-us-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/why-choose-us/estetica/why-choose-us-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/why-choose-us/estetica/why-choose-us-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/why-choose-us/estetica/why-choose-us-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/why-choose-us/estetica/why-choose-us-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/why-choose-us/estetica/why-choose-us-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/why-choose-us/estetica/why-choose-us-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/why-choose-us/why-choose-us-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/why-choose-us/why-choose-us-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/why-choose-us/why-choose-us-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/why-choose-us/why-choose-us-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/why-choose-us/why-choose-us-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/why-choose-us/why-choose-us-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/why-choose-us/why-choose-us-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/why-choose-us/why-choose-us-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/why-choose-us/why-choose-us-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/why-choose-us/why-choose-us-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/why-choose-us/why-choose-us-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/why-choose-us/why-choose-us-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/why-choose-us/why-choose-us-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/why-choose-us/why-choose-us-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/why-choose-us/why-choose-us-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/why-choose-us/why-choose-us-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/why-choose-us-icon-grid-3d.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/why-choose-us-icon-grid-3d.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/why-choose-us-icon-grid-3d.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/why-choose-us-icon-grid-3d.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/landing/WhyChooseUs.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/landing/WhyChooseUs.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/landing/WhyChooseUs.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/landing/WhyChooseUs.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/layout/footer/footer-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/layout/footer/footer-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/layout/footer/footer-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/layout/footer/footer-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/layout/footer/footer-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/layout/footer/footer-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/layout/footer/footer-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/layout/footer/footer-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/layout/footer/footer-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/layout/footer/footer-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/layout/footer/footer-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/layout/footer/footer-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/layout/footer/footer-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/layout/footer/footer-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/layout/footer/footer-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/layout/footer/footer-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/layout/Footer.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/layout/Footer.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/layout/Footer.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/layout/Footer.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/layout/navbar/navbar-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/layout/navbar/navbar-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/layout/navbar/navbar-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/layout/navbar/navbar-v2.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/layout/navbar/navbar-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/layout/navbar/navbar-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/layout/navbar/navbar-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/layout/navbar/navbar-v3.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/layout/navbar/navbar-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/layout/navbar/navbar-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/layout/navbar/navbar-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/layout/navbar/navbar-v4.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/layout/navbar/navbar-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/layout/navbar/navbar-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/layout/navbar/navbar-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/layout/navbar/navbar-v5.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/layout/Navbar.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/layout/Navbar.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/layout/Navbar.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/layout/Navbar.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/layout/ScrollToTop.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/layout/ScrollToTop.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/layout/ScrollToTop.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/layout/ScrollToTop.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/layout/splash/index.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/layout/splash/index.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/layout/splash/index.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/layout/splash/index.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/layout/splash/SplashCafeteria.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/layout/splash/SplashCafeteria.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/layout/splash/SplashCafeteria.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/layout/splash/SplashCafeteria.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/layout/splash/SplashClassic.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/layout/splash/SplashClassic.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/layout/splash/SplashClassic.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/layout/splash/SplashClassic.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/layout/splash/SplashCurtain.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/layout/splash/SplashCurtain.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/layout/splash/SplashCurtain.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/layout/splash/SplashCurtain.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/layout/splash/SplashFadeScale.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/layout/splash/SplashFadeScale.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/layout/splash/SplashFadeScale.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/layout/splash/SplashFadeScale.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/layout/splash/SplashGradientSweep.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/layout/splash/SplashGradientSweep.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/layout/splash/SplashGradientSweep.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/layout/splash/SplashGradientSweep.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/layout/splash/SplashMinimalPulse.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/layout/splash/SplashMinimalPulse.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/layout/splash/SplashMinimalPulse.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/layout/splash/SplashMinimalPulse.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/layout/splash/SplashParticles.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/layout/splash/SplashParticles.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/layout/splash/SplashParticles.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/layout/splash/SplashParticles.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/layout/splash/SplashPulse.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/layout/splash/SplashPulse.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/layout/splash/SplashPulse.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/layout/splash/SplashPulse.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/layout/splash/SplashRemodelaciones.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/layout/splash/SplashRemodelaciones.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/layout/splash/SplashRemodelaciones.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/layout/splash/SplashRemodelaciones.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/layout/splash/SplashTypewriter.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/layout/splash/SplashTypewriter.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/layout/splash/SplashTypewriter.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/layout/splash/SplashTypewriter.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/layout/splash/SplashVortex.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/layout/splash/SplashVortex.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/layout/splash/SplashVortex.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/layout/splash/SplashVortex.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/layout/splash/types.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/layout/splash/types.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/layout/splash/types.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/layout/splash/types.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/layout/SplashScreen.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/layout/SplashScreen.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/layout/SplashScreen.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/layout/SplashScreen.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/legal/LegalPage.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/legal/LegalPage.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/legal/LegalPage.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/legal/LegalPage.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/portfolio/ProjectsPage.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/portfolio/ProjectsPage.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/portfolio/ProjectsPage.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/portfolio/ProjectsPage.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/ProductTour.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/ProductTour.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/ProductTour.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/ProductTour.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/QuoteRequestModal.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/QuoteRequestModal.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/QuoteRequestModal.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/QuoteRequestModal.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/services/ServicesPage.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/services/ServicesPage.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/services/ServicesPage.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/services/ServicesPage.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/shared/PolicyModal.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/shared/PolicyModal.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/shared/PolicyModal.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/shared/PolicyModal.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/staff/StaffProfilePage.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/staff/StaffProfilePage.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/staff/StaffProfilePage.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/staff/StaffProfilePage.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/theme/ThemeProvider.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/theme/ThemeProvider.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/theme/ThemeProvider.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/theme/ThemeProvider.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/theme/ThemeToggle.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/theme/ThemeToggle.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/theme/ThemeToggle.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/theme/ThemeToggle.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/TourButton.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/TourButton.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/TourButton.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/TourButton.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/ui/AccessibilityWidget.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/ui/AccessibilityWidget.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/ui/AccessibilityWidget.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/ui/AccessibilityWidget.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/ui/BrandLogo.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/ui/BrandLogo.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/ui/BrandLogo.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/ui/BrandLogo.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/ui/calendar.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/ui/calendar.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/ui/calendar.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/ui/calendar.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/ui/LanguageSwitcher.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/ui/LanguageSwitcher.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/ui/LanguageSwitcher.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/ui/LanguageSwitcher.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/components/ui/Toast.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/components/ui/Toast.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/components/ui/Toast.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/components/ui/Toast.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/config/demo-data.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/config/demo-data.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/config/demo-data.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/config/demo-data.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/config/env.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/config/env.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/config/env.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/config/env.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/config/envQuotes.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/config/envQuotes.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/config/envQuotes.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/config/envQuotes.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/config/legalContent.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/config/legalContent.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/config/legalContent.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/config/legalContent.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/config/locale.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/config/locale.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/config/locale.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/config/locale.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/config/locales/ar.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/config/locales/ar.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/config/locales/ar.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/config/locales/ar.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/config/locales/en.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/config/locales/en.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/config/locales/en.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/config/locales/en.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/config/locales/he.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/config/locales/he.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/config/locales/he.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/config/locales/he.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/config/locales/ru.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/config/locales/ru.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/config/locales/ru.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/config/locales/ru.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/config/localeTypes.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/config/localeTypes.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/config/localeTypes.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/config/localeTypes.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/config/presets/barberia.ar.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/config/presets/barberia.ar.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/config/presets/barberia.ar.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/config/presets/barberia.ar.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/config/presets/barberia.en.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/config/presets/barberia.en.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/config/presets/barberia.en.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/config/presets/barberia.en.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/config/presets/barberia.he.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/config/presets/barberia.he.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/config/presets/barberia.he.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/config/presets/barberia.he.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/config/presets/barberia.ru.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/config/presets/barberia.ru.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/config/presets/barberia.ru.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/config/presets/barberia.ru.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/config/presets/cafeteria.ar.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/config/presets/cafeteria.ar.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/config/presets/cafeteria.ar.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/config/presets/cafeteria.ar.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/config/presets/cafeteria.en.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/config/presets/cafeteria.en.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/config/presets/cafeteria.en.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/config/presets/cafeteria.en.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/config/presets/cafeteria.he.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/config/presets/cafeteria.he.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/config/presets/cafeteria.he.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/config/presets/cafeteria.he.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/config/presets/cafeteria.ru.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/config/presets/cafeteria.ru.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/config/presets/cafeteria.ru.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/config/presets/cafeteria.ru.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/config/presets/employment.ar.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/config/presets/employment.ar.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/config/presets/employment.ar.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/config/presets/employment.ar.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/config/presets/employment.en.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/config/presets/employment.en.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/config/presets/employment.en.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/config/presets/employment.en.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/config/presets/employment.he.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/config/presets/employment.he.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/config/presets/employment.he.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/config/presets/employment.he.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/config/presets/employment.ru.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/config/presets/employment.ru.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/config/presets/employment.ru.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/config/presets/employment.ru.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/config/presets/estetica.ar.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/config/presets/estetica.ar.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/config/presets/estetica.ar.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/config/presets/estetica.ar.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/config/presets/estetica.en.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/config/presets/estetica.en.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/config/presets/estetica.en.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/config/presets/estetica.en.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/config/presets/estetica.he.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/config/presets/estetica.he.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/config/presets/estetica.he.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/config/presets/estetica.he.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/config/presets/estetica.ru.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/config/presets/estetica.ru.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/config/presets/estetica.ru.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/config/presets/estetica.ru.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/config/presets/nails.ar.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/config/presets/nails.ar.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/config/presets/nails.ar.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/config/presets/nails.ar.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/config/presets/nails.en.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/config/presets/nails.en.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/config/presets/nails.en.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/config/presets/nails.en.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/config/presets/nails.he.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/config/presets/nails.he.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/config/presets/nails.he.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/config/presets/nails.he.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/config/presets/nails.ru.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/config/presets/nails.ru.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/config/presets/nails.ru.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/config/presets/nails.ru.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/config/presets/remodelaciones.ar.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/config/presets/remodelaciones.ar.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/config/presets/remodelaciones.ar.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/config/presets/remodelaciones.ar.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/config/presets/remodelaciones.en.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/config/presets/remodelaciones.en.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/config/presets/remodelaciones.en.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/config/presets/remodelaciones.en.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/config/presets/remodelaciones.he.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/config/presets/remodelaciones.he.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/config/presets/remodelaciones.he.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/config/presets/remodelaciones.he.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/config/presets/remodelaciones.ru.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/config/presets/remodelaciones.ru.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/config/presets/remodelaciones.ru.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/config/presets/remodelaciones.ru.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/config/presets/tattoo.ar.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/config/presets/tattoo.ar.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/config/presets/tattoo.ar.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/config/presets/tattoo.ar.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/config/presets/tattoo.en.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/config/presets/tattoo.en.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/config/presets/tattoo.en.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/config/presets/tattoo.en.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/config/presets/tattoo.he.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/config/presets/tattoo.he.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/config/presets/tattoo.he.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/config/presets/tattoo.he.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/config/presets/tattoo.ru.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/config/presets/tattoo.ru.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/config/presets/tattoo.ru.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/config/presets/tattoo.ru.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/config/presets/themes.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/config/presets/themes.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/config/presets/themes.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/config/presets/themes.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/config/site.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/config/site.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/config/site.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/config/site.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/config/tenant.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/config/tenant.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/config/tenant.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/config/tenant.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/config/tour.config.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/config/tour.config.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/config/tour.config.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/config/tour.config.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/config/tour.translations.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/config/tour.translations.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/config/tour.translations.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/config/tour.translations.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/config/uiLanguage.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/config/uiLanguage.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/config/uiLanguage.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/config/uiLanguage.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/constants.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/constants.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/constants.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/constants.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/contexts/LanguageContext.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/contexts/LanguageContext.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/contexts/LanguageContext.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/contexts/LanguageContext.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/hooks/use-hero-object.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/hooks/use-hero-object.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/hooks/use-hero-object.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/hooks/use-hero-object.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/hooks/use-paper-spring.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/hooks/use-paper-spring.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/hooks/use-paper-spring.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/hooks/use-paper-spring.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/hooks/useAdminAccess.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/hooks/useAdminAccess.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/hooks/useAdminAccess.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/hooks/useAdminAccess.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/hooks/useModalA11y.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/hooks/useModalA11y.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/hooks/useModalA11y.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/hooks/useModalA11y.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/hooks/useSchema.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/hooks/useSchema.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/hooks/useSchema.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/hooks/useSchema.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/hooks/useSEO.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/hooks/useSEO.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/hooks/useSEO.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/hooks/useSEO.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/hooks/useSwipeNavigation.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/hooks/useSwipeNavigation.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/hooks/useSwipeNavigation.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/hooks/useSwipeNavigation.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/3d-impact-utils.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/3d-impact-utils.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/3d-impact-utils.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/3d-impact-utils.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/admin-auth.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/admin-auth.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/admin-auth.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/admin-auth.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/admin-users.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/admin-users.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/admin-users.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/admin-users.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/ai/admin-tools.test.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/ai/admin-tools.test.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/ai/admin-tools.test.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/ai/admin-tools.test.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/ai/admin-tools.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/ai/admin-tools.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/ai/admin-tools.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/ai/admin-tools.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/ai/stock-tools.test.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/ai/stock-tools.test.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/ai/stock-tools.test.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/ai/stock-tools.test.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/ai/stock-tools.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/ai/stock-tools.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/ai/stock-tools.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/ai/stock-tools.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/ai/tasks-tools.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/ai/tasks-tools.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/ai/tasks-tools.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/ai/tasks-tools.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/api/admin-auth.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/api/admin-auth.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/api/admin-auth.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/api/admin-auth.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/api/booking-handler.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/api/booking-handler.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/api/booking-handler.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/api/booking-handler.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/api/booking-validation.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/api/booking-validation.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/api/booking-validation.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/api/booking-validation.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/api/optional-services.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/api/optional-services.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/api/optional-services.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/api/optional-services.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/api/payment-gateways.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/api/payment-gateways.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/api/payment-gateways.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/api/payment-gateways.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/api/runtime-health.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/api/runtime-health.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/api/runtime-health.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/api/runtime-health.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/api/stock-handlers.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/api/stock-handlers.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/api/stock-handlers.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/api/stock-handlers.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/api/support-handler.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/api/support-handler.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/api/support-handler.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/api/support-handler.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/appointment-notify-client.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/appointment-notify-client.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/appointment-notify-client.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/appointment-notify-client.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/booking.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/booking.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/booking.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/booking.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/crm-metrics.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/crm-metrics.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/crm-metrics.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/crm-metrics.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/crm-store.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/crm-store.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/crm-store.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/crm-store.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/currency.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/currency.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/currency.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/currency.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/customer-pipeline.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/customer-pipeline.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/customer-pipeline.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/customer-pipeline.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/dateLocale.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/dateLocale.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/dateLocale.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/dateLocale.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/employment-audience.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/employment-audience.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/employment-audience.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/employment-audience.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/exportCsv.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/exportCsv.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/exportCsv.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/exportCsv.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/firebase.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/firebase.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/firebase.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/firebase.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/google-auth.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/google-auth.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/google-auth.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/google-auth.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/hours-display.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/hours-display.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/hours-display.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/hours-display.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/intent-router.test.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/intent-router.test.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/intent-router.test.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/intent-router.test.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/intent-router.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/intent-router.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/intent-router.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/intent-router.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/interpolate.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/interpolate.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/interpolate.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/interpolate.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/knowledge-rag.test.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/knowledge-rag.test.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/knowledge-rag.test.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/knowledge-rag.test.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/knowledge-rag.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/knowledge-rag.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/knowledge-rag.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/knowledge-rag.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/lucide-icons.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/lucide-icons.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/lucide-icons.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/lucide-icons.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/motion.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/motion.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/motion.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/motion.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/notification-channels.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/notification-channels.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/notification-channels.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/notification-channels.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/notify-agentkit.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/notify-agentkit.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/notify-agentkit.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/notify-agentkit.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/payment/types.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/payment/types.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/payment/types.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/payment/types.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/sanitize.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/sanitize.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/sanitize.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/sanitize.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/schedulingRules.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/schedulingRules.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/schedulingRules.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/schedulingRules.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/section-presence.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/section-presence.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/section-presence.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/section-presence.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/section-variants.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/section-variants.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/section-variants.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/section-variants.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/seo-defaults.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/seo-defaults.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/seo-defaults.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/seo-defaults.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/site-theme.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/site-theme.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/site-theme.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/site-theme.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/splash-session.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/splash-session.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/splash-session.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/splash-session.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/staff.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/staff.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/staff.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/staff.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/tasks.test.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/tasks.test.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/tasks.test.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/tasks.test.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/tasks.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/tasks.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/tasks.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/tasks.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/typography.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/typography.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/typography.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/typography.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/utils.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/utils.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/utils.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/utils.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/whatsapp-inbox.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/whatsapp-inbox.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/whatsapp-inbox.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/whatsapp-inbox.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/main.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/main.tsx",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/main.tsx",
+    "valid": true
+  },
+  {
+    "name": "conservación src/main.tsx",
+    "valid": true
+  },
+  {
+    "name": "producto src/services/ai.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/services/ai.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/services/ai.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/services/ai.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/services/customers.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/services/customers.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/services/customers.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/services/customers.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/services/db.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/services/db.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/services/db.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/services/db.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/services/inbox.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/services/inbox.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/services/inbox.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/services/inbox.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/services/notificationLogs.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/services/notificationLogs.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/services/notificationLogs.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/services/notificationLogs.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/services/stock.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/services/stock.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/services/stock.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/services/stock.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/services/support.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/services/support.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/services/support.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/services/support.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/services/tenant.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/services/tenant.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/services/tenant.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/services/tenant.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/types.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/types.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/types.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/types.ts",
+    "valid": true
+  },
+  {
+    "name": "producto src/vite-env.d.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/vite-env.d.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/vite-env.d.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/vite-env.d.ts",
+    "valid": true
+  },
+  {
+    "name": "producto tsconfig.json",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN tsconfig.json",
+    "valid": true
+  },
+  {
+    "name": "copia mutación tsconfig.json",
+    "valid": true
+  },
+  {
+    "name": "conservación tsconfig.json",
+    "valid": true
+  },
+  {
+    "name": "producto src/lib/api/tenant-access.ts",
+    "valid": true
+  },
+  {
+    "name": "copia GREEN src/lib/api/tenant-access.ts",
+    "valid": true
+  },
+  {
+    "name": "copia mutación src/lib/api/tenant-access.ts",
+    "valid": true
+  },
+  {
+    "name": "conservación src/lib/api/tenant-access.ts",
+    "valid": true
+  },
+  {
+    "name": "diff exacto dos instrucciones",
+    "valid": true
+  },
+  {
+    "name": "documento producto README.md",
+    "valid": true
+  },
+  {
+    "name": "documento producto .env.example",
+    "valid": true
+  },
+  {
+    "name": "HTTP270 GREEN",
+    "valid": true
+  },
+  {
+    "name": "mutación90 fallos esperados",
+    "valid": true
+  },
+  {
+    "name": "arranques mutación",
+    "valid": true
+  },
+  {
+    "name": "sin fallos instrumento",
+    "valid": true
+  },
+  {
+    "name": "docker auth-green-p2",
+    "valid": true
+  },
+  {
+    "name": "disposición auth-green-p2",
+    "valid": true
+  },
+  {
+    "name": "docker auth-parity-p2",
+    "valid": true
+  },
+  {
+    "name": "disposición auth-parity-p2",
+    "valid": true
+  },
+  {
+    "name": "docker auth-mutation-p3",
+    "valid": true
+  },
+  {
+    "name": "disposición auth-mutation-p3",
+    "valid": true
+  },
+  {
+    "name": "tipos0",
+    "valid": true
+  },
+  {
+    "name": "paridad0",
+    "valid": true
+  },
+  {
+    "name": "paridad19",
+    "valid": true
+  },
+  {
+    "name": "main y único worktree C:\\Users\\liama\\Desktop\\Nichos\\Barber-shop-template-main",
+    "valid": true
+  },
+  {
+    "name": "main y único worktree C:/Users/liama/Desktop/Nichos-hub",
+    "valid": true
+  }
+]

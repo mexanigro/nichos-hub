@@ -1,0 +1,42 @@
+[
+  {
+    "path": "server.ts",
+    "sha256": "C9CE9889BF2953C07BF5662CD5D09F6162BB9B3A49CA020119FBE58538BC787A"
+  },
+  {
+    "path": "api/index.ts",
+    "sha256": "4F352F17605B8CE39B3D78BF0FDB5757C91B4C145A0CBA391087F1EE69B03E30"
+  },
+  {
+    "path": "src/lib/notify-agentkit.ts",
+    "sha256": "87BB36FDAFCEFD4BDE18A923F9317E4B11605911FFA4D8E4912C336361AC7D43"
+  },
+  {
+    "path": "src/lib/notification-channels.ts",
+    "sha256": "1AB3DD63F04E1AA602DA62F8B5970559EC6EA8CDF348F413A58E9C44D6919790"
+  },
+  {
+    "path": "src/components/chat/Chatbot.tsx",
+    "sha256": "72FC8412F7287DC59037C0DB10359783879C280FF6D3B0BA98350558EC9EAB92"
+  },
+  {
+    "path": "src/components/booking/BookingWizard.tsx",
+    "sha256": "389B6A3EC0B9719F967C3F7CA268E5A3943378133C52F3E9BF874F21D1B253FA"
+  },
+  {
+    "path": "src/lib/appointment-notify-client.ts",
+    "sha256": "CD0D46F19FE4AAF9C3F16C2FA043500E18488ACFC5A4AA0E27F9C508E11C38AC"
+  },
+  {
+    "path": "src/services/ai.ts",
+    "sha256": "62925989A805E7BD2D4FCEAA1F3FAAA513466AE124738BF7141A80742F22B67D"
+  },
+  {
+    "path": "src/types.ts",
+    "sha256": "0FA06A433AE7AC2248F3A233EF461F8A3F8938F033DCFC60B2FEAE603A85D3C2"
+  },
+  {
+    "path": "src/lib/api/runtime-health.ts",
+    "sha256": "B76346F328AC7934B0BD292BF5F9D2FB365BB375DB65E0EAD9ADC9D3A41D591C"
+  }
+]

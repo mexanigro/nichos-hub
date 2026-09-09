@@ -1,0 +1,7 @@
+# N03 L05 navegador — cierre local para revisión
+
+Liam aprobó implementar la propuesta y eliminar apertura estática implícita sin Firebase. Se congeló contrato tras refutación y preflight, preservando sondeo20. Se modificaron sólo tenant.ts/main.tsx y cuatro locales con preimágenes. Estado mediante servidor, lista exacta permitida, suspensión existente, indisponibilidad diferenciada y recarga manual. Lecturas paralelas con plazos1500ms independientes; config opcional no decide acceso ni tardía aplica overlay.
+
+[Cierre y evidencia](../informe/N03/L05-browser-v1/CIERRE-LOCAL.md):GREEN4/4,89 controles navegador vigentes,tipos0,17 fallos esperados mutando,399 conservación. Oráculo barber contrastado original/final y corregido sin cambiar producto; errores de instrumentos preservados y cada corrección produjo avance comprobable. Revisión interna Harvey sólo lectura sin BLOCKERS finales. No se repitieron suites servidor aceptadas. Se conserva aceptación y revisión externa de L05 servidor con procedencia trasladada por Liam.
+
+Promesa de apertura sin Firebase sustituida expresamente por orden de usuario, AGENTS intacto por alcance. No App completa/imports/rules/remoto certificados. N03 sigue en curso, demás entregas y condición previa al despliegue por prestaciones de tenant vigentes. Consumo75% de80% TOTAL,sin resets. Sin instalaciones, operaciones remotas, reglas/pagos,commit,push,deploy. Detenido para revisión de esta entrega; no nueva reparación.

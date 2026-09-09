@@ -1,0 +1,9 @@
+// Extensión acotada del observador: conserva el arnés aceptado y registra el cuerpo email sintético completo.
+import './preload-recorridos.mjs';
+import fs from 'node:fs';
+const controlledFetch=globalThis.fetch;
+globalThis.fetch=async(url,options={})=>{
+ const target=new URL(typeof url==='string'?url:url.url||url);
+ if(target.hostname==='api.resend.com')fs.appendFileSync(process.env.D05_EVENTS,JSON.stringify({kind:'email-payload',path:target.pathname,method:options.method,payload:JSON.parse(options.body||'{}')})+'\n');
+ return controlledFetch(url,options);
+};

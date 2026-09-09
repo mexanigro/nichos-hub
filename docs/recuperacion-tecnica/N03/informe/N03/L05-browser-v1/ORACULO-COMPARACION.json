@@ -1,0 +1,30 @@
+[
+  {
+    "case": "merge-matching",
+    "sameSite": true,
+    "sameOverlay": true,
+    "originalBusiness": "barber",
+    "currentBusiness": "barber"
+  },
+  {
+    "case": "merge-mismatch",
+    "sameSite": true,
+    "sameOverlay": true,
+    "originalBusiness": "barberia",
+    "currentBusiness": "barberia"
+  },
+  {
+    "case": "merge-missing-type",
+    "sameSite": true,
+    "sameOverlay": true,
+    "originalBusiness": "barberia",
+    "currentBusiness": "barberia"
+  },
+  {
+    "case": "merge-disabled",
+    "sameSite": true,
+    "sameOverlay": true,
+    "originalBusiness": "barberia",
+    "currentBusiness": "barberia"
+  }
+]

@@ -1,0 +1,5 @@
+
+[Template Setup] ─── Service Configuration Status ───
+  ✓  CLIENT_ID / NEXT_PUBLIC_CLIENT_ID → Tenant scoping
+Server running on http://localhost:3000
+[Admin SDK] PROJECT_ID: true CLIENT_EMAIL: true PRIVATE_KEY: false

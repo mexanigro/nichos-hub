@@ -1,0 +1,1376 @@
+{
+  "cases": 18,
+  "consumerSelections": 90,
+  "results": [
+    {
+      "name": "absent",
+      "input": {},
+      "browser": "",
+      "runtimes": {
+        "server.ts": {
+          "selected": "",
+          "agent": null,
+          "delivered": false,
+          "attempts": [],
+          "headers": [
+            {
+              "header": null,
+              "status": 200,
+              "continued": true,
+              "selected": "",
+              "payload": null
+            },
+            {
+              "header": "",
+              "status": 200,
+              "continued": true,
+              "selected": "",
+              "payload": null
+            },
+            {
+              "header": "visitor-other",
+              "status": 200,
+              "continued": true,
+              "selected": "",
+              "payload": null
+            }
+          ]
+        },
+        "api/index.ts": {
+          "selected": "",
+          "agent": null,
+          "delivered": false,
+          "attempts": [],
+          "headers": [
+            {
+              "header": null,
+              "status": 200,
+              "continued": true,
+              "selected": "",
+              "payload": null
+            },
+            {
+              "header": "",
+              "status": 200,
+              "continued": true,
+              "selected": "",
+              "payload": null
+            },
+            {
+              "header": "visitor-other",
+              "status": 403,
+              "continued": false,
+              "selected": null,
+              "payload": {
+                "error": "Tenant mismatch."
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "empty",
+      "input": {
+        "CLIENT_ID": "",
+        "NEXT_PUBLIC_CLIENT_ID": "",
+        "VITE_CLIENT_ID": ""
+      },
+      "browser": "",
+      "runtimes": {
+        "server.ts": {
+          "selected": "",
+          "agent": null,
+          "delivered": false,
+          "attempts": [],
+          "headers": [
+            {
+              "header": null,
+              "status": 200,
+              "continued": true,
+              "selected": "",
+              "payload": null
+            },
+            {
+              "header": "",
+              "status": 200,
+              "continued": true,
+              "selected": "",
+              "payload": null
+            },
+            {
+              "header": "visitor-other",
+              "status": 200,
+              "continued": true,
+              "selected": "",
+              "payload": null
+            }
+          ]
+        },
+        "api/index.ts": {
+          "selected": "",
+          "agent": null,
+          "delivered": false,
+          "attempts": [],
+          "headers": [
+            {
+              "header": null,
+              "status": 200,
+              "continued": true,
+              "selected": "",
+              "payload": null
+            },
+            {
+              "header": "",
+              "status": 200,
+              "continued": true,
+              "selected": "",
+              "payload": null
+            },
+            {
+              "header": "visitor-other",
+              "status": 403,
+              "continued": false,
+              "selected": null,
+              "payload": {
+                "error": "Tenant mismatch."
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "spaces",
+      "input": {
+        "CLIENT_ID": "  ",
+        "NEXT_PUBLIC_CLIENT_ID": "\t ",
+        "VITE_CLIENT_ID": " "
+      },
+      "browser": "",
+      "runtimes": {
+        "server.ts": {
+          "selected": "",
+          "agent": null,
+          "delivered": false,
+          "attempts": [],
+          "headers": [
+            {
+              "header": null,
+              "status": 200,
+              "continued": true,
+              "selected": "",
+              "payload": null
+            },
+            {
+              "header": "",
+              "status": 200,
+              "continued": true,
+              "selected": "",
+              "payload": null
+            },
+            {
+              "header": "visitor-other",
+              "status": 200,
+              "continued": true,
+              "selected": "",
+              "payload": null
+            }
+          ]
+        },
+        "api/index.ts": {
+          "selected": "",
+          "agent": null,
+          "delivered": false,
+          "attempts": [],
+          "headers": [
+            {
+              "header": null,
+              "status": 200,
+              "continued": true,
+              "selected": "",
+              "payload": null
+            },
+            {
+              "header": "",
+              "status": 200,
+              "continued": true,
+              "selected": "",
+              "payload": null
+            },
+            {
+              "header": "visitor-other",
+              "status": 403,
+              "continued": false,
+              "selected": null,
+              "payload": {
+                "error": "Tenant mismatch."
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "only-client",
+      "input": {
+        "CLIENT_ID": "synthetic-c"
+      },
+      "browser": "",
+      "runtimes": {
+        "server.ts": {
+          "selected": "synthetic-c",
+          "agent": "synthetic-c",
+          "delivered": true,
+          "attempts": [
+            {
+              "clientId": "synthetic-c"
+            }
+          ],
+          "headers": [
+            {
+              "header": null,
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-c",
+              "payload": null
+            },
+            {
+              "header": "",
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-c",
+              "payload": null
+            },
+            {
+              "header": "visitor-other",
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-c",
+              "payload": null
+            }
+          ]
+        },
+        "api/index.ts": {
+          "selected": "synthetic-c",
+          "agent": "synthetic-c",
+          "delivered": true,
+          "attempts": [
+            {
+              "clientId": "synthetic-c"
+            }
+          ],
+          "headers": [
+            {
+              "header": null,
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-c",
+              "payload": null
+            },
+            {
+              "header": "",
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-c",
+              "payload": null
+            },
+            {
+              "header": "visitor-other",
+              "status": 403,
+              "continued": false,
+              "selected": null,
+              "payload": {
+                "error": "Tenant mismatch."
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "only-next",
+      "input": {
+        "NEXT_PUBLIC_CLIENT_ID": "synthetic-n"
+      },
+      "browser": "synthetic-n",
+      "runtimes": {
+        "server.ts": {
+          "selected": "synthetic-n",
+          "agent": null,
+          "delivered": false,
+          "attempts": [],
+          "headers": [
+            {
+              "header": null,
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-n",
+              "payload": null
+            },
+            {
+              "header": "synthetic-n",
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-n",
+              "payload": null
+            },
+            {
+              "header": "visitor-other",
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-n",
+              "payload": null
+            }
+          ]
+        },
+        "api/index.ts": {
+          "selected": "synthetic-n",
+          "agent": null,
+          "delivered": false,
+          "attempts": [],
+          "headers": [
+            {
+              "header": null,
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-n",
+              "payload": null
+            },
+            {
+              "header": "synthetic-n",
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-n",
+              "payload": null
+            },
+            {
+              "header": "visitor-other",
+              "status": 403,
+              "continued": false,
+              "selected": null,
+              "payload": {
+                "error": "Tenant mismatch."
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "only-vite",
+      "input": {
+        "VITE_CLIENT_ID": "synthetic-v"
+      },
+      "browser": "synthetic-v",
+      "runtimes": {
+        "server.ts": {
+          "selected": "synthetic-v",
+          "agent": "synthetic-v",
+          "delivered": true,
+          "attempts": [
+            {
+              "clientId": "synthetic-v"
+            }
+          ],
+          "headers": [
+            {
+              "header": null,
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-v",
+              "payload": null
+            },
+            {
+              "header": "synthetic-v",
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-v",
+              "payload": null
+            },
+            {
+              "header": "visitor-other",
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-v",
+              "payload": null
+            }
+          ]
+        },
+        "api/index.ts": {
+          "selected": "synthetic-v",
+          "agent": "synthetic-v",
+          "delivered": true,
+          "attempts": [
+            {
+              "clientId": "synthetic-v"
+            }
+          ],
+          "headers": [
+            {
+              "header": null,
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-v",
+              "payload": null
+            },
+            {
+              "header": "synthetic-v",
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-v",
+              "payload": null
+            },
+            {
+              "header": "visitor-other",
+              "status": 403,
+              "continued": false,
+              "selected": null,
+              "payload": {
+                "error": "Tenant mismatch."
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "mirrors",
+      "input": {
+        "CLIENT_ID": "synthetic-a",
+        "NEXT_PUBLIC_CLIENT_ID": "synthetic-a",
+        "VITE_CLIENT_ID": "synthetic-a"
+      },
+      "browser": "synthetic-a",
+      "runtimes": {
+        "server.ts": {
+          "selected": "synthetic-a",
+          "agent": "synthetic-a",
+          "delivered": true,
+          "attempts": [
+            {
+              "clientId": "synthetic-a"
+            }
+          ],
+          "headers": [
+            {
+              "header": null,
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-a",
+              "payload": null
+            },
+            {
+              "header": "synthetic-a",
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-a",
+              "payload": null
+            },
+            {
+              "header": "visitor-other",
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-a",
+              "payload": null
+            }
+          ]
+        },
+        "api/index.ts": {
+          "selected": "synthetic-a",
+          "agent": "synthetic-a",
+          "delivered": true,
+          "attempts": [
+            {
+              "clientId": "synthetic-a"
+            }
+          ],
+          "headers": [
+            {
+              "header": null,
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-a",
+              "payload": null
+            },
+            {
+              "header": "synthetic-a",
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-a",
+              "payload": null
+            },
+            {
+              "header": "visitor-other",
+              "status": 403,
+              "continued": false,
+              "selected": null,
+              "payload": {
+                "error": "Tenant mismatch."
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "padded-mirrors",
+      "input": {
+        "CLIENT_ID": " synthetic-a ",
+        "NEXT_PUBLIC_CLIENT_ID": "\tsynthetic-a ",
+        "VITE_CLIENT_ID": " synthetic-a\n"
+      },
+      "browser": "synthetic-a",
+      "runtimes": {
+        "server.ts": {
+          "selected": "synthetic-a",
+          "agent": "synthetic-a",
+          "delivered": true,
+          "attempts": [
+            {
+              "clientId": "synthetic-a"
+            }
+          ],
+          "headers": [
+            {
+              "header": null,
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-a",
+              "payload": null
+            },
+            {
+              "header": "synthetic-a",
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-a",
+              "payload": null
+            },
+            {
+              "header": "visitor-other",
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-a",
+              "payload": null
+            }
+          ]
+        },
+        "api/index.ts": {
+          "selected": "synthetic-a",
+          "agent": "synthetic-a",
+          "delivered": true,
+          "attempts": [
+            {
+              "clientId": "synthetic-a"
+            }
+          ],
+          "headers": [
+            {
+              "header": null,
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-a",
+              "payload": null
+            },
+            {
+              "header": "synthetic-a",
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-a",
+              "payload": null
+            },
+            {
+              "header": "visitor-other",
+              "status": 403,
+              "continued": false,
+              "selected": null,
+              "payload": {
+                "error": "Tenant mismatch."
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "client-spaces-vite",
+      "input": {
+        "CLIENT_ID": " ",
+        "VITE_CLIENT_ID": "synthetic-v"
+      },
+      "browser": "synthetic-v",
+      "runtimes": {
+        "server.ts": {
+          "selected": "synthetic-v",
+          "agent": null,
+          "delivered": false,
+          "attempts": [],
+          "headers": [
+            {
+              "header": null,
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-v",
+              "payload": null
+            },
+            {
+              "header": "synthetic-v",
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-v",
+              "payload": null
+            },
+            {
+              "header": "visitor-other",
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-v",
+              "payload": null
+            }
+          ]
+        },
+        "api/index.ts": {
+          "selected": "synthetic-v",
+          "agent": null,
+          "delivered": false,
+          "attempts": [],
+          "headers": [
+            {
+              "header": null,
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-v",
+              "payload": null
+            },
+            {
+              "header": "synthetic-v",
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-v",
+              "payload": null
+            },
+            {
+              "header": "visitor-other",
+              "status": 403,
+              "continued": false,
+              "selected": null,
+              "payload": {
+                "error": "Tenant mismatch."
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "client-empty-vite",
+      "input": {
+        "CLIENT_ID": "",
+        "VITE_CLIENT_ID": "synthetic-v"
+      },
+      "browser": "synthetic-v",
+      "runtimes": {
+        "server.ts": {
+          "selected": "synthetic-v",
+          "agent": "synthetic-v",
+          "delivered": true,
+          "attempts": [
+            {
+              "clientId": "synthetic-v"
+            }
+          ],
+          "headers": [
+            {
+              "header": null,
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-v",
+              "payload": null
+            },
+            {
+              "header": "synthetic-v",
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-v",
+              "payload": null
+            },
+            {
+              "header": "visitor-other",
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-v",
+              "payload": null
+            }
+          ]
+        },
+        "api/index.ts": {
+          "selected": "synthetic-v",
+          "agent": "synthetic-v",
+          "delivered": true,
+          "attempts": [
+            {
+              "clientId": "synthetic-v"
+            }
+          ],
+          "headers": [
+            {
+              "header": null,
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-v",
+              "payload": null
+            },
+            {
+              "header": "synthetic-v",
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-v",
+              "payload": null
+            },
+            {
+              "header": "visitor-other",
+              "status": 403,
+              "continued": false,
+              "selected": null,
+              "payload": {
+                "error": "Tenant mismatch."
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "client-spaces-mirrors",
+      "input": {
+        "CLIENT_ID": " ",
+        "NEXT_PUBLIC_CLIENT_ID": "synthetic-a",
+        "VITE_CLIENT_ID": "synthetic-a"
+      },
+      "browser": "synthetic-a",
+      "runtimes": {
+        "server.ts": {
+          "selected": "synthetic-a",
+          "agent": null,
+          "delivered": false,
+          "attempts": [],
+          "headers": [
+            {
+              "header": null,
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-a",
+              "payload": null
+            },
+            {
+              "header": "synthetic-a",
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-a",
+              "payload": null
+            },
+            {
+              "header": "visitor-other",
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-a",
+              "payload": null
+            }
+          ]
+        },
+        "api/index.ts": {
+          "selected": "synthetic-a",
+          "agent": null,
+          "delivered": false,
+          "attempts": [],
+          "headers": [
+            {
+              "header": null,
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-a",
+              "payload": null
+            },
+            {
+              "header": "synthetic-a",
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-a",
+              "payload": null
+            },
+            {
+              "header": "visitor-other",
+              "status": 403,
+              "continued": false,
+              "selected": null,
+              "payload": {
+                "error": "Tenant mismatch."
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "next-spaces-vite",
+      "input": {
+        "NEXT_PUBLIC_CLIENT_ID": " ",
+        "VITE_CLIENT_ID": "synthetic-v"
+      },
+      "browser": "synthetic-v",
+      "runtimes": {
+        "server.ts": {
+          "selected": "synthetic-v",
+          "agent": "synthetic-v",
+          "delivered": true,
+          "attempts": [
+            {
+              "clientId": "synthetic-v"
+            }
+          ],
+          "headers": [
+            {
+              "header": null,
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-v",
+              "payload": null
+            },
+            {
+              "header": "synthetic-v",
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-v",
+              "payload": null
+            },
+            {
+              "header": "visitor-other",
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-v",
+              "payload": null
+            }
+          ]
+        },
+        "api/index.ts": {
+          "selected": "synthetic-v",
+          "agent": "synthetic-v",
+          "delivered": true,
+          "attempts": [
+            {
+              "clientId": "synthetic-v"
+            }
+          ],
+          "headers": [
+            {
+              "header": null,
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-v",
+              "payload": null
+            },
+            {
+              "header": "synthetic-v",
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-v",
+              "payload": null
+            },
+            {
+              "header": "visitor-other",
+              "status": 403,
+              "continued": false,
+              "selected": null,
+              "payload": {
+                "error": "Tenant mismatch."
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "conflict-next-vite",
+      "input": {
+        "NEXT_PUBLIC_CLIENT_ID": "synthetic-n",
+        "VITE_CLIENT_ID": "synthetic-v"
+      },
+      "browser": "synthetic-v",
+      "runtimes": {
+        "server.ts": {
+          "selected": "synthetic-n",
+          "agent": "synthetic-v",
+          "delivered": true,
+          "attempts": [
+            {
+              "clientId": "synthetic-v"
+            }
+          ],
+          "headers": [
+            {
+              "header": null,
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-n",
+              "payload": null
+            },
+            {
+              "header": "synthetic-v",
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-n",
+              "payload": null
+            },
+            {
+              "header": "visitor-other",
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-n",
+              "payload": null
+            }
+          ]
+        },
+        "api/index.ts": {
+          "selected": "synthetic-n",
+          "agent": "synthetic-v",
+          "delivered": true,
+          "attempts": [
+            {
+              "clientId": "synthetic-v"
+            }
+          ],
+          "headers": [
+            {
+              "header": null,
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-n",
+              "payload": null
+            },
+            {
+              "header": "synthetic-v",
+              "status": 403,
+              "continued": false,
+              "selected": null,
+              "payload": {
+                "error": "Tenant mismatch."
+              }
+            },
+            {
+              "header": "visitor-other",
+              "status": 403,
+              "continued": false,
+              "selected": null,
+              "payload": {
+                "error": "Tenant mismatch."
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "conflict-client-vite",
+      "input": {
+        "CLIENT_ID": "synthetic-c",
+        "VITE_CLIENT_ID": "synthetic-v"
+      },
+      "browser": "synthetic-v",
+      "runtimes": {
+        "server.ts": {
+          "selected": "synthetic-c",
+          "agent": "synthetic-c",
+          "delivered": true,
+          "attempts": [
+            {
+              "clientId": "synthetic-c"
+            }
+          ],
+          "headers": [
+            {
+              "header": null,
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-c",
+              "payload": null
+            },
+            {
+              "header": "synthetic-v",
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-c",
+              "payload": null
+            },
+            {
+              "header": "visitor-other",
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-c",
+              "payload": null
+            }
+          ]
+        },
+        "api/index.ts": {
+          "selected": "synthetic-c",
+          "agent": "synthetic-c",
+          "delivered": true,
+          "attempts": [
+            {
+              "clientId": "synthetic-c"
+            }
+          ],
+          "headers": [
+            {
+              "header": null,
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-c",
+              "payload": null
+            },
+            {
+              "header": "synthetic-v",
+              "status": 403,
+              "continued": false,
+              "selected": null,
+              "payload": {
+                "error": "Tenant mismatch."
+              }
+            },
+            {
+              "header": "visitor-other",
+              "status": 403,
+              "continued": false,
+              "selected": null,
+              "payload": {
+                "error": "Tenant mismatch."
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "conflict-client-next",
+      "input": {
+        "CLIENT_ID": "synthetic-c",
+        "NEXT_PUBLIC_CLIENT_ID": "synthetic-n"
+      },
+      "browser": "synthetic-n",
+      "runtimes": {
+        "server.ts": {
+          "selected": "synthetic-c",
+          "agent": "synthetic-c",
+          "delivered": true,
+          "attempts": [
+            {
+              "clientId": "synthetic-c"
+            }
+          ],
+          "headers": [
+            {
+              "header": null,
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-c",
+              "payload": null
+            },
+            {
+              "header": "synthetic-n",
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-c",
+              "payload": null
+            },
+            {
+              "header": "visitor-other",
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-c",
+              "payload": null
+            }
+          ]
+        },
+        "api/index.ts": {
+          "selected": "synthetic-c",
+          "agent": "synthetic-c",
+          "delivered": true,
+          "attempts": [
+            {
+              "clientId": "synthetic-c"
+            }
+          ],
+          "headers": [
+            {
+              "header": null,
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-c",
+              "payload": null
+            },
+            {
+              "header": "synthetic-n",
+              "status": 403,
+              "continued": false,
+              "selected": null,
+              "payload": {
+                "error": "Tenant mismatch."
+              }
+            },
+            {
+              "header": "visitor-other",
+              "status": 403,
+              "continued": false,
+              "selected": null,
+              "payload": {
+                "error": "Tenant mismatch."
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "conflict-all",
+      "input": {
+        "CLIENT_ID": "synthetic-c",
+        "NEXT_PUBLIC_CLIENT_ID": "synthetic-n",
+        "VITE_CLIENT_ID": "synthetic-v"
+      },
+      "browser": "synthetic-v",
+      "runtimes": {
+        "server.ts": {
+          "selected": "synthetic-c",
+          "agent": "synthetic-c",
+          "delivered": true,
+          "attempts": [
+            {
+              "clientId": "synthetic-c"
+            }
+          ],
+          "headers": [
+            {
+              "header": null,
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-c",
+              "payload": null
+            },
+            {
+              "header": "synthetic-v",
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-c",
+              "payload": null
+            },
+            {
+              "header": "visitor-other",
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-c",
+              "payload": null
+            }
+          ]
+        },
+        "api/index.ts": {
+          "selected": "synthetic-c",
+          "agent": "synthetic-c",
+          "delivered": true,
+          "attempts": [
+            {
+              "clientId": "synthetic-c"
+            }
+          ],
+          "headers": [
+            {
+              "header": null,
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic-c",
+              "payload": null
+            },
+            {
+              "header": "synthetic-v",
+              "status": 403,
+              "continued": false,
+              "selected": null,
+              "payload": {
+                "error": "Tenant mismatch."
+              }
+            },
+            {
+              "header": "visitor-other",
+              "status": 403,
+              "continued": false,
+              "selected": null,
+              "payload": {
+                "error": "Tenant mismatch."
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "case-sensitive",
+      "input": {
+        "CLIENT_ID": "SYNTHETIC",
+        "NEXT_PUBLIC_CLIENT_ID": "synthetic",
+        "VITE_CLIENT_ID": "synthetic"
+      },
+      "browser": "synthetic",
+      "runtimes": {
+        "server.ts": {
+          "selected": "SYNTHETIC",
+          "agent": "SYNTHETIC",
+          "delivered": true,
+          "attempts": [
+            {
+              "clientId": "SYNTHETIC"
+            }
+          ],
+          "headers": [
+            {
+              "header": null,
+              "status": 200,
+              "continued": true,
+              "selected": "SYNTHETIC",
+              "payload": null
+            },
+            {
+              "header": "synthetic",
+              "status": 200,
+              "continued": true,
+              "selected": "SYNTHETIC",
+              "payload": null
+            },
+            {
+              "header": "visitor-other",
+              "status": 200,
+              "continued": true,
+              "selected": "SYNTHETIC",
+              "payload": null
+            }
+          ]
+        },
+        "api/index.ts": {
+          "selected": "SYNTHETIC",
+          "agent": "SYNTHETIC",
+          "delivered": true,
+          "attempts": [
+            {
+              "clientId": "SYNTHETIC"
+            }
+          ],
+          "headers": [
+            {
+              "header": null,
+              "status": 200,
+              "continued": true,
+              "selected": "SYNTHETIC",
+              "payload": null
+            },
+            {
+              "header": "synthetic",
+              "status": 403,
+              "continued": false,
+              "selected": null,
+              "payload": {
+                "error": "Tenant mismatch."
+              }
+            },
+            {
+              "header": "visitor-other",
+              "status": 403,
+              "continued": false,
+              "selected": null,
+              "payload": {
+                "error": "Tenant mismatch."
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "internal-spaces",
+      "input": {
+        "CLIENT_ID": "synthetic a",
+        "NEXT_PUBLIC_CLIENT_ID": "synthetic a",
+        "VITE_CLIENT_ID": "synthetic a"
+      },
+      "browser": "synthetic a",
+      "runtimes": {
+        "server.ts": {
+          "selected": "synthetic a",
+          "agent": "synthetic a",
+          "delivered": true,
+          "attempts": [
+            {
+              "clientId": "synthetic a"
+            }
+          ],
+          "headers": [
+            {
+              "header": null,
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic a",
+              "payload": null
+            },
+            {
+              "header": "synthetic a",
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic a",
+              "payload": null
+            },
+            {
+              "header": "visitor-other",
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic a",
+              "payload": null
+            }
+          ]
+        },
+        "api/index.ts": {
+          "selected": "synthetic a",
+          "agent": "synthetic a",
+          "delivered": true,
+          "attempts": [
+            {
+              "clientId": "synthetic a"
+            }
+          ],
+          "headers": [
+            {
+              "header": null,
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic a",
+              "payload": null
+            },
+            {
+              "header": "synthetic a",
+              "status": 200,
+              "continued": true,
+              "selected": "synthetic a",
+              "payload": null
+            },
+            {
+              "header": "visitor-other",
+              "status": 403,
+              "continued": false,
+              "selected": null,
+              "payload": {
+                "error": "Tenant mismatch."
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "scope": "Fragmentos AST actuales ejecutados: selección, middleware tenant y lead→postToAgent con fetch simulado. No arranque runtimes/Firestore/entrega real/build Vite. Ningún fetch real accesible al fragmento.",
+  "productChanges": 0
+}

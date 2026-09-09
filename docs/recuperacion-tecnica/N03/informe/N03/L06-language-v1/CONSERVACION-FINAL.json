@@ -1,0 +1,10 @@
+{
+  "hubSources": 5,
+  "unchangedHubSources": 4,
+  "templateUnchanged": 333,
+  "acceptedLintUnchanged": 6,
+  "exactPropertyInsertion": true,
+  "greenCopyMatches": true,
+  "mutationEqualsPreimage": true,
+  "freezePreserved": true
+}

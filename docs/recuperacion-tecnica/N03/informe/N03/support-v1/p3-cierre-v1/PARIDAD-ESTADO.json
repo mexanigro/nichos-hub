@@ -1,0 +1,5 @@
+{
+  "exit": 0,
+  "comando": "node node_modules/tsx/dist/cli.mjs --test --test-name-pattern \"route parity|both runtimes consume|the inline duplicates\" tests/api-parity.test.ts",
+  "alcance": "Paridad de rutas, imports compartidos y ausencia de duplicados inline; demás casos no seleccionados"
+}

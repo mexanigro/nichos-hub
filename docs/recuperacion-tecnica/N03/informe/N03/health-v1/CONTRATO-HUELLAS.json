@@ -1,0 +1,30 @@
+[
+  {
+    "Path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\health-v1\\api-worker.mjs",
+    "Hash": "D8F502BAB44A259A16046B9E04413B3CA3AC726429ECC1A6E068AD2DB23643DF"
+  },
+  {
+    "Path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\health-v1\\firebase-fixture.mjs",
+    "Hash": "066772784D279160820E53DAD60BD7B69447368EED944BD7FBAE9557F86748C4"
+  },
+  {
+    "Path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\health-v1\\firebase-hooks.mjs",
+    "Hash": "40D287E637F1F18E6FBA34DF5A589CE8061411DA067D461E5F20DDD45737FFEE"
+  },
+  {
+    "Path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\health-v1\\preload.mjs",
+    "Hash": "035C058628F0815907B94183111F10CB0FFE108683EF8525307F17713F15AF59"
+  },
+  {
+    "Path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\health-v1\\runner.mjs",
+    "Hash": "D67D89EA9D3F8479D4B90585B252CB444566FA7B23582959CDE47E34CE0B49AA"
+  },
+  {
+    "Path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\health-v1\\PLAN.md",
+    "Hash": "64CF5232AC243247700B7BAC2F6308B449AC1340919ABD221C6F60FC35D638E4"
+  },
+  {
+    "Path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\health-v1\\ejecutar.ps1",
+    "Hash": "26D2425CA12B6CB837B2A23670C329AA8DB32203F50B77C24C4FAB16BDA389BF"
+  }
+]

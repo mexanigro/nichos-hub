@@ -1,0 +1,1176 @@
+[
+  {
+    "name": "api-absent: runtime completo",
+    "valid": true,
+    "evidence": {}
+  },
+  {
+    "name": "api-absent: permiso IA exacto e independiente",
+    "valid": true,
+    "evidence": {
+      "response": {
+        "status": 503,
+        "body": {
+          "error": "AI service is disabled."
+        }
+      },
+      "attempts": 0
+    }
+  },
+  {
+    "name": "api-absent: ruta directa /api/ai/analyze",
+    "valid": true,
+    "evidence": {
+      "status": 503,
+      "body": {
+        "error": "AI service is disabled."
+      }
+    }
+  },
+  {
+    "name": "api-absent: ruta directa /api/ai/action",
+    "valid": true,
+    "evidence": {
+      "status": 503,
+      "body": {
+        "error": "AI service is disabled."
+      }
+    }
+  },
+  {
+    "name": "api-absent: ruta directa /api/knowledge/upload",
+    "valid": true,
+    "evidence": {
+      "status": 503,
+      "body": {
+        "error": "AI service is disabled."
+      }
+    }
+  },
+  {
+    "name": "api-absent: auth tenant origen preservados",
+    "valid": true,
+    "evidence": {
+      "noAuth": {
+        "status": 401,
+        "body": {
+          "error": "Unauthorized"
+        }
+      },
+      "foreign": {
+        "status": 403,
+        "body": {
+          "error": "Forbidden"
+        }
+      },
+      "origin": {
+        "status": 403,
+        "body": {
+          "error": "Untrusted origin."
+        }
+      }
+    }
+  },
+  {
+    "name": "api-absent: contacto base",
+    "valid": true,
+    "evidence": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "message": "Thank you! Your message has been received."
+      }
+    }
+  },
+  {
+    "name": "api-absent: reserva y notificación efectiva",
+    "valid": true,
+    "evidence": {
+      "booked": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "appointmentId": "generated-1"
+        }
+      },
+      "bookingNotice": {
+        "status": 200,
+        "body": {
+          "success": true
+        }
+      },
+      "agents": 0,
+      "emails": 2
+    }
+  },
+  {
+    "name": "api-absent: CRM booked",
+    "valid": true,
+    "evidence": {
+      "r": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      "emails": 1,
+      "agents": 0
+    }
+  },
+  {
+    "name": "api-absent: CRM cancelled",
+    "valid": true,
+    "evidence": {
+      "r": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      "emails": 1,
+      "agents": 0
+    }
+  },
+  {
+    "name": "api-absent: CRM rescheduled",
+    "valid": true,
+    "evidence": {
+      "r": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      "emails": 1,
+      "agents": 0
+    }
+  },
+  {
+    "name": "api-absent: permiso agente exacto e independiente",
+    "valid": true,
+    "evidence": {
+      "attempts": 0
+    }
+  },
+  {
+    "name": "api-absent: sin exterior real",
+    "valid": true,
+    "evidence": ""
+  },
+  {
+    "name": "api-keys: runtime completo",
+    "valid": true,
+    "evidence": {}
+  },
+  {
+    "name": "api-keys: permiso IA exacto e independiente",
+    "valid": true,
+    "evidence": {
+      "response": {
+        "status": 503,
+        "body": {
+          "error": "AI service is disabled."
+        }
+      },
+      "attempts": 0
+    }
+  },
+  {
+    "name": "api-keys: ruta directa /api/ai/analyze",
+    "valid": true,
+    "evidence": {
+      "status": 503,
+      "body": {
+        "error": "AI service is disabled."
+      }
+    }
+  },
+  {
+    "name": "api-keys: ruta directa /api/ai/action",
+    "valid": true,
+    "evidence": {
+      "status": 503,
+      "body": {
+        "error": "AI service is disabled."
+      }
+    }
+  },
+  {
+    "name": "api-keys: ruta directa /api/knowledge/upload",
+    "valid": true,
+    "evidence": {
+      "status": 503,
+      "body": {
+        "error": "AI service is disabled."
+      }
+    }
+  },
+  {
+    "name": "api-keys: auth tenant origen preservados",
+    "valid": true,
+    "evidence": {
+      "noAuth": {
+        "status": 401,
+        "body": {
+          "error": "Unauthorized"
+        }
+      },
+      "foreign": {
+        "status": 403,
+        "body": {
+          "error": "Forbidden"
+        }
+      },
+      "origin": {
+        "status": 403,
+        "body": {
+          "error": "Untrusted origin."
+        }
+      }
+    }
+  },
+  {
+    "name": "api-keys: contacto base",
+    "valid": true,
+    "evidence": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "message": "Thank you! Your message has been received."
+      }
+    }
+  },
+  {
+    "name": "api-keys: reserva y notificación efectiva",
+    "valid": true,
+    "evidence": {
+      "booked": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "appointmentId": "generated-1"
+        }
+      },
+      "bookingNotice": {
+        "status": 200,
+        "body": {
+          "success": true
+        }
+      },
+      "agents": 0,
+      "emails": 2
+    }
+  },
+  {
+    "name": "api-keys: CRM booked",
+    "valid": true,
+    "evidence": {
+      "r": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      "emails": 1,
+      "agents": 0
+    }
+  },
+  {
+    "name": "api-keys: CRM cancelled",
+    "valid": true,
+    "evidence": {
+      "r": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      "emails": 1,
+      "agents": 0
+    }
+  },
+  {
+    "name": "api-keys: CRM rescheduled",
+    "valid": true,
+    "evidence": {
+      "r": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      "emails": 1,
+      "agents": 0
+    }
+  },
+  {
+    "name": "api-keys: permiso agente exacto e independiente",
+    "valid": true,
+    "evidence": {
+      "attempts": 0
+    }
+  },
+  {
+    "name": "api-keys: límite efectivo antes del proveedor",
+    "valid": true,
+    "evidence": {
+      "last": {
+        "status": 429,
+        "body": {
+          "error": "AI rate limit exceeded. Please try again shortly."
+        }
+      },
+      "excess": {
+        "status": 429,
+        "body": {
+          "error": "AI rate limit exceeded. Please try again shortly."
+        }
+      },
+      "attempts": 0
+    }
+  },
+  {
+    "name": "api-keys: sin exterior real",
+    "valid": true,
+    "evidence": ""
+  },
+  {
+    "name": "api-false: runtime completo",
+    "valid": true,
+    "evidence": {}
+  },
+  {
+    "name": "api-false: permiso IA exacto e independiente",
+    "valid": true,
+    "evidence": {
+      "response": {
+        "status": 503,
+        "body": {
+          "error": "AI service is disabled."
+        }
+      },
+      "attempts": 0
+    }
+  },
+  {
+    "name": "api-false: ruta directa /api/ai/analyze",
+    "valid": true,
+    "evidence": {
+      "status": 503,
+      "body": {
+        "error": "AI service is disabled."
+      }
+    }
+  },
+  {
+    "name": "api-false: ruta directa /api/ai/action",
+    "valid": true,
+    "evidence": {
+      "status": 503,
+      "body": {
+        "error": "AI service is disabled."
+      }
+    }
+  },
+  {
+    "name": "api-false: ruta directa /api/knowledge/upload",
+    "valid": true,
+    "evidence": {
+      "status": 503,
+      "body": {
+        "error": "AI service is disabled."
+      }
+    }
+  },
+  {
+    "name": "api-false: auth tenant origen preservados",
+    "valid": true,
+    "evidence": {
+      "noAuth": {
+        "status": 401,
+        "body": {
+          "error": "Unauthorized"
+        }
+      },
+      "foreign": {
+        "status": 403,
+        "body": {
+          "error": "Forbidden"
+        }
+      },
+      "origin": {
+        "status": 403,
+        "body": {
+          "error": "Untrusted origin."
+        }
+      }
+    }
+  },
+  {
+    "name": "api-false: contacto base",
+    "valid": true,
+    "evidence": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "message": "Thank you! Your message has been received."
+      }
+    }
+  },
+  {
+    "name": "api-false: reserva y notificación efectiva",
+    "valid": true,
+    "evidence": {
+      "booked": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "appointmentId": "generated-1"
+        }
+      },
+      "bookingNotice": {
+        "status": 200,
+        "body": {
+          "success": true
+        }
+      },
+      "agents": 0,
+      "emails": 2
+    }
+  },
+  {
+    "name": "api-false: CRM booked",
+    "valid": true,
+    "evidence": {
+      "r": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      "emails": 1,
+      "agents": 0
+    }
+  },
+  {
+    "name": "api-false: CRM cancelled",
+    "valid": true,
+    "evidence": {
+      "r": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      "emails": 1,
+      "agents": 0
+    }
+  },
+  {
+    "name": "api-false: CRM rescheduled",
+    "valid": true,
+    "evidence": {
+      "r": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      "emails": 1,
+      "agents": 0
+    }
+  },
+  {
+    "name": "api-false: permiso agente exacto e independiente",
+    "valid": true,
+    "evidence": {
+      "attempts": 0
+    }
+  },
+  {
+    "name": "api-false: sin exterior real",
+    "valid": true,
+    "evidence": ""
+  },
+  {
+    "name": "api-invalid: runtime completo",
+    "valid": true,
+    "evidence": {}
+  },
+  {
+    "name": "api-invalid: permiso IA exacto e independiente",
+    "valid": true,
+    "evidence": {
+      "response": {
+        "status": 503,
+        "body": {
+          "error": "AI service is disabled."
+        }
+      },
+      "attempts": 0
+    }
+  },
+  {
+    "name": "api-invalid: ruta directa /api/ai/analyze",
+    "valid": true,
+    "evidence": {
+      "status": 503,
+      "body": {
+        "error": "AI service is disabled."
+      }
+    }
+  },
+  {
+    "name": "api-invalid: ruta directa /api/ai/action",
+    "valid": true,
+    "evidence": {
+      "status": 503,
+      "body": {
+        "error": "AI service is disabled."
+      }
+    }
+  },
+  {
+    "name": "api-invalid: ruta directa /api/knowledge/upload",
+    "valid": true,
+    "evidence": {
+      "status": 503,
+      "body": {
+        "error": "AI service is disabled."
+      }
+    }
+  },
+  {
+    "name": "api-invalid: auth tenant origen preservados",
+    "valid": true,
+    "evidence": {
+      "noAuth": {
+        "status": 401,
+        "body": {
+          "error": "Unauthorized"
+        }
+      },
+      "foreign": {
+        "status": 403,
+        "body": {
+          "error": "Forbidden"
+        }
+      },
+      "origin": {
+        "status": 403,
+        "body": {
+          "error": "Untrusted origin."
+        }
+      }
+    }
+  },
+  {
+    "name": "api-invalid: contacto base",
+    "valid": true,
+    "evidence": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "message": "Thank you! Your message has been received."
+      }
+    }
+  },
+  {
+    "name": "api-invalid: reserva y notificación efectiva",
+    "valid": true,
+    "evidence": {
+      "booked": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "appointmentId": "generated-1"
+        }
+      },
+      "bookingNotice": {
+        "status": 200,
+        "body": {
+          "success": true
+        }
+      },
+      "agents": 0,
+      "emails": 2
+    }
+  },
+  {
+    "name": "api-invalid: CRM booked",
+    "valid": true,
+    "evidence": {
+      "r": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      "emails": 1,
+      "agents": 0
+    }
+  },
+  {
+    "name": "api-invalid: CRM cancelled",
+    "valid": true,
+    "evidence": {
+      "r": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      "emails": 1,
+      "agents": 0
+    }
+  },
+  {
+    "name": "api-invalid: CRM rescheduled",
+    "valid": true,
+    "evidence": {
+      "r": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      "emails": 1,
+      "agents": 0
+    }
+  },
+  {
+    "name": "api-invalid: permiso agente exacto e independiente",
+    "valid": true,
+    "evidence": {
+      "attempts": 0
+    }
+  },
+  {
+    "name": "api-invalid: sin exterior real",
+    "valid": true,
+    "evidence": ""
+  },
+  {
+    "name": "api-ai: runtime completo",
+    "valid": true,
+    "evidence": {}
+  },
+  {
+    "name": "api-ai: permiso IA exacto e independiente",
+    "valid": true,
+    "evidence": {
+      "response": {
+        "status": 200,
+        "body": {
+          "text": "Respuesta controlada"
+        }
+      },
+      "attempts": 1
+    }
+  },
+  {
+    "name": "api-ai: ruta directa /api/ai/analyze",
+    "valid": true,
+    "evidence": {
+      "status": 400,
+      "body": {
+        "error": "Body \"type\" must be \"strategic\", \"style\", or \"crm\"."
+      }
+    }
+  },
+  {
+    "name": "api-ai: ruta directa /api/ai/action",
+    "valid": true,
+    "evidence": {
+      "status": 400,
+      "body": {
+        "error": "Unknown action type: invalid"
+      }
+    }
+  },
+  {
+    "name": "api-ai: ruta directa /api/knowledge/upload",
+    "valid": true,
+    "evidence": {
+      "status": 400,
+      "body": {
+        "error": "title is required"
+      }
+    }
+  },
+  {
+    "name": "api-ai: auth tenant origen preservados",
+    "valid": true,
+    "evidence": {
+      "noAuth": {
+        "status": 401,
+        "body": {
+          "error": "Unauthorized"
+        }
+      },
+      "foreign": {
+        "status": 403,
+        "body": {
+          "error": "Forbidden"
+        }
+      },
+      "origin": {
+        "status": 403,
+        "body": {
+          "error": "Untrusted origin."
+        }
+      }
+    }
+  },
+  {
+    "name": "api-ai: contacto base",
+    "valid": true,
+    "evidence": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "message": "Thank you! Your message has been received."
+      }
+    }
+  },
+  {
+    "name": "api-ai: reserva y notificación efectiva",
+    "valid": true,
+    "evidence": {
+      "booked": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "appointmentId": "generated-1"
+        }
+      },
+      "bookingNotice": {
+        "status": 200,
+        "body": {
+          "success": true
+        }
+      },
+      "agents": 0,
+      "emails": 2
+    }
+  },
+  {
+    "name": "api-ai: CRM booked",
+    "valid": true,
+    "evidence": {
+      "r": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      "emails": 1,
+      "agents": 0
+    }
+  },
+  {
+    "name": "api-ai: CRM cancelled",
+    "valid": true,
+    "evidence": {
+      "r": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      "emails": 1,
+      "agents": 0
+    }
+  },
+  {
+    "name": "api-ai: CRM rescheduled",
+    "valid": true,
+    "evidence": {
+      "r": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      "emails": 1,
+      "agents": 0
+    }
+  },
+  {
+    "name": "api-ai: permiso agente exacto e independiente",
+    "valid": true,
+    "evidence": {
+      "attempts": 0
+    }
+  },
+  {
+    "name": "api-ai: límite efectivo antes del proveedor",
+    "valid": true,
+    "evidence": {
+      "last": {
+        "status": 429,
+        "body": {
+          "error": "AI rate limit exceeded. Please try again shortly."
+        }
+      },
+      "excess": {
+        "status": 429,
+        "body": {
+          "error": "AI rate limit exceeded. Please try again shortly."
+        }
+      },
+      "attempts": 16
+    }
+  },
+  {
+    "name": "api-ai: sin exterior real",
+    "valid": true,
+    "evidence": ""
+  },
+  {
+    "name": "api-agent: runtime completo",
+    "valid": true,
+    "evidence": {}
+  },
+  {
+    "name": "api-agent: permiso IA exacto e independiente",
+    "valid": true,
+    "evidence": {
+      "response": {
+        "status": 503,
+        "body": {
+          "error": "AI service is disabled."
+        }
+      },
+      "attempts": 0
+    }
+  },
+  {
+    "name": "api-agent: ruta directa /api/ai/analyze",
+    "valid": true,
+    "evidence": {
+      "status": 503,
+      "body": {
+        "error": "AI service is disabled."
+      }
+    }
+  },
+  {
+    "name": "api-agent: ruta directa /api/ai/action",
+    "valid": true,
+    "evidence": {
+      "status": 503,
+      "body": {
+        "error": "AI service is disabled."
+      }
+    }
+  },
+  {
+    "name": "api-agent: ruta directa /api/knowledge/upload",
+    "valid": true,
+    "evidence": {
+      "status": 503,
+      "body": {
+        "error": "AI service is disabled."
+      }
+    }
+  },
+  {
+    "name": "api-agent: auth tenant origen preservados",
+    "valid": true,
+    "evidence": {
+      "noAuth": {
+        "status": 401,
+        "body": {
+          "error": "Unauthorized"
+        }
+      },
+      "foreign": {
+        "status": 403,
+        "body": {
+          "error": "Forbidden"
+        }
+      },
+      "origin": {
+        "status": 403,
+        "body": {
+          "error": "Untrusted origin."
+        }
+      }
+    }
+  },
+  {
+    "name": "api-agent: contacto base",
+    "valid": true,
+    "evidence": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "message": "Thank you! Your message has been received."
+      }
+    }
+  },
+  {
+    "name": "api-agent: reserva y notificación efectiva",
+    "valid": true,
+    "evidence": {
+      "booked": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "appointmentId": "generated-1"
+        }
+      },
+      "bookingNotice": {
+        "status": 200,
+        "body": {
+          "success": true
+        }
+      },
+      "agents": 1,
+      "emails": 1
+    }
+  },
+  {
+    "name": "api-agent: CRM booked",
+    "valid": true,
+    "evidence": {
+      "r": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      },
+      "emails": 0,
+      "agents": 1
+    }
+  },
+  {
+    "name": "api-agent: CRM cancelled",
+    "valid": true,
+    "evidence": {
+      "r": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      },
+      "emails": 0,
+      "agents": 1
+    }
+  },
+  {
+    "name": "api-agent: CRM rescheduled",
+    "valid": true,
+    "evidence": {
+      "r": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": true
+        }
+      },
+      "emails": 0,
+      "agents": 1
+    }
+  },
+  {
+    "name": "api-agent: permiso agente exacto e independiente",
+    "valid": true,
+    "evidence": {
+      "attempts": 5
+    }
+  },
+  {
+    "name": "api-agent: sin exterior real",
+    "valid": true,
+    "evidence": ""
+  },
+  {
+    "name": "api-incomplete: runtime completo",
+    "valid": true,
+    "evidence": {}
+  },
+  {
+    "name": "api-incomplete: permiso IA exacto e independiente",
+    "valid": true,
+    "evidence": {
+      "response": {
+        "status": 503,
+        "body": {
+          "error": "AI features are not configured on the server."
+        }
+      },
+      "attempts": 0
+    }
+  },
+  {
+    "name": "api-incomplete: ruta directa /api/ai/analyze",
+    "valid": true,
+    "evidence": {
+      "status": 503,
+      "body": {
+        "error": "AI features are not configured on the server."
+      }
+    }
+  },
+  {
+    "name": "api-incomplete: ruta directa /api/ai/action",
+    "valid": true,
+    "evidence": {
+      "status": 400,
+      "body": {
+        "error": "Unknown action type: invalid"
+      }
+    }
+  },
+  {
+    "name": "api-incomplete: ruta directa /api/knowledge/upload",
+    "valid": true,
+    "evidence": {
+      "status": 503,
+      "body": {
+        "error": "AI features are not configured on the server."
+      }
+    }
+  },
+  {
+    "name": "api-incomplete: auth tenant origen preservados",
+    "valid": true,
+    "evidence": {
+      "noAuth": {
+        "status": 401,
+        "body": {
+          "error": "Unauthorized"
+        }
+      },
+      "foreign": {
+        "status": 403,
+        "body": {
+          "error": "Forbidden"
+        }
+      },
+      "origin": {
+        "status": 403,
+        "body": {
+          "error": "Untrusted origin."
+        }
+      }
+    }
+  },
+  {
+    "name": "api-incomplete: contacto base",
+    "valid": true,
+    "evidence": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "message": "Thank you! Your message has been received."
+      }
+    }
+  },
+  {
+    "name": "api-incomplete: reserva y notificación efectiva",
+    "valid": true,
+    "evidence": {
+      "booked": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "appointmentId": "generated-1"
+        }
+      },
+      "bookingNotice": {
+        "status": 200,
+        "body": {
+          "success": true
+        }
+      },
+      "agents": 0,
+      "emails": 1
+    }
+  },
+  {
+    "name": "api-incomplete: CRM booked",
+    "valid": true,
+    "evidence": {
+      "r": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      "emails": 0,
+      "agents": 0
+    }
+  },
+  {
+    "name": "api-incomplete: CRM cancelled",
+    "valid": true,
+    "evidence": {
+      "r": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      "emails": 0,
+      "agents": 0
+    }
+  },
+  {
+    "name": "api-incomplete: CRM rescheduled",
+    "valid": true,
+    "evidence": {
+      "r": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      "emails": 0,
+      "agents": 0
+    }
+  },
+  {
+    "name": "api-incomplete: permiso agente exacto e independiente",
+    "valid": true,
+    "evidence": {
+      "attempts": 0
+    }
+  },
+  {
+    "name": "api-incomplete: sin exterior real",
+    "valid": true,
+    "evidence": ""
+  },
+  {
+    "name": "observador positivo IA agente y exterior bloqueado",
+    "valid": true,
+    "evidence": {
+      "exit": 0,
+      "events": "{\"kind\":\"ai\"}\n{\"kind\":\"agent\",\"path\":\"/control\"}\n",
+      "audit": "{\"blocked\":\"fetch:outside.invalid\"}\n"
+    }
+  }
+]

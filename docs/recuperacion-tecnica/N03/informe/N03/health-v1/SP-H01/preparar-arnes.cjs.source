@@ -1,0 +1,30 @@
+const fs=require('node:fs'),path=require('node:path');
+let s=fs.readFileSync(path.join(__dirname,'regresion.mjs'),'utf8');
+s=s.replace("async function request(port,path='/api/health')","async function request(port,path='/api/health',headers={},method='GET')").replace('signal:AbortSignal.timeout(3500)','headers,method,signal:AbortSignal.timeout(3500)');
+s=s.replace("if(scenario==='absent')", "if(scenario!=='default'){env.API_RATE_LIMIT_MAX='3';env.API_RATE_LIMIT_WINDOW_MS='1000';}if(scenario==='failed')fs.writeFileSync(modeFile,'failed');if(scenario==='absent')");
+s=s.replace('await request(port);listening=true','await request(port,\'/api/live\');listening=true');
+const begin=s.indexOf("const live=await request(port,'/api/live');"),end=s.indexOf('}catch(e){check(',begin);
+if(begin<0||end<begin)throw Error('anclas');
+s=s.slice(0,begin)+`
+const blocked=['early','late','incomplete'].includes(scenario),expected=blocked||scenario==='failed'?503:200,max=scenario==='default'?60:3;
+const count=()=>fs.readFileSync('/tmp/count-'+id,'utf8');
+const ip={'x-forwarded-for':'198.51.100.1'},warm={'x-forwarded-for':'198.51.100.7'};
+await request(port,'/api/health',warm);
+let before=count();let liveOk=true;
+for(let i=0;i<max+1;i++){const live=await request(port,'/api/live',ip);liveOk&&=live.code===200&&publicBody(live,'ok');}
+check(id+': live sin cuota ni DB',liveOk&&before===count(),{unchanged:before===count(),calls:max+1});
+before=count();const permitted=[];const started=Date.now();
+for(let i=0;i<max;i++)permitted.push(await request(port,'/api/health',ip));
+check(id+': permitidas',permitted.every(r=>r.code===expected&&publicBody(r,expected===200?'ok':'unavailable')),{codes:permitted.map(r=>r.code),elapsed:Date.now()-started});
+check(id+': carga controlada',blocked?count()===before:count().slice(before.length).split('loader').length-1===max,{delta:count().slice(before.length)});
+before=count();const excess=await request(port,'/api/health',ip),alias=await request(port,'/API/health',ip);
+check(id+': exceso429 antes de DB',excess.code===429&&alias.code===429&&before===count()&&!excess.headers['x-client-id']&&!excess.headers['x-powered-by']&&excess.body.error==='Too many requests. Please try again shortly.',{codes:[excess.code,alias.code],delta:count().slice(before.length)});
+const other=await request(port,'/api/health',{'x-forwarded-for':'198.51.100.2'});check(id+': IP independiente',other.code===expected,{code:other.code});
+if(blocked){const guard=await request(port,'/api/tenant/status',ip);check(id+': guard funcional',guard.code===503,{code:guard.code});}
+if(scenario==='configured'){
+ await sleep(1100);const recovered=await request(port,'/api/health',ip);check(id+': ventana configurable',recovered.code===200,{code:recovered.code});
+ const headIp={'x-forwarded-for':'198.51.100.3'};const first=await request(port,'/api/health',headIp,'HEAD');await request(port,'/api/health',headIp);await request(port,'/api/health',headIp);before=count();const last=await request(port,'/api/health',headIp,'HEAD');check(id+': HEAD comparte cuota',first.code===200&&last.code===429&&before===count(),{codes:[first.code,last.code],delta:count().slice(before.length)});
+}
+`+s.slice(end);
+s=s.replace("selection==='mutation'?['early']:selection==='incomplete'?['incomplete']:selection==='smoke'?['normal']:['normal','absent','tenant-absent','early','late']","selection==='red'||selection==='mutation'?['configured']:selection==='incomplete'?['incomplete']:['default','configured','failed','early','late']");
+fs.writeFileSync(path.join(__dirname,'runner.mjs'),s);

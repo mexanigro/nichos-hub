@@ -1,0 +1,61 @@
+const fs=require('node:fs'),p=require('node:path'),crypto=require('node:crypto'),{spawnSync}=require('node:child_process');
+const d=__dirname,root=p.resolve(d,'../../..'),hub='C:/Users/liama/Desktop/Nichos-hub',template=p.resolve(root,'../Barber-shop-template-main');
+const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
+const read=file=>JSON.parse(fs.readFileSync(file,'utf8').replace(/^\uFEFF/,''));
+const write=(file,data)=>{fs.mkdirSync(p.dirname(file),{recursive:true});fs.writeFileSync(file,data,{flag:'wx'});};
+const freeze=read(p.join(d,'FREEZE.json')),target='src/app/api/onboarding/route.ts';
+for(const row of freeze.hashes)if(sha(fs.readFileSync(p.join(d,row.path)))!==row.sha256)throw Error('freeze drift '+row.path);
+const source=fs.readFileSync(p.join(hub,target),'utf8'),before=fs.readFileSync(p.join(d,'preimagenes-p1',target),'utf8');
+const prefix='    await db.collection("config").doc(slug).set({',pos=before.indexOf(prefix)+prefix.length,eol=before.slice(pos,pos+2)==='\r\n'?'\r\n':'\n';
+if(source!==before.slice(0,pos)+eol+'      language: locale,'+before.slice(pos))throw Error('diff');
+if(sha(source)!=='e84e50cce05bb87e831094de50f1c362213b4a1597e2f54f22899a31216c21bd')throw Error('review SHA');
+const finalSources=[];
+for(const row of freeze.hubSources){const current=sha(fs.readFileSync(p.join(hub,row.path)));if(row.path!==target&&current!==row.sha256)throw Error('hub changed');if(sha(fs.readFileSync(p.join(d,'green-p2/preimagenes',row.path)))!==current)throw Error('tested source');if(sha(fs.readFileSync(p.join(d,'copia-mutacion',row.path)))!==row.sha256)throw Error('mutation changed more');finalSources.push({path:row.path,sha256:current});}
+for(const row of freeze.templateSources)if(sha(fs.readFileSync(p.join(template,row.path)))!==row.sha256)throw Error('template changed');
+const lintSources=read(p.resolve(d,'../lint-v1/FUENTES-FINALES.json'));for(const row of lintSources)if(sha(fs.readFileSync(p.join(hub,row.path)))!==row.sha256)throw Error('accepted lint source changed');
+const green=read(p.join(d,'green-p2/ACEPTACION.json')),mutant=read(p.join(d,'mutation-p3/ACEPTACION.json'));
+if(green.passed!==34||green.failed!==0||mutant.failed!==17||mutant.passed!==17||mutant.checks.some(x=>!x.valid&&!/^\d+:(config|propagation)$/.test(x.name)))throw Error('acceptance');
+const mutationState=read(p.join(d,'MUTACION-ESTADO-P3.json'));if(mutationState.instrumentExit!==0||mutationState.acceptanceExit!==1)throw Error('mutation instrument');
+if(read(p.join(d,'TIPOS-P2.json')).exit!==0||read(p.join(d,'LINT-ESTADO-P2.json')).exit!==0)throw Error('types/lint');
+const lint=read(p.join(d,'LINT-P2.json'));if(lint.length!==1||lint[0].errorCount||lint[0].warningCount||lint[0].suppressedMessages.length)throw Error('lint diagnostics');
+for(const repo of [hub,template]){const r=spawnSync('git',['-C',repo,'worktree','list','--porcelain'],{encoding:'utf8'});if(r.status!==0||(r.stdout.match(/^worktree /gm)||[]).length!==1||!r.stdout.includes('branch refs/heads/main'))throw Error('git state');}
+write(p.join(d,'FUENTES-FINALES.json'),JSON.stringify(finalSources,null,2));
+write(p.join(d,'CONSERVACION-FINAL.json'),JSON.stringify({hubSources:5,unchangedHubSources:4,templateUnchanged:333,acceptedLintUnchanged:lintSources.length,exactPropertyInsertion:true,greenCopyMatches:true,mutationEqualsPreimage:true,freezePreserved:true},null,2));
+write(p.join(d,'REVISION-FINAL.md'),'# Revisión final interna\n\nHarvey, /root/refutar_soporte, sólo lectura de fuente final/preimagen/contrato en esta conversación. Confirmó sólo language:locale en config.set antes del disparo; retirarlo en memoria recupera bytes exactos. Sin BLOCKERS ni MATERIAL nuevos. SHA revisado e84e50cce05bb87e831094de50f1c362213b4a1597e2f54f22899a31216c21bd. No ejecutó pruebas. Revisión externa de preparación separada en REVISION-EXTERNA-PREPARACION.md.\n\nIntegrador ejecutó34controles,tipos/lint0 ymutación17fallos esperados sin error de instrumento. Claridad: propiedad usa el locale existente, ningún helper/política nueva; el campo queda dentro del productor correcto antes de consumirlo. Sin usos artificiales ni soluciones temporales. No concluye traducción completa, despliegue o persistencia real.\n');
+const closure=`# N03 L06-language-v1 — GREEN local para revisión
+
+Sólo src/app/api/onboarding/route.ts del hub: añadido language:locale al objeto de config/{slug}, manteniendo el valor ya guardado en hub_clients y los normalizadores existentes. El consumidor ahora prepara el idioma elegido en lugar de he por omisión. Sin idioma, el defaultinglés del onboarding llega al consumidor; es se conserva y mantiene fallbackinglés del template. No migración de clientes existentes ni cambio de traducciones/defaults/permisos.
+
+[Contrato aprobado](PROPUESTA.md) y [freeze previo a producto](FREEZE.json). P0→P1→P2→P3:4/4. GREEN exclusivamente local de esta conexión L06; N03 sigue abierta, no H01/ES-A completo. Entregada para revisión, no se atribuye aceptación final a Liam.
+
+## Evidencia
+
+- [Aceptación](green-p2/ACEPTACION.json):34/34 sobre14escenarios del POST real y deployToVercel real con dependencias simuladas.10idiomas/ausencias/normalizaciones con config igual al hub y payload correcto; conservación de todas las demás escrituras/respuestas/disparos completos contra referencia-r2. Cuatro adversos conservados:429/403/400/500, cero disparos posteriores. config.set fallido conserva las dos escrituras previas, sin inventar rollback.
+- [Tipos](TIPOS-P2.json):exit0 con configuración del hub y next-env.d.ts, sin relajar opciones. [Lint](LINT-P2.json):exit0,cero errores/advertencias/supresiones, configuración diagnóstica N02 vigente, sólo archivo afectado.
+- [Mutación](MUTACION.json), [aceptación mutante](mutation-p3/ACEPTACION.json): retirada exclusivamente language:locale en copia física;17fallos funcionales esperados (10faltas en config y7idiomas propagados incorrectos),17controles conservados. [Estado](MUTACION-ESTADO-P3.json):instrumentoexit0,contratoexit1. Copia coincide exactamente con preimagen; producto permanece reparado.
+- [Conservación](CONSERVACION-FINAL.json):4fuentes hub pertinentes restantes,333template y6fuentes lint aceptadas intactas;5fuentes probadas coinciden con actual. Contrato/instrumentos/referencias congelados sin deriva. [Manifiesto final](FUENTES-FINALES.json). Ambos repos siguen main y un único worktree cada uno.
+
+Se reutilizaron sondeo y referencias originales; única adaptación del sondeo permite leer la copia mutada usando las mismas dependencias, con preimagen. Acceptance compara contra la referencia anterior al parche y sólo permite las dos diferencias derivadas de la propiedad. RED previo conservado, no reejecución general ni suites template aceptadas. No errores del instrumento ni reintentos en esta implementación.
+
+## Gates, revisión y límites
+
+P0:huellas vigentes,autorización/revisión externa integradas,RED17 comprobado sobre referencia yfreeze. P1:preimagen física e inserción única. P2:propagación/conservación34,tipos/lint aprobados. P3:mutación sensible,claridad yconservación final,registros actualizados. Cada gate produjo avance material verificable.
+
+[Revisión interna](REVISION-FINAL.md) separada de [revisión externa trasladada por Liam](REVISION-EXTERNA-PREPARACION.md). MATERIAL previo de captura del disparo ylocalización de persistencia resuelto antes del freeze. Ningún BLOCKER restante de esta entrega.
+
+VM con imports de producto controlados, fetch/env sintéticos; no red real,IA,logos ni escrituras reales a Firestore. No monta Next/navegador ni certifica endpoint deploy/auth,proveedores,reglas,persistencia o aislamiento de SO. La llamada intermedia se conecta directamente al consumidor local; no se afirma un deployment real.
+
+N04 conserva identidad/entorno reales,N08 propagación/publicación reales,N10 idiomas completos. H01/ES-A y otras obligaciones del balance no se cierran por esta propiedad. Condición previa al despliegue por prestaciones de tenant,evidencia ydecisión de Liam intacta. Sin instalaciones,operaciones remotas,ramas/worktrees,commit,push/deploy o resets.
+
+Consumo observado78%,techo80%TOTAL N03 compartido. No retoma técnica pendiente de esta reparación; detener para revisión, sin iniciar otra obligación.
+`;
+write(p.join(d,'CIERRE-LOCAL.md'),closure);
+const custody=[];
+function update(rel,notice){const file=p.join(root,rel),bytes=fs.readFileSync(file),pre=p.join(d,'preimagenes-registros-cierre',rel);write(pre,bytes);if(sha(fs.readFileSync(pre))!==sha(bytes))throw Error('custody');fs.writeFileSync(file,bytes.toString('utf8').replace('\n','\n\n'+notice+'\n'));custody.push({path:rel,before:sha(bytes),after:sha(fs.readFileSync(file)),preimage:p.relative(root,pre)});}
+update('informe/N03/L06-language-v1/INFORME.md','**L06-language-v1 ahora GREEN local4/4, para revisión.** [Cierre y evidencia](CIERRE-LOCAL.md). Sólo language:locale en config del onboarding;34controles,tipos/lint0,mutación17fallos esperados. N03 abierta,obligaciones posteriores yprestaciones por tenant conservadas. Consumo78%/80%TOTAL,sin resets. Preparación inferior histórica.');
+update('informe/N03/reconciliacion-v1/BALANCE.md','**Actualización acotada L06-language-v1: GREEN local4/4, para revisión.** [Cierre](../L06-language-v1/CIERRE-LOCAL.md): omisión language en config del onboarding corregida;34controles,tipos/lint0,mutación17fallos esperados. Esta parte local deL06 satisfecha; H01/ES-A completo,propagación real N08,idiomas N10 yN04 siguen pendientes. No nueva reconciliación ni otra reparación. Condición prestaciones por tenant vigente. Consumo78%/80%TOTAL,sin resets.');
+for(const rel of ['indice/tareas/N03.md','indice/README.md','indice/PENDIENTES.md','indice/CALENDARIO.md']){const prefix=rel.includes('/tareas/')?'../../':'../';update(rel,`**N03 L06-language-v1: GREEN local4/4 para revisión.** [Cierre/evidencia](${prefix}informe/N03/L06-language-v1/CIERRE-LOCAL.md). Sólo language:locale en config del onboarding;34controles,tipos/lint0,mutación17fallos esperados/sin fallo instrumento. Idioma ausente defaulten;es conservado confallbacken,no migraciones. N03 abierta,N04/N08/N10 ycondiciónprestaciones por tenant conservadas. Consumo78%/80%TOTAL,sin resets. Detenido,sin otra reparación. Cortes inferiores históricos.`);}
+write(p.join(root,'historial/2026-09-09-N03-L06-language-cierre-local.md'),`# N03 L06-language-v1 — GREEN local\n\nAutorizados P0→P3 y efectos ausencia/es. Una propiedad en config del onboarding,preimagen/freeze conservados. [Cierre](../informe/N03/L06-language-v1/CIERRE-LOCAL.md):34controles sobre14escenarios,tipos0,lint0sinadvertencias,mutación17fallos funcionales y17conservados;333template yfuenteshubrestantes intactas. Revisión externa trasladada separada de Harvey.\n\nNo reintentos ni ampliación;no migración,remoto,instalaciones,ramas/worktrees,commit,push/deploy/resets. Consumo78%/80%TOTAL. N03 abierta,N04/N08/N10 ycondiciónprestaciones por tenant vigentes. Detenido para revisión deesta reparación,sin otra obligación.\n`);
+write(p.join(d,'CUSTODIA-CIERRE.json'),JSON.stringify(custody,null,2));
+write(p.join(d,'ACEPTACION-FINAL.json'),JSON.stringify({result:'GREEN',gates:4,total:4,checks:34,scenarios:14,typesExit:0,lintErrors:0,lintWarnings:0,mutationExpectedFailures:17,mutationPositiveControls:17,instrumentFailures:0,sourceSha256:sha(source),closureSha256:sha(closure),usage:78,totalCapN03:80,N03:'en_curso',awaitingReview:true},null,2));
+console.log(JSON.stringify({result:'GREEN',gates:'4/4',checks:34,mutation:17,records:custody.length}));

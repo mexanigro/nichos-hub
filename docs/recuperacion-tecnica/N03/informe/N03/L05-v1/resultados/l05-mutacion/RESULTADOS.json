@@ -1,0 +1,136 @@
+[
+  {
+    "name": "server arranque real",
+    "valid": true,
+    "evidence": {}
+  },
+  {
+    "name": "server active",
+    "valid": true,
+    "evidence": {
+      "http": 503,
+      "body": {
+        "error": "AI service is disabled."
+      },
+      "elapsed": 381
+    }
+  },
+  {
+    "name": "server status público active",
+    "valid": true,
+    "evidence": {
+      "http": 200,
+      "body": {
+        "status": "active",
+        "active": true
+      },
+      "elapsed": 4
+    }
+  },
+  {
+    "name": "server suspended",
+    "valid": true,
+    "evidence": {
+      "http": 423,
+      "body": {
+        "error": "Tenant is suspended. Service is blocked."
+      },
+      "elapsed": 4
+    }
+  },
+  {
+    "name": "server missing",
+    "valid": false,
+    "evidence": {
+      "http": 503,
+      "body": {
+        "error": "AI service is disabled."
+      },
+      "elapsed": 5
+    }
+  },
+  {
+    "name": "server error",
+    "valid": false,
+    "evidence": {
+      "http": 503,
+      "body": {
+        "error": "AI service is disabled."
+      },
+      "elapsed": 5
+    }
+  },
+  {
+    "name": "server exterior real bloqueado",
+    "valid": true,
+    "evidence": ""
+  },
+  {
+    "name": "api arranque real",
+    "valid": true,
+    "evidence": {}
+  },
+  {
+    "name": "api active",
+    "valid": true,
+    "evidence": {
+      "http": 503,
+      "body": {
+        "error": "AI service is disabled."
+      },
+      "elapsed": 380
+    }
+  },
+  {
+    "name": "api status público active",
+    "valid": true,
+    "evidence": {
+      "http": 200,
+      "body": {
+        "clientId": "tenant-control",
+        "status": "active",
+        "paymentProvider": "stripe",
+        "active": true
+      },
+      "elapsed": 4
+    }
+  },
+  {
+    "name": "api suspended",
+    "valid": true,
+    "evidence": {
+      "http": 423,
+      "body": {
+        "error": "Tenant is suspended. Service is blocked."
+      },
+      "elapsed": 6
+    }
+  },
+  {
+    "name": "api missing",
+    "valid": false,
+    "evidence": {
+      "http": 503,
+      "body": {
+        "error": "AI service is disabled."
+      },
+      "elapsed": 5
+    }
+  },
+  {
+    "name": "api error",
+    "valid": false,
+    "evidence": {
+      "http": 503,
+      "body": {
+        "error": "AI service is disabled."
+      },
+      "elapsed": 5
+    }
+  },
+  {
+    "name": "api exterior real bloqueado",
+    "valid": true,
+    "evidence": ""
+  }
+]

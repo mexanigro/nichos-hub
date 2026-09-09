@@ -1,0 +1,22 @@
+[
+  {
+    "path": "server.ts",
+    "bytes": 173382,
+    "sha256": "96B96B5DDBD8084440BF91A49E83F553FB76ACF72D7AA6D88E4CBD56C755C89B"
+  },
+  {
+    "path": "api/index.ts",
+    "bytes": 227469,
+    "sha256": "3F422EEA07C15E0B49355050D5C0BD2CD7EAFD70A26A137F5DDA9D6EA92C98DD"
+  },
+  {
+    "path": "tests/api-parity.test.ts",
+    "bytes": 12607,
+    "sha256": "0A949FE9243632C60D0119AFFE1A1573D564761CB03FBBCA3318DD1A8964925A"
+  },
+  {
+    "path": "src/lib/api/stock-handlers.ts",
+    "bytes": 6073,
+    "sha256": "575131CD558E77DAFBE1727D0E80E0A17C8E0290C695D744F89A903A6B4E651F"
+  }
+]

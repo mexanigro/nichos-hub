@@ -1,0 +1,52 @@
+const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
+const d=__dirname,root=path.resolve(d,'../../..'),browser=path.join(d,'../L05-browser-v1');
+const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
+const write=(f,text)=>{fs.mkdirSync(path.dirname(f),{recursive:true});fs.writeFileSync(f,text,{flag:'wx'})};
+const closureHash=hash(fs.readFileSync(path.join(browser,'CIERRE-LOCAL.md')));
+if(closureHash!=='e6676c9deae6a12b70e4c9ecd6e9d6d76e0588567b15feb6d1bbf57c5b000383')throw Error('objeto cierre distinto');
+write(path.join(browser,'ACEPTACION-USUARIO.md'),`# Aceptación local L05 navegador
+
+Liam acepta explícitamente L05 navegador como GREEN local en la orden actual y autoriza continuar exclusivamente con preparación clientId de RE-EXT-02/03. N03 sigue en curso. No autorización de política nueva de selección ni operación remota. Techo80% TOTAL N03,sin resets.
+
+[Resumen externo trasladado](REVISION-EXTERNA-TRASLADADA.md), separado de revisión interna Harvey. Objeto de cierre local al integrar: CIERRE-LOCAL.md, SHA256 ${closureHash}, coincide con GATES-FINALES.json. No se reejecutó L05 navegador/servidor.
+`);
+write(path.join(browser,'REVISION-EXTERNA-TRASLADADA.md'),`# Revisión externa trasladada por Liam
+
+Procedencia: resumen que Liam trasladó en esta conversación desde «Supervisar revisión N03», realizado por el segundo pensamiento. No acceso directo del integrador a esa conversación ni resultados crudos externos. Separado de revisión interna Harvey en REVISION-CIERRE.md.
+
+Resumen recibido: contrastó código, pruebas y registros; repitió tipos exit0; ejecutó diez comprobaciones propias del módulo, todas aprobadas; verificó las333 fuentes finales. Consideró legítima la corrección del oráculo de barber y recomendó aceptar el cierre local. Liam dio esa aceptación expresamente.
+
+Observación para futuras entregas: comprobar expectativas de conservación contra preimágenes antes de congelarlas. Se aplica en preparación clientId: preimágenes físicas y medición actual antes de proponer expectativas conservadas.
+
+Objeto local al integrar: CIERRE-LOCAL.md SHA256 ${closureHash}. El resumen externo no aporta una huella propia; esta es la huella local verificada por el integrador, no una atribución inventada al revisor. Los diez controles y tipos externos no se suman a las89 pruebas del integrador ni se afirma haberlos repetido. Límites del cierre local y condición previa al despliegue permanecen.
+`);
+const custody=[];
+function update(rel, transform) {const file=path.join(root,rel),before=fs.readFileSync(file),pre=path.join(d,'preimagenes-registros',rel);write(pre,before);if(hash(fs.readFileSync(pre))!==hash(before))throw Error('custodia');fs.writeFileSync(file,transform(before.toString('utf8')));custody.push({path:rel,preimage:path.relative(root,pre),before:hash(before),after:hash(fs.readFileSync(file))});}
+update('informe/N03/L05-browser-v1/INFORME.md',old=>old.replace('\n','\n\n**Aceptada por Liam como GREEN local.** [Aceptación](ACEPTACION-USUARIO.md) y [revisión externa trasladada de Supervisar revisión N03](REVISION-EXTERNA-TRASLADADA.md) integradas; tipos0/diez controles propios/333 fuentes según resumen recibido, sin repetir suites. N03 continúa con preparación clientId; no nueva reparación implementada.\n'));
+for(const rel of ['indice/tareas/N03.md','indice/README.md','indice/PENDIENTES.md','indice/CALENDARIO.md']) {
+  const link=rel.includes('/tareas/')?'../../informe/N03/clientId-v1/PROPUESTA.md':'../informe/N03/clientId-v1/PROPUESTA.md';
+  update(rel,old=>old.replace('\n',`\n\n**N03 vigente: L05 navegador aceptada; clientId RE-EXT-02/03 preparado, sin implementar.** Aceptación y revisión externa trasladada desde «Supervisar revisión N03» integradas con procedencia. [Tabla, evidencia y única propuesta](${link}):18 entradas/90 selecciones, funciones actuales y payload agente simulado;333 fuentes finales conservadas. Recomendación: preservar prioridades browser/servidor y corregir sólo agente para C→N→V con trim por candidato. Pendiente decisión de Liam sobre los casos antes omitidos que pasarían a notificar con AGENT_ENABLED=true y configuración completa. No se resuelven entornos contradictorios, proyecto/base ni resto de N03. Condición previa al despliegue por prestaciones de tenant vigente. Consumo76%/80% TOTAL,sin resets. Detenido para revisión; estados inferiores históricos.\n`));
+}
+write(path.join(d,'INFORME.md'),`# N03 clientId — preparación completada, sin producto
+
+[Propuesta única](PROPUESTA.md) contiene tabla por consumidor, diferencia comprobada, contrato recomendado, decisión y aceptación futura. Reutiliza N02 y balance; no reconciliación general. Se comprueba vigencia con333 huellas,13 preimágenes pertinentes y18 escenarios sintéticos/90 selecciones actuales. getAgentkitConfig en ambos caminos omite N y recorta tras prioridad: null/omisión o payload id distinto del servidor, observado con fetch simulado. Se conservan prioridades web/servidor y no se deduce defecto de su sola diferencia.
+
+Preflight aprobado antes de medir: sintaxis/imports/anclas/positivo/denegación/sensibilidad. Sin correcciones del instrumento ni repetición de suites aceptadas. Expectativas futuras conservadas parten de MEDICION.json y preimágenes, no intuición. Revisión interna Harvey sólo lectura integrada con limitaciones y decisión explícita. No freeze ni nueva política implementada.
+
+L05 navegador aceptada y revisión externa trasladada por Liam registradas separadamente. N03 sigue en curso; proyecto/base/datos y prestaciones por tenant antes de despliegue permanecen en sus etapas. Consumo76% de80% TOTAL,sin resets. Sin instalaciones, remoto, configuración real,commit,push,deploy. Detener para decisión única descrita en PROPUESTA.md.
+`);
+write(path.join(root,'historial/2026-09-09-N03-clientId-preparacion.md'),`# N03 — aceptación L05 navegador y preparación clientId
+
+Aceptación explícita de Liam integrada en L05-browser-v1; revisión externa trasladada desde «Supervisar revisión N03» registra tipos0,diez controles propios/333 fuentes según el resumen, sin atribuir nueva ejecución al integrador. Observación de medir conservación en preimágenes incorporada.
+
+[Preparación clientId](../informe/N03/clientId-v1/PROPUESTA.md):18 escenarios/90 selecciones con funciones actuales y payload de notificación controlado. Preflight positivo y sensible,333 fuentes intactas,13 preimágenes. Omisión NEXT/trim posterior del agente comprobados en ambos caminos. Contrato único recomendado: conservar prioridades navegador/servidor; agente replica C→N→V con trim por candidato. Requiere decisión por notificaciones antes omitidas que pasarían a intentarse con permiso explícito/configuración completa. Sin producto, freeze ni reconciliación de entornos reales. Proyecto/base y otras obligaciones siguen pendientes; N03 en curso.
+
+Techo80% TOTAL,observado76%,sin resets. Prestaciones por tenant antes de despliegue siguen requiriendo evidencia/decisión de Liam. Sin instalaciones, remoto,configuración real,commit,push,deploy. Detenido para revisión; única retoma: aprobar/rechazar contrato propuesto antes de implementar.
+`);
+const pre=JSON.parse(fs.readFileSync(path.join(d,'PREFLIGHT.json'),'utf8'));
+for(const file of pre.manifest)if(hash(fs.readFileSync(path.join('C:/Users/liama/Desktop/Nichos/Barber-shop-template-main',file.path)))!==file.sha256)throw Error('deriva durante sondeo');
+const measured=JSON.parse(fs.readFileSync(path.join(d,'MEDICION.json'),'utf8'));
+write(path.join(d,'REFERENCIA-CONSERVACION.json'),JSON.stringify({source:'MEDICION.json',sha256:hash(fs.readFileSync(path.join(d,'MEDICION.json'))),measuredBeforeExpectations:true,unchangedCases:measured.results.filter(x=>['absent','empty','spaces','only-vite','mirrors','padded-mirrors','client-empty-vite','conflict-client-vite','conflict-client-next','conflict-all','case-sensitive','internal-spaces'].includes(x.name)),note:'Política futura aún no congelada. Casos cambiados requieren decisión de Liam; fuente actual y preimagen no se modifican.'},null,2));
+write(path.join(d,'CUSTODIA.json'),JSON.stringify(custody,null,2));
+write(path.join(d,'CIERRE-PREPARACION.json'),JSON.stringify({state:'preparada_para_decision',productChanges:0,cases:18,consumerSelections:90,initialUsage:76,lastUsage:76,totalCeiling:80,resets:0,records:custody.length,next:'Decisión sobre selector del agente C→N→V trim antes del fallback; sin nueva política implementada.',N03:'en_curso'},null,2));
+console.log(JSON.stringify({registered:true,accepted:'L05 navegador',prepared:'clientId',records:custody.length,productChanges:0}));

@@ -1,0 +1,678 @@
+[
+  {
+    "name": "server-agent-true:startup",
+    "valid": true
+  },
+  {
+    "name": "server-agent-true:consumer",
+    "valid": true
+  },
+  {
+    "name": "server-agent-true:booked:legitimate:status",
+    "valid": true,
+    "evidence": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "agentNotified": true
+      }
+    }
+  },
+  {
+    "name": "server-agent-true:booked:success",
+    "valid": true
+  },
+  {
+    "name": "server-agent-true:booked:observer",
+    "valid": true,
+    "evidence": [
+      {
+        "kind": "agent",
+        "path": "/notify",
+        "type": "appointment_booked",
+        "clientId": "tenant-control",
+        "payload": {
+          "clientId": "tenant-control",
+          "type": "appointment_booked",
+          "adminPhones": [
+            "+972500000000"
+          ],
+          "staffPhones": [],
+          "customerPhone": "+972500000001",
+          "message": "Nuevo turno: Control (+972500000001)\nHaircut el 2026-12-20 a las 12:00",
+          "staffMessage": "Turno asignado\nCliente: Control (+972500000001)\nServicio: Haircut\nCuando: 2026-12-20 12:00",
+          "customerMessage": "Turno confirmado: Haircut el 2026-12-20 a las 12:00.",
+          "appointment": {
+            "appointmentId": "appt-control",
+            "date": "2026-12-20",
+            "time": "12:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          },
+          "variables": {
+            "1": "Haircut",
+            "2": "2026-12-20",
+            "3": "12:00",
+            "4": ""
+          }
+        },
+        "authCorrect": true
+      }
+    ]
+  },
+  {
+    "name": "server-agent-true:cancelled:legitimate:status",
+    "valid": true,
+    "evidence": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "agentNotified": true
+      }
+    }
+  },
+  {
+    "name": "server-agent-true:cancelled:success",
+    "valid": true
+  },
+  {
+    "name": "server-agent-true:cancelled:observer",
+    "valid": true,
+    "evidence": [
+      {
+        "kind": "agent",
+        "path": "/notify",
+        "type": "appointment_cancelled",
+        "clientId": "tenant-control",
+        "payload": {
+          "clientId": "tenant-control",
+          "type": "appointment_cancelled",
+          "adminPhones": [
+            "+972500000000"
+          ],
+          "staffPhones": [],
+          "customerPhone": "+972500000001",
+          "message": "Turno cancelado: Control - Haircut el 2026-12-20 12:00 (Control)",
+          "staffMessage": "Turno cancelado: Control el 2026-12-20 12:00",
+          "customerMessage": "Tu turno de Haircut del 2026-12-20 a las 12:00 fue cancelado (Control).",
+          "appointment": {
+            "appointmentId": "appt-control",
+            "date": "2026-12-20",
+            "time": "12:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          }
+        },
+        "authCorrect": true
+      }
+    ]
+  },
+  {
+    "name": "server-agent-true:rescheduled:legitimate:status",
+    "valid": true,
+    "evidence": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "agentNotified": true
+      }
+    }
+  },
+  {
+    "name": "server-agent-true:rescheduled:success",
+    "valid": true
+  },
+  {
+    "name": "server-agent-true:rescheduled:observer",
+    "valid": true,
+    "evidence": [
+      {
+        "kind": "agent",
+        "path": "/notify",
+        "type": "appointment_rescheduled",
+        "clientId": "tenant-control",
+        "payload": {
+          "clientId": "tenant-control",
+          "type": "appointment_rescheduled",
+          "adminPhones": [
+            "+972500000000"
+          ],
+          "staffPhones": [],
+          "customerPhone": "+972500000001",
+          "message": "Turno reprogramado: Control - Haircut ahora el 2026-12-20 12:00",
+          "staffMessage": "Turno reprogramado: Control 2026-12-20 12:00 (antes 2026-12-20 11:00)",
+          "customerMessage": "Tu turno fue reprogramado: Haircut ahora el 2026-12-20 a las 12:00.",
+          "oldAppointment": {
+            "appointmentId": "appt-control",
+            "date": "2026-12-20",
+            "time": "11:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          },
+          "appointment": {
+            "appointmentId": "appt-control",
+            "date": "2026-12-20",
+            "time": "12:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          },
+          "variables": {
+            "1": "Haircut",
+            "2": "2026-12-20",
+            "3": "12:00",
+            "4": ""
+          }
+        },
+        "authCorrect": true
+      }
+    ]
+  },
+  {
+    "name": "server-agent-true:no-external",
+    "valid": true
+  },
+  {
+    "name": "server-agent-false:startup",
+    "valid": true
+  },
+  {
+    "name": "server-agent-false:consumer",
+    "valid": true
+  },
+  {
+    "name": "server-agent-false:booked:legitimate:status",
+    "valid": true,
+    "evidence": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "agentNotified": false
+      }
+    }
+  },
+  {
+    "name": "server-agent-false:booked:success",
+    "valid": true
+  },
+  {
+    "name": "server-agent-false:booked:observer",
+    "valid": true,
+    "evidence": [
+      {
+        "kind": "email-payload",
+        "path": "/emails",
+        "method": "POST",
+        "payload": {
+          "from": "onboarding@resend.dev",
+          "html": "\n    <div style=\"font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e5e7eb; border-radius: 12px;\">\n      <h2 style=\"color: #10b981; margin-bottom: 24px;\">Booking Confirmed</h2>\n      <div style=\"background: #f9fafb; padding: 16px; border-radius: 8px; margin-bottom: 20px;\">\n        <p><strong>Service:</strong> Haircut</p>\n        <p><strong>Date:</strong> 2026-12-20</p>\n        <p><strong>Time:</strong> 12:00</p>\n        \n      </div>\n      <p style=\"color: #374151;\">We look forward to seeing you at our studio.</p>\n      <p style=\"font-size: 12px; color: #6b7280; margin-top: 24px;\">This email was sent automatically. Please do not reply.</p>\n    </div>\n  ",
+          "subject": "Booking Confirmed: Haircut on 2026-12-20",
+          "to": "customer@example.invalid"
+        }
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Booking Confirmed: Haircut on 2026-12-20"
+      },
+      {
+        "kind": "write",
+        "path": "notification_logs/generated-1",
+        "data": {
+          "clientId": "tenant-control",
+          "channel": "email",
+          "recipient": "customer@example.invalid",
+          "subject": "Booking Confirmed: Haircut on 2026-12-20",
+          "type": "booking",
+          "status": "sent",
+          "providerMessageId": "simulated-email",
+          "createdAt": 0
+        }
+      }
+    ]
+  },
+  {
+    "name": "server-agent-false:booked:agent-disabled",
+    "valid": true
+  },
+  {
+    "name": "server-agent-false:cancelled:legitimate:status",
+    "valid": true,
+    "evidence": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "agentNotified": false
+      }
+    }
+  },
+  {
+    "name": "server-agent-false:cancelled:success",
+    "valid": true
+  },
+  {
+    "name": "server-agent-false:cancelled:observer",
+    "valid": true,
+    "evidence": [
+      {
+        "kind": "email-payload",
+        "path": "/emails",
+        "method": "POST",
+        "payload": {
+          "from": "onboarding@resend.dev",
+          "html": "\n    <div style=\"font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e5e7eb; border-radius: 12px;\">\n      <h2 style=\"color: #ef4444; margin-bottom: 24px;\">Appointment Cancelled</h2>\n      <p style=\"color: #374151;\">\n        Your Haircut appointment on 2026-12-20 at 12:00 at our studio has been cancelled.\n      </p>\n      <p style=\"color: #6b7280;\">Reason: Control</p>\n      <p style=\"color: #374151; margin-top: 16px;\">If you'd like to rebook, please visit our website.</p>\n      <p style=\"font-size: 12px; color: #6b7280; margin-top: 24px;\">This email was sent automatically. Please do not reply.</p>\n    </div>\n  ",
+          "subject": "Appointment Cancelled: Haircut on 2026-12-20",
+          "to": "customer@example.invalid"
+        }
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Appointment Cancelled: Haircut on 2026-12-20"
+      },
+      {
+        "kind": "write",
+        "path": "notification_logs/generated-2",
+        "data": {
+          "clientId": "tenant-control",
+          "channel": "email",
+          "recipient": "customer@example.invalid",
+          "subject": "Appointment Cancelled: Haircut on 2026-12-20",
+          "type": "booking",
+          "status": "sent",
+          "providerMessageId": "simulated-email",
+          "createdAt": 0
+        }
+      }
+    ]
+  },
+  {
+    "name": "server-agent-false:cancelled:agent-disabled",
+    "valid": true
+  },
+  {
+    "name": "server-agent-false:rescheduled:legitimate:status",
+    "valid": true,
+    "evidence": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "agentNotified": false
+      }
+    }
+  },
+  {
+    "name": "server-agent-false:rescheduled:success",
+    "valid": true
+  },
+  {
+    "name": "server-agent-false:rescheduled:observer",
+    "valid": true,
+    "evidence": [
+      {
+        "kind": "email-payload",
+        "path": "/emails",
+        "method": "POST",
+        "payload": {
+          "from": "onboarding@resend.dev",
+          "html": "\n    <div style=\"font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e5e7eb; border-radius: 12px;\">\n      <h2 style=\"color: #f59e0b; margin-bottom: 24px;\">Appointment Rescheduled</h2>\n      <p style=\"color: #374151;\">Your appointment has been rescheduled to a new date and time:</p>\n      <div style=\"background: #f9fafb; padding: 16px; border-radius: 8px; margin: 20px 0;\">\n        <p><strong>Service:</strong> Haircut</p>\n        <p><strong>New Date:</strong> 2026-12-20</p>\n        <p><strong>New Time:</strong> 12:00</p>\n        \n      </div>\n      <p style=\"color: #374151;\">We look forward to seeing you at our studio.</p>\n      <p style=\"font-size: 12px; color: #6b7280; margin-top: 24px;\">This email was sent automatically. Please do not reply.</p>\n    </div>\n  ",
+          "subject": "Appointment Rescheduled: Haircut",
+          "to": "customer@example.invalid"
+        }
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Appointment Rescheduled: Haircut"
+      },
+      {
+        "kind": "write",
+        "path": "notification_logs/generated-3",
+        "data": {
+          "clientId": "tenant-control",
+          "channel": "email",
+          "recipient": "customer@example.invalid",
+          "subject": "Appointment Rescheduled: Haircut",
+          "type": "booking",
+          "status": "sent",
+          "providerMessageId": "simulated-email",
+          "createdAt": 0
+        }
+      }
+    ]
+  },
+  {
+    "name": "server-agent-false:rescheduled:agent-disabled",
+    "valid": true
+  },
+  {
+    "name": "server-agent-false:no-external",
+    "valid": true
+  },
+  {
+    "name": "api-agent-true:startup",
+    "valid": true
+  },
+  {
+    "name": "api-agent-true:consumer",
+    "valid": true
+  },
+  {
+    "name": "api-agent-true:booked:legitimate:status",
+    "valid": true,
+    "evidence": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "agentNotified": true
+      }
+    }
+  },
+  {
+    "name": "api-agent-true:booked:success",
+    "valid": true
+  },
+  {
+    "name": "api-agent-true:booked:observer",
+    "valid": true,
+    "evidence": [
+      {
+        "kind": "agent",
+        "path": "/notify",
+        "type": "appointment_booked",
+        "clientId": "tenant-control",
+        "payload": {
+          "clientId": "tenant-control",
+          "type": "appointment_booked",
+          "adminPhones": [
+            "+972500000000"
+          ],
+          "staffPhones": [],
+          "customerPhone": "+972500000001",
+          "message": "Nuevo turno: Control (+972500000001)\nHaircut el 2026-12-20 a las 12:00",
+          "staffMessage": "Turno asignado\nCliente: Control (+972500000001)\nServicio: Haircut\nCuando: 2026-12-20 12:00",
+          "customerMessage": "Turno confirmado: Haircut el 2026-12-20 a las 12:00.",
+          "appointment": {
+            "appointmentId": "appt-control",
+            "date": "2026-12-20",
+            "time": "12:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          },
+          "variables": {
+            "1": "Haircut",
+            "2": "2026-12-20",
+            "3": "12:00",
+            "4": ""
+          }
+        },
+        "authCorrect": true
+      }
+    ]
+  },
+  {
+    "name": "api-agent-true:cancelled:legitimate:status",
+    "valid": true,
+    "evidence": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "agentNotified": true
+      }
+    }
+  },
+  {
+    "name": "api-agent-true:cancelled:success",
+    "valid": true
+  },
+  {
+    "name": "api-agent-true:cancelled:observer",
+    "valid": true,
+    "evidence": [
+      {
+        "kind": "agent",
+        "path": "/notify",
+        "type": "appointment_cancelled",
+        "clientId": "tenant-control",
+        "payload": {
+          "clientId": "tenant-control",
+          "type": "appointment_cancelled",
+          "adminPhones": [
+            "+972500000000"
+          ],
+          "staffPhones": [],
+          "customerPhone": "+972500000001",
+          "message": "Turno cancelado: Control - Haircut el 2026-12-20 12:00 (Control)",
+          "staffMessage": "Turno cancelado: Control el 2026-12-20 12:00",
+          "customerMessage": "Tu turno de Haircut del 2026-12-20 a las 12:00 fue cancelado (Control).",
+          "appointment": {
+            "appointmentId": "appt-control",
+            "date": "2026-12-20",
+            "time": "12:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          }
+        },
+        "authCorrect": true
+      }
+    ]
+  },
+  {
+    "name": "api-agent-true:rescheduled:legitimate:status",
+    "valid": true,
+    "evidence": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "agentNotified": true
+      }
+    }
+  },
+  {
+    "name": "api-agent-true:rescheduled:success",
+    "valid": true
+  },
+  {
+    "name": "api-agent-true:rescheduled:observer",
+    "valid": true,
+    "evidence": [
+      {
+        "kind": "agent",
+        "path": "/notify",
+        "type": "appointment_rescheduled",
+        "clientId": "tenant-control",
+        "payload": {
+          "clientId": "tenant-control",
+          "type": "appointment_rescheduled",
+          "adminPhones": [
+            "+972500000000"
+          ],
+          "staffPhones": [],
+          "customerPhone": "+972500000001",
+          "message": "Turno reprogramado: Control - Haircut ahora el 2026-12-20 12:00",
+          "staffMessage": "Turno reprogramado: Control 2026-12-20 12:00 (antes 2026-12-20 11:00)",
+          "customerMessage": "Tu turno fue reprogramado: Haircut ahora el 2026-12-20 a las 12:00.",
+          "oldAppointment": {
+            "appointmentId": "appt-control",
+            "date": "2026-12-20",
+            "time": "11:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          },
+          "appointment": {
+            "appointmentId": "appt-control",
+            "date": "2026-12-20",
+            "time": "12:00",
+            "serviceName": "Haircut",
+            "customerName": "Control",
+            "customerPhone": "+972500000001"
+          },
+          "variables": {
+            "1": "Haircut",
+            "2": "2026-12-20",
+            "3": "12:00",
+            "4": ""
+          }
+        },
+        "authCorrect": true
+      }
+    ]
+  },
+  {
+    "name": "api-agent-true:no-external",
+    "valid": true
+  },
+  {
+    "name": "api-agent-false:startup",
+    "valid": true
+  },
+  {
+    "name": "api-agent-false:consumer",
+    "valid": true
+  },
+  {
+    "name": "api-agent-false:booked:legitimate:status",
+    "valid": true,
+    "evidence": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "agentNotified": false
+      }
+    }
+  },
+  {
+    "name": "api-agent-false:booked:success",
+    "valid": true
+  },
+  {
+    "name": "api-agent-false:booked:observer",
+    "valid": true,
+    "evidence": [
+      {
+        "kind": "email-payload",
+        "path": "/emails",
+        "method": "POST",
+        "payload": {
+          "from": "onboarding@resend.dev",
+          "html": "<div style=\"font-family:sans-serif;max-width:600px;margin:0 auto;padding:20px;border:1px solid #e5e7eb;border-radius:12px\"><h2 style=\"color:#10b981;margin-bottom:24px\">Booking Confirmed</h2><div style=\"background:#f9fafb;padding:16px;border-radius:8px;margin-bottom:20px\"><p><strong>Service:</strong> Haircut</p><p><strong>Date:</strong> 2026-12-20</p><p><strong>Time:</strong> 12:00</p></div><p style=\"color:#374151\">We look forward to seeing you at our studio.</p><p style=\"font-size:12px;color:#6b7280;margin-top:24px\">This email was sent automatically. Please do not reply.</p></div>",
+          "subject": "Booking Confirmed: Haircut on 2026-12-20",
+          "to": "customer@example.invalid"
+        }
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Booking Confirmed: Haircut on 2026-12-20"
+      },
+      {
+        "kind": "rest-write",
+        "path": "notification_logs"
+      }
+    ]
+  },
+  {
+    "name": "api-agent-false:booked:agent-disabled",
+    "valid": true
+  },
+  {
+    "name": "api-agent-false:cancelled:legitimate:status",
+    "valid": true,
+    "evidence": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "agentNotified": false
+      }
+    }
+  },
+  {
+    "name": "api-agent-false:cancelled:success",
+    "valid": true
+  },
+  {
+    "name": "api-agent-false:cancelled:observer",
+    "valid": true,
+    "evidence": [
+      {
+        "kind": "email-payload",
+        "path": "/emails",
+        "method": "POST",
+        "payload": {
+          "from": "onboarding@resend.dev",
+          "html": "<div style=\"font-family:sans-serif;max-width:600px;margin:0 auto;padding:20px;border:1px solid #e5e7eb;border-radius:12px\"><h2 style=\"color:#ef4444;margin-bottom:24px\">Appointment Cancelled</h2><p style=\"color:#374151\">Your Haircut appointment on 2026-12-20 at 12:00 at our studio has been cancelled.</p><p style=\"color:#6b7280\">Reason: Control</p><p style=\"color:#374151;margin-top:16px\">If you'd like to rebook, please visit our website.</p><p style=\"font-size:12px;color:#6b7280;margin-top:24px\">This email was sent automatically. Please do not reply.</p></div>",
+          "subject": "Appointment Cancelled: Haircut on 2026-12-20",
+          "to": "customer@example.invalid"
+        }
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Appointment Cancelled: Haircut on 2026-12-20"
+      },
+      {
+        "kind": "rest-write",
+        "path": "notification_logs"
+      }
+    ]
+  },
+  {
+    "name": "api-agent-false:cancelled:agent-disabled",
+    "valid": true
+  },
+  {
+    "name": "api-agent-false:rescheduled:legitimate:status",
+    "valid": true,
+    "evidence": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "agentNotified": false
+      }
+    }
+  },
+  {
+    "name": "api-agent-false:rescheduled:success",
+    "valid": true
+  },
+  {
+    "name": "api-agent-false:rescheduled:observer",
+    "valid": true,
+    "evidence": [
+      {
+        "kind": "email-payload",
+        "path": "/emails",
+        "method": "POST",
+        "payload": {
+          "from": "onboarding@resend.dev",
+          "html": "<div style=\"font-family:sans-serif;max-width:600px;margin:0 auto;padding:20px;border:1px solid #e5e7eb;border-radius:12px\"><h2 style=\"color:#f59e0b;margin-bottom:24px\">Appointment Rescheduled</h2><p style=\"color:#374151\">Your appointment has been rescheduled to a new date and time:</p><div style=\"background:#f9fafb;padding:16px;border-radius:8px;margin:20px 0\"><p><strong>Service:</strong> Haircut</p><p><strong>New Date:</strong> 2026-12-20</p><p><strong>New Time:</strong> 12:00</p></div><p style=\"color:#374151\">We look forward to seeing you at our studio.</p><p style=\"font-size:12px;color:#6b7280;margin-top:24px\">This email was sent automatically. Please do not reply.</p></div>",
+          "subject": "Appointment Rescheduled: Haircut",
+          "to": "customer@example.invalid"
+        }
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Appointment Rescheduled: Haircut"
+      },
+      {
+        "kind": "rest-write",
+        "path": "notification_logs"
+      }
+    ]
+  },
+  {
+    "name": "api-agent-false:rescheduled:agent-disabled",
+    "valid": true
+  },
+  {
+    "name": "api-agent-false:no-external",
+    "valid": true
+  }
+]

@@ -1,0 +1,86 @@
+[
+  {
+    "runtime": "server",
+    "agent": "true",
+    "action": "booked",
+    "previousReferencePreserved": true,
+    "emailPayloadCaptured": true
+  },
+  {
+    "runtime": "server",
+    "agent": "true",
+    "action": "cancelled",
+    "previousReferencePreserved": true,
+    "emailPayloadCaptured": true
+  },
+  {
+    "runtime": "server",
+    "agent": "true",
+    "action": "rescheduled",
+    "previousReferencePreserved": true,
+    "emailPayloadCaptured": true
+  },
+  {
+    "runtime": "server",
+    "agent": "false",
+    "action": "booked",
+    "previousReferencePreserved": true,
+    "emailPayloadCaptured": true
+  },
+  {
+    "runtime": "server",
+    "agent": "false",
+    "action": "cancelled",
+    "previousReferencePreserved": true,
+    "emailPayloadCaptured": true
+  },
+  {
+    "runtime": "server",
+    "agent": "false",
+    "action": "rescheduled",
+    "previousReferencePreserved": true,
+    "emailPayloadCaptured": true
+  },
+  {
+    "runtime": "api",
+    "agent": "true",
+    "action": "booked",
+    "previousReferencePreserved": true,
+    "emailPayloadCaptured": true
+  },
+  {
+    "runtime": "api",
+    "agent": "true",
+    "action": "cancelled",
+    "previousReferencePreserved": true,
+    "emailPayloadCaptured": true
+  },
+  {
+    "runtime": "api",
+    "agent": "true",
+    "action": "rescheduled",
+    "previousReferencePreserved": true,
+    "emailPayloadCaptured": true
+  },
+  {
+    "runtime": "api",
+    "agent": "false",
+    "action": "booked",
+    "previousReferencePreserved": true,
+    "emailPayloadCaptured": true
+  },
+  {
+    "runtime": "api",
+    "agent": "false",
+    "action": "cancelled",
+    "previousReferencePreserved": true,
+    "emailPayloadCaptured": true
+  },
+  {
+    "runtime": "api",
+    "agent": "false",
+    "action": "rescheduled",
+    "previousReferencePreserved": true,
+    "emailPayloadCaptured": true
+  }
+]

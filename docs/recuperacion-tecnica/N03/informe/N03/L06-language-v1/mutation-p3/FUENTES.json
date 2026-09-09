@@ -1,0 +1,22 @@
+[
+  {
+    "path": "src/app/api/onboarding/route.ts",
+    "sha256": "cf8a3170535b7ec0296fc5fc3218c466825acd8641cdf003a9412ee900e127e8"
+  },
+  {
+    "path": "src/lib/deploy.ts",
+    "sha256": "2c3dbd8d10a2e7f7827cadc8aff5c5c4edb19627a4c7a322adb1f5a9efaa3543"
+  },
+  {
+    "path": "src/app/onboarding/preview/page.tsx",
+    "sha256": "9d6a2b72bc68fd5b749504144dea425cfa0986572a2e3dd3ad21224482208d6e"
+  },
+  {
+    "path": "src/app/api/deploy/route.ts",
+    "sha256": "855896515ddf5ab92de355261826eb8516586f6bec5a9df244858558bf203698"
+  },
+  {
+    "path": "src/app/api/clients/provision/route.ts",
+    "sha256": "735f14b3a55b276a370d49c699ec07af4f3caf0c034fa6367592b186cbcfc732"
+  }
+]

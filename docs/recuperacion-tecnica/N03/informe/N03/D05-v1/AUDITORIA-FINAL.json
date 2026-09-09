@@ -1,0 +1,95 @@
+{
+  "valid": false,
+  "checks": [
+    {
+      "name": "copia ejecutada igual a producto completo saneado",
+      "valid": true,
+      "evidence": {
+        "count": 332,
+        "drift": []
+      }
+    },
+    {
+      "name": "server: contacto alcanza persistencia controlada",
+      "valid": true,
+      "evidence": {}
+    },
+    {
+      "name": "server: base no carga preferencias agente",
+      "valid": false,
+      "evidence": {}
+    },
+    {
+      "name": "api: contacto alcanza persistencia controlada",
+      "valid": true,
+      "evidence": {}
+    },
+    {
+      "name": "api: base no carga preferencias agente",
+      "valid": true,
+      "evidence": {}
+    },
+    {
+      "name": "helper sin usuario no emite solicitud",
+      "valid": true,
+      "evidence": {
+        "attempts": 0
+      }
+    },
+    {
+      "name": "helper token fallido no emite solicitud",
+      "valid": true,
+      "evidence": {
+        "attempts": 0
+      }
+    },
+    {
+      "name": "green-server-r1 contrato completo",
+      "valid": true,
+      "evidence": {
+        "passed": 94,
+        "failed": 0,
+        "exit": 0
+      }
+    },
+    {
+      "name": "green-api-r1 contrato completo",
+      "valid": true,
+      "evidence": {
+        "passed": 94,
+        "failed": 0,
+        "exit": 0
+      }
+    },
+    {
+      "name": "green-base-r1 contrato completo",
+      "valid": true,
+      "evidence": {
+        "passed": 34,
+        "failed": 0,
+        "exit": 0
+      }
+    },
+    {
+      "name": "health-protecciones contrato completo",
+      "valid": true,
+      "evidence": {
+        "passed": 21,
+        "failed": 0,
+        "exit": 0
+      }
+    },
+    {
+      "name": "mutación detecta ambos servicios en ambos runtimes",
+      "valid": true,
+      "evidence": {
+        "failed": 18
+      }
+    },
+    {
+      "name": "mutación conserva controles independientes",
+      "valid": true,
+      "evidence": {}
+    }
+  ]
+}

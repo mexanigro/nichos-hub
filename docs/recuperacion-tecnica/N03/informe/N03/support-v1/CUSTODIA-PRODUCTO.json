@@ -1,0 +1,22 @@
+[
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\Barber-shop-template-main\\server.ts",
+    "preimage": "preimagenes/producto__server.ts",
+    "sha256": "9A9AFF88177A7493B729C6A504E66D0A2AF6B18B1F987B3C6FFE254028241221"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\Barber-shop-template-main\\api\\index.ts",
+    "preimage": "preimagenes/producto__api__index.ts",
+    "sha256": "1E720F5A9CC62781F1B2CDA7769D3E7A36BE78C243388DAF2D9288949CE37C7E"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\Barber-shop-template-main\\src\\services\\support.ts",
+    "preimage": "preimagenes/producto__src__services__support.ts",
+    "sha256": "6BE65D71A870E7681DBECE49360498CAA2EFD009208857927340285D389C680D"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\Barber-shop-template-main\\tests\\api-parity.test.ts",
+    "preimage": "preimagenes/producto__tests__api-parity.test.ts",
+    "sha256": "22F3339F05B0FD691E2EC8BA321CFA95FD5E22BDB703477903CADCB6F9988370"
+  }
+]

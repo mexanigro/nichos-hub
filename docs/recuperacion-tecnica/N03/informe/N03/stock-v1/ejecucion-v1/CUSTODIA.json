@@ -1,0 +1,52 @@
+[
+  {
+    "path": "server.ts",
+    "preimage": "preimagenes/server.ts",
+    "sha256": "EC7759885150C3A89F7A8A4907517E4BC591C7999E74C89EFD63DEA0C5BD7E52"
+  },
+  {
+    "path": "api/index.ts",
+    "preimage": "preimagenes/api__index.ts",
+    "sha256": "9A4439676288E6A970D89FB820E9D6A5485676F47AA55C76411B997C09E9E585"
+  },
+  {
+    "path": "tests/api-parity.test.ts",
+    "preimage": "preimagenes/tests__api-parity.test.ts",
+    "sha256": "30CFD35313887975865DA532C8B79BE574B0BE71FB7964F2E718FAB4B01D9520"
+  },
+  {
+    "path": "src/components/admin/StockTab.tsx",
+    "preimage": "preimagenes/src__components__admin__StockTab.tsx",
+    "sha256": "4D35BA8B59444381DA1A9AF3888AF3FBD6E21E2113FB313686A9534EF4E6B55C"
+  },
+  {
+    "path": "src/services/stock.ts",
+    "preimage": "preimagenes/src__services__stock.ts",
+    "sha256": "598F24B65868E6C825CED60138AE80BF0395E82FEBA932CAEF6E4EF511881A7E"
+  },
+  {
+    "path": "src/lib/ai/stock-tools.ts",
+    "preimage": "preimagenes/src__lib__ai__stock-tools.ts",
+    "sha256": "A9718EA17E8CC74A71968E373DD8CCD02552539EE87C96007B5D7DA6B8BC77C9"
+  },
+  {
+    "path": "src/lib/api/booking-handler.ts",
+    "preimage": "preimagenes/src__lib__api__booking-handler.ts",
+    "sha256": "D7BFF4865597D29A48CF765C464D579FAF38ED24B9F09405415C24EC9BF2DD33"
+  },
+  {
+    "path": "tests/booking-handler.test.ts",
+    "preimage": "preimagenes/tests__booking-handler.test.ts",
+    "sha256": "6D7F6E4409486D1436E61055E515306149998CFF638AC936DE2977110199876A"
+  },
+  {
+    "path": "src/lib/api/support-handler.ts",
+    "preimage": "preimagenes/src__lib__api__support-handler.ts",
+    "sha256": "247B2B1C84548124972D6B0C19407C54771A94006ECF5F11CB7EF196E27C8B86"
+  },
+  {
+    "path": "src/services/support.ts",
+    "preimage": "preimagenes/src__services__support.ts",
+    "sha256": "994F9C859F652A44F767C9410A9BAECA78D47879B93EE98504BC12CF2205E1F9"
+  }
+]

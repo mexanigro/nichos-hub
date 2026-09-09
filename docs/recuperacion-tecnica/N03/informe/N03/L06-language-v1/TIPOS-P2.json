@@ -1,0 +1,4 @@
+{
+  "exit": 0,
+  "command": "tsc --project L06-language-v1/tsconfig.json --pretty false"
+}

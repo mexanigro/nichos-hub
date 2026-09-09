@@ -1,0 +1,39 @@
+{
+  "sourcesUnchanged": true,
+  "newProductFileAbsent": true,
+  "records": [
+    {
+      "path": "informe/N03/L05-v1/INFORME.md",
+      "preimage": "informe\\N03\\L05-v1\\preimagenes-stop-p0\\informe\\N03\\L05-v1\\INFORME.md",
+      "sha256Before": "0d581149970edad33435b543d201feee55c06ccbe52d7d888a6bfe80f274e31c",
+      "sha256After": "132479908b24627b9215437b16a721c86a1ae8091dc2f2df94dfe06b367beabb"
+    },
+    {
+      "path": "indice/tareas/N03.md",
+      "preimage": "informe\\N03\\L05-v1\\preimagenes-stop-p0\\indice\\tareas\\N03.md",
+      "sha256Before": "c4ae32eb3de8a6aedc80581b3fdabe9cdca1238dbc4d7881841f3aaa8c8585ae",
+      "sha256After": "7bc42fdf517e250bc7b8cec01c73d29a53bd6099d33663cef94d460a202a8b20"
+    },
+    {
+      "path": "indice/README.md",
+      "preimage": "informe\\N03\\L05-v1\\preimagenes-stop-p0\\indice\\README.md",
+      "sha256Before": "5883f254f8ae5ecd672f90c219a7b21f3b9ae57e89ed88bcfdbd76ebb4bbb653",
+      "sha256After": "ed6a8a56ec94115e4d67dcdfee3f966417566257980ee706a7099be50a593dd2"
+    },
+    {
+      "path": "indice/PENDIENTES.md",
+      "preimage": "informe\\N03\\L05-v1\\preimagenes-stop-p0\\indice\\PENDIENTES.md",
+      "sha256Before": "3c204968690e75db66fb59490eacbd97341ff2318b49fbf8e59083980be3fc76",
+      "sha256After": "d2a8a0a817f40691812c909bde53a5099dd95ae6e8beec21813f5e8b1c4a38b3"
+    },
+    {
+      "path": "indice/CALENDARIO.md",
+      "preimage": "informe\\N03\\L05-v1\\preimagenes-stop-p0\\indice\\CALENDARIO.md",
+      "sha256Before": "389a839f5526143cacf039df9096936068851969d970b9c38ceecac4f671207b",
+      "sha256After": "ce80f901f8daadd824e8561ade5cdcdc79b1330a580e9a057c6821b09195d4de"
+    }
+  ],
+  "usedPercent": 74,
+  "ceilingPercent": 80,
+  "resetsUsed": 0
+}

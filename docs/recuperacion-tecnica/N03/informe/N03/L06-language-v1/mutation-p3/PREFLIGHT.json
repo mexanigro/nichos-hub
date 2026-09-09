@@ -1,0 +1,1 @@
+{"typescript":"6.0.3","syntaxAndTranspile":["src/app/api/onboarding/route.ts","src/lib/deploy.ts","src/app/onboarding/preview/page.tsx","src/app/api/deploy/route.ts","src/app/api/clients/provision/route.ts"],"dependencies":"node:vm + TypeScript instalado del hub","externalImports":"whitelist, desconocido aborta","realFetchAvailable":false}

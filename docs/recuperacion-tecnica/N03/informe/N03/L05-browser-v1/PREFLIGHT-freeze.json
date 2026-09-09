@@ -1,0 +1,225 @@
+{
+  "syntax": [
+    {
+      "file": "browser-contract.cjs",
+      "exit": 0,
+      "stderr": ""
+    },
+    {
+      "file": "fixture.cjs",
+      "exit": 0,
+      "stderr": ""
+    },
+    {
+      "file": "registrar.cjs",
+      "exit": 0,
+      "stderr": ""
+    },
+    {
+      "file": "sondeo.cjs",
+      "exit": 0,
+      "stderr": ""
+    }
+  ],
+  "fixture": {
+    "active": true,
+    "absent": true,
+    "permission": true,
+    "pendingRelease": true,
+    "foreignSelector": true
+  },
+  "importsResolved": true,
+  "browser": "148.0.7778.96",
+  "executable": "C:\\Users\\liama\\AppData\\Local\\ms-playwright\\chromium-1223\\chrome-win64\\chrome.exe",
+  "rendererControl": true,
+  "loaded": [
+    {
+      "path": "src\\main.tsx",
+      "sha256": "4883b83ea30830dc5e0f6961d711e6f84fb6cacdbbaa52c6a25790801dee8ec3"
+    },
+    {
+      "path": "node_modules\\react\\index.js",
+      "sha256": "60caffdecbdc5db3bc4ec4e83df9488345ccb271d07533b9210bf5750918d97e"
+    },
+    {
+      "path": "src\\config\\site.ts",
+      "sha256": "9dd148a16bc22b704d8e35daf349f574654f9901152a1cc4676d69443af4b084"
+    },
+    {
+      "path": "node_modules\\react\\jsx-runtime.js",
+      "sha256": "b392951a77d0a2e6a6bd017e49d768481ae5b63c4109c6c31f622cf7b2433edc"
+    },
+    {
+      "path": "node_modules\\react-dom\\client.js",
+      "sha256": "00e348ab3d6bc2eef908345d0bc4e008c95bcfecec060dfda5c4967953761396"
+    },
+    {
+      "path": "src\\services\\tenant.ts",
+      "sha256": "04d6d1158429dae659058c83ac6f3faf6f3cdece0308a5c4a7d28b858234f2cc"
+    },
+    {
+      "path": "src\\config\\locale.ts",
+      "sha256": "b9540d7730b3aa7b8d596d38c23737d627001066cfcc53596326e56730e324c7"
+    },
+    {
+      "path": "node_modules\\react\\cjs\\react.development.js",
+      "sha256": "4325e6263375459503858c0982d50bbc25bc33e66676954698c67221d2ee8b72"
+    },
+    {
+      "path": "node_modules\\react\\cjs\\react-jsx-runtime.development.js",
+      "sha256": "dd50fd0db2fba44e0eee66243a45c81cfa3774cf41e4e6c0c080a601815c694d"
+    },
+    {
+      "path": "node_modules\\react-dom\\cjs\\react-dom-client.development.js",
+      "sha256": "806b25cf84808a5ae0104e81633caabb1aa11fce71e72ef7afe4c1f8d2ebec08"
+    },
+    {
+      "path": "src\\config\\locales\\he.ts",
+      "sha256": "510063436001c1aec2ec362cd52cc493f1b0effc5e5e0e5b4cdadb468560e40b"
+    },
+    {
+      "path": "src\\config\\locales\\en.ts",
+      "sha256": "ff2371c64a6bdc87bfed2f9c43943f81155edec9a3a735a82126252cff614925"
+    },
+    {
+      "path": "src\\config\\locales\\ar.ts",
+      "sha256": "823925df03c3276feb11fd48cc620a36779488a5514131f443854c9011d72e54"
+    },
+    {
+      "path": "src\\config\\locales\\ru.ts",
+      "sha256": "a7453913aa7df76b75683dc07e542035641d1e122dcef4c2db5c58b72c08ab8b"
+    },
+    {
+      "path": "src\\config\\presets\\barberia.en.ts",
+      "sha256": "ebbf8743abbfe208f1f1262a57362177ccd90822d24253a43fde149b8dc4caed"
+    },
+    {
+      "path": "src\\config\\presets\\barberia.he.ts",
+      "sha256": "a865ce45cf1e5c550c4823e4f526fa746812c014e9db2cec6cc2e28af327a527"
+    },
+    {
+      "path": "src\\config\\presets\\estetica.he.ts",
+      "sha256": "d14205a97d4c3693ab3816b4747aea16c2cdf1468c0716c584ae75431de594a8"
+    },
+    {
+      "path": "src\\config\\presets\\estetica.en.ts",
+      "sha256": "ec93d0b129c768d5346d1115fe5f4b1fc089a6b129cb66239411757fa34687ba"
+    },
+    {
+      "path": "src\\config\\presets\\estetica.ru.ts",
+      "sha256": "b8127cda853ae6d21c1362600b8957a9121adfeab8317cff505cd88d5ac1827a"
+    },
+    {
+      "path": "src\\config\\presets\\nails.ar.ts",
+      "sha256": "9d5b29fecd4aefac83354f102eb762724212c327ceba482f0a64360d70531807"
+    },
+    {
+      "path": "src\\config\\presets\\barberia.ru.ts",
+      "sha256": "6757c26849cfed30427ba7adf60881de63a53678a6590d033be3c3a1ddc0c1c4"
+    },
+    {
+      "path": "src\\config\\presets\\barberia.ar.ts",
+      "sha256": "dcd3693de1116f442c8fa8ee5c451b2c5743ef6b1e7ca05665ba3b6d3539ff44"
+    },
+    {
+      "path": "src\\config\\presets\\tattoo.en.ts",
+      "sha256": "c41ea4d7031616b70a247507827e73655554a8e52fb0f49b1962220b87a9fb7c"
+    },
+    {
+      "path": "src\\config\\presets\\nails.ru.ts",
+      "sha256": "c4baf269b827664c3270a247a3f14a014d8b3ace74fda6df53726ade03678611"
+    },
+    {
+      "path": "src\\config\\presets\\tattoo.ar.ts",
+      "sha256": "ea6777305288fa765e76693ef91df3c39506b16131df42af3c30e8aa81528040"
+    },
+    {
+      "path": "src\\config\\presets\\cafeteria.en.ts",
+      "sha256": "3fec28b8049e30ac526f13de8c07756ac25f995ca9a26be3dc3a1f07a4690e25"
+    },
+    {
+      "path": "src\\config\\presets\\cafeteria.ru.ts",
+      "sha256": "d15299144c37d040fb7d10336174b0fad05d04076ff6bca123dcc5916eef2075"
+    },
+    {
+      "path": "src\\config\\presets\\cafeteria.he.ts",
+      "sha256": "ee58fb9fc56514ac674db310cecfb8cfac81202118125ee57d0eb323dc7e3ea1"
+    },
+    {
+      "path": "src\\config\\presets\\nails.he.ts",
+      "sha256": "670240e99a0006d6abaf8c01ad10f00cf0cdde0aed43e4f6762bde7e48be112b"
+    },
+    {
+      "path": "src\\config\\presets\\cafeteria.ar.ts",
+      "sha256": "411646dbd3cec844f91a736217c8dcf823c83ac90d30dba00446fdfc69835a2c"
+    },
+    {
+      "path": "src\\config\\presets\\remodelaciones.ar.ts",
+      "sha256": "586ba337af25b9f03ad9eecd21f5bf6cc2a4b3f68fbbf849920d88eb5fb98861"
+    },
+    {
+      "path": "src\\config\\presets\\employment.he.ts",
+      "sha256": "c1a0427091157f64ba563c31c414866a646fe0c797991372d42a81fea4e4f0b0"
+    },
+    {
+      "path": "src\\config\\presets\\estetica.ar.ts",
+      "sha256": "cdcdd37bd3203308bbe822cd4b05422c91b12314fdf9a9f8c1135e8fa099d06e"
+    },
+    {
+      "path": "src\\config\\presets\\remodelaciones.en.ts",
+      "sha256": "4529e9931580b1e9c7662348541a181d7d6bc76d43a923cba21c920e0ef1c22a"
+    },
+    {
+      "path": "src\\config\\presets\\nails.en.ts",
+      "sha256": "8d18633f2fdb88f7cce9c9624b1d96628cf5bae1458923bc506a109c11a6657c"
+    },
+    {
+      "path": "src\\config\\presets\\employment.en.ts",
+      "sha256": "5a218f91dc94ad4d6ffe9666554dc19b2a52dc81d8ee1f595d6b214febf6161e"
+    },
+    {
+      "path": "src\\config\\presets\\employment.ar.ts",
+      "sha256": "172d69948e807813ae49a28f1bd5e4d1197c5e82500bd5b4cdd67f60f8f755e0"
+    },
+    {
+      "path": "src\\config\\presets\\employment.ru.ts",
+      "sha256": "dc5669f450255d089919a5c593351962e8646ae496cc010abf663c0035a0c8d2"
+    },
+    {
+      "path": "src\\config\\presets\\tattoo.he.ts",
+      "sha256": "02472b48cf232dcdfce43c0dfdb6c17be1af709a0049d237d246cf0468128941"
+    },
+    {
+      "path": "src\\config\\presets\\tattoo.ru.ts",
+      "sha256": "ae3981ef334ac87b1f6ca20302f0991621aa7e9f1bd5382a0ffbdd7f1bf28b3f"
+    },
+    {
+      "path": "src\\config\\presets\\remodelaciones.he.ts",
+      "sha256": "8f2eb4fa567d3a1bb2f2633c7011b717510097b8ce06dbae33d4e26b2283eb3e"
+    },
+    {
+      "path": "src\\config\\presets\\remodelaciones.ru.ts",
+      "sha256": "cf5042c338299468ac099c4c7360e29bce5f074b559e7da1acb31832dd1703fa"
+    },
+    {
+      "path": "src\\config\\presets\\themes.ts",
+      "sha256": "2a0f280b1e892099a1f8d07c5d3a389f96b8d92e9c3c3cf8ddfc81a14fb427c5"
+    },
+    {
+      "path": "node_modules\\react-dom\\index.js",
+      "sha256": "ba1a3e33489f868371561777607e3ee5091df0f7ea3f1a10f789d6b86e4c1505"
+    },
+    {
+      "path": "node_modules\\scheduler\\index.js",
+      "sha256": "145965504d60007bc25486ab930b0367867dcd5d579ccd343c148d69349a7cfb"
+    },
+    {
+      "path": "node_modules\\scheduler\\cjs\\scheduler.development.js",
+      "sha256": "646eb671c8585382baff16daf92fe16a4cdd10dcf1a363c58b2ae1f6bf3a2b8d"
+    },
+    {
+      "path": "node_modules\\react-dom\\cjs\\react-dom.development.js",
+      "sha256": "6fd03ac5f1f081b08a3f8c3a469bd026b7773759a8ed46f07c03fde7080c122e"
+    }
+  ]
+}

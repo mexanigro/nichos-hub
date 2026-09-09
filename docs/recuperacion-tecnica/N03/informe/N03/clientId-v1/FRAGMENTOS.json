@@ -1,0 +1,7 @@
+{
+  "browser": "export function resolveClientId(): string {\n  const fromVite = (import.meta.env.VITE_CLIENT_ID as string | undefined)?.trim();\n  const fromNextPublic = (import.meta.env.NEXT_PUBLIC_CLIENT_ID as string | undefined)?.trim();\n  return fromVite || fromNextPublic || \"\";\n}",
+  "server": "const CLIENT_ID =\n  process.env.CLIENT_ID?.trim() ||\n  process.env.NEXT_PUBLIC_CLIENT_ID?.trim() ||\n  process.env.VITE_CLIENT_ID?.trim() ||\n  \"\";",
+  "api": "const CLIENT_ID =\n  process.env.CLIENT_ID?.trim() ||\n  process.env.NEXT_PUBLIC_CLIENT_ID?.trim() ||\n  process.env.VITE_CLIENT_ID?.trim() ||\n  \"\";",
+  "agentServer": "export function getAgentkitConfig(): AgentkitConfig | null {\r\n  if (!isOptionalServiceEnabled(\"agent\")) return null;\r\n  const url = (process.env.WHATSAPP_AGENT_URL || \"\").trim().replace(/\\/+$/, \"\");\r\n  const secret = (process.env.AGENT_API_SECRET || \"\").trim();\r\n  const clientId = (process.env.CLIENT_ID || process.env.VITE_CLIENT_ID || \"\").trim();\r\n  if (!url || !secret || !clientId) return null;\r\n  return { url, secret, clientId };\r\n}",
+  "agentApi": "function getAgentkitConfig(): AgentkitConfig | null {\r\n  if (!isOptionalServiceEnabled(\"agent\")) return null;\n  const url = (process.env.WHATSAPP_AGENT_URL || \"\").trim().replace(/\\/+$/, \"\");\n  const secret = (process.env.AGENT_API_SECRET || \"\").trim();\n  const clientId = (process.env.CLIENT_ID || process.env.VITE_CLIENT_ID || \"\").trim();\n  if (!url || !secret || !clientId) return null;\n  return { url, secret, clientId };\n}"
+}

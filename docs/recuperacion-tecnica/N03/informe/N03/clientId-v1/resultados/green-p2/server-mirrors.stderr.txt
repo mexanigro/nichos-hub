@@ -1,0 +1,9 @@
+  ✗  GEMINI_API_KEY                   → AI chat & style consultation (DISABLED — add key to .env)
+  ✗  STRIPE_SECRET_KEY                → Stripe payments (DISABLED — add key to .env)
+  ✗  STRIPE_WEBHOOK_SECRET            → Stripe webhook verification (DISABLED — add key to .env)
+  ✗  VITE_STRIPE_PUBLISHABLE_KEY      → Stripe frontend (DISABLED — add key to .env)
+  ✗  VITE_ADMIN_EMAIL                 → Admin panel access (DISABLED — add key to .env)
+  ✗  NICHOS_HUB_URL                   → Hub booking tier tracking (DISABLED — add key to .env)
+[Template Setup] Some features are disabled. See above for missing keys.
+
+[Security] Blocked request from untrusted origin: https://foreign.invalid

@@ -1,0 +1,14 @@
+param([string]$Repo='C:\Users\liama\Desktop\Nichos\Barber-shop-template-main')
+$ErrorActionPreference='Stop'
+$api=[IO.File]::ReadAllText((Join-Path $Repo 'api/index.ts'))
+$server=[IO.File]::ReadAllText((Join-Path $Repo 'server.ts'))
+$consumer=[IO.File]::ReadAllText((Join-Path $Repo 'src/services/support.ts'))
+$checks=@(
+ [pscustomobject]@{criterio='A1 registro API';ok=($api -match 'app\.post\("/api/support/message"')},
+ [pscustomobject]@{criterio='A1 registro server';ok=($server -match 'app\.post\("/api/support/message"')},
+ [pscustomobject]@{criterio='consumidor vigente';ok=($consumer -match 'fetch\("/api/support/message"')}
+)
+$checks | ConvertTo-Json
+# Sondeo estructural previo: no sustituye A2-A5 ni puede certificar el contrato completo.
+if (@($checks | Where-Object { -not $_.ok }).Count) { exit 1 }
+exit 0

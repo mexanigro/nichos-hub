@@ -1,0 +1,442 @@
+TAP version 13
+# Subtest: server.ts add denied: auth antes de DB
+ok 1 - server.ts add denied: auth antes de DB
+  ---
+  duration_ms: 194.5395
+  type: 'test'
+  ...
+# Subtest: server.ts add foreign-auth: auth antes de DB
+ok 2 - server.ts add foreign-auth: auth antes de DB
+  ---
+  duration_ms: 78.3796
+  type: 'test'
+  ...
+# Subtest: server.ts add tenant vacío
+ok 3 - server.ts add tenant vacío
+  ---
+  duration_ms: 65.2291
+  type: 'test'
+  ...
+# Subtest: server.ts add no-db
+ok 4 - server.ts add no-db
+  ---
+  duration_ms: 56.4676
+  type: 'test'
+  ...
+# Subtest: server.ts add load-error
+ok 5 - server.ts add load-error
+  ---
+  duration_ms: 46.2129
+  type: 'test'
+  ...
+# Subtest: server.ts items denied: auth antes de DB
+ok 6 - server.ts items denied: auth antes de DB
+  ---
+  duration_ms: 39.7522
+  type: 'test'
+  ...
+# Subtest: server.ts items foreign-auth: auth antes de DB
+ok 7 - server.ts items foreign-auth: auth antes de DB
+  ---
+  duration_ms: 37.2979
+  type: 'test'
+  ...
+# Subtest: server.ts items tenant vacío
+ok 8 - server.ts items tenant vacío
+  ---
+  duration_ms: 37.5066
+  type: 'test'
+  ...
+# Subtest: server.ts items no-db
+ok 9 - server.ts items no-db
+  ---
+  duration_ms: 42.0011
+  type: 'test'
+  ...
+# Subtest: server.ts items load-error
+ok 10 - server.ts items load-error
+  ---
+  duration_ms: 43.0841
+  type: 'test'
+  ...
+# Subtest: server.ts add flat válido: campos, coerción y auditoría
+ok 11 - server.ts add flat válido: campos, coerción y auditoría
+  ---
+  duration_ms: 42.5214
+  type: 'test'
+  ...
+# Subtest: server.ts add legacy válido
+ok 12 - server.ts add legacy válido
+  ---
+  duration_ms: 35.8452
+  type: 'test'
+  ...
+# Subtest: server.ts add flat ajeno no fallback ni writes
+ok 13 - server.ts add flat ajeno no fallback ni writes
+  ---
+  duration_ms: 35.3839
+  type: 'test'
+  ...
+# Subtest: server.ts add inválido ausente
+ok 14 - server.ts add inválido ausente
+  ---
+  duration_ms: 33.7763
+  type: 'test'
+  ...
+# Subtest: server.ts add inválido vacío
+ok 15 - server.ts add inválido vacío
+  ---
+  duration_ms: 34.9092
+  type: 'test'
+  ...
+# Subtest: server.ts add inválido no array
+ok 16 - server.ts add inválido no array
+  ---
+  duration_ms: 39.4718
+  type: 'test'
+  ...
+# Subtest: server.ts add inválido límite
+ok 17 - server.ts add inválido límite
+  ---
+  duration_ms: 34.2211
+  type: 'test'
+  ...
+# Subtest: server.ts add inválido id
+ok 18 - server.ts add inválido id
+  ---
+  duration_ms: 32.6935
+  type: 'test'
+  ...
+# Subtest: server.ts add inválido cero
+ok 19 - server.ts add inválido cero
+  ---
+  duration_ms: 35.7559
+  type: 'test'
+  ...
+# Subtest: server.ts add inválido negativo
+ok 20 - server.ts add inválido negativo
+  ---
+  duration_ms: 33.3083
+  type: 'test'
+  ...
+# Subtest: server.ts add inválido nan
+ok 21 - server.ts add inválido nan
+  ---
+  duration_ms: 36.5424
+  type: 'test'
+  ...
+# Subtest: server.ts add inválido infinito
+ok 22 - server.ts add inválido infinito
+  ---
+  duration_ms: 31.5117
+  type: 'test'
+  ...
+# Subtest: server.ts add read-error: una fila fallida sin éxito
+ok 23 - server.ts add read-error: una fila fallida sin éxito
+  ---
+  duration_ms: 32.7961
+  type: 'test'
+  ...
+# Subtest: server.ts add commit-error: una fila fallida sin éxito
+ok 24 - server.ts add commit-error: una fila fallida sin éxito
+  ---
+  duration_ms: 32.5111
+  type: 'test'
+  ...
+# Subtest: server.ts add retry: último intento y una fila
+ok 25 - server.ts add retry: último intento y una fila
+  ---
+  duration_ms: 33.9957
+  type: 'test'
+  ...
+# Subtest: server.ts add mixto conserva orden207
+ok 26 - server.ts add mixto conserva orden207
+  ---
+  duration_ms: 32.4611
+  type: 'test'
+  ...
+# Subtest: server.ts items sin búsqueda/string: tenant y cap
+ok 27 - server.ts items sin búsqueda/string: tenant y cap
+  ---
+  duration_ms: 70.0219
+  type: 'test'
+  ...
+# Subtest: server.ts items sin búsqueda/string: tenant y cap
+ok 28 - server.ts items sin búsqueda/string: tenant y cap
+  ---
+  duration_ms: 38.952
+  type: 'test'
+  ...
+# Subtest: server.ts items sin búsqueda/string: tenant y cap
+ok 29 - server.ts items sin búsqueda/string: tenant y cap
+  ---
+  duration_ms: 41.3851
+  type: 'test'
+  ...
+# Subtest: server.ts items fuzzy  CAFE UNICO 
+ok 30 - server.ts items fuzzy  CAFE UNICO 
+  ---
+  duration_ms: 38.6676
+  type: 'test'
+  ...
+# Subtest: server.ts items fuzzy ausente
+ok 31 - server.ts items fuzzy ausente
+  ---
+  duration_ms: 33.6089
+  type: 'test'
+  ...
+# Subtest: server.ts items fuzzy crema
+ok 32 - server.ts items fuzzy crema
+  ---
+  duration_ms: 32.5434
+  type: 'test'
+  ...
+# Subtest: server.ts items fuzzy corporal crema
+ok 33 - server.ts items fuzzy corporal crema
+  ---
+  duration_ms: 32.4103
+  type: 'test'
+  ...
+# Subtest: server.ts items lectura falla500
+ok 34 - server.ts items lectura falla500
+  ---
+  duration_ms: 31.7848
+  type: 'test'
+  ...
+# Subtest: server.ts registra factories importadas
+ok 35 - server.ts registra factories importadas
+  ---
+  duration_ms: 1.5933
+  type: 'test'
+  ...
+# Subtest: server.ts parser HTTP real: válido, JSON roto y más16kb
+ok 36 - server.ts parser HTTP real: válido, JSON roto y más16kb
+  ---
+  duration_ms: 119.5591
+  type: 'test'
+  ...
+# Subtest: api/index.ts add denied: auth antes de DB
+ok 37 - api/index.ts add denied: auth antes de DB
+  ---
+  duration_ms: 62.9521
+  type: 'test'
+  ...
+# Subtest: api/index.ts add foreign-auth: auth antes de DB
+ok 38 - api/index.ts add foreign-auth: auth antes de DB
+  ---
+  duration_ms: 41.9529
+  type: 'test'
+  ...
+# Subtest: api/index.ts add tenant vacío
+ok 39 - api/index.ts add tenant vacío
+  ---
+  duration_ms: 45.1133
+  type: 'test'
+  ...
+# Subtest: api/index.ts add no-db
+ok 40 - api/index.ts add no-db
+  ---
+  duration_ms: 41.3349
+  type: 'test'
+  ...
+# Subtest: api/index.ts add load-error
+ok 41 - api/index.ts add load-error
+  ---
+  duration_ms: 45.1603
+  type: 'test'
+  ...
+# Subtest: api/index.ts items denied: auth antes de DB
+ok 42 - api/index.ts items denied: auth antes de DB
+  ---
+  duration_ms: 45.8246
+  type: 'test'
+  ...
+# Subtest: api/index.ts items foreign-auth: auth antes de DB
+ok 43 - api/index.ts items foreign-auth: auth antes de DB
+  ---
+  duration_ms: 40.7196
+  type: 'test'
+  ...
+# Subtest: api/index.ts items tenant vacío
+ok 44 - api/index.ts items tenant vacío
+  ---
+  duration_ms: 46.7404
+  type: 'test'
+  ...
+# Subtest: api/index.ts items no-db
+ok 45 - api/index.ts items no-db
+  ---
+  duration_ms: 40.7077
+  type: 'test'
+  ...
+# Subtest: api/index.ts items load-error
+ok 46 - api/index.ts items load-error
+  ---
+  duration_ms: 42.6291
+  type: 'test'
+  ...
+# Subtest: api/index.ts add flat válido: campos, coerción y auditoría
+ok 47 - api/index.ts add flat válido: campos, coerción y auditoría
+  ---
+  duration_ms: 41.0528
+  type: 'test'
+  ...
+# Subtest: api/index.ts add legacy válido
+ok 48 - api/index.ts add legacy válido
+  ---
+  duration_ms: 42.9066
+  type: 'test'
+  ...
+# Subtest: api/index.ts add flat ajeno no fallback ni writes
+ok 49 - api/index.ts add flat ajeno no fallback ni writes
+  ---
+  duration_ms: 44.1195
+  type: 'test'
+  ...
+# Subtest: api/index.ts add inválido ausente
+ok 50 - api/index.ts add inválido ausente
+  ---
+  duration_ms: 38.1981
+  type: 'test'
+  ...
+# Subtest: api/index.ts add inválido vacío
+ok 51 - api/index.ts add inválido vacío
+  ---
+  duration_ms: 43.7388
+  type: 'test'
+  ...
+# Subtest: api/index.ts add inválido no array
+ok 52 - api/index.ts add inválido no array
+  ---
+  duration_ms: 48.1224
+  type: 'test'
+  ...
+# Subtest: api/index.ts add inválido límite
+ok 53 - api/index.ts add inválido límite
+  ---
+  duration_ms: 47.1424
+  type: 'test'
+  ...
+# Subtest: api/index.ts add inválido id
+ok 54 - api/index.ts add inválido id
+  ---
+  duration_ms: 41.7119
+  type: 'test'
+  ...
+# Subtest: api/index.ts add inválido cero
+ok 55 - api/index.ts add inválido cero
+  ---
+  duration_ms: 41.6475
+  type: 'test'
+  ...
+# Subtest: api/index.ts add inválido negativo
+ok 56 - api/index.ts add inválido negativo
+  ---
+  duration_ms: 43.4267
+  type: 'test'
+  ...
+# Subtest: api/index.ts add inválido nan
+ok 57 - api/index.ts add inválido nan
+  ---
+  duration_ms: 38.7116
+  type: 'test'
+  ...
+# Subtest: api/index.ts add inválido infinito
+ok 58 - api/index.ts add inválido infinito
+  ---
+  duration_ms: 42.8566
+  type: 'test'
+  ...
+# Subtest: api/index.ts add read-error: una fila fallida sin éxito
+ok 59 - api/index.ts add read-error: una fila fallida sin éxito
+  ---
+  duration_ms: 38.1222
+  type: 'test'
+  ...
+# Subtest: api/index.ts add commit-error: una fila fallida sin éxito
+ok 60 - api/index.ts add commit-error: una fila fallida sin éxito
+  ---
+  duration_ms: 42.9592
+  type: 'test'
+  ...
+# Subtest: api/index.ts add retry: último intento y una fila
+ok 61 - api/index.ts add retry: último intento y una fila
+  ---
+  duration_ms: 41.1498
+  type: 'test'
+  ...
+# Subtest: api/index.ts add mixto conserva orden207
+ok 62 - api/index.ts add mixto conserva orden207
+  ---
+  duration_ms: 38.9084
+  type: 'test'
+  ...
+# Subtest: api/index.ts items sin búsqueda/string: tenant y cap
+ok 63 - api/index.ts items sin búsqueda/string: tenant y cap
+  ---
+  duration_ms: 42.3177
+  type: 'test'
+  ...
+# Subtest: api/index.ts items sin búsqueda/string: tenant y cap
+ok 64 - api/index.ts items sin búsqueda/string: tenant y cap
+  ---
+  duration_ms: 42.4927
+  type: 'test'
+  ...
+# Subtest: api/index.ts items sin búsqueda/string: tenant y cap
+ok 65 - api/index.ts items sin búsqueda/string: tenant y cap
+  ---
+  duration_ms: 77.4445
+  type: 'test'
+  ...
+# Subtest: api/index.ts items fuzzy  CAFE UNICO 
+ok 66 - api/index.ts items fuzzy  CAFE UNICO 
+  ---
+  duration_ms: 50.7767
+  type: 'test'
+  ...
+# Subtest: api/index.ts items fuzzy ausente
+ok 67 - api/index.ts items fuzzy ausente
+  ---
+  duration_ms: 48.3657
+  type: 'test'
+  ...
+# Subtest: api/index.ts items fuzzy crema
+ok 68 - api/index.ts items fuzzy crema
+  ---
+  duration_ms: 43.9713
+  type: 'test'
+  ...
+# Subtest: api/index.ts items fuzzy corporal crema
+ok 69 - api/index.ts items fuzzy corporal crema
+  ---
+  duration_ms: 38.9064
+  type: 'test'
+  ...
+# Subtest: api/index.ts items lectura falla500
+ok 70 - api/index.ts items lectura falla500
+  ---
+  duration_ms: 43.4273
+  type: 'test'
+  ...
+# Subtest: api/index.ts registra factories importadas
+ok 71 - api/index.ts registra factories importadas
+  ---
+  duration_ms: 1.484
+  type: 'test'
+  ...
+# Subtest: api/index.ts parser HTTP real: válido, JSON roto y más16kb
+ok 72 - api/index.ts parser HTTP real: válido, JSON roto y más16kb
+  ---
+  duration_ms: 66.0363
+  type: 'test'
+  ...
+1..72
+# tests 72
+# suites 0
+# pass 72
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3660.7632

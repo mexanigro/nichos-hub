@@ -1,0 +1,118 @@
+{
+  "installedNext": "16.2.9",
+  "rootPaths": [
+    "/src/middleware.ts"
+  ],
+  "warnings": [
+    "The \"middleware\" file convention is deprecated. Please use \"proxy\" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy"
+  ],
+  "detectorSha256": "6ac0556ac09f4c72df2ce6628ccb13749fd5de64ffb63b248c3725797f23acf2",
+  "preflight": {
+    "syntax": true,
+    "typescript": "6.0.3",
+    "imports": "whitelist",
+    "noRealFetch": true
+  },
+  "callbackCases": [
+    {
+      "pathname": "/",
+      "email": null,
+      "agent": false,
+      "result": {
+        "kind": "next"
+      }
+    },
+    {
+      "pathname": "/onboarding/preview",
+      "email": null,
+      "agent": false,
+      "result": {
+        "kind": "next"
+      }
+    },
+    {
+      "pathname": "/clients",
+      "email": null,
+      "agent": false,
+      "result": {
+        "kind": "redirect",
+        "url": "http://isolated.invalid/login"
+      }
+    },
+    {
+      "pathname": "/api/private",
+      "email": null,
+      "agent": false,
+      "result": {
+        "kind": "json",
+        "body": {
+          "error": "No autorizado"
+        },
+        "status": 401
+      }
+    },
+    {
+      "pathname": "/clients",
+      "email": "other@example.invalid",
+      "agent": false,
+      "result": {
+        "kind": "redirect",
+        "url": "http://isolated.invalid/login"
+      }
+    },
+    {
+      "pathname": "/clients",
+      "email": "OWNER@example.invalid",
+      "agent": false,
+      "result": {
+        "kind": "next"
+      }
+    },
+    {
+      "pathname": "/api/private",
+      "email": "second@example.invalid",
+      "agent": false,
+      "result": {
+        "kind": "next"
+      }
+    },
+    {
+      "pathname": "/api/whatsapp-config/x",
+      "email": null,
+      "agent": true,
+      "result": {
+        "kind": "next"
+      }
+    },
+    {
+      "pathname": "/api/whatsapp-config/x",
+      "email": null,
+      "agent": false,
+      "result": {
+        "kind": "json",
+        "body": {
+          "error": "No autorizado"
+        },
+        "status": 401
+      }
+    },
+    {
+      "pathname": "/api/private",
+      "email": null,
+      "agent": true,
+      "result": {
+        "kind": "json",
+        "body": {
+          "error": "No autorizado"
+        },
+        "status": 401
+      }
+    }
+  ],
+  "matcher": {
+    "matcher": [
+      "/((?!_next/static|_next/image|favicon\\.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|webm|mp4|mov)$).*)"
+    ]
+  },
+  "limits": "Detector exacto ejecutado aislado; callback real con NextAuth/NextResponse simulados. No build ni wrapper/auth/registro HTTP real certificados."
+}

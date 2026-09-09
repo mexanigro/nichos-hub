@@ -1,0 +1,43 @@
+const fs=require('fs'),path=require('path'),crypto=require('crypto');
+const root='C:/Users/liama/Desktop/Nichos/Barber-shop-template-main',d=__dirname;
+const files=['server.ts','api/index.ts','src/lib/notify-agentkit.ts','src/lib/appointment-notify-client.ts','src/components/admin/AdminDashboard.tsx'];
+const pre=path.join(d,'preimagenes','producto-01');fs.mkdirSync(pre);const custody=[];
+for(const f of files){const bytes=fs.readFileSync(path.join(root,f));const target=path.join(pre,f);fs.mkdirSync(path.dirname(target),{recursive:true});fs.writeFileSync(target,bytes);custody.push({path:f,bytes:bytes.length,sha256:crypto.createHash('sha256').update(bytes).digest('hex')});}
+fs.writeFileSync(path.join(d,'PREIMAGENES-PRODUCTO.json'),JSON.stringify(custody,null,2));
+const optional='src/lib/api/optional-services.ts';if(fs.existsSync(path.join(root,optional)))throw Error('new path exists');
+fs.writeFileSync(path.join(root,optional),`import { DEFAULT_CHANNEL_CONFIG, type NotificationChannelConfig } from "../notification-channels.js";
+
+/** Permisos exclusivos del operador servidor; las credenciales no habilitan servicios. */
+export function isOptionalServiceEnabled(service: "ai" | "agent"): boolean {
+  return process.env[service === "ai" ? "AI_ENABLED" : "AGENT_ENABLED"] === "true";
+}
+
+/** Canales de los avisos base examinados cuando el agente no está habilitado. */
+export function baseNotificationChannels(): NotificationChannelConfig {
+  return {
+    ...DEFAULT_CHANNEL_CONFIG,
+    booking_confirmation_customer: "email",
+    cancellation_customer: "email",
+    reschedule_customer: "email",
+    new_lead_owner: "email",
+    new_booking_owner: "email",
+  };
+}
+`);
+for(const f of ['server.ts','api/index.ts']){
+ let s=fs.readFileSync(path.join(root,f),'utf8');const nl=s.includes('\r\n')?'\r\n':'\n';const prefix=f==='server.ts'?'./src':'../src';
+ s=`import { isOptionalServiceEnabled, baseNotificationChannels } from "${prefix}/lib/api/optional-services.js";`+nl+s;
+ const key='    const apiKey = process.env.GEMINI_API_KEY;';if(s.split(key).length!==4)throw Error('AI guards count '+f);
+ s=s.replaceAll(key,'    if (!isOptionalServiceEnabled("ai")) return res.status(503).json({ error: "AI service is disabled." });'+nl+key);
+ const action=s.indexOf('app.post("/api/ai/action"');const authEnd=s.indexOf('    if (!auth) return;',action)+'    if (!auth) return;'.length;if(action<0||authEnd<action)throw Error('action auth');
+ s=s.slice(0,authEnd)+nl+'    if (!isOptionalServiceEnabled("ai")) return res.status(503).json({ error: "AI service is disabled." });'+s.slice(authEnd);
+ s=s.replace('async function getChannelConfig(): Promise<NotificationChannelConfig> {','async function getChannelConfig(): Promise<NotificationChannelConfig> {'+nl+'  if (!isOptionalServiceEnabled("agent")) return baseNotificationChannels();');
+ if(f==='api/index.ts')s=s.replace('function getAgentkitConfig(): AgentkitConfig | null {','function getAgentkitConfig(): AgentkitConfig | null {'+nl+'  if (!isOptionalServiceEnabled("agent")) return null;');
+ else s=s.replace('apptData.serviceName ?? apptData.service ?? ""','apptData.serviceName ?? apptData.service ?? apptData.serviceId ?? ""');
+ fs.writeFileSync(path.join(root,f),s);
+}
+let agent=fs.readFileSync(path.join(root,files[2]),'utf8');agent='import { isOptionalServiceEnabled } from "./api/optional-services.js";\r\n'+agent;agent=agent.replace('export function getAgentkitConfig(): AgentkitConfig | null {','export function getAgentkitConfig(): AgentkitConfig | null {\r\n  if (!isOptionalServiceEnabled("agent")) return null;');fs.writeFileSync(path.join(root,files[2]),agent);
+let client=fs.readFileSync(path.join(root,files[3]),'utf8');client=client.replace(/\/\*\*[\s\S]*?\*\//,`/** Avisos del CRM al backend: canales base y agente opcional. No bloquean la UI. */`);client='import { auth } from "./firebase";\r\n'+client;client=client.replace('  customerPhone?: string;','  customerPhone?: string;\r\n  customerEmail?: string;');client=client.replace('  try {','  try {\r\n    const token = await auth.currentUser?.getIdToken();\r\n    if (!token) return;');client=client.replace('headers: { "Content-Type": "application/json" }','headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` }');fs.writeFileSync(path.join(root,files[3]),client);
+let dashboard=fs.readFileSync(path.join(root,files[4]),'utf8');const anchor='customerPhone: prev.customerPhone,';if(dashboard.split(anchor).length!==4)throw Error('CRM callers');dashboard=dashboard.replaceAll(anchor,anchor+'\r\n          customerEmail: prev.customerEmail,');fs.writeFileSync(path.join(root,files[4]),dashboard);
+for(const f of [...files,optional]){const target=path.join(d,'copia',f);fs.mkdirSync(path.dirname(target),{recursive:true});fs.copyFileSync(path.join(root,f),target);}
+fs.writeFileSync(path.join(d,'CAMBIOS-P1.json'),JSON.stringify([...files,optional],null,2));

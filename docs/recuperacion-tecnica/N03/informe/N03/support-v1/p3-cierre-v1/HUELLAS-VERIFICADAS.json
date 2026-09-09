@@ -1,0 +1,78 @@
+{
+  "nota": "Corregida serialización true→$true de PowerShell; preimagen incompleta preservada. No cambió producto, contrato ni resultados de pruebas.",
+  "metodo": "F090F5F8E5429BC7FCB74D187E105A14E3D1153D37D40B9036436B0E885B0C7D",
+  "producto": [
+    {
+      "path": "server.ts",
+      "sha256": "EC7759885150C3A89F7A8A4907517E4BC591C7999E74C89EFD63DEA0C5BD7E52",
+      "igual": true
+    },
+    {
+      "path": "api/index.ts",
+      "sha256": "9A4439676288E6A970D89FB820E9D6A5485676F47AA55C76411B997C09E9E585",
+      "igual": true
+    },
+    {
+      "path": "src/services/support.ts",
+      "sha256": "994F9C859F652A44F767C9410A9BAECA78D47879B93EE98504BC12CF2205E1F9",
+      "igual": true
+    },
+    {
+      "path": "src/lib/api/support-handler.ts",
+      "sha256": "247B2B1C84548124972D6B0C19407C54771A94006ECF5F11CB7EF196E27C8B86",
+      "igual": true
+    },
+    {
+      "path": "tests/api-parity.test.ts",
+      "sha256": "30CFD35313887975865DA532C8B79BE574B0BE71FB7964F2E718FAB4B01D9520",
+      "igual": true
+    }
+  ],
+  "evidenciaReutilizada": [
+    {
+      "path": "acceptance-consumer.cjs",
+      "sha256": "E52A5F60285228EB932ABD4663AF0921A3EFE3D08F6E85FF5F525173F0315B7C",
+      "igual": true
+    },
+    {
+      "path": "acceptance-handler.cjs",
+      "sha256": "3F8236CEC34F53B3ABE785FE40DD46DDA433D79B7F056283D3A21ECB3A2E2725",
+      "igual": true
+    },
+    {
+      "path": "mutacion-auth.cjs",
+      "sha256": "C5725BAA92F1385D71C5370C7CE0989D3E32EA3116F7F55CD1880C991F651BD9",
+      "igual": true
+    },
+    {
+      "path": "GREEN-CONTRATO.txt",
+      "sha256": "88209594EB2649C94B6D1BE1EF31C8DF0B27B0B56581276EB26442327074EE32",
+      "igual": true
+    },
+    {
+      "path": "GREEN-CONTRATO-ESTADO.json",
+      "sha256": "5E90BCD477061073A94E30DC0C337E3673820B67F3DC3FF304A1BD9EBA007BB5",
+      "igual": true
+    },
+    {
+      "path": "MUTACION.txt",
+      "sha256": "600A34A32651A33722A1F29F27DA7D8E4E21C648A1C3F0B6490C04588ED2A0D0",
+      "igual": true
+    },
+    {
+      "path": "MUTACION-ESTADO.json",
+      "sha256": "37E792E7739507C2235B7080648EDC653FDBB440EE95E8E40D326BFA202193B6",
+      "igual": true
+    },
+    {
+      "path": "FREEZE.md",
+      "sha256": "B7E0BB25BD1FB91BF5B4ABA3BE892C3FE200E570B5EBFF135BE38F7757720E59",
+      "igual": true
+    },
+    {
+      "path": "PLAN.md",
+      "sha256": "F9E42BCE8A6E3F4023F0D1C69C07FD3CD7DCAF17D310FEB5EDA7EBF663A11B57",
+      "igual": true
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "path": "preimagenes\\api__index.ts",
+    "bytes": 227249,
+    "sha256": "F3CD364BDAFD285B846D38EDBADD7F504D6219D13351D7AA3C359EB9D6516DF5"
+  },
+  {
+    "path": "preimagenes\\health-INFORME.md",
+    "bytes": 4399,
+    "sha256": "C698159D3E53E5266D9E0CCD9ABC7090FA141D4B7D53946283CF674E28DDB4F6"
+  },
+  {
+    "path": "preimagenes\\indice-README.md",
+    "bytes": 10988,
+    "sha256": "EE299485181C0FCF8D878508E31122B8E9EF3271D1694683DCFD4D7E304EAE4A"
+  },
+  {
+    "path": "preimagenes\\N03.md",
+    "bytes": 14351,
+    "sha256": "E18626567D1DA7676C77CD2EA524F091834A6BDA79ADD1C42FDCC0B6C8D73D24"
+  },
+  {
+    "path": "preimagenes\\server.ts",
+    "bytes": 173550,
+    "sha256": "579DB7377836FAB96531B49BFCD29F3CA51757D57FE5CB5B551EFA83C097B1C1"
+  },
+  {
+    "path": "preimagenes\\src__lib__api__runtime-health.ts",
+    "bytes": 2081,
+    "sha256": "3EC86502B6F03EA85357166208C1221C53DC6B268FD6B49B622FF4CD64BD6AD5"
+  }
+]

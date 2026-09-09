@@ -1,0 +1,10 @@
+{
+  "fechaUtc": "2026-09-09T14:16:17.2067796Z",
+  "accion": "STOP antes de contrato e implementación",
+  "inicio": 68,
+  "objetivo": 67,
+  "freno": 69,
+  "resetsUsados": 0,
+  "frenoObservado": 69,
+  "maximo": 71
+}

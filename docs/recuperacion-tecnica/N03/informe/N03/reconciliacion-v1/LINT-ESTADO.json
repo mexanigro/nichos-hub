@@ -1,0 +1,13 @@
+{
+  "files": [
+    "src/app/api/api-costs/fetch/route.ts",
+    "src/app/api/appointments/[id]/cancel/route.ts",
+    "src/app/api/prospects/follow-up/route.ts",
+    "src/app/api/upload/[clientId]/route.ts",
+    "src/lib/contracts.ts",
+    "src/lib/pricing.ts"
+  ],
+  "config": "N02/local-v4/eslint-hub-diagnostico.mjs",
+  "command": "node node_modules/eslint/bin/eslint.js --config <config heredada> --format json <6 archivos N03>",
+  "exit": 1
+}

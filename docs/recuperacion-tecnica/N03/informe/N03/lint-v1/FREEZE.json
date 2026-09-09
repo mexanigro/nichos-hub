@@ -1,0 +1,18 @@
+[
+  {
+    "path": "CONTRATO.md",
+    "sha256": "6444c607dc35bcec5dac2c8889c8051bd0b0141d0ebe774dc21284d48bf2fa14"
+  },
+  {
+    "path": "FREEZE.md",
+    "sha256": "80bc9ed2d911046c82e990bb8d835647d398874ebb775dd03f3d770028200b01"
+  },
+  {
+    "path": "acceptance.cjs",
+    "sha256": "5fc52453a051f5ba6191af024b137abbdb31018bb4929b07d1e2f72c77b4de21"
+  },
+  {
+    "path": "tsconfig.json",
+    "sha256": "8589c179be22f7adc276d952734b1559b6e5537cc48a8d2edb1a18579105a823"
+  }
+]

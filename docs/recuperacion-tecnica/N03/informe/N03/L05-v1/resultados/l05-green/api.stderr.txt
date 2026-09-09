@@ -1,0 +1,9 @@
+  ✗  [optional] GEMINI_API_KEY                       → AI chat & style consultation (DISABLED — add key to .env)
+  ✗  [optional] STRIPE_SECRET_KEY                    → Stripe payments (DISABLED — add key to .env)
+  ✗  [optional] STRIPE_WEBHOOK_SECRET                → Stripe webhook verification (DISABLED — add key to .env)
+  ✗  [optional] VITE_STRIPE_PUBLISHABLE_KEY          → Stripe frontend (DISABLED — add key to .env)
+  ✗  [optional] EMAIL_PROVIDER_API_KEY               → Email notifications (Resend) (DISABLED — add key to .env)
+  ✗  [optional] BUSINESS_OWNER_EMAIL                 → Notification recipient (DISABLED — add key to .env)
+  ✗  [optional] VITE_ADMIN_EMAIL                     → Admin panel access (DISABLED — add key to .env)
+[Kill-switch] Token exchange failed: 500 synthetic-token-error
+[Security] Blocked request from untrusted origin: http://foreign.invalid

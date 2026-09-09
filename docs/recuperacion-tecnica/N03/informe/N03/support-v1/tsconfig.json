@@ -1,0 +1,10 @@
+{
+  "extends": "C:/Users/liama/Desktop/Nichos/Barber-shop-template-main/tsconfig.json",
+  "include": [
+    "C:/Users/liama/Desktop/Nichos/Barber-shop-template-main/server.ts",
+    "C:/Users/liama/Desktop/Nichos/Barber-shop-template-main/api/index.ts",
+    "C:/Users/liama/Desktop/Nichos/Barber-shop-template-main/src/services/support.ts",
+    "C:/Users/liama/Desktop/Nichos/Barber-shop-template-main/src/vite-env.d.ts"
+  ],
+  "exclude": []
+}

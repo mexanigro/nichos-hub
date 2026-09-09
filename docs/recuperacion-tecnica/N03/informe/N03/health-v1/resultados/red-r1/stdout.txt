@@ -1,0 +1,35 @@
+{"name":"server-normal: arranque efectivo","valid":false,"evidence":{"exit":null}}
+{"name":"server-normal: cero intentos externos","valid":true,"evidence":{"audit":""}}
+{"name":"server-normal: proceso terminado","valid":true,"evidence":{"exit":null,"signal":"SIGTERM"}}
+{"name":"server-absent: arranque efectivo","valid":false,"evidence":{"exit":null}}
+{"name":"server-absent: cero intentos externos","valid":true,"evidence":{"audit":""}}
+{"name":"server-absent: proceso terminado","valid":true,"evidence":{"exit":null,"signal":"SIGTERM"}}
+{"name":"server-tenant-absent: arranque efectivo","valid":false,"evidence":{"exit":null}}
+{"name":"server-tenant-absent: cero intentos externos","valid":true,"evidence":{"audit":""}}
+{"name":"server-tenant-absent: proceso terminado","valid":true,"evidence":{"exit":null,"signal":"SIGTERM"}}
+{"name":"server-early: arranque efectivo","valid":false,"evidence":{"exit":null}}
+{"name":"server-early: cero intentos externos","valid":true,"evidence":{"audit":""}}
+{"name":"server-early: proceso terminado","valid":true,"evidence":{"exit":null,"signal":"SIGTERM"}}
+{"name":"server-late: arranque efectivo","valid":false,"evidence":{"exit":null}}
+{"name":"server-late: cero intentos externos","valid":true,"evidence":{"audit":""}}
+{"name":"server-late: proceso terminado","valid":true,"evidence":{"exit":null,"signal":"SIGTERM"}}
+{"name":"api-normal: arranque efectivo","valid":false,"evidence":{"exit":null}}
+{"name":"api-normal: cero intentos externos","valid":true,"evidence":{"audit":""}}
+{"name":"api-normal: proceso terminado","valid":true,"evidence":{"exit":null,"signal":"SIGTERM"}}
+{"name":"api-absent: arranque efectivo","valid":false,"evidence":{"exit":null}}
+{"name":"api-absent: cero intentos externos","valid":true,"evidence":{"audit":""}}
+{"name":"api-absent: proceso terminado","valid":true,"evidence":{"exit":null,"signal":"SIGTERM"}}
+{"name":"api-tenant-absent: arranque efectivo","valid":false,"evidence":{"exit":null}}
+{"name":"api-tenant-absent: cero intentos externos","valid":true,"evidence":{"audit":""}}
+{"name":"api-tenant-absent: proceso terminado","valid":true,"evidence":{"exit":null,"signal":"SIGTERM"}}
+{"name":"api-early: arranque efectivo","valid":true,"evidence":{"exit":null}}
+{"name":"api-early: live","valid":false,"evidence":{"code":503,"body":{"error":"API bootstrap failed","message":"PRIVATE_SENTINEL_boot_early","hint":"Set CLIENT_ID in Vercel Project Settings → Environment Variables."},"headers":{"connection":"keep-alive","content-length":"149","content-type":"application/json; charset=utf-8","date":"Wed, 09 Sep 2026 14:44:54 GMT","etag":"W/\"95-C8iS+TT1jpVp3g8g6Go7R20JJsc\"","keep-alive":"timeout=5","x-powered-by":"Express"},"ms":2}}
+{"name":"api-early: no listo","valid":false,"evidence":{"code":503,"body":{"error":"API bootstrap failed","message":"PRIVATE_SENTINEL_boot_early","hint":"Set CLIENT_ID in Vercel Project Settings → Environment Variables."},"headers":{"connection":"keep-alive","content-length":"149","content-type":"application/json; charset=utf-8","date":"Wed, 09 Sep 2026 14:44:54 GMT","etag":"W/\"95-C8iS+TT1jpVp3g8g6Go7R20JJsc\"","keep-alive":"timeout=5","x-powered-by":"Express"},"ms":3}}
+{"name":"api-early: bloqueo parcial","valid":true,"evidence":{"code":503,"body":{"error":"API bootstrap failed","message":"PRIVATE_SENTINEL_boot_early","hint":"Set CLIENT_ID in Vercel Project Settings → Environment Variables."},"headers":{"connection":"keep-alive","content-length":"149","content-type":"application/json; charset=utf-8","date":"Wed, 09 Sep 2026 14:44:54 GMT","etag":"W/\"95-C8iS+TT1jpVp3g8g6Go7R20JJsc\"","keep-alive":"timeout=5","x-powered-by":"Express"},"ms":3}}
+{"name":"api-early: cero intentos externos","valid":true,"evidence":{"audit":""}}
+{"name":"api-early: proceso terminado","valid":true,"evidence":{"exit":null,"signal":"SIGTERM"}}
+{"name":"api-late: arranque efectivo","valid":false,"evidence":{"exit":null}}
+{"name":"api-late: cero intentos externos","valid":true,"evidence":{"audit":""}}
+{"name":"api-late: proceso terminado","valid":true,"evidence":{"exit":null,"signal":"SIGTERM"}}
+{"name":"observador sensible","valid":true,"evidence":{"exit":0,"audit":"{\"blocked\":\"fetch\"}\n"}}
+{"passed":23,"failed":11}

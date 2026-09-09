@@ -1,0 +1,67 @@
+const fs=require('node:fs'),p=require('node:path'),c=require('node:crypto');
+const d=__dirname,root=p.resolve(d,'../../..'),sha=b=>c.createHash('sha256').update(b).digest('hex');
+const write=(file,text)=>{fs.mkdirSync(p.dirname(file),{recursive:true});fs.writeFileSync(file,text,{flag:'wx'})};
+const result=JSON.parse(fs.readFileSync(p.join(d,'ACEPTACION-FINAL.json'),'utf8'));if(result.result!=='GREEN')throw Error('aceptación no GREEN');
+const closure=`# N03 clientId-v1 — GREEN local, para revisión
+
+## Resultado y alcance
+
+getAgentkitConfig en src/lib/notify-agentkit.ts y api/index.ts ahora resuelve CLIENT_ID→NEXT_PUBLIC_CLIENT_ID→VITE_CLIENT_ID→vacío, recortando cada candidato antes del fallback. Sólo AGENT_ENABLED=true permite notificar; URL/secret/id siguen necesarios. Se corrigen los casos autorizados NEXT solo,CLIENT blanco y N/V contradictorios: el agente usa id del servidor. README/.env.example documentan selección, coherencia entre build/servidor y permiso exacto. No se cambió .env real.
+
+Sólo4 archivos autorizados:2 expresiones y documentación pertinente. Navegador/server.ts, firmas, URL/auth/mensajes/canales/payload salvo id conservados. Ningún módulo nuevo. No proyecto/base,precio,pagos,provisioning,envíos reales ni cambio de entornos. Coherencia de variables reales y condición previa al despliegue por prestaciones de tenant con evidencia/decisión de Liam permanecen pendientes.
+
+[Contrato](CONTRATO-IMPLEMENTACION.md) y [freeze previo a producto](FREEZE.json). P0→P1→P2→P3:4/4; sin BLOCKERS de esta reparación. N03 sigue en curso. Se detiene para revisión; no se declara aceptación del usuario ni cierre de N03 completa.
+
+## Evidencia ejecutada
+
+- [Funciones](FUNCIONES-green-p2.json):142/142. Misma extracción AST actual del sondeo, conservando las18 entradas y referencia MEDICION.json. Ocho fallos RED previos de identidad corregidos;134 controles previos válidos y permisos/config incompleta conservados. Ausencia/false/valores inválidos del permiso y URL/secret/id ausentes/blancos:0intentos.
+- [HTTP](resultados/green-p2/RESULTADOS.json):110/110;14 arranques efectivos en ambos runtimes reales (7 escenarios por runtime),contacto y CRM booked/cancelled/rescheduled. NEXT solo,CLIENT blanco y N/V distintos producen tenant-control,igual al servidor. Cada payload completo y path/auth observado coincide con baseline mirrors válido. Permisos denegados: cero agente, respuesta/email por evento coincidente con preimagen. Origen y autenticación conservados por runtime según lo efectivamente medido.
+- Baseline antes de freeze: [payloads y resultados actuales](resultados/baseline-r2/OBSERVACIONES.json), [42 controles de permisos](resultados/baseline-permissions/RESULTADOS.json). Los casos antes omitidos se comparan con el mismo recorrido/datos y mirrors válidos, no con un payload previo inexistente. No se reescribió MEDICION.json.
+- [Mutación aislada](MUTACION.json), [resultados](resultados/mutation-p3/RESULTADOS.json): selector original restaurado únicamente en copia física,12 fallos esperados (omisión NEXT/blancos e identidad N/V) y50 controles positivos. Los8 arranques del mutante aprobaron; ningún fallo de instrumento sustituye sensibilidad. Producto intacto tras mutación.
+- [Tipos](TIPOS.json):exit0, configuración vigente con src/vite-env.d.ts, sin relajaciones. [Paridad](resultados/parity-p3-r2/PARITY.json):19/19,exit0; archivo existente sin cambios ni excepciones nuevas.
+- [Conservación](CONSERVACION-FINAL.json):366 comprobaciones;331 de333 fuentes del template intactas y6 fuentes hub lint conservadas. En los dos archivos de código, el diff completo equivale exclusivamente a sustituir la expresión autorizada. Cuatro preimágenes físicas en PREIMAGENES-P1.json; manifiesto final FUENTES-FINALES.json. Servidor/browser/book/support/stock/health/L05 conservados; D05 sólo cambia selector autorizado del agente.
+
+Docker se ejecutó con imagen existente,--pull=never,--network=none,filesystem readonly y env saneado, sin .env/credenciales reales; SDK y destinos controlados. ESTADO.json confirma proceso/exit del contenedor y DISPOSICION.json su eliminación. Docker0 en preflight-r2,baseline-permissions,green-p2,parity-p3-r2; Docker1 esperado en mutación. No confiar sólo en exit del lanzador PowerShell.
+
+## Refutación y observación heredada
+
+[BASELINE-Y-REFUTACION.md](BASELINE-Y-REFUTACION.md). Revisión interna independiente de /root/refutar_soporte (Harvey), sólo lectura de contrato/fuentes/diff y baseline, separada de revisiones externas aceptadas. MATERIAL: baseline comparable ante omisiones y emails por evento, incorporados antes del freeze. Revisión final de las4 preimágenes: sin BLOCKERS ni MATERIAL nuevos; no ejecutó pruebas.
+
+El baseline de autenticación refutó una expectativa del arnés: POST/api/appointment/notify sin token es401/sin envío en server.ts, pero200/con envío en api/index.ts, que carece del requireAdminAuth local. El resultado original se conserva (baseline-r2 Docker1,16 aprobados/2 expectativas fallidas). Antes de freeze se fijó conservación por runtime a partir de esos hechos; no se modificó autenticación ni se afirma que API esté protegida. Es hallazgo heredado de acceso para N04, enlazado en ficha N03; queda pendiente, no se abre su reparación ni se oculta bajo este GREEN acotado.
+
+Claridad: no funciones nuevas, flags nuevos ni usos artificiales. Las dos cadenas explícitas son iguales al selector servidor; docs explican prioridades distintas del navegador sin prometer reconciliación automática. Las diferencias reales de configuración siguen requiriendo revisión antes del despliegue.
+
+## Ciclos y conservación de fallos
+
+STOP-P0.md/ESTADO-STOP.json anteriores quedan históricos. Retoma autorizada creó copia/node_modules e incorporó mkdir al preparador; preimagen guardada. Preflight-r2 Docker0 acreditó la corrección. Baseline inicial10s no arrancó; única corrección a45s de D05 produjo ambos arranques y8payloads, conservando fallo anterior. Su diferencia auth fue resultado medido que corrigió un criterio antes de freeze, no error de imports ni cambio de producto.
+
+P1 produjo142 controles GREEN y tipos0. P2 obtuvo110 HTTP. Paridad inicialmente carecía del archivo test en copia: añadido desde fuente intacta, imports comprobados, única continuación19/19. Preparación de mutación duplicó tsconfig ya presente en manifiesto: EEXIST conservado, única corrección deduplicó rutas y verificó hash de copias parciales; mutación efectiva12fallos. Cada corrección tuvo información concreta y produjo avance verificable. No se repitió indefinidamente la misma estrategia ni se aflojó aislamiento. Todos los resultados/preimágenes previos se conservan.
+
+## Límites y retoma
+
+GREEN exclusivamente local de selección/notificación examinada. No certifica entrega al agente, persistencia/remoto, clientes reales,coherencia build/runtime,auth íntegra ni proyecto/databaseId. N03 conserva obligaciones restantes y destinos ya registrados; N04 acceso/datos, N08 configuración/despliegue, y decisión previa por prestaciones de tenant. No se ejecutaron instalaciones,operaciones remotas,commit,push,deploy o resets.
+
+Consumo: inicio76%, checkpoints/final77%, techo80% TOTAL N03 compartido. No retoma técnica pendiente en clientId-v1; detener para revisión de esta reparación. No iniciar otra.
+`;
+write(p.join(d,'CIERRE-LOCAL.md'),closure);
+write(p.join(d,'REVISION-FINAL.md'),`# Revisión final interna
+
+Procedencia: Harvey (/root/refutar_soporte), sólo lectura en la conversación de esta entrega. Refutación inicial: referencias comparables cuando el original omite notificar y permisos/config incompleta. Baseline posterior: detectó expectativa incorrecta de auth API y agregó conservación email por evento; incorporado antes de freeze. Revisión final del diff4archivos: únicamente2selectores ydocscoherentes, sin BLOCKERS ni MATERIAL nuevos. No pruebas ejecutadas por revisor.
+
+Integrador verificó142funciones,110HTTP,19paridad,tipos0,12fallos esperados mutando y366conservación. Límites/hallazgo de auth heredada/destinos en CIERRE-LOCAL.md. Esta acta no equivale a aceptación de Liam ni certificación remota.
+`);
+const custody=[];
+function update(rel,notice){const file=p.join(root,rel),before=fs.readFileSync(file),pre=p.join(d,'preimagenes-registros-cierre',rel);write(pre,before);if(sha(fs.readFileSync(pre))!==sha(before))throw Error('custodia');const old=before.toString('utf8');fs.writeFileSync(file,old.replace('\n','\n\n'+notice+'\n'));custody.push({path:rel,before:sha(before),after:sha(fs.readFileSync(file)),preimage:p.relative(root,pre)});}
+update('informe/N03/clientId-v1/INFORME.md','**clientId-v1 cerrada GREEN exclusivamente local,4/4,para revisión.** [Cierre,evidencia y límites](CIERRE-LOCAL.md).142funciones,110HTTP,19paridad,tipos0,12fallos esperados mutando,366conservación. Dos expresiones ydocs autorizadas; baseline y preimágenes conservados. Auth heredada de API observada/preservada,pendienteN04. N03 sigue en curso;coherencia real/condición prestaciones tenant pendientes. Consumo77%/80%TOTAL,sin resets. Detenido; estados inferiores históricos.');
+for(const rel of ['indice/tareas/N03.md','indice/README.md','indice/PENDIENTES.md','indice/CALENDARIO.md']){
+const link=rel.includes('/tareas/')?'../../informe/N03/clientId-v1/CIERRE-LOCAL.md':'../informe/N03/clientId-v1/CIERRE-LOCAL.md';
+update(rel,`**N03 clientId-v1: GREEN local4/4,entregada para revisión.** [Contrato,resultados y límites](${link}). Agente C→N→V con trim previo en ambos caminos;142funciones,110HTTP,19paridad,tipos0,mutación12fallos esperados,366conservación. Dos selectores yREADME/.env.example;sin cambios reales deenv. Baseline preservó diferencia heredada: POST/api/appointment/notify en API acepta sin token; pendiente de acceso N04, no corregida ni certificada aquí. N03 sigue en curso;proyecto/base,coherencia real y prestaciones por tenant antes de despliegue pendientes. Consumo77%/80%TOTAL,sin resets. Detenido para revisión,ninguna otra reparación. Cortes inferiores históricos.`);}
+write(p.join(root,'historial/2026-09-09-N03-clientId-cierre-local.md'),`# N03 clientId-v1 — cierre local
+
+Retoma de STOP autorizada: mkdir de punto node_modules en copia/preparador,preflightDocker0. Baseline real ambosruntimes ypermisos42;expectativa authrefutadaantesfreeze usando preimagen. Cambiados exclusivamente2selectoresC→N→Vtrim ydocsREADME/.env.example. [Cierre](../informe/N03/clientId-v1/CIERRE-LOCAL.md):GREEN4/4,142funciones,110HTTP,19paridad,tipos0,12fallos esperadosmutando,366conservación. Evidencia fallida/preimágenes preservadas y correccionesdeinstrumento documentadas.
+
+Hallazgo heredado API appointment/notify sin token permite enviar mientras serverrechaza; conservación medida, reparación fuera deestaentrega paraN04. N03 abierta;proyecto/base/coherenciareal ycondiciónprestacionesportenant pendientes. Consumo77%/80%TOTAL,sin resets. Sin instalaciones/remoto/commit/push/deploy. Detenido para revisión deLiam; no otra reparación.
+`);
+write(p.join(d,'CUSTODIA-CIERRE.json'),JSON.stringify(custody,null,2));
+write(p.join(d,'GATES-FINALES.json'),JSON.stringify({...result,closureSha256:sha(fs.readFileSync(p.join(d,'CIERRE-LOCAL.md'))),N03:'en_curso',awaitingReview:true},null,2));
+console.log(JSON.stringify({registered:true,result:'GREEN',gates:'4/4',records:custody.length}));

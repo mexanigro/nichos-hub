@@ -1,0 +1,40 @@
+const fs=require('node:fs'),p=require('node:path'),vm=require('node:vm'),Module=require('node:module');
+const label=process.argv[2];if(!/^[a-z0-9-]+$/.test(label||''))throw Error('label requerido');
+// Reutiliza extracción AST del sondeo sin ejecutar su main ni sobrescribir evidencia.
+const file=p.join(__dirname,'sondeo.cjs'),source=fs.readFileSync(file,'utf8');
+const boundary=source.lastIndexOf('main().catch(');if(boundary<0)throw Error('ancla instrumento');
+const m=new Module(file,module);m.filename=file;m.paths=module.paths;
+m._compile(source.slice(0,boundary)+'\nmodule.exports={measure,fragments,box};',file);
+const {measure,fragments,box}=m.exports;
+const previous=JSON.parse(fs.readFileSync(p.join(__dirname,'MEDICION.json'),'utf8'));
+const checks=[];const check=(name,pass,detail)=>checks.push({name,pass,detail});
+async function main(){
+ for(const row of previous.results){
+  const actual=await measure(row.input);
+  check(row.name+':browser',actual.browser===row.browser);
+  for(const runtime of ['server.ts','api/index.ts']){
+   const old=row.runtimes[runtime],now=actual.runtimes[runtime];
+   check(row.name+':'+runtime+':selector-headers',now.selected===old.selected&&JSON.stringify(now.headers)===JSON.stringify(old.headers));
+   const expected=now.selected||null;
+   check(row.name+':'+runtime+':agent-identity',now.agent===expected&&now.attempts.length===(expected?1:0)&&(!expected||now.attempts[0].clientId===expected),{expected,actual:now});
+   if(old.agent===expected)check(row.name+':'+runtime+':conservation',JSON.stringify(now)===JSON.stringify(old));
+  }
+ }
+ for(const runtime of Object.keys(fragments))for(const scenario of [
+  {name:'permission-absent',remove:'AGENT_ENABLED'},
+  ...['false','TRUE',' true ','1',''].map(value=>({name:'permission-'+JSON.stringify(value),set:{AGENT_ENABLED:value}})),
+  {name:'url-absent',remove:'WHATSAPP_AGENT_URL'}, {name:'secret-absent',remove:'AGENT_API_SECRET'},
+  {name:'url-blank',set:{WHATSAPP_AGENT_URL:' '}},{name:'secret-blank',set:{AGENT_API_SECRET:' '}},
+  {name:'identity-absent',remove:'CLIENT_ID'},
+  {name:'identity-blank',set:{CLIENT_ID:' ',NEXT_PUBLIC_CLIENT_ID:'\t',VITE_CLIENT_ID:''}},
+ ]){
+  const env={CLIENT_ID:'tenant-control',AGENT_ENABLED:'true',WHATSAPP_AGENT_URL:'https://agent.invalid',AGENT_API_SECRET:'synthetic-secret',...scenario.set};if(scenario.remove)delete env[scenario.remove];
+  const sandbox=box(env);let attempts=0;sandbox.fetch=async()=>{attempts++;return {ok:true}};
+  vm.runInNewContext(fragments[runtime],sandbox,{timeout:500});
+  const cfg=sandbox.api.getAgentkitConfig();const response=await sandbox.api.notifyAgentLeadCreated({nombre:'Control',adminPhones:[]});
+  check(runtime+':'+scenario.name,cfg===null&&response===false&&attempts===0,{configured:cfg!==null,response,attempts});
+ }
+ fs.writeFileSync(p.join(__dirname,'FUNCIONES-'+label+'.json'),JSON.stringify({checks,passed:checks.filter(x=>x.pass).length,failed:checks.filter(x=>!x.pass).length,reference:'MEDICION.json',externalCalls:0},null,2),{flag:'wx'});
+ console.log(JSON.stringify({passed:checks.filter(x=>x.pass).length,failed:checks.filter(x=>!x.pass).map(x=>x.name)}));process.exitCode=checks.every(x=>x.pass)?0:1;
+}
+main().catch(e=>{console.error(e);process.exitCode=2});

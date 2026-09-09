@@ -1,0 +1,180 @@
+[
+  {
+    "name": "server-configured: arranque efectivo",
+    "valid": true,
+    "evidence": {
+      "exit": null
+    }
+  },
+  {
+    "name": "server-configured: live sin cuota ni DB",
+    "valid": true,
+    "evidence": {
+      "unchanged": true,
+      "calls": 4
+    }
+  },
+  {
+    "name": "server-configured: permitidas",
+    "valid": true,
+    "evidence": {
+      "codes": [
+        200,
+        200,
+        200
+      ],
+      "elapsed": 15
+    }
+  },
+  {
+    "name": "server-configured: carga controlada",
+    "valid": true,
+    "evidence": {
+      "delta": "loader\nread\nloader\nread\nloader\nread\n"
+    }
+  },
+  {
+    "name": "server-configured: exceso429 antes de DB",
+    "valid": false,
+    "evidence": {
+      "codes": [
+        200,
+        200
+      ],
+      "delta": "loader\nread\nloader\nread\n"
+    }
+  },
+  {
+    "name": "server-configured: IP independiente",
+    "valid": true,
+    "evidence": {
+      "code": 200
+    }
+  },
+  {
+    "name": "server-configured: ventana configurable",
+    "valid": true,
+    "evidence": {
+      "code": 200
+    }
+  },
+  {
+    "name": "server-configured: HEAD comparte cuota",
+    "valid": false,
+    "evidence": {
+      "codes": [
+        200,
+        200
+      ],
+      "delta": "loader\nread\n"
+    }
+  },
+  {
+    "name": "server-configured: cero intentos externos",
+    "valid": true,
+    "evidence": {
+      "audit": ""
+    }
+  },
+  {
+    "name": "server-configured: proceso terminado",
+    "valid": true,
+    "evidence": {
+      "exit": null,
+      "signal": "SIGTERM"
+    }
+  },
+  {
+    "name": "api-configured: arranque efectivo",
+    "valid": true,
+    "evidence": {
+      "exit": null
+    }
+  },
+  {
+    "name": "api-configured: live sin cuota ni DB",
+    "valid": true,
+    "evidence": {
+      "unchanged": true,
+      "calls": 4
+    }
+  },
+  {
+    "name": "api-configured: permitidas",
+    "valid": true,
+    "evidence": {
+      "codes": [
+        200,
+        200,
+        200
+      ],
+      "elapsed": 9
+    }
+  },
+  {
+    "name": "api-configured: carga controlada",
+    "valid": true,
+    "evidence": {
+      "delta": "loader\nread\nloader\nread\nloader\nread\n"
+    }
+  },
+  {
+    "name": "api-configured: exceso429 antes de DB",
+    "valid": false,
+    "evidence": {
+      "codes": [
+        200,
+        200
+      ],
+      "delta": "loader\nread\nloader\nread\n"
+    }
+  },
+  {
+    "name": "api-configured: IP independiente",
+    "valid": true,
+    "evidence": {
+      "code": 200
+    }
+  },
+  {
+    "name": "api-configured: ventana configurable",
+    "valid": true,
+    "evidence": {
+      "code": 200
+    }
+  },
+  {
+    "name": "api-configured: HEAD comparte cuota",
+    "valid": false,
+    "evidence": {
+      "codes": [
+        200,
+        200
+      ],
+      "delta": "loader\nread\n"
+    }
+  },
+  {
+    "name": "api-configured: cero intentos externos",
+    "valid": true,
+    "evidence": {
+      "audit": ""
+    }
+  },
+  {
+    "name": "api-configured: proceso terminado",
+    "valid": true,
+    "evidence": {
+      "exit": null,
+      "signal": "SIGTERM"
+    }
+  },
+  {
+    "name": "observador sensible",
+    "valid": true,
+    "evidence": {
+      "exit": 0,
+      "audit": "{\"blocked\":\"fetch\"}\n"
+    }
+  }
+]

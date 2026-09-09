@@ -1,0 +1,1479 @@
+{
+  "valid": true,
+  "checks": [
+    {
+      "name": "frozen-contract",
+      "pass": true
+    },
+    {
+      "name": "frozen-http",
+      "pass": true
+    },
+    {
+      "name": "frozen-functions",
+      "pass": true
+    },
+    {
+      "name": "single-selector-only:api/index.ts",
+      "pass": true
+    },
+    {
+      "name": "tested-copy:api/index.ts",
+      "pass": true
+    },
+    {
+      "name": "mutant-is-preimage:api/index.ts",
+      "pass": true
+    },
+    {
+      "name": "single-selector-only:src/lib/notify-agentkit.ts",
+      "pass": true
+    },
+    {
+      "name": "tested-copy:src/lib/notify-agentkit.ts",
+      "pass": true
+    },
+    {
+      "name": "mutant-is-preimage:src/lib/notify-agentkit.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:package.json",
+      "pass": true
+    },
+    {
+      "name": "preserved:server.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/App.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/3d-impact/ambient-particles.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/3d-impact/cta-button-3d.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/3d-impact/DemoPage.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/3d-impact/hero-object-3d.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/3d-impact/index.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/3d-impact/paper-card.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/3d-impact/splash-impact-reveal-3d.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/3d-impact/splash-impact-scale.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/3d-impact/splash-impact-split.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/about/AboutPage.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/admin/AdminDashboard.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/admin/AdminLoginPanel.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/admin/AppointmentCalendar.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/admin/BusinessRulesTab.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/admin/CustomerDetailPanel.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/admin/CustomersKanban.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/admin/CustomersTab.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/admin/DashboardTab.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/admin/InboxTab.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/admin/KnowledgeTab.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/admin/MetricsDashboard.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/admin/NotificationLogsTab.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/admin/PaymentsTab.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/admin/ProtectedRoute.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/admin/StaffLogistics.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/admin/StockTab.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/admin/SupportTab.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/admin/TasksTab.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/admin/UnauthorizedAdmin.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/admin/UsersTab.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/booking/BookingWizard.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/branding/logo-svg.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/chat/Chatbot.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/dev/VariantsPreview.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/dev/WizardRefsPreview.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/ErrorBoundary.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/gallery/GalleryPage.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/Ambience.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/aura/aura-before-after.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/aura/aura-contact.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/aura/aura-faq.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/aura/aura-hero.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/aura/aura-instagram.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/aura/aura-services.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/aura/aura-team.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/aura/aura-testimonials.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/aura/aura-why-choose-us.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/aura/index.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/BeforeAfter.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/booking-form-map-hours-3d.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/BusinessHours.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/contact/contact-v2.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/contact/contact-v3.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/contact/contact-v4.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/contact/contact-v5.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/contact/estetica/contact-form.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/contact/estetica/contact-v2.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/contact/estetica/contact-v3.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/contact/estetica/contact-v4.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/contact/estetica/contact-v5.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/ContactHub.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/employment/AudienceChoice.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/employment/business/BusinessBenefits.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/employment/business/BusinessFAQ.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/employment/business/BusinessHero.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/employment/business/BusinessProcess.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/employment/business/BusinessRegistrationForm.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/employment/business/BusinessTestimonials.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/employment/business/useBusinessLocale.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/employment/business/WorkerCategories.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/employment/EmploymentHero.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/employment/HowItWorks.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/employment/index.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/employment/JobCategories.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/employment/RegistrationWizard.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/faq/estetica/faq-v2.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/faq/estetica/faq-v3.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/faq/estetica/faq-v4.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/faq/estetica/faq-v5.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/faq/faq-v2.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/faq/faq-v3.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/faq/faq-v4.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/faq/faq-v5.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/FAQ.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/gallery/estetica/gallery-v2.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/gallery/estetica/gallery-v3.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/gallery/estetica/gallery-v4.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/gallery/estetica/gallery-v5.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/gallery/gallery-v2.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/gallery/gallery-v3.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/gallery/gallery-v4.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/gallery/gallery-v5.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/gallery-bento-stats.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/gallery-grid-with-filters.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/gallery-portrait-bento-3d-cameo.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/Gallery.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/GalleryTeaser.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/hero/estetica/hero-v2.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/hero/estetica/hero-v3.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/hero/estetica/hero-v4.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/hero/estetica/hero-v5.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/hero/floating-cards.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/hero/hero-v2.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/hero/hero-v3.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/hero/hero-v4.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/hero/hero-v5.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/hero/stats-bar-v2.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/hero/stats-bar-v3.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/hero/stats-bar-v4.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/hero/stats-bar-v5.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/hero/stats-bar.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/hero/title-with-italic.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/hero-variant-3d-object.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/Hero.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/instagram/estetica/instagram-v2.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/instagram/estetica/instagram-v3.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/instagram/estetica/instagram-v4.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/instagram/estetica/instagram-v5.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/instagram/instagram-v2.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/instagram/instagram-v3.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/instagram/instagram-v4.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/instagram/instagram-v5.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/InstagramFeed.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/InstagramTeaser.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/LandingBackdrop.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/Location.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/Menu.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/Philosophy.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/Portfolio.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/Process.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/QuickInquiry.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/SectionDivider.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/services/estetica/services-v2.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/services/estetica/services-v3.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/services/estetica/services-v4.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/services/estetica/services-v5.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/services/services-v2.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/services/services-v3.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/services/services-v4.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/services/services-v5.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/services-card-stack-tabs.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/services-list-with-icons.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/services-treatment-card-grid.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/Services.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/team/estetica/team-v2.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/team/estetica/team-v3.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/team/estetica/team-v4.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/team/estetica/team-v5.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/team/team-v2.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/team/team-v3.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/team/team-v4.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/team/team-v5.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/Team.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/testimonials/estetica/testimonials-v2.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/testimonials/estetica/testimonials-v3.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/testimonials/estetica/testimonials-v4.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/testimonials/estetica/testimonials-v5.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/testimonials/testimonials-v2.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/testimonials/testimonials-v3.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/testimonials/testimonials-v4.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/testimonials/testimonials-v5.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/Testimonials.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/why-choose-us/estetica/why-choose-us-v2.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/why-choose-us/estetica/why-choose-us-v3.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/why-choose-us/estetica/why-choose-us-v4.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/why-choose-us/estetica/why-choose-us-v5.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/why-choose-us/why-choose-us-v2.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/why-choose-us/why-choose-us-v3.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/why-choose-us/why-choose-us-v4.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/why-choose-us/why-choose-us-v5.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/why-choose-us-icon-grid-3d.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/landing/WhyChooseUs.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/layout/footer/footer-v2.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/layout/footer/footer-v3.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/layout/footer/footer-v4.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/layout/footer/footer-v5.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/layout/Footer.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/layout/navbar/navbar-v2.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/layout/navbar/navbar-v3.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/layout/navbar/navbar-v4.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/layout/navbar/navbar-v5.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/layout/Navbar.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/layout/ScrollToTop.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/layout/splash/index.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/layout/splash/SplashCafeteria.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/layout/splash/SplashClassic.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/layout/splash/SplashCurtain.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/layout/splash/SplashFadeScale.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/layout/splash/SplashGradientSweep.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/layout/splash/SplashMinimalPulse.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/layout/splash/SplashParticles.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/layout/splash/SplashPulse.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/layout/splash/SplashRemodelaciones.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/layout/splash/SplashTypewriter.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/layout/splash/SplashVortex.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/layout/splash/types.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/layout/SplashScreen.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/legal/LegalPage.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/portfolio/ProjectsPage.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/ProductTour.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/QuoteRequestModal.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/services/ServicesPage.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/shared/PolicyModal.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/staff/StaffProfilePage.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/theme/ThemeProvider.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/theme/ThemeToggle.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/TourButton.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/ui/AccessibilityWidget.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/ui/BrandLogo.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/ui/calendar.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/ui/LanguageSwitcher.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/components/ui/Toast.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/config/demo-data.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/config/env.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/config/envQuotes.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/config/legalContent.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/config/locale.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/config/locales/ar.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/config/locales/en.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/config/locales/he.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/config/locales/ru.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/config/localeTypes.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/config/presets/barberia.ar.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/config/presets/barberia.en.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/config/presets/barberia.he.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/config/presets/barberia.ru.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/config/presets/cafeteria.ar.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/config/presets/cafeteria.en.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/config/presets/cafeteria.he.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/config/presets/cafeteria.ru.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/config/presets/employment.ar.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/config/presets/employment.en.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/config/presets/employment.he.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/config/presets/employment.ru.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/config/presets/estetica.ar.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/config/presets/estetica.en.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/config/presets/estetica.he.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/config/presets/estetica.ru.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/config/presets/nails.ar.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/config/presets/nails.en.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/config/presets/nails.he.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/config/presets/nails.ru.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/config/presets/remodelaciones.ar.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/config/presets/remodelaciones.en.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/config/presets/remodelaciones.he.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/config/presets/remodelaciones.ru.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/config/presets/tattoo.ar.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/config/presets/tattoo.en.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/config/presets/tattoo.he.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/config/presets/tattoo.ru.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/config/presets/themes.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/config/site.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/config/tenant.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/config/tour.config.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/config/tour.translations.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/config/uiLanguage.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/constants.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/contexts/LanguageContext.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/hooks/use-hero-object.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/hooks/use-paper-spring.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/hooks/useAdminAccess.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/hooks/useModalA11y.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/hooks/useSchema.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/hooks/useSEO.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/hooks/useSwipeNavigation.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/3d-impact-utils.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/admin-auth.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/admin-users.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/ai/admin-tools.test.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/ai/admin-tools.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/ai/stock-tools.test.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/ai/stock-tools.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/ai/tasks-tools.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/api/admin-auth.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/api/booking-handler.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/api/booking-validation.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/api/optional-services.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/api/payment-gateways.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/api/runtime-health.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/api/stock-handlers.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/api/support-handler.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/appointment-notify-client.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/booking.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/crm-metrics.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/crm-store.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/currency.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/customer-pipeline.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/dateLocale.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/employment-audience.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/exportCsv.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/firebase.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/google-auth.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/hours-display.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/intent-router.test.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/intent-router.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/interpolate.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/knowledge-rag.test.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/knowledge-rag.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/lucide-icons.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/motion.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/notification-channels.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/payment/types.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/sanitize.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/schedulingRules.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/section-presence.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/section-variants.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/seo-defaults.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/site-theme.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/splash-session.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/staff.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/tasks.test.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/tasks.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/typography.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/utils.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/whatsapp-inbox.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/main.tsx",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/services/ai.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/services/customers.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/services/db.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/services/inbox.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/services/notificationLogs.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/services/stock.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/services/support.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/services/tenant.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/types.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/vite-env.d.ts",
+      "pass": true
+    },
+    {
+      "name": "preserved:tsconfig.json",
+      "pass": true
+    },
+    {
+      "name": "preserved:src/lib/api/tenant-access.ts",
+      "pass": true
+    },
+    {
+      "name": "preimage:src/lib/notify-agentkit.ts",
+      "pass": true
+    },
+    {
+      "name": "preimage:api/index.ts",
+      "pass": true
+    },
+    {
+      "name": "preimage:README.md",
+      "pass": true
+    },
+    {
+      "name": "preimage:.env.example",
+      "pass": true
+    },
+    {
+      "name": "hub-preserved:src/app/api/api-costs/fetch/route.ts",
+      "pass": true
+    },
+    {
+      "name": "hub-preserved:src/app/api/appointments/[id]/cancel/route.ts",
+      "pass": true
+    },
+    {
+      "name": "hub-preserved:src/app/api/prospects/follow-up/route.ts",
+      "pass": true
+    },
+    {
+      "name": "hub-preserved:src/app/api/upload/[clientId]/route.ts",
+      "pass": true
+    },
+    {
+      "name": "hub-preserved:src/lib/contracts.ts",
+      "pass": true
+    },
+    {
+      "name": "hub-preserved:src/lib/pricing.ts",
+      "pass": true
+    },
+    {
+      "name": "functions-green",
+      "pass": true
+    },
+    {
+      "name": "http-green",
+      "pass": true
+    },
+    {
+      "name": "mutation-effective",
+      "pass": true
+    },
+    {
+      "name": "mutation-startup-not-instrument",
+      "pass": true
+    },
+    {
+      "name": "docker:preflight-r2",
+      "pass": true
+    },
+    {
+      "name": "container-removed:preflight-r2",
+      "pass": true
+    },
+    {
+      "name": "docker:baseline-permissions",
+      "pass": true
+    },
+    {
+      "name": "container-removed:baseline-permissions",
+      "pass": true
+    },
+    {
+      "name": "docker:green-p2",
+      "pass": true
+    },
+    {
+      "name": "container-removed:green-p2",
+      "pass": true
+    },
+    {
+      "name": "docker:parity-p3-r2",
+      "pass": true
+    },
+    {
+      "name": "container-removed:parity-p3-r2",
+      "pass": true
+    },
+    {
+      "name": "docker:mutation-p3",
+      "pass": true
+    },
+    {
+      "name": "container-removed:mutation-p3",
+      "pass": true
+    },
+    {
+      "name": "types",
+      "pass": true
+    },
+    {
+      "name": "parity",
+      "pass": true
+    }
+  ],
+  "preservedTemplate": 331,
+  "totalTemplate": 333,
+  "changed": [
+    "api/index.ts",
+    "src/lib/notify-agentkit.ts"
+  ],
+  "docs": [
+    "README.md",
+    ".env.example"
+  ]
+}

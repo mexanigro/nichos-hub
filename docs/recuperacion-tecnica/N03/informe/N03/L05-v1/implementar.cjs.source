@@ -1,0 +1,35 @@
+const fs=require('node:fs'),p=require('node:path'),c=require('node:crypto');const root='C:/Users/liama/Desktop/Nichos/Barber-shop-template-main',d=__dirname;const hash=b=>c.createHash('sha256').update(b).digest('hex');
+const files=JSON.parse(fs.readFileSync(p.join(d,'FUENTES.json'),'utf8'));
+const outputs=[];
+for(const row of files){const target=p.join(root,row.path),bytes=fs.readFileSync(target);if(hash(bytes)!==row.sha256)throw Error('deriva '+row.path);const text=bytes.toString('utf8');const start=text.indexOf('async function enforceClientActive('),end=text.indexOf('\nasync function geminiGenerateContent',start);if(start<0||end<0)throw Error('ancla guard');
+const adapter=row.path==='server.ts'?`const enforceClientActive = createTenantAccessGuard(async () => {
+  const db = await getAdminDb();
+  if (!db) return null;
+  const snapshot = await db.collection("clients").doc(CLIENT_ID).get();
+  return snapshot.exists ? snapshot.data()?.status : null;
+});
+`:`const enforceClientActive = createTenantAccessGuard(async () => {
+  const projectId =
+    process.env.VITE_FIREBASE_PROJECT_ID?.trim() ||
+    process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID?.trim();
+  const databaseId =
+    process.env.FIREBASE_DATABASE_ID?.trim() ||
+    process.env.VITE_FIREBASE_DATABASE_ID?.trim() ||
+    "default";
+  if (!projectId || !CLIENT_ID) return null;
+  const token = await getFirestoreAccessToken();
+  if (!token) return null;
+  const baseUrl = \`https://firestore.googleapis.com/v1/projects/\${projectId}/databases/\${databaseId}/documents\`;
+  const response = await fetch(\`\${baseUrl}/clients/\${CLIENT_ID}\`, {
+    headers: { Authorization: \`Bearer \${token}\` },
+  });
+  if (!response.ok) return null;
+  const document = await response.json() as { fields?: { status?: { stringValue?: unknown } } };
+  return document.fields?.status?.stringValue;
+});
+`;
+let updated=text.slice(0,start)+adapter+text.slice(end);const prefix=row.path==='server.ts'?'./':'../';updated=`import { createTenantAccessGuard } from "${prefix}src/lib/api/tenant-access.js";\n`+updated;
+if(row.path==='server.ts')updated=updated.replace('const { status } = await getClientRuntimeState();','const status = res.locals.tenantAccessStatus;');else updated=updated.replace('const { status, provider } = await getClientRuntimeState();','const status = res.locals.tenantAccessStatus;\n    const { provider } = await getClientRuntimeState();');
+outputs.push([target,updated]);}
+for(const [target,text]of outputs)fs.writeFileSync(target,text);for(const file of ['server.ts','api/index.ts','src/lib/api/tenant-access.ts']){const target=p.join(d,'copia',file);fs.mkdirSync(p.dirname(target),{recursive:true});fs.copyFileSync(p.join(root,file),target);}
+console.log('P1: dos adaptadores y guard compartido, copia sincronizada');

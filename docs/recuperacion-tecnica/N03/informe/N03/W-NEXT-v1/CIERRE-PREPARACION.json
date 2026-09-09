@@ -1,0 +1,17 @@
+{
+  "gatesImplementation": "0/4",
+  "resets": 0,
+  "records": 6,
+  "registeredNextRuntime": "NO_VERIFICADO",
+  "productUnchanged": true,
+  "result": "GREEN_PREPARACION",
+  "totalCapN03": 80,
+  "repair": "PENDIENTE_IMPLEMENTACION",
+  "usage": 79,
+  "verifiedSources": 6,
+  "proposalSha256": "7eb6ce8531286ba0f7e0212dc94ccafbb30752b41c68dcecac687e35161d2acb",
+  "warningReproduced": true,
+  "realAuthWrapper": "NO_VERIFICADO",
+  "links": 6,
+  "callbackCases": 10
+}

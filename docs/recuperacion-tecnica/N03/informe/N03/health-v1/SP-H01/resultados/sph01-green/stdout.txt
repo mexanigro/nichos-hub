@@ -1,0 +1,90 @@
+{"name":"server-default: arranque efectivo","valid":true,"evidence":{"exit":null}}
+{"name":"server-default: live sin cuota ni DB","valid":true,"evidence":{"unchanged":true,"calls":61}}
+{"name":"server-default: permitidas","valid":true,"evidence":{"codes":[200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200],"elapsed":184}}
+{"name":"server-default: carga controlada","valid":true,"evidence":{"delta":"loader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\n"}}
+{"name":"server-default: exceso429 antes de DB","valid":true,"evidence":{"codes":[429,429],"delta":""}}
+{"name":"server-default: IP independiente","valid":true,"evidence":{"code":200}}
+{"name":"server-default: cero intentos externos","valid":true,"evidence":{"audit":""}}
+{"name":"server-default: proceso terminado","valid":true,"evidence":{"exit":null,"signal":"SIGTERM"}}
+{"name":"server-configured: arranque efectivo","valid":true,"evidence":{"exit":null}}
+{"name":"server-configured: live sin cuota ni DB","valid":true,"evidence":{"unchanged":true,"calls":4}}
+{"name":"server-configured: permitidas","valid":true,"evidence":{"codes":[200,200,200],"elapsed":11}}
+{"name":"server-configured: carga controlada","valid":true,"evidence":{"delta":"loader\nread\nloader\nread\nloader\nread\n"}}
+{"name":"server-configured: exceso429 antes de DB","valid":true,"evidence":{"codes":[429,429],"delta":""}}
+{"name":"server-configured: IP independiente","valid":true,"evidence":{"code":200}}
+{"name":"server-configured: ventana configurable","valid":true,"evidence":{"code":200}}
+{"name":"server-configured: HEAD comparte cuota","valid":true,"evidence":{"codes":[200,429],"delta":""}}
+{"name":"server-configured: cero intentos externos","valid":true,"evidence":{"audit":""}}
+{"name":"server-configured: proceso terminado","valid":true,"evidence":{"exit":null,"signal":"SIGTERM"}}
+{"name":"server-failed: arranque efectivo","valid":true,"evidence":{"exit":null}}
+{"name":"server-failed: live sin cuota ni DB","valid":true,"evidence":{"unchanged":true,"calls":4}}
+{"name":"server-failed: permitidas","valid":true,"evidence":{"codes":[503,503,503],"elapsed":10}}
+{"name":"server-failed: carga controlada","valid":true,"evidence":{"delta":"loader\nread\nloader\nread\nloader\nread\n"}}
+{"name":"server-failed: exceso429 antes de DB","valid":true,"evidence":{"codes":[429,429],"delta":""}}
+{"name":"server-failed: IP independiente","valid":true,"evidence":{"code":503}}
+{"name":"server-failed: cero intentos externos","valid":true,"evidence":{"audit":""}}
+{"name":"server-failed: proceso terminado","valid":true,"evidence":{"exit":null,"signal":"SIGTERM"}}
+{"name":"server-early: arranque efectivo","valid":true,"evidence":{"exit":null}}
+{"name":"server-early: live sin cuota ni DB","valid":true,"evidence":{"unchanged":true,"calls":4}}
+{"name":"server-early: permitidas","valid":true,"evidence":{"codes":[503,503,503],"elapsed":8}}
+{"name":"server-early: carga controlada","valid":true,"evidence":{"delta":""}}
+{"name":"server-early: exceso429 antes de DB","valid":true,"evidence":{"codes":[429,429],"delta":""}}
+{"name":"server-early: IP independiente","valid":true,"evidence":{"code":503}}
+{"name":"server-early: guard funcional","valid":true,"evidence":{"code":503}}
+{"name":"server-early: cero intentos externos","valid":true,"evidence":{"audit":""}}
+{"name":"server-early: proceso terminado","valid":true,"evidence":{"exit":null,"signal":"SIGTERM"}}
+{"name":"server-late: arranque efectivo","valid":true,"evidence":{"exit":null}}
+{"name":"server-late: live sin cuota ni DB","valid":true,"evidence":{"unchanged":true,"calls":4}}
+{"name":"server-late: permitidas","valid":true,"evidence":{"codes":[503,503,503],"elapsed":8}}
+{"name":"server-late: carga controlada","valid":true,"evidence":{"delta":""}}
+{"name":"server-late: exceso429 antes de DB","valid":true,"evidence":{"codes":[429,429],"delta":""}}
+{"name":"server-late: IP independiente","valid":true,"evidence":{"code":503}}
+{"name":"server-late: guard funcional","valid":true,"evidence":{"code":503}}
+{"name":"server-late: cero intentos externos","valid":true,"evidence":{"audit":""}}
+{"name":"server-late: proceso terminado","valid":true,"evidence":{"exit":null,"signal":"SIGTERM"}}
+{"name":"api-default: arranque efectivo","valid":true,"evidence":{"exit":null}}
+{"name":"api-default: live sin cuota ni DB","valid":true,"evidence":{"unchanged":true,"calls":61}}
+{"name":"api-default: permitidas","valid":true,"evidence":{"codes":[200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200],"elapsed":177}}
+{"name":"api-default: carga controlada","valid":true,"evidence":{"delta":"loader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\nloader\nread\n"}}
+{"name":"api-default: exceso429 antes de DB","valid":true,"evidence":{"codes":[429,429],"delta":""}}
+{"name":"api-default: IP independiente","valid":true,"evidence":{"code":200}}
+{"name":"api-default: cero intentos externos","valid":true,"evidence":{"audit":""}}
+{"name":"api-default: proceso terminado","valid":true,"evidence":{"exit":null,"signal":"SIGTERM"}}
+{"name":"api-configured: arranque efectivo","valid":true,"evidence":{"exit":null}}
+{"name":"api-configured: live sin cuota ni DB","valid":true,"evidence":{"unchanged":true,"calls":4}}
+{"name":"api-configured: permitidas","valid":true,"evidence":{"codes":[200,200,200],"elapsed":10}}
+{"name":"api-configured: carga controlada","valid":true,"evidence":{"delta":"loader\nread\nloader\nread\nloader\nread\n"}}
+{"name":"api-configured: exceso429 antes de DB","valid":true,"evidence":{"codes":[429,429],"delta":""}}
+{"name":"api-configured: IP independiente","valid":true,"evidence":{"code":200}}
+{"name":"api-configured: ventana configurable","valid":true,"evidence":{"code":200}}
+{"name":"api-configured: HEAD comparte cuota","valid":true,"evidence":{"codes":[200,429],"delta":""}}
+{"name":"api-configured: cero intentos externos","valid":true,"evidence":{"audit":""}}
+{"name":"api-configured: proceso terminado","valid":true,"evidence":{"exit":null,"signal":"SIGTERM"}}
+{"name":"api-failed: arranque efectivo","valid":true,"evidence":{"exit":null}}
+{"name":"api-failed: live sin cuota ni DB","valid":true,"evidence":{"unchanged":true,"calls":4}}
+{"name":"api-failed: permitidas","valid":true,"evidence":{"codes":[503,503,503],"elapsed":9}}
+{"name":"api-failed: carga controlada","valid":true,"evidence":{"delta":"loader\nread\nloader\nread\nloader\nread\n"}}
+{"name":"api-failed: exceso429 antes de DB","valid":true,"evidence":{"codes":[429,429],"delta":""}}
+{"name":"api-failed: IP independiente","valid":true,"evidence":{"code":503}}
+{"name":"api-failed: cero intentos externos","valid":true,"evidence":{"audit":""}}
+{"name":"api-failed: proceso terminado","valid":true,"evidence":{"exit":null,"signal":"SIGTERM"}}
+{"name":"api-early: arranque efectivo","valid":true,"evidence":{"exit":null}}
+{"name":"api-early: live sin cuota ni DB","valid":true,"evidence":{"unchanged":true,"calls":4}}
+{"name":"api-early: permitidas","valid":true,"evidence":{"codes":[503,503,503],"elapsed":6}}
+{"name":"api-early: carga controlada","valid":true,"evidence":{"delta":""}}
+{"name":"api-early: exceso429 antes de DB","valid":true,"evidence":{"codes":[429,429],"delta":""}}
+{"name":"api-early: IP independiente","valid":true,"evidence":{"code":503}}
+{"name":"api-early: guard funcional","valid":true,"evidence":{"code":503}}
+{"name":"api-early: cero intentos externos","valid":true,"evidence":{"audit":""}}
+{"name":"api-early: proceso terminado","valid":true,"evidence":{"exit":null,"signal":"SIGTERM"}}
+{"name":"api-late: arranque efectivo","valid":true,"evidence":{"exit":null}}
+{"name":"api-late: live sin cuota ni DB","valid":true,"evidence":{"unchanged":true,"calls":4}}
+{"name":"api-late: permitidas","valid":true,"evidence":{"codes":[503,503,503],"elapsed":7}}
+{"name":"api-late: carga controlada","valid":true,"evidence":{"delta":""}}
+{"name":"api-late: exceso429 antes de DB","valid":true,"evidence":{"codes":[429,429],"delta":""}}
+{"name":"api-late: IP independiente","valid":true,"evidence":{"code":503}}
+{"name":"api-late: guard funcional","valid":true,"evidence":{"code":503}}
+{"name":"api-late: cero intentos externos","valid":true,"evidence":{"audit":""}}
+{"name":"api-late: proceso terminado","valid":true,"evidence":{"exit":null,"signal":"SIGTERM"}}
+{"name":"observador sensible","valid":true,"evidence":{"exit":0,"audit":"{\"blocked\":\"fetch\"}\n"}}
+{"passed":89,"failed":0}

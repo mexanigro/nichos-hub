@@ -1,0 +1,8 @@
+{
+  "firstCount": 47,
+  "pathHashDifferences": [],
+  "stage": "cierre-validaciones",
+  "error": "same-tested-sources",
+  "secondCount": 47,
+  "cause": "Comparación de arrays dependía del orden de callbacks paralelos de esbuild"
+}

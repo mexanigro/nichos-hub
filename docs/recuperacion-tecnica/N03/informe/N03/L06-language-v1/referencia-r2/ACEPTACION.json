@@ -1,0 +1,159 @@
+{
+  "passed": 17,
+  "failed": 17,
+  "checks": [
+    {
+      "name": "0:config",
+      "valid": false,
+      "error": "Expected values to be strictly equal:\n\nnull !== 'he'\n"
+    },
+    {
+      "name": "0:propagation",
+      "valid": true
+    },
+    {
+      "name": "0:conservation",
+      "valid": true
+    },
+    {
+      "name": "1:config",
+      "valid": false,
+      "error": "Expected values to be strictly equal:\n\nnull !== 'en'\n"
+    },
+    {
+      "name": "1:propagation",
+      "valid": false,
+      "error": "Expected values to be strictly equal:\n\n'he' !== 'en'\n"
+    },
+    {
+      "name": "1:conservation",
+      "valid": true
+    },
+    {
+      "name": "2:config",
+      "valid": false,
+      "error": "Expected values to be strictly equal:\n\nnull !== 'ru'\n"
+    },
+    {
+      "name": "2:propagation",
+      "valid": false,
+      "error": "Expected values to be strictly equal:\n\n'he' !== 'ru'\n"
+    },
+    {
+      "name": "2:conservation",
+      "valid": true
+    },
+    {
+      "name": "3:config",
+      "valid": false,
+      "error": "Expected values to be strictly equal:\n\nnull !== 'ar'\n"
+    },
+    {
+      "name": "3:propagation",
+      "valid": false,
+      "error": "Expected values to be strictly equal:\n\n'he' !== 'ar'\n"
+    },
+    {
+      "name": "3:conservation",
+      "valid": true
+    },
+    {
+      "name": "4:config",
+      "valid": false,
+      "error": "Expected values to be strictly equal:\n\nnull !== 'es'\n"
+    },
+    {
+      "name": "4:propagation",
+      "valid": false,
+      "error": "Expected values to be strictly equal:\n\n'he' !== 'es'\n"
+    },
+    {
+      "name": "4:conservation",
+      "valid": true
+    },
+    {
+      "name": "5:config",
+      "valid": false,
+      "error": "Expected values to be strictly equal:\n\nnull !== 'en'\n"
+    },
+    {
+      "name": "5:propagation",
+      "valid": false,
+      "error": "Expected values to be strictly equal:\n\n'he' !== 'en'\n"
+    },
+    {
+      "name": "5:conservation",
+      "valid": true
+    },
+    {
+      "name": "6:config",
+      "valid": false,
+      "error": "Expected values to be strictly equal:\n\nnull !== 'ru'\n"
+    },
+    {
+      "name": "6:propagation",
+      "valid": false,
+      "error": "Expected values to be strictly equal:\n\n'he' !== 'ru'\n"
+    },
+    {
+      "name": "6:conservation",
+      "valid": true
+    },
+    {
+      "name": "7:config",
+      "valid": false,
+      "error": "Expected values to be strictly equal:\n\nnull !== 'EN'\n"
+    },
+    {
+      "name": "7:propagation",
+      "valid": false,
+      "error": "Expected values to be strictly equal:\n\n'he' !== 'en'\n"
+    },
+    {
+      "name": "7:conservation",
+      "valid": true
+    },
+    {
+      "name": "8:config",
+      "valid": false,
+      "error": "Expected values to be strictly equal:\n\nnull !== 'bad'\n"
+    },
+    {
+      "name": "8:propagation",
+      "valid": true
+    },
+    {
+      "name": "8:conservation",
+      "valid": true
+    },
+    {
+      "name": "9:config",
+      "valid": false,
+      "error": "Expected values to be strictly equal:\n\nnull !== ''\n"
+    },
+    {
+      "name": "9:propagation",
+      "valid": true
+    },
+    {
+      "name": "9:conservation",
+      "valid": true
+    },
+    {
+      "name": "10:conservation",
+      "valid": true
+    },
+    {
+      "name": "11:conservation",
+      "valid": true
+    },
+    {
+      "name": "12:conservation",
+      "valid": true
+    },
+    {
+      "name": "13:conservation",
+      "valid": true
+    }
+  ]
+}

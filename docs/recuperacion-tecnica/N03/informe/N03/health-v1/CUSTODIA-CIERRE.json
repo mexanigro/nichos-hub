@@ -1,0 +1,82 @@
+[
+  {
+    "path": "preimagenes\\api-p1-r1.ts",
+    "bytes": 227289,
+    "sha256": "B7C2E71ACA7DD7FD55DC0DCE9E0B611FD2E7B3FA5531D2EFA111CEDB0B3F0415"
+  },
+  {
+    "path": "preimagenes\\api-pre-claridad.ts",
+    "bytes": 227163,
+    "sha256": "CDCCE0FADFE57794912E1309AE3679C51346E614FAEEC853915CF778EC87CEE7"
+  },
+  {
+    "path": "preimagenes\\api__index.ts",
+    "bytes": 227469,
+    "sha256": "3F422EEA07C15E0B49355050D5C0BD2CD7EAFD70A26A137F5DDA9D6EA92C98DD"
+  },
+  {
+    "path": "preimagenes\\arnes-r2\\api-worker.mjs",
+    "bytes": 124,
+    "sha256": "D8F502BAB44A259A16046B9E04413B3CA3AC726429ECC1A6E068AD2DB23643DF"
+  },
+  {
+    "path": "preimagenes\\arnes-r2\\firebase-fixture.mjs",
+    "bytes": 1308,
+    "sha256": "8512BE84D608D679F546BD91017B8A3B5EB67C41286DEE9573C58EED2F4DEC37"
+  },
+  {
+    "path": "preimagenes\\arnes-r2\\firebase-hooks.mjs",
+    "bytes": 270,
+    "sha256": "FCB25112E05BA0D241899E7660628966AC96216B1965E7767D467E6BE21AD522"
+  },
+  {
+    "path": "preimagenes\\arnes-r2\\preload.mjs",
+    "bytes": 2529,
+    "sha256": "1A5B6A33C0AB678FE7DAC3DD4CE3723EF3A627F62B67A6675ADE50387AAF99FC"
+  },
+  {
+    "path": "preimagenes\\arnes-r2\\runner.mjs",
+    "bytes": 5473,
+    "sha256": "925BD4621CF12ED427B150B04799D8D75B3E027E9CD4B1CFBBE9E78EA9D35D2E"
+  },
+  {
+    "path": "preimagenes\\indice-README.md",
+    "bytes": 10581,
+    "sha256": "4D0EDBE46A4FA367B0B274FE479FD2C7228A20EB4DC20CD29EC656F5BF3C4719"
+  },
+  {
+    "path": "preimagenes\\INFORME-pre-sello.md",
+    "bytes": 4383,
+    "sha256": "89A9FBB274D2D2569AA63EFA26665E5534EC2CDAAC167CDB9B9E0B56589A8295"
+  },
+  {
+    "path": "preimagenes\\N03-ficha.md",
+    "bytes": 13941,
+    "sha256": "206733CD828B0E581FDF16BB097C60CEFAF98EFAFAE0A5DD5DD0EFEEF27FB5E7"
+  },
+  {
+    "path": "preimagenes\\PLAN-pre-refutacion.md",
+    "bytes": 4465,
+    "sha256": "C4F45CC86318916FA407E035D243D2784A046D2DEDE5B525FF840718DEB9AD2C"
+  },
+  {
+    "path": "preimagenes\\runner-r1.mjs",
+    "bytes": 5442,
+    "sha256": "C6AF8742EC548457BD4D4264F43C91D24ACF4B4FEDC82443FD417EC48DB74B45"
+  },
+  {
+    "path": "preimagenes\\runner-r3.mjs",
+    "bytes": 6123,
+    "sha256": "9DDEA47DC0C91B799416109715C9F9D015237F68B5860589559169EDCE6AB16D"
+  },
+  {
+    "path": "preimagenes\\server-p1-r1.ts",
+    "bytes": 173540,
+    "sha256": "C4D012CF9D8A46BC1F20F12B0C824DAA98560F08C0DB308BFE61FCCAD07F9D55"
+  },
+  {
+    "path": "preimagenes\\server.ts",
+    "bytes": 173382,
+    "sha256": "96B96B5DDBD8084440BF91A49E83F553FB76ACF72D7AA6D88E4CBD56C755C89B"
+  }
+]

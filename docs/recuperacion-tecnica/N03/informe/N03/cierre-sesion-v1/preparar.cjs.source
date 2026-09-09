@@ -1,0 +1,53 @@
+const fs = require('node:fs');
+const path = require('node:path');
+const crypto = require('node:crypto');
+const cp = require('node:child_process');
+const root = __dirname;
+const n03 = path.dirname(root);
+const repos = { template: 'C:/Users/liama/Desktop/Nichos/Barber-shop-template-main', hub: 'C:/Users/liama/Desktop/Nichos-hub' };
+const sha = b => crypto.createHash('sha256').update(b).digest('hex');
+const norm = b => b.toString('utf8').replace(/\r\n/g, '\n');
+const git = (repo, args, input) => cp.execFileSync('git', args, {cwd: repos[repo], input, maxBuffer: 32*1024*1024});
+const write = (p,b) => { fs.mkdirSync(path.dirname(p),{recursive:true}); fs.writeFileSync(p,b); };
+const entries = [];
+function own(repo, rel, baseline, mixed) {
+  const head = git(repo,['show',`HEAD:${rel}`]);
+  const current = fs.readFileSync(path.join(repos[repo],rel));
+  const before = fs.readFileSync(path.join(n03,baseline));
+  let staged = norm(current);
+  if (mixed === 'dashboard') {
+    const without = norm(current).replace(/^ +customerEmail: prev\.customerEmail,\n/gm,'');
+    if (without !== norm(before)) throw Error(`Unexpected own delta ${rel}`);
+    let count=0;
+    staged=norm(head).replace(/^( +)customerPhone: prev\.customerPhone,\n/gm, (line, spaces) => {count++; return line+'          customerEmail: prev.customerEmail,\n';});
+    if(count!==3) throw Error('dashboard population');
+  } else if (mixed === 'locale') {
+    const block=norm(current).match(/^  tenantAccess: \{\n[\s\S]*?^  \},\n/m)?.[0];
+    if(!block || norm(current).replace(block,'')!==norm(before)) throw Error(`locale delta ${rel}`);
+    staged=norm(head).replace(/^(  dir: .*\n)/m,'$1'+block);
+  } else if(norm(head)!==norm(before)) throw Error(`Preexisting change ${repo}:${rel}`);
+  write(path.join(root,'preimagenes',repo,rel),current);
+  write(path.join(root,'indice-producto',repo,rel),staged);
+  entries.push({repo,rel,baseline:path.join(n03,baseline),baselineSha256:sha(before),workingSha256:sha(current),headBlob:git(repo,['rev-parse',`HEAD:${rel}`]).toString().trim(),stagedSha256:sha(staged),mixed:mixed||false});
+}
+for(const rel of ['server.ts','api/index.ts','tests/api-parity.test.ts']) own('template',rel,'book-v1/preimagenes/Barber-shop-template-main__'+rel.replaceAll('/','__'));
+own('template','src/services/support.ts','support-v1/preimagenes/producto__src__services__support.ts');
+for(const rel of ['src/lib/notify-agentkit.ts','src/lib/appointment-notify-client.ts']) own('template',rel,'D05-v1/preimagenes/producto-01/'+rel);
+own('template','src/components/admin/AdminDashboard.tsx','D05-v1/preimagenes/producto-01/src/components/admin/AdminDashboard.tsx','dashboard');
+for(const rel of ['src/main.tsx','src/services/tenant.ts']) own('template',rel,'L05-browser-v1/preimagenes-producto-p1/'+rel);
+for(const lang of ['ar','en','he','ru']) {const rel=`src/config/locales/${lang}.ts`; own('template',rel,'L05-browser-v1/preimagenes-producto-p1/'+rel,'locale');}
+for(const rel of ['README.md','.env.example']) own('template',rel,'clientId-v1/preimagenes-producto-p1/'+rel);
+for(const rel of ['src/app/api/api-costs/fetch/route.ts','src/app/api/appointments/[id]/cancel/route.ts','src/app/api/prospects/follow-up/route.ts','src/app/api/upload/[clientId]/route.ts','src/lib/contracts.ts','src/lib/pricing.ts']) own('hub',rel,'lint-v1/preimagenes/'+rel);
+own('hub','src/app/api/onboarding/route.ts','L06-language-v1/preimagenes-p1/src/app/api/onboarding/route.ts');
+for(const rel of ['src/lib/api/booking-handler.ts','src/lib/api/support-handler.ts','src/lib/api/stock-handlers.ts','src/lib/api/runtime-health.ts','src/lib/api/optional-services.ts','src/lib/api/tenant-access.ts','tests/booking-handler.test.ts']) {
+  const b=fs.readFileSync(path.join(repos.template,rel));
+  write(path.join(root,'preimagenes/template',rel),b);
+  write(path.join(root,'indice-producto/template',rel),norm(b));
+  entries.push({repo:'template',rel,new:true,workingSha256:sha(b),stagedSha256:sha(norm(b))});
+}
+for(const repo of Object.keys(repos)) {
+  write(path.join(root,`STATUS-INICIAL-${repo}.txt`),git(repo,['status','--short','--untracked-files=all']));
+  write(path.join(root,`DIFF-INICIAL-${repo}.patch`),git(repo,['diff','--',...entries.filter(e=>e.repo===repo).map(e=>e.rel)]));
+}
+write(path.join(root,'PROCEDENCIA-PRODUCTO.json'),JSON.stringify(entries,null,2)+'\n');
+console.log(JSON.stringify({prepared:entries.length,mixed:entries.filter(e=>e.mixed).length,productEdited:false}));

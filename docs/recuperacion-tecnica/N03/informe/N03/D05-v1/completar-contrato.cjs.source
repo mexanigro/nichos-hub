@@ -1,0 +1,32 @@
+const fs=require('fs'),p=require('path');const d=__dirname,b=p.join(d,'preimagenes','contrato-02');fs.mkdirSync(b);
+for(const f of ['runner-matriz.mjs','runner-recorridos.mjs','ejecutar.ps1'])fs.copyFileSync(p.join(d,f),p.join(b,f));
+let matrix=fs.readFileSync(p.join(d,'runner-matriz.mjs'),'utf8');
+matrix=matrix.replace("for(const runtime of ['server','api'])for", "for(const runtime of (process.argv[2]==='server'?['server']:process.argv[2]==='api'?['api']:['server','api']))for");
+matrix=matrix.replace("check(id+': sin exterior real'",`if(name==='keys'||name==='ai'){
+   let last;for(let n=0;n<23;n++)last=await request('/api/ai/chat',chat,null);
+   const before=count('ai');const excess=await request('/api/ai/chat',chat,null);
+   check(id+': límite efectivo antes del proveedor',last.status===429&&excess.status===429&&count('ai')===before,{last,excess,attempts:before});
+  }
+  check(id+': sin exterior real'`);
+matrix=matrix.replace("fs.writeFileSync('/salida/RESULTADOS.json'",`const observerEvents='/tmp/observer-events',observerAudit='/tmp/observer-audit';fs.writeFileSync(observerEvents,'');fs.writeFileSync(observerAudit,'');
+const observer=spawn(process.execPath,['--import','/control/preload-recorridos.mjs','-e',"Promise.all([fetch('https://generativelanguage.googleapis.com/control'),fetch('https://agent.invalid/control'),fetch('https://outside.invalid').catch(()=>{})])"],{env:{PATH:process.env.PATH,NODE_PATH:process.env.NODE_PATH,D05_EVENTS:observerEvents,HEALTH_AUDIT_FILE:observerAudit}});
+await new Promise(r=>observer.once('exit',r));check('observador positivo IA agente y exterior bloqueado',observer.exitCode===0&&fs.readFileSync(observerEvents,'utf8').includes('"ai"')&&fs.readFileSync(observerEvents,'utf8').includes('"agent"')&&fs.readFileSync(observerAudit,'utf8').includes('outside.invalid'),{exit:observer.exitCode,events:fs.readFileSync(observerEvents,'utf8'),audit:fs.readFileSync(observerAudit,'utf8')});
+fs.writeFileSync('/salida/RESULTADOS.json'`);
+fs.writeFileSync(p.join(d,'runner-matriz.mjs'),matrix);
+let base=fs.readFileSync(p.join(d,'runner-recorridos.mjs'),'utf8');
+base=base.replace("const ts=",`import {generateKeyPairSync,sign} from 'node:crypto';
+const {privateKey,publicKey}=generateKeyPairSync('rsa',{modulusLength:2048,publicKeyEncoding:{type:'spki',format:'pem'},privateKeyEncoding:{type:'pkcs8',format:'pem'}});fs.writeFileSync('/tmp/public.pem',publicKey);
+const enc=x=>Buffer.from(JSON.stringify(x)).toString('base64url'),now=Math.floor(Date.now()/1000);const data=enc({alg:'RS256',kid:'fixture'})+'.'+enc({sub:'synthetic-user',email:'owner@example.invalid',email_verified:true,iss:'https://securetoken.google.com/isolated',aud:'isolated',iat:now,exp:now+3600});const token=data+'.'+sign('RSA-SHA256',Buffer.from(data),privateKey).toString('base64url');
+const ts=`);
+base=base.replace("FIREBASE_PROJECT_ID:'isolated',", "FIREBASE_PROJECT_ID:'isolated',VITE_FIREBASE_PROJECT_ID:'isolated',FIREBASE_SERVICE_ACCOUNT_EMAIL:'fixture@example.invalid',FIREBASE_SERVICE_ACCOUNT_KEY:privateKey,");
+base=base.replace("const request=async(path,body)=>", "const request=async(path,body,headers={})=>");
+base=base.replace("origin:env.APP_URL},", "origin:env.APP_URL,...headers},");
+base=base.replace("currentUser:null", "currentUser:{getIdToken:async()=>token}");
+base=base.replace("request(path,JSON.parse(options.body))", "request(path,JSON.parse(options.body),options.headers)");
+base=base.replace("const appt={date:", "const appt={customerEmail:'customer@example.invalid',date:");
+base=base.replace("await Promise.all(pending);",`await sleep(100);await Promise.all(pending);await sleep(200);
+  check(runtime+': CRM email disponible llega al destinatario',events().filter(e=>e.kind==='email'&&JSON.stringify(e.to).includes('customer@example.invalid')).length>=4,events().filter(e=>e.kind==='email'));
+  const before=events().filter(e=>e.kind==='email').length;module.exports.notifyAppointmentBooked({...appt,customerEmail:undefined});await sleep(300);check(runtime+': walk-in sin email no inventa destinatario',events().filter(e=>e.kind==='email').length===before,{});
+  const dashboard=fs.readFileSync('/app/src/components/admin/AdminDashboard.tsx','utf8');check(runtime+': callers cancel/reschedule conservan email disponible',(dashboard.match(/customerEmail: prev.customerEmail/g)||[]).length>=3,{});`);
+fs.writeFileSync(p.join(d,'runner-recorridos.mjs'),base);
+let run=fs.readFileSync(p.join(d,'ejecutar.ps1'),'utf8').replace('WaitForExit(180000)','WaitForExit(360000)');fs.writeFileSync(p.join(d,'ejecutar.ps1'),run);

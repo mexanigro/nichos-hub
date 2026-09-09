@@ -1,0 +1,227 @@
+const fs = require('node:fs');
+const path = require('node:path');
+const http = require('node:http');
+const crypto = require('node:crypto');
+const vm = require('node:vm');
+const cp = require('node:child_process');
+const { createRequire } = require('node:module');
+const { installFixture } = require('./fixture.cjs');
+const template = 'C:/Users/liama/Desktop/Nichos/Barber-shop-template-main';
+const req = createRequire('C:/Users/liama/Desktop/Nichos-hub/package.json');
+const { chromium } = req('playwright');
+const esbuild = createRequire(template + '/package.json')('esbuild');
+const sha = b => crypto.createHash('sha256').update(b).digest('hex');
+const save = (file, value) => fs.writeFileSync(path.join(__dirname, file), JSON.stringify(value, null, 2), { flag: 'wx' });
+const mode = process.argv[2];
+const label = process.argv[3];
+if (!['preflight', 'test'].includes(mode) || !/^[a-z0-9-]+$/i.test(label || '')) throw Error('preflight|test label requerido');
+
+async function bundle(mutation = false) {
+  const loaded = [];
+  const stubs = {
+    firestore: `export const doc=(db,collection,id)=>({db,collection,id}); export const getDoc=r=>window.__read(r,false); export const getDocFromServer=r=>window.__read(r,true);`,
+    firebase: `export const db='synthetic-db'; export const isFirebaseConfigured=window.__scenario.firebase!==false;`,
+    env: `export const env={clientId:'synthetic-tenant',activeNiche:'barberia',uiLanguage:'en'};`,
+    app: `import React,{useLayoutEffect} from 'react';export default function App(){useLayoutEffect(()=>{window.__fixture.commits++},[]);return React.createElement('div',{'data-testid':'app'},'Controlled App mounted')}`,
+    wrappers: `export const MotionConfig=({children})=>children; export const ErrorBoundary=MotionConfig;export const ThemeProvider=MotionConfig;export const LanguageProvider=MotionConfig;`,
+    meta: `export const syncDocumentMetaFromSiteConfig=()=>{};export const applySiteThemeCssVars=()=>{};`,
+    css: '',
+  };
+  const result = await esbuild.build({ entryPoints: [template + '/src/main.tsx'], bundle: true, write: false,
+    platform: 'browser', format: 'iife', jsx: 'automatic', define: { 'import.meta.env': 'window.__viteEnv', 'process.env.NODE_ENV': '"development"' },
+    plugins: [{ name: 'controlled-dependencies', setup(build) {
+      build.onResolve({ filter: /.*/ }, args => {
+        let key;
+        if (args.path === 'firebase/firestore') key = 'firestore';
+        else if (/\/lib\/firebase$/.test(args.path)) key = 'firebase';
+        else if (/\/config\/env$/.test(args.path) || args.path === './env') key = 'env';
+        else if (args.path === './App.tsx') key = 'app';
+        else if (args.path === 'motion/react' || /(?:ErrorBoundary|ThemeProvider|LanguageContext)$/.test(args.path)) key = 'wrappers';
+        else if (/(?:useSEO|site-theme)$/.test(args.path)) key = 'meta';
+        else if (args.path.endsWith('.css')) key = 'css';
+        if (key) return { path: key, namespace: 'fixture' };
+        if (args.namespace === 'fixture') return { path: createRequire(template + '/package.json').resolve(args.path) };
+      });
+      build.onLoad({ filter: /.*/, namespace: 'fixture' }, args => ({ contents: stubs[args.path], loader: 'js', resolveDir: template }));
+      build.onLoad({ filter: /\.[tj]sx?$/ }, args => {
+        let contents = fs.readFileSync(args.path, 'utf8');
+        if (label === 'original-merge-only' && args.path.replaceAll('\\', '/').endsWith('/src/services/tenant.ts')) {
+          contents = fs.readFileSync(path.join(__dirname, 'preimagenes-producto-p1/src/services/tenant.ts'), 'utf8');
+        }
+        if (args.path.replaceAll('\\', '/').startsWith(template)) loaded.push({ path: path.relative(template, args.path), sha256: sha(contents) });
+        if (args.path.replaceAll('\\', '/').endsWith('/src/services/tenant.ts') && mutation) {
+          const guard = 'return { clientId, access: "unavailable" };';
+          if (!contents.includes(guard)) throw Error('mutacion sin ancla');
+          contents = contents.replaceAll(guard, 'return { clientId, access: "allowed", status: "active", suspended: false };');
+        }
+        if (args.path.replaceAll('\\', '/').endsWith('/src/config/site.ts')) {
+          contents = contents.replace('export function applyTenantConfigOverride(override: DeepPartial<SiteConfig>) {', 'export function applyTenantConfigOverride(override: DeepPartial<SiteConfig>) { window.__fixture.overlays.push(structuredClone(override));');
+          contents += '\nwindow.__siteSnapshot = () => structuredClone(siteConfig);';
+        }
+        return { contents, loader: args.path.endsWith('.tsx') ? 'tsx' : args.path.endsWith('.ts') ? 'ts' : 'js' };
+      });
+    } }], logLevel: 'silent' });
+  return { code: result.outputFiles[0].text, loaded };
+}
+
+async function fixtureChecks() {
+  const sandbox = { window: {}, structuredClone, setTimeout, Date, Error, Object, Promise };
+  vm.runInNewContext(`(${installFixture.toString()})(${JSON.stringify({ clients: { status: 'active' }, config: { exists: false } })})`, sandbox);
+  const ref = { db: 'synthetic-db', id: 'synthetic-tenant', collection: 'clients' };
+  const snap = await sandbox.window.__read(ref, true);
+  if (snap.data().status !== 'active' || !snap.exists()) throw Error('fixture positivo');
+  if ((await sandbox.window.__read({ ...ref, collection: 'config' }, false)).exists()) throw Error('fixture ausente');
+  sandbox.window.__scenario.clients = { error: 'permission-denied' };
+  try { await sandbox.window.__read(ref, true); throw Error('no rechazo'); } catch (e) { if (e.code !== 'permission-denied') throw e; }
+  sandbox.window.__scenario.clients = { status: 'trial', pending: true };
+  let done = false; const pending = sandbox.window.__read(ref, true).then(() => { done = true; });
+  await Promise.resolve(); if (done) throw Error('fixture pendiente');
+  sandbox.window.__fixture.pending.clients(); await pending;
+  let rejected = false; try { sandbox.window.__read({ ...ref, id: 'foreign' }, true); } catch { rejected = true; }
+  if (!rejected) throw Error('fixture selector');
+  return { active: true, absent: true, permission: true, pendingRelease: true, foreignSelector: true };
+}
+
+async function main() {
+  const syntax = [];
+  for (const file of fs.readdirSync(__dirname).filter(f => /\.(mjs|cjs)$/.test(f))) {
+    const result = cp.spawnSync(process.execPath, ['--check', path.join(__dirname, file)], { encoding: 'utf8', windowsHide: true });
+    syntax.push({ file, exit: result.status, stderr: result.stderr });
+    if (result.status !== 0) throw Error('sintaxis ' + file);
+  }
+  const fixture = await fixtureChecks();
+  if (!fs.existsSync(chromium.executablePath())) throw Error('Chromium instalado ausente');
+  const normal = await bundle(false);
+  const mutated = label.includes('mutation') ? await bundle(true) : null;
+  let currentCode = normal.code;
+  const server = http.createServer((request, response) => {
+    response.setHeader('Content-Type', request.url === '/bundle.js' ? 'text/javascript' : 'text/html');
+    response.end(request.url === '/bundle.js' ? currentCode : '<!doctype html><html><head><meta charset="UTF-8"></head><body><div id="root"></div><script src="/bundle.js"></script></body></html>');
+  });
+  await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
+  const origin = `http://127.0.0.1:${server.address().port}`;
+  const browser = await chromium.launch({ headless: true, args: ['--disable-background-networking', '--disable-component-update', '--no-first-run'] });
+  const results = [], errors = [], external = [];
+  async function open(scenario) {
+    const context = await browser.newContext({ serviceWorkers: 'block' });
+    await context.route('**/*', route => {
+      if (new URL(route.request().url()).origin === origin) return route.continue();
+      external.push(route.request().url()); return route.abort('blockedbyclient');
+    });
+    await context.addInitScript(installFixture, scenario);
+    const page = await context.newPage();
+    page.on('pageerror', e => errors.push(String(e)));
+    await page.clock.install({ time: new Date('2026-01-01T00:00:00Z') });
+    await page.clock.pauseAt(new Date('2026-01-01T00:00:01Z'));
+    await page.goto(origin);
+    await page.evaluate(() => new Promise(resolve => queueMicrotask(resolve)));
+    return { page, context };
+  }
+  async function observe(page) {
+    await page.clock.runFor(1);
+    return page.evaluate(() => ({ app: document.querySelectorAll('[data-testid="app"]').length,
+      text: document.getElementById('root').textContent, button: document.querySelectorAll('#root button').length,
+      reads: window.__fixture.reads, overlays: window.__fixture.overlays, commits: window.__fixture.commits,
+      site: window.__siteSnapshot(), now: Date.now() }));
+  }
+  function check(name, ok, detail) { results.push({ name, pass: Boolean(ok), detail }); }
+  try {
+    // Control del renderer/DOM y dependencias antes de ejecutar el contrato de producto.
+    const control = await open({ firebase: false });
+    await control.page.evaluate(async () => {
+      const root = document.createElement('div'); root.id = 'renderer-control'; document.body.appendChild(root);
+    });
+    const rendererCode = await esbuild.build({ stdin: { contents: "import React from 'react';import {createRoot} from 'react-dom/client';createRoot(document.getElementById('renderer-control')).render(React.createElement('b',{id:'renderer-positive'},'OK'));", resolveDir: 'C:/Users/liama/Desktop/Nichos-hub' }, bundle: true, write: false, platform: 'browser', define: { 'process.env.NODE_ENV': '"development"' }, logLevel: 'silent' });
+    await control.page.addScriptTag({ content: rendererCode.outputFiles[0].text });
+    await control.page.waitForSelector('#renderer-positive');
+    await control.context.close();
+    const preflight = { syntax, fixture, importsResolved: true, browser: browser.version(), executable: chromium.executablePath(), rendererControl: true, loaded: normal.loaded };
+    save(`PREFLIGHT-${label}.json`, preflight);
+    if (mode === 'preflight') { console.log(JSON.stringify({ preflight: true, files: normal.loaded.length })); return; }
+    if (mutated) currentCode = mutated.code;
+    if (!label.endsWith('merge-only')) {
+    const cases = [
+      ...['active','trial','maintenance'].map(status => ({ name: status, clients: { status }, expected: 'app' })),
+      ...['suspended','archived'].map(status => ({ name: status, clients: { status }, config: { pending: true }, expected: 'blocked' })),
+      { name: 'no-firebase', firebase: false, expected: 'unavailable' },
+      { name: 'missing', clients: { exists: false }, expected: 'unavailable' },
+      ...[undefined,null,'','ACTIVE',' active ','unknown',5].map((status,i) => ({ name: 'invalid-'+i, clients: { status }, expected: 'unavailable' })),
+      ...['permission-denied','unavailable'].map(error => ({ name: error, clients: { error }, expected: 'unavailable' })),
+      { name: 'snapshot-error', clients: { dataError: true }, expected: 'unavailable' },
+      { name: 'sync-error', clients: { syncError: true }, expected: 'unavailable' },
+      { name: 'cached-active-server-failed', clients: { error:'unavailable', cachedStatus:'active' }, expected:'unavailable' },
+      { name: 'config-before-denial', clients: { status:'suspended' }, config:{data:{business:{type:'barberia'},hero:{titlePrefix:'FORBIDDEN'}}}, expected:'blocked' },
+      ...[{error:'permission-denied'},{exists:false},{dataError:true},{syncError:true}].map((config,i) => ({ name: 'optional-'+i, clients:{status:'active'},config,expected:'app' })),
+    ];
+    for (const c of cases) {
+      const { page, context } = await open(c);
+      const s = await observe(page);
+      check(c.name, c.expected === 'app' ? s.app === 1 && s.commits > 0 : c.expected === 'blocked' ? !s.app && s.text.includes('suspended') && !s.button : !s.app && s.button === 1, s);
+      check(c.name+'-selector', c.firebase === false ? s.reads.length === 0 : s.reads.length === 2 && s.reads[0].collection === 'clients' && s.reads[0].server && !s.reads[1].server, s.reads);
+      if (c.expected !== 'app') check(c.name+'-no-overlay', s.overlays.length === 0, s.overlays);
+      await context.close();
+    }
+    for (const target of ['clients','config']) {
+      const scenario = { clients: { status: 'active' }, config: { data: { business: { type:'barberia' }, hero: { titlePrefix: 'LATE' } } } };
+      scenario[target].pending = true;
+      const { page, context } = await open(scenario);
+      const initial = await observe(page);
+      check(target+'-waiting', !initial.app && initial.text.includes('Loading'), initial);
+      await page.clock.runFor(1498);
+      const before = await page.evaluate(() => document.querySelectorAll('[data-testid="app"]').length);
+      check(target+'-before-deadline', before === 0, before);
+      await page.clock.runFor(2);
+      const end = await observe(page);
+      check(target+'-deadline', target === 'clients' ? !end.app && end.button === 1 : end.app === 1 && end.overlays.length === 0, end);
+      await page.evaluate(target => window.__fixture.pending[target](), target);
+      await page.clock.runFor(5000);
+      const late = await observe(page);
+      check(target+'-late-no-effects', late.app === end.app && JSON.stringify(late.overlays) === JSON.stringify(end.overlays) && late.reads.length === 2, late);
+      await context.close();
+    }
+    // Ambos plazos corren desde el inicio: config vence a1500, no1500 después de estado.
+    for (const delay of [1000,1490,1510]) {
+      const { page, context } = await open({ clients: { status:'active', delay }, config: { pending:true } });
+      await page.clock.runFor(1505);
+      const s = await observe(page);
+      check('parallel-'+delay, delay < 1500 ? s.app === 1 && s.overlays.length === 0 : !s.app && s.button === 1, s);
+      await page.clock.runFor(100);
+      const late = await observe(page); check('status-late-'+delay, late.app === s.app, late.app);
+      await context.close();
+    }
+    // Config resuelta pronto permanece utilizable mientras estado llega dentro de su plazo.
+    const early = await open({clients:{status:'trial',delay:1000}, config:{data:{business:{type:'barberia'},hero:{titlePrefix:'EARLY'}}}});
+    await early.page.clock.runFor(1001); const es = await observe(early.page);
+    check('early-config', es.app === 1 && es.site.hero.titlePrefix === 'EARLY', es); await early.context.close();
+    // Recarga real mediante botón; luego una segunda recarga pierde el permiso anterior.
+    const reload = await open({ clients:{error:'unavailable'} });
+    await reload.page.evaluate(() => { window.__scenario.clients = {status:'active'}; });
+    await reload.page.clock.runFor(5000);
+    check('no-polling', (await observe(reload.page)).reads.length === 2, await observe(reload.page));
+    await reload.context.addInitScript(() => { window.__scenario.clients = {status:'active'}; });
+    if (await reload.page.locator('#root button').count()) {
+      await Promise.all([reload.page.waitForEvent('load'), reload.page.locator('#root button').click()]);
+      const recovered = await observe(reload.page); check('manual-reload', recovered.app === 1 && recovered.reads.length === 2, recovered);
+      await reload.context.addInitScript(() => { window.__scenario.clients = {status:'suspended'}; });
+      await reload.page.reload(); const revoked = await observe(reload.page);
+      check('no-permission-across-reloads', !revoked.app && revoked.text.includes('suspended'), revoked);
+    } else check('manual-reload', false, 'boton ausente');
+    await reload.context.close();
+    }
+    // Merge real de site.ts, normalización y filtros del tenant.
+    for (const kind of ['matching','mismatch','missing-type','disabled']) {
+      const data = { business:{type:kind === 'mismatch' ? 'tattoo' : 'barber'}, hero:{titlePrefix:'SAFE'}, gallery:[{src:'a'},{url:'b'},' c ',null], sections:{gallery:{images:[{url:'nested'}]}}, services:[], features:{showHero:false}, hours:{monday:{start:'09:00',end:'10:00'}} };
+      if (kind === 'missing-type') delete data.business;
+      const { page, context } = await open({clients:{status:'active'},config:{data},disableOverlay:kind === 'disabled' ? 'true' : ''});
+      const s = await observe(page);
+      check('merge-'+kind, s.app === 1 && (kind === 'disabled' ? s.overlays.length === 0 : s.site.business.type === (kind === 'matching' ? 'barber' : 'barberia') && s.site.hero.titlePrefix === 'SAFE' && JSON.stringify(s.site.gallery) === JSON.stringify(['a','b',' c ']) && s.site.sections.gallery.images[0] === 'nested' && s.site.features.showHero === false && (kind === 'matching' ? s.site.services.length === 0 : s.site.services.length > 0)), s);
+      await context.close();
+    }
+    check('no-page-errors', errors.length === 0, errors);
+    check('no-external-attempts', external.length === 0, external);
+    save(`RESULTADOS-${label}.json`, { label, mutation: Boolean(mutated), results, passed: results.filter(x=>x.pass).length, failed: results.filter(x=>!x.pass).length, errors, external, loaded: normal.loaded });
+    console.log(JSON.stringify({ label, passed: results.filter(x=>x.pass).length, failed: results.filter(x=>!x.pass).map(x=>x.name) }));
+    process.exitCode = results.some(x=>!x.pass) ? 1 : 0;
+  } finally { await browser.close(); await new Promise(resolve => server.close(resolve)); }
+}
+main().catch(error => { save(`INSTRUMENTO-FALLO-${label}.json`, { error: String(error), stack:error.stack }); console.error(error); process.exitCode=2; });

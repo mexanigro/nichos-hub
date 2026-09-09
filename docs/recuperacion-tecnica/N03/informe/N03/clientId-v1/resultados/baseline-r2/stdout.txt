@@ -1,0 +1,1 @@
+{"passed":16,"failed":[{"name":"api-mirrors:auth-reject","valid":false,"evidence":{"status":200,"body":{"success":true,"agentNotified":true}}},{"name":"api-mirrors:rejected-no-effect","valid":false}]}

@@ -1,0 +1,100 @@
+// N03 appointment-notify-auth-v1: reutiliza íntegramente montaje, preload y fixture de clientId-v1.
+import fs from 'node:fs';
+import vm from 'node:vm';
+import {spawn,spawnSync} from 'node:child_process';
+import {createRequire} from 'node:module';
+import {generateKeyPairSync,sign} from 'node:crypto';
+const selection=process.argv[2], checks=[], observations=[];
+const check=(name,valid,evidence)=>checks.push({name,valid,evidence});
+const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+for(const name of fs.readdirSync('/control').filter(n=>/\.(mjs|cjs)$/.test(n))){
+ const r=spawnSync(process.execPath,['--check','/control/'+name],{encoding:'utf8'});
+ if(r.status!==0)throw Error('syntax '+name+': '+r.stderr);
+}
+const require=createRequire('/app/package.json');
+for(const name of ['tsx','express','typescript'])require.resolve(name);
+process.env.D05_EVENTS='/tmp/auth-preflight-events';fs.writeFileSync(process.env.D05_EVENTS,'');
+const fixture=await import('./fixture-recorridos.mjs');
+if(fixture.readRecord('clients/tenant-control')?.status!=='active'||fixture.readRecord('missing'))throw Error('fixture read');
+await fixture.getFirestore().collection('preflight').doc('auth').set({ok:true});
+if(fixture.readRecord('preflight/auth')?.ok!==true)throw Error('fixture write');
+const ts=require('typescript');
+const compiled=ts.transpileModule(fs.readFileSync('/app/src/lib/appointment-notify-client.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022},reportDiagnostics:true});
+if(compiled.diagnostics?.some(d=>d.category===ts.DiagnosticCategory.Error))throw Error('consumer compile');
+new vm.Script(compiled.outputText);
+fs.writeFileSync('/salida/PREFLIGHT.json',JSON.stringify({syntax:true,dependencies:true,fixture:true,consumer:true,network:'none'}));
+if(selection==='preflight')process.exit(0);
+const {privateKey,publicKey}=generateKeyPairSync('rsa',{modulusLength:2048,publicKeyEncoding:{type:'spki',format:'pem'},privateKeyEncoding:{type:'pkcs8',format:'pem'}});
+fs.writeFileSync('/tmp/public.pem',publicKey);
+const enc=x=>Buffer.from(JSON.stringify(x)).toString('base64url');
+function tokenFor(email,verified=true){
+ const now=Math.floor(Date.now()/1000);
+ const data=enc({alg:'RS256',kid:'fixture'})+'.'+enc({sub:'synthetic-user',email,email_verified:verified,iss:'https://securetoken.google.com/isolated',aud:'isolated',iat:now,exp:now+3600});
+ return data+'.'+sign('RSA-SHA256',Buffer.from(data),privateKey).toString('base64url');
+}
+const token=tokenFor('owner@example.invalid');
+const adverse=[['missing',undefined,401],['invalid','invalid-token',401],['foreign-tenant',tokenFor('foreign@example.invalid'),403],['unlisted',tokenFor('missing@example.invalid'),403],['unverified',tokenFor('owner@example.invalid',false),403]];
+const effects=new Set(['agent','email','email-payload','write','rest-write','commit','ai']);
+for(const runtime of ['server','api'])for(const agent of ['true','false']){
+ const key=runtime+'-agent-'+agent,port=runtime==='server'?3000:3001;
+ const eventsFile='/tmp/auth-events-'+key,auditFile='/tmp/auth-audit-'+key;
+ fs.writeFileSync(eventsFile,'');fs.writeFileSync(auditFile,'');
+ const env={PATH:process.env.PATH,HOME:'/tmp',TMPDIR:'/tmp',NODE_PATH:process.env.NODE_PATH,TSX_DISABLE_CACHE:'1',NODE_ENV:'production',APP_URL:'http://isolated.invalid',CLIENT_ID:'tenant-control',FIREBASE_PROJECT_ID:'isolated',VITE_FIREBASE_PROJECT_ID:'isolated',FIREBASE_SERVICE_ACCOUNT_EMAIL:'fixture@example.invalid',FIREBASE_SERVICE_ACCOUNT_KEY:privateKey,FIREBASE_ADMIN_PROJECT_ID:'isolated',FIREBASE_ADMIN_CLIENT_EMAIL:'fixture@example.invalid',FIREBASE_ADMIN_PRIVATE_KEY:'synthetic-fixture',EMAIL_PROVIDER_API_KEY:'re_synthetic',BUSINESS_OWNER_EMAIL:'owner@example.invalid',BUSINESS_OWNER_PHONE:'+972500000000',WHATSAPP_AGENT_URL:'https://agent.invalid',AGENT_API_SECRET:'synthetic-secret',AGENT_ENABLED:agent,D05_EVENTS:eventsFile,HEALTH_AUDIT_FILE:auditFile};
+ const child=spawn(process.execPath,['--import','/app/node_modules/tsx/dist/loader.mjs','--import','/control/preload-auth.mjs',runtime==='server'?'/app/server.ts':'/control/api-worker.mjs'],{env,cwd:'/app'});
+ let stdout='',stderr='';child.stdout.on('data',b=>stdout+=b);child.stderr.on('data',b=>stderr+=b);
+ const events=()=>fs.readFileSync(eventsFile,'utf8').trim().split('\n').filter(Boolean).map(JSON.parse);
+ const request=async(body,credential,origin=env.APP_URL)=>{
+  const r=await fetch(`http://127.0.0.1:${port}/api/appointment/notify`,{method:'POST',headers:{'content-type':'application/json',origin,...(credential?{authorization:'Bearer '+credential}:{})},body:JSON.stringify(body),signal:AbortSignal.timeout(5000)});
+  return {status:r.status,body:await r.json()};
+ };
+ try{
+  let up=false;for(let n=0;n<900;n++){if(child.exitCode!==null)break;try{if((await fetch(`http://127.0.0.1:${port}/api/live`)).ok){up=true;break;}}catch{}await sleep(50);}
+  check(key+':startup',up);if(!up)throw Error('startup');
+  const appt={appointmentId:'appt-control',date:'2026-12-20',time:'12:00',serviceName:'Haircut',customerName:'Control',customerPhone:'+972500000001',customerEmail:'customer@example.invalid'};
+  // Ejecuta los exports reales del consumidor; conserva su cuerpo y encabezado hacia HTTP local.
+  const calls=[],exports={};
+  vm.runInNewContext(compiled.outputText,{exports,require:name=>{if(name!=='./firebase')throw Error('consumer import '+name);return {auth:{currentUser:{getIdToken:async()=>token}}};},fetch:async(url,options)=>{calls.push({url,options});return {ok:true};},console});
+  exports.notifyAppointmentBooked(appt);
+  exports.notifyAppointmentCancelled(appt,'Control');
+  exports.notifyAppointmentRescheduled({...appt,time:'11:00'},appt);
+  await sleep(0);
+  check(key+':consumer',calls.length===3&&calls.every(c=>c.url==='/api/appointment/notify'&&c.options.method==='POST'&&c.options.headers.Authorization==='Bearer '+token));
+  if(calls.length!==3)throw Error('consumer calls');
+  for(const call of calls){
+   const body=JSON.parse(call.options.body),action=body.action;
+   const run=async(name,credential,status,origin)=>{
+    const before=events().length,response=await request(body,credential,origin);await sleep(150);
+    const emitted=events().slice(before).filter(e=>effects.has(e.kind));
+    observations.push({runtime,agent,action,case:name,request:body,response,effects:emitted});
+    check(key+':'+action+':'+name+':status',response.status===status,response);
+    if(name==='legitimate'){
+     check(key+':'+action+':success',response.body.success===true);
+     check(key+':'+action+':observer',agent==='true'?emitted.some(e=>e.kind==='agent'&&e.authCorrect===true&&e.clientId==='tenant-control'):emitted.some(e=>e.kind==='email'),emitted);
+     if(agent==='false')check(key+':'+action+':agent-disabled',!emitted.some(e=>e.kind==='agent'));
+     if(selection!=='baseline'&&selection!=='reference'){
+      const baseline=JSON.parse(fs.readFileSync('/control/resultados/auth-reference-v1/OBSERVACIONES.json','utf8')).find(x=>x.runtime===runtime&&x.agent===agent&&x.action===action&&x.case==='legitimate');
+      if(!baseline)throw Error('missing reference');
+      check(key+':'+action+':preservation',JSON.stringify({request:body,response,effects:emitted})===JSON.stringify({request:baseline.request,response:baseline.response,effects:baseline.effects}));
+     }
+    }else{
+     check(key+':'+action+':'+name+':no-effects',emitted.length===0,emitted);
+     if(name!=='foreign-origin')check(key+':'+action+':'+name+':generic-body',JSON.stringify(response.body)===JSON.stringify({error:status===401?'Unauthorized':'Forbidden'}),response.body);
+    }
+   };
+   await run('legitimate',call.options.headers.Authorization.slice(7),200);
+   if(selection!=='reference'){
+    for(const [name,credential,status] of adverse)await run(name,credential,status);
+    await run('foreign-origin',token,403,'https://foreign.invalid');
+   }
+  }
+  check(key+':no-external',fs.readFileSync(auditFile,'utf8')==='');
+ }catch(error){check(key+':instrument',false,String(error));}
+ finally{
+  child.kill('SIGTERM');await new Promise(resolve=>child.exitCode!==null||child.signalCode!==null?resolve():child.once('exit',resolve));
+  fs.writeFileSync('/salida/'+key+'.stdout.txt',stdout);fs.writeFileSync('/salida/'+key+'.stderr.txt',stderr);fs.copyFileSync(eventsFile,'/salida/'+key+'.events.jsonl');
+ }
+}
+fs.writeFileSync('/salida/OBSERVACIONES.json',JSON.stringify(observations,null,2));
+fs.writeFileSync('/salida/RESULTADOS.json',JSON.stringify(checks,null,2));
+console.log(JSON.stringify({passed:checks.filter(c=>c.valid).length,failed:checks.filter(c=>!c.valid).map(c=>c.name)}));
+process.exitCode=checks.every(c=>c.valid)?0:1;

@@ -1,0 +1,16 @@
+{
+  "result": "GREEN",
+  "gates": [
+    "P0",
+    "P1",
+    "P2",
+    "P3"
+  ],
+  "total": 4,
+  "usage": 75,
+  "totalCeiling": 80,
+  "resets": 0,
+  "awaitingUserReview": true,
+  "N03": "en_curso",
+  "closureSha256": "e6676c9deae6a12b70e4c9ecd6e9d6d76e0588567b15feb6d1bbf57c5b000383"
+}

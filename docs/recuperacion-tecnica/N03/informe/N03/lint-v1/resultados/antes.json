@@ -1,0 +1,251 @@
+{
+  "passed": 61,
+  "failed": 0,
+  "checks": [
+    {
+      "label": "texto/version en/solo_web",
+      "valid": true
+    },
+    {
+      "label": "texto/version en/web_crm",
+      "valid": true
+    },
+    {
+      "label": "texto/version en/completo",
+      "valid": true
+    },
+    {
+      "label": "texto/version en/base",
+      "valid": true
+    },
+    {
+      "label": "texto/version en/pro",
+      "valid": true
+    },
+    {
+      "label": "texto/version en/enterprise",
+      "valid": true
+    },
+    {
+      "label": "texto/version es/solo_web",
+      "valid": true
+    },
+    {
+      "label": "texto/version es/web_crm",
+      "valid": true
+    },
+    {
+      "label": "texto/version es/completo",
+      "valid": true
+    },
+    {
+      "label": "texto/version es/base",
+      "valid": true
+    },
+    {
+      "label": "texto/version es/pro",
+      "valid": true
+    },
+    {
+      "label": "texto/version es/enterprise",
+      "valid": true
+    },
+    {
+      "label": "texto/version ru/solo_web",
+      "valid": true
+    },
+    {
+      "label": "texto/version ru/web_crm",
+      "valid": true
+    },
+    {
+      "label": "texto/version ru/completo",
+      "valid": true
+    },
+    {
+      "label": "texto/version ru/base",
+      "valid": true
+    },
+    {
+      "label": "texto/version ru/pro",
+      "valid": true
+    },
+    {
+      "label": "texto/version ru/enterprise",
+      "valid": true
+    },
+    {
+      "label": "texto/version he/solo_web",
+      "valid": true
+    },
+    {
+      "label": "texto/version he/web_crm",
+      "valid": true
+    },
+    {
+      "label": "texto/version he/completo",
+      "valid": true
+    },
+    {
+      "label": "texto/version he/base",
+      "valid": true
+    },
+    {
+      "label": "texto/version he/pro",
+      "valid": true
+    },
+    {
+      "label": "texto/version he/enterprise",
+      "valid": true
+    },
+    {
+      "label": "texto/version ar/solo_web",
+      "valid": true
+    },
+    {
+      "label": "texto/version ar/web_crm",
+      "valid": true
+    },
+    {
+      "label": "texto/version ar/completo",
+      "valid": true
+    },
+    {
+      "label": "texto/version ar/base",
+      "valid": true
+    },
+    {
+      "label": "texto/version ar/pro",
+      "valid": true
+    },
+    {
+      "label": "texto/version ar/enterprise",
+      "valid": true
+    },
+    {
+      "label": "texto/version unknown/solo_web",
+      "valid": true
+    },
+    {
+      "label": "texto/version unknown/web_crm",
+      "valid": true
+    },
+    {
+      "label": "texto/version unknown/completo",
+      "valid": true
+    },
+    {
+      "label": "texto/version unknown/base",
+      "valid": true
+    },
+    {
+      "label": "texto/version unknown/pro",
+      "valid": true
+    },
+    {
+      "label": "texto/version unknown/enterprise",
+      "valid": true
+    },
+    {
+      "label": "conservación amounts",
+      "valid": true
+    },
+    {
+      "label": "conservación payment",
+      "valid": true
+    },
+    {
+      "label": "conservación tiers",
+      "valid": true
+    },
+    {
+      "label": "conservación constants",
+      "valid": true
+    },
+    {
+      "label": "conservación langs",
+      "valid": true
+    },
+    {
+      "label": "GET conserva /owner/false",
+      "valid": true
+    },
+    {
+      "label": "GET oráculo /owner/false",
+      "valid": true
+    },
+    {
+      "label": "GET conserva ?pending=true/owner/false",
+      "valid": true
+    },
+    {
+      "label": "GET oráculo ?pending=true/owner/false",
+      "valid": true
+    },
+    {
+      "label": "GET conserva ?status=web_sent/owner/false",
+      "valid": true
+    },
+    {
+      "label": "GET oráculo ?status=web_sent/owner/false",
+      "valid": true
+    },
+    {
+      "label": "GET conserva ?status=web_sent&pending=true/owner/false",
+      "valid": true
+    },
+    {
+      "label": "GET oráculo ?status=web_sent&pending=true/owner/false",
+      "valid": true
+    },
+    {
+      "label": "GET conserva ?status=unknown/owner/false",
+      "valid": true
+    },
+    {
+      "label": "GET oráculo ?status=unknown/owner/false",
+      "valid": true
+    },
+    {
+      "label": "GET conserva ?pending=false/owner/false",
+      "valid": true
+    },
+    {
+      "label": "GET oráculo ?pending=false/owner/false",
+      "valid": true
+    },
+    {
+      "label": "GET conserva /null/false",
+      "valid": true
+    },
+    {
+      "label": "GET oráculo /null/false",
+      "valid": true
+    },
+    {
+      "label": "GET conserva /lead/false",
+      "valid": true
+    },
+    {
+      "label": "GET oráculo /lead/false",
+      "valid": true
+    },
+    {
+      "label": "GET conserva /seller/false",
+      "valid": true
+    },
+    {
+      "label": "GET oráculo /seller/false",
+      "valid": true
+    },
+    {
+      "label": "GET conserva /owner/true",
+      "valid": true
+    },
+    {
+      "label": "GET oráculo /owner/true",
+      "valid": true
+    }
+  ],
+  "limits": "GET registered declaration + actual withRole/withOwner extracted by AST; controlled session/DB/NextResponse; no provider imports or real effects. Contract strings compared exactly."
+}

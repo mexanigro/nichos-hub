@@ -1,0 +1,52 @@
+[
+  {
+    "file": "aceptacion-unidad.cjs",
+    "exit": 0,
+    "stderr": ""
+  },
+  {
+    "file": "api-worker.mjs",
+    "exit": 0,
+    "stderr": ""
+  },
+  {
+    "file": "firebase-hooks.mjs",
+    "exit": 0,
+    "stderr": ""
+  },
+  {
+    "file": "fixture.mjs",
+    "exit": 0,
+    "stderr": ""
+  },
+  {
+    "file": "preload-l05.mjs",
+    "exit": 0,
+    "stderr": ""
+  },
+  {
+    "file": "preload.mjs",
+    "exit": 0,
+    "stderr": ""
+  },
+  {
+    "file": "registrar.cjs",
+    "exit": 0,
+    "stderr": ""
+  },
+  {
+    "file": "runner.mjs",
+    "exit": 0,
+    "stderr": ""
+  },
+  {
+    "file": "sondeo-pendiente.cjs",
+    "exit": 0,
+    "stderr": ""
+  },
+  {
+    "file": "sondeo.cjs",
+    "exit": 0,
+    "stderr": ""
+  }
+]

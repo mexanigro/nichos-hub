@@ -1,0 +1,110 @@
+{
+  "result": "RED",
+  "instrumentExit": 0,
+  "cases": 10,
+  "checks": [
+    {
+      "case": 0,
+      "criterion": "config conserva idioma hub",
+      "valid": false
+    },
+    {
+      "case": 0,
+      "criterion": "payload de idioma",
+      "valid": true
+    },
+    {
+      "case": 1,
+      "criterion": "config conserva idioma hub",
+      "valid": false
+    },
+    {
+      "case": 1,
+      "criterion": "payload de idioma",
+      "valid": false
+    },
+    {
+      "case": 2,
+      "criterion": "config conserva idioma hub",
+      "valid": false
+    },
+    {
+      "case": 2,
+      "criterion": "payload de idioma",
+      "valid": false
+    },
+    {
+      "case": 3,
+      "criterion": "config conserva idioma hub",
+      "valid": false
+    },
+    {
+      "case": 3,
+      "criterion": "payload de idioma",
+      "valid": false
+    },
+    {
+      "case": 4,
+      "criterion": "config conserva idioma hub",
+      "valid": false
+    },
+    {
+      "case": 4,
+      "criterion": "payload de idioma",
+      "valid": false
+    },
+    {
+      "case": 5,
+      "criterion": "config conserva idioma hub",
+      "valid": false
+    },
+    {
+      "case": 5,
+      "criterion": "payload de idioma",
+      "valid": false
+    },
+    {
+      "case": 6,
+      "criterion": "config conserva idioma hub",
+      "valid": false
+    },
+    {
+      "case": 6,
+      "criterion": "payload de idioma",
+      "valid": false
+    },
+    {
+      "case": 7,
+      "criterion": "config conserva idioma hub",
+      "valid": false
+    },
+    {
+      "case": 7,
+      "criterion": "payload de idioma",
+      "valid": false
+    },
+    {
+      "case": 8,
+      "criterion": "config conserva idioma hub",
+      "valid": false
+    },
+    {
+      "case": 8,
+      "criterion": "payload de idioma",
+      "valid": true
+    },
+    {
+      "case": 9,
+      "criterion": "config conserva idioma hub",
+      "valid": false
+    },
+    {
+      "case": 9,
+      "criterion": "payload de idioma",
+      "valid": true
+    }
+  ],
+  "expectedFailures": 17,
+  "externalCalls": 0,
+  "aiAttempts": 0
+}

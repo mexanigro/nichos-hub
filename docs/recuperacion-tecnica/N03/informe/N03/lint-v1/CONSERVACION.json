@@ -1,0 +1,41 @@
+{
+  "valid": true,
+  "checks": [
+    {
+      "name": "src/app/api/api-costs/fetch/route.ts sólo cambio autorizado AST",
+      "valid": true
+    },
+    {
+      "name": "src/app/api/appointments/[id]/cancel/route.ts sólo cambio autorizado AST",
+      "valid": true
+    },
+    {
+      "name": "src/app/api/prospects/follow-up/route.ts sólo cambio autorizado AST",
+      "valid": true
+    },
+    {
+      "name": "src/app/api/upload/[clientId]/route.ts sólo cambio autorizado AST",
+      "valid": true
+    },
+    {
+      "name": "freeze CONTRATO.md",
+      "valid": true
+    },
+    {
+      "name": "freeze FREEZE.md",
+      "valid": true
+    },
+    {
+      "name": "freeze acceptance.cjs",
+      "valid": true
+    },
+    {
+      "name": "freeze tsconfig.json",
+      "valid": true
+    },
+    {
+      "name": "332 fuentes template/entregas aceptadas sin deriva",
+      "valid": true
+    }
+  ]
+}

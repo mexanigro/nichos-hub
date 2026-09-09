@@ -1,0 +1,45 @@
+const fs=require('node:fs'),p=require('node:path'),c=require('node:crypto');const root='C:/Users/liama/Desktop/Nichos/recuperacion-tecnica',d=__dirname,template='C:/Users/liama/Desktop/Nichos/Barber-shop-template-main';const hash=b=>c.createHash('sha256').update(b).digest('hex');
+function write(file,text){fs.mkdirSync(p.dirname(file),{recursive:true});fs.writeFileSync(file,text.replace(/\r?\n/g,'\r\n'),{flag:'wx'})}
+const server=p.join(root,'informe/N03/L05-v1');const reviewedHash=hash(fs.readFileSync(p.join(server,'CIERRE-LOCAL.md')));if(reviewedHash!=='e4054b4eb24ad2807350ab5c00aca71d8c9f16b74ad1ca415ea54f104038a4e0')throw Error('objeto externo distinto');
+write(p.join(server,'ACEPTACION-USUARIO.md'),`# Aceptación de L05 servidor
+
+Liam acepta expresamente L05 servidor como GREEN local en la orden de continuar exclusivamente con preparación de navegador. N03 sigue en curso. Se integra esta aceptación sin reescribir cierre/evidencias. Techo80% TOTAL N03, sin resets.
+
+La revisión externa fue trasladada después por Liam, en respuesta a consulta de procedencia. Véase REVISION-EXTERNA-TRASLADADA.md. Es distinta de la revisión interna de Harvey y no se suman sus pruebas a los resultados ejecutados por el integrador. No se repite L05 servidor.
+`);
+write(p.join(server,'REVISION-EXTERNA-TRASLADADA.md'),`# Revisión externa trasladada por Liam
+
+Procedencia: conversación de Liam «Supervisar revisión N03», revisión realizada por el segundo pensamiento. No existía archivo previo. Este texto registra el resumen que Liam trasladó en la conversación actual, no acceso directo del integrador a aquella conversación ni a resultados crudos externos. Se mantiene separado de REVISION-CIERRE.md (revisión interna de /root/refutar_soporte, Harvey).
+
+Veredicto trasladado: recomienda aceptar L05 servidor como GREEN exclusivamente local, sin defectos materiales encontrados. La aceptación de Liam ya está dada.
+
+Comprobaciones comunicadas por Liam: lectura del guard y comparación de ambos runtimes contra preimágenes; separación entre acceso, estado público y proveedores; tipos repetidos exit0;24 controles temporales repetidos sobre módulo actual con resultados en memoria;8 escenarios independientes por HTTP local con guard real (estados, excepción del lector, concurrencia, timeout compartido y tardía);3 fuentes finales coincidentes con copia probada y330 fuentes previas conservadas. Revisó registros de105 controles HTTP, sin afirmar haber repetido los105 completos.
+
+Consideró legítima la corrección de oráculo: tranzila no está admitido por la lista real; cardcom comprobado en original/final y fallo anterior conservado. Límites trasladados: navegador y Firestore directo pendientes;1500ms limita verificación de acceso, no toda operación posterior ni cancela SDK.
+
+Objeto revisado según Liam: L05-v1/CIERRE-LOCAL.md, SHA256 e4054b4eb24ad2807350ab5c00aca71d8c9f16b74ad1ca415ea54f104038a4e0. El integrador calculó la huella local actual y confirmó coincidencia exacta en esta continuación. No volvió a ejecutar tipos, controles temporales ni HTTP del servidor para integrar este resumen. La procedencia indirecta y los resultados en memoria se conservan explícitos; no inventar archivos de evidencia externa.
+`);
+const previous=JSON.parse(fs.readFileSync(p.join(root,'informe/N03/D05-v1/FUENTES-FINALES-r2.json'),'utf8'));const latest=JSON.parse(fs.readFileSync(p.join(server,'FUENTES-FINALES-L05.json'),'utf8'));const combined=new Map(previous.map(x=>[x.path,x.sha256.toLowerCase()]));for(const x of latest)combined.set(x.path,x.sha256.toLowerCase());for(const [file,expected]of combined)if(hash(fs.readFileSync(p.join(template,file)))!==expected)throw Error('deriva '+file);
+const sourceFiles=['src/services/tenant.ts','src/main.tsx','src/lib/firebase.ts','src/config/locales/en.ts','src/config/locales/he.ts','src/config/locales/ru.ts','src/config/locales/ar.ts','AGENTS.md','README.md'];
+const manifest=sourceFiles.map(file=>({path:file,sha256:hash(fs.readFileSync(p.join(template,file)))}));
+write(p.join(d,'FUENTES.json'),JSON.stringify(manifest,null,2));write(p.join(d,'CONSERVACION.json'),JSON.stringify({valid:true,templateFiles:combined.size,serverReviewedHash:reviewedHash,productChanges:0,acceptedServerTestsRepeated:0},null,2));
+write(p.join(d,'INFORME.md'),`# Preparación L05 navegador completada; producto sin cambios
+
+[Propuesta única, superficie, aceptación y decisión pendiente](PROPUESTA.md). Sondeo20 escenarios sobre bootstrap real de main y llamada createRoot.render con App; dependencies/DOM/renderer simulados. No sólo resultado del helper, tampoco commit React/navegador real certificado. Observador sensible en copia compilada, fuentes intactas. getDoc admite caché según SDK instalado; promesa estática sin Firebase identificada y pendiente de decisión, no suprimida.
+
+Preflight inicial detectó colisión léxica de módulos; preimagen y fallo conservados. Única corrección de aislamiento del instrumento y continuación: sintaxis/imports/dependencias/control básico aprobados antes del sondeo;20 casos sin errores y sensibilidad. No se encadenaron reintentos. No freeze ni implementación de política de navegador.
+
+L05 servidor aceptado y [revisión externa trasladada por Liam](../L05-v1/REVISION-EXTERNA-TRASLADADA.md) integrada con huella coincidente, separada de Harvey. No se repitieron sus pruebas. [Conservación](CONSERVACION.json):${combined.size} fuentes actuales del template sin deriva respecto de entregas aceptadas.
+
+Último consumo informado por API73%, frente a75% del cierre previo; ambos datos se conservan sin inferir causa del cambio de ventana ni reset. No se solicitó ni ejecutó reset; techo80% TOTAL N03 permanece. N03 sigue en curso; condición previa al despliegue por prestaciones de tenant intacta. Sin remoto, instalaciones, commit,push o deploy. Preparación detenida para revisión y única decisión de Liam.
+`);
+const targets=['indice/tareas/N03.md','indice/README.md','indice/PENDIENTES.md','indice/CALENDARIO.md'];const custody=[];
+for(const rel of targets){const f=p.join(root,rel),before=fs.readFileSync(f),backup=p.join(d,'preimagenes-registros',rel);fs.mkdirSync(p.dirname(backup),{recursive:true});fs.writeFileSync(backup,before,{flag:'wx'});if(hash(fs.readFileSync(backup))!==hash(before))throw Error('custodia');const link=rel.includes('/tareas/')?'../../informe/N03/L05-browser-v1/PROPUESTA.md':'../informe/N03/L05-browser-v1/PROPUESTA.md';const text=before.toString('utf8'),i=text.indexOf('\n')+1;fs.writeFileSync(f,text.slice(0,i)+'\r\n**N03: L05 servidor aceptado; navegador preparado, sin implementación.** Revisión externa trasladada por Liam desde “Supervisar revisión N03” incorporada con huella coincidente, separada de revisión interna. [Sondeo, propuesta única y decisión]('+link+').20 escenarios de montaje simulado; pendiente aprobar verificación de servidor, plazos1500ms independientes,recarga manual y eliminación del fallback estático sin Firebase. Dos archivos de comportamiento y cuatro de textos mínimos propuestos. No freeze ni otra reparación. Techo80% TOTAL N03; API informa73% (cierre anterior75% conservado), sin resets. Prestaciones por tenant antes de despliegue y certificación de reglas/remoto pendientes. Estados inferiores históricos.\r\n'+text.slice(i));custody.push({path:rel,preimage:p.relative(root,backup),sha256Before:hash(before),sha256After:hash(fs.readFileSync(f))});}
+write(p.join(d,'CUSTODIA.json'),JSON.stringify(custody,null,2));
+write(p.join(root,'historial/2026-09-09-N03-L05-browser-preparacion.md'),`# N03 L05 navegador — preparación
+
+Aceptación de L05 servidor y revisión externa trasladada por Liam integradas con procedencia/objeto/huella coincidente; sin repetir pruebas servidor. Se preparó exclusivamente bootstrapTenantConfig→montaje App:20 escenarios simulados, sensibilidad del observador y fuentes intactas. Una corrección de ámbito del arnés tras fallo de preflight produjo avance verificable.
+
+[Propuesta y decisión única](../informe/N03/L05-browser-v1/PROPUESTA.md): verificación servidor obligatoria,config opcional independiente,plazos1500ms,recarga manual,sin fallback estático implícito. Promesa estática existente identificada; nada se implementa sin decisión. N03 sigue en curso; reglas/datos/remoto y condición de prestaciones por tenant intactos. Techo80% TOTAL,API73%/corte previo75% conservados,sin resets. Sin remoto,instalación,commit,push,deploy. Preparación detenida para revisión.
+`);
+console.log(JSON.stringify({registered:true,externalHashMatches:true,unchangedTemplateFiles:combined.size,records:4}));

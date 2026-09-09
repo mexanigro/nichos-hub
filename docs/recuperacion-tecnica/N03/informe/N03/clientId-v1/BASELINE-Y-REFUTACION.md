@@ -1,0 +1,11 @@
+# Resolución previa al freeze
+
+Punto de montaje corregido en preparador y copia: resultados/preflight-r2 acredita Docker0/estado0, sintaxis/dependencias/fixture. Fallos y STOP previos preservados. Baseline inicial no inició en10s; restaurar45s de D05 produjo arranque efectivo de server/api y cuatro payloads completos por runtime en resultados/baseline-r2. Cada payload conserva path y comprobación de auth sintética. No hubo operaciones externas.
+
+baseline-r2 terminó Docker1:16 controles positivos y2 fallos de una expectativa de autenticación inventada antes de medir. API /api/appointment/notify sin token devuelve200 y notifica; server devuelve401 y no notifica. La preimagen API carece del requireAdminAuth del handler local. No es defecto nuevo ni una autorización para corregir auth en esta entrega. Se conserva evidencia original, incluidos fallos; la aceptación de conservación se fija ahora por respuesta y efecto propios de cada runtime. No se presenta API como autenticada ni como certificación de seguridad. Hallazgo heredado remitido a validación de acceso N04 en la ficha N03, sin abrir otra reparación aquí.
+
+Revisor independiente interno /root/refutar_soporte (Harvey), sólo lectura: identificó ese BLOCKER de criterio y MATERIAL de emails agregados que no verificaban los cuatro eventos. Resolución: usar preimagen por runtime (sin modificar auth) y medir deltas de emails/respuestas por petición en baseline-permissions; el control final compara esa referencia por evento. Los payloads de mirrors ya válidos no se repiten para fabricar referencia. Cero intentos con permiso ausente/false/inválido se comprueba sobre rutas registradas. URL/secret/id ausentes/blancos se comprueban en ambas funciones.
+
+FUNCIONES-red-p0.json:134 controles pasan,8 fallan por el defecto que se va a corregir. Instrumento válido; conserva MEDICION.json y suma configuración incompleta/permisos. La hipótesis de idéntica autenticación se descarta con evidencia, antes de freeze. No se altera contrato congelado ni producto para ajustar un test.
+
+Límites: SDK/entrega/agente simulados, no Firestore real ni clientes reales. Los destinos por tenant/configuración real y compromisos siguen pendientes antes del despliegue. Consumo76%/80% TOTAL,sin resets. Freeze sólo tras baseline-permissions y evaluación de estos registros.

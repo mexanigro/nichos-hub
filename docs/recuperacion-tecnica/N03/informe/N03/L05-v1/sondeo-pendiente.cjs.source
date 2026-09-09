@@ -1,0 +1,32 @@
+const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),crypto=require('node:crypto');
+const ts=require('C:/Users/liama/Desktop/Nichos-hub/node_modules/typescript');
+const base='C:/Users/liama/Desktop/Nichos/Barber-shop-template-main',dir=__dirname;
+const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
+const results=[],sources=[];
+function harness(runtime,scenario={}) {
+  const file=path.join(base,runtime),bytes=fs.readFileSync(file),text=bytes.toString('utf8');
+  const ast=ts.createSourceFile(file,text,ts.ScriptTarget.Latest,true,ts.ScriptKind.TS);
+  function fn(name){const n=ast.statements.find(n=>ts.isFunctionDeclaration(n)&&n.name?.text===name);if(!n)throw Error(name);return n.getText(ast);}
+  const guardReg='app.use("/api", enforceClientActive)';
+  if(!text.includes(guardReg))throw Error('registro ausente');
+  const reg=ast.statements.find(n=>ts.isFunctionDeclaration(n)&&n.name?.text==='registerExpressRoutes');
+  let endpoint;
+  function visit(n){if(ts.isCallExpression(n)&&n.expression.getText(ast)==='app.get'&&n.arguments[0]?.text==='/api/tenant/status')endpoint=n.arguments[1].getText(ast);ts.forEachChild(n,visit);}
+  visit(reg);if(!endpoint)throw Error('consumidor ausente');
+  const stats={db:0,token:0,client:0,config:0,external:0};let now=1000, mode={...scenario};
+  const env={VITE_FIREBASE_PROJECT_ID:'synthetic-project',PAYMENT_PROVIDER:'cardcom'};
+  if(mode.noProject)delete env.VITE_FIREBASE_PROJECT_ID;
+  const data=()=>({...(Object.hasOwn(mode,'status')?{status:mode.status}:{status:'active'}),defaultPaymentProvider:mode.legacyProvider||'tranzila'});
+  const sandbox={process:{env},console:{log(){},warn(){},error(){}},Date:class extends Date{static now(){return now}},
+    getAdminDb:async()=>{stats.db++;if(mode.noDb)return null;if(mode.dbError)throw Error('synthetic-admin-error');return {collection:col=>({doc:id=>({get:async()=>{stats[col==='clients'?'client':'config']++;if(id!=='synthetic-tenant')throw Error('tenant selector');if(col==='clients'){if(mode.pending)await new Promise(()=>{});if(mode.readError)throw Error('synthetic-read-error');return {exists:!mode.missing,data};}if(mode.configError)throw Error('synthetic-config-error');return{exists:!mode.noConfig,data:()=>({payment:{provider:mode.configProvider||'stripe'}})};}})})}},
+    getFirestoreAccessToken:async()=>{stats.token++;return mode.noToken?null:'synthetic-token'},
+    fetch:async url=>{if(!/^https:\/\/firestore.googleapis.com\/v1\/projects\/synthetic-project\/databases\/default\/documents\/(clients|config)\/synthetic-tenant$/.test(url)){stats.external++;throw Error('external blocked');}const client=url.includes('/clients/');stats[client?'client':'config']++;if(client&&mode.pending)await new Promise(()=>{});if(client&&mode.readError)throw Error('synthetic-read-error');if(!client&&mode.configError)throw Error('synthetic-config-error');const status=client?(mode.missing?404:mode.httpError||200):(mode.noConfig?404:200);return{status,ok:status===200,text:async()=>'synthetic-error',json:async()=>{if(client&&mode.jsonError)throw Error('synthetic-json-error');return client?{fields:{status:{stringValue:data().status},defaultPaymentProvider:{stringValue:data().defaultPaymentProvider}}}:{fields:{payment:{mapValue:{fields:{provider:{stringValue:mode.configProvider||'stripe'}}}}}}}}}
+  };
+  vm.createContext(sandbox,{codeGeneration:{strings:false,wasm:false}});
+  const code=`let clientStateCache=null;const CLIENT_ID='synthetic-tenant';const VALID_PROVIDERS=['stripe','cardcom','tranzila','none'];${fn('getClientRuntimeState')}\n${fn('enforceClientActive')}\nthis.runGuard=enforceClientActive;this.readState=getClientRuntimeState;this.endpoint=${endpoint};`;
+  vm.runInContext(ts.transpileModule(code,{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.None}}).outputText,sandbox);
+  async function run(){let next=0,status=200,body;const res={status(n){status=n;return this},json(b){body=b;return this}};await sandbox.runGuard({},res,()=>next++);if(next)await sandbox.endpoint({},res);return{next,http:status,body,attempts:{...stats}};}
+  return{run,read:sandbox.readState,stats,advance:n=>now+=n,set:s=>Object.assign(mode,s),source:{path:runtime,sha256:hash(bytes),guardOffset:text.indexOf(guardReg),webhookBeforeGuard:text.indexOf('app.post("/api/webhook"')<text.indexOf(guardReg),dailyDigestBeforeGuard:runtime==='api/index.ts'?text.indexOf('app.get("/api/daily-digest"')<text.indexOf(guardReg):null}};
+}
+
+(async()=>{const rows=[];for(const runtime of ['server.ts','api/index.ts']){const h=harness(runtime,{pending:true});let settled=false;void h.run().then(()=>{settled=true});await new Promise(r=>setTimeout(r,75));rows.push({runtime,observationWindowMs:75,settled,attempts:h.stats,noBuiltInDeadlineBySource:true});if(settled)throw Error('instrumento pendiente no retuvo lectura');}fs.writeFileSync(path.join(dir,'PENDIENTE.json'),JSON.stringify(rows,null,2),{flag:'wx'});console.log(JSON.stringify(rows));})().catch(e=>{console.error(e);process.exitCode=1});

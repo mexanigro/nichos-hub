@@ -1,0 +1,205 @@
+{
+  "result": "GREEN",
+  "task": "N03 D05 local",
+  "gates": 4,
+  "total": 4,
+  "contractUnchanged": true,
+  "checks": {
+    "runtime": 222,
+    "health": 21,
+    "parity": 3,
+    "typesExit": 0,
+    "audit": 13,
+    "mutationExpectedFailures": 18
+  },
+  "previousDeliveriesPreserved": true,
+  "n03": "en_curso",
+  "deploymentCondition": "Evidence of tenants/services to retain and Liam decision on exceptions before deployment.",
+  "localLinks": [
+    {
+      "from": "informe\\N03\\D05-v1\\INFORME.md",
+      "target": "FREEZE.md",
+      "exists": true
+    },
+    {
+      "from": "informe\\N03\\D05-v1\\INFORME.md",
+      "target": "CONTRATO-CONGELADO.json",
+      "exists": true
+    },
+    {
+      "from": "informe\\N03\\D05-v1\\INFORME.md",
+      "target": "REVISION-FINAL.md",
+      "exists": true
+    },
+    {
+      "from": "informe\\N03\\D05-v1\\INFORME.md",
+      "target": "resultados/green-server-r1/RESULTADOS.json",
+      "exists": true
+    },
+    {
+      "from": "informe\\N03\\D05-v1\\INFORME.md",
+      "target": "resultados/green-api-r1/RESULTADOS.json",
+      "exists": true
+    },
+    {
+      "from": "informe\\N03\\D05-v1\\INFORME.md",
+      "target": "resultados/green-base-r1/RESULTADOS.json",
+      "exists": true
+    },
+    {
+      "from": "informe\\N03\\D05-v1\\INFORME.md",
+      "target": "AUDITORIA-FINAL-r2.json",
+      "exists": true
+    },
+    {
+      "from": "informe\\N03\\D05-v1\\INFORME.md",
+      "target": "resultados/mutacion-permisos/RESULTADOS.json",
+      "exists": true
+    },
+    {
+      "from": "informe\\N03\\D05-v1\\INFORME.md",
+      "target": "resultados/health-protecciones/RESULTADOS.json",
+      "exists": true
+    },
+    {
+      "from": "informe\\N03\\D05-v1\\INFORME.md",
+      "target": "resultados/TIPOS-P1-r2-ESTADO.json",
+      "exists": true
+    },
+    {
+      "from": "informe\\N03\\D05-v1\\INFORME.md",
+      "target": "resultados/PARIDAD.txt",
+      "exists": true
+    },
+    {
+      "from": "informe\\N03\\D05-v1\\INFORME.md",
+      "target": "resultados/d05-sondeo-origen/RESULTADOS.json",
+      "exists": true
+    },
+    {
+      "from": "informe\\N03\\D05-v1\\INFORME.md",
+      "target": "CONSERVACION-P3.json",
+      "exists": true
+    },
+    {
+      "from": "informe\\N03\\D05-v1\\INFORME.md",
+      "target": "FUENTES-FINALES-r2.json",
+      "exists": true
+    },
+    {
+      "from": "informe\\N03\\D05-v1\\INFORME.md",
+      "target": "PREIMAGENES-PRODUCTO.json",
+      "exists": true
+    },
+    {
+      "from": "historial\\2026-09-09-N03-D05-cierre-local.md",
+      "target": "../informe/N03/D05-v1/FREEZE.md",
+      "exists": true
+    },
+    {
+      "from": "historial\\2026-09-09-N03-D05-cierre-local.md",
+      "target": "../informe/N03/D05-v1/CONTRATO-CONGELADO.json",
+      "exists": true
+    },
+    {
+      "from": "historial\\2026-09-09-N03-D05-cierre-local.md",
+      "target": "../informe/N03/D05-v1/REVISION-FINAL.md",
+      "exists": true
+    },
+    {
+      "from": "historial\\2026-09-09-N03-D05-cierre-local.md",
+      "target": "../informe/N03/D05-v1/resultados/green-server-r1/RESULTADOS.json",
+      "exists": true
+    },
+    {
+      "from": "historial\\2026-09-09-N03-D05-cierre-local.md",
+      "target": "../informe/N03/D05-v1/resultados/green-api-r1/RESULTADOS.json",
+      "exists": true
+    },
+    {
+      "from": "historial\\2026-09-09-N03-D05-cierre-local.md",
+      "target": "../informe/N03/D05-v1/resultados/green-base-r1/RESULTADOS.json",
+      "exists": true
+    },
+    {
+      "from": "historial\\2026-09-09-N03-D05-cierre-local.md",
+      "target": "../informe/N03/D05-v1/AUDITORIA-FINAL-r2.json",
+      "exists": true
+    },
+    {
+      "from": "historial\\2026-09-09-N03-D05-cierre-local.md",
+      "target": "../informe/N03/D05-v1/resultados/mutacion-permisos/RESULTADOS.json",
+      "exists": true
+    },
+    {
+      "from": "historial\\2026-09-09-N03-D05-cierre-local.md",
+      "target": "../informe/N03/D05-v1/resultados/health-protecciones/RESULTADOS.json",
+      "exists": true
+    },
+    {
+      "from": "historial\\2026-09-09-N03-D05-cierre-local.md",
+      "target": "../informe/N03/D05-v1/resultados/TIPOS-P1-r2-ESTADO.json",
+      "exists": true
+    },
+    {
+      "from": "historial\\2026-09-09-N03-D05-cierre-local.md",
+      "target": "../informe/N03/D05-v1/resultados/PARIDAD.txt",
+      "exists": true
+    },
+    {
+      "from": "historial\\2026-09-09-N03-D05-cierre-local.md",
+      "target": "../informe/N03/D05-v1/resultados/d05-sondeo-origen/RESULTADOS.json",
+      "exists": true
+    },
+    {
+      "from": "historial\\2026-09-09-N03-D05-cierre-local.md",
+      "target": "../informe/N03/D05-v1/CONSERVACION-P3.json",
+      "exists": true
+    },
+    {
+      "from": "historial\\2026-09-09-N03-D05-cierre-local.md",
+      "target": "../informe/N03/D05-v1/FUENTES-FINALES-r2.json",
+      "exists": true
+    },
+    {
+      "from": "historial\\2026-09-09-N03-D05-cierre-local.md",
+      "target": "../informe/N03/D05-v1/PREIMAGENES-PRODUCTO.json",
+      "exists": true
+    },
+    {
+      "from": "historial\\2026-09-09-N03-D05-cierre-local.md",
+      "target": "../informe/N03/D05-v1/INFORME.md",
+      "exists": true
+    }
+  ],
+  "records": [
+    {
+      "path": "informe\\N03\\D05-v1\\INFORME.md",
+      "sha256": "FE06C12E2EC2B41F2BCA629B6C0AB4922259BD8688DDE91653089AC8D92BAD47"
+    },
+    {
+      "path": "informe\\N03\\D05-v1\\REVISION-FINAL.md",
+      "sha256": "CC41438E27A55ACC313410BF49019F1BC82B3C3DE7F440BA8922E9DB536792C0"
+    },
+    {
+      "path": "historial\\2026-09-09-N03-D05-cierre-local.md",
+      "sha256": "D1FFAB1E475A28527B583FC0B0D5E59FF351DBCDD66AE7AB9E9B7FD28385EFDE"
+    },
+    {
+      "path": "indice\\tareas\\N03.md",
+      "sha256": "DF26CBDA9A6BDE155699F4E542B8DDDFAC4E752D947CAED54110CB9F572E5F86"
+    },
+    {
+      "path": "indice\\README.md",
+      "sha256": "A1E9CA5EB06EDCE366FDC4EC847BDF625E20B87CC26B74FEB389985158A2CED5"
+    },
+    {
+      "path": "indice\\PENDIENTES.md",
+      "sha256": "3B17F791F8928621C6A80DFCF57A34C633FF9DC86EE88CCE2DA3EC995A661AFB"
+    }
+  ],
+  "historyPreimage": {
+    "path": "preimagenes/cierre-02/historial.md",
+    "sha256": "2FD4F30B69B72D2BD1CFE86B35CC62BA04F82328004C3E16CCB84FD2380127A9"
+  }
+}

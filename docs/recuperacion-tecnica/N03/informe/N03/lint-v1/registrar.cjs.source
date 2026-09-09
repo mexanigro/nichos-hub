@@ -1,0 +1,78 @@
+const fs = require('node:fs');
+const path = require('node:path');
+const crypto = require('node:crypto');
+const root = 'C:/Users/liama/Desktop/Nichos/recuperacion-tecnica';
+const dir = __dirname;
+const sha = b => crypto.createHash('sha256').update(b).digest('hex');
+function nuevo(rel, text) {
+  const p = path.join(root, rel);
+  fs.mkdirSync(path.dirname(p), { recursive: true });
+  fs.writeFileSync(p, text.replace(/\r?\n/g, '\r\n'), { flag: 'wx' });
+}
+const prefix = 'informe/N03/lint-v1/';
+nuevo(prefix + 'REVISION-FINAL.md', `# Revisión final de lint-v1
+
+Procedencia: revisión interna independiente del subagente /root/refutar_soporte (Harvey), solicitada por el integrador en esta misma conversación el 2026-09-09. No es una aprobación nueva de Liam ni certificación remota. Lectura final contra las seis preimágenes físicas; no contra el diff global con trabajo ajeno. No escribió archivos ni repitió suites.
+
+Tres ángulos: conservación de GET/autorización; contratos/precios/interfaces; claridad y límites del diff. Veredicto comunicado: sin BLOCKERS ni MATERIAL demostrables. Cambios limitados a tipado any→unknown, imports/argumentos sin uso, tabla y parámetros privados de contratos y sobrecarga pública de pricing. Textos, importes, lógica GET y wrappers preservados; sin supresiones ni usos artificiales. Tabla privada y parámetros retirados tras censo; no son prestaciones comerciales eliminadas.
+
+En refutación previa hubo MATERIAL: la transpilación no demostraba firmas públicas. Se resolvió antes del freeze mediante cuatro comprobaciones TypeChecker sobre las firmas reales; evidencia antes-firmas.json y FREEZE.md. No se cambió el contrato para adaptar un producto incorrecto.
+
+NON-BLOCKING explícito: getPaymentAmount.length cambia de 1 a 0 en JavaScript. No se encontraron consumidores introspectivos; la firma pública TypeScript conserva el boolean obligatorio y retorno number. La sobrecarga estándar evita usos artificiales y no cambia importes. No afirmar identidad de aridad JS.
+
+El revisor dejó el cierre condicionado a la mutación pendiente. El integrador la completó: resultados/MUTACION.json valid=true, un error no-explicit-any esperado en copia aislada con la misma configuración, producto sin modificar. CONSERVACION.json verifica las cuatro rutas por AST, los cuatro hashes congelados y las 332 fuentes del template. Condición satisfecha; sin nuevos hallazgos que amplíen alcance.
+`);
+nuevo(prefix + 'INFORME.md', `# N03 lint-v1 — cierre exclusivamente local
+
+RESULT: GREEN. Gates P0/P1/P2/P3: 4/4. Se corrigieron exclusivamente los 13 diagnósticos heredados (1 error, 12 advertencias) de seis archivos hub. N03 permanece en curso. Autorización: orden explícita de Liam de reparar la población preparada en reconciliacion-v1/SIGUIENTE-ACCION.md. Techo compartido TOTAL N03: 74%; observado al inicio y checkpoint de cierre: 73%, sin resets.
+
+## Cambio material y aceptación
+
+| Gate | Cambio verificable | Evidencia |
+| --- | --- | --- |
+| P0 | Preimágenes verificadas; aceptación/refutación/freeze antes de producto. RED heredado retenido por huellas. | [Contrato](CONTRATO.md), [freeze](FREEZE.md), [huellas](FREEZE.json), FUENTES.json |
+| P1 | Seis archivos reparados: lint pasa de 1 error/12 advertencias a cero/cero con configuración N02 idéntica. | [Lint final](resultados/LINT-FINAL.json), LINT-FINAL-ESTADO.json |
+| P2 | Tipos aprobados, 65 controles de conservación aprobados; lint detecta any reintroducido sólo en copia. | [Controles](resultados/despues.json), TIPOS-FINAL-ESTADO.json, [mutación](resultados/MUTACION.json) |
+| P3 | Revisión independiente integrada, custodia y registros actualizados; alcance conservado. | [Revisión](REVISION-FINAL.md), [conservación](CONSERVACION.json), FUENTES-FINALES.json, REGISTROS-CUSTODIA.json |
+
+Las cuatro rutas sólo cambian la aserción Record<string, unknown> del GET de seguimiento, imports sin uso (NextRequest y parse) y parámetros internos sin uso del callback api-costs. contracts.ts retira PLAN_TABLE y parámetros privados que no intervenían en los textos. pricing.ts usa una sobrecarga para conservar la firma pública boolean→number sin vincular un argumento innecesario. El detalle de Function.length y su evaluación NON-BLOCKING están en la revisión; no se oculta esa diferencia.
+
+Aceptación A1: seis archivos, cero errores y advertencias; configuración sin cambios, SHA256 a24f1a569a468082acb273d8e0e65ebeac9d20a03496e7bc6de9b120ab09e303. A2: tsc --noEmit --incremental false -p tsconfig.json, exit0; hereda opciones del hub e incluye next-env.d.ts y dependencias. A3/A4: 65/65, cero fallos. Son 36 comparaciones de textos/versiones (cinco idiomas y fallback por seis planes), cinco grupos de resultados de precios/constantes/tier/idiomas, diez escenarios GET con oráculo independiente y comparación contra preimagen (20 controles), cuatro comprobaciones TypeChecker de firmas públicas. A5: mutante produce un error @typescript-eslint/no-explicit-any esperado, ningún cambio al producto. A6: nueve comprobaciones de conservación y revisión final sin BLOCKERS/MATERIAL pendientes.
+
+El GET ensayado y sus wrappers withRole/withOwner se extraen del AST real; cubre filtros de status/pending, serialización, campos, autorización 401/403 antes de DB, llamada orderBy y propagación del fallo DB. Dependencias controladas: esto no certifica Firebase/Auth reales ni el ordenamiento remoto. No se inicia un servidor ni se ejecutan proveedores para demostrar una limpieza de tipos/imports. Los controles de contratos/precios comparan resultados contra preimágenes físicas y no cambian textos contractuales ni importes.
+
+## Evidencia conservada y detector de bucles
+
+El RED de reconciliacion-v1 se reutilizó tras verificar huellas. antes.json (61/61) y antes-firmas.json (65/65) permanecen. El primer instrumento tuvo un cierre de objeto incorrecto: preimagen guardada y una corrección concreta produjo progreso. El primer script de edición no halló un ancla CRLF en fuente LF y terminó antes de escribir producto; LINT-DESPUES.json conserva ese estado todavía rojo. La única continuación implementar-r2.cjs corrigió el ancla y produjo las seis modificaciones y LINT-FINAL.json GREEN. No se repitió la estrategia fallida ni se relajó el contrato. Después de P1 hubo progreso material en P2 (tipos/conservación/mutación) y P3 (revisión/custodia/registros).
+
+Las 332 fuentes del template coinciden con el sello final D05-r2. Book-v1, support-v1, stock-v1 y health-v1/SP-H01 conservadas, sin repetir suites ni paridad cuyo código no cambió. No hubo instalaciones, remoto, cobros, notificaciones reales, commit, push, deploy ni resets. No hay soluciones temporales ocultas; el mutante queda exclusivamente en el expediente aislado.
+
+## Continuidad del mismo ID
+
+No queda trabajo en esta reparación. [Balance N03](../reconciliacion-v1/BALANCE.md) sigue vigente salvo su fila de 13 diagnósticos lint, satisfecha por este informe. RE-EXT-02/03, configuración/modos/fail-open/idiomas, deuda documental y warning de middleware no se declaran resueltos ni se abren aquí. El entorno/SDK/reglas corresponde a N04; runtime alojado a N06 y certificación integral a N10. La próxima continuación debe partir de ese balance, descontar lint-v1 y preparar una única acción bajo autorización; no repetir entregas aceptadas.
+
+Antes de cualquier despliegue se mantiene presentar tenants y servicios que deban conservar prestaciones, evidencia y decisión de Liam sobre excepciones. No inferir compromisos de claves ni planes históricos. N03 completa no se cierra.
+`);
+const targets = ['indice/tareas/N03.md', 'indice/README.md', 'indice/PENDIENTES.md', 'indice/CALENDARIO.md'];
+const custody = [];
+for (const rel of targets) {
+  const p = path.join(root, rel), before = fs.readFileSync(p);
+  const backup = path.join(dir, 'preimagenes-registros', rel);
+  fs.mkdirSync(path.dirname(backup), { recursive: true });
+  fs.writeFileSync(backup, before, { flag: 'wx' });
+  if (sha(fs.readFileSync(backup)) !== sha(before)) throw new Error('Preimagen inválida: ' + rel);
+  const link = rel.includes('/tareas/') ? '../../informe/N03/lint-v1/INFORME.md' : '../informe/N03/lint-v1/INFORME.md';
+  const text = before.toString('utf8');
+  const newline = text.indexOf('\n') + 1;
+  const adenda = '\r\n**N03 lint-v1 cerrada exclusivamente local — GREEN, 4/4.** Autorizados y corregidos los 13 diagnósticos heredados en seis archivos hub: lint 0 errores/0 advertencias, tipos exit0, conservación 65/65 y mutación aislada sensible (1 error esperado). [Informe, revisión y custodia](' + link + '). Preimágenes conservadas; las 332 fuentes del template y entregas aceptadas no cambiaron. N03 sigue en curso; el balance anterior conserva todas las demás obligaciones, sin abrir otra reparación. Condición previa al despliegue sobre prestaciones por tenant intacta. Consumo observado73% de techo TOTAL74% N03, sin resets. Los párrafos inferiores son cortes históricos; la selección lint ya está satisfecha.\r\n\r\n';
+  fs.writeFileSync(p, text.slice(0, newline) + adenda + text.slice(newline));
+  custody.push({ path: rel, preimage: path.relative(root, backup), bytesBefore: before.length, sha256Before: sha(before), sha256After: sha(fs.readFileSync(p)) });
+}
+fs.writeFileSync(path.join(dir, 'REGISTROS-CUSTODIA.json'), JSON.stringify(custody, null, 2), { flag: 'wx' });
+nuevo('historial/2026-09-09-N03-lint-v1-cierre-local.md', `# N03 — lint-v1 cerrada localmente
+
+Orden explícita de Liam ejecutada: corregir únicamente los 13 diagnósticos heredados de los seis archivos hub. [Informe completo](../informe/N03/lint-v1/INFORME.md). Contrato/refutación/freeze previo a producto; P0–P3 alcanzados. Lint0/0, tipos0, conservación65/65, mutación any aislada detectada. Revisión independiente /root/refutar_soporte integrada, sin blockers/material pendientes. Preimágenes, evidencia previa y trabajo ajeno conservados.
+
+Actualizados ficha e índices con preimágenes físicas y huellas. Consumo observado73%, techo TOTAL74% de todo N03, sin resets. No se abrió otra reparación ni se ejecutó remoto, instalación, cobro, notificación real, commit, push o deploy. Book/support/stock/health-SP-H01/D05 conservadas por332 huellas template. Condición de prestaciones por tenant antes del despliegue intacta. N03 permanece en curso: balance reconciliacion-v1 menos lint satisfecho; no se declaran cumplidas las demás obligaciones.
+`);
+console.log(JSON.stringify({ recorded: true, registries: custody.length }));

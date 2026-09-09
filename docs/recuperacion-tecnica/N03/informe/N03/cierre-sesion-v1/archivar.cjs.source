@@ -1,0 +1,52 @@
+const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),cp=require('node:child_process');
+const root=__dirname,recovery=path.resolve(root,'../../..');
+const hub='C:/Users/liama/Desktop/Nichos-hub',template='C:/Users/liama/Desktop/Nichos/Barber-shop-template-main';
+const dest=path.join(hub,'docs/recuperacion-tecnica/N03');
+const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
+const read=p=>JSON.parse(fs.readFileSync(p,'utf8').replace(/^\uFEFF/,''));
+const write=(p,b)=>{fs.mkdirSync(path.dirname(p),{recursive:true});fs.writeFileSync(p,b);};
+if(fs.existsSync(dest)) throw Error('Archivo ya existe, no sobrescribir');
+const inventory=read(path.join(root,'EVIDENCIA-FISICA-FINAL.json'));
+const states=[];
+for(const [name,repo] of [['hub',hub],['template',template]]) {
+  const run=args=>cp.execFileSync('git',args,{cwd:repo,maxBuffer:16*1024*1024});
+  const status=run(['status','--short','--untracked-files=all']);
+  write(path.join(root,`STATUS-FINAL-${name}.txt`),status);
+  const files=run(['status','--porcelain=v1','-z','--untracked-files=all']).toString('utf8').split('\0').filter(Boolean);
+  states.push({repo,head:run(['rev-parse','HEAD']).toString().trim(),branch:run(['branch','--show-current']).toString().trim(),files:files.map(line=>({status:line.slice(0,2),path:path.join(repo,line.slice(3)),reason:'Trabajo preexistente/ajeno conservado; no atribuido a N03'}))});
+}
+write(path.join(root,'SIN-COMMITEAR.json'),JSON.stringify({time:new Date().toISOString(),states,note:'Estado del producto tras los dos commits; el archivo documental se añade después. Evidencia excluida de Git en EVIDENCIA-FISICA-FINAL.json.'},null,2)+'\n');
+const retoma=path.join(root,'RETOMA.md'),old=fs.readFileSync(retoma);
+write(path.join(root,'preimagenes-registros/RETOMA-antes-archivo.md'),old);
+write(retoma,old.toString('utf8').replace('No es un arnés portable autosuficiente:', 'Los archivos de código en la copia Git llevan sufijo .source para excluirlos de compilación/descubrimiento accidental; ARCHIVO.json conserva el mapeo y SHA256 exactos. No es un arnés portable autosuficiente:'));
+const sources=inventory.rows.filter(r=>r.selected).map(r=>({source:r.path,relative:'informe/N03/'+r.relative,expected:r.sha256}));
+for(const rel of ['indice/README.md','indice/PENDIENTES.md','indice/CALENDARIO.md','indice/tareas/N03.md','indice/tareas/N04.md','indice/tareas/N06.md','indice/tareas/N10.md']) sources.push({source:path.join(recovery,rel),relative:rel,context:true});
+for(const name of fs.readdirSync(path.join(recovery,'historial'))) if(name.includes('N03') && name.endsWith('.md')) sources.push({source:path.join(recovery,'historial',name),relative:'historial/'+name});
+const method='C:/Users/liama/Documents/ChatGPT/Test ML/tester-mercado-libre/metodo/METODO.md';
+sources.push({source:method,relative:'contexto/METODO-r2.md',context:true});
+for(const name of fs.readdirSync(root)) {
+  if(!fs.statSync(path.join(root,name)).isFile() || name==='EVIDENCIA-FISICA.json') continue;
+  sources.push({source:path.join(root,name),relative:'informe/N03/cierre-sesion-v1/'+name});
+}
+// Custodia de este cierre: los directorios completos se conservan localmente por huella.
+const extra=[];
+function walk(dir) { for(const d of fs.readdirSync(dir,{withFileTypes:true})) {const p=path.join(dir,d.name);if(d.isDirectory())walk(p);else if(d.isFile())extra.push({path:p,bytes:fs.statSync(p).size,sha256:hash(fs.readFileSync(p))});}}
+for(const name of ['preimagenes','preimagenes-registros','indice-producto']) walk(path.join(root,name));
+write(path.join(root,'CUSTODIA-CIERRE.json'),JSON.stringify(extra,null,2)+'\n');
+sources.push({source:path.join(root,'CUSTODIA-CIERRE.json'),relative:'informe/N03/cierre-sesion-v1/CUSTODIA-CIERRE.json'});
+const manifest=[],flags=[];
+for(const s of sources) {
+  const b=fs.readFileSync(s.source),sha256=hash(b);
+  if(s.expected && s.expected!==sha256) throw Error('Deriva '+s.source);
+  const relative=s.relative+(/\.(?:ts|tsx|js|jsx|cjs|mjs|ps1|sh|html)$/.test(s.relative)?'.source':'');
+  if(/-----BEGIN (?:RSA |EC )?PRIVATE KEY-----|AIza[0-9A-Za-z_-]{30,}|gh[pousr]_[0-9A-Za-z]{30,}|sk-ant-[0-9A-Za-z_-]{30,}/.test(b.toString('utf8'))) flags.push(relative);
+  write(path.join(dest,relative),b);
+  if(hash(fs.readFileSync(path.join(dest,relative)))!==sha256) throw Error('Copia difiere');
+  manifest.push({source:s.source,archive:relative,bytes:b.length,sha256,context:!!s.context});
+}
+if(flags.length) throw Error('Revisar posibles secretos por ruta: '+JSON.stringify(flags));
+const result={sourceRoot:recovery,archiveRoot:dest,time:new Date().toISOString(),files:manifest,secretPatternScan:{flags:0,limit:'Detección acotada de patrones; fuentes de pruebas/entorno sintético, sin leer .env real.'}};
+write(path.join(dest,'ARCHIVO.json'),JSON.stringify(result,null,2)+'\n');
+write(path.join(root,'ARCHIVO.json'),JSON.stringify(result,null,2)+'\n');
+write(path.join(dest,'README.md'),'# N03 — custodia de cierre de sesión\n\n[Retoma](informe/N03/cierre-sesion-v1/RETOMA.md). N03 sigue en curso. W-NEXT no autorizado para implementación.\n\nCopia seleccionada del expediente canónico '+recovery+'. ARCHIVO.json verifica origen, destino y SHA256. Código archivado con sufijo .source: no participa del build del hub; ejecutar controles desde sus rutas canónicas tras verificar huellas. No ejecutar scripts históricos automáticamente. Registros de otras etapas son contexto, no trabajo de producto nuevo. Preimágenes/copias/salidas excluidas permanecen físicamente, inventariadas en EVIDENCIA-FISICA-FINAL.json y CUSTODIA-CIERRE.json. Sin dependencias, caches ni .env real.\n');
+console.log(JSON.stringify({files:manifest.length,bytes:manifest.reduce((s,r)=>s+r.bytes,0),dest,flags}));

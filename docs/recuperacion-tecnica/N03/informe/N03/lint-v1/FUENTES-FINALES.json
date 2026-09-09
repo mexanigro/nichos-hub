@@ -1,0 +1,26 @@
+[
+  {
+    "path": "src/app/api/api-costs/fetch/route.ts",
+    "sha256": "78c0eacce2cb138ebb15b567720d53fd762bff0c273c48b8ffa16ea677439546"
+  },
+  {
+    "path": "src/app/api/appointments/[id]/cancel/route.ts",
+    "sha256": "1b74bf362be7e8b91af59e44d6f57688460e9408f3a5347744a02dcd681550e9"
+  },
+  {
+    "path": "src/app/api/prospects/follow-up/route.ts",
+    "sha256": "f5e166312cd1459d260f0fdd499d259446177e4f1ed09ca08865336893e2d360"
+  },
+  {
+    "path": "src/app/api/upload/[clientId]/route.ts",
+    "sha256": "de651ed0335099d48965dd526469a6b2d507fca4fb2bdadc0063c74b7c445b99"
+  },
+  {
+    "path": "src/lib/contracts.ts",
+    "sha256": "647f679154128c971315201fce095351a217bbc959f537d867fd4f39940aeb4b"
+  },
+  {
+    "path": "src/lib/pricing.ts",
+    "sha256": "b587bd75057108ecee0c77727fa6588803dbecbe13279c7ec2fda0f72af4b6a7"
+  }
+]

@@ -1,0 +1,130 @@
+TAP version 13
+# [Cardcom] webhook rechazado: notificationToken no configurado
+# [Cardcom] Webhook token mismatch — rejecting
+# [Cardcom] Webhook token mismatch — rejecting
+# [Cardcom] Webhook clientId mismatch — rejecting
+# [Auth] FIREBASE_PROJECT_ID not set — cannot verify ID token. Fix deployment env vars immediately.
+# Subtest: route parity between server.ts and api/index.ts
+ok 1 - route parity between server.ts and api/index.ts
+  ---
+  duration_ms: 1.886661
+  type: 'test'
+  ...
+# Subtest: both runtimes consume the shared src/lib/api modules
+ok 2 - both runtimes consume the shared src/lib/api modules
+  ---
+  duration_ms: 0.693851
+  type: 'test'
+  ...
+# Subtest: the inline duplicates stay deleted
+ok 3 - the inline duplicates stay deleted
+  ---
+  duration_ms: 0.649905
+  type: 'test'
+  ...
+# Subtest: cardcom webhook: rejected when notificationToken is not configured
+ok 4 - cardcom webhook: rejected when notificationToken is not configured
+  ---
+  duration_ms: 0.805758
+  type: 'test'
+  ...
+# Subtest: cardcom webhook: rejected on token mismatch
+ok 5 - cardcom webhook: rejected on token mismatch
+  ---
+  duration_ms: 0.242522
+  type: 'test'
+  ...
+# Subtest: cardcom webhook: rejected on clientId mismatch (cross-tenant)
+ok 6 - cardcom webhook: rejected on clientId mismatch (cross-tenant)
+  ---
+  duration_ms: 0.517409
+  type: 'test'
+  ...
+# Subtest: cardcom webhook: accepted with valid token + matching tenant
+ok 7 - cardcom webhook: accepted with valid token + matching tenant
+  ---
+  duration_ms: 0.418214
+  type: 'test'
+  ...
+# Subtest: cardcom webhook: failed payment is not an event
+ok 8 - cardcom webhook: failed payment is not an event
+  ---
+  duration_ms: 0.1593
+  type: 'test'
+  ...
+# Subtest: manual + stub gateways never verify webhooks and refuse checkout
+ok 9 - manual + stub gateways never verify webhooks and refuse checkout
+  ---
+  duration_ms: 0.744166
+  type: 'test'
+  ...
+# Subtest: createCredentialCache caches within TTL
+ok 10 - createCredentialCache caches within TTL
+  ---
+  duration_ms: 0.855376
+  type: 'test'
+  ...
+# Subtest: manifest window math includes the 10-minute buffer
+ok 11 - manifest window math includes the 10-minute buffer
+  ---
+  duration_ms: 0.300415
+  type: 'test'
+  ...
+# Subtest: manifest conflict detection (overlap and boundary cases)
+ok 12 - manifest conflict detection (overlap and boundary cases)
+  ---
+  duration_ms: 0.227983
+  type: 'test'
+  ...
+# Subtest: booking field validators (duration cap 5–480, formats)
+ok 13 - booking field validators (duration cap 5–480, formats)
+  ---
+  duration_ms: 0.338388
+  type: 'test'
+  ...
+# Subtest: BookingConflictError carries the 409 semantics message
+ok 14 - BookingConflictError carries the 409 semantics message
+  ---
+  duration_ms: 0.188557
+  type: 'test'
+  ...
+# Subtest: requireAdminAuth: 401 without Authorization header, lookup never called
+ok 15 - requireAdminAuth: 401 without Authorization header, lookup never called
+  ---
+  duration_ms: 0.235127
+  type: 'test'
+  ...
+# Subtest: requireAdminAuth: 401 on non-Bearer header
+ok 16 - requireAdminAuth: 401 on non-Bearer header
+  ---
+  duration_ms: 0.151164
+  type: 'test'
+  ...
+# Subtest: requireAdminAuth: 401 on malformed token (no network, no lookup)
+ok 17 - requireAdminAuth: 401 on malformed token (no network, no lookup)
+  ---
+  duration_ms: 0.41662
+  type: 'test'
+  ...
+# Subtest: base64UrlDecode roundtrip
+ok 18 - base64UrlDecode roundtrip
+  ---
+  duration_ms: 0.266739
+  type: 'test'
+  ...
+# Subtest: admin-auth module enforces M-2 and has no env-allowlist fallback
+ok 19 - admin-auth module enforces M-2 and has no env-allowlist fallback
+  ---
+  duration_ms: 3.229341
+  type: 'test'
+  ...
+1..19
+# tests 19
+# suites 0
+# pass 19
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 6076.158043
+

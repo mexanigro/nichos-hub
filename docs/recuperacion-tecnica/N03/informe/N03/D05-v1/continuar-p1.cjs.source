@@ -1,0 +1,8 @@
+const fs=require('fs'),crypto=require('crypto'),path=require('path');const root='C:/Users/liama/Desktop/Nichos/Barber-shop-template-main';
+for(const e of JSON.parse(fs.readFileSync(path.join(__dirname,'PREIMAGENES-PRODUCTO.json'),'utf8'))){if(crypto.createHash('sha256').update(fs.readFileSync(path.join(root,e.path))).digest('hex')!==e.sha256)throw Error('drift '+e.path);}
+const source=fs.readFileSync(path.join(__dirname,'implementar.cjs'),'utf8');
+const body=source.slice(source.indexOf("for(const f of ['server.ts','api/index.ts'])"))
+ .replace("if(s.split(key).length!==4)","if((s.match(/^    const apiKey = process.env.GEMINI_API_KEY;$/gm)||[]).length!==3)")
+ .replace("s.replaceAll(key,", "s.replace(/^    const apiKey = process.env.GEMINI_API_KEY;$/gm,");
+const prefix=`const fs=require('fs'),path=require('path');const root=${JSON.stringify(root)},d=__dirname,optional='src/lib/api/optional-services.ts';const files=['server.ts','api/index.ts','src/lib/notify-agentkit.ts','src/lib/appointment-notify-client.ts','src/components/admin/AdminDashboard.tsx'];`;
+new Function('require','__dirname',prefix+body)(require,__dirname);

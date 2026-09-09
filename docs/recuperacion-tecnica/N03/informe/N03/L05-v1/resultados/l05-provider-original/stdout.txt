@@ -1,0 +1,11 @@
+{"name":"server arranque real","valid":true,"evidence":{}}
+{"name":"server provider exacto {\"status\":\"active\",\"configError\":true}","valid":true,"evidence":{"http":200,"body":{"status":"active","active":true},"elapsed":5}}
+{"name":"server provider exacto {\"status\":\"active\",\"provider\":\"invalid\"}","valid":true,"evidence":{"http":200,"body":{"status":"active","active":true},"elapsed":5}}
+{"name":"server provider exacto {\"status\":\"trial\",\"provider\":\"none\"}","valid":true,"evidence":{"http":200,"body":{"status":"trial","active":true},"elapsed":4}}
+{"name":"server exterior real bloqueado","valid":true,"evidence":""}
+{"name":"api arranque real","valid":true,"evidence":{}}
+{"name":"api provider exacto {\"status\":\"active\",\"configError\":true}","valid":true,"evidence":{"http":200,"body":{"clientId":"tenant-control","status":"active","paymentProvider":"cardcom","active":true},"elapsed":9}}
+{"name":"api provider exacto {\"status\":\"active\",\"provider\":\"invalid\"}","valid":true,"evidence":{"http":200,"body":{"clientId":"tenant-control","status":"active","paymentProvider":"cardcom","active":true},"elapsed":6}}
+{"name":"api provider exacto {\"status\":\"trial\",\"provider\":\"none\"}","valid":true,"evidence":{"http":200,"body":{"clientId":"tenant-control","status":"trial","paymentProvider":"none","active":true},"elapsed":6}}
+{"name":"api exterior real bloqueado","valid":true,"evidence":""}
+{"passed":10,"failed":0}

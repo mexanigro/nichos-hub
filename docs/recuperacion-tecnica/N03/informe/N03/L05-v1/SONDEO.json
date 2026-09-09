@@ -1,0 +1,998 @@
+{
+  "kind": "preparation-only",
+  "productionChanged": false,
+  "fullRuntimeBootTested": false,
+  "results": [
+    {
+      "runtime": "server.ts",
+      "name": "active",
+      "proposedHttp": 200,
+      "next": 1,
+      "http": 200,
+      "body": {
+        "status": "active",
+        "active": true
+      },
+      "attempts": {
+        "db": 1,
+        "token": 0,
+        "client": 1,
+        "config": 1,
+        "external": 0
+      },
+      "proposedContractPass": true
+    },
+    {
+      "runtime": "server.ts",
+      "name": "trial",
+      "proposedHttp": 200,
+      "next": 1,
+      "http": 200,
+      "body": {
+        "status": "trial",
+        "active": true
+      },
+      "attempts": {
+        "db": 1,
+        "token": 0,
+        "client": 1,
+        "config": 1,
+        "external": 0
+      },
+      "proposedContractPass": true
+    },
+    {
+      "runtime": "server.ts",
+      "name": "maintenance",
+      "proposedHttp": 200,
+      "next": 1,
+      "http": 200,
+      "body": {
+        "status": "maintenance",
+        "active": true
+      },
+      "attempts": {
+        "db": 1,
+        "token": 0,
+        "client": 1,
+        "config": 1,
+        "external": 0
+      },
+      "proposedContractPass": true
+    },
+    {
+      "runtime": "server.ts",
+      "name": "suspended",
+      "proposedHttp": 423,
+      "next": 0,
+      "http": 423,
+      "body": {
+        "error": "Tenant is suspended. Service is blocked."
+      },
+      "attempts": {
+        "db": 1,
+        "token": 0,
+        "client": 1,
+        "config": 1,
+        "external": 0
+      },
+      "proposedContractPass": true
+    },
+    {
+      "runtime": "server.ts",
+      "name": "archived",
+      "proposedHttp": 423,
+      "next": 0,
+      "http": 423,
+      "body": {
+        "error": "Tenant is archived. Service is blocked."
+      },
+      "attempts": {
+        "db": 1,
+        "token": 0,
+        "client": 1,
+        "config": 1,
+        "external": 0
+      },
+      "proposedContractPass": true
+    },
+    {
+      "runtime": "server.ts",
+      "name": "missing-document",
+      "proposedHttp": 503,
+      "next": 1,
+      "http": 200,
+      "body": {
+        "status": "active",
+        "active": true
+      },
+      "attempts": {
+        "db": 1,
+        "token": 0,
+        "client": 1,
+        "config": 1,
+        "external": 0
+      },
+      "proposedContractPass": false
+    },
+    {
+      "runtime": "server.ts",
+      "name": "status-null",
+      "proposedHttp": 503,
+      "next": 1,
+      "http": 200,
+      "body": {
+        "status": "active",
+        "active": true
+      },
+      "attempts": {
+        "db": 1,
+        "token": 0,
+        "client": 1,
+        "config": 1,
+        "external": 0
+      },
+      "proposedContractPass": false
+    },
+    {
+      "runtime": "server.ts",
+      "name": "status-absent",
+      "proposedHttp": 503,
+      "next": 1,
+      "http": 200,
+      "body": {
+        "status": "active",
+        "active": true
+      },
+      "attempts": {
+        "db": 1,
+        "token": 0,
+        "client": 1,
+        "config": 1,
+        "external": 0
+      },
+      "proposedContractPass": false
+    },
+    {
+      "runtime": "server.ts",
+      "name": "status-empty",
+      "proposedHttp": 503,
+      "next": 1,
+      "http": 200,
+      "body": {
+        "status": "",
+        "active": false
+      },
+      "attempts": {
+        "db": 1,
+        "token": 0,
+        "client": 1,
+        "config": 1,
+        "external": 0
+      },
+      "proposedContractPass": false
+    },
+    {
+      "runtime": "server.ts",
+      "name": "status-unknown",
+      "proposedHttp": 503,
+      "next": 1,
+      "http": 200,
+      "body": {
+        "status": "future-status",
+        "active": false
+      },
+      "attempts": {
+        "db": 1,
+        "token": 0,
+        "client": 1,
+        "config": 1,
+        "external": 0
+      },
+      "proposedContractPass": false
+    },
+    {
+      "runtime": "server.ts",
+      "name": "status-invalid-type",
+      "proposedHttp": 503,
+      "next": 1,
+      "http": 200,
+      "body": {
+        "status": 42,
+        "active": false
+      },
+      "attempts": {
+        "db": 1,
+        "token": 0,
+        "client": 1,
+        "config": 1,
+        "external": 0
+      },
+      "proposedContractPass": false
+    },
+    {
+      "runtime": "server.ts",
+      "name": "read-failed",
+      "proposedHttp": 503,
+      "next": 1,
+      "http": 200,
+      "body": {
+        "status": "active",
+        "active": true
+      },
+      "attempts": {
+        "db": 2,
+        "token": 0,
+        "client": 2,
+        "config": 0,
+        "external": 0
+      },
+      "proposedContractPass": false
+    },
+    {
+      "runtime": "server.ts",
+      "name": "config-failed",
+      "proposedHttp": 200,
+      "next": 1,
+      "http": 200,
+      "body": {
+        "status": "active",
+        "active": true
+      },
+      "attempts": {
+        "db": 1,
+        "token": 0,
+        "client": 1,
+        "config": 1,
+        "external": 0
+      },
+      "proposedContractPass": true
+    },
+    {
+      "runtime": "server.ts",
+      "name": "admin-absent",
+      "proposedHttp": 503,
+      "next": 1,
+      "http": 200,
+      "body": {
+        "status": "active",
+        "active": true
+      },
+      "attempts": {
+        "db": 2,
+        "token": 0,
+        "client": 0,
+        "config": 0,
+        "external": 0
+      },
+      "proposedContractPass": false
+    },
+    {
+      "runtime": "server.ts",
+      "name": "admin-failed",
+      "proposedHttp": 503,
+      "next": 1,
+      "http": 200,
+      "body": {
+        "status": "active",
+        "active": true
+      },
+      "attempts": {
+        "db": 2,
+        "token": 0,
+        "client": 0,
+        "config": 0,
+        "external": 0
+      },
+      "proposedContractPass": false
+    },
+    {
+      "runtime": "server.ts",
+      "name": "cache-active",
+      "first": {
+        "next": 1,
+        "http": 200,
+        "body": {
+          "status": "active",
+          "active": true
+        },
+        "attempts": {
+          "db": 1,
+          "token": 0,
+          "client": 1,
+          "config": 1,
+          "external": 0
+        }
+      },
+      "fresh": {
+        "next": 1,
+        "http": 200,
+        "body": {
+          "status": "active",
+          "active": true
+        },
+        "attempts": {
+          "db": 1,
+          "token": 0,
+          "client": 1,
+          "config": 1,
+          "external": 0
+        }
+      },
+      "expired": {
+        "next": 1,
+        "http": 200,
+        "body": {
+          "status": "active",
+          "active": true
+        },
+        "attempts": {
+          "db": 3,
+          "token": 0,
+          "client": 3,
+          "config": 1,
+          "external": 0
+        }
+      },
+      "proposedContractPass": false,
+      "cacheNoReadWhileFresh": true
+    },
+    {
+      "runtime": "server.ts",
+      "name": "cache-suspended",
+      "first": {
+        "next": 0,
+        "http": 423,
+        "body": {
+          "error": "Tenant is suspended. Service is blocked."
+        },
+        "attempts": {
+          "db": 1,
+          "token": 0,
+          "client": 1,
+          "config": 1,
+          "external": 0
+        }
+      },
+      "fresh": {
+        "next": 0,
+        "http": 423,
+        "body": {
+          "error": "Tenant is suspended. Service is blocked."
+        },
+        "attempts": {
+          "db": 1,
+          "token": 0,
+          "client": 1,
+          "config": 1,
+          "external": 0
+        }
+      },
+      "expired": {
+        "next": 1,
+        "http": 200,
+        "body": {
+          "status": "active",
+          "active": true
+        },
+        "attempts": {
+          "db": 3,
+          "token": 0,
+          "client": 3,
+          "config": 1,
+          "external": 0
+        }
+      },
+      "proposedContractPass": false,
+      "cacheNoReadWhileFresh": true
+    },
+    {
+      "runtime": "server.ts",
+      "name": "provider-characterization",
+      "scenario": {
+        "configProvider": "cardcom"
+      },
+      "state": {
+        "status": "active",
+        "provider": "cardcom"
+      },
+      "attempts": {
+        "db": 1,
+        "token": 0,
+        "client": 1,
+        "config": 1,
+        "external": 0
+      }
+    },
+    {
+      "runtime": "server.ts",
+      "name": "provider-characterization",
+      "scenario": {
+        "noConfig": true,
+        "legacyProvider": "tranzila"
+      },
+      "state": {
+        "status": "active",
+        "provider": "tranzila"
+      },
+      "attempts": {
+        "db": 1,
+        "token": 0,
+        "client": 1,
+        "config": 1,
+        "external": 0
+      }
+    },
+    {
+      "runtime": "server.ts",
+      "name": "provider-characterization",
+      "scenario": {
+        "configProvider": "invalid"
+      },
+      "state": {
+        "status": "active",
+        "provider": "stripe"
+      },
+      "attempts": {
+        "db": 1,
+        "token": 0,
+        "client": 1,
+        "config": 1,
+        "external": 0
+      }
+    },
+    {
+      "runtime": "api/index.ts",
+      "name": "active",
+      "proposedHttp": 200,
+      "next": 1,
+      "http": 200,
+      "body": {
+        "clientId": "synthetic-tenant",
+        "status": "active",
+        "paymentProvider": "stripe",
+        "active": true
+      },
+      "attempts": {
+        "db": 0,
+        "token": 1,
+        "client": 1,
+        "config": 1,
+        "external": 0
+      },
+      "proposedContractPass": true
+    },
+    {
+      "runtime": "api/index.ts",
+      "name": "trial",
+      "proposedHttp": 200,
+      "next": 1,
+      "http": 200,
+      "body": {
+        "clientId": "synthetic-tenant",
+        "status": "trial",
+        "paymentProvider": "stripe",
+        "active": true
+      },
+      "attempts": {
+        "db": 0,
+        "token": 1,
+        "client": 1,
+        "config": 1,
+        "external": 0
+      },
+      "proposedContractPass": true
+    },
+    {
+      "runtime": "api/index.ts",
+      "name": "maintenance",
+      "proposedHttp": 200,
+      "next": 1,
+      "http": 200,
+      "body": {
+        "clientId": "synthetic-tenant",
+        "status": "maintenance",
+        "paymentProvider": "stripe",
+        "active": true
+      },
+      "attempts": {
+        "db": 0,
+        "token": 1,
+        "client": 1,
+        "config": 1,
+        "external": 0
+      },
+      "proposedContractPass": true
+    },
+    {
+      "runtime": "api/index.ts",
+      "name": "suspended",
+      "proposedHttp": 423,
+      "next": 0,
+      "http": 423,
+      "body": {
+        "error": "Tenant is suspended. Service is blocked."
+      },
+      "attempts": {
+        "db": 0,
+        "token": 1,
+        "client": 1,
+        "config": 1,
+        "external": 0
+      },
+      "proposedContractPass": true
+    },
+    {
+      "runtime": "api/index.ts",
+      "name": "archived",
+      "proposedHttp": 423,
+      "next": 0,
+      "http": 423,
+      "body": {
+        "error": "Tenant is archived. Service is blocked."
+      },
+      "attempts": {
+        "db": 0,
+        "token": 1,
+        "client": 1,
+        "config": 1,
+        "external": 0
+      },
+      "proposedContractPass": true
+    },
+    {
+      "runtime": "api/index.ts",
+      "name": "missing-document",
+      "proposedHttp": 503,
+      "next": 1,
+      "http": 200,
+      "body": {
+        "clientId": "synthetic-tenant",
+        "status": "active",
+        "paymentProvider": "cardcom",
+        "active": true
+      },
+      "attempts": {
+        "db": 0,
+        "token": 2,
+        "client": 2,
+        "config": 0,
+        "external": 0
+      },
+      "proposedContractPass": false
+    },
+    {
+      "runtime": "api/index.ts",
+      "name": "status-null",
+      "proposedHttp": 503,
+      "next": 1,
+      "http": 200,
+      "body": {
+        "clientId": "synthetic-tenant",
+        "status": "active",
+        "paymentProvider": "stripe",
+        "active": true
+      },
+      "attempts": {
+        "db": 0,
+        "token": 1,
+        "client": 1,
+        "config": 1,
+        "external": 0
+      },
+      "proposedContractPass": false
+    },
+    {
+      "runtime": "api/index.ts",
+      "name": "status-absent",
+      "proposedHttp": 503,
+      "next": 1,
+      "http": 200,
+      "body": {
+        "clientId": "synthetic-tenant",
+        "status": "active",
+        "paymentProvider": "stripe",
+        "active": true
+      },
+      "attempts": {
+        "db": 0,
+        "token": 1,
+        "client": 1,
+        "config": 1,
+        "external": 0
+      },
+      "proposedContractPass": false
+    },
+    {
+      "runtime": "api/index.ts",
+      "name": "status-empty",
+      "proposedHttp": 503,
+      "next": 1,
+      "http": 200,
+      "body": {
+        "clientId": "synthetic-tenant",
+        "status": "active",
+        "paymentProvider": "stripe",
+        "active": true
+      },
+      "attempts": {
+        "db": 0,
+        "token": 1,
+        "client": 1,
+        "config": 1,
+        "external": 0
+      },
+      "proposedContractPass": false
+    },
+    {
+      "runtime": "api/index.ts",
+      "name": "status-unknown",
+      "proposedHttp": 503,
+      "next": 1,
+      "http": 200,
+      "body": {
+        "clientId": "synthetic-tenant",
+        "status": "active",
+        "paymentProvider": "stripe",
+        "active": true
+      },
+      "attempts": {
+        "db": 0,
+        "token": 1,
+        "client": 1,
+        "config": 1,
+        "external": 0
+      },
+      "proposedContractPass": false
+    },
+    {
+      "runtime": "api/index.ts",
+      "name": "status-invalid-type",
+      "proposedHttp": 503,
+      "next": 1,
+      "http": 200,
+      "body": {
+        "clientId": "synthetic-tenant",
+        "status": "active",
+        "paymentProvider": "stripe",
+        "active": true
+      },
+      "attempts": {
+        "db": 0,
+        "token": 1,
+        "client": 1,
+        "config": 1,
+        "external": 0
+      },
+      "proposedContractPass": false
+    },
+    {
+      "runtime": "api/index.ts",
+      "name": "read-failed",
+      "proposedHttp": 503,
+      "next": 1,
+      "http": 200,
+      "body": {
+        "clientId": "synthetic-tenant",
+        "status": "active",
+        "paymentProvider": "cardcom",
+        "active": true
+      },
+      "attempts": {
+        "db": 0,
+        "token": 2,
+        "client": 2,
+        "config": 0,
+        "external": 0
+      },
+      "proposedContractPass": false
+    },
+    {
+      "runtime": "api/index.ts",
+      "name": "config-failed",
+      "proposedHttp": 200,
+      "next": 1,
+      "http": 200,
+      "body": {
+        "clientId": "synthetic-tenant",
+        "status": "active",
+        "paymentProvider": "tranzila",
+        "active": true
+      },
+      "attempts": {
+        "db": 0,
+        "token": 1,
+        "client": 1,
+        "config": 1,
+        "external": 0
+      },
+      "proposedContractPass": true
+    },
+    {
+      "runtime": "api/index.ts",
+      "name": "project-absent",
+      "proposedHttp": 503,
+      "next": 1,
+      "http": 200,
+      "body": {
+        "clientId": "synthetic-tenant",
+        "status": "active",
+        "paymentProvider": "cardcom",
+        "active": true
+      },
+      "attempts": {
+        "db": 0,
+        "token": 0,
+        "client": 0,
+        "config": 0,
+        "external": 0
+      },
+      "proposedContractPass": false
+    },
+    {
+      "runtime": "api/index.ts",
+      "name": "token-absent",
+      "proposedHttp": 503,
+      "next": 1,
+      "http": 200,
+      "body": {
+        "clientId": "synthetic-tenant",
+        "status": "active",
+        "paymentProvider": "cardcom",
+        "active": true
+      },
+      "attempts": {
+        "db": 0,
+        "token": 2,
+        "client": 0,
+        "config": 0,
+        "external": 0
+      },
+      "proposedContractPass": false
+    },
+    {
+      "runtime": "api/index.ts",
+      "name": "http403",
+      "proposedHttp": 503,
+      "next": 1,
+      "http": 200,
+      "body": {
+        "clientId": "synthetic-tenant",
+        "status": "active",
+        "paymentProvider": "cardcom",
+        "active": true
+      },
+      "attempts": {
+        "db": 0,
+        "token": 2,
+        "client": 2,
+        "config": 0,
+        "external": 0
+      },
+      "proposedContractPass": false
+    },
+    {
+      "runtime": "api/index.ts",
+      "name": "http500",
+      "proposedHttp": 503,
+      "next": 1,
+      "http": 200,
+      "body": {
+        "clientId": "synthetic-tenant",
+        "status": "active",
+        "paymentProvider": "cardcom",
+        "active": true
+      },
+      "attempts": {
+        "db": 0,
+        "token": 2,
+        "client": 2,
+        "config": 0,
+        "external": 0
+      },
+      "proposedContractPass": false
+    },
+    {
+      "runtime": "api/index.ts",
+      "name": "malformed-json",
+      "proposedHttp": 503,
+      "next": 1,
+      "http": 200,
+      "body": {
+        "clientId": "synthetic-tenant",
+        "status": "active",
+        "paymentProvider": "cardcom",
+        "active": true
+      },
+      "attempts": {
+        "db": 0,
+        "token": 2,
+        "client": 2,
+        "config": 0,
+        "external": 0
+      },
+      "proposedContractPass": false
+    },
+    {
+      "runtime": "api/index.ts",
+      "name": "cache-active",
+      "first": {
+        "next": 1,
+        "http": 200,
+        "body": {
+          "clientId": "synthetic-tenant",
+          "status": "active",
+          "paymentProvider": "stripe",
+          "active": true
+        },
+        "attempts": {
+          "db": 0,
+          "token": 1,
+          "client": 1,
+          "config": 1,
+          "external": 0
+        }
+      },
+      "fresh": {
+        "next": 1,
+        "http": 200,
+        "body": {
+          "clientId": "synthetic-tenant",
+          "status": "active",
+          "paymentProvider": "stripe",
+          "active": true
+        },
+        "attempts": {
+          "db": 0,
+          "token": 1,
+          "client": 1,
+          "config": 1,
+          "external": 0
+        }
+      },
+      "expired": {
+        "next": 1,
+        "http": 200,
+        "body": {
+          "clientId": "synthetic-tenant",
+          "status": "active",
+          "paymentProvider": "cardcom",
+          "active": true
+        },
+        "attempts": {
+          "db": 0,
+          "token": 3,
+          "client": 3,
+          "config": 1,
+          "external": 0
+        }
+      },
+      "proposedContractPass": false,
+      "cacheNoReadWhileFresh": true
+    },
+    {
+      "runtime": "api/index.ts",
+      "name": "cache-suspended",
+      "first": {
+        "next": 0,
+        "http": 423,
+        "body": {
+          "error": "Tenant is suspended. Service is blocked."
+        },
+        "attempts": {
+          "db": 0,
+          "token": 1,
+          "client": 1,
+          "config": 1,
+          "external": 0
+        }
+      },
+      "fresh": {
+        "next": 0,
+        "http": 423,
+        "body": {
+          "error": "Tenant is suspended. Service is blocked."
+        },
+        "attempts": {
+          "db": 0,
+          "token": 1,
+          "client": 1,
+          "config": 1,
+          "external": 0
+        }
+      },
+      "expired": {
+        "next": 1,
+        "http": 200,
+        "body": {
+          "clientId": "synthetic-tenant",
+          "status": "active",
+          "paymentProvider": "cardcom",
+          "active": true
+        },
+        "attempts": {
+          "db": 0,
+          "token": 3,
+          "client": 3,
+          "config": 1,
+          "external": 0
+        }
+      },
+      "proposedContractPass": false,
+      "cacheNoReadWhileFresh": true
+    },
+    {
+      "runtime": "api/index.ts",
+      "name": "provider-characterization",
+      "scenario": {
+        "configProvider": "cardcom"
+      },
+      "state": {
+        "status": "active",
+        "provider": "cardcom"
+      },
+      "attempts": {
+        "db": 0,
+        "token": 1,
+        "client": 1,
+        "config": 1,
+        "external": 0
+      }
+    },
+    {
+      "runtime": "api/index.ts",
+      "name": "provider-characterization",
+      "scenario": {
+        "noConfig": true,
+        "legacyProvider": "tranzila"
+      },
+      "state": {
+        "status": "active",
+        "provider": "tranzila"
+      },
+      "attempts": {
+        "db": 0,
+        "token": 1,
+        "client": 1,
+        "config": 1,
+        "external": 0
+      }
+    },
+    {
+      "runtime": "api/index.ts",
+      "name": "provider-characterization",
+      "scenario": {
+        "configProvider": "invalid"
+      },
+      "state": {
+        "status": "active",
+        "provider": "cardcom"
+      },
+      "attempts": {
+        "db": 0,
+        "token": 1,
+        "client": 1,
+        "config": 1,
+        "external": 0
+      }
+    }
+  ],
+  "sources": [
+    {
+      "path": "server.ts",
+      "sha256": "f2ff9b39e36cd9922ecfe037083eabbe0f4cb90a669442af0d75e6573a255c0b",
+      "guardOffset": 62686,
+      "webhookBeforeGuard": true,
+      "dailyDigestBeforeGuard": null
+    },
+    {
+      "path": "api/index.ts",
+      "sha256": "566913b3fd97ed5f8ccfc02edaa2a13eaf4ae01937ddc3f6ff0ef4f43373e65e",
+      "guardOffset": 108616,
+      "webhookBeforeGuard": true,
+      "dailyDigestBeforeGuard": true
+    }
+  ],
+  "proposedContractFailures": 25,
+  "externalAttempts": 0
+}

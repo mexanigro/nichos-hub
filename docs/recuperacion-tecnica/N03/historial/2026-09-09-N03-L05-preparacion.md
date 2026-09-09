@@ -1,0 +1,5 @@
+# N03 L05 — preparación exclusivamente local
+
+Liam acepta lint-v1 y amplía techo77% TOTAL de N03, sin resets. Aceptación integrada sin reescribir su evidencia. Preparación acotada del guard servidor:43 observaciones/25 divergencias frente a503 propuesto; dos lecturas pendientes observadas75ms. [Propuesta, evidencia y revisión independiente](../informe/N03/L05-v1/PROPUESTA.md). Dependencias simuladas; no arranque completo ni persistencia remota certificados.
+
+Sin producto modificado ni contrato congelado. Única decisión pendiente: aprobar política temporal de caché comprobada30s/deadline1500ms y autorizar implementación desde P0. Acceso separado de provider legacy, selectores/excepciones/pagos intactos. Revisor /root/refutar_soporte integrado. Actualizados ficha/índice/pendientes/calendario con preimágenes. N03 sigue en curso; resto del balance y condición de prestaciones por tenant antes del despliegue intactos. Sin remoto, instalaciones, commit, push, deploy ni resets; checkpoint74% de77%.

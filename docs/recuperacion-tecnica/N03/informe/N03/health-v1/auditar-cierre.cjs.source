@@ -1,0 +1,19 @@
+const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),assert=require('node:assert/strict');
+const repo='C:/Users/liama/Desktop/Nichos/Barber-shop-template-main',out=__dirname;
+const ts=require(path.join(repo,'node_modules/typescript/lib/typescript.js'));
+const read=p=>fs.readFileSync(p,'utf8').replace(/^\uFEFF/,'');const hash=p=>crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex').toUpperCase();
+const normalized=p=>ts.createPrinter({removeComments:true}).printFile(ts.createSourceFile(p,read(p),ts.ScriptTarget.Latest,true));
+const initial=JSON.parse(read(path.join(out,'FUENTES-INICIALES.json')));
+const sources=initial.map(row=>{const current=hash(path.join(repo,row.path));const unchanged=current===row.sha256;assert(unchanged||['server.ts','api/index.ts'].includes(row.path),row.path);return {...row,current,unchanged};});
+for(const runtime of ['server.ts','api/index.ts'])assert.equal(normalized(path.join(repo,runtime)),normalized(path.join(out,'copia',runtime)),runtime+' versión ejecutada');
+const name='src/lib/api/runtime-health.ts';assert.equal(hash(path.join(repo,name)),hash(path.join(out,'copia',name)));
+for(const row of JSON.parse(read(path.join(out,'CONTRATO-HUELLAS.json'))))assert.equal(hash(row.Path),row.Hash,'Contrato congelado '+row.Path);
+assert.equal(hash('C:/Users/liama/Desktop/monitor-agent/src/checks/apiCheck.ts'),hash(path.join(out,'monitor-apiCheck.ts')),'Consumidor real');
+function loader(file,name){const source=ts.createSourceFile(file,read(file),ts.ScriptTarget.Latest,true);let result;function walk(n){if(ts.isFunctionDeclaration(n)&&n.name?.text===name)result=ts.createPrinter({removeComments:true}).printNode(ts.EmitHint.Unspecified,n,source);ts.forEachChild(n,walk);}walk(source);assert(result);return result;}
+assert.equal(loader(path.join(out,'preimagenes/api__index.ts'),'loadAdminFirestore'),loader(path.join(repo,'api/index.ts'),'loadAdminFirestore'));
+const final=['server.ts','api/index.ts',name].map(p=>({path:p,sha256:hash(path.join(repo,p))}));
+fs.writeFileSync(path.join(out,'FUENTES-CIERRE.json'),JSON.stringify(final,null,2));
+const evidence={preserved:sources.filter(r=>r.unchanged).length,total:sources.length,otherChanges:0,executedAstEquivalent:true,consumerExact:true,loaderAstExact:true,frozenContractExact:true};
+fs.writeFileSync(path.join(out,'AUDITORIA-CIERRE.json'),JSON.stringify(evidence,null,2));
+const custody=[];function visit(dir){for(const entry of fs.readdirSync(dir,{withFileTypes:true})){const p=path.join(dir,entry.name);if(entry.isDirectory())visit(p);else custody.push({path:path.relative(out,p),bytes:fs.statSync(p).size,sha256:hash(p)});}}visit(path.join(out,'preimagenes'));fs.writeFileSync(path.join(out,'CUSTODIA.json'),JSON.stringify(custody,null,2));
+console.log(JSON.stringify(evidence));

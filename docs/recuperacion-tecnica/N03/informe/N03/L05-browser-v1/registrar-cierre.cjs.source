@@ -1,0 +1,78 @@
+const fs = require('node:fs'), path = require('node:path'), crypto = require('node:crypto');
+const d = __dirname, root = path.resolve(d, '../../..');
+const sha = value => crypto.createHash('sha256').update(value).digest('hex');
+const writeNew = (file, text) => { fs.mkdirSync(path.dirname(file), {recursive:true}); fs.writeFileSync(file, text, {flag:'wx'}); };
+const readJson = file => JSON.parse(fs.readFileSync(path.join(d,file),'utf8').replace(/^\uFEFF/,''));
+const result = readJson('ACEPTACION-FINAL.json'), conservation = readJson('CONSERVACION-FINAL.json');
+if (result.result !== 'GREEN' || !conservation.pass || result.uniqueControls !== 89) throw Error('cierre sin aceptación');
+const custody = [];
+function update(relative, text) {
+  const file = path.join(root, relative), bytes = fs.readFileSync(file);
+  const preimage = path.join(d, 'preimagenes-registros-cierre', relative);
+  writeNew(preimage, bytes);
+  if (sha(fs.readFileSync(preimage)) !== sha(bytes)) throw Error('preimagen distinta');
+  fs.writeFileSync(file, text);
+  custody.push({ path:relative,preimage:path.relative(root,preimage),sha256Before:sha(bytes),sha256After:sha(fs.readFileSync(file)) });
+}
+const close = `# N03 L05 navegador — GREEN exclusivamente local, para revisión
+
+Liam aprobó la propuesta y la eliminación del montaje estático implícito sin Firebase. [Contrato aprobado](CONTRATO-APROBADO.md), [freeze anterior a producto](FREEZE.json). P0→P1→P2→P3:4/4, sin BLOCKERS. N03 sigue en curso; esta entrega se detiene para revisión y no abre otra reparación.
+
+## Resultado del producto
+
+clients/{clientId} usa getDocFromServer con el db y selector existentes. Sólo active/trial/maintenance exactos permiten montar App. suspended/archived conservan su pantalla. Ausencia de Firebase, documento/estado ausente o inválido, error/offline/timeout muestran indisponibilidad temporal con recarga manual; no montan App. No se guarda permiso entre recargas ni hay polling/reintentos automáticos.
+
+Estado y config arrancan en paralelo, cada lectura con1500ms desde su propio inicio. El plazo incluye el acceso al snapshot; performance.now comprueba también vencimiento si el temporizador se demora. Suspensión/indisponibilidad retornan sin esperar config. Sólo con permiso se aplica config resuelta a tiempo; error/ausencia/vencimiento usan preset. Respuestas tardías no cambian la decisión ni aplican overlay. No se cancela necesariamente el SDK.
+
+Se sustituyó expresamente la promesa de apertura sin Firebase documentada en AGENTS.md:23–24. Su archivo queda intacto por alcance; la decisión aprobada manda para este comportamiento. No es una excepción inferida por demo/visitante/credenciales ni una modificación de prestaciones de tenants reales.
+
+## Aceptación y evidencia
+
+- [Aceptación final](ACEPTACION-FINAL.json):89 controles únicos GREEN. Integra88 resultados válidos de RESULTADOS-green-p2.json con la corrección acotada de conservación de merge en RESULTADOS-green-merge-only.json. No se repitió el sondeo20 ni las suites servidor aceptadas.
+- main/tenant/site/presets/locales actuales se ejecutaron con React/ReactDOM y Chromium locales. App marcador verifica commit DOM real; Firebase, wrappers de providers, env y efectos de SEO/theme controlados. El JSX de providers original está conservado. Casos válidos/adversos, servidor frente a active cacheado, espera,1500ms independientes, config pendiente, config temprana frente a denegación, tardíos, recarga real y permiso no persistido. Cero errores de página e intentos externos del contexto.
+- [Mutación](RESULTADOS-mutation-p3.json): salidas unavailable sustituidas por allowed/active únicamente en bundle compilado aislado en memoria.17 rechazos del contrato esperados; controles positivos active/trial/maintenance y bloqueos comprobados conservados. Fuentes de producto coinciden después con las probadas.
+- [Tipos](TIPOS-p2.json):exit0 con configuración del template sin relajaciones, main/tenant y src/vite-env.d.ts. Se incluyen las dependencias y cuatro locales. No paridad de rutas repetida: ambos runtimes servidor y sus contratos no cambiaron.
+- [Conservación](CONSERVACION-FINAL.json):399 controles aprobados;333 fuentes del template registradas, sólo las6 autorizadas cambiadas.327 fuentes restantes y6 archivos hub lint aceptados conservados. Helpers/filtros/normalización, ramas del merge, suspensión/providers y textos anteriores de4 idiomas idénticos. [Manifiesto final](FUENTES-FINALES.json).
+- [Preimágenes de producto](PREIMAGENES-P1.json) físicas y verificadas antes de editar. Evidencia previa preservada, resultados nuevos con nombres exclusivos.
+
+## Refutación, claridad y detector de bucles
+
+Revisión interna sólo lectura por /root/refutar_soporte (Harvey), en esta conversación, previa al freeze y posterior a P1. Tres ángulos: plazos/concurrencia de lecturas, conservación de contrato/merge/providers y suficiencia del montaje probado. MATERIAL previos incorporados a aceptación; revisión final sin BLOCKERS ni defectos materiales nuevos. No ejecutó pruebas ni es la revisión externa de servidor trasladada por Liam; esta última conserva su procedencia y objeto en L05-v1/REVISION-EXTERNA-TRASLADADA.md.
+
+Claridad: único helper nuevo readWithinDeadline usado por las dos lecturas, sin cache/globales de permisos ni funciones muertas nuevas. Resultado discriminado y validación exacta preceden App. main agrega espera/mensaje/recarga y conserva providers/suspensión; locales sólo agregan dos mensajes. Fuera de esos seis archivos no se cambió producto.
+
+Avance por ciclo: P0 completó preflight y freeze; primer error de esbuild define fue corregido una vez y el renderer real aprobó. P1 produjo montaje bloqueado/permitido y88 controles válidos. P2 contrastó el caso barber en original y final: site y overlays idénticos en4 escenarios. El oráculo incorrecto esperaba barberia; [adenda](ADENDA-ORACULO.md) documenta corrección, no cambio del contrato ni producto. P3 detectó17 fallos al mutar y completó tipos/conservación. El consolidador inicialmente comparó arrays en orden de callbacks paralelos de esbuild:47 pares ruta/huella idénticos. Se conservó CIERRE-INSTRUMENTO-FALLO-r1.json y preimagen, se corrigió una vez comparando pares ordenados y aprobó399 comprobaciones. No se encadenaron intentos sin información nueva ni se reinició reconocimiento.
+
+## Límites y continuidad
+
+Este cierre acredita la decisión y commit de montaje en navegador controlado; no App completa, efectos de imports, seguridad de datos, transacciones ni Firebase/rules remotos. La pantalla no sustituye reglas Firestore. Accesos directos y certificación real permanecen en N04/etapas remotas que correspondan. No se ejecutaron instalaciones, operaciones remotas, cambios de reglas/pagos, commit,push,deploy o resets.
+
+Book/support/stock/health-SP-H01/D05/lint y L05 servidor se conservan. N03 sigue en curso con las demás obligaciones registradas, sin seleccionarlas ni implementarlas en esta continuación. Antes de despliegue sigue siendo necesario presentar tenants/servicios a conservar con evidencia y decisión de Liam sobre excepciones; no deducir compromisos de claves/planes históricos.
+
+Consumo API observado al inicio,P0,P2 y cierre:75% de techo80% TOTAL N03 compartido. Sin resets. Detener aquí para revisión de L05 navegador; no hay retoma técnica pendiente de esta entrega GREEN.
+`;
+writeNew(path.join(d,'CIERRE-LOCAL.md'), close);
+writeNew(path.join(d,'REVISION-CIERRE.md'), `# Revisión interna y cierre
+
+Procedencia: /root/refutar_soporte (Harvey), dos respuestas en esta conversación, sólo lectura. Antes de freeze: sin BLOCKER de decisión; MATERIAL temporización/config temprana, caché vs servidor y commit DOM/recarga. Incorporados a CONTRATO-APROBADO.md. Después de P1: revisó fuentes, contrato, arnés y diff contra preimágenes; sin BLOCKERS ni defectos materiales nuevos. Confirmó deadlines, respuesta única, config sólo tras permiso, providers/suspensión y pertinencia del contraste de alias barber. No ejecutó pruebas.
+
+Integrador:89 controles navegador GREEN con evidencia vigente combinada;17 fallos esperados mutando;tipos0;399 conservación. Revisión de claridad por usos del helper, estados discriminados, textos mínimos y seis archivos. Detalle, fallos de instrumentos preservados y límites en CIERRE-LOCAL.md. Veredicto GREEN sólo local, para revisión de Liam; no aceptación de usuario inventada. Revisión externa L05 servidor ya trasladada por Liam queda separada.
+`);
+update('informe/N03/L05-browser-v1/INFORME.md', '# N03 L05 navegador — entrega local completada\n\n[CIERRE-LOCAL.md](CIERRE-LOCAL.md):GREEN4/4,89 controles navegador,tipos0,mutación17 fallos esperados,399 conservación. Seis archivos autorizados; preimágenes y evidencia anterior conservadas.\n\nPolítica aprobada implementada, incluida sustitución de apertura estática sin Firebase. Estado del servidor obligatorio, config opcional independiente1500ms, recarga manual y sin tardíos. App/providers/Firebase controlados según los límites del cierre: no certificación de App completa, efectos de imports ni datos/rules remotos. N03 sigue en curso; prestaciones por tenant antes de deploy pendientes. Consumo75%/80% TOTAL,sin resets. Detener para revisión, sin otra reparación.\n');
+for (const rel of ['indice/tareas/N03.md','indice/README.md','indice/PENDIENTES.md','indice/CALENDARIO.md']) {
+  const old = fs.readFileSync(path.join(root,rel),'utf8'), split = old.indexOf('\n')+1;
+  const link = rel.includes('/tareas/') ? '../../informe/N03/L05-browser-v1/CIERRE-LOCAL.md' : '../informe/N03/L05-browser-v1/CIERRE-LOCAL.md';
+  const notice = `\n**N03 L05 navegador: GREEN local4/4, entregada para revisión.** [Contrato, resultados y límites](${link}).89 controles con React/Chromium locales y dependencias controladas;tipos0;mutación17 fallos esperados;399 conservación. Sólo6 archivos autorizados, merge/selectores/providers/suspensión preservados. La orden de Liam sustituye la promesa de apertura estática sin Firebase: ahora estado servidor comprobado, plazos1500ms independientes y recarga manual. L05 servidor aceptada y revisión externa trasladada conservadas, al igual que demás entregas. N03 sigue en curso; no otra reparación. No certifica App completa, imports ni datos/rules remotos. Condición previa al despliegue por prestaciones de tenant vigente. Consumo75%/80% TOTAL N03,sin resets. Detener para revisión; cortes inferiores históricos.\n`;
+  update(rel,old.slice(0,split)+notice+old.slice(split));
+}
+writeNew(path.join(root,'historial/2026-09-09-N03-L05-browser-cierre-local.md'), `# N03 L05 navegador — cierre local para revisión
+
+Liam aprobó implementar la propuesta y eliminar apertura estática implícita sin Firebase. Se congeló contrato tras refutación y preflight, preservando sondeo20. Se modificaron sólo tenant.ts/main.tsx y cuatro locales con preimágenes. Estado mediante servidor, lista exacta permitida, suspensión existente, indisponibilidad diferenciada y recarga manual. Lecturas paralelas con plazos1500ms independientes; config opcional no decide acceso ni tardía aplica overlay.
+
+[Cierre y evidencia](../informe/N03/L05-browser-v1/CIERRE-LOCAL.md):GREEN4/4,89 controles navegador vigentes,tipos0,17 fallos esperados mutando,399 conservación. Oráculo barber contrastado original/final y corregido sin cambiar producto; errores de instrumentos preservados y cada corrección produjo avance comprobable. Revisión interna Harvey sólo lectura sin BLOCKERS finales. No se repitieron suites servidor aceptadas. Se conserva aceptación y revisión externa de L05 servidor con procedencia trasladada por Liam.
+
+Promesa de apertura sin Firebase sustituida expresamente por orden de usuario, AGENTS intacto por alcance. No App completa/imports/rules/remoto certificados. N03 sigue en curso, demás entregas y condición previa al despliegue por prestaciones de tenant vigentes. Consumo75% de80% TOTAL,sin resets. Sin instalaciones, operaciones remotas, reglas/pagos,commit,push,deploy. Detenido para revisión de esta entrega; no nueva reparación.
+`);
+writeNew(path.join(d,'CUSTODIA-CIERRE.json'), JSON.stringify(custody,null,2));
+writeNew(path.join(d,'GATES-FINALES.json'), JSON.stringify({result:'GREEN',gates:['P0','P1','P2','P3'],total:4,usage:75,totalCeiling:80,resets:0,awaitingUserReview:true,N03:'en_curso',closureSha256:sha(fs.readFileSync(path.join(d,'CIERRE-LOCAL.md')))},null,2));
+console.log(JSON.stringify({registered:true,records:custody.length,result:'GREEN',gates:'4/4'}));

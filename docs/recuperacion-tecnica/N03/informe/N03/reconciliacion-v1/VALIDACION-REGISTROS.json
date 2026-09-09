@@ -1,0 +1,99 @@
+{
+  "valid": true,
+  "links": [
+    {
+      "from": "BALANCE.md",
+      "target": "HUELLAS-TEMPLATE.json",
+      "exists": true
+    },
+    {
+      "from": "BALANCE.md",
+      "target": "../book-v1/INFORME.md",
+      "exists": true
+    },
+    {
+      "from": "BALANCE.md",
+      "target": "../support-v1/INFORME.md",
+      "exists": true
+    },
+    {
+      "from": "BALANCE.md",
+      "target": "../stock-v1/INFORME.md",
+      "exists": true
+    },
+    {
+      "from": "BALANCE.md",
+      "target": "../health-v1/INFORME.md",
+      "exists": true
+    },
+    {
+      "from": "BALANCE.md",
+      "target": "../health-v1/SP-H01/INFORME.md",
+      "exists": true
+    },
+    {
+      "from": "BALANCE.md",
+      "target": "../D05-v1/INFORME.md",
+      "exists": true
+    },
+    {
+      "from": "BALANCE.md",
+      "target": "LINT-ACTUAL.json",
+      "exists": true
+    },
+    {
+      "from": "BALANCE.md",
+      "target": "LINT-ESTADO.json",
+      "exists": true
+    },
+    {
+      "from": "BALANCE.md",
+      "target": "../../../indice/tareas/N03.md",
+      "exists": true
+    },
+    {
+      "from": "BALANCE.md",
+      "target": "../../N01/SA-01-L-v1/DEUDA.md",
+      "exists": true
+    },
+    {
+      "from": "BALANCE.md",
+      "target": "../../N01/decisiones-alcance-v1/DECISIONES.md",
+      "exists": true
+    },
+    {
+      "from": "BALANCE.md",
+      "target": "../../N01/decisiones-alcance-v1/RECONCILIACION.md",
+      "exists": true
+    },
+    {
+      "from": "BALANCE.md",
+      "target": "../../N02/cierre-local-revisado-v1/TRASPASOS.md",
+      "exists": true
+    },
+    {
+      "from": "BALANCE.md",
+      "target": "../../N02/preparacion-v1/SELECTORES-FUENTE-v4.md",
+      "exists": true
+    },
+    {
+      "from": "BALANCE.md",
+      "target": "SIGUIENTE-ACCION.md",
+      "exists": true
+    },
+    {
+      "from": "BALANCE.md",
+      "target": "../D05-v1/REVISION-FINAL.md",
+      "exists": true
+    }
+  ],
+  "n03": "en_curso",
+  "d05": "aceptada_GREEN_local",
+  "newRepair": "preparacion_sin_implementacion",
+  "templateDrift": 0,
+  "lint": {
+    "files": 6,
+    "errors": 1,
+    "warnings": 12
+  }
+}

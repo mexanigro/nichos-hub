@@ -1,0 +1,494 @@
+[
+  {
+    "name": "server-denied-0:startup",
+    "valid": true
+  },
+  {
+    "name": "server-denied-0:base-results",
+    "valid": true,
+    "evidence": [
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Thank you! Your message has been received."
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      }
+    ]
+  },
+  {
+    "name": "server-denied-0:agent-count",
+    "valid": true,
+    "evidence": 0
+  },
+  {
+    "name": "server-denied-0:identity",
+    "valid": true,
+    "evidence": []
+  },
+  {
+    "name": "server-denied-0:auth",
+    "valid": true
+  },
+  {
+    "name": "server-denied-0:base-email",
+    "valid": true,
+    "evidence": [
+      {
+        "kind": "email",
+        "to": "owner@example.invalid",
+        "subject": "Website Inquiry: General Contact"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Booking Confirmed: Haircut on 2026-12-20"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Appointment Cancelled: Haircut on 2026-12-20"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Appointment Rescheduled: Haircut"
+      }
+    ]
+  },
+  {
+    "name": "server-denied-0:no-external",
+    "valid": true
+  },
+  {
+    "name": "server-denied-1:startup",
+    "valid": true
+  },
+  {
+    "name": "server-denied-1:base-results",
+    "valid": true,
+    "evidence": [
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Thank you! Your message has been received."
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      }
+    ]
+  },
+  {
+    "name": "server-denied-1:agent-count",
+    "valid": true,
+    "evidence": 0
+  },
+  {
+    "name": "server-denied-1:identity",
+    "valid": true,
+    "evidence": []
+  },
+  {
+    "name": "server-denied-1:auth",
+    "valid": true
+  },
+  {
+    "name": "server-denied-1:base-email",
+    "valid": true,
+    "evidence": [
+      {
+        "kind": "email",
+        "to": "owner@example.invalid",
+        "subject": "Website Inquiry: General Contact"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Booking Confirmed: Haircut on 2026-12-20"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Appointment Cancelled: Haircut on 2026-12-20"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Appointment Rescheduled: Haircut"
+      }
+    ]
+  },
+  {
+    "name": "server-denied-1:no-external",
+    "valid": true
+  },
+  {
+    "name": "server-denied-2:startup",
+    "valid": true
+  },
+  {
+    "name": "server-denied-2:base-results",
+    "valid": true,
+    "evidence": [
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Thank you! Your message has been received."
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      }
+    ]
+  },
+  {
+    "name": "server-denied-2:agent-count",
+    "valid": true,
+    "evidence": 0
+  },
+  {
+    "name": "server-denied-2:identity",
+    "valid": true,
+    "evidence": []
+  },
+  {
+    "name": "server-denied-2:auth",
+    "valid": true
+  },
+  {
+    "name": "server-denied-2:base-email",
+    "valid": true,
+    "evidence": [
+      {
+        "kind": "email",
+        "to": "owner@example.invalid",
+        "subject": "Website Inquiry: General Contact"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Booking Confirmed: Haircut on 2026-12-20"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Appointment Cancelled: Haircut on 2026-12-20"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Appointment Rescheduled: Haircut"
+      }
+    ]
+  },
+  {
+    "name": "server-denied-2:no-external",
+    "valid": true
+  },
+  {
+    "name": "api-denied-0:startup",
+    "valid": true
+  },
+  {
+    "name": "api-denied-0:base-results",
+    "valid": true,
+    "evidence": [
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Thank you! Your message has been received."
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      }
+    ]
+  },
+  {
+    "name": "api-denied-0:agent-count",
+    "valid": true,
+    "evidence": 0
+  },
+  {
+    "name": "api-denied-0:identity",
+    "valid": true,
+    "evidence": []
+  },
+  {
+    "name": "api-denied-0:auth",
+    "valid": true
+  },
+  {
+    "name": "api-denied-0:base-email",
+    "valid": true,
+    "evidence": [
+      {
+        "kind": "email",
+        "to": "owner@example.invalid",
+        "subject": "Website Inquiry: General Contact"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Booking Confirmed: Haircut on 2026-12-20"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Appointment Cancelled: Haircut on 2026-12-20"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Appointment Rescheduled: Haircut"
+      }
+    ]
+  },
+  {
+    "name": "api-denied-0:no-external",
+    "valid": true
+  },
+  {
+    "name": "api-denied-1:startup",
+    "valid": true
+  },
+  {
+    "name": "api-denied-1:base-results",
+    "valid": true,
+    "evidence": [
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Thank you! Your message has been received."
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      }
+    ]
+  },
+  {
+    "name": "api-denied-1:agent-count",
+    "valid": true,
+    "evidence": 0
+  },
+  {
+    "name": "api-denied-1:identity",
+    "valid": true,
+    "evidence": []
+  },
+  {
+    "name": "api-denied-1:auth",
+    "valid": true
+  },
+  {
+    "name": "api-denied-1:base-email",
+    "valid": true,
+    "evidence": [
+      {
+        "kind": "email",
+        "to": "owner@example.invalid",
+        "subject": "Website Inquiry: General Contact"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Booking Confirmed: Haircut on 2026-12-20"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Appointment Cancelled: Haircut on 2026-12-20"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Appointment Rescheduled: Haircut"
+      }
+    ]
+  },
+  {
+    "name": "api-denied-1:no-external",
+    "valid": true
+  },
+  {
+    "name": "api-denied-2:startup",
+    "valid": true
+  },
+  {
+    "name": "api-denied-2:base-results",
+    "valid": true,
+    "evidence": [
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Thank you! Your message has been received."
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      },
+      {
+        "status": 200,
+        "body": {
+          "success": true,
+          "agentNotified": false
+        }
+      }
+    ]
+  },
+  {
+    "name": "api-denied-2:agent-count",
+    "valid": true,
+    "evidence": 0
+  },
+  {
+    "name": "api-denied-2:identity",
+    "valid": true,
+    "evidence": []
+  },
+  {
+    "name": "api-denied-2:auth",
+    "valid": true
+  },
+  {
+    "name": "api-denied-2:base-email",
+    "valid": true,
+    "evidence": [
+      {
+        "kind": "email",
+        "to": "owner@example.invalid",
+        "subject": "Website Inquiry: General Contact"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Booking Confirmed: Haircut on 2026-12-20"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Appointment Cancelled: Haircut on 2026-12-20"
+      },
+      {
+        "kind": "email",
+        "to": "customer@example.invalid",
+        "subject": "Appointment Rescheduled: Haircut"
+      }
+    ]
+  },
+  {
+    "name": "api-denied-2:no-external",
+    "valid": true
+  }
+]

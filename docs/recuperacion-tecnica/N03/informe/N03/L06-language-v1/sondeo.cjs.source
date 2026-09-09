@@ -1,0 +1,56 @@
+// Sondeo local acotado. Reutiliza TypeScript/VM del control lint-v1; ningún módulo de producto se importa en el host.
+const fs=require('node:fs'),p=require('node:path'),vm=require('node:vm'),crypto=require('node:crypto');
+const dependencyRoot='C:/Users/liama/Desktop/Nichos-hub',root=process.argv[3]||dependencyRoot,d=__dirname;
+const out=process.argv[2]?p.join(d,process.argv[2]):d;
+if(out!==d)fs.mkdirSync(out);
+const ts=require(p.join(dependencyRoot,'node_modules/typescript'));
+const files=['src/app/api/onboarding/route.ts','src/lib/deploy.ts','src/app/onboarding/preview/page.tsx','src/app/api/deploy/route.ts','src/app/api/clients/provision/route.ts'];
+const sources=files.map(path=>({path,source:fs.readFileSync(p.join(root,path),'utf8')}));
+const compiled=new Map();
+for(const item of sources){
+ const result=ts.transpileModule(item.source,{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022,jsx:ts.JsxEmit.ReactJSX},reportDiagnostics:true});
+ if(result.diagnostics?.some(x=>x.category===ts.DiagnosticCategory.Error))throw Error('syntax '+item.path);
+ new vm.Script(result.outputText);compiled.set(item.path,result.outputText);
+}
+fs.writeFileSync(p.join(out,'PREFLIGHT.json'),JSON.stringify({typescript:ts.version,syntaxAndTranspile:files,dependencies:'node:vm + TypeScript instalado del hub',externalImports:'whitelist, desconocido aborta',realFetchAvailable:false}),{flag:'wx'});
+const output=[];
+function instantiate(file,imports,extra){const exports={};vm.runInNewContext(compiled.get(file),{exports,require:name=>{if(!(name in imports))throw Error('import no controlado '+name);return imports[name];},console:{log(){},warn(){},error(){}},...extra},{timeout:1000});return exports;}
+const json=value=>({ok:true,status:200,json:async()=>value,text:async()=>JSON.stringify(value)});
+(async()=>{
+const scenarios=[...['he','en','ru','ar','es',undefined,'  ru  ','EN','bad',' '].map(locale=>({locale,mode:'valid',status:200})),...['rate','origin','invalid','config-failure'].map((mode,i)=>({locale:'en',mode,status:[429,403,400,500][i]}))];
+for(const {locale,mode,status} of scenarios){
+ const records=new Map(),writes=[],requests=[],triggers=[];let generated=0;
+ const ref=(collection,id)=>({id,set:async data=>{if(mode==='config-failure'&&collection==='config')throw Error('synthetic config persistence failure');records.set(collection+'/'+id,data);writes.push({collection,id,data});},update:async data=>{records.set(collection+'/'+id,{...records.get(collection+'/'+id),...data});writes.push({collection,id,update:data});},get:async()=>({data:()=>records.get(collection+'/'+id)})});
+ const db={collection:name=>({doc:id=>ref(name,id||'hub-control')})};
+ const deploy=instantiate('src/lib/deploy.ts',{'@/lib/firebase-admin':{db}},{URL,process:{env:{VERCEL_TOKEN:'synthetic-token',VERCEL_TEMPLATE_REPO:'synthetic/template',VITE_FIREBASE_API_KEY:'synthetic',VITE_FIREBASE_AUTH_DOMAIN:'synthetic.invalid',VITE_FIREBASE_PROJECT_ID:'synthetic-project'}},setTimeout:()=>{throw Error('retry inesperado');},fetch:async(url,options)=>{
+  const path=new URL(url).pathname;
+  if(!['/v1/projects','/v3/projects/project-control/env','/v9/projects/project-control/domains','/v13/deployments'].includes(path))throw Error('destino inesperado '+path);
+  requests.push({path,method:options.method,body:JSON.parse(options.body)});
+  return json(path==='/v1/projects'?{id:'project-control'}:{});
+ }});
+ const route=instantiate('src/app/api/onboarding/route.ts',{
+  'next/server':{NextResponse:{json:(body,opts)=>({status:opts?.status||200,body})}},
+  '@/lib/firebase-admin':{db},'@/lib/auth':{auth:async()=>({user:{email:'synthetic@example.invalid'}})},
+  '@/lib/rate-limit':{isRateLimited:()=>mode==='rate'},'@/lib/branding-resolver':{resolveBranding:()=>({themeOverrides:{}})},
+  '@/lib/logo-generator':{generateLogoSvg:async()=>{generated++;throw Error('IA no permitida en sondeo');}},
+  '@/lib/niche-defaults':{buildFeatures:()=>({fixture:true}),getDefaultTheme:()=> 'fixture-theme',getDefaultSplash:()=> 'fixture-splash'},
+ },{Blob,Buffer,Date:class extends Date{constructor(...args){super(...(args.length?args:['2026-09-09T00:00:00Z']));}},crypto:{randomUUID:()=> '00000000-control'},process:{env:{DEPLOY_SECRET:'synthetic-secret'}},fetch:async(url,options)=>{
+  if(url!=='http://localhost/api/deploy')throw Error('destino onboarding inesperado');
+  triggers.push({url,method:options.method,headers:options.headers,body:JSON.parse(options.body)});
+  return json(await deploy.deployToVercel(JSON.parse(options.body)));
+ }});
+ const form=new FormData();form.set('niche','barberia');form.set('businessName',mode==='invalid'?'X':'Synthetic');form.set('logoCreate','false');if(locale!==undefined)form.set('locale',locale);
+ const response=await route.POST({headers:new Headers({origin:mode==='origin'?'https://foreign.invalid':'http://localhost','x-forwarded-for':'127.0.0.1'}),nextUrl:{origin:'http://localhost'},formData:async()=>form});
+ const config=records.get('config/demo-synthetic-00000000')||{},hub=records.get('hub_clients/hub-control')||{};
+ const propagated=requests.find(x=>x.path.endsWith('/env'))?.body.find(x=>x.key==='VITE_UI_LANGUAGE')?.value;
+ if(response.status!==status||requests.length!==(status===200?4:0)||triggers.length!==(status===200?1:0)||generated!==0)throw Error('instrumento/recorrido incompleto');
+ if(status===200&&(triggers[0].method!=='POST'||triggers[0].headers['x-deploy-secret']!=='synthetic-secret'))throw Error('disparo no observado');
+ if(mode==='config-failure'&&(writes.length!==2||records.has('config/demo-synthetic-00000000')))throw Error('fallo config no localizado');
+ output.push({mode,input:locale??null,hubLanguage:hub.language,configLanguage:config.language??null,propagatedLanguage:propagated,response,writes,triggers,requests,aiAttempts:generated,realNetworkCalls:0});
+}
+fs.writeFileSync(p.join(out,'MEDICION.json'),JSON.stringify(output,null,2),{flag:'wx'});
+const manifest=sources.map(({path,source})=>({path,sha256:crypto.createHash('sha256').update(source).digest('hex')}));
+for(const row of manifest){const target=p.join(out,'preimagenes',row.path);fs.mkdirSync(p.dirname(target),{recursive:true});fs.copyFileSync(p.join(root,row.path),target,fs.constants.COPYFILE_EXCL);}
+fs.writeFileSync(p.join(out,'FUENTES.json'),JSON.stringify(manifest,null,2),{flag:'wx'});
+console.log(JSON.stringify(output.map(({input,hubLanguage,configLanguage,propagatedLanguage})=>({input,hubLanguage,configLanguage,propagatedLanguage}))));
+})().catch(error=>{console.error(error);process.exitCode=1;});

@@ -1,0 +1,5 @@
+# N03 — cierre de sesión y commits locales
+
+**Cierre de sesión autorizado, N03 sigue en curso.** Producto propio commiteado: template `edd8f76345000bb669322486895b0e2d55eac480`, hub `3917700a26cc0d59b96325865d96e14bf56234d5`; registros y controles seleccionados se archivan en el hub. [Retoma vigente](../informe/N03/cierre-sesion-v1/RETOMA.md). W-NEXT no está autorizado para implementación: advertencia y callback comprobados; falta comparar middleware/proxy con Next, NextAuth, authConfig real y sesiones sintéticas en copia aislada. No se renombró ni se continuó esa validación. Techo **85% TOTAL N03**, consumo observado **80%**, sin resets; cambiar de sesión no reinicia presupuesto. Estados y techos inferiores son históricos. Sin push/deploy/remoto; prestaciones por tenant antes de despliegue y obligaciones posteriores conservadas.
+
+Dos commits de producto verificados; archivo documental seleccionado en hub. Propio separado de ajeno con preimágenes y revisión interna Harvey; sin modificación funcional, suites nuevas ni validación W-NEXT. La aceptación de L06 y su revisión externa ya están integradas. N03 no cerrada.

@@ -1,0 +1,3 @@
+docker: Error response from daemon: failed to create task for container: failed to create shim task: OCI runtime create failed: runc create failed: unable to start container process: error during container init: error mounting "/run/desktop/mnt/host/c/Users/liama/Desktop/Nichos/recuperacion-tecnica/instancias/N02-control-v1/node_modules" to rootfs at "/app/node_modules": create mountpoint for /app/node_modules mount: make mountpoint "/app/node_modules": mkdirat /var/lib/docker/rootfs/overlayfs/4ac7deaed71da5241014163e588a09a130f7ea923f4b0639f26e40aaa9ca8c30/app/node_modules: read-only file system
+
+Run 'docker run --help' for more information

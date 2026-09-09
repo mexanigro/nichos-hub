@@ -1,0 +1,15 @@
+const fs = require('node:fs'), path = require('node:path'), assert = require('node:assert/strict');
+const repo = 'C:/Users/liama/Desktop/Nichos/Barber-shop-template-main';
+const ts = require(path.join(repo, 'node_modules/typescript/lib/typescript.js'));
+function routes(file) {
+ const source = fs.readFileSync(file, 'utf8'); const ast = ts.createSourceFile(file, source, ts.ScriptTarget.Latest, true); const found = new Map();
+ function visit(n) { if (ts.isCallExpression(n) && /^app\.(get|post|put|patch|delete)$/.test(n.expressiots.createPrinter({ removeComments: true }).printNode(ts.EmitHint.Unspecified, n, ast)) && ts.isStringLiteral(n.arguments[0])) { const key = n.expressiots.createPrinter({ removeComments: true }).printNode(ts.EmitHint.Unspecified, n, ast) + ' ' + n.arguments[0].text; if (!['app.get /api/health'].includes(key)) { assert.ok(!found.has(key), `Registro duplicado: ${key}`); found.set(key, ts.createPrinter({ removeComments: true }).printNode(ts.EmitHint.Unspecified, n, ast)); } } ts.forEachChild(n, visit); } visit(ast); return found;
+}
+const result = [];
+for (const runtime of ['server.ts', 'api/index.ts']) {
+ const before = routes(path.join(__dirname, 'preimagenes', runtime.replaceAll('/', '__'))); const after = routes(path.join(repo, runtime));
+ assert.deepEqual(after, before, 'Las otras rutas deben conservar exactamente su declaración/cuerpo');
+ result.push({ runtime, otherRoutes: after.size, unchanged: true, book: after.has('app.post /api/book'), support: after.has('app.post /api/support/message') });
+}
+fs.writeFileSync(path.join(__dirname, 'RUTAS-CONSERVADAS-AST-final.json'), JSON.stringify(result, null, 2));
+console.log(JSON.stringify(result));

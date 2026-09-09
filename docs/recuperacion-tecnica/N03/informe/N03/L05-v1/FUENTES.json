@@ -1,0 +1,16 @@
+[
+  {
+    "path": "server.ts",
+    "sha256": "f2ff9b39e36cd9922ecfe037083eabbe0f4cb90a669442af0d75e6573a255c0b",
+    "guardOffset": 62686,
+    "webhookBeforeGuard": true,
+    "dailyDigestBeforeGuard": null
+  },
+  {
+    "path": "api/index.ts",
+    "sha256": "566913b3fd97ed5f8ccfc02edaa2a13eaf4ae01937ddc3f6ff0ef4f43373e65e",
+    "guardOffset": 108616,
+    "webhookBeforeGuard": true,
+    "dailyDigestBeforeGuard": true
+  }
+]

@@ -1,0 +1,26 @@
+  ✗  GEMINI_API_KEY                   → AI chat & style consultation (DISABLED — add key to .env)
+  ✗  STRIPE_SECRET_KEY                → Stripe payments (DISABLED — add key to .env)
+  ✗  STRIPE_WEBHOOK_SECRET            → Stripe webhook verification (DISABLED — add key to .env)
+  ✗  VITE_STRIPE_PUBLISHABLE_KEY      → Stripe frontend (DISABLED — add key to .env)
+  ✗  EMAIL_PROVIDER_API_KEY           → Email notifications (Resend) (DISABLED — add key to .env)
+  ✗  BUSINESS_OWNER_EMAIL             → Notification recipient (DISABLED — add key to .env)
+  ✗  VITE_ADMIN_EMAIL                 → Admin panel access (DISABLED — add key to .env)
+  ✗  WHATSAPP_AGENT_URL               → WhatsApp agent integration (leads + bookings) (DISABLED — add key to .env)
+  ✗  AGENT_API_SECRET                 → WhatsApp agent auth (must match agentkit) (DISABLED — add key to .env)
+  ✗  BUSINESS_OWNER_PHONE             → WhatsApp admin notifications recipient (DISABLED — add key to .env)
+  ✗  NICHOS_HUB_URL                   → Hub booking tier tracking (DISABLED — add key to .env)
+[Template Setup] Some features are disabled. See above for missing keys.
+
+  ✗  GEMINI_API_KEY                   → AI chat & style consultation (DISABLED — add key to .env)
+  ✗  STRIPE_SECRET_KEY                → Stripe payments (DISABLED — add key to .env)
+  ✗  STRIPE_WEBHOOK_SECRET            → Stripe webhook verification (DISABLED — add key to .env)
+  ✗  VITE_STRIPE_PUBLISHABLE_KEY      → Stripe frontend (DISABLED — add key to .env)
+  ✗  EMAIL_PROVIDER_API_KEY           → Email notifications (Resend) (DISABLED — add key to .env)
+  ✗  BUSINESS_OWNER_EMAIL             → Notification recipient (DISABLED — add key to .env)
+  ✗  VITE_ADMIN_EMAIL                 → Admin panel access (DISABLED — add key to .env)
+  ✗  WHATSAPP_AGENT_URL               → WhatsApp agent integration (leads + bookings) (DISABLED — add key to .env)
+  ✗  AGENT_API_SECRET                 → WhatsApp agent auth (must match agentkit) (DISABLED — add key to .env)
+  ✗  BUSINESS_OWNER_PHONE             → WhatsApp admin notifications recipient (DISABLED — add key to .env)
+  ✗  NICHOS_HUB_URL                   → Hub booking tier tracking (DISABLED — add key to .env)
+[Template Setup] Some features are disabled. See above for missing keys.
+

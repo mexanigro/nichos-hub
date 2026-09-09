@@ -1,0 +1,70 @@
+const { test } = require('node:test');
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const vm = require('node:vm');
+const path = require('node:path');
+const repo = process.argv[2] || 'C:/Users/liama/Desktop/Nichos/Barber-shop-template-main';
+const source = fs.readFileSync(path.join(repo, 'src/services/support.ts'), 'utf8');
+const start = source.indexOf('  async sendMessage(message: string): Promise<string> {');
+const end = source.indexOf('  async markAsRead(', start);
+assert.ok(start >= 0 && end > start, 'El instrumento debe encontrar el método real completo');
+const method = source.slice(start, end).trim().replace(/,$/, '').replace('sendMessage(message: string): Promise<string>', 'sendMessage(message)');
+function consumer(auth, response = { ok: true, json: async () => ({ success: true, id: 'support-id' }) }) {
+  const calls = [];
+  const service = vm.runInNewContext(`({${method}})`, {
+    CLIENT_ID: 'tenant-control', auth, firebaseAuth: auth,
+    console: { error() {}, warn() {} },
+    fetch: async (...args) => { calls.push(args); return response; },
+  }, { timeout: 1000 });
+  return { service, calls };
+}
+test('usuario autenticado transmite token y devuelve id', async () => {
+  const c = consumer({ currentUser: { getIdToken: async () => 'token-sintetico' } });
+  assert.equal(await c.service.sendMessage('hola'), 'support-id');
+  assert.equal(c.calls.length, 1);
+  assert.equal(c.calls[0][0], '/api/support/message');
+  assert.equal(c.calls[0][1].headers.Authorization, 'Bearer token-sintetico');
+  assert.equal(c.calls[0][1].method, 'POST');
+  assert.equal(c.calls[0][1].body, JSON.stringify({ message: 'hola' }));
+});
+for (const [name, auth] of [
+  ['Firebase ausente', null], ['sin usuario', { currentUser: null }],
+  ['token vacío', { currentUser: { getIdToken: async () => '' } }],
+  ['token fallido', { currentUser: { getIdToken: async () => { throw Error('fallo preparado'); } } }],
+]) test(`${name}: no envía y devuelve vacío`, async () => {
+  const c = consumer(auth);
+  assert.equal(await c.service.sendMessage('hola'), '');
+  assert.equal(c.calls.length, 0);
+});
+test('respuesta HTTP rechazada no anuncia éxito', async () => {
+  const c = consumer({ currentUser: { getIdToken: async () => 'token-sintetico' } }, { ok: false });
+  assert.equal(await c.service.sendMessage('hola'), '');
+});
+// Ejecuta el cuerpo real del consumidor con fetch/auth controlados. No carga Firebase,
+// no verifica SDK/token real ni integra aún el handler HTTP (A3 pendiente).
+const { install } = require('./acceptance-handler.cjs');
+for (const runtime of ['server.ts', 'api/index.ts']) test(`${runtime}: consumidor real a handler registrado devuelve id`, async () => {
+  const installed = install(runtime, 'ok');
+  const service = vm.runInNewContext(`({${method}})`, {
+    CLIENT_ID: 'tenant-control', auth: { currentUser: { getIdToken: async () => 'token-sintetico' } },
+    console: { error() {} },
+    fetch: async (url, options) => {
+      assert.equal(url, '/api/support/message');
+      assert.equal(options.headers.Authorization, 'Bearer token-sintetico');
+      const res = { code: 200, data: null, status(code) { this.code = code; return this; }, json(data) { this.data = data; return this; } };
+      await installed.handler({ body: JSON.parse(options.body), headers: options.headers }, res);
+      return { ok: res.code >= 200 && res.code < 300, json: async () => res.data };
+    },
+  }, { timeout: 1000 });
+  assert.equal(await service.sendMessage('  solicitud  '), 'support-id');
+  assert.equal(installed.writes.length, 1);
+  assert.equal(installed.writes[0].message, 'solicitud');
+});
+for (const runtime of ['server.ts', 'api/index.ts']) test(`${runtime}: factory compartida importada y registrada`, () => {
+  const s = fs.readFileSync(path.join(repo, runtime), 'utf8');
+  assert.match(s, /import\s*\{[^}]*createSupportHandler[^}]*\}\s*from\s*["'][^"']*support-handler(?:\.js)?["']/);
+  assert.match(s, /app\.post\("\/api\/support\/message",\s*createSupportHandler\(/);
+});
+test('consumidor importa auth del módulo Firebase real', () => {
+  assert.match(source, /import\s*\{[^}]*\bauth\b[^}]*\}\s*from\s*["']\.\.\/lib\/firebase["']/);
+});

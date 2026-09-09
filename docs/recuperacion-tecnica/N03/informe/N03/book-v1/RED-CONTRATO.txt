@@ -1,0 +1,152 @@
+TAP version 13
+# [Cardcom] webhook rechazado: notificationToken no configurado
+# [Cardcom] Webhook token mismatch — rejecting
+# [Cardcom] Webhook token mismatch — rejecting
+# [Cardcom] Webhook clientId mismatch — rejecting
+# [Auth] FIREBASE_PROJECT_ID not set — cannot verify ID token. Fix deployment env vars immediately.
+# Subtest: route parity between server.ts and api/index.ts
+not ok 1 - route parity between server.ts and api/index.ts
+  ---
+  duration_ms: 5.758758
+  type: 'test'
+  location: '/template/tests/api-parity.test.ts:1:1317'
+  failureType: 'testCodeFailure'
+  error: |-
+    Routes registered in server.ts but missing in api/index.ts (add them or allowlist consciously): POST /api/book
+    + actual - expected
+    
+    + [
+    +   'POST /api/book'
+    + ]
+    - []
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+    0: 'POST /api/book'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (/template/tests/api-parity.test.ts:84:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+# Subtest: both runtimes consume the shared src/lib/api modules
+ok 2 - both runtimes consume the shared src/lib/api modules
+  ---
+  duration_ms: 0.566775
+  type: 'test'
+  ...
+# Subtest: the inline duplicates stay deleted
+ok 3 - the inline duplicates stay deleted
+  ---
+  duration_ms: 0.660688
+  type: 'test'
+  ...
+# Subtest: cardcom webhook: rejected when notificationToken is not configured
+ok 4 - cardcom webhook: rejected when notificationToken is not configured
+  ---
+  duration_ms: 0.681669
+  type: 'test'
+  ...
+# Subtest: cardcom webhook: rejected on token mismatch
+ok 5 - cardcom webhook: rejected on token mismatch
+  ---
+  duration_ms: 0.142818
+  type: 'test'
+  ...
+# Subtest: cardcom webhook: rejected on clientId mismatch (cross-tenant)
+ok 6 - cardcom webhook: rejected on clientId mismatch (cross-tenant)
+  ---
+  duration_ms: 0.170152
+  type: 'test'
+  ...
+# Subtest: cardcom webhook: accepted with valid token + matching tenant
+ok 7 - cardcom webhook: accepted with valid token + matching tenant
+  ---
+  duration_ms: 0.139281
+  type: 'test'
+  ...
+# Subtest: cardcom webhook: failed payment is not an event
+ok 8 - cardcom webhook: failed payment is not an event
+  ---
+  duration_ms: 0.171695
+  type: 'test'
+  ...
+# Subtest: manual + stub gateways never verify webhooks and refuse checkout
+ok 9 - manual + stub gateways never verify webhooks and refuse checkout
+  ---
+  duration_ms: 0.686137
+  type: 'test'
+  ...
+# Subtest: createCredentialCache caches within TTL
+ok 10 - createCredentialCache caches within TTL
+  ---
+  duration_ms: 0.741956
+  type: 'test'
+  ...
+# Subtest: manifest window math includes the 10-minute buffer
+ok 11 - manifest window math includes the 10-minute buffer
+  ---
+  duration_ms: 0.278133
+  type: 'test'
+  ...
+# Subtest: manifest conflict detection (overlap and boundary cases)
+ok 12 - manifest conflict detection (overlap and boundary cases)
+  ---
+  duration_ms: 0.249757
+  type: 'test'
+  ...
+# Subtest: booking field validators (duration cap 5–480, formats)
+ok 13 - booking field validators (duration cap 5–480, formats)
+  ---
+  duration_ms: 0.261771
+  type: 'test'
+  ...
+# Subtest: BookingConflictError carries the 409 semantics message
+ok 14 - BookingConflictError carries the 409 semantics message
+  ---
+  duration_ms: 0.124343
+  type: 'test'
+  ...
+# Subtest: requireAdminAuth: 401 without Authorization header, lookup never called
+ok 15 - requireAdminAuth: 401 without Authorization header, lookup never called
+  ---
+  duration_ms: 0.197405
+  type: 'test'
+  ...
+# Subtest: requireAdminAuth: 401 on non-Bearer header
+ok 16 - requireAdminAuth: 401 on non-Bearer header
+  ---
+  duration_ms: 0.134182
+  type: 'test'
+  ...
+# Subtest: requireAdminAuth: 401 on malformed token (no network, no lookup)
+ok 17 - requireAdminAuth: 401 on malformed token (no network, no lookup)
+  ---
+  duration_ms: 0.346356
+  type: 'test'
+  ...
+# Subtest: base64UrlDecode roundtrip
+ok 18 - base64UrlDecode roundtrip
+  ---
+  duration_ms: 0.243825
+  type: 'test'
+  ...
+# Subtest: admin-auth module enforces M-2 and has no env-allowlist fallback
+ok 19 - admin-auth module enforces M-2 and has no env-allowlist fallback
+  ---
+  duration_ms: 3.261383
+  type: 'test'
+  ...
+1..19
+# tests 19
+# suites 0
+# pass 18
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 9707.299698

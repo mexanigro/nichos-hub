@@ -1,0 +1,12 @@
+  ✗  [optional] STRIPE_SECRET_KEY                    → Stripe payments (DISABLED — add key to .env)
+  ✗  [optional] STRIPE_WEBHOOK_SECRET                → Stripe webhook verification (DISABLED — add key to .env)
+  ✗  [optional] VITE_STRIPE_PUBLISHABLE_KEY          → Stripe frontend (DISABLED — add key to .env)
+  ✗  [optional] EMAIL_PROVIDER_API_KEY               → Email notifications (Resend) (DISABLED — add key to .env)
+  ✗  [optional] BUSINESS_OWNER_EMAIL                 → Notification recipient (DISABLED — add key to .env)
+  ✗  [optional] VITE_ADMIN_EMAIL                     → Admin panel access (DISABLED — add key to .env)
+[Kill-switch] PROJECT_ID or CLIENT_ID missing — skipping kill-switch, defaulting active.
+[gemini] gemini-2.5-flash fetch error: EXTERNAL_BLOCKED
+[AI Chat] Request failed: Error: All Gemini model candidates failed. Last error: EXTERNAL_BLOCKED
+    at geminiGenerateContent (/app/api/index.ts:667:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async <anonymous> (/app/api/index.ts:3221:25)

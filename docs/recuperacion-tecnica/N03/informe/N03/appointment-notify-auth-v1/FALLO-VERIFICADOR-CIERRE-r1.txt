@@ -1,0 +1,1 @@
+Verificación documental r1: exit1; variable PowerShell Error reservada al comprobar cuerpos del baseline; sin escritura de producto ni CIERRE-PREPARACION. Corrección única: expectedAuthError. Resultados HTTP no invalidados.

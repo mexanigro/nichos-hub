@@ -1,0 +1,77 @@
+import fs from 'node:fs';
+import {spawn,spawnSync} from 'node:child_process';
+import {createRequire} from 'node:module';
+import {generateKeyPairSync,sign} from 'node:crypto';
+const selection=process.argv[2],checks=[],measurements=[];
+const check=(name,valid,evidence)=>{checks.push({name,valid,evidence});};
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+// Preflight completo de instrumentos activos; imports nativos, TSX/Express reales y fixture controlado.
+for(const name of fs.readdirSync('/control').filter(n=>/\.(mjs|cjs)$/.test(n))){const r=spawnSync(process.execPath,['--check','/control/'+name],{encoding:'utf8'});if(r.status!==0)throw Error('syntax '+name+':'+r.stderr);}
+const require=createRequire('/app/package.json'); for(const name of ['tsx','express','typescript'])require.resolve(name);
+process.env.D05_EVENTS='/tmp/preflight-events';fs.writeFileSync(process.env.D05_EVENTS,'');
+const fixture=await import('./fixture-recorridos.mjs');
+if(fixture.readRecord('clients/tenant-control')?.status!=='active'||fixture.readRecord('missing'))throw Error('fixture baseline');
+await fixture.getFirestore().collection('preflight').doc('x').set({ok:true});if(fixture.readRecord('preflight/x')?.ok!==true)throw Error('fixture write');
+fs.writeFileSync('/salida/PREFLIGHT.json',JSON.stringify({syntax:true,dependencies:true,fixture:true,network:'none'}));
+if(selection==='preflight')process.exit(0);
+const {privateKey,publicKey}=generateKeyPairSync('rsa',{modulusLength:2048,publicKeyEncoding:{type:'spki',format:'pem'},privateKeyEncoding:{type:'pkcs8',format:'pem'}});fs.writeFileSync('/tmp/public.pem',publicKey);
+const enc=x=>Buffer.from(JSON.stringify(x)).toString('base64url'),now=Math.floor(Date.now()/1000);
+const data=enc({alg:'RS256',kid:'fixture'})+'.'+enc({sub:'synthetic-user',email:'owner@example.invalid',email_verified:true,iss:'https://securetoken.google.com/isolated',aud:'isolated',iat:now,exp:now+3600});
+const token=data+'.'+sign('RSA-SHA256',Buffer.from(data),privateKey).toString('base64url');
+const cases=[
+ {name:'mirrors',vars:{CLIENT_ID:'tenant-control',NEXT_PUBLIC_CLIENT_ID:'tenant-control',VITE_CLIENT_ID:'tenant-control'},permission:'true'},
+ {name:'only-next',vars:{NEXT_PUBLIC_CLIENT_ID:'tenant-control'},permission:'true'},
+ {name:'spaces',vars:{CLIENT_ID:' ',NEXT_PUBLIC_CLIENT_ID:'tenant-control',VITE_CLIENT_ID:'tenant-control'},permission:'true'},
+ {name:'conflict',vars:{NEXT_PUBLIC_CLIENT_ID:'tenant-control',VITE_CLIENT_ID:'other-tenant'},permission:'true'},
+ ...[undefined,'false','TRUE'].map((permission,i)=>({name:'denied-'+i,vars:{CLIENT_ID:'tenant-control'},permission})),
+];
+for(const runtime of ['server','api'])for(const scenario of (selection==='baseline'?cases.slice(0,1):selection==='baseline-permissions'?cases.slice(4):selection==='mutation'?cases.slice(0,4):cases)) {
+ const key=runtime+'-'+scenario.name,port=runtime==='server'?3000:3001,eventsFile='/tmp/events-'+key,auditFile='/tmp/audit-'+key;
+ fs.writeFileSync(eventsFile,'');fs.writeFileSync(auditFile,'');
+ const env={PATH:process.env.PATH,HOME:'/tmp',TMPDIR:'/tmp',NODE_PATH:process.env.NODE_PATH,TSX_DISABLE_CACHE:'1',NODE_ENV:'production',APP_URL:'http://isolated.invalid',...scenario.vars,FIREBASE_PROJECT_ID:'isolated',VITE_FIREBASE_PROJECT_ID:'isolated',FIREBASE_SERVICE_ACCOUNT_EMAIL:'fixture@example.invalid',FIREBASE_SERVICE_ACCOUNT_KEY:privateKey,FIREBASE_ADMIN_PROJECT_ID:'isolated',FIREBASE_ADMIN_CLIENT_EMAIL:'fixture@example.invalid',FIREBASE_ADMIN_PRIVATE_KEY:'synthetic-fixture',EMAIL_PROVIDER_API_KEY:'re_synthetic',BUSINESS_OWNER_EMAIL:'owner@example.invalid',BUSINESS_OWNER_PHONE:'+972500000000',WHATSAPP_AGENT_URL:'https://agent.invalid',AGENT_API_SECRET:'synthetic-secret',D05_EVENTS:eventsFile,HEALTH_AUDIT_FILE:auditFile};
+ if(scenario.permission!==undefined)env.AGENT_ENABLED=scenario.permission;
+ const child=spawn(process.execPath,['--import','/app/node_modules/tsx/dist/loader.mjs','--import','/control/preload-recorridos.mjs',runtime==='server'?'/app/server.ts':'/control/api-worker.mjs'],{env,cwd:'/app'});
+ let stdout='',stderr='';child.stdout.on('data',b=>stdout+=b);child.stderr.on('data',b=>stderr+=b);
+ const events=()=>fs.readFileSync(eventsFile,'utf8').trim().split('\n').filter(Boolean).map(JSON.parse);
+ const request=async(url,body,auth=true,origin=env.APP_URL)=>{const r=await fetch(`http://127.0.0.1:${port}${url}`,{method:'POST',headers:{'content-type':'application/json',origin,...(auth?{authorization:'Bearer '+token}:{})},body:JSON.stringify(body),signal:AbortSignal.timeout(5000)});return {status:r.status,body:await r.json()};};
+ try {
+  let up=false;for(let n=0;n<900;n++){if(child.exitCode!==null)break;try{if((await fetch(`http://127.0.0.1:${port}/api/live`)).ok){up=true;break;}}catch{}await sleep(50);}
+  check(key+':startup',up);if(!up)throw Error('startup');
+  const responses=[],perRequest=[];
+  const tracked=async(url,body)=>{const before=events().filter(e=>e.kind==='email').length;const response=await request(url,body);await sleep(150);perRequest.push({event:body.action||'contact',response,email:events().filter(e=>e.kind==='email').slice(before)});return response;};
+  responses.push(await tracked('/api/contact',{name:'Control',email:'customer@example.invalid',message:'Consulta controlada'}));
+  const appt={date:'2026-12-20',time:'12:00',serviceName:'Haircut',customerName:'Control',customerPhone:'+972500000001',customerEmail:'customer@example.invalid'};
+  for(const action of ['booked','cancelled','rescheduled'])responses.push(await tracked('/api/appointment/notify',{action,appointment:appt,oldAppointment:{...appt,time:'11:00'}}));
+  await sleep(150);
+  const sent=events().filter(e=>e.kind==='agent'),email=events().filter(e=>e.kind==='email');
+  check(key+':base-results',responses.every(x=>x.status===200&&x.body.success===true),responses);
+  check(key+':agent-count',sent.length===(scenario.permission==='true'?4:0),sent.length);
+  check(key+':identity',sent.every(e=>e.clientId==='tenant-control'),sent.map(e=>e.clientId));
+  check(key+':auth',sent.every(e=>e.authCorrect===true));
+  if(scenario.permission!=='true')check(key+':base-email',email.some(e=>JSON.stringify(e.to).includes('owner@example.invalid'))&&email.some(e=>JSON.stringify(e.to).includes('customer@example.invalid')),email);
+  if(scenario.permission!=='true'&&selection!=='baseline-permissions'){
+    const baseline=JSON.parse(fs.readFileSync('/control/resultados/baseline-permissions/OBSERVACIONES.json','utf8')).find(x=>x.runtime===runtime&&x.scenario===scenario.name);
+    check(key+':email-and-response-per-event',JSON.stringify(perRequest)===JSON.stringify(baseline.perRequest),perRequest);
+  }
+  if(selection!=='baseline'&&scenario.permission==='true') {
+    const baseline=JSON.parse(fs.readFileSync('/control/resultados/baseline-r2/OBSERVACIONES.json','utf8')).find(x=>x.runtime===runtime);
+    check(key+':payload-preserved',JSON.stringify(sent)===JSON.stringify(baseline.sent),sent);
+  }
+  if(scenario.name==='mirrors'){
+   const before=events().filter(e=>e.kind==='agent').length;
+   const rejected=await request('/api/appointment/notify',{action:'booked',appointment:appt},false);
+   const prior=JSON.parse(fs.readFileSync('/control/resultados/baseline-r2/RESULTADOS.json','utf8'));
+   const priorAuth=prior.find(x=>x.name===key+':auth-reject').evidence;
+   check(key+':auth-preserved',JSON.stringify(rejected)===JSON.stringify(priorAuth),rejected);
+   const origin=await request('/api/contact',{name:'Control',email:'customer@example.invalid',message:'Control'},true,'https://foreign.invalid');
+   check(key+':origin-reject',origin.status===403,origin);
+   const noEffect=events().filter(e=>e.kind==='agent').length===before;
+   check(key+':auth-effect-preserved',noEffect===prior.find(x=>x.name===key+':rejected-no-effect').valid,{noEffect});
+  }
+  check(key+':no-external',fs.readFileSync(auditFile,'utf8')==='');
+  measurements.push({runtime,scenario:scenario.name,responses,sent,email,perRequest});
+ }catch(error){check(key+':instrument',false,String(error));}
+ finally {child.kill('SIGTERM');await new Promise(r=>child.exitCode!==null||child.signalCode!==null?r():child.once('exit',r));fs.writeFileSync('/salida/'+key+'.stdout.txt',stdout);fs.writeFileSync('/salida/'+key+'.stderr.txt',stderr);fs.copyFileSync(eventsFile,'/salida/'+key+'.events.jsonl');}
+}
+fs.writeFileSync('/salida/OBSERVACIONES.json',JSON.stringify(measurements,null,2));fs.writeFileSync('/salida/RESULTADOS.json',JSON.stringify(checks,null,2));
+console.log(JSON.stringify({passed:checks.filter(x=>x.valid).length,failed:checks.filter(x=>!x.valid)}));process.exitCode=checks.every(x=>x.valid)?0:1;

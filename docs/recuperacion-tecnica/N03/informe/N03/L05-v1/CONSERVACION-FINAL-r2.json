@@ -1,0 +1,338 @@
+{
+  "passed": 83,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "server.ts conserva getClientRuntimeState",
+      "valid": true
+    },
+    {
+      "name": "server.ts conserva getAdminDb",
+      "valid": true
+    },
+    {
+      "name": "server.ts conserva attachTenantContext",
+      "valid": true
+    },
+    {
+      "name": "server.ts conserva requireTrustedOrigin",
+      "valid": true
+    },
+    {
+      "name": "server.ts conserva rateLimit",
+      "valid": true
+    },
+    {
+      "name": "server.ts conserva app.post:\"/api/webhook\"",
+      "valid": true
+    },
+    {
+      "name": "server.ts conserva app.post:\"/api/create-checkout-session\"",
+      "valid": true
+    },
+    {
+      "name": "server.ts status exclusivamente del guard; provider independiente",
+      "valid": true
+    },
+    {
+      "name": "server.ts cache provider intacta",
+      "valid": true
+    },
+    {
+      "name": "server.ts registro/cuerpo app.post:\"/api/webhook\"",
+      "valid": true
+    },
+    {
+      "name": "server.ts registro/cuerpo app.use:\"/api\"",
+      "valid": true
+    },
+    {
+      "name": "server.ts registro/cuerpo app.use:\"/api/ai\"",
+      "valid": true
+    },
+    {
+      "name": "server.ts registro/cuerpo app.get:\"/sitemap.xml\"",
+      "valid": true
+    },
+    {
+      "name": "server.ts registro/cuerpo app.post:\"/api/ai/analyze\"",
+      "valid": true
+    },
+    {
+      "name": "server.ts registro/cuerpo app.post:\"/api/ai/chat\"",
+      "valid": true
+    },
+    {
+      "name": "server.ts registro/cuerpo app.post:\"/api/ai/action\"",
+      "valid": true
+    },
+    {
+      "name": "server.ts registro/cuerpo app.post:\"/api/knowledge/upload\"",
+      "valid": true
+    },
+    {
+      "name": "server.ts registro/cuerpo app.get:\"/api/knowledge/list\"",
+      "valid": true
+    },
+    {
+      "name": "server.ts registro/cuerpo app.get:\"/api/knowledge/preview/:docId\"",
+      "valid": true
+    },
+    {
+      "name": "server.ts registro/cuerpo app.post:\"/api/stock/migrate\"",
+      "valid": true
+    },
+    {
+      "name": "server.ts registro/cuerpo app.post:\"/api/stock/consume\"",
+      "valid": true
+    },
+    {
+      "name": "server.ts registro/cuerpo app.post:\"/api/stock/add\"",
+      "valid": true
+    },
+    {
+      "name": "server.ts registro/cuerpo app.get:\"/api/stock/items\"",
+      "valid": true
+    },
+    {
+      "name": "server.ts registro/cuerpo app.get:\"/api/whatsapp/conversation\"",
+      "valid": true
+    },
+    {
+      "name": "server.ts registro/cuerpo app.post:\"/api/whatsapp/queue-message\"",
+      "valid": true
+    },
+    {
+      "name": "server.ts registro/cuerpo app.get:\"/api/whatsapp/config\"",
+      "valid": true
+    },
+    {
+      "name": "server.ts registro/cuerpo app.get:\"/api/crm-metrics\"",
+      "valid": true
+    },
+    {
+      "name": "server.ts registro/cuerpo app.get:\"/api/admin/users\"",
+      "valid": true
+    },
+    {
+      "name": "server.ts registro/cuerpo app.post:\"/api/admin/users\"",
+      "valid": true
+    },
+    {
+      "name": "server.ts registro/cuerpo app.get:\"/api/tasks\"",
+      "valid": true
+    },
+    {
+      "name": "server.ts registro/cuerpo app.get:\"/api/tasks/:taskId\"",
+      "valid": true
+    },
+    {
+      "name": "server.ts registro/cuerpo app.post:\"/api/tasks\"",
+      "valid": true
+    },
+    {
+      "name": "server.ts registro/cuerpo app.post:\"/api/contact\"",
+      "valid": true
+    },
+    {
+      "name": "server.ts registro/cuerpo app.post:\"/api/book\"",
+      "valid": true
+    },
+    {
+      "name": "server.ts registro/cuerpo app.post:\"/api/notify-booking\"",
+      "valid": true
+    },
+    {
+      "name": "server.ts registro/cuerpo app.post:\"/api/appointment/notify\"",
+      "valid": true
+    },
+    {
+      "name": "server.ts registro/cuerpo app.post:\"/api/support/message\"",
+      "valid": true
+    },
+    {
+      "name": "server.ts registro/cuerpo app.post:\"/api/create-checkout-session\"",
+      "valid": true
+    },
+    {
+      "name": "server.ts registro/cuerpo app.get:'*'",
+      "valid": true
+    },
+    {
+      "name": "api/index.ts conserva getClientRuntimeState",
+      "valid": true
+    },
+    {
+      "name": "api/index.ts conserva getFirestoreAccessToken",
+      "valid": true
+    },
+    {
+      "name": "api/index.ts conserva attachTenantContext",
+      "valid": true
+    },
+    {
+      "name": "api/index.ts conserva requireTrustedOrigin",
+      "valid": true
+    },
+    {
+      "name": "api/index.ts conserva rateLimit",
+      "valid": true
+    },
+    {
+      "name": "api/index.ts conserva app.post:\"/api/webhook\"",
+      "valid": true
+    },
+    {
+      "name": "api/index.ts conserva app.post:\"/api/create-checkout-session\"",
+      "valid": true
+    },
+    {
+      "name": "api/index.ts conserva app.get:\"/api/daily-digest\"",
+      "valid": true
+    },
+    {
+      "name": "api/index.ts status exclusivamente del guard; provider independiente",
+      "valid": true
+    },
+    {
+      "name": "api/index.ts cache provider intacta",
+      "valid": true
+    },
+    {
+      "name": "api/index.ts registro/cuerpo app.post:\"/api/webhook\"",
+      "valid": true
+    },
+    {
+      "name": "api/index.ts registro/cuerpo app.get:\"/api/daily-digest\"",
+      "valid": true
+    },
+    {
+      "name": "api/index.ts registro/cuerpo app.get:\"/sitemap.xml\"",
+      "valid": true
+    },
+    {
+      "name": "api/index.ts registro/cuerpo app.use:\"/api\"",
+      "valid": true
+    },
+    {
+      "name": "api/index.ts registro/cuerpo app.use:\"/api/ai\"",
+      "valid": true
+    },
+    {
+      "name": "api/index.ts registro/cuerpo app.post:\"/api/ai/analyze\"",
+      "valid": true
+    },
+    {
+      "name": "api/index.ts registro/cuerpo app.post:\"/api/ai/chat\"",
+      "valid": true
+    },
+    {
+      "name": "api/index.ts registro/cuerpo app.post:\"/api/ai/action\"",
+      "valid": true
+    },
+    {
+      "name": "api/index.ts registro/cuerpo app.get:\"/api/whatsapp/conversation\"",
+      "valid": true
+    },
+    {
+      "name": "api/index.ts registro/cuerpo app.post:\"/api/whatsapp/queue-message\"",
+      "valid": true
+    },
+    {
+      "name": "api/index.ts registro/cuerpo app.get:\"/api/whatsapp/config\"",
+      "valid": true
+    },
+    {
+      "name": "api/index.ts registro/cuerpo app.post:\"/api/knowledge/upload\"",
+      "valid": true
+    },
+    {
+      "name": "api/index.ts registro/cuerpo app.get:\"/api/knowledge/list\"",
+      "valid": true
+    },
+    {
+      "name": "api/index.ts registro/cuerpo app.get:\"/api/knowledge/preview/:docId\"",
+      "valid": true
+    },
+    {
+      "name": "api/index.ts registro/cuerpo app.post:\"/api/stock/add\"",
+      "valid": true
+    },
+    {
+      "name": "api/index.ts registro/cuerpo app.get:\"/api/stock/items\"",
+      "valid": true
+    },
+    {
+      "name": "api/index.ts registro/cuerpo app.post:\"/api/stock/migrate\"",
+      "valid": true
+    },
+    {
+      "name": "api/index.ts registro/cuerpo app.post:\"/api/stock/consume\"",
+      "valid": true
+    },
+    {
+      "name": "api/index.ts registro/cuerpo app.get:\"/api/admin/users\"",
+      "valid": true
+    },
+    {
+      "name": "api/index.ts registro/cuerpo app.post:\"/api/admin/users\"",
+      "valid": true
+    },
+    {
+      "name": "api/index.ts registro/cuerpo app.get:\"/api/tasks\"",
+      "valid": true
+    },
+    {
+      "name": "api/index.ts registro/cuerpo app.get:\"/api/tasks/:taskId\"",
+      "valid": true
+    },
+    {
+      "name": "api/index.ts registro/cuerpo app.post:\"/api/tasks\"",
+      "valid": true
+    },
+    {
+      "name": "api/index.ts registro/cuerpo app.get:\"/api/crm-metrics\"",
+      "valid": true
+    },
+    {
+      "name": "api/index.ts registro/cuerpo app.post:\"/api/contact\"",
+      "valid": true
+    },
+    {
+      "name": "api/index.ts registro/cuerpo app.post:\"/api/notify-booking\"",
+      "valid": true
+    },
+    {
+      "name": "api/index.ts registro/cuerpo app.post:\"/api/appointment/notify\"",
+      "valid": true
+    },
+    {
+      "name": "api/index.ts registro/cuerpo app.get:\"/api/services\"",
+      "valid": true
+    },
+    {
+      "name": "api/index.ts registro/cuerpo app.post:\"/api/availability\"",
+      "valid": true
+    },
+    {
+      "name": "api/index.ts registro/cuerpo app.post:\"/api/support/message\"",
+      "valid": true
+    },
+    {
+      "name": "api/index.ts registro/cuerpo app.post:\"/api/book\"",
+      "valid": true
+    },
+    {
+      "name": "api/index.ts registro/cuerpo app.post:\"/api/bookings/validate\"",
+      "valid": true
+    },
+    {
+      "name": "api/index.ts registro/cuerpo app.post:\"/api/create-checkout-session\"",
+      "valid": true
+    },
+    {
+      "name": "330 fuentes previas intactas",
+      "valid": true
+    }
+  ]
+}

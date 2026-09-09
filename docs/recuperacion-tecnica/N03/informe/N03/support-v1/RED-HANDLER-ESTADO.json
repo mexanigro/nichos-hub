@@ -1,0 +1,4 @@
+{
+  "exit": 1,
+  "limite": "Handler y registro AST reales; auth/DB/res simulados; no HTTP/SDK"
+}

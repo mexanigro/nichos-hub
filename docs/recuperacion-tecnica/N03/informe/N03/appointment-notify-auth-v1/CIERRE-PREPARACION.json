@@ -1,0 +1,17 @@
+{
+  "result": "GREEN_PREPARACION",
+  "repair": "RED_PENDIENTE_AUTORIZACION",
+  "repairGates": "0/4",
+  "productSourcesUnchanged": 333,
+  "productDocsUnchanged": 2,
+  "recordsVerified": 5,
+  "serverDenialBodiesAndEffects": 30,
+  "harnessSyntaxFiles": 20,
+  "linksVerified": 8,
+  "proposalSha256": "0eb11bf39d8465f823d425f1e09a039b5497b2cb83bd27432703caab0b46f1db",
+  "reportSha256": "e7397a1c8afaa737fcfd99d9ab805a40808a2a90e3ada9c60c332edbcf9a71a7",
+  "usage": 77,
+  "capTotalN03": 80,
+  "resets": 0,
+  "closureVerifier": "r1 fallo variable reservada preservado; r2 corregido exit0"
+}

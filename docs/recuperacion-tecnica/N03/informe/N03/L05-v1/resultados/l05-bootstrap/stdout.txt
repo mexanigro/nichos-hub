@@ -1,0 +1,7 @@
+{"name":"server arranque real","valid":true,"evidence":{}}
+{"name":"server bootstrap fallido no listo ni consumidor","valid":true,"evidence":{"health":{"http":503,"body":{"status":"unavailable"},"elapsed":3},"functional":{"http":503,"body":{"status":"unavailable"},"elapsed":6},"consumers":0,"reads":0}}
+{"name":"server exterior real bloqueado","valid":true,"evidence":""}
+{"name":"api arranque real","valid":true,"evidence":{}}
+{"name":"api bootstrap fallido no listo ni consumidor","valid":true,"evidence":{"health":{"http":503,"body":{"status":"unavailable"},"elapsed":2},"functional":{"http":503,"body":{"status":"unavailable"},"elapsed":4},"consumers":0,"reads":0}}
+{"name":"api exterior real bloqueado","valid":true,"evidence":""}
+{"passed":6,"failed":0}

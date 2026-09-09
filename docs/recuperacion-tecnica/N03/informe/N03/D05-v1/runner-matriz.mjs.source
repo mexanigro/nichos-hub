@@ -1,0 +1,53 @@
+import fs from 'node:fs';
+import {spawn} from 'node:child_process';
+import {generateKeyPairSync,sign} from 'node:crypto';
+const {privateKey,publicKey}=generateKeyPairSync('rsa',{modulusLength:2048,publicKeyEncoding:{type:'spki',format:'pem'},privateKeyEncoding:{type:'pkcs8',format:'pem'}});fs.writeFileSync('/tmp/public.pem',publicKey);
+const jwt=email=>{const enc=x=>Buffer.from(JSON.stringify(x)).toString('base64url');const now=Math.floor(Date.now()/1000);const data=enc({alg:'RS256',kid:'fixture'})+'.'+enc({sub:'synthetic-user',email,email_verified:true,iss:'https://securetoken.google.com/isolated',aud:'isolated',iat:now,exp:now+3600});return data+'.'+sign('RSA-SHA256',Buffer.from(data),privateKey).toString('base64url');};
+const results=[],sleep=ms=>new Promise(r=>setTimeout(r,ms));
+const check=(name,valid,evidence)=>{results.push({name,valid,evidence});console.log(JSON.stringify(results.at(-1)));};
+const scenarios=[['absent',null,null,false],['keys',null,null,true],['false','false','false',true],['invalid','TRUE',' true ',true],['ai','true',null,true],['agent',null,'true',true],['incomplete','true','true',false]];
+for(const runtime of (process.argv[2]==='server'?['server']:process.argv[2]==='api'?['api']:['server','api']))for(const [name,ai,agent,keys] of scenarios){
+ const id=runtime+'-'+name,port=runtime==='server'?3000:3001,eventsFile='/tmp/events-'+id,auditFile='/tmp/audit-'+id;fs.writeFileSync(eventsFile,'');fs.writeFileSync(auditFile,'');
+ const env={PATH:process.env.PATH,HOME:'/tmp',TMPDIR:'/tmp',NODE_PATH:process.env.NODE_PATH,TSX_DISABLE_CACHE:'1',NODE_ENV:'production',APP_URL:'http://isolated.invalid',CLIENT_ID:'tenant-control',FIREBASE_PROJECT_ID:'isolated',VITE_FIREBASE_PROJECT_ID:'isolated',FIREBASE_ADMIN_PROJECT_ID:'isolated',FIREBASE_ADMIN_CLIENT_EMAIL:'fixture@example.invalid',FIREBASE_ADMIN_PRIVATE_KEY:privateKey,FIREBASE_SERVICE_ACCOUNT_EMAIL:'fixture@example.invalid',FIREBASE_SERVICE_ACCOUNT_KEY:privateKey,EMAIL_PROVIDER_API_KEY:'re_synthetic',BUSINESS_OWNER_EMAIL:'owner@example.invalid',BUSINESS_OWNER_PHONE:'+972501234567',D05_EVENTS:eventsFile,HEALTH_AUDIT_FILE:auditFile,AI_RATE_LIMIT_MAX:'20'};
+ if(ai!==null)env.AI_ENABLED=ai;if(agent!==null)env.AGENT_ENABLED=agent;if(keys){env.GEMINI_API_KEY='synthetic-key';env.WHATSAPP_AGENT_URL='https://agent.invalid';env.AGENT_API_SECRET='synthetic-secret';}
+ const child=spawn(process.execPath,['--import','/app/node_modules/tsx/dist/loader.mjs','--import','/control/preload-recorridos.mjs',runtime==='server'?'/app/server.ts':'/control/api-worker.mjs'],{env,cwd:'/app'});let stdout='',stderr='';child.stdout.on('data',b=>stdout+=b);child.stderr.on('data',b=>stderr+=b);
+ const request=async(path,body={},email='owner@example.invalid',origin=env.APP_URL)=>{const r=await fetch(`http://127.0.0.1:${port}${path}`,{method:'POST',headers:{'content-type':'application/json',origin,...(email?{authorization:'Bearer '+jwt(email)}:{})},body:JSON.stringify(body),signal:AbortSignal.timeout(7000)});return {status:r.status,body:await r.json()};};
+ const events=()=>fs.readFileSync(eventsFile,'utf8').trim().split('\n').filter(Boolean).map(JSON.parse);
+ const count=kind=>events().filter(e=>e.kind===kind).length;
+ try{
+  let up=false;for(let i=0;i<450;i++){if(child.exitCode!==null)break;try{if((await fetch(`http://127.0.0.1:${port}/api/live`)).ok){up=true;break;}}catch{}await sleep(100);}check(id+': runtime completo',up,{});if(!up)continue;
+  const chat={messages:[{role:'user',text:'Suggest an original geometric haircut and explain the artistic reasoning.'}],mode:'public',AI_ENABLED:true,AGENT_ENABLED:true,isDemoMode:true,channels:{ai:true}};
+  const response=await request('/api/ai/chat?AI_ENABLED=true',chat);
+  check(id+': permiso IA exacto e independiente',ai==='true'&&keys?response.status===200&&count('ai')>0:response.status===503&&count('ai')===0,{response,attempts:count('ai')});
+  for(const path of ['/api/ai/analyze','/api/ai/action','/api/knowledge/upload']){
+   const beforeAI=count('ai');const r=await request(path,{AI_ENABLED:true,type:'invalid'});
+   check(id+': ruta directa '+path,r.status===(ai==='true'&&(keys||path==='/api/ai/action')?400:503)&&count('ai')===beforeAI,r);
+  }
+  const noAuth=await request('/api/ai/action',{},null);const foreign=await request('/api/ai/action',{},'foreign@example.invalid');const origin=await request('/api/ai/chat',chat,null,'http://foreign.invalid');
+  check(id+': auth tenant origen preservados',noAuth.status===401&&foreign.status===403&&origin.status===403,{noAuth,foreign,origin});
+  const contact=await request('/api/contact',{name:'Control',email:'customer@example.invalid',message:'Consulta',phone:'+972501234567',AGENT_ENABLED:true});
+  await sleep(100);check(id+': contacto base',contact.status===200&&count('email')>=1,contact);
+  const appt={date:'2026-12-20',time:'12:00',customerName:'Control',customerPhone:'+972501234567',customerEmail:'customer@example.invalid',serviceName:'Haircut'};
+  const booked=await request('/api/book',{...appt,serviceId:'haircut',staffId:'staff-control',duration:30});
+  const beforeBookingAgent=count('agent'),beforeBookingEmail=count('email');
+  const bookingNotice=await request('/api/notify-booking',{appointmentId:booked.body.appointmentId,details:{...appt,staff:'Staff',service:'Haircut'}});await sleep(150);
+  check(id+': reserva y notificación efectiva',booked.status===200&&bookingNotice.status===200&&(agent==='true'&&keys?count('agent')>beforeBookingAgent:count('agent')===beforeBookingAgent)&&(agent==='true'||count('email')>=beforeBookingEmail+2),{booked,bookingNotice,agents:count('agent')-beforeBookingAgent,emails:count('email')-beforeBookingEmail});
+  for(const action of ['booked','cancelled','rescheduled']){
+   const beforeMail=count('email'),beforeAgent=count('agent');const r=await request('/api/appointment/notify',{action,appointment:appt,oldAppointment:{...appt,time:'11:00'},AGENT_ENABLED:true});await sleep(100);
+   const enabled=agent==='true'&&keys;
+   check(id+': CRM '+action,r.status===200&&r.body.agentNotified===enabled&&(agent==='true'?true:count('email')>beforeMail)&&(enabled?count('agent')>beforeAgent:count('agent')===beforeAgent),{r,emails:count('email')-beforeMail,agents:count('agent')-beforeAgent});
+  }
+  check(id+': permiso agente exacto e independiente',agent==='true'&&keys?count('agent')>=4:count('agent')===0,{attempts:count('agent')});
+  if(name==='keys'||name==='ai'){
+   let last;for(let n=0;n<23;n++)last=await request('/api/ai/chat',chat,null);
+   const before=count('ai');const excess=await request('/api/ai/chat',chat,null);
+   check(id+': límite efectivo antes del proveedor',last.status===429&&excess.status===429&&count('ai')===before,{last,excess,attempts:before});
+  }
+  check(id+': sin exterior real',fs.readFileSync(auditFile,'utf8')==='',fs.readFileSync(auditFile,'utf8'));
+ }catch(e){check(id+': ejecución',false,String(e));}
+ finally{child.kill('SIGTERM');await new Promise(resolve=>child.exitCode!==null||child.signalCode!==null?resolve():child.once('exit',resolve));fs.writeFileSync('/salida/'+id+'.stdout.txt',stdout);fs.writeFileSync('/salida/'+id+'.stderr.txt',stderr);fs.copyFileSync(eventsFile,'/salida/'+id+'.events.jsonl');}
+}
+const observerEvents='/tmp/observer-events',observerAudit='/tmp/observer-audit';fs.writeFileSync(observerEvents,'');fs.writeFileSync(observerAudit,'');
+const observer=spawn(process.execPath,['--import','/control/preload-recorridos.mjs','-e',"Promise.all([fetch('https://generativelanguage.googleapis.com/control'),fetch('https://agent.invalid/control'),fetch('https://outside.invalid').catch(()=>{})])"],{env:{PATH:process.env.PATH,NODE_PATH:process.env.NODE_PATH,D05_EVENTS:observerEvents,HEALTH_AUDIT_FILE:observerAudit}});
+await new Promise(r=>observer.once('exit',r));check('observador positivo IA agente y exterior bloqueado',observer.exitCode===0&&fs.readFileSync(observerEvents,'utf8').includes('"ai"')&&fs.readFileSync(observerEvents,'utf8').includes('"agent"')&&fs.readFileSync(observerAudit,'utf8').includes('outside.invalid'),{exit:observer.exitCode,events:fs.readFileSync(observerEvents,'utf8'),audit:fs.readFileSync(observerAudit,'utf8')});
+fs.writeFileSync('/salida/RESULTADOS.json',JSON.stringify(results,null,2));console.log(JSON.stringify({passed:results.filter(r=>r.valid).length,failed:results.filter(r=>!r.valid).length}));process.exitCode=results.every(r=>r.valid)?0:1;

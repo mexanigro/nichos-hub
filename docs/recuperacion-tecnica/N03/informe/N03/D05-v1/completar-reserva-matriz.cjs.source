@@ -1,0 +1,5 @@
+const fs=require('fs'),p=require('path'),d=__dirname;const path=p.join(d,'runner-matriz.mjs');fs.copyFileSync(path,p.join(d,'preimagenes','contrato-02','runner-matriz-reserva.mjs'));let s=fs.readFileSync(path,'utf8');s=s.replace("for(const action of ['booked','cancelled','rescheduled']){",`const booked=await request('/api/book',{...appt,serviceId:'haircut',staffId:'staff-control',duration:30});
+  const beforeBookingAgent=count('agent'),beforeBookingEmail=count('email');
+  const bookingNotice=await request('/api/notify-booking',{appointmentId:booked.body.appointmentId,details:{...appt,staff:'Staff',service:'Haircut'}});await sleep(150);
+  check(id+': reserva y notificación efectiva',booked.status===200&&bookingNotice.status===200&&(agent==='true'&&keys?count('agent')>beforeBookingAgent:count('agent')===beforeBookingAgent)&&(agent==='true'||count('email')>=beforeBookingEmail+2),{booked,bookingNotice,agents:count('agent')-beforeBookingAgent,emails:count('email')-beforeBookingEmail});
+  for(const action of ['booked','cancelled','rescheduled']){`);fs.writeFileSync(path,s);

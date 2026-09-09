@@ -1,0 +1,17 @@
+C:\Users\liama\Desktop\Nichos\recuperacion-tecnica\informe\N03\health-v1\conservar-rutas-ast.cjs:6
+ function visit(n) { if (ts.isCallExpression(n) && /^app\.(get|post|put|patch|delete)$/.test(n.expressiots.createPrinter({ removeComments: true }).printNode(ts.EmitHint.Unspecified, n, ast)) && ts.isStringLiteral(n.arguments[0])) { const key = n.expressiots.createPrinter({ removeComments: true }).printNode(ts.EmitHint.Unspecified, n, ast) + ' ' + n.arguments[0].text; if (!['app.get /api/health'].includes(key)) { assert.ok(!found.has(key), `Registro duplicado: ${key}`); found.set(key, ts.createPrinter({ removeComments: true }).printNode(ts.EmitHint.Unspecified, n, ast)); } } ts.forEachChild(n, visit); } visit(ast); return found;
+                                                                                                           ^
+
+TypeError: Cannot read properties of undefined (reading 'createPrinter')
+    at visit (C:\Users\liama\Desktop\Nichos\recuperacion-tecnica\informe\N03\health-v1\conservar-rutas-ast.cjs:6:108)
+    at visitNode2 (C:\Users\liama\Desktop\Nichos\Barber-shop-template-main\node_modules\typescript\lib\typescript.js:32308:18)
+    at forEachChildInExpressionStatement (C:\Users\liama\Desktop\Nichos\Barber-shop-template-main\node_modules\typescript\lib\typescript.js:32538:12)
+    at Object.forEachChild (C:\Users\liama\Desktop\Nichos\Barber-shop-template-main\node_modules\typescript\lib\typescript.js:32829:35)
+    at visit (C:\Users\liama\Desktop\Nichos\recuperacion-tecnica\informe\N03\health-v1\conservar-rutas-ast.cjs:6:585)
+    at visitNodes (C:\Users\liama\Desktop\Nichos\Barber-shop-template-main\node_modules\typescript\lib\typescript.js:32316:22)
+    at forEachChildInBlock (C:\Users\liama\Desktop\Nichos\Barber-shop-template-main\node_modules\typescript\lib\typescript.js:32786:10)
+    at Object.forEachChild (C:\Users\liama\Desktop\Nichos\Barber-shop-template-main\node_modules\typescript\lib\typescript.js:32829:35)
+    at visit (C:\Users\liama\Desktop\Nichos\recuperacion-tecnica\informe\N03\health-v1\conservar-rutas-ast.cjs:6:585)
+    at visitNode2 (C:\Users\liama\Desktop\Nichos\Barber-shop-template-main\node_modules\typescript\lib\typescript.js:32308:18)
+
+Node.js v22.22.2

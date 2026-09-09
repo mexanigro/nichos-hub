@@ -1,0 +1,27 @@
+import fs from 'node:fs';
+export const config=()=>JSON.parse(fs.readFileSync(process.env.L05_CONFIG,'utf8'));
+export const event=(kind,data={})=>fs.appendFileSync(process.env.L05_EVENTS,JSON.stringify({kind,...data})+'\n');
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+export async function clientData(){const x=config();event('client');if(x.delay)await sleep(x.delay);if(x.error)throw Error('synthetic-read');if(x.missing)return undefined;return{status:x.status,defaultPaymentProvider:'tranzila'};}
+const database = {
+  collection: name => ({
+    doc: id => ({
+      async get() {
+        if (id !== 'tenant-control') throw Error('foreign-tenant');
+        if (name === 'clients') {
+          const data = await clientData();
+          return { exists: data !== undefined, data: () => data };
+        }
+        event('config');
+        if (config().configError) throw Error('synthetic-config');
+        return {
+          exists: true,
+          data: () => ({ payment: { provider: config().provider || 'stripe' } }),
+        };
+      },
+    }),
+  }),
+};
+export function getApps(){return []}export function cert(){return {}}export function initializeApp(){return {}}
+export function getFirestore(){event('sdk');const x=config();if(x.sdkDelay)return sleep(x.sdkDelay).then(()=>database);if(x.sdkError)throw Error('synthetic-sdk');if(x.noDb)return null;return database;}
+export const FieldValue={serverTimestamp:()=>0};export const Timestamp={now:()=>0};

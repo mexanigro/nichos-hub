@@ -1,0 +1,210 @@
+{
+  "typescript": "6.0.3",
+  "syntax": true,
+  "imports": "TypeScript/node instalados; fragmentos AST sin imports producto ni SDK",
+  "positive": {
+    "input": {
+      "CLIENT_ID": " synthetic-a ",
+      "NEXT_PUBLIC_CLIENT_ID": "synthetic-a",
+      "VITE_CLIENT_ID": "synthetic-a"
+    },
+    "browser": "synthetic-a",
+    "runtimes": {
+      "server.ts": {
+        "selected": "synthetic-a",
+        "agent": "synthetic-a",
+        "delivered": true,
+        "attempts": [
+          {
+            "clientId": "synthetic-a"
+          }
+        ],
+        "headers": [
+          {
+            "header": null,
+            "status": 200,
+            "continued": true,
+            "selected": "synthetic-a",
+            "payload": null
+          },
+          {
+            "header": "synthetic-a",
+            "status": 200,
+            "continued": true,
+            "selected": "synthetic-a",
+            "payload": null
+          },
+          {
+            "header": "visitor-other",
+            "status": 200,
+            "continued": true,
+            "selected": "synthetic-a",
+            "payload": null
+          }
+        ]
+      },
+      "api/index.ts": {
+        "selected": "synthetic-a",
+        "agent": "synthetic-a",
+        "delivered": true,
+        "attempts": [
+          {
+            "clientId": "synthetic-a"
+          }
+        ],
+        "headers": [
+          {
+            "header": null,
+            "status": 200,
+            "continued": true,
+            "selected": "synthetic-a",
+            "payload": null
+          },
+          {
+            "header": "synthetic-a",
+            "status": 200,
+            "continued": true,
+            "selected": "synthetic-a",
+            "payload": null
+          },
+          {
+            "header": "visitor-other",
+            "status": 403,
+            "continued": false,
+            "selected": null,
+            "payload": {
+              "error": "Tenant mismatch."
+            }
+          }
+        ]
+      }
+    }
+  },
+  "disabled": {
+    "input": {
+      "CLIENT_ID": "synthetic-a"
+    },
+    "browser": "",
+    "runtimes": {
+      "server.ts": {
+        "selected": "synthetic-a",
+        "agent": null,
+        "delivered": false,
+        "attempts": [],
+        "headers": [
+          {
+            "header": null,
+            "status": 200,
+            "continued": true,
+            "selected": "synthetic-a",
+            "payload": null
+          },
+          {
+            "header": "",
+            "status": 200,
+            "continued": true,
+            "selected": "synthetic-a",
+            "payload": null
+          },
+          {
+            "header": "visitor-other",
+            "status": 200,
+            "continued": true,
+            "selected": "synthetic-a",
+            "payload": null
+          }
+        ]
+      },
+      "api/index.ts": {
+        "selected": "synthetic-a",
+        "agent": null,
+        "delivered": false,
+        "attempts": [],
+        "headers": [
+          {
+            "header": null,
+            "status": 200,
+            "continued": true,
+            "selected": "synthetic-a",
+            "payload": null
+          },
+          {
+            "header": "",
+            "status": 200,
+            "continued": true,
+            "selected": "synthetic-a",
+            "payload": null
+          },
+          {
+            "header": "visitor-other",
+            "status": 403,
+            "continued": false,
+            "selected": null,
+            "payload": {
+              "error": "Tenant mismatch."
+            }
+          }
+        ]
+      }
+    }
+  },
+  "sensitivity": {
+    "original": "synthetic-v",
+    "mutated": "synthetic-n"
+  },
+  "preservedTemplateSources": 333,
+  "manifest": [
+    {
+      "path": "src/config/tenant.ts",
+      "sha256": "5d4ee5534da7f2aa79a376da289e1814525ec67d30e940a0b096a0eb91597bae"
+    },
+    {
+      "path": "src/config/env.ts",
+      "sha256": "e84789f61c9ca0a31b00ee3af1ffffa577a802a23f327ce3cf2128b838f3998f"
+    },
+    {
+      "path": "vite.config.ts",
+      "sha256": "f6e86239bffff1ffcbddf539faaae3acf8fa71c22268b49c9619da5ff2733bcb"
+    },
+    {
+      "path": "server.ts",
+      "sha256": "48a5d4a415c704d1f7c5ff609d96c4e214d107fa0020b0c5d7d30d51ac84e80f"
+    },
+    {
+      "path": "api/index.ts",
+      "sha256": "bfc99612b712d325afe9f669c153831cfbdc7315885ecd4f3618281720238f16"
+    },
+    {
+      "path": "src/lib/notify-agentkit.ts",
+      "sha256": "9f062082263eb535df541ae9aec6b806b770dada6a8cfee06db2262567357082"
+    },
+    {
+      "path": "src/lib/api/optional-services.ts",
+      "sha256": "db03ebf2b43e87b10375b7f8f9decb680bb94642e74fb20921eb93725a3f42f9"
+    },
+    {
+      "path": "src/services/tenant.ts",
+      "sha256": "09cad0c18f9702fc5791fda18aae1678a14384b90d7c772eb19e2eff839bbea7"
+    },
+    {
+      "path": "src/services/db.ts",
+      "sha256": "e62283cbe3a215795fe6260db1a299b0ed7f950a887d4fa79b0f272337717779"
+    },
+    {
+      "path": "src/components/booking/BookingWizard.tsx",
+      "sha256": "389b6a3ec0b9719f967c3f7ca268e5a3943378133c52f3e9bf874f21d1b253fa"
+    },
+    {
+      "path": "src/lib/api/booking-handler.ts",
+      "sha256": "d7bff4865597d29a48cf765c464d579faf38ed24b9f09405415c24ec9bf2dd33"
+    },
+    {
+      "path": ".env.example",
+      "sha256": "ecfe793bbcd23f1a2856aaf962c688a210a0ee432b33eb933e6f25b277646ba1"
+    },
+    {
+      "path": "README.md",
+      "sha256": "c3981d78f940050bc5f7963961827cb4eb12a6dcec1537761855114fee00c4e7"
+    }
+  ]
+}

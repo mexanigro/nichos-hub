@@ -1,0 +1,32 @@
+  ✗  [optional] GEMINI_API_KEY                       → AI chat & style consultation (DISABLED — add key to .env)
+  ✗  [optional] STRIPE_SECRET_KEY                    → Stripe payments (DISABLED — add key to .env)
+  ✗  [optional] STRIPE_WEBHOOK_SECRET                → Stripe webhook verification (DISABLED — add key to .env)
+  ✗  [optional] VITE_STRIPE_PUBLISHABLE_KEY          → Stripe frontend (DISABLED — add key to .env)
+  ✗  [optional] EMAIL_PROVIDER_API_KEY               → Email notifications (Resend) (DISABLED — add key to .env)
+  ✗  [optional] BUSINESS_OWNER_EMAIL                 → Notification recipient (DISABLED — add key to .env)
+  ✗  [optional] VITE_ADMIN_EMAIL                     → Admin panel access (DISABLED — add key to .env)
+[Kill-switch] Unexpected error reading client status: Error: synthetic-read
+    at clientData (file:///control/fixture.mjs:5:118)
+    at globalThis.fetch (file:///control/preload-l05.mjs:8:299)
+    at getClientRuntimeState (/app/api/index.ts:286:29)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async enforceClientActive (/app/api/index.ts:593:22)
+[Kill-switch] Token exchange failed: 500 synthetic-token-error
+[Kill-switch] Firestore REST read failed: 403 synthetic-http
+[Kill-switch] Firestore REST read failed: 500 synthetic-http
+[Kill-switch] Unexpected error reading client status: SyntaxError: Expected property name or '}' in JSON at position 1 (line 1 column 2)
+    at JSON.parse (<anonymous>)
+    at parseJSONFromBytes (node:internal/deps/undici/undici:5888:19)
+    at successSteps (node:internal/deps/undici/undici:5869:27)
+    at fullyReadBody (node:internal/deps/undici/undici:4761:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async consumeBody (node:internal/deps/undici/undici:5878:7)
+    at async getClientRuntimeState (/app/api/index.ts:294:18)
+    at async enforceClientActive (/app/api/index.ts:593:22)
+[Kill-switch] Unexpected error reading client status: Error: synthetic-read
+    at clientData (file:///control/fixture.mjs:5:118)
+    at globalThis.fetch (file:///control/preload-l05.mjs:8:299)
+    at getClientRuntimeState (/app/api/index.ts:286:29)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async enforceClientActive (/app/api/index.ts:593:22)
+[Security] Blocked request from untrusted origin: http://foreign.invalid

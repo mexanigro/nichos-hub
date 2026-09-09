@@ -1,0 +1,13 @@
+{
+  "state": "preparada_para_decision",
+  "productChanges": 0,
+  "cases": 18,
+  "consumerSelections": 90,
+  "initialUsage": 76,
+  "lastUsage": 76,
+  "totalCeiling": 80,
+  "resets": 0,
+  "records": 5,
+  "next": "Decisión sobre selector del agente C→N→V trim antes del fallback; sin nueva política implementada.",
+  "N03": "en_curso"
+}

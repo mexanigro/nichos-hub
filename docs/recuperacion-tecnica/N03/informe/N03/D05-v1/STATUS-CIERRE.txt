@@ -1,0 +1,161 @@
+ M .gitignore
+ M api/index.ts
+ M ruvector.db
+ M scripts/qa-estetica-variants.mjs
+ M server.ts
+ M src/components/admin/AdminDashboard.tsx
+ M src/config/locales/ar.ts
+ M src/config/locales/en.ts
+ M src/config/locales/he.ts
+ M src/config/locales/ru.ts
+ M src/lib/appointment-notify-client.ts
+ M src/lib/notify-agentkit.ts
+ M src/services/db.ts
+ M src/services/support.ts
+ M tests/api-parity.test.ts
+?? .claude/scheduled_tasks.lock
+?? API-COSTS-AUDIT.md
+?? AUDIT-MASTER-TEMPLATE.md
+?? WEB-CREATION-PLAYBOOK.md
+?? check-dari-imgs.cjs
+?? discover-demos.cjs
+?? dump-demo-configs.cjs
+?? fix-dari-ig-gallery.cjs
+?? fix-dari-navbar-logo.cjs
+?? fix-future-content.cjs
+?? fix-future-images.cjs
+?? fix-igal-address.cjs
+?? fix-stock.cjs
+?? future-v2-desktop-full.jpeg
+?? future-v2-desktop-hero.jpeg
+?? future-v2-mobile-hero.jpeg
+?? marganink-splash-desktop-1.jpeg
+?? provision-dari-inks.cjs
+?? qa-audit/
+?? qa-d-contact.jpeg
+?? qa-d-faq.jpeg
+?? qa-d-gallery.jpeg
+?? qa-d-hours.jpeg
+?? qa-d-instagram.jpeg
+?? qa-d-light-hero.jpeg
+?? qa-d-light-services.jpeg
+?? qa-d-lightmode.jpeg
+?? qa-d-menu.jpeg
+?? qa-d-services.jpeg
+?? qa-d-team.jpeg
+?? qa-d-team2.jpeg
+?? qa-d-testimonials.jpeg
+?? qa-d-wcu.jpeg
+?? qa-dari/
+?? qa-desktop-full.jpeg
+?? qa-einav-candidates.jpeg
+?? qa-einav-candidates2.jpeg
+?? qa-einav-candidates3.jpeg
+?? qa-faq/
+?? qa-final-desktop-full.jpeg
+?? qa-final-mobile-full.jpeg
+?? qa-future/
+?? qa-gooli/
+?? qa-igal/
+?? qa-m-contact.jpeg
+?? qa-m-faq.jpeg
+?? qa-m-footer.jpeg
+?? qa-m-gallery.jpeg
+?? qa-m-hero.jpeg
+?? qa-m-services.jpeg
+?? qa-m-team.jpeg
+?? qa-m-testimonials.jpeg
+?? qa-m-why-choose-us.jpeg
+?? qa-marganink/
+?? qa-regression/
+?? qa-splash-a.jpeg
+?? qa-splash-b.jpeg
+?? qa-splash-frame1.jpeg
+?? qa-splash-s1600.jpeg
+?? qa-splash-s2500.jpeg
+?? qa-splash-s300.jpeg
+?? qa-splash-s4000.jpeg
+?? qa-splash-s900.jpeg
+?? qa-team/
+?? qa-testimonials/
+?? qa-v-booking.jpeg
+?? qa-v-chat.jpeg
+?? qa-v-legal.jpeg
+?? qa-v-splash.jpeg
+?? qa-v-team.jpeg
+?? qa-wcu/
+?? read-dari-live.cjs
+?? read-future-config.cjs
+?? read-gallery-matrix.cjs
+?? read-gooli-state.cjs
+?? read-igal-live.cjs
+?? read-marganink.cjs
+?? read-navbar-matrix.cjs
+?? read-tattoo-configs.cjs
+?? read-tattoo-matrix.cjs
+?? read-tattoo-variant-matrix.cjs
+?? read-tattoo-variants.cjs
+?? rev-dari-desktop.jpeg
+?? rev-dari-mobile.jpeg
+?? rev-future-old-desktop.jpeg
+?? rev-future-pierc-desktop.jpeg
+?? rev-future-pierc-mobile.jpeg
+?? rev-gooli-desktop.jpeg
+?? rev-gooli-mobile.jpeg
+?? rev-gooli-splash.jpeg
+?? rev-igal-desktop.jpeg
+?? rev-igal-desktop2.jpeg
+?? rev-igal-gallery.jpeg
+?? rev-igal-mobile.jpeg
+?? rev-marganink-desktop.jpeg
+?? rev-marganink-mobile.jpeg
+?? scripts/audit-final-shots.mjs
+?? scripts/audit-verify-deploy.mjs
+?? scripts/audit-verify-theme-rtl.mjs
+?? scripts/extract-fb-config.mjs
+?? scripts/extract-fb-config2.mjs
+?? scripts/qa-dari-gallery.mjs
+?? scripts/qa-dari-navbar-local.mjs
+?? scripts/qa-dari-navbar.mjs
+?? scripts/qa-dari-prod.mjs
+?? scripts/qa-dari-remix.mjs
+?? scripts/qa-dari-splash.mjs
+?? scripts/qa-faq-variants.mjs
+?? scripts/qa-future-bugs-repro.mjs
+?? scripts/qa-future-fix-verify.mjs
+?? scripts/qa-gooli-bugfix-verify.mjs
+?? scripts/qa-gooli-bugs-probe.mjs
+?? scripts/qa-gooli-diversity.mjs
+?? scripts/qa-gooli-prod.mjs
+?? scripts/qa-gooli-splash-timeline.mjs
+?? scripts/qa-igal-prod.mjs
+?? scripts/qa-igal-redesign-v2.mjs
+?? scripts/qa-marganink-light.mjs
+?? scripts/qa-marganink-splash-logo.mjs
+?? scripts/qa-team-variants.mjs
+?? scripts/qa-wcu-v4-stats.mjs
+?? scripts/qa-wcu-variants.mjs
+?? scripts/regression/sites.json
+?? src/lib/api/booking-handler.ts
+?? src/lib/api/optional-services.ts
+?? src/lib/api/runtime-health.ts
+?? src/lib/api/stock-handlers.ts
+?? src/lib/api/support-handler.ts
+?? suspend-future-dup.cjs
+?? test-firestore.cjs
+?? update-config-rest.mjs
+?? update-config.mjs
+?? update-dari-personal.cjs
+?? update-existing-config.mjs
+?? update-future-design.cjs
+?? update-future-redesign-v2.cjs
+?? update-gooli-config.cjs
+?? update-gooli-contact-fix.cjs
+?? update-gooli-diversity-redesign.cjs
+?? update-gooli-redesign.cjs
+?? update-igal-design.cjs
+?? update-igal-redesign-v2.cjs
+?? update-marganink-logo.cjs
+?? upload-assets-existing.mjs
+?? upload-assets.mjs
+?? upload-gooli.cjs

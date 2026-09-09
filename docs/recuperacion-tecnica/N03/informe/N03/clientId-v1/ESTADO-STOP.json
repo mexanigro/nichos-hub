@@ -1,0 +1,15 @@
+{
+  "result": "RED",
+  "gate": "P0",
+  "reached": 0,
+  "total": 4,
+  "productChanges": 0,
+  "preserved": 333,
+  "usage": 76,
+  "totalCeiling": 80,
+  "resets": 0,
+  "freeze": false,
+  "containerRemoved": true,
+  "blocker": "copia/node_modules ausente para montaje readonly; Docker125 antes de Node",
+  "N03": "en_curso"
+}

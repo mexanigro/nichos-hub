@@ -1,0 +1,25 @@
+const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
+const n03=path.dirname(__dirname);
+const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
+const rows=[],skipped=[];
+function walk(dir) {
+  for(const d of fs.readdirSync(dir,{withFileTypes:true})) {
+    const p=path.join(dir,d.name),rel=path.relative(n03,p).replaceAll('\\','/');
+    if(d.isSymbolicLink() || ['node_modules','.git','.next','.vite','__pycache__'].includes(d.name)) {skipped.push({path:p,reason:'Dependencia/cache/enlace; no evidencia propia'});continue;}
+    if(d.isDirectory()) {walk(p);continue;}
+    if(!d.isFile() || rel.startsWith('cierre-sesion-v1/')) continue;
+    if(/^\.env(?:\.|$)/.test(d.name) && d.name!=='.env.example') {skipped.push({path:p,reason:'Configuración; no se lee ni se versiona'});continue;}
+    const size=fs.statSync(p).size;
+    const b=fs.readFileSync(p);
+    const copyTree=rel.split('/').some(c=>/^(copia|mutacion|preimagen|incompleta|indice-producto)/i.test(c));
+    const text=/\.(md|json|cjs|mjs|js|ts|tsx|ps1|txt|log|sh|html)$/.test(d.name);
+    const generatedSecret=text && /-----BEGIN (?:RSA |EC )?PRIVATE KEY-----/.test(b.toString('utf8'));
+    const selected=!copyTree && text && size<=262144 && !generatedSecret;
+    rows.push({path:p,relative:rel,bytes:size,sha256:hash(b),selected,reason:selected?'Control/registro/evidencia acotada N03':copyTree?'Copia o preimagen conservada físicamente':generatedSecret?'Material de clave del fixture; custodia local':'Salida voluminosa, binaria o auxiliar'});
+  }
+}
+walk(n03);
+const output=path.join(__dirname,process.argv[2] || 'EVIDENCIA-FISICA.json');
+if(fs.existsSync(output)) throw Error('No sobrescribir inventario previo');
+fs.writeFileSync(output,JSON.stringify({root:n03,rows,skipped},null,2)+'\n');
+console.log(JSON.stringify({files:rows.length,bytes:rows.reduce((s,r)=>s+r.bytes,0),selected:rows.filter(r=>r.selected).length,selectedBytes:rows.filter(r=>r.selected).reduce((s,r)=>s+r.bytes,0),excludedDirs:skipped.length,credentialMarkers:rows.filter(r=>r.reason.startsWith('Material')).map(r=>r.relative)},null,2));

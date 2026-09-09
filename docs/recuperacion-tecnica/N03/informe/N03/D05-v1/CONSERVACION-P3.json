@@ -1,0 +1,431 @@
+{
+  "valid": true,
+  "untouched": [
+    {
+      "path": "src/lib/notification-channels.ts",
+      "valid": true
+    },
+    {
+      "path": "src/components/chat/Chatbot.tsx",
+      "valid": true
+    },
+    {
+      "path": "src/components/booking/BookingWizard.tsx",
+      "valid": true
+    },
+    {
+      "path": "src/services/ai.ts",
+      "valid": true
+    },
+    {
+      "path": "src/types.ts",
+      "valid": true
+    },
+    {
+      "path": "src/lib/api/runtime-health.ts",
+      "valid": true
+    }
+  ],
+  "routing": [
+    {
+      "file": "server.ts",
+      "orderUnchanged": true,
+      "untouched": [
+        {
+          "route": "use <middleware>",
+          "valid": true
+        },
+        {
+          "route": "post /api/webhook",
+          "valid": true
+        },
+        {
+          "route": "use <middleware>",
+          "valid": true
+        },
+        {
+          "route": "use <middleware>",
+          "valid": true
+        },
+        {
+          "route": "use /api",
+          "valid": true
+        },
+        {
+          "route": "use /api/ai",
+          "valid": true
+        },
+        {
+          "route": "use /api",
+          "valid": true
+        },
+        {
+          "route": "get /sitemap.xml",
+          "valid": true
+        },
+        {
+          "route": "use /api",
+          "valid": true
+        },
+        {
+          "route": "get /api/tenant/status",
+          "valid": true
+        },
+        {
+          "route": "get /api/knowledge/list",
+          "valid": true
+        },
+        {
+          "route": "get /api/knowledge/preview/:docId",
+          "valid": true
+        },
+        {
+          "route": "delete /api/knowledge/:docId",
+          "valid": true
+        },
+        {
+          "route": "post /api/stock/migrate",
+          "valid": true
+        },
+        {
+          "route": "post /api/stock/consume",
+          "valid": true
+        },
+        {
+          "route": "post /api/stock/add",
+          "valid": true
+        },
+        {
+          "route": "get /api/stock/items",
+          "valid": true
+        },
+        {
+          "route": "get /api/whatsapp/conversation",
+          "valid": true
+        },
+        {
+          "route": "post /api/whatsapp/queue-message",
+          "valid": true
+        },
+        {
+          "route": "patch /api/whatsapp/pause",
+          "valid": true
+        },
+        {
+          "route": "get /api/whatsapp/config",
+          "valid": true
+        },
+        {
+          "route": "get /api/crm-metrics",
+          "valid": true
+        },
+        {
+          "route": "patch /api/customers/:customerId/stage",
+          "valid": true
+        },
+        {
+          "route": "patch /api/customers/:customerId/tags",
+          "valid": true
+        },
+        {
+          "route": "get /api/admin/users",
+          "valid": true
+        },
+        {
+          "route": "post /api/admin/users",
+          "valid": true
+        },
+        {
+          "route": "patch /api/admin/users/:userId/role",
+          "valid": true
+        },
+        {
+          "route": "delete /api/admin/users/:userId",
+          "valid": true
+        },
+        {
+          "route": "get /api/tasks",
+          "valid": true
+        },
+        {
+          "route": "get /api/tasks/:taskId",
+          "valid": true
+        },
+        {
+          "route": "post /api/tasks",
+          "valid": true
+        },
+        {
+          "route": "patch /api/tasks/:taskId",
+          "valid": true
+        },
+        {
+          "route": "delete /api/tasks/:taskId",
+          "valid": true
+        },
+        {
+          "route": "post /api/contact",
+          "valid": true
+        },
+        {
+          "route": "post /api/book",
+          "valid": true
+        },
+        {
+          "route": "post /api/appointment/notify",
+          "valid": true
+        },
+        {
+          "route": "post /api/support/message",
+          "valid": true
+        },
+        {
+          "route": "post /api/create-checkout-session",
+          "valid": true
+        },
+        {
+          "route": "use <middleware>",
+          "valid": true
+        },
+        {
+          "route": "use <middleware>",
+          "valid": true
+        },
+        {
+          "route": "get *",
+          "valid": true
+        }
+      ]
+    },
+    {
+      "file": "api/index.ts",
+      "orderUnchanged": true,
+      "untouched": [
+        {
+          "route": "use <middleware>",
+          "valid": true
+        },
+        {
+          "route": "post /api/webhook",
+          "valid": true
+        },
+        {
+          "route": "get /api/daily-digest",
+          "valid": true
+        },
+        {
+          "route": "get /sitemap.xml",
+          "valid": true
+        },
+        {
+          "route": "use <middleware>",
+          "valid": true
+        },
+        {
+          "route": "use <middleware>",
+          "valid": true
+        },
+        {
+          "route": "use /api",
+          "valid": true
+        },
+        {
+          "route": "use /api",
+          "valid": true
+        },
+        {
+          "route": "use /api",
+          "valid": true
+        },
+        {
+          "route": "use /api/ai",
+          "valid": true
+        },
+        {
+          "route": "get /api/tenant/status",
+          "valid": true
+        },
+        {
+          "route": "get /api/whatsapp/conversation",
+          "valid": true
+        },
+        {
+          "route": "post /api/whatsapp/queue-message",
+          "valid": true
+        },
+        {
+          "route": "patch /api/whatsapp/pause",
+          "valid": true
+        },
+        {
+          "route": "get /api/whatsapp/config",
+          "valid": true
+        },
+        {
+          "route": "get /api/knowledge/list",
+          "valid": true
+        },
+        {
+          "route": "get /api/knowledge/preview/:docId",
+          "valid": true
+        },
+        {
+          "route": "delete /api/knowledge/:docId",
+          "valid": true
+        },
+        {
+          "route": "post /api/stock/add",
+          "valid": true
+        },
+        {
+          "route": "get /api/stock/items",
+          "valid": true
+        },
+        {
+          "route": "post /api/stock/migrate",
+          "valid": true
+        },
+        {
+          "route": "post /api/stock/consume",
+          "valid": true
+        },
+        {
+          "route": "patch /api/customers/:customerId/stage",
+          "valid": true
+        },
+        {
+          "route": "patch /api/customers/:customerId/tags",
+          "valid": true
+        },
+        {
+          "route": "get /api/admin/users",
+          "valid": true
+        },
+        {
+          "route": "post /api/admin/users",
+          "valid": true
+        },
+        {
+          "route": "patch /api/admin/users/:userId/role",
+          "valid": true
+        },
+        {
+          "route": "delete /api/admin/users/:userId",
+          "valid": true
+        },
+        {
+          "route": "get /api/tasks",
+          "valid": true
+        },
+        {
+          "route": "get /api/tasks/:taskId",
+          "valid": true
+        },
+        {
+          "route": "post /api/tasks",
+          "valid": true
+        },
+        {
+          "route": "patch /api/tasks/:taskId",
+          "valid": true
+        },
+        {
+          "route": "delete /api/tasks/:taskId",
+          "valid": true
+        },
+        {
+          "route": "get /api/crm-metrics",
+          "valid": true
+        },
+        {
+          "route": "post /api/contact",
+          "valid": true
+        },
+        {
+          "route": "post /api/appointment/notify",
+          "valid": true
+        },
+        {
+          "route": "get /api/services",
+          "valid": true
+        },
+        {
+          "route": "post /api/availability",
+          "valid": true
+        },
+        {
+          "route": "post /api/support/message",
+          "valid": true
+        },
+        {
+          "route": "post /api/book",
+          "valid": true
+        },
+        {
+          "route": "post /api/bookings/validate",
+          "valid": true
+        },
+        {
+          "route": "post /api/create-checkout-session",
+          "valid": true
+        }
+      ]
+    }
+  ],
+  "frozen": [
+    {
+      "path": "FREEZE.md",
+      "valid": true
+    },
+    {
+      "path": "CONTINUACION-APROBADA.md",
+      "valid": true
+    },
+    {
+      "path": "runner-matriz.mjs",
+      "valid": true
+    },
+    {
+      "path": "runner-recorridos.mjs",
+      "valid": true
+    },
+    {
+      "path": "preload-recorridos.mjs",
+      "valid": true
+    },
+    {
+      "path": "fixture-recorridos.mjs",
+      "valid": true
+    },
+    {
+      "path": "tsconfig.json",
+      "valid": true
+    }
+  ],
+  "copy": [
+    {
+      "path": "server.ts",
+      "valid": true
+    },
+    {
+      "path": "api/index.ts",
+      "valid": true
+    },
+    {
+      "path": "src/lib/notify-agentkit.ts",
+      "valid": true
+    },
+    {
+      "path": "src/lib/appointment-notify-client.ts",
+      "valid": true
+    },
+    {
+      "path": "src/components/admin/AdminDashboard.tsx",
+      "valid": true
+    },
+    {
+      "path": "src/lib/api/optional-services.ts",
+      "valid": true
+    }
+  ]
+}

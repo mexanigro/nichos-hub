@@ -1,0 +1,5 @@
+{
+  "action": "Copiar prueba existente y comprobar imports; ninguna prueba o regla de paridad modificada",
+  "sha256": "0A949FE9243632C60D0119AFFE1A1573D564761CB03FBBCA3318DD1A8964925A",
+  "error": "Paridad no encontró archivo de prueba en copia allowlist"
+}

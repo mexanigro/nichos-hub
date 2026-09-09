@@ -1,0 +1,17 @@
+file:///control/preload.mjs:10
+function deny(kind) { audit.push(kind); fs.appendFileSync(process.env.HEALTH_AUDIT_FILE, JSON.stringify({ blocked: kind })+'\n'); throw Error('EXTERNAL_BLOCKED'); }
+                                                                                                                                        ^
+
+Error: EXTERNAL_BLOCKED
+    at deny (file:///control/preload.mjs:10:137)
+    at dns.lookup (file:///control/preload.mjs:17:80)
+    at lookupAndListen (node:net:2197:7)
+    at Server.listen (node:net:2099:7)
+    at Function.listen (/app/node_modules/express/lib/application.js:635:24)
+    at startServer (/app/server.ts:3945:7)
+    at <anonymous> (/app/server.ts:3962:8)
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.23.1

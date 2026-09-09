@@ -1,0 +1,86 @@
+
+[Template Setup] ─── Service Configuration Status ───
+  ✓  [REQUIRED] FIREBASE_PROJECT_ID                  → Firestore access (tenant config, kill-switch)
+  ✓  [REQUIRED] CLIENT_ID                            → Tenant scoping
+  ✓  [optional] GEMINI_API_KEY                       → AI chat & style consultation
+  ✓  [optional] EMAIL_PROVIDER_API_KEY               → Email notifications (Resend)
+  ✓  [optional] BUSINESS_OWNER_EMAIL                 → Notification recipient
+[Template Setup] All required integrations configured.
+
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[Contact Form] Received inquiry from Control (customer@example.invalid)
+[Notification Layer] Processing contact notification...
+[Notification Layer] Email sent successfully: simulated-email
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[Notification Layer] Processing booking notification...
+[Notification Layer] Email sent successfully: simulated-email
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active
+[enforceClientActive] calling getClientRuntimeState
+[enforceClientActive] status: active

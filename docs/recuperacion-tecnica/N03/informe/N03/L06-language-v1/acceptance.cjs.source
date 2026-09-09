@@ -1,0 +1,28 @@
+const fs=require('node:fs'),p=require('node:path'),assert=require('node:assert/strict');
+const d=__dirname,name=process.argv[2];if(!name)throw Error('nombre resultado requerido');
+const read=file=>JSON.parse(fs.readFileSync(file,'utf8').replace(/^\uFEFF/,''));
+const reference=read(p.join(d,'referencia-r2/MEDICION.json')),actual=read(p.join(d,name,'MEDICION.json'));
+const expectedLanguages=['he','en','ru','ar','es','en','ru','en','he','he'],checks=[];
+const check=(name,fn)=>{try{fn();checks.push({name,valid:true});}catch(e){checks.push({name,valid:false,error:e.message});}};
+assert.equal(actual.length,14);assert.equal(reference.length,14);
+for(let i=0;i<14;i++){
+ const row=actual[i],old=reference[i];
+ if(i<10){
+  check(i+':config',()=>assert.equal(row.configLanguage,row.hubLanguage));
+  check(i+':propagation',()=>assert.equal(row.propagatedLanguage,expectedLanguages[i]));
+ }
+ check(i+':conservation',()=>{
+  const normalized=structuredClone(row);
+  if(i<10){
+   const config=normalized.writes.find(w=>w.collection==='config'&&w.data);
+   assert(config);delete config.data.language;
+   normalized.configLanguage=old.configLanguage;
+   normalized.propagatedLanguage=old.propagatedLanguage;
+   normalized.requests.find(r=>r.path.endsWith('/env')).body.find(v=>v.key==='VITE_UI_LANGUAGE').value=old.propagatedLanguage;
+  }
+  assert.deepEqual(normalized,old);
+ });
+}
+const result={passed:checks.filter(c=>c.valid).length,failed:checks.filter(c=>!c.valid).length,checks};
+fs.writeFileSync(p.join(d,name,'ACEPTACION.json'),JSON.stringify(result,null,2),{flag:'wx'});
+console.log(JSON.stringify({passed:result.passed,failed:result.failed}));process.exitCode=result.failed?1:0;

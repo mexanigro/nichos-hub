@@ -1,0 +1,268 @@
+{
+  "referencias": 17,
+  "operacionesRemotas": 0,
+  "metodo": "F090F5F8E5429BC7FCB74D187E105A14E3D1153D37D40B9036436B0E885B0C7D",
+  "evidencia": [
+    {
+      "path": "acceptance.cjs",
+      "bytes": 12691,
+      "sha256": "A42F0DBB3D840B6D53674F5A9FEDF47CED495D4A635C6257BB147E02258B2C6A"
+    },
+    {
+      "path": "api__index.ts.diff",
+      "bytes": 1949,
+      "sha256": "F4482B37E7DE774454AAC1678D0664B416F3C7F7E88A0A27014ABB9FED99561B"
+    },
+    {
+      "path": "CONSERVADOS.json",
+      "bytes": 1106,
+      "sha256": "76B20D1D4AEEC0911B0D7BB8CF61CA88D7D3DE913EF90E766AAE62488F2EBB5F"
+    },
+    {
+      "path": "conservar-rutas.cjs",
+      "bytes": 1500,
+      "sha256": "FD128D2F404D84979ABAC5715EE62EB126D0426ED47D6909BBAD063FE9202F33"
+    },
+    {
+      "path": "CONSUMO-FINAL.json",
+      "bytes": 241,
+      "sha256": "E4D6D27BDC8441676226CC4399A81A3D2E1C7C410794D7F1FF27D2715D130C94"
+    },
+    {
+      "path": "CONTRATO-HUELLAS.json",
+      "bytes": 330,
+      "sha256": "6C48B248337BCF962EC24642F1DF946D8948536A8C2E6FD7E4AA18FF482CEDE2"
+    },
+    {
+      "path": "CUSTODIA.json",
+      "bytes": 1926,
+      "sha256": "8DD4DEDA349BBFC0B12A80719DC07544209CDA81A8B303876B98C10366F8B06E"
+    },
+    {
+      "path": "FREEZE.md",
+      "bytes": 1692,
+      "sha256": "3DB14B40C5C341181B9E261FA3C51F8F6F42BDA5E3158B29850ABD00439A051E"
+    },
+    {
+      "path": "FUENTES-FINALES.json",
+      "bytes": 604,
+      "sha256": "1995B322EB3AFB0CC6E923DE3DAB112E446F3AE18EA29BD5967F41A1ADF7E825"
+    },
+    {
+      "path": "GREEN-ESTADO.json",
+      "bytes": 19,
+      "sha256": "3BED2591497B89B762FBDECA5FC4DA005CC8CB3BDEDE1FCB6DE0D5E2C45F98D3"
+    },
+    {
+      "path": "GREEN.txt",
+      "bytes": 11124,
+      "sha256": "47B9EE561012F21F5F9DAF1E468B1EC38813B8D4D449743857A661FE1BC0EE6A"
+    },
+    {
+      "path": "HEAD.txt",
+      "bytes": 41,
+      "sha256": "0BC0D24AABB31CB054A3C222381D6154888D846DDD6173687B19DB60CCA360AC"
+    },
+    {
+      "path": "implementar.cjs",
+      "bytes": 5752,
+      "sha256": "783612117F0ED3AC26FA03A7B4051F1EDA0604F4ED12A5DDB0A1A9C20415EB0F"
+    },
+    {
+      "path": "MUTACION-ESTADO.json",
+      "bytes": 143,
+      "sha256": "128C15FF5D9EFD53B6E16EE1EA3E303B52E91829AA99EA65D97F11E35C109A09"
+    },
+    {
+      "path": "MUTACION.txt",
+      "bytes": 2169,
+      "sha256": "68B7E14BF7DC8311CB027468E8D77A555F7F9CA52FDF60FBFCFAE1788A09774F"
+    },
+    {
+      "path": "PARIDAD-ESTADO.json",
+      "bytes": 84,
+      "sha256": "B978831389DAABF588C2437F58FDE53D6CB660643394159D7D629A4A8DC3A8FD"
+    },
+    {
+      "path": "PARIDAD.txt",
+      "bytes": 618,
+      "sha256": "AB8D7713313B71472E725BBEF61812CD35F2FF219B18A1292A3ACD6E118815B1"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 4190,
+      "sha256": "9E57A18A9379ED001F4B77EB4803480C1B405EE1C133800D87CB215755AAB07A"
+    },
+    {
+      "path": "RED-ESTADO.json",
+      "bytes": 19,
+      "sha256": "AEE4357A0412EBD9EF7523666220E11297F2CB19D1758F130D37820DC5935DAB"
+    },
+    {
+      "path": "RED-FREEZE-ESTADO.json",
+      "bytes": 19,
+      "sha256": "AEE4357A0412EBD9EF7523666220E11297F2CB19D1758F130D37820DC5935DAB"
+    },
+    {
+      "path": "RED-FREEZE.txt",
+      "bytes": 534896,
+      "sha256": "9BEC8E76F11E8E065DF051421F748E49CDD25B9DE34B6D27D0E13D579CAAE736"
+    },
+    {
+      "path": "RED.txt",
+      "bytes": 534893,
+      "sha256": "D761E2038321EAA8E5509054DE8095CE7AAC1CC3E8FB6E10451BAAD93B25EA88"
+    },
+    {
+      "path": "REVISION-FINAL.md",
+      "bytes": 2485,
+      "sha256": "5A489495AE6F12642A9F37FBC2A97F363575F67835A120CE665FFCB4EF5E7D52"
+    },
+    {
+      "path": "RUTAS-CONSERVADAS.json",
+      "bytes": 247,
+      "sha256": "4A5908F081D8DBE6E902574AB8ADC4175D8CD2609A37E036B3B5A48B1828F57E"
+    },
+    {
+      "path": "server.ts.diff",
+      "bytes": 7374,
+      "sha256": "F35ED28DCF593C85179D712BDE9056401270E949E3B50ADF60ED23F8799B979E"
+    },
+    {
+      "path": "STATUS-INICIAL.txt",
+      "bytes": 4024,
+      "sha256": "C5CAE63744BB8E603FDCD4A9CB93776982F1BB629E0A99127FAD7F44FA735541"
+    },
+    {
+      "path": "tests__api-parity.test.ts.diff",
+      "bytes": 941,
+      "sha256": "950C3DC6FCF3A4D5883531CF0FC614FC43195C8E7C3E52C05D403A82B710A09C"
+    },
+    {
+      "path": "TIPOS-FINAL-ESTADO.json",
+      "bytes": 19,
+      "sha256": "3BED2591497B89B762FBDECA5FC4DA005CC8CB3BDEDE1FCB6DE0D5E2C45F98D3"
+    },
+    {
+      "path": "TIPOS-FINAL.txt",
+      "bytes": 0,
+      "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+    },
+    {
+      "path": "TIPOS-PREVIO-ESTADO.json",
+      "bytes": 19,
+      "sha256": "3BED2591497B89B762FBDECA5FC4DA005CC8CB3BDEDE1FCB6DE0D5E2C45F98D3"
+    },
+    {
+      "path": "TIPOS-PREVIO.txt",
+      "bytes": 0,
+      "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+    },
+    {
+      "path": "tsconfig.json",
+      "bytes": 364,
+      "sha256": "F410B09F4D1312746B50AFF378EE37D73C59BD4BAA580EC0EEEC607C0D9A8BB7"
+    },
+    {
+      "path": "preimagenes\\acceptance-pre-refutacion.cjs",
+      "bytes": 12449,
+      "sha256": "F798670468A92BF7F48C2DE1FD2739106F9683E5F823B373C9F438CA5A3B5313"
+    },
+    {
+      "path": "preimagenes\\api__index.ts",
+      "bytes": 226718,
+      "sha256": "9A4439676288E6A970D89FB820E9D6A5485676F47AA55C76411B997C09E9E585"
+    },
+    {
+      "path": "preimagenes\\registro__indice__CALENDARIO.md",
+      "bytes": 9621,
+      "sha256": "267735EC6EA43F2EC2B39280865125736595C44A45B684AFA4C3E350A8416AB1"
+    },
+    {
+      "path": "preimagenes\\registro__indice__README.md",
+      "bytes": 10664,
+      "sha256": "DFE1709AA369A0A67E675713521483AB1E0E203E72CC866A752209D9274064C1"
+    },
+    {
+      "path": "preimagenes\\registro__indice__tareas__N03.md",
+      "bytes": 14024,
+      "sha256": "5E1E53FE4FE2D3C922AF85AC038E9F3FA6C57774420FD774C6DB86F8ED9119AE"
+    },
+    {
+      "path": "preimagenes\\registro__informe__N03__stock-v1__INFORME.md",
+      "bytes": 5273,
+      "sha256": "6121B8DDB658A0F7DEB48E9B20F6427F256BFDE270B699F361A7F8FB06E614CB"
+    },
+    {
+      "path": "preimagenes\\server.ts",
+      "bytes": 178499,
+      "sha256": "EC7759885150C3A89F7A8A4907517E4BC591C7999E74C89EFD63DEA0C5BD7E52"
+    },
+    {
+      "path": "preimagenes\\src__components__admin__StockTab.tsx",
+      "bytes": 23603,
+      "sha256": "4D35BA8B59444381DA1A9AF3888AF3FBD6E21E2113FB313686A9534EF4E6B55C"
+    },
+    {
+      "path": "preimagenes\\src__lib__ai__stock-tools.ts",
+      "bytes": 31700,
+      "sha256": "A9718EA17E8CC74A71968E373DD8CCD02552539EE87C96007B5D7DA6B8BC77C9"
+    },
+    {
+      "path": "preimagenes\\src__lib__api__booking-handler.ts",
+      "bytes": 4088,
+      "sha256": "D7BFF4865597D29A48CF765C464D579FAF38ED24B9F09405415C24EC9BF2DD33"
+    },
+    {
+      "path": "preimagenes\\src__lib__api__support-handler.ts",
+      "bytes": 1369,
+      "sha256": "247B2B1C84548124972D6B0C19407C54771A94006ECF5F11CB7EF196E27C8B86"
+    },
+    {
+      "path": "preimagenes\\src__services__stock.ts",
+      "bytes": 6896,
+      "sha256": "598F24B65868E6C825CED60138AE80BF0395E82FEBA932CAEF6E4EF511881A7E"
+    },
+    {
+      "path": "preimagenes\\src__services__support.ts",
+      "bytes": 2650,
+      "sha256": "994F9C859F652A44F767C9410A9BAECA78D47879B93EE98504BC12CF2205E1F9"
+    },
+    {
+      "path": "preimagenes\\tests__api-parity.test.ts",
+      "bytes": 12727,
+      "sha256": "30CFD35313887975865DA532C8B79BE574B0BE71FB7964F2E718FAB4B01D9520"
+    },
+    {
+      "path": "preimagenes\\tests__booking-handler.test.ts",
+      "bytes": 6647,
+      "sha256": "6D7F6E4409486D1436E61055E515306149998CFF638AC936DE2977110199876A"
+    }
+  ],
+  "registros": [
+    {
+      "path": "informe/N03/stock-v1/INFORME.md",
+      "sha256": "1A6ADF1EE7C6D3917A135F018FB464810FC250E1A762090CDFDADA788784C34F"
+    },
+    {
+      "path": "indice/README.md",
+      "sha256": "4D0EDBE46A4FA367B0B274FE479FD2C7228A20EB4DC20CD29EC656F5BF3C4719"
+    },
+    {
+      "path": "indice/CALENDARIO.md",
+      "sha256": "BC8F523463AB3B61DBF7E5E383DFC63F848D9AEC1A311684B55B9AD07C0E8467"
+    },
+    {
+      "path": "indice/tareas/N03.md",
+      "sha256": "206733CD828B0E581FDF16BB097C60CEFAF98EFAFAE0A5DD5DD0EFEEF27FB5E7"
+    },
+    {
+      "path": "historial/2026-09-09-N03-stock-v1-cierre-local.md",
+      "sha256": "DE5B0716222BFFBECB4B69F65AA857E6563EF2215B521814EA6ED2144DC6D57D"
+    }
+  ],
+  "alcance": "stock-v1 local; N03 sigue en curso",
+  "gates": "4/4",
+  "result": "GREEN",
+  "resets": 0
+}
