@@ -23,6 +23,13 @@ type Step = "upload" | "map" | "preview" | "importing" | "done";
 
 interface ImportResult {
   imported: number;
+  /**
+   * Filas que NO entraron por no poder producir un documento editable — hoy, una
+   * cita sin telefono (R2). El endpoint lo devuelve desde el tramo R2-HUB y hasta
+   * D-20b nadie lo miraba: una importacion de 200 filas podia quedarse en 180 sin
+   * que el dueno se enterara. Opcional porque una respuesta vieja no lo trae.
+   */
+  rejected?: number;
   errors: string[];
   total: number;
 }
@@ -501,16 +508,31 @@ export function CrmImportModal({
           {step === "done" && result && (
             <div className="space-y-4 py-4">
               <div className="flex flex-col items-center gap-3">
-                <CheckCircle size={32} className="text-green-400" />
-                <p className="text-sm font-semibold text-text">Importacion completada</p>
-                <p className="text-xs text-text-secondary">
-                  {result.imported} de {result.total} registros importados exitosamente
+                {(result.rejected ?? 0) > 0 ? (
+                  <AlertTriangle size={32} className="text-amber-400" />
+                ) : (
+                  <CheckCircle size={32} className="text-green-400" />
+                )}
+                <p className="text-sm font-semibold text-text">
+                  {(result.rejected ?? 0) > 0 ? "Importacion parcial" : "Importacion completada"}
                 </p>
+                <p className="text-xs text-text-secondary">
+                  {(result.rejected ?? 0) > 0
+                    ? `${result.imported} de ${result.total} importados · ${result.rejected} rechazados`
+                    : `${result.imported} de ${result.total} registros importados exitosamente`}
+                </p>
+                {(result.rejected ?? 0) > 0 && (
+                  <p className="text-[10px] text-amber-400/80">
+                    Las filas rechazadas no se guardaron. Corregi el motivo y reimportalas.
+                  </p>
+                )}
               </div>
               {result.errors.length > 0 && (
                 <div className="rounded-lg border border-amber-500/30 bg-amber-500/5 p-3">
                   <p className="mb-2 text-[11px] font-medium text-amber-400">
-                    {result.errors.length} advertencias:
+                    {(result.rejected ?? 0) > 0
+                      ? `Motivo de cada fila que no entro (${result.errors.length}):`
+                      : `${result.errors.length} advertencias:`}
                   </p>
                   <div className="max-h-32 space-y-0.5 overflow-y-auto">
                     {result.errors.map((e, i) => (
