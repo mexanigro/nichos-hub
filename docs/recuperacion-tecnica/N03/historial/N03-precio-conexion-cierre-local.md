@@ -1,0 +1,5 @@
+# N03 — cierre local
+
+**Estado vigente: N03 completada localmente — GREEN, P0→P3 4/4.** Liam aprobó autoridad de precio del catálogo config backend por serviceId y rechazo previo si no verificable. Handler compartido persiste priceCents sin confiar en body ni alterar históricos. Reserva→agenda→checkout por middleware real de ambos runtimes:78casos452checksGREEN; preimagenRED100 y mutanteRED60; tipos0, conservación y revisión independiente sin BLOCKERS. Las siete filas del balance original quedan acreditadas localmente, sin transferir pendientes para cerrar. Cardcom sigue bloqueado; no se certifica cobro remoto. Commit producto0670e71. Push pendiente: condición no desplegar no acreditada; no se ejecutó ni se cambió hosting. Técnico hasta99%TOTAL, último1%commit/push; observado97%, sin resets. Etapas posteriores y prestaciones por tenant antes de despliegue intactas.
+
+No nuevas suites ajenas ni cambios de históricos. Precio pendiente sustituido por autorización/implementación verificada; evidencia anterior conservada.

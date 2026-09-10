@@ -1,0 +1,33 @@
+const fs=require('fs'),d=__dirname;let s=fs.readFileSync(d+'/pipeline-pre.source','utf8');
+s=s.replace("const cases = [",`const cases = [
+ {id:'tamper-low',journey:true,status:'active',expected:200,browserPrice:1},
+ {id:'tamper-high',journey:true,status:'active',expected:200,browserPrice:99999999},
+ {id:'full-tampered',journey:true,status:'active',expected:200,full:true,browserPrice:1},
+ {id:'price-override',journey:true,status:'active',expected:200,override:175},
+ ...['missing-config','missing-service','missing-price','null-price','string-price','negative-price','fractional-price','duplicate-service','hidden-service','config-read-error'].map(invalid=>({id:invalid,invalid,bookReject:true,status:'active',expected:503})),
+ {id:'cash-without-price',cash:true,bookOnly:true,status:'active',expected:200},`);
+s=s.replace("const payment = { mode: 'deposit'", "const payment = { enabled: true, mode: c.full ? 'full' : c.cash ? 'cash-only' : 'deposit'");
+s=s.replace("store.set(backendKey('config/tenant'), { payment });",`const service={id:'s',price:150};
+   if(c.invalid==='missing-price'||c.cash)delete service.price;
+   if(c.invalid==='null-price')service.price=null;
+   if(c.invalid==='string-price')service.price='150';
+   if(c.invalid==='negative-price')service.price=-5;
+   if(c.invalid==='fractional-price')service.price=1.234;
+   const config={payment,services:c.invalid==='missing-service'?[]:c.invalid==='duplicate-service'?[service,service]:[service]};
+   if(c.invalid==='hidden-service')config.visibleServices=[];
+   if(c.override)config.serviceOverrides={s:{price:c.override}};
+   if(c.invalid!=='missing-config')store.set(backendKey('config/tenant'),config);`);
+s=s.replace("if (c.configError && ident.path", "if ((c.configError || c.invalid==='config-read-error') && ident.path");
+s=s.replace("compile(read(file))",`compile((file==='src/lib/api/booking-handler.ts' && mutation==='remove-book-price') ? read(file).replace('appointmentFields.priceCents = authorizedPriceCents;', '/* mutante: no guardar precio */') : read(file))`);
+s=s.replace("if (c.journey) {",`if(c.bookReject || c.bookOnly) {
+     const historical={clientId:'tenant',status:'confirmed'};store.set(backendKey('appointments/historical'),historical);
+     const out=await request('POST','/api/book',{customerName:'Synthetic',customerEmail:'a@example.invalid',serviceId:'s',staffId:'staff',date:'2026-10-10',time:'10:00',duration:30,price:15000,priceCents:15000});
+     check(runtime+'/'+c.id+'/http',c.bookReject?out.status>=400:out.status,c.bookReject?true:200);
+     if(c.bookReject)check(runtime+'/'+c.id+'/no-writes',writes.length,0);
+     check(runtime+'/'+c.id+'/historical-untouched',store.get(backendKey('appointments/historical')),historical);
+    } else if (c.journey) {`);
+s=s.replace("duration: 30, status: 'confirmed'", "duration: 30, status: 'confirmed', price: c.browserPrice ?? 1, priceCents: c.browserPrice ?? 1");
+s=s.replace("// No reparar el prerrequisito mediante fixture: el precio debe proceder del recorrido real.",`check(runtime+'/'+c.id+'/authorized-book-price',store.get(backendKey('appointments/'+id))?.priceCents,c.override?17500:15000);
+      // El precio de la cita procede exclusivamente de book; el fixture sólo define catálogo backend.`);
+s=s.replace("gatewayCalls[0]?.amountCents, 2500", "gatewayCalls[0]?.amountCents, c.full ? 15000 : 2500");
+fs.writeFileSync(d+'/pipeline.cjs',s,{flag:'wx'});

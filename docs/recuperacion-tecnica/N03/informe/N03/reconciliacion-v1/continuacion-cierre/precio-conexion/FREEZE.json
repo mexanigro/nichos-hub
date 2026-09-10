@@ -1,0 +1,17 @@
+[
+  {
+    "Algorithm": "SHA256",
+    "Hash": "80798D356584EE4CC764510F9D162BEC6DE86D1F2C45F511F248C5CB0592D4B7",
+    "Path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\precio-conexion\\pipeline.cjs"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "D7BFF4865597D29A48CF765C464D579FAF38ED24B9F09405415C24EC9BF2DD33",
+    "Path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\precio-conexion\\booking-pre.source"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "8FD784BFD6B7D47F087D1F11411EEC2E8860576F3E3C95F59CBB7233B6A36783",
+    "Path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\precio-conexion\\CONTRATO.md"
+  }
+]

@@ -1,0 +1,34 @@
+const fs=require('fs'),d=__dirname,p='C:/Users/liama/Desktop/Nichos/Barber-shop-template-main/src/lib/api/booking-handler.ts';let s=fs.readFileSync(p,'utf8');if(s!==fs.readFileSync(d+'/booking-pre.source','utf8'))throw Error('preimage drift');
+const block=`      // La configuración del mismo backend autoriza el precio, nunca el visitante.
+      const configSnap = await db.collection("config").doc(CLIENT_ID).get();
+      if (!configSnap.exists) {
+        return res.status(503).json({ error: "Booking configuration not verifiable." });
+      }
+      const config = configSnap.data()!;
+      const payment = config.payment;
+      const online = payment?.enabled !== false &&
+        (payment?.mode === "deposit" || payment?.mode === "full") &&
+        payment?.provider !== "manual" && payment?.provider !== "none";
+      let authorizedPriceCents: number | undefined;
+      if (online) {
+        const matches = Array.isArray(config.services)
+          ? config.services.filter((service: unknown) => service !== null && typeof service === "object" &&
+              (service as { id?: unknown }).id === serviceId)
+          : [];
+        if (matches.length !== 1 || (Array.isArray(config.visibleServices) && !config.visibleServices.includes(serviceId))) {
+          return res.status(503).json({ error: "Service price not verifiable." });
+        }
+        const patch = config.serviceOverrides?.[serviceId];
+        const price: unknown = patch && Object.prototype.hasOwnProperty.call(patch, "price")
+          ? patch.price : matches[0].price;
+        const cents = typeof price === "number" ? Math.round(price * 100) : NaN;
+        if (typeof price !== "number" || !Number.isFinite(price) ||
+            !Number.isSafeInteger(cents) || cents < 50 || cents > 2_000_000 ||
+            Math.abs(price * 100 - cents) > 0.000001) {
+          return res.status(503).json({ error: "Service price not verifiable." });
+        }
+        authorizedPriceCents = cents;
+      }
+
+`;
+s=s.replace('      const { FieldValue } = context!;',block+'      const { FieldValue } = context!;');s=s.replace('      if (paymentStatus) appointmentFields.paymentStatus = paymentStatus;', '      if (authorizedPriceCents !== undefined) appointmentFields.priceCents = authorizedPriceCents;\n      if (paymentStatus) appointmentFields.paymentStatus = paymentStatus;');fs.writeFileSync(p,s);

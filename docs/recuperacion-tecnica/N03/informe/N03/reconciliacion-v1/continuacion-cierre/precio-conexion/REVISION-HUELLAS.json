@@ -1,0 +1,104 @@
+[
+  {
+    "file": "server.ts",
+    "equal": true,
+    "sha256": "4E5E1167CAE282878B6CFC590A6E01675FEDF3776487DF0BE577CCCA20171F1D"
+  },
+  {
+    "file": "api/index.ts",
+    "equal": true,
+    "sha256": "0A99770D92A97DF9DE7C37A22F6C8591F954678AC3E530D8BC55BA6EC1218809"
+  },
+  {
+    "file": "src/lib/api/admin-auth.ts",
+    "equal": true,
+    "sha256": "184996449B94D762F30B9BFABC7C829FA00413E3FDA53E712BF4500D461F0EC2"
+  },
+  {
+    "file": "src/components/admin/AdminDashboard.tsx",
+    "equal": true,
+    "sha256": "E636D0556110405985E3DF10903EEED8165CAD95AC78291886BBB0D22099E637"
+  },
+  {
+    "file": "src/components/admin/AppointmentCalendar.tsx",
+    "equal": true,
+    "sha256": "E78ED3314BEA04D923EA76E616BF94A9B4C199466DDC633DD739F1E04B2EC26C"
+  },
+  {
+    "file": "src/lib/api/checkout-handler.ts",
+    "equal": true,
+    "sha256": "E0152C73362A8E26573C16730BDDF85ED7811102B32726BB07CB4556606BEFE3"
+  },
+  {
+    "file": "src/lib/api/payment-gateways.ts",
+    "equal": true,
+    "sha256": "4B1403983540DC2E2B9D0AF41E9D34169FBCD256C8F08FD57B0302E2D19F95AD"
+  },
+  {
+    "file": "src/components/booking/BookingWizard.tsx",
+    "equal": true,
+    "sha256": "9EF7FD9DA98308FCC9F7D6E2A291254D0DA7F9935722F63E8C0D220868111D3B"
+  },
+  {
+    "file": "src/lib/api/crm-appointments-handler.ts",
+    "equal": true,
+    "sha256": "E48A9EE4048C118A064CBFF460FBF4E0668763691C9DE41C34E9D15F3A915E4F"
+  },
+  {
+    "file": "src/services/crm-appointments.ts",
+    "equal": true,
+    "sha256": "D91AF2FC8648F884480A42183B364E060D911C9C4FC9BEA2C18D66538FD99766"
+  },
+  {
+    "file": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\precio-conexion\\pipeline.cjs",
+    "equal": true
+  },
+  {
+    "file": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\precio-conexion\\booking-pre.source",
+    "equal": true
+  },
+  {
+    "file": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\precio-conexion\\CONTRATO.md",
+    "equal": true
+  },
+  {
+    "file": "green:server.ts",
+    "equal": true
+  },
+  {
+    "file": "green:src/lib/api/payment-gateways.ts",
+    "equal": true
+  },
+  {
+    "file": "green:src/lib/admin-users.ts",
+    "equal": true
+  },
+  {
+    "file": "green:src/lib/api/booking-handler.ts",
+    "equal": true
+  },
+  {
+    "file": "green:src/lib/api/booking-validation.ts",
+    "equal": true
+  },
+  {
+    "file": "green:src/lib/api/crm-appointments-handler.ts",
+    "equal": true
+  },
+  {
+    "file": "green:src/lib/api/checkout-handler.ts",
+    "equal": true
+  },
+  {
+    "file": "green:src/lib/api/tenant-access.ts",
+    "equal": true
+  },
+  {
+    "file": "green:src/lib/api/admin-auth.ts",
+    "equal": true
+  },
+  {
+    "file": "green:api/index.ts",
+    "equal": true
+  }
+]

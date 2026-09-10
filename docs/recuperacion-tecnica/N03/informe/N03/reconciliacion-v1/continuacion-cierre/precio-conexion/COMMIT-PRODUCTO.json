@@ -1,0 +1,7 @@
+{
+  "commit": "0670e71bb86746e534cfacb66bf3ed47757f4714",
+  "before": "8ff8ab180da96d87699121816e27a94ae3138a50",
+  "output": "[main 0670e71] fix(n03): persist backend catalog price when booking online\n 1 file changed, 32 insertions(+)",
+  "push": "NO_EJECUTADO",
+  "reason": "condicion no desplegar sin acreditar"
+}

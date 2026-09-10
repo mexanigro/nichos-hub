@@ -1,0 +1,10 @@
+{
+  "repo": "C:/Users/liama/Desktop/Nichos/Barber-shop-template-main",
+  "before": "8ff8ab180da96d87699121816e27a94ae3138a50",
+  "files": [
+    "src/lib/api/booking-handler.ts"
+  ],
+  "sha256": "08de79e21c5632ce30e44ff8a21c7fa349f6aef69e1c404a32647c8c5dc4baae",
+  "proof": "GREEN452/mutantRED60/tipos0/independentreview",
+  "push": "BLOCKED_NO_DEPLOY_NOT_VERIFIED"
+}

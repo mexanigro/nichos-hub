@@ -1,0 +1,30 @@
+{
+  "changed": [
+    "src/lib/api/booking-handler.ts"
+  ],
+  "priorSourceFiles": 10,
+  "preservedSelectedAndForeign": 40,
+  "frozen": true,
+  "sourceHashes": {
+    "server.ts": "4e5e1167cae282878b6cfc590a6e01675fedf3776487df0be577ccca20171f1d",
+    "src/lib/api/payment-gateways.ts": "4b1403983540dc2e2b9d0af41e9d34169fbcd256c8f08fd57b0302e2d19f95ad",
+    "src/lib/admin-users.ts": "bf20aeae951907d691f87b983de0ce21a81613b3becc2a9cace43fc5f9cab47a",
+    "src/lib/api/booking-handler.ts": "08de79e21c5632ce30e44ff8a21c7fa349f6aef69e1c404a32647c8c5dc4baae",
+    "src/lib/api/booking-validation.ts": "456f7f8a9ebe4015e19eac8246a2ddaada68d1ab0fe4c23949c640e9a71b934e",
+    "src/lib/api/crm-appointments-handler.ts": "e48a9ee4048c118a064cbff460fbf4e0668763691c9de41c34e9d15f3a915e4f",
+    "src/lib/api/checkout-handler.ts": "e0152c73362a8e26573c16730bddf85ed7811102b32726bb07cb4556606befe3",
+    "src/lib/api/tenant-access.ts": "98e914224316040091677e4ebbb3b0811cedb4bd671f3cf49477bbe2767faecc",
+    "src/lib/api/admin-auth.ts": "184996449b94d762f30b9bfabc7c829fa00413e3fda53e712bf4500d461f0ec2",
+    "api/index.ts": "0a99770d92a97df9de7c37a22f6c8591f954678ac3e530d8bc55ba6ec1218809"
+  },
+  "green": {
+    "cases": 78,
+    "checks": 452,
+    "failures": 0
+  },
+  "mutant": {
+    "cases": 78,
+    "checks": 452,
+    "failures": 60
+  }
+}
