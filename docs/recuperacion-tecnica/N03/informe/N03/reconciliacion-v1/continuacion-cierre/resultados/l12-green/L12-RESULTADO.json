@@ -1,0 +1,104 @@
+{
+  "result": "RED",
+  "cases": 126,
+  "checks": 4771,
+  "failures": [
+    {
+      "id": "cafeteria/cafeteria/absent/en/image",
+      "expected": "synthetic-image"
+    },
+    {
+      "id": "cafeteria/cafeteria/absent/he/image",
+      "expected": "synthetic-image"
+    },
+    {
+      "id": "cafeteria/cafeteria/absent/ru/image",
+      "expected": "synthetic-image"
+    },
+    {
+      "id": "cafeteria/cafeteria/absent/ar/image",
+      "expected": "synthetic-image"
+    },
+    {
+      "id": "cafeteria/cafeteria/null/en/image",
+      "expected": "synthetic-image"
+    },
+    {
+      "id": "cafeteria/cafeteria/null/he/image",
+      "expected": "synthetic-image"
+    },
+    {
+      "id": "cafeteria/cafeteria/null/ru/image",
+      "expected": "synthetic-image"
+    },
+    {
+      "id": "cafeteria/cafeteria/null/ar/image",
+      "expected": "synthetic-image"
+    },
+    {
+      "id": "cafeteria/undefined/absent/en/image",
+      "expected": "synthetic-image"
+    },
+    {
+      "id": "cafeteria/undefined/absent/he/image",
+      "expected": "synthetic-image"
+    },
+    {
+      "id": "cafeteria/undefined/absent/ru/image",
+      "expected": "synthetic-image"
+    },
+    {
+      "id": "cafeteria/undefined/absent/ar/image",
+      "expected": "synthetic-image"
+    },
+    {
+      "id": "cafeteria/undefined/null/en/image",
+      "expected": "synthetic-image"
+    },
+    {
+      "id": "cafeteria/undefined/null/he/image",
+      "expected": "synthetic-image"
+    },
+    {
+      "id": "cafeteria/undefined/null/ru/image",
+      "expected": "synthetic-image"
+    },
+    {
+      "id": "cafeteria/undefined/null/ar/image",
+      "expected": "synthetic-image"
+    },
+    {
+      "id": "cafeteria/barberia/absent/en/image",
+      "expected": "synthetic-image"
+    },
+    {
+      "id": "cafeteria/barberia/absent/he/image",
+      "expected": "synthetic-image"
+    },
+    {
+      "id": "cafeteria/barberia/absent/ru/image",
+      "expected": "synthetic-image"
+    },
+    {
+      "id": "cafeteria/barberia/absent/ar/image",
+      "expected": "synthetic-image"
+    },
+    {
+      "id": "cafeteria/barberia/null/en/image",
+      "expected": "synthetic-image"
+    },
+    {
+      "id": "cafeteria/barberia/null/he/image",
+      "expected": "synthetic-image"
+    },
+    {
+      "id": "cafeteria/barberia/null/ru/image",
+      "expected": "synthetic-image"
+    },
+    {
+      "id": "cafeteria/barberia/null/ar/image",
+      "expected": "synthetic-image"
+    }
+  ],
+  "effects": 0
+}

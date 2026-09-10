@@ -1,0 +1,34 @@
+const fs=require('fs'),crypto=require('crypto'),assert=require('assert/strict'),ts=require('/deps/node_modules/typescript');
+const root='/template',failures=[],rows=[],hashes={};let checks=0;
+const compile=s=>ts.transpileModule(s,{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText;
+const check=(id,a,b)=>{checks++;try{assert.deepEqual(a,b)}catch{failures.push({id,actual:a,expected:b})}};
+const normalized=xs=>Array.isArray(xs)?[...new Set(xs)].sort():xs;
+const environments=[
+ {id:'separate',env:{VITE_FIREBASE_PROJECT_ID:' web-project ',FIREBASE_PROJECT_ID:' backend-project ',FIREBASE_ADMIN_PROJECT_ID:'ignored-admin',NEXT_PUBLIC_FIREBASE_PROJECT_ID:'ignored-next'},crm:['web-project'],notify:['backend-project','web-project']},
+ {id:'browser-absent',env:{FIREBASE_PROJECT_ID:'backend-project',NEXT_PUBLIC_FIREBASE_PROJECT_ID:'untrusted-next'},crm:[],notify:['backend-project']},
+ {id:'browser-empty',env:{VITE_FIREBASE_PROJECT_ID:'   ',FIREBASE_ADMIN_PROJECT_ID:'backend-project'},crm:[],notify:['backend-project']},
+ {id:'same',env:{VITE_FIREBASE_PROJECT_ID:'same-project',FIREBASE_PROJECT_ID:'same-project'},crm:['same-project'],notify:['same-project']},
+ {id:'all-absent',env:{},crm:[],notify:[]},
+];
+(async()=>{for(const file of ['server.ts','api/index.ts']){
+ const source=fs.readFileSync(root+'/'+file,'utf8');hashes[file]=crypto.createHash('sha256').update(source).digest('hex');const ast=ts.createSourceFile(file,source,99,true),functions=new Map(),registrations=[],declarations=[];
+ function visit(n){if(ts.isFunctionDeclaration(n)&&n.name)functions.set(n.name.text,n);if(ts.isVariableDeclaration(n)&&n.name.getText(ast)==='crmAgenda')declarations.push(n);if(ts.isCallExpression(n)&&['app.get','app.patch','app.post'].includes(n.expression.getText(ast))&&['/api/crm/appointments','/api/crm/appointments/:id','/api/appointment/notify'].includes(n.arguments[0]?.text))registrations.push(n);ts.forEachChild(n,visit)}visit(ast);
+ const prefix=file+':',fn=functions.get('requireCrmAdminAuth'),legacy=functions.get('requireAdminAuth');check(prefix+'crm-function-exists',!!fn,true);check(prefix+'legacy-function-exists',!!legacy,true);
+ const fakeReq={headers:{'x-project-id':'attacker'},body:{projectId:'attacker',clientId:'other'}},fakeRes={status(){return this},json(){return this}},lookup=()=>{};
+ for(const c of environments){const captured=[];const gate=async(...args)=>{captured.push({lookupSame:args[2]===lookup,projects:args[3],arity:args.length});return null};
+  if(fn){const crm=new Function('process','requireAdminAuthGate','lookupAdminUser',compile(fn.getText(ast))+'\nreturn requireCrmAdminAuth;')({env:c.env},gate,lookup);
+   await crm(fakeReq,fakeRes);check(prefix+c.id+'/crm-projects',normalized(captured.at(-1)?.projects),normalized(c.crm));check(prefix+c.id+'/crm-single-call',captured.length,1);check(prefix+c.id+'/crm-lookup',captured[0]?.lookupSame,true);captured.length=0;
+   await crm(fakeReq,fakeRes,true);check(prefix+c.id+'/notify-projects',normalized(captured.at(-1)?.projects),normalized(c.notify));check(prefix+c.id+'/notify-single-call',captured.length,1);check(prefix+c.id+'/notify-lookup',captured[0]?.lookupSame,true);captured.length=0;
+  }
+  if(legacy){const old=new Function('process','requireAdminAuthGate','lookupAdminUser',compile(legacy.getText(ast))+'\nreturn requireAdminAuth;')({env:c.env},gate,lookup);await old(fakeReq,fakeRes);check(prefix+c.id+'/legacy-default',captured.at(-1)?.projects,undefined);check(prefix+c.id+'/legacy-lookup',captured.at(-1)?.lookupSame,true)}
+ }
+ check(prefix+'crm-factory-declaration',declarations.length,1);let handlers,configuration,accessorCalls=[];const effectiveDb={synthetic:'same-runtime-db'},accessor=async()=>{accessorCalls.push(file);return file==='server.ts'?effectiveDb:{db:effectiveDb}};
+ const crmGate=()=>{},factory=cfg=>{configuration=cfg;return handlers={list:()=>{},patch:()=>{}}};let crmAgenda;
+ if(declarations.length===1){crmAgenda=new Function('createCrmAppointmentsHandlers','CLIENT_ID','getAdminDb','loadAdminFirestore','requireCrmAdminAuth',compile('const '+declarations[0].getText(ast)+';')+'\nreturn crmAgenda;')(factory,'tenant-local',accessor,accessor,crmGate);check(prefix+'factory-tenant',configuration.clientId,'tenant-local');check(prefix+'factory-auth',configuration.authenticate===crmGate,true);check(prefix+'factory-db',await configuration.loadDb(),effectiveDb);check(prefix+'factory-db-call',accessorCalls,[file])}
+ for(const [method,url,name]of [['get','/api/crm/appointments','list'],['patch','/api/crm/appointments/:id','patch']]){const nodes=registrations.filter(n=>n.expression.getText(ast)==='app.'+method&&n.arguments[0].text===url);check(prefix+method+'/unique-registration',nodes.length,1);if(nodes.length===1&&crmAgenda){const calls=[];const app={[method]:(...args)=>calls.push(args)};new Function('app','crmAgenda',compile(nodes[0].getText(ast)))(app,crmAgenda);check(prefix+method+'/runtime-register',[calls[0]?.[0],calls[0]?.[1]===handlers[name]],[url,true]);check(prefix+method+'/single-call',calls.length,1)}}
+ const notify=registrations.filter(n=>n.expression.getText(ast)==='app.post'&&n.arguments[0].text==='/api/appointment/notify');check(prefix+'notify/unique-registration',notify.length,1);
+ if(notify.length===1){let callback;const calls=[];const app={post:(_path,cb)=>callback=cb};const scoped=async(...args)=>{calls.push({gate:'scoped',allowLegacy:args[2]});return null},old=async()=>{calls.push({gate:'legacy'});return null};new Function('app','requireCrmAdminAuth','requireAdminAuth',compile(notify[0].getText(ast)))(app,scoped,old);await callback(fakeReq,fakeRes);check(prefix+'notify/effective-gate',calls,[{gate:'scoped',allowLegacy:true}]);}
+ rows.push({file,missingFunction:!fn,crmFactoryDeclarations:declarations.length,registrations:registrations.map(n=>({method:n.expression.getText(ast),path:n.arguments[0].text}))});
+ }
+ fs.writeFileSync('/salida/REGISTRO.json',JSON.stringify({result:failures.length?'RED':'GREEN',checks,failures,rows,hashes,limits:'AST real evaluado: selección de proyectos/delegación/registro de handlers. Gate y DB accessors interceptados para capturar argumentos. Notify se ejecuta sólo hasta rechazo de autenticación. No acredita efectos/HTTP ni reemplaza contratos auth, lookup o conexión.'},null,2));console.log(JSON.stringify({checks,failures:failures.length}));process.exitCode=failures.length?1:0;
+})().catch(e=>{console.error(e.stack);process.exitCode=2});

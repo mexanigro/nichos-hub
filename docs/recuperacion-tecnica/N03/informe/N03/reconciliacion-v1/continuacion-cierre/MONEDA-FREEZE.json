@@ -1,0 +1,17 @@
+[
+  {
+    "Algorithm": "SHA256",
+    "Hash": "93D674735EED583BB308D463291C2B8F0D9A74EC382B83AB89F71EAE4DD98E53",
+    "Path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\CONTRATO-MONEDA.md"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "5B1F98BC3F8B86AD437CA441B51C5978BB2DE490B4B12AD7C0C7AD5913EAE8F3",
+    "Path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\moneda-handler.cjs"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "24CEAC52455057835108327E538C0450FBBE1D65EE81B197AE07FF668E068373",
+    "Path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\moneda-gateway.cjs"
+  }
+]

@@ -1,0 +1,31 @@
+{
+  "fuentes": [
+    {
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N01\\SA-01-L-v1\\DEUDA.md",
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N01\\SA-01-L-v1\\DEUDA.md",
+      "sha256": "c6b5c02e6c6a5e0840a00a3b6c54c99ce8a2705722026947b49bea8ca5e2bafe"
+    },
+    {
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N01\\decisiones-alcance-v1\\DECISIONES.md",
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N01\\decisiones-alcance-v1\\DECISIONES.md",
+      "sha256": "79996a9a62f5a3ab4a201efeec5292a9ac3b54f9ae380699f8389eea3b24c8f1"
+    },
+    {
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N01\\decisiones-alcance-v1\\RECONCILIACION.md",
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N01\\decisiones-alcance-v1\\RECONCILIACION.md",
+      "sha256": "8dd09842dd8fded55fdeb7c848a8e0109e3365a833f4f731ac5cce7b92075f41"
+    },
+    {
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N02\\cierre-local-revisado-v1\\TRASPASOS.md",
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N02\\cierre-local-revisado-v1\\TRASPASOS.md",
+      "sha256": "7d341e0a9129e014a26b447a0183576e5b509ec1f934e9aa4e50c7049c6054ea"
+    },
+    {
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N02\\preparacion-v1\\SELECTORES-FUENTE-v4.md",
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N02\\preparacion-v1\\SELECTORES-FUENTE-v4.md",
+      "sha256": "ad490dfdfac946c065b2f752bd4b42c5a1a2215b219262866fe1b920bb338eca"
+    }
+  ],
+  "resultado": "PASS",
+  "causa": "Validación inicial detectó referencias históricas N01/N02 sin copia en archivo hub; fuentes canónicas presentes. Única corrección: copiar cinco fuentes ya referenciadas, sin modificar contenido ni producto."
+}

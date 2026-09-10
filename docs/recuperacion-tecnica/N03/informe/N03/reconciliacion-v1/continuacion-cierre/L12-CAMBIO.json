@@ -1,0 +1,9 @@
+{
+  "file": "C:/Users/liama/Desktop/Nichos/Barber-shop-template-main/src/config/site.ts",
+  "before": "a85f4938b2172286d6b954b059bd26bd17b686f3717ab3346a9a3fa7a9008cda",
+  "after": "94ca46d164926c4e869c65efc6b4d8eae3a398003a27a546cfecaeec7c0dc582",
+  "scope": [
+    "_applyVisibleServicesFilter",
+    "pickLanguageSafeOverride"
+  ]
+}

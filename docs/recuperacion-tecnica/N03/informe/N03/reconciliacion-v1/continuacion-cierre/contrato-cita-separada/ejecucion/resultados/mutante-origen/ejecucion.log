@@ -1,0 +1,5 @@
+Error: synthetic update failure
+    at Object.update (/control/agenda.cjs:3:293)
+    at fn (eval at getFn (/control/agenda.cjs:3:510), <anonymous>:41:31)
+    at /control/agenda.cjs:3:1765
+{ checks: 34, failures: 1 }

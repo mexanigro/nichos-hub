@@ -1,0 +1,103 @@
+{
+  "result": "RED",
+  "checks": 34,
+  "failures": [
+    {
+      "id": "server.ts:crm-function-exists",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "server.ts:crm-factory-declaration",
+      "actual": 0,
+      "expected": 1
+    },
+    {
+      "id": "server.ts:get/unique-registration",
+      "actual": 0,
+      "expected": 1
+    },
+    {
+      "id": "server.ts:patch/unique-registration",
+      "actual": 0,
+      "expected": 1
+    },
+    {
+      "id": "server.ts:notify/effective-gate",
+      "actual": [
+        {
+          "gate": "legacy"
+        }
+      ],
+      "expected": [
+        {
+          "gate": "scoped",
+          "allowLegacy": true
+        }
+      ]
+    },
+    {
+      "id": "api/index.ts:crm-function-exists",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "api/index.ts:crm-factory-declaration",
+      "actual": 0,
+      "expected": 1
+    },
+    {
+      "id": "api/index.ts:get/unique-registration",
+      "actual": 0,
+      "expected": 1
+    },
+    {
+      "id": "api/index.ts:patch/unique-registration",
+      "actual": 0,
+      "expected": 1
+    },
+    {
+      "id": "api/index.ts:notify/effective-gate",
+      "actual": [
+        {
+          "gate": "legacy"
+        }
+      ],
+      "expected": [
+        {
+          "gate": "scoped",
+          "allowLegacy": true
+        }
+      ]
+    }
+  ],
+  "rows": [
+    {
+      "file": "server.ts",
+      "missingFunction": true,
+      "crmFactoryDeclarations": 0,
+      "registrations": [
+        {
+          "method": "app.post",
+          "path": "/api/appointment/notify"
+        }
+      ]
+    },
+    {
+      "file": "api/index.ts",
+      "missingFunction": true,
+      "crmFactoryDeclarations": 0,
+      "registrations": [
+        {
+          "method": "app.post",
+          "path": "/api/appointment/notify"
+        }
+      ]
+    }
+  ],
+  "hashes": {
+    "server.ts": "884ed361649c0aa2b406c317e7cc0fe36f70d30f9cd83785f6680fee7c9970f0",
+    "api/index.ts": "748b245f1b1c56184de7f57119d89a4a690ff383fdff504a4431ac2aae0af007"
+  },
+  "limits": "AST real evaluado: selección de proyectos/delegación/registro de handlers. Gate y DB accessors interceptados para capturar argumentos. Notify se ejecuta sólo hasta rechazo de autenticación. No acredita efectos/HTTP ni reemplaza contratos auth, lookup o conexión."
+}

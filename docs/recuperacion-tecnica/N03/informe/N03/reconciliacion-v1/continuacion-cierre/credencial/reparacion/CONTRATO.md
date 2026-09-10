@@ -1,0 +1,13 @@
+# Contrato de reparación de credenciales, separado del diagnóstico
+
+Autorización comunicada: apiName independiente de apiKey histórico; nested credentials presente es autoritativo, vacío/null/malformado no autoriza fallback; legacy plano sólo cuando el campo credentials no existe. Un mapa parcial conserva sólo sus claves string propias sin mezclarlas con la generación plana; los requisitos del gateway Cardcom siguen rechazando terminal/apiName incompletos. No imponer requisitos Cardcom a otros proveedores.
+
+P0: expectativas fijas en contrato.cjs y RED sobre producto actual, preimágenes y freeze; P1 reparación mínima aprobada; P2 mismo contrato GREEN y mutante de precedencia/campo; DONE revisión local sin atribuir certificación de proveedor ni cierre general.
+
+Se carga producto vigente en cada ejecución. Editor real por metadatos/callbacks AST → PUT real → serialización SDK instalada sin commit → dos loaders reales con cache fresca → inspección exacta del objeto de credenciales que recibe gateway. No normalizador simulado. Conservar writer GET/PUT: trim, apiKey omitida preservada y enmascarada. Diagnóstico anterior permanece intacto y no es el oráculo de reparación.
+
+Los vectores fijos incluyen alta desde editor, reedición, plano con credentials ausente, conflicto nested/plano, nested vacío/null/array/string, parcial sin mezcla, apiKey que nunca se interpreta como apiName, campos no string que no pasan al consumidor. Requisito parcial Cardcom se ejercita con transporte interceptado; un bloqueo monetario posterior no permite atribuir esa rama a una autenticación correcta de proveedor. Moneda/seña y Stripe no forman parte de este contrato.
+
+Implementación mínima recomendada: campo adicional apiName en editor, conservación de apiKey legacy, resolución explícita en ambos loaders. Es admisible un helper puro pequeño junto a createCredentialCache para seleccionar credentials propio o legacy y filtrar campos string; mantener semántica/TTL/cache independientes y no convertirlo en framework ni adaptar otros consumidores. API debe decodificar el mapValue de credentials antes de resolver; no hacer fallback cuando mapValue está ausente pero el campo existe como null/array/string.
+
+Refutación pendiente para integrador: conservar defaults y forma válida de proveedores existentes; usar own-property para distinguir ausencia de credentials de presencia inválida; no fusionar objetos; no renombrar/migrar apiKey ni inferir equivalencia con apiName. Revisión de fuente y tipos pertinente complementan este contrato. No gateway real, DB, red, instalaciones o credenciales reales.

@@ -1,0 +1,7 @@
+const fs=require('fs'),p=require('path');const d=__dirname;
+fs.copyFileSync(p.join(d,'sondeo.cjs'),p.join(d,'sondeo-r1.cjs'));
+fs.copyFileSync(p.join(d,'resultados/ejecucion.log'),p.join(d,'resultados/ejecucion-r1.log'));
+let s=fs.readFileSync(p.join(d,'sondeo.cjs'),'utf8');s=s.replace("req('firebase-admin/package.json').version","JSON.parse(fs.readFileSync('/deps/node_modules/firebase-admin/package.json','utf8')).version");
+s=s.replace('function load(text,names',`const mutant=process.argv[2]; if(mutant==='server'||mutant==='api')texts[mutant]=texts[mutant].replace('getAdminApps().length > 0','false'); if(mutant==='rest')texts.rest=texts.rest.replaceAll('process.env.FIREBASE_PROJECT_ID?.trim()', "'project-z'");
+function load(text,names`);
+fs.writeFileSync(p.join(d,'sondeo.cjs'),s);

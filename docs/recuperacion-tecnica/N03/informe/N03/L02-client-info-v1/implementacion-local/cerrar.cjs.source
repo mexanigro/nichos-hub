@@ -1,0 +1,74 @@
+const fs=require('fs'),p=require('path'),crypto=require('crypto'),assert=require('assert/strict'),{spawnSync}=require('child_process');
+const base=__dirname,previous=p.dirname(base),root='C:/Users/liama/Desktop/Nichos-hub',canon='C:/Users/liama/Desktop/Nichos/recuperacion-tecnica',archive=root+'/docs/recuperacion-tecnica/N03';
+const rel='informe/N03/L02-client-info-v1/implementacion-local',allowed='src/app/api/onboarding/client-info/route.ts';
+const read=file=>JSON.parse(fs.readFileSync(file,'utf8').replace(/^\uFEFF/,''));
+const sha=file=>crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+function fresh(file,data){assert.ok(!fs.existsSync(file),'No sobrescribir '+file);fs.mkdirSync(p.dirname(file),{recursive:true});fs.writeFileSync(file,data);}
+const json=(file,data)=>fresh(file,JSON.stringify(data,null,2)+'\n');
+const walk=dir=>fs.readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(p.join(dir,e.name)):[p.join(dir,e.name)]);
+const quota=read(base+'/CONSUMO.json');assert.ok(quota.usedPercent<85);
+const frozen=read(base+'/FREEZE.json');for(const f of frozen.files)assert.equal(sha(base+'/'+f.ruta),f.sha256,'Contrato cambió '+f.ruta);
+const population=read(base+'/PRODUCTO-ANTES.json'),delta=population.filter(f=>sha(root+'/'+f.ruta)!==f.sha256);assert.equal(delta.length,1);assert.equal(delta[0].ruta.replaceAll('\\','/'),allowed);assert.equal(walk(root+'/src').length,population.length);
+for(const f of read(previous+'/FUENTES.json'))if(f.ruta!==allowed)assert.equal(sha(root+'/'+f.ruta),f.sha256);
+assert.equal(sha(root+'/tsconfig.json'),sha(base+'/preimagenes/tsconfig.json'));
+assert.equal(sha(root+'/'+allowed),sha(base+'/handlers/final.ts'));
+assert.equal(sha(base+'/handlers/basal.ts'),sha(base+'/preimagenes/route-antes-P1.ts'));
+const finalHash=sha(root+'/'+allowed),beforeHash=sha(base+'/handlers/basal.ts');
+const summary=read(base+'/RESUMEN-CORRIDAS.json');
+for(const x of summary){assert.equal(x.casos,29);assert.equal(x.invocaciones,39);assert.equal(x.exit,x.etapa==='green'?0:1);assert.ok(!fs.existsSync(base+'/resultados/'+x.etapa+'/ERROR.txt'));}
+assert.equal(summary.find(x=>x.etapa==='green').fallos,0);
+const mc=read(base+'/resultados/mutacion-config/RED.json').semanticFailures,mh=read(base+'/resultados/mutacion-hub_clients/RED.json').semanticFailures;
+assert.ok(mc.length>0&&!mc.some(f=>f.name.includes(' hub_clients ')));assert.ok(mh.length>0&&mh.every(f=>f.name.includes(' hub_clients ')));
+assert.equal(read(base+'/TIPOS.json').exit,0);const lint=read(base+'/LINT-RESUMEN.json');assert.equal(lint.exit,0);
+let evidence=0;for(const file of [previous+'/EVIDENCIA-FISICA.json',canon+'/informe/N03/W-NEXT-v1/comparacion-local/EVIDENCIA-FISICA.json',canon+'/informe/N03/W-NEXT-v1/implementacion-local/EVIDENCIA-FISICA.json'])for(const f of read(file).archivos){assert.equal(sha(f.ruta),f.sha256);evidence++;}
+for(const f of read(previous+'/ARCHIVO.json')){assert.equal(sha(f.origen),f.sha256);assert.equal(sha(f.destino),f.sha256);}
+const git=spawnSync('git',['diff','--',allowed],{cwd:root,encoding:'utf8'});assert.equal(git.status,0);fresh(base+'/PRODUCTO.diff',git.stdout);fresh(base+'/PRODUCTO.diff.stderr.txt',git.stderr);
+const head=spawnSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'});assert.equal(head.status,0);assert.equal(head.stdout.trim(),fs.readFileSync(base+'/HEAD.txt','utf8').replace(/^\uFEFF/,'').trim());
+const status=spawnSync('git',['status','--porcelain=v1'],{cwd:root,encoding:'utf8'});assert.equal(status.status,0);fresh(base+'/GIT-FINAL.txt',status.stdout);
+json(base+'/GATES.json',{P0:{state:'PASS_RED_CONGELADO',checks:1224,semanticFailures:835,freeze:sha(base+'/FREEZE.json')},P1:{state:'PASS_UNICO_ARCHIVO',beforeHash,finalHash},P2:{state:'PASS_GREEN_Y_MUTACIONES',summary},P3:{state:'PASS_TIPOS_LINT_REFUTACION_CUSTODIA',sourcesOutsideDelta:population.length-1,evidencePreserved:evidence},N03:'ABIERTA',L02:'PARA_REVISION_NO_DESCONTADA'});
+fresh(base+'/CIERRE-LOCAL.md',`# L02 client-info — GREEN local para revisión
+
+**P0→P3 completados. Sólo se modificó src/app/api/onboarding/client-info/route.ts. L02 no descontada; N03 sigue abierta.** Liam aceptó la preparación y autorizó esta ejecución; no se presume aceptación del resultado. [Orden](ACEPTACION-Y-AUTORIZACION.md), [contrato](CONTRATO.md), [freeze](FREEZE.json).
+
+El endpoint construye mapas explícitos en configUpdate y hubUpdate. Mantiene condiciones/defaults y set con merge; las ramas opcionales se adjuntan sólo con hojas. Arrays/sentinelas conservados. Sin helper genérico, limpieza de claves históricas, cambio de lector ni migración. [Diff](PRODUCTO.diff).
+
+## Evidencia sobre la versión final
+
+| Corrida | Escenarios / invocaciones | Resultado |
+|---|---|---|
+| P0 basal antes de producto |29 /39 |RED835 diferencias, exit1;1224 auxiliares |
+| Handler final |29 /39 |GREEN0 diferencias, exit0;1220 auxiliares |
+| Mutante config |29 /39 |RED765;config/lector/historial, ningún fallo hub |
+| Mutante hub_clients |29 /39 |RED70;exclusivamente hub_clients |
+| Tipos / lint pertinente |route.ts y dependencias de tipos |exit0 /0errores0advertencias |
+
+[Resumen crudo](RESUMEN-CORRIDAS.json), [GREEN](resultados/green/RED.json), [casos y protocolos](resultados/green/CASOS.json), [mutaciones](MUTACIONES.json), [tipos](TIPOS.json), [lint](LINT-RESUMEN.json). El archivo de salida se llama RED.json por continuidad del instrumento; su productAcceptance final es GREEN.
+
+1224 frente a1220 auxiliares refleja ramas de historial: al reparar, el caso sin cambios deja de escribir el registro espurio. Población29/39 y oráculos congelados idénticos en todas las corridas. Las cifras de diferencias incluyen aserciones por hoja/máscara/lector y repeticiones del límite; no son defectos distintos ni documentos reales afectados. No errores del instrumento, ni modificación de expectativas después del freeze.
+
+Probados alta/resubmit con documentos ausentes/existentes, guardias (sin DB writes/emails al rechazar), lookup legacy/fallback, defaults omitidos, parciales email/calle/FAQ, mapas/arrays vacíos, horas explícitamente vacías, imágenes/arrays/hermanos fuera de patch, coexistencia literal/anidado sin limpiar, nicho otro y prioridad del branding. Contador previo3→4 y ausente→1. Historial con paths/summaries/count/truncated, caso sin cambio y110hojas; estados/history/clients y destinatarios/tags de correos modelados conservados. SDK real produce fields/máscaras/transforms; lectura del wizard real comprueba el contenido esperado fijo. Guardias y efecto adicional cero de llamada11 pasan también en ambos mutantes.
+
+Las mutaciones reemplazan cada bloque constructor del handler final por su bloque literal basal exacto, preservando resto del handler. Por eso el rojo está atribuido a config o hub, sin desarmar el instrumento. [Refutación P0](REFUTACION-P0.md), [revisión final independiente](REFUTACION-FINAL.md). Sin BLOCKERS/MATERIAL pendientes para esta entrega local.
+
+## Custodia y límites
+
+Producto revisado SHA256 ${finalHash}; preimagen ${beforeHash}. ${population.length-1} archivos src fuera del alcance intactos, población src${population.length}; root tsconfig y dependencias leídas intactas. ${evidence} artefactos previos de preparación/W-NEXT verificados por hash, más copias archivadas de preparación conservadas. Preimágenes físicas de producto y registros; HEAD no cambió. No se reejecutaron entregas aceptadas.
+
+La prueba ejecuta handler/NextRequest/NextResponse/token/ratelimit/branding/diff/templates/lector reales en Docker sin red y sin credenciales reales. SDK instalado prepara writes sin commit; su aplicación de merge/transforms es modelo local con timestamp fijo. add del historial sólo acredita payload/secuencia modelados, no create/precondición real. No persistencia Firestore, reglas/claims, atomicidad, concurrencia, latencia ni entrega remota certificadas. Sin DB/correos reales, instalaciones, efectos externos, push ni deploy.
+
+Consumo observado${quota.usedPercent}% TOTAL compartido; inicio82%,techo85%,sin resets. N03 abierta; L02 no descontada y no se prepara otra reparación. Resto L02/L01/L12 y etapas N04/N08/N10 intactos. Antes del despliegue siguen vigentes identificación de tenants/prestaciones a conservar, evidencia y decisión de Liam sobre excepciones. Próximo paso exclusivo: revisión de Liam de esta entrega.
+`);
+const records=['informe/N03/cierre-sesion-v1/RETOMA.md','informe/N03/reconciliacion-v1/BALANCE.md','informe/N03/reconciliacion-v1/SIGUIENTE-ACCION.md','indice/tareas/N03.md','indice/README.md','indice/CALENDARIO.md'];
+const planned=[];
+for(const r of records){assert.equal(sha(canon+'/'+r),sha(archive+'/'+r));const data=fs.readFileSync(canon+'/'+r,'utf8');const link=p.relative(p.dirname(canon+'/'+r),base+'/CIERRE-LOCAL.md').replaceAll('\\','/');const note='**L02 client-info implementada: GREEN local4/4, para revisión; NO descontada.** Liam aceptó la preparación y autorizó P0→P3 sólo en route.ts. Contrato fijo congelado con RED previo;final29escenarios/39invocaciones GREEN, mutantes config765/hub70 atribuibles,tipos0/lint0. Mapas explícitos sin ramas opcionales vacías, defaults/arrays/sentinelas/set merge y flujo conservados. Sin migraciones ni otro producto. N03 abierta; próximo paso sólo revisión de esta entrega, no otra reparación. W-NEXT y entregas aceptadas intactas. Consumo'+quota.usedPercent+'%/techo85% TOTAL,sin resets,push/deploy/externos;etapas posteriores y condición de prestaciones por tenant antes de despliegue vigentes. Esta adenda sustituye el pendiente de implementación L02 anterior, no afirma su aceptación. [Acta/evidencia/límites]('+link+').\n\n';const end=data.indexOf('\n');planned.push({r,data:data.slice(0,end+1)+'\n'+note+data.slice(end+1)});}
+const custody=[];
+for(const f of planned)for(const [version,dir] of [['canon',canon],['archivo',archive]]){const file=dir+'/'+f.r,backup=base+'/preimagenes-registros/'+version+'/'+f.r;fresh(backup,fs.readFileSync(file));fs.writeFileSync(file,f.data);custody.push({file,preimage:backup,before:sha(backup),after:sha(file)});}
+json(base+'/CUSTODIA-REGISTROS.json',custody);
+const history='historial/2026-09-09-N03-L02-client-info-implementacion.md';
+const historyText='# N03 — L02 client-info para revisión\n\nPreparación aceptada por Liam;ejecución P0→P3 autorizada y completada sólo en route.ts. GREEN29/39;mutaciones765/70,tipo0/lint0. L02 no descontada y N03 abierta. [Acta](../informe/N03/L02-client-info-v1/implementacion-local/CIERRE-LOCAL.md). Consumo'+quota.usedPercent+'%/techo85% TOTAL,sin resets,instalaciones,externos,push/deploy. Etapas posteriores y condición de prestaciones por tenant conservadas. Ninguna siguiente reparación preparada;pendiente revisión de Liam.\n';
+fresh(canon+'/'+history,historyText);fresh(archive+'/'+history,historyText);
+json(base+'/RESULTADO.json',{result:'GREEN_LOCAL_PARA_REVISION',gates:4,total:4,scope:allowed,finalHash,beforeHash,productOtherFilesPreserved:population.length-1,previousEvidencePreserved:evidence,N03:'ABIERTA',L02Descontada:false,acceptedPreparation:true,acceptedImplementation:false,blockers:[],remaining:['Revisión de Liam'],quota,summary});
+const files=walk(base);json(base+'/EVIDENCIA-FISICA.json',{files:files.map(file=>({ruta:file,bytes:fs.statSync(file).size,sha256:sha(file)})),excludes:['Este manifiesto e índice ARCHIVO/VERIFICACION posteriores por autorreferencia']});
+const mapping=[];for(const file of walk(base)){let suffix=p.relative(base,file).replaceAll('\\','/');if(/\.(cjs|js|ts|tsx|ps1)$/.test(suffix))suffix+='.source';const dest=archive+'/'+rel+'/'+suffix;fresh(dest,fs.readFileSync(file));assert.equal(sha(dest),sha(file));mapping.push({source:file,destination:dest,sha256:sha(file)});}
+json(base+'/ARCHIVO.json',mapping);
+console.log(JSON.stringify({result:'GREEN_LOCAL_PARA_REVISION',gates:'4/4',productOtherFilesPreserved:population.length-1,evidencePreserved:evidence,records:custody.length,archived:mapping.length,finalHash}));

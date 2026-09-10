@@ -1,0 +1,3 @@
+        <p className="text-xs text-text-muted">
+          Sin agente, los avisos base de contacto y reservas usan email. Con agente, usan los canales configurados.
+        </p>

@@ -1,0 +1,1 @@
+{"result":"RED_ESPERADO","cases":21,"checks":816,"semanticFailures":599}

@@ -1,0 +1,17 @@
+[
+  {
+    "Algorithm": "SHA256",
+    "Hash": "AA8104243DC43EAC79BC7E2ABF16543DF93DEF3D7A38D9C3EF33E9F43B2251F5",
+    "Path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\contrato-cita-separada\\ejecucion\\auth\\contrato.cjs"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "3F7EECCC239AF88EA62DA54FAF6C8765124C3310038F5EE1E936260F3398C081",
+    "Path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\contrato-cita-separada\\ejecucion\\auth\\ejecutar.ps1"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "68F7528B764A06317CA7D6D4D69569F2B3691A95EAF8A5F5DBD1ADAAF30F8696",
+    "Path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\contrato-cita-separada\\ejecucion\\auth\\preimagenes\\admin-auth.ts"
+  }
+]

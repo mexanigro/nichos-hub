@@ -1,0 +1,82 @@
+{
+  "result": "GREEN",
+  "rows": [
+    {
+      "id": "default",
+      "configured": true,
+      "operations": [
+        {
+          "app": "p-a",
+          "project": "p-a",
+          "db": "default",
+          "path": "system/ping"
+        }
+      ]
+    },
+    {
+      "id": "named",
+      "configured": true,
+      "operations": [
+        {
+          "app": "p-a",
+          "project": "p-a",
+          "db": "tenant-db",
+          "path": "system/ping"
+        }
+      ]
+    },
+    {
+      "id": "paren-default",
+      "configured": true,
+      "operations": [
+        {
+          "app": "p-a",
+          "project": "p-a",
+          "db": "(default)",
+          "path": "system/ping"
+        }
+      ]
+    },
+    {
+      "id": "blancos",
+      "configured": true,
+      "operations": [
+        {
+          "app": "p-a",
+          "project": "p-a",
+          "db": "default",
+          "path": "system/ping"
+        }
+      ]
+    },
+    {
+      "id": "server-no-sustituye",
+      "configured": false,
+      "operations": []
+    },
+    {
+      "id": "sin-api-key",
+      "configured": false,
+      "operations": []
+    },
+    {
+      "id": "sin-app",
+      "configured": false,
+      "operations": []
+    },
+    {
+      "id": "conflicto-envs",
+      "configured": true,
+      "operations": [
+        {
+          "app": "p-a",
+          "project": "p-a",
+          "db": "default",
+          "path": "system/ping"
+        }
+      ]
+    }
+  ],
+  "failures": [],
+  "limites": "SDK Firebase instalado real, lectura getDocFromServer interceptada antes red. Identificadores internos SDK observados; no rules, identidad, base remota ni equivalencia de configuraciones server/browser."
+}

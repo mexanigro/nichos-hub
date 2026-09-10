@@ -1,0 +1,30 @@
+[
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\Barber-shop-template-main\\api\\index.ts",
+    "sha256": "748b245f1b1c56184de7f57119d89a4a690ff383fdff504a4431ac2aae0af007"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\Barber-shop-template-main\\src\\lib\\api\\booking-handler.ts",
+    "sha256": "d7bff4865597d29a48cf765c464d579faf38ed24b9f09405415c24ec9bf2dd33"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\Barber-shop-template-main\\src\\lib\\api\\booking-validation.ts",
+    "sha256": "456f7f8a9ebe4015e19eac8246a2ddaada68d1ab0fe4c23949c640e9a71b934e"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\Barber-shop-template-main\\src\\lib\\firebase.ts",
+    "sha256": "c4ae4c45fa95fd356e684aa50baad6fc3b893b3f1fb2e8920dfc0297eb646595"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\Barber-shop-template-main\\src\\services\\db.ts",
+    "sha256": "e62283cbe3a215795fe6260db1a299b0ed7f950a887d4fa79b0f272337717779"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\Barber-shop-template-main\\src\\components\\admin\\AdminDashboard.tsx",
+    "sha256": "b46c75ad579f988fae8f8b02610218a7516695aa80754bf0ba043befd2600f5e"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\Barber-shop-template-main\\src\\components\\booking\\BookingWizard.tsx",
+    "sha256": "389b6a3ec0b9719f967c3f7ca268e5a3943378133c52f3e9bf874f21d1b253fa"
+  }
+]

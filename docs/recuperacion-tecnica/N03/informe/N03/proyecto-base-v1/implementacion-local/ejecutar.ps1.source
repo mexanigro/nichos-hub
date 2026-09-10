@@ -1,0 +1,11 @@
+param([string]$Nombre,[string]$Mutante='')
+$ErrorActionPreference='Stop'
+$salida=Join-Path $PSScriptRoot "resultados\$Nombre"
+New-Item -ItemType Directory -Path $salida -Force | Out-Null
+$argumentos=Get-Content (Join-Path (Split-Path $PSScriptRoot) 'COMANDO.json') -Raw | ConvertFrom-Json
+$argumentos=$argumentos | ForEach-Object { $_.Replace("source=$(Split-Path $PSScriptRoot),target=/control", "source=$PSScriptRoot,target=/control").Replace("source=$(Split-Path $PSScriptRoot)\resultados,target=/salida", "source=$salida,target=/salida").Replace('/control/sondeo.cjs','/control/contrato.cjs') }
+if($Mutante){$argumentos+= $Mutante}
+$argumentos | ConvertTo-Json | Set-Content (Join-Path $salida 'COMANDO.json')
+& docker @argumentos *> (Join-Path $salida 'ejecucion.log')
+$LASTEXITCODE | Set-Content (Join-Path $salida 'exit.txt')
+Get-Content (Join-Path $salida 'ejecucion.log')

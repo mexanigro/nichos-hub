@@ -1,0 +1,309 @@
+{
+  "positive": {
+    "proto": {
+      "update": {
+        "name": "projects/l02-synthetic-no-network/databases/(default)/documents/probe/nested",
+        "fields": {
+          "business": {
+            "mapValue": {
+              "fields": {
+                "mode": {
+                  "stringValue": "solo"
+                }
+              }
+            }
+          },
+          "contact": {
+            "mapValue": {
+              "fields": {
+                "address": {
+                  "mapValue": {
+                    "fields": {
+                      "street": {
+                        "stringValue": "Nueva"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "services": {
+            "arrayValue": {
+              "values": [
+                {
+                  "mapValue": {
+                    "fields": {
+                      "label": {
+                        "stringValue": "array"
+                      },
+                      "literal": {
+                        "stringValue": "k.v"
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "updateTransforms": [
+        {
+          "fieldPath": "updatedAt",
+          "setToServerValue": "REQUEST_TIME"
+        },
+        {
+          "fieldPath": "count",
+          "increment": {
+            "integerValue": 1
+          }
+        }
+      ],
+      "updateMask": {
+        "fieldPaths": [
+          "business.mode",
+          "contact.address.street",
+          "remove",
+          "services"
+        ]
+      }
+    },
+    "paths": [
+      {
+        "wire": "business.mode",
+        "segments": [
+          "business",
+          "mode"
+        ]
+      },
+      {
+        "wire": "contact.address.street",
+        "segments": [
+          "contact",
+          "address",
+          "street"
+        ]
+      },
+      {
+        "wire": "remove",
+        "segments": [
+          "remove"
+        ]
+      },
+      {
+        "wire": "services",
+        "segments": [
+          "services"
+        ]
+      }
+    ],
+    "transformPaths": [
+      [
+        "updatedAt"
+      ],
+      [
+        "count"
+      ]
+    ],
+    "decoded": {
+      "business": {
+        "mode": "solo"
+      },
+      "contact": {
+        "address": {
+          "street": "Nueva"
+        }
+      },
+      "services": [
+        {
+          "label": "array",
+          "literal": "k.v"
+        }
+      ]
+    },
+    "after": {
+      "business": {
+        "mode": "solo",
+        "keep": true
+      },
+      "contact": {
+        "address": {
+          "street": "Nueva",
+          "keep": true
+        }
+      },
+      "count": 4,
+      "services": [
+        {
+          "label": "array",
+          "literal": "k.v"
+        }
+      ],
+      "updatedAt": {
+        "_seconds": 1700000000,
+        "_nanoseconds": 0
+      }
+    }
+  },
+  "negative": {
+    "proto": {
+      "update": {
+        "name": "projects/l02-synthetic-no-network/databases/(default)/documents/probe/literal",
+        "fields": {
+          "business.mode": {
+            "stringValue": "solo"
+          },
+          "contact.address.street": {
+            "stringValue": "Nueva"
+          },
+          "services": {
+            "arrayValue": {
+              "values": [
+                {
+                  "mapValue": {
+                    "fields": {
+                      "label": {
+                        "stringValue": "array"
+                      },
+                      "literal": {
+                        "stringValue": "k.v"
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "updateTransforms": [
+        {
+          "fieldPath": "updatedAt",
+          "setToServerValue": "REQUEST_TIME"
+        },
+        {
+          "fieldPath": "count",
+          "increment": {
+            "integerValue": 1
+          }
+        }
+      ],
+      "updateMask": {
+        "fieldPaths": [
+          "`business.mode`",
+          "`contact.address.street`",
+          "remove",
+          "services"
+        ]
+      }
+    },
+    "paths": [
+      {
+        "wire": "`business.mode`",
+        "segments": [
+          "business.mode"
+        ]
+      },
+      {
+        "wire": "`contact.address.street`",
+        "segments": [
+          "contact.address.street"
+        ]
+      },
+      {
+        "wire": "remove",
+        "segments": [
+          "remove"
+        ]
+      },
+      {
+        "wire": "services",
+        "segments": [
+          "services"
+        ]
+      }
+    ],
+    "transformPaths": [
+      [
+        "updatedAt"
+      ],
+      [
+        "count"
+      ]
+    ],
+    "decoded": {
+      "business.mode": "solo",
+      "contact.address.street": "Nueva",
+      "services": [
+        {
+          "label": "array",
+          "literal": "k.v"
+        }
+      ]
+    },
+    "after": {
+      "business": {
+        "mode": "team",
+        "keep": true
+      },
+      "contact": {
+        "address": {
+          "street": "Vieja",
+          "keep": true
+        }
+      },
+      "count": 4,
+      "business.mode": "solo",
+      "contact.address.street": "Nueva",
+      "services": [
+        {
+          "label": "array",
+          "literal": "k.v"
+        }
+      ],
+      "updatedAt": {
+        "_seconds": 1700000000,
+        "_nanoseconds": 0
+      }
+    }
+  },
+  "empty": {
+    "proto": {
+      "update": {
+        "name": "projects/l02-synthetic-no-network/databases/(default)/documents/probe/empty",
+        "fields": {
+          "contact": {
+            "mapValue": {}
+          }
+        }
+      },
+      "updateMask": {
+        "fieldPaths": [
+          "contact"
+        ]
+      }
+    },
+    "paths": [
+      {
+        "wire": "contact",
+        "segments": [
+          "contact"
+        ]
+      }
+    ],
+    "transformPaths": [],
+    "decoded": {
+      "contact": {}
+    },
+    "after": {
+      "business": {
+        "mode": "team",
+        "keep": true
+      },
+      "contact": {},
+      "remove": true,
+      "count": 3
+    }
+  }
+}

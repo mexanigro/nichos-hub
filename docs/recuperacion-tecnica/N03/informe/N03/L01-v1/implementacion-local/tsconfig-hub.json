@@ -1,0 +1,13 @@
+{
+  "extends": "C:/Users/liama/Desktop/Nichos-hub/tsconfig.json",
+  "compilerOptions": {
+    "incremental": false
+  },
+  "include": [
+    "C:/Users/liama/Desktop/Nichos-hub/src/lib/wizard/config-to-wizard.ts",
+    "C:/Users/liama/Desktop/Nichos-hub/next-env.d.ts"
+  ],
+  "exclude": [
+    "C:/Users/liama/Desktop/Nichos-hub/node_modules"
+  ]
+}

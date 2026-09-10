@@ -1,0 +1,18 @@
+{
+  "result": "GREEN",
+  "gates": 3,
+  "total": 3,
+  "productoConservado": 623,
+  "evidenciaConservada": 84,
+  "archivoConservado": 85,
+  "descuento": "2Admin+3RESTgeneral/contexto solamente",
+  "N03": "abierta",
+  "propuesta": "L12 visibleServices; NO ejecutada",
+  "suitesEjecutadas": 0,
+  "presupuesto": {
+    "observado": 88,
+    "techo": 90,
+    "reservaN04": 10,
+    "resets": 0
+  }
+}

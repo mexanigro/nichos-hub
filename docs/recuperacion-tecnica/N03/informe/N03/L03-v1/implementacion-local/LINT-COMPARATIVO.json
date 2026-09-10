@@ -1,0 +1,9 @@
+{
+  "result": "PASS_SIN_REGRESION",
+  "diagnosticosIdenticos": true,
+  "erroresPrevios": 2,
+  "advertenciasPrevias": 2,
+  "nuevos": 0,
+  "productoModificado": false,
+  "limite": "Lint global del componente sigue RED por deuda previa ajena al bloque autorizado; no se suprimen reglas ni diagnósticos."
+}

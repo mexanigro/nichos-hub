@@ -1,0 +1,5 @@
+[Kill-switch] PROJECT_ID or CLIENT_ID missing — skipping kill-switch, defaulting active.
+{
+  rows: 15,
+  mismatch: 'p-a configurado general/Admin, tres consumidores operan p-b'
+}

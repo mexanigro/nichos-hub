@@ -1,0 +1,3 @@
+{"gate":"P0","alcanzado":true,"fuentesVigentes":8,"evidenciasReutilizadas":387,"redExit":1,"freeze":"FREEZE.json","consumo":81,"techo":85}
+{"gate":"P1","alcanzado":true,"evidencia":"MOVIMIENTO.json","bytes":2085,"otroProductoEditado":false}
+{"gate":"P2","alcanzado":false,"tiposExit":0,"lintErrores":0,"lintAdvertencias":0,"HTTP":"en_curso"}

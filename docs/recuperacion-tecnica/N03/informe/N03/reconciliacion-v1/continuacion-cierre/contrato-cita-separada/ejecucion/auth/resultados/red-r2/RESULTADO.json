@@ -1,0 +1,538 @@
+{
+  "result": "RED",
+  "cases": 38,
+  "checks": 61,
+  "failures": [
+    {
+      "id": "explicit-web",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "explicit-backend-denied",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "empty-list-denied",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "notify-list-web",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "scoped-exp-invalid-0",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "scoped-exp-invalid-1",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "scoped-exp-invalid-2",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "scoped-iat-invalid-0",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "scoped-iat-invalid-1",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "scoped-iat-invalid-2",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "scoped-iat-invalid-3",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "gate-web-owner/status",
+      "actual": 401,
+      "expected": 200
+    },
+    {
+      "id": "gate-web-owner/lookup-count",
+      "actual": 0,
+      "expected": 1
+    },
+    {
+      "id": "gate-web-owner/result",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "gate-unverified/status",
+      "actual": 401,
+      "expected": 403
+    },
+    {
+      "id": "gate-unverified-missing/status",
+      "actual": 401,
+      "expected": 403
+    },
+    {
+      "id": "gate-membership-absent/status",
+      "actual": 401,
+      "expected": 403
+    },
+    {
+      "id": "gate-membership-absent/lookup-count",
+      "actual": 0,
+      "expected": 1
+    },
+    {
+      "id": "gate-membership-removed/status",
+      "actual": 401,
+      "expected": 403
+    },
+    {
+      "id": "gate-membership-removed/lookup-count",
+      "actual": 0,
+      "expected": 1
+    },
+    {
+      "id": "gate-membership-pending-preserved/status",
+      "actual": 401,
+      "expected": 200
+    },
+    {
+      "id": "gate-membership-pending-preserved/lookup-count",
+      "actual": 0,
+      "expected": 1
+    },
+    {
+      "id": "gate-membership-pending-preserved/result",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "gate-empty-list/status",
+      "actual": 200,
+      "expected": 401
+    },
+    {
+      "id": "gate-empty-list/lookup-count",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "gate-empty-list/result",
+      "actual": true,
+      "expected": false
+    }
+  ],
+  "rows": [
+    {
+      "id": "legacy-backend",
+      "type": "verify",
+      "accepted": true,
+      "expected": true,
+      "certFetches": 1
+    },
+    {
+      "id": "legacy-web-denied",
+      "type": "verify",
+      "accepted": false,
+      "expected": false,
+      "certFetches": 1
+    },
+    {
+      "id": "explicit-web",
+      "type": "verify",
+      "projects": [
+        "web-project"
+      ],
+      "accepted": false,
+      "expected": true,
+      "certFetches": 1
+    },
+    {
+      "id": "explicit-backend-denied",
+      "type": "verify",
+      "projects": [
+        "web-project"
+      ],
+      "accepted": true,
+      "expected": false,
+      "certFetches": 1
+    },
+    {
+      "id": "empty-list-denied",
+      "type": "verify",
+      "projects": [],
+      "accepted": true,
+      "expected": false,
+      "certFetches": 1
+    },
+    {
+      "id": "notify-list-backend",
+      "type": "verify",
+      "projects": [
+        "backend-project",
+        "web-project"
+      ],
+      "accepted": true,
+      "expected": true,
+      "certFetches": 1
+    },
+    {
+      "id": "notify-list-web",
+      "type": "verify",
+      "projects": [
+        "backend-project",
+        "web-project"
+      ],
+      "accepted": false,
+      "expected": true,
+      "certFetches": 1
+    },
+    {
+      "id": "notify-list-foreign",
+      "type": "verify",
+      "projects": [
+        "backend-project",
+        "web-project"
+      ],
+      "accepted": false,
+      "expected": false,
+      "certFetches": 1
+    },
+    {
+      "id": "same-uid-foreign",
+      "type": "verify",
+      "projects": [
+        "web-project"
+      ],
+      "accepted": false,
+      "expected": false,
+      "certFetches": 1
+    },
+    {
+      "id": "issuer-wrong",
+      "type": "verify",
+      "projects": [
+        "web-project"
+      ],
+      "accepted": false,
+      "expected": false,
+      "certFetches": 1
+    },
+    {
+      "id": "aud-wrong",
+      "type": "verify",
+      "projects": [
+        "web-project"
+      ],
+      "accepted": false,
+      "expected": false,
+      "certFetches": 1
+    },
+    {
+      "id": "issuer-suffix",
+      "type": "verify",
+      "projects": [
+        "web-project"
+      ],
+      "accepted": false,
+      "expected": false,
+      "certFetches": 1
+    },
+    {
+      "id": "aud-array",
+      "type": "verify",
+      "projects": [
+        "web-project"
+      ],
+      "accepted": false,
+      "expected": false,
+      "certFetches": 1
+    },
+    {
+      "id": "signature-invalid",
+      "type": "verify",
+      "projects": [
+        "web-project"
+      ],
+      "accepted": false,
+      "expected": false,
+      "certFetches": 1
+    },
+    {
+      "id": "algorithm-invalid",
+      "type": "verify",
+      "projects": [
+        "web-project"
+      ],
+      "accepted": false,
+      "expected": false,
+      "certFetches": 0
+    },
+    {
+      "id": "kid-unknown",
+      "type": "verify",
+      "projects": [
+        "web-project"
+      ],
+      "accepted": false,
+      "expected": false,
+      "certFetches": 1
+    },
+    {
+      "id": "sub-absent",
+      "type": "verify",
+      "projects": [
+        "web-project"
+      ],
+      "accepted": false,
+      "expected": false,
+      "certFetches": 1
+    },
+    {
+      "id": "expired",
+      "type": "verify",
+      "projects": [
+        "web-project"
+      ],
+      "accepted": false,
+      "expected": false,
+      "certFetches": 1
+    },
+    {
+      "id": "iat-future",
+      "type": "verify",
+      "projects": [
+        "web-project"
+      ],
+      "accepted": false,
+      "expected": false,
+      "certFetches": 1
+    },
+    {
+      "id": "scoped-exp-invalid-0",
+      "type": "verify",
+      "projects": [
+        "backend-project"
+      ],
+      "accepted": true,
+      "expected": false,
+      "certFetches": 1
+    },
+    {
+      "id": "scoped-exp-invalid-1",
+      "type": "verify",
+      "projects": [
+        "backend-project"
+      ],
+      "accepted": true,
+      "expected": false,
+      "certFetches": 1
+    },
+    {
+      "id": "scoped-exp-invalid-2",
+      "type": "verify",
+      "projects": [
+        "backend-project"
+      ],
+      "accepted": true,
+      "expected": false,
+      "certFetches": 1
+    },
+    {
+      "id": "scoped-exp-invalid-3",
+      "type": "verify",
+      "projects": [
+        "backend-project"
+      ],
+      "accepted": false,
+      "expected": false,
+      "certFetches": 1
+    },
+    {
+      "id": "scoped-iat-invalid-0",
+      "type": "verify",
+      "projects": [
+        "backend-project"
+      ],
+      "accepted": true,
+      "expected": false,
+      "certFetches": 1
+    },
+    {
+      "id": "scoped-iat-invalid-1",
+      "type": "verify",
+      "projects": [
+        "backend-project"
+      ],
+      "accepted": true,
+      "expected": false,
+      "certFetches": 1
+    },
+    {
+      "id": "scoped-iat-invalid-2",
+      "type": "verify",
+      "projects": [
+        "backend-project"
+      ],
+      "accepted": true,
+      "expected": false,
+      "certFetches": 1
+    },
+    {
+      "id": "scoped-iat-invalid-3",
+      "type": "verify",
+      "projects": [
+        "backend-project"
+      ],
+      "accepted": true,
+      "expected": false,
+      "certFetches": 1
+    },
+    {
+      "id": "gate-web-owner",
+      "type": "gate",
+      "projects": [
+        "web-project"
+      ],
+      "status": 401,
+      "accepted": false,
+      "lookedUp": [],
+      "expectedStatus": 200,
+      "certFetches": 1
+    },
+    {
+      "id": "gate-legacy-owner",
+      "type": "gate",
+      "status": 200,
+      "accepted": true,
+      "lookedUp": [
+        "admin@example.invalid"
+      ],
+      "expectedStatus": 200,
+      "certFetches": 1
+    },
+    {
+      "id": "gate-no-token",
+      "type": "gate",
+      "projects": [
+        "web-project"
+      ],
+      "status": 401,
+      "accepted": false,
+      "lookedUp": [],
+      "expectedStatus": 401,
+      "certFetches": 0
+    },
+    {
+      "id": "gate-foreign",
+      "type": "gate",
+      "projects": [
+        "web-project"
+      ],
+      "status": 401,
+      "accepted": false,
+      "lookedUp": [],
+      "expectedStatus": 401,
+      "certFetches": 1
+    },
+    {
+      "id": "gate-no-email",
+      "type": "gate",
+      "projects": [
+        "web-project"
+      ],
+      "status": 401,
+      "accepted": false,
+      "lookedUp": [],
+      "expectedStatus": 401,
+      "certFetches": 1
+    },
+    {
+      "id": "gate-unverified",
+      "type": "gate",
+      "projects": [
+        "web-project"
+      ],
+      "status": 401,
+      "accepted": false,
+      "lookedUp": [],
+      "expectedStatus": 403,
+      "certFetches": 1
+    },
+    {
+      "id": "gate-unverified-missing",
+      "type": "gate",
+      "projects": [
+        "web-project"
+      ],
+      "status": 401,
+      "accepted": false,
+      "lookedUp": [],
+      "expectedStatus": 403,
+      "certFetches": 1
+    },
+    {
+      "id": "gate-membership-absent",
+      "type": "gate",
+      "projects": [
+        "web-project"
+      ],
+      "status": 401,
+      "accepted": false,
+      "lookedUp": [],
+      "expectedStatus": 403,
+      "certFetches": 1
+    },
+    {
+      "id": "gate-membership-removed",
+      "type": "gate",
+      "projects": [
+        "web-project"
+      ],
+      "status": 401,
+      "accepted": false,
+      "lookedUp": [],
+      "expectedStatus": 403,
+      "certFetches": 1
+    },
+    {
+      "id": "gate-membership-pending-preserved",
+      "type": "gate",
+      "projects": [
+        "web-project"
+      ],
+      "status": 401,
+      "accepted": false,
+      "lookedUp": [],
+      "expectedStatus": 200,
+      "certFetches": 1
+    },
+    {
+      "id": "gate-empty-list",
+      "type": "gate",
+      "projects": [],
+      "status": 200,
+      "accepted": true,
+      "lookedUp": [
+        "admin@example.invalid"
+      ],
+      "expectedStatus": 401,
+      "certFetches": 1
+    }
+  ],
+  "sourceSha256": "68f7528b764a06317ca7d6d4d69569f2b3691a95eaf8a5f5dbd1adaaf30f8696",
+  "instrumentSha256": "aa8104243dc43eac79bc7e2abf16543df93def3d7a38d9c3ef33e9f43b2251f5",
+  "limits": "Gate y verificador reales transpilados; firma RSA real; fetch de certificados y lookup de membresía interceptados. No acredita wrappers de tenant/rol, registros HTTP, configuración efectiva, Firebase remoto ni UI. No credenciales reales."
+}

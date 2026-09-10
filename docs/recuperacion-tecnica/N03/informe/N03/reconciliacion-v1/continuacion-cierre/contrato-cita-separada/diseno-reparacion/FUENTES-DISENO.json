@@ -1,0 +1,30 @@
+[
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\Barber-shop-template-main\\src\\lib\\api\\admin-auth.ts",
+    "sha256": "68f7528b764a06317ca7d6d4d69569f2b3691a95eaf8a5f5dbd1adaaf30f8696"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\Barber-shop-template-main\\src\\lib\\admin-auth.ts",
+    "sha256": "83819b2d1cf1be81dc8900ffbfa87ead360a7f5b8dcd4b39a6bb5a228a6b4f11"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\Barber-shop-template-main\\src\\lib\\admin-users.ts",
+    "sha256": "bf20aeae951907d691f87b983de0ce21a81613b3becc2a9cace43fc5f9cab47a"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\Barber-shop-template-main\\src\\lib\\appointment-notify-client.ts",
+    "sha256": "9f900eaad61a3da294ed4cb552eca1efce9440c08f45bd455582e4143e7d605b"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\Barber-shop-template-main\\src\\components\\admin\\AppointmentCalendar.tsx",
+    "sha256": "05aa60f456f7c7385c2d6d30e8563afd86d824edab605c0fcc131532c15fe605"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\Barber-shop-template-main\\firestore.rules",
+    "sha256": "fe7576645b41e7bd90c9988f1db144bf0ef8e72fdc18bd889f50de0f3ca1722c"
+  },
+  {
+    "path": "C:\\Users\\liama\\Desktop\\Nichos\\Barber-shop-template-main\\server.ts",
+    "sha256": "884ed361649c0aa2b406c317e7cc0fe36f70d30f9cd83785f6680fee7c9970f0"
+  }
+]

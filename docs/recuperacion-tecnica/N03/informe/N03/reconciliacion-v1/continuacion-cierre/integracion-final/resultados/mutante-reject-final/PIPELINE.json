@@ -1,0 +1,3199 @@
+{
+  "result": "RED",
+  "cases": 48,
+  "checks": 232,
+  "failures": [
+    {
+      "id": "server.ts/equal/book",
+      "actual": 503,
+      "expected": 200
+    },
+    {
+      "id": "server.ts/separate/book",
+      "actual": 503,
+      "expected": 200
+    },
+    {
+      "id": "server.ts/trial-separated/http",
+      "actual": 503,
+      "expected": 200
+    },
+    {
+      "id": "server.ts/suspended/http",
+      "actual": 503,
+      "expected": 423
+    },
+    {
+      "id": "server.ts/archived/http",
+      "actual": 503,
+      "expected": 423
+    },
+    {
+      "id": "server.ts/auth/http",
+      "actual": 503,
+      "expected": 401
+    },
+    {
+      "id": "server.ts/membership-tenant/http",
+      "actual": 503,
+      "expected": 403
+    },
+    {
+      "id": "server.ts/provider-manual/http",
+      "actual": 503,
+      "expected": 400
+    },
+    {
+      "id": "server.ts/provider-none/http",
+      "actual": 503,
+      "expected": 400
+    },
+    {
+      "id": "server.ts/provider-absent-legacy/http",
+      "actual": 503,
+      "expected": 200
+    },
+    {
+      "id": "server.ts/provider-absent-legacy/gateway-calls",
+      "actual": 0,
+      "expected": 1
+    },
+    {
+      "id": "server.ts/provider-absent-legacy/resolve-calls",
+      "actual": 0,
+      "expected": 1
+    },
+    {
+      "id": "server.ts/provider-absent-legacy/amount",
+      "expected": 2500
+    },
+    {
+      "id": "server.ts/provider-absent-legacy/credentials",
+      "expected": true
+    },
+    {
+      "id": "server.ts/provider-absent-legacy/destination-clients",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "server.ts/provider-absent-legacy/destination-config",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "server.ts/provider-absent-legacy/destination-payment_credentials",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "server.ts/provider-absent-legacy-none/http",
+      "actual": 503,
+      "expected": 400
+    },
+    {
+      "id": "server.ts/priced-separated-destinations/http",
+      "actual": 503,
+      "expected": 200
+    },
+    {
+      "id": "server.ts/priced-separated-destinations/gateway-calls",
+      "actual": 0,
+      "expected": 1
+    },
+    {
+      "id": "server.ts/priced-separated-destinations/resolve-calls",
+      "actual": 0,
+      "expected": 1
+    },
+    {
+      "id": "server.ts/priced-separated-destinations/amount",
+      "expected": 2500
+    },
+    {
+      "id": "server.ts/priced-separated-destinations/credentials",
+      "expected": true
+    },
+    {
+      "id": "server.ts/priced-separated-destinations/destination-clients",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "server.ts/priced-separated-destinations/destination-config",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "server.ts/priced-separated-destinations/destination-payment_credentials",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "api/index.ts/equal/book",
+      "actual": 503,
+      "expected": 200
+    },
+    {
+      "id": "api/index.ts/separate/book",
+      "actual": 503,
+      "expected": 200
+    },
+    {
+      "id": "api/index.ts/trial-separated/http",
+      "actual": 503,
+      "expected": 200
+    },
+    {
+      "id": "api/index.ts/suspended/http",
+      "actual": 503,
+      "expected": 423
+    },
+    {
+      "id": "api/index.ts/archived/http",
+      "actual": 503,
+      "expected": 423
+    },
+    {
+      "id": "api/index.ts/auth/http",
+      "actual": 503,
+      "expected": 401
+    },
+    {
+      "id": "api/index.ts/membership-tenant/http",
+      "actual": 503,
+      "expected": 403
+    },
+    {
+      "id": "api/index.ts/provider-manual/http",
+      "actual": 503,
+      "expected": 400
+    },
+    {
+      "id": "api/index.ts/provider-none/http",
+      "actual": 503,
+      "expected": 400
+    },
+    {
+      "id": "api/index.ts/provider-absent-legacy/http",
+      "actual": 503,
+      "expected": 200
+    },
+    {
+      "id": "api/index.ts/provider-absent-legacy/gateway-calls",
+      "actual": 0,
+      "expected": 1
+    },
+    {
+      "id": "api/index.ts/provider-absent-legacy/resolve-calls",
+      "actual": 0,
+      "expected": 1
+    },
+    {
+      "id": "api/index.ts/provider-absent-legacy/amount",
+      "expected": 2500
+    },
+    {
+      "id": "api/index.ts/provider-absent-legacy/credentials",
+      "expected": true
+    },
+    {
+      "id": "api/index.ts/provider-absent-legacy/destination-clients",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "api/index.ts/provider-absent-legacy/destination-config",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "api/index.ts/provider-absent-legacy/destination-payment_credentials",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "api/index.ts/provider-absent-legacy-none/http",
+      "actual": 503,
+      "expected": 400
+    },
+    {
+      "id": "api/index.ts/priced-separated-destinations/http",
+      "actual": 503,
+      "expected": 200
+    },
+    {
+      "id": "api/index.ts/priced-separated-destinations/gateway-calls",
+      "actual": 0,
+      "expected": 1
+    },
+    {
+      "id": "api/index.ts/priced-separated-destinations/resolve-calls",
+      "actual": 0,
+      "expected": 1
+    },
+    {
+      "id": "api/index.ts/priced-separated-destinations/amount",
+      "expected": 2500
+    },
+    {
+      "id": "api/index.ts/priced-separated-destinations/credentials",
+      "expected": true
+    },
+    {
+      "id": "api/index.ts/priced-separated-destinations/destination-clients",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "api/index.ts/priced-separated-destinations/destination-config",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "api/index.ts/priced-separated-destinations/destination-payment_credentials",
+      "actual": false,
+      "expected": true
+    }
+  ],
+  "rows": [
+    {
+      "runtime": "server.ts",
+      "id": "equal",
+      "responses": [
+        {
+          "method": "POST",
+          "route": "/api/book",
+          "status": 503,
+          "body": {
+            "error": "mutant reject"
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 1386,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 1451,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 1452,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 1453,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 1455,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 1482,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 3643,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 3644,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 3646,
+          "text": "app.post(\"/api/book\", createBookingHandler({\n    clientId: CLIENT_ID,\n    loadContext: async () => {\n      const db = await getAdminDb();\n      if (!db) return null;\n      const { FieldValue } = await import(\"firebase-admin/firestore\");\n      return { db, FieldValue };\n    },\n  }))"
+        },
+        {
+          "line": 3862,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "server.ts",
+      "id": "separate",
+      "responses": [
+        {
+          "method": "POST",
+          "route": "/api/book",
+          "status": 503,
+          "body": {
+            "error": "mutant reject"
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 1386,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 1451,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 1452,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 1453,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 1455,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 1482,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 3643,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 3644,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 3646,
+          "text": "app.post(\"/api/book\", createBookingHandler({\n    clientId: CLIENT_ID,\n    loadContext: async () => {\n      const db = await getAdminDb();\n      if (!db) return null;\n      const { FieldValue } = await import(\"firebase-admin/firestore\");\n      return { db, FieldValue };\n    },\n  }))"
+        },
+        {
+          "line": 3862,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "server.ts",
+      "id": "trial-separated",
+      "responses": [
+        {
+          "method": "GET",
+          "route": "/api/crm/appointments",
+          "status": 503,
+          "body": {
+            "error": "mutant reject"
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 1386,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 1451,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 1452,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 1453,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 1455,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 1482,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 3643,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 3644,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 3646,
+          "text": "app.post(\"/api/book\", createBookingHandler({\n    clientId: CLIENT_ID,\n    loadContext: async () => {\n      const db = await getAdminDb();\n      if (!db) return null;\n      const { FieldValue } = await import(\"firebase-admin/firestore\");\n      return { db, FieldValue };\n    },\n  }))"
+        },
+        {
+          "line": 3862,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "server.ts",
+      "id": "suspended",
+      "responses": [
+        {
+          "method": "GET",
+          "route": "/api/crm/appointments",
+          "status": 503,
+          "body": {
+            "error": "mutant reject"
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 1386,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 1451,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 1452,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 1453,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 1455,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 1482,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 3643,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 3644,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 3646,
+          "text": "app.post(\"/api/book\", createBookingHandler({\n    clientId: CLIENT_ID,\n    loadContext: async () => {\n      const db = await getAdminDb();\n      if (!db) return null;\n      const { FieldValue } = await import(\"firebase-admin/firestore\");\n      return { db, FieldValue };\n    },\n  }))"
+        },
+        {
+          "line": 3862,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "server.ts",
+      "id": "archived",
+      "responses": [
+        {
+          "method": "GET",
+          "route": "/api/crm/appointments",
+          "status": 503,
+          "body": {
+            "error": "mutant reject"
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 1386,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 1451,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 1452,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 1453,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 1455,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 1482,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 3643,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 3644,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 3646,
+          "text": "app.post(\"/api/book\", createBookingHandler({\n    clientId: CLIENT_ID,\n    loadContext: async () => {\n      const db = await getAdminDb();\n      if (!db) return null;\n      const { FieldValue } = await import(\"firebase-admin/firestore\");\n      return { db, FieldValue };\n    },\n  }))"
+        },
+        {
+          "line": 3862,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "server.ts",
+      "id": "state-missing",
+      "responses": [
+        {
+          "method": "GET",
+          "route": "/api/crm/appointments",
+          "status": 503,
+          "body": {
+            "error": "mutant reject"
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 1386,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 1451,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 1452,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 1453,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 1455,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 1482,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 3643,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 3644,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 3646,
+          "text": "app.post(\"/api/book\", createBookingHandler({\n    clientId: CLIENT_ID,\n    loadContext: async () => {\n      const db = await getAdminDb();\n      if (!db) return null;\n      const { FieldValue } = await import(\"firebase-admin/firestore\");\n      return { db, FieldValue };\n    },\n  }))"
+        },
+        {
+          "line": 3862,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "server.ts",
+      "id": "state-invalid",
+      "responses": [
+        {
+          "method": "GET",
+          "route": "/api/crm/appointments",
+          "status": 503,
+          "body": {
+            "error": "mutant reject"
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 1386,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 1451,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 1452,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 1453,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 1455,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 1482,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 3643,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 3644,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 3646,
+          "text": "app.post(\"/api/book\", createBookingHandler({\n    clientId: CLIENT_ID,\n    loadContext: async () => {\n      const db = await getAdminDb();\n      if (!db) return null;\n      const { FieldValue } = await import(\"firebase-admin/firestore\");\n      return { db, FieldValue };\n    },\n  }))"
+        },
+        {
+          "line": 3862,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "server.ts",
+      "id": "state-error",
+      "responses": [
+        {
+          "method": "GET",
+          "route": "/api/crm/appointments",
+          "status": 503,
+          "body": {
+            "error": "mutant reject"
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 1386,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 1451,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 1452,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 1453,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 1455,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 1482,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 3643,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 3644,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 3646,
+          "text": "app.post(\"/api/book\", createBookingHandler({\n    clientId: CLIENT_ID,\n    loadContext: async () => {\n      const db = await getAdminDb();\n      if (!db) return null;\n      const { FieldValue } = await import(\"firebase-admin/firestore\");\n      return { db, FieldValue };\n    },\n  }))"
+        },
+        {
+          "line": 3862,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "server.ts",
+      "id": "state-timeout",
+      "responses": [
+        {
+          "method": "GET",
+          "route": "/api/crm/appointments",
+          "status": 503,
+          "body": {
+            "error": "mutant reject"
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 1386,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 1451,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 1452,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 1453,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 1455,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 1482,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 3643,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 3644,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 3646,
+          "text": "app.post(\"/api/book\", createBookingHandler({\n    clientId: CLIENT_ID,\n    loadContext: async () => {\n      const db = await getAdminDb();\n      if (!db) return null;\n      const { FieldValue } = await import(\"firebase-admin/firestore\");\n      return { db, FieldValue };\n    },\n  }))"
+        },
+        {
+          "line": 3862,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "server.ts",
+      "id": "origin",
+      "responses": [
+        {
+          "method": "POST",
+          "route": "/api/book",
+          "status": 403,
+          "body": {
+            "error": "Untrusted origin."
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 1386,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 1451,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 1452,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 1453,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 1455,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 1482,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 3643,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 3644,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 3646,
+          "text": "app.post(\"/api/book\", createBookingHandler({\n    clientId: CLIENT_ID,\n    loadContext: async () => {\n      const db = await getAdminDb();\n      if (!db) return null;\n      const { FieldValue } = await import(\"firebase-admin/firestore\");\n      return { db, FieldValue };\n    },\n  }))"
+        },
+        {
+          "line": 3862,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "server.ts",
+      "id": "auth",
+      "responses": [
+        {
+          "method": "GET",
+          "route": "/api/crm/appointments",
+          "status": 503,
+          "body": {
+            "error": "mutant reject"
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 1386,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 1451,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 1452,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 1453,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 1455,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 1482,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 3643,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 3644,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 3646,
+          "text": "app.post(\"/api/book\", createBookingHandler({\n    clientId: CLIENT_ID,\n    loadContext: async () => {\n      const db = await getAdminDb();\n      if (!db) return null;\n      const { FieldValue } = await import(\"firebase-admin/firestore\");\n      return { db, FieldValue };\n    },\n  }))"
+        },
+        {
+          "line": 3862,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "server.ts",
+      "id": "membership-tenant",
+      "responses": [
+        {
+          "method": "GET",
+          "route": "/api/crm/appointments",
+          "status": 503,
+          "body": {
+            "error": "mutant reject"
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 1386,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 1451,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 1452,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 1453,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 1455,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 1482,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 3643,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 3644,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 3646,
+          "text": "app.post(\"/api/book\", createBookingHandler({\n    clientId: CLIENT_ID,\n    loadContext: async () => {\n      const db = await getAdminDb();\n      if (!db) return null;\n      const { FieldValue } = await import(\"firebase-admin/firestore\");\n      return { db, FieldValue };\n    },\n  }))"
+        },
+        {
+          "line": 3862,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "server.ts",
+      "id": "body-limit",
+      "responses": [
+        {
+          "method": "POST",
+          "route": "/api/book",
+          "status": 413,
+          "body": {
+            "nonJson": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head"
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 1386,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 1451,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 1452,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 1453,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 1455,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 1482,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 3643,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 3644,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 3646,
+          "text": "app.post(\"/api/book\", createBookingHandler({\n    clientId: CLIENT_ID,\n    loadContext: async () => {\n      const db = await getAdminDb();\n      if (!db) return null;\n      const { FieldValue } = await import(\"firebase-admin/firestore\");\n      return { db, FieldValue };\n    },\n  }))"
+        },
+        {
+          "line": 3862,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "server.ts",
+      "id": "rate",
+      "responses": [
+        {
+          "method": "GET",
+          "route": "/api/crm/appointments",
+          "status": 503,
+          "body": {
+            "error": "mutant reject"
+          },
+          "nosniff": "nosniff"
+        },
+        {
+          "method": "GET",
+          "route": "/api/crm/appointments",
+          "status": 429,
+          "body": {
+            "error": "Too many requests. Please try again shortly."
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 1386,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 1451,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 1452,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 1453,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 1455,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 1482,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 3643,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 3644,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 3646,
+          "text": "app.post(\"/api/book\", createBookingHandler({\n    clientId: CLIENT_ID,\n    loadContext: async () => {\n      const db = await getAdminDb();\n      if (!db) return null;\n      const { FieldValue } = await import(\"firebase-admin/firestore\");\n      return { db, FieldValue };\n    },\n  }))"
+        },
+        {
+          "line": 3862,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "server.ts",
+      "id": "provider-manual",
+      "responses": [
+        {
+          "method": "POST",
+          "route": "/api/create-checkout-session",
+          "status": 503,
+          "body": {
+            "error": "mutant reject"
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 1386,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 1451,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 1452,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 1453,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 1455,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 1482,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 3643,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 3644,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 3646,
+          "text": "app.post(\"/api/book\", createBookingHandler({\n    clientId: CLIENT_ID,\n    loadContext: async () => {\n      const db = await getAdminDb();\n      if (!db) return null;\n      const { FieldValue } = await import(\"firebase-admin/firestore\");\n      return { db, FieldValue };\n    },\n  }))"
+        },
+        {
+          "line": 3862,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "server.ts",
+      "id": "provider-none",
+      "responses": [
+        {
+          "method": "POST",
+          "route": "/api/create-checkout-session",
+          "status": 503,
+          "body": {
+            "error": "mutant reject"
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 1386,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 1451,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 1452,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 1453,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 1455,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 1482,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 3643,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 3644,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 3646,
+          "text": "app.post(\"/api/book\", createBookingHandler({\n    clientId: CLIENT_ID,\n    loadContext: async () => {\n      const db = await getAdminDb();\n      if (!db) return null;\n      const { FieldValue } = await import(\"firebase-admin/firestore\");\n      return { db, FieldValue };\n    },\n  }))"
+        },
+        {
+          "line": 3862,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "server.ts",
+      "id": "provider-invalid",
+      "responses": [
+        {
+          "method": "POST",
+          "route": "/api/create-checkout-session",
+          "status": 503,
+          "body": {
+            "error": "mutant reject"
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 1386,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 1451,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 1452,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 1453,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 1455,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 1482,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 3643,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 3644,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 3646,
+          "text": "app.post(\"/api/book\", createBookingHandler({\n    clientId: CLIENT_ID,\n    loadContext: async () => {\n      const db = await getAdminDb();\n      if (!db) return null;\n      const { FieldValue } = await import(\"firebase-admin/firestore\");\n      return { db, FieldValue };\n    },\n  }))"
+        },
+        {
+          "line": 3862,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "server.ts",
+      "id": "provider-null",
+      "responses": [
+        {
+          "method": "POST",
+          "route": "/api/create-checkout-session",
+          "status": 503,
+          "body": {
+            "error": "mutant reject"
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 1386,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 1451,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 1452,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 1453,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 1455,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 1482,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 3643,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 3644,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 3646,
+          "text": "app.post(\"/api/book\", createBookingHandler({\n    clientId: CLIENT_ID,\n    loadContext: async () => {\n      const db = await getAdminDb();\n      if (!db) return null;\n      const { FieldValue } = await import(\"firebase-admin/firestore\");\n      return { db, FieldValue };\n    },\n  }))"
+        },
+        {
+          "line": 3862,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "server.ts",
+      "id": "provider-empty",
+      "responses": [
+        {
+          "method": "POST",
+          "route": "/api/create-checkout-session",
+          "status": 503,
+          "body": {
+            "error": "mutant reject"
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 1386,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 1451,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 1452,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 1453,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 1455,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 1482,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 3643,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 3644,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 3646,
+          "text": "app.post(\"/api/book\", createBookingHandler({\n    clientId: CLIENT_ID,\n    loadContext: async () => {\n      const db = await getAdminDb();\n      if (!db) return null;\n      const { FieldValue } = await import(\"firebase-admin/firestore\");\n      return { db, FieldValue };\n    },\n  }))"
+        },
+        {
+          "line": 3862,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "server.ts",
+      "id": "provider-absent-legacy",
+      "responses": [
+        {
+          "method": "POST",
+          "route": "/api/create-checkout-session",
+          "status": 503,
+          "body": {
+            "error": "mutant reject"
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 1386,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 1451,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 1452,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 1453,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 1455,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 1482,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 3643,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 3644,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 3646,
+          "text": "app.post(\"/api/book\", createBookingHandler({\n    clientId: CLIENT_ID,\n    loadContext: async () => {\n      const db = await getAdminDb();\n      if (!db) return null;\n      const { FieldValue } = await import(\"firebase-admin/firestore\");\n      return { db, FieldValue };\n    },\n  }))"
+        },
+        {
+          "line": 3862,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "server.ts",
+      "id": "provider-absent-legacy-none",
+      "responses": [
+        {
+          "method": "POST",
+          "route": "/api/create-checkout-session",
+          "status": 503,
+          "body": {
+            "error": "mutant reject"
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 1386,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 1451,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 1452,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 1453,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 1455,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 1482,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 3643,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 3644,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 3646,
+          "text": "app.post(\"/api/book\", createBookingHandler({\n    clientId: CLIENT_ID,\n    loadContext: async () => {\n      const db = await getAdminDb();\n      if (!db) return null;\n      const { FieldValue } = await import(\"firebase-admin/firestore\");\n      return { db, FieldValue };\n    },\n  }))"
+        },
+        {
+          "line": 3862,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "server.ts",
+      "id": "provider-config-error",
+      "responses": [
+        {
+          "method": "POST",
+          "route": "/api/create-checkout-session",
+          "status": 503,
+          "body": {
+            "error": "mutant reject"
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [
+        {
+          "op": "read",
+          "project": "backend-project",
+          "database": "backend-db",
+          "path": "clients/tenant"
+        },
+        {
+          "op": "read",
+          "project": "backend-project",
+          "database": "backend-db",
+          "path": "config/tenant"
+        }
+      ],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 1386,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 1451,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 1452,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 1453,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 1455,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 1482,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 3643,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 3644,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 3646,
+          "text": "app.post(\"/api/book\", createBookingHandler({\n    clientId: CLIENT_ID,\n    loadContext: async () => {\n      const db = await getAdminDb();\n      if (!db) return null;\n      const { FieldValue } = await import(\"firebase-admin/firestore\");\n      return { db, FieldValue };\n    },\n  }))"
+        },
+        {
+          "line": 3862,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "server.ts",
+      "id": "credentials-read-error",
+      "responses": [
+        {
+          "method": "POST",
+          "route": "/api/create-checkout-session",
+          "status": 503,
+          "body": {
+            "error": "mutant reject"
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 1386,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 1451,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 1452,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 1453,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 1455,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 1482,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 3643,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 3644,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 3646,
+          "text": "app.post(\"/api/book\", createBookingHandler({\n    clientId: CLIENT_ID,\n    loadContext: async () => {\n      const db = await getAdminDb();\n      if (!db) return null;\n      const { FieldValue } = await import(\"firebase-admin/firestore\");\n      return { db, FieldValue };\n    },\n  }))"
+        },
+        {
+          "line": 3862,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "server.ts",
+      "id": "priced-separated-destinations",
+      "responses": [
+        {
+          "method": "POST",
+          "route": "/api/create-checkout-session",
+          "status": 503,
+          "body": {
+            "error": "mutant reject"
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 1386,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 1451,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 1452,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 1453,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 1455,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 1482,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 3643,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 3644,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 3646,
+          "text": "app.post(\"/api/book\", createBookingHandler({\n    clientId: CLIENT_ID,\n    loadContext: async () => {\n      const db = await getAdminDb();\n      if (!db) return null;\n      const { FieldValue } = await import(\"firebase-admin/firestore\");\n      return { db, FieldValue };\n    },\n  }))"
+        },
+        {
+          "line": 3862,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "api/index.ts",
+      "id": "equal",
+      "responses": [
+        {
+          "method": "POST",
+          "route": "/api/book",
+          "status": 503,
+          "body": {
+            "error": "mutant reject"
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 2380,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 2674,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 2675,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 2676,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 2677,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 2680,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 5186,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 5187,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 5189,
+          "text": "app.post(\"/api/book\", createBookingHandler({ clientId: CLIENT_ID, loadContext: loadAdminFirestore }))"
+        },
+        {
+          "line": 5209,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb: async () => (await loadAdminFirestore())?.db ?? null,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "api/index.ts",
+      "id": "separate",
+      "responses": [
+        {
+          "method": "POST",
+          "route": "/api/book",
+          "status": 503,
+          "body": {
+            "error": "mutant reject"
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 2380,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 2674,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 2675,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 2676,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 2677,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 2680,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 5186,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 5187,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 5189,
+          "text": "app.post(\"/api/book\", createBookingHandler({ clientId: CLIENT_ID, loadContext: loadAdminFirestore }))"
+        },
+        {
+          "line": 5209,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb: async () => (await loadAdminFirestore())?.db ?? null,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "api/index.ts",
+      "id": "trial-separated",
+      "responses": [
+        {
+          "method": "GET",
+          "route": "/api/crm/appointments",
+          "status": 503,
+          "body": {
+            "error": "mutant reject"
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 2380,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 2674,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 2675,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 2676,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 2677,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 2680,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 5186,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 5187,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 5189,
+          "text": "app.post(\"/api/book\", createBookingHandler({ clientId: CLIENT_ID, loadContext: loadAdminFirestore }))"
+        },
+        {
+          "line": 5209,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb: async () => (await loadAdminFirestore())?.db ?? null,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "api/index.ts",
+      "id": "suspended",
+      "responses": [
+        {
+          "method": "GET",
+          "route": "/api/crm/appointments",
+          "status": 503,
+          "body": {
+            "error": "mutant reject"
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 2380,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 2674,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 2675,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 2676,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 2677,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 2680,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 5186,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 5187,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 5189,
+          "text": "app.post(\"/api/book\", createBookingHandler({ clientId: CLIENT_ID, loadContext: loadAdminFirestore }))"
+        },
+        {
+          "line": 5209,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb: async () => (await loadAdminFirestore())?.db ?? null,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "api/index.ts",
+      "id": "archived",
+      "responses": [
+        {
+          "method": "GET",
+          "route": "/api/crm/appointments",
+          "status": 503,
+          "body": {
+            "error": "mutant reject"
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 2380,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 2674,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 2675,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 2676,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 2677,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 2680,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 5186,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 5187,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 5189,
+          "text": "app.post(\"/api/book\", createBookingHandler({ clientId: CLIENT_ID, loadContext: loadAdminFirestore }))"
+        },
+        {
+          "line": 5209,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb: async () => (await loadAdminFirestore())?.db ?? null,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "api/index.ts",
+      "id": "state-missing",
+      "responses": [
+        {
+          "method": "GET",
+          "route": "/api/crm/appointments",
+          "status": 503,
+          "body": {
+            "error": "mutant reject"
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 2380,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 2674,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 2675,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 2676,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 2677,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 2680,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 5186,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 5187,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 5189,
+          "text": "app.post(\"/api/book\", createBookingHandler({ clientId: CLIENT_ID, loadContext: loadAdminFirestore }))"
+        },
+        {
+          "line": 5209,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb: async () => (await loadAdminFirestore())?.db ?? null,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "api/index.ts",
+      "id": "state-invalid",
+      "responses": [
+        {
+          "method": "GET",
+          "route": "/api/crm/appointments",
+          "status": 503,
+          "body": {
+            "error": "mutant reject"
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 2380,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 2674,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 2675,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 2676,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 2677,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 2680,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 5186,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 5187,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 5189,
+          "text": "app.post(\"/api/book\", createBookingHandler({ clientId: CLIENT_ID, loadContext: loadAdminFirestore }))"
+        },
+        {
+          "line": 5209,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb: async () => (await loadAdminFirestore())?.db ?? null,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "api/index.ts",
+      "id": "state-error",
+      "responses": [
+        {
+          "method": "GET",
+          "route": "/api/crm/appointments",
+          "status": 503,
+          "body": {
+            "error": "mutant reject"
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 2380,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 2674,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 2675,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 2676,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 2677,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 2680,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 5186,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 5187,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 5189,
+          "text": "app.post(\"/api/book\", createBookingHandler({ clientId: CLIENT_ID, loadContext: loadAdminFirestore }))"
+        },
+        {
+          "line": 5209,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb: async () => (await loadAdminFirestore())?.db ?? null,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "api/index.ts",
+      "id": "state-timeout",
+      "responses": [
+        {
+          "method": "GET",
+          "route": "/api/crm/appointments",
+          "status": 503,
+          "body": {
+            "error": "mutant reject"
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 2380,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 2674,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 2675,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 2676,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 2677,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 2680,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 5186,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 5187,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 5189,
+          "text": "app.post(\"/api/book\", createBookingHandler({ clientId: CLIENT_ID, loadContext: loadAdminFirestore }))"
+        },
+        {
+          "line": 5209,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb: async () => (await loadAdminFirestore())?.db ?? null,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "api/index.ts",
+      "id": "origin",
+      "responses": [
+        {
+          "method": "POST",
+          "route": "/api/book",
+          "status": 403,
+          "body": {
+            "error": "Untrusted origin."
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 2380,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 2674,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 2675,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 2676,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 2677,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 2680,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 5186,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 5187,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 5189,
+          "text": "app.post(\"/api/book\", createBookingHandler({ clientId: CLIENT_ID, loadContext: loadAdminFirestore }))"
+        },
+        {
+          "line": 5209,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb: async () => (await loadAdminFirestore())?.db ?? null,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "api/index.ts",
+      "id": "auth",
+      "responses": [
+        {
+          "method": "GET",
+          "route": "/api/crm/appointments",
+          "status": 503,
+          "body": {
+            "error": "mutant reject"
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 2380,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 2674,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 2675,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 2676,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 2677,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 2680,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 5186,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 5187,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 5189,
+          "text": "app.post(\"/api/book\", createBookingHandler({ clientId: CLIENT_ID, loadContext: loadAdminFirestore }))"
+        },
+        {
+          "line": 5209,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb: async () => (await loadAdminFirestore())?.db ?? null,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "api/index.ts",
+      "id": "membership-tenant",
+      "responses": [
+        {
+          "method": "GET",
+          "route": "/api/crm/appointments",
+          "status": 503,
+          "body": {
+            "error": "mutant reject"
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 2380,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 2674,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 2675,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 2676,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 2677,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 2680,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 5186,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 5187,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 5189,
+          "text": "app.post(\"/api/book\", createBookingHandler({ clientId: CLIENT_ID, loadContext: loadAdminFirestore }))"
+        },
+        {
+          "line": 5209,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb: async () => (await loadAdminFirestore())?.db ?? null,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "api/index.ts",
+      "id": "body-limit",
+      "responses": [
+        {
+          "method": "POST",
+          "route": "/api/book",
+          "status": 413,
+          "body": {
+            "nonJson": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head"
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 2380,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 2674,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 2675,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 2676,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 2677,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 2680,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 5186,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 5187,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 5189,
+          "text": "app.post(\"/api/book\", createBookingHandler({ clientId: CLIENT_ID, loadContext: loadAdminFirestore }))"
+        },
+        {
+          "line": 5209,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb: async () => (await loadAdminFirestore())?.db ?? null,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "api/index.ts",
+      "id": "rate",
+      "responses": [
+        {
+          "method": "GET",
+          "route": "/api/crm/appointments",
+          "status": 503,
+          "body": {
+            "error": "mutant reject"
+          },
+          "nosniff": "nosniff"
+        },
+        {
+          "method": "GET",
+          "route": "/api/crm/appointments",
+          "status": 429,
+          "body": {
+            "error": "Too many requests. Please try again shortly."
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 2380,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 2674,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 2675,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 2676,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 2677,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 2680,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 5186,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 5187,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 5189,
+          "text": "app.post(\"/api/book\", createBookingHandler({ clientId: CLIENT_ID, loadContext: loadAdminFirestore }))"
+        },
+        {
+          "line": 5209,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb: async () => (await loadAdminFirestore())?.db ?? null,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "api/index.ts",
+      "id": "provider-manual",
+      "responses": [
+        {
+          "method": "POST",
+          "route": "/api/create-checkout-session",
+          "status": 503,
+          "body": {
+            "error": "mutant reject"
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 2380,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 2674,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 2675,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 2676,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 2677,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 2680,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 5186,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 5187,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 5189,
+          "text": "app.post(\"/api/book\", createBookingHandler({ clientId: CLIENT_ID, loadContext: loadAdminFirestore }))"
+        },
+        {
+          "line": 5209,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb: async () => (await loadAdminFirestore())?.db ?? null,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "api/index.ts",
+      "id": "provider-none",
+      "responses": [
+        {
+          "method": "POST",
+          "route": "/api/create-checkout-session",
+          "status": 503,
+          "body": {
+            "error": "mutant reject"
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 2380,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 2674,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 2675,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 2676,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 2677,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 2680,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 5186,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 5187,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 5189,
+          "text": "app.post(\"/api/book\", createBookingHandler({ clientId: CLIENT_ID, loadContext: loadAdminFirestore }))"
+        },
+        {
+          "line": 5209,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb: async () => (await loadAdminFirestore())?.db ?? null,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "api/index.ts",
+      "id": "provider-invalid",
+      "responses": [
+        {
+          "method": "POST",
+          "route": "/api/create-checkout-session",
+          "status": 503,
+          "body": {
+            "error": "mutant reject"
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 2380,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 2674,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 2675,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 2676,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 2677,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 2680,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 5186,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 5187,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 5189,
+          "text": "app.post(\"/api/book\", createBookingHandler({ clientId: CLIENT_ID, loadContext: loadAdminFirestore }))"
+        },
+        {
+          "line": 5209,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb: async () => (await loadAdminFirestore())?.db ?? null,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "api/index.ts",
+      "id": "provider-null",
+      "responses": [
+        {
+          "method": "POST",
+          "route": "/api/create-checkout-session",
+          "status": 503,
+          "body": {
+            "error": "mutant reject"
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 2380,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 2674,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 2675,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 2676,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 2677,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 2680,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 5186,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 5187,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 5189,
+          "text": "app.post(\"/api/book\", createBookingHandler({ clientId: CLIENT_ID, loadContext: loadAdminFirestore }))"
+        },
+        {
+          "line": 5209,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb: async () => (await loadAdminFirestore())?.db ?? null,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "api/index.ts",
+      "id": "provider-empty",
+      "responses": [
+        {
+          "method": "POST",
+          "route": "/api/create-checkout-session",
+          "status": 503,
+          "body": {
+            "error": "mutant reject"
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 2380,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 2674,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 2675,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 2676,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 2677,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 2680,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 5186,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 5187,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 5189,
+          "text": "app.post(\"/api/book\", createBookingHandler({ clientId: CLIENT_ID, loadContext: loadAdminFirestore }))"
+        },
+        {
+          "line": 5209,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb: async () => (await loadAdminFirestore())?.db ?? null,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "api/index.ts",
+      "id": "provider-absent-legacy",
+      "responses": [
+        {
+          "method": "POST",
+          "route": "/api/create-checkout-session",
+          "status": 503,
+          "body": {
+            "error": "mutant reject"
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 2380,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 2674,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 2675,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 2676,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 2677,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 2680,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 5186,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 5187,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 5189,
+          "text": "app.post(\"/api/book\", createBookingHandler({ clientId: CLIENT_ID, loadContext: loadAdminFirestore }))"
+        },
+        {
+          "line": 5209,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb: async () => (await loadAdminFirestore())?.db ?? null,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "api/index.ts",
+      "id": "provider-absent-legacy-none",
+      "responses": [
+        {
+          "method": "POST",
+          "route": "/api/create-checkout-session",
+          "status": 503,
+          "body": {
+            "error": "mutant reject"
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 2380,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 2674,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 2675,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 2676,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 2677,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 2680,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 5186,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 5187,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 5189,
+          "text": "app.post(\"/api/book\", createBookingHandler({ clientId: CLIENT_ID, loadContext: loadAdminFirestore }))"
+        },
+        {
+          "line": 5209,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb: async () => (await loadAdminFirestore())?.db ?? null,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "api/index.ts",
+      "id": "provider-config-error",
+      "responses": [
+        {
+          "method": "POST",
+          "route": "/api/create-checkout-session",
+          "status": 503,
+          "body": {
+            "error": "mutant reject"
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [
+        {
+          "op": "read",
+          "project": "backend-project",
+          "database": "backend-db",
+          "path": "clients/tenant"
+        },
+        {
+          "op": "read",
+          "project": "backend-project",
+          "database": "backend-db",
+          "path": "config/tenant"
+        }
+      ],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 2380,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 2674,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 2675,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 2676,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 2677,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 2680,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 5186,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 5187,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 5189,
+          "text": "app.post(\"/api/book\", createBookingHandler({ clientId: CLIENT_ID, loadContext: loadAdminFirestore }))"
+        },
+        {
+          "line": 5209,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb: async () => (await loadAdminFirestore())?.db ?? null,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "api/index.ts",
+      "id": "credentials-read-error",
+      "responses": [
+        {
+          "method": "POST",
+          "route": "/api/create-checkout-session",
+          "status": 503,
+          "body": {
+            "error": "mutant reject"
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 2380,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 2674,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 2675,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 2676,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 2677,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 2680,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 5186,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 5187,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 5189,
+          "text": "app.post(\"/api/book\", createBookingHandler({ clientId: CLIENT_ID, loadContext: loadAdminFirestore }))"
+        },
+        {
+          "line": 5209,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb: async () => (await loadAdminFirestore())?.db ?? null,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    },
+    {
+      "runtime": "api/index.ts",
+      "id": "priced-separated-destinations",
+      "responses": [
+        {
+          "method": "POST",
+          "route": "/api/create-checkout-session",
+          "status": 503,
+          "body": {
+            "error": "mutant reject"
+          },
+          "nosniff": "nosniff"
+        }
+      ],
+      "trace": [],
+      "writes": [],
+      "gatewayCalls": [],
+      "registrationOrder": [
+        {
+          "line": 2380,
+          "text": "app.use(securityHeaders)"
+        },
+        {
+          "line": 2674,
+          "text": "app.use(express.json({ limit: \"32kb\" }))"
+        },
+        {
+          "line": 2675,
+          "text": "app.use(requireTrustedOrigin)"
+        },
+        {
+          "line": 2676,
+          "text": "app.use(\"/api\", rateLimit)"
+        },
+        {
+          "line": 2677,
+          "text": "app.use(\"/api\", attachTenantContext)"
+        },
+        {
+          "line": 2680,
+          "text": "app.use(\"/api\", enforceClientActive)"
+        },
+        {
+          "line": 5186,
+          "text": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+        },
+        {
+          "line": 5187,
+          "text": "app.patch(\"/api/crm/appointments/:id\", crmAgenda.patch)"
+        },
+        {
+          "line": 5189,
+          "text": "app.post(\"/api/book\", createBookingHandler({ clientId: CLIENT_ID, loadContext: loadAdminFirestore }))"
+        },
+        {
+          "line": 5209,
+          "text": "app.post(\"/api/create-checkout-session\", createCheckoutHandler({\n    getAdminDb: async () => (await loadAdminFirestore())?.db ?? null,\n    getClientRuntimeState,\n    resolvePaymentGateway,\n    sanitizeText,\n    isValidEmail,\n    clientId: CLIENT_ID,\n    getBaseUrl: () => process.env.APP_URL || `http://localhost:${port}`,\n  }))"
+        }
+      ]
+    }
+  ],
+  "sourceHashes": {
+    "server.ts": "4e5e1167cae282878b6cfc590a6e01675fedf3776487df0be577ccca20171f1d",
+    "src/lib/api/payment-gateways.ts": "4b1403983540dc2e2b9d0af41e9d34169fbcd256c8f08fd57b0302e2d19f95ad",
+    "src/lib/admin-users.ts": "bf20aeae951907d691f87b983de0ce21a81613b3becc2a9cace43fc5f9cab47a",
+    "src/lib/api/booking-handler.ts": "d7bff4865597d29a48cf765c464d579faf38ed24b9f09405415c24ec9bf2dd33",
+    "src/lib/api/booking-validation.ts": "456f7f8a9ebe4015e19eac8246a2ddaada68d1ab0fe4c23949c640e9a71b934e",
+    "src/lib/api/crm-appointments-handler.ts": "e48a9ee4048c118a064cbff460fbf4e0668763691c9de41c34e9d15f3a915e4f",
+    "src/lib/api/checkout-handler.ts": "e0152c73362a8e26573c16730bddf85ed7811102b32726bb07cb4556606befe3",
+    "src/lib/api/tenant-access.ts": "98e914224316040091677e4ebbb3b0811cedb4bd671f3cf49477bbe2767faecc",
+    "src/lib/api/admin-auth.ts": "184996449b94d762f30b9bfabc7c829fa00413e3fda53e712bf4500d461f0ec2",
+    "api/index.ts": "0a99770d92a97df9de7c37a22f6c8591f954678ac3e530d8bc55ba6ec1218809"
+  },
+  "mutation": "reject-valid",
+  "limits": "HTTP Express y seis middlewares aplicables en orden AST real; handlers y accessors SDK reales, auth RSA y lookup reales. Store/transacciones/REST/certificados/gateway interceptados. Journey book no agrega precio artificial; población prepriced separada sólo aísla política/destinos. No startup completo, proveedor remoto, rules o concurrencia. API membership REST helper interceptado; su lookup real decide tenant/rol."
+}

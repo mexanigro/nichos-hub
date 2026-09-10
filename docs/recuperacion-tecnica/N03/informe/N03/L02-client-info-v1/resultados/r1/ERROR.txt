@@ -1,0 +1,23 @@
+AssertionError [ERR_ASSERTION]: arraysVacios array SDK
++ actual - expected
+
+  [
+    {
++     duration: 15,
++     id: 'old',
++     price: 10
+-     customLabel: 'Personal',
+-     duration: 45,
+-     id: 'custom-l02',
+-     price: 25
+    },
+-   {
+-     duration: 30,
+-     id: 'custom-default',
+-     price: 0
+-   }
+  ]
+
+    at equal (/control/sondeo.cjs:15:51)
+    at run (/control/sondeo.cjs:131:23)
+    at async main (/control/sondeo.cjs:146:291)

@@ -1,0 +1,8 @@
+const fs=require('fs'),p=require('path'),crypto=require('crypto');const d=__dirname,old=p.dirname(d);let s=fs.readFileSync(p.join(old,'sondeo.cjs'),'utf8');s=s.slice(0,s.indexOf('async function admin('));s=s.replace('const rows=[],checks=[];','const rows=[],checks=[],failures=[];');s=s.replace('assert.deepStrictEqual(a,b,label);checks.push(label)','try{assert.deepStrictEqual(a,b,label)}catch{failures.push({label,actual:a,expected:b})}checks.push(label)');
+s=s.replace(/const mutant=process.argv\[2\];[^\n]*\n/,`const mutant=process.argv[2];let mutations=0;
+function removeGuard(text){const ast=ts.createSourceFile('scope.ts',text,ts.ScriptTarget.Latest,true);const spans=[];function visit(n){if(ts.isIfStatement(n)&&n.getText(ast).includes('throw new Error("Firestore destination mismatch")'))spans.push([n.getStart(ast),n.end]);else ts.forEachChild(n,visit)}visit(ast);for(const [a,b] of spans.reverse()){text=text.slice(0,a)+text.slice(b);mutations++}return text}
+if(mutant==='server'||mutant==='api')texts[mutant]=removeGuard(texts[mutant]);
+if(mutant==='create'||mutant==='context'){const name=mutant==='create'?'firestoreRestCreate':'getFirestoreRestContext';const ast=ts.createSourceFile('rest.ts',texts.rest,ts.ScriptTarget.Latest,true),n=ast.statements.find(n=>ts.isFunctionDeclaration(n)&&n.name.text===name);texts.rest=texts.rest.slice(0,n.getStart(ast))+removeGuard(n.getText(ast))+texts.rest.slice(n.end)}
+if(mutant)assert.ok(mutations>0,'mutacion no aplicada');
+`);
+fs.writeFileSync(p.join(d,'contrato.cjs'),s,{flag:'wx'});

@@ -1,0 +1,15 @@
+[
+  {
+    "name": "template",
+    "exit": 0
+  },
+  {
+    "name": "hub",
+    "exit": 0
+  },
+  {
+    "name": "lint-hub",
+    "errors": 0,
+    "warnings": 0
+  }
+]

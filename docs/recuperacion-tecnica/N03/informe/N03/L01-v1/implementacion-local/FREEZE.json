@@ -1,0 +1,41 @@
+{
+  "utc": "2026-09-10T08:56:09.595Z",
+  "gates": "P0 PASS",
+  "redFailures": 297,
+  "checks": 1752,
+  "scope": [
+    "hub/src/lib/wizard/config-to-wizard.ts",
+    "template/src/config/site.ts"
+  ],
+  "refutacion": "Newton sin blockers; borradores fijos antes del freeze",
+  "files": [
+    {
+      "ruta": "CONTRATO.md",
+      "sha256": "033db64e4ad84de299f126b0ff31e356bf252650ed1892fcc5789842a4ebb390"
+    },
+    {
+      "ruta": "contrato.cjs",
+      "sha256": "37490eb1b1178b31568efb8125f744fa37abae4c5878b8af280db656e5f38899"
+    },
+    {
+      "ruta": "pruebas.cjs",
+      "sha256": "74548730cd18c72003ef96206b40cc5a2359408c9a2f657749ce3282967fd41f"
+    },
+    {
+      "ruta": "ejecutar.ps1",
+      "sha256": "6dbdc536da0c6b21ee2a71a6b7922eb796173c9919f08eecc2e541528e6d4d90"
+    },
+    {
+      "ruta": "preimagenes/hub.ts",
+      "sha256": "55d590aa6604772dd9c79b90694ebbda3856346f46e6b8dfcdce93e443669e53"
+    },
+    {
+      "ruta": "preimagenes/template.ts",
+      "sha256": "9dd148a16bc22b704d8e35daf349f574654f9901152a1cc4676d69443af4b084"
+    },
+    {
+      "ruta": "resultados/red-fijo/RESULTADO.json",
+      "sha256": "8066fbce943f84cb328c789fcfb00883ee7d5840b6858703df29ab7761629afd"
+    }
+  ]
+}

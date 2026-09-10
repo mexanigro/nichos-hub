@@ -1,0 +1,39 @@
+[
+  {
+    "repo": "hub",
+    "commit": "06f3f36d796b869f91547e2e8067ee7b1d017e8f",
+    "files": [
+      "src/app/api/onboarding/client-info/route.ts",
+      "src/components/client-config-tab.tsx",
+      "src/components/client-language-banner.tsx",
+      "src/components/config-editors/payment-provider-editor.tsx",
+      "src/lib/email-templates.ts",
+      "src/lib/wizard/config-to-wizard.ts",
+      "src/middleware.ts",
+      "src/proxy.ts"
+    ],
+    "push": "NO_EJECUTADO_CONDICION_NO_DEPLOY_NO_VERIFICADA",
+    "preservedHashesVerified": 12
+  },
+  {
+    "repo": "template",
+    "commit": "8ff8ab180da96d87699121816e27a94ae3138a50",
+    "files": [
+      "AGENTS.md",
+      "api/index.ts",
+      "server.ts",
+      "src/components/admin/AdminDashboard.tsx",
+      "src/components/admin/AppointmentCalendar.tsx",
+      "src/components/booking/BookingWizard.tsx",
+      "src/config/site.ts",
+      "src/config/tour.config.ts",
+      "src/lib/api/admin-auth.ts",
+      "src/lib/api/checkout-handler.ts",
+      "src/lib/api/crm-appointments-handler.ts",
+      "src/lib/api/payment-gateways.ts",
+      "src/services/crm-appointments.ts"
+    ],
+    "push": "NO_EJECUTADO_CONDICION_NO_DEPLOY_NO_VERIFICADA",
+    "preservedHashesVerified": 8
+  }
+]

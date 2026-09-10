@@ -1,0 +1,21 @@
+{
+  "result": "PASS",
+  "utc": "2026-09-10T08:15:53.020Z",
+  "head": "2e751a92536666c325ed6eca6b731f4180a646ea",
+  "archivosSrc": 285,
+  "conservados": 284,
+  "cambiados": [
+    "src/components/client-config-tab.tsx"
+  ],
+  "fuentesD05TemplateConservadas": 9,
+  "evidenciasPreparacionConservadas": 31,
+  "contratoCongeladoConservado": true,
+  "tsconfigConservado": true,
+  "mutacionSoloControles": true,
+  "guardadosIdenticosEnMutante": true,
+  "metodo": {
+    "ruta": "C:/Users/liama/Documents/ChatGPT/Test ML/tester-mercado-libre/metodo/METODO.md",
+    "sha256": "f090f5f8e5429bc7fcb74d187e105a14e3d1153d37d40b9036436b0e885b0c7d"
+  },
+  "limite": "Hash fuente no sustituye prueba de producción ni certifica dependencias externas"
+}

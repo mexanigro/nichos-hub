@@ -1,0 +1,22 @@
+const fs=require('fs'),p=require('path'),assert=require('assert/strict'),crypto=require('crypto');const d=__dirname,root='C:/Users/liama/Desktop/Nichos/Barber-shop-template-main',hash=b=>crypto.createHash('sha256').update(b).digest('hex');
+const target=p.join(root,'api/index.ts'),before=fs.readFileSync(target);assert.deepStrictEqual(before,fs.readFileSync(p.join(d,'preimagenes/api/index.ts')));let text=before.toString('utf8');
+const old='  return { db: getAdminFirestore(adminApp, databaseId), FieldValue };';assert.equal(text.split(old).length,2);text=text.replace(old,`  const db = getAdminFirestore(adminApp, databaseId);
+  const restProjectId =
+    process.env.FIREBASE_PROJECT_ID?.trim() ||
+    process.env.VITE_FIREBASE_PROJECT_ID?.trim() ||
+    process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID?.trim();
+  // Verificar el destino efectivo antes de entregar una referencia utilizable.
+  if (
+    db.projectId !== projectId ||
+    db.databaseId !== databaseId ||
+    (restProjectId && db.projectId !== restProjectId)
+  ) {
+    throw new Error("Firestore destination mismatch");
+  }
+  return { db, FieldValue };`);
+function insert(re,indent){assert.equal([...text.matchAll(new RegExp(re.source,'g'))].length,1);text=text.replace(re,match=>match+`\n${indent}const adminProjectId = process.env.FIREBASE_ADMIN_PROJECT_ID?.trim();\n${indent}if (adminProjectId && adminProjectId !== projectId) {\n${indent}  throw new Error("Firestore destination mismatch");\n${indent}}`)}
+insert(/    if \(!projectId\) return;(?=\r?\n\r?\n    const url = `https:\/\/firestore.googleapis.com\/v1\/projects\/\$\{projectId\}\/databases\/\$\{databaseId\}\/documents\/\$\{collectionId\}`)/,'    ');
+insert(/    throw new Error\("FIREBASE_PROJECT_ID not set"\);\r?\n  }(?=\r?\n\r?\n  return \{)/,'  ');
+fs.writeFileSync(target,text);
+fs.writeFileSync(p.join(d,'CAMBIOS.json'),JSON.stringify(['server.ts','api/index.ts'].map(ruta=>({ruta,before:hash(fs.readFileSync(p.join(d,'preimagenes',ruta))),after:hash(fs.readFileSync(p.join(root,ruta)))})),null,2),{flag:'wx'});
+console.log('P1: ambos archivos modificados; resto por verificar');

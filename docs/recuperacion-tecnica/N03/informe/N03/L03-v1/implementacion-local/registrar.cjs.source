@@ -1,0 +1,39 @@
+const fs=require('node:fs'),p=require('node:path'),crypto=require('node:crypto'),assert=require('node:assert/strict');
+const base=__dirname,canon='C:/Users/liama/Desktop/Nichos/recuperacion-tecnica',archive='C:/Users/liama/Desktop/Nichos-hub/docs/recuperacion-tecnica/N03';
+const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
+const write=(f,b)=>{fs.mkdirSync(p.dirname(f),{recursive:true});fs.writeFileSync(f,b,{flag:'wx'});};
+const walk=d=>fs.readdirSync(d,{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(p.join(d,e.name)):[p.join(d,e.name)]);
+const records=['informe/N03/cierre-sesion-v1/RETOMA.md','informe/N03/reconciliacion-v1/BALANCE.md','informe/N03/reconciliacion-v1/SIGUIENTE-ACCION.md','indice/tareas/N03.md','indice/README.md','indice/CALENDARIO.md'];
+const acta='informe/N03/L03-v1/implementacion-local/CIERRE-LOCAL.md';
+const changed=[];
+// Verificar toda la población antes de escribir registros.
+for(const rel of records)for(const root of [canon,archive])assert.ok(fs.existsSync(p.join(root,rel)),p.join(root,rel));
+for(const rel of records)for(const [kind,root] of [['canonico',canon],['archivo',archive]]){
+ const dest=p.join(root,rel),before=fs.readFileSync(dest);
+ const backup=p.join(base,'preimagenes/registros',kind,rel);write(backup,before);
+ const link=p.relative(p.dirname(dest),p.join(root,acta)).replaceAll('\\','/');
+ const adenda='**Estado vigente — L03 implementada: GREEN local 4/4, para revisión; NO descontada.** Liam aceptó la preparación y autorizó sólo retirar los tres interruptores y añadir la nota en client-config-tab.tsx. Render 29/29, guardado 29/29, mutante RED por restauración de controles y tipos exit 0. Lint global conserva 2 errores y 2 advertencias previos; cero diagnósticos nuevos. Resto del producto y D05 conservados. Próximo paso: revisar esta entrega, sin otra preparación. N03 abierta; entregas aceptadas, etapas posteriores y condición de prestaciones por tenant antes del despliegue intactas. **Techo actualizado a 90% TOTAL compartido de N03; último 10% reservado a N04**, observado 84%, sin resets, instalaciones, efectos externos, push ni deploy. Esta adenda sustituye el estado de preparación pendiente de implementación y el techo anterior, conservados debajo como historia. [Acta, evidencia y límites]('+link+').';
+ const at=before.indexOf(10)+1;assert.ok(at>0);
+ const after=Buffer.concat([before.subarray(0,at),Buffer.from('\r\n'+adenda+'\r\n\r\n'),before.subarray(at)]);
+ fs.writeFileSync(dest,after);assert.deepEqual(fs.readFileSync(dest),after);
+ changed.push({ruta:dest,preimagen:backup,bytesAntes:before.length,shaAntes:sha(before),shaDespues:sha(after)});
+}
+const hist='historial/2026-09-10-N03-L03-implementacion.md';
+const history='# N03 — L03 implementada localmente, para revisión\n\nLiam aceptó la preparación y autorizó sólo la interfaz de client-config-tab.tsx. Se retiraron los tres interruptores y se añadió la explicación de la política D05 sin modificar datos, defaults, carga, tipos, payload, adminEmail ni backend. P0–P3: 4/4; RED previo, GREEN de 29 renders/29 guardados y mutante RED con guardado conservado. Tipos 0; lint previo 2 errores/2 advertencias idénticos, sin regresión. Sin BLOCKERS.\n\n[Acta y límites](../'+acta+'). L03 no descontada; N03 abierta. Próximo paso sólo revisión. Techo 90% TOTAL N03 y reserva de último 10% N04; observado 84%, sin resets. Etapas posteriores y condición por tenant antes del despliegue conservadas. Sin instalaciones, efectos externos, push ni deploy. No se abrió ni implementó otra reparación.\n';
+write(p.join(canon,hist),history);write(p.join(archive,hist),history);
+write(p.join(base,'REGISTROS.json'),JSON.stringify({utc:new Date().toISOString(),preimagenes:changed,historial:hist},null,2));
+const budget={utc:new Date().toISOString(),fuente:'mcp__codex_app__get_usage_limits',bucket:'codex',usedPercent:84,windowDurationMins:10080,resetsAt:1789454383,techoN03:90,reservaN04:10,resetsEjecutados:0};
+write(p.join(base,'PRESUPUESTO.json'),JSON.stringify(budget,null,2));
+write(p.join(base,'RESULTADO-FINAL.json'),JSON.stringify({result:'GREEN_LOCAL_PARA_REVISION',gates:4,totalGates:4,render:29,save:29,mutationFailures:112,mutationSave:29,typesExit:0,lintGlobal:'RED_PREVIO',lintErrors:2,lintWarnings:2,lintNew:0,blockers:[],L03Descontada:false,N03:'abierta',scope:['src/components/client-config-tab.tsx'],limites:'SSR sección real, PUT interceptado; no navegador, DB ni entregas reales',presupuesto:budget},null,2));
+const evidence=walk(base).map(f=>({ruta:p.relative(base,f).replaceAll('\\','/'),bytes:fs.statSync(f).size,sha256:sha(fs.readFileSync(f))}));
+write(p.join(base,'EVIDENCIA.json'),JSON.stringify(evidence,null,2));
+const destBase=p.join(archive,'informe/N03/L03-v1/implementacion-local'),map=[];
+for(const f of walk(base)){
+ const rel=p.relative(base,f),extension=p.extname(f).toLowerCase();
+ const dest=p.join(destBase,rel)+(['.mjs','.cjs','.js','.ts','.tsx','.ps1'].includes(extension)?'.source':'');
+ const bytes=fs.readFileSync(f);write(dest,bytes);assert.equal(sha(fs.readFileSync(dest)),sha(bytes));
+ map.push({origen:f,destino:dest,sha256:sha(bytes)});
+}
+const archiveManifest=JSON.stringify(map,null,2);write(p.join(base,'ARCHIVO.json'),archiveManifest);write(p.join(destBase,'ARCHIVO.json'),archiveManifest);
+for(const f of changed)assert.equal(sha(fs.readFileSync(f.ruta)),f.shaDespues);
+console.log(JSON.stringify({registros:changed.length,preimagenes:changed.length,archivados:map.length,evidencias:evidence.length,result:'PASS'}));

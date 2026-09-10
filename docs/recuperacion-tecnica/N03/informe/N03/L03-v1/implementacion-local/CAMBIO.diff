@@ -1,0 +1,17 @@
+diff --git a/src/components/client-config-tab.tsx b/src/components/client-config-tab.tsx
+index 830dd11..d8d0be2 100644
+--- a/src/components/client-config-tab.tsx
++++ b/src/components/client-config-tab.tsx
+@@ -1135,9 +1135,9 @@ export function ClientConfigTab({
+         icon={Bell} title="Notificaciones y extras" sectionKey="notifications"
+         expanded={expandedSections.has("notifications")} onToggle={toggleSection}
+       >
+-        <ToggleField label="Notificaciones habilitadas" path="notifications.enabled" value={getNested("notifications.enabled") as boolean} onChange={updateNested} />
+-        <ToggleField label="Alertas de reserva" path="notifications.bookingAlerts" value={getNested("notifications.bookingAlerts") as boolean} onChange={updateNested} />
+-        <ToggleField label="Consultas de contacto" path="notifications.contactInquiries" value={getNested("notifications.contactInquiries") as boolean} onChange={updateNested} />
++        <p className="text-xs text-text-muted">
++          Sin agente, los avisos base de contacto y reservas usan email. Con agente, usan los canales configurados.
++        </p>
+         <div className="mt-3 border-t border-border pt-3">
+           <Field label="Admin Email" path="adminEmail" value={getNested("adminEmail")} onChange={updateNested} placeholder="admin@negocio.com" />
+           {(getNested("adminEmail") as string) ? (

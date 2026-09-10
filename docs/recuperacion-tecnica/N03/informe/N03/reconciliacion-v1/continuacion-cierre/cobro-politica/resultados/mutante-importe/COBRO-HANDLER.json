@@ -1,0 +1,745 @@
+{
+  "result": "RED",
+  "cases": 23,
+  "checks": 366,
+  "failures": [
+    {
+      "id": "server.ts/deposit-server-authority/amount",
+      "actual": 15000,
+      "expected": 2500
+    },
+    {
+      "id": "server.ts/deposit-boundary-50/amount",
+      "actual": 15000,
+      "expected": 50
+    },
+    {
+      "id": "server.ts/request-mode-invalid/amount",
+      "actual": 15000,
+      "expected": 2500
+    },
+    {
+      "id": "api/index.ts/deposit-server-authority/amount",
+      "actual": 15000,
+      "expected": 2500
+    },
+    {
+      "id": "api/index.ts/deposit-boundary-50/amount",
+      "actual": 15000,
+      "expected": 50
+    },
+    {
+      "id": "api/index.ts/request-mode-invalid/amount",
+      "actual": 15000,
+      "expected": 2500
+    }
+  ],
+  "rows": [
+    {
+      "label": "server.ts/deposit-server-authority",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "deposit",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "server.ts/full-server-authority",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "full",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "server.ts/deposit-invalid-undefined",
+      "status": 503,
+      "response": {
+        "error": "Payment deposit not configured."
+      },
+      "calls": [],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "server.ts/deposit-invalid-null",
+      "status": 503,
+      "response": {
+        "error": "Payment deposit not configured."
+      },
+      "calls": [],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "server.ts/deposit-invalid-0",
+      "status": 503,
+      "response": {
+        "error": "Payment deposit not configured."
+      },
+      "calls": [],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "server.ts/deposit-invalid--1",
+      "status": 503,
+      "response": {
+        "error": "Payment deposit not configured."
+      },
+      "calls": [],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "server.ts/deposit-invalid-49",
+      "status": 503,
+      "response": {
+        "error": "Payment deposit not configured."
+      },
+      "calls": [],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "server.ts/deposit-invalid-2.5",
+      "status": 503,
+      "response": {
+        "error": "Payment deposit not configured."
+      },
+      "calls": [],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "server.ts/deposit-invalid-15001",
+      "status": 503,
+      "response": {
+        "error": "Payment deposit not configured."
+      },
+      "calls": [],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "server.ts/deposit-invalid-2500",
+      "status": 503,
+      "response": {
+        "error": "Payment deposit not configured."
+      },
+      "calls": [],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "server.ts/deposit-boundary-50",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "deposit",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "server.ts/deposit-boundary-15000",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "deposit",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "server.ts/mode-invalid-undefined",
+      "status": 503,
+      "response": {
+        "error": "Online payment mode not configured."
+      },
+      "calls": [],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "server.ts/mode-invalid-null",
+      "status": 503,
+      "response": {
+        "error": "Online payment mode not configured."
+      },
+      "calls": [],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "server.ts/mode-invalid-",
+      "status": 503,
+      "response": {
+        "error": "Online payment mode not configured."
+      },
+      "calls": [],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "server.ts/mode-invalid-none",
+      "status": 503,
+      "response": {
+        "error": "Online payment mode not configured."
+      },
+      "calls": [],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "server.ts/mode-invalid-cash-only",
+      "status": 503,
+      "response": {
+        "error": "Online payment mode not configured."
+      },
+      "calls": [],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "server.ts/mode-invalid-invalid",
+      "status": 503,
+      "response": {
+        "error": "Online payment mode not configured."
+      },
+      "calls": [],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "server.ts/config-ausente",
+      "status": 503,
+      "response": {
+        "error": "Online payment mode not configured."
+      },
+      "calls": [],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "server.ts/config-falla",
+      "status": 500,
+      "response": {
+        "error": "Failed to create checkout session."
+      },
+      "calls": [],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "server.ts/cardcom-bloqueado",
+      "status": 503,
+      "response": {
+        "error": "Cardcom currency mapping is not verified. Checkout disabled."
+      },
+      "calls": [],
+      "reads": [
+        "appointments/appt"
+      ]
+    },
+    {
+      "label": "server.ts/full-eur",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "eur",
+          "mode": "full",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "server.ts/request-mode-invalid",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "deposit",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "api/index.ts/deposit-server-authority",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "deposit",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "api/index.ts/full-server-authority",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "full",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "api/index.ts/deposit-invalid-undefined",
+      "status": 503,
+      "response": {
+        "error": "Payment deposit not configured."
+      },
+      "calls": [],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "api/index.ts/deposit-invalid-null",
+      "status": 503,
+      "response": {
+        "error": "Payment deposit not configured."
+      },
+      "calls": [],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "api/index.ts/deposit-invalid-0",
+      "status": 503,
+      "response": {
+        "error": "Payment deposit not configured."
+      },
+      "calls": [],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "api/index.ts/deposit-invalid--1",
+      "status": 503,
+      "response": {
+        "error": "Payment deposit not configured."
+      },
+      "calls": [],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "api/index.ts/deposit-invalid-49",
+      "status": 503,
+      "response": {
+        "error": "Payment deposit not configured."
+      },
+      "calls": [],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "api/index.ts/deposit-invalid-2.5",
+      "status": 503,
+      "response": {
+        "error": "Payment deposit not configured."
+      },
+      "calls": [],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "api/index.ts/deposit-invalid-15001",
+      "status": 503,
+      "response": {
+        "error": "Payment deposit not configured."
+      },
+      "calls": [],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "api/index.ts/deposit-invalid-2500",
+      "status": 503,
+      "response": {
+        "error": "Payment deposit not configured."
+      },
+      "calls": [],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "api/index.ts/deposit-boundary-50",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "deposit",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "api/index.ts/deposit-boundary-15000",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "deposit",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "api/index.ts/mode-invalid-undefined",
+      "status": 503,
+      "response": {
+        "error": "Online payment mode not configured."
+      },
+      "calls": [],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "api/index.ts/mode-invalid-null",
+      "status": 503,
+      "response": {
+        "error": "Online payment mode not configured."
+      },
+      "calls": [],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "api/index.ts/mode-invalid-",
+      "status": 503,
+      "response": {
+        "error": "Online payment mode not configured."
+      },
+      "calls": [],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "api/index.ts/mode-invalid-none",
+      "status": 503,
+      "response": {
+        "error": "Online payment mode not configured."
+      },
+      "calls": [],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "api/index.ts/mode-invalid-cash-only",
+      "status": 503,
+      "response": {
+        "error": "Online payment mode not configured."
+      },
+      "calls": [],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "api/index.ts/mode-invalid-invalid",
+      "status": 503,
+      "response": {
+        "error": "Online payment mode not configured."
+      },
+      "calls": [],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "api/index.ts/config-ausente",
+      "status": 503,
+      "response": {
+        "error": "Online payment mode not configured."
+      },
+      "calls": [],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "api/index.ts/config-falla",
+      "status": 500,
+      "response": {
+        "error": "Failed to create checkout session."
+      },
+      "calls": [],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "api/index.ts/cardcom-bloqueado",
+      "status": 503,
+      "response": {
+        "error": "Cardcom currency mapping is not verified. Checkout disabled."
+      },
+      "calls": [],
+      "reads": [
+        "appointments/appt"
+      ]
+    },
+    {
+      "label": "api/index.ts/full-eur",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "eur",
+          "mode": "full",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "api/index.ts/request-mode-invalid",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "deposit",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "rules": "53 controles UI-PROVIDER-RED fijos, RED35; no modifica expectativas. EditorSSR modos y legacy, datos conservados, Cardcom bloqueado, proveedor explícito inválido rechaza, ausencia legacy. Wizard deja importe al servidor sin2000 ni price enviado. P0RED→P1edición→P2GREEN+mutación→P3revisión. Refutación: precio debe tener autoridad backend, pendiente decisión usuario; no se presume resuelto por UI. Política de Cardcom no convierte reserva en pagada.",
+  "contractHash": "843cfca9b13b44fc08007637908fbd9bad0ed45e5c66ff8a561f20633b5217ff",
+  "files": {
+    "editor": "C:/Users/liama/Desktop/Nichos-hub/src/components/config-editors/payment-provider-editor.tsx",
+    "wizard": "C:/Users/liama/Desktop/Nichos/Barber-shop-template-main/src/components/booking/BookingWizard.tsx",
+    "gateway": "C:/Users/liama/Desktop/Nichos/Barber-shop-template-main/src/lib/api/payment-gateways.ts"
+  }
+}

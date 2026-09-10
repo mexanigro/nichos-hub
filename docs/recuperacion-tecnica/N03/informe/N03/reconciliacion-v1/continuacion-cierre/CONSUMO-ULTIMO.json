@@ -1,0 +1,10 @@
+{
+  "usedPercent": 94,
+  "ceiling": 100,
+  "reserve": 2,
+  "resetsUsed": 0,
+  "timestamp": "2026-09-10T12:07:27.4926174Z",
+  "reportHashBefore": "60A900F6B159217EE1102B8F9EE24E63E7FBC0E4D15CF9405D2F77EBC280487E",
+  "reportHashAfter": "26D36B68C276CA83C5A2FE759E2CB0EBBE24037DF46987D7EB3CB0B3B2B4D2B2",
+  "note": "Anexo posterior a VERIFICACION-AGENDA-COBRO; sólo actualiza consumo del informe, conserva preimagen. Producto/evidencias no modificados."
+}

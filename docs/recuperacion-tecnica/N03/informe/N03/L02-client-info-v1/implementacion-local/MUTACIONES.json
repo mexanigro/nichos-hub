@@ -1,0 +1,18 @@
+[
+  {
+    "domain": "config",
+    "destination": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L02-client-info-v1\\implementacion-local/handlers/mutante-config.ts",
+    "final": "a89047927517fa676499d93da2ec7780f6b972f90a0c6ca9a0757c5960fcf172",
+    "mutant": "21781d1d1147b8bb1826dcc7367cba61823c4f5a2594e340436f98b465187741",
+    "restoredBlock": "d289a2bf5f36c9cacc02047c08547a3a6f75c722ccc06e1c2af54a868303f6fc",
+    "method": "Bloque literal exacto de preimagen en handler final; prefijo/sufijo intactos"
+  },
+  {
+    "domain": "hub_clients",
+    "destination": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L02-client-info-v1\\implementacion-local/handlers/mutante-hub_clients.ts",
+    "final": "a89047927517fa676499d93da2ec7780f6b972f90a0c6ca9a0757c5960fcf172",
+    "mutant": "59efabe34530ebc2f08068e656ec07747632e8e545ea1e36b3348b9f7419e9d1",
+    "restoredBlock": "2edf8c28678a2ebb69e018da5e66cfe45d2766233e30fac5239c755dca28c63d",
+    "method": "Bloque literal exacto de preimagen en handler final; prefijo/sufijo intactos"
+  }
+]

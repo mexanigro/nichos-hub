@@ -1,0 +1,12 @@
+{
+  "custodyFiles": 270,
+  "recordsVerified": 12,
+  "pipelineSourcesStillValid": 4,
+  "templateConservation": 330,
+  "n03": "RED abierta, decisiones nuevas pendientes",
+  "scope": "agenda handlers local + cobro subset; pipeline separado503",
+  "ceiling": 100,
+  "reserved": 2,
+  "usageObserved": 93,
+  "externalEffects": false
+}

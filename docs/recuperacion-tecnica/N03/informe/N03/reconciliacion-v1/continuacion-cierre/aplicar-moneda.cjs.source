@@ -1,0 +1,12 @@
+const fs=require('fs'),assert=require('assert/strict'),p=require('path');const root='C:/Users/liama/Desktop/Nichos/Barber-shop-template-main',f=root+'/src/lib/api/checkout-handler.ts';let s=fs.readFileSync(f,'utf8');const anchor='      let gateway: ServerPaymentGateway;';assert.ok(s.includes(anchor));s=s.replace(anchor,`      // La moneda Stripe procede exclusivamente de la configuración del tenant.
+      let currency: "ils" | "usd" | "eur" | undefined;
+      if (provider === "stripe") {
+        const configSnap = await db.collection("config").doc(CLIENT_ID).get();
+        const rawCurrency = configSnap.exists ? configSnap.data()?.payment?.currency : undefined;
+        if (rawCurrency !== "ILS" && rawCurrency !== "USD" && rawCurrency !== "EUR") {
+          return res.status(503).json({ error: "Payment currency not configured." });
+        }
+        currency = rawCurrency.toLowerCase() as "ils" | "usd" | "eur";
+      }
+
+`+anchor);s=s.replace('        amountCents: authorizedPrice,','        amountCents: authorizedPrice,\n        currency,');fs.writeFileSync(f,s);const g=root+'/src/lib/api/payment-gateways.ts';let q=fs.readFileSync(g,'utf8');q=q.replace('  amountCents: number;','  amountCents: number;\n  /** Moneda de config/{tenant}; requerida por Stripe. */\n  currency?: "ils" | "usd" | "eur";');q=q.replace('      const session = await stripe.checkout.sessions.create({','      if (!p.currency || !["ils", "usd", "eur"].includes(p.currency)) {\n        throw new Error("Payment currency not configured.");\n      }\n      const session = await stripe.checkout.sessions.create({');assert.ok(q.includes('currency: "usd"'));q=q.replace('currency: "usd"','currency: p.currency');fs.writeFileSync(g,q);

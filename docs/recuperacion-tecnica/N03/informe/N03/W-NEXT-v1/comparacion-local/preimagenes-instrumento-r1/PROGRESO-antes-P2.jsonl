@@ -1,0 +1,3 @@
+{"gate":"P0","estado":"alcanzado","evidencia":"resultados/preflight/PREFLIGHT.json","consumoTotal":80,"techo":85,"resets":0}
+{"gate":"P1","estado":"alcanzado","evidencia":"resultados/middleware-r2/HTTP.json","casos":129,"fallos":0,"buildReutilizado":"resultados/middleware/build-exit.json"}
+{"gate":"P2","estado":"en_curso","evidencia":"resultados/proxy"}

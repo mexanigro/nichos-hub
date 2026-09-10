@@ -1,0 +1,17 @@
+[
+  {
+    "Algorithm": "SHA256",
+    "Hash": "B5150D47063660F4F8E91169C0D6CB5093C3806A8C657598ED3F406B1004517D",
+    "Path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\CONTRATO.md"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "CC0A879BC137F699E15B527950C5EB5D55DB6114E3B11A122C0A0C1ABBA76725",
+    "Path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\runner.cjs"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "140D43566604AEDB09D6BF04BAD34C381671F3A8DC28AF3E72E15AF9B9C527E4",
+    "Path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\evaluar.cjs"
+  }
+]

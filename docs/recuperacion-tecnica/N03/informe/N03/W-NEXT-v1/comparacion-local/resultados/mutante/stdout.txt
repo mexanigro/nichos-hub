@@ -1,0 +1,1 @@
+{"modo":"mutante","casos":129,"fallos":14,"warning":false}

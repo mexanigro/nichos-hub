@@ -1,0 +1,30 @@
+param([ValidateSet('preflight','middleware','proxy','mutante')][string]$Modo,[string]$Etiqueta=$Modo,[switch]$Reusar)
+$ErrorActionPreference='Stop'
+$base=$PSScriptRoot
+$copia=if($Modo -eq 'preflight'){'middleware'}else{$Modo}
+$salida=Join-Path $base "resultados\$Etiqueta"
+if(Test-Path -LiteralPath $salida){throw 'Resultado existente: no sobrescribir'}
+New-Item -ItemType Directory -Path $salida|Out-Null
+$nombre="n03-wnext-$Modo"
+if(& docker ps -a --filter "name=^/$nombre$" --format '{{.ID}}'){throw 'Contenedor previo'}
+$argumentos=@('run','--pull=never','--name',$nombre,'--network=none','--read-only','--cap-drop=ALL','--security-opt=no-new-privileges','--pids-limit=256','--memory=4g','--cpus=2','--user=65534:65534','--tmpfs=/tmp:rw,nosuid,size=256m','--workdir=/app','--mount',"type=bind,source=$(Join-Path $base "copias\$copia"),target=/app",'--mount','type=bind,source=C:\Users\liama\Desktop\Nichos-hub\node_modules,target=/app/node_modules,readonly','--mount','type=bind,source=C:\Users\liama\Desktop\Nichos\recuperacion-tecnica\informe\N02\docker-p1-p2-v2\complemento,target=/compat,readonly','--mount',"type=bind,source=$base,target=/control,readonly",'--mount',"type=bind,source=$salida,target=/salida",'--entrypoint=/usr/bin/env','sha256:16e22a550f3863206a3f701448c45f7912c6896a62de43add43bb9c86130c3e2','-i','PATH=/usr/local/bin:/usr/bin:/bin','HOME=/tmp','TMPDIR=/tmp','NODE_PATH=/compat/node_modules','NEXT_TELEMETRY_DISABLED=1','RAYON_NUM_THREADS=2','NODE_ENV=production','AUTH_TRUST_HOST=true','AUTH_SECRET=wnext-local-synthetic-secret-never-production','GOOGLE_CLIENT_ID=synthetic-client','GOOGLE_CLIENT_SECRET=synthetic-secret','OWNER_EMAIL= Owner@example.invalid ,second@example.invalid ','node','/control/runner.cjs',$Modo)
+if($Reusar){$argumentos=$argumentos[0..($argumentos.Count-4)]+@('W_NEXT_REUSAR=1')+$argumentos[($argumentos.Count-3)..($argumentos.Count-1)]}
+$si=[Diagnostics.ProcessStartInfo]::new();$si.FileName=(Get-Command docker).Source;$si.UseShellExecute=$false;$si.CreateNoWindow=$true;$si.RedirectStandardOutput=$true;$si.RedirectStandardError=$true
+foreach($arg in $argumentos){$si.ArgumentList.Add($arg)}
+$proceso=[Diagnostics.Process]::new();$proceso.StartInfo=$si;$inicio=[DateTime]::UtcNow
+if(-not $proceso.Start()){throw 'No arrancó docker'}
+$stdout=$proceso.StandardOutput.ReadToEndAsync();$stderr=$proceso.StandardError.ReadToEndAsync();$fin=$proceso.WaitForExit(600000)
+if(-not $fin){& docker stop -t 2 $nombre|Out-Null;$proceso.WaitForExit(5000)|Out-Null;if(-not $proceso.HasExited){$proceso.Kill()}}
+try{
+ [IO.File]::WriteAllText("$salida/stdout.txt",$stdout.GetAwaiter().GetResult())
+ [IO.File]::WriteAllText("$salida/stderr.txt",$stderr.GetAwaiter().GetResult())
+ $estado=& docker inspect $nombre --format '{{json .State}}'
+ $aislamiento=& docker inspect $nombre --format '{{json .HostConfig}}'
+ @{modo=$Modo;inicio=$inicio.ToString('o');fin=[DateTime]::UtcNow.ToString('o');exit=$proceso.ExitCode;timeout=(-not $fin);comando=$argumentos;estado=($estado|ConvertFrom-Json);aislamiento=($aislamiento|ConvertFrom-Json)}|ConvertTo-Json -Depth 12|Set-Content -LiteralPath "$salida/DOCKER.json" -Encoding utf8
+ Write-Output "Modo=$Modo exit=$($proceso.ExitCode) timeout=$(-not $fin)"
+}finally{
+ & docker rm -f $nombre|Out-Null
+ $quedan=& docker ps -a --filter "name=^/$nombre$" --format '{{.ID}}'
+ @{eliminado=(-not $quedan);nombre=$nombre}|ConvertTo-Json|Set-Content -LiteralPath "$salida/DISPOSICION.json" -Encoding utf8
+ if($quedan){throw 'Contenedor no eliminado'}
+}

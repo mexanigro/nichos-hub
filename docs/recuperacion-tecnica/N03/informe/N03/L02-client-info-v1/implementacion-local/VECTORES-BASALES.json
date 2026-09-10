@@ -1,0 +1,3541 @@
+{
+  "purpose": "Vectores basales fijos; no regenerar contra implementación reparada. expectedReader aquí incluye discrepancias actuales; ampliar asserts explícitos de conservación/lector/historial según PROPUESTA antes de GREEN reparación.",
+  "vectors": [
+    {
+      "name": "paid-configfalse-hubfalse",
+      "status": 200,
+      "expectedReader": [
+        {
+          "field": "businessMode",
+          "value": "solo"
+        },
+        {
+          "field": "businessName",
+          "value": "Nuevo"
+        },
+        {
+          "field": "niche",
+          "value": "barberia"
+        },
+        {
+          "field": "colors",
+          "value": "gold black"
+        },
+        {
+          "field": "email",
+          "value": "new@example.invalid"
+        },
+        {
+          "field": "address",
+          "value": "Nueva"
+        }
+      ],
+      "patches": [
+        {
+          "document": "config/tenant-l02",
+          "fields": [
+            {
+              "segments": [
+                "brand",
+                "description"
+              ],
+              "value": "Desc",
+              "delete": false
+            },
+            {
+              "segments": [
+                "brand",
+                "faviconEmoji"
+              ],
+              "value": "X",
+              "delete": false
+            },
+            {
+              "segments": [
+                "brand",
+                "logo"
+              ],
+              "value": "logo",
+              "delete": false
+            },
+            {
+              "segments": [
+                "brand",
+                "logoDark"
+              ],
+              "value": "dark",
+              "delete": false
+            },
+            {
+              "segments": [
+                "brand",
+                "name"
+              ],
+              "value": "Nuevo",
+              "delete": false
+            },
+            {
+              "segments": [
+                "brand",
+                "tagline"
+              ],
+              "value": "Tag",
+              "delete": false
+            },
+            {
+              "segments": [
+                "brandingInput",
+                "colors"
+              ],
+              "value": "gold black",
+              "delete": false
+            },
+            {
+              "segments": [
+                "business",
+                "mode"
+              ],
+              "value": "solo",
+              "delete": false
+            },
+            {
+              "segments": [
+                "business",
+                "name"
+              ],
+              "value": "Nuevo",
+              "delete": false
+            },
+            {
+              "segments": [
+                "business",
+                "type"
+              ],
+              "value": "barberia",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "address",
+                "city"
+              ],
+              "value": "Ciudad",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "address",
+                "district"
+              ],
+              "value": "Centro",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "address",
+                "street"
+              ],
+              "value": "Nueva",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "email"
+              ],
+              "value": "new@example.invalid",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "facebook"
+              ],
+              "value": "fb",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "instagram"
+              ],
+              "value": "ig",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "phone"
+              ],
+              "value": "new-phone",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "whatsapp"
+              ],
+              "value": "new",
+              "delete": false
+            },
+            {
+              "segments": [
+                "gallery"
+              ],
+              "value": [
+                {
+                  "url": "gallery"
+                }
+              ],
+              "delete": false
+            },
+            {
+              "segments": [
+                "hero",
+                "backgroundImage"
+              ],
+              "value": "hero",
+              "delete": false
+            },
+            {
+              "segments": [
+                "hours",
+                "newDay",
+                "open"
+              ],
+              "value": "10:00",
+              "delete": false
+            },
+            {
+              "segments": [
+                "language"
+              ],
+              "value": "es",
+              "delete": false
+            },
+            {
+              "segments": [
+                "owner",
+                "bio"
+              ],
+              "value": "Bio",
+              "delete": false
+            },
+            {
+              "segments": [
+                "owner",
+                "name"
+              ],
+              "value": "Dueño",
+              "delete": false
+            },
+            {
+              "segments": [
+                "owner",
+                "photo"
+              ],
+              "value": "owner",
+              "delete": false
+            },
+            {
+              "segments": [
+                "owner",
+                "role"
+              ],
+              "value": "Rol",
+              "delete": false
+            },
+            {
+              "segments": [
+                "sections",
+                "faq",
+                "items"
+              ],
+              "value": [
+                {
+                  "q": "Pregunta",
+                  "a": "Respuesta"
+                }
+              ],
+              "delete": false
+            },
+            {
+              "segments": [
+                "sections",
+                "whyChooseUs",
+                "benefits"
+              ],
+              "value": [
+                {
+                  "title": "Beneficio",
+                  "desc": "Texto",
+                  "iconName": "Star"
+                }
+              ],
+              "delete": false
+            },
+            {
+              "segments": [
+                "sections",
+                "whyChooseUs",
+                "mainImage"
+              ],
+              "value": "why",
+              "delete": false
+            },
+            {
+              "segments": [
+                "services"
+              ],
+              "value": [
+                {
+                  "id": "custom-l02",
+                  "price": 25,
+                  "duration": 45,
+                  "customLabel": "Personal"
+                },
+                {
+                  "id": "custom-default",
+                  "price": 0,
+                  "duration": 30
+                }
+              ],
+              "delete": false
+            },
+            {
+              "segments": [
+                "staffPhotos"
+              ],
+              "value": [
+                "staff"
+              ],
+              "delete": false
+            },
+            {
+              "segments": [
+                "testimonials"
+              ],
+              "value": [
+                {
+                  "name": "Ana",
+                  "title": "",
+                  "text": "Bien",
+                  "rating": 5
+                }
+              ],
+              "delete": false
+            },
+            {
+              "segments": [
+                "themeOverrides",
+                "accentColor"
+              ],
+              "value": "#112233",
+              "delete": false
+            },
+            {
+              "segments": [
+                "themeOverrides",
+                "primary"
+              ],
+              "value": "#c8a97e",
+              "delete": false
+            },
+            {
+              "segments": [
+                "themeOverrides",
+                "secondary"
+              ],
+              "value": "#000000",
+              "delete": false
+            }
+          ],
+          "transforms": []
+        },
+        {
+          "document": "hub_clients/tenant-l02",
+          "fields": [
+            {
+              "segments": [
+                "businessName"
+              ],
+              "value": "Nuevo",
+              "delete": false
+            },
+            {
+              "segments": [
+                "clientId"
+              ],
+              "value": "tenant-l02",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "email"
+              ],
+              "value": "new@example.invalid",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "whatsapp"
+              ],
+              "value": "new",
+              "delete": false
+            },
+            {
+              "segments": [
+                "infoSubmitted"
+              ],
+              "value": true,
+              "delete": false
+            },
+            {
+              "segments": [
+                "language"
+              ],
+              "value": "es",
+              "delete": false
+            },
+            {
+              "segments": [
+                "niche"
+              ],
+              "value": "barberia",
+              "delete": false
+            },
+            {
+              "segments": [
+                "source"
+              ],
+              "value": "info-submit-fallback",
+              "delete": false
+            },
+            {
+              "segments": [
+                "status"
+              ],
+              "value": "pending_review",
+              "delete": false
+            }
+          ],
+          "transforms": [
+            {
+              "fieldPath": "infoSubmittedAt",
+              "setToServerValue": "REQUEST_TIME"
+            },
+            {
+              "fieldPath": "reviewRequestedAt",
+              "setToServerValue": "REQUEST_TIME"
+            },
+            {
+              "fieldPath": "lastEditedAt",
+              "setToServerValue": "REQUEST_TIME"
+            },
+            {
+              "fieldPath": "updatedAt",
+              "setToServerValue": "REQUEST_TIME"
+            },
+            {
+              "fieldPath": "createdAt",
+              "setToServerValue": "REQUEST_TIME"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "paid-configfalse-hubtrue",
+      "status": 200,
+      "expectedReader": [
+        {
+          "field": "businessMode",
+          "value": "solo"
+        },
+        {
+          "field": "businessName",
+          "value": "Nuevo"
+        },
+        {
+          "field": "niche",
+          "value": "barberia"
+        },
+        {
+          "field": "colors",
+          "value": "gold black"
+        },
+        {
+          "field": "email",
+          "value": "new@example.invalid"
+        },
+        {
+          "field": "address",
+          "value": "Nueva"
+        }
+      ],
+      "patches": [
+        {
+          "document": "config/tenant-l02",
+          "fields": [
+            {
+              "segments": [
+                "brand",
+                "description"
+              ],
+              "value": "Desc",
+              "delete": false
+            },
+            {
+              "segments": [
+                "brand",
+                "faviconEmoji"
+              ],
+              "value": "X",
+              "delete": false
+            },
+            {
+              "segments": [
+                "brand",
+                "logo"
+              ],
+              "value": "logo",
+              "delete": false
+            },
+            {
+              "segments": [
+                "brand",
+                "logoDark"
+              ],
+              "value": "dark",
+              "delete": false
+            },
+            {
+              "segments": [
+                "brand",
+                "name"
+              ],
+              "value": "Nuevo",
+              "delete": false
+            },
+            {
+              "segments": [
+                "brand",
+                "tagline"
+              ],
+              "value": "Tag",
+              "delete": false
+            },
+            {
+              "segments": [
+                "brandingInput",
+                "colors"
+              ],
+              "value": "gold black",
+              "delete": false
+            },
+            {
+              "segments": [
+                "business",
+                "mode"
+              ],
+              "value": "solo",
+              "delete": false
+            },
+            {
+              "segments": [
+                "business",
+                "name"
+              ],
+              "value": "Nuevo",
+              "delete": false
+            },
+            {
+              "segments": [
+                "business",
+                "type"
+              ],
+              "value": "barberia",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "address",
+                "city"
+              ],
+              "value": "Ciudad",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "address",
+                "district"
+              ],
+              "value": "Centro",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "address",
+                "street"
+              ],
+              "value": "Nueva",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "email"
+              ],
+              "value": "new@example.invalid",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "facebook"
+              ],
+              "value": "fb",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "instagram"
+              ],
+              "value": "ig",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "phone"
+              ],
+              "value": "new-phone",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "whatsapp"
+              ],
+              "value": "new",
+              "delete": false
+            },
+            {
+              "segments": [
+                "gallery"
+              ],
+              "value": [
+                {
+                  "url": "gallery"
+                }
+              ],
+              "delete": false
+            },
+            {
+              "segments": [
+                "hero",
+                "backgroundImage"
+              ],
+              "value": "hero",
+              "delete": false
+            },
+            {
+              "segments": [
+                "hours",
+                "newDay",
+                "open"
+              ],
+              "value": "10:00",
+              "delete": false
+            },
+            {
+              "segments": [
+                "language"
+              ],
+              "value": "es",
+              "delete": false
+            },
+            {
+              "segments": [
+                "owner",
+                "bio"
+              ],
+              "value": "Bio",
+              "delete": false
+            },
+            {
+              "segments": [
+                "owner",
+                "name"
+              ],
+              "value": "Dueño",
+              "delete": false
+            },
+            {
+              "segments": [
+                "owner",
+                "photo"
+              ],
+              "value": "owner",
+              "delete": false
+            },
+            {
+              "segments": [
+                "owner",
+                "role"
+              ],
+              "value": "Rol",
+              "delete": false
+            },
+            {
+              "segments": [
+                "sections",
+                "faq",
+                "items"
+              ],
+              "value": [
+                {
+                  "q": "Pregunta",
+                  "a": "Respuesta"
+                }
+              ],
+              "delete": false
+            },
+            {
+              "segments": [
+                "sections",
+                "whyChooseUs",
+                "benefits"
+              ],
+              "value": [
+                {
+                  "title": "Beneficio",
+                  "desc": "Texto",
+                  "iconName": "Star"
+                }
+              ],
+              "delete": false
+            },
+            {
+              "segments": [
+                "sections",
+                "whyChooseUs",
+                "mainImage"
+              ],
+              "value": "why",
+              "delete": false
+            },
+            {
+              "segments": [
+                "services"
+              ],
+              "value": [
+                {
+                  "id": "custom-l02",
+                  "price": 25,
+                  "duration": 45,
+                  "customLabel": "Personal"
+                },
+                {
+                  "id": "custom-default",
+                  "price": 0,
+                  "duration": 30
+                }
+              ],
+              "delete": false
+            },
+            {
+              "segments": [
+                "staffPhotos"
+              ],
+              "value": [
+                "staff"
+              ],
+              "delete": false
+            },
+            {
+              "segments": [
+                "testimonials"
+              ],
+              "value": [
+                {
+                  "name": "Ana",
+                  "title": "",
+                  "text": "Bien",
+                  "rating": 5
+                }
+              ],
+              "delete": false
+            },
+            {
+              "segments": [
+                "themeOverrides",
+                "accentColor"
+              ],
+              "value": "#112233",
+              "delete": false
+            },
+            {
+              "segments": [
+                "themeOverrides",
+                "primary"
+              ],
+              "value": "#c8a97e",
+              "delete": false
+            },
+            {
+              "segments": [
+                "themeOverrides",
+                "secondary"
+              ],
+              "value": "#000000",
+              "delete": false
+            }
+          ],
+          "transforms": []
+        },
+        {
+          "document": "hub_clients/tenant-l02",
+          "fields": [
+            {
+              "segments": [
+                "businessName"
+              ],
+              "value": "Nuevo",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "email"
+              ],
+              "value": "new@example.invalid",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "whatsapp"
+              ],
+              "value": "new",
+              "delete": false
+            },
+            {
+              "segments": [
+                "infoSubmitted"
+              ],
+              "value": true,
+              "delete": false
+            },
+            {
+              "segments": [
+                "language"
+              ],
+              "value": "es",
+              "delete": false
+            },
+            {
+              "segments": [
+                "niche"
+              ],
+              "value": "barberia",
+              "delete": false
+            },
+            {
+              "segments": [
+                "status"
+              ],
+              "value": "pending_review",
+              "delete": false
+            }
+          ],
+          "transforms": [
+            {
+              "fieldPath": "infoSubmittedAt",
+              "setToServerValue": "REQUEST_TIME"
+            },
+            {
+              "fieldPath": "reviewRequestedAt",
+              "setToServerValue": "REQUEST_TIME"
+            },
+            {
+              "fieldPath": "lastEditedAt",
+              "setToServerValue": "REQUEST_TIME"
+            },
+            {
+              "fieldPath": "updatedAt",
+              "setToServerValue": "REQUEST_TIME"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "paid-configtrue-hubfalse",
+      "status": 200,
+      "expectedReader": [
+        {
+          "field": "businessMode",
+          "value": "solo"
+        },
+        {
+          "field": "businessName",
+          "value": "Nuevo"
+        },
+        {
+          "field": "niche",
+          "value": "barberia"
+        },
+        {
+          "field": "colors",
+          "value": "gold black"
+        },
+        {
+          "field": "email",
+          "value": "new@example.invalid"
+        },
+        {
+          "field": "address",
+          "value": "Nueva"
+        }
+      ],
+      "patches": [
+        {
+          "document": "config/tenant-l02",
+          "fields": [
+            {
+              "segments": [
+                "brand",
+                "description"
+              ],
+              "value": "Desc",
+              "delete": false
+            },
+            {
+              "segments": [
+                "brand",
+                "faviconEmoji"
+              ],
+              "value": "X",
+              "delete": false
+            },
+            {
+              "segments": [
+                "brand",
+                "logo"
+              ],
+              "value": "logo",
+              "delete": false
+            },
+            {
+              "segments": [
+                "brand",
+                "logoDark"
+              ],
+              "value": "dark",
+              "delete": false
+            },
+            {
+              "segments": [
+                "brand",
+                "name"
+              ],
+              "value": "Nuevo",
+              "delete": false
+            },
+            {
+              "segments": [
+                "brand",
+                "tagline"
+              ],
+              "value": "Tag",
+              "delete": false
+            },
+            {
+              "segments": [
+                "brandingInput",
+                "colors"
+              ],
+              "value": "gold black",
+              "delete": false
+            },
+            {
+              "segments": [
+                "business",
+                "mode"
+              ],
+              "value": "solo",
+              "delete": false
+            },
+            {
+              "segments": [
+                "business",
+                "name"
+              ],
+              "value": "Nuevo",
+              "delete": false
+            },
+            {
+              "segments": [
+                "business",
+                "type"
+              ],
+              "value": "barberia",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "address",
+                "city"
+              ],
+              "value": "Ciudad",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "address",
+                "district"
+              ],
+              "value": "Centro",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "address",
+                "street"
+              ],
+              "value": "Nueva",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "email"
+              ],
+              "value": "new@example.invalid",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "facebook"
+              ],
+              "value": "fb",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "instagram"
+              ],
+              "value": "ig",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "phone"
+              ],
+              "value": "new-phone",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "whatsapp"
+              ],
+              "value": "new",
+              "delete": false
+            },
+            {
+              "segments": [
+                "gallery"
+              ],
+              "value": [
+                {
+                  "url": "gallery"
+                }
+              ],
+              "delete": false
+            },
+            {
+              "segments": [
+                "hero",
+                "backgroundImage"
+              ],
+              "value": "hero",
+              "delete": false
+            },
+            {
+              "segments": [
+                "hours",
+                "newDay",
+                "open"
+              ],
+              "value": "10:00",
+              "delete": false
+            },
+            {
+              "segments": [
+                "language"
+              ],
+              "value": "es",
+              "delete": false
+            },
+            {
+              "segments": [
+                "owner",
+                "bio"
+              ],
+              "value": "Bio",
+              "delete": false
+            },
+            {
+              "segments": [
+                "owner",
+                "name"
+              ],
+              "value": "Dueño",
+              "delete": false
+            },
+            {
+              "segments": [
+                "owner",
+                "photo"
+              ],
+              "value": "owner",
+              "delete": false
+            },
+            {
+              "segments": [
+                "owner",
+                "role"
+              ],
+              "value": "Rol",
+              "delete": false
+            },
+            {
+              "segments": [
+                "sections",
+                "faq",
+                "items"
+              ],
+              "value": [
+                {
+                  "q": "Pregunta",
+                  "a": "Respuesta"
+                }
+              ],
+              "delete": false
+            },
+            {
+              "segments": [
+                "sections",
+                "whyChooseUs",
+                "benefits"
+              ],
+              "value": [
+                {
+                  "title": "Beneficio",
+                  "desc": "Texto",
+                  "iconName": "Star"
+                }
+              ],
+              "delete": false
+            },
+            {
+              "segments": [
+                "sections",
+                "whyChooseUs",
+                "mainImage"
+              ],
+              "value": "why",
+              "delete": false
+            },
+            {
+              "segments": [
+                "services"
+              ],
+              "value": [
+                {
+                  "id": "custom-l02",
+                  "price": 25,
+                  "duration": 45,
+                  "customLabel": "Personal"
+                },
+                {
+                  "id": "custom-default",
+                  "price": 0,
+                  "duration": 30
+                }
+              ],
+              "delete": false
+            },
+            {
+              "segments": [
+                "staffPhotos"
+              ],
+              "value": [
+                "staff"
+              ],
+              "delete": false
+            },
+            {
+              "segments": [
+                "testimonials"
+              ],
+              "value": [
+                {
+                  "name": "Ana",
+                  "title": "",
+                  "text": "Bien",
+                  "rating": 5
+                }
+              ],
+              "delete": false
+            },
+            {
+              "segments": [
+                "themeOverrides",
+                "accentColor"
+              ],
+              "value": "#112233",
+              "delete": false
+            },
+            {
+              "segments": [
+                "themeOverrides",
+                "primary"
+              ],
+              "value": "#c8a97e",
+              "delete": false
+            },
+            {
+              "segments": [
+                "themeOverrides",
+                "secondary"
+              ],
+              "value": "#000000",
+              "delete": false
+            }
+          ],
+          "transforms": []
+        },
+        {
+          "document": "hub_clients/tenant-l02",
+          "fields": [
+            {
+              "segments": [
+                "businessName"
+              ],
+              "value": "Nuevo",
+              "delete": false
+            },
+            {
+              "segments": [
+                "clientId"
+              ],
+              "value": "tenant-l02",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "email"
+              ],
+              "value": "new@example.invalid",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "whatsapp"
+              ],
+              "value": "new",
+              "delete": false
+            },
+            {
+              "segments": [
+                "infoSubmitted"
+              ],
+              "value": true,
+              "delete": false
+            },
+            {
+              "segments": [
+                "language"
+              ],
+              "value": "es",
+              "delete": false
+            },
+            {
+              "segments": [
+                "niche"
+              ],
+              "value": "barberia",
+              "delete": false
+            },
+            {
+              "segments": [
+                "source"
+              ],
+              "value": "info-submit-fallback",
+              "delete": false
+            },
+            {
+              "segments": [
+                "status"
+              ],
+              "value": "pending_review",
+              "delete": false
+            }
+          ],
+          "transforms": [
+            {
+              "fieldPath": "infoSubmittedAt",
+              "setToServerValue": "REQUEST_TIME"
+            },
+            {
+              "fieldPath": "reviewRequestedAt",
+              "setToServerValue": "REQUEST_TIME"
+            },
+            {
+              "fieldPath": "lastEditedAt",
+              "setToServerValue": "REQUEST_TIME"
+            },
+            {
+              "fieldPath": "updatedAt",
+              "setToServerValue": "REQUEST_TIME"
+            },
+            {
+              "fieldPath": "createdAt",
+              "setToServerValue": "REQUEST_TIME"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "paid-configtrue-hubtrue",
+      "status": 200,
+      "expectedReader": [
+        {
+          "field": "businessMode",
+          "value": "solo"
+        },
+        {
+          "field": "businessName",
+          "value": "Nuevo"
+        },
+        {
+          "field": "niche",
+          "value": "barberia"
+        },
+        {
+          "field": "colors",
+          "value": "gold black"
+        },
+        {
+          "field": "email",
+          "value": "new@example.invalid"
+        },
+        {
+          "field": "address",
+          "value": "Nueva"
+        }
+      ],
+      "patches": [
+        {
+          "document": "config/tenant-l02",
+          "fields": [
+            {
+              "segments": [
+                "brand",
+                "description"
+              ],
+              "value": "Desc",
+              "delete": false
+            },
+            {
+              "segments": [
+                "brand",
+                "faviconEmoji"
+              ],
+              "value": "X",
+              "delete": false
+            },
+            {
+              "segments": [
+                "brand",
+                "logo"
+              ],
+              "value": "logo",
+              "delete": false
+            },
+            {
+              "segments": [
+                "brand",
+                "logoDark"
+              ],
+              "value": "dark",
+              "delete": false
+            },
+            {
+              "segments": [
+                "brand",
+                "name"
+              ],
+              "value": "Nuevo",
+              "delete": false
+            },
+            {
+              "segments": [
+                "brand",
+                "tagline"
+              ],
+              "value": "Tag",
+              "delete": false
+            },
+            {
+              "segments": [
+                "brandingInput",
+                "colors"
+              ],
+              "value": "gold black",
+              "delete": false
+            },
+            {
+              "segments": [
+                "business",
+                "mode"
+              ],
+              "value": "solo",
+              "delete": false
+            },
+            {
+              "segments": [
+                "business",
+                "name"
+              ],
+              "value": "Nuevo",
+              "delete": false
+            },
+            {
+              "segments": [
+                "business",
+                "type"
+              ],
+              "value": "barberia",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "address",
+                "city"
+              ],
+              "value": "Ciudad",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "address",
+                "district"
+              ],
+              "value": "Centro",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "address",
+                "street"
+              ],
+              "value": "Nueva",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "email"
+              ],
+              "value": "new@example.invalid",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "facebook"
+              ],
+              "value": "fb",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "instagram"
+              ],
+              "value": "ig",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "phone"
+              ],
+              "value": "new-phone",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "whatsapp"
+              ],
+              "value": "new",
+              "delete": false
+            },
+            {
+              "segments": [
+                "gallery"
+              ],
+              "value": [
+                {
+                  "url": "gallery"
+                }
+              ],
+              "delete": false
+            },
+            {
+              "segments": [
+                "hero",
+                "backgroundImage"
+              ],
+              "value": "hero",
+              "delete": false
+            },
+            {
+              "segments": [
+                "hours",
+                "newDay",
+                "open"
+              ],
+              "value": "10:00",
+              "delete": false
+            },
+            {
+              "segments": [
+                "language"
+              ],
+              "value": "es",
+              "delete": false
+            },
+            {
+              "segments": [
+                "owner",
+                "bio"
+              ],
+              "value": "Bio",
+              "delete": false
+            },
+            {
+              "segments": [
+                "owner",
+                "name"
+              ],
+              "value": "Dueño",
+              "delete": false
+            },
+            {
+              "segments": [
+                "owner",
+                "photo"
+              ],
+              "value": "owner",
+              "delete": false
+            },
+            {
+              "segments": [
+                "owner",
+                "role"
+              ],
+              "value": "Rol",
+              "delete": false
+            },
+            {
+              "segments": [
+                "sections",
+                "faq",
+                "items"
+              ],
+              "value": [
+                {
+                  "q": "Pregunta",
+                  "a": "Respuesta"
+                }
+              ],
+              "delete": false
+            },
+            {
+              "segments": [
+                "sections",
+                "whyChooseUs",
+                "benefits"
+              ],
+              "value": [
+                {
+                  "title": "Beneficio",
+                  "desc": "Texto",
+                  "iconName": "Star"
+                }
+              ],
+              "delete": false
+            },
+            {
+              "segments": [
+                "sections",
+                "whyChooseUs",
+                "mainImage"
+              ],
+              "value": "why",
+              "delete": false
+            },
+            {
+              "segments": [
+                "services"
+              ],
+              "value": [
+                {
+                  "id": "custom-l02",
+                  "price": 25,
+                  "duration": 45,
+                  "customLabel": "Personal"
+                },
+                {
+                  "id": "custom-default",
+                  "price": 0,
+                  "duration": 30
+                }
+              ],
+              "delete": false
+            },
+            {
+              "segments": [
+                "staffPhotos"
+              ],
+              "value": [
+                "staff"
+              ],
+              "delete": false
+            },
+            {
+              "segments": [
+                "testimonials"
+              ],
+              "value": [
+                {
+                  "name": "Ana",
+                  "title": "",
+                  "text": "Bien",
+                  "rating": 5
+                }
+              ],
+              "delete": false
+            },
+            {
+              "segments": [
+                "themeOverrides",
+                "accentColor"
+              ],
+              "value": "#112233",
+              "delete": false
+            },
+            {
+              "segments": [
+                "themeOverrides",
+                "primary"
+              ],
+              "value": "#c8a97e",
+              "delete": false
+            },
+            {
+              "segments": [
+                "themeOverrides",
+                "secondary"
+              ],
+              "value": "#000000",
+              "delete": false
+            }
+          ],
+          "transforms": []
+        },
+        {
+          "document": "hub_clients/tenant-l02",
+          "fields": [
+            {
+              "segments": [
+                "businessName"
+              ],
+              "value": "Nuevo",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "email"
+              ],
+              "value": "new@example.invalid",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "whatsapp"
+              ],
+              "value": "new",
+              "delete": false
+            },
+            {
+              "segments": [
+                "infoSubmitted"
+              ],
+              "value": true,
+              "delete": false
+            },
+            {
+              "segments": [
+                "language"
+              ],
+              "value": "es",
+              "delete": false
+            },
+            {
+              "segments": [
+                "niche"
+              ],
+              "value": "barberia",
+              "delete": false
+            },
+            {
+              "segments": [
+                "status"
+              ],
+              "value": "pending_review",
+              "delete": false
+            }
+          ],
+          "transforms": [
+            {
+              "fieldPath": "infoSubmittedAt",
+              "setToServerValue": "REQUEST_TIME"
+            },
+            {
+              "fieldPath": "reviewRequestedAt",
+              "setToServerValue": "REQUEST_TIME"
+            },
+            {
+              "fieldPath": "lastEditedAt",
+              "setToServerValue": "REQUEST_TIME"
+            },
+            {
+              "fieldPath": "updatedAt",
+              "setToServerValue": "REQUEST_TIME"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "resubmit-configfalse-hubfalse",
+      "status": 403,
+      "expectedReader": [],
+      "patches": []
+    },
+    {
+      "name": "resubmit-configfalse-hubtrue",
+      "status": 200,
+      "expectedReader": [
+        {
+          "field": "businessMode",
+          "value": "solo"
+        },
+        {
+          "field": "businessName",
+          "value": "Nuevo"
+        },
+        {
+          "field": "niche",
+          "value": "barberia"
+        },
+        {
+          "field": "colors",
+          "value": "gold black"
+        },
+        {
+          "field": "email",
+          "value": "new@example.invalid"
+        },
+        {
+          "field": "address",
+          "value": "Nueva"
+        }
+      ],
+      "patches": [
+        {
+          "document": "config/tenant-l02",
+          "fields": [
+            {
+              "segments": [
+                "brand",
+                "description"
+              ],
+              "value": "Desc",
+              "delete": false
+            },
+            {
+              "segments": [
+                "brand",
+                "faviconEmoji"
+              ],
+              "value": "X",
+              "delete": false
+            },
+            {
+              "segments": [
+                "brand",
+                "logo"
+              ],
+              "value": "logo",
+              "delete": false
+            },
+            {
+              "segments": [
+                "brand",
+                "logoDark"
+              ],
+              "value": "dark",
+              "delete": false
+            },
+            {
+              "segments": [
+                "brand",
+                "name"
+              ],
+              "value": "Nuevo",
+              "delete": false
+            },
+            {
+              "segments": [
+                "brand",
+                "tagline"
+              ],
+              "value": "Tag",
+              "delete": false
+            },
+            {
+              "segments": [
+                "brandingInput",
+                "colors"
+              ],
+              "value": "gold black",
+              "delete": false
+            },
+            {
+              "segments": [
+                "business",
+                "mode"
+              ],
+              "value": "solo",
+              "delete": false
+            },
+            {
+              "segments": [
+                "business",
+                "name"
+              ],
+              "value": "Nuevo",
+              "delete": false
+            },
+            {
+              "segments": [
+                "business",
+                "type"
+              ],
+              "value": "barberia",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "address",
+                "city"
+              ],
+              "value": "Ciudad",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "address",
+                "district"
+              ],
+              "value": "Centro",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "address",
+                "street"
+              ],
+              "value": "Nueva",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "email"
+              ],
+              "value": "new@example.invalid",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "facebook"
+              ],
+              "value": "fb",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "instagram"
+              ],
+              "value": "ig",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "phone"
+              ],
+              "value": "new-phone",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "whatsapp"
+              ],
+              "value": "new",
+              "delete": false
+            },
+            {
+              "segments": [
+                "gallery"
+              ],
+              "value": [
+                {
+                  "url": "gallery"
+                }
+              ],
+              "delete": false
+            },
+            {
+              "segments": [
+                "hero",
+                "backgroundImage"
+              ],
+              "value": "hero",
+              "delete": false
+            },
+            {
+              "segments": [
+                "hours",
+                "newDay",
+                "open"
+              ],
+              "value": "10:00",
+              "delete": false
+            },
+            {
+              "segments": [
+                "language"
+              ],
+              "value": "es",
+              "delete": false
+            },
+            {
+              "segments": [
+                "owner",
+                "bio"
+              ],
+              "value": "Bio",
+              "delete": false
+            },
+            {
+              "segments": [
+                "owner",
+                "name"
+              ],
+              "value": "Dueño",
+              "delete": false
+            },
+            {
+              "segments": [
+                "owner",
+                "photo"
+              ],
+              "value": "owner",
+              "delete": false
+            },
+            {
+              "segments": [
+                "owner",
+                "role"
+              ],
+              "value": "Rol",
+              "delete": false
+            },
+            {
+              "segments": [
+                "sections",
+                "faq",
+                "items"
+              ],
+              "value": [
+                {
+                  "q": "Pregunta",
+                  "a": "Respuesta"
+                }
+              ],
+              "delete": false
+            },
+            {
+              "segments": [
+                "sections",
+                "whyChooseUs",
+                "benefits"
+              ],
+              "value": [
+                {
+                  "title": "Beneficio",
+                  "desc": "Texto",
+                  "iconName": "Star"
+                }
+              ],
+              "delete": false
+            },
+            {
+              "segments": [
+                "sections",
+                "whyChooseUs",
+                "mainImage"
+              ],
+              "value": "why",
+              "delete": false
+            },
+            {
+              "segments": [
+                "services"
+              ],
+              "value": [
+                {
+                  "id": "custom-l02",
+                  "price": 25,
+                  "duration": 45,
+                  "customLabel": "Personal"
+                },
+                {
+                  "id": "custom-default",
+                  "price": 0,
+                  "duration": 30
+                }
+              ],
+              "delete": false
+            },
+            {
+              "segments": [
+                "staffPhotos"
+              ],
+              "value": [
+                "staff"
+              ],
+              "delete": false
+            },
+            {
+              "segments": [
+                "testimonials"
+              ],
+              "value": [
+                {
+                  "name": "Ana",
+                  "title": "",
+                  "text": "Bien",
+                  "rating": 5
+                }
+              ],
+              "delete": false
+            },
+            {
+              "segments": [
+                "themeOverrides",
+                "accentColor"
+              ],
+              "value": "#112233",
+              "delete": false
+            },
+            {
+              "segments": [
+                "themeOverrides",
+                "primary"
+              ],
+              "value": "#c8a97e",
+              "delete": false
+            },
+            {
+              "segments": [
+                "themeOverrides",
+                "secondary"
+              ],
+              "value": "#000000",
+              "delete": false
+            }
+          ],
+          "transforms": []
+        },
+        {
+          "document": "hub_clients/tenant-l02",
+          "fields": [
+            {
+              "segments": [
+                "businessName"
+              ],
+              "value": "Nuevo",
+              "delete": false
+            },
+            {
+              "segments": [
+                "changesRequestedAt"
+              ],
+              "delete": true
+            },
+            {
+              "segments": [
+                "changesRequestedBy"
+              ],
+              "delete": true
+            },
+            {
+              "segments": [
+                "contact",
+                "email"
+              ],
+              "value": "new@example.invalid",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "whatsapp"
+              ],
+              "value": "new",
+              "delete": false
+            },
+            {
+              "segments": [
+                "infoSubmitted"
+              ],
+              "value": true,
+              "delete": false
+            },
+            {
+              "segments": [
+                "language"
+              ],
+              "value": "es",
+              "delete": false
+            },
+            {
+              "segments": [
+                "lastChangesRequestMessage"
+              ],
+              "delete": true
+            },
+            {
+              "segments": [
+                "niche"
+              ],
+              "value": "barberia",
+              "delete": false
+            },
+            {
+              "segments": [
+                "status"
+              ],
+              "value": "pending_review",
+              "delete": false
+            }
+          ],
+          "transforms": [
+            {
+              "fieldPath": "infoSubmittedAt",
+              "setToServerValue": "REQUEST_TIME"
+            },
+            {
+              "fieldPath": "reviewRequestedAt",
+              "setToServerValue": "REQUEST_TIME"
+            },
+            {
+              "fieldPath": "lastEditedAt",
+              "setToServerValue": "REQUEST_TIME"
+            },
+            {
+              "fieldPath": "updatedAt",
+              "setToServerValue": "REQUEST_TIME"
+            },
+            {
+              "fieldPath": "resubmissionCount",
+              "increment": {
+                "integerValue": 1
+              }
+            },
+            {
+              "fieldPath": "lastResubmittedAt",
+              "setToServerValue": "REQUEST_TIME"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "resubmit-configtrue-hubfalse",
+      "status": 403,
+      "expectedReader": [],
+      "patches": []
+    },
+    {
+      "name": "resubmit-configtrue-hubtrue",
+      "status": 200,
+      "expectedReader": [
+        {
+          "field": "businessMode",
+          "value": "solo"
+        },
+        {
+          "field": "businessName",
+          "value": "Nuevo"
+        },
+        {
+          "field": "niche",
+          "value": "barberia"
+        },
+        {
+          "field": "colors",
+          "value": "gold black"
+        },
+        {
+          "field": "email",
+          "value": "new@example.invalid"
+        },
+        {
+          "field": "address",
+          "value": "Nueva"
+        }
+      ],
+      "patches": [
+        {
+          "document": "config/tenant-l02",
+          "fields": [
+            {
+              "segments": [
+                "brand",
+                "description"
+              ],
+              "value": "Desc",
+              "delete": false
+            },
+            {
+              "segments": [
+                "brand",
+                "faviconEmoji"
+              ],
+              "value": "X",
+              "delete": false
+            },
+            {
+              "segments": [
+                "brand",
+                "logo"
+              ],
+              "value": "logo",
+              "delete": false
+            },
+            {
+              "segments": [
+                "brand",
+                "logoDark"
+              ],
+              "value": "dark",
+              "delete": false
+            },
+            {
+              "segments": [
+                "brand",
+                "name"
+              ],
+              "value": "Nuevo",
+              "delete": false
+            },
+            {
+              "segments": [
+                "brand",
+                "tagline"
+              ],
+              "value": "Tag",
+              "delete": false
+            },
+            {
+              "segments": [
+                "brandingInput",
+                "colors"
+              ],
+              "value": "gold black",
+              "delete": false
+            },
+            {
+              "segments": [
+                "business",
+                "mode"
+              ],
+              "value": "solo",
+              "delete": false
+            },
+            {
+              "segments": [
+                "business",
+                "name"
+              ],
+              "value": "Nuevo",
+              "delete": false
+            },
+            {
+              "segments": [
+                "business",
+                "type"
+              ],
+              "value": "barberia",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "address",
+                "city"
+              ],
+              "value": "Ciudad",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "address",
+                "district"
+              ],
+              "value": "Centro",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "address",
+                "street"
+              ],
+              "value": "Nueva",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "email"
+              ],
+              "value": "new@example.invalid",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "facebook"
+              ],
+              "value": "fb",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "instagram"
+              ],
+              "value": "ig",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "phone"
+              ],
+              "value": "new-phone",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "whatsapp"
+              ],
+              "value": "new",
+              "delete": false
+            },
+            {
+              "segments": [
+                "gallery"
+              ],
+              "value": [
+                {
+                  "url": "gallery"
+                }
+              ],
+              "delete": false
+            },
+            {
+              "segments": [
+                "hero",
+                "backgroundImage"
+              ],
+              "value": "hero",
+              "delete": false
+            },
+            {
+              "segments": [
+                "hours",
+                "newDay",
+                "open"
+              ],
+              "value": "10:00",
+              "delete": false
+            },
+            {
+              "segments": [
+                "language"
+              ],
+              "value": "es",
+              "delete": false
+            },
+            {
+              "segments": [
+                "owner",
+                "bio"
+              ],
+              "value": "Bio",
+              "delete": false
+            },
+            {
+              "segments": [
+                "owner",
+                "name"
+              ],
+              "value": "Dueño",
+              "delete": false
+            },
+            {
+              "segments": [
+                "owner",
+                "photo"
+              ],
+              "value": "owner",
+              "delete": false
+            },
+            {
+              "segments": [
+                "owner",
+                "role"
+              ],
+              "value": "Rol",
+              "delete": false
+            },
+            {
+              "segments": [
+                "sections",
+                "faq",
+                "items"
+              ],
+              "value": [
+                {
+                  "q": "Pregunta",
+                  "a": "Respuesta"
+                }
+              ],
+              "delete": false
+            },
+            {
+              "segments": [
+                "sections",
+                "whyChooseUs",
+                "benefits"
+              ],
+              "value": [
+                {
+                  "title": "Beneficio",
+                  "desc": "Texto",
+                  "iconName": "Star"
+                }
+              ],
+              "delete": false
+            },
+            {
+              "segments": [
+                "sections",
+                "whyChooseUs",
+                "mainImage"
+              ],
+              "value": "why",
+              "delete": false
+            },
+            {
+              "segments": [
+                "services"
+              ],
+              "value": [
+                {
+                  "id": "custom-l02",
+                  "price": 25,
+                  "duration": 45,
+                  "customLabel": "Personal"
+                },
+                {
+                  "id": "custom-default",
+                  "price": 0,
+                  "duration": 30
+                }
+              ],
+              "delete": false
+            },
+            {
+              "segments": [
+                "staffPhotos"
+              ],
+              "value": [
+                "staff"
+              ],
+              "delete": false
+            },
+            {
+              "segments": [
+                "testimonials"
+              ],
+              "value": [
+                {
+                  "name": "Ana",
+                  "title": "",
+                  "text": "Bien",
+                  "rating": 5
+                }
+              ],
+              "delete": false
+            },
+            {
+              "segments": [
+                "themeOverrides",
+                "accentColor"
+              ],
+              "value": "#112233",
+              "delete": false
+            },
+            {
+              "segments": [
+                "themeOverrides",
+                "primary"
+              ],
+              "value": "#c8a97e",
+              "delete": false
+            },
+            {
+              "segments": [
+                "themeOverrides",
+                "secondary"
+              ],
+              "value": "#000000",
+              "delete": false
+            }
+          ],
+          "transforms": []
+        },
+        {
+          "document": "hub_clients/tenant-l02",
+          "fields": [
+            {
+              "segments": [
+                "businessName"
+              ],
+              "value": "Nuevo",
+              "delete": false
+            },
+            {
+              "segments": [
+                "changesRequestedAt"
+              ],
+              "delete": true
+            },
+            {
+              "segments": [
+                "changesRequestedBy"
+              ],
+              "delete": true
+            },
+            {
+              "segments": [
+                "contact",
+                "email"
+              ],
+              "value": "new@example.invalid",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "whatsapp"
+              ],
+              "value": "new",
+              "delete": false
+            },
+            {
+              "segments": [
+                "infoSubmitted"
+              ],
+              "value": true,
+              "delete": false
+            },
+            {
+              "segments": [
+                "language"
+              ],
+              "value": "es",
+              "delete": false
+            },
+            {
+              "segments": [
+                "lastChangesRequestMessage"
+              ],
+              "delete": true
+            },
+            {
+              "segments": [
+                "niche"
+              ],
+              "value": "barberia",
+              "delete": false
+            },
+            {
+              "segments": [
+                "status"
+              ],
+              "value": "pending_review",
+              "delete": false
+            }
+          ],
+          "transforms": [
+            {
+              "fieldPath": "infoSubmittedAt",
+              "setToServerValue": "REQUEST_TIME"
+            },
+            {
+              "fieldPath": "reviewRequestedAt",
+              "setToServerValue": "REQUEST_TIME"
+            },
+            {
+              "fieldPath": "lastEditedAt",
+              "setToServerValue": "REQUEST_TIME"
+            },
+            {
+              "fieldPath": "updatedAt",
+              "setToServerValue": "REQUEST_TIME"
+            },
+            {
+              "fieldPath": "resubmissionCount",
+              "increment": {
+                "integerValue": 1
+              }
+            },
+            {
+              "fieldPath": "lastResubmittedAt",
+              "setToServerValue": "REQUEST_TIME"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "omitidos",
+      "status": 200,
+      "expectedReader": [
+        {
+          "field": "businessName",
+          "value": ""
+        },
+        {
+          "field": "niche",
+          "value": "estetica"
+        },
+        {
+          "field": "colors",
+          "value": ""
+        }
+      ],
+      "patches": [
+        {
+          "document": "config/tenant-l02",
+          "fields": [
+            {
+              "segments": [
+                "brandingInput",
+                "colors"
+              ],
+              "value": "",
+              "delete": false
+            },
+            {
+              "segments": [
+                "business",
+                "mode"
+              ],
+              "value": "team",
+              "delete": false
+            },
+            {
+              "segments": [
+                "business",
+                "name"
+              ],
+              "value": "",
+              "delete": false
+            },
+            {
+              "segments": [
+                "business",
+                "type"
+              ],
+              "value": "estetica",
+              "delete": false
+            }
+          ],
+          "transforms": []
+        },
+        {
+          "document": "hub_clients/tenant-l02",
+          "fields": [
+            {
+              "segments": [
+                "infoSubmitted"
+              ],
+              "value": true,
+              "delete": false
+            },
+            {
+              "segments": [
+                "status"
+              ],
+              "value": "pending_review",
+              "delete": false
+            }
+          ],
+          "transforms": [
+            {
+              "fieldPath": "infoSubmittedAt",
+              "setToServerValue": "REQUEST_TIME"
+            },
+            {
+              "fieldPath": "reviewRequestedAt",
+              "setToServerValue": "REQUEST_TIME"
+            },
+            {
+              "fieldPath": "lastEditedAt",
+              "setToServerValue": "REQUEST_TIME"
+            },
+            {
+              "fieldPath": "updatedAt",
+              "setToServerValue": "REQUEST_TIME"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "contactoVacio",
+      "status": 200,
+      "expectedReader": [
+        {
+          "field": "businessName",
+          "value": ""
+        },
+        {
+          "field": "niche",
+          "value": "estetica"
+        },
+        {
+          "field": "colors",
+          "value": ""
+        }
+      ],
+      "patches": [
+        {
+          "document": "config/tenant-l02",
+          "fields": [
+            {
+              "segments": [
+                "brandingInput",
+                "colors"
+              ],
+              "value": "",
+              "delete": false
+            },
+            {
+              "segments": [
+                "business",
+                "mode"
+              ],
+              "value": "team",
+              "delete": false
+            },
+            {
+              "segments": [
+                "business",
+                "name"
+              ],
+              "value": "",
+              "delete": false
+            },
+            {
+              "segments": [
+                "business",
+                "type"
+              ],
+              "value": "estetica",
+              "delete": false
+            }
+          ],
+          "transforms": []
+        },
+        {
+          "document": "hub_clients/tenant-l02",
+          "fields": [
+            {
+              "segments": [
+                "infoSubmitted"
+              ],
+              "value": true,
+              "delete": false
+            },
+            {
+              "segments": [
+                "status"
+              ],
+              "value": "pending_review",
+              "delete": false
+            }
+          ],
+          "transforms": [
+            {
+              "fieldPath": "infoSubmittedAt",
+              "setToServerValue": "REQUEST_TIME"
+            },
+            {
+              "fieldPath": "reviewRequestedAt",
+              "setToServerValue": "REQUEST_TIME"
+            },
+            {
+              "fieldPath": "lastEditedAt",
+              "setToServerValue": "REQUEST_TIME"
+            },
+            {
+              "fieldPath": "updatedAt",
+              "setToServerValue": "REQUEST_TIME"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "direccionVacia",
+      "status": 200,
+      "expectedReader": [
+        {
+          "field": "businessName",
+          "value": ""
+        },
+        {
+          "field": "niche",
+          "value": "estetica"
+        },
+        {
+          "field": "colors",
+          "value": ""
+        }
+      ],
+      "patches": [
+        {
+          "document": "config/tenant-l02",
+          "fields": [
+            {
+              "segments": [
+                "brandingInput",
+                "colors"
+              ],
+              "value": "",
+              "delete": false
+            },
+            {
+              "segments": [
+                "business",
+                "mode"
+              ],
+              "value": "team",
+              "delete": false
+            },
+            {
+              "segments": [
+                "business",
+                "name"
+              ],
+              "value": "",
+              "delete": false
+            },
+            {
+              "segments": [
+                "business",
+                "type"
+              ],
+              "value": "estetica",
+              "delete": false
+            }
+          ],
+          "transforms": []
+        },
+        {
+          "document": "hub_clients/tenant-l02",
+          "fields": [
+            {
+              "segments": [
+                "infoSubmitted"
+              ],
+              "value": true,
+              "delete": false
+            },
+            {
+              "segments": [
+                "status"
+              ],
+              "value": "pending_review",
+              "delete": false
+            }
+          ],
+          "transforms": [
+            {
+              "fieldPath": "infoSubmittedAt",
+              "setToServerValue": "REQUEST_TIME"
+            },
+            {
+              "fieldPath": "reviewRequestedAt",
+              "setToServerValue": "REQUEST_TIME"
+            },
+            {
+              "fieldPath": "lastEditedAt",
+              "setToServerValue": "REQUEST_TIME"
+            },
+            {
+              "fieldPath": "updatedAt",
+              "setToServerValue": "REQUEST_TIME"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "arraysVacios",
+      "status": 200,
+      "expectedReader": [
+        {
+          "field": "businessName",
+          "value": ""
+        },
+        {
+          "field": "niche",
+          "value": "estetica"
+        },
+        {
+          "field": "colors",
+          "value": ""
+        }
+      ],
+      "patches": [
+        {
+          "document": "config/tenant-l02",
+          "fields": [
+            {
+              "segments": [
+                "brandingInput",
+                "colors"
+              ],
+              "value": "",
+              "delete": false
+            },
+            {
+              "segments": [
+                "business",
+                "mode"
+              ],
+              "value": "team",
+              "delete": false
+            },
+            {
+              "segments": [
+                "business",
+                "name"
+              ],
+              "value": "",
+              "delete": false
+            },
+            {
+              "segments": [
+                "business",
+                "type"
+              ],
+              "value": "estetica",
+              "delete": false
+            }
+          ],
+          "transforms": []
+        },
+        {
+          "document": "hub_clients/tenant-l02",
+          "fields": [
+            {
+              "segments": [
+                "infoSubmitted"
+              ],
+              "value": true,
+              "delete": false
+            },
+            {
+              "segments": [
+                "status"
+              ],
+              "value": "pending_review",
+              "delete": false
+            }
+          ],
+          "transforms": [
+            {
+              "fieldPath": "infoSubmittedAt",
+              "setToServerValue": "REQUEST_TIME"
+            },
+            {
+              "fieldPath": "reviewRequestedAt",
+              "setToServerValue": "REQUEST_TIME"
+            },
+            {
+              "fieldPath": "lastEditedAt",
+              "setToServerValue": "REQUEST_TIME"
+            },
+            {
+              "fieldPath": "updatedAt",
+              "setToServerValue": "REQUEST_TIME"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "lookup-legacy",
+      "status": 200,
+      "expectedReader": [
+        {
+          "field": "businessMode",
+          "value": "solo"
+        },
+        {
+          "field": "businessName",
+          "value": "Nuevo"
+        },
+        {
+          "field": "niche",
+          "value": "barberia"
+        },
+        {
+          "field": "colors",
+          "value": "gold black"
+        },
+        {
+          "field": "email",
+          "value": "new@example.invalid"
+        },
+        {
+          "field": "address",
+          "value": "Nueva"
+        }
+      ],
+      "patches": [
+        {
+          "document": "config/tenant-l02",
+          "fields": [
+            {
+              "segments": [
+                "brand",
+                "description"
+              ],
+              "value": "Desc",
+              "delete": false
+            },
+            {
+              "segments": [
+                "brand",
+                "faviconEmoji"
+              ],
+              "value": "X",
+              "delete": false
+            },
+            {
+              "segments": [
+                "brand",
+                "logo"
+              ],
+              "value": "logo",
+              "delete": false
+            },
+            {
+              "segments": [
+                "brand",
+                "logoDark"
+              ],
+              "value": "dark",
+              "delete": false
+            },
+            {
+              "segments": [
+                "brand",
+                "name"
+              ],
+              "value": "Nuevo",
+              "delete": false
+            },
+            {
+              "segments": [
+                "brand",
+                "tagline"
+              ],
+              "value": "Tag",
+              "delete": false
+            },
+            {
+              "segments": [
+                "brandingInput",
+                "colors"
+              ],
+              "value": "gold black",
+              "delete": false
+            },
+            {
+              "segments": [
+                "business",
+                "mode"
+              ],
+              "value": "solo",
+              "delete": false
+            },
+            {
+              "segments": [
+                "business",
+                "name"
+              ],
+              "value": "Nuevo",
+              "delete": false
+            },
+            {
+              "segments": [
+                "business",
+                "type"
+              ],
+              "value": "barberia",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "address",
+                "city"
+              ],
+              "value": "Ciudad",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "address",
+                "district"
+              ],
+              "value": "Centro",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "address",
+                "street"
+              ],
+              "value": "Nueva",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "email"
+              ],
+              "value": "new@example.invalid",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "facebook"
+              ],
+              "value": "fb",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "instagram"
+              ],
+              "value": "ig",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "phone"
+              ],
+              "value": "new-phone",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "whatsapp"
+              ],
+              "value": "new",
+              "delete": false
+            },
+            {
+              "segments": [
+                "gallery"
+              ],
+              "value": [
+                {
+                  "url": "gallery"
+                }
+              ],
+              "delete": false
+            },
+            {
+              "segments": [
+                "hero",
+                "backgroundImage"
+              ],
+              "value": "hero",
+              "delete": false
+            },
+            {
+              "segments": [
+                "hours",
+                "newDay",
+                "open"
+              ],
+              "value": "10:00",
+              "delete": false
+            },
+            {
+              "segments": [
+                "language"
+              ],
+              "value": "es",
+              "delete": false
+            },
+            {
+              "segments": [
+                "owner",
+                "bio"
+              ],
+              "value": "Bio",
+              "delete": false
+            },
+            {
+              "segments": [
+                "owner",
+                "name"
+              ],
+              "value": "Dueño",
+              "delete": false
+            },
+            {
+              "segments": [
+                "owner",
+                "photo"
+              ],
+              "value": "owner",
+              "delete": false
+            },
+            {
+              "segments": [
+                "owner",
+                "role"
+              ],
+              "value": "Rol",
+              "delete": false
+            },
+            {
+              "segments": [
+                "sections",
+                "faq",
+                "items"
+              ],
+              "value": [
+                {
+                  "q": "Pregunta",
+                  "a": "Respuesta"
+                }
+              ],
+              "delete": false
+            },
+            {
+              "segments": [
+                "sections",
+                "whyChooseUs",
+                "benefits"
+              ],
+              "value": [
+                {
+                  "title": "Beneficio",
+                  "desc": "Texto",
+                  "iconName": "Star"
+                }
+              ],
+              "delete": false
+            },
+            {
+              "segments": [
+                "sections",
+                "whyChooseUs",
+                "mainImage"
+              ],
+              "value": "why",
+              "delete": false
+            },
+            {
+              "segments": [
+                "services"
+              ],
+              "value": [
+                {
+                  "id": "custom-l02",
+                  "price": 25,
+                  "duration": 45,
+                  "customLabel": "Personal"
+                },
+                {
+                  "id": "custom-default",
+                  "price": 0,
+                  "duration": 30
+                }
+              ],
+              "delete": false
+            },
+            {
+              "segments": [
+                "staffPhotos"
+              ],
+              "value": [
+                "staff"
+              ],
+              "delete": false
+            },
+            {
+              "segments": [
+                "testimonials"
+              ],
+              "value": [
+                {
+                  "name": "Ana",
+                  "title": "",
+                  "text": "Bien",
+                  "rating": 5
+                }
+              ],
+              "delete": false
+            },
+            {
+              "segments": [
+                "themeOverrides",
+                "accentColor"
+              ],
+              "value": "#112233",
+              "delete": false
+            },
+            {
+              "segments": [
+                "themeOverrides",
+                "primary"
+              ],
+              "value": "#c8a97e",
+              "delete": false
+            },
+            {
+              "segments": [
+                "themeOverrides",
+                "secondary"
+              ],
+              "value": "#000000",
+              "delete": false
+            }
+          ],
+          "transforms": []
+        },
+        {
+          "document": "hub_clients/legacy-id",
+          "fields": [
+            {
+              "segments": [
+                "businessName"
+              ],
+              "value": "Nuevo",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "email"
+              ],
+              "value": "new@example.invalid",
+              "delete": false
+            },
+            {
+              "segments": [
+                "contact",
+                "whatsapp"
+              ],
+              "value": "new",
+              "delete": false
+            },
+            {
+              "segments": [
+                "infoSubmitted"
+              ],
+              "value": true,
+              "delete": false
+            },
+            {
+              "segments": [
+                "language"
+              ],
+              "value": "es",
+              "delete": false
+            },
+            {
+              "segments": [
+                "niche"
+              ],
+              "value": "barberia",
+              "delete": false
+            },
+            {
+              "segments": [
+                "status"
+              ],
+              "value": "pending_review",
+              "delete": false
+            }
+          ],
+          "transforms": [
+            {
+              "fieldPath": "infoSubmittedAt",
+              "setToServerValue": "REQUEST_TIME"
+            },
+            {
+              "fieldPath": "reviewRequestedAt",
+              "setToServerValue": "REQUEST_TIME"
+            },
+            {
+              "fieldPath": "lastEditedAt",
+              "setToServerValue": "REQUEST_TIME"
+            },
+            {
+              "fieldPath": "updatedAt",
+              "setToServerValue": "REQUEST_TIME"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "guard-missing",
+      "status": 401,
+      "expectedReader": [],
+      "patches": []
+    },
+    {
+      "name": "guard-invalid",
+      "status": 401,
+      "expectedReader": [],
+      "patches": []
+    },
+    {
+      "name": "guard-expired",
+      "status": 401,
+      "expectedReader": [],
+      "patches": []
+    },
+    {
+      "name": "guard-foreign",
+      "status": 403,
+      "expectedReader": [],
+      "patches": []
+    },
+    {
+      "name": "guard-locale",
+      "status": 400,
+      "expectedReader": [],
+      "patches": []
+    },
+    {
+      "name": "guard-clientId",
+      "status": 400,
+      "expectedReader": [],
+      "patches": []
+    },
+    {
+      "name": "guard-resubmit-status",
+      "status": 403,
+      "expectedReader": [],
+      "patches": []
+    }
+  ]
+}

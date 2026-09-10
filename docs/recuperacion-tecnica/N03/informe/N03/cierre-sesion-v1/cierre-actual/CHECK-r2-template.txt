@@ -1,0 +1,23 @@
+src/components/booking/BookingWizard.tsx:77: trailing whitespace.
++  
+src/components/booking/BookingWizard.tsx:128: trailing whitespace.
++    
+src/components/booking/BookingWizard.tsx:145: trailing whitespace.
++    
+src/components/booking/BookingWizard.tsx:148: trailing whitespace.
++    
+src/components/booking/BookingWizard.tsx:365: trailing whitespace.
++              
+src/components/booking/BookingWizard.tsx:371: trailing whitespace.
++                 
+src/components/booking/BookingWizard.tsx:379: trailing whitespace.
++                      <button 
+src/components/booking/BookingWizard.tsx:406: trailing whitespace.
++                         <button 
+src/components/booking/BookingWizard.tsx:416: trailing whitespace.
++                        <motion.div 
+src/components/booking/BookingWizard.tsx:468: trailing whitespace.
++              <button 
+src/components/booking/BookingWizard.tsx:613: trailing whitespace.
++              <button 
+src/lib/api/crm-appointments-handler.ts:84: new blank line at EOF.

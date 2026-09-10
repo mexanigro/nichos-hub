@@ -1,0 +1,397 @@
+{
+  "result": "RED",
+  "cases": 12,
+  "checks": 90,
+  "failures": [
+    {
+      "label": "1/invitacion",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "label": "1/boton",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "label": "1/sin-promesa-texto",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "label": "1/sin-promesa-html",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "label": "1/conservacion-integral",
+      "actual": {
+        "subject": "Mensaje de Arzac Studio",
+        "text": "Hola Ana<&>,\n\nMensaje simple\n\nPodés responderme entrando al portal:\nhttps://arzac.studio\n\nLiam\nArzac Studio · https://arzac.studio",
+        "html": "<p>Hola Ana&lt;&amp;&gt;,</p>\n<p style=\"white-space:pre-wrap\">Mensaje simple</p>\n<p><a href=\"https://arzac.studio\" style=\"display:inline-block;background:#0f0f0f;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600\">Responder en el portal →</a></p>\n<p>—<br>Liam<br><a href=\"https://arzac.studio\">Arzac Studio</a></p>"
+      },
+      "expected": {
+        "subject": "Mensaje de Arzac Studio",
+        "text": "Hola Ana<&>,\n\nMensaje simple\n\nPodés visitar Arzac Studio:\nhttps://arzac.studio\n\nLiam\nArzac Studio · https://arzac.studio",
+        "html": "<p>Hola Ana&lt;&amp;&gt;,</p>\n<p style=\"white-space:pre-wrap\">Mensaje simple</p>\n<p><a href=\"https://arzac.studio\" style=\"display:inline-block;background:#0f0f0f;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600\">Visitar Arzac Studio →</a></p>\n<p>—<br>Liam<br><a href=\"https://arzac.studio\">Arzac Studio</a></p>"
+      }
+    },
+    {
+      "label": "2/invitacion",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "label": "2/boton",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "label": "2/sin-promesa-texto",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "label": "2/sin-promesa-html",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "label": "2/conservacion-integral",
+      "actual": {
+        "subject": "Mensaje de Arzac Studio",
+        "text": "Hola Ana<&>,\n\n<b>Texto & \"comillas\"</b>\nSegunda línea\n\nPodés responderme entrando al portal:\nhttps://arzac.studio\n\nLiam\nArzac Studio · https://arzac.studio",
+        "html": "<p>Hola Ana&lt;&amp;&gt;,</p>\n<p style=\"white-space:pre-wrap\">&lt;b&gt;Texto &amp; &quot;comillas&quot;&lt;/b&gt;<br>Segunda línea</p>\n<p><a href=\"https://arzac.studio\" style=\"display:inline-block;background:#0f0f0f;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600\">Responder en el portal →</a></p>\n<p>—<br>Liam<br><a href=\"https://arzac.studio\">Arzac Studio</a></p>"
+      },
+      "expected": {
+        "subject": "Mensaje de Arzac Studio",
+        "text": "Hola Ana<&>,\n\n<b>Texto & \"comillas\"</b>\nSegunda línea\n\nPodés visitar Arzac Studio:\nhttps://arzac.studio\n\nLiam\nArzac Studio · https://arzac.studio",
+        "html": "<p>Hola Ana&lt;&amp;&gt;,</p>\n<p style=\"white-space:pre-wrap\">&lt;b&gt;Texto &amp; &quot;comillas&quot;&lt;/b&gt;<br>Segunda línea</p>\n<p><a href=\"https://arzac.studio\" style=\"display:inline-block;background:#0f0f0f;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600\">Visitar Arzac Studio →</a></p>\n<p>—<br>Liam<br><a href=\"https://arzac.studio\">Arzac Studio</a></p>"
+      }
+    },
+    {
+      "label": "3/invitacion",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "label": "3/boton",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "label": "3/sin-promesa-texto",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "label": "3/sin-promesa-html",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "label": "3/conservacion-integral",
+      "actual": {
+        "subject": "Mensaje de Arzac Studio",
+        "text": "Hola Ana<&>,\n\nMensaje simple\n\nPodés responderme entrando al portal:\nhttps://arzac.studio\n\nLiam\nArzac Studio · https://arzac.studio",
+        "html": "<p>Hola Ana&lt;&amp;&gt;,</p>\n<p style=\"white-space:pre-wrap\">Mensaje simple</p>\n<p><a href=\"https://arzac.studio\" style=\"display:inline-block;background:#0f0f0f;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600\">Responder en el portal →</a></p>\n<p>—<br>Liam<br><a href=\"https://arzac.studio\">Arzac Studio</a></p>"
+      },
+      "expected": {
+        "subject": "Mensaje de Arzac Studio",
+        "text": "Hola Ana<&>,\n\nMensaje simple\n\nPodés visitar Arzac Studio:\nhttps://arzac.studio\n\nLiam\nArzac Studio · https://arzac.studio",
+        "html": "<p>Hola Ana&lt;&amp;&gt;,</p>\n<p style=\"white-space:pre-wrap\">Mensaje simple</p>\n<p><a href=\"https://arzac.studio\" style=\"display:inline-block;background:#0f0f0f;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600\">Visitar Arzac Studio →</a></p>\n<p>—<br>Liam<br><a href=\"https://arzac.studio\">Arzac Studio</a></p>"
+      }
+    },
+    {
+      "label": "4/invitacion",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "label": "4/boton",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "label": "4/sin-promesa-texto",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "label": "4/sin-promesa-html",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "label": "4/conservacion-integral",
+      "actual": {
+        "subject": "Mensaje de Arzac Studio",
+        "text": "Hola Ana<&>,\n\n<b>Texto & \"comillas\"</b>\nSegunda línea\n\nPodés responderme entrando al portal:\nhttps://arzac.studio\n\nLiam\nArzac Studio · https://arzac.studio",
+        "html": "<p>Hola Ana&lt;&amp;&gt;,</p>\n<p style=\"white-space:pre-wrap\">&lt;b&gt;Texto &amp; &quot;comillas&quot;&lt;/b&gt;<br>Segunda línea</p>\n<p><a href=\"https://arzac.studio\" style=\"display:inline-block;background:#0f0f0f;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600\">Responder en el portal →</a></p>\n<p>—<br>Liam<br><a href=\"https://arzac.studio\">Arzac Studio</a></p>"
+      },
+      "expected": {
+        "subject": "Mensaje de Arzac Studio",
+        "text": "Hola Ana<&>,\n\n<b>Texto & \"comillas\"</b>\nSegunda línea\n\nPodés visitar Arzac Studio:\nhttps://arzac.studio\n\nLiam\nArzac Studio · https://arzac.studio",
+        "html": "<p>Hola Ana&lt;&amp;&gt;,</p>\n<p style=\"white-space:pre-wrap\">&lt;b&gt;Texto &amp; &quot;comillas&quot;&lt;/b&gt;<br>Segunda línea</p>\n<p><a href=\"https://arzac.studio\" style=\"display:inline-block;background:#0f0f0f;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600\">Visitar Arzac Studio →</a></p>\n<p>—<br>Liam<br><a href=\"https://arzac.studio\">Arzac Studio</a></p>"
+      }
+    },
+    {
+      "label": "7/invitacion",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "label": "7/boton",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "label": "7/sin-promesa-texto",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "label": "7/sin-promesa-html",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "label": "7/conservacion-integral",
+      "actual": {
+        "subject": "Mensaje de Arzac Studio",
+        "text": "Hola Ana<&>,\n\nMensaje simple\n\nPodés responderme entrando al portal:\nhttps://site.example.invalid\n\nLiam\nArzac Studio · https://site.example.invalid",
+        "html": "<p>Hola Ana&lt;&amp;&gt;,</p>\n<p style=\"white-space:pre-wrap\">Mensaje simple</p>\n<p><a href=\"https://site.example.invalid\" style=\"display:inline-block;background:#0f0f0f;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600\">Responder en el portal →</a></p>\n<p>—<br>Liam<br><a href=\"https://site.example.invalid\">Arzac Studio</a></p>"
+      },
+      "expected": {
+        "subject": "Mensaje de Arzac Studio",
+        "text": "Hola Ana<&>,\n\nMensaje simple\n\nPodés visitar Arzac Studio:\nhttps://site.example.invalid\n\nLiam\nArzac Studio · https://site.example.invalid",
+        "html": "<p>Hola Ana&lt;&amp;&gt;,</p>\n<p style=\"white-space:pre-wrap\">Mensaje simple</p>\n<p><a href=\"https://site.example.invalid\" style=\"display:inline-block;background:#0f0f0f;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600\">Visitar Arzac Studio →</a></p>\n<p>—<br>Liam<br><a href=\"https://site.example.invalid\">Arzac Studio</a></p>"
+      }
+    },
+    {
+      "label": "8/invitacion",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "label": "8/boton",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "label": "8/sin-promesa-texto",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "label": "8/sin-promesa-html",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "label": "8/conservacion-integral",
+      "actual": {
+        "subject": "Mensaje de Arzac Studio",
+        "text": "Hola Ana<&>,\n\n<b>Texto & \"comillas\"</b>\nSegunda línea\n\nPodés responderme entrando al portal:\nhttps://site.example.invalid\n\nLiam\nArzac Studio · https://site.example.invalid",
+        "html": "<p>Hola Ana&lt;&amp;&gt;,</p>\n<p style=\"white-space:pre-wrap\">&lt;b&gt;Texto &amp; &quot;comillas&quot;&lt;/b&gt;<br>Segunda línea</p>\n<p><a href=\"https://site.example.invalid\" style=\"display:inline-block;background:#0f0f0f;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600\">Responder en el portal →</a></p>\n<p>—<br>Liam<br><a href=\"https://site.example.invalid\">Arzac Studio</a></p>"
+      },
+      "expected": {
+        "subject": "Mensaje de Arzac Studio",
+        "text": "Hola Ana<&>,\n\n<b>Texto & \"comillas\"</b>\nSegunda línea\n\nPodés visitar Arzac Studio:\nhttps://site.example.invalid\n\nLiam\nArzac Studio · https://site.example.invalid",
+        "html": "<p>Hola Ana&lt;&amp;&gt;,</p>\n<p style=\"white-space:pre-wrap\">&lt;b&gt;Texto &amp; &quot;comillas&quot;&lt;/b&gt;<br>Segunda línea</p>\n<p><a href=\"https://site.example.invalid\" style=\"display:inline-block;background:#0f0f0f;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600\">Visitar Arzac Studio →</a></p>\n<p>—<br>Liam<br><a href=\"https://site.example.invalid\">Arzac Studio</a></p>"
+      }
+    },
+    {
+      "label": "9/invitacion",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "label": "9/boton",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "label": "9/sin-promesa-texto",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "label": "9/sin-promesa-html",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "label": "9/conservacion-integral",
+      "actual": {
+        "subject": "Mensaje de Arzac Studio",
+        "text": "Hola Ana<&>,\n\nMensaje simple\n\nPodés responderme entrando al portal:\nhttps://site.example.invalid\n\nLiam\nArzac Studio · https://site.example.invalid",
+        "html": "<p>Hola Ana&lt;&amp;&gt;,</p>\n<p style=\"white-space:pre-wrap\">Mensaje simple</p>\n<p><a href=\"https://site.example.invalid\" style=\"display:inline-block;background:#0f0f0f;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600\">Responder en el portal →</a></p>\n<p>—<br>Liam<br><a href=\"https://site.example.invalid\">Arzac Studio</a></p>"
+      },
+      "expected": {
+        "subject": "Mensaje de Arzac Studio",
+        "text": "Hola Ana<&>,\n\nMensaje simple\n\nPodés visitar Arzac Studio:\nhttps://site.example.invalid\n\nLiam\nArzac Studio · https://site.example.invalid",
+        "html": "<p>Hola Ana&lt;&amp;&gt;,</p>\n<p style=\"white-space:pre-wrap\">Mensaje simple</p>\n<p><a href=\"https://site.example.invalid\" style=\"display:inline-block;background:#0f0f0f;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600\">Visitar Arzac Studio →</a></p>\n<p>—<br>Liam<br><a href=\"https://site.example.invalid\">Arzac Studio</a></p>"
+      }
+    },
+    {
+      "label": "10/invitacion",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "label": "10/boton",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "label": "10/sin-promesa-texto",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "label": "10/sin-promesa-html",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "label": "10/conservacion-integral",
+      "actual": {
+        "subject": "Mensaje de Arzac Studio",
+        "text": "Hola Ana<&>,\n\n<b>Texto & \"comillas\"</b>\nSegunda línea\n\nPodés responderme entrando al portal:\nhttps://site.example.invalid\n\nLiam\nArzac Studio · https://site.example.invalid",
+        "html": "<p>Hola Ana&lt;&amp;&gt;,</p>\n<p style=\"white-space:pre-wrap\">&lt;b&gt;Texto &amp; &quot;comillas&quot;&lt;/b&gt;<br>Segunda línea</p>\n<p><a href=\"https://site.example.invalid\" style=\"display:inline-block;background:#0f0f0f;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600\">Responder en el portal →</a></p>\n<p>—<br>Liam<br><a href=\"https://site.example.invalid\">Arzac Studio</a></p>"
+      },
+      "expected": {
+        "subject": "Mensaje de Arzac Studio",
+        "text": "Hola Ana<&>,\n\n<b>Texto & \"comillas\"</b>\nSegunda línea\n\nPodés visitar Arzac Studio:\nhttps://site.example.invalid\n\nLiam\nArzac Studio · https://site.example.invalid",
+        "html": "<p>Hola Ana&lt;&amp;&gt;,</p>\n<p style=\"white-space:pre-wrap\">&lt;b&gt;Texto &amp; &quot;comillas&quot;&lt;/b&gt;<br>Segunda línea</p>\n<p><a href=\"https://site.example.invalid\" style=\"display:inline-block;background:#0f0f0f;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600\">Visitar Arzac Studio →</a></p>\n<p>—<br>Liam<br><a href=\"https://site.example.invalid\">Arzac Studio</a></p>"
+      }
+    }
+  ],
+  "mutant": true,
+  "sourceSha256": "0056ea33d60777b7faf6e3bf641236da167bbd10cac9ae1e4ac09a7fb7ca8f30",
+  "executedSha256": "30060f29935ac8675cccc32126581f52b7f4b6fd2c4964c71c2916c65b3acb54",
+  "baselineSha256": "30060f29935ac8675cccc32126581f52b7f4b6fd2c4964c71c2916c65b3acb54",
+  "rows": [
+    {
+      "id": 1,
+      "site": null,
+      "portalUrl": null,
+      "actual": {
+        "subject": "Mensaje de Arzac Studio",
+        "text": "Hola Ana<&>,\n\nMensaje simple\n\nPodés responderme entrando al portal:\nhttps://arzac.studio\n\nLiam\nArzac Studio · https://arzac.studio",
+        "html": "<p>Hola Ana&lt;&amp;&gt;,</p>\n<p style=\"white-space:pre-wrap\">Mensaje simple</p>\n<p><a href=\"https://arzac.studio\" style=\"display:inline-block;background:#0f0f0f;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600\">Responder en el portal →</a></p>\n<p>—<br>Liam<br><a href=\"https://arzac.studio\">Arzac Studio</a></p>"
+      }
+    },
+    {
+      "id": 2,
+      "site": null,
+      "portalUrl": null,
+      "actual": {
+        "subject": "Mensaje de Arzac Studio",
+        "text": "Hola Ana<&>,\n\n<b>Texto & \"comillas\"</b>\nSegunda línea\n\nPodés responderme entrando al portal:\nhttps://arzac.studio\n\nLiam\nArzac Studio · https://arzac.studio",
+        "html": "<p>Hola Ana&lt;&amp;&gt;,</p>\n<p style=\"white-space:pre-wrap\">&lt;b&gt;Texto &amp; &quot;comillas&quot;&lt;/b&gt;<br>Segunda línea</p>\n<p><a href=\"https://arzac.studio\" style=\"display:inline-block;background:#0f0f0f;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600\">Responder en el portal →</a></p>\n<p>—<br>Liam<br><a href=\"https://arzac.studio\">Arzac Studio</a></p>"
+      }
+    },
+    {
+      "id": 3,
+      "site": null,
+      "portalUrl": "",
+      "actual": {
+        "subject": "Mensaje de Arzac Studio",
+        "text": "Hola Ana<&>,\n\nMensaje simple\n\nPodés responderme entrando al portal:\nhttps://arzac.studio\n\nLiam\nArzac Studio · https://arzac.studio",
+        "html": "<p>Hola Ana&lt;&amp;&gt;,</p>\n<p style=\"white-space:pre-wrap\">Mensaje simple</p>\n<p><a href=\"https://arzac.studio\" style=\"display:inline-block;background:#0f0f0f;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600\">Responder en el portal →</a></p>\n<p>—<br>Liam<br><a href=\"https://arzac.studio\">Arzac Studio</a></p>"
+      }
+    },
+    {
+      "id": 4,
+      "site": null,
+      "portalUrl": "",
+      "actual": {
+        "subject": "Mensaje de Arzac Studio",
+        "text": "Hola Ana<&>,\n\n<b>Texto & \"comillas\"</b>\nSegunda línea\n\nPodés responderme entrando al portal:\nhttps://arzac.studio\n\nLiam\nArzac Studio · https://arzac.studio",
+        "html": "<p>Hola Ana&lt;&amp;&gt;,</p>\n<p style=\"white-space:pre-wrap\">&lt;b&gt;Texto &amp; &quot;comillas&quot;&lt;/b&gt;<br>Segunda línea</p>\n<p><a href=\"https://arzac.studio\" style=\"display:inline-block;background:#0f0f0f;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600\">Responder en el portal →</a></p>\n<p>—<br>Liam<br><a href=\"https://arzac.studio\">Arzac Studio</a></p>"
+      }
+    },
+    {
+      "id": 5,
+      "site": null,
+      "portalUrl": "https://portal.example.invalid/thread/1",
+      "actual": {
+        "subject": "Mensaje de Arzac Studio",
+        "text": "Hola Ana<&>,\n\nMensaje simple\n\nPodés responderme entrando al portal:\nhttps://portal.example.invalid/thread/1\n\nLiam\nArzac Studio · https://arzac.studio",
+        "html": "<p>Hola Ana&lt;&amp;&gt;,</p>\n<p style=\"white-space:pre-wrap\">Mensaje simple</p>\n<p><a href=\"https://portal.example.invalid/thread/1\" style=\"display:inline-block;background:#0f0f0f;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600\">Responder en el portal →</a></p>\n<p>—<br>Liam<br><a href=\"https://arzac.studio\">Arzac Studio</a></p>"
+      }
+    },
+    {
+      "id": 6,
+      "site": null,
+      "portalUrl": "https://portal.example.invalid/thread/1",
+      "actual": {
+        "subject": "Mensaje de Arzac Studio",
+        "text": "Hola Ana<&>,\n\n<b>Texto & \"comillas\"</b>\nSegunda línea\n\nPodés responderme entrando al portal:\nhttps://portal.example.invalid/thread/1\n\nLiam\nArzac Studio · https://arzac.studio",
+        "html": "<p>Hola Ana&lt;&amp;&gt;,</p>\n<p style=\"white-space:pre-wrap\">&lt;b&gt;Texto &amp; &quot;comillas&quot;&lt;/b&gt;<br>Segunda línea</p>\n<p><a href=\"https://portal.example.invalid/thread/1\" style=\"display:inline-block;background:#0f0f0f;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600\">Responder en el portal →</a></p>\n<p>—<br>Liam<br><a href=\"https://arzac.studio\">Arzac Studio</a></p>"
+      }
+    },
+    {
+      "id": 7,
+      "site": "https://site.example.invalid",
+      "portalUrl": null,
+      "actual": {
+        "subject": "Mensaje de Arzac Studio",
+        "text": "Hola Ana<&>,\n\nMensaje simple\n\nPodés responderme entrando al portal:\nhttps://site.example.invalid\n\nLiam\nArzac Studio · https://site.example.invalid",
+        "html": "<p>Hola Ana&lt;&amp;&gt;,</p>\n<p style=\"white-space:pre-wrap\">Mensaje simple</p>\n<p><a href=\"https://site.example.invalid\" style=\"display:inline-block;background:#0f0f0f;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600\">Responder en el portal →</a></p>\n<p>—<br>Liam<br><a href=\"https://site.example.invalid\">Arzac Studio</a></p>"
+      }
+    },
+    {
+      "id": 8,
+      "site": "https://site.example.invalid",
+      "portalUrl": null,
+      "actual": {
+        "subject": "Mensaje de Arzac Studio",
+        "text": "Hola Ana<&>,\n\n<b>Texto & \"comillas\"</b>\nSegunda línea\n\nPodés responderme entrando al portal:\nhttps://site.example.invalid\n\nLiam\nArzac Studio · https://site.example.invalid",
+        "html": "<p>Hola Ana&lt;&amp;&gt;,</p>\n<p style=\"white-space:pre-wrap\">&lt;b&gt;Texto &amp; &quot;comillas&quot;&lt;/b&gt;<br>Segunda línea</p>\n<p><a href=\"https://site.example.invalid\" style=\"display:inline-block;background:#0f0f0f;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600\">Responder en el portal →</a></p>\n<p>—<br>Liam<br><a href=\"https://site.example.invalid\">Arzac Studio</a></p>"
+      }
+    },
+    {
+      "id": 9,
+      "site": "https://site.example.invalid",
+      "portalUrl": "",
+      "actual": {
+        "subject": "Mensaje de Arzac Studio",
+        "text": "Hola Ana<&>,\n\nMensaje simple\n\nPodés responderme entrando al portal:\nhttps://site.example.invalid\n\nLiam\nArzac Studio · https://site.example.invalid",
+        "html": "<p>Hola Ana&lt;&amp;&gt;,</p>\n<p style=\"white-space:pre-wrap\">Mensaje simple</p>\n<p><a href=\"https://site.example.invalid\" style=\"display:inline-block;background:#0f0f0f;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600\">Responder en el portal →</a></p>\n<p>—<br>Liam<br><a href=\"https://site.example.invalid\">Arzac Studio</a></p>"
+      }
+    },
+    {
+      "id": 10,
+      "site": "https://site.example.invalid",
+      "portalUrl": "",
+      "actual": {
+        "subject": "Mensaje de Arzac Studio",
+        "text": "Hola Ana<&>,\n\n<b>Texto & \"comillas\"</b>\nSegunda línea\n\nPodés responderme entrando al portal:\nhttps://site.example.invalid\n\nLiam\nArzac Studio · https://site.example.invalid",
+        "html": "<p>Hola Ana&lt;&amp;&gt;,</p>\n<p style=\"white-space:pre-wrap\">&lt;b&gt;Texto &amp; &quot;comillas&quot;&lt;/b&gt;<br>Segunda línea</p>\n<p><a href=\"https://site.example.invalid\" style=\"display:inline-block;background:#0f0f0f;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600\">Responder en el portal →</a></p>\n<p>—<br>Liam<br><a href=\"https://site.example.invalid\">Arzac Studio</a></p>"
+      }
+    },
+    {
+      "id": 11,
+      "site": "https://site.example.invalid",
+      "portalUrl": "https://portal.example.invalid/thread/1",
+      "actual": {
+        "subject": "Mensaje de Arzac Studio",
+        "text": "Hola Ana<&>,\n\nMensaje simple\n\nPodés responderme entrando al portal:\nhttps://portal.example.invalid/thread/1\n\nLiam\nArzac Studio · https://site.example.invalid",
+        "html": "<p>Hola Ana&lt;&amp;&gt;,</p>\n<p style=\"white-space:pre-wrap\">Mensaje simple</p>\n<p><a href=\"https://portal.example.invalid/thread/1\" style=\"display:inline-block;background:#0f0f0f;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600\">Responder en el portal →</a></p>\n<p>—<br>Liam<br><a href=\"https://site.example.invalid\">Arzac Studio</a></p>"
+      }
+    },
+    {
+      "id": 12,
+      "site": "https://site.example.invalid",
+      "portalUrl": "https://portal.example.invalid/thread/1",
+      "actual": {
+        "subject": "Mensaje de Arzac Studio",
+        "text": "Hola Ana<&>,\n\n<b>Texto & \"comillas\"</b>\nSegunda línea\n\nPodés responderme entrando al portal:\nhttps://portal.example.invalid/thread/1\n\nLiam\nArzac Studio · https://site.example.invalid",
+        "html": "<p>Hola Ana&lt;&amp;&gt;,</p>\n<p style=\"white-space:pre-wrap\">&lt;b&gt;Texto &amp; &quot;comillas&quot;&lt;/b&gt;<br>Segunda línea</p>\n<p><a href=\"https://portal.example.invalid/thread/1\" style=\"display:inline-block;background:#0f0f0f;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600\">Responder en el portal →</a></p>\n<p>—<br>Liam<br><a href=\"https://site.example.invalid\">Arzac Studio</a></p>"
+      }
+    }
+  ]
+}

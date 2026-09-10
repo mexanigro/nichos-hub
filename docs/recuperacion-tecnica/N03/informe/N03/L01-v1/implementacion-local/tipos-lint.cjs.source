@@ -1,0 +1,15 @@
+const fs=require('node:fs'),p=require('node:path'),{spawnSync}=require('node:child_process'),{pathToFileURL}=require('node:url');const base=__dirname,hub='C:/Users/liama/Desktop/Nichos-hub',template='C:/Users/liama/Desktop/Nichos/Barber-shop-template-main';
+const write=(f,v)=>fs.writeFileSync(p.join(base,f),typeof v==='string'?v:JSON.stringify(v,null,2),{flag:'wx'});
+(async()=>{
+ const checks=[];
+ for(const [name,root,file] of [['hub',hub,'src/lib/wizard/config-to-wizard.ts'],['template',template,'src/config/site.ts']]){
+  const config={extends:root+'/tsconfig.json',compilerOptions:{incremental:false},include:[root+'/'+file,...(name==='hub'?[root+'/next-env.d.ts']:[])],exclude:[root+'/node_modules']};write('tsconfig-'+name+'.json',config);
+  const args=[root+'/node_modules/typescript/bin/tsc','--project',p.join(base,'tsconfig-'+name+'.json'),'--noEmit','--incremental','false'];
+  const r=spawnSync(process.execPath,args,{cwd:root,encoding:'utf8',timeout:120000});write('TIPOS-'+name+'.stdout.txt',r.stdout||'');write('TIPOS-'+name+'.stderr.txt',r.stderr||'');checks.push({repo:name,exit:r.status,error:r.error?.message,command:[process.execPath,...args]});
+ }
+ write('TIPOS.json',checks);
+ const {ESLint}=require(hub+'/node_modules/eslint'),v=(await import(pathToFileURL(hub+'/node_modules/eslint-config-next/dist/core-web-vitals.js'))).default,t=(await import(pathToFileURL(hub+'/node_modules/eslint-config-next/dist/typescript.js'))).default;
+ const eslint=new ESLint({cwd:hub,overrideConfigFile:true,overrideConfig:[...v,...t]}),lint=await eslint.lintFiles(['src/lib/wizard/config-to-wizard.ts']);write('LINT.json',lint);
+ const errors=lint.reduce((n,r)=>n+r.errorCount,0),warnings=lint.reduce((n,r)=>n+r.warningCount,0);write('LINT-RESUMEN.json',{errors,warnings,template:'lint del package es tsc --noEmit; ejecutado pertinente arriba'});
+ console.log(JSON.stringify({types:checks.map(c=>[c.repo,c.exit]),lint:{errors,warnings}}));process.exitCode=checks.every(c=>c.exit===0)&&!errors&&!warnings?0:1;
+})().catch(e=>{console.error(e);process.exitCode=2;});

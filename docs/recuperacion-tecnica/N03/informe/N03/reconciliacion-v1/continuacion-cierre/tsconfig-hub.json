@@ -1,0 +1,13 @@
+{
+  "extends": "C:/Users/liama/Desktop/Nichos-hub/tsconfig.json",
+  "compilerOptions": {
+    "incremental": false
+  },
+  "include": [
+    "C:/Users/liama/Desktop/Nichos-hub/src/components/client-language-banner.tsx",
+    "C:/Users/liama/Desktop/Nichos-hub/next-env.d.ts"
+  ],
+  "exclude": [
+    "C:/Users/liama/Desktop/Nichos-hub/node_modules"
+  ]
+}

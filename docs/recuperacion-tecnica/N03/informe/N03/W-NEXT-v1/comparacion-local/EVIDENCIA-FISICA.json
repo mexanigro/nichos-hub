@@ -1,0 +1,1945 @@
+{
+  "fecha": "2026-09-09T20:32:57.686Z",
+  "excluidos": [
+    "node_modules montado readonly",
+    "cachés .next/cache",
+    "el propio manifiesto para evitar autorreferencia"
+  ],
+  "archivos": [
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\cerrar.cjs",
+      "bytes": 5659,
+      "sha256": "be2d84c9a8b9a61f91ee529b55032aef103ddb394df68b4f31d8b2e1c7de38db"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\CONTRATO.md",
+      "bytes": 4138,
+      "sha256": "b5150d47063660f4f8e91169c0d6cb5093c3806a8c657598ed3f406b1004517d"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\app-path-routes-manifest.json",
+      "bytes": 122,
+      "sha256": "33c555b7a71f3b9d7e116636f52b922f0a2c9957b1697cab32399e5b2cf31365"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\build-manifest.json",
+      "bytes": 510,
+      "sha256": "e1e335cf5a31b34eddc34ca3d6d37180c30c7a09164dd075b83fec87d0216114"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\BUILD_ID",
+      "bytes": 21,
+      "sha256": "60c161e97553fd47de87b120ecabe920eeb608586c98a28af15d76e08027b44f"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\diagnostics\\build-diagnostics.json",
+      "bytes": 93,
+      "sha256": "e4932338188cf0fbd08fb45f8b04421b523d0b2d9b90f197b5ad2e24fec94306"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\diagnostics\\framework.json",
+      "bytes": 37,
+      "sha256": "9aaa59715d7da88d1b571131fd7db4b6ab84591b7633c00ad19e22a45f40bc02"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\export-marker.json",
+      "bytes": 111,
+      "sha256": "82356527db218adb95bd1eca0ede6f3391165b38b22d667d064e62e6b539d974"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\images-manifest.json",
+      "bytes": 1193,
+      "sha256": "89153990319006e8e53593d4cee9a741db8a01b9dd8897513bd4e0a4685d2f42"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\next-minimal-server.js.nft.json",
+      "bytes": 9555,
+      "sha256": "0c0dabefc8643614df472772aff83f3907c95f79365d31056979f3cfce6d7f70"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\next-server.js.nft.json",
+      "bytes": 46269,
+      "sha256": "03e7406148f2770ebcd666fdcff359e9e4b0d86ae2bdbbcd685b3047a169d54a"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\package.json",
+      "bytes": 20,
+      "sha256": "091a04fa67c7907b98e106fcff8b964e13129754fce72d24f3025b97c4887fa3"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\prerender-manifest.json",
+      "bytes": 1621,
+      "sha256": "3b98e459ae4c5de36ae38292d30467804ea66baf3915da9cfd9d1af9b6f4c3ba"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\react-loadable-manifest.json",
+      "bytes": 2,
+      "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\required-server-files.js",
+      "bytes": 9303,
+      "sha256": "0e00720639a12b7401ead5fff82297653151458ae44aca044073624d1dd13e68"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\required-server-files.json",
+      "bytes": 9274,
+      "sha256": "9f1dcb9ad715df590757ff41e7ead13963770f414f6dc73df5e5e88458f12400"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\routes-manifest.json",
+      "bytes": 1653,
+      "sha256": "e4d5079a52317ae3be78d50b3154ca0147fc107596f436cffe895474d3070cc9"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\app\\[[...ruta]]\\route.js",
+      "bytes": 7814,
+      "sha256": "2302cadd0823e2b094f476a4967fd355d484ba2261115e64ee1c6a937d0abefe"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\app\\[[...ruta]]\\route.js.nft.json",
+      "bytes": 10792,
+      "sha256": "151f534f4cf6d98244df9f1f0d8306884027076be4fd738b6f09e764822c95fe"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\app\\[[...ruta]]\\route_client-reference-manifest.js",
+      "bytes": 314,
+      "sha256": "f95e35851ba3b5a903be956e5b5eb64f738523eb796532d7c4f6c9bc5c5b9074"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\app\\_global-error\\page.js",
+      "bytes": 28186,
+      "sha256": "efa53c8a3c68156d45359fb6f6b7ac9d2fbe8264473b4852aabdbef9539b4522"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\app\\_global-error\\page.js.nft.json",
+      "bytes": 11201,
+      "sha256": "4226fd1ce06e8cee8d3d0aad95d0f3626481a3b8337ee4a9979ca7680cbdc448"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\app\\_global-error\\page_client-reference-manifest.js",
+      "bytes": 3328,
+      "sha256": "4a082a6781ebcd9b9d2ff7515bd1accab25de99de5f40058fd36e4ff56fb8917"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\app\\_global-error.html",
+      "bytes": 8915,
+      "sha256": "4c69ec72bb8acafa2d95b6b2173a4feaf64e5dcc8e0166d55f40b78fe9b5dc91"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\app\\_global-error.meta",
+      "bytes": 350,
+      "sha256": "9b1f9f5d89822fdac47db85079c53de9d87b56bd95b4f3440127a983e162eb50"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\app\\_global-error.rsc",
+      "bytes": 4735,
+      "sha256": "6178171b436b0a98e13788584899cba44eb606021c9fca006963ca9510bcf2b1"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\app\\_global-error.segments\\_full.segment.rsc",
+      "bytes": 4735,
+      "sha256": "6178171b436b0a98e13788584899cba44eb606021c9fca006963ca9510bcf2b1"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\app\\_global-error.segments\\_global-error\\__PAGE__.segment.rsc",
+      "bytes": 3336,
+      "sha256": "a81201c0aee8156e41248ce2e9d31a4af260ce2a92bfb19c94ffe50af5ea4566"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\app\\_global-error.segments\\_global-error.segment.rsc",
+      "bytes": 271,
+      "sha256": "b073d65158d3823a2584ad269106d6cc9f5a19b9dc0bc40908593bd6d3a03267"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\app\\_global-error.segments\\_head.segment.rsc",
+      "bytes": 523,
+      "sha256": "45f7027422f794a222526ebb4d3e0a1d74b6786aeb857cf864b3089f3a53991a"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\app\\_global-error.segments\\_index.segment.rsc",
+      "bytes": 271,
+      "sha256": "b073d65158d3823a2584ad269106d6cc9f5a19b9dc0bc40908593bd6d3a03267"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\app\\_global-error.segments\\_tree.segment.rsc",
+      "bytes": 266,
+      "sha256": "25b542a00d46384b5d02f4b43d040a35d7c35693a0dc83cadec2c4e3771be963"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\app\\_not-found\\page.js",
+      "bytes": 24410,
+      "sha256": "fc7c032c2734e5d08ab812413735ca23252c67830fab7dea6790650b416c2faf"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\app\\_not-found\\page.js.nft.json",
+      "bytes": 11201,
+      "sha256": "4226fd1ce06e8cee8d3d0aad95d0f3626481a3b8337ee4a9979ca7680cbdc448"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\app\\_not-found\\page_client-reference-manifest.js",
+      "bytes": 3322,
+      "sha256": "b78c7ca6e54af2fcf14db15ab1e19ebface3a521d9d78c55068dfbd016f23cb4"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\app\\_not-found.html",
+      "bytes": 5287,
+      "sha256": "ac5e7b762f00ec7072666590ebf31c0e321c04521bc5e7a6b9ff1ca413bd69ed"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\app\\_not-found.meta",
+      "bytes": 335,
+      "sha256": "9d3bde76e1dcab57cf8b3c004f9c912d51b8b68bb965e53ecd2f10fc5a8585a1"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\app\\_not-found.rsc",
+      "bytes": 2915,
+      "sha256": "1d3182cc03f8aa5e61e9977a86bdd0ef5d7132c467efc6f0167c6d95f922bcca"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\app\\_not-found.segments\\_full.segment.rsc",
+      "bytes": 2915,
+      "sha256": "1d3182cc03f8aa5e61e9977a86bdd0ef5d7132c467efc6f0167c6d95f922bcca"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\app\\_not-found.segments\\_head.segment.rsc",
+      "bytes": 574,
+      "sha256": "1c4f7bbbb2d871f44f8f791bc88507b860d989bfc6399628af64e934f0262527"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\app\\_not-found.segments\\_index.segment.rsc",
+      "bytes": 327,
+      "sha256": "f206858e9cd93ff274e3c723f1de6a2fa821ac0ee84fa8cfd9f760138795daf0"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\app\\_not-found.segments\\_not-found\\__PAGE__.segment.rsc",
+      "bytes": 1381,
+      "sha256": "91a9dca49df5f4059d5ccaa43d58cc6274d757e814dda3e895414bbaecfa8f74"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\app\\_not-found.segments\\_not-found.segment.rsc",
+      "bytes": 271,
+      "sha256": "b073d65158d3823a2584ad269106d6cc9f5a19b9dc0bc40908593bd6d3a03267"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\app\\_not-found.segments\\_tree.segment.rsc",
+      "bytes": 264,
+      "sha256": "9ff09fb863cae22eb46d57eec20565fa518aa790b97419ce999075560825c38f"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\app-paths-manifest.json",
+      "bytes": 156,
+      "sha256": "7d09288a22c0fbc7d962498f2b29010d58c874963a433af7832ddb5727f82016"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\chunks\\741.js",
+      "bytes": 165017,
+      "sha256": "358d6838fc9c54ef5f1fa606708ab844f6ed2448c9c433836d9b92163fb7b20f"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\chunks\\863.js",
+      "bytes": 367666,
+      "sha256": "bb7d99780b3a2fb4b54051056eb1a121f36424244ec4f74e8307f012d4e2cc53"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\edge-runtime-webpack.js",
+      "bytes": 1471,
+      "sha256": "07709bc74072cced7c71465e1233f349567ec9df368662bd83c967fc31a3bccf"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\edge-runtime-webpack.js.map",
+      "bytes": 6165,
+      "sha256": "889022cd453091cc9f25b9d7f33a39f99bb41c92c84bb9b6eb7c1136f87451da"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\functions-config-manifest.json",
+      "bytes": 37,
+      "sha256": "e7d9c7de4b1a0e8ed521c8ca071261fb4a0de053afc0040538c0a50e5e4c1ee4"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\interception-route-rewrite-manifest.js",
+      "bytes": 48,
+      "sha256": "fc5133e40acf09e6517b073ddd7b5c0c218d09938848902210f2cc13f08e1c81"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\middleware-build-manifest.js",
+      "bytes": 449,
+      "sha256": "035b7176df70090ecb44ac94798fb384b11e1706a2ea4bea20ff5f959792b978"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\middleware-manifest.json",
+      "bytes": 1226,
+      "sha256": "8be7eae05978dfc872bc3557154c764a52e5ac632bcf397bcdca6f8f600537e7"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\middleware-react-loadable-manifest.js",
+      "bytes": 36,
+      "sha256": "ad2e79ec91e2a5440840da3d8bd222c279b3b4c47e89a968327a66f6cb12eb82"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\next-font-manifest.js",
+      "bytes": 106,
+      "sha256": "2c0f5bbb79d07dfea405146a62d7e15a7a9e890d29e38b7db2631fcf6e480da8"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\next-font-manifest.json",
+      "bytes": 77,
+      "sha256": "926e772d34a53f2a4d9b16071dd6ea77b051b2b7acc49d9165723debe3fbbe0f"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\pages\\404.html",
+      "bytes": 5287,
+      "sha256": "ac5e7b762f00ec7072666590ebf31c0e321c04521bc5e7a6b9ff1ca413bd69ed"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\pages\\500.html",
+      "bytes": 8915,
+      "sha256": "4c69ec72bb8acafa2d95b6b2173a4feaf64e5dcc8e0166d55f40b78fe9b5dc91"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\pages-manifest.json",
+      "bytes": 58,
+      "sha256": "c354059caa217e72bdeb145e351b2038990972872c52df215cb1e4105c35097b"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\prefetch-hints.json",
+      "bytes": 2,
+      "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\server-reference-manifest.js",
+      "bytes": 123,
+      "sha256": "ce01006c00e1f63bcbfe41b3f7edd260d969b41d0a323b705c44e1ef9df13d8c"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\server-reference-manifest.json",
+      "bytes": 84,
+      "sha256": "8e5f3fd5208c151943cde6f7bf147158dd026aa8329ef4e69f471d7be5afdd9e"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\src\\middleware.js",
+      "bytes": 300308,
+      "sha256": "6cd71fee186cab1f922eb3738df068283b2a4dde55a0124b0d203980b12588c9"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\src\\middleware.js.map",
+      "bytes": 1343081,
+      "sha256": "90db627770d65ee351ce006f2eac325c3733a5243d455a757e817a9b5abea014"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\server\\webpack-runtime.js",
+      "bytes": 1428,
+      "sha256": "01c83db7f520e345e3c86b353460232d033b903cbedd733af9171e0184e7567d"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\static\\chunks\\4bd1b696-215e5051988c3dde.js",
+      "bytes": 199864,
+      "sha256": "f768811066891848dc107ada37148d3af9d37db69ed00ef12aae26c1017ad72d"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\static\\chunks\\794-307f158afcf5cb52.js",
+      "bytes": 222190,
+      "sha256": "6634d2b4a39003b1ec54e44c57b5acf153c082dc9c1074551b79d64f8b0f897b"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\static\\chunks\\app\\[[...ruta]]\\route-ee9557cbf9e2b5a2.js",
+      "bytes": 155,
+      "sha256": "b9558694a14ce284f32dacc84cb53baf11e3a8b1a8c00b7ab450cc446fbe4f20"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\static\\chunks\\app\\_global-error\\page-ee9557cbf9e2b5a2.js",
+      "bytes": 155,
+      "sha256": "b9558694a14ce284f32dacc84cb53baf11e3a8b1a8c00b7ab450cc446fbe4f20"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\static\\chunks\\app\\_not-found\\page-577eba21b3a47d76.js",
+      "bytes": 2667,
+      "sha256": "df609e4208303bac1799493760ddc0353348f255e85e89c802d59dfc54f3e14f"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\static\\chunks\\framework-5ce682ea41927f33.js",
+      "bytes": 189678,
+      "sha256": "bbb2bcb9f495cac8982113de07c7bc2c556904506f97880010382a9aeab49c6a"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\static\\chunks\\main-50b14f682f0548e2.js",
+      "bytes": 137768,
+      "sha256": "7464a3077cafe3cbc63bc819b9351b7d71863ab7a30584057fdd603a0ebb317e"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\static\\chunks\\main-app-3f94d1654d7621f8.js",
+      "bytes": 513,
+      "sha256": "7463b2e8af4a6bab069450f952fa1fce05df4c701f9bf71613d8f85a5adf5a80"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\static\\chunks\\next\\dist\\client\\components\\builtin\\app-error-ee9557cbf9e2b5a2.js",
+      "bytes": 155,
+      "sha256": "b9558694a14ce284f32dacc84cb53baf11e3a8b1a8c00b7ab450cc446fbe4f20"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\static\\chunks\\next\\dist\\client\\components\\builtin\\forbidden-ee9557cbf9e2b5a2.js",
+      "bytes": 155,
+      "sha256": "b9558694a14ce284f32dacc84cb53baf11e3a8b1a8c00b7ab450cc446fbe4f20"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\static\\chunks\\next\\dist\\client\\components\\builtin\\global-error-d40735cf059c9704.js",
+      "bytes": 179,
+      "sha256": "2eea37c93c09407a5dd407b5a57406d5c1ef20938018471ee7bd670320768144"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\static\\chunks\\next\\dist\\client\\components\\builtin\\layout-ee9557cbf9e2b5a2.js",
+      "bytes": 155,
+      "sha256": "b9558694a14ce284f32dacc84cb53baf11e3a8b1a8c00b7ab450cc446fbe4f20"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\static\\chunks\\next\\dist\\client\\components\\builtin\\not-found-ee9557cbf9e2b5a2.js",
+      "bytes": 155,
+      "sha256": "b9558694a14ce284f32dacc84cb53baf11e3a8b1a8c00b7ab450cc446fbe4f20"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\static\\chunks\\next\\dist\\client\\components\\builtin\\unauthorized-ee9557cbf9e2b5a2.js",
+      "bytes": 155,
+      "sha256": "b9558694a14ce284f32dacc84cb53baf11e3a8b1a8c00b7ab450cc446fbe4f20"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\static\\chunks\\polyfills-42372ed130431b0a.js",
+      "bytes": 112594,
+      "sha256": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\static\\chunks\\webpack-70c336f9a46f13b1.js",
+      "bytes": 3232,
+      "sha256": "66e72eb3cc81fcead9004456e41a189f047bf790adc9efdd68a96d05777e4c25"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\static\\RPHJ53CjZ9UqeYGIuSq6J\\_buildManifest.js",
+      "bytes": 402,
+      "sha256": "f9c130a18b23169ab8f2c95899110dbca1dd105317f71b5f476d64a867bc8c7a"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\static\\RPHJ53CjZ9UqeYGIuSq6J\\_ssgManifest.js",
+      "bytes": 80,
+      "sha256": "678f6ce2cb80b1fe72fc67e7412be6e2ab6ada083111b64f7c40d35e3cba5e00"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\trace",
+      "bytes": 210426,
+      "sha256": "410d9097c58e13febfe05fff0688b9f13f2e6f2d38f8187381b0febce64a415f"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\trace-build",
+      "bytes": 1207,
+      "sha256": "af748b9eaea63bd3daaec2042b6cafa19abbf2d4cc95acbb93c140fac7ed720a"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\types\\app\\[[...ruta]]\\route.ts",
+      "bytes": 8911,
+      "sha256": "70bd11785a0fe7e1b00cbc65dfffe8940f18e3490683d6f242681a8eac907b79"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\types\\cache-life.d.ts",
+      "bytes": 5854,
+      "sha256": "d1986184a09a52db8228cb2bb2a61a8c05c9354e5b93cec8e2628d8579c892d7"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\types\\package.json",
+      "bytes": 18,
+      "sha256": "e3d5a4a2d8551aa52c5a01d2a0efb2e06a2d9711b4f5c5f1d20de6e21807e2cd"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\types\\routes.d.ts",
+      "bytes": 1927,
+      "sha256": "2e77373bf7adcb3f1de10b1a2bfe4778c0f3c6237ec4a32d8145bfbbb1e4cbf4"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\.next\\types\\validator.ts",
+      "bytes": 1558,
+      "sha256": "07f6fe68c695775a61df759842f8b24a28715d9822a821c12092561da9aacfef"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\next-env.d.ts",
+      "bytes": 247,
+      "sha256": "7b550dda9686c16f36a17bf9051d5dbf31e98555b30d114ac49fc49a1e712651"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\next.config.mjs",
+      "bytes": 46,
+      "sha256": "dbe2a9a31aa5ab1b813e430f1bc7bba06b53c1301e48a77903b6058c81d41bd4"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\package.json",
+      "bytes": 115,
+      "sha256": "cf94f67bd852815c5740046697996e1223aefd852efb107773462a89a7ce0de2"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\src\\app\\[[...ruta]]\\route.ts",
+      "bytes": 186,
+      "sha256": "2f92b0c3d90f6ff608c9d35f43845d265e9bcbde7ac32a079a52ce66e4c53187"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\src\\auth.config.ts",
+      "bytes": 348,
+      "sha256": "f9da40e7cd7cb05838674f072677e21110f2fab1ee264bb8eaf0176675abcb0e"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\src\\middleware.ts",
+      "bytes": 2085,
+      "sha256": "5a20e70b747f634dcf972e098993f837a1667cc7b23a17a82d6922f26832b44b"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\middleware\\tsconfig.json",
+      "bytes": 686,
+      "sha256": "a00430df7eb4b2d74ff8f6c0514419944c93c5243795843300f82ac737a3e28c"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\app-path-routes-manifest.json",
+      "bytes": 122,
+      "sha256": "33c555b7a71f3b9d7e116636f52b922f0a2c9957b1697cab32399e5b2cf31365"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\build-manifest.json",
+      "bytes": 510,
+      "sha256": "06b871d61a4d4eae71d5521ab7d83caf19611583e6376914e16f124bfd59f4ee"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\BUILD_ID",
+      "bytes": 21,
+      "sha256": "26e5640bcb0cadf7ab588cbf33ac28ce4af7108e16df357e4b40bbdab418bb8c"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\diagnostics\\build-diagnostics.json",
+      "bytes": 93,
+      "sha256": "e4932338188cf0fbd08fb45f8b04421b523d0b2d9b90f197b5ad2e24fec94306"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\diagnostics\\framework.json",
+      "bytes": 37,
+      "sha256": "9aaa59715d7da88d1b571131fd7db4b6ab84591b7633c00ad19e22a45f40bc02"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\export-marker.json",
+      "bytes": 111,
+      "sha256": "82356527db218adb95bd1eca0ede6f3391165b38b22d667d064e62e6b539d974"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\images-manifest.json",
+      "bytes": 1193,
+      "sha256": "89153990319006e8e53593d4cee9a741db8a01b9dd8897513bd4e0a4685d2f42"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\next-minimal-server.js.nft.json",
+      "bytes": 9555,
+      "sha256": "0c0dabefc8643614df472772aff83f3907c95f79365d31056979f3cfce6d7f70"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\next-server.js.nft.json",
+      "bytes": 46269,
+      "sha256": "03e7406148f2770ebcd666fdcff359e9e4b0d86ae2bdbbcd685b3047a169d54a"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\package.json",
+      "bytes": 20,
+      "sha256": "091a04fa67c7907b98e106fcff8b964e13129754fce72d24f3025b97c4887fa3"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\prerender-manifest.json",
+      "bytes": 1621,
+      "sha256": "b1c8b3a8d7308b55a0e0d4f4959ef6a3ec1a8d3904a32c3c4a32117be22d55bb"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\react-loadable-manifest.json",
+      "bytes": 2,
+      "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\required-server-files.js",
+      "bytes": 9303,
+      "sha256": "0e00720639a12b7401ead5fff82297653151458ae44aca044073624d1dd13e68"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\required-server-files.json",
+      "bytes": 9274,
+      "sha256": "9f1dcb9ad715df590757ff41e7ead13963770f414f6dc73df5e5e88458f12400"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\routes-manifest.json",
+      "bytes": 1653,
+      "sha256": "e4d5079a52317ae3be78d50b3154ca0147fc107596f436cffe895474d3070cc9"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\server\\app\\[[...ruta]]\\route.js",
+      "bytes": 7814,
+      "sha256": "2302cadd0823e2b094f476a4967fd355d484ba2261115e64ee1c6a937d0abefe"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\server\\app\\[[...ruta]]\\route.js.nft.json",
+      "bytes": 10792,
+      "sha256": "151f534f4cf6d98244df9f1f0d8306884027076be4fd738b6f09e764822c95fe"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\server\\app\\[[...ruta]]\\route_client-reference-manifest.js",
+      "bytes": 314,
+      "sha256": "f95e35851ba3b5a903be956e5b5eb64f738523eb796532d7c4f6c9bc5c5b9074"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\server\\app\\_global-error\\page.js",
+      "bytes": 28186,
+      "sha256": "efa53c8a3c68156d45359fb6f6b7ac9d2fbe8264473b4852aabdbef9539b4522"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\server\\app\\_global-error\\page.js.nft.json",
+      "bytes": 11201,
+      "sha256": "4226fd1ce06e8cee8d3d0aad95d0f3626481a3b8337ee4a9979ca7680cbdc448"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\server\\app\\_global-error\\page_client-reference-manifest.js",
+      "bytes": 3328,
+      "sha256": "4a082a6781ebcd9b9d2ff7515bd1accab25de99de5f40058fd36e4ff56fb8917"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\server\\app\\_global-error.html",
+      "bytes": 8915,
+      "sha256": "d7c71dafe6dee2dcaf122e75bd49668aef81d2e2dc220487659e0f0c08fbb9a5"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\server\\app\\_global-error.meta",
+      "bytes": 350,
+      "sha256": "9b1f9f5d89822fdac47db85079c53de9d87b56bd95b4f3440127a983e162eb50"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\server\\app\\_global-error.rsc",
+      "bytes": 4735,
+      "sha256": "7da018f0e0ff13511878d8cb47a23673c750c22b1b35c060aceb563b4d73ebf9"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\server\\app\\_global-error.segments\\_full.segment.rsc",
+      "bytes": 4735,
+      "sha256": "7da018f0e0ff13511878d8cb47a23673c750c22b1b35c060aceb563b4d73ebf9"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\server\\app\\_global-error.segments\\_global-error\\__PAGE__.segment.rsc",
+      "bytes": 3336,
+      "sha256": "b13ea5329403f2178414146e4ed45d5cb9cf2866b75512329bff2ee3b5c377ed"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\server\\app\\_global-error.segments\\_global-error.segment.rsc",
+      "bytes": 271,
+      "sha256": "68a52c97277d30741e46c50586cee80811ffd7b789052a1f9a87615e5508630e"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\server\\app\\_global-error.segments\\_head.segment.rsc",
+      "bytes": 523,
+      "sha256": "e2e9212dcd3eb8bcdfa6e4ce5c94ce047253c1d7465482adfd36325778d5d74d"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\server\\app\\_global-error.segments\\_index.segment.rsc",
+      "bytes": 271,
+      "sha256": "68a52c97277d30741e46c50586cee80811ffd7b789052a1f9a87615e5508630e"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\server\\app\\_global-error.segments\\_tree.segment.rsc",
+      "bytes": 266,
+      "sha256": "bb93ecf83a0cbfaed344451337a1e7d4a6729eeaa73664df90713a3b99ee91da"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\server\\app\\_not-found\\page.js",
+      "bytes": 24410,
+      "sha256": "fc7c032c2734e5d08ab812413735ca23252c67830fab7dea6790650b416c2faf"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\server\\app\\_not-found\\page.js.nft.json",
+      "bytes": 11201,
+      "sha256": "4226fd1ce06e8cee8d3d0aad95d0f3626481a3b8337ee4a9979ca7680cbdc448"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\server\\app\\_not-found\\page_client-reference-manifest.js",
+      "bytes": 3322,
+      "sha256": "b78c7ca6e54af2fcf14db15ab1e19ebface3a521d9d78c55068dfbd016f23cb4"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\server\\app\\_not-found.html",
+      "bytes": 5287,
+      "sha256": "41c0f072659f607181c4c7938cecd4dd8005ffb6ae14a4eeea51f57d56a57bb8"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\server\\app\\_not-found.meta",
+      "bytes": 335,
+      "sha256": "9d3bde76e1dcab57cf8b3c004f9c912d51b8b68bb965e53ecd2f10fc5a8585a1"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\server\\app\\_not-found.rsc",
+      "bytes": 2915,
+      "sha256": "1330bfc991d5be99f77ae5e231a796a71b48af404af797f46079dcf5145442f4"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\server\\app\\_not-found.segments\\_full.segment.rsc",
+      "bytes": 2915,
+      "sha256": "1330bfc991d5be99f77ae5e231a796a71b48af404af797f46079dcf5145442f4"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\server\\app\\_not-found.segments\\_head.segment.rsc",
+      "bytes": 574,
+      "sha256": "b9331d24fb2d4326f551a4af57d056fc29b51f701692d0da5e1c3b0a7c8d7a21"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\server\\app\\_not-found.segments\\_index.segment.rsc",
+      "bytes": 327,
+      "sha256": "e8550f9400d6d21e6272129c0472112f416fc2d506639d03a7ee31e666836722"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\server\\app\\_not-found.segments\\_not-found\\__PAGE__.segment.rsc",
+      "bytes": 1381,
+      "sha256": "e4eff30541859c849d141089225673c24bd2bcf461b06b59afa81bf98b2e60d8"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\server\\app\\_not-found.segments\\_not-found.segment.rsc",
+      "bytes": 271,
+      "sha256": "68a52c97277d30741e46c50586cee80811ffd7b789052a1f9a87615e5508630e"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\server\\app\\_not-found.segments\\_tree.segment.rsc",
+      "bytes": 264,
+      "sha256": "26e020a8fa01f06447dbf3f1174d2b4ce6e54e643293942e73ce6458490a1926"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\server\\app-paths-manifest.json",
+      "bytes": 156,
+      "sha256": "7d09288a22c0fbc7d962498f2b29010d58c874963a433af7832ddb5727f82016"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\server\\chunks\\741.js",
+      "bytes": 165017,
+      "sha256": "358d6838fc9c54ef5f1fa606708ab844f6ed2448c9c433836d9b92163fb7b20f"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\server\\chunks\\863.js",
+      "bytes": 367666,
+      "sha256": "bb7d99780b3a2fb4b54051056eb1a121f36424244ec4f74e8307f012d4e2cc53"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\server\\functions-config-manifest.json",
+      "bytes": 503,
+      "sha256": "80970115a930d9b1b1d4ac661d0ad7c18e4c70706a5d1a414dced26359615193"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\server\\interception-route-rewrite-manifest.js",
+      "bytes": 48,
+      "sha256": "fc5133e40acf09e6517b073ddd7b5c0c218d09938848902210f2cc13f08e1c81"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\server\\middleware-build-manifest.js",
+      "bytes": 449,
+      "sha256": "6fb3d3a2cd5c2849978f9155fa3e81c19e494a562e38b983a4416148748079e3"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\server\\middleware-manifest.json",
+      "bytes": 83,
+      "sha256": "0a8520bc7e076f7ae717c2d62713990c83e8a3d74626f327a3844bc0504e210c"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\server\\middleware-react-loadable-manifest.js",
+      "bytes": 36,
+      "sha256": "ad2e79ec91e2a5440840da3d8bd222c279b3b4c47e89a968327a66f6cb12eb82"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\server\\middleware.js",
+      "bytes": 449866,
+      "sha256": "f4886feb96094ed617bfe3c7512d5a8bc0d1d1b81b7b990199a403cd90b1b086"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\server\\middleware.js.nft.json",
+      "bytes": 9333,
+      "sha256": "09bb61304b1470c5ec426117696da22a0930553c4127acdce630841d3217596b"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\server\\next-font-manifest.js",
+      "bytes": 106,
+      "sha256": "2c0f5bbb79d07dfea405146a62d7e15a7a9e890d29e38b7db2631fcf6e480da8"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\server\\next-font-manifest.json",
+      "bytes": 77,
+      "sha256": "926e772d34a53f2a4d9b16071dd6ea77b051b2b7acc49d9165723debe3fbbe0f"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\server\\pages\\404.html",
+      "bytes": 5287,
+      "sha256": "41c0f072659f607181c4c7938cecd4dd8005ffb6ae14a4eeea51f57d56a57bb8"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\server\\pages\\500.html",
+      "bytes": 8915,
+      "sha256": "d7c71dafe6dee2dcaf122e75bd49668aef81d2e2dc220487659e0f0c08fbb9a5"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\server\\pages-manifest.json",
+      "bytes": 58,
+      "sha256": "c354059caa217e72bdeb145e351b2038990972872c52df215cb1e4105c35097b"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\server\\prefetch-hints.json",
+      "bytes": 2,
+      "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\server\\server-reference-manifest.js",
+      "bytes": 123,
+      "sha256": "ce01006c00e1f63bcbfe41b3f7edd260d969b41d0a323b705c44e1ef9df13d8c"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\server\\server-reference-manifest.json",
+      "bytes": 84,
+      "sha256": "b2534c677e69505aa661c758c8b435362c13259e08ccfad2612d8b2871e9136e"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\server\\webpack-runtime.js",
+      "bytes": 1438,
+      "sha256": "68835a826bab0ddef47e9a0008c6625f0916f56f3e2f71f7b1de64929b20757b"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\static\\b6qCsA2bz4Kst-ozsNkqP\\_buildManifest.js",
+      "bytes": 402,
+      "sha256": "f9c130a18b23169ab8f2c95899110dbca1dd105317f71b5f476d64a867bc8c7a"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\static\\b6qCsA2bz4Kst-ozsNkqP\\_ssgManifest.js",
+      "bytes": 80,
+      "sha256": "678f6ce2cb80b1fe72fc67e7412be6e2ab6ada083111b64f7c40d35e3cba5e00"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\static\\chunks\\4bd1b696-215e5051988c3dde.js",
+      "bytes": 199864,
+      "sha256": "f768811066891848dc107ada37148d3af9d37db69ed00ef12aae26c1017ad72d"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\static\\chunks\\794-307f158afcf5cb52.js",
+      "bytes": 222190,
+      "sha256": "6634d2b4a39003b1ec54e44c57b5acf153c082dc9c1074551b79d64f8b0f897b"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\static\\chunks\\app\\[[...ruta]]\\route-ee9557cbf9e2b5a2.js",
+      "bytes": 155,
+      "sha256": "b9558694a14ce284f32dacc84cb53baf11e3a8b1a8c00b7ab450cc446fbe4f20"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\static\\chunks\\app\\_global-error\\page-ee9557cbf9e2b5a2.js",
+      "bytes": 155,
+      "sha256": "b9558694a14ce284f32dacc84cb53baf11e3a8b1a8c00b7ab450cc446fbe4f20"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\static\\chunks\\app\\_not-found\\page-577eba21b3a47d76.js",
+      "bytes": 2667,
+      "sha256": "df609e4208303bac1799493760ddc0353348f255e85e89c802d59dfc54f3e14f"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\static\\chunks\\framework-5ce682ea41927f33.js",
+      "bytes": 189678,
+      "sha256": "bbb2bcb9f495cac8982113de07c7bc2c556904506f97880010382a9aeab49c6a"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\static\\chunks\\main-50b14f682f0548e2.js",
+      "bytes": 137768,
+      "sha256": "7464a3077cafe3cbc63bc819b9351b7d71863ab7a30584057fdd603a0ebb317e"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\static\\chunks\\main-app-3f94d1654d7621f8.js",
+      "bytes": 513,
+      "sha256": "7463b2e8af4a6bab069450f952fa1fce05df4c701f9bf71613d8f85a5adf5a80"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\static\\chunks\\next\\dist\\client\\components\\builtin\\app-error-ee9557cbf9e2b5a2.js",
+      "bytes": 155,
+      "sha256": "b9558694a14ce284f32dacc84cb53baf11e3a8b1a8c00b7ab450cc446fbe4f20"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\static\\chunks\\next\\dist\\client\\components\\builtin\\forbidden-ee9557cbf9e2b5a2.js",
+      "bytes": 155,
+      "sha256": "b9558694a14ce284f32dacc84cb53baf11e3a8b1a8c00b7ab450cc446fbe4f20"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\static\\chunks\\next\\dist\\client\\components\\builtin\\global-error-d40735cf059c9704.js",
+      "bytes": 179,
+      "sha256": "2eea37c93c09407a5dd407b5a57406d5c1ef20938018471ee7bd670320768144"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\static\\chunks\\next\\dist\\client\\components\\builtin\\layout-ee9557cbf9e2b5a2.js",
+      "bytes": 155,
+      "sha256": "b9558694a14ce284f32dacc84cb53baf11e3a8b1a8c00b7ab450cc446fbe4f20"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\static\\chunks\\next\\dist\\client\\components\\builtin\\not-found-ee9557cbf9e2b5a2.js",
+      "bytes": 155,
+      "sha256": "b9558694a14ce284f32dacc84cb53baf11e3a8b1a8c00b7ab450cc446fbe4f20"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\static\\chunks\\next\\dist\\client\\components\\builtin\\unauthorized-ee9557cbf9e2b5a2.js",
+      "bytes": 155,
+      "sha256": "b9558694a14ce284f32dacc84cb53baf11e3a8b1a8c00b7ab450cc446fbe4f20"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\static\\chunks\\polyfills-42372ed130431b0a.js",
+      "bytes": 112594,
+      "sha256": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\static\\chunks\\webpack-70c336f9a46f13b1.js",
+      "bytes": 3232,
+      "sha256": "66e72eb3cc81fcead9004456e41a189f047bf790adc9efdd68a96d05777e4c25"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\trace",
+      "bytes": 155090,
+      "sha256": "833da13a11f2de1d2ff9b1e2861d2f0cad6548429e5e49baf3c18b1b4f4879a7"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\trace-build",
+      "bytes": 1205,
+      "sha256": "8e1867c1b7497371f9199dd4592ba05200c8fc7dd5f3350e21d713b7176b60f9"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\types\\app\\[[...ruta]]\\route.ts",
+      "bytes": 8911,
+      "sha256": "70bd11785a0fe7e1b00cbc65dfffe8940f18e3490683d6f242681a8eac907b79"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\types\\cache-life.d.ts",
+      "bytes": 5854,
+      "sha256": "d1986184a09a52db8228cb2bb2a61a8c05c9354e5b93cec8e2628d8579c892d7"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\types\\package.json",
+      "bytes": 18,
+      "sha256": "e3d5a4a2d8551aa52c5a01d2a0efb2e06a2d9711b4f5c5f1d20de6e21807e2cd"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\types\\routes.d.ts",
+      "bytes": 1927,
+      "sha256": "2e77373bf7adcb3f1de10b1a2bfe4778c0f3c6237ec4a32d8145bfbbb1e4cbf4"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\.next\\types\\validator.ts",
+      "bytes": 1558,
+      "sha256": "07f6fe68c695775a61df759842f8b24a28715d9822a821c12092561da9aacfef"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\next-env.d.ts",
+      "bytes": 247,
+      "sha256": "7b550dda9686c16f36a17bf9051d5dbf31e98555b30d114ac49fc49a1e712651"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\next.config.mjs",
+      "bytes": 46,
+      "sha256": "dbe2a9a31aa5ab1b813e430f1bc7bba06b53c1301e48a77903b6058c81d41bd4"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\package.json",
+      "bytes": 115,
+      "sha256": "cf94f67bd852815c5740046697996e1223aefd852efb107773462a89a7ce0de2"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\src\\app\\[[...ruta]]\\route.ts",
+      "bytes": 186,
+      "sha256": "2f92b0c3d90f6ff608c9d35f43845d265e9bcbde7ac32a079a52ce66e4c53187"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\src\\auth.config.ts",
+      "bytes": 348,
+      "sha256": "f9da40e7cd7cb05838674f072677e21110f2fab1ee264bb8eaf0176675abcb0e"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\src\\proxy.ts",
+      "bytes": 1607,
+      "sha256": "98d8b8e3263772ee00409c98e3d38677e65e8111a1b190ba31b12599772b0243"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\mutante\\tsconfig.json",
+      "bytes": 686,
+      "sha256": "a00430df7eb4b2d74ff8f6c0514419944c93c5243795843300f82ac737a3e28c"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\app-path-routes-manifest.json",
+      "bytes": 122,
+      "sha256": "33c555b7a71f3b9d7e116636f52b922f0a2c9957b1697cab32399e5b2cf31365"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\build-manifest.json",
+      "bytes": 510,
+      "sha256": "3247a2ce28305070fb46d65ff660b78befe13dd319dd1f2e467956c318d99be2"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\BUILD_ID",
+      "bytes": 21,
+      "sha256": "15cdf88eec5bae493de126189fcad9c559acc41955e321a5a24b74549f4b1e19"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\diagnostics\\build-diagnostics.json",
+      "bytes": 93,
+      "sha256": "e4932338188cf0fbd08fb45f8b04421b523d0b2d9b90f197b5ad2e24fec94306"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\diagnostics\\framework.json",
+      "bytes": 37,
+      "sha256": "9aaa59715d7da88d1b571131fd7db4b6ab84591b7633c00ad19e22a45f40bc02"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\export-marker.json",
+      "bytes": 111,
+      "sha256": "82356527db218adb95bd1eca0ede6f3391165b38b22d667d064e62e6b539d974"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\images-manifest.json",
+      "bytes": 1193,
+      "sha256": "89153990319006e8e53593d4cee9a741db8a01b9dd8897513bd4e0a4685d2f42"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\next-minimal-server.js.nft.json",
+      "bytes": 9555,
+      "sha256": "0c0dabefc8643614df472772aff83f3907c95f79365d31056979f3cfce6d7f70"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\next-server.js.nft.json",
+      "bytes": 46269,
+      "sha256": "03e7406148f2770ebcd666fdcff359e9e4b0d86ae2bdbbcd685b3047a169d54a"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\package.json",
+      "bytes": 20,
+      "sha256": "091a04fa67c7907b98e106fcff8b964e13129754fce72d24f3025b97c4887fa3"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\prerender-manifest.json",
+      "bytes": 1621,
+      "sha256": "12b74c3af68c1f78fe65cd0ee28fbc3686379cedb0e4bb12b9064e4d0ec5c524"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\react-loadable-manifest.json",
+      "bytes": 2,
+      "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\required-server-files.js",
+      "bytes": 9303,
+      "sha256": "0e00720639a12b7401ead5fff82297653151458ae44aca044073624d1dd13e68"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\required-server-files.json",
+      "bytes": 9274,
+      "sha256": "9f1dcb9ad715df590757ff41e7ead13963770f414f6dc73df5e5e88458f12400"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\routes-manifest.json",
+      "bytes": 1653,
+      "sha256": "e4d5079a52317ae3be78d50b3154ca0147fc107596f436cffe895474d3070cc9"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\server\\app\\[[...ruta]]\\route.js",
+      "bytes": 7814,
+      "sha256": "2302cadd0823e2b094f476a4967fd355d484ba2261115e64ee1c6a937d0abefe"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\server\\app\\[[...ruta]]\\route.js.nft.json",
+      "bytes": 10792,
+      "sha256": "151f534f4cf6d98244df9f1f0d8306884027076be4fd738b6f09e764822c95fe"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\server\\app\\[[...ruta]]\\route_client-reference-manifest.js",
+      "bytes": 314,
+      "sha256": "f95e35851ba3b5a903be956e5b5eb64f738523eb796532d7c4f6c9bc5c5b9074"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\server\\app\\_global-error\\page.js",
+      "bytes": 28186,
+      "sha256": "efa53c8a3c68156d45359fb6f6b7ac9d2fbe8264473b4852aabdbef9539b4522"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\server\\app\\_global-error\\page.js.nft.json",
+      "bytes": 11201,
+      "sha256": "4226fd1ce06e8cee8d3d0aad95d0f3626481a3b8337ee4a9979ca7680cbdc448"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\server\\app\\_global-error\\page_client-reference-manifest.js",
+      "bytes": 3328,
+      "sha256": "4a082a6781ebcd9b9d2ff7515bd1accab25de99de5f40058fd36e4ff56fb8917"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\server\\app\\_global-error.html",
+      "bytes": 8915,
+      "sha256": "adde496f30f5d1e9d51539314c6b2c896eb70b61e123b462d18bea84b916fde1"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\server\\app\\_global-error.meta",
+      "bytes": 350,
+      "sha256": "9b1f9f5d89822fdac47db85079c53de9d87b56bd95b4f3440127a983e162eb50"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\server\\app\\_global-error.rsc",
+      "bytes": 4735,
+      "sha256": "457f81823658c0e28ddac3bf0ad94a7cacd03349b1fdd57596b2ebfa27f2cfa4"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\server\\app\\_global-error.segments\\_full.segment.rsc",
+      "bytes": 4735,
+      "sha256": "457f81823658c0e28ddac3bf0ad94a7cacd03349b1fdd57596b2ebfa27f2cfa4"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\server\\app\\_global-error.segments\\_global-error\\__PAGE__.segment.rsc",
+      "bytes": 3336,
+      "sha256": "7a33b2b74b20defd099d6a62973a223e3d9850bd26787ea62d08f7fbc95fa2c0"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\server\\app\\_global-error.segments\\_global-error.segment.rsc",
+      "bytes": 271,
+      "sha256": "2e89064c4dee789516fa92bc0beb7ec801f9ec59ff234c39a6cdcfd23c8f6374"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\server\\app\\_global-error.segments\\_head.segment.rsc",
+      "bytes": 523,
+      "sha256": "8de4624ac2e0d24d4bb4046d5f39ace5a1601a467e3dc7f9d6146918c2ceb73d"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\server\\app\\_global-error.segments\\_index.segment.rsc",
+      "bytes": 271,
+      "sha256": "2e89064c4dee789516fa92bc0beb7ec801f9ec59ff234c39a6cdcfd23c8f6374"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\server\\app\\_global-error.segments\\_tree.segment.rsc",
+      "bytes": 266,
+      "sha256": "cce240cb4bd935d56926351a2ae1f4d073b90e0faf3663694b0dfb83c1acfb65"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\server\\app\\_not-found\\page.js",
+      "bytes": 24410,
+      "sha256": "fc7c032c2734e5d08ab812413735ca23252c67830fab7dea6790650b416c2faf"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\server\\app\\_not-found\\page.js.nft.json",
+      "bytes": 11201,
+      "sha256": "4226fd1ce06e8cee8d3d0aad95d0f3626481a3b8337ee4a9979ca7680cbdc448"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\server\\app\\_not-found\\page_client-reference-manifest.js",
+      "bytes": 3322,
+      "sha256": "b78c7ca6e54af2fcf14db15ab1e19ebface3a521d9d78c55068dfbd016f23cb4"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\server\\app\\_not-found.html",
+      "bytes": 5287,
+      "sha256": "76ca2e00c92e4e154d7e5b407b0371ae5aff1033296480d3219fec117ef6a0e2"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\server\\app\\_not-found.meta",
+      "bytes": 335,
+      "sha256": "9d3bde76e1dcab57cf8b3c004f9c912d51b8b68bb965e53ecd2f10fc5a8585a1"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\server\\app\\_not-found.rsc",
+      "bytes": 2915,
+      "sha256": "7899afdff4150cfad04ee685ab8d112ab11075b3af84e2733f0ba31b2c4dbe2c"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\server\\app\\_not-found.segments\\_full.segment.rsc",
+      "bytes": 2915,
+      "sha256": "7899afdff4150cfad04ee685ab8d112ab11075b3af84e2733f0ba31b2c4dbe2c"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\server\\app\\_not-found.segments\\_head.segment.rsc",
+      "bytes": 574,
+      "sha256": "511679851be97358e6b1e78339d2fc80e4e319275acd5a1d1d3e7300c8c38379"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\server\\app\\_not-found.segments\\_index.segment.rsc",
+      "bytes": 327,
+      "sha256": "b5b09cf9435f0442a7f2a74a9f5d9b3f28d5cbcc3aafdd003382675f1daede11"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\server\\app\\_not-found.segments\\_not-found\\__PAGE__.segment.rsc",
+      "bytes": 1381,
+      "sha256": "69a31cbaa8e6569fdc42c2df90c5daeffe2ecf754282ac5173c707b5c8c03c21"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\server\\app\\_not-found.segments\\_not-found.segment.rsc",
+      "bytes": 271,
+      "sha256": "2e89064c4dee789516fa92bc0beb7ec801f9ec59ff234c39a6cdcfd23c8f6374"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\server\\app\\_not-found.segments\\_tree.segment.rsc",
+      "bytes": 264,
+      "sha256": "49da1e0a1c9bdf5bda3bdfd34000c2b7e1b6c2b188d2217a324a4df6424ecc54"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\server\\app-paths-manifest.json",
+      "bytes": 156,
+      "sha256": "7d09288a22c0fbc7d962498f2b29010d58c874963a433af7832ddb5727f82016"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\server\\chunks\\741.js",
+      "bytes": 165017,
+      "sha256": "358d6838fc9c54ef5f1fa606708ab844f6ed2448c9c433836d9b92163fb7b20f"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\server\\chunks\\863.js",
+      "bytes": 367666,
+      "sha256": "bb7d99780b3a2fb4b54051056eb1a121f36424244ec4f74e8307f012d4e2cc53"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\server\\functions-config-manifest.json",
+      "bytes": 503,
+      "sha256": "80970115a930d9b1b1d4ac661d0ad7c18e4c70706a5d1a414dced26359615193"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\server\\interception-route-rewrite-manifest.js",
+      "bytes": 48,
+      "sha256": "fc5133e40acf09e6517b073ddd7b5c0c218d09938848902210f2cc13f08e1c81"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\server\\middleware-build-manifest.js",
+      "bytes": 449,
+      "sha256": "1faf8c285afc40573e39d3272d1a6e783a1d8d7902fb73d56ad5b29564a73ae8"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\server\\middleware-manifest.json",
+      "bytes": 83,
+      "sha256": "0a8520bc7e076f7ae717c2d62713990c83e8a3d74626f327a3844bc0504e210c"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\server\\middleware-react-loadable-manifest.js",
+      "bytes": 36,
+      "sha256": "ad2e79ec91e2a5440840da3d8bd222c279b3b4c47e89a968327a66f6cb12eb82"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\server\\middleware.js",
+      "bytes": 450713,
+      "sha256": "ebd9aeda3cff9f3902d84f8a01c378c794b0feb5e17a8ab55684636aad706b1e"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\server\\middleware.js.nft.json",
+      "bytes": 9333,
+      "sha256": "09bb61304b1470c5ec426117696da22a0930553c4127acdce630841d3217596b"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\server\\next-font-manifest.js",
+      "bytes": 106,
+      "sha256": "2c0f5bbb79d07dfea405146a62d7e15a7a9e890d29e38b7db2631fcf6e480da8"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\server\\next-font-manifest.json",
+      "bytes": 77,
+      "sha256": "926e772d34a53f2a4d9b16071dd6ea77b051b2b7acc49d9165723debe3fbbe0f"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\server\\pages\\404.html",
+      "bytes": 5287,
+      "sha256": "76ca2e00c92e4e154d7e5b407b0371ae5aff1033296480d3219fec117ef6a0e2"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\server\\pages\\500.html",
+      "bytes": 8915,
+      "sha256": "adde496f30f5d1e9d51539314c6b2c896eb70b61e123b462d18bea84b916fde1"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\server\\pages-manifest.json",
+      "bytes": 58,
+      "sha256": "c354059caa217e72bdeb145e351b2038990972872c52df215cb1e4105c35097b"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\server\\prefetch-hints.json",
+      "bytes": 2,
+      "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\server\\server-reference-manifest.js",
+      "bytes": 123,
+      "sha256": "ce01006c00e1f63bcbfe41b3f7edd260d969b41d0a323b705c44e1ef9df13d8c"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\server\\server-reference-manifest.json",
+      "bytes": 84,
+      "sha256": "981d83960046159ee16acb497fe2aed6b18cca53328ce28a03c588e3688b7893"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\server\\webpack-runtime.js",
+      "bytes": 1438,
+      "sha256": "68835a826bab0ddef47e9a0008c6625f0916f56f3e2f71f7b1de64929b20757b"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\static\\chunks\\4bd1b696-215e5051988c3dde.js",
+      "bytes": 199864,
+      "sha256": "f768811066891848dc107ada37148d3af9d37db69ed00ef12aae26c1017ad72d"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\static\\chunks\\794-307f158afcf5cb52.js",
+      "bytes": 222190,
+      "sha256": "6634d2b4a39003b1ec54e44c57b5acf153c082dc9c1074551b79d64f8b0f897b"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\static\\chunks\\app\\[[...ruta]]\\route-ee9557cbf9e2b5a2.js",
+      "bytes": 155,
+      "sha256": "b9558694a14ce284f32dacc84cb53baf11e3a8b1a8c00b7ab450cc446fbe4f20"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\static\\chunks\\app\\_global-error\\page-ee9557cbf9e2b5a2.js",
+      "bytes": 155,
+      "sha256": "b9558694a14ce284f32dacc84cb53baf11e3a8b1a8c00b7ab450cc446fbe4f20"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\static\\chunks\\app\\_not-found\\page-577eba21b3a47d76.js",
+      "bytes": 2667,
+      "sha256": "df609e4208303bac1799493760ddc0353348f255e85e89c802d59dfc54f3e14f"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\static\\chunks\\framework-5ce682ea41927f33.js",
+      "bytes": 189678,
+      "sha256": "bbb2bcb9f495cac8982113de07c7bc2c556904506f97880010382a9aeab49c6a"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\static\\chunks\\main-50b14f682f0548e2.js",
+      "bytes": 137768,
+      "sha256": "7464a3077cafe3cbc63bc819b9351b7d71863ab7a30584057fdd603a0ebb317e"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\static\\chunks\\main-app-3f94d1654d7621f8.js",
+      "bytes": 513,
+      "sha256": "7463b2e8af4a6bab069450f952fa1fce05df4c701f9bf71613d8f85a5adf5a80"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\static\\chunks\\next\\dist\\client\\components\\builtin\\app-error-ee9557cbf9e2b5a2.js",
+      "bytes": 155,
+      "sha256": "b9558694a14ce284f32dacc84cb53baf11e3a8b1a8c00b7ab450cc446fbe4f20"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\static\\chunks\\next\\dist\\client\\components\\builtin\\forbidden-ee9557cbf9e2b5a2.js",
+      "bytes": 155,
+      "sha256": "b9558694a14ce284f32dacc84cb53baf11e3a8b1a8c00b7ab450cc446fbe4f20"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\static\\chunks\\next\\dist\\client\\components\\builtin\\global-error-d40735cf059c9704.js",
+      "bytes": 179,
+      "sha256": "2eea37c93c09407a5dd407b5a57406d5c1ef20938018471ee7bd670320768144"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\static\\chunks\\next\\dist\\client\\components\\builtin\\layout-ee9557cbf9e2b5a2.js",
+      "bytes": 155,
+      "sha256": "b9558694a14ce284f32dacc84cb53baf11e3a8b1a8c00b7ab450cc446fbe4f20"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\static\\chunks\\next\\dist\\client\\components\\builtin\\not-found-ee9557cbf9e2b5a2.js",
+      "bytes": 155,
+      "sha256": "b9558694a14ce284f32dacc84cb53baf11e3a8b1a8c00b7ab450cc446fbe4f20"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\static\\chunks\\next\\dist\\client\\components\\builtin\\unauthorized-ee9557cbf9e2b5a2.js",
+      "bytes": 155,
+      "sha256": "b9558694a14ce284f32dacc84cb53baf11e3a8b1a8c00b7ab450cc446fbe4f20"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\static\\chunks\\polyfills-42372ed130431b0a.js",
+      "bytes": 112594,
+      "sha256": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\static\\chunks\\webpack-70c336f9a46f13b1.js",
+      "bytes": 3232,
+      "sha256": "66e72eb3cc81fcead9004456e41a189f047bf790adc9efdd68a96d05777e4c25"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\static\\LeJdKTDu_cbySqUkxnwR_\\_buildManifest.js",
+      "bytes": 402,
+      "sha256": "f9c130a18b23169ab8f2c95899110dbca1dd105317f71b5f476d64a867bc8c7a"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\static\\LeJdKTDu_cbySqUkxnwR_\\_ssgManifest.js",
+      "bytes": 80,
+      "sha256": "678f6ce2cb80b1fe72fc67e7412be6e2ab6ada083111b64f7c40d35e3cba5e00"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\trace",
+      "bytes": 155137,
+      "sha256": "7865a1db7265dae2bec4e2cf9454426b4f1f779feedf006a321d9abd3d2e4182"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\trace-build",
+      "bytes": 1205,
+      "sha256": "7d6073d910ef980aeee940a825f3602d71814ff3e5c4da23d1a66bb9ac236408"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\types\\app\\[[...ruta]]\\route.ts",
+      "bytes": 8911,
+      "sha256": "70bd11785a0fe7e1b00cbc65dfffe8940f18e3490683d6f242681a8eac907b79"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\types\\cache-life.d.ts",
+      "bytes": 5854,
+      "sha256": "d1986184a09a52db8228cb2bb2a61a8c05c9354e5b93cec8e2628d8579c892d7"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\types\\package.json",
+      "bytes": 18,
+      "sha256": "e3d5a4a2d8551aa52c5a01d2a0efb2e06a2d9711b4f5c5f1d20de6e21807e2cd"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\types\\routes.d.ts",
+      "bytes": 1927,
+      "sha256": "2e77373bf7adcb3f1de10b1a2bfe4778c0f3c6237ec4a32d8145bfbbb1e4cbf4"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\.next\\types\\validator.ts",
+      "bytes": 1558,
+      "sha256": "07f6fe68c695775a61df759842f8b24a28715d9822a821c12092561da9aacfef"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\next-env.d.ts",
+      "bytes": 247,
+      "sha256": "7b550dda9686c16f36a17bf9051d5dbf31e98555b30d114ac49fc49a1e712651"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\next.config.mjs",
+      "bytes": 46,
+      "sha256": "dbe2a9a31aa5ab1b813e430f1bc7bba06b53c1301e48a77903b6058c81d41bd4"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\package.json",
+      "bytes": 115,
+      "sha256": "cf94f67bd852815c5740046697996e1223aefd852efb107773462a89a7ce0de2"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\src\\app\\[[...ruta]]\\route.ts",
+      "bytes": 186,
+      "sha256": "2f92b0c3d90f6ff608c9d35f43845d265e9bcbde7ac32a079a52ce66e4c53187"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\src\\auth.config.ts",
+      "bytes": 348,
+      "sha256": "f9da40e7cd7cb05838674f072677e21110f2fab1ee264bb8eaf0176675abcb0e"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\src\\proxy.ts",
+      "bytes": 2085,
+      "sha256": "5a20e70b747f634dcf972e098993f837a1667cc7b23a17a82d6922f26832b44b"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\copias\\proxy\\tsconfig.json",
+      "bytes": 686,
+      "sha256": "a00430df7eb4b2d74ff8f6c0514419944c93c5243795843300f82ac737a3e28c"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\CORRECCION-INSTRUMENTO-r2.md",
+      "bytes": 2003,
+      "sha256": "1d52504d69037dd82d700c20e83119e47878d04cd48f2b4e750a1f77360411e9"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\CUOTA.json",
+      "bytes": 485,
+      "sha256": "fa93f6b7c90c8eb341a7722df1dec18fc17bc3d3644827e58342caf18a1c2b79"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\CUSTODIA-REGISTROS.json",
+      "bytes": 6571,
+      "sha256": "0f6f16e3c967b1d9a7ed2613886f8f1fdc56b7933f20f6c2a327b82b45fed9ac"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\ejecutar.ps1",
+      "bytes": 3520,
+      "sha256": "612e327fb66e65df4a25d797af516fd21085955ffc892933ba0c8b7c3e1a750d"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\evaluar.cjs",
+      "bytes": 1552,
+      "sha256": "204e628700cfe89857572be41c5bb16206ea4ab517c017221c9b22d3a1269ddc"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\FREEZE.json",
+      "bytes": 748,
+      "sha256": "dca5a069416a25b124f817dce9b508376a22163aa11a1d6da8e6be9e40a4eb44"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\FUENTES.json",
+      "bytes": 1193,
+      "sha256": "2e464ebad0d5bc6362c30c9f1a3c973ac6f33fba5a15083689c369aa57cf6da7"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\GATES-FINAL.json",
+      "bytes": 282,
+      "sha256": "1c61574a59cc20b8ad8b82627cd9438e33f19481da79340d2f29cb88ffaeb23d"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\INFORME-COMPARATIVO.md",
+      "bytes": 6755,
+      "sha256": "6c25447bf62631439c302629e957d457034af4687f4f01a63066c52730acf31d"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\preimagenes\\next.config.ts",
+      "bytes": 1533,
+      "sha256": "7116c350468557b1b291135412d7afdd75ca49fd21d21fd653d3c86e3beb4aa0"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\preimagenes\\package.json",
+      "bytes": 1471,
+      "sha256": "d630c5016c91322ad91f3345742d6406cc0030df1b629fb85a88c4eb9c9ef5eb"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\preimagenes\\src\\auth.config.ts",
+      "bytes": 348,
+      "sha256": "f9da40e7cd7cb05838674f072677e21110f2fab1ee264bb8eaf0176675abcb0e"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\preimagenes\\src\\middleware.ts",
+      "bytes": 2085,
+      "sha256": "5a20e70b747f634dcf972e098993f837a1667cc7b23a17a82d6922f26832b44b"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\preimagenes-instrumento-r1\\CORRECCION-antes-claridad.md",
+      "bytes": 1991,
+      "sha256": "90c27bd6ef384d23411396515398612918917b30bba705bcb3743d0824b4e9d6"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\preimagenes-instrumento-r1\\ejecutar.ps1",
+      "bytes": 3334,
+      "sha256": "c05da54e8b08fbc894301a92a75f7924f996f11689a1a47d51e152eb633354c6"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\preimagenes-instrumento-r1\\evaluar.cjs",
+      "bytes": 1516,
+      "sha256": "140d43566604aedb09d6bf04bad34c381671f3a8dc28af3e72e15af9b9c527e4"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\preimagenes-instrumento-r1\\PROGRESO-antes-P2.jsonl",
+      "bytes": 357,
+      "sha256": "53069c0622afa02d3bd5e535f8ee4e934987a1c4680d1c9fe3306ee21ecf042f"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\preimagenes-instrumento-r1\\runner.cjs",
+      "bytes": 6572,
+      "sha256": "cc0a879bc137f699e15b527950c5eb5d55db6114e3b11a122c0a0c1abba76725"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\preimagenes-instrumento-r1\\tsconfig-inicial-comun.json",
+      "bytes": 404,
+      "sha256": "b5cbd058b19791f7f8519b3e3dc2d39bfb270531089333afb2d70d5542dc8146"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\preimagenes-instrumento-r1\\verificar-completo-antes-claridad.cjs",
+      "bytes": 5220,
+      "sha256": "9faed7770ff4fb5e00f40099d25dacfa6d9c776bf2778ea6902b21c0be1eaa9a"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\preimagenes-registros\\archivo\\indice\\CALENDARIO.md",
+      "bytes": 21394,
+      "sha256": "525c281599d710cbc3c96ec16dd543ea60f654694e1de5dc356b388c96bb5408"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\preimagenes-registros\\archivo\\indice\\README.md",
+      "bytes": 24038,
+      "sha256": "9b1250bacfb953e150b1d5604099f4e16a7cfcc4e56a736acd07473c9e063a1f"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\preimagenes-registros\\archivo\\indice\\tareas\\N03.md",
+      "bytes": 27464,
+      "sha256": "117b86f85a77a5eee9cfcd4f08cee7431e4dc2b2f8f9b726582ae66afbc7000b"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\preimagenes-registros\\archivo\\informe\\N03\\cierre-sesion-v1\\RETOMA.md",
+      "bytes": 9976,
+      "sha256": "805263a22548d5a791304ce6ac69dedfd29e6dfa282b24f8ee025bf2ef8dde18"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\preimagenes-registros\\archivo\\informe\\N03\\reconciliacion-v1\\BALANCE.md",
+      "bytes": 12791,
+      "sha256": "55846223fe15220dd44ffad91e8563194fdbbb8a90d2151eb718d077974f2218"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\preimagenes-registros\\archivo\\informe\\N03\\W-NEXT-v1\\INFORME.md",
+      "bytes": 4035,
+      "sha256": "7bb7ffc7c90bcf6b054efb23675e0ffd9fcc37fee945e968fe5e8fb1d8d5afd5"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\preimagenes-registros\\archivo\\informe\\N03\\W-NEXT-v1\\PROPUESTA.md",
+      "bytes": 7014,
+      "sha256": "1ae5b18ec50ead4e3dd815151ea6d42e5a4ad2f894876fbace6b55755080562d"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\preimagenes-registros\\canon\\indice\\CALENDARIO.md",
+      "bytes": 21394,
+      "sha256": "525c281599d710cbc3c96ec16dd543ea60f654694e1de5dc356b388c96bb5408"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\preimagenes-registros\\canon\\indice\\README.md",
+      "bytes": 24038,
+      "sha256": "9b1250bacfb953e150b1d5604099f4e16a7cfcc4e56a736acd07473c9e063a1f"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\preimagenes-registros\\canon\\indice\\tareas\\N03.md",
+      "bytes": 27464,
+      "sha256": "117b86f85a77a5eee9cfcd4f08cee7431e4dc2b2f8f9b726582ae66afbc7000b"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\preimagenes-registros\\canon\\informe\\N03\\cierre-sesion-v1\\RETOMA.md",
+      "bytes": 9976,
+      "sha256": "805263a22548d5a791304ce6ac69dedfd29e6dfa282b24f8ee025bf2ef8dde18"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\preimagenes-registros\\canon\\informe\\N03\\reconciliacion-v1\\BALANCE.md",
+      "bytes": 12791,
+      "sha256": "55846223fe15220dd44ffad91e8563194fdbbb8a90d2151eb718d077974f2218"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\preimagenes-registros\\canon\\informe\\N03\\W-NEXT-v1\\INFORME.md",
+      "bytes": 4035,
+      "sha256": "7bb7ffc7c90bcf6b054efb23675e0ffd9fcc37fee945e968fe5e8fb1d8d5afd5"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\preimagenes-registros\\canon\\informe\\N03\\W-NEXT-v1\\PROPUESTA.md",
+      "bytes": 7014,
+      "sha256": "1ae5b18ec50ead4e3dd815151ea6d42e5a4ad2f894876fbace6b55755080562d"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\preparar.cjs",
+      "bytes": 2636,
+      "sha256": "d193413fe2fbdefd0b383e45049806e88c2884d27a9d2e2036be1667dbc82f47"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\PRODUCTO-ANTES.json",
+      "bytes": 53333,
+      "sha256": "9135e024eb56680acc3f5ffc4d576937ffe719e2a428821bf1f3b64c412cc4ed"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\PROGRESO.jsonl",
+      "bytes": 521,
+      "sha256": "1d739f16f3ffe1ef292689f4949afbde5a49c1f3365748674384ec164febd45c"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\RED-INICIAL.json",
+      "bytes": 139,
+      "sha256": "311d003b59580e82cbbbac8eecabc529fc4363f51725f28b5a2ad2c1e7cf7c68"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\middleware\\build-exit.json",
+      "bytes": 17,
+      "sha256": "29e3287a1bc3d0fb0b82eaaafb5c5d61abb37221ba3d6bf0360151ab64396cca"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\middleware\\build-stderr.txt",
+      "bytes": 1513,
+      "sha256": "9798dba35c2dd19c8652eb8a57b6ff17a10bcc5d3b23e611cdd163d10bceedd3"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\middleware\\build-stdout.txt",
+      "bytes": 940,
+      "sha256": "c01295c2d46c900d907cbcc13d6d8b7d0b65e7a6d082e75dd5d1a0d888f12e8c"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\middleware\\DISPOSICION.json",
+      "bytes": 64,
+      "sha256": "9777dbb4c6eba83d0e40303bbd7f3b2c3c75bdff454b0aa6d3115ea4a2605e95"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\middleware\\DOCKER.json",
+      "bytes": 5662,
+      "sha256": "0533ee34bc860e00a08d8c1402a582ec386eac30dccdb4325286a64df6f2c937"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\middleware\\EXPIRADO.json",
+      "bytes": 54,
+      "sha256": "dc966ee4f734aebd182c3c686fcb462d09015ced9fcf5ecdfc934c8614864e33"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\middleware\\HTTP.json",
+      "bytes": 44424,
+      "sha256": "679ebe3310d2f6327131aa97b3773950877e26a6d35c81b94e339b0aa66b07ca"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\middleware\\PREFLIGHT.json",
+      "bytes": 657,
+      "sha256": "94525f083dc97d56a81567afd174c3e6236c4e0bd721af5989040833da9433ec"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\middleware\\REGISTRO.json",
+      "bytes": 1226,
+      "sha256": "8be7eae05978dfc872bc3557154c764a52e5ac632bcf397bcdca6f8f600537e7"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\middleware\\RUTAS.json",
+      "bytes": 1653,
+      "sha256": "e4d5079a52317ae3be78d50b3154ca0147fc107596f436cffe895474d3070cc9"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\middleware\\server-stderr.txt",
+      "bytes": 3632,
+      "sha256": "4b2ed8652349ef6e026f483146102a4ccb01705cdda200621e13cbd7d9670398"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\middleware\\server-stdout.txt",
+      "bytes": 115,
+      "sha256": "4d5b2af32cdeb748f56a7a208d06b55272ae5b2215a2793f4be1c2789aee31c0"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\middleware\\stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\middleware\\stdout.txt",
+      "bytes": 60,
+      "sha256": "5e7a250e8b1aadd3ce70c3c5080ccf71ddda59d70644963e30609c8118943c27"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\middleware-r2\\BUILD-REUTILIZADO.json",
+      "bytes": 132,
+      "sha256": "ca203f73f90517e92b96880778070ad9829f9830184c11e3b93cee67ef34695f"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\middleware-r2\\DISPOSICION.json",
+      "bytes": 64,
+      "sha256": "9777dbb4c6eba83d0e40303bbd7f3b2c3c75bdff454b0aa6d3115ea4a2605e95"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\middleware-r2\\DOCKER.json",
+      "bytes": 5691,
+      "sha256": "4419203a476e8fe6a79d98a01b78ac1bf26d6d46f5a6623895776bfcb0b2f927"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\middleware-r2\\EXPIRADO.json",
+      "bytes": 54,
+      "sha256": "dc966ee4f734aebd182c3c686fcb462d09015ced9fcf5ecdfc934c8614864e33"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\middleware-r2\\HTTP.json",
+      "bytes": 43807,
+      "sha256": "c3f901938d99efa1a623167034c91766b1536593657d7df426ba8945ee716c19"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\middleware-r2\\PREFLIGHT.json",
+      "bytes": 657,
+      "sha256": "94525f083dc97d56a81567afd174c3e6236c4e0bd721af5989040833da9433ec"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\middleware-r2\\REGISTRO.json",
+      "bytes": 1226,
+      "sha256": "8be7eae05978dfc872bc3557154c764a52e5ac632bcf397bcdca6f8f600537e7"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\middleware-r2\\RUTAS.json",
+      "bytes": 1653,
+      "sha256": "e4d5079a52317ae3be78d50b3154ca0147fc107596f436cffe895474d3070cc9"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\middleware-r2\\server-stderr.txt",
+      "bytes": 3632,
+      "sha256": "34d9311917a09f0dcce4c1244fb19842fbc2154c7ca422450bc4035b6f307ca6"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\middleware-r2\\server-stdout.txt",
+      "bytes": 115,
+      "sha256": "48870f27c9a1f5fecd75c5dd886c73645e4877950609ff34138924927c20a4a3"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\middleware-r2\\stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\middleware-r2\\stdout.txt",
+      "bytes": 60,
+      "sha256": "febcb0271c6135aaeb6259eaf8161d1eaba88a33f51f3acef7339527ed38aebb"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\middleware-r2\\tsconfig-pre-build.json",
+      "bytes": 686,
+      "sha256": "a00430df7eb4b2d74ff8f6c0514419944c93c5243795843300f82ac737a3e28c"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\mutante\\build-exit.json",
+      "bytes": 17,
+      "sha256": "29e3287a1bc3d0fb0b82eaaafb5c5d61abb37221ba3d6bf0360151ab64396cca"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\mutante\\build-stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\mutante\\build-stdout.txt",
+      "bytes": 939,
+      "sha256": "be8e943f6b62ee6d165457cc2628d83016c0bc175e81971c21e306bd71629016"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\mutante\\DISPOSICION.json",
+      "bytes": 61,
+      "sha256": "cd18b0a1cfc380c26724d55f0302eec5a34e2ec7676888d14ac959fcea440b47"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\mutante\\DOCKER.json",
+      "bytes": 5640,
+      "sha256": "8d15a4a4410db3ff8ab9d4ea617dc81edb0bd0fc1ec801093d9f235f466dfed1"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\mutante\\EXPIRADO.json",
+      "bytes": 54,
+      "sha256": "dc966ee4f734aebd182c3c686fcb462d09015ced9fcf5ecdfc934c8614864e33"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\mutante\\HTTP.json",
+      "bytes": 46363,
+      "sha256": "a45a3b67e34c3220be72e75e6401b931811f00a605f279edfe4cec66de6aaf3d"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\mutante\\PREFLIGHT.json",
+      "bytes": 657,
+      "sha256": "94525f083dc97d56a81567afd174c3e6236c4e0bd721af5989040833da9433ec"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\mutante\\REGISTRO.json",
+      "bytes": 83,
+      "sha256": "0a8520bc7e076f7ae717c2d62713990c83e8a3d74626f327a3844bc0504e210c"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\mutante\\RUTAS.json",
+      "bytes": 1653,
+      "sha256": "e4d5079a52317ae3be78d50b3154ca0147fc107596f436cffe895474d3070cc9"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\mutante\\server-stderr.txt",
+      "bytes": 3476,
+      "sha256": "4cca130f8375ce43b680aab49ea0d3a19a4314105ce70869db48b995459b6c34"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\mutante\\server-stdout.txt",
+      "bytes": 115,
+      "sha256": "d104a2588d135516025145e399d0cc0bbe3b4a57d983f7d92558195cc9f0c2da"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\mutante\\stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\mutante\\stdout.txt",
+      "bytes": 59,
+      "sha256": "07e495e68b678c3c39bb587d0db29ca2e83e43dbe59c8153619e4ad1ed54db2b"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\mutante\\tsconfig-pre-build.json",
+      "bytes": 404,
+      "sha256": "b5cbd058b19791f7f8519b3e3dc2d39bfb270531089333afb2d70d5542dc8146"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\preflight\\DISPOSICION.json",
+      "bytes": 63,
+      "sha256": "ff39452791a44aac2a1bc0903358c70c8472759f18c611169513fcbd99508907"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\preflight\\DOCKER.json",
+      "bytes": 5657,
+      "sha256": "179ae845ad0101f202e251271dcb4e9501fab64d97d581a181845b937a9ad3b8"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\preflight\\PREFLIGHT.json",
+      "bytes": 657,
+      "sha256": "94525f083dc97d56a81567afd174c3e6236c4e0bd721af5989040833da9433ec"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\preflight\\stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\preflight\\stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\proxy\\build-exit.json",
+      "bytes": 17,
+      "sha256": "29e3287a1bc3d0fb0b82eaaafb5c5d61abb37221ba3d6bf0360151ab64396cca"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\proxy\\build-stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\proxy\\build-stdout.txt",
+      "bytes": 940,
+      "sha256": "12311842eb010c822ac609e745c49fcc9f36073489fc6ff15a76d8bd964a6f47"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\proxy\\DISPOSICION.json",
+      "bytes": 59,
+      "sha256": "845603ceff8d672755deab298d56308762a7fbab505001984366dfc2dd0061f2"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\proxy\\DOCKER.json",
+      "bytes": 5626,
+      "sha256": "d55a53bfc038ad32360335a774b20ed4fa4b2832ebcc954c4a37568370318552"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\proxy\\EXPIRADO.json",
+      "bytes": 54,
+      "sha256": "dc966ee4f734aebd182c3c686fcb462d09015ced9fcf5ecdfc934c8614864e33"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\proxy\\HTTP.json",
+      "bytes": 43803,
+      "sha256": "5237a721d17ac1bca2e931a3398fdb3e81d2cd596cbbaa259e1f2967955b7942"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\proxy\\PREFLIGHT.json",
+      "bytes": 657,
+      "sha256": "94525f083dc97d56a81567afd174c3e6236c4e0bd721af5989040833da9433ec"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\proxy\\REGISTRO.json",
+      "bytes": 83,
+      "sha256": "0a8520bc7e076f7ae717c2d62713990c83e8a3d74626f327a3844bc0504e210c"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\proxy\\RUTAS.json",
+      "bytes": 1653,
+      "sha256": "e4d5079a52317ae3be78d50b3154ca0147fc107596f436cffe895474d3070cc9"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\proxy\\server-stderr.txt",
+      "bytes": 3476,
+      "sha256": "ab3d207717f454fa8f44b08284a4ce7ecc770f179af65062e7e56a6f079d3cca"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\proxy\\server-stdout.txt",
+      "bytes": 115,
+      "sha256": "eef1638bfbf887bc465a6031bee37d3a38b06471af13f014d3b1d47dcc59b9fb"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\proxy\\stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\proxy\\stdout.txt",
+      "bytes": 56,
+      "sha256": "6da29482649466440526d4d8ce82a6ef7eeb35f949358da19030cab0b5519c7f"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\resultados\\proxy\\tsconfig-pre-build.json",
+      "bytes": 404,
+      "sha256": "b5cbd058b19791f7f8519b3e3dc2d39bfb270531089333afb2d70d5542dc8146"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\runner.cjs",
+      "bytes": 7095,
+      "sha256": "48766e00b52df8b1fdcba6ddae0998031f8be0c1e4857e68c984b38eeb7854b3"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\VALIDACION-COMPLETA-EXIT.json",
+      "bytes": 107,
+      "sha256": "946660f79f2e5babb9f32390bcf7f4b0a05b1e6ae225b2f026f81506ac6532e3"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\VALIDACION-COMPLETA.json",
+      "bytes": 84888,
+      "sha256": "85f72e5f8267cdeeea7ca2e1de1f5fc77ac3df918cc369ed36caad9a457ffec8"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\comparacion-local\\verificar-completo.cjs",
+      "bytes": 5239,
+      "sha256": "bb0cd06bd550b584e7399de58b80d8409a588f44236899a00afd7653e1d60cf8"
+    }
+  ]
+}

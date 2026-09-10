@@ -1,0 +1,90 @@
+{
+  "utc": "2026-09-10T08:17:56.625Z",
+  "preimagenes": [
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\RETOMA.md",
+      "preimagen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L03-v1\\implementacion-local\\preimagenes\\registros\\canonico\\informe\\N03\\cierre-sesion-v1\\RETOMA.md",
+      "bytesAntes": 16824,
+      "shaAntes": "c3be216560ec17b46e0c050aa9417d9ae07fe564e1d00fc1c35dda76ce9f36ab",
+      "shaDespues": "46fdd515c77af42281191b906c8c2377849c10767240634f0c2475e03d625b10"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\cierre-sesion-v1\\RETOMA.md",
+      "preimagen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L03-v1\\implementacion-local\\preimagenes\\registros\\archivo\\informe\\N03\\cierre-sesion-v1\\RETOMA.md",
+      "bytesAntes": 16824,
+      "shaAntes": "c3be216560ec17b46e0c050aa9417d9ae07fe564e1d00fc1c35dda76ce9f36ab",
+      "shaDespues": "46fdd515c77af42281191b906c8c2377849c10767240634f0c2475e03d625b10"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\BALANCE.md",
+      "preimagen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L03-v1\\implementacion-local\\preimagenes\\registros\\canonico\\informe\\N03\\reconciliacion-v1\\BALANCE.md",
+      "bytesAntes": 20051,
+      "shaAntes": "557aac7ad8a92e34621cee693321fff07db1c73090a63289a287d80445ba5439",
+      "shaDespues": "9e638a10ad1c2c806c8073ee45a33e19d3dfa5064cac1e63ace85683d243f06b"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\BALANCE.md",
+      "preimagen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L03-v1\\implementacion-local\\preimagenes\\registros\\archivo\\informe\\N03\\reconciliacion-v1\\BALANCE.md",
+      "bytesAntes": 20051,
+      "shaAntes": "557aac7ad8a92e34621cee693321fff07db1c73090a63289a287d80445ba5439",
+      "shaDespues": "9e638a10ad1c2c806c8073ee45a33e19d3dfa5064cac1e63ace85683d243f06b"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\SIGUIENTE-ACCION.md",
+      "preimagen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L03-v1\\implementacion-local\\preimagenes\\registros\\canonico\\informe\\N03\\reconciliacion-v1\\SIGUIENTE-ACCION.md",
+      "bytesAntes": 9021,
+      "shaAntes": "fa5378105583a2cf5d336c326b5efa6571056287cf99315c6378a1361d8eec67",
+      "shaDespues": "b4790647de5827dc465c2896e61e9a2e9104b08377e2db229df50610a79ae7f7"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\SIGUIENTE-ACCION.md",
+      "preimagen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L03-v1\\implementacion-local\\preimagenes\\registros\\archivo\\informe\\N03\\reconciliacion-v1\\SIGUIENTE-ACCION.md",
+      "bytesAntes": 9021,
+      "shaAntes": "fa5378105583a2cf5d336c326b5efa6571056287cf99315c6378a1361d8eec67",
+      "shaDespues": "b4790647de5827dc465c2896e61e9a2e9104b08377e2db229df50610a79ae7f7"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\indice\\tareas\\N03.md",
+      "preimagen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L03-v1\\implementacion-local\\preimagenes\\registros\\canonico\\indice\\tareas\\N03.md",
+      "bytesAntes": 34492,
+      "shaAntes": "d830994dca192f3d986bcc6d0572ee979624921bfd712b6142db29420a0cd801",
+      "shaDespues": "362300dd33df65070ffac7c21b16f1827bbef84fa12a9e3c7a335af642e33bff"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\indice\\tareas\\N03.md",
+      "preimagen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L03-v1\\implementacion-local\\preimagenes\\registros\\archivo\\indice\\tareas\\N03.md",
+      "bytesAntes": 34492,
+      "shaAntes": "d830994dca192f3d986bcc6d0572ee979624921bfd712b6142db29420a0cd801",
+      "shaDespues": "362300dd33df65070ffac7c21b16f1827bbef84fa12a9e3c7a335af642e33bff"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\indice\\README.md",
+      "preimagen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L03-v1\\implementacion-local\\preimagenes\\registros\\canonico\\indice\\README.md",
+      "bytesAntes": 31030,
+      "shaAntes": "6bfe7934198aa1fc0b6a1298d0091f864e13906ff5e8ce3b1e52694330ab2ad3",
+      "shaDespues": "edf49bc64cee093b14a0598f9a51e93372a167a2d7f37828043c53cc0f6f6e08"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\indice\\README.md",
+      "preimagen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L03-v1\\implementacion-local\\preimagenes\\registros\\archivo\\indice\\README.md",
+      "bytesAntes": 31030,
+      "shaAntes": "6bfe7934198aa1fc0b6a1298d0091f864e13906ff5e8ce3b1e52694330ab2ad3",
+      "shaDespues": "edf49bc64cee093b14a0598f9a51e93372a167a2d7f37828043c53cc0f6f6e08"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\indice\\CALENDARIO.md",
+      "preimagen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L03-v1\\implementacion-local\\preimagenes\\registros\\canonico\\indice\\CALENDARIO.md",
+      "bytesAntes": 28386,
+      "shaAntes": "6cabf3cc9485204bf2e3cb4f2d39c51e2a1262ff5e0e2d6f9804dda259de5399",
+      "shaDespues": "82b8639add1c86f993729e703ce82ccff0178a42ddda0a3ac4bc12b99ac59022"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\indice\\CALENDARIO.md",
+      "preimagen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L03-v1\\implementacion-local\\preimagenes\\registros\\archivo\\indice\\CALENDARIO.md",
+      "bytesAntes": 28386,
+      "shaAntes": "6cabf3cc9485204bf2e3cb4f2d39c51e2a1262ff5e0e2d6f9804dda259de5399",
+      "shaDespues": "82b8639add1c86f993729e703ce82ccff0178a42ddda0a3ac4bc12b99ac59022"
+    }
+  ],
+  "historial": "historial/2026-09-10-N03-L03-implementacion.md"
+}

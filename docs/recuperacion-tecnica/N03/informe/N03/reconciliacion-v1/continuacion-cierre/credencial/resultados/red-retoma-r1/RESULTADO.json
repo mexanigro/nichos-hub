@@ -1,0 +1,273 @@
+{
+  "result": "RED",
+  "checks": 24,
+  "failures": [
+    {
+      "id": "editor/ofrece-apiName",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "nested-escritor/server/transport",
+      "actual": 0,
+      "expected": 1
+    },
+    {
+      "id": "nested-escritor/server/ApiName",
+      "expected": "synthetic-api-name"
+    },
+    {
+      "id": "nested-escritor/server/terminal",
+      "expected": 1000
+    },
+    {
+      "id": "nested-escritor/api/transport",
+      "actual": 0,
+      "expected": 1
+    },
+    {
+      "id": "nested-escritor/api/ApiName",
+      "expected": "synthetic-api-name"
+    },
+    {
+      "id": "nested-escritor/api/terminal",
+      "expected": 1000
+    }
+  ],
+  "editorFields": [
+    {
+      "key": "merchantId",
+      "label": "Merchant ID",
+      "placeholder": "Ej: 12345"
+    },
+    {
+      "key": "apiKey",
+      "label": "API Key",
+      "placeholder": "API key de Cardcom",
+      "secret": true
+    },
+    {
+      "key": "terminalNumber",
+      "label": "Terminal Number",
+      "placeholder": "Numero de terminal",
+      "hint": "El terminal de la cuenta Cardcom del cliente"
+    }
+  ],
+  "emitted": [
+    {
+      "provider": "cardcom",
+      "credentials": {
+        "merchantId": "synthetic-merchant",
+        "apiKey": "legacy-key-synthetic",
+        "terminalNumber": "1000"
+      }
+    }
+  ],
+  "rows": [
+    {
+      "id": "editor-actual",
+      "kind": "server",
+      "creds": {
+        "provider": "cardcom",
+        "credentials": {
+          "merchantId": "synthetic-merchant",
+          "apiKey": "legacy-key-synthetic",
+          "terminalNumber": "1000"
+        },
+        "updatedAt": "2026-09-10T11:46:58.376Z",
+        "updatedBy": "owner@example.invalid"
+      },
+      "transport": [],
+      "error": "Cardcom credentials not configured (terminalNumber, apiName).",
+      "fetches": []
+    },
+    {
+      "id": "editor-actual",
+      "kind": "api",
+      "creds": {
+        "provider": "cardcom",
+        "updatedAt": "2026-09-10T11:46:58.376Z",
+        "updatedBy": "owner@example.invalid"
+      },
+      "transport": [],
+      "error": "Cardcom credentials not configured (terminalNumber, apiName).",
+      "fetches": [
+        "https://firestore.googleapis.com/v1/projects/project-local/databases/default/documents/payment_credentials/tenant"
+      ]
+    },
+    {
+      "id": "nested-escritor",
+      "kind": "server",
+      "creds": {
+        "provider": "cardcom",
+        "credentials": {
+          "terminalNumber": "1000",
+          "apiName": "synthetic-api-name",
+          "apiKey": "legacy-key-synthetic"
+        },
+        "updatedAt": "2026-09-10T11:46:58.594Z",
+        "updatedBy": "owner@example.invalid"
+      },
+      "transport": [],
+      "error": "Cardcom credentials not configured (terminalNumber, apiName).",
+      "fetches": []
+    },
+    {
+      "id": "nested-escritor",
+      "kind": "api",
+      "creds": {
+        "provider": "cardcom",
+        "updatedAt": "2026-09-10T11:46:58.594Z",
+        "updatedBy": "owner@example.invalid"
+      },
+      "transport": [],
+      "error": "Cardcom credentials not configured (terminalNumber, apiName).",
+      "fetches": [
+        "https://firestore.googleapis.com/v1/projects/project-local/databases/default/documents/payment_credentials/tenant"
+      ]
+    },
+    {
+      "id": "plano-legacy",
+      "kind": "server",
+      "creds": {
+        "terminalNumber": "1000",
+        "apiName": "synthetic-api-name",
+        "apiKey": "legacy-key-synthetic"
+      },
+      "transport": [
+        {
+          "url": "https://secure.cardcom.solutions/api/v11/LowProfile/Create",
+          "body": {
+            "TerminalNumber": 1000,
+            "ApiName": "synthetic-api-name",
+            "Amount": 100,
+            "SuccessRedirectUrl": "https://site.example.invalid/ok",
+            "FailedRedirectUrl": "https://site.example.invalid/no",
+            "WebhookUrl": "https://site.example.invalid/ok/api/webhook",
+            "Document": {
+              "To": "customer@example.invalid",
+              "CustomerName": "svc"
+            },
+            "CustomFields": {
+              "Field1": "appt",
+              "Field2": "tenant",
+              "Field3": "full"
+            }
+          }
+        }
+      ],
+      "error": null,
+      "fetches": []
+    },
+    {
+      "id": "plano-legacy",
+      "kind": "api",
+      "creds": {
+        "terminalNumber": "1000",
+        "apiName": "synthetic-api-name",
+        "apiKey": "legacy-key-synthetic"
+      },
+      "transport": [
+        {
+          "url": "https://secure.cardcom.solutions/api/v11/LowProfile/Create",
+          "body": {
+            "TerminalNumber": 1000,
+            "ApiName": "synthetic-api-name",
+            "Amount": 100,
+            "SuccessRedirectUrl": "https://site.example.invalid/ok",
+            "FailedRedirectUrl": "https://site.example.invalid/no",
+            "WebhookUrl": "https://site.example.invalid/ok/api/webhook",
+            "Document": {
+              "To": "customer@example.invalid",
+              "CustomerName": "svc"
+            },
+            "CustomFields": {
+              "Field1": "appt",
+              "Field2": "tenant",
+              "Field3": "full"
+            }
+          }
+        }
+      ],
+      "error": null,
+      "fetches": [
+        "https://firestore.googleapis.com/v1/projects/project-local/databases/default/documents/payment_credentials/tenant"
+      ]
+    }
+  ],
+  "wireWrites": [
+    {
+      "name": "projects/synthetic-local/databases/(default)/documents/payment_credentials/tenant",
+      "fields": {
+        "provider": {
+          "stringValue": "cardcom"
+        },
+        "credentials": {
+          "mapValue": {
+            "fields": {
+              "merchantId": {
+                "stringValue": "synthetic-merchant"
+              },
+              "apiKey": {
+                "stringValue": "legacy-key-synthetic"
+              },
+              "terminalNumber": {
+                "stringValue": "1000"
+              }
+            }
+          }
+        },
+        "updatedAt": {
+          "stringValue": "2026-09-10T11:46:58.376Z"
+        },
+        "updatedBy": {
+          "stringValue": "owner@example.invalid"
+        }
+      }
+    },
+    {
+      "name": "projects/synthetic-local/databases/(default)/documents/payment_credentials/tenant",
+      "fields": {
+        "provider": {
+          "stringValue": "cardcom"
+        },
+        "credentials": {
+          "mapValue": {
+            "fields": {
+              "terminalNumber": {
+                "stringValue": "1000"
+              },
+              "apiName": {
+                "stringValue": "synthetic-api-name"
+              },
+              "apiKey": {
+                "stringValue": "legacy-key-synthetic"
+              }
+            }
+          }
+        },
+        "updatedAt": {
+          "stringValue": "2026-09-10T11:46:58.594Z"
+        },
+        "updatedBy": {
+          "stringValue": "owner@example.invalid"
+        }
+      }
+    },
+    {
+      "name": "projects/synthetic-local/databases/(default)/documents/payment_credentials/tenant",
+      "fields": {
+        "terminalNumber": {
+          "stringValue": "1000"
+        },
+        "apiName": {
+          "stringValue": "synthetic-api-name"
+        },
+        "apiKey": {
+          "stringValue": "legacy-key-synthetic"
+        }
+      }
+    }
+  ],
+  "limits": "Prep; SDK sin commit, writer/callbacks reales, loaders reales con cache real, transport Cardcom interceptado; no política monedas/seña ni proveedor."
+}

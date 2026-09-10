@@ -1,0 +1,14 @@
+param([string]$Nombre='registro-red')
+$ErrorActionPreference='Stop'
+$base=$PSScriptRoot
+$salida=Join-Path $base ('resultados\'+$Nombre)
+if(Test-Path -LiteralPath $salida){throw 'No sobreescribir resultados'}
+New-Item -ItemType Directory -Path $salida -Force | Out-Null
+$template='C:\Users\liama\Desktop\Nichos\Barber-shop-template-main'
+$dockerArgs=@('run','--rm','--pull=never','--network=none','--read-only','--cap-drop=ALL','--security-opt=no-new-privileges','--memory=1g','--tmpfs=/tmp:rw,size=64m','--mount',"type=bind,source=$base,target=/control,readonly",'--mount',"type=bind,source=$salida,target=/salida",'--mount',"type=bind,source=$template,target=/template,readonly",'--mount',"type=bind,source=$template\node_modules,target=/deps/node_modules,readonly",'sha256:16e22a550f3863206a3f701448c45f7912c6896a62de43add43bb9c86130c3e2','/usr/bin/env','-i','PATH=/usr/local/bin:/usr/bin:/bin','HOME=/tmp','node','/control/registro.cjs')
+$dockerArgs | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $salida 'COMANDO.json') -Encoding utf8
+& docker @dockerArgs *> (Join-Path $salida 'ejecucion.log')
+$code=$LASTEXITCODE
+$code | Set-Content -LiteralPath (Join-Path $salida 'exit.txt')
+Get-Content -LiteralPath (Join-Path $salida 'ejecucion.log')
+exit $code

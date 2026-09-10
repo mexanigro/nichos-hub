@@ -1,0 +1,74 @@
+[
+  {
+    "target": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\BALANCE.md",
+    "backup": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\contrato-cita-separada\\diseno-reparacion\\preimagenes\\canonico\\informe\\N03\\reconciliacion-v1\\BALANCE.md",
+    "before": "7b5d1911e445db6fe66612d9338dded4faefb07885e95c152f06688f6324593f",
+    "after": "d90b3cc629f0873c9a463388ac1dafb2f62781eda503d1c4e2c8b6f7bfd7c89b"
+  },
+  {
+    "target": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\SIGUIENTE-ACCION.md",
+    "backup": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\contrato-cita-separada\\diseno-reparacion\\preimagenes\\canonico\\informe\\N03\\reconciliacion-v1\\SIGUIENTE-ACCION.md",
+    "before": "5dae0077329d90d2a5efc7d8dd547943bc8ef6525d299133ee0967e3374c5346",
+    "after": "b02e216177b01bb2365e04bf033dfdd683fdd3b5c715790588b8bd0a93ced2fb"
+  },
+  {
+    "target": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\RETOMA.md",
+    "backup": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\contrato-cita-separada\\diseno-reparacion\\preimagenes\\canonico\\informe\\N03\\cierre-sesion-v1\\RETOMA.md",
+    "before": "98f9c8132cc487834c9112597cd07b61d7efd6f918eaa66f26033d2b42641666",
+    "after": "32eab7082666d21e355b98cb5fa722f0e4074ecc4518e9a53d292c215f099948"
+  },
+  {
+    "target": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\indice\\tareas\\N03.md",
+    "backup": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\contrato-cita-separada\\diseno-reparacion\\preimagenes\\canonico\\indice\\tareas\\N03.md",
+    "before": "5a6ece0bcbdd64595674da2ca573ee20a748e7febe08b136fdb8fcc41c24860f",
+    "after": "aa30cdc1eaa139e3b7e1532132b47729db0b2b79839085ca1f14a5f601396a6d"
+  },
+  {
+    "target": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\indice\\README.md",
+    "backup": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\contrato-cita-separada\\diseno-reparacion\\preimagenes\\canonico\\indice\\README.md",
+    "before": "124329c156c25e9c4d9f4d50d11705881d0f90ad6b9bd25b45a7dfb103332846",
+    "after": "d193ddc3323747f366db432160f449de7c391d86640f5f45cd8bac3463b10707"
+  },
+  {
+    "target": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\indice\\CALENDARIO.md",
+    "backup": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\contrato-cita-separada\\diseno-reparacion\\preimagenes\\canonico\\indice\\CALENDARIO.md",
+    "before": "eb7739dd4b77812243e070b96431099cf9a0253dc3bf22addc0c6daaf8cdf610",
+    "after": "95c84ad84782e6d25914b219409a5b246d9859d0195cde5f4a933c6fd04af93d"
+  },
+  {
+    "target": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\BALANCE.md",
+    "backup": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\contrato-cita-separada\\diseno-reparacion\\preimagenes\\espejo\\informe\\N03\\reconciliacion-v1\\BALANCE.md",
+    "before": "7b5d1911e445db6fe66612d9338dded4faefb07885e95c152f06688f6324593f",
+    "after": "d90b3cc629f0873c9a463388ac1dafb2f62781eda503d1c4e2c8b6f7bfd7c89b"
+  },
+  {
+    "target": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\SIGUIENTE-ACCION.md",
+    "backup": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\contrato-cita-separada\\diseno-reparacion\\preimagenes\\espejo\\informe\\N03\\reconciliacion-v1\\SIGUIENTE-ACCION.md",
+    "before": "5dae0077329d90d2a5efc7d8dd547943bc8ef6525d299133ee0967e3374c5346",
+    "after": "b02e216177b01bb2365e04bf033dfdd683fdd3b5c715790588b8bd0a93ced2fb"
+  },
+  {
+    "target": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\cierre-sesion-v1\\RETOMA.md",
+    "backup": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\contrato-cita-separada\\diseno-reparacion\\preimagenes\\espejo\\informe\\N03\\cierre-sesion-v1\\RETOMA.md",
+    "before": "98f9c8132cc487834c9112597cd07b61d7efd6f918eaa66f26033d2b42641666",
+    "after": "32eab7082666d21e355b98cb5fa722f0e4074ecc4518e9a53d292c215f099948"
+  },
+  {
+    "target": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\indice\\tareas\\N03.md",
+    "backup": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\contrato-cita-separada\\diseno-reparacion\\preimagenes\\espejo\\indice\\tareas\\N03.md",
+    "before": "5a6ece0bcbdd64595674da2ca573ee20a748e7febe08b136fdb8fcc41c24860f",
+    "after": "aa30cdc1eaa139e3b7e1532132b47729db0b2b79839085ca1f14a5f601396a6d"
+  },
+  {
+    "target": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\indice\\README.md",
+    "backup": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\contrato-cita-separada\\diseno-reparacion\\preimagenes\\espejo\\indice\\README.md",
+    "before": "124329c156c25e9c4d9f4d50d11705881d0f90ad6b9bd25b45a7dfb103332846",
+    "after": "d193ddc3323747f366db432160f449de7c391d86640f5f45cd8bac3463b10707"
+  },
+  {
+    "target": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\indice\\CALENDARIO.md",
+    "backup": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\contrato-cita-separada\\diseno-reparacion\\preimagenes\\espejo\\indice\\CALENDARIO.md",
+    "before": "eb7739dd4b77812243e070b96431099cf9a0253dc3bf22addc0c6daaf8cdf610",
+    "after": "95c84ad84782e6d25914b219409a5b246d9859d0195cde5f4a933c6fd04af93d"
+  }
+]

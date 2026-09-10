@@ -1,0 +1,54 @@
+{
+  "baseline": 337,
+  "unchanged": 330,
+  "changed": [
+    {
+      "file": "src/lib/api/checkout-handler.ts",
+      "sha256": "fa1fa7c49f4089db815a7e603cf41af0ba0c08460718734a8b0a6c0dde927010",
+      "actual": "e0152c73362a8e26573c16730bddf85ed7811102b32726bb07cb4556606befe3"
+    },
+    {
+      "file": "api/index.ts",
+      "sha256": "748b245f1b1c56184de7f57119d89a4a690ff383fdff504a4431ac2aae0af007",
+      "actual": "4a0f38b03787d4f118efa70272b967d0a9d1154d22a4203bf90ff3b8a29db8a1"
+    },
+    {
+      "file": "server.ts",
+      "sha256": "884ed361649c0aa2b406c317e7cc0fe36f70d30f9cd83785f6680fee7c9970f0",
+      "actual": "3eb84deaad9fdba429cdb746ad015a3798890cd68b0dbde80683471e10424f04"
+    },
+    {
+      "file": "src/components/admin/AdminDashboard.tsx",
+      "sha256": "b46c75ad579f988fae8f8b02610218a7516695aa80754bf0ba043befd2600f5e",
+      "actual": "e636d0556110405985e3df10903eeed8165cad95ac78291886bbb0d22099e637"
+    },
+    {
+      "file": "src/components/admin/AppointmentCalendar.tsx",
+      "sha256": "05aa60f456f7c7385c2d6d30e8563afd86d824edab605c0fcc131532c15fe605",
+      "actual": "e78ed3314bea04d923ea76e616bf94a9b4c199466ddc633dd739f1e04b2ec26c"
+    },
+    {
+      "file": "src/lib/api/admin-auth.ts",
+      "sha256": "68f7528b764a06317ca7d6d4d69569f2b3691a95eaf8a5f5dbd1adaaf30f8696",
+      "actual": "184996449b94d762f30b9bfabc7c829fa00413e3fda53e712bf4500d461f0ec2"
+    },
+    {
+      "file": "src/lib/api/payment-gateways.ts",
+      "sha256": "580ff87947a952f8cbf4d3873647028dd6131da58f7d16a08104f6ddd6bfddd6",
+      "actual": "4ffc8c45203d87b5b8f1ce6a803adaf7b8353115820e18cd137511e7c664c261"
+    }
+  ],
+  "newFiles": [
+    {
+      "file": "src/lib/api/crm-appointments-handler.ts",
+      "sha256": "e48a9ee4048c118a064cbff460fbf4e0668763691c9de41c34e9d15f3a915e4f"
+    },
+    {
+      "file": "src/services/crm-appointments.ts",
+      "sha256": "d91af2fc8648f884480a42183b364e060d911c9c4fc9bea2c18d66538fd99766"
+    }
+  ],
+  "gatewayBuildersAndCache": "prefijo bytes conservado",
+  "productOutsideAllowed": "sin cambios en censo template",
+  "limit": "hub editor tiene preimagen y controles propios; no es censo universal fuera del workspace"
+}

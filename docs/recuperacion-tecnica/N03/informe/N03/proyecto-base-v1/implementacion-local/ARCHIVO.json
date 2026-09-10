@@ -1,0 +1,512 @@
+[
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\ajustar-tipos.cjs",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\ajustar-tipos.cjs.source",
+    "bytes": 1153,
+    "sha256": "1043c51d698c768700b25ecdf06ed4d030035b730aa911f7e16c8705ec2c152e"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\aplicar-api.cjs",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\aplicar-api.cjs.source",
+    "bytes": 2113,
+    "sha256": "233df0d45fad6aed6ad8a0a7c6f4cb78c29e5f1dbcf20c001e80e0fed09faa45"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\aplicar.cjs",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\aplicar.cjs.source",
+    "bytes": 2924,
+    "sha256": "da26062990a76222a59c8600df1b186dbec4390014fc3822ccd039bc67e80994"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\archivar.cjs",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\archivar.cjs.source",
+    "bytes": 3101,
+    "sha256": "d1351a3e31acc269e118af33b0bb9e6eff795ba18cc9001169c524b0472138c4"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\CAMBIOS.json",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\CAMBIOS.json",
+    "bytes": 397,
+    "sha256": "1e7c81040865b376ae0aea665769cf84a229ad864cbf0cfec445d0576b6c600f"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\CASOS.json",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\CASOS.json",
+    "bytes": 21641,
+    "sha256": "b09d43d191ec3d676899a3c76e5fa06b43c13e39b895f5f34bfae5633ecccf76"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\cerrar-revision.cjs",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\cerrar-revision.cjs.source",
+    "bytes": 2550,
+    "sha256": "e11fab2ee7d8ee71fb5fead3bb0af6115d1021535ea1a4ddf529845f4be16c27"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\CIERRE-LOCAL.md",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\CIERRE-LOCAL.md",
+    "bytes": 6572,
+    "sha256": "12f3c724e5eb3222555401de9601851dd883e0886a8e95300dabc231458fb2ff"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\congelar.cjs",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\congelar.cjs.source",
+    "bytes": 1018,
+    "sha256": "0581b7b785deaec3ac75149396b6fcadad7c9c22a1f839976f09c6001accbc99"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\CONSERVACION.json",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\CONSERVACION.json",
+    "bytes": 1168,
+    "sha256": "16256910ddc0241d7962ff5d82f754a550db93534d029c8710b0dd9cb5cd4882"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\contrato.cjs",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\contrato.cjs.source",
+    "bytes": 8262,
+    "sha256": "3ffdfd800afb1bcdd836aadda515bc5accb101853bdf2386f9e40474db2a3d85"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\CONTRATO.md",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\CONTRATO.md",
+    "bytes": 3118,
+    "sha256": "16fee32a9b6c20bcf372f86b9098850b9451405018e1bf0c42e416c2804b349d"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\CUSTODIA-FINAL.json",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\CUSTODIA-FINAL.json",
+    "bytes": 1389,
+    "sha256": "41baadc862ef5f4ea5af7cadfa4a586e38f1495b3568fd173f6658204511e4bf"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\ejecutar.ps1",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\ejecutar.ps1.source",
+    "bytes": 882,
+    "sha256": "76b32d68f8f00d5ff84b1be4ece27eaffb4ca27b9673424914ce0679bbd64a3f"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\EVIDENCIA.json",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\EVIDENCIA.json",
+    "bytes": 12990,
+    "sha256": "681f6afb23624ccc37a5e8d7acceff28588fb5bd683e5cf2a97eff4a18703a07"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\final\\api\\index.ts",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\final\\api\\index.ts.source",
+    "bytes": 229547,
+    "sha256": "4be7a9c1e536da183dfe44a9a72d94df5848b36d56d2bf696607d514523dc0bd"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\final\\server.ts",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\final\\server.ts.source",
+    "bytes": 174678,
+    "sha256": "fe749e1703c1a07a2f7762f68eb1fc57783c99cd30fbc833b271c898aa83a980"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\FREEZE.json",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\FREEZE.json",
+    "bytes": 353,
+    "sha256": "e1198c1bdcf88d1203eb5b81eac5f40ab18c9e78f6772bfe66e2751f8495e7ed"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\preimagenes\\antes-custodia\\CIERRE-LOCAL.md",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\preimagenes\\antes-custodia\\CIERRE-LOCAL.md",
+    "bytes": 6202,
+    "sha256": "42d33af5d0c92fe29f4d218290c3a3e497dbf1fb8876ff12872fcefb246483a2"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\preimagenes\\antes-tipos\\api\\index.ts",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\preimagenes\\antes-tipos\\api\\index.ts.source",
+    "bytes": 229460,
+    "sha256": "3f033ddb5dd6f74d27b94e10fd662244fee5a73c7f56c07e2542707e0f2e2588"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\preimagenes\\antes-tipos\\server.ts",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\preimagenes\\antes-tipos\\server.ts.source",
+    "bytes": 174591,
+    "sha256": "be332adef08b5a082f25fb1f332b57ab6d0cdc34dc68fcfff469dfe4407e23ad"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\preimagenes\\api\\index.ts",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\preimagenes\\api\\index.ts.source",
+    "bytes": 228609,
+    "sha256": "1dbc951f710e2f3e586247faf79ae65d76714eb52fcf768001d929a8521a646f"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\preimagenes\\registros\\archivo\\indice\\CALENDARIO.md",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\preimagenes\\registros\\archivo\\indice\\CALENDARIO.md",
+    "bytes": 34473,
+    "sha256": "61c7e37a813faf9a809759f27fee2efb939edaf93c5b51e60f8e36cff035fc87"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\preimagenes\\registros\\archivo\\indice\\README.md",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\preimagenes\\registros\\archivo\\indice\\README.md",
+    "bytes": 37117,
+    "sha256": "1e8685d569567d2fb6807068e51eeb73fa214c3f62ac5f9f4c96e3253a54e360"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\preimagenes\\registros\\archivo\\indice\\tareas\\N03.md",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\preimagenes\\registros\\archivo\\indice\\tareas\\N03.md",
+    "bytes": 40609,
+    "sha256": "a2df287197ffb374ce2a0250da3f06771f9256e0ea4508fc70d2ad93fffc2a59"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\preimagenes\\registros\\archivo\\informe\\N03\\cierre-sesion-v1\\RETOMA.md",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\preimagenes\\registros\\archivo\\informe\\N03\\cierre-sesion-v1\\RETOMA.md",
+    "bytes": 22791,
+    "sha256": "714f22a2c0f3f474bd8d0fde01a9cab878f90540827ffe7367026205c762545e"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\preimagenes\\registros\\archivo\\informe\\N03\\reconciliacion-v1\\BALANCE.md",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\preimagenes\\registros\\archivo\\informe\\N03\\reconciliacion-v1\\BALANCE.md",
+    "bytes": 7153,
+    "sha256": "436efa09f007d3ebeaed73623082cfdac31bcec9422fbd8dd74337c2800924fc"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\preimagenes\\registros\\archivo\\informe\\N03\\reconciliacion-v1\\SIGUIENTE-ACCION.md",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\preimagenes\\registros\\archivo\\informe\\N03\\reconciliacion-v1\\SIGUIENTE-ACCION.md",
+    "bytes": 14967,
+    "sha256": "09da0dca5635003dfbba49ecb20eb5aeb198990b6331675b95eb2b439b1ecfa7"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\preimagenes\\registros\\canonico\\indice\\CALENDARIO.md",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\preimagenes\\registros\\canonico\\indice\\CALENDARIO.md",
+    "bytes": 34473,
+    "sha256": "61c7e37a813faf9a809759f27fee2efb939edaf93c5b51e60f8e36cff035fc87"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\preimagenes\\registros\\canonico\\indice\\README.md",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\preimagenes\\registros\\canonico\\indice\\README.md",
+    "bytes": 37117,
+    "sha256": "1e8685d569567d2fb6807068e51eeb73fa214c3f62ac5f9f4c96e3253a54e360"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\preimagenes\\registros\\canonico\\indice\\tareas\\N03.md",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\preimagenes\\registros\\canonico\\indice\\tareas\\N03.md",
+    "bytes": 40609,
+    "sha256": "a2df287197ffb374ce2a0250da3f06771f9256e0ea4508fc70d2ad93fffc2a59"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\preimagenes\\registros\\canonico\\informe\\N03\\cierre-sesion-v1\\RETOMA.md",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\preimagenes\\registros\\canonico\\informe\\N03\\cierre-sesion-v1\\RETOMA.md",
+    "bytes": 22791,
+    "sha256": "714f22a2c0f3f474bd8d0fde01a9cab878f90540827ffe7367026205c762545e"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\preimagenes\\registros\\canonico\\informe\\N03\\reconciliacion-v1\\BALANCE.md",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\preimagenes\\registros\\canonico\\informe\\N03\\reconciliacion-v1\\BALANCE.md",
+    "bytes": 7153,
+    "sha256": "436efa09f007d3ebeaed73623082cfdac31bcec9422fbd8dd74337c2800924fc"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\preimagenes\\registros\\canonico\\informe\\N03\\reconciliacion-v1\\SIGUIENTE-ACCION.md",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\preimagenes\\registros\\canonico\\informe\\N03\\reconciliacion-v1\\SIGUIENTE-ACCION.md",
+    "bytes": 14967,
+    "sha256": "09da0dca5635003dfbba49ecb20eb5aeb198990b6331675b95eb2b439b1ecfa7"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\preimagenes\\server.ts",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\preimagenes\\server.ts.source",
+    "bytes": 174105,
+    "sha256": "48a5d4a415c704d1f7c5ff609d96c4e214d107fa0020b0c5d7d30d51ac84e80f"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\preparar.cjs",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\preparar.cjs.source",
+    "bytes": 5672,
+    "sha256": "83594bc3fc71de34bccb08a28ada75468de9c248a14bd003a57795f1bf523c0e"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\PRODUCTO-ANTES.json",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\PRODUCTO-ANTES.json",
+    "bytes": 102204,
+    "sha256": "593d201b155565e5688cce8b60d457c8665ba5d3e5446758b9549e0d234f8eed"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\registrar.cjs",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\registrar.cjs.source",
+    "bytes": 4033,
+    "sha256": "48d4846dbe9bbf0f0c13d35abbf8a7a38c44eb3df135f39f109321325400cda7"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\REGISTROS.json",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\REGISTROS.json",
+    "bytes": 6300,
+    "sha256": "bab030b5d31c206e7aaac97a3975408d5404ccb481bd9f5627de304d814b8744"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\RESULTADO.json",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\RESULTADO.json",
+    "bytes": 955,
+    "sha256": "f49deb407bd0dde9fb37bbf778f911e6aba7eceeefc24f0c68dbcf4c96c5152b"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\final\\COMANDO.json",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\final\\COMANDO.json",
+    "bytes": 1017,
+    "sha256": "ba042f8f015508282d4c8391caeae104fdaa2fa5ed58e53c39b388d05e7c3b0f"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\final\\ejecucion.log",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\final\\ejecucion.log",
+    "bytes": 71,
+    "sha256": "23728a773887e8626a31358ebd23a7c6b28d6a58d3282d333775a799cbc2bc5e"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\final\\exit.txt",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\final\\exit.txt",
+    "bytes": 3,
+    "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\final\\RESULTADO.json",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\final\\RESULTADO.json",
+    "bytes": 102967,
+    "sha256": "e73d0135ece1390175cedcbec955e41a034371ac968ab0b41f28f93995aee09f"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\green\\COMANDO.json",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\green\\COMANDO.json",
+    "bytes": 1017,
+    "sha256": "3daf6902356469fb670b7c4d144e9a5fb73961d48f5b4dfc2913ffeb197b5559"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\green\\ejecucion.log",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\green\\ejecucion.log",
+    "bytes": 70,
+    "sha256": "0cc127bcc18cf894a3275a288f23366398068df062b6c743ef74a04c7524d039"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\green\\exit.txt",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\green\\exit.txt",
+    "bytes": 3,
+    "sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\green\\RESULTADO.json",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\green\\RESULTADO.json",
+    "bytes": 111800,
+    "sha256": "94aa2d51c605c7810c0a5203b9fea1006c3579667f8770e27a8f4816070def28"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\green-final\\COMANDO.json",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\green-final\\COMANDO.json",
+    "bytes": 1023,
+    "sha256": "dc422b59b7bea0758bebb49288482c78c34711ef9afdcbd36f519a29019d9b5c"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\green-final\\ejecucion.log",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\green-final\\ejecucion.log",
+    "bytes": 71,
+    "sha256": "23728a773887e8626a31358ebd23a7c6b28d6a58d3282d333775a799cbc2bc5e"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\green-final\\exit.txt",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\green-final\\exit.txt",
+    "bytes": 3,
+    "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\green-final\\RESULTADO.json",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\green-final\\RESULTADO.json",
+    "bytes": 102967,
+    "sha256": "e73d0135ece1390175cedcbec955e41a034371ac968ab0b41f28f93995aee09f"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\mutante-api\\COMANDO.json",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\mutante-api\\COMANDO.json",
+    "bytes": 1033,
+    "sha256": "c5c678e34cc83318d2f6700e1b62abbc15a05db538ed6e339a96233226464528"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\mutante-api\\ejecucion.log",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\mutante-api\\ejecucion.log",
+    "bytes": 70,
+    "sha256": "77c47ca7ce7791ce2b9ec668c1b4e621ee4e510a00a9c5e2b5e28f960b841f91"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\mutante-api\\exit.txt",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\mutante-api\\exit.txt",
+    "bytes": 3,
+    "sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\mutante-api\\RESULTADO.json",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\mutante-api\\RESULTADO.json",
+    "bytes": 108007,
+    "sha256": "37609391f71226f5c36e5f7e6add6a5e8f3b46059ff21688f6760607fbcaa49f"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\mutante-context\\COMANDO.json",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\mutante-context\\COMANDO.json",
+    "bytes": 1041,
+    "sha256": "36f93c229943d447c923740482b341527964bc18c47a73c8ea386a961009107e"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\mutante-context\\ejecucion.log",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\mutante-context\\ejecucion.log",
+    "bytes": 70,
+    "sha256": "185942589d41ce508b46ed04b4193637927e70c17ae118e078591f22dc2d3b64"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\mutante-context\\exit.txt",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\mutante-context\\exit.txt",
+    "bytes": 3,
+    "sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\mutante-context\\RESULTADO.json",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\mutante-context\\RESULTADO.json",
+    "bytes": 105772,
+    "sha256": "806ae8b812bf0d4ee9129a65812f1741287a2c3572e09e1aa95a59f977e4f3b6"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\mutante-create\\COMANDO.json",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\mutante-create\\COMANDO.json",
+    "bytes": 1039,
+    "sha256": "f1ffa7203af174cfb4f3c2319be224c11096ca84921eac98e010fc9a3d07bfc3"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\mutante-create\\ejecucion.log",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\mutante-create\\ejecucion.log",
+    "bytes": 69,
+    "sha256": "84490cd3c5a72135bc959fb4216b14548955231a8ccb0a4f1307dd151845923c"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\mutante-create\\exit.txt",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\mutante-create\\exit.txt",
+    "bytes": 3,
+    "sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\mutante-create\\RESULTADO.json",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\mutante-create\\RESULTADO.json",
+    "bytes": 103965,
+    "sha256": "a7192651c1d72a1f8b1bb998c0e919a579cb57da672951e47e23c905dfa9ef11"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\mutante-server\\COMANDO.json",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\mutante-server\\COMANDO.json",
+    "bytes": 1039,
+    "sha256": "390cb3a21c0c365e2b8df7b1a6bbb5011c85ef70289a258051ca075ccc0b3a1c"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\mutante-server\\ejecucion.log",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\mutante-server\\ejecucion.log",
+    "bytes": 70,
+    "sha256": "77c47ca7ce7791ce2b9ec668c1b4e621ee4e510a00a9c5e2b5e28f960b841f91"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\mutante-server\\exit.txt",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\mutante-server\\exit.txt",
+    "bytes": 3,
+    "sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\mutante-server\\RESULTADO.json",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\mutante-server\\RESULTADO.json",
+    "bytes": 108073,
+    "sha256": "de179a6d002c1c3673d55d2210f366247eac2f1caf6ac6d322a229c3d4cbcb76"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\red\\COMANDO.json",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\red\\COMANDO.json",
+    "bytes": 1015,
+    "sha256": "4e452b2ec6181f232e2de0f3acdd52a13bb63f0028c21a06f8b8ce85f96f3972"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\red\\ejecucion.log",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\red\\ejecucion.log",
+    "bytes": 70,
+    "sha256": "1955a860fe245e7cf184666c952d5e678d23ef6c40652358713a296ee184a0cb"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\red\\exit.txt",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\red\\exit.txt",
+    "bytes": 3,
+    "sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\red\\RESULTADO.json",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\resultados\\red\\RESULTADO.json",
+    "bytes": 116902,
+    "sha256": "bea694f3fa78121a0d39160737dc116b6ab7cb45f3be093136a38d2d90c8fd92"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\reutilizar.cjs",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\reutilizar.cjs.source",
+    "bytes": 1542,
+    "sha256": "3d336324a82e51d2a664f6b2e06a6076c1073f2597f385dae19f10be235556cb"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\REVISION.md",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\REVISION.md",
+    "bytes": 892,
+    "sha256": "13a4a997054e99818e9c98b9ed233ed2c68e341865246d392dc558b5aecf4cbf"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\tipos-lint-final.cjs",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\tipos-lint-final.cjs.source",
+    "bytes": 1140,
+    "sha256": "137c4e5d00a8e96b98bdc79416a4444cb4cc96b687178980d612274821b50aef"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\TIPOS-LINT-FINAL.json",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\TIPOS-LINT-FINAL.json",
+    "bytes": 482,
+    "sha256": "cddba97d004218f2e24f0403cb29fa4ec425010cb4c1a3951d957ade86582699"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\TIPOS-LINT-FINAL.stderr.txt",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\TIPOS-LINT-FINAL.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\TIPOS-LINT-FINAL.stdout.txt",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\TIPOS-LINT-FINAL.stdout.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\tipos-lint.cjs",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\tipos-lint.cjs.source",
+    "bytes": 1116,
+    "sha256": "1b37b0c11ecee352ae041d6bc65f7dfa99f025a15450fdf90c0514ddbcc912df"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\TIPOS-LINT.json",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\TIPOS-LINT.json",
+    "bytes": 476,
+    "sha256": "7a61ddba26789bda39742eab4f610a51714b1d748287212a498006101bff6171"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\TIPOS-LINT.stderr.txt",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\TIPOS-LINT.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\TIPOS-LINT.stdout.txt",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\TIPOS-LINT.stdout.txt",
+    "bytes": 370,
+    "sha256": "fd700c11c9ab02a41ffb6b12eb49fbcfbf9910368f24deaa8843498527d308b9"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\tsconfig-final.json",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\tsconfig-final.json",
+    "bytes": 485,
+    "sha256": "534e9707e69ce2c875633dcb6e612a86b78c16fbef950ac63d35779cc6e91a32"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\tsconfig.json",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\tsconfig.json",
+    "bytes": 485,
+    "sha256": "534e9707e69ce2c875633dcb6e612a86b78c16fbef950ac63d35779cc6e91a32"
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\verificar.cjs",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\proyecto-base-v1\\implementacion-local\\verificar.cjs.source",
+    "bytes": 3059,
+    "sha256": "f52515ab947728312b8476ac5f755ee7e3a28c51ed0fc11e983f467771993ebb"
+  }
+]

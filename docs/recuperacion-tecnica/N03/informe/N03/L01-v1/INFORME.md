@@ -1,0 +1,29 @@
+# L01 — preparación local, conexión de modo
+
+**Preparación completada; conexión de producto RED en dos recorridos. Producto sin modificar; L01 no descontada y N03 abierta.** El sondeo no considera defecto la divergencia de nombres por sí sola: onboarding y provision transmiten el modo correctamente mediante sus flags.
+
+| Recorrido observado | Wizard hub, sin borrador previo | Template: decisión real de BookingWizard con servicio inicial |
+| --- | --- | --- |
+| Alta onboarding `solo` | Selecciona solo; StepOwner muestra dueño | Salta staff, inicia datetime y preselecciona staff[0]. Correcto por showAbout=true/showTeam=false, aunque el campo superior del preset dice team. |
+| Alta provision `solo` | Solo/dueño | Mismo resultado correcto por flags. |
+| Client-info `solo`, config ausente | Solo/dueño | Inicia staff y no preselecciona empleado: RED. Persistir business.mode no altera los flags del preset. |
+| Reedición de alta solo a `team` por client-info | Team/fotos de equipo | Conserva flags solo anteriores, inicia datetime y preselecciona staff[0]: RED. |
+| config con nested solo y top team | Solo/dueño | Equipo: staff. |
+| config con nested team y top solo | Team/equipo | Solo: datetime. |
+| Sólo top solo | Sin modo precargado, ninguna tarjeta seleccionada; rama no-solo de StepOwner | Solo: datetime. Esto describe compatibilidad legacy pendiente, no autoriza elegir una precedencia. |
+
+Cadena ejecutada: handlers actuales de onboarding/provision/client-info → representación, máscaras y transforms del SDK instalado → documento sintético → configToWizardData actual → hydrate extraído de useWizard → SSR de StepMode/StepOwner actuales; en paralelo, bootstrapTenantConfig actual → filtrado SAFE/merge de site y presets reales → derivación de flags → declaraciones/initializers reales de BookingWizard para modo, paso inicial y staff seleccionado. También se aplicó switchSiteLanguage real a ru. No se sustituyó el cálculo del modo por una comparación de nombres.
+
+[49 casos crudos](resultados-r2/RESULTADOS.json), [resumen RED](resultados-r2/RESUMEN.json), [comando aislado](resultados-r2/COMANDO.json): 15 ejecuciones de escritores (3 × ausencia/null/inválido/solo/team), 1 reedición, 25 combinaciones nested/top, 2 conflictos con flags, 2 filtros SAFE, 2 defaults adicionales y 2 controles sensibles. Cada caso contiene config, resultado de lectura/hidratación, HTML de pasos, flags, paso/asignación de reserva y aplicación tras cambio de idioma. Ausente se representa con omisión; null y la cadena inválida quedan distinguibles en datos crudos.
+
+Defaults observados, no redefinidos: onboarding usa team ante ausencia/null y deja pasar una cadena inválida; provision normaliza todo valor distinto de solo a team; client-info usa team ante ausencia/null y conserva inválidos truthy. configToWizard sólo acepta solo/team. El merge de site ignora null pero conserva strings inválidos; el modo superior solo fuerza flags y team no revierte los flags solo. Config sin modo mantiene preset/flags: barberia y cafeteria equipo; employment conserva su preset solo y sus restricciones de servicios/reservas. Estos son ejemplos delimitados, no certificación de los seis nichos ni de la publicación de reservas en nichos que no las ofrecen.
+
+El borrador local con modo no vacío prevalece sobre config al hidratar: está explícito en useWizard y se ejecutó con valores opuestos. Se conserva esa decisión; no se pide revisarla. SAFE descarta business cuando el tipo está ausente o no corresponde al build; no se propone ampliar esa mezcla de contenido. La política por nicho y defaults se conserva. Ninguna decisión vigente fija, en cambio, la precedencia nested/top ni la autoridad de modo contra showAbout/showTeam explícitos.
+
+Controles: documento de entrada no mutado por consumidores; en reedición, campos ajenos, arrays y flags previos conservados (la preservación de flags explica el RED, no certifica intención). El control con top solo salta staff; su contraparte con ese control retirado vuelve a staff: sensibilidad de la observación del recorrido. Es un control de preparación; no reemplaza una futura mutación de la reparación. La reedición conserva la semántica del handler L02 aceptado y no reejecuta su suite de guardias/estados/historial.
+
+Se reutilizó el serializador de L02: segmentos obtenidos del SDK, sin dividir puntos por cuenta del mock. SDK sin commit y request bloqueado; timestamps sintéticos. Para altas nuevas, la materialización usa sus máscaras sobre un documento vacío; r2 añade el wire original de set sin merge y sus opciones, para no confundir ese set con el merge de client-info. [Adenda técnica](ADENDA-INSTRUMENTO.json) y preimagen r1 conservadas; r1 y r2 tienen los mismos 49 resultados y dos fallos. No se cambió el oracle para hacer pasar producto.
+
+Límites: handlers invocados localmente con dependencias externas interceptadas; no HTTP completo, credenciales, validación real de auth/rate, DB, deploy, email o logo. Bootstrap recibe status active sintético sólo para observar config; client-info sigue escribiendo pending_review y no se certifica publicación/guard L05. En wizard se ejecuta hydrate sin token ni servidor de borrador y SSR de pasos con etiquetas/proveedores visuales sintéticos. En template se ejecutan ramas AST reales, no montaje completo ni interacción del navegador. Se conserva la evidencia D05/L02/L03 y demás entregas aceptadas; no se afirma recertificación.
+
+La [propuesta mínima y decisiones concretas](PROPUESTA.md) está lista para revisión. No se congela una precedencia sin decisión de Liam ni se implementa una reparación. Presupuesto observado 85% TOTAL de techo 90%; último 10% reservado para N04, sin resets. Etapas posteriores y condición por tenant antes del despliegue vigentes. Sin instalaciones, efectos externos, push/deploy ni migraciones.

@@ -1,0 +1,1516 @@
+{
+  "preparacion": "sondeo completo",
+  "productAcceptance": "RED",
+  "semanticFailures": [
+    {
+      "name": "paid-configfalse-hubfalse hub_clients documento completo",
+      "actual": {
+        "businessName": "Nuevo",
+        "clientId": "tenant-l02",
+        "contact.email": "new@example.invalid",
+        "contact.whatsapp": "new",
+        "infoSubmitted": true,
+        "language": "es",
+        "niche": "barberia",
+        "source": "info-submit-fallback",
+        "status": "pending_review",
+        "infoSubmittedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "reviewRequestedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "lastEditedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "createdAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        }
+      },
+      "expected": {
+        "businessName": "Nuevo",
+        "clientId": "tenant-l02",
+        "contact": {
+          "email": "new@example.invalid",
+          "whatsapp": "new"
+        },
+        "infoSubmitted": true,
+        "language": "es",
+        "niche": "barberia",
+        "source": "info-submit-fallback",
+        "status": "pending_review",
+        "infoSubmittedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "reviewRequestedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "lastEditedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "createdAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        }
+      }
+    },
+    {
+      "name": "paid-configfalse-hubfalse hub_clients mascara 0",
+      "actual": [
+        "[\"businessName\"]",
+        "[\"clientId\"]",
+        "[\"contact.email\"]",
+        "[\"contact.whatsapp\"]",
+        "[\"infoSubmitted\"]",
+        "[\"language\"]",
+        "[\"niche\"]",
+        "[\"source\"]",
+        "[\"status\"]"
+      ],
+      "expected": [
+        "[\"businessName\"]",
+        "[\"clientId\"]",
+        "[\"contact\",\"email\"]",
+        "[\"contact\",\"whatsapp\"]",
+        "[\"infoSubmitted\"]",
+        "[\"language\"]",
+        "[\"niche\"]",
+        "[\"source\"]",
+        "[\"status\"]"
+      ]
+    },
+    {
+      "name": "paid-configfalse-hubfalse hub_clients field contact/email 0",
+      "actual": null,
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "paid-configfalse-hubfalse hub_clients field contact/whatsapp 0",
+      "actual": null,
+      "expected": "new"
+    },
+    {
+      "name": "paid-configfalse-hubtrue hub_clients documento completo",
+      "actual": {
+        "clientId": "tenant-l02",
+        "status": "pending_review",
+        "contact": {
+          "email": "old@example.invalid",
+          "whatsapp": "old",
+          "keep": "HC"
+        },
+        "language": "es",
+        "resubmissionCount": 3,
+        "changesRequestedAt": {
+          "_seconds": 1600000000,
+          "_nanoseconds": 0
+        },
+        "changesRequestedBy": "synthetic-owner",
+        "lastChangesRequestMessage": "Corregir",
+        "outside": {
+          "keep": true
+        },
+        "businessName": "Nuevo",
+        "contact.email": "new@example.invalid",
+        "contact.whatsapp": "new",
+        "infoSubmitted": true,
+        "niche": "barberia",
+        "infoSubmittedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "reviewRequestedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "lastEditedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        }
+      },
+      "expected": {
+        "clientId": "tenant-l02",
+        "status": "pending_review",
+        "contact": {
+          "email": "new@example.invalid",
+          "whatsapp": "new",
+          "keep": "HC"
+        },
+        "language": "es",
+        "resubmissionCount": 3,
+        "changesRequestedAt": {
+          "_seconds": 1600000000,
+          "_nanoseconds": 0
+        },
+        "changesRequestedBy": "synthetic-owner",
+        "lastChangesRequestMessage": "Corregir",
+        "outside": {
+          "keep": true
+        },
+        "businessName": "Nuevo",
+        "infoSubmitted": true,
+        "niche": "barberia",
+        "infoSubmittedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "reviewRequestedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "lastEditedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        }
+      }
+    },
+    {
+      "name": "paid-configfalse-hubtrue hub_clients mascara 0",
+      "actual": [
+        "[\"businessName\"]",
+        "[\"contact.email\"]",
+        "[\"contact.whatsapp\"]",
+        "[\"infoSubmitted\"]",
+        "[\"language\"]",
+        "[\"niche\"]",
+        "[\"status\"]"
+      ],
+      "expected": [
+        "[\"businessName\"]",
+        "[\"contact\",\"email\"]",
+        "[\"contact\",\"whatsapp\"]",
+        "[\"infoSubmitted\"]",
+        "[\"language\"]",
+        "[\"niche\"]",
+        "[\"status\"]"
+      ]
+    },
+    {
+      "name": "paid-configfalse-hubtrue hub_clients field contact/email 0",
+      "actual": null,
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "paid-configfalse-hubtrue hub_clients field contact/whatsapp 0",
+      "actual": null,
+      "expected": "new"
+    },
+    {
+      "name": "paid-configtrue-hubfalse hub_clients documento completo",
+      "actual": {
+        "businessName": "Nuevo",
+        "clientId": "tenant-l02",
+        "contact.email": "new@example.invalid",
+        "contact.whatsapp": "new",
+        "infoSubmitted": true,
+        "language": "es",
+        "niche": "barberia",
+        "source": "info-submit-fallback",
+        "status": "pending_review",
+        "infoSubmittedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "reviewRequestedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "lastEditedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "createdAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        }
+      },
+      "expected": {
+        "businessName": "Nuevo",
+        "clientId": "tenant-l02",
+        "contact": {
+          "email": "new@example.invalid",
+          "whatsapp": "new"
+        },
+        "infoSubmitted": true,
+        "language": "es",
+        "niche": "barberia",
+        "source": "info-submit-fallback",
+        "status": "pending_review",
+        "infoSubmittedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "reviewRequestedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "lastEditedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "createdAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        }
+      }
+    },
+    {
+      "name": "paid-configtrue-hubfalse hub_clients mascara 0",
+      "actual": [
+        "[\"businessName\"]",
+        "[\"clientId\"]",
+        "[\"contact.email\"]",
+        "[\"contact.whatsapp\"]",
+        "[\"infoSubmitted\"]",
+        "[\"language\"]",
+        "[\"niche\"]",
+        "[\"source\"]",
+        "[\"status\"]"
+      ],
+      "expected": [
+        "[\"businessName\"]",
+        "[\"clientId\"]",
+        "[\"contact\",\"email\"]",
+        "[\"contact\",\"whatsapp\"]",
+        "[\"infoSubmitted\"]",
+        "[\"language\"]",
+        "[\"niche\"]",
+        "[\"source\"]",
+        "[\"status\"]"
+      ]
+    },
+    {
+      "name": "paid-configtrue-hubfalse hub_clients field contact/email 0",
+      "actual": null,
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "paid-configtrue-hubfalse hub_clients field contact/whatsapp 0",
+      "actual": null,
+      "expected": "new"
+    },
+    {
+      "name": "paid-configtrue-hubtrue hub_clients documento completo",
+      "actual": {
+        "clientId": "tenant-l02",
+        "status": "pending_review",
+        "contact": {
+          "email": "old@example.invalid",
+          "whatsapp": "old",
+          "keep": "HC"
+        },
+        "language": "es",
+        "resubmissionCount": 3,
+        "changesRequestedAt": {
+          "_seconds": 1600000000,
+          "_nanoseconds": 0
+        },
+        "changesRequestedBy": "synthetic-owner",
+        "lastChangesRequestMessage": "Corregir",
+        "outside": {
+          "keep": true
+        },
+        "businessName": "Nuevo",
+        "contact.email": "new@example.invalid",
+        "contact.whatsapp": "new",
+        "infoSubmitted": true,
+        "niche": "barberia",
+        "infoSubmittedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "reviewRequestedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "lastEditedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        }
+      },
+      "expected": {
+        "clientId": "tenant-l02",
+        "status": "pending_review",
+        "contact": {
+          "email": "new@example.invalid",
+          "whatsapp": "new",
+          "keep": "HC"
+        },
+        "language": "es",
+        "resubmissionCount": 3,
+        "changesRequestedAt": {
+          "_seconds": 1600000000,
+          "_nanoseconds": 0
+        },
+        "changesRequestedBy": "synthetic-owner",
+        "lastChangesRequestMessage": "Corregir",
+        "outside": {
+          "keep": true
+        },
+        "businessName": "Nuevo",
+        "infoSubmitted": true,
+        "niche": "barberia",
+        "infoSubmittedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "reviewRequestedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "lastEditedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        }
+      }
+    },
+    {
+      "name": "paid-configtrue-hubtrue hub_clients mascara 0",
+      "actual": [
+        "[\"businessName\"]",
+        "[\"contact.email\"]",
+        "[\"contact.whatsapp\"]",
+        "[\"infoSubmitted\"]",
+        "[\"language\"]",
+        "[\"niche\"]",
+        "[\"status\"]"
+      ],
+      "expected": [
+        "[\"businessName\"]",
+        "[\"contact\",\"email\"]",
+        "[\"contact\",\"whatsapp\"]",
+        "[\"infoSubmitted\"]",
+        "[\"language\"]",
+        "[\"niche\"]",
+        "[\"status\"]"
+      ]
+    },
+    {
+      "name": "paid-configtrue-hubtrue hub_clients field contact/email 0",
+      "actual": null,
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "paid-configtrue-hubtrue hub_clients field contact/whatsapp 0",
+      "actual": null,
+      "expected": "new"
+    },
+    {
+      "name": "resubmit-configfalse-hubtrue hub_clients documento completo",
+      "actual": {
+        "clientId": "tenant-l02",
+        "status": "pending_review",
+        "contact": {
+          "email": "old@example.invalid",
+          "whatsapp": "old",
+          "keep": "HC"
+        },
+        "language": "es",
+        "resubmissionCount": 4,
+        "outside": {
+          "keep": true
+        },
+        "businessName": "Nuevo",
+        "contact.email": "new@example.invalid",
+        "contact.whatsapp": "new",
+        "infoSubmitted": true,
+        "niche": "barberia",
+        "infoSubmittedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "reviewRequestedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "lastEditedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "lastResubmittedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        }
+      },
+      "expected": {
+        "clientId": "tenant-l02",
+        "status": "pending_review",
+        "contact": {
+          "email": "new@example.invalid",
+          "whatsapp": "new",
+          "keep": "HC"
+        },
+        "language": "es",
+        "resubmissionCount": 4,
+        "outside": {
+          "keep": true
+        },
+        "businessName": "Nuevo",
+        "infoSubmitted": true,
+        "niche": "barberia",
+        "infoSubmittedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "reviewRequestedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "lastEditedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "lastResubmittedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        }
+      }
+    },
+    {
+      "name": "resubmit-configfalse-hubtrue hub_clients mascara 0",
+      "actual": [
+        "[\"businessName\"]",
+        "[\"changesRequestedAt\"]",
+        "[\"changesRequestedBy\"]",
+        "[\"contact.email\"]",
+        "[\"contact.whatsapp\"]",
+        "[\"infoSubmitted\"]",
+        "[\"language\"]",
+        "[\"lastChangesRequestMessage\"]",
+        "[\"niche\"]",
+        "[\"status\"]"
+      ],
+      "expected": [
+        "[\"businessName\"]",
+        "[\"changesRequestedAt\"]",
+        "[\"changesRequestedBy\"]",
+        "[\"contact\",\"email\"]",
+        "[\"contact\",\"whatsapp\"]",
+        "[\"infoSubmitted\"]",
+        "[\"language\"]",
+        "[\"lastChangesRequestMessage\"]",
+        "[\"niche\"]",
+        "[\"status\"]"
+      ]
+    },
+    {
+      "name": "resubmit-configfalse-hubtrue hub_clients field contact/email 0",
+      "actual": null,
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "resubmit-configfalse-hubtrue hub_clients field contact/whatsapp 0",
+      "actual": null,
+      "expected": "new"
+    },
+    {
+      "name": "resubmit-configtrue-hubtrue hub_clients documento completo",
+      "actual": {
+        "clientId": "tenant-l02",
+        "status": "pending_review",
+        "contact": {
+          "email": "old@example.invalid",
+          "whatsapp": "old",
+          "keep": "HC"
+        },
+        "language": "es",
+        "resubmissionCount": 4,
+        "outside": {
+          "keep": true
+        },
+        "businessName": "Nuevo",
+        "contact.email": "new@example.invalid",
+        "contact.whatsapp": "new",
+        "infoSubmitted": true,
+        "niche": "barberia",
+        "infoSubmittedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "reviewRequestedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "lastEditedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "lastResubmittedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        }
+      },
+      "expected": {
+        "clientId": "tenant-l02",
+        "status": "pending_review",
+        "contact": {
+          "email": "new@example.invalid",
+          "whatsapp": "new",
+          "keep": "HC"
+        },
+        "language": "es",
+        "resubmissionCount": 4,
+        "outside": {
+          "keep": true
+        },
+        "businessName": "Nuevo",
+        "infoSubmitted": true,
+        "niche": "barberia",
+        "infoSubmittedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "reviewRequestedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "lastEditedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "lastResubmittedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        }
+      }
+    },
+    {
+      "name": "resubmit-configtrue-hubtrue hub_clients mascara 0",
+      "actual": [
+        "[\"businessName\"]",
+        "[\"changesRequestedAt\"]",
+        "[\"changesRequestedBy\"]",
+        "[\"contact.email\"]",
+        "[\"contact.whatsapp\"]",
+        "[\"infoSubmitted\"]",
+        "[\"language\"]",
+        "[\"lastChangesRequestMessage\"]",
+        "[\"niche\"]",
+        "[\"status\"]"
+      ],
+      "expected": [
+        "[\"businessName\"]",
+        "[\"changesRequestedAt\"]",
+        "[\"changesRequestedBy\"]",
+        "[\"contact\",\"email\"]",
+        "[\"contact\",\"whatsapp\"]",
+        "[\"infoSubmitted\"]",
+        "[\"language\"]",
+        "[\"lastChangesRequestMessage\"]",
+        "[\"niche\"]",
+        "[\"status\"]"
+      ]
+    },
+    {
+      "name": "resubmit-configtrue-hubtrue hub_clients field contact/email 0",
+      "actual": null,
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "resubmit-configtrue-hubtrue hub_clients field contact/whatsapp 0",
+      "actual": null,
+      "expected": "new"
+    },
+    {
+      "name": "lookup-legacy hub_clients documento completo",
+      "actual": {
+        "clientId": "tenant-l02",
+        "status": "pending_review",
+        "contact": {
+          "email": "old@example.invalid",
+          "whatsapp": "old",
+          "keep": "HC"
+        },
+        "language": "es",
+        "resubmissionCount": 3,
+        "changesRequestedAt": {
+          "_seconds": 1600000000,
+          "_nanoseconds": 0
+        },
+        "changesRequestedBy": "synthetic-owner",
+        "lastChangesRequestMessage": "Corregir",
+        "outside": {
+          "keep": true
+        },
+        "businessName": "Nuevo",
+        "contact.email": "new@example.invalid",
+        "contact.whatsapp": "new",
+        "infoSubmitted": true,
+        "niche": "barberia",
+        "infoSubmittedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "reviewRequestedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "lastEditedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        }
+      },
+      "expected": {
+        "clientId": "tenant-l02",
+        "status": "pending_review",
+        "contact": {
+          "email": "new@example.invalid",
+          "whatsapp": "new",
+          "keep": "HC"
+        },
+        "language": "es",
+        "resubmissionCount": 3,
+        "changesRequestedAt": {
+          "_seconds": 1600000000,
+          "_nanoseconds": 0
+        },
+        "changesRequestedBy": "synthetic-owner",
+        "lastChangesRequestMessage": "Corregir",
+        "outside": {
+          "keep": true
+        },
+        "businessName": "Nuevo",
+        "infoSubmitted": true,
+        "niche": "barberia",
+        "infoSubmittedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "reviewRequestedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "lastEditedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        }
+      }
+    },
+    {
+      "name": "lookup-legacy hub_clients mascara 0",
+      "actual": [
+        "[\"businessName\"]",
+        "[\"contact.email\"]",
+        "[\"contact.whatsapp\"]",
+        "[\"infoSubmitted\"]",
+        "[\"language\"]",
+        "[\"niche\"]",
+        "[\"status\"]"
+      ],
+      "expected": [
+        "[\"businessName\"]",
+        "[\"contact\",\"email\"]",
+        "[\"contact\",\"whatsapp\"]",
+        "[\"infoSubmitted\"]",
+        "[\"language\"]",
+        "[\"niche\"]",
+        "[\"status\"]"
+      ]
+    },
+    {
+      "name": "lookup-legacy hub_clients field contact/email 0",
+      "actual": null,
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "lookup-legacy hub_clients field contact/whatsapp 0",
+      "actual": null,
+      "expected": "new"
+    },
+    {
+      "name": "limite11 hub_clients documento completo",
+      "actual": {
+        "clientId": "tenant-l02",
+        "status": "pending_review",
+        "contact": {
+          "email": "old@example.invalid",
+          "whatsapp": "old",
+          "keep": "HC"
+        },
+        "language": "es",
+        "resubmissionCount": 3,
+        "changesRequestedAt": {
+          "_seconds": 1600000000,
+          "_nanoseconds": 0
+        },
+        "changesRequestedBy": "synthetic-owner",
+        "lastChangesRequestMessage": "Corregir",
+        "outside": {
+          "keep": true
+        },
+        "businessName": "Nuevo",
+        "contact.email": "new@example.invalid",
+        "contact.whatsapp": "new",
+        "infoSubmitted": true,
+        "niche": "barberia",
+        "infoSubmittedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "reviewRequestedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "lastEditedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        }
+      },
+      "expected": {
+        "clientId": "tenant-l02",
+        "status": "pending_review",
+        "contact": {
+          "email": "new@example.invalid",
+          "whatsapp": "new",
+          "keep": "HC"
+        },
+        "language": "es",
+        "resubmissionCount": 3,
+        "changesRequestedAt": {
+          "_seconds": 1600000000,
+          "_nanoseconds": 0
+        },
+        "changesRequestedBy": "synthetic-owner",
+        "lastChangesRequestMessage": "Corregir",
+        "outside": {
+          "keep": true
+        },
+        "businessName": "Nuevo",
+        "infoSubmitted": true,
+        "niche": "barberia",
+        "infoSubmittedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "reviewRequestedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "lastEditedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        }
+      }
+    },
+    {
+      "name": "limite11 hub_clients mascara 0",
+      "actual": [
+        "[\"businessName\"]",
+        "[\"contact.email\"]",
+        "[\"contact.whatsapp\"]",
+        "[\"infoSubmitted\"]",
+        "[\"language\"]",
+        "[\"niche\"]",
+        "[\"status\"]"
+      ],
+      "expected": [
+        "[\"businessName\"]",
+        "[\"contact\",\"email\"]",
+        "[\"contact\",\"whatsapp\"]",
+        "[\"infoSubmitted\"]",
+        "[\"language\"]",
+        "[\"niche\"]",
+        "[\"status\"]"
+      ]
+    },
+    {
+      "name": "limite11 hub_clients field contact/email 0",
+      "actual": null,
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "limite11 hub_clients field contact/whatsapp 0",
+      "actual": null,
+      "expected": "new"
+    },
+    {
+      "name": "limite11 hub_clients mascara 1",
+      "actual": [
+        "[\"businessName\"]",
+        "[\"contact.email\"]",
+        "[\"contact.whatsapp\"]",
+        "[\"infoSubmitted\"]",
+        "[\"language\"]",
+        "[\"niche\"]",
+        "[\"status\"]"
+      ],
+      "expected": [
+        "[\"businessName\"]",
+        "[\"contact\",\"email\"]",
+        "[\"contact\",\"whatsapp\"]",
+        "[\"infoSubmitted\"]",
+        "[\"language\"]",
+        "[\"niche\"]",
+        "[\"status\"]"
+      ]
+    },
+    {
+      "name": "limite11 hub_clients field contact/email 1",
+      "actual": null,
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "limite11 hub_clients field contact/whatsapp 1",
+      "actual": null,
+      "expected": "new"
+    },
+    {
+      "name": "limite11 hub_clients mascara 2",
+      "actual": [
+        "[\"businessName\"]",
+        "[\"contact.email\"]",
+        "[\"contact.whatsapp\"]",
+        "[\"infoSubmitted\"]",
+        "[\"language\"]",
+        "[\"niche\"]",
+        "[\"status\"]"
+      ],
+      "expected": [
+        "[\"businessName\"]",
+        "[\"contact\",\"email\"]",
+        "[\"contact\",\"whatsapp\"]",
+        "[\"infoSubmitted\"]",
+        "[\"language\"]",
+        "[\"niche\"]",
+        "[\"status\"]"
+      ]
+    },
+    {
+      "name": "limite11 hub_clients field contact/email 2",
+      "actual": null,
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "limite11 hub_clients field contact/whatsapp 2",
+      "actual": null,
+      "expected": "new"
+    },
+    {
+      "name": "limite11 hub_clients mascara 3",
+      "actual": [
+        "[\"businessName\"]",
+        "[\"contact.email\"]",
+        "[\"contact.whatsapp\"]",
+        "[\"infoSubmitted\"]",
+        "[\"language\"]",
+        "[\"niche\"]",
+        "[\"status\"]"
+      ],
+      "expected": [
+        "[\"businessName\"]",
+        "[\"contact\",\"email\"]",
+        "[\"contact\",\"whatsapp\"]",
+        "[\"infoSubmitted\"]",
+        "[\"language\"]",
+        "[\"niche\"]",
+        "[\"status\"]"
+      ]
+    },
+    {
+      "name": "limite11 hub_clients field contact/email 3",
+      "actual": null,
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "limite11 hub_clients field contact/whatsapp 3",
+      "actual": null,
+      "expected": "new"
+    },
+    {
+      "name": "limite11 hub_clients mascara 4",
+      "actual": [
+        "[\"businessName\"]",
+        "[\"contact.email\"]",
+        "[\"contact.whatsapp\"]",
+        "[\"infoSubmitted\"]",
+        "[\"language\"]",
+        "[\"niche\"]",
+        "[\"status\"]"
+      ],
+      "expected": [
+        "[\"businessName\"]",
+        "[\"contact\",\"email\"]",
+        "[\"contact\",\"whatsapp\"]",
+        "[\"infoSubmitted\"]",
+        "[\"language\"]",
+        "[\"niche\"]",
+        "[\"status\"]"
+      ]
+    },
+    {
+      "name": "limite11 hub_clients field contact/email 4",
+      "actual": null,
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "limite11 hub_clients field contact/whatsapp 4",
+      "actual": null,
+      "expected": "new"
+    },
+    {
+      "name": "limite11 hub_clients mascara 5",
+      "actual": [
+        "[\"businessName\"]",
+        "[\"contact.email\"]",
+        "[\"contact.whatsapp\"]",
+        "[\"infoSubmitted\"]",
+        "[\"language\"]",
+        "[\"niche\"]",
+        "[\"status\"]"
+      ],
+      "expected": [
+        "[\"businessName\"]",
+        "[\"contact\",\"email\"]",
+        "[\"contact\",\"whatsapp\"]",
+        "[\"infoSubmitted\"]",
+        "[\"language\"]",
+        "[\"niche\"]",
+        "[\"status\"]"
+      ]
+    },
+    {
+      "name": "limite11 hub_clients field contact/email 5",
+      "actual": null,
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "limite11 hub_clients field contact/whatsapp 5",
+      "actual": null,
+      "expected": "new"
+    },
+    {
+      "name": "limite11 hub_clients mascara 6",
+      "actual": [
+        "[\"businessName\"]",
+        "[\"contact.email\"]",
+        "[\"contact.whatsapp\"]",
+        "[\"infoSubmitted\"]",
+        "[\"language\"]",
+        "[\"niche\"]",
+        "[\"status\"]"
+      ],
+      "expected": [
+        "[\"businessName\"]",
+        "[\"contact\",\"email\"]",
+        "[\"contact\",\"whatsapp\"]",
+        "[\"infoSubmitted\"]",
+        "[\"language\"]",
+        "[\"niche\"]",
+        "[\"status\"]"
+      ]
+    },
+    {
+      "name": "limite11 hub_clients field contact/email 6",
+      "actual": null,
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "limite11 hub_clients field contact/whatsapp 6",
+      "actual": null,
+      "expected": "new"
+    },
+    {
+      "name": "limite11 hub_clients mascara 7",
+      "actual": [
+        "[\"businessName\"]",
+        "[\"contact.email\"]",
+        "[\"contact.whatsapp\"]",
+        "[\"infoSubmitted\"]",
+        "[\"language\"]",
+        "[\"niche\"]",
+        "[\"status\"]"
+      ],
+      "expected": [
+        "[\"businessName\"]",
+        "[\"contact\",\"email\"]",
+        "[\"contact\",\"whatsapp\"]",
+        "[\"infoSubmitted\"]",
+        "[\"language\"]",
+        "[\"niche\"]",
+        "[\"status\"]"
+      ]
+    },
+    {
+      "name": "limite11 hub_clients field contact/email 7",
+      "actual": null,
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "limite11 hub_clients field contact/whatsapp 7",
+      "actual": null,
+      "expected": "new"
+    },
+    {
+      "name": "limite11 hub_clients mascara 8",
+      "actual": [
+        "[\"businessName\"]",
+        "[\"contact.email\"]",
+        "[\"contact.whatsapp\"]",
+        "[\"infoSubmitted\"]",
+        "[\"language\"]",
+        "[\"niche\"]",
+        "[\"status\"]"
+      ],
+      "expected": [
+        "[\"businessName\"]",
+        "[\"contact\",\"email\"]",
+        "[\"contact\",\"whatsapp\"]",
+        "[\"infoSubmitted\"]",
+        "[\"language\"]",
+        "[\"niche\"]",
+        "[\"status\"]"
+      ]
+    },
+    {
+      "name": "limite11 hub_clients field contact/email 8",
+      "actual": null,
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "limite11 hub_clients field contact/whatsapp 8",
+      "actual": null,
+      "expected": "new"
+    },
+    {
+      "name": "limite11 hub_clients mascara 9",
+      "actual": [
+        "[\"businessName\"]",
+        "[\"contact.email\"]",
+        "[\"contact.whatsapp\"]",
+        "[\"infoSubmitted\"]",
+        "[\"language\"]",
+        "[\"niche\"]",
+        "[\"status\"]"
+      ],
+      "expected": [
+        "[\"businessName\"]",
+        "[\"contact\",\"email\"]",
+        "[\"contact\",\"whatsapp\"]",
+        "[\"infoSubmitted\"]",
+        "[\"language\"]",
+        "[\"niche\"]",
+        "[\"status\"]"
+      ]
+    },
+    {
+      "name": "limite11 hub_clients field contact/email 9",
+      "actual": null,
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "limite11 hub_clients field contact/whatsapp 9",
+      "actual": null,
+      "expected": "new"
+    },
+    {
+      "name": "contador-ausente hub_clients documento completo",
+      "actual": {
+        "clientId": "tenant-l02",
+        "status": "pending_review",
+        "contact": {
+          "email": "old@example.invalid",
+          "whatsapp": "old",
+          "keep": "HC"
+        },
+        "language": "es",
+        "outside": {
+          "keep": true
+        },
+        "businessName": "Nuevo",
+        "contact.email": "new@example.invalid",
+        "contact.whatsapp": "new",
+        "infoSubmitted": true,
+        "niche": "barberia",
+        "infoSubmittedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "reviewRequestedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "lastEditedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "resubmissionCount": 1,
+        "lastResubmittedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        }
+      },
+      "expected": {
+        "clientId": "tenant-l02",
+        "status": "pending_review",
+        "contact": {
+          "email": "new@example.invalid",
+          "whatsapp": "new",
+          "keep": "HC"
+        },
+        "language": "es",
+        "outside": {
+          "keep": true
+        },
+        "businessName": "Nuevo",
+        "infoSubmitted": true,
+        "niche": "barberia",
+        "infoSubmittedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "reviewRequestedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "lastEditedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "resubmissionCount": 1,
+        "lastResubmittedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        }
+      }
+    },
+    {
+      "name": "contador-ausente hub_clients mascara 0",
+      "actual": [
+        "[\"businessName\"]",
+        "[\"changesRequestedAt\"]",
+        "[\"changesRequestedBy\"]",
+        "[\"contact.email\"]",
+        "[\"contact.whatsapp\"]",
+        "[\"infoSubmitted\"]",
+        "[\"language\"]",
+        "[\"lastChangesRequestMessage\"]",
+        "[\"niche\"]",
+        "[\"status\"]"
+      ],
+      "expected": [
+        "[\"businessName\"]",
+        "[\"changesRequestedAt\"]",
+        "[\"changesRequestedBy\"]",
+        "[\"contact\",\"email\"]",
+        "[\"contact\",\"whatsapp\"]",
+        "[\"infoSubmitted\"]",
+        "[\"language\"]",
+        "[\"lastChangesRequestMessage\"]",
+        "[\"niche\"]",
+        "[\"status\"]"
+      ]
+    },
+    {
+      "name": "contador-ausente hub_clients field contact/email 0",
+      "actual": null,
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "contador-ausente hub_clients field contact/whatsapp 0",
+      "actual": null,
+      "expected": "new"
+    },
+    {
+      "name": "sin-cambio hub_clients documento completo",
+      "actual": {
+        "clientId": "tenant-l02",
+        "status": "pending_review",
+        "contact": {
+          "email": "old@example.invalid",
+          "whatsapp": "old",
+          "keep": "HC"
+        },
+        "language": "es",
+        "resubmissionCount": 3,
+        "changesRequestedAt": {
+          "_seconds": 1600000000,
+          "_nanoseconds": 0
+        },
+        "changesRequestedBy": "synthetic-owner",
+        "lastChangesRequestMessage": "Corregir",
+        "outside": {
+          "keep": true
+        },
+        "businessName": "Nuevo",
+        "contact.email": "new@example.invalid",
+        "contact.whatsapp": "new",
+        "infoSubmitted": true,
+        "niche": "barberia",
+        "infoSubmittedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "reviewRequestedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "lastEditedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        }
+      },
+      "expected": {
+        "clientId": "tenant-l02",
+        "status": "pending_review",
+        "contact": {
+          "email": "new@example.invalid",
+          "whatsapp": "new",
+          "keep": "HC"
+        },
+        "language": "es",
+        "resubmissionCount": 3,
+        "changesRequestedAt": {
+          "_seconds": 1600000000,
+          "_nanoseconds": 0
+        },
+        "changesRequestedBy": "synthetic-owner",
+        "lastChangesRequestMessage": "Corregir",
+        "outside": {
+          "keep": true
+        },
+        "businessName": "Nuevo",
+        "infoSubmitted": true,
+        "niche": "barberia",
+        "infoSubmittedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "reviewRequestedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "lastEditedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        }
+      }
+    },
+    {
+      "name": "sin-cambio hub_clients mascara 0",
+      "actual": [
+        "[\"businessName\"]",
+        "[\"contact.email\"]",
+        "[\"contact.whatsapp\"]",
+        "[\"infoSubmitted\"]",
+        "[\"language\"]",
+        "[\"niche\"]",
+        "[\"status\"]"
+      ],
+      "expected": [
+        "[\"businessName\"]",
+        "[\"contact\",\"email\"]",
+        "[\"contact\",\"whatsapp\"]",
+        "[\"infoSubmitted\"]",
+        "[\"language\"]",
+        "[\"niche\"]",
+        "[\"status\"]"
+      ]
+    },
+    {
+      "name": "sin-cambio hub_clients field contact/email 0",
+      "actual": null,
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "sin-cambio hub_clients field contact/whatsapp 0",
+      "actual": null,
+      "expected": "new"
+    },
+    {
+      "name": "parcial-email hub_clients documento completo",
+      "actual": {
+        "clientId": "tenant-l02",
+        "status": "pending_review",
+        "contact": {
+          "email": "old@example.invalid",
+          "whatsapp": "old",
+          "keep": "HC"
+        },
+        "language": "ru",
+        "resubmissionCount": 3,
+        "changesRequestedAt": {
+          "_seconds": 1600000000,
+          "_nanoseconds": 0
+        },
+        "changesRequestedBy": "synthetic-owner",
+        "lastChangesRequestMessage": "Corregir",
+        "outside": {
+          "keep": true
+        },
+        "contact.email": "new@example.invalid",
+        "infoSubmitted": true,
+        "infoSubmittedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "reviewRequestedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "lastEditedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        }
+      },
+      "expected": {
+        "clientId": "tenant-l02",
+        "status": "pending_review",
+        "contact": {
+          "email": "new@example.invalid",
+          "whatsapp": "old",
+          "keep": "HC"
+        },
+        "language": "ru",
+        "resubmissionCount": 3,
+        "changesRequestedAt": {
+          "_seconds": 1600000000,
+          "_nanoseconds": 0
+        },
+        "changesRequestedBy": "synthetic-owner",
+        "lastChangesRequestMessage": "Corregir",
+        "outside": {
+          "keep": true
+        },
+        "infoSubmitted": true,
+        "infoSubmittedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "reviewRequestedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "lastEditedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1700000000,
+          "_nanoseconds": 0
+        }
+      }
+    },
+    {
+      "name": "parcial-email hub_clients mascara 0",
+      "actual": [
+        "[\"contact.email\"]",
+        "[\"infoSubmitted\"]",
+        "[\"status\"]"
+      ],
+      "expected": [
+        "[\"contact\",\"email\"]",
+        "[\"infoSubmitted\"]",
+        "[\"status\"]"
+      ]
+    },
+    {
+      "name": "parcial-email hub_clients field contact/email 0",
+      "actual": null,
+      "expected": "new@example.invalid"
+    }
+  ],
+  "checksPassed": 1220,
+  "cases": 29,
+  "versions": {
+    "node": "v22.23.1",
+    "admin": "13.10.0",
+    "firestore": "7.11.6",
+    "next": "16.2.9"
+  },
+  "limits": [
+    "SDK real sin commit; materializacion sintetica",
+    "server timestamps fijos modelados, no servidor",
+    "handler/reader/auth/rate/branding/diff/templates reales; DB/sendEmail interceptados"
+  ]
+}

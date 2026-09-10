@@ -1,0 +1,65 @@
+{
+  "instrumentBefore": "fdc9f29fd504014d6743f15ea5d04a1096263f15e7a4f705bf6325771c09ad1d",
+  "instrumentAfter": "3af63fa8f0e35dacdfbad61999caae4445dcae9b0a9bdcdac059597841925320",
+  "expectations": "Conservadas por reversión exacta de las únicas cuatro sustituciones instrumentales",
+  "sources": [
+    {
+      "path": "C:\\Users\\liama\\Desktop\\Nichos\\Barber-shop-template-main\\api\\index.ts",
+      "sha256": "748b245f1b1c56184de7f57119d89a4a690ff383fdff504a4431ac2aae0af007"
+    },
+    {
+      "path": "C:\\Users\\liama\\Desktop\\Nichos\\Barber-shop-template-main\\server.ts",
+      "sha256": "884ed361649c0aa2b406c317e7cc0fe36f70d30f9cd83785f6680fee7c9970f0"
+    },
+    {
+      "path": "C:\\Users\\liama\\Desktop\\Nichos\\Barber-shop-template-main\\src\\config\\site.ts",
+      "sha256": "e3ea39ab76a683452d7a37c60c137793c57d2ee8e5cf36afa5bf38ee91e0a91a"
+    },
+    {
+      "path": "C:\\Users\\liama\\Desktop\\Nichos\\Barber-shop-template-main\\src\\lib\\api\\checkout-handler.ts",
+      "sha256": "fa1fa7c49f4089db815a7e603cf41af0ba0c08460718734a8b0a6c0dde927010"
+    },
+    {
+      "path": "C:\\Users\\liama\\Desktop\\Nichos\\Barber-shop-template-main\\src\\lib\\api\\payment-gateways.ts",
+      "sha256": "580ff87947a952f8cbf4d3873647028dd6131da58f7d16a08104f6ddd6bfddd6"
+    }
+  ],
+  "helpers": [
+    {
+      "file": "C:/Users/liama/Desktop/Nichos/Barber-shop-template-main/api/index.ts",
+      "name": "startOfDay",
+      "text": "function startOfDay(d: Date): Date {\n  const x = new Date(d);\n  x.setHours(0, 0, 0, 0);\n  return x;\n}",
+      "sha256": "264beec7614ad05b966a09826275edecaefe9276e5e8828859d7548d96a3df64"
+    },
+    {
+      "file": "C:/Users/liama/Desktop/Nichos/Barber-shop-template-main/api/index.ts",
+      "name": "isoDay",
+      "text": "function isoDay(d: Date): string {\n  const y = d.getFullYear();\n  const m = String(d.getMonth() + 1).padStart(2, \"0\");\n  const day = String(d.getDate()).padStart(2, \"0\");\n  return `${y}-${m}-${day}`;\n}",
+      "sha256": "60db6439c59d3dd394cddbba902d81c2740a51f81ab264baeebd77c95a3c7145"
+    },
+    {
+      "file": "C:/Users/liama/Desktop/Nichos/Barber-shop-template-main/api/index.ts",
+      "name": "crmRangeWindow",
+      "text": "function crmRangeWindow(range: CrmMetricsRange, now: Date): {\n  start: Date | null;\n  end: Date;\n  startIso: string | null;\n  endIso: string;\n} {\n  const end = startOfDay(now);\n  const endIso = isoDay(end);\n  if (range === \"all\") return { start: null, end, startIso: null, endIso };\n  let start: Date;\n  if (range === \"mtd\") {\n    start = new Date(end.getFullYear(), end.getMonth(), 1);\n  } else {\n    const days = range === \"7d\" ? 7 : 30;\n    start = new Date(end);\n    start.setDate(start.getDate() - (days - 1));\n  }\n  return { start, end, startIso: isoDay(start), endIso };\n}",
+      "sha256": "dc5ec593ce5e2c9dddecdc33978b08f2036c8fb1527bf5491b2d22afea0908bf"
+    },
+    {
+      "file": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\preimagenes\\api-antes-inline.ts",
+      "name": "startOfDay",
+      "text": "function startOfDay(d: Date): Date {\n  const x = new Date(d);\n  x.setHours(0, 0, 0, 0);\n  return x;\n}",
+      "sha256": "264beec7614ad05b966a09826275edecaefe9276e5e8828859d7548d96a3df64"
+    },
+    {
+      "file": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\preimagenes\\api-antes-inline.ts",
+      "name": "isoDay",
+      "text": "function isoDay(d: Date): string {\n  const y = d.getFullYear();\n  const m = String(d.getMonth() + 1).padStart(2, \"0\");\n  const day = String(d.getDate()).padStart(2, \"0\");\n  return `${y}-${m}-${day}`;\n}",
+      "sha256": "60db6439c59d3dd394cddbba902d81c2740a51f81ab264baeebd77c95a3c7145"
+    },
+    {
+      "file": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\preimagenes\\api-antes-inline.ts",
+      "name": "crmRangeWindow",
+      "text": "function crmRangeWindow(range: CrmMetricsRange, now: Date): {\n  start: Date | null;\n  end: Date;\n  startIso: string | null;\n  endIso: string;\n} {\n  const end = startOfDay(now);\n  const endIso = isoDay(end);\n  if (range === \"all\") return { start: null, end, startIso: null, endIso };\n  let start: Date;\n  if (range === \"mtd\") {\n    start = new Date(end.getFullYear(), end.getMonth(), 1);\n  } else {\n    const days = range === \"7d\" ? 7 : 30;\n    start = new Date(end);\n    start.setDate(start.getDate() - (days - 1));\n  }\n  return { start, end, startIso: isoDay(start), endIso };\n}",
+      "sha256": "dc5ec593ce5e2c9dddecdc33978b08f2036c8fb1527bf5491b2d22afea0908bf"
+    }
+  ]
+}

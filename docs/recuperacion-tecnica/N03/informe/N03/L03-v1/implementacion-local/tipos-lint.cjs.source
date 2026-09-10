@@ -1,0 +1,16 @@
+const fs=require('node:fs'),p=require('node:path'),{spawnSync}=require('node:child_process'),{pathToFileURL}=require('node:url');
+const base=__dirname,hub='C:/Users/liama/Desktop/Nichos-hub';
+const guardar=(nombre,obj)=>fs.writeFileSync(p.join(base,nombre),typeof obj==='string'?obj:JSON.stringify(obj,null,2),{flag:'wx'});
+(async()=>{
+ const args=[hub+'/node_modules/typescript/bin/tsc','--project',p.join(base,'tsconfig-pertinente.json'),'--noEmit','--incremental','false'];
+ const resultado=spawnSync(process.execPath,args,{cwd:hub,encoding:'utf8',timeout:120000});
+ guardar('TIPOS.stdout.txt',resultado.stdout||'');guardar('TIPOS.stderr.txt',resultado.stderr||'');guardar('TIPOS.json',{comando:[process.execPath,...args],exit:resultado.status,error:resultado.error?.message,poblacion:['src/components/client-config-tab.tsx','next-env.d.ts'],configuracion:'tsconfig hub real,include acotado,incremental false'});
+ const {ESLint}=require(hub+'/node_modules/eslint');
+ const vitals=(await import(pathToFileURL(hub+'/node_modules/eslint-config-next/dist/core-web-vitals.js'))).default;
+ const typescript=(await import(pathToFileURL(hub+'/node_modules/eslint-config-next/dist/typescript.js'))).default;
+ const eslint=new ESLint({cwd:hub,overrideConfigFile:true,overrideConfig:[...vitals,...typescript]});
+ const salidas=await eslint.lintFiles(['src/components/client-config-tab.tsx']);guardar('LINT.json',salidas);
+ const errores=salidas.reduce((n,x)=>n+x.errorCount,0),advertencias=salidas.reduce((n,x)=>n+x.warningCount,0);
+ guardar('LINT-RESUMEN.json',{archivos:salidas.length,errores,advertencias,exit:errores||advertencias?1:0,configuracion:'eslint-config-next/core-web-vitals + typescript instalados; no npm run lint'});
+ console.log(JSON.stringify({tiposExit:resultado.status,lintErrores:errores,lintAdvertencias:advertencias}));process.exitCode=resultado.status===0&&!errores&&!advertencias?0:1;
+})().catch(e=>{guardar('TIPOS-LINT-ERROR.json',{message:e.message,stack:e.stack});console.error(e);process.exitCode=2;});

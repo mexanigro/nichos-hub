@@ -1,0 +1,12 @@
+AssertionError [ERR_ASSERTION]: coincidentes-ausencia-base/firestoreRestCreate/url
++ actual - expected
+
+  {
+    method: 'POST',
++   url: 'https://firestore.googleapis.com/v1/projects/project-z/databases/default/documents/probe'
+-   url: 'https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe'
+  }
+
+    at eq (/control/sondeo.cjs:6:31)
+    at rest (/control/sondeo.cjs:27:271)
+    at async /control/sondeo.cjs:32:92

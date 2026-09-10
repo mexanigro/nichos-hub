@@ -1,0 +1,43 @@
+const fs=require('fs'), assert=require('assert/strict'), {createRequire}=require('module'), crypto=require('crypto');
+const req=createRequire('/deps/package.json'),ts=req('typescript'), apps=req('firebase-admin/app'), firestore=req('firebase-admin/firestore');
+const privateKey=crypto.generateKeyPairSync('rsa',{modulusLength:2048,privateKeyEncoding:{type:'pkcs8',format:'pem'},publicKeyEncoding:{type:'spki',format:'pem'}}).privateKey;
+const cert=projectId=>apps.cert({projectId,clientEmail:'test@example.invalid',privateKey});
+const cases=JSON.parse(fs.readFileSync('/control/CASOS.json','utf8'));const rows=[],checks=[],failures=[];
+function eq(a,b,label){try{assert.deepStrictEqual(a,b,label)}catch{failures.push({label,actual:a,expected:b})}checks.push(label)}
+function extract(file,names){const source=fs.readFileSync(file,'utf8'),ast=ts.createSourceFile(file,source,ts.ScriptTarget.Latest,true);return names.map(name=>{const matches=ast.statements.filter(n=>ts.isFunctionDeclaration(n)&&n.name?.text===name);assert.equal(matches.length,1,name);return matches[0].getText(ast)}).join('\n')}
+const functions=['firestoreRestCreate','getFirestoreRestContext','firestoreRestGetDocument','firestoreRestPatchDocument'];
+const texts={server:extract('/sources/server.ts',['getAdminDb']),api:extract('/sources/api/index.ts',['loadAdminFirestore']),rest:extract('/sources/api/index.ts',functions)};
+const mutant=process.argv[2];let mutations=0;
+function removeGuard(text){const ast=ts.createSourceFile('scope.ts',text,ts.ScriptTarget.Latest,true);const spans=[];function visit(n){if(ts.isIfStatement(n)&&n.getText(ast).includes('throw new Error("Firestore destination mismatch")'))spans.push([n.getStart(ast),n.end]);else ts.forEachChild(n,visit)}visit(ast);for(const [a,b] of spans.reverse()){text=text.slice(0,a)+text.slice(b);mutations++}return text}
+if(mutant==='server'||mutant==='api')texts[mutant]=removeGuard(texts[mutant]);
+if(mutant==='create'||mutant==='context'){const name=mutant==='create'?'firestoreRestCreate':'getFirestoreRestContext';const ast=ts.createSourceFile('rest.ts',texts.rest,ts.ScriptTarget.Latest,true),n=ast.statements.find(n=>ts.isFunctionDeclaration(n)&&n.name.text===name);texts.rest=texts.rest.slice(0,n.getStart(ast))+removeGuard(n.getText(ast))+texts.rest.slice(n.end)}
+if(mutant)assert.ok(mutations>0,'mutacion no aplicada');
+function load(text,names,env,requireFn,fetchFn,token,logs){const js=ts.transpileModule(text,{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.CommonJS}}).outputText;return new Function('require','process','fetch','getFirestoreAccessToken','console',js+'\nreturn {'+names.join(',')+'};')(requireFn,{env},fetchFn,async()=>token?'synthetic-local-token':null,{log(){},error(...args){logs.push(args.map(a=>a instanceof Error?a.message:String(a)).join(' '))}})}
+const batches=req('@google-cloud/firestore').WriteBatch;let activeCalls;
+batches.prototype.commit=async function(){for(const op of this._ops){const wire=op.op();activeCalls.push({type:'set',name:wire.update.name,fields:wire.update.fields})}return[]};
+async function admin(c,kind){for(const a of apps.getApps())await apps.deleteApp(a);for(const a of c.apps)apps.initializeApp({projectId:a.project,credential:cert(a.credentialProject||a.project)},a.name);
+ const env={...c.env};if(env.FIREBASE_ADMIN_PRIVATE_KEY==='SYNTHETIC')env.FIREBASE_ADMIN_PRIVATE_KEY=privateKey;
+ const captured=[],calls=[],logs=[];activeCalls=calls;const requireFn=id=>id==='firebase-admin/app'?apps:id==='firebase-admin/firestore'?{...firestore,getFirestore(app,db){const real=firestore.getFirestore(app,c.sdkBase||db);captured.push({name:app.name,project:real.projectId,database:real.databaseId,requestedDatabase:db});real.request=()=>{throw Error('NETWORK_PROHIBITED')};real.getAll=async(ref)=>{calls.push({type:'get',project:ref.firestore.projectId,database:ref.firestore.databaseId,path:ref.path});return[{exists:false}]};return real}}:req(id);
+ const name=kind==='server'?'getAdminDb':'loadAdminFirestore';let result,error=null;
+ try{const fn=load(texts[kind],[name],env,requireFn,()=>{throw Error('NETWORK_PROHIBITED')},false,logs);const raw=await fn[name](),db=kind==='server'?raw:raw?.db;if(db){await db.doc('probe/id').get();await db.doc('probe/id').set({flag:true});result='operation'}else result='null'}catch(e){error=e.code||e.message;result='error'}
+ const expected=c.expected.admin,operates=!c.rejectAdmin&&expected&&expected!=='ERROR_CERT';
+ eq(result,c.rejectAdmin||expected==='ERROR_CERT'?'error':expected===null?'null':'operation',c.id+'/'+kind+'/return');
+ eq(calls.length,operates?2:0,c.id+'/'+kind+'/operations');
+ if(c.rejectAdmin)eq(error,'Firestore destination mismatch',c.id+'/'+kind+'/rejection');
+ if(operates){eq(calls,[{type:'get',project:expected,database:c.expected.db,path:'probe/id'},{type:'set',name:'projects/'+expected+'/databases/'+c.expected.db+'/documents/probe/id',fields:{flag:{booleanValue:true}}}],c.id+'/'+kind+'/destination');eq(captured[0].name,c.apps[0]?.name||'[DEFAULT]',c.id+'/'+kind+'/app')}
+ if(expected==='ERROR_CERT')eq(error,'app/invalid-credential',c.id+'/'+kind+'/cert');
+ if(c.apps.length)eq(apps.getApps().map(a=>a.name),c.apps.map(a=>a.name),c.id+'/'+kind+'/no-recreation');
+ const row={case:c.id,consumer:kind,result,error,selected:captured,operations:calls,registry:apps.getApps().map(a=>a.name)};for(const a of apps.getApps())await apps.deleteApp(a);return row;
+}
+async function rest(c){const calls=[],logs=[];const fetchFn=async(url,options={})=>{calls.push({url,method:options.method||'GET',body:options.body?JSON.parse(options.body):null});return{ok:c.status<300,status:c.status,text:async()=>'synthetic-response',json:async()=>({fields:{}})}};
+ const f=load(texts.rest,functions,c.env,req,fetchFn,c.token,logs),out=[];
+ // Captura sólo mensajes públicos; no headers/token.
+ for(const name of ['firestoreRestCreate','firestoreRestGetDocument','firestoreRestPatchDocument']){let result,error=null;const before=calls.length,logBefore=logs.length;try{const value=await f[name](...(name==='firestoreRestCreate'?['probe',{flag:{booleanValue:true}}]:name==='firestoreRestGetDocument'?['probe','id /ñ']:['probe','id /ñ',{flag:{booleanValue:true}}]));result=value===null?'null':value===undefined?'undefined':'document'}catch(e){result='error';error=e.message}
+ const active=c.token&&c.expected.rest!==null&&!c.rejectRest;eq(calls.length-before,active?1:0,c.id+'/'+name+'/operations');
+ if(active){const prefix='https://firestore.googleapis.com/v1/projects/'+c.expected.rest+'/databases/'+c.expected.db+'/documents/probe',suffix=name==='firestoreRestCreate'?'':'/id%20%2F%C3%B1'+(name==='firestoreRestPatchDocument'?'?updateMask.fieldPaths=flag':'');eq(calls.at(-1),{url:prefix+suffix,method:name==='firestoreRestCreate'?'POST':name==='firestoreRestPatchDocument'?'PATCH':'GET',body:name==='firestoreRestGetDocument'?null:{fields:{flag:{booleanValue:true}}}},c.id+'/'+name+'/url-body')}
+ const want=name==='firestoreRestCreate'?'undefined':!active?'error':c.status===404&&name==='firestoreRestGetDocument'?'null':c.status>=300?'error':name==='firestoreRestGetDocument'?'document':'undefined';eq(result,want,c.id+'/'+name+'/return');
+ if(!active&&name!=='firestoreRestCreate')eq(error,!c.token?'Cannot authenticate with Firestore':c.expected.rest===null?'FIREBASE_PROJECT_ID not set':'Firestore destination mismatch',c.id+'/'+name+'/error');
+ if(c.rejectRest&&name==='firestoreRestCreate')eq(logs.slice(logBefore).some(x=>x.includes('Firestore destination mismatch')),true,c.id+'/'+name+'/rejection-log');
+ out.push({case:c.id,consumer:name,result,error,operations:calls.slice(before),logs:logs.slice(logBefore)})}return out;
+}
+(async()=>{for(const c of cases)rows.push(await admin(c,'server'),await admin(c,'api'),...await rest(c));const result={result:failures.length?'RED':'GREEN',cases:cases.length,rows:rows.length,checks:checks.length,failures,mutant:mutant||null,mutations,observations:rows};fs.writeFileSync('/salida/RESULTADO.json',JSON.stringify(result,null,2));console.log(JSON.stringify({result:result.result,cases:cases.length,checks:checks.length,failures:failures.length,mutations}));process.exitCode=failures.length?1:0})().catch(e=>{console.error(e.stack);process.exitCode=2});

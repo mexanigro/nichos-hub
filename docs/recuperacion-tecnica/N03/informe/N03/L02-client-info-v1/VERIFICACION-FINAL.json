@@ -1,0 +1,12 @@
+{
+  "escenarios": 21,
+  "registros": 12,
+  "resultado": "GREEN_PREPARACION",
+  "invocaciones": 31.0,
+  "resets": 0,
+  "copias": 65,
+  "techo": 85,
+  "producto": "RED_NO_IMPLEMENTADO",
+  "consumo": 82,
+  "evidencias": 64
+}

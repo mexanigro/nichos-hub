@@ -1,0 +1,16 @@
+{
+  "custody": "PASS con incidente declarado de sondeo sustituido; no custodia absoluta afirmada",
+  "global": "RED",
+  "files": 398,
+  "bytes": 32924959,
+  "records": 6,
+  "productBaseline": 623,
+  "unchanged": 616,
+  "expectedChanged": 7,
+  "addedSharedHandler": 1,
+  "acceptedFunctionsIdentical": 7,
+  "usageObserved": 91,
+  "ceiling": 100,
+  "resets": 0,
+  "externalEffects": false
+}

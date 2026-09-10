@@ -1,0 +1,225 @@
+{
+  "timestamp": "2026-09-10T09:31:16.4185207-03:00",
+  "frozen": [
+    {
+      "actual": "FB30200354E46711E85D3BB67ABB164080C8722E468816946E590EF81322EF65",
+      "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\pipeline.cjs",
+      "expected": "FB30200354E46711E85D3BB67ABB164080C8722E468816946E590EF81322EF65",
+      "equal": true
+    },
+    {
+      "actual": "B7E60D5920A19D0A672BE30D98700E83149D8E0BD8D95190B54B88BE96C0E3E0",
+      "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\CONTRATO.md",
+      "expected": "B7E60D5920A19D0A672BE30D98700E83149D8E0BD8D95190B54B88BE96C0E3E0",
+      "equal": true
+    },
+    {
+      "actual": "FF8773AC180B59D66641DE23F25489548756546DC30652CDC29C9E30F56055FB",
+      "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\ejecutar.ps1",
+      "expected": "FF8773AC180B59D66641DE23F25489548756546DC30652CDC29C9E30F56055FB",
+      "equal": true
+    },
+    {
+      "actual": "445BBA81E892033AE70B93A930ECEFA5C434B335C641F76D16E1591189C71C14",
+      "path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\consumidores-state.cjs",
+      "expected": "445BBA81E892033AE70B93A930ECEFA5C434B335C641F76D16E1591189C71C14",
+      "equal": true
+    }
+  ],
+  "sources": [
+    {
+      "actual": "4E5E1167CAE282878B6CFC590A6E01675FEDF3776487DF0BE577CCCA20171F1D",
+      "path": "server.ts",
+      "expected": "4e5e1167cae282878b6cfc590a6e01675fedf3776487df0be577ccca20171f1d",
+      "equal": true
+    },
+    {
+      "actual": "4B1403983540DC2E2B9D0AF41E9D34169FBCD256C8F08FD57B0302E2D19F95AD",
+      "path": "src/lib/api/payment-gateways.ts",
+      "expected": "4b1403983540dc2e2b9d0af41e9d34169fbcd256c8f08fd57b0302e2d19f95ad",
+      "equal": true
+    },
+    {
+      "actual": "BF20AEAE951907D691F87B983DE0CE21A81613B3BECC2A9CACE43FC5F9CAB47A",
+      "path": "src/lib/admin-users.ts",
+      "expected": "bf20aeae951907d691f87b983de0ce21a81613b3becc2a9cace43fc5f9cab47a",
+      "equal": true
+    },
+    {
+      "actual": "D7BFF4865597D29A48CF765C464D579FAF38ED24B9F09405415C24EC9BF2DD33",
+      "path": "src/lib/api/booking-handler.ts",
+      "expected": "d7bff4865597d29a48cf765c464d579faf38ed24b9f09405415c24ec9bf2dd33",
+      "equal": true
+    },
+    {
+      "actual": "456F7F8A9EBE4015E19EAC8246A2DDAADA68D1AB0FE4C23949C640E9A71B934E",
+      "path": "src/lib/api/booking-validation.ts",
+      "expected": "456f7f8a9ebe4015e19eac8246a2ddaada68d1ab0fe4c23949c640e9a71b934e",
+      "equal": true
+    },
+    {
+      "actual": "E48A9EE4048C118A064CBFF460FBF4E0668763691C9DE41C34E9D15F3A915E4F",
+      "path": "src/lib/api/crm-appointments-handler.ts",
+      "expected": "e48a9ee4048c118a064cbff460fbf4e0668763691c9de41c34e9d15f3a915e4f",
+      "equal": true
+    },
+    {
+      "actual": "E0152C73362A8E26573C16730BDDF85ED7811102B32726BB07CB4556606BEFE3",
+      "path": "src/lib/api/checkout-handler.ts",
+      "expected": "e0152c73362a8e26573c16730bddf85ed7811102b32726bb07cb4556606befe3",
+      "equal": true
+    },
+    {
+      "actual": "98E914224316040091677E4EBBB3B0811CEDB4BD671F3CF49477BBE2767FAECC",
+      "path": "src/lib/api/tenant-access.ts",
+      "expected": "98e914224316040091677e4ebbb3b0811cedb4bd671f3cf49477bbe2767faecc",
+      "equal": true
+    },
+    {
+      "actual": "184996449B94D762F30B9BFABC7C829FA00413E3FDA53E712BF4500D461F0EC2",
+      "path": "src/lib/api/admin-auth.ts",
+      "expected": "184996449b94d762f30b9bfabc7c829fa00413e3fda53e712bf4500d461f0ec2",
+      "equal": true
+    },
+    {
+      "actual": "0A99770D92A97DF9DE7C37A22F6C8591F954678AC3E530D8BC55BA6EC1218809",
+      "path": "api/index.ts",
+      "expected": "0a99770d92a97df9de7c37a22f6c8591f954678ac3e530d8bc55ba6ec1218809",
+      "equal": true
+    }
+  ],
+  "comparisons": [
+    {
+      "checks": 264,
+      "added": [
+        "server.ts/suspended/http",
+        "server.ts/suspended/no-appointment-read",
+        "server.ts/archived/http",
+        "server.ts/archived/no-appointment-read",
+        "server.ts/state-missing/http",
+        "server.ts/state-missing/no-appointment-read",
+        "server.ts/state-invalid/http",
+        "server.ts/state-invalid/no-appointment-read",
+        "server.ts/state-error/http",
+        "server.ts/state-error/no-appointment-read",
+        "server.ts/state-timeout/http",
+        "server.ts/state-timeout/no-appointment-read",
+        "api/index.ts/suspended/http",
+        "api/index.ts/suspended/no-appointment-read",
+        "api/index.ts/archived/http",
+        "api/index.ts/archived/no-appointment-read",
+        "api/index.ts/state-missing/http",
+        "api/index.ts/state-missing/no-appointment-read",
+        "api/index.ts/state-invalid/http",
+        "api/index.ts/state-invalid/no-appointment-read",
+        "api/index.ts/state-error/http",
+        "api/index.ts/state-error/no-appointment-read",
+        "api/index.ts/state-timeout/http",
+        "api/index.ts/state-timeout/no-appointment-read"
+      ],
+      "name": "mutante-bypass-final",
+      "sameSources": true,
+      "shared": [
+        "server.ts/equal/checkout",
+        "server.ts/equal/amount",
+        "server.ts/equal/currency",
+        "server.ts/equal/credentials",
+        "server.ts/separate/checkout",
+        "server.ts/separate/amount",
+        "server.ts/separate/currency",
+        "server.ts/separate/credentials",
+        "api/index.ts/equal/checkout",
+        "api/index.ts/equal/amount",
+        "api/index.ts/equal/currency",
+        "api/index.ts/equal/credentials",
+        "api/index.ts/separate/checkout",
+        "api/index.ts/separate/amount",
+        "api/index.ts/separate/currency",
+        "api/index.ts/separate/credentials"
+      ],
+      "failures": 40,
+      "cases": 48,
+      "removed": null
+    },
+    {
+      "checks": 232,
+      "added": [
+        "server.ts/equal/book",
+        "server.ts/separate/book",
+        "server.ts/trial-separated/http",
+        "server.ts/suspended/http",
+        "server.ts/archived/http",
+        "server.ts/auth/http",
+        "server.ts/membership-tenant/http",
+        "server.ts/provider-manual/http",
+        "server.ts/provider-none/http",
+        "server.ts/provider-absent-legacy/http",
+        "server.ts/provider-absent-legacy/gateway-calls",
+        "server.ts/provider-absent-legacy/resolve-calls",
+        "server.ts/provider-absent-legacy/amount",
+        "server.ts/provider-absent-legacy/credentials",
+        "server.ts/provider-absent-legacy/destination-clients",
+        "server.ts/provider-absent-legacy/destination-config",
+        "server.ts/provider-absent-legacy/destination-payment_credentials",
+        "server.ts/provider-absent-legacy-none/http",
+        "server.ts/priced-separated-destinations/http",
+        "server.ts/priced-separated-destinations/gateway-calls",
+        "server.ts/priced-separated-destinations/resolve-calls",
+        "server.ts/priced-separated-destinations/amount",
+        "server.ts/priced-separated-destinations/credentials",
+        "server.ts/priced-separated-destinations/destination-clients",
+        "server.ts/priced-separated-destinations/destination-config",
+        "server.ts/priced-separated-destinations/destination-payment_credentials",
+        "api/index.ts/equal/book",
+        "api/index.ts/separate/book",
+        "api/index.ts/trial-separated/http",
+        "api/index.ts/suspended/http",
+        "api/index.ts/archived/http",
+        "api/index.ts/auth/http",
+        "api/index.ts/membership-tenant/http",
+        "api/index.ts/provider-manual/http",
+        "api/index.ts/provider-none/http",
+        "api/index.ts/provider-absent-legacy/http",
+        "api/index.ts/provider-absent-legacy/gateway-calls",
+        "api/index.ts/provider-absent-legacy/resolve-calls",
+        "api/index.ts/provider-absent-legacy/amount",
+        "api/index.ts/provider-absent-legacy/credentials",
+        "api/index.ts/provider-absent-legacy/destination-clients",
+        "api/index.ts/provider-absent-legacy/destination-config",
+        "api/index.ts/provider-absent-legacy/destination-payment_credentials",
+        "api/index.ts/provider-absent-legacy-none/http",
+        "api/index.ts/priced-separated-destinations/http",
+        "api/index.ts/priced-separated-destinations/gateway-calls",
+        "api/index.ts/priced-separated-destinations/resolve-calls",
+        "api/index.ts/priced-separated-destinations/amount",
+        "api/index.ts/priced-separated-destinations/credentials",
+        "api/index.ts/priced-separated-destinations/destination-clients",
+        "api/index.ts/priced-separated-destinations/destination-config",
+        "api/index.ts/priced-separated-destinations/destination-payment_credentials"
+      ],
+      "name": "mutante-reject-final",
+      "sameSources": true,
+      "shared": null,
+      "failures": 52,
+      "cases": 48,
+      "removed": [
+        "server.ts/equal/checkout",
+        "server.ts/equal/amount",
+        "server.ts/equal/currency",
+        "server.ts/equal/credentials",
+        "server.ts/separate/checkout",
+        "server.ts/separate/amount",
+        "server.ts/separate/currency",
+        "server.ts/separate/credentials",
+        "api/index.ts/equal/checkout",
+        "api/index.ts/equal/amount",
+        "api/index.ts/equal/currency",
+        "api/index.ts/equal/credentials",
+        "api/index.ts/separate/checkout",
+        "api/index.ts/separate/amount",
+        "api/index.ts/separate/currency",
+        "api/index.ts/separate/credentials"
+      ]
+    }
+  ]
+}

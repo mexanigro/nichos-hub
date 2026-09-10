@@ -1,0 +1,70 @@
+[31m[auth][error][0m JWTSessionError: Read more at https://errors.authjs.dev#jwtsessionerror
+[31m[auth][cause][0m: aE: Invalid Compact JWE
+    at bU (/app/.next/server/middleware.js:1:191593)
+    at bV (/app/.next/server/middleware.js:1:191864)
+    at Object.b8 [as decode] (/app/.next/server/middleware.js:1:197251)
+    at fD (/app/.next/server/middleware.js:404:43557)
+    at fK (/app/.next/server/middleware.js:404:50275)
+    at async fM (/app/.next/server/middleware.js:404:54813)
+    at async fV (/app/.next/server/middleware.js:404:58390)
+    at async handler (/app/.next/server/middleware.js:404:62496)
+    at async /app/.next/server/middleware.js:1:146012
+    at async G (/app/.next/server/middleware.js:1:144986)
+[31m[auth][details][0m: {}
+[31m[auth][error][0m JWTSessionError: Read more at https://errors.authjs.dev#jwtsessionerror
+[31m[auth][cause][0m: aA: "exp" claim timestamp check failed
+    at /app/.next/server/middleware.js:1:193531
+    at bV (/app/.next/server/middleware.js:1:193870)
+    at async Object.b8 [as decode] (/app/.next/server/middleware.js:1:197245)
+    at async fD (/app/.next/server/middleware.js:404:43549)
+    at async fK (/app/.next/server/middleware.js:404:50269)
+    at async fM (/app/.next/server/middleware.js:404:54813)
+    at async fV (/app/.next/server/middleware.js:404:58390)
+    at async handler (/app/.next/server/middleware.js:404:62496)
+    at async /app/.next/server/middleware.js:1:146012
+    at async G (/app/.next/server/middleware.js:1:144986)
+[31m[auth][details][0m: {
+  "claim": "exp",
+  "reason": "check_failed",
+  "payload": {
+    "email": "owner@example.invalid",
+    "iat": 1788985765,
+    "exp": 1788985645,
+    "jti": "3d0710c1-e9fd-4f17-9997-c086743e05b2"
+  }
+}
+[31m[auth][error][0m JWTSessionError: Read more at https://errors.authjs.dev#jwtsessionerror
+[31m[auth][cause][0m: aE: Invalid Compact JWE
+    at bU (/app/.next/server/middleware.js:1:191593)
+    at bV (/app/.next/server/middleware.js:1:191864)
+    at Object.b8 [as decode] (/app/.next/server/middleware.js:1:197251)
+    at fD (/app/.next/server/middleware.js:404:43557)
+    at fK (/app/.next/server/middleware.js:404:50275)
+    at async fM (/app/.next/server/middleware.js:404:54813)
+    at async fV (/app/.next/server/middleware.js:404:58390)
+    at async handler (/app/.next/server/middleware.js:404:62496)
+    at async /app/.next/server/middleware.js:1:146012
+    at async G (/app/.next/server/middleware.js:1:144986)
+[31m[auth][details][0m: {}
+[31m[auth][error][0m JWTSessionError: Read more at https://errors.authjs.dev#jwtsessionerror
+[31m[auth][cause][0m: aA: "exp" claim timestamp check failed
+    at /app/.next/server/middleware.js:1:193531
+    at bV (/app/.next/server/middleware.js:1:193870)
+    at async Object.b8 [as decode] (/app/.next/server/middleware.js:1:197245)
+    at async fD (/app/.next/server/middleware.js:404:43549)
+    at async fK (/app/.next/server/middleware.js:404:50269)
+    at async fM (/app/.next/server/middleware.js:404:54813)
+    at async fV (/app/.next/server/middleware.js:404:58390)
+    at async handler (/app/.next/server/middleware.js:404:62496)
+    at async /app/.next/server/middleware.js:1:146012
+    at async G (/app/.next/server/middleware.js:1:144986)
+[31m[auth][details][0m: {
+  "claim": "exp",
+  "reason": "check_failed",
+  "payload": {
+    "email": "owner@example.invalid",
+    "iat": 1788985765,
+    "exp": 1788985645,
+    "jti": "3d0710c1-e9fd-4f17-9997-c086743e05b2"
+  }
+}

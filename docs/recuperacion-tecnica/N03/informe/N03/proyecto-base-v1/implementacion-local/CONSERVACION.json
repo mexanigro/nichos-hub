@@ -1,0 +1,50 @@
+{
+  "result": "PASS",
+  "population": 623,
+  "unchanged": 621,
+  "changes": [
+    {
+      "repo": "template",
+      "ruta": "server.ts",
+      "sha256": "48a5d4a415c704d1f7c5ff609d96c4e214d107fa0020b0c5d7d30d51ac84e80f",
+      "after": "fe749e1703c1a07a2f7762f68eb1fc57783c99cd30fbc833b271c898aa83a980"
+    },
+    {
+      "repo": "template",
+      "ruta": "api/index.ts",
+      "sha256": "1dbc951f710e2f3e586247faf79ae65d76714eb52fcf768001d929a8521a646f",
+      "after": "4be7a9c1e536da183dfe44a9a72d94df5848b36d56d2bf696607d514523dc0bd"
+    }
+  ],
+  "compatibleRowsIdentical": 200,
+  "forbiddenRows": 20,
+  "functionsOutsideScope": "bytes iguales",
+  "freeze": "PASS",
+  "typesLint": 0,
+  "mutants": [
+    {
+      "name": "server",
+      "failures": 21,
+      "mutation": 1,
+      "forbiddenOperationChecks": 7
+    },
+    {
+      "name": "api",
+      "failures": 21,
+      "mutation": 1,
+      "forbiddenOperationChecks": 7
+    },
+    {
+      "name": "create",
+      "failures": 4,
+      "mutation": 1,
+      "forbiddenOperationChecks": 2
+    },
+    {
+      "name": "context",
+      "failures": 12,
+      "mutation": 1,
+      "forbiddenOperationChecks": 4
+    }
+  ]
+}

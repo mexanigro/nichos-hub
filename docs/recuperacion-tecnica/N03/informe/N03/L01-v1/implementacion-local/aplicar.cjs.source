@@ -1,0 +1,33 @@
+const fs=require('node:fs'),p=require('node:path'),assert=require('node:assert/strict'),crypto=require('node:crypto');const base=__dirname;
+const roots={hub:'C:/Users/liama/Desktop/Nichos-hub',template:'C:/Users/liama/Desktop/Nichos/Barber-shop-template-main'};
+const sha=b=>crypto.createHash('sha256').update(b).digest('hex'),json=f=>JSON.parse(fs.readFileSync(p.join(base,f),'utf8').replace(/^\uFEFF/,''));
+const write=(f,b)=>{fs.mkdirSync(p.dirname(f),{recursive:true});fs.writeFileSync(f,typeof b==='string'||Buffer.isBuffer(b)?b:JSON.stringify(b,null,2),{flag:'wx'});};
+const red=json('resultados/red-fijo/RESULTADO.json');assert.equal(red.result,'RED');assert.equal(red.cases,73);assert.ok(red.failures.some(f=>f.id==='client-info-solo/booking-paso'));assert.ok(red.failures.some(f=>f.id==='reedicion-solo-team/booking-paso'));assert.ok(red.failures.some(f=>f.id==='matriz-undefined-solo/lector'));assert.ok(!red.failures.some(f=>f.id.includes('borrador')||f.id.includes('ajeno')));
+for(const f of json('PRODUCTO-ANTES.json'))assert.equal(sha(fs.readFileSync(p.join(roots[f.repo],f.ruta))),f.sha256);
+const files=['CONTRATO.md','contrato.cjs','pruebas.cjs','ejecutar.ps1','preimagenes/hub.ts','preimagenes/template.ts','resultados/red-fijo/RESULTADO.json'];
+write(p.join(base,'FREEZE.json'),{utc:new Date().toISOString(),gates:'P0 PASS',redFailures:red.failures.length,checks:red.checks,scope:['hub/src/lib/wizard/config-to-wizard.ts','template/src/config/site.ts'],refutacion:'Newton sin blockers; borradores fijos antes del freeze',files:files.map(ruta=>({ruta,sha256:sha(fs.readFileSync(p.join(base,ruta)))}))});
+const replace=(s,a,b)=>{assert.equal(s.split(a).length,2,a);return s.replace(a,b);};
+const hubPath=roots.hub+'/src/lib/wizard/config-to-wizard.ts',sitePath=roots.template+'/src/config/site.ts';
+let h=fs.readFileSync(hubPath,'utf8'),s=fs.readFileSync(sitePath,'utf8');const hn=h.includes('\r\n')?'\r\n':'\n',sn=s.includes('\r\n')?'\r\n':'\n';
+h=replace(h,'  const mode = business.mode as "solo" | "team" | undefined;',[
+'  const mode = business.mode === "solo" || business.mode === "team"',
+'    ? business.mode',
+'    : config.businessMode;',].join(hn));
+s=replace(s,'function _applyBusinessMode(): void {'+sn+'  if (siteConfig.businessMode === "solo") {',[
+'function _applyBusinessMode(override?: DeepPartial<SiteConfig>): void {',
+'  const nestedMode = (override?.business as { mode?: unknown } | undefined)?.mode;',
+'  const mode = nestedMode === "solo" || nestedMode === "team"',
+'    ? nestedMode',
+'    : override?.businessMode;',
+'  if (mode === "solo" || mode === "team") {',
+'    // Sólo el modo remoto admitido manda sobre estos dos flags.',
+'    siteConfig.features.showAbout = mode === "solo";',
+'    siteConfig.features.showTeam = mode === "team";',
+'  } else if (siteConfig.businessMode === "solo") {',].join(sn));
+s=replace(s,'  applyWholesaleHours(override);'+sn+'  _applyBusinessMode();','  applyWholesaleHours(override);'+sn+'  _applyBusinessMode(override);');
+s=replace(s,'    applyWholesaleHours(_tenantOverride);'+sn+'  }'+sn+'  _applyBusinessMode();','    applyWholesaleHours(_tenantOverride);'+sn+'  }'+sn+'  _applyBusinessMode(_tenantOverride ?? undefined);');
+fs.writeFileSync(hubPath,h);fs.writeFileSync(sitePath,s);
+write(p.join(base,'final/hub.ts'),fs.readFileSync(hubPath));write(p.join(base,'final/template.ts'),fs.readFileSync(sitePath));
+write(p.join(base,'mutantes/idioma.ts'),replace(s,'_applyBusinessMode(_tenantOverride ?? undefined);','_applyBusinessMode();'));
+write(p.join(base,'P1.json'),{result:'PASS',hub:sha(fs.readFileSync(hubPath)),template:sha(fs.readFileSync(sitePath)),mutacionIdioma:sha(fs.readFileSync(p.join(base,'mutantes/idioma.ts')))});
+console.log('P0 congelado; P1 aplicado únicamente a dos consumidores');

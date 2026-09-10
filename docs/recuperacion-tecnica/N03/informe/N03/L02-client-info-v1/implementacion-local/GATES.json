@@ -1,0 +1,100 @@
+{
+  "P0": {
+    "state": "PASS_RED_CONGELADO",
+    "checks": 1224,
+    "semanticFailures": 835,
+    "freeze": "b21fc30c7e3b2cb515641de4a82e28262f02c78fa5bdd588f532d11a0c329e12"
+  },
+  "P1": {
+    "state": "PASS_UNICO_ARCHIVO",
+    "beforeHash": "64c66a80a4f0de17f66444df5b87b2b98684d61e8d3b8733e30adbb4dbb80132",
+    "finalHash": "a89047927517fa676499d93da2ec7780f6b972f90a0c6ca9a0757c5960fcf172"
+  },
+  "P2": {
+    "state": "PASS_GREEN_Y_MUTACIONES",
+    "summary": [
+      {
+        "auxiliares": 1224,
+        "estado": "RED",
+        "exit": 1,
+        "invocaciones": 39,
+        "casos": 29,
+        "etapa": "red-p0",
+        "dominios": [
+          {
+            "dominio": "config",
+            "fallos": 662
+          },
+          {
+            "dominio": "historial",
+            "fallos": 17
+          },
+          {
+            "dominio": "hub_clients",
+            "fallos": 70
+          },
+          {
+            "dominio": "reader",
+            "fallos": 86
+          }
+        ],
+        "fallos": 835
+      },
+      {
+        "auxiliares": 1220,
+        "estado": "GREEN",
+        "exit": 0,
+        "invocaciones": 39,
+        "casos": 29,
+        "etapa": "green",
+        "dominios": [],
+        "fallos": 0
+      },
+      {
+        "auxiliares": 1224,
+        "estado": "RED",
+        "exit": 1,
+        "invocaciones": 39,
+        "casos": 29,
+        "etapa": "mutacion-config",
+        "dominios": [
+          {
+            "dominio": "config",
+            "fallos": 662
+          },
+          {
+            "dominio": "historial",
+            "fallos": 17
+          },
+          {
+            "dominio": "reader",
+            "fallos": 86
+          }
+        ],
+        "fallos": 765
+      },
+      {
+        "auxiliares": 1220,
+        "estado": "RED",
+        "exit": 1,
+        "invocaciones": 39,
+        "casos": 29,
+        "etapa": "mutacion-hub_clients",
+        "dominios": [
+          {
+            "dominio": "hub_clients",
+            "fallos": 70
+          }
+        ],
+        "fallos": 70
+      }
+    ]
+  },
+  "P3": {
+    "state": "PASS_TIPOS_LINT_REFUTACION_CUSTODIA",
+    "sourcesOutsideDelta": 284,
+    "evidencePreserved": 610
+  },
+  "N03": "ABIERTA",
+  "L02": "PARA_REVISION_NO_DESCONTADA"
+}

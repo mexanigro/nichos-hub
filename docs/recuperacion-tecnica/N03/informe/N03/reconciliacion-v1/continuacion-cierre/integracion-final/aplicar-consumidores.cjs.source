@@ -1,0 +1,6 @@
+const fs=require('fs'),root='C:/Users/liama/Desktop/Nichos/Barber-shop-template-main';for(const file of ['server.ts','api/index.ts']){const p=root+'/'+file,s=fs.readFileSync(p,'utf8');fs.copyFileSync(p,__dirname+'/preimagenes-ui/'+file.replaceAll('/','-')+'-antes-consumidores.source',fs.constants.COPYFILE_EXCL);const needle='    const { provider } = await getClientRuntimeState();';const count=s.split(needle).length-1;if(count!==(file==='server.ts'?1:2))throw Error('count '+file+count);fs.writeFileSync(p,s.replaceAll(needle,`    let provider: PaymentProvider;
+    try {
+      ({ provider } = await getClientRuntimeState());
+    } catch {
+      return res.status(503).json({ error: "Tenant payment configuration not verifiable." });
+    }`));}

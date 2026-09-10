@@ -1,0 +1,42 @@
+[
+  {
+    "ruta": "C:/Users/liama/Desktop/Nichos-hub/src/components/client-config-tab.tsx",
+    "sha256": "554a215376a026148100442da459a2b4cf3b57ab7a3167ecc1deed1b71a27c57"
+  },
+  {
+    "ruta": "C:/Users/liama/Desktop/Nichos/Barber-shop-template-main/server.ts",
+    "sha256": "48a5d4a415c704d1f7c5ff609d96c4e214d107fa0020b0c5d7d30d51ac84e80f"
+  },
+  {
+    "ruta": "C:/Users/liama/Desktop/Nichos/Barber-shop-template-main/api/index.ts",
+    "sha256": "1dbc951f710e2f3e586247faf79ae65d76714eb52fcf768001d929a8521a646f"
+  },
+  {
+    "ruta": "C:/Users/liama/Desktop/Nichos/Barber-shop-template-main/src/lib/api/optional-services.ts",
+    "sha256": "db03ebf2b43e87b10375b7f8f9decb680bb94642e74fb20921eb93725a3f42f9"
+  },
+  {
+    "ruta": "C:/Users/liama/Desktop/Nichos/recuperacion-tecnica/informe/N03/D05-v1/FREEZE.md",
+    "sha256": "2833b6256cc2809b23fc7a6e35b60b52c418b9d4f8f7ed26c02521bd510427cb"
+  },
+  {
+    "ruta": "C:/Users/liama/Desktop/Nichos/recuperacion-tecnica/informe/N03/D05-v1/CONTINUACION-APROBADA.md",
+    "sha256": "5d83a5ec1f6b5d4ca9e631452d9a4c51e16b5f40828eb9952b57ee458f37f0b6"
+  },
+  {
+    "ruta": "C:/Users/liama/Desktop/Nichos/recuperacion-tecnica/informe/N03/D05-v1/ACEPTACION.md",
+    "sha256": "c814e4dd36448bac3c935bc1239f7bb1ca10fce4ec062c800a02118fa7ef6d86"
+  },
+  {
+    "ruta": "C:/Users/liama/Desktop/Nichos/recuperacion-tecnica/informe/N03/D05-v1/INFORME.md",
+    "sha256": "c9941651460bd75ec5dce87a046a18c7461248aec595c438fe319d0b799d6429"
+  },
+  {
+    "ruta": "C:/Users/liama/Desktop/Nichos/recuperacion-tecnica/informe/N03/D05-v1/runner-matriz.mjs",
+    "sha256": "36e5b5eaaee0606b134fe6d04d9f4b3cab054abc4798d98290b1c2e7e2b4a3e2"
+  },
+  {
+    "ruta": "C:/Users/liama/Desktop/Nichos/recuperacion-tecnica/informe/N03/D05-v1/runner-recorridos.mjs",
+    "sha256": "e8e21f5889a602aefccce4ab30cc8207a02b22f605886a3342b7e73129fd89be"
+  }
+]

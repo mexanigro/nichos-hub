@@ -1,0 +1,9 @@
+{
+  "custody": "PASS",
+  "copies": 43,
+  "sourceFilesUnchanged": 7,
+  "recordsVerified": 12,
+  "acceptance": "control destinos integrado sin repetir",
+  "compatibility": "RED separados; propuesta pendiente de decisión",
+  "externalEffects": false
+}

@@ -1,0 +1,23 @@
+[
+  {
+    "file": "C:/Users/liama/Desktop/Nichos/Barber-shop-template-main/AGENTS.md",
+    "backup": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\preimagenes\\h07\\AGENTS.md",
+    "before": "01c4b618db4f49464b77c7bb213b0cf924186f08e88a0da239f6825b2653ba72",
+    "after": "7bd2ed1fc091e386de2041a20609b2d533e8fe70d7e202716fe89342c2710b1b",
+    "soloTexto": true
+  },
+  {
+    "file": "C:/Users/liama/Desktop/Nichos-hub/AGENTS.md",
+    "backup": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\preimagenes\\h07\\hub\\AGENTS.md",
+    "before": "25a0e947c3108c8374b11024ef97bce95a0a48f837176c0b9a19768d5a8aeebd",
+    "after": "64dc7aabd01b76cb286f1563a475683a43276c5f2d441c10b112e5ffd331fff4",
+    "soloTexto": true
+  },
+  {
+    "file": "C:/Users/liama/Desktop/Nichos/Barber-shop-template-main/src/config/tour.config.ts",
+    "backup": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\preimagenes\\h07\\src\\config\\tour.config.ts",
+    "before": "754e36e9594d40a9c9d5389f140f1cd6d3e7a09cab80c9173ba24215ea3a9853",
+    "after": "b4d9a642852754545c1c2e80b018f38b4c612ca40a6787e3af06b3c724908eb3",
+    "soloTexto": true
+  }
+]

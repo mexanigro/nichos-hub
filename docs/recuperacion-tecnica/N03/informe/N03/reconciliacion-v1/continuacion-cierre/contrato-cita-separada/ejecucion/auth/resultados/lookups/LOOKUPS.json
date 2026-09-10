@@ -1,0 +1,525 @@
+{
+  "result": "GREEN",
+  "cases": 26,
+  "checks": 130,
+  "failures": [],
+  "rows": [
+    {
+      "runtime": "server",
+      "id": "active-owner",
+      "lookupResult": {
+        "role": "owner",
+        "status": "active"
+      },
+      "status": 200,
+      "authenticated": true,
+      "ops": [
+        {
+          "project": "backend-project",
+          "database": "backend-db",
+          "path": "admin_users/admin@example.invalid"
+        },
+        {
+          "project": "backend-project",
+          "database": "backend-db",
+          "path": "admin_users/admin@example.invalid"
+        }
+      ]
+    },
+    {
+      "runtime": "server",
+      "id": "active-manager",
+      "lookupResult": {
+        "role": "manager",
+        "status": "active"
+      },
+      "status": 200,
+      "authenticated": true,
+      "ops": [
+        {
+          "project": "backend-project",
+          "database": "backend-db",
+          "path": "admin_users/admin@example.invalid"
+        },
+        {
+          "project": "backend-project",
+          "database": "backend-db",
+          "path": "admin_users/admin@example.invalid"
+        }
+      ]
+    },
+    {
+      "runtime": "server",
+      "id": "active-staff",
+      "lookupResult": {
+        "role": "staff",
+        "status": "active"
+      },
+      "status": 200,
+      "authenticated": true,
+      "ops": [
+        {
+          "project": "backend-project",
+          "database": "backend-db",
+          "path": "admin_users/admin@example.invalid"
+        },
+        {
+          "project": "backend-project",
+          "database": "backend-db",
+          "path": "admin_users/admin@example.invalid"
+        }
+      ]
+    },
+    {
+      "runtime": "server",
+      "id": "other-tenant",
+      "lookupResult": null,
+      "status": 403,
+      "authenticated": false,
+      "ops": [
+        {
+          "project": "backend-project",
+          "database": "backend-db",
+          "path": "admin_users/admin@example.invalid"
+        },
+        {
+          "project": "backend-project",
+          "database": "backend-db",
+          "path": "admin_users/admin@example.invalid"
+        }
+      ]
+    },
+    {
+      "runtime": "server",
+      "id": "tenant-missing",
+      "lookupResult": null,
+      "status": 403,
+      "authenticated": false,
+      "ops": [
+        {
+          "project": "backend-project",
+          "database": "backend-db",
+          "path": "admin_users/admin@example.invalid"
+        },
+        {
+          "project": "backend-project",
+          "database": "backend-db",
+          "path": "admin_users/admin@example.invalid"
+        }
+      ]
+    },
+    {
+      "runtime": "server",
+      "id": "role-invalid",
+      "lookupResult": null,
+      "status": 403,
+      "authenticated": false,
+      "ops": [
+        {
+          "project": "backend-project",
+          "database": "backend-db",
+          "path": "admin_users/admin@example.invalid"
+        },
+        {
+          "project": "backend-project",
+          "database": "backend-db",
+          "path": "admin_users/admin@example.invalid"
+        }
+      ]
+    },
+    {
+      "runtime": "server",
+      "id": "role-missing",
+      "lookupResult": null,
+      "status": 403,
+      "authenticated": false,
+      "ops": [
+        {
+          "project": "backend-project",
+          "database": "backend-db",
+          "path": "admin_users/admin@example.invalid"
+        },
+        {
+          "project": "backend-project",
+          "database": "backend-db",
+          "path": "admin_users/admin@example.invalid"
+        }
+      ]
+    },
+    {
+      "runtime": "server",
+      "id": "absent",
+      "lookupResult": null,
+      "status": 403,
+      "authenticated": false,
+      "ops": [
+        {
+          "project": "backend-project",
+          "database": "backend-db",
+          "path": "admin_users/admin@example.invalid"
+        },
+        {
+          "project": "backend-project",
+          "database": "backend-db",
+          "path": "admin_users/admin@example.invalid"
+        }
+      ]
+    },
+    {
+      "runtime": "server",
+      "id": "removed",
+      "lookupResult": {
+        "role": "owner",
+        "status": "removed"
+      },
+      "status": 403,
+      "authenticated": false,
+      "ops": [
+        {
+          "project": "backend-project",
+          "database": "backend-db",
+          "path": "admin_users/admin@example.invalid"
+        },
+        {
+          "project": "backend-project",
+          "database": "backend-db",
+          "path": "admin_users/admin@example.invalid"
+        }
+      ]
+    },
+    {
+      "runtime": "server",
+      "id": "pending",
+      "lookupResult": {
+        "role": "owner",
+        "status": "pending"
+      },
+      "status": 200,
+      "authenticated": true,
+      "ops": [
+        {
+          "project": "backend-project",
+          "database": "backend-db",
+          "path": "admin_users/admin@example.invalid"
+        },
+        {
+          "project": "backend-project",
+          "database": "backend-db",
+          "path": "admin_users/admin@example.invalid"
+        }
+      ]
+    },
+    {
+      "runtime": "server",
+      "id": "status-invalid-fallback",
+      "lookupResult": {
+        "role": "owner",
+        "status": "active"
+      },
+      "status": 200,
+      "authenticated": true,
+      "ops": [
+        {
+          "project": "backend-project",
+          "database": "backend-db",
+          "path": "admin_users/admin@example.invalid"
+        },
+        {
+          "project": "backend-project",
+          "database": "backend-db",
+          "path": "admin_users/admin@example.invalid"
+        }
+      ]
+    },
+    {
+      "runtime": "server",
+      "id": "status-missing-fallback",
+      "lookupResult": {
+        "role": "owner",
+        "status": "active"
+      },
+      "status": 200,
+      "authenticated": true,
+      "ops": [
+        {
+          "project": "backend-project",
+          "database": "backend-db",
+          "path": "admin_users/admin@example.invalid"
+        },
+        {
+          "project": "backend-project",
+          "database": "backend-db",
+          "path": "admin_users/admin@example.invalid"
+        }
+      ]
+    },
+    {
+      "runtime": "server",
+      "id": "transport-error",
+      "lookupResult": null,
+      "status": 403,
+      "authenticated": false,
+      "ops": [
+        {
+          "project": "backend-project",
+          "database": "backend-db",
+          "path": "admin_users/admin@example.invalid"
+        },
+        {
+          "project": "backend-project",
+          "database": "backend-db",
+          "path": "admin_users/admin@example.invalid"
+        }
+      ]
+    },
+    {
+      "runtime": "api",
+      "id": "active-owner",
+      "lookupResult": {
+        "role": "owner",
+        "status": "active"
+      },
+      "status": 200,
+      "authenticated": true,
+      "ops": [
+        {
+          "collection": "admin_users",
+          "id": "admin@example.invalid"
+        },
+        {
+          "collection": "admin_users",
+          "id": "admin@example.invalid"
+        }
+      ]
+    },
+    {
+      "runtime": "api",
+      "id": "active-manager",
+      "lookupResult": {
+        "role": "manager",
+        "status": "active"
+      },
+      "status": 200,
+      "authenticated": true,
+      "ops": [
+        {
+          "collection": "admin_users",
+          "id": "admin@example.invalid"
+        },
+        {
+          "collection": "admin_users",
+          "id": "admin@example.invalid"
+        }
+      ]
+    },
+    {
+      "runtime": "api",
+      "id": "active-staff",
+      "lookupResult": {
+        "role": "staff",
+        "status": "active"
+      },
+      "status": 200,
+      "authenticated": true,
+      "ops": [
+        {
+          "collection": "admin_users",
+          "id": "admin@example.invalid"
+        },
+        {
+          "collection": "admin_users",
+          "id": "admin@example.invalid"
+        }
+      ]
+    },
+    {
+      "runtime": "api",
+      "id": "other-tenant",
+      "lookupResult": null,
+      "status": 403,
+      "authenticated": false,
+      "ops": [
+        {
+          "collection": "admin_users",
+          "id": "admin@example.invalid"
+        },
+        {
+          "collection": "admin_users",
+          "id": "admin@example.invalid"
+        }
+      ]
+    },
+    {
+      "runtime": "api",
+      "id": "tenant-missing",
+      "lookupResult": null,
+      "status": 403,
+      "authenticated": false,
+      "ops": [
+        {
+          "collection": "admin_users",
+          "id": "admin@example.invalid"
+        },
+        {
+          "collection": "admin_users",
+          "id": "admin@example.invalid"
+        }
+      ]
+    },
+    {
+      "runtime": "api",
+      "id": "role-invalid",
+      "lookupResult": null,
+      "status": 403,
+      "authenticated": false,
+      "ops": [
+        {
+          "collection": "admin_users",
+          "id": "admin@example.invalid"
+        },
+        {
+          "collection": "admin_users",
+          "id": "admin@example.invalid"
+        }
+      ]
+    },
+    {
+      "runtime": "api",
+      "id": "role-missing",
+      "lookupResult": null,
+      "status": 403,
+      "authenticated": false,
+      "ops": [
+        {
+          "collection": "admin_users",
+          "id": "admin@example.invalid"
+        },
+        {
+          "collection": "admin_users",
+          "id": "admin@example.invalid"
+        }
+      ]
+    },
+    {
+      "runtime": "api",
+      "id": "absent",
+      "lookupResult": null,
+      "status": 403,
+      "authenticated": false,
+      "ops": [
+        {
+          "collection": "admin_users",
+          "id": "admin@example.invalid"
+        },
+        {
+          "collection": "admin_users",
+          "id": "admin@example.invalid"
+        }
+      ]
+    },
+    {
+      "runtime": "api",
+      "id": "removed",
+      "lookupResult": {
+        "role": "owner",
+        "status": "removed"
+      },
+      "status": 403,
+      "authenticated": false,
+      "ops": [
+        {
+          "collection": "admin_users",
+          "id": "admin@example.invalid"
+        },
+        {
+          "collection": "admin_users",
+          "id": "admin@example.invalid"
+        }
+      ]
+    },
+    {
+      "runtime": "api",
+      "id": "pending",
+      "lookupResult": {
+        "role": "owner",
+        "status": "pending"
+      },
+      "status": 200,
+      "authenticated": true,
+      "ops": [
+        {
+          "collection": "admin_users",
+          "id": "admin@example.invalid"
+        },
+        {
+          "collection": "admin_users",
+          "id": "admin@example.invalid"
+        }
+      ]
+    },
+    {
+      "runtime": "api",
+      "id": "status-invalid-fallback",
+      "lookupResult": {
+        "role": "owner",
+        "status": "active"
+      },
+      "status": 200,
+      "authenticated": true,
+      "ops": [
+        {
+          "collection": "admin_users",
+          "id": "admin@example.invalid"
+        },
+        {
+          "collection": "admin_users",
+          "id": "admin@example.invalid"
+        }
+      ]
+    },
+    {
+      "runtime": "api",
+      "id": "status-missing-fallback",
+      "lookupResult": {
+        "role": "owner",
+        "status": "active"
+      },
+      "status": 200,
+      "authenticated": true,
+      "ops": [
+        {
+          "collection": "admin_users",
+          "id": "admin@example.invalid"
+        },
+        {
+          "collection": "admin_users",
+          "id": "admin@example.invalid"
+        }
+      ]
+    },
+    {
+      "runtime": "api",
+      "id": "transport-error",
+      "lookupResult": null,
+      "status": 403,
+      "authenticated": false,
+      "ops": [
+        {
+          "collection": "admin_users",
+          "id": "admin@example.invalid"
+        },
+        {
+          "collection": "admin_users",
+          "id": "admin@example.invalid"
+        }
+      ]
+    }
+  ],
+  "hashes": {
+    "src/lib/admin-users.ts": "bf20aeae951907d691f87b983de0ce21a81613b3becc2a9cace43fc5f9cab47a",
+    "src/lib/api/admin-auth.ts": "68f7528b764a06317ca7d6d4d69569f2b3691a95eaf8a5f5dbd1adaaf30f8696",
+    "server.ts": "884ed361649c0aa2b406c317e7cc0fe36f70d30f9cd83785f6680fee7c9970f0",
+    "api/index.ts": "748b245f1b1c56184de7f57119d89a4a690ff383fdff504a4431ac2aae0af007"
+  },
+  "limits": "Lookups AST reales + validadores/decoder/gate reales. Admin referencias SDK reales con get interceptado; API helper REST interceptado en su interfaz collection/id, sin certificar URL/contexto REST. Token RSA sintético legacy válido para alcanzar cada lookup. No modificación de política ni producto."
+}

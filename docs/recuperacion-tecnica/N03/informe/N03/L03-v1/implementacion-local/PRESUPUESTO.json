@@ -1,0 +1,11 @@
+{
+  "utc": "2026-09-10T08:17:56.626Z",
+  "fuente": "mcp__codex_app__get_usage_limits",
+  "bucket": "codex",
+  "usedPercent": 84,
+  "windowDurationMins": 10080,
+  "resetsAt": 1789454383,
+  "techoN03": 90,
+  "reservaN04": 10,
+  "resetsEjecutados": 0
+}

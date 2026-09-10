@@ -1,0 +1,764 @@
+{
+  "result": "RED-instrumento",
+  "compatibility": "RED para destinos físicos separados en este recorrido",
+  "checks": 57,
+  "failures": [
+    {
+      "id": "base-separada/same-appointment",
+      "actual": [
+        "k5qsI4iJ0HeqLCX6BAfP"
+      ],
+      "expected": []
+    },
+    {
+      "id": "proyecto-separado/same-appointment",
+      "actual": [
+        "ngYvkGsQH5qr0hYSOvBC"
+      ],
+      "expected": []
+    },
+    {
+      "id": "ambos-separados/same-appointment",
+      "actual": [
+        "Bu4RPueWsOcVaNWvYVH4"
+      ],
+      "expected": []
+    },
+    {
+      "id": "default-distinto/same-appointment",
+      "actual": [
+        "wvm4Y6URxHbCE55Unsbf"
+      ],
+      "expected": []
+    }
+  ],
+  "rows": [
+    {
+      "id": "coincidente-control",
+      "response": {
+        "success": true,
+        "appointmentId": "DJT7HUbphrtw0m316GDY"
+      },
+      "status": 200,
+      "appointment": {
+        "project": "backend-project",
+        "database": "appointments-db",
+        "path": "appointments/DJT7HUbphrtw0m316GDY",
+        "id": "DJT7HUbphrtw0m316GDY",
+        "data": {
+          "clientId": "tenant-local",
+          "staffId": "staff",
+          "date": "2026-10-10",
+          "time": "10:00",
+          "duration": 30,
+          "manifestEnd": "10:40",
+          "createdAt": {
+            "type": "firestore/timestamp/1.0",
+            "seconds": 1800000000,
+            "nanoseconds": 0
+          },
+          "customerName": "Synthetic Appointment",
+          "customerEmail": "customer@example.invalid",
+          "customerPhone": "123",
+          "serviceId": "cut",
+          "status": "confirmed"
+        }
+      },
+      "query": {
+        "project": "backend-project",
+        "database": "appointments-db",
+        "path": "appointments",
+        "tenantField": "clientId",
+        "tenantValue": "tenant-local",
+        "order": [
+          {
+            "field": "createdAt",
+            "dir": "desc"
+          }
+        ],
+        "limit": 500
+      },
+      "uiState": {
+        "appointments": [
+          {
+            "clientId": "tenant-local",
+            "staffId": "staff",
+            "date": "2026-10-10",
+            "time": "10:00",
+            "duration": 30,
+            "manifestEnd": "10:40",
+            "createdAt": "2027-01-15T08:00:00.000Z",
+            "customerName": "Synthetic Appointment",
+            "customerEmail": "customer@example.invalid",
+            "customerPhone": "123",
+            "serviceId": "cut",
+            "status": "confirmed",
+            "id": "DJT7HUbphrtw0m316GDY"
+          }
+        ],
+        "loaded": true,
+        "error": null
+      },
+      "reads": [
+        {
+          "actor": "transaction",
+          "project": "backend-project",
+          "database": "appointments-db",
+          "path": "daily_manifests/tenant-local_staff_2026-10-10"
+        },
+        {
+          "actor": "customer-lookup-intercepted"
+        },
+        {
+          "actor": "browser-ping",
+          "project": "backend-project",
+          "database": "appointments-db",
+          "path": "system/ping"
+        },
+        {
+          "actor": "crm-onSnapshot",
+          "project": "backend-project",
+          "database": "appointments-db",
+          "path": "appointments",
+          "tenantField": "clientId",
+          "tenantValue": "tenant-local",
+          "order": [
+            {
+              "field": "createdAt",
+              "dir": "desc"
+            }
+          ],
+          "limit": 500,
+          "ids": [
+            "DJT7HUbphrtw0m316GDY"
+          ]
+        }
+      ],
+      "writes": [
+        {
+          "project": "backend-project",
+          "database": "appointments-db",
+          "path": "appointments/DJT7HUbphrtw0m316GDY",
+          "id": "DJT7HUbphrtw0m316GDY",
+          "data": {
+            "clientId": "tenant-local",
+            "staffId": "staff",
+            "date": "2026-10-10",
+            "time": "10:00",
+            "duration": 30,
+            "manifestEnd": "10:40",
+            "createdAt": {
+              "type": "firestore/timestamp/1.0",
+              "seconds": 1800000000,
+              "nanoseconds": 0
+            },
+            "customerName": "Synthetic Appointment",
+            "customerEmail": "customer@example.invalid",
+            "customerPhone": "123",
+            "serviceId": "cut",
+            "status": "confirmed"
+          }
+        },
+        {
+          "project": "backend-project",
+          "database": "appointments-db",
+          "path": "daily_manifests/tenant-local_staff_2026-10-10",
+          "id": "tenant-local_staff_2026-10-10",
+          "data": {
+            "clientId": "tenant-local",
+            "intervals": [
+              {
+                "start": "10:00",
+                "end": "10:40"
+              }
+            ]
+          }
+        }
+      ],
+      "logs": [],
+      "connection": "misma identidad completa"
+    },
+    {
+      "id": "base-separada",
+      "response": {
+        "success": true,
+        "appointmentId": "k5qsI4iJ0HeqLCX6BAfP"
+      },
+      "status": 200,
+      "appointment": {
+        "project": "backend-project",
+        "database": "appointments-db",
+        "path": "appointments/k5qsI4iJ0HeqLCX6BAfP",
+        "id": "k5qsI4iJ0HeqLCX6BAfP",
+        "data": {
+          "clientId": "tenant-local",
+          "staffId": "staff",
+          "date": "2026-10-10",
+          "time": "10:00",
+          "duration": 30,
+          "manifestEnd": "10:40",
+          "createdAt": {
+            "type": "firestore/timestamp/1.0",
+            "seconds": 1800000000,
+            "nanoseconds": 0
+          },
+          "customerName": "Synthetic Appointment",
+          "customerEmail": "customer@example.invalid",
+          "customerPhone": "123",
+          "serviceId": "cut",
+          "status": "confirmed"
+        }
+      },
+      "query": {
+        "project": "backend-project",
+        "database": "web-db",
+        "path": "appointments",
+        "tenantField": "clientId",
+        "tenantValue": "tenant-local",
+        "order": [
+          {
+            "field": "createdAt",
+            "dir": "desc"
+          }
+        ],
+        "limit": 500
+      },
+      "uiState": {
+        "appointments": [
+          {
+            "clientId": "tenant-local",
+            "staffId": "staff",
+            "date": "2026-10-10",
+            "time": "10:00",
+            "duration": 30,
+            "manifestEnd": "10:40",
+            "createdAt": "2027-01-15T08:00:00.000Z",
+            "customerName": "Synthetic Appointment",
+            "customerEmail": "customer@example.invalid",
+            "customerPhone": "123",
+            "serviceId": "cut",
+            "status": "confirmed",
+            "id": "k5qsI4iJ0HeqLCX6BAfP"
+          }
+        ],
+        "loaded": true,
+        "error": null
+      },
+      "reads": [
+        {
+          "actor": "transaction",
+          "project": "backend-project",
+          "database": "appointments-db",
+          "path": "daily_manifests/tenant-local_staff_2026-10-10"
+        },
+        {
+          "actor": "customer-lookup-intercepted"
+        },
+        {
+          "actor": "browser-ping",
+          "project": "backend-project",
+          "database": "web-db",
+          "path": "system/ping"
+        },
+        {
+          "actor": "crm-onSnapshot",
+          "project": "backend-project",
+          "database": "web-db",
+          "path": "appointments",
+          "tenantField": "clientId",
+          "tenantValue": "tenant-local",
+          "order": [
+            {
+              "field": "createdAt",
+              "dir": "desc"
+            }
+          ],
+          "limit": 500,
+          "ids": [
+            "k5qsI4iJ0HeqLCX6BAfP"
+          ]
+        }
+      ],
+      "writes": [
+        {
+          "project": "backend-project",
+          "database": "appointments-db",
+          "path": "appointments/k5qsI4iJ0HeqLCX6BAfP",
+          "id": "k5qsI4iJ0HeqLCX6BAfP",
+          "data": {
+            "clientId": "tenant-local",
+            "staffId": "staff",
+            "date": "2026-10-10",
+            "time": "10:00",
+            "duration": 30,
+            "manifestEnd": "10:40",
+            "createdAt": {
+              "type": "firestore/timestamp/1.0",
+              "seconds": 1800000000,
+              "nanoseconds": 0
+            },
+            "customerName": "Synthetic Appointment",
+            "customerEmail": "customer@example.invalid",
+            "customerPhone": "123",
+            "serviceId": "cut",
+            "status": "confirmed"
+          }
+        },
+        {
+          "project": "backend-project",
+          "database": "appointments-db",
+          "path": "daily_manifests/tenant-local_staff_2026-10-10",
+          "id": "tenant-local_staff_2026-10-10",
+          "data": {
+            "clientId": "tenant-local",
+            "intervals": [
+              {
+                "start": "10:00",
+                "end": "10:40"
+              }
+            ]
+          }
+        }
+      ],
+      "logs": [],
+      "connection": "namespace distinto; ID de respuesta no conecta suscripción"
+    },
+    {
+      "id": "proyecto-separado",
+      "response": {
+        "success": true,
+        "appointmentId": "ngYvkGsQH5qr0hYSOvBC"
+      },
+      "status": 200,
+      "appointment": {
+        "project": "backend-project",
+        "database": "appointments-db",
+        "path": "appointments/ngYvkGsQH5qr0hYSOvBC",
+        "id": "ngYvkGsQH5qr0hYSOvBC",
+        "data": {
+          "clientId": "tenant-local",
+          "staffId": "staff",
+          "date": "2026-10-10",
+          "time": "10:00",
+          "duration": 30,
+          "manifestEnd": "10:40",
+          "createdAt": {
+            "type": "firestore/timestamp/1.0",
+            "seconds": 1800000000,
+            "nanoseconds": 0
+          },
+          "customerName": "Synthetic Appointment",
+          "customerEmail": "customer@example.invalid",
+          "customerPhone": "123",
+          "serviceId": "cut",
+          "status": "confirmed"
+        }
+      },
+      "query": {
+        "project": "web-project",
+        "database": "appointments-db",
+        "path": "appointments",
+        "tenantField": "clientId",
+        "tenantValue": "tenant-local",
+        "order": [
+          {
+            "field": "createdAt",
+            "dir": "desc"
+          }
+        ],
+        "limit": 500
+      },
+      "uiState": {
+        "appointments": [
+          {
+            "clientId": "tenant-local",
+            "staffId": "staff",
+            "date": "2026-10-10",
+            "time": "10:00",
+            "duration": 30,
+            "manifestEnd": "10:40",
+            "createdAt": "2027-01-15T08:00:00.000Z",
+            "customerName": "Synthetic Appointment",
+            "customerEmail": "customer@example.invalid",
+            "customerPhone": "123",
+            "serviceId": "cut",
+            "status": "confirmed",
+            "id": "ngYvkGsQH5qr0hYSOvBC"
+          }
+        ],
+        "loaded": true,
+        "error": null
+      },
+      "reads": [
+        {
+          "actor": "transaction",
+          "project": "backend-project",
+          "database": "appointments-db",
+          "path": "daily_manifests/tenant-local_staff_2026-10-10"
+        },
+        {
+          "actor": "customer-lookup-intercepted"
+        },
+        {
+          "actor": "browser-ping",
+          "project": "web-project",
+          "database": "appointments-db",
+          "path": "system/ping"
+        },
+        {
+          "actor": "crm-onSnapshot",
+          "project": "web-project",
+          "database": "appointments-db",
+          "path": "appointments",
+          "tenantField": "clientId",
+          "tenantValue": "tenant-local",
+          "order": [
+            {
+              "field": "createdAt",
+              "dir": "desc"
+            }
+          ],
+          "limit": 500,
+          "ids": [
+            "ngYvkGsQH5qr0hYSOvBC"
+          ]
+        }
+      ],
+      "writes": [
+        {
+          "project": "backend-project",
+          "database": "appointments-db",
+          "path": "appointments/ngYvkGsQH5qr0hYSOvBC",
+          "id": "ngYvkGsQH5qr0hYSOvBC",
+          "data": {
+            "clientId": "tenant-local",
+            "staffId": "staff",
+            "date": "2026-10-10",
+            "time": "10:00",
+            "duration": 30,
+            "manifestEnd": "10:40",
+            "createdAt": {
+              "type": "firestore/timestamp/1.0",
+              "seconds": 1800000000,
+              "nanoseconds": 0
+            },
+            "customerName": "Synthetic Appointment",
+            "customerEmail": "customer@example.invalid",
+            "customerPhone": "123",
+            "serviceId": "cut",
+            "status": "confirmed"
+          }
+        },
+        {
+          "project": "backend-project",
+          "database": "appointments-db",
+          "path": "daily_manifests/tenant-local_staff_2026-10-10",
+          "id": "tenant-local_staff_2026-10-10",
+          "data": {
+            "clientId": "tenant-local",
+            "intervals": [
+              {
+                "start": "10:00",
+                "end": "10:40"
+              }
+            ]
+          }
+        }
+      ],
+      "logs": [],
+      "connection": "namespace distinto; ID de respuesta no conecta suscripción"
+    },
+    {
+      "id": "ambos-separados",
+      "response": {
+        "success": true,
+        "appointmentId": "Bu4RPueWsOcVaNWvYVH4"
+      },
+      "status": 200,
+      "appointment": {
+        "project": "backend-project",
+        "database": "appointments-db",
+        "path": "appointments/Bu4RPueWsOcVaNWvYVH4",
+        "id": "Bu4RPueWsOcVaNWvYVH4",
+        "data": {
+          "clientId": "tenant-local",
+          "staffId": "staff",
+          "date": "2026-10-10",
+          "time": "10:00",
+          "duration": 30,
+          "manifestEnd": "10:40",
+          "createdAt": {
+            "type": "firestore/timestamp/1.0",
+            "seconds": 1800000000,
+            "nanoseconds": 0
+          },
+          "customerName": "Synthetic Appointment",
+          "customerEmail": "customer@example.invalid",
+          "customerPhone": "123",
+          "serviceId": "cut",
+          "status": "confirmed"
+        }
+      },
+      "query": {
+        "project": "web-project",
+        "database": "web-db",
+        "path": "appointments",
+        "tenantField": "clientId",
+        "tenantValue": "tenant-local",
+        "order": [
+          {
+            "field": "createdAt",
+            "dir": "desc"
+          }
+        ],
+        "limit": 500
+      },
+      "uiState": {
+        "appointments": [
+          {
+            "clientId": "tenant-local",
+            "staffId": "staff",
+            "date": "2026-10-10",
+            "time": "10:00",
+            "duration": 30,
+            "manifestEnd": "10:40",
+            "createdAt": "2027-01-15T08:00:00.000Z",
+            "customerName": "Synthetic Appointment",
+            "customerEmail": "customer@example.invalid",
+            "customerPhone": "123",
+            "serviceId": "cut",
+            "status": "confirmed",
+            "id": "Bu4RPueWsOcVaNWvYVH4"
+          }
+        ],
+        "loaded": true,
+        "error": null
+      },
+      "reads": [
+        {
+          "actor": "transaction",
+          "project": "backend-project",
+          "database": "appointments-db",
+          "path": "daily_manifests/tenant-local_staff_2026-10-10"
+        },
+        {
+          "actor": "customer-lookup-intercepted"
+        },
+        {
+          "actor": "browser-ping",
+          "project": "web-project",
+          "database": "web-db",
+          "path": "system/ping"
+        },
+        {
+          "actor": "crm-onSnapshot",
+          "project": "web-project",
+          "database": "web-db",
+          "path": "appointments",
+          "tenantField": "clientId",
+          "tenantValue": "tenant-local",
+          "order": [
+            {
+              "field": "createdAt",
+              "dir": "desc"
+            }
+          ],
+          "limit": 500,
+          "ids": [
+            "Bu4RPueWsOcVaNWvYVH4"
+          ]
+        }
+      ],
+      "writes": [
+        {
+          "project": "backend-project",
+          "database": "appointments-db",
+          "path": "appointments/Bu4RPueWsOcVaNWvYVH4",
+          "id": "Bu4RPueWsOcVaNWvYVH4",
+          "data": {
+            "clientId": "tenant-local",
+            "staffId": "staff",
+            "date": "2026-10-10",
+            "time": "10:00",
+            "duration": 30,
+            "manifestEnd": "10:40",
+            "createdAt": {
+              "type": "firestore/timestamp/1.0",
+              "seconds": 1800000000,
+              "nanoseconds": 0
+            },
+            "customerName": "Synthetic Appointment",
+            "customerEmail": "customer@example.invalid",
+            "customerPhone": "123",
+            "serviceId": "cut",
+            "status": "confirmed"
+          }
+        },
+        {
+          "project": "backend-project",
+          "database": "appointments-db",
+          "path": "daily_manifests/tenant-local_staff_2026-10-10",
+          "id": "tenant-local_staff_2026-10-10",
+          "data": {
+            "clientId": "tenant-local",
+            "intervals": [
+              {
+                "start": "10:00",
+                "end": "10:40"
+              }
+            ]
+          }
+        }
+      ],
+      "logs": [],
+      "connection": "namespace distinto; ID de respuesta no conecta suscripción"
+    },
+    {
+      "id": "default-distinto",
+      "response": {
+        "success": true,
+        "appointmentId": "wvm4Y6URxHbCE55Unsbf"
+      },
+      "status": 200,
+      "appointment": {
+        "project": "backend-project",
+        "database": "default",
+        "path": "appointments/wvm4Y6URxHbCE55Unsbf",
+        "id": "wvm4Y6URxHbCE55Unsbf",
+        "data": {
+          "clientId": "tenant-local",
+          "staffId": "staff",
+          "date": "2026-10-10",
+          "time": "10:00",
+          "duration": 30,
+          "manifestEnd": "10:40",
+          "createdAt": {
+            "type": "firestore/timestamp/1.0",
+            "seconds": 1800000000,
+            "nanoseconds": 0
+          },
+          "customerName": "Synthetic Appointment",
+          "customerEmail": "customer@example.invalid",
+          "customerPhone": "123",
+          "serviceId": "cut",
+          "status": "confirmed"
+        }
+      },
+      "query": {
+        "project": "backend-project",
+        "database": "(default)",
+        "path": "appointments",
+        "tenantField": "clientId",
+        "tenantValue": "tenant-local",
+        "order": [
+          {
+            "field": "createdAt",
+            "dir": "desc"
+          }
+        ],
+        "limit": 500
+      },
+      "uiState": {
+        "appointments": [
+          {
+            "clientId": "tenant-local",
+            "staffId": "staff",
+            "date": "2026-10-10",
+            "time": "10:00",
+            "duration": 30,
+            "manifestEnd": "10:40",
+            "createdAt": "2027-01-15T08:00:00.000Z",
+            "customerName": "Synthetic Appointment",
+            "customerEmail": "customer@example.invalid",
+            "customerPhone": "123",
+            "serviceId": "cut",
+            "status": "confirmed",
+            "id": "wvm4Y6URxHbCE55Unsbf"
+          }
+        ],
+        "loaded": true,
+        "error": null
+      },
+      "reads": [
+        {
+          "actor": "transaction",
+          "project": "backend-project",
+          "database": "default",
+          "path": "daily_manifests/tenant-local_staff_2026-10-10"
+        },
+        {
+          "actor": "customer-lookup-intercepted"
+        },
+        {
+          "actor": "browser-ping",
+          "project": "backend-project",
+          "database": "(default)",
+          "path": "system/ping"
+        },
+        {
+          "actor": "crm-onSnapshot",
+          "project": "backend-project",
+          "database": "(default)",
+          "path": "appointments",
+          "tenantField": "clientId",
+          "tenantValue": "tenant-local",
+          "order": [
+            {
+              "field": "createdAt",
+              "dir": "desc"
+            }
+          ],
+          "limit": 500,
+          "ids": [
+            "wvm4Y6URxHbCE55Unsbf"
+          ]
+        }
+      ],
+      "writes": [
+        {
+          "project": "backend-project",
+          "database": "default",
+          "path": "appointments/wvm4Y6URxHbCE55Unsbf",
+          "id": "wvm4Y6URxHbCE55Unsbf",
+          "data": {
+            "clientId": "tenant-local",
+            "staffId": "staff",
+            "date": "2026-10-10",
+            "time": "10:00",
+            "duration": 30,
+            "manifestEnd": "10:40",
+            "createdAt": {
+              "type": "firestore/timestamp/1.0",
+              "seconds": 1800000000,
+              "nanoseconds": 0
+            },
+            "customerName": "Synthetic Appointment",
+            "customerEmail": "customer@example.invalid",
+            "customerPhone": "123",
+            "serviceId": "cut",
+            "status": "confirmed"
+          }
+        },
+        {
+          "project": "backend-project",
+          "database": "default",
+          "path": "daily_manifests/tenant-local_staff_2026-10-10",
+          "id": "tenant-local_staff_2026-10-10",
+          "data": {
+            "clientId": "tenant-local",
+            "intervals": [
+              {
+                "start": "10:00",
+                "end": "10:40"
+              }
+            ]
+          }
+        }
+      ],
+      "logs": [],
+      "connection": "namespace distinto; ID de respuesta no conecta suscripción"
+    }
+  ],
+  "mutation": "mutant",
+  "limits": "Persistencia/transacción/onSnapshot interceptados. Referencias y query SDK reales; serverTimestamp materializado en fecha sintética. Callback AdminDashboard real, sin render React ni autenticación/rules/índices/concurrencia reales. No copia/sincronización entre destinos."
+}

@@ -1,0 +1,11 @@
+{
+  "fecha": "2026-09-09T21:00:46.247Z",
+  "alcance": "Aceptación local W-NEXT y propuesta única L02 client-info",
+  "estadoInicial": "RED: W-NEXT para revisión y selección histórica lint",
+  "evidenciasConservadas": 546,
+  "productoConservado": 285,
+  "propuestaSha256": "b2f15e293207d55413b7da53bf07bdca46d384795997a50ffd83e28609b124c1",
+  "consumo": 81,
+  "techo": 85,
+  "resets": 0
+}

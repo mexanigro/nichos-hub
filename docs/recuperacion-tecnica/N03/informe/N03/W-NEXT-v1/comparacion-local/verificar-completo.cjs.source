@@ -1,0 +1,52 @@
+// Suplemento del contrato congelado: procedencia, registro real, aislamiento y conservación.
+const fs=require('node:fs'),p=require('node:path'),crypto=require('node:crypto'),{spawnSync}=require('node:child_process');
+const base=__dirname,hub='C:/Users/liama/Desktop/Nichos-hub';
+const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
+const json=r=>JSON.parse(fs.readFileSync(p.join(base,r),'utf8').replace(/^\uFEFF/,''));
+const controles=[];let matchersReferencia;const comprobar=(nombre,ok,detalle)=>controles.push({nombre,ok,detalle});
+try {
+ const evaluacion=spawnSync(process.execPath,[p.join(base,'evaluar.cjs')],{encoding:'utf8'});
+ comprobar('Comparación HTTP y sensibilidad',evaluacion.status===0,JSON.parse(evaluacion.stdout));
+ const fuentes=json('FUENTES.json');
+ for(const f of fuentes)comprobar('Fuente intacta '+f.ruta,sha(fs.readFileSync(p.join(hub,f.ruta)))===f.sha256&&sha(fs.readFileSync(p.join(base,'preimagenes',f.ruta)))===f.sha256);
+ const previos=JSON.parse(fs.readFileSync(p.join(base,'../FUENTES.json'),'utf8'));
+ for(const f of previos.filter(x=>['src/middleware.ts','src/auth.config.ts','package.json','node_modules/next/package.json'].includes(x.path)))comprobar('Continuidad previa '+f.path,sha(fs.readFileSync(p.join(hub,f.path)))===f.sha256);
+ const original=fs.readFileSync(p.join(hub,'src/middleware.ts'));
+ const auth=fs.readFileSync(p.join(hub,'src/auth.config.ts'));
+ for(const modo of ['middleware','proxy','mutante']) {
+  const raiz=p.join(base,'copias',modo),nombre=modo==='middleware'?'middleware.ts':'proxy.ts';
+  const guard=fs.readFileSync(p.join(raiz,'src',nombre));
+  comprobar('Única convención '+modo,fs.existsSync(p.join(raiz,'src',nombre))&&!fs.existsSync(p.join(raiz,'src',nombre==='proxy.ts'?'middleware.ts':'proxy.ts')));
+  comprobar('auth.config exacto '+modo,auth.equals(fs.readFileSync(p.join(raiz,'src/auth.config.ts'))));
+  if(modo!=='mutante')comprobar('Guard bytes exactos '+modo,original.equals(guard));
+  else {
+   const texto=original.toString(),inicio=texto.indexOf('  const { pathname } = req.nextUrl;'),fin=texto.indexOf('\n});',inicio);
+   comprobar('Mutación sólo callback',guard.toString()===texto.slice(0,inicio)+'  return NextResponse.next();'+texto.slice(fin));
+  }
+  const etiqueta=modo==='middleware'?'middleware-r2':modo, r='resultados/'+etiqueta;
+  const docker=json(r+'/DOCKER.json'),disposicion=json(r+'/DISPOSICION.json');
+  comprobar('Exit y disposición '+modo,docker.exit===(modo==='mutante'?1:0)&&docker.estado.ExitCode===docker.exit&&!docker.timeout&&disposicion.eliminado);
+  comprobar('Aislamiento '+modo,docker.aislamiento.NetworkMode==='none'&&docker.aislamiento.ReadonlyRootfs&&docker.aislamiento.Mounts.filter(x=>x.Target==='/app/node_modules'||x.Target==='/compat').every(x=>x.ReadOnly)&&docker.aislamiento.Mounts.some(x=>x.Target==='/app/node_modules')&&docker.comando.includes('-i')&&!docker.comando.some(x=>/env-file|\.env\b/.test(x)));
+  const pre=json(r+'/PREFLIGHT.json');comprobar('Versiones y red '+modo,pre.next==='16.2.9'&&pre.nextAuth==='5.0.0-beta.31'&&pre.JWT&&Object.keys(pre.interfaces).every(x=>x==='lo'));
+  comprobar('Build real '+modo,json('resultados/'+modo+'/build-exit.json').codigo===0);
+  const manifiesto=JSON.parse(fs.readFileSync(p.join(raiz,'.next/server/middleware-manifest.json')));
+  let matchers;
+  if(modo==='middleware') {
+   const registro=manifiesto.middleware['/'];
+   comprobar('Registro Edge',registro?.files.includes('server/edge-runtime-webpack.js')&&registro?.entrypoint==='server/src/middleware.js');matchers=registro.matchers;
+  }else {
+   const funciones=JSON.parse(fs.readFileSync(p.join(raiz,'.next/server/functions-config-manifest.json')));
+   const registro=funciones.functions['/_middleware'];
+   comprobar('Registro Node '+modo,!manifiesto.middleware['/']&&registro?.runtime==='nodejs'&&fs.existsSync(p.join(raiz,'.next/server/middleware.js')));matchers=registro.matchers;
+  }
+  const http=json(r+'/HTTP.json');comprobar('Población '+modo,http.casos.length===129);
+  for(const c of http.casos)comprobar('Matcher efectivo '+modo+' '+c.ruta+' '+c.sesion,matchers.some(m=>new RegExp(m.regexp).test(c.ruta))===c.incluido);
+  const firma=JSON.stringify(matchers);if(modo==='middleware')matchersReferencia=firma;else comprobar('Matcher idéntico '+modo,firma===matchersReferencia);
+  comprobar('Token expirado rechazado '+modo,json(r+'/EXPIRADO.json').rechazado);
+ }
+ const productos=json('PRODUCTO-ANTES.json');for(const f of productos)comprobar('Conservación producto '+f.ruta,sha(fs.readFileSync(f.ruta)).toUpperCase()===f.sha256);
+ comprobar('Producto sigue middleware',fs.existsSync(p.join(hub,'src/middleware.ts'))&&!fs.existsSync(p.join(hub,'src/proxy.ts')));
+ const freeze=json('FREEZE.json');comprobar('Contrato congelado intacto',sha(fs.readFileSync(p.join(base,'CONTRATO.md'))).toUpperCase()===freeze.find(x=>x.Path.endsWith('CONTRATO.md')).Hash);
+}catch(e){comprobar('Instrumento completo',false,{message:e.message,stack:e.stack});}
+const resultado={result:controles.every(x=>x.ok)?'GREEN':'RED',controles:controles.length,fallos:controles.filter(x=>!x.ok),detalle:controles};
+console.log(JSON.stringify(resultado,null,2));process.exitCode=resultado.result==='GREEN'?0:1;

@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "incremental": false
+  },
+  "include": [
+    "C:/Users/liama/Desktop/Nichos-hub/src/lib/email-templates.ts",
+    "C:/Users/liama/Desktop/Nichos-hub/next-env.d.ts"
+  ],
+  "extends": "C:/Users/liama/Desktop/Nichos-hub/tsconfig.json",
+  "exclude": [
+    "C:/Users/liama/Desktop/Nichos-hub/node_modules"
+  ]
+}

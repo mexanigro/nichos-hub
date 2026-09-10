@@ -1,0 +1,202 @@
+[
+  {
+    "path": "custodia.cjs",
+    "sha256": "7ff4aca3ab7d0b302e7353d635a1bc72e20eaf91f88354c8318235c9cfbcf03b",
+    "bytes": 3087
+  },
+  {
+    "path": "fuentes\\firestore.rules.source",
+    "sha256": "fe7576645b41e7bd90c9988f1db144bf0ef8e72fdc18bd889f50de0f3ca1722c",
+    "bytes": 17150
+  },
+  {
+    "path": "fuentes\\server.ts.source",
+    "sha256": "884ed361649c0aa2b406c317e7cc0fe36f70d30f9cd83785f6680fee7c9970f0",
+    "bytes": 171920
+  },
+  {
+    "path": "fuentes\\src\\components\\admin\\AppointmentCalendar.tsx.source",
+    "sha256": "05aa60f456f7c7385c2d6d30e8563afd86d824edab605c0fcc131532c15fe605",
+    "bytes": 30631
+  },
+  {
+    "path": "fuentes\\src\\lib\\admin-auth.ts.source",
+    "sha256": "83819b2d1cf1be81dc8900ffbfa87ead360a7f5b8dcd4b39a6bb5a228a6b4f11",
+    "bytes": 928
+  },
+  {
+    "path": "fuentes\\src\\lib\\admin-users.ts.source",
+    "sha256": "bf20aeae951907d691f87b983de0ce21a81613b3becc2a9cace43fc5f9cab47a",
+    "bytes": 2651
+  },
+  {
+    "path": "fuentes\\src\\lib\\api\\admin-auth.ts.source",
+    "sha256": "68f7528b764a06317ca7d6d4d69569f2b3691a95eaf8a5f5dbd1adaaf30f8696",
+    "bytes": 6383
+  },
+  {
+    "path": "fuentes\\src\\lib\\appointment-notify-client.ts.source",
+    "sha256": "9f900eaad61a3da294ed4cb552eca1efce9440c08f45bd455582e4143e7d605b",
+    "bytes": 1589
+  },
+  {
+    "path": "FUENTES-DISENO.json",
+    "sha256": "d2658017caf34e39eeabe90b2fbd40b1b6e6e2a24d0466552b7774ec18265ce1",
+    "bytes": 1362
+  },
+  {
+    "path": "preimagenes\\canonico\\indice\\CALENDARIO.md",
+    "sha256": "eb7739dd4b77812243e070b96431099cf9a0253dc3bf22addc0c6daaf8cdf610",
+    "bytes": 37821
+  },
+  {
+    "path": "preimagenes\\canonico\\indice\\README.md",
+    "sha256": "124329c156c25e9c4d9f4d50d11705881d0f90ad6b9bd25b45a7dfb103332846",
+    "bytes": 40465
+  },
+  {
+    "path": "preimagenes\\canonico\\indice\\tareas\\N03.md",
+    "sha256": "5a6ece0bcbdd64595674da2ca573ee20a748e7febe08b136fdb8fcc41c24860f",
+    "bytes": 43969
+  },
+  {
+    "path": "preimagenes\\canonico\\informe\\N03\\cierre-sesion-v1\\RETOMA.md",
+    "sha256": "98f9c8132cc487834c9112597cd07b61d7efd6f918eaa66f26033d2b42641666",
+    "bytes": 26091
+  },
+  {
+    "path": "preimagenes\\canonico\\informe\\N03\\reconciliacion-v1\\BALANCE.md",
+    "sha256": "7b5d1911e445db6fe66612d9338dded4faefb07885e95c152f06688f6324593f",
+    "bytes": 10217
+  },
+  {
+    "path": "preimagenes\\canonico\\informe\\N03\\reconciliacion-v1\\SIGUIENTE-ACCION.md",
+    "sha256": "5dae0077329d90d2a5efc7d8dd547943bc8ef6525d299133ee0967e3374c5346",
+    "bytes": 18246
+  },
+  {
+    "path": "preimagenes\\espejo\\indice\\CALENDARIO.md",
+    "sha256": "eb7739dd4b77812243e070b96431099cf9a0253dc3bf22addc0c6daaf8cdf610",
+    "bytes": 37821
+  },
+  {
+    "path": "preimagenes\\espejo\\indice\\README.md",
+    "sha256": "124329c156c25e9c4d9f4d50d11705881d0f90ad6b9bd25b45a7dfb103332846",
+    "bytes": 40465
+  },
+  {
+    "path": "preimagenes\\espejo\\indice\\tareas\\N03.md",
+    "sha256": "5a6ece0bcbdd64595674da2ca573ee20a748e7febe08b136fdb8fcc41c24860f",
+    "bytes": 43969
+  },
+  {
+    "path": "preimagenes\\espejo\\informe\\N03\\cierre-sesion-v1\\RETOMA.md",
+    "sha256": "98f9c8132cc487834c9112597cd07b61d7efd6f918eaa66f26033d2b42641666",
+    "bytes": 26091
+  },
+  {
+    "path": "preimagenes\\espejo\\informe\\N03\\reconciliacion-v1\\BALANCE.md",
+    "sha256": "7b5d1911e445db6fe66612d9338dded4faefb07885e95c152f06688f6324593f",
+    "bytes": 10217
+  },
+  {
+    "path": "preimagenes\\espejo\\informe\\N03\\reconciliacion-v1\\SIGUIENTE-ACCION.md",
+    "sha256": "5dae0077329d90d2a5efc7d8dd547943bc8ef6525d299133ee0967e3374c5346",
+    "bytes": 18246
+  },
+  {
+    "path": "preimagenes-refutacion\\0.md",
+    "sha256": "d90b3cc629f0873c9a463388ac1dafb2f62781eda503d1c4e2c8b6f7bfd7c89b",
+    "bytes": 11421
+  },
+  {
+    "path": "preimagenes-refutacion\\1.md",
+    "sha256": "b02e216177b01bb2365e04bf033dfdd683fdd3b5c715790588b8bd0a93ced2fb",
+    "bytes": 19217
+  },
+  {
+    "path": "preimagenes-refutacion\\10.md",
+    "sha256": "d193ddc3323747f366db432160f449de7c391d86640f5f45cd8bac3463b10707",
+    "bytes": 41469
+  },
+  {
+    "path": "preimagenes-refutacion\\11.md",
+    "sha256": "95c84ad84782e6d25914b219409a5b246d9859d0195cde5f4a933c6fd04af93d",
+    "bytes": 38825
+  },
+  {
+    "path": "preimagenes-refutacion\\2.md",
+    "sha256": "32eab7082666d21e355b98cb5fa722f0e4074ecc4518e9a53d292c215f099948",
+    "bytes": 27083
+  },
+  {
+    "path": "preimagenes-refutacion\\3.md",
+    "sha256": "aa30cdc1eaa139e3b7e1532132b47729db0b2b79839085ca1f14a5f601396a6d",
+    "bytes": 44976
+  },
+  {
+    "path": "preimagenes-refutacion\\4.md",
+    "sha256": "d193ddc3323747f366db432160f449de7c391d86640f5f45cd8bac3463b10707",
+    "bytes": 41469
+  },
+  {
+    "path": "preimagenes-refutacion\\5.md",
+    "sha256": "95c84ad84782e6d25914b219409a5b246d9859d0195cde5f4a933c6fd04af93d",
+    "bytes": 38825
+  },
+  {
+    "path": "preimagenes-refutacion\\6.md",
+    "sha256": "d90b3cc629f0873c9a463388ac1dafb2f62781eda503d1c4e2c8b6f7bfd7c89b",
+    "bytes": 11421
+  },
+  {
+    "path": "preimagenes-refutacion\\7.md",
+    "sha256": "b02e216177b01bb2365e04bf033dfdd683fdd3b5c715790588b8bd0a93ced2fb",
+    "bytes": 19217
+  },
+  {
+    "path": "preimagenes-refutacion\\8.md",
+    "sha256": "32eab7082666d21e355b98cb5fa722f0e4074ecc4518e9a53d292c215f099948",
+    "bytes": 27083
+  },
+  {
+    "path": "preimagenes-refutacion\\9.md",
+    "sha256": "aa30cdc1eaa139e3b7e1532132b47729db0b2b79839085ca1f14a5f601396a6d",
+    "bytes": 44976
+  },
+  {
+    "path": "PROPUESTA-pre-refutacion.md",
+    "sha256": "1ae2bc4cfd7ee150c6849050a8a6350d9c73a02417d1cded0944213fd2250366",
+    "bytes": 13177
+  },
+  {
+    "path": "PROPUESTA.md",
+    "sha256": "9984a6609fb69da9d9766b7f279ed86c49fadb6dfea3bcbce49a2762014c6d62",
+    "bytes": 14344
+  },
+  {
+    "path": "registrar.cjs",
+    "sha256": "2936e4c9f0a395117bd5fe044a511ccf92cd4ba821b0da95ab9736509dbf1b42",
+    "bytes": 3553
+  },
+  {
+    "path": "REGISTROS-FINALES.json",
+    "sha256": "66e59bd0d9da9f6d49e35fe4349ebeb946a667cd146c726a2e346f12298a95cf",
+    "bytes": 5838
+  },
+  {
+    "path": "REGISTROS.json",
+    "sha256": "156443d0482d40070e4a1ebdebfcbb8a76065a05651397439c00b303de206ec3",
+    "bytes": 6156
+  },
+  {
+    "path": "REVISION.md",
+    "sha256": "6dd9be64b98757f8dd592fd2e20e381dbbdc70139cafa1e006b6a019e87f8974",
+    "bytes": 1782
+  },
+  {
+    "path": "VIGENCIA.json",
+    "sha256": "0df234e93dca8d0d7c51d31a412e59732964bea09735e92f8a560b6df8237b0c",
+    "bytes": 2180
+  }
+]

@@ -1,0 +1,50 @@
+{
+  "result": "GREEN",
+  "checks": 110,
+  "failures": [],
+  "rows": [
+    {
+      "file": "server.ts",
+      "missingFunction": false,
+      "crmFactoryDeclarations": 1,
+      "registrations": [
+        {
+          "method": "app.get",
+          "path": "/api/crm/appointments"
+        },
+        {
+          "method": "app.patch",
+          "path": "/api/crm/appointments/:id"
+        },
+        {
+          "method": "app.post",
+          "path": "/api/appointment/notify"
+        }
+      ]
+    },
+    {
+      "file": "api/index.ts",
+      "missingFunction": false,
+      "crmFactoryDeclarations": 1,
+      "registrations": [
+        {
+          "method": "app.post",
+          "path": "/api/appointment/notify"
+        },
+        {
+          "method": "app.get",
+          "path": "/api/crm/appointments"
+        },
+        {
+          "method": "app.patch",
+          "path": "/api/crm/appointments/:id"
+        }
+      ]
+    }
+  ],
+  "hashes": {
+    "server.ts": "68e77e0fc0c8223fd937fc0042902f878f2137f4a47ff849bed4ad439c905ab3",
+    "api/index.ts": "bba6fe55d187dd45e157d910bb515a0e69daa71bdf888d8b3fe8b75fabc6673a"
+  },
+  "limits": "AST real evaluado: selección de proyectos/delegación/registro de handlers. Gate y DB accessors interceptados para capturar argumentos. Notify se ejecuta sólo hasta rechazo de autenticación. No acredita efectos/HTTP ni reemplaza contratos auth, lookup o conexión."
+}

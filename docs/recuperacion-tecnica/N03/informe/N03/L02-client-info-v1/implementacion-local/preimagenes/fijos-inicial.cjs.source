@@ -1,0 +1,68 @@
+// Oráculo exclusivo del endpoint. Valores basales previos a reparar, nunca derivados del handler final.
+const fs=require('fs');
+const vectors=JSON.parse(fs.readFileSync('/control/VECTORES-BASALES.json','utf8').replace(/^\uFEFF/,'')).vectors;
+const copy=v=>v===undefined?undefined:structuredClone(v);
+const at=(o,s)=>s.reduce((v,k)=>v?.[k],o);
+function assign(o,s,v){let c=o;for(const k of s.slice(0,-1)){if(!c[k]||typeof c[k]!=='object'||Array.isArray(c[k]))c[k]={};c=c[k];}if(v===undefined)delete c[s.at(-1)];else c[s.at(-1)]=copy(v);}
+const full=vectors.find(v=>v.name==='paid-configtrue-hubtrue');
+const omitted=vectors.find(v=>v.name==='omitidos');
+function patch(caseName){
+  let named=vectors.find(v=>v.name===caseName);
+  if(named)return copy(named.patches);
+  if(caseName==='contador-ausente')return copy(vectors.find(v=>v.name==='resubmit-configtrue-hubtrue').patches);
+  if(caseName==='sin-cambio'||caseName==='limite11')return copy(full.patches);
+  const ps=copy(omitted.patches),cfg=ps.find(p=>p.document.startsWith('config/')),hub=ps.find(p=>p.document.startsWith('hub_clients/'));
+  const leaf=(doc,segments)=>copy(full.patches.find(p=>p.document.startsWith(doc)).fields.find(f=>JSON.stringify(f.segments)===JSON.stringify(segments)));
+  if(caseName==='parcial-email'){cfg.fields.push(leaf('config/',['contact','email']));hub.fields.push(leaf('hub_clients/',['contact','email']));}
+  else if(caseName==='parcial-calle')cfg.fields.push(leaf('config/',['contact','address','street']));
+  else if(caseName==='parcial-faq')cfg.fields.push(leaf('config/',['sections','faq','items']));
+  else if(caseName==='historial-truncado')for(let i=0;i<110;i++)cfg.fields.push({segments:['hours','day'+String(i).padStart(3,'0')],value:'10:00',delete:false});
+  else if(caseName==='hours-vacio')cfg.fields.push({segments:['hours'],value:{},delete:false});
+  else if(caseName==='nicho-otro')hub.fields.push({segments:['niche'],value:'otro',delete:false});
+  else throw Error('Caso sin vector fijo '+caseName);
+  return ps;
+}
+function applyFields(before,fields,clone=copy){const out=clone(before)||{};for(const f of fields)assign(out,f.segments,f.delete?undefined:f.value);return out;}
+exports.seed=existing=>applyFields(existing,full.patches.find(p=>p.document.startsWith('config/')).fields, v=>v); // caller pasa copia separada abajo
+// Seed debe conservar instancias SDK previas. Clon superficial de familias que modifica.
+exports.seed=existing=>{const data={...existing};for(const k of ['business','brand','contact','owner','hero','brandingInput','themeOverrides','sections','hours'])data[k]={...existing[k]};data.contact.address={...existing.contact.address};data.sections.whyChooseUs={...existing.sections.whyChooseUs};data.sections.faq={...existing.sections.faq};return applyFields(data,full.patches.find(p=>p.document.startsWith('config/')).fields,v=>v);};
+exports.verify=(c,{objective,load,Timestamp,clone})=>{
+  if(c.statusExpected!==200&&c.repeat===1)return;
+  const ps=patch(c.name),expectedDocs=new Map();
+  for(const p of ps){
+    let result=applyFields(c.before.get(p.document),p.fields,clone);
+    for(const t of p.transforms){const segments=[t.fieldPath];if(t.setToServerValue==='REQUEST_TIME')result[t.fieldPath]=new Timestamp(1700000000,0);else if(t.increment)result[t.fieldPath]=(typeof result[t.fieldPath]==='number'?result[t.fieldPath]:0)+Number(t.increment.integerValue??t.increment.doubleValue);else throw Error('Transform no previsto');}
+    expectedDocs.set(p.document,result);
+    const domain=p.document.startsWith('config/')?'config':'hub_clients';
+    objective(c.name+' '+domain+' documento completo',c.docs.get(p.document),result);
+    const ws=c.writes.filter(w=>w.path===p.document);
+    objective(c.name+' '+domain+' numero writes',ws.length,c.repeat>1?10:1);
+    const sorted=rows=>rows.map(r=>JSON.stringify(r)).sort();
+    for(const [index,w] of ws.entries()){
+      objective(c.name+' '+domain+' mascara '+index,sorted(w.paths.map(v=>v.segments)),sorted(p.fields.map(f=>f.segments)));
+      objective(c.name+' '+domain+' transforms '+index,w.proto.updateTransforms||[],p.transforms);
+      for(const f of p.fields){objective(c.name+' '+domain+' field '+f.segments.join('/')+' '+index,at(w.decoded,f.segments),f.delete?undefined:f.value);}
+    }
+  }
+  const expected=expectedDocs.get('config/tenant-l02');
+  const projection={};
+  for(const [name,segments] of Object.entries({niche:['business','type'],businessMode:['business','mode'],businessName:['business','name'],tagline:['brand','tagline'],description:['brand','description'],faviconEmoji:['brand','faviconEmoji'],phone:['contact','phone'],email:['contact','email'],whatsapp:['contact','whatsapp'],instagram:['contact','instagram'],facebook:['contact','facebook'],address:['contact','address','street'],district:['contact','address','district'],city:['contact','address','city'],colors:['brandingInput','colors'],accentColor:['themeOverrides','accentColor'],ownerName:['owner','name'],ownerRole:['owner','role'],ownerBio:['owner','bio']})){const v=at(expected,segments);if(typeof v==='string')projection[name]=v;}
+  if(expected.hours)projection.hours=expected.hours;
+  // Los arrays y defaults del lector se comparan también contra el documento fijo previsto;
+  // consumidor sin cambios custodiado, no una implementación reparada del escritor.
+  const referenceReader=load('src/lib/wizard/config-to-wizard.ts').configToWizardData(expected);
+  for(const k of ['services','benefits','testimonials','faqItems'])if(referenceReader[k])projection[k]=referenceReader[k];
+  objective(c.name+' config lector completo',c.consumer,projection);
+  const history=c.writes.filter(w=>w.path.startsWith('config_history/'));
+  const prior=c.before.get('config/tenant-l02');
+  const {diffConfig,summarizeValue}=load('src/lib/config-diff.ts');
+  const diff=prior?diffConfig(prior,expected):[];
+  objective(c.name+' historial cantidad',history.length,diff.length?1:0);
+  if(diff.length){const data={changedAt:new Timestamp(1700000000,0),changedBy:'customer',changeCount:diff.length,truncated:diff.length>100,changes:diff.slice(0,100).map(d=>({path:d.path,kind:d.kind,beforeSummary:summarizeValue(d.before),afterSummary:summarizeValue(d.after)})),kind:c.mode==='resubmit'?'customer_resubmit':'info_submitted'};objective(c.name+' historial contenido fijo',history[0]?.after,data);}
+  const statusHistory=c.writes.filter(w=>w.path.startsWith('hub_status_history/'));
+  objective(c.name+' status historial numero',statusHistory.length,c.hub?1:0);
+  if(c.hub)objective(c.name+' status historial contenido',statusHistory[0]?.after,{kind:c.mode==='resubmit'?'customer_resubmit':'info_submitted',from:c.mode==='resubmit'?'changes_requested':'pending_payment',to:'pending_review',changedBy:'customer',changedAt:new Timestamp(1700000000,0),reason:c.mode==='resubmit'?'customer_resubmit':'info_submitted'});
+  objective(c.name+' clients fijo',c.docs.get('clients/tenant-l02'),{status:'pending_review',reviewRequestedAt:new Timestamp(1700000000,0)});
+  const expectedTags=[...(c.body.contact?.email?[c.mode==='resubmit'?'info_resubmitted_thanks':'info_submitted_thanks']:[]),...(c.mode==='resubmit'?['changes_resubmitted']:[])];
+  if(c.repeat===1){objective(c.name+' emails tags',c.emails.map(e=>e.tag),expectedTags);objective(c.name+' emails destinatarios',c.emails.map(e=>e.to),[...(c.body.contact?.email?[c.body.contact.email]:[]),...(c.mode==='resubmit'?['owner@example.invalid']:[])]);}
+};

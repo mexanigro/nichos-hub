@@ -1,0 +1,42 @@
+{
+  "utc": "2026-09-10T08:13:30.960Z",
+  "gate": "P0",
+  "result": "RED_VALIDO",
+  "blockers": [],
+  "scope": [
+    "src/components/client-config-tab.tsx"
+  ],
+  "techoTotalN03": 90,
+  "reservaN04": 10,
+  "resets": false,
+  "files": [
+    {
+      "ruta": "CONTRATO.md",
+      "sha256": "1af2b645a59288f74ad031a39b9e939843a1969c29d6ff2a38ccdfd9ae9addcc"
+    },
+    {
+      "ruta": "contrato.mjs",
+      "sha256": "10b58ea0a547a7b1a5bdd57293a3b62a99e2bb2dad3f79a836e52d17b769bfc0"
+    },
+    {
+      "ruta": "ejecutar.ps1",
+      "sha256": "a1d416aa848276f92a3dca384bd09a0e794c92e0a2d97bb2362dc48b2f3ef46f"
+    },
+    {
+      "ruta": "copias/basal.tsx",
+      "sha256": "554a215376a026148100442da459a2b4cf3b57ab7a3167ecc1deed1b71a27c57"
+    },
+    {
+      "ruta": "PRODUCTO-ANTES.json",
+      "sha256": "3d9a7b717d0783aa69ac9bdd106add3fbae87404159eae9c8b2d23bd7ef291ca"
+    },
+    {
+      "ruta": "resultados/red-congelar/RESULTADO.json",
+      "sha256": "0f400d36815270777a7cad6d0db7595b4c35fe7180a69a375d4d625b91b8b181"
+    },
+    {
+      "ruta": "resultados/red-congelar/EXIT.json",
+      "sha256": "43a677f3a5ea14e2b8fa7f791aa4b314ab8c3115df9cdaf27c2302124e8a9c3b"
+    }
+  ]
+}

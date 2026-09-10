@@ -1,0 +1,49 @@
+{
+  "result": "GREEN",
+  "gates": 4,
+  "total": 4,
+  "scope": "reparacion local autorizada, para revision sin descuento",
+  "casos": 44,
+  "comprobaciones": 697,
+  "observaciones": 220,
+  "compatiblesConservadas": 200,
+  "prohibidasSinOperaciones": 20,
+  "mutantes": [
+    {
+      "name": "server",
+      "failures": 21,
+      "mutation": 1,
+      "forbiddenOperationChecks": 7
+    },
+    {
+      "name": "api",
+      "failures": 21,
+      "mutation": 1,
+      "forbiddenOperationChecks": 7
+    },
+    {
+      "name": "create",
+      "failures": 4,
+      "mutation": 1,
+      "forbiddenOperationChecks": 2
+    },
+    {
+      "name": "context",
+      "failures": 12,
+      "mutation": 1,
+      "forbiddenOperationChecks": 4
+    }
+  ],
+  "tiposLint": 0,
+  "producto": 623,
+  "ajenosConservados": 621,
+  "N03": "abierta",
+  "blockers": [],
+  "presupuesto": {
+    "inicio": 87,
+    "observado": 87,
+    "techo": 90,
+    "reservaN04": 10,
+    "resets": 0
+  }
+}

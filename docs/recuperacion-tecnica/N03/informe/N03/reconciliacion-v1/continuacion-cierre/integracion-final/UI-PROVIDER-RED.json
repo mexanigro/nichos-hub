@@ -1,0 +1,182 @@
+{
+  "result": "RED",
+  "checks": 53,
+  "failures": [
+    {
+      "id": "none/false/no-cash-toggle",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "none/false/no-deposit-toggle",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "none/false/mode-explained",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "none/true/no-cash-toggle",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "none/true/no-deposit-toggle",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "none/true/mode-explained",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "none/true/deposit-editor",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "full/false/no-cash-toggle",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "full/false/no-deposit-toggle",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "full/false/mode-explained",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "full/true/no-cash-toggle",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "full/true/no-deposit-toggle",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "full/true/mode-explained",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "full/true/deposit-editor",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "deposit/false/no-cash-toggle",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "deposit/false/no-deposit-toggle",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "deposit/false/mode-explained",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "deposit/true/no-cash-toggle",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "deposit/true/no-deposit-toggle",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "deposit/true/mode-explained",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "cash-only/false/no-cash-toggle",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "cash-only/false/no-deposit-toggle",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "cash-only/false/mode-explained",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "cash-only/true/no-cash-toggle",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "cash-only/true/no-deposit-toggle",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "cash-only/true/mode-explained",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "cash-only/true/deposit-editor",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "cardcom/blocked-visible",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "provider/manual",
+      "actual": "ERROR",
+      "expected": "none"
+    },
+    {
+      "id": "provider/none",
+      "actual": "ERROR",
+      "expected": "none"
+    },
+    {
+      "id": "provider/stripe",
+      "actual": "ERROR",
+      "expected": "stripe"
+    },
+    {
+      "id": "provider/absent",
+      "actual": "ERROR",
+      "expected": "stripe"
+    },
+    {
+      "id": "provider/default",
+      "actual": "ERROR",
+      "expected": "stripe"
+    },
+    {
+      "id": "wizard/no-2000-fallback",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "wizard/no-unauthorized-price",
+      "actual": true,
+      "expected": false
+    }
+  ],
+  "limits": "SSR real editor, datos inmutables y resolver real. Checkout request AST: no importe inventado. No navegador montado ni proveedor remoto."
+}

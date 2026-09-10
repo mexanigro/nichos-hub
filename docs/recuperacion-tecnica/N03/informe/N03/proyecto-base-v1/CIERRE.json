@@ -1,0 +1,20 @@
+{
+  "result": "GREEN",
+  "scope": "preparacion local, no reparacion ni descuento",
+  "gates": 4,
+  "total": 4,
+  "cases": 35,
+  "rows": 175,
+  "checks": 556,
+  "mutantes": 3,
+  "productoConservado": 623,
+  "N03": "abierta",
+  "decision": "compatibilidad de destinos conocidos y app existente, conservar incompletitud",
+  "blockersEvidencia": [],
+  "presupuesto": {
+    "observado": 87,
+    "techo": 90,
+    "reservaN04": 10,
+    "resets": 0
+  }
+}

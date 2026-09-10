@@ -1,0 +1,3327 @@
+{
+  "preparacion": "sondeo completo",
+  "productAcceptance": "RED",
+  "semanticFailures": [
+    {
+      "name": "paid-configfalse-hubfalse reader businessMode",
+      "actual": null,
+      "expected": "solo"
+    },
+    {
+      "name": "paid-configfalse-hubfalse reader businessName",
+      "actual": null,
+      "expected": "Nuevo"
+    },
+    {
+      "name": "paid-configfalse-hubfalse reader niche",
+      "actual": null,
+      "expected": "barberia"
+    },
+    {
+      "name": "paid-configfalse-hubfalse reader colors",
+      "actual": null,
+      "expected": "gold black"
+    },
+    {
+      "name": "paid-configfalse-hubfalse reader email",
+      "actual": null,
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "paid-configfalse-hubfalse reader address",
+      "actual": null,
+      "expected": "Nueva"
+    },
+    {
+      "name": "paid-configfalse-hubfalse nested config/tenant-l02 brand/description",
+      "actual": null,
+      "expected": "Desc"
+    },
+    {
+      "name": "paid-configfalse-hubfalse nested config/tenant-l02 brand/faviconEmoji",
+      "actual": null,
+      "expected": "X"
+    },
+    {
+      "name": "paid-configfalse-hubfalse nested config/tenant-l02 brand/logo",
+      "actual": null,
+      "expected": "logo"
+    },
+    {
+      "name": "paid-configfalse-hubfalse nested config/tenant-l02 brand/logoDark",
+      "actual": null,
+      "expected": "dark"
+    },
+    {
+      "name": "paid-configfalse-hubfalse nested config/tenant-l02 brand/name",
+      "actual": null,
+      "expected": "Nuevo"
+    },
+    {
+      "name": "paid-configfalse-hubfalse nested config/tenant-l02 brand/tagline",
+      "actual": null,
+      "expected": "Tag"
+    },
+    {
+      "name": "paid-configfalse-hubfalse nested config/tenant-l02 brandingInput/colors",
+      "actual": null,
+      "expected": "gold black"
+    },
+    {
+      "name": "paid-configfalse-hubfalse nested config/tenant-l02 business/mode",
+      "actual": null,
+      "expected": "solo"
+    },
+    {
+      "name": "paid-configfalse-hubfalse nested config/tenant-l02 business/name",
+      "actual": null,
+      "expected": "Nuevo"
+    },
+    {
+      "name": "paid-configfalse-hubfalse nested config/tenant-l02 business/type",
+      "actual": null,
+      "expected": "barberia"
+    },
+    {
+      "name": "paid-configfalse-hubfalse nested config/tenant-l02 contact/address/city",
+      "actual": null,
+      "expected": "Ciudad"
+    },
+    {
+      "name": "paid-configfalse-hubfalse nested config/tenant-l02 contact/address/district",
+      "actual": null,
+      "expected": "Centro"
+    },
+    {
+      "name": "paid-configfalse-hubfalse nested config/tenant-l02 contact/address/street",
+      "actual": null,
+      "expected": "Nueva"
+    },
+    {
+      "name": "paid-configfalse-hubfalse nested config/tenant-l02 contact/email",
+      "actual": null,
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "paid-configfalse-hubfalse nested config/tenant-l02 contact/facebook",
+      "actual": null,
+      "expected": "fb"
+    },
+    {
+      "name": "paid-configfalse-hubfalse nested config/tenant-l02 contact/instagram",
+      "actual": null,
+      "expected": "ig"
+    },
+    {
+      "name": "paid-configfalse-hubfalse nested config/tenant-l02 contact/phone",
+      "actual": null,
+      "expected": "new-phone"
+    },
+    {
+      "name": "paid-configfalse-hubfalse nested config/tenant-l02 contact/whatsapp",
+      "actual": null,
+      "expected": "new"
+    },
+    {
+      "name": "paid-configfalse-hubfalse nested config/tenant-l02 hero/backgroundImage",
+      "actual": null,
+      "expected": "hero"
+    },
+    {
+      "name": "paid-configfalse-hubfalse nested config/tenant-l02 owner/bio",
+      "actual": null,
+      "expected": "Bio"
+    },
+    {
+      "name": "paid-configfalse-hubfalse nested config/tenant-l02 owner/name",
+      "actual": null,
+      "expected": "Dueño"
+    },
+    {
+      "name": "paid-configfalse-hubfalse nested config/tenant-l02 owner/photo",
+      "actual": null,
+      "expected": "owner"
+    },
+    {
+      "name": "paid-configfalse-hubfalse nested config/tenant-l02 owner/role",
+      "actual": null,
+      "expected": "Rol"
+    },
+    {
+      "name": "paid-configfalse-hubfalse nested config/tenant-l02 sections/faq/items",
+      "actual": null,
+      "expected": [
+        {
+          "q": "Pregunta",
+          "a": "Respuesta"
+        }
+      ]
+    },
+    {
+      "name": "paid-configfalse-hubfalse nested config/tenant-l02 sections/whyChooseUs/benefits",
+      "actual": null,
+      "expected": [
+        {
+          "title": "Beneficio",
+          "desc": "Texto",
+          "iconName": "Star"
+        }
+      ]
+    },
+    {
+      "name": "paid-configfalse-hubfalse nested config/tenant-l02 sections/whyChooseUs/mainImage",
+      "actual": null,
+      "expected": "why"
+    },
+    {
+      "name": "paid-configfalse-hubfalse nested config/tenant-l02 themeOverrides/accentColor",
+      "actual": null,
+      "expected": "#112233"
+    },
+    {
+      "name": "paid-configfalse-hubfalse nested config/tenant-l02 themeOverrides/primary",
+      "actual": null,
+      "expected": "#c8a97e"
+    },
+    {
+      "name": "paid-configfalse-hubfalse nested config/tenant-l02 themeOverrides/secondary",
+      "actual": null,
+      "expected": "#000000"
+    },
+    {
+      "name": "paid-configfalse-hubfalse nested hub_clients/tenant-l02 contact/email",
+      "actual": null,
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "paid-configfalse-hubfalse nested hub_clients/tenant-l02 contact/whatsapp",
+      "actual": null,
+      "expected": "new"
+    },
+    {
+      "name": "paid-configfalse-hubtrue reader businessMode",
+      "actual": null,
+      "expected": "solo"
+    },
+    {
+      "name": "paid-configfalse-hubtrue reader businessName",
+      "actual": null,
+      "expected": "Nuevo"
+    },
+    {
+      "name": "paid-configfalse-hubtrue reader niche",
+      "actual": null,
+      "expected": "barberia"
+    },
+    {
+      "name": "paid-configfalse-hubtrue reader colors",
+      "actual": null,
+      "expected": "gold black"
+    },
+    {
+      "name": "paid-configfalse-hubtrue reader email",
+      "actual": null,
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "paid-configfalse-hubtrue reader address",
+      "actual": null,
+      "expected": "Nueva"
+    },
+    {
+      "name": "paid-configfalse-hubtrue nested config/tenant-l02 brand/description",
+      "actual": null,
+      "expected": "Desc"
+    },
+    {
+      "name": "paid-configfalse-hubtrue nested config/tenant-l02 brand/faviconEmoji",
+      "actual": null,
+      "expected": "X"
+    },
+    {
+      "name": "paid-configfalse-hubtrue nested config/tenant-l02 brand/logo",
+      "actual": null,
+      "expected": "logo"
+    },
+    {
+      "name": "paid-configfalse-hubtrue nested config/tenant-l02 brand/logoDark",
+      "actual": null,
+      "expected": "dark"
+    },
+    {
+      "name": "paid-configfalse-hubtrue nested config/tenant-l02 brand/name",
+      "actual": null,
+      "expected": "Nuevo"
+    },
+    {
+      "name": "paid-configfalse-hubtrue nested config/tenant-l02 brand/tagline",
+      "actual": null,
+      "expected": "Tag"
+    },
+    {
+      "name": "paid-configfalse-hubtrue nested config/tenant-l02 brandingInput/colors",
+      "actual": null,
+      "expected": "gold black"
+    },
+    {
+      "name": "paid-configfalse-hubtrue nested config/tenant-l02 business/mode",
+      "actual": null,
+      "expected": "solo"
+    },
+    {
+      "name": "paid-configfalse-hubtrue nested config/tenant-l02 business/name",
+      "actual": null,
+      "expected": "Nuevo"
+    },
+    {
+      "name": "paid-configfalse-hubtrue nested config/tenant-l02 business/type",
+      "actual": null,
+      "expected": "barberia"
+    },
+    {
+      "name": "paid-configfalse-hubtrue nested config/tenant-l02 contact/address/city",
+      "actual": null,
+      "expected": "Ciudad"
+    },
+    {
+      "name": "paid-configfalse-hubtrue nested config/tenant-l02 contact/address/district",
+      "actual": null,
+      "expected": "Centro"
+    },
+    {
+      "name": "paid-configfalse-hubtrue nested config/tenant-l02 contact/address/street",
+      "actual": null,
+      "expected": "Nueva"
+    },
+    {
+      "name": "paid-configfalse-hubtrue nested config/tenant-l02 contact/email",
+      "actual": null,
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "paid-configfalse-hubtrue nested config/tenant-l02 contact/facebook",
+      "actual": null,
+      "expected": "fb"
+    },
+    {
+      "name": "paid-configfalse-hubtrue nested config/tenant-l02 contact/instagram",
+      "actual": null,
+      "expected": "ig"
+    },
+    {
+      "name": "paid-configfalse-hubtrue nested config/tenant-l02 contact/phone",
+      "actual": null,
+      "expected": "new-phone"
+    },
+    {
+      "name": "paid-configfalse-hubtrue nested config/tenant-l02 contact/whatsapp",
+      "actual": null,
+      "expected": "new"
+    },
+    {
+      "name": "paid-configfalse-hubtrue nested config/tenant-l02 hero/backgroundImage",
+      "actual": null,
+      "expected": "hero"
+    },
+    {
+      "name": "paid-configfalse-hubtrue nested config/tenant-l02 owner/bio",
+      "actual": null,
+      "expected": "Bio"
+    },
+    {
+      "name": "paid-configfalse-hubtrue nested config/tenant-l02 owner/name",
+      "actual": null,
+      "expected": "Dueño"
+    },
+    {
+      "name": "paid-configfalse-hubtrue nested config/tenant-l02 owner/photo",
+      "actual": null,
+      "expected": "owner"
+    },
+    {
+      "name": "paid-configfalse-hubtrue nested config/tenant-l02 owner/role",
+      "actual": null,
+      "expected": "Rol"
+    },
+    {
+      "name": "paid-configfalse-hubtrue nested config/tenant-l02 sections/faq/items",
+      "actual": null,
+      "expected": [
+        {
+          "q": "Pregunta",
+          "a": "Respuesta"
+        }
+      ]
+    },
+    {
+      "name": "paid-configfalse-hubtrue nested config/tenant-l02 sections/whyChooseUs/benefits",
+      "actual": null,
+      "expected": [
+        {
+          "title": "Beneficio",
+          "desc": "Texto",
+          "iconName": "Star"
+        }
+      ]
+    },
+    {
+      "name": "paid-configfalse-hubtrue nested config/tenant-l02 sections/whyChooseUs/mainImage",
+      "actual": null,
+      "expected": "why"
+    },
+    {
+      "name": "paid-configfalse-hubtrue nested config/tenant-l02 themeOverrides/accentColor",
+      "actual": null,
+      "expected": "#112233"
+    },
+    {
+      "name": "paid-configfalse-hubtrue nested config/tenant-l02 themeOverrides/primary",
+      "actual": null,
+      "expected": "#c8a97e"
+    },
+    {
+      "name": "paid-configfalse-hubtrue nested config/tenant-l02 themeOverrides/secondary",
+      "actual": null,
+      "expected": "#000000"
+    },
+    {
+      "name": "paid-configfalse-hubtrue nested hub_clients/tenant-l02 contact/email",
+      "actual": "old@example.invalid",
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "paid-configfalse-hubtrue nested hub_clients/tenant-l02 contact/whatsapp",
+      "actual": "old",
+      "expected": "new"
+    },
+    {
+      "name": "paid-configtrue-hubfalse reader businessMode",
+      "actual": "team",
+      "expected": "solo"
+    },
+    {
+      "name": "paid-configtrue-hubfalse reader businessName",
+      "actual": "Anterior",
+      "expected": "Nuevo"
+    },
+    {
+      "name": "paid-configtrue-hubfalse reader niche",
+      "actual": "nails",
+      "expected": "barberia"
+    },
+    {
+      "name": "paid-configtrue-hubfalse reader colors",
+      "actual": "pink",
+      "expected": "gold black"
+    },
+    {
+      "name": "paid-configtrue-hubfalse reader email",
+      "actual": "old@example.invalid",
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "paid-configtrue-hubfalse reader address",
+      "actual": "Vieja",
+      "expected": "Nueva"
+    },
+    {
+      "name": "paid-configtrue-hubfalse nested config/tenant-l02 brand/description",
+      "actual": null,
+      "expected": "Desc"
+    },
+    {
+      "name": "paid-configtrue-hubfalse nested config/tenant-l02 brand/faviconEmoji",
+      "actual": null,
+      "expected": "X"
+    },
+    {
+      "name": "paid-configtrue-hubfalse nested config/tenant-l02 brand/logo",
+      "actual": "old-logo",
+      "expected": "logo"
+    },
+    {
+      "name": "paid-configtrue-hubfalse nested config/tenant-l02 brand/logoDark",
+      "actual": "old-dark",
+      "expected": "dark"
+    },
+    {
+      "name": "paid-configtrue-hubfalse nested config/tenant-l02 brand/name",
+      "actual": "Anterior",
+      "expected": "Nuevo"
+    },
+    {
+      "name": "paid-configtrue-hubfalse nested config/tenant-l02 brand/tagline",
+      "actual": null,
+      "expected": "Tag"
+    },
+    {
+      "name": "paid-configtrue-hubfalse nested config/tenant-l02 brandingInput/colors",
+      "actual": "pink",
+      "expected": "gold black"
+    },
+    {
+      "name": "paid-configtrue-hubfalse nested config/tenant-l02 business/mode",
+      "actual": "team",
+      "expected": "solo"
+    },
+    {
+      "name": "paid-configtrue-hubfalse nested config/tenant-l02 business/name",
+      "actual": "Anterior",
+      "expected": "Nuevo"
+    },
+    {
+      "name": "paid-configtrue-hubfalse nested config/tenant-l02 business/type",
+      "actual": "nails",
+      "expected": "barberia"
+    },
+    {
+      "name": "paid-configtrue-hubfalse nested config/tenant-l02 contact/address/city",
+      "actual": "old-city",
+      "expected": "Ciudad"
+    },
+    {
+      "name": "paid-configtrue-hubfalse nested config/tenant-l02 contact/address/district",
+      "actual": "old-district",
+      "expected": "Centro"
+    },
+    {
+      "name": "paid-configtrue-hubfalse nested config/tenant-l02 contact/address/street",
+      "actual": "Vieja",
+      "expected": "Nueva"
+    },
+    {
+      "name": "paid-configtrue-hubfalse nested config/tenant-l02 contact/email",
+      "actual": "old@example.invalid",
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "paid-configtrue-hubfalse nested config/tenant-l02 contact/facebook",
+      "actual": null,
+      "expected": "fb"
+    },
+    {
+      "name": "paid-configtrue-hubfalse nested config/tenant-l02 contact/instagram",
+      "actual": null,
+      "expected": "ig"
+    },
+    {
+      "name": "paid-configtrue-hubfalse nested config/tenant-l02 contact/phone",
+      "actual": "old-phone",
+      "expected": "new-phone"
+    },
+    {
+      "name": "paid-configtrue-hubfalse nested config/tenant-l02 contact/whatsapp",
+      "actual": "old",
+      "expected": "new"
+    },
+    {
+      "name": "paid-configtrue-hubfalse nested config/tenant-l02 hero/backgroundImage",
+      "actual": "old-hero",
+      "expected": "hero"
+    },
+    {
+      "name": "paid-configtrue-hubfalse nested config/tenant-l02 owner/bio",
+      "actual": null,
+      "expected": "Bio"
+    },
+    {
+      "name": "paid-configtrue-hubfalse nested config/tenant-l02 owner/name",
+      "actual": "Antes",
+      "expected": "Dueño"
+    },
+    {
+      "name": "paid-configtrue-hubfalse nested config/tenant-l02 owner/photo",
+      "actual": "old-owner",
+      "expected": "owner"
+    },
+    {
+      "name": "paid-configtrue-hubfalse nested config/tenant-l02 owner/role",
+      "actual": null,
+      "expected": "Rol"
+    },
+    {
+      "name": "paid-configtrue-hubfalse nested config/tenant-l02 sections/faq/items",
+      "actual": [
+        {
+          "q": "old",
+          "a": "old"
+        }
+      ],
+      "expected": [
+        {
+          "q": "Pregunta",
+          "a": "Respuesta"
+        }
+      ]
+    },
+    {
+      "name": "paid-configtrue-hubfalse nested config/tenant-l02 sections/whyChooseUs/benefits",
+      "actual": [
+        {
+          "title": "old"
+        }
+      ],
+      "expected": [
+        {
+          "title": "Beneficio",
+          "desc": "Texto",
+          "iconName": "Star"
+        }
+      ]
+    },
+    {
+      "name": "paid-configtrue-hubfalse nested config/tenant-l02 sections/whyChooseUs/mainImage",
+      "actual": "old-why",
+      "expected": "why"
+    },
+    {
+      "name": "paid-configtrue-hubfalse nested config/tenant-l02 themeOverrides/accentColor",
+      "actual": "old-accent",
+      "expected": "#112233"
+    },
+    {
+      "name": "paid-configtrue-hubfalse nested config/tenant-l02 themeOverrides/primary",
+      "actual": null,
+      "expected": "#c8a97e"
+    },
+    {
+      "name": "paid-configtrue-hubfalse nested config/tenant-l02 themeOverrides/secondary",
+      "actual": null,
+      "expected": "#000000"
+    },
+    {
+      "name": "paid-configtrue-hubfalse nested hub_clients/tenant-l02 contact/email",
+      "actual": null,
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "paid-configtrue-hubfalse nested hub_clients/tenant-l02 contact/whatsapp",
+      "actual": null,
+      "expected": "new"
+    },
+    {
+      "name": "paid-configtrue-hubtrue reader businessMode",
+      "actual": "team",
+      "expected": "solo"
+    },
+    {
+      "name": "paid-configtrue-hubtrue reader businessName",
+      "actual": "Anterior",
+      "expected": "Nuevo"
+    },
+    {
+      "name": "paid-configtrue-hubtrue reader niche",
+      "actual": "nails",
+      "expected": "barberia"
+    },
+    {
+      "name": "paid-configtrue-hubtrue reader colors",
+      "actual": "pink",
+      "expected": "gold black"
+    },
+    {
+      "name": "paid-configtrue-hubtrue reader email",
+      "actual": "old@example.invalid",
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "paid-configtrue-hubtrue reader address",
+      "actual": "Vieja",
+      "expected": "Nueva"
+    },
+    {
+      "name": "paid-configtrue-hubtrue nested config/tenant-l02 brand/description",
+      "actual": null,
+      "expected": "Desc"
+    },
+    {
+      "name": "paid-configtrue-hubtrue nested config/tenant-l02 brand/faviconEmoji",
+      "actual": null,
+      "expected": "X"
+    },
+    {
+      "name": "paid-configtrue-hubtrue nested config/tenant-l02 brand/logo",
+      "actual": "old-logo",
+      "expected": "logo"
+    },
+    {
+      "name": "paid-configtrue-hubtrue nested config/tenant-l02 brand/logoDark",
+      "actual": "old-dark",
+      "expected": "dark"
+    },
+    {
+      "name": "paid-configtrue-hubtrue nested config/tenant-l02 brand/name",
+      "actual": "Anterior",
+      "expected": "Nuevo"
+    },
+    {
+      "name": "paid-configtrue-hubtrue nested config/tenant-l02 brand/tagline",
+      "actual": null,
+      "expected": "Tag"
+    },
+    {
+      "name": "paid-configtrue-hubtrue nested config/tenant-l02 brandingInput/colors",
+      "actual": "pink",
+      "expected": "gold black"
+    },
+    {
+      "name": "paid-configtrue-hubtrue nested config/tenant-l02 business/mode",
+      "actual": "team",
+      "expected": "solo"
+    },
+    {
+      "name": "paid-configtrue-hubtrue nested config/tenant-l02 business/name",
+      "actual": "Anterior",
+      "expected": "Nuevo"
+    },
+    {
+      "name": "paid-configtrue-hubtrue nested config/tenant-l02 business/type",
+      "actual": "nails",
+      "expected": "barberia"
+    },
+    {
+      "name": "paid-configtrue-hubtrue nested config/tenant-l02 contact/address/city",
+      "actual": "old-city",
+      "expected": "Ciudad"
+    },
+    {
+      "name": "paid-configtrue-hubtrue nested config/tenant-l02 contact/address/district",
+      "actual": "old-district",
+      "expected": "Centro"
+    },
+    {
+      "name": "paid-configtrue-hubtrue nested config/tenant-l02 contact/address/street",
+      "actual": "Vieja",
+      "expected": "Nueva"
+    },
+    {
+      "name": "paid-configtrue-hubtrue nested config/tenant-l02 contact/email",
+      "actual": "old@example.invalid",
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "paid-configtrue-hubtrue nested config/tenant-l02 contact/facebook",
+      "actual": null,
+      "expected": "fb"
+    },
+    {
+      "name": "paid-configtrue-hubtrue nested config/tenant-l02 contact/instagram",
+      "actual": null,
+      "expected": "ig"
+    },
+    {
+      "name": "paid-configtrue-hubtrue nested config/tenant-l02 contact/phone",
+      "actual": "old-phone",
+      "expected": "new-phone"
+    },
+    {
+      "name": "paid-configtrue-hubtrue nested config/tenant-l02 contact/whatsapp",
+      "actual": "old",
+      "expected": "new"
+    },
+    {
+      "name": "paid-configtrue-hubtrue nested config/tenant-l02 hero/backgroundImage",
+      "actual": "old-hero",
+      "expected": "hero"
+    },
+    {
+      "name": "paid-configtrue-hubtrue nested config/tenant-l02 owner/bio",
+      "actual": null,
+      "expected": "Bio"
+    },
+    {
+      "name": "paid-configtrue-hubtrue nested config/tenant-l02 owner/name",
+      "actual": "Antes",
+      "expected": "Dueño"
+    },
+    {
+      "name": "paid-configtrue-hubtrue nested config/tenant-l02 owner/photo",
+      "actual": "old-owner",
+      "expected": "owner"
+    },
+    {
+      "name": "paid-configtrue-hubtrue nested config/tenant-l02 owner/role",
+      "actual": null,
+      "expected": "Rol"
+    },
+    {
+      "name": "paid-configtrue-hubtrue nested config/tenant-l02 sections/faq/items",
+      "actual": [
+        {
+          "q": "old",
+          "a": "old"
+        }
+      ],
+      "expected": [
+        {
+          "q": "Pregunta",
+          "a": "Respuesta"
+        }
+      ]
+    },
+    {
+      "name": "paid-configtrue-hubtrue nested config/tenant-l02 sections/whyChooseUs/benefits",
+      "actual": [
+        {
+          "title": "old"
+        }
+      ],
+      "expected": [
+        {
+          "title": "Beneficio",
+          "desc": "Texto",
+          "iconName": "Star"
+        }
+      ]
+    },
+    {
+      "name": "paid-configtrue-hubtrue nested config/tenant-l02 sections/whyChooseUs/mainImage",
+      "actual": "old-why",
+      "expected": "why"
+    },
+    {
+      "name": "paid-configtrue-hubtrue nested config/tenant-l02 themeOverrides/accentColor",
+      "actual": "old-accent",
+      "expected": "#112233"
+    },
+    {
+      "name": "paid-configtrue-hubtrue nested config/tenant-l02 themeOverrides/primary",
+      "actual": null,
+      "expected": "#c8a97e"
+    },
+    {
+      "name": "paid-configtrue-hubtrue nested config/tenant-l02 themeOverrides/secondary",
+      "actual": null,
+      "expected": "#000000"
+    },
+    {
+      "name": "paid-configtrue-hubtrue nested hub_clients/tenant-l02 contact/email",
+      "actual": "old@example.invalid",
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "paid-configtrue-hubtrue nested hub_clients/tenant-l02 contact/whatsapp",
+      "actual": "old",
+      "expected": "new"
+    },
+    {
+      "name": "resubmit-configfalse-hubtrue reader businessMode",
+      "actual": null,
+      "expected": "solo"
+    },
+    {
+      "name": "resubmit-configfalse-hubtrue reader businessName",
+      "actual": null,
+      "expected": "Nuevo"
+    },
+    {
+      "name": "resubmit-configfalse-hubtrue reader niche",
+      "actual": null,
+      "expected": "barberia"
+    },
+    {
+      "name": "resubmit-configfalse-hubtrue reader colors",
+      "actual": null,
+      "expected": "gold black"
+    },
+    {
+      "name": "resubmit-configfalse-hubtrue reader email",
+      "actual": null,
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "resubmit-configfalse-hubtrue reader address",
+      "actual": null,
+      "expected": "Nueva"
+    },
+    {
+      "name": "resubmit-configfalse-hubtrue nested config/tenant-l02 brand/description",
+      "actual": null,
+      "expected": "Desc"
+    },
+    {
+      "name": "resubmit-configfalse-hubtrue nested config/tenant-l02 brand/faviconEmoji",
+      "actual": null,
+      "expected": "X"
+    },
+    {
+      "name": "resubmit-configfalse-hubtrue nested config/tenant-l02 brand/logo",
+      "actual": null,
+      "expected": "logo"
+    },
+    {
+      "name": "resubmit-configfalse-hubtrue nested config/tenant-l02 brand/logoDark",
+      "actual": null,
+      "expected": "dark"
+    },
+    {
+      "name": "resubmit-configfalse-hubtrue nested config/tenant-l02 brand/name",
+      "actual": null,
+      "expected": "Nuevo"
+    },
+    {
+      "name": "resubmit-configfalse-hubtrue nested config/tenant-l02 brand/tagline",
+      "actual": null,
+      "expected": "Tag"
+    },
+    {
+      "name": "resubmit-configfalse-hubtrue nested config/tenant-l02 brandingInput/colors",
+      "actual": null,
+      "expected": "gold black"
+    },
+    {
+      "name": "resubmit-configfalse-hubtrue nested config/tenant-l02 business/mode",
+      "actual": null,
+      "expected": "solo"
+    },
+    {
+      "name": "resubmit-configfalse-hubtrue nested config/tenant-l02 business/name",
+      "actual": null,
+      "expected": "Nuevo"
+    },
+    {
+      "name": "resubmit-configfalse-hubtrue nested config/tenant-l02 business/type",
+      "actual": null,
+      "expected": "barberia"
+    },
+    {
+      "name": "resubmit-configfalse-hubtrue nested config/tenant-l02 contact/address/city",
+      "actual": null,
+      "expected": "Ciudad"
+    },
+    {
+      "name": "resubmit-configfalse-hubtrue nested config/tenant-l02 contact/address/district",
+      "actual": null,
+      "expected": "Centro"
+    },
+    {
+      "name": "resubmit-configfalse-hubtrue nested config/tenant-l02 contact/address/street",
+      "actual": null,
+      "expected": "Nueva"
+    },
+    {
+      "name": "resubmit-configfalse-hubtrue nested config/tenant-l02 contact/email",
+      "actual": null,
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "resubmit-configfalse-hubtrue nested config/tenant-l02 contact/facebook",
+      "actual": null,
+      "expected": "fb"
+    },
+    {
+      "name": "resubmit-configfalse-hubtrue nested config/tenant-l02 contact/instagram",
+      "actual": null,
+      "expected": "ig"
+    },
+    {
+      "name": "resubmit-configfalse-hubtrue nested config/tenant-l02 contact/phone",
+      "actual": null,
+      "expected": "new-phone"
+    },
+    {
+      "name": "resubmit-configfalse-hubtrue nested config/tenant-l02 contact/whatsapp",
+      "actual": null,
+      "expected": "new"
+    },
+    {
+      "name": "resubmit-configfalse-hubtrue nested config/tenant-l02 hero/backgroundImage",
+      "actual": null,
+      "expected": "hero"
+    },
+    {
+      "name": "resubmit-configfalse-hubtrue nested config/tenant-l02 owner/bio",
+      "actual": null,
+      "expected": "Bio"
+    },
+    {
+      "name": "resubmit-configfalse-hubtrue nested config/tenant-l02 owner/name",
+      "actual": null,
+      "expected": "Dueño"
+    },
+    {
+      "name": "resubmit-configfalse-hubtrue nested config/tenant-l02 owner/photo",
+      "actual": null,
+      "expected": "owner"
+    },
+    {
+      "name": "resubmit-configfalse-hubtrue nested config/tenant-l02 owner/role",
+      "actual": null,
+      "expected": "Rol"
+    },
+    {
+      "name": "resubmit-configfalse-hubtrue nested config/tenant-l02 sections/faq/items",
+      "actual": null,
+      "expected": [
+        {
+          "q": "Pregunta",
+          "a": "Respuesta"
+        }
+      ]
+    },
+    {
+      "name": "resubmit-configfalse-hubtrue nested config/tenant-l02 sections/whyChooseUs/benefits",
+      "actual": null,
+      "expected": [
+        {
+          "title": "Beneficio",
+          "desc": "Texto",
+          "iconName": "Star"
+        }
+      ]
+    },
+    {
+      "name": "resubmit-configfalse-hubtrue nested config/tenant-l02 sections/whyChooseUs/mainImage",
+      "actual": null,
+      "expected": "why"
+    },
+    {
+      "name": "resubmit-configfalse-hubtrue nested config/tenant-l02 themeOverrides/accentColor",
+      "actual": null,
+      "expected": "#112233"
+    },
+    {
+      "name": "resubmit-configfalse-hubtrue nested config/tenant-l02 themeOverrides/primary",
+      "actual": null,
+      "expected": "#c8a97e"
+    },
+    {
+      "name": "resubmit-configfalse-hubtrue nested config/tenant-l02 themeOverrides/secondary",
+      "actual": null,
+      "expected": "#000000"
+    },
+    {
+      "name": "resubmit-configfalse-hubtrue nested hub_clients/tenant-l02 contact/email",
+      "actual": "old@example.invalid",
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "resubmit-configfalse-hubtrue nested hub_clients/tenant-l02 contact/whatsapp",
+      "actual": "old",
+      "expected": "new"
+    },
+    {
+      "name": "resubmit-configtrue-hubtrue reader businessMode",
+      "actual": "team",
+      "expected": "solo"
+    },
+    {
+      "name": "resubmit-configtrue-hubtrue reader businessName",
+      "actual": "Anterior",
+      "expected": "Nuevo"
+    },
+    {
+      "name": "resubmit-configtrue-hubtrue reader niche",
+      "actual": "nails",
+      "expected": "barberia"
+    },
+    {
+      "name": "resubmit-configtrue-hubtrue reader colors",
+      "actual": "pink",
+      "expected": "gold black"
+    },
+    {
+      "name": "resubmit-configtrue-hubtrue reader email",
+      "actual": "old@example.invalid",
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "resubmit-configtrue-hubtrue reader address",
+      "actual": "Vieja",
+      "expected": "Nueva"
+    },
+    {
+      "name": "resubmit-configtrue-hubtrue nested config/tenant-l02 brand/description",
+      "actual": null,
+      "expected": "Desc"
+    },
+    {
+      "name": "resubmit-configtrue-hubtrue nested config/tenant-l02 brand/faviconEmoji",
+      "actual": null,
+      "expected": "X"
+    },
+    {
+      "name": "resubmit-configtrue-hubtrue nested config/tenant-l02 brand/logo",
+      "actual": "old-logo",
+      "expected": "logo"
+    },
+    {
+      "name": "resubmit-configtrue-hubtrue nested config/tenant-l02 brand/logoDark",
+      "actual": "old-dark",
+      "expected": "dark"
+    },
+    {
+      "name": "resubmit-configtrue-hubtrue nested config/tenant-l02 brand/name",
+      "actual": "Anterior",
+      "expected": "Nuevo"
+    },
+    {
+      "name": "resubmit-configtrue-hubtrue nested config/tenant-l02 brand/tagline",
+      "actual": null,
+      "expected": "Tag"
+    },
+    {
+      "name": "resubmit-configtrue-hubtrue nested config/tenant-l02 brandingInput/colors",
+      "actual": "pink",
+      "expected": "gold black"
+    },
+    {
+      "name": "resubmit-configtrue-hubtrue nested config/tenant-l02 business/mode",
+      "actual": "team",
+      "expected": "solo"
+    },
+    {
+      "name": "resubmit-configtrue-hubtrue nested config/tenant-l02 business/name",
+      "actual": "Anterior",
+      "expected": "Nuevo"
+    },
+    {
+      "name": "resubmit-configtrue-hubtrue nested config/tenant-l02 business/type",
+      "actual": "nails",
+      "expected": "barberia"
+    },
+    {
+      "name": "resubmit-configtrue-hubtrue nested config/tenant-l02 contact/address/city",
+      "actual": "old-city",
+      "expected": "Ciudad"
+    },
+    {
+      "name": "resubmit-configtrue-hubtrue nested config/tenant-l02 contact/address/district",
+      "actual": "old-district",
+      "expected": "Centro"
+    },
+    {
+      "name": "resubmit-configtrue-hubtrue nested config/tenant-l02 contact/address/street",
+      "actual": "Vieja",
+      "expected": "Nueva"
+    },
+    {
+      "name": "resubmit-configtrue-hubtrue nested config/tenant-l02 contact/email",
+      "actual": "old@example.invalid",
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "resubmit-configtrue-hubtrue nested config/tenant-l02 contact/facebook",
+      "actual": null,
+      "expected": "fb"
+    },
+    {
+      "name": "resubmit-configtrue-hubtrue nested config/tenant-l02 contact/instagram",
+      "actual": null,
+      "expected": "ig"
+    },
+    {
+      "name": "resubmit-configtrue-hubtrue nested config/tenant-l02 contact/phone",
+      "actual": "old-phone",
+      "expected": "new-phone"
+    },
+    {
+      "name": "resubmit-configtrue-hubtrue nested config/tenant-l02 contact/whatsapp",
+      "actual": "old",
+      "expected": "new"
+    },
+    {
+      "name": "resubmit-configtrue-hubtrue nested config/tenant-l02 hero/backgroundImage",
+      "actual": "old-hero",
+      "expected": "hero"
+    },
+    {
+      "name": "resubmit-configtrue-hubtrue nested config/tenant-l02 owner/bio",
+      "actual": null,
+      "expected": "Bio"
+    },
+    {
+      "name": "resubmit-configtrue-hubtrue nested config/tenant-l02 owner/name",
+      "actual": "Antes",
+      "expected": "Dueño"
+    },
+    {
+      "name": "resubmit-configtrue-hubtrue nested config/tenant-l02 owner/photo",
+      "actual": "old-owner",
+      "expected": "owner"
+    },
+    {
+      "name": "resubmit-configtrue-hubtrue nested config/tenant-l02 owner/role",
+      "actual": null,
+      "expected": "Rol"
+    },
+    {
+      "name": "resubmit-configtrue-hubtrue nested config/tenant-l02 sections/faq/items",
+      "actual": [
+        {
+          "q": "old",
+          "a": "old"
+        }
+      ],
+      "expected": [
+        {
+          "q": "Pregunta",
+          "a": "Respuesta"
+        }
+      ]
+    },
+    {
+      "name": "resubmit-configtrue-hubtrue nested config/tenant-l02 sections/whyChooseUs/benefits",
+      "actual": [
+        {
+          "title": "old"
+        }
+      ],
+      "expected": [
+        {
+          "title": "Beneficio",
+          "desc": "Texto",
+          "iconName": "Star"
+        }
+      ]
+    },
+    {
+      "name": "resubmit-configtrue-hubtrue nested config/tenant-l02 sections/whyChooseUs/mainImage",
+      "actual": "old-why",
+      "expected": "why"
+    },
+    {
+      "name": "resubmit-configtrue-hubtrue nested config/tenant-l02 themeOverrides/accentColor",
+      "actual": "old-accent",
+      "expected": "#112233"
+    },
+    {
+      "name": "resubmit-configtrue-hubtrue nested config/tenant-l02 themeOverrides/primary",
+      "actual": null,
+      "expected": "#c8a97e"
+    },
+    {
+      "name": "resubmit-configtrue-hubtrue nested config/tenant-l02 themeOverrides/secondary",
+      "actual": null,
+      "expected": "#000000"
+    },
+    {
+      "name": "resubmit-configtrue-hubtrue nested hub_clients/tenant-l02 contact/email",
+      "actual": "old@example.invalid",
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "resubmit-configtrue-hubtrue nested hub_clients/tenant-l02 contact/whatsapp",
+      "actual": "old",
+      "expected": "new"
+    },
+    {
+      "name": "omitidos reader businessName",
+      "actual": "Anterior",
+      "expected": ""
+    },
+    {
+      "name": "omitidos reader niche",
+      "actual": "nails",
+      "expected": "estetica"
+    },
+    {
+      "name": "omitidos reader colors",
+      "actual": "pink",
+      "expected": ""
+    },
+    {
+      "name": "omitidos nested config/tenant-l02 brandingInput/colors",
+      "actual": "pink",
+      "expected": ""
+    },
+    {
+      "name": "omitidos nested config/tenant-l02 business/name",
+      "actual": "Anterior",
+      "expected": ""
+    },
+    {
+      "name": "omitidos nested config/tenant-l02 business/type",
+      "actual": "nails",
+      "expected": "estetica"
+    },
+    {
+      "name": "contactoVacio reader businessName",
+      "actual": "Anterior",
+      "expected": ""
+    },
+    {
+      "name": "contactoVacio reader niche",
+      "actual": "nails",
+      "expected": "estetica"
+    },
+    {
+      "name": "contactoVacio reader colors",
+      "actual": "pink",
+      "expected": ""
+    },
+    {
+      "name": "contactoVacio nested config/tenant-l02 brandingInput/colors",
+      "actual": "pink",
+      "expected": ""
+    },
+    {
+      "name": "contactoVacio nested config/tenant-l02 business/name",
+      "actual": "Anterior",
+      "expected": ""
+    },
+    {
+      "name": "contactoVacio nested config/tenant-l02 business/type",
+      "actual": "nails",
+      "expected": "estetica"
+    },
+    {
+      "name": "direccionVacia reader businessName",
+      "actual": "Anterior",
+      "expected": ""
+    },
+    {
+      "name": "direccionVacia reader niche",
+      "actual": "nails",
+      "expected": "estetica"
+    },
+    {
+      "name": "direccionVacia reader colors",
+      "actual": "pink",
+      "expected": ""
+    },
+    {
+      "name": "direccionVacia nested config/tenant-l02 brandingInput/colors",
+      "actual": "pink",
+      "expected": ""
+    },
+    {
+      "name": "direccionVacia nested config/tenant-l02 business/name",
+      "actual": "Anterior",
+      "expected": ""
+    },
+    {
+      "name": "direccionVacia nested config/tenant-l02 business/type",
+      "actual": "nails",
+      "expected": "estetica"
+    },
+    {
+      "name": "arraysVacios reader businessName",
+      "actual": "Anterior",
+      "expected": ""
+    },
+    {
+      "name": "arraysVacios reader niche",
+      "actual": "nails",
+      "expected": "estetica"
+    },
+    {
+      "name": "arraysVacios reader colors",
+      "actual": "pink",
+      "expected": ""
+    },
+    {
+      "name": "arraysVacios nested config/tenant-l02 brandingInput/colors",
+      "actual": "pink",
+      "expected": ""
+    },
+    {
+      "name": "arraysVacios nested config/tenant-l02 business/name",
+      "actual": "Anterior",
+      "expected": ""
+    },
+    {
+      "name": "arraysVacios nested config/tenant-l02 business/type",
+      "actual": "nails",
+      "expected": "estetica"
+    },
+    {
+      "name": "lookup-legacy reader businessMode",
+      "actual": "team",
+      "expected": "solo"
+    },
+    {
+      "name": "lookup-legacy reader businessName",
+      "actual": "Anterior",
+      "expected": "Nuevo"
+    },
+    {
+      "name": "lookup-legacy reader niche",
+      "actual": "nails",
+      "expected": "barberia"
+    },
+    {
+      "name": "lookup-legacy reader colors",
+      "actual": "pink",
+      "expected": "gold black"
+    },
+    {
+      "name": "lookup-legacy reader email",
+      "actual": "old@example.invalid",
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "lookup-legacy reader address",
+      "actual": "Vieja",
+      "expected": "Nueva"
+    },
+    {
+      "name": "lookup-legacy nested config/tenant-l02 brand/description",
+      "actual": null,
+      "expected": "Desc"
+    },
+    {
+      "name": "lookup-legacy nested config/tenant-l02 brand/faviconEmoji",
+      "actual": null,
+      "expected": "X"
+    },
+    {
+      "name": "lookup-legacy nested config/tenant-l02 brand/logo",
+      "actual": "old-logo",
+      "expected": "logo"
+    },
+    {
+      "name": "lookup-legacy nested config/tenant-l02 brand/logoDark",
+      "actual": "old-dark",
+      "expected": "dark"
+    },
+    {
+      "name": "lookup-legacy nested config/tenant-l02 brand/name",
+      "actual": "Anterior",
+      "expected": "Nuevo"
+    },
+    {
+      "name": "lookup-legacy nested config/tenant-l02 brand/tagline",
+      "actual": null,
+      "expected": "Tag"
+    },
+    {
+      "name": "lookup-legacy nested config/tenant-l02 brandingInput/colors",
+      "actual": "pink",
+      "expected": "gold black"
+    },
+    {
+      "name": "lookup-legacy nested config/tenant-l02 business/mode",
+      "actual": "team",
+      "expected": "solo"
+    },
+    {
+      "name": "lookup-legacy nested config/tenant-l02 business/name",
+      "actual": "Anterior",
+      "expected": "Nuevo"
+    },
+    {
+      "name": "lookup-legacy nested config/tenant-l02 business/type",
+      "actual": "nails",
+      "expected": "barberia"
+    },
+    {
+      "name": "lookup-legacy nested config/tenant-l02 contact/address/city",
+      "actual": "old-city",
+      "expected": "Ciudad"
+    },
+    {
+      "name": "lookup-legacy nested config/tenant-l02 contact/address/district",
+      "actual": "old-district",
+      "expected": "Centro"
+    },
+    {
+      "name": "lookup-legacy nested config/tenant-l02 contact/address/street",
+      "actual": "Vieja",
+      "expected": "Nueva"
+    },
+    {
+      "name": "lookup-legacy nested config/tenant-l02 contact/email",
+      "actual": "old@example.invalid",
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "lookup-legacy nested config/tenant-l02 contact/facebook",
+      "actual": null,
+      "expected": "fb"
+    },
+    {
+      "name": "lookup-legacy nested config/tenant-l02 contact/instagram",
+      "actual": null,
+      "expected": "ig"
+    },
+    {
+      "name": "lookup-legacy nested config/tenant-l02 contact/phone",
+      "actual": "old-phone",
+      "expected": "new-phone"
+    },
+    {
+      "name": "lookup-legacy nested config/tenant-l02 contact/whatsapp",
+      "actual": "old",
+      "expected": "new"
+    },
+    {
+      "name": "lookup-legacy nested config/tenant-l02 hero/backgroundImage",
+      "actual": "old-hero",
+      "expected": "hero"
+    },
+    {
+      "name": "lookup-legacy nested config/tenant-l02 owner/bio",
+      "actual": null,
+      "expected": "Bio"
+    },
+    {
+      "name": "lookup-legacy nested config/tenant-l02 owner/name",
+      "actual": "Antes",
+      "expected": "Dueño"
+    },
+    {
+      "name": "lookup-legacy nested config/tenant-l02 owner/photo",
+      "actual": "old-owner",
+      "expected": "owner"
+    },
+    {
+      "name": "lookup-legacy nested config/tenant-l02 owner/role",
+      "actual": null,
+      "expected": "Rol"
+    },
+    {
+      "name": "lookup-legacy nested config/tenant-l02 sections/faq/items",
+      "actual": [
+        {
+          "q": "old",
+          "a": "old"
+        }
+      ],
+      "expected": [
+        {
+          "q": "Pregunta",
+          "a": "Respuesta"
+        }
+      ]
+    },
+    {
+      "name": "lookup-legacy nested config/tenant-l02 sections/whyChooseUs/benefits",
+      "actual": [
+        {
+          "title": "old"
+        }
+      ],
+      "expected": [
+        {
+          "title": "Beneficio",
+          "desc": "Texto",
+          "iconName": "Star"
+        }
+      ]
+    },
+    {
+      "name": "lookup-legacy nested config/tenant-l02 sections/whyChooseUs/mainImage",
+      "actual": "old-why",
+      "expected": "why"
+    },
+    {
+      "name": "lookup-legacy nested config/tenant-l02 themeOverrides/accentColor",
+      "actual": "old-accent",
+      "expected": "#112233"
+    },
+    {
+      "name": "lookup-legacy nested config/tenant-l02 themeOverrides/primary",
+      "actual": null,
+      "expected": "#c8a97e"
+    },
+    {
+      "name": "lookup-legacy nested config/tenant-l02 themeOverrides/secondary",
+      "actual": null,
+      "expected": "#000000"
+    },
+    {
+      "name": "lookup-legacy nested hub_clients/legacy-id contact/email",
+      "actual": "old@example.invalid",
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "lookup-legacy nested hub_clients/legacy-id contact/whatsapp",
+      "actual": "old",
+      "expected": "new"
+    },
+    {
+      "name": "limite11 reader businessMode",
+      "actual": "team",
+      "expected": "solo"
+    },
+    {
+      "name": "limite11 reader businessName",
+      "actual": "Anterior",
+      "expected": "Nuevo"
+    },
+    {
+      "name": "limite11 reader niche",
+      "actual": "nails",
+      "expected": "barberia"
+    },
+    {
+      "name": "limite11 reader colors",
+      "actual": "pink",
+      "expected": "gold black"
+    },
+    {
+      "name": "limite11 reader email",
+      "actual": "old@example.invalid",
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "limite11 reader address",
+      "actual": "Vieja",
+      "expected": "Nueva"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/description",
+      "actual": null,
+      "expected": "Desc"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/faviconEmoji",
+      "actual": null,
+      "expected": "X"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/logo",
+      "actual": "old-logo",
+      "expected": "logo"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/logoDark",
+      "actual": "old-dark",
+      "expected": "dark"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/name",
+      "actual": "Anterior",
+      "expected": "Nuevo"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/tagline",
+      "actual": null,
+      "expected": "Tag"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brandingInput/colors",
+      "actual": "pink",
+      "expected": "gold black"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 business/mode",
+      "actual": "team",
+      "expected": "solo"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 business/name",
+      "actual": "Anterior",
+      "expected": "Nuevo"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 business/type",
+      "actual": "nails",
+      "expected": "barberia"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/address/city",
+      "actual": "old-city",
+      "expected": "Ciudad"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/address/district",
+      "actual": "old-district",
+      "expected": "Centro"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/address/street",
+      "actual": "Vieja",
+      "expected": "Nueva"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/email",
+      "actual": "old@example.invalid",
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/facebook",
+      "actual": null,
+      "expected": "fb"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/instagram",
+      "actual": null,
+      "expected": "ig"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/phone",
+      "actual": "old-phone",
+      "expected": "new-phone"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/whatsapp",
+      "actual": "old",
+      "expected": "new"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 hero/backgroundImage",
+      "actual": "old-hero",
+      "expected": "hero"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 owner/bio",
+      "actual": null,
+      "expected": "Bio"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 owner/name",
+      "actual": "Antes",
+      "expected": "Dueño"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 owner/photo",
+      "actual": "old-owner",
+      "expected": "owner"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 owner/role",
+      "actual": null,
+      "expected": "Rol"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 sections/faq/items",
+      "actual": [
+        {
+          "q": "old",
+          "a": "old"
+        }
+      ],
+      "expected": [
+        {
+          "q": "Pregunta",
+          "a": "Respuesta"
+        }
+      ]
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 sections/whyChooseUs/benefits",
+      "actual": [
+        {
+          "title": "old"
+        }
+      ],
+      "expected": [
+        {
+          "title": "Beneficio",
+          "desc": "Texto",
+          "iconName": "Star"
+        }
+      ]
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 sections/whyChooseUs/mainImage",
+      "actual": "old-why",
+      "expected": "why"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 themeOverrides/accentColor",
+      "actual": "old-accent",
+      "expected": "#112233"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 themeOverrides/primary",
+      "actual": null,
+      "expected": "#c8a97e"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 themeOverrides/secondary",
+      "actual": null,
+      "expected": "#000000"
+    },
+    {
+      "name": "limite11 nested hub_clients/tenant-l02 contact/email",
+      "actual": "old@example.invalid",
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "limite11 nested hub_clients/tenant-l02 contact/whatsapp",
+      "actual": "old",
+      "expected": "new"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/description",
+      "actual": null,
+      "expected": "Desc"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/faviconEmoji",
+      "actual": null,
+      "expected": "X"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/logo",
+      "actual": "old-logo",
+      "expected": "logo"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/logoDark",
+      "actual": "old-dark",
+      "expected": "dark"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/name",
+      "actual": "Anterior",
+      "expected": "Nuevo"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/tagline",
+      "actual": null,
+      "expected": "Tag"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brandingInput/colors",
+      "actual": "pink",
+      "expected": "gold black"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 business/mode",
+      "actual": "team",
+      "expected": "solo"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 business/name",
+      "actual": "Anterior",
+      "expected": "Nuevo"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 business/type",
+      "actual": "nails",
+      "expected": "barberia"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/address/city",
+      "actual": "old-city",
+      "expected": "Ciudad"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/address/district",
+      "actual": "old-district",
+      "expected": "Centro"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/address/street",
+      "actual": "Vieja",
+      "expected": "Nueva"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/email",
+      "actual": "old@example.invalid",
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/facebook",
+      "actual": null,
+      "expected": "fb"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/instagram",
+      "actual": null,
+      "expected": "ig"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/phone",
+      "actual": "old-phone",
+      "expected": "new-phone"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/whatsapp",
+      "actual": "old",
+      "expected": "new"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 hero/backgroundImage",
+      "actual": "old-hero",
+      "expected": "hero"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 owner/bio",
+      "actual": null,
+      "expected": "Bio"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 owner/name",
+      "actual": "Antes",
+      "expected": "Dueño"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 owner/photo",
+      "actual": "old-owner",
+      "expected": "owner"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 owner/role",
+      "actual": null,
+      "expected": "Rol"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 sections/faq/items",
+      "actual": [
+        {
+          "q": "old",
+          "a": "old"
+        }
+      ],
+      "expected": [
+        {
+          "q": "Pregunta",
+          "a": "Respuesta"
+        }
+      ]
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 sections/whyChooseUs/benefits",
+      "actual": [
+        {
+          "title": "old"
+        }
+      ],
+      "expected": [
+        {
+          "title": "Beneficio",
+          "desc": "Texto",
+          "iconName": "Star"
+        }
+      ]
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 sections/whyChooseUs/mainImage",
+      "actual": "old-why",
+      "expected": "why"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 themeOverrides/accentColor",
+      "actual": "old-accent",
+      "expected": "#112233"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 themeOverrides/primary",
+      "actual": null,
+      "expected": "#c8a97e"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 themeOverrides/secondary",
+      "actual": null,
+      "expected": "#000000"
+    },
+    {
+      "name": "limite11 nested hub_clients/tenant-l02 contact/email",
+      "actual": "old@example.invalid",
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "limite11 nested hub_clients/tenant-l02 contact/whatsapp",
+      "actual": "old",
+      "expected": "new"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/description",
+      "actual": null,
+      "expected": "Desc"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/faviconEmoji",
+      "actual": null,
+      "expected": "X"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/logo",
+      "actual": "old-logo",
+      "expected": "logo"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/logoDark",
+      "actual": "old-dark",
+      "expected": "dark"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/name",
+      "actual": "Anterior",
+      "expected": "Nuevo"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/tagline",
+      "actual": null,
+      "expected": "Tag"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brandingInput/colors",
+      "actual": "pink",
+      "expected": "gold black"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 business/mode",
+      "actual": "team",
+      "expected": "solo"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 business/name",
+      "actual": "Anterior",
+      "expected": "Nuevo"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 business/type",
+      "actual": "nails",
+      "expected": "barberia"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/address/city",
+      "actual": "old-city",
+      "expected": "Ciudad"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/address/district",
+      "actual": "old-district",
+      "expected": "Centro"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/address/street",
+      "actual": "Vieja",
+      "expected": "Nueva"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/email",
+      "actual": "old@example.invalid",
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/facebook",
+      "actual": null,
+      "expected": "fb"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/instagram",
+      "actual": null,
+      "expected": "ig"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/phone",
+      "actual": "old-phone",
+      "expected": "new-phone"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/whatsapp",
+      "actual": "old",
+      "expected": "new"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 hero/backgroundImage",
+      "actual": "old-hero",
+      "expected": "hero"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 owner/bio",
+      "actual": null,
+      "expected": "Bio"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 owner/name",
+      "actual": "Antes",
+      "expected": "Dueño"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 owner/photo",
+      "actual": "old-owner",
+      "expected": "owner"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 owner/role",
+      "actual": null,
+      "expected": "Rol"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 sections/faq/items",
+      "actual": [
+        {
+          "q": "old",
+          "a": "old"
+        }
+      ],
+      "expected": [
+        {
+          "q": "Pregunta",
+          "a": "Respuesta"
+        }
+      ]
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 sections/whyChooseUs/benefits",
+      "actual": [
+        {
+          "title": "old"
+        }
+      ],
+      "expected": [
+        {
+          "title": "Beneficio",
+          "desc": "Texto",
+          "iconName": "Star"
+        }
+      ]
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 sections/whyChooseUs/mainImage",
+      "actual": "old-why",
+      "expected": "why"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 themeOverrides/accentColor",
+      "actual": "old-accent",
+      "expected": "#112233"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 themeOverrides/primary",
+      "actual": null,
+      "expected": "#c8a97e"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 themeOverrides/secondary",
+      "actual": null,
+      "expected": "#000000"
+    },
+    {
+      "name": "limite11 nested hub_clients/tenant-l02 contact/email",
+      "actual": "old@example.invalid",
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "limite11 nested hub_clients/tenant-l02 contact/whatsapp",
+      "actual": "old",
+      "expected": "new"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/description",
+      "actual": null,
+      "expected": "Desc"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/faviconEmoji",
+      "actual": null,
+      "expected": "X"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/logo",
+      "actual": "old-logo",
+      "expected": "logo"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/logoDark",
+      "actual": "old-dark",
+      "expected": "dark"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/name",
+      "actual": "Anterior",
+      "expected": "Nuevo"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/tagline",
+      "actual": null,
+      "expected": "Tag"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brandingInput/colors",
+      "actual": "pink",
+      "expected": "gold black"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 business/mode",
+      "actual": "team",
+      "expected": "solo"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 business/name",
+      "actual": "Anterior",
+      "expected": "Nuevo"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 business/type",
+      "actual": "nails",
+      "expected": "barberia"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/address/city",
+      "actual": "old-city",
+      "expected": "Ciudad"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/address/district",
+      "actual": "old-district",
+      "expected": "Centro"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/address/street",
+      "actual": "Vieja",
+      "expected": "Nueva"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/email",
+      "actual": "old@example.invalid",
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/facebook",
+      "actual": null,
+      "expected": "fb"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/instagram",
+      "actual": null,
+      "expected": "ig"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/phone",
+      "actual": "old-phone",
+      "expected": "new-phone"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/whatsapp",
+      "actual": "old",
+      "expected": "new"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 hero/backgroundImage",
+      "actual": "old-hero",
+      "expected": "hero"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 owner/bio",
+      "actual": null,
+      "expected": "Bio"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 owner/name",
+      "actual": "Antes",
+      "expected": "Dueño"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 owner/photo",
+      "actual": "old-owner",
+      "expected": "owner"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 owner/role",
+      "actual": null,
+      "expected": "Rol"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 sections/faq/items",
+      "actual": [
+        {
+          "q": "old",
+          "a": "old"
+        }
+      ],
+      "expected": [
+        {
+          "q": "Pregunta",
+          "a": "Respuesta"
+        }
+      ]
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 sections/whyChooseUs/benefits",
+      "actual": [
+        {
+          "title": "old"
+        }
+      ],
+      "expected": [
+        {
+          "title": "Beneficio",
+          "desc": "Texto",
+          "iconName": "Star"
+        }
+      ]
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 sections/whyChooseUs/mainImage",
+      "actual": "old-why",
+      "expected": "why"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 themeOverrides/accentColor",
+      "actual": "old-accent",
+      "expected": "#112233"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 themeOverrides/primary",
+      "actual": null,
+      "expected": "#c8a97e"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 themeOverrides/secondary",
+      "actual": null,
+      "expected": "#000000"
+    },
+    {
+      "name": "limite11 nested hub_clients/tenant-l02 contact/email",
+      "actual": "old@example.invalid",
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "limite11 nested hub_clients/tenant-l02 contact/whatsapp",
+      "actual": "old",
+      "expected": "new"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/description",
+      "actual": null,
+      "expected": "Desc"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/faviconEmoji",
+      "actual": null,
+      "expected": "X"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/logo",
+      "actual": "old-logo",
+      "expected": "logo"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/logoDark",
+      "actual": "old-dark",
+      "expected": "dark"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/name",
+      "actual": "Anterior",
+      "expected": "Nuevo"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/tagline",
+      "actual": null,
+      "expected": "Tag"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brandingInput/colors",
+      "actual": "pink",
+      "expected": "gold black"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 business/mode",
+      "actual": "team",
+      "expected": "solo"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 business/name",
+      "actual": "Anterior",
+      "expected": "Nuevo"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 business/type",
+      "actual": "nails",
+      "expected": "barberia"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/address/city",
+      "actual": "old-city",
+      "expected": "Ciudad"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/address/district",
+      "actual": "old-district",
+      "expected": "Centro"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/address/street",
+      "actual": "Vieja",
+      "expected": "Nueva"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/email",
+      "actual": "old@example.invalid",
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/facebook",
+      "actual": null,
+      "expected": "fb"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/instagram",
+      "actual": null,
+      "expected": "ig"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/phone",
+      "actual": "old-phone",
+      "expected": "new-phone"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/whatsapp",
+      "actual": "old",
+      "expected": "new"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 hero/backgroundImage",
+      "actual": "old-hero",
+      "expected": "hero"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 owner/bio",
+      "actual": null,
+      "expected": "Bio"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 owner/name",
+      "actual": "Antes",
+      "expected": "Dueño"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 owner/photo",
+      "actual": "old-owner",
+      "expected": "owner"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 owner/role",
+      "actual": null,
+      "expected": "Rol"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 sections/faq/items",
+      "actual": [
+        {
+          "q": "old",
+          "a": "old"
+        }
+      ],
+      "expected": [
+        {
+          "q": "Pregunta",
+          "a": "Respuesta"
+        }
+      ]
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 sections/whyChooseUs/benefits",
+      "actual": [
+        {
+          "title": "old"
+        }
+      ],
+      "expected": [
+        {
+          "title": "Beneficio",
+          "desc": "Texto",
+          "iconName": "Star"
+        }
+      ]
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 sections/whyChooseUs/mainImage",
+      "actual": "old-why",
+      "expected": "why"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 themeOverrides/accentColor",
+      "actual": "old-accent",
+      "expected": "#112233"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 themeOverrides/primary",
+      "actual": null,
+      "expected": "#c8a97e"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 themeOverrides/secondary",
+      "actual": null,
+      "expected": "#000000"
+    },
+    {
+      "name": "limite11 nested hub_clients/tenant-l02 contact/email",
+      "actual": "old@example.invalid",
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "limite11 nested hub_clients/tenant-l02 contact/whatsapp",
+      "actual": "old",
+      "expected": "new"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/description",
+      "actual": null,
+      "expected": "Desc"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/faviconEmoji",
+      "actual": null,
+      "expected": "X"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/logo",
+      "actual": "old-logo",
+      "expected": "logo"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/logoDark",
+      "actual": "old-dark",
+      "expected": "dark"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/name",
+      "actual": "Anterior",
+      "expected": "Nuevo"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/tagline",
+      "actual": null,
+      "expected": "Tag"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brandingInput/colors",
+      "actual": "pink",
+      "expected": "gold black"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 business/mode",
+      "actual": "team",
+      "expected": "solo"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 business/name",
+      "actual": "Anterior",
+      "expected": "Nuevo"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 business/type",
+      "actual": "nails",
+      "expected": "barberia"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/address/city",
+      "actual": "old-city",
+      "expected": "Ciudad"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/address/district",
+      "actual": "old-district",
+      "expected": "Centro"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/address/street",
+      "actual": "Vieja",
+      "expected": "Nueva"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/email",
+      "actual": "old@example.invalid",
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/facebook",
+      "actual": null,
+      "expected": "fb"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/instagram",
+      "actual": null,
+      "expected": "ig"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/phone",
+      "actual": "old-phone",
+      "expected": "new-phone"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/whatsapp",
+      "actual": "old",
+      "expected": "new"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 hero/backgroundImage",
+      "actual": "old-hero",
+      "expected": "hero"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 owner/bio",
+      "actual": null,
+      "expected": "Bio"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 owner/name",
+      "actual": "Antes",
+      "expected": "Dueño"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 owner/photo",
+      "actual": "old-owner",
+      "expected": "owner"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 owner/role",
+      "actual": null,
+      "expected": "Rol"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 sections/faq/items",
+      "actual": [
+        {
+          "q": "old",
+          "a": "old"
+        }
+      ],
+      "expected": [
+        {
+          "q": "Pregunta",
+          "a": "Respuesta"
+        }
+      ]
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 sections/whyChooseUs/benefits",
+      "actual": [
+        {
+          "title": "old"
+        }
+      ],
+      "expected": [
+        {
+          "title": "Beneficio",
+          "desc": "Texto",
+          "iconName": "Star"
+        }
+      ]
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 sections/whyChooseUs/mainImage",
+      "actual": "old-why",
+      "expected": "why"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 themeOverrides/accentColor",
+      "actual": "old-accent",
+      "expected": "#112233"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 themeOverrides/primary",
+      "actual": null,
+      "expected": "#c8a97e"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 themeOverrides/secondary",
+      "actual": null,
+      "expected": "#000000"
+    },
+    {
+      "name": "limite11 nested hub_clients/tenant-l02 contact/email",
+      "actual": "old@example.invalid",
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "limite11 nested hub_clients/tenant-l02 contact/whatsapp",
+      "actual": "old",
+      "expected": "new"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/description",
+      "actual": null,
+      "expected": "Desc"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/faviconEmoji",
+      "actual": null,
+      "expected": "X"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/logo",
+      "actual": "old-logo",
+      "expected": "logo"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/logoDark",
+      "actual": "old-dark",
+      "expected": "dark"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/name",
+      "actual": "Anterior",
+      "expected": "Nuevo"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/tagline",
+      "actual": null,
+      "expected": "Tag"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brandingInput/colors",
+      "actual": "pink",
+      "expected": "gold black"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 business/mode",
+      "actual": "team",
+      "expected": "solo"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 business/name",
+      "actual": "Anterior",
+      "expected": "Nuevo"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 business/type",
+      "actual": "nails",
+      "expected": "barberia"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/address/city",
+      "actual": "old-city",
+      "expected": "Ciudad"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/address/district",
+      "actual": "old-district",
+      "expected": "Centro"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/address/street",
+      "actual": "Vieja",
+      "expected": "Nueva"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/email",
+      "actual": "old@example.invalid",
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/facebook",
+      "actual": null,
+      "expected": "fb"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/instagram",
+      "actual": null,
+      "expected": "ig"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/phone",
+      "actual": "old-phone",
+      "expected": "new-phone"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/whatsapp",
+      "actual": "old",
+      "expected": "new"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 hero/backgroundImage",
+      "actual": "old-hero",
+      "expected": "hero"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 owner/bio",
+      "actual": null,
+      "expected": "Bio"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 owner/name",
+      "actual": "Antes",
+      "expected": "Dueño"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 owner/photo",
+      "actual": "old-owner",
+      "expected": "owner"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 owner/role",
+      "actual": null,
+      "expected": "Rol"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 sections/faq/items",
+      "actual": [
+        {
+          "q": "old",
+          "a": "old"
+        }
+      ],
+      "expected": [
+        {
+          "q": "Pregunta",
+          "a": "Respuesta"
+        }
+      ]
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 sections/whyChooseUs/benefits",
+      "actual": [
+        {
+          "title": "old"
+        }
+      ],
+      "expected": [
+        {
+          "title": "Beneficio",
+          "desc": "Texto",
+          "iconName": "Star"
+        }
+      ]
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 sections/whyChooseUs/mainImage",
+      "actual": "old-why",
+      "expected": "why"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 themeOverrides/accentColor",
+      "actual": "old-accent",
+      "expected": "#112233"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 themeOverrides/primary",
+      "actual": null,
+      "expected": "#c8a97e"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 themeOverrides/secondary",
+      "actual": null,
+      "expected": "#000000"
+    },
+    {
+      "name": "limite11 nested hub_clients/tenant-l02 contact/email",
+      "actual": "old@example.invalid",
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "limite11 nested hub_clients/tenant-l02 contact/whatsapp",
+      "actual": "old",
+      "expected": "new"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/description",
+      "actual": null,
+      "expected": "Desc"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/faviconEmoji",
+      "actual": null,
+      "expected": "X"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/logo",
+      "actual": "old-logo",
+      "expected": "logo"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/logoDark",
+      "actual": "old-dark",
+      "expected": "dark"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/name",
+      "actual": "Anterior",
+      "expected": "Nuevo"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/tagline",
+      "actual": null,
+      "expected": "Tag"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brandingInput/colors",
+      "actual": "pink",
+      "expected": "gold black"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 business/mode",
+      "actual": "team",
+      "expected": "solo"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 business/name",
+      "actual": "Anterior",
+      "expected": "Nuevo"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 business/type",
+      "actual": "nails",
+      "expected": "barberia"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/address/city",
+      "actual": "old-city",
+      "expected": "Ciudad"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/address/district",
+      "actual": "old-district",
+      "expected": "Centro"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/address/street",
+      "actual": "Vieja",
+      "expected": "Nueva"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/email",
+      "actual": "old@example.invalid",
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/facebook",
+      "actual": null,
+      "expected": "fb"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/instagram",
+      "actual": null,
+      "expected": "ig"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/phone",
+      "actual": "old-phone",
+      "expected": "new-phone"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/whatsapp",
+      "actual": "old",
+      "expected": "new"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 hero/backgroundImage",
+      "actual": "old-hero",
+      "expected": "hero"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 owner/bio",
+      "actual": null,
+      "expected": "Bio"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 owner/name",
+      "actual": "Antes",
+      "expected": "Dueño"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 owner/photo",
+      "actual": "old-owner",
+      "expected": "owner"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 owner/role",
+      "actual": null,
+      "expected": "Rol"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 sections/faq/items",
+      "actual": [
+        {
+          "q": "old",
+          "a": "old"
+        }
+      ],
+      "expected": [
+        {
+          "q": "Pregunta",
+          "a": "Respuesta"
+        }
+      ]
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 sections/whyChooseUs/benefits",
+      "actual": [
+        {
+          "title": "old"
+        }
+      ],
+      "expected": [
+        {
+          "title": "Beneficio",
+          "desc": "Texto",
+          "iconName": "Star"
+        }
+      ]
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 sections/whyChooseUs/mainImage",
+      "actual": "old-why",
+      "expected": "why"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 themeOverrides/accentColor",
+      "actual": "old-accent",
+      "expected": "#112233"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 themeOverrides/primary",
+      "actual": null,
+      "expected": "#c8a97e"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 themeOverrides/secondary",
+      "actual": null,
+      "expected": "#000000"
+    },
+    {
+      "name": "limite11 nested hub_clients/tenant-l02 contact/email",
+      "actual": "old@example.invalid",
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "limite11 nested hub_clients/tenant-l02 contact/whatsapp",
+      "actual": "old",
+      "expected": "new"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/description",
+      "actual": null,
+      "expected": "Desc"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/faviconEmoji",
+      "actual": null,
+      "expected": "X"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/logo",
+      "actual": "old-logo",
+      "expected": "logo"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/logoDark",
+      "actual": "old-dark",
+      "expected": "dark"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/name",
+      "actual": "Anterior",
+      "expected": "Nuevo"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/tagline",
+      "actual": null,
+      "expected": "Tag"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brandingInput/colors",
+      "actual": "pink",
+      "expected": "gold black"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 business/mode",
+      "actual": "team",
+      "expected": "solo"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 business/name",
+      "actual": "Anterior",
+      "expected": "Nuevo"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 business/type",
+      "actual": "nails",
+      "expected": "barberia"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/address/city",
+      "actual": "old-city",
+      "expected": "Ciudad"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/address/district",
+      "actual": "old-district",
+      "expected": "Centro"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/address/street",
+      "actual": "Vieja",
+      "expected": "Nueva"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/email",
+      "actual": "old@example.invalid",
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/facebook",
+      "actual": null,
+      "expected": "fb"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/instagram",
+      "actual": null,
+      "expected": "ig"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/phone",
+      "actual": "old-phone",
+      "expected": "new-phone"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/whatsapp",
+      "actual": "old",
+      "expected": "new"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 hero/backgroundImage",
+      "actual": "old-hero",
+      "expected": "hero"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 owner/bio",
+      "actual": null,
+      "expected": "Bio"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 owner/name",
+      "actual": "Antes",
+      "expected": "Dueño"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 owner/photo",
+      "actual": "old-owner",
+      "expected": "owner"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 owner/role",
+      "actual": null,
+      "expected": "Rol"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 sections/faq/items",
+      "actual": [
+        {
+          "q": "old",
+          "a": "old"
+        }
+      ],
+      "expected": [
+        {
+          "q": "Pregunta",
+          "a": "Respuesta"
+        }
+      ]
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 sections/whyChooseUs/benefits",
+      "actual": [
+        {
+          "title": "old"
+        }
+      ],
+      "expected": [
+        {
+          "title": "Beneficio",
+          "desc": "Texto",
+          "iconName": "Star"
+        }
+      ]
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 sections/whyChooseUs/mainImage",
+      "actual": "old-why",
+      "expected": "why"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 themeOverrides/accentColor",
+      "actual": "old-accent",
+      "expected": "#112233"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 themeOverrides/primary",
+      "actual": null,
+      "expected": "#c8a97e"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 themeOverrides/secondary",
+      "actual": null,
+      "expected": "#000000"
+    },
+    {
+      "name": "limite11 nested hub_clients/tenant-l02 contact/email",
+      "actual": "old@example.invalid",
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "limite11 nested hub_clients/tenant-l02 contact/whatsapp",
+      "actual": "old",
+      "expected": "new"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/description",
+      "actual": null,
+      "expected": "Desc"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/faviconEmoji",
+      "actual": null,
+      "expected": "X"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/logo",
+      "actual": "old-logo",
+      "expected": "logo"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/logoDark",
+      "actual": "old-dark",
+      "expected": "dark"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/name",
+      "actual": "Anterior",
+      "expected": "Nuevo"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brand/tagline",
+      "actual": null,
+      "expected": "Tag"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 brandingInput/colors",
+      "actual": "pink",
+      "expected": "gold black"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 business/mode",
+      "actual": "team",
+      "expected": "solo"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 business/name",
+      "actual": "Anterior",
+      "expected": "Nuevo"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 business/type",
+      "actual": "nails",
+      "expected": "barberia"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/address/city",
+      "actual": "old-city",
+      "expected": "Ciudad"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/address/district",
+      "actual": "old-district",
+      "expected": "Centro"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/address/street",
+      "actual": "Vieja",
+      "expected": "Nueva"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/email",
+      "actual": "old@example.invalid",
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/facebook",
+      "actual": null,
+      "expected": "fb"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/instagram",
+      "actual": null,
+      "expected": "ig"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/phone",
+      "actual": "old-phone",
+      "expected": "new-phone"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 contact/whatsapp",
+      "actual": "old",
+      "expected": "new"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 hero/backgroundImage",
+      "actual": "old-hero",
+      "expected": "hero"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 owner/bio",
+      "actual": null,
+      "expected": "Bio"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 owner/name",
+      "actual": "Antes",
+      "expected": "Dueño"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 owner/photo",
+      "actual": "old-owner",
+      "expected": "owner"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 owner/role",
+      "actual": null,
+      "expected": "Rol"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 sections/faq/items",
+      "actual": [
+        {
+          "q": "old",
+          "a": "old"
+        }
+      ],
+      "expected": [
+        {
+          "q": "Pregunta",
+          "a": "Respuesta"
+        }
+      ]
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 sections/whyChooseUs/benefits",
+      "actual": [
+        {
+          "title": "old"
+        }
+      ],
+      "expected": [
+        {
+          "title": "Beneficio",
+          "desc": "Texto",
+          "iconName": "Star"
+        }
+      ]
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 sections/whyChooseUs/mainImage",
+      "actual": "old-why",
+      "expected": "why"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 themeOverrides/accentColor",
+      "actual": "old-accent",
+      "expected": "#112233"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 themeOverrides/primary",
+      "actual": null,
+      "expected": "#c8a97e"
+    },
+    {
+      "name": "limite11 nested config/tenant-l02 themeOverrides/secondary",
+      "actual": null,
+      "expected": "#000000"
+    },
+    {
+      "name": "limite11 nested hub_clients/tenant-l02 contact/email",
+      "actual": "old@example.invalid",
+      "expected": "new@example.invalid"
+    },
+    {
+      "name": "limite11 nested hub_clients/tenant-l02 contact/whatsapp",
+      "actual": "old",
+      "expected": "new"
+    }
+  ],
+  "checksPassed": 815,
+  "cases": 21,
+  "versions": {
+    "node": "v22.23.1",
+    "admin": "13.10.0",
+    "firestore": "7.11.6",
+    "next": "16.2.9"
+  },
+  "limits": [
+    "SDK real sin commit; materializacion sintetica",
+    "server timestamps fijos modelados, no servidor",
+    "handler/reader/auth/rate/branding/diff/templates reales; DB/sendEmail interceptados"
+  ]
+}

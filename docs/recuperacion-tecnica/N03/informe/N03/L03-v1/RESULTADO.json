@@ -1,0 +1,16 @@
+{
+  "result": "RED",
+  "gates": 0,
+  "total": 4,
+  "gate": "P0",
+  "state": "PENDIENTE_DECISION",
+  "blocker": "Alcance de toggles frente a email base D05 sin agente",
+  "functionalDefectProven": false,
+  "newTests": false,
+  "productChanged": false,
+  "srcPreserved": 285,
+  "N03": "ABIERTA",
+  "consumo": 83,
+  "techo": 85,
+  "resets": 0
+}

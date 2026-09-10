@@ -1,0 +1,11 @@
+[Checkout] Failed to resolve gateway "stripe": SENSITIVE: secret
+Error creating checkout session: Error: SENSITIVE: secret
+    at Object.createCheckoutSession (/control/checkout.cjs:7:556)
+    at eval (eval at <anonymous> (/control/checkout.cjs:6:341), <anonymous>:56:42)
+    at async /control/checkout.cjs:8:88
+[Checkout] Failed to resolve gateway "stripe": SENSITIVE: secret
+Error creating checkout session: Error: SENSITIVE: secret
+    at Object.createCheckoutSession (/control/checkout.cjs:7:556)
+    at eval (eval at <anonymous> (/control/checkout.cjs:6:341), <anonymous>:56:42)
+    at async /control/checkout.cjs:8:88
+{"cases":22,"checks":320,"failures":16}

@@ -1,0 +1,178 @@
+// Instrumento exclusivo L02. Sin commit Firestore; DB y correo sólo en memoria.
+const fs = require('fs');
+const path = require('path');
+const assert = require('assert/strict');
+const {createRequire} = require('module');
+const req = createRequire('/deps/package.json');
+const ts = req('typescript');
+const {Firestore, FieldValue, Timestamp} = req('firebase-admin/firestore');
+const {DocumentSnapshot, DocumentMask, DocumentTransform} = req('@google-cloud/firestore/build/src/document.js');
+const sdk = new Firestore({projectId:'l02-synthetic-no-network'});
+sdk.request = () => {throw new Error('RED_INSTRUMENTO: solicitud DB prohibida');};
+let docs, writes, emails, cache, sequence = 0;
+const checks = [], defects = [], cases = [];
+const ok = (name, condition) => {assert.ok(condition, name); checks.push(name);};
+const equal = (name, actual, expected) => {assert.deepStrictEqual(actual, expected, name); checks.push(name);};
+const objective = (name, actual, expected) => {if(!require('util').isDeepStrictEqual(actual, expected)) defects.push({name,actual:actual??null,expected});};
+const clone = value => value === undefined ? undefined : DocumentSnapshot.fromObject(sdk.doc('probe/clone'),{value}).data().value;
+const get = (obj, segments) => segments.reduce((v,k)=>v?.[k],obj);
+function put(obj, segments, value) {
+  let cursor=obj;
+  for(const k of segments.slice(0,-1)) {if(!cursor[k] || typeof cursor[k]!=='object' || Array.isArray(cursor[k])) cursor[k]={}; cursor=cursor[k];}
+  if(value===undefined) delete cursor[segments.at(-1)]; else cursor[segments.at(-1)]=clone(value);
+}
+function serialize(documentPath, data, options={merge:true}, before={}) {
+  const ref=sdk.doc(documentPath), batch=sdk.batch();
+  batch.set(ref,data,options);
+  assert.equal(batch._ops.length,1);
+  const proto=batch._ops[0].op(); // SDK real, sin llamar commit.
+  const mask=DocumentMask.fromObject(data);
+  assert.ok(Array.isArray(mask._sortedPaths));
+  equal('SDK mascara coincide '+documentPath,proto.updateMask.fieldPaths,mask.toProto().fieldPaths);
+  const decoded=DocumentSnapshot.fromObject(ref,data).data();
+  const after=clone(before)||{};
+  const paths=mask._sortedPaths.map(p=>({wire:p.formattedName,segments:[...p.segments]}));
+  equal('SDK segmentos/formattedName '+documentPath,paths.map(p=>p.wire),proto.updateMask.fieldPaths);
+  for(const p of paths) put(after,p.segments,get(decoded,p.segments));
+  const transforms=DocumentTransform.fromObject(ref,data);
+  const transformPaths=transforms.fields.map(p=>[...p.segments]);
+  const protos=proto.updateTransforms||[];
+  equal('SDK transforms numero '+documentPath,transformPaths.length,protos.length);
+  protos.forEach((t,i)=>{
+    equal('SDK transform ruta '+documentPath,t.fieldPath,transforms.fields[i].formattedName);
+    if(t.setToServerValue==='REQUEST_TIME') put(after,transformPaths[i],new Timestamp(1700000000,0));
+    else if(t.increment) {const old=get(after,transformPaths[i]); put(after,transformPaths[i],(typeof old==='number'?old:0)+Number(t.increment.integerValue??t.increment.doubleValue));}
+    else throw new Error('Transform fuera del instrumento L02');
+  });
+  return {proto,paths,transformPaths,decoded,after};
+}
+function docRef(documentPath) {
+  return {path:documentPath,
+    async get(){return {exists:docs.has(documentPath),data:()=>clone(docs.get(documentPath)),ref:docRef(documentPath)};},
+    async set(data,options){equal('set merge '+documentPath,options,{merge:true}); const result=serialize(documentPath,data,options,docs.get(documentPath)); writes.push({path:documentPath,...result}); docs.set(documentPath,result.after);},
+    collection(name){return collection(documentPath+'/'+name);}
+  };
+}
+function collection(collectionPath) {
+  return {doc:id=>docRef(collectionPath+'/'+id),
+    where(field,operator,value){equal('lookup campo',[field,operator],['clientId','==']); return {limit(n){equal('lookup limite',n,1);return {async get(){const found=[...docs].find(([p,d])=>p.startsWith(collectionPath+'/')&&p.split('/').length===2&&d[field]===value);return {empty:!found,docs:found?[await docRef(found[0]).get()]:[]};}};}};},
+    async add(data){const p=collectionPath+'/synthetic-'+(++sequence); const result=serialize(p,data,{merge:true},{});writes.push({path:p,...result});docs.set(p,result.after);}
+  };
+}
+let jose;
+function load(relative) {
+  if(cache.has(relative))return cache.get(relative);
+  const module={exports:{}};cache.set(relative,module.exports);
+  const source=fs.readFileSync('/control/fuentes/'+relative,'utf8');
+  const code=ts.transpileModule(source,{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText;
+  const dependency = id => {
+    if(id==='@/lib/firebase-admin') return {db:{collection}};
+    if(id==='@/lib/email') return {sendEmail:async data=>{emails.push(data);}};
+    if(id==='firebase-admin/firestore') return {FieldValue};
+    if(id==='next/server')return req(id);
+    if(id==='jose')return jose;
+    if(id.startsWith('@/lib/'))return load('src/'+id.slice(2)+'.ts');
+    throw new Error('Import no autorizado '+id);
+  };
+  new Function('require','module','exports',code)(dependency,module,module.exports);
+  cache.set(relative,module.exports);return module.exports;
+}
+const tenant='tenant-l02', other='tenant-other';
+const existing={business:{type:'nails',mode:'team',name:'Anterior',keep:'B'},brand:{name:'Anterior',logo:'old-logo',logoDark:'old-dark',keep:'R'},contact:{email:'old@example.invalid',whatsapp:'old',phone:'old-phone',address:{street:'Vieja',district:'old-district',city:'old-city',keep:'A'},keep:'C'},owner:{name:'Antes',photo:'old-owner',keep:'O'},hero:{backgroundImage:'old-hero',keep:'H'},brandingInput:{colors:'pink',keep:'I'},themeOverrides:{accentColor:'old-accent',keep:'T'},sections:{whyChooseUs:{benefits:[{title:'old'}],mainImage:'old-why',keep:'W'},faq:{items:[{q:'old',a:'old'}],keep:'F'},keep:'S'},services:[{id:'old',price:10,duration:15}],hours:{oldDay:{open:'09:00'}},staffPhotos:['old-staff'],gallery:[{url:'old-gallery'}],testimonials:[{name:'old',text:'old',rating:4}],language:'ru',outside:{keep:[1,2],timestamp:new Timestamp(1600000000,0)},'business.mode':'legacy-literal'};
+const hubBase={clientId:tenant,status:'pending_payment',contact:{email:'old@example.invalid',whatsapp:'old',keep:'HC'},language:'ru',resubmissionCount:3,changesRequestedAt:new Timestamp(1600000000,0),changesRequestedBy:'synthetic-owner',lastChangesRequestMessage:'Corregir',outside:{keep:true}};
+const full={clientId:tenant,niche:'barberia',businessMode:'solo',businessName:'Nuevo',tagline:'Tag',description:'Desc',faviconEmoji:'X',locale:'es',contact:{phone:'new-phone',email:'new@example.invalid',whatsapp:'new',instagram:'ig',facebook:'fb',address:{street:'Nueva',district:'Centro',city:'Ciudad'}},services:[{id:'custom-l02',label:' Personal ',price:'25',duration:'45'},{id:'custom-default',price:'x',duration:'0'}],hours:{newDay:{open:'10:00'}},ownerName:'Dueño',ownerRole:'Rol',ownerBio:'Bio',colors:'gold black',accentColor:'#112233',logoUrl:'logo',logoDarkUrl:'dark',ownerPhotoUrl:'owner',heroImageUrl:'hero',staffPhotoUrls:['staff'],galleryImageUrls:['gallery'],benefits:[{title:' Beneficio ',desc:' Texto '},{}],whyChooseUsMainImage:'why',testimonials:[{name:' Ana ',text:' Bien ',rating:99},{}],faqItems:[{q:' Pregunta ',a:' Respuesta '},{}]};
+async function run(name,{config=true,hub=true,mode='paid',body=full,token='valid',lookup=false,repeat=1,status}={}) {
+  docs=new Map([[`config/${other}`,{untouched:true}],[`hub_clients/${other}`,{untouched:true}]]); writes=[];emails=[];cache=new Map();
+  if(config)docs.set('config/'+tenant,clone(existing));
+  if(hub){const value=clone(hubBase);value.status=status||(mode==='resubmit'?'changes_requested':'pending_payment');docs.set('hub_clients/'+(lookup?'legacy-id':tenant),value);}
+  const before=new Map([...docs].map(([k,v])=>[k,clone(v)]));
+  const tokens=load('src/lib/onboarding-token.ts');
+  let signed=mode==='resubmit'?await tokens.signResubmitToken(tenant):await tokens.signOnboardingToken({clientId:token==='foreign'?other:tenant,leadId:'synthetic',plan:'web_crm'});
+  if(token==='missing')signed='';
+  if(token==='invalid')signed='invalid';
+  if(token==='expired')signed=await new jose.SignJWT({clientId:tenant,leadId:'synthetic',plan:'web_crm'}).setProtectedHeader({alg:'HS256'}).setIssuer('arzac-studio').setAudience('onboarding').setExpirationTime(1).sign(new TextEncoder().encode(process.env.ONBOARDING_TOKEN_SECRET));
+  const handler=load('src/app/api/onboarding/client-info/route.ts').POST;
+  const statuses=[];let responseBody, successBody;
+  for(let n=0;n<repeat;n++){
+    const effectsBefore=[writes.length,emails.length];
+    const response=await handler(new (req('next/server').NextRequest)('http://localhost/api/onboarding/client-info',{method:'POST',headers:{'content-type':'application/json','x-onboarding-token':signed,'x-forwarded-for':'192.0.2.1'},body:JSON.stringify(body)}));
+    statuses.push(response.status);responseBody=await response.json();
+    if(response.status===200)successBody=responseBody;
+    else equal(name+' rechazo sin efectos adicionales '+n,[writes.length,emails.length],effectsBefore);
+  }
+  const statusExpected=repeat>10?429:!body.clientId||body.locale==='xx'?400:token==='missing'||token==='invalid'||token==='expired'?401:token==='foreign'||mode==='resubmit'&&(!hub||lookup||status==='pending_review')?403:200;
+  equal(name+' estado',statuses.at(-1),statusExpected);
+  if(statusExpected!==200 && repeat===1){equal(name+' sin writes',writes.length,0);equal(name+' sin emails',emails.length,0);}
+  let consumer;
+  if(statuses.includes(200)){
+    const current=docs.get('config/'+tenant);
+    consumer=load('src/lib/wizard/config-to-wizard.ts').configToWizardData(current);
+    objective(name+' reader businessMode',consumer.businessMode,body.businessMode||'team');
+    objective(name+' reader businessName',consumer.businessName,body.businessName||'');
+    objective(name+' reader niche',consumer.niche,body.niche==='otro'?'estetica':body.niche||'estetica');
+    objective(name+' reader colors',consumer.colors,body.colors||'');
+    if(body.contact?.email)objective(name+' reader email',consumer.email,body.contact.email);
+    if(body.contact?.address?.street)objective(name+' reader address',consumer.address,body.contact.address.street);
+    for(const w of writes.filter(w=>w.path==='config/'+tenant||w.path.startsWith('hub_clients/'))){
+      for(const p of w.paths.filter(p=>p.segments.some(s=>s.includes('.')))){
+        // Sólo el oracle futuro interpreta rutas de las claves defectuosas conocidas.
+        // La materialización anterior siempre usó segmentos del SDK sin separarlos.
+        const nested=p.segments[0].split('.');
+        objective(name+' nested '+w.path+' '+nested.join('/'),get(w.after,nested),get(w.decoded,p.segments));
+      }
+    }
+    const h=docs.get('hub_clients/'+(lookup?'legacy-id':tenant));
+    equal(name+' estado hub',h.status,'pending_review');
+    equal(name+' estado clients',docs.get('clients/'+tenant).status,'pending_review');
+    equal(name+' sentinela timestamp modelada',h.updatedAt,new Timestamp(1700000000,0));
+    if(mode==='resubmit'){equal(name+' incremento modelado',h.resubmissionCount,4);for(const key of ['changesRequestedAt','changesRequestedBy','lastChangesRequestMessage'])ok(name+' delete '+key,!(key in h));}
+    equal(name+' response resubmit',successBody.wasResubmit,mode==='resubmit');
+    if(config){equal(name+' fuera patch',current.outside,existing.outside);for(const family of ['business','brand','contact','owner','hero','brandingInput','themeOverrides','sections'])equal(name+' hermano '+family,current[family].keep,existing[family].keep);equal(name+' address hermano',current.contact.address.keep,'A');}
+    if(hub)equal(name+' hub hermano',h.contact.keep,'HC');
+    if(!body.logoUrl&&config)equal(name+' logo omitido',current.brand.logo,'old-logo');
+    if(!body.services?.length&&config)equal(name+' arrays omitidos/vacios',current.services,existing.services);
+    if(body.services?.length){equal(name+' array SDK',current.services,[{id:'custom-l02',price:25,duration:45,customLabel:'Personal'},{id:'custom-default',price:0,duration:30}]);equal(name+' reader array',consumer.services[0],{id:'custom-l02',label:'Personal',price:'25',duration:'45',visible:true});equal(name+' gallery',current.gallery,[{url:'gallery'}]);equal(name+' testimonial default',consumer.testimonials[0].rating,5);}
+    if(body.locale===undefined)equal(name+' idioma omitido',current.language,config?'ru':undefined);
+    const histories=writes.filter(w=>w.path.startsWith('config_history/'));
+    if(repeat===1){equal(name+' historial config numero',histories.length,config?1:0);if(histories.length){equal(name+' historial actor',histories[0].after.changedBy,'customer');equal(name+' historial kind',histories[0].after.kind,mode==='resubmit'?'customer_resubmit':'info_submitted');}}
+    for(const e of emails)ok(name+' email sintético',e.to.endsWith('@example.invalid'));
+    if(repeat===1)equal(name+' email tags',emails.map(e=>e.tag),[...(body.contact?.email? [mode==='resubmit'?'info_resubmitted_thanks':'info_submitted_thanks']:[]),...(mode==='resubmit'?['changes_resubmitted']:[])]);
+  }
+  equal(name+' otro tenant config',docs.get('config/'+other),before.get('config/'+other));
+  equal(name+' otro tenant hub',docs.get('hub_clients/'+other),before.get('hub_clients/'+other));
+  const result={name,statuses,responseBody,consumer,before:Object.fromEntries(before),after:Object.fromEntries(docs),writes,emails,failures:defects.filter(d=>d.name.startsWith(name+' '))};cases.push(result);
+  fs.writeFileSync('/salida/CASOS.json',JSON.stringify(cases,null,2));
+  return result;
+}
+async function main(){
+  jose=await import(req.resolve('jose'));
+  for(const mode of ['paid','resubmit'])for(const config of [false,true])for(const hub of [false,true])await run(`${mode}-config${config}-hub${hub}`,{mode,config,hub});
+  for(const [name,body] of Object.entries({omitidos:{clientId:tenant},contactoVacio:{clientId:tenant,contact:{}},direccionVacia:{clientId:tenant,contact:{address:{}}},arraysVacios:{clientId:tenant,services:[],galleryImageUrls:[],staffPhotoUrls:[],benefits:[],faqItems:[],testimonials:[]}}))await run(name,{body});
+  await run('lookup-legacy',{lookup:true});
+  for(const token of ['missing','invalid','expired','foreign'])await run('guard-'+token,{token});
+  await run('guard-locale',{body:{clientId:tenant,locale:'xx'}});
+  await run('guard-clientId',{body:{}});
+  await run('guard-resubmit-status',{mode:'resubmit',status:'pending_review'});
+  const rate=await run('limite11',{repeat:11});equal('limite exacto',[...rate.statuses],Array(10).fill(200).concat(429));
+  // Sonda positiva y mutación del ORACLE, sin reparar ni sustituir handler.
+  const a=[{label:'array',literal:'k.v'}];
+  const nested={business:{mode:'solo'},contact:{address:{street:'Nueva'}},services:a,updatedAt:FieldValue.serverTimestamp(),remove:FieldValue.delete(),count:FieldValue.increment(1)};
+  const literal={'business.mode':'solo','contact.address.street':'Nueva',services:a,updatedAt:FieldValue.serverTimestamp(),remove:FieldValue.delete(),count:FieldValue.increment(1)};
+  const base={business:{mode:'team',keep:true},contact:{address:{street:'Vieja',keep:true}},remove:true,count:3};
+  const positive=serialize('probe/nested',nested,{merge:true},base), negative=serialize('probe/literal',literal,{merge:true},base);
+  equal('control positivo lector',load('src/lib/wizard/config-to-wizard.ts').configToWizardData(positive.after).businessMode,'solo');
+  equal('mutacion literal lector viejo',load('src/lib/wizard/config-to-wizard.ts').configToWizardData(negative.after).businessMode,'team');
+  equal('control positivo hermano',positive.after.contact.address.keep,true);
+  equal('array hoja no split',positive.after.services,a);
+  equal('transforms identicos',positive.proto.updateTransforms,negative.proto.updateTransforms);
+  equal('incremento modelo',positive.after.count,4);ok('delete modelo',!('remove' in positive.after));
+  const empty=serialize('probe/empty',{contact:{}},{merge:true},base);equal('riesgo mapa vacio',empty.after.contact,{});
+  fs.writeFileSync('/salida/SONDAS-SDK.json',JSON.stringify({positive,negative,empty},null,2));
+  fs.writeFileSync('/salida/CASOS.json',JSON.stringify(cases,null,2));
+  const version=name=>JSON.parse(fs.readFileSync('/deps/node_modules/'+name+'/package.json','utf8')).version;
+  const report={preparacion:'sondeo completo',productAcceptance:'RED',semanticFailures:defects,checksPassed:checks.length,cases:cases.length,versions:{node:process.version,admin:version('firebase-admin'),firestore:version('@google-cloud/firestore'),next:version('next')},limits:['SDK real sin commit; materializacion sintetica','server timestamps fijos modelados, no servidor','handler/reader/auth/rate/branding/diff/templates reales; DB/sendEmail interceptados']};
+  fs.writeFileSync('/salida/RED.json',JSON.stringify(report,null,2));
+  ok('RED semantico presente',defects.length>0);
+  console.log(JSON.stringify({result:'RED_ESPERADO',cases:cases.length,checks:checks.length,semanticFailures:defects.length}));process.exitCode=1;
+}
+main().catch(e=>{fs.writeFileSync('/salida/ERROR.txt',e.stack);console.error(e);process.exitCode=2;});

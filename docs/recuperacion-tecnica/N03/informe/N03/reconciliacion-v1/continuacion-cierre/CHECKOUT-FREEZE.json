@@ -1,0 +1,10 @@
+[
+  {
+    "ruta": "CONTRATO-CHECKOUT.md",
+    "sha256": "40fc8f148db8f30b27d25ce759c63aa249d154f3d7ec22897c04ec451b99b6e6"
+  },
+  {
+    "ruta": "checkout.cjs",
+    "sha256": "5d052ccc9ba4a3b4c47fed548e08918c9a4b82480de5cac1c2452aa8abdb8533"
+  }
+]

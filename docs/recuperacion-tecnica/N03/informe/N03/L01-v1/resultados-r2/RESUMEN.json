@@ -1,0 +1,26 @@
+{
+  "preparacion": "PASS",
+  "casos": 49,
+  "conexion": "RED",
+  "fallos": [
+    {
+      "id": "client-info-solo",
+      "wanted": "solo",
+      "actual": {
+        "isSolo": false,
+        "step": "staff",
+        "staff": null
+      }
+    },
+    {
+      "id": "reedicion-solo-a-team",
+      "wanted": "team",
+      "actual": {
+        "isSolo": true,
+        "step": "datetime",
+        "staff": "alex"
+      }
+    }
+  ],
+  "limites": "Handlers y SDK reales sin commit; auth/rate/deploy/email interceptados. Bootstrap/site/presets reales. AST ramas/hydrate reales, SSR steps. No navegador completo ni DB/estados reales."
+}

@@ -1,0 +1,11 @@
+{
+  "checks": 34,
+  "failures": [
+    {
+      "id": "service/backend-does-not-write-browser",
+      "actual": 2,
+      "expected": 1
+    }
+  ],
+  "limits": "Callbacks UI reales por AST; SDK browser real descriptor; auth/eventos/transportes interceptados, no render completo."
+}

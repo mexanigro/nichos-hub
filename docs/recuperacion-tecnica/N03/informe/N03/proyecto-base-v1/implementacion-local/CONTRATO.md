@@ -1,0 +1,15 @@
+# Contrato proyecto/base — reglas aprobadas, implementación local
+
+Extensión autorizada del contrato padre, que se conserva como preparación histórica. Liam aprueba coincidencia cuando ambos destinos definidos y rechazo de app Admin efectiva incompatible con proyecto configurado. Exclusivamente server.ts/getAdminDb y api/index.ts/loadAdminFirestore, firestoreRestCreate, getFirestoreRestContext, Get/Patch consumidores del contexto.
+
+P0: fuentes/preimágenes, 44 casos fijos, RED de cero operaciones incompatibles y refutación. P1: guardas mínimas en estos dos archivos. P2: GREEN, conservación, tipos/lint pertinente y mutantes que quitan guardas. P3: revisión, evidencia y entrega local sin descuento. Si P0 falla como instrumento o falta condición, no P1.
+
+Destino definido: proyecto seleccionado no vacío después de trim y base mediante fallback vigente. No requiere credenciales del otro consumidor. Se conserva retorno temprano del propio consumidor por configuración incompleta/token: Admin null antes de SDK; Create return por token/proyecto ausente; contexto errores existentes. No imponer configuración dual. Variables conocidas contradictorias se rechazan aunque el otro consumidor carezca de credenciales; no se transforma ausencia en discrepancia.
+
+Admin: proyecto/base efectivos del SDK deben coincidir con Admin configurado y, si definido, proyecto REST configurado; mismos selectores de base en ambos. Rechazo antes de retornar db, sin lectura/set permitido. REST: después de retornos tempranos, rechazar proyectoAdmin definido distinto de REST seleccionado antes de fetch. Create conserva catch/log; Get/Patch propagan error. No exigir throw de Create para acreditar rechazo; exigir cero fetch y registro de rechazo.
+
+Conservar fallbacks, defaults, distinción literal default/(default), nombre/orden de app compatibles sin recreación ni selección alternativa. Funciones no afectadas idénticas. Casos fijados a partir de preparación y decisión, no del producto reparado. Error nuevo fijo: Firestore destination mismatch. Admin observa referencia get y set→WriteBatch real/commit interceptado; REST fetch interceptado. App efectiva por SDK projectId, incluso options vs credencial discrepantes, no nombre. Caso sdk-base-distinta es inyección en fronteraSDK con objeto SDKreal de otra base, identificado como sensibilidad y no condición observada espontáneamente.
+
+Mutaciones aisladas: eliminar guardAdminserver, guardAdminAPI, guardCreateREST, guardContextREST; demostrar operaciones prohibidas en fallos atribuibles. Docker sin red, dependencias existentes, credenciales sintéticas en memoria. No se prueban servicios/identidades/permisos reales ni otros consumidores. N03 abierta; techo90% TOTAL compartido, inicio87%, último10%N04; sin resets/instalaciones/externos/push/deploy, etapas posteriores y condición por tenant conservadas.
+
+Refutación previa Newton: sin BLOCKER; preservar prioridades de retornos y distinguir catch de Create de error externo; incorporado. Alcance conocido, decisiones resueltas, arnés reutilizable: vía compacta ya autorizada por Liam.

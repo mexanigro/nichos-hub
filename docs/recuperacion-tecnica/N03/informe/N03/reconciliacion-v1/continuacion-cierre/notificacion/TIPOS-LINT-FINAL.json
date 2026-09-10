@@ -1,0 +1,11 @@
+{
+  "lint": {
+    "source": "LINT.json",
+    "errors": 0,
+    "warnings": 0
+  },
+  "types": {
+    "exit": 0,
+    "limite": "include fuente afectada y next-env.d.ts existente; opciones originales sin relajar"
+  }
+}

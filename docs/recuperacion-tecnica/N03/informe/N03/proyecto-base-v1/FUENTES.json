@@ -1,0 +1,32 @@
+[
+  {
+    "ruta": "server.ts",
+    "copia": "fuentes/0-server.ts",
+    "sha256": "48a5d4a415c704d1f7c5ff609d96c4e214d107fa0020b0c5d7d30d51ac84e80f"
+  },
+  {
+    "ruta": "api/index.ts",
+    "copia": "fuentes/1-index.ts",
+    "sha256": "1dbc951f710e2f3e586247faf79ae65d76714eb52fcf768001d929a8521a646f"
+  },
+  {
+    "ruta": "node_modules/firebase-admin/package.json",
+    "copia": "fuentes/2-package.json",
+    "sha256": "eeea23150ca753f4d3b82e4bd1cfd194b8b4771d6a008be9ff8ae98ff669e490"
+  },
+  {
+    "ruta": "node_modules/@google-cloud/firestore/package.json",
+    "copia": "fuentes/3-package.json",
+    "sha256": "276a3257e1ebcf899c8a572c7b5c05417600370153234e7dc9ae440ede44871b"
+  },
+  {
+    "ruta": "node_modules/firebase-admin/lib/firestore/firestore-internal.js",
+    "copia": "fuentes/4-firestore-internal.js",
+    "sha256": "88a204a3f0982939bc29a5f61e2c9679fe89943425ac35ff404adce95cae6cbf"
+  },
+  {
+    "ruta": "node_modules/@google-cloud/firestore/build/src/reference/document-reference.js",
+    "copia": "fuentes/5-document-reference.js",
+    "sha256": "f3e9eb42ee4a90bd1b56e7d4490b05e0a53bf9eaf87e311bbab88c1d973df1c4"
+  }
+]

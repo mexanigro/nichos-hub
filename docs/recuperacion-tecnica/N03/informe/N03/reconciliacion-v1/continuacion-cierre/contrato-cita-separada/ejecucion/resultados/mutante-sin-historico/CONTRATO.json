@@ -1,0 +1,35 @@
+{
+  "checks": 29,
+  "failures": [
+    {
+      "id": "service/both-same-id-visible",
+      "actual": 1,
+      "expected": 2
+    },
+    {
+      "id": "service/unique-view-identities",
+      "actual": 1,
+      "expected": 2
+    },
+    {
+      "id": "service/error-historical-visible",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "service/coincident-count",
+      "actual": 0,
+      "expected": 1
+    },
+    {
+      "id": "service/coincident-origin",
+      "expected": "browser"
+    },
+    {
+      "id": "service/distinct-base-no-merge",
+      "actual": 1,
+      "expected": 2
+    }
+  ],
+  "limits": "Callbacks UI reales por AST; SDK browser real descriptor; auth/eventos/transportes interceptados, no render completo."
+}

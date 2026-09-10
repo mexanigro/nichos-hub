@@ -1,0 +1,1142 @@
+[
+  {
+    "sha256": "F9DA40E7CD7CB05838674F072677E21110F2FAB1EE264BB8EAF0176675ABCB0E",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\auth.config.ts"
+  },
+  {
+    "sha256": "FF585138CB2492DC668A137670F9CA552B31330655366196900CC9D365DF797B",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\instrumentation.ts"
+  },
+  {
+    "sha256": "5A20E70B747F634DCF972E098993F837A1667CC7B23A17A82D6922F26832B44B",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\middleware.ts"
+  },
+  {
+    "sha256": "5DC43224C1FA682CEEF0C2A95A5C3BE05F1CE10FEC8ADCB6BAFD681EF833D759",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\apple-icon.png"
+  },
+  {
+    "sha256": "EF7826B36EA9D63DA4D919E2B4F5B1792ED967DC3C5D669C05C5D5B64E417861",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\globals.css"
+  },
+  {
+    "sha256": "944A639B3EFE7B5C7DB978F78B221AC367ACC5952995BD1FE4E3EBEFAAC4E9C2",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\icon.png"
+  },
+  {
+    "sha256": "110A0279D071A0AB6F9979A2E73BC2D86468571B23509D9AA32DAD898167299E",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\layout.tsx"
+  },
+  {
+    "sha256": "15BA4D4AF5FA4123F19E4605FF7CA3F6EE27D61BDD6646AA34B181F1C31ECF59",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\manifest.ts"
+  },
+  {
+    "sha256": "2E2D41965550B7A7CF92EEEDE4C058E61DA9AC9386D4B5BB50F2E1877E8D4DB1",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\page.tsx"
+  },
+  {
+    "sha256": "81C9B03A872247492FF9E725AC144880D04D862171CAD9C91387202640C6B292",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\robots.ts"
+  },
+  {
+    "sha256": "FBB6EFB674C95B90469655151B1CD9081F07A312A02DAEBD1E351AE0D0FEAA5A",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\sitemap.ts"
+  },
+  {
+    "sha256": "3AD82A787CD173DF5327C4D80AC5CB234A77D62F96D3202B23EC1BE71236D781",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\api-costs\\route.ts"
+  },
+  {
+    "sha256": "78C0EACCE2CB138EBB15B567720D53FD762BFF0C273C48B8FFA16EA677439546",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\api-costs\\fetch\\route.ts"
+  },
+  {
+    "sha256": "5D1505596AAC7436BAC7BDE029DF51AE53B374F13699D8BD43E842E41AA2CFE3",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\api-costs\\[serviceId]\\route.ts"
+  },
+  {
+    "sha256": "FF52C98E737D316EB0C5863FA490ADB655CDFCBEA4A789B60BB4636735B11990",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\api-keys\\route.ts"
+  },
+  {
+    "sha256": "EF8388E99B4ABC453BA96CD5CE553DF5B7E5B962E11827D5CECD1952147E1B5E",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\appointments\\available\\route.ts"
+  },
+  {
+    "sha256": "EB2AE1735A5924D03C6E6AC931A4FF8B968F3E7920F852B2F4AFA8A25FEC5E1D",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\appointments\\book\\route.ts"
+  },
+  {
+    "sha256": "8C32C5A6515D8CBA6DA4719D3CC395DD87800EDCF405E7EABFDA73A4707573E2",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\appointments\\config\\route.ts"
+  },
+  {
+    "sha256": "1B74BF362BE7E8B91AF59E44D6F57688460E9408F3A5347744A02DCD681550E9",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\appointments\\[id]\\cancel\\route.ts"
+  },
+  {
+    "sha256": "EA46E6022DF44632D4A3B304BC2C3BAD3AB65A4D99122E3A87ADFF40D761285C",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\auth\\lead\\route.ts"
+  },
+  {
+    "sha256": "2D6457634B48D3FF1A52E10433D52CE2E0953E3B470C75FF981BB8D476862B3F",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\auth\\upsert-lead\\route.ts"
+  },
+  {
+    "sha256": "9C29DA987EBF4FE2EA2CC237EB213FCCF02BF7F5C3607746FED8401B19564DEE",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\auth\\[...nextauth]\\route.ts"
+  },
+  {
+    "sha256": "A21391283E7FF256B359F386CF0553A2421523C57DC95444767093B53B7A1E39",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\bookings\\increment\\[clientId]\\route.ts"
+  },
+  {
+    "sha256": "3707202D9BA8827F3C0A6233EAF0EF5F84FD72631190F018749912BD70ED4FE7",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\calendar\\auth\\route.ts"
+  },
+  {
+    "sha256": "151FC0F9AE8F55251D04F4B88CCEA34DA6E6D06D5ED9E0E0667A02CE924F0572",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\calendar\\callback\\route.ts"
+  },
+  {
+    "sha256": "3AC27AE2C1D5980084C1B191924DE3F1346A623CDC51B255F1343376580186E6",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\calendar\\[clientId]\\route.ts"
+  },
+  {
+    "sha256": "F40F717FEA0BC378DCCFCBBE59D4100FDCD3EEF59101B24B5BB8556BE04AF691",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\cardcom\\create-onboarding-payment\\route.ts"
+  },
+  {
+    "sha256": "88537FE8CBF0423D7BC359D4919989A4F76FB71A5FF49C8C8FE81A48367813B0",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\cardcom\\create-payment\\route.ts"
+  },
+  {
+    "sha256": "495E956DAF137E0FC3F163781E992D5982CFE1EEDB037DDA3E55D0F164EF9BC4",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\cardcom\\verify-onboarding-payment\\route.ts"
+  },
+  {
+    "sha256": "BB69CF2D8529C11C09B379BE2D3BF8894CDB12F608EEAA236372C64776081CA1",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\cardcom\\verify-payment\\route.ts"
+  },
+  {
+    "sha256": "A18EFD59676ECC9D78C736AB737FE799430BF912FC8C3328047501406DDC0A30",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\cardcom\\webhook\\route.ts"
+  },
+  {
+    "sha256": "CB2D8C12129B48C4CDFA5D274E47B23E613C72FA54A10317A2D5A328298A3FF0",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\classify\\route.ts"
+  },
+  {
+    "sha256": "A22A812AC99CBE51282DBEB6336BE51F76FCC9DA80FDDDC7F14B99094FCB6191",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\clients\\route.ts"
+  },
+  {
+    "sha256": "E67536CE431C115AFACD1796FECEAA8B02C2382750EF8C92061A807458D410A5",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\clients\\changes-request\\route.ts"
+  },
+  {
+    "sha256": "4A8F9454A2CE1F5538100FD49D5982D3F5BE2E7A4E43D52E4F310E9E7293CE35",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\clients\\counts\\route.ts"
+  },
+  {
+    "sha256": "C500FFCF5861FB04CC65E5C476CD0FD0DE45C35CE7D7342C0E1971A5C850C3EC",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\clients\\kill\\route.ts"
+  },
+  {
+    "sha256": "735F14B3A55B276A370D49C699EC07AF4F3CAF0C034FA6367592B186CBCFC732",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\clients\\provision\\route.ts"
+  },
+  {
+    "sha256": "2E0923C58211CA3E9E9B96F82D59557325E549E385AF36CD687104847B1F8750",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\clients\\redeploy\\route.ts"
+  },
+  {
+    "sha256": "52FA2D00473E32430763935791082B02E8C8107F003977DCA11EE62296C367A6",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\clients\\[clientId]\\route.ts"
+  },
+  {
+    "sha256": "7EC876487A63B9C39CA4A1CA06B718A88020176F5995D5C070DE8F88C4886DC4",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\clients\\[clientId]\\status-history\\route.ts"
+  },
+  {
+    "sha256": "41F730AAF26AF2BBC0026C5E0E8DA381664C710F327AD5E91A6ED6A11574D8E2",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\clients\\[clientId]\\tier\\route.ts"
+  },
+  {
+    "sha256": "AFC200CB92D2370EB3B88667CA76CCD598D885B0D903C8338CE3594784210D83",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\config\\[clientId]\\route.ts"
+  },
+  {
+    "sha256": "6A43C187C16736A8F1D5228550BF1506C341634583552563CB012CFB889CC6DB",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\config\\[clientId]\\history\\route.ts"
+  },
+  {
+    "sha256": "0641EE8A23377A26EF743DE147677660A870EE60BA1F5F480DE6C90068965253",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\config\\[clientId]\\payment-credentials\\route.ts"
+  },
+  {
+    "sha256": "459A81F84CE6EAEDA17E3B951D17C1CA36FE068403B979D5CDE798D0E48ED032",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\contract-leads\\route.ts"
+  },
+  {
+    "sha256": "52DB5F26542C7A9B004B9B1494FF6FC935932C6920DA232680CB6F2B5DD89E36",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\crm\\import\\route.ts"
+  },
+  {
+    "sha256": "8A12C41D5B02F96D77A6F69DFAF612AF76E5040C23B547915A9178C1394B0403",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\crm\\parse-text\\route.ts"
+  },
+  {
+    "sha256": "65B45D5A8B5E7A04BA5A0E1B1494F4C5916FC7BF0B24580FB7626D6C4C0E8334",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\crm-stats\\[clientId]\\route.ts"
+  },
+  {
+    "sha256": "92FE89CCFB20BEF75D73B9C53BD8E30A9E0C14D114510BA990833BC70B8B0300",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\cron\\cardcom-charges\\route.ts"
+  },
+  {
+    "sha256": "B95D2C08FDB108C4D794D9F5029F1AAB08E280CAECA7F69FC19D3EA0FAD0266C",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\cron\\reset-bookings\\route.ts"
+  },
+  {
+    "sha256": "855896515DDF5AB92DE355261826EB8516586F6BEC5A9DF244858558BF203698",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\deploy\\route.ts"
+  },
+  {
+    "sha256": "1199C5792F4B991DC083A91795E2D9325CF14DC65D64C6765310113588BAC994",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\email\\health\\route.ts"
+  },
+  {
+    "sha256": "25D6A917AF1F9BBC6C28332B8FE0C6CEF1B606577CA1F4E5AA695AD1E1B0FF2B",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\expenses\\route.ts"
+  },
+  {
+    "sha256": "32442D6EBFD22F47621F57C2BAB6393943507A65A5B72113A555B89FDD79F525",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\expenses\\export\\route.ts"
+  },
+  {
+    "sha256": "C93037F3FD183D8D44F1AEFDB1FB001B4AD68CD64285E20339124070737109B3",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\free\\lead\\route.ts"
+  },
+  {
+    "sha256": "F3A74E5859C7A0C352918D5798393202F80D53559A66570FF17A469B3E7E6AA5",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\generate-content\\route.ts"
+  },
+  {
+    "sha256": "DDFE70789919BFC920F4E60BEC7B9FA8A636C49AFDA37FEAEF4BE2FB09C4E16D",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\leads\\[clientId]\\route.ts"
+  },
+  {
+    "sha256": "EAB6612B373DD841D28FD8F541DAC091F2FCA12DB163DA3D2E51EAC1B0122F5B",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\messages\\route.ts"
+  },
+  {
+    "sha256": "AE2A728B6BC6D195D945F11E9739654DB9F5D9E673269B65485DB342119294A4",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\messages\\reply\\route.ts"
+  },
+  {
+    "sha256": "075297DCC85EA7B9F36D9B12203121FA026C69C8D875BFC56A95DF7923F80C6D",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\messages\\thread\\route.ts"
+  },
+  {
+    "sha256": "43D7BDBEFFD3E42BEEAF38608D562D3740882A97DD1C3630447116DFA6E0A47F",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\monitor\\route.ts"
+  },
+  {
+    "sha256": "E84E50CCE05BB87E831094DE50F1C362213B4A1597E2F54F22899A31216C21BD",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\onboarding\\route.ts"
+  },
+  {
+    "sha256": "64C66A80A4F0DE17F66444DF5B87B2B98684D61E8D3B8733E30ADBB4DBB80132",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\onboarding\\client-info\\route.ts"
+  },
+  {
+    "sha256": "1F312863C084FE3106DCC67FD7D0D1DE8E0286CF253E6CBCEB7A20148313F075",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\onboarding\\draft\\route.ts"
+  },
+  {
+    "sha256": "2256BC101649DD8C65D8B2CC4EEC0D495C9ED5AE2C38F5F21E08A0A634D60C16",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\onboarding\\status\\[clientId]\\route.ts"
+  },
+  {
+    "sha256": "2BCDD0E124331209BEF4FCF9D099D93F8CF05F39A8968A5EAC91FEB7946D5D1C",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\onboarding\\upload\\route.ts"
+  },
+  {
+    "sha256": "A715E19C7E203FB9E49F535988C2D84F3E3D4DFD09D6EDB433467EC1218474E6",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\operational-costs\\route.ts"
+  },
+  {
+    "sha256": "93275951A34A162A649C1694FE35A59ED029FE114F14628324E3804CF6AEF752",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\operational-costs\\seed\\route.ts"
+  },
+  {
+    "sha256": "D166A1105AB0D28822691441570EE66FA3B5B879E2B488BEA7D8C7C27981DE9A",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\payments\\route.ts"
+  },
+  {
+    "sha256": "9D1102803EE98D3CB39C20F027694C98FADC0E4FE0D98E06496771AD5C129BDE",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\payments\\contract\\route.ts"
+  },
+  {
+    "sha256": "BD50AED195BD55BA7E58661FD87721081E3F4957DC9FB2A62BB111A49E00E852",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\payments\\[clientId]\\route.ts"
+  },
+  {
+    "sha256": "F5E166312CD1459D260F0FDD499D259446177E4F1ED09CA08865336893E2D360",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\prospects\\follow-up\\route.ts"
+  },
+  {
+    "sha256": "40C541E21B841F6D5B708FA825C3A32D97A0852814F7AA488178015CED51AE5C",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\prospects\\follow-up\\check\\route.ts"
+  },
+  {
+    "sha256": "3907380EA19F759428D4C66F03A559A6B984ACE96680FEA32886D9AACC589248",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\sales\\route.ts"
+  },
+  {
+    "sha256": "106C88029EEC29A282752ADD58F1DCE5D066B6B18136C129BF0EBCA0DA72B147",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\sales\\notes\\route.ts"
+  },
+  {
+    "sha256": "58C85FF9464F57371C80E30B0DB2BBFF615279C7F51AE7AC0389E535E1BABAD4",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\sales-assistant\\route.ts"
+  },
+  {
+    "sha256": "3EAD5106D20BC76A47FC59516FE3F70F0C322E8E714D6BC243EB68449DE2A107",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\tenant-claim\\route.ts"
+  },
+  {
+    "sha256": "DE651ED0335099D48965DD526469A6B2D507FCA4FB2BDADC0063C74B7C445B99",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\upload\\[clientId]\\route.ts"
+  },
+  {
+    "sha256": "5049AFC247D021FF1AE02862BB1B9D86572E84D3CF746C570128D8BF3CD7D4F2",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\upload-logo\\[clientId]\\route.ts"
+  },
+  {
+    "sha256": "A9F4AE5195FEC72BA46CD7CD396D8357CF087DE48A4E6607C5B1FB91569155CF",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\users\\route.ts"
+  },
+  {
+    "sha256": "3B54C9E3600F69B9C72CF1CA22A5BAC2F2CAC96D4FBE068C3DA2383F2477F018",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\voice-config\\[clientId]\\route.ts"
+  },
+  {
+    "sha256": "75B77B58AC93BD2A0DF2B82187004866DBAD72A5061D6DE32F3F9E578C057D46",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\whatsapp-config\\[clientId]\\route.ts"
+  },
+  {
+    "sha256": "9927470290074B8C05C5293BB3AE96B59C5F701DFC38B5D0592FF558A36ED21A",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\whatsapp-config\\[clientId]\\send-template\\route.ts"
+  },
+  {
+    "sha256": "BBCABBB55E9679F4E7002B00CFFA59D97D244F881A4261E08C49DC9BF02AA483",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\whatsapp-config\\[clientId]\\status\\route.ts"
+  },
+  {
+    "sha256": "FE705910D3151C401FDB9AE43CCD0BA891EA380181E461CBAF0F3423DE39FA65",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\whatsapp-config\\[clientId]\\templates\\route.ts"
+  },
+  {
+    "sha256": "856E413A0F250FF4842DFD052E64944C2DF51E116D2F91AD4125E0B855CC0CA3",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\whatsapp-config\\[clientId]\\test\\route.ts"
+  },
+  {
+    "sha256": "C407A932C84FCBACC4FEFB9543956A76C9A66C0A78811B19D4C4D5FC5F090F91",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api-costs\\page.tsx"
+  },
+  {
+    "sha256": "B8EB9A44B06B6C26CCFBE4315C84A5D99CEF9F6EBC51768E60E160AEE11F17D5",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\asistente\\page.tsx"
+  },
+  {
+    "sha256": "343861B7E913ADFCFE7B5F962BDA94F445A4F65360B7E94650926141B8D631FA",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\clients\\page.tsx"
+  },
+  {
+    "sha256": "CAB4538754D8D469BAFAAFC2A7C8247E49D6116AC023EA19EC08C1AF6F948F56",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\clients\\new\\page.tsx"
+  },
+  {
+    "sha256": "54EDBE0021588817A2098414D435449440D32289E38FD3F06ABC08DB29F24C0E",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\clients\\[clientId]\\page.tsx"
+  },
+  {
+    "sha256": "B618D2EABBEFF60CB14F0A1F221583B6ABE69CD877C834FA7BFAE59670BEBA09",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\expenses\\page.tsx"
+  },
+  {
+    "sha256": "7C1A0221E178C0E6CBF2EEE454DB0CA2EB15F98268028523C7BE6604F6E42785",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\login\\page.tsx"
+  },
+  {
+    "sha256": "ECD339B86B26F831B03D54C7775620C8FA2FB7983D63CA71C02B3A328C2F9729",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\messages\\page.tsx"
+  },
+  {
+    "sha256": "C10DECE08A19B802E8712C9CF8DA68EB75BB02058EF771FFB2D5B58FB0E216CA",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\mi-cuenta\\page.tsx"
+  },
+  {
+    "sha256": "239A02ECD9DF5C989860CE90C7B0319D4EB4856461E674C411EEF3313095E587",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\monitor\\page.tsx"
+  },
+  {
+    "sha256": "0EDB883DAA8FED5AA08FE2DA082A898E4973AD00516E265EA273F16B898C56AC",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\onboarding\\free\\free-wizard-client.tsx"
+  },
+  {
+    "sha256": "2836782031060462B09EC13D7A158BCE09BF3385F15C8591C91708839E4CEC22",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\onboarding\\free\\layout.tsx"
+  },
+  {
+    "sha256": "249C806451A8608C379F15ABD0831CF840F8842A25E693422FDAD1B9C89094C5",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\onboarding\\free\\page.tsx"
+  },
+  {
+    "sha256": "C4E5AE9F64DFDA747F3B150C76B1357CC7B701B3E26845A12132ABDEA48544F8",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\onboarding\\info\\layout.tsx"
+  },
+  {
+    "sha256": "83289C96A0DD21F233EE85BCB18F2320D286516D9C95B165900DFE5F0D783ED8",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\onboarding\\info\\page.tsx"
+  },
+  {
+    "sha256": "5A5B79D299875117341FC909DF60EA60654D969A9741599254A69688DA9C10A8",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\onboarding\\info\\paid-wizard-client.tsx"
+  },
+  {
+    "sha256": "0B74CFDEB082D51D7CF596676360B6E271105F8348B282FFE495E25F6210478F",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\onboarding\\pago\\layout.tsx"
+  },
+  {
+    "sha256": "A26088417069645AB6C275EB020F37ACABDCC2E761C33452227E03EAD36DD024",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\onboarding\\pago\\onboarding-pago-client.tsx"
+  },
+  {
+    "sha256": "6CE200E2FC2A032C40E312E340249E47C6DD122B513408AD5F0AE186CAE29C9D",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\onboarding\\pago\\page.tsx"
+  },
+  {
+    "sha256": "E6A408123C2FAB8C3BD127A59C1CC84562892DC685D6DE81AAD63C7B71181F40",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\onboarding\\pago\\error\\page.tsx"
+  },
+  {
+    "sha256": "063C81F2A46E56FC01049AB5E5956915B8245AB3512A1ABB060594E9084158D7",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\onboarding\\pago\\expired\\page.tsx"
+  },
+  {
+    "sha256": "44DEABC9AA532CE3571FDC199BD5639F9EA5AFF2296665FF14CC34B33C60C0B6",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\onboarding\\pago\\success\\page.tsx"
+  },
+  {
+    "sha256": "9D6A2B72BC68FD5B749504144DEA425CFA0986572A2E3DD3AD21224482208D6E",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\onboarding\\preview\\page.tsx"
+  },
+  {
+    "sha256": "7E9C914ED23040E268210F1C087D4F92DBC265982F53C3DA7EFFCE2864E86258",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\onboarding\\status\\[clientId]\\page.tsx"
+  },
+  {
+    "sha256": "DAD8482E4862DE8177F7BFC4BCD33F86B2CF41E1B3C6C8F5AA007325E0881DED",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\pago\\layout.tsx"
+  },
+  {
+    "sha256": "8576121AB16E1ED5914EB9D6743344F1C99EDA342EB3527A9562340EE1F59E53",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\pago\\error\\page.tsx"
+  },
+  {
+    "sha256": "6073589FF3E1E9DA5D50B71A7506B0FE4CA0140EA4808FFD135A7A89A68B7794",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\pago\\success\\page.tsx"
+  },
+  {
+    "sha256": "916290CE6DBC6C9C4C359C176C73C96636711D0D94D06D1A5EFA59DDA5AB20FB",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\pago\\[clientId]\\page.tsx"
+  },
+  {
+    "sha256": "364D58A4A6D70E62215082FCA1CC3B923D4E8892EFC367FDDFF8632A17110FB2",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\pago\\[clientId]\\pago-client.tsx"
+  },
+  {
+    "sha256": "E59A838F3BCBBED4F789948D7CB92EA836D2B63851E909415989EC7F1356739F",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\payments\\page.tsx"
+  },
+  {
+    "sha256": "B00E31A30EB45604B7B0F8E1713BB6A87BD58D104AE102600D3B6549D44D9C3D",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\privacy\\page.tsx"
+  },
+  {
+    "sha256": "855F57CE7D79C283C4F62834EE7342030572EB01385770204C2FF4D3457A9AE2",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\sales\\page.tsx"
+  },
+  {
+    "sha256": "9B3D955176E9D4689E4742DA88A5223259178AEEA64D963F33D7DDCD34559F7F",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\seguimiento\\page.tsx"
+  },
+  {
+    "sha256": "832F98E300E38316FCBFAF8D022FFFFE325D9323F93681A57F1EBDAE31E84749",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\terms\\page.tsx"
+  },
+  {
+    "sha256": "8C0A1BCCBEDDD0C4BB18B5448E09ACA26B74D8AC357ABBDB5091A9868D7AA59E",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\app-shell.tsx"
+  },
+  {
+    "sha256": "145B04DA031EF7E12BAC28726E6CD436C64D9CA5CD7D86A36AE5AEAF043C32CD",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\booking-tier-panel.tsx"
+  },
+  {
+    "sha256": "700AF7578689122046C8B2B94E567488D43C77773A58733F5A710BEDEEFC8BD1",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\brand-package-import.tsx"
+  },
+  {
+    "sha256": "554A215376A026148100442DA459A2B4CF3B57AB7A3167ECC1DEED1B71A27C57",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\client-config-tab.tsx"
+  },
+  {
+    "sha256": "EA530CEC80601A871D6BB5A1B814CA20E2CAF20A371B5DD863A9DFE8D4476EC2",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\client-content-tab.tsx"
+  },
+  {
+    "sha256": "20A43BB4C85B589E5D478962795BA754EB88C80F236EC765F0F7E98F256303E2",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\client-language-banner.tsx"
+  },
+  {
+    "sha256": "C2920C35AC94E7F35DC937CA5948C8880B9AC0D63D72A41042F9A84B091147E5",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\client-leads-tab.tsx"
+  },
+  {
+    "sha256": "6E15D4DA236E597D650020BAB464E45E2F9FCF05AF21E1025574501A05529B78",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\client-site-preview.tsx"
+  },
+  {
+    "sha256": "A2129219243C7BD5217108EA7DB3676E9A337F75EBD674C67B012A20B23C9111",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\config-history-panel.tsx"
+  },
+  {
+    "sha256": "D17CCDB9F6D06397D32108FA6AA85ACEE2336542EE1D2EB787D2EDCE5C3E9E87",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\crm-import-modal.tsx"
+  },
+  {
+    "sha256": "B093955CC8A81684B71DBF05ABE49FFEC9883410E39ABFB8EDBFC5123B565C5B",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\empty-state.tsx"
+  },
+  {
+    "sha256": "9B929025E6810C37098D752BCD4A981B07830B64EA58DAFA5BEC8040D8D39E20",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\hub-status-history-panel.tsx"
+  },
+  {
+    "sha256": "058CFE757C76F70B916876878FB4055BD8209B7318929F578AC74664A9EE5D26",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\image-upload-field.tsx"
+  },
+  {
+    "sha256": "7364A68A64A9D1891D076E2E99419FFE85595C7DA6999F5CF0DDB20076F2F133",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\language-mismatch-warning.tsx"
+  },
+  {
+    "sha256": "846FB97BE1E289B122780FCFB861754058F2AF552F73FC254AA19B00BB750268",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\loading.tsx"
+  },
+  {
+    "sha256": "8536459A86CD7E7098AA2B3F6DD74DD6FBB374676A615F519C40A6F3CF7EF131",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\logo-upload-field.tsx"
+  },
+  {
+    "sha256": "1D3A57C2146E5223D290122B7AF2861C3147340924423D9B413395A30447EB49",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\messages-panel.tsx"
+  },
+  {
+    "sha256": "9B28E4D2BAC91F8F8BE9052C9C3781AB5F2BC04E8606E8B04039FA385667320B",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\payment-badges.tsx"
+  },
+  {
+    "sha256": "A58AC0BAF6D264227A02AB87F447A08F48B7B3F854FA2EAFE75E40CAC0FE0A88",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\pending-review-banner.tsx"
+  },
+  {
+    "sha256": "E9BB99110130235986F82F78324649D60B61A63C8E64468F6CD183A797C6ED8C",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\prospect-timeline.tsx"
+  },
+  {
+    "sha256": "7C674F0DD302E6B67B6DB2599C4B7289454625565902D4BAE7806C7E83BD2AAD",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\providers.tsx"
+  },
+  {
+    "sha256": "811E4E5EF783EDA5BD18893EA5E5BAC08B434B90222E8FA17CE186589DB7C2EE",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\save-diff-modal.tsx"
+  },
+  {
+    "sha256": "DB10879BB0BF20D6F1894C7D17D74050C1B7575A3631BAAC01F5049035502224",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\sidebar.tsx"
+  },
+  {
+    "sha256": "1C07D61D9A99EE85C3B4F645955E6DFCE3405C103ECF1F5DD0E3A3D2856B1261",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\splash-variant-preview.tsx"
+  },
+  {
+    "sha256": "281974B4DC5E8B2F1C0FBAFE43970233700BB556BD0AC139F133219F582E18F0",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\stat-card.tsx"
+  },
+  {
+    "sha256": "A48B135C6E1B2679C728E288D54E8144B58D8D572D240E629E3539C77A52EE11",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\status-badge.tsx"
+  },
+  {
+    "sha256": "835ACBB8091C4721E4A34A7D7901F7CCF38A6973AAFD3B75D3D4F02735039F52",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\tier-badge.tsx"
+  },
+  {
+    "sha256": "B7F2800CE84FF0CF18C5C94F47B7BE09FB0B606FD2E7CF38E7ADA4706CA836B5",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\voice-config-tab.tsx"
+  },
+  {
+    "sha256": "DC15B288DC65E618556F7F985A4C9D5783A596F1E9FCC38B497400261000FABA",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\whatsapp-config-tab.tsx"
+  },
+  {
+    "sha256": "F63619ED4874D8DE1FDA90DD9A8FBA58359AFE711E767B036E8E1240EDFD6A8F",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\whatsapp-templates-section.tsx"
+  },
+  {
+    "sha256": "5F612351FAF49BBDD4CB28BDE3672453305193960DCEDBC647A8D1F12519D936",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\config-editors\\ambience-editor.tsx"
+  },
+  {
+    "sha256": "A4932D146157732E76322D371D1923A5A6ED684D3F5E1FC4030759A66B6DE4A4",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\config-editors\\benefits-editor.tsx"
+  },
+  {
+    "sha256": "83DDB7B6132DA7B042811E3BBBF384C7697B61817E1A2CDF4ACEBB988FF73406",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\config-editors\\composition-layers-editor.tsx"
+  },
+  {
+    "sha256": "3F744CA3123B883871A1ED774126D9EED1E39BF0B79C51F36386514078D12F9E",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\config-editors\\global-style-editor.tsx"
+  },
+  {
+    "sha256": "836CBEDBF3F8F2E94A7FF05A2C1705E94FFD461D4891F1A5EF6E33CE3881EAA5",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\config-editors\\hero-objects-editor.tsx"
+  },
+  {
+    "sha256": "8DB96CAA4C077DF2D86011A61EAA41BAEF071397C133B0D0C4F96C3A6F242738",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\config-editors\\hero-slot-picker.tsx"
+  },
+  {
+    "sha256": "DC6D8A21877A518F36727F96B5C883A9E1BD4AF006D98C5CE001B763D5288230",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\config-editors\\layout-variants-editor.tsx"
+  },
+  {
+    "sha256": "346D8C14ED5EE02F496924D6BC51190F7643BEBA09A683FE1D7D72774B9AC77E",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\config-editors\\menu-editor.tsx"
+  },
+  {
+    "sha256": "394496BC0E4AEC32DC399DF8258C56079B8FD3E693C956E17D9E660C4565E7A5",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\config-editors\\numbered-steps-editor.tsx"
+  },
+  {
+    "sha256": "815A9F3C7B54437924D8A31D8E1BAFF67C7D4C9E96800312413421837E3EB512",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\config-editors\\payment-provider-editor.tsx"
+  },
+  {
+    "sha256": "67F6A354462FECE4A16CA471D9B5D9E64E3FD11AFE79D0F864BF39C06C315F32",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\config-editors\\portfolio-editor.tsx"
+  },
+  {
+    "sha256": "3D3B71560C42E2F1046A6F349F5A123B2D9544D0596929952349063771CCA8EA",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\config-editors\\reorder-controls.tsx"
+  },
+  {
+    "sha256": "CF73957A945EC15B921F9E8B9893CCBA965F92A168E70445FEDA17C3236EB2D1",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\config-editors\\schedule-editor.tsx"
+  },
+  {
+    "sha256": "7EEFFCBA1A442F3DDB4ED23585F9CF1412116881972B6F7126F68ED09C0EDBBE",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\config-editors\\section-variant-selector.tsx"
+  },
+  {
+    "sha256": "01FE9CBE0A2777D8A0067CFBFCF198C0446E20DE4321018A4312D28D39D150AB",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\config-editors\\services-editor.tsx"
+  },
+  {
+    "sha256": "C5111D747AE1BAE8E2616650F15047D0EADD855CF3848A51E4EABA6F60B9DBE1",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\config-editors\\staff-editor.tsx"
+  },
+  {
+    "sha256": "9C008A301DFEA4778F9AE74327C6794769504C6B0828C24E10DB37F179320362",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\config-editors\\testimonials-editor.tsx"
+  },
+  {
+    "sha256": "21E1E7C60BCE310B46B8EE4B6615D3E189074021FCA8E7ABB7D2DB9069C024D0",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\config-editors\\transparent-png-uploader.tsx"
+  },
+  {
+    "sha256": "37A0A9E6B667BBA75AF4E5F1B2A5E6BB1190E9AC9DB3CA9ADACA130B449CFBBB",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\config-editors\\variant-specific-configs.tsx"
+  },
+  {
+    "sha256": "ABFC6E0ED8FCEB0F89B238E7CE1A44B0010BE3DACD88D2203BCD56069B6727BE",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\config-editors\\variant-thumbnails.tsx"
+  },
+  {
+    "sha256": "3C4329ECEE6469794CA3831658CA26A5219B247122FB51F8AD6F0F15BE0956A1",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\agent-section.tsx"
+  },
+  {
+    "sha256": "2A5BAF9489CF34BB838D3F768893458DDEE79E08CCFB1BFD1B51CC403FDB1670",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\animated-stepper.tsx"
+  },
+  {
+    "sha256": "BE83287DE86BC1FA3D594B359E2E3DA76A6EA3389E7D0405983E4861ADEE9C03",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\atelier-page.tsx"
+  },
+  {
+    "sha256": "A82408B3145399E5F266E62EE8FC655817A46F5B433873A3CDE808E530150C59",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\auth-modal.tsx"
+  },
+  {
+    "sha256": "428024B36CF5928CB82296BCDA76245ADC2CC7977CDCDBEB35A202CC037812C3",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\auto-rotating-tabs.tsx"
+  },
+  {
+    "sha256": "DEA626B27DBD2F2212A6948916A2635975602B36E5A670017157A1E3F0C7DE8E",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\crm-section.tsx"
+  },
+  {
+    "sha256": "35F3D9FA6A2986FA3174E58559BDA071AEAF10EA1EB3FC7F17528DBCD2CD4732",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\evergreen.tsx"
+  },
+  {
+    "sha256": "4E9119ADDBD06343E539C91BFD5685267D048AFB2EC71BA9356E100E42B1B136",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\everything.tsx"
+  },
+  {
+    "sha256": "11E157D37B2B8238CE1793B1DE0A08A80AA7730B08F5969047144D68FC8B3150",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\faq.tsx"
+  },
+  {
+    "sha256": "BD9EBF4D7D3F374D44DCE67FB400805C818833556712FDAE5C9DC762C6B16E66",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\final-cta.tsx"
+  },
+  {
+    "sha256": "55AB46D2DE0CCC0033AD6AFB8C3A84533B021D56A32D3E99455C612DB5B105F7",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\footer.tsx"
+  },
+  {
+    "sha256": "B9FE962A16B6C372E728BE8B80E29D1F27C643C804C90C462BB935FC90EED118",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\founder.tsx"
+  },
+  {
+    "sha256": "976EA2A549108E3A57900F8E658AB80968A8673494A7E0D4E67F89A54708EFD0",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\header.tsx"
+  },
+  {
+    "sha256": "44B692F1FA41ECF8FD348B8DA4ED0862A9E75467F4C76DA70D873E754F7AF992",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\hero.tsx"
+  },
+  {
+    "sha256": "2175D4E48222FE856F2E4D10BD2073E01908F52F4AD38B2412F7A6B18C974A34",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\lang-switch.tsx"
+  },
+  {
+    "sha256": "0DA60BE51F270C7139EE44F17AFDC1B774AEDAC487C87B3556BC91FE66270E78",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\logo-mark.tsx"
+  },
+  {
+    "sha256": "AE5CEE890A1D2A15E9BFBF09D5FA2105D35096C6C27C5E6D6750FFA002FB083B",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\manifesto.tsx"
+  },
+  {
+    "sha256": "534372BC44DB98864336E465236E7561365B17817B669C4958972B5ADF45A405",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\mascot.tsx"
+  },
+  {
+    "sha256": "B4BB07A85106CCFDBE1BE9628B1A30881F9F7E059EA69CCABD7AD9F7283C32CD",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\pricing.tsx"
+  },
+  {
+    "sha256": "CEC1CA04FEE8DDAE8860CEA784C317E1FFBFF964789FABAC3CEAA50BAF6AC79F",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\process.tsx"
+  },
+  {
+    "sha256": "1F41D2A1A85F691F2B0B870F97D67AC8D5695B5C6E7AB7332D908EB4FB694621",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\section-cta.tsx"
+  },
+  {
+    "sha256": "21ED1E707866FB729AD1C5C2A7D2A4DDE29289B5CDE9A49FA0F86A5EB301EDED",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\showcase.tsx"
+  },
+  {
+    "sha256": "A8C0A0B06C4627FFB86FD00A74BBA7E3D09AAA0B9935BEC232CE43DC70D4218A",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\tech-stack.tsx"
+  },
+  {
+    "sha256": "DA6E1518D847EFACB94CC8FE8AC6D3EA5D49DC45CF00454D7ABC9D537F6865BC",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\whatsapp-fab.tsx"
+  },
+  {
+    "sha256": "39CCB4363AB09C690FD484F604E000CB8CE790DC562582D216D358CC6C6C876A",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\changes-requested-banner.tsx"
+  },
+  {
+    "sha256": "B77C14742465383DE62492657F76B3C9F35083C1C42F2505E65F26A35FF4694F",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\field-error.tsx"
+  },
+  {
+    "sha256": "05043D1F93F466E996D1B88FBC71B21B9AF4085B309B6DD51B27AEED84AAC505",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\wizard-hint.tsx"
+  },
+  {
+    "sha256": "BB3DA250D2E8C8E76BEF0CA84E2811343C1A45B64994474EE100BB497209E7C3",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\wizard-nav.tsx"
+  },
+  {
+    "sha256": "F2ABEE89FFFAA01D4240F9AA77436492CF31DEA2FB120C2B6FB8FB79A1E1D889",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\wizard-progress.tsx"
+  },
+  {
+    "sha256": "E84A6F20752B32A11DAA542382D8AAC2F99806B821D5DF239234C37FD26AEE30",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\wizard-ref-image.tsx"
+  },
+  {
+    "sha256": "6E53149B85D50B7746F560D913E3A3917EFCB24ACC81134D7B103FDF4DAB2FC4",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\wizard-review.tsx"
+  },
+  {
+    "sha256": "9E1EA2EB55F6A207ACCD2FE3A328B2E094F40DC6C3DE5E3BFF426AF03ED60B8A",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\wizard-shell.tsx"
+  },
+  {
+    "sha256": "4BD4A649886AC92EF87E31F6BEC8A8FD7C6E11EC5BEAED4DBC5011A5B97DB182",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\wizard-step.tsx"
+  },
+  {
+    "sha256": "59FCE7A4EDECB5AD3A9B367F330AEE518E8378D49CDCF28562095396146D6FD3",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\wizard-transition.tsx"
+  },
+  {
+    "sha256": "CAA46E1E50457E2CDA595A1CA1587B3DA4519F03A4A1A630EEE2791C8A0543A2",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\steps\\step-benefits.tsx"
+  },
+  {
+    "sha256": "74D2BC80C78F4F834965BF16D62C906ABE4FAEC6E6880394623EC3C3160B0232",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\steps\\step-brand.tsx"
+  },
+  {
+    "sha256": "8065DFBB4242E8D69B9E6EF6188058A942AC8A5E7681911D7D544CE61D0B3A5A",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\steps\\step-business.tsx"
+  },
+  {
+    "sha256": "99AFEC957DDA004191F88DE4F2D6B950B3D69625F8C718F8AE889DBBBFC56835",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\steps\\step-contact.tsx"
+  },
+  {
+    "sha256": "5A8D0D59DE93ECC6BF299F636B322D70529D277D8495461E8E3574EB50114F0B",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\steps\\step-demo-contact.tsx"
+  },
+  {
+    "sha256": "7305BBC76B757C6DB641B2029689BA733D5FC2D217E34D1E2B07F126BD4FF7B3",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\steps\\step-faq.tsx"
+  },
+  {
+    "sha256": "10746267484AC7F43CA72916165E05399BA785C367EF6DCE6E70CB6462D6FF23",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\steps\\step-gallery.tsx"
+  },
+  {
+    "sha256": "F7A1395CE2EF7B0285E071ACC599ABC9D53EF2357F446FB63DE2D9C45E0B517F",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\steps\\step-hours.tsx"
+  },
+  {
+    "sha256": "383EAFE19A2F28E67E1A25ACA3E8868740676D9986A16B5BC99EB958567317B9",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\steps\\step-logo-upload.tsx"
+  },
+  {
+    "sha256": "B9B1A332A872C5DF34B062048495C2214AA52B0E411787733D6801C6D429CEAE",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\steps\\step-mode.tsx"
+  },
+  {
+    "sha256": "31EF755FC648DA67CF35F91FC70D84E37886E730B742EC273BE078BCFE8B264F",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\steps\\step-niche.tsx"
+  },
+  {
+    "sha256": "4A6189CEEB3174154D93A6E7A47DFA80265A8523BDB9BA5E333B6B6D895D88CF",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\steps\\step-owner.tsx"
+  },
+  {
+    "sha256": "55AC00DC75DC19C52F052104AAC8815ED512C54F7F944A1FCE065BE01F75F0C9",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\steps\\step-services.tsx"
+  },
+  {
+    "sha256": "B15C279804DB62BDA5FE475DB0633742C7C45B2AA6A87DEE64FC5FE80D30B6CD",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\steps\\step-style.tsx"
+  },
+  {
+    "sha256": "01BE44940BCA2FC4AEF24E20BBA23F5C3A840A7D9BEBE5373E57EA53E307C5A6",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\steps\\step-testimonials.tsx"
+  },
+  {
+    "sha256": "AC5FFB950B96791507887BE7F383BC3125E103A178E8A6DF3872FDBBFD2C2084",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\hooks\\use-language-mismatch.ts"
+  },
+  {
+    "sha256": "66D1D55F353CDDCCDADDF00A466949F7784D766EC81561CC2FCC9220B813082C",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\hooks\\use-scroll-reveal.ts"
+  },
+  {
+    "sha256": "3DA54BAE412C3420D6333436732188D5A22FD90942FADA30E522D9FA374688ED",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\api-cost-fetchers.ts"
+  },
+  {
+    "sha256": "58875E19D795096006BF2B5CEFA6A4C865C69E44D941ECC9833B0F3A99594D41",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\auth-types.ts"
+  },
+  {
+    "sha256": "FD4C708E1E2F9C6D78D591DE5FEFBD4F7D1F7C83272D148B1389FFA663D6EF1B",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\auth.ts"
+  },
+  {
+    "sha256": "C764C2B8CC8A58AA99B21470B56CB2BE2031BC6856D9CAE815B2F6298DEA6837",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\brand-package-parser.ts"
+  },
+  {
+    "sha256": "A30FEAB7CA5002C7C808588C67D597E09ED8619A80D2FD17F3D442CB507835B4",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\branding-resolver.ts"
+  },
+  {
+    "sha256": "97D234A71B9AAFBFECF836E21908920D4EBAEDD39D5D577169A16483B779DF5D",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\builder-storage.ts"
+  },
+  {
+    "sha256": "8CB9FAC2CEACDB6F3E4CDEEDE351BE732FA8838CB3B3CF80EACB3DB0647FC111",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\cardcom-credit-paths.test.ts"
+  },
+  {
+    "sha256": "671A0A085796B0D4C585D6217535C0181EF0D8BDDE70935EAC4A839CD86AFB93",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\cardcom-promote.ts"
+  },
+  {
+    "sha256": "3650767983CE2D951A79897B2D8E4C8D12DE76C26A3609EE51BAB7CE3ADA25EE",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\cardcom.test.ts"
+  },
+  {
+    "sha256": "C4C1EF6C99F9877909C6EA8A3600B4D8086D2D19B0F766352FB23251B7C60AE8",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\cardcom.ts"
+  },
+  {
+    "sha256": "E7B8B87C6EC0BE8781DC63ACC15EA544B80FF9370E3FE55F2C60E2DFF775D27A",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\classify.ts"
+  },
+  {
+    "sha256": "DEA9BCED7CBD0DB1443C93F7A8C772DF4A58D20BFBD6006E579E590A30AAD9FB",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\client-language-context.tsx"
+  },
+  {
+    "sha256": "5F88040B9FD3C0689BDC8E046A0C867D307217DFF236E86417004F06408803A1",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\client-language.ts"
+  },
+  {
+    "sha256": "18569B89FFCD268061A754446C26F52BD1953AA6D781416528DE3EFDC1F6BA3C",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\config-diff.ts"
+  },
+  {
+    "sha256": "F2FE6E18113148973975B4D392DEE35246C34C6B3D2E8250EC893DC271B04F11",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\config-validator.ts"
+  },
+  {
+    "sha256": "647F679154128C971315201FCE095351A217BBC959F537D867FD4F39940AEB4B",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\contracts.ts"
+  },
+  {
+    "sha256": "0B366CC6211129CEA0AA981F5AD5345EE0AFAC8617C0E6964CB4C1338DBDA66A",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\dashboard-placeholders.ts"
+  },
+  {
+    "sha256": "2C3DBD8D10A2E7F7827CADC8AFF5C5C4EDB19627A4C7A322ADB1F5A9EFAA3543",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\deploy.ts"
+  },
+  {
+    "sha256": "A2F720A5733340A6DB40802CBBA21C2146E67096CF6A2DA429544D5EBE912C09",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\detect-language.test.ts"
+  },
+  {
+    "sha256": "99F410847539AE40C8FBD4F787D155D42DDA4F3878BACA202929D4A4B9D27E70",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\detect-language.ts"
+  },
+  {
+    "sha256": "30060F29935AC8675CCCC32126581F52B7F4B6FD2C4964C71C2916C65B3ACB54",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\email-templates.ts"
+  },
+  {
+    "sha256": "302E4AD5044BC3B814729BCF609943FA6FC945451D0DC582ED047585BF6F640F",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\email.ts"
+  },
+  {
+    "sha256": "6C9101C378D76480AA2ED595A8AEB9070C79F83426C4780BD2476EEFEF413B9E",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\env-check.ts"
+  },
+  {
+    "sha256": "9272E8240C4241D4C28EEC7D40D826A1B6323EE99DCA16259860B4B2283BC7D9",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\firebase-admin.ts"
+  },
+  {
+    "sha256": "8495C4E92888A0FCBC21D62DC2981F9DFA7B3944276EF6F70821D9F1FE4AA2BF",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\firebase-client.ts"
+  },
+  {
+    "sha256": "74983A74F6662C6852BD679058096CA9202254F2FEFF43941317E1FD3068CCAA",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\image-compress.ts"
+  },
+  {
+    "sha256": "EE63D321EFE015B1286B40FE4200D8A24B6C4AF7079039DADEC718E50FA6E33D",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\instagram-analyzer.ts"
+  },
+  {
+    "sha256": "092C8698A57269E590B09C8872257FADC4FDC0F37103BFC468C57299F5043718",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\logo-generator.ts"
+  },
+  {
+    "sha256": "24225AF0567EF2ADD37470DD1E33E7EE240B728EDBD02E7BEDC219F07FCE812F",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\niche-defaults.ts"
+  },
+  {
+    "sha256": "2623BE31693DE4D9320DA3482D1A027338D64381985F4F554A983DB6B09056CE",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\onboarding-token.ts"
+  },
+  {
+    "sha256": "9270E5ADD0A91181214A4CBADDBB809A62AE236E1749A0A7E744CFE50810B5F1",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\png-validation.ts"
+  },
+  {
+    "sha256": "7FF49D7312D29DCE149C7FD18F879CAACAC2BC6A9461D6DA625E2CFCB2FC7624",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\postgres.ts"
+  },
+  {
+    "sha256": "78710CACD963E88A4CBA96AF1A76E21331144113E8A7E1FFB9B6A11F4F1C9DF0",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\pricing.test.ts"
+  },
+  {
+    "sha256": "B587BD75057108ECEE0C77727FA6588803DBECBE13279C7EC2FDA0F72AF4B6A7",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\pricing.ts"
+  },
+  {
+    "sha256": "6DF654690F9BBD0464A6B0777CC62694A5A72A7D298F1C49BE704E54AEF5B366",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\rate-limit.test.ts"
+  },
+  {
+    "sha256": "9FDB53599F9FCA96B714920DB393CED1443434D1B67117CF7D3EF422FC17DAB7",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\rate-limit.ts"
+  },
+  {
+    "sha256": "F737F9DA3E28D9AB856D1A7BC8124E11BB23C1563172BD3F6941D17330AA567C",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\safe-compare.test.ts"
+  },
+  {
+    "sha256": "89708671160D48830B32B4326F89E6CFF508E32E3F3821B10A1CAA5B68E8FC0C",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\safe-compare.ts"
+  },
+  {
+    "sha256": "9FC9660DD726F3B6592A76BA4E4B4304F0DA8BF093F4612DF11841E65FDC9483",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\schemas.ts"
+  },
+  {
+    "sha256": "526DCB1E19767C231EEB242831A77734100BAC462C3127029D6C266D1C6B79BA",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\security.test.ts"
+  },
+  {
+    "sha256": "39716F4E1C799B5666DF886B1DEF3C3CD7C34F3F9940553F0B9FA99E96D59008",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\security.ts"
+  },
+  {
+    "sha256": "949C543AC624210733E95EF02DA0BD52D8C6426C8D37C10AFD68F712BC98C6C7",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\sites.ts"
+  },
+  {
+    "sha256": "7C8665BE4FCC16A9C294DF8BE5BDCC367B27C610E7FF27ECBF822249C0F52A09",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\user-auth-context.tsx"
+  },
+  {
+    "sha256": "29E5EF4F468DA8291E6D1B8DD75ED4D3AA5159F05F3569ED5B9D7C9C6FE2415E",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\user-auth.ts"
+  },
+  {
+    "sha256": "E3113483AE31859BC27F8867AC41C22159697C8E8ACD1B537A42D2C34C1A33FE",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\with-agent-auth.ts"
+  },
+  {
+    "sha256": "EB9CE4EB227B1CC1A808EF867FCEA226712D1251EE65B362B1B21DC8520C352B",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\client-config\\services.test.ts"
+  },
+  {
+    "sha256": "DE26EF727688706165246963748BE7AE2C310427651C4A281C0E71267108286A",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\client-config\\services.ts"
+  },
+  {
+    "sha256": "EDADDA55539643BBA43114FBDDD23A465F4B6B5F8B816D901874B3317633075A",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\i18n\\context.tsx"
+  },
+  {
+    "sha256": "4E7D24F0F7302AF1693D1CCC4B8C8132608C3FB2B9232A7BA8FD9C5B2CD73B7C",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\i18n\\index.ts"
+  },
+  {
+    "sha256": "3C4AA200811EDD3B5227C71A0100984C2B01F0CD33CF15E6272B847568561989",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\i18n\\types.ts"
+  },
+  {
+    "sha256": "48105D6FA5D6D634049E0DE0AF37BF083ABA1D40B900FE065EF8BE526A8C6BB4",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\i18n\\locales\\ar.ts"
+  },
+  {
+    "sha256": "A7D139B7F169B868F9F5B03B00EB9D219BA5AB50DECC2605011FDFE159BA553A",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\i18n\\locales\\en.ts"
+  },
+  {
+    "sha256": "D2BC29A2E8B87C41639EC524FABCE5A3109B5667C28F2CA0B82B3C25BB8D7E5E",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\i18n\\locales\\es.ts"
+  },
+  {
+    "sha256": "9597DE066DC1C0692CCDD36D7514D22BFF26E5B9DFB05DED27FD565E7B40C38A",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\i18n\\locales\\he.ts"
+  },
+  {
+    "sha256": "6BAA40DA98140CBB72994AC0F97675D493B032FEAD93896BBA0157C63B6ACD56",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\i18n\\locales\\ru.ts"
+  },
+  {
+    "sha256": "AFF71A2CEE4A56A13D394F364838E79B3AD7ABB068116E64C749F9CA59616474",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\repos\\health.ts"
+  },
+  {
+    "sha256": "91DD72D01FDDF2A1CF3B10AA4026EE4D850FB3A3935C5B28CE64F8FF9CB203AE",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\repos\\payments.ts"
+  },
+  {
+    "sha256": "55D590AA6604772DD9C79B90694EBBDA3856346F46E6B8DFCDCE93E443669E53",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\wizard\\config-to-wizard.ts"
+  },
+  {
+    "sha256": "4040E174941BB7DF1B830DADFC75677316D5F86E8A25AB99EA76D473EC7F824D",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\wizard\\upload-helpers.ts"
+  },
+  {
+    "sha256": "FACDA715606D469EC7BA11F286915C01D40B5BFB9F66DE2A2FA595BB18D6313B",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\wizard\\use-wizard.ts"
+  },
+  {
+    "sha256": "89129E3866AF5B2D96154A1EF281C81C38B5D603472E0AAE217BD1593089701E",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\wizard\\wizard-storage.ts"
+  },
+  {
+    "sha256": "9F9E12DD5DA55CFF6E26667A4978FE2E70BA511DF17AF1A3402AEA0297EDAD23",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\wizard\\wizard-types.ts"
+  },
+  {
+    "sha256": "1DD408DE4F12F226F9CC5B640AC9B491C13EBC660F6D67637D44CD4610228F35",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\wizard\\wizard-validation.ts"
+  },
+  {
+    "sha256": "505F793BA86C6C0B02901994C010E09520BF57F38F09D55215F1400B71A17D5A",
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\types\\index.ts"
+  }
+]

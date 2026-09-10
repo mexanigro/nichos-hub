@@ -1,0 +1,6 @@
+{
+  "contract": "9D423F4EA44BB847C4BDD942F16BCB9F8F5E82682F266E0C234D580EABD03F5F",
+  "decision": "usuario explícita",
+  "review": "contador resolve añadido antes de freeze, sin otros blockers",
+  "state": "P0 RED válido; oráculos congelados"
+}

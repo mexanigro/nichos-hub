@@ -1,0 +1,86 @@
+[
+  {
+    "rel": "informe/N03/cierre-sesion-v1/RETOMA.md",
+    "dest": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\RETOMA.md",
+    "backup": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\aceptacion-local\\preimagenes\\canonico\\informe\\N03\\cierre-sesion-v1\\RETOMA.md",
+    "before": "fe9218c5983dab66d9dc55de29adc629a70612edb322202be4c9d5017bfada40",
+    "after": "36fe170346e92263e86235e6337eacd9bbc5c154499c29e39694a5e2c2e488e9"
+  },
+  {
+    "rel": "informe/N03/cierre-sesion-v1/RETOMA.md",
+    "dest": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\cierre-sesion-v1\\RETOMA.md",
+    "backup": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\aceptacion-local\\preimagenes\\archivo\\informe\\N03\\cierre-sesion-v1\\RETOMA.md",
+    "before": "fe9218c5983dab66d9dc55de29adc629a70612edb322202be4c9d5017bfada40",
+    "after": "36fe170346e92263e86235e6337eacd9bbc5c154499c29e39694a5e2c2e488e9"
+  },
+  {
+    "rel": "informe/N03/reconciliacion-v1/BALANCE.md",
+    "dest": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\BALANCE.md",
+    "backup": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\aceptacion-local\\preimagenes\\canonico\\informe\\N03\\reconciliacion-v1\\BALANCE.md",
+    "before": "5e32a6fae48f2652219f925cd80a447e10961c7618331377d190f033a0b79a92",
+    "after": "16d08681f6f1299803ef5cd43cf91a603c0b9067039f93a25203a043b3cb2a0e"
+  },
+  {
+    "rel": "informe/N03/reconciliacion-v1/BALANCE.md",
+    "dest": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\BALANCE.md",
+    "backup": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\aceptacion-local\\preimagenes\\archivo\\informe\\N03\\reconciliacion-v1\\BALANCE.md",
+    "before": "5e32a6fae48f2652219f925cd80a447e10961c7618331377d190f033a0b79a92",
+    "after": "16d08681f6f1299803ef5cd43cf91a603c0b9067039f93a25203a043b3cb2a0e"
+  },
+  {
+    "rel": "informe/N03/reconciliacion-v1/SIGUIENTE-ACCION.md",
+    "dest": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\SIGUIENTE-ACCION.md",
+    "backup": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\aceptacion-local\\preimagenes\\canonico\\informe\\N03\\reconciliacion-v1\\SIGUIENTE-ACCION.md",
+    "before": "86aa37533b66f8ea5b1a377879f5803cb86ac0199705342fbeae2f28131b4be5",
+    "after": "49685300d16eec64c86cc20c55936aaedf2ab1ab680d6ae0005aa62f17fd5f1b"
+  },
+  {
+    "rel": "informe/N03/reconciliacion-v1/SIGUIENTE-ACCION.md",
+    "dest": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\SIGUIENTE-ACCION.md",
+    "backup": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\aceptacion-local\\preimagenes\\archivo\\informe\\N03\\reconciliacion-v1\\SIGUIENTE-ACCION.md",
+    "before": "86aa37533b66f8ea5b1a377879f5803cb86ac0199705342fbeae2f28131b4be5",
+    "after": "49685300d16eec64c86cc20c55936aaedf2ab1ab680d6ae0005aa62f17fd5f1b"
+  },
+  {
+    "rel": "indice/tareas/N03.md",
+    "dest": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\indice\\tareas\\N03.md",
+    "backup": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\aceptacion-local\\preimagenes\\canonico\\indice\\tareas\\N03.md",
+    "before": "2ef7e4377fe6ad70e3b9a9c5ac5e866eaf202e361830ac8ed96d1c1eec0170d4",
+    "after": "08419ee507858bee80c1168e922ccdad5042f2c1e5d98a070c18cee4019b6a75"
+  },
+  {
+    "rel": "indice/tareas/N03.md",
+    "dest": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\indice\\tareas\\N03.md",
+    "backup": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\aceptacion-local\\preimagenes\\archivo\\indice\\tareas\\N03.md",
+    "before": "2ef7e4377fe6ad70e3b9a9c5ac5e866eaf202e361830ac8ed96d1c1eec0170d4",
+    "after": "08419ee507858bee80c1168e922ccdad5042f2c1e5d98a070c18cee4019b6a75"
+  },
+  {
+    "rel": "indice/README.md",
+    "dest": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\indice\\README.md",
+    "backup": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\aceptacion-local\\preimagenes\\canonico\\indice\\README.md",
+    "before": "101007f404a75aa63b6146189f3b0b3f6c36e4f37d7930699fed49835d72ed88",
+    "after": "f809cec711fd9a9e2813802fbd3f19d9ea39c967a2237fc48313708ce5b71f0e"
+  },
+  {
+    "rel": "indice/README.md",
+    "dest": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\indice\\README.md",
+    "backup": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\aceptacion-local\\preimagenes\\archivo\\indice\\README.md",
+    "before": "101007f404a75aa63b6146189f3b0b3f6c36e4f37d7930699fed49835d72ed88",
+    "after": "f809cec711fd9a9e2813802fbd3f19d9ea39c967a2237fc48313708ce5b71f0e"
+  },
+  {
+    "rel": "indice/CALENDARIO.md",
+    "dest": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\indice\\CALENDARIO.md",
+    "backup": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\aceptacion-local\\preimagenes\\canonico\\indice\\CALENDARIO.md",
+    "before": "3b82987dc701be2ab0485b19f48d11d943a284da9ae4d17253061b49be2e4a4f",
+    "after": "c6b2afebbfd323c1dca28c38d55391de2027386cd32365f78d5657edd1d1f48a"
+  },
+  {
+    "rel": "indice/CALENDARIO.md",
+    "dest": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\indice\\CALENDARIO.md",
+    "backup": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\aceptacion-local\\preimagenes\\archivo\\indice\\CALENDARIO.md",
+    "before": "3b82987dc701be2ab0485b19f48d11d943a284da9ae4d17253061b49be2e4a4f",
+    "after": "c6b2afebbfd323c1dca28c38d55391de2027386cd32365f78d5657edd1d1f48a"
+  }
+]

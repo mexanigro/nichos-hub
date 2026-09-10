@@ -1,0 +1,3638 @@
+{
+  "result": "RED",
+  "cases": 126,
+  "checks": 4387,
+  "failures": [
+    {
+      "id": "barberia/barberia/absent/he/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "barberia/barberia/absent/ru/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "barberia/barberia/absent/ar/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "barberia/barberia/null/he/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "barberia/barberia/null/ru/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "barberia/barberia/null/ar/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "barberia/barberia/empty/en/ids",
+      "actual": [
+        "haircut",
+        "beard-sculpt",
+        "straight-shave",
+        "color-treatment",
+        "full-ritual"
+      ],
+      "expected": []
+    },
+    {
+      "id": "barberia/barberia/empty/en/price",
+      "actual": 123
+    },
+    {
+      "id": "barberia/barberia/empty/he/ids",
+      "actual": [
+        "haircut",
+        "beard-sculpt",
+        "straight-shave",
+        "color-treatment",
+        "full-ritual"
+      ],
+      "expected": []
+    },
+    {
+      "id": "barberia/barberia/empty/he/price",
+      "actual": 45
+    },
+    {
+      "id": "barberia/barberia/empty/ru/ids",
+      "actual": [
+        "haircut",
+        "beard-sculpt",
+        "straight-shave",
+        "color-treatment",
+        "full-ritual"
+      ],
+      "expected": []
+    },
+    {
+      "id": "barberia/barberia/empty/ru/price",
+      "actual": 45
+    },
+    {
+      "id": "barberia/barberia/empty/ar/ids",
+      "actual": [
+        "haircut",
+        "beard-sculpt",
+        "straight-shave",
+        "color-treatment",
+        "full-ritual"
+      ],
+      "expected": []
+    },
+    {
+      "id": "barberia/barberia/empty/ar/price",
+      "actual": 45
+    },
+    {
+      "id": "barberia/barberia/unknown/en/ids",
+      "actual": [
+        "haircut",
+        "beard-sculpt",
+        "straight-shave",
+        "color-treatment",
+        "full-ritual"
+      ],
+      "expected": []
+    },
+    {
+      "id": "barberia/barberia/unknown/en/price",
+      "actual": 123
+    },
+    {
+      "id": "barberia/barberia/unknown/he/ids",
+      "actual": [
+        "haircut",
+        "beard-sculpt",
+        "straight-shave",
+        "color-treatment",
+        "full-ritual"
+      ],
+      "expected": []
+    },
+    {
+      "id": "barberia/barberia/unknown/he/price",
+      "actual": 45
+    },
+    {
+      "id": "barberia/barberia/unknown/ru/ids",
+      "actual": [
+        "haircut",
+        "beard-sculpt",
+        "straight-shave",
+        "color-treatment",
+        "full-ritual"
+      ],
+      "expected": []
+    },
+    {
+      "id": "barberia/barberia/unknown/ru/price",
+      "actual": 45
+    },
+    {
+      "id": "barberia/barberia/unknown/ar/ids",
+      "actual": [
+        "haircut",
+        "beard-sculpt",
+        "straight-shave",
+        "color-treatment",
+        "full-ritual"
+      ],
+      "expected": []
+    },
+    {
+      "id": "barberia/barberia/unknown/ar/price",
+      "actual": 45
+    },
+    {
+      "id": "barberia/barberia/valid/he/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "barberia/barberia/valid/ru/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "barberia/barberia/valid/ar/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "barberia/barberia/mixed/he/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "barberia/barberia/mixed/ru/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "barberia/barberia/mixed/ar/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "barberia/barberia/all/he/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "barberia/barberia/all/ru/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "barberia/barberia/all/ar/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "barberia/undefined/absent/he/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "barberia/undefined/absent/ru/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "barberia/undefined/absent/ar/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "barberia/undefined/null/he/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "barberia/undefined/null/ru/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "barberia/undefined/null/ar/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "barberia/undefined/empty/en/ids",
+      "actual": [
+        "haircut",
+        "beard-sculpt",
+        "straight-shave",
+        "color-treatment",
+        "full-ritual"
+      ],
+      "expected": []
+    },
+    {
+      "id": "barberia/undefined/empty/en/price",
+      "actual": 123
+    },
+    {
+      "id": "barberia/undefined/empty/he/ids",
+      "actual": [
+        "haircut",
+        "beard-sculpt",
+        "straight-shave",
+        "color-treatment",
+        "full-ritual"
+      ],
+      "expected": []
+    },
+    {
+      "id": "barberia/undefined/empty/he/price",
+      "actual": 45
+    },
+    {
+      "id": "barberia/undefined/empty/ru/ids",
+      "actual": [
+        "haircut",
+        "beard-sculpt",
+        "straight-shave",
+        "color-treatment",
+        "full-ritual"
+      ],
+      "expected": []
+    },
+    {
+      "id": "barberia/undefined/empty/ru/price",
+      "actual": 45
+    },
+    {
+      "id": "barberia/undefined/empty/ar/ids",
+      "actual": [
+        "haircut",
+        "beard-sculpt",
+        "straight-shave",
+        "color-treatment",
+        "full-ritual"
+      ],
+      "expected": []
+    },
+    {
+      "id": "barberia/undefined/empty/ar/price",
+      "actual": 45
+    },
+    {
+      "id": "barberia/undefined/unknown/en/ids",
+      "actual": [
+        "haircut",
+        "beard-sculpt",
+        "straight-shave",
+        "color-treatment",
+        "full-ritual"
+      ],
+      "expected": []
+    },
+    {
+      "id": "barberia/undefined/unknown/en/price",
+      "actual": 123
+    },
+    {
+      "id": "barberia/undefined/unknown/he/ids",
+      "actual": [
+        "haircut",
+        "beard-sculpt",
+        "straight-shave",
+        "color-treatment",
+        "full-ritual"
+      ],
+      "expected": []
+    },
+    {
+      "id": "barberia/undefined/unknown/he/price",
+      "actual": 45
+    },
+    {
+      "id": "barberia/undefined/unknown/ru/ids",
+      "actual": [
+        "haircut",
+        "beard-sculpt",
+        "straight-shave",
+        "color-treatment",
+        "full-ritual"
+      ],
+      "expected": []
+    },
+    {
+      "id": "barberia/undefined/unknown/ru/price",
+      "actual": 45
+    },
+    {
+      "id": "barberia/undefined/unknown/ar/ids",
+      "actual": [
+        "haircut",
+        "beard-sculpt",
+        "straight-shave",
+        "color-treatment",
+        "full-ritual"
+      ],
+      "expected": []
+    },
+    {
+      "id": "barberia/undefined/unknown/ar/price",
+      "actual": 45
+    },
+    {
+      "id": "barberia/undefined/valid/he/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "barberia/undefined/valid/ru/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "barberia/undefined/valid/ar/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "barberia/undefined/mixed/he/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "barberia/undefined/mixed/ru/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "barberia/undefined/mixed/ar/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "barberia/undefined/all/he/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "barberia/undefined/all/ru/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "barberia/undefined/all/ar/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "barberia/tattoo/absent/he/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "barberia/tattoo/absent/ru/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "barberia/tattoo/absent/ar/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "barberia/tattoo/null/he/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "barberia/tattoo/null/ru/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "barberia/tattoo/null/ar/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "barberia/tattoo/empty/en/ids",
+      "actual": [
+        "haircut",
+        "beard-sculpt",
+        "straight-shave",
+        "color-treatment",
+        "full-ritual"
+      ],
+      "expected": []
+    },
+    {
+      "id": "barberia/tattoo/empty/en/price",
+      "actual": 123
+    },
+    {
+      "id": "barberia/tattoo/empty/he/ids",
+      "actual": [
+        "haircut",
+        "beard-sculpt",
+        "straight-shave",
+        "color-treatment",
+        "full-ritual"
+      ],
+      "expected": []
+    },
+    {
+      "id": "barberia/tattoo/empty/he/price",
+      "actual": 45
+    },
+    {
+      "id": "barberia/tattoo/empty/ru/ids",
+      "actual": [
+        "haircut",
+        "beard-sculpt",
+        "straight-shave",
+        "color-treatment",
+        "full-ritual"
+      ],
+      "expected": []
+    },
+    {
+      "id": "barberia/tattoo/empty/ru/price",
+      "actual": 45
+    },
+    {
+      "id": "barberia/tattoo/empty/ar/ids",
+      "actual": [
+        "haircut",
+        "beard-sculpt",
+        "straight-shave",
+        "color-treatment",
+        "full-ritual"
+      ],
+      "expected": []
+    },
+    {
+      "id": "barberia/tattoo/empty/ar/price",
+      "actual": 45
+    },
+    {
+      "id": "barberia/tattoo/unknown/en/ids",
+      "actual": [
+        "haircut",
+        "beard-sculpt",
+        "straight-shave",
+        "color-treatment",
+        "full-ritual"
+      ],
+      "expected": []
+    },
+    {
+      "id": "barberia/tattoo/unknown/en/price",
+      "actual": 123
+    },
+    {
+      "id": "barberia/tattoo/unknown/he/ids",
+      "actual": [
+        "haircut",
+        "beard-sculpt",
+        "straight-shave",
+        "color-treatment",
+        "full-ritual"
+      ],
+      "expected": []
+    },
+    {
+      "id": "barberia/tattoo/unknown/he/price",
+      "actual": 45
+    },
+    {
+      "id": "barberia/tattoo/unknown/ru/ids",
+      "actual": [
+        "haircut",
+        "beard-sculpt",
+        "straight-shave",
+        "color-treatment",
+        "full-ritual"
+      ],
+      "expected": []
+    },
+    {
+      "id": "barberia/tattoo/unknown/ru/price",
+      "actual": 45
+    },
+    {
+      "id": "barberia/tattoo/unknown/ar/ids",
+      "actual": [
+        "haircut",
+        "beard-sculpt",
+        "straight-shave",
+        "color-treatment",
+        "full-ritual"
+      ],
+      "expected": []
+    },
+    {
+      "id": "barberia/tattoo/unknown/ar/price",
+      "actual": 45
+    },
+    {
+      "id": "barberia/tattoo/valid/he/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "barberia/tattoo/valid/ru/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "barberia/tattoo/valid/ar/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "barberia/tattoo/mixed/he/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "barberia/tattoo/mixed/ru/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "barberia/tattoo/mixed/ar/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "barberia/tattoo/all/he/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "barberia/tattoo/all/ru/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "barberia/tattoo/all/ar/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "estetica/estetica/absent/he/price",
+      "actual": 1800,
+      "expected": 123
+    },
+    {
+      "id": "estetica/estetica/absent/ru/price",
+      "actual": 450,
+      "expected": 123
+    },
+    {
+      "id": "estetica/estetica/absent/ar/price",
+      "actual": 450,
+      "expected": 123
+    },
+    {
+      "id": "estetica/estetica/null/he/price",
+      "actual": 1800,
+      "expected": 123
+    },
+    {
+      "id": "estetica/estetica/null/ru/price",
+      "actual": 450,
+      "expected": 123
+    },
+    {
+      "id": "estetica/estetica/null/ar/price",
+      "actual": 450,
+      "expected": 123
+    },
+    {
+      "id": "estetica/estetica/empty/en/ids",
+      "actual": [
+        "lip-filler",
+        "cheek-filler",
+        "botox",
+        "facial",
+        "skin-booster"
+      ],
+      "expected": []
+    },
+    {
+      "id": "estetica/estetica/empty/en/price",
+      "actual": 123
+    },
+    {
+      "id": "estetica/estetica/empty/he/ids",
+      "actual": [
+        "lip-filler",
+        "cheek-filler",
+        "botox",
+        "facial",
+        "skin-booster"
+      ],
+      "expected": []
+    },
+    {
+      "id": "estetica/estetica/empty/he/price",
+      "actual": 1800
+    },
+    {
+      "id": "estetica/estetica/empty/ru/ids",
+      "actual": [
+        "lip-filler",
+        "cheek-filler",
+        "botox",
+        "facial",
+        "skin-booster"
+      ],
+      "expected": []
+    },
+    {
+      "id": "estetica/estetica/empty/ru/price",
+      "actual": 450
+    },
+    {
+      "id": "estetica/estetica/empty/ar/ids",
+      "actual": [
+        "lip-filler",
+        "cheek-filler",
+        "botox",
+        "facial",
+        "skin-booster"
+      ],
+      "expected": []
+    },
+    {
+      "id": "estetica/estetica/empty/ar/price",
+      "actual": 450
+    },
+    {
+      "id": "estetica/estetica/unknown/en/ids",
+      "actual": [
+        "lip-filler",
+        "cheek-filler",
+        "botox",
+        "facial",
+        "skin-booster"
+      ],
+      "expected": []
+    },
+    {
+      "id": "estetica/estetica/unknown/en/price",
+      "actual": 123
+    },
+    {
+      "id": "estetica/estetica/unknown/he/ids",
+      "actual": [
+        "lip-filler",
+        "cheek-filler",
+        "botox",
+        "facial",
+        "skin-booster"
+      ],
+      "expected": []
+    },
+    {
+      "id": "estetica/estetica/unknown/he/price",
+      "actual": 1800
+    },
+    {
+      "id": "estetica/estetica/unknown/ru/ids",
+      "actual": [
+        "lip-filler",
+        "cheek-filler",
+        "botox",
+        "facial",
+        "skin-booster"
+      ],
+      "expected": []
+    },
+    {
+      "id": "estetica/estetica/unknown/ru/price",
+      "actual": 450
+    },
+    {
+      "id": "estetica/estetica/unknown/ar/ids",
+      "actual": [
+        "lip-filler",
+        "cheek-filler",
+        "botox",
+        "facial",
+        "skin-booster"
+      ],
+      "expected": []
+    },
+    {
+      "id": "estetica/estetica/unknown/ar/price",
+      "actual": 450
+    },
+    {
+      "id": "estetica/estetica/valid/he/price",
+      "actual": 1800,
+      "expected": 123
+    },
+    {
+      "id": "estetica/estetica/valid/ru/price",
+      "actual": 450,
+      "expected": 123
+    },
+    {
+      "id": "estetica/estetica/valid/ar/price",
+      "actual": 450,
+      "expected": 123
+    },
+    {
+      "id": "estetica/estetica/mixed/he/price",
+      "actual": 1800,
+      "expected": 123
+    },
+    {
+      "id": "estetica/estetica/mixed/ru/price",
+      "actual": 450,
+      "expected": 123
+    },
+    {
+      "id": "estetica/estetica/mixed/ar/price",
+      "actual": 450,
+      "expected": 123
+    },
+    {
+      "id": "estetica/estetica/all/he/price",
+      "actual": 1800,
+      "expected": 123
+    },
+    {
+      "id": "estetica/estetica/all/ru/price",
+      "actual": 450,
+      "expected": 123
+    },
+    {
+      "id": "estetica/estetica/all/ar/price",
+      "actual": 450,
+      "expected": 123
+    },
+    {
+      "id": "estetica/undefined/absent/he/price",
+      "actual": 1800,
+      "expected": 123
+    },
+    {
+      "id": "estetica/undefined/absent/ru/price",
+      "actual": 450,
+      "expected": 123
+    },
+    {
+      "id": "estetica/undefined/absent/ar/price",
+      "actual": 450,
+      "expected": 123
+    },
+    {
+      "id": "estetica/undefined/null/he/price",
+      "actual": 1800,
+      "expected": 123
+    },
+    {
+      "id": "estetica/undefined/null/ru/price",
+      "actual": 450,
+      "expected": 123
+    },
+    {
+      "id": "estetica/undefined/null/ar/price",
+      "actual": 450,
+      "expected": 123
+    },
+    {
+      "id": "estetica/undefined/empty/en/ids",
+      "actual": [
+        "lip-filler",
+        "cheek-filler",
+        "botox",
+        "facial",
+        "skin-booster"
+      ],
+      "expected": []
+    },
+    {
+      "id": "estetica/undefined/empty/en/price",
+      "actual": 123
+    },
+    {
+      "id": "estetica/undefined/empty/he/ids",
+      "actual": [
+        "lip-filler",
+        "cheek-filler",
+        "botox",
+        "facial",
+        "skin-booster"
+      ],
+      "expected": []
+    },
+    {
+      "id": "estetica/undefined/empty/he/price",
+      "actual": 1800
+    },
+    {
+      "id": "estetica/undefined/empty/ru/ids",
+      "actual": [
+        "lip-filler",
+        "cheek-filler",
+        "botox",
+        "facial",
+        "skin-booster"
+      ],
+      "expected": []
+    },
+    {
+      "id": "estetica/undefined/empty/ru/price",
+      "actual": 450
+    },
+    {
+      "id": "estetica/undefined/empty/ar/ids",
+      "actual": [
+        "lip-filler",
+        "cheek-filler",
+        "botox",
+        "facial",
+        "skin-booster"
+      ],
+      "expected": []
+    },
+    {
+      "id": "estetica/undefined/empty/ar/price",
+      "actual": 450
+    },
+    {
+      "id": "estetica/undefined/unknown/en/ids",
+      "actual": [
+        "lip-filler",
+        "cheek-filler",
+        "botox",
+        "facial",
+        "skin-booster"
+      ],
+      "expected": []
+    },
+    {
+      "id": "estetica/undefined/unknown/en/price",
+      "actual": 123
+    },
+    {
+      "id": "estetica/undefined/unknown/he/ids",
+      "actual": [
+        "lip-filler",
+        "cheek-filler",
+        "botox",
+        "facial",
+        "skin-booster"
+      ],
+      "expected": []
+    },
+    {
+      "id": "estetica/undefined/unknown/he/price",
+      "actual": 1800
+    },
+    {
+      "id": "estetica/undefined/unknown/ru/ids",
+      "actual": [
+        "lip-filler",
+        "cheek-filler",
+        "botox",
+        "facial",
+        "skin-booster"
+      ],
+      "expected": []
+    },
+    {
+      "id": "estetica/undefined/unknown/ru/price",
+      "actual": 450
+    },
+    {
+      "id": "estetica/undefined/unknown/ar/ids",
+      "actual": [
+        "lip-filler",
+        "cheek-filler",
+        "botox",
+        "facial",
+        "skin-booster"
+      ],
+      "expected": []
+    },
+    {
+      "id": "estetica/undefined/unknown/ar/price",
+      "actual": 450
+    },
+    {
+      "id": "estetica/undefined/valid/he/price",
+      "actual": 1800,
+      "expected": 123
+    },
+    {
+      "id": "estetica/undefined/valid/ru/price",
+      "actual": 450,
+      "expected": 123
+    },
+    {
+      "id": "estetica/undefined/valid/ar/price",
+      "actual": 450,
+      "expected": 123
+    },
+    {
+      "id": "estetica/undefined/mixed/he/price",
+      "actual": 1800,
+      "expected": 123
+    },
+    {
+      "id": "estetica/undefined/mixed/ru/price",
+      "actual": 450,
+      "expected": 123
+    },
+    {
+      "id": "estetica/undefined/mixed/ar/price",
+      "actual": 450,
+      "expected": 123
+    },
+    {
+      "id": "estetica/undefined/all/he/price",
+      "actual": 1800,
+      "expected": 123
+    },
+    {
+      "id": "estetica/undefined/all/ru/price",
+      "actual": 450,
+      "expected": 123
+    },
+    {
+      "id": "estetica/undefined/all/ar/price",
+      "actual": 450,
+      "expected": 123
+    },
+    {
+      "id": "estetica/barberia/absent/he/price",
+      "actual": 1800,
+      "expected": 123
+    },
+    {
+      "id": "estetica/barberia/absent/ru/price",
+      "actual": 450,
+      "expected": 123
+    },
+    {
+      "id": "estetica/barberia/absent/ar/price",
+      "actual": 450,
+      "expected": 123
+    },
+    {
+      "id": "estetica/barberia/null/he/price",
+      "actual": 1800,
+      "expected": 123
+    },
+    {
+      "id": "estetica/barberia/null/ru/price",
+      "actual": 450,
+      "expected": 123
+    },
+    {
+      "id": "estetica/barberia/null/ar/price",
+      "actual": 450,
+      "expected": 123
+    },
+    {
+      "id": "estetica/barberia/empty/en/ids",
+      "actual": [
+        "lip-filler",
+        "cheek-filler",
+        "botox",
+        "facial",
+        "skin-booster"
+      ],
+      "expected": []
+    },
+    {
+      "id": "estetica/barberia/empty/en/price",
+      "actual": 123
+    },
+    {
+      "id": "estetica/barberia/empty/he/ids",
+      "actual": [
+        "lip-filler",
+        "cheek-filler",
+        "botox",
+        "facial",
+        "skin-booster"
+      ],
+      "expected": []
+    },
+    {
+      "id": "estetica/barberia/empty/he/price",
+      "actual": 1800
+    },
+    {
+      "id": "estetica/barberia/empty/ru/ids",
+      "actual": [
+        "lip-filler",
+        "cheek-filler",
+        "botox",
+        "facial",
+        "skin-booster"
+      ],
+      "expected": []
+    },
+    {
+      "id": "estetica/barberia/empty/ru/price",
+      "actual": 450
+    },
+    {
+      "id": "estetica/barberia/empty/ar/ids",
+      "actual": [
+        "lip-filler",
+        "cheek-filler",
+        "botox",
+        "facial",
+        "skin-booster"
+      ],
+      "expected": []
+    },
+    {
+      "id": "estetica/barberia/empty/ar/price",
+      "actual": 450
+    },
+    {
+      "id": "estetica/barberia/unknown/en/ids",
+      "actual": [
+        "lip-filler",
+        "cheek-filler",
+        "botox",
+        "facial",
+        "skin-booster"
+      ],
+      "expected": []
+    },
+    {
+      "id": "estetica/barberia/unknown/en/price",
+      "actual": 123
+    },
+    {
+      "id": "estetica/barberia/unknown/he/ids",
+      "actual": [
+        "lip-filler",
+        "cheek-filler",
+        "botox",
+        "facial",
+        "skin-booster"
+      ],
+      "expected": []
+    },
+    {
+      "id": "estetica/barberia/unknown/he/price",
+      "actual": 1800
+    },
+    {
+      "id": "estetica/barberia/unknown/ru/ids",
+      "actual": [
+        "lip-filler",
+        "cheek-filler",
+        "botox",
+        "facial",
+        "skin-booster"
+      ],
+      "expected": []
+    },
+    {
+      "id": "estetica/barberia/unknown/ru/price",
+      "actual": 450
+    },
+    {
+      "id": "estetica/barberia/unknown/ar/ids",
+      "actual": [
+        "lip-filler",
+        "cheek-filler",
+        "botox",
+        "facial",
+        "skin-booster"
+      ],
+      "expected": []
+    },
+    {
+      "id": "estetica/barberia/unknown/ar/price",
+      "actual": 450
+    },
+    {
+      "id": "estetica/barberia/valid/he/price",
+      "actual": 1800,
+      "expected": 123
+    },
+    {
+      "id": "estetica/barberia/valid/ru/price",
+      "actual": 450,
+      "expected": 123
+    },
+    {
+      "id": "estetica/barberia/valid/ar/price",
+      "actual": 450,
+      "expected": 123
+    },
+    {
+      "id": "estetica/barberia/mixed/he/price",
+      "actual": 1800,
+      "expected": 123
+    },
+    {
+      "id": "estetica/barberia/mixed/ru/price",
+      "actual": 450,
+      "expected": 123
+    },
+    {
+      "id": "estetica/barberia/mixed/ar/price",
+      "actual": 450,
+      "expected": 123
+    },
+    {
+      "id": "estetica/barberia/all/he/price",
+      "actual": 1800,
+      "expected": 123
+    },
+    {
+      "id": "estetica/barberia/all/ru/price",
+      "actual": 450,
+      "expected": 123
+    },
+    {
+      "id": "estetica/barberia/all/ar/price",
+      "actual": 450,
+      "expected": 123
+    },
+    {
+      "id": "tattoo/tattoo/absent/he/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "tattoo/tattoo/absent/ru/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "tattoo/tattoo/absent/ar/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "tattoo/tattoo/null/he/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "tattoo/tattoo/null/ru/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "tattoo/tattoo/null/ar/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "tattoo/tattoo/empty/en/ids",
+      "actual": [
+        "consultation",
+        "custom-design",
+        "fine-line",
+        "black-grey-realism",
+        "cover-up",
+        "flash-small",
+        "piercing"
+      ],
+      "expected": []
+    },
+    {
+      "id": "tattoo/tattoo/empty/en/price",
+      "actual": 123
+    },
+    {
+      "id": "tattoo/tattoo/empty/he/ids",
+      "actual": [
+        "consultation",
+        "custom-design",
+        "fine-line",
+        "black-grey-realism",
+        "cover-up",
+        "flash-small",
+        "piercing"
+      ],
+      "expected": []
+    },
+    {
+      "id": "tattoo/tattoo/empty/he/price",
+      "actual": 0
+    },
+    {
+      "id": "tattoo/tattoo/empty/ru/ids",
+      "actual": [
+        "consultation",
+        "custom-design",
+        "fine-line",
+        "black-grey-realism",
+        "cover-up",
+        "flash-small",
+        "piercing"
+      ],
+      "expected": []
+    },
+    {
+      "id": "tattoo/tattoo/empty/ru/price",
+      "actual": 0
+    },
+    {
+      "id": "tattoo/tattoo/empty/ar/ids",
+      "actual": [
+        "consultation",
+        "custom-design",
+        "fine-line",
+        "black-grey-realism",
+        "cover-up",
+        "flash-small",
+        "piercing"
+      ],
+      "expected": []
+    },
+    {
+      "id": "tattoo/tattoo/empty/ar/price",
+      "actual": 0
+    },
+    {
+      "id": "tattoo/tattoo/unknown/en/ids",
+      "actual": [
+        "consultation",
+        "custom-design",
+        "fine-line",
+        "black-grey-realism",
+        "cover-up",
+        "flash-small",
+        "piercing"
+      ],
+      "expected": []
+    },
+    {
+      "id": "tattoo/tattoo/unknown/en/price",
+      "actual": 123
+    },
+    {
+      "id": "tattoo/tattoo/unknown/he/ids",
+      "actual": [
+        "consultation",
+        "custom-design",
+        "fine-line",
+        "black-grey-realism",
+        "cover-up",
+        "flash-small",
+        "piercing"
+      ],
+      "expected": []
+    },
+    {
+      "id": "tattoo/tattoo/unknown/he/price",
+      "actual": 0
+    },
+    {
+      "id": "tattoo/tattoo/unknown/ru/ids",
+      "actual": [
+        "consultation",
+        "custom-design",
+        "fine-line",
+        "black-grey-realism",
+        "cover-up",
+        "flash-small",
+        "piercing"
+      ],
+      "expected": []
+    },
+    {
+      "id": "tattoo/tattoo/unknown/ru/price",
+      "actual": 0
+    },
+    {
+      "id": "tattoo/tattoo/unknown/ar/ids",
+      "actual": [
+        "consultation",
+        "custom-design",
+        "fine-line",
+        "black-grey-realism",
+        "cover-up",
+        "flash-small",
+        "piercing"
+      ],
+      "expected": []
+    },
+    {
+      "id": "tattoo/tattoo/unknown/ar/price",
+      "actual": 0
+    },
+    {
+      "id": "tattoo/tattoo/valid/he/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "tattoo/tattoo/valid/ru/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "tattoo/tattoo/valid/ar/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "tattoo/tattoo/mixed/he/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "tattoo/tattoo/mixed/ru/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "tattoo/tattoo/mixed/ar/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "tattoo/tattoo/all/he/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "tattoo/tattoo/all/ru/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "tattoo/tattoo/all/ar/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "tattoo/undefined/absent/he/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "tattoo/undefined/absent/ru/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "tattoo/undefined/absent/ar/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "tattoo/undefined/null/he/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "tattoo/undefined/null/ru/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "tattoo/undefined/null/ar/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "tattoo/undefined/empty/en/ids",
+      "actual": [
+        "consultation",
+        "custom-design",
+        "fine-line",
+        "black-grey-realism",
+        "cover-up",
+        "flash-small",
+        "piercing"
+      ],
+      "expected": []
+    },
+    {
+      "id": "tattoo/undefined/empty/en/price",
+      "actual": 123
+    },
+    {
+      "id": "tattoo/undefined/empty/he/ids",
+      "actual": [
+        "consultation",
+        "custom-design",
+        "fine-line",
+        "black-grey-realism",
+        "cover-up",
+        "flash-small",
+        "piercing"
+      ],
+      "expected": []
+    },
+    {
+      "id": "tattoo/undefined/empty/he/price",
+      "actual": 0
+    },
+    {
+      "id": "tattoo/undefined/empty/ru/ids",
+      "actual": [
+        "consultation",
+        "custom-design",
+        "fine-line",
+        "black-grey-realism",
+        "cover-up",
+        "flash-small",
+        "piercing"
+      ],
+      "expected": []
+    },
+    {
+      "id": "tattoo/undefined/empty/ru/price",
+      "actual": 0
+    },
+    {
+      "id": "tattoo/undefined/empty/ar/ids",
+      "actual": [
+        "consultation",
+        "custom-design",
+        "fine-line",
+        "black-grey-realism",
+        "cover-up",
+        "flash-small",
+        "piercing"
+      ],
+      "expected": []
+    },
+    {
+      "id": "tattoo/undefined/empty/ar/price",
+      "actual": 0
+    },
+    {
+      "id": "tattoo/undefined/unknown/en/ids",
+      "actual": [
+        "consultation",
+        "custom-design",
+        "fine-line",
+        "black-grey-realism",
+        "cover-up",
+        "flash-small",
+        "piercing"
+      ],
+      "expected": []
+    },
+    {
+      "id": "tattoo/undefined/unknown/en/price",
+      "actual": 123
+    },
+    {
+      "id": "tattoo/undefined/unknown/he/ids",
+      "actual": [
+        "consultation",
+        "custom-design",
+        "fine-line",
+        "black-grey-realism",
+        "cover-up",
+        "flash-small",
+        "piercing"
+      ],
+      "expected": []
+    },
+    {
+      "id": "tattoo/undefined/unknown/he/price",
+      "actual": 0
+    },
+    {
+      "id": "tattoo/undefined/unknown/ru/ids",
+      "actual": [
+        "consultation",
+        "custom-design",
+        "fine-line",
+        "black-grey-realism",
+        "cover-up",
+        "flash-small",
+        "piercing"
+      ],
+      "expected": []
+    },
+    {
+      "id": "tattoo/undefined/unknown/ru/price",
+      "actual": 0
+    },
+    {
+      "id": "tattoo/undefined/unknown/ar/ids",
+      "actual": [
+        "consultation",
+        "custom-design",
+        "fine-line",
+        "black-grey-realism",
+        "cover-up",
+        "flash-small",
+        "piercing"
+      ],
+      "expected": []
+    },
+    {
+      "id": "tattoo/undefined/unknown/ar/price",
+      "actual": 0
+    },
+    {
+      "id": "tattoo/undefined/valid/he/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "tattoo/undefined/valid/ru/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "tattoo/undefined/valid/ar/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "tattoo/undefined/mixed/he/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "tattoo/undefined/mixed/ru/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "tattoo/undefined/mixed/ar/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "tattoo/undefined/all/he/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "tattoo/undefined/all/ru/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "tattoo/undefined/all/ar/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "tattoo/barberia/absent/he/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "tattoo/barberia/absent/ru/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "tattoo/barberia/absent/ar/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "tattoo/barberia/null/he/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "tattoo/barberia/null/ru/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "tattoo/barberia/null/ar/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "tattoo/barberia/empty/en/ids",
+      "actual": [
+        "consultation",
+        "custom-design",
+        "fine-line",
+        "black-grey-realism",
+        "cover-up",
+        "flash-small",
+        "piercing"
+      ],
+      "expected": []
+    },
+    {
+      "id": "tattoo/barberia/empty/en/price",
+      "actual": 123
+    },
+    {
+      "id": "tattoo/barberia/empty/he/ids",
+      "actual": [
+        "consultation",
+        "custom-design",
+        "fine-line",
+        "black-grey-realism",
+        "cover-up",
+        "flash-small",
+        "piercing"
+      ],
+      "expected": []
+    },
+    {
+      "id": "tattoo/barberia/empty/he/price",
+      "actual": 0
+    },
+    {
+      "id": "tattoo/barberia/empty/ru/ids",
+      "actual": [
+        "consultation",
+        "custom-design",
+        "fine-line",
+        "black-grey-realism",
+        "cover-up",
+        "flash-small",
+        "piercing"
+      ],
+      "expected": []
+    },
+    {
+      "id": "tattoo/barberia/empty/ru/price",
+      "actual": 0
+    },
+    {
+      "id": "tattoo/barberia/empty/ar/ids",
+      "actual": [
+        "consultation",
+        "custom-design",
+        "fine-line",
+        "black-grey-realism",
+        "cover-up",
+        "flash-small",
+        "piercing"
+      ],
+      "expected": []
+    },
+    {
+      "id": "tattoo/barberia/empty/ar/price",
+      "actual": 0
+    },
+    {
+      "id": "tattoo/barberia/unknown/en/ids",
+      "actual": [
+        "consultation",
+        "custom-design",
+        "fine-line",
+        "black-grey-realism",
+        "cover-up",
+        "flash-small",
+        "piercing"
+      ],
+      "expected": []
+    },
+    {
+      "id": "tattoo/barberia/unknown/en/price",
+      "actual": 123
+    },
+    {
+      "id": "tattoo/barberia/unknown/he/ids",
+      "actual": [
+        "consultation",
+        "custom-design",
+        "fine-line",
+        "black-grey-realism",
+        "cover-up",
+        "flash-small",
+        "piercing"
+      ],
+      "expected": []
+    },
+    {
+      "id": "tattoo/barberia/unknown/he/price",
+      "actual": 0
+    },
+    {
+      "id": "tattoo/barberia/unknown/ru/ids",
+      "actual": [
+        "consultation",
+        "custom-design",
+        "fine-line",
+        "black-grey-realism",
+        "cover-up",
+        "flash-small",
+        "piercing"
+      ],
+      "expected": []
+    },
+    {
+      "id": "tattoo/barberia/unknown/ru/price",
+      "actual": 0
+    },
+    {
+      "id": "tattoo/barberia/unknown/ar/ids",
+      "actual": [
+        "consultation",
+        "custom-design",
+        "fine-line",
+        "black-grey-realism",
+        "cover-up",
+        "flash-small",
+        "piercing"
+      ],
+      "expected": []
+    },
+    {
+      "id": "tattoo/barberia/unknown/ar/price",
+      "actual": 0
+    },
+    {
+      "id": "tattoo/barberia/valid/he/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "tattoo/barberia/valid/ru/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "tattoo/barberia/valid/ar/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "tattoo/barberia/mixed/he/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "tattoo/barberia/mixed/ru/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "tattoo/barberia/mixed/ar/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "tattoo/barberia/all/he/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "tattoo/barberia/all/ru/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "tattoo/barberia/all/ar/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "nails/nails/absent/he/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "nails/nails/absent/ru/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "nails/nails/absent/ar/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "nails/nails/null/he/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "nails/nails/null/ru/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "nails/nails/null/ar/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "nails/nails/empty/en/ids",
+      "actual": [
+        "classic-manicure",
+        "gel-manicure",
+        "acrylic-full-set",
+        "nail-art",
+        "spa-pedicure",
+        "extensions-infills"
+      ],
+      "expected": []
+    },
+    {
+      "id": "nails/nails/empty/en/price",
+      "actual": 123
+    },
+    {
+      "id": "nails/nails/empty/he/ids",
+      "actual": [
+        "classic-manicure",
+        "gel-manicure",
+        "acrylic-full-set",
+        "nail-art",
+        "spa-pedicure",
+        "extensions-infills"
+      ],
+      "expected": []
+    },
+    {
+      "id": "nails/nails/empty/he/price",
+      "actual": 45
+    },
+    {
+      "id": "nails/nails/empty/ru/ids",
+      "actual": [
+        "classic-manicure",
+        "gel-manicure",
+        "acrylic-full-set",
+        "nail-art",
+        "spa-pedicure",
+        "extensions-infills"
+      ],
+      "expected": []
+    },
+    {
+      "id": "nails/nails/empty/ru/price",
+      "actual": 45
+    },
+    {
+      "id": "nails/nails/empty/ar/ids",
+      "actual": [
+        "classic-manicure",
+        "gel-manicure",
+        "acrylic-full-set",
+        "nail-art",
+        "spa-pedicure",
+        "extensions-infills"
+      ],
+      "expected": []
+    },
+    {
+      "id": "nails/nails/empty/ar/price",
+      "actual": 45
+    },
+    {
+      "id": "nails/nails/unknown/en/ids",
+      "actual": [
+        "classic-manicure",
+        "gel-manicure",
+        "acrylic-full-set",
+        "nail-art",
+        "spa-pedicure",
+        "extensions-infills"
+      ],
+      "expected": []
+    },
+    {
+      "id": "nails/nails/unknown/en/price",
+      "actual": 123
+    },
+    {
+      "id": "nails/nails/unknown/he/ids",
+      "actual": [
+        "classic-manicure",
+        "gel-manicure",
+        "acrylic-full-set",
+        "nail-art",
+        "spa-pedicure",
+        "extensions-infills"
+      ],
+      "expected": []
+    },
+    {
+      "id": "nails/nails/unknown/he/price",
+      "actual": 45
+    },
+    {
+      "id": "nails/nails/unknown/ru/ids",
+      "actual": [
+        "classic-manicure",
+        "gel-manicure",
+        "acrylic-full-set",
+        "nail-art",
+        "spa-pedicure",
+        "extensions-infills"
+      ],
+      "expected": []
+    },
+    {
+      "id": "nails/nails/unknown/ru/price",
+      "actual": 45
+    },
+    {
+      "id": "nails/nails/unknown/ar/ids",
+      "actual": [
+        "classic-manicure",
+        "gel-manicure",
+        "acrylic-full-set",
+        "nail-art",
+        "spa-pedicure",
+        "extensions-infills"
+      ],
+      "expected": []
+    },
+    {
+      "id": "nails/nails/unknown/ar/price",
+      "actual": 45
+    },
+    {
+      "id": "nails/nails/valid/he/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "nails/nails/valid/ru/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "nails/nails/valid/ar/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "nails/nails/mixed/he/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "nails/nails/mixed/ru/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "nails/nails/mixed/ar/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "nails/nails/all/he/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "nails/nails/all/ru/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "nails/nails/all/ar/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "nails/undefined/absent/he/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "nails/undefined/absent/ru/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "nails/undefined/absent/ar/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "nails/undefined/null/he/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "nails/undefined/null/ru/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "nails/undefined/null/ar/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "nails/undefined/empty/en/ids",
+      "actual": [
+        "classic-manicure",
+        "gel-manicure",
+        "acrylic-full-set",
+        "nail-art",
+        "spa-pedicure",
+        "extensions-infills"
+      ],
+      "expected": []
+    },
+    {
+      "id": "nails/undefined/empty/en/price",
+      "actual": 123
+    },
+    {
+      "id": "nails/undefined/empty/he/ids",
+      "actual": [
+        "classic-manicure",
+        "gel-manicure",
+        "acrylic-full-set",
+        "nail-art",
+        "spa-pedicure",
+        "extensions-infills"
+      ],
+      "expected": []
+    },
+    {
+      "id": "nails/undefined/empty/he/price",
+      "actual": 45
+    },
+    {
+      "id": "nails/undefined/empty/ru/ids",
+      "actual": [
+        "classic-manicure",
+        "gel-manicure",
+        "acrylic-full-set",
+        "nail-art",
+        "spa-pedicure",
+        "extensions-infills"
+      ],
+      "expected": []
+    },
+    {
+      "id": "nails/undefined/empty/ru/price",
+      "actual": 45
+    },
+    {
+      "id": "nails/undefined/empty/ar/ids",
+      "actual": [
+        "classic-manicure",
+        "gel-manicure",
+        "acrylic-full-set",
+        "nail-art",
+        "spa-pedicure",
+        "extensions-infills"
+      ],
+      "expected": []
+    },
+    {
+      "id": "nails/undefined/empty/ar/price",
+      "actual": 45
+    },
+    {
+      "id": "nails/undefined/unknown/en/ids",
+      "actual": [
+        "classic-manicure",
+        "gel-manicure",
+        "acrylic-full-set",
+        "nail-art",
+        "spa-pedicure",
+        "extensions-infills"
+      ],
+      "expected": []
+    },
+    {
+      "id": "nails/undefined/unknown/en/price",
+      "actual": 123
+    },
+    {
+      "id": "nails/undefined/unknown/he/ids",
+      "actual": [
+        "classic-manicure",
+        "gel-manicure",
+        "acrylic-full-set",
+        "nail-art",
+        "spa-pedicure",
+        "extensions-infills"
+      ],
+      "expected": []
+    },
+    {
+      "id": "nails/undefined/unknown/he/price",
+      "actual": 45
+    },
+    {
+      "id": "nails/undefined/unknown/ru/ids",
+      "actual": [
+        "classic-manicure",
+        "gel-manicure",
+        "acrylic-full-set",
+        "nail-art",
+        "spa-pedicure",
+        "extensions-infills"
+      ],
+      "expected": []
+    },
+    {
+      "id": "nails/undefined/unknown/ru/price",
+      "actual": 45
+    },
+    {
+      "id": "nails/undefined/unknown/ar/ids",
+      "actual": [
+        "classic-manicure",
+        "gel-manicure",
+        "acrylic-full-set",
+        "nail-art",
+        "spa-pedicure",
+        "extensions-infills"
+      ],
+      "expected": []
+    },
+    {
+      "id": "nails/undefined/unknown/ar/price",
+      "actual": 45
+    },
+    {
+      "id": "nails/undefined/valid/he/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "nails/undefined/valid/ru/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "nails/undefined/valid/ar/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "nails/undefined/mixed/he/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "nails/undefined/mixed/ru/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "nails/undefined/mixed/ar/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "nails/undefined/all/he/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "nails/undefined/all/ru/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "nails/undefined/all/ar/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "nails/barberia/absent/he/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "nails/barberia/absent/ru/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "nails/barberia/absent/ar/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "nails/barberia/null/he/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "nails/barberia/null/ru/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "nails/barberia/null/ar/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "nails/barberia/empty/en/ids",
+      "actual": [
+        "classic-manicure",
+        "gel-manicure",
+        "acrylic-full-set",
+        "nail-art",
+        "spa-pedicure",
+        "extensions-infills"
+      ],
+      "expected": []
+    },
+    {
+      "id": "nails/barberia/empty/en/price",
+      "actual": 123
+    },
+    {
+      "id": "nails/barberia/empty/he/ids",
+      "actual": [
+        "classic-manicure",
+        "gel-manicure",
+        "acrylic-full-set",
+        "nail-art",
+        "spa-pedicure",
+        "extensions-infills"
+      ],
+      "expected": []
+    },
+    {
+      "id": "nails/barberia/empty/he/price",
+      "actual": 45
+    },
+    {
+      "id": "nails/barberia/empty/ru/ids",
+      "actual": [
+        "classic-manicure",
+        "gel-manicure",
+        "acrylic-full-set",
+        "nail-art",
+        "spa-pedicure",
+        "extensions-infills"
+      ],
+      "expected": []
+    },
+    {
+      "id": "nails/barberia/empty/ru/price",
+      "actual": 45
+    },
+    {
+      "id": "nails/barberia/empty/ar/ids",
+      "actual": [
+        "classic-manicure",
+        "gel-manicure",
+        "acrylic-full-set",
+        "nail-art",
+        "spa-pedicure",
+        "extensions-infills"
+      ],
+      "expected": []
+    },
+    {
+      "id": "nails/barberia/empty/ar/price",
+      "actual": 45
+    },
+    {
+      "id": "nails/barberia/unknown/en/ids",
+      "actual": [
+        "classic-manicure",
+        "gel-manicure",
+        "acrylic-full-set",
+        "nail-art",
+        "spa-pedicure",
+        "extensions-infills"
+      ],
+      "expected": []
+    },
+    {
+      "id": "nails/barberia/unknown/en/price",
+      "actual": 123
+    },
+    {
+      "id": "nails/barberia/unknown/he/ids",
+      "actual": [
+        "classic-manicure",
+        "gel-manicure",
+        "acrylic-full-set",
+        "nail-art",
+        "spa-pedicure",
+        "extensions-infills"
+      ],
+      "expected": []
+    },
+    {
+      "id": "nails/barberia/unknown/he/price",
+      "actual": 45
+    },
+    {
+      "id": "nails/barberia/unknown/ru/ids",
+      "actual": [
+        "classic-manicure",
+        "gel-manicure",
+        "acrylic-full-set",
+        "nail-art",
+        "spa-pedicure",
+        "extensions-infills"
+      ],
+      "expected": []
+    },
+    {
+      "id": "nails/barberia/unknown/ru/price",
+      "actual": 45
+    },
+    {
+      "id": "nails/barberia/unknown/ar/ids",
+      "actual": [
+        "classic-manicure",
+        "gel-manicure",
+        "acrylic-full-set",
+        "nail-art",
+        "spa-pedicure",
+        "extensions-infills"
+      ],
+      "expected": []
+    },
+    {
+      "id": "nails/barberia/unknown/ar/price",
+      "actual": 45
+    },
+    {
+      "id": "nails/barberia/valid/he/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "nails/barberia/valid/ru/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "nails/barberia/valid/ar/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "nails/barberia/mixed/he/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "nails/barberia/mixed/ru/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "nails/barberia/mixed/ar/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "nails/barberia/all/he/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "nails/barberia/all/ru/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "nails/barberia/all/ar/price",
+      "actual": 45,
+      "expected": 123
+    },
+    {
+      "id": "cafeteria/cafeteria/absent/he/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "cafeteria/cafeteria/absent/ru/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "cafeteria/cafeteria/absent/ar/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "cafeteria/cafeteria/null/he/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "cafeteria/cafeteria/null/ru/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "cafeteria/cafeteria/null/ar/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "cafeteria/cafeteria/empty/en/ids",
+      "actual": [
+        "espresso",
+        "cappuccino",
+        "flat-white",
+        "cold-brew",
+        "iced-latte",
+        "frappe-moka",
+        "tiramisu",
+        "cheesecake"
+      ],
+      "expected": []
+    },
+    {
+      "id": "cafeteria/cafeteria/empty/en/price",
+      "actual": 123
+    },
+    {
+      "id": "cafeteria/cafeteria/empty/he/ids",
+      "actual": [
+        "espresso",
+        "cappuccino",
+        "flat-white",
+        "cold-brew",
+        "iced-latte",
+        "frappe-moka",
+        "tiramisu",
+        "cheesecake"
+      ],
+      "expected": []
+    },
+    {
+      "id": "cafeteria/cafeteria/empty/he/price",
+      "actual": 0
+    },
+    {
+      "id": "cafeteria/cafeteria/empty/ru/ids",
+      "actual": [
+        "espresso",
+        "cappuccino",
+        "flat-white",
+        "cold-brew",
+        "iced-latte",
+        "frappe-moka",
+        "tiramisu",
+        "cheesecake"
+      ],
+      "expected": []
+    },
+    {
+      "id": "cafeteria/cafeteria/empty/ru/price",
+      "actual": 0
+    },
+    {
+      "id": "cafeteria/cafeteria/empty/ar/ids",
+      "actual": [
+        "espresso",
+        "cappuccino",
+        "flat-white",
+        "cold-brew",
+        "iced-latte",
+        "frappe-moka",
+        "tiramisu",
+        "cheesecake"
+      ],
+      "expected": []
+    },
+    {
+      "id": "cafeteria/cafeteria/empty/ar/price",
+      "actual": 0
+    },
+    {
+      "id": "cafeteria/cafeteria/unknown/en/ids",
+      "actual": [
+        "espresso",
+        "cappuccino",
+        "flat-white",
+        "cold-brew",
+        "iced-latte",
+        "frappe-moka",
+        "tiramisu",
+        "cheesecake"
+      ],
+      "expected": []
+    },
+    {
+      "id": "cafeteria/cafeteria/unknown/en/price",
+      "actual": 123
+    },
+    {
+      "id": "cafeteria/cafeteria/unknown/he/ids",
+      "actual": [
+        "espresso",
+        "cappuccino",
+        "flat-white",
+        "cold-brew",
+        "iced-latte",
+        "frappe-moka",
+        "tiramisu",
+        "cheesecake"
+      ],
+      "expected": []
+    },
+    {
+      "id": "cafeteria/cafeteria/unknown/he/price",
+      "actual": 0
+    },
+    {
+      "id": "cafeteria/cafeteria/unknown/ru/ids",
+      "actual": [
+        "espresso",
+        "cappuccino",
+        "flat-white",
+        "cold-brew",
+        "iced-latte",
+        "frappe-moka",
+        "tiramisu",
+        "cheesecake"
+      ],
+      "expected": []
+    },
+    {
+      "id": "cafeteria/cafeteria/unknown/ru/price",
+      "actual": 0
+    },
+    {
+      "id": "cafeteria/cafeteria/unknown/ar/ids",
+      "actual": [
+        "espresso",
+        "cappuccino",
+        "flat-white",
+        "cold-brew",
+        "iced-latte",
+        "frappe-moka",
+        "tiramisu",
+        "cheesecake"
+      ],
+      "expected": []
+    },
+    {
+      "id": "cafeteria/cafeteria/unknown/ar/price",
+      "actual": 0
+    },
+    {
+      "id": "cafeteria/cafeteria/valid/he/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "cafeteria/cafeteria/valid/ru/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "cafeteria/cafeteria/valid/ar/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "cafeteria/cafeteria/mixed/he/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "cafeteria/cafeteria/mixed/ru/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "cafeteria/cafeteria/mixed/ar/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "cafeteria/cafeteria/all/he/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "cafeteria/cafeteria/all/ru/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "cafeteria/cafeteria/all/ar/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "cafeteria/undefined/absent/he/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "cafeteria/undefined/absent/ru/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "cafeteria/undefined/absent/ar/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "cafeteria/undefined/null/he/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "cafeteria/undefined/null/ru/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "cafeteria/undefined/null/ar/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "cafeteria/undefined/empty/en/ids",
+      "actual": [
+        "espresso",
+        "cappuccino",
+        "flat-white",
+        "cold-brew",
+        "iced-latte",
+        "frappe-moka",
+        "tiramisu",
+        "cheesecake"
+      ],
+      "expected": []
+    },
+    {
+      "id": "cafeteria/undefined/empty/en/price",
+      "actual": 123
+    },
+    {
+      "id": "cafeteria/undefined/empty/he/ids",
+      "actual": [
+        "espresso",
+        "cappuccino",
+        "flat-white",
+        "cold-brew",
+        "iced-latte",
+        "frappe-moka",
+        "tiramisu",
+        "cheesecake"
+      ],
+      "expected": []
+    },
+    {
+      "id": "cafeteria/undefined/empty/he/price",
+      "actual": 0
+    },
+    {
+      "id": "cafeteria/undefined/empty/ru/ids",
+      "actual": [
+        "espresso",
+        "cappuccino",
+        "flat-white",
+        "cold-brew",
+        "iced-latte",
+        "frappe-moka",
+        "tiramisu",
+        "cheesecake"
+      ],
+      "expected": []
+    },
+    {
+      "id": "cafeteria/undefined/empty/ru/price",
+      "actual": 0
+    },
+    {
+      "id": "cafeteria/undefined/empty/ar/ids",
+      "actual": [
+        "espresso",
+        "cappuccino",
+        "flat-white",
+        "cold-brew",
+        "iced-latte",
+        "frappe-moka",
+        "tiramisu",
+        "cheesecake"
+      ],
+      "expected": []
+    },
+    {
+      "id": "cafeteria/undefined/empty/ar/price",
+      "actual": 0
+    },
+    {
+      "id": "cafeteria/undefined/unknown/en/ids",
+      "actual": [
+        "espresso",
+        "cappuccino",
+        "flat-white",
+        "cold-brew",
+        "iced-latte",
+        "frappe-moka",
+        "tiramisu",
+        "cheesecake"
+      ],
+      "expected": []
+    },
+    {
+      "id": "cafeteria/undefined/unknown/en/price",
+      "actual": 123
+    },
+    {
+      "id": "cafeteria/undefined/unknown/he/ids",
+      "actual": [
+        "espresso",
+        "cappuccino",
+        "flat-white",
+        "cold-brew",
+        "iced-latte",
+        "frappe-moka",
+        "tiramisu",
+        "cheesecake"
+      ],
+      "expected": []
+    },
+    {
+      "id": "cafeteria/undefined/unknown/he/price",
+      "actual": 0
+    },
+    {
+      "id": "cafeteria/undefined/unknown/ru/ids",
+      "actual": [
+        "espresso",
+        "cappuccino",
+        "flat-white",
+        "cold-brew",
+        "iced-latte",
+        "frappe-moka",
+        "tiramisu",
+        "cheesecake"
+      ],
+      "expected": []
+    },
+    {
+      "id": "cafeteria/undefined/unknown/ru/price",
+      "actual": 0
+    },
+    {
+      "id": "cafeteria/undefined/unknown/ar/ids",
+      "actual": [
+        "espresso",
+        "cappuccino",
+        "flat-white",
+        "cold-brew",
+        "iced-latte",
+        "frappe-moka",
+        "tiramisu",
+        "cheesecake"
+      ],
+      "expected": []
+    },
+    {
+      "id": "cafeteria/undefined/unknown/ar/price",
+      "actual": 0
+    },
+    {
+      "id": "cafeteria/undefined/valid/he/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "cafeteria/undefined/valid/ru/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "cafeteria/undefined/valid/ar/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "cafeteria/undefined/mixed/he/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "cafeteria/undefined/mixed/ru/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "cafeteria/undefined/mixed/ar/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "cafeteria/undefined/all/he/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "cafeteria/undefined/all/ru/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "cafeteria/undefined/all/ar/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "cafeteria/barberia/absent/he/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "cafeteria/barberia/absent/ru/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "cafeteria/barberia/absent/ar/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "cafeteria/barberia/null/he/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "cafeteria/barberia/null/ru/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "cafeteria/barberia/null/ar/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "cafeteria/barberia/empty/en/ids",
+      "actual": [
+        "espresso",
+        "cappuccino",
+        "flat-white",
+        "cold-brew",
+        "iced-latte",
+        "frappe-moka",
+        "tiramisu",
+        "cheesecake"
+      ],
+      "expected": []
+    },
+    {
+      "id": "cafeteria/barberia/empty/en/price",
+      "actual": 123
+    },
+    {
+      "id": "cafeteria/barberia/empty/he/ids",
+      "actual": [
+        "espresso",
+        "cappuccino",
+        "flat-white",
+        "cold-brew",
+        "iced-latte",
+        "frappe-moka",
+        "tiramisu",
+        "cheesecake"
+      ],
+      "expected": []
+    },
+    {
+      "id": "cafeteria/barberia/empty/he/price",
+      "actual": 0
+    },
+    {
+      "id": "cafeteria/barberia/empty/ru/ids",
+      "actual": [
+        "espresso",
+        "cappuccino",
+        "flat-white",
+        "cold-brew",
+        "iced-latte",
+        "frappe-moka",
+        "tiramisu",
+        "cheesecake"
+      ],
+      "expected": []
+    },
+    {
+      "id": "cafeteria/barberia/empty/ru/price",
+      "actual": 0
+    },
+    {
+      "id": "cafeteria/barberia/empty/ar/ids",
+      "actual": [
+        "espresso",
+        "cappuccino",
+        "flat-white",
+        "cold-brew",
+        "iced-latte",
+        "frappe-moka",
+        "tiramisu",
+        "cheesecake"
+      ],
+      "expected": []
+    },
+    {
+      "id": "cafeteria/barberia/empty/ar/price",
+      "actual": 0
+    },
+    {
+      "id": "cafeteria/barberia/unknown/en/ids",
+      "actual": [
+        "espresso",
+        "cappuccino",
+        "flat-white",
+        "cold-brew",
+        "iced-latte",
+        "frappe-moka",
+        "tiramisu",
+        "cheesecake"
+      ],
+      "expected": []
+    },
+    {
+      "id": "cafeteria/barberia/unknown/en/price",
+      "actual": 123
+    },
+    {
+      "id": "cafeteria/barberia/unknown/he/ids",
+      "actual": [
+        "espresso",
+        "cappuccino",
+        "flat-white",
+        "cold-brew",
+        "iced-latte",
+        "frappe-moka",
+        "tiramisu",
+        "cheesecake"
+      ],
+      "expected": []
+    },
+    {
+      "id": "cafeteria/barberia/unknown/he/price",
+      "actual": 0
+    },
+    {
+      "id": "cafeteria/barberia/unknown/ru/ids",
+      "actual": [
+        "espresso",
+        "cappuccino",
+        "flat-white",
+        "cold-brew",
+        "iced-latte",
+        "frappe-moka",
+        "tiramisu",
+        "cheesecake"
+      ],
+      "expected": []
+    },
+    {
+      "id": "cafeteria/barberia/unknown/ru/price",
+      "actual": 0
+    },
+    {
+      "id": "cafeteria/barberia/unknown/ar/ids",
+      "actual": [
+        "espresso",
+        "cappuccino",
+        "flat-white",
+        "cold-brew",
+        "iced-latte",
+        "frappe-moka",
+        "tiramisu",
+        "cheesecake"
+      ],
+      "expected": []
+    },
+    {
+      "id": "cafeteria/barberia/unknown/ar/price",
+      "actual": 0
+    },
+    {
+      "id": "cafeteria/barberia/valid/he/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "cafeteria/barberia/valid/ru/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "cafeteria/barberia/valid/ar/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "cafeteria/barberia/mixed/he/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "cafeteria/barberia/mixed/ru/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "cafeteria/barberia/mixed/ar/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "cafeteria/barberia/all/he/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "cafeteria/barberia/all/ru/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "cafeteria/barberia/all/ar/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "remodelaciones/remodelaciones/absent/he/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "remodelaciones/remodelaciones/absent/ru/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "remodelaciones/remodelaciones/absent/ar/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "remodelaciones/remodelaciones/null/he/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "remodelaciones/remodelaciones/null/ru/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "remodelaciones/remodelaciones/null/ar/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "remodelaciones/remodelaciones/empty/en/ids",
+      "actual": [
+        "consultation",
+        "interior",
+        "exterior",
+        "deck-fence"
+      ],
+      "expected": []
+    },
+    {
+      "id": "remodelaciones/remodelaciones/empty/en/price",
+      "actual": 123
+    },
+    {
+      "id": "remodelaciones/remodelaciones/empty/he/ids",
+      "actual": [
+        "consultation",
+        "interior",
+        "exterior",
+        "deck-fence"
+      ],
+      "expected": []
+    },
+    {
+      "id": "remodelaciones/remodelaciones/empty/he/price",
+      "actual": 0
+    },
+    {
+      "id": "remodelaciones/remodelaciones/empty/ru/ids",
+      "actual": [
+        "consultation",
+        "interior",
+        "exterior",
+        "deck-fence"
+      ],
+      "expected": []
+    },
+    {
+      "id": "remodelaciones/remodelaciones/empty/ru/price",
+      "actual": 0
+    },
+    {
+      "id": "remodelaciones/remodelaciones/empty/ar/ids",
+      "actual": [
+        "consultation",
+        "interior",
+        "exterior",
+        "deck-fence"
+      ],
+      "expected": []
+    },
+    {
+      "id": "remodelaciones/remodelaciones/empty/ar/price",
+      "actual": 0
+    },
+    {
+      "id": "remodelaciones/remodelaciones/unknown/en/ids",
+      "actual": [
+        "consultation",
+        "interior",
+        "exterior",
+        "deck-fence"
+      ],
+      "expected": []
+    },
+    {
+      "id": "remodelaciones/remodelaciones/unknown/en/price",
+      "actual": 123
+    },
+    {
+      "id": "remodelaciones/remodelaciones/unknown/he/ids",
+      "actual": [
+        "consultation",
+        "interior",
+        "exterior",
+        "deck-fence"
+      ],
+      "expected": []
+    },
+    {
+      "id": "remodelaciones/remodelaciones/unknown/he/price",
+      "actual": 0
+    },
+    {
+      "id": "remodelaciones/remodelaciones/unknown/ru/ids",
+      "actual": [
+        "consultation",
+        "interior",
+        "exterior",
+        "deck-fence"
+      ],
+      "expected": []
+    },
+    {
+      "id": "remodelaciones/remodelaciones/unknown/ru/price",
+      "actual": 0
+    },
+    {
+      "id": "remodelaciones/remodelaciones/unknown/ar/ids",
+      "actual": [
+        "consultation",
+        "interior",
+        "exterior",
+        "deck-fence"
+      ],
+      "expected": []
+    },
+    {
+      "id": "remodelaciones/remodelaciones/unknown/ar/price",
+      "actual": 0
+    },
+    {
+      "id": "remodelaciones/remodelaciones/valid/he/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "remodelaciones/remodelaciones/valid/ru/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "remodelaciones/remodelaciones/valid/ar/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "remodelaciones/remodelaciones/mixed/he/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "remodelaciones/remodelaciones/mixed/ru/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "remodelaciones/remodelaciones/mixed/ar/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "remodelaciones/remodelaciones/all/he/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "remodelaciones/remodelaciones/all/ru/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "remodelaciones/remodelaciones/all/ar/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "remodelaciones/undefined/absent/he/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "remodelaciones/undefined/absent/ru/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "remodelaciones/undefined/absent/ar/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "remodelaciones/undefined/null/he/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "remodelaciones/undefined/null/ru/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "remodelaciones/undefined/null/ar/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "remodelaciones/undefined/empty/en/ids",
+      "actual": [
+        "consultation",
+        "interior",
+        "exterior",
+        "deck-fence"
+      ],
+      "expected": []
+    },
+    {
+      "id": "remodelaciones/undefined/empty/en/price",
+      "actual": 123
+    },
+    {
+      "id": "remodelaciones/undefined/empty/he/ids",
+      "actual": [
+        "consultation",
+        "interior",
+        "exterior",
+        "deck-fence"
+      ],
+      "expected": []
+    },
+    {
+      "id": "remodelaciones/undefined/empty/he/price",
+      "actual": 0
+    },
+    {
+      "id": "remodelaciones/undefined/empty/ru/ids",
+      "actual": [
+        "consultation",
+        "interior",
+        "exterior",
+        "deck-fence"
+      ],
+      "expected": []
+    },
+    {
+      "id": "remodelaciones/undefined/empty/ru/price",
+      "actual": 0
+    },
+    {
+      "id": "remodelaciones/undefined/empty/ar/ids",
+      "actual": [
+        "consultation",
+        "interior",
+        "exterior",
+        "deck-fence"
+      ],
+      "expected": []
+    },
+    {
+      "id": "remodelaciones/undefined/empty/ar/price",
+      "actual": 0
+    },
+    {
+      "id": "remodelaciones/undefined/unknown/en/ids",
+      "actual": [
+        "consultation",
+        "interior",
+        "exterior",
+        "deck-fence"
+      ],
+      "expected": []
+    },
+    {
+      "id": "remodelaciones/undefined/unknown/en/price",
+      "actual": 123
+    },
+    {
+      "id": "remodelaciones/undefined/unknown/he/ids",
+      "actual": [
+        "consultation",
+        "interior",
+        "exterior",
+        "deck-fence"
+      ],
+      "expected": []
+    },
+    {
+      "id": "remodelaciones/undefined/unknown/he/price",
+      "actual": 0
+    },
+    {
+      "id": "remodelaciones/undefined/unknown/ru/ids",
+      "actual": [
+        "consultation",
+        "interior",
+        "exterior",
+        "deck-fence"
+      ],
+      "expected": []
+    },
+    {
+      "id": "remodelaciones/undefined/unknown/ru/price",
+      "actual": 0
+    },
+    {
+      "id": "remodelaciones/undefined/unknown/ar/ids",
+      "actual": [
+        "consultation",
+        "interior",
+        "exterior",
+        "deck-fence"
+      ],
+      "expected": []
+    },
+    {
+      "id": "remodelaciones/undefined/unknown/ar/price",
+      "actual": 0
+    },
+    {
+      "id": "remodelaciones/undefined/valid/he/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "remodelaciones/undefined/valid/ru/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "remodelaciones/undefined/valid/ar/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "remodelaciones/undefined/mixed/he/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "remodelaciones/undefined/mixed/ru/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "remodelaciones/undefined/mixed/ar/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "remodelaciones/undefined/all/he/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "remodelaciones/undefined/all/ru/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "remodelaciones/undefined/all/ar/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "remodelaciones/barberia/absent/he/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "remodelaciones/barberia/absent/ru/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "remodelaciones/barberia/absent/ar/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "remodelaciones/barberia/null/he/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "remodelaciones/barberia/null/ru/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "remodelaciones/barberia/null/ar/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "remodelaciones/barberia/empty/en/ids",
+      "actual": [
+        "consultation",
+        "interior",
+        "exterior",
+        "deck-fence"
+      ],
+      "expected": []
+    },
+    {
+      "id": "remodelaciones/barberia/empty/en/price",
+      "actual": 123
+    },
+    {
+      "id": "remodelaciones/barberia/empty/he/ids",
+      "actual": [
+        "consultation",
+        "interior",
+        "exterior",
+        "deck-fence"
+      ],
+      "expected": []
+    },
+    {
+      "id": "remodelaciones/barberia/empty/he/price",
+      "actual": 0
+    },
+    {
+      "id": "remodelaciones/barberia/empty/ru/ids",
+      "actual": [
+        "consultation",
+        "interior",
+        "exterior",
+        "deck-fence"
+      ],
+      "expected": []
+    },
+    {
+      "id": "remodelaciones/barberia/empty/ru/price",
+      "actual": 0
+    },
+    {
+      "id": "remodelaciones/barberia/empty/ar/ids",
+      "actual": [
+        "consultation",
+        "interior",
+        "exterior",
+        "deck-fence"
+      ],
+      "expected": []
+    },
+    {
+      "id": "remodelaciones/barberia/empty/ar/price",
+      "actual": 0
+    },
+    {
+      "id": "remodelaciones/barberia/unknown/en/ids",
+      "actual": [
+        "consultation",
+        "interior",
+        "exterior",
+        "deck-fence"
+      ],
+      "expected": []
+    },
+    {
+      "id": "remodelaciones/barberia/unknown/en/price",
+      "actual": 123
+    },
+    {
+      "id": "remodelaciones/barberia/unknown/he/ids",
+      "actual": [
+        "consultation",
+        "interior",
+        "exterior",
+        "deck-fence"
+      ],
+      "expected": []
+    },
+    {
+      "id": "remodelaciones/barberia/unknown/he/price",
+      "actual": 0
+    },
+    {
+      "id": "remodelaciones/barberia/unknown/ru/ids",
+      "actual": [
+        "consultation",
+        "interior",
+        "exterior",
+        "deck-fence"
+      ],
+      "expected": []
+    },
+    {
+      "id": "remodelaciones/barberia/unknown/ru/price",
+      "actual": 0
+    },
+    {
+      "id": "remodelaciones/barberia/unknown/ar/ids",
+      "actual": [
+        "consultation",
+        "interior",
+        "exterior",
+        "deck-fence"
+      ],
+      "expected": []
+    },
+    {
+      "id": "remodelaciones/barberia/unknown/ar/price",
+      "actual": 0
+    },
+    {
+      "id": "remodelaciones/barberia/valid/he/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "remodelaciones/barberia/valid/ru/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "remodelaciones/barberia/valid/ar/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "remodelaciones/barberia/mixed/he/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "remodelaciones/barberia/mixed/ru/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "remodelaciones/barberia/mixed/ar/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "remodelaciones/barberia/all/he/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "remodelaciones/barberia/all/ru/price",
+      "actual": 0,
+      "expected": 123
+    },
+    {
+      "id": "remodelaciones/barberia/all/ar/price",
+      "actual": 0,
+      "expected": 123
+    }
+  ],
+  "effects": 0
+}

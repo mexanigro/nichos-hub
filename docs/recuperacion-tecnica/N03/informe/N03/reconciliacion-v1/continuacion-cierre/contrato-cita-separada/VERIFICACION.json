@@ -1,0 +1,19 @@
+{
+  "preparation": "complete",
+  "compatibility": "RED separados",
+  "productChanged": false,
+  "sourceHashesVerified": 7,
+  "basal": {
+    "cases": 5,
+    "checks": 57,
+    "failures": 0
+  },
+  "mutant": {
+    "checks": 57,
+    "failures": 4,
+    "kind": "instrument namespace alias"
+  },
+  "acceptedDestinations": "recorded, not rerun",
+  "records": 12,
+  "usage": 92
+}

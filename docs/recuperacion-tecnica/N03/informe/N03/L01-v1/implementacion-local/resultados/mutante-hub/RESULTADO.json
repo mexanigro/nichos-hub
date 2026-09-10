@@ -1,0 +1,82 @@
+{
+  "result": "RED",
+  "cases": 73,
+  "checks": 1752,
+  "failures": [
+    {
+      "id": "matriz-undefined-solo/lector",
+      "actual": "ABSENT",
+      "expected": "solo"
+    },
+    {
+      "id": "matriz-undefined-solo/hidratacion",
+      "actual": "",
+      "expected": "solo"
+    },
+    {
+      "id": "matriz-undefined-solo/owner",
+      "actual": "team",
+      "expected": "solo"
+    },
+    {
+      "id": "matriz-undefined-team/lector",
+      "actual": "ABSENT",
+      "expected": "team"
+    },
+    {
+      "id": "matriz-undefined-team/hidratacion",
+      "actual": "",
+      "expected": "team"
+    },
+    {
+      "id": "matriz-null-solo/lector",
+      "actual": "ABSENT",
+      "expected": "solo"
+    },
+    {
+      "id": "matriz-null-solo/hidratacion",
+      "actual": "",
+      "expected": "solo"
+    },
+    {
+      "id": "matriz-null-solo/owner",
+      "actual": "team",
+      "expected": "solo"
+    },
+    {
+      "id": "matriz-null-team/lector",
+      "actual": "ABSENT",
+      "expected": "team"
+    },
+    {
+      "id": "matriz-null-team/hidratacion",
+      "actual": "",
+      "expected": "team"
+    },
+    {
+      "id": "matriz-invalid-solo/lector",
+      "actual": "ABSENT",
+      "expected": "solo"
+    },
+    {
+      "id": "matriz-invalid-solo/hidratacion",
+      "actual": "",
+      "expected": "solo"
+    },
+    {
+      "id": "matriz-invalid-solo/owner",
+      "actual": "team",
+      "expected": "solo"
+    },
+    {
+      "id": "matriz-invalid-team/lector",
+      "actual": "ABSENT",
+      "expected": "team"
+    },
+    {
+      "id": "matriz-invalid-team/hidratacion",
+      "actual": "",
+      "expected": "team"
+    }
+  ]
+}

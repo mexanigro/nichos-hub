@@ -1,0 +1,7 @@
+{
+  "archivos": 2,
+  "errores": 0,
+  "advertencias": 0,
+  "exit": 0,
+  "configuracion": "eslint-config-next/core-web-vitals + typescript instalados; no npm run lint"
+}

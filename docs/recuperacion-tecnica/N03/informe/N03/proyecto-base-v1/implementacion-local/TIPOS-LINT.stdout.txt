@@ -1,0 +1,4 @@
+api/index.ts(2447,8): error TS2339: Property 'projectId' does not exist on type 'Firestore'.
+api/index.ts(2449,26): error TS2339: Property 'projectId' does not exist on type 'Firestore'.
+server.ts(265,8): error TS2339: Property 'projectId' does not exist on type 'Firestore'.
+server.ts(267,26): error TS2339: Property 'projectId' does not exist on type 'Firestore'.

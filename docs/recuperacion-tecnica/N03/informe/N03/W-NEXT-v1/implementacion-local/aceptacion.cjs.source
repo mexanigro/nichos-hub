@@ -1,0 +1,43 @@
+const fs=require('node:fs'),p=require('node:path'),crypto=require('node:crypto');
+const base=__dirname,hub='C:/Users/liama/Desktop/Nichos-hub',previo=p.resolve(base,'../comparacion-local');
+const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
+const leer=r=>JSON.parse(fs.readFileSync(r,'utf8').replace(/^\uFEFF/,''));
+const controles=[];const comprobar=(nombre,ok)=>controles.push({nombre,ok});
+try {
+ comprobar('Nombre único proxy final',fs.existsSync(p.join(hub,'src/proxy.ts'))&&!fs.existsSync(p.join(hub,'src/middleware.ts')));
+ if(process.argv[2]!=='nombre'){
+  const anterior=fs.readFileSync(p.join(base,'preimagenes/src/middleware.ts')),final=fs.readFileSync(p.join(hub,'src/proxy.ts'));
+  comprobar('Bytes idénticos preimagen→producto',anterior.equals(final));
+  const antes=leer(p.join(base,'PRODUCTO-ANTES.json'));
+  function caminar(dir){return fs.readdirSync(dir,{withFileTypes:true}).flatMap(x=>x.isDirectory()?caminar(p.join(dir,x.name)):[p.join(dir,x.name)]);}
+  const rutas=caminar(p.join(hub,'src')).map(r=>p.relative(hub,r).replaceAll('\\','/')).sort();
+  comprobar('Población src sólo renombrada',JSON.stringify(rutas)===JSON.stringify(antes.map(f=>f.ruta==='src/middleware.ts'?'src/proxy.ts':f.ruta).sort()));
+  for(const f of antes)comprobar('Conservación '+f.ruta,sha(fs.readFileSync(p.join(hub,f.ruta==='src/middleware.ts'?'src/proxy.ts':f.ruta)))===f.sha256);
+  for(const f of leer(p.join(base,'FUENTES.json')).filter(x=>x.ruta!=='src/middleware.ts'))comprobar('Configuración intacta '+f.ruta,sha(fs.readFileSync(p.join(hub,f.ruta)))===f.sha256);
+  const freeze=leer(p.join(base,'FREEZE.json'));for(const f of freeze.instrumentos)comprobar('Freeze '+f.ruta,sha(fs.readFileSync(p.join(base,f.ruta)))===f.sha256);
+  for(const nombre of ['runner.cjs','ejecutar.ps1'])comprobar('Arnés idéntico '+nombre,fs.readFileSync(p.join(base,nombre)).equals(fs.readFileSync(p.join(previo,nombre))));
+  comprobar('Copia ejecutada deriva de proxy FINAL',final.equals(fs.readFileSync(p.join(base,'copias/proxy/src/proxy.ts'))));
+  comprobar('auth.config real en copia',fs.readFileSync(p.join(hub,'src/auth.config.ts')).equals(fs.readFileSync(p.join(base,'copias/proxy/src/auth.config.ts'))));
+  comprobar('Copia sin middleware',!fs.existsSync(p.join(base,'copias/proxy/src/middleware.ts')));
+  const r=p.join(base,'resultados/proxy'),http=leer(p.join(r,'HTTP.json')),referencia=leer(p.join(previo,'resultados/proxy/HTTP.json'));
+  comprobar('HTTP129 sin fallos',http.casos.length===129&&http.fallos.length===0&&http.casos.every(x=>x.ok&&x.ejecucion));
+  comprobar('HTTP idéntico a comparación aceptada',JSON.stringify(http.casos)===JSON.stringify(referencia.casos));
+  comprobar('Sin advertencia W-NEXT',http.warning===false);
+  const manifest=leer(p.join(base,'copias/proxy/.next/server/functions-config-manifest.json'));
+  const original=leer(p.join(previo,'copias/proxy/.next/server/functions-config-manifest.json'));
+  const entrada=manifest.functions['/_middleware'];
+  comprobar('Registro real Node',entrada?.runtime==='nodejs'&&fs.existsSync(p.join(base,'copias/proxy/.next/server/middleware.js')));
+  comprobar('Matcher idéntico',JSON.stringify(entrada.matchers)===JSON.stringify(original.functions['/_middleware'].matchers));
+  comprobar('Matcher efectivo en todos los casos',http.casos.every(c=>entrada.matchers.some(m=>new RegExp(m.regexp).test(c.ruta))===c.incluido));
+  comprobar('Build real exit0',leer(p.join(r,'build-exit.json')).codigo===0);
+  const docker=leer(p.join(r,'DOCKER.json'));
+  comprobar('Docker exit0 sin timeout y eliminado',docker.exit===0&&docker.estado.ExitCode===0&&!docker.timeout&&leer(p.join(r,'DISPOSICION.json')).eliminado);
+  comprobar('Red deshabilitada y deps readonly',docker.aislamiento.NetworkMode==='none'&&docker.aislamiento.ReadonlyRootfs&&docker.aislamiento.Mounts.filter(x=>['/app/node_modules','/compat'].includes(x.Target)).every(x=>x.ReadOnly));
+  comprobar('Tipos pertinentes exit0',leer(p.join(base,'TIPOS.json')).exit===0);
+  const lint=leer(p.join(base,'LINT-RESUMEN.json'));comprobar('Lint2 archivos limpio',lint.archivos===2&&lint.errores===0&&lint.advertencias===0&&lint.exit===0);
+  const evidencia=leer(p.join(previo,'EVIDENCIA-FISICA.json'));
+  comprobar('Comparación y mutación aceptadas intactas',evidencia.archivos.every(f=>sha(fs.readFileSync(f.ruta))===f.sha256));
+  const mutante=leer(p.join(previo,'resultados/mutante/HTTP.json'));comprobar('Sensibilidad previa14 rechazos reutilizada',mutante.fallos.length===14&&mutante.casos.filter(x=>!x.ok).every(x=>x.status===200&&x.destino&&['401','login'].includes(x.esperado)));
+ }
+}catch(e){controles.push({nombre:'Instrumento incompleto',ok:false,error:e.message});}
+const resultado={result:controles.every(x=>x.ok)?'GREEN':'RED',controles:controles.length,fallos:controles.filter(x=>!x.ok),detalle:controles};console.log(JSON.stringify(resultado,null,2));process.exitCode=resultado.result==='GREEN'?0:1;

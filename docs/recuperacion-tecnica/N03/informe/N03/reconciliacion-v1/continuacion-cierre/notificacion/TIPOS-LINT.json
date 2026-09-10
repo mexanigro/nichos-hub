@@ -1,0 +1,10 @@
+{
+  "types": {
+    "exit": 2,
+    "timeout": false
+  },
+  "lint": {
+    "errors": 0,
+    "warnings": 0
+  }
+}

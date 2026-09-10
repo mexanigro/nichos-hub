@@ -1,0 +1,18 @@
+{
+  "comando": [
+    "C:\\Program Files\\nodejs\\node.exe",
+    "C:/Users/liama/Desktop/Nichos-hub/node_modules/typescript/bin/tsc",
+    "--project",
+    "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\tsconfig-pertinente.json",
+    "--noEmit",
+    "--incremental",
+    "false"
+  ],
+  "exit": 0,
+  "poblacion": [
+    "src/proxy.ts",
+    "src/auth.config.ts",
+    "next-env.d.ts"
+  ],
+  "configuracion": "tsconfig hub real,include acotado,incremental false"
+}

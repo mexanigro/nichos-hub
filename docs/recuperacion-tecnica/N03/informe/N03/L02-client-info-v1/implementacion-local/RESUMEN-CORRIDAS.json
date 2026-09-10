@@ -1,0 +1,77 @@
+[
+  {
+    "auxiliares": 1224,
+    "estado": "RED",
+    "exit": 1,
+    "invocaciones": 39.0,
+    "casos": 29,
+    "etapa": "red-p0",
+    "dominios": [
+      {
+        "dominio": "config",
+        "fallos": 662
+      },
+      {
+        "dominio": "historial",
+        "fallos": 17
+      },
+      {
+        "dominio": "hub_clients",
+        "fallos": 70
+      },
+      {
+        "dominio": "reader",
+        "fallos": 86
+      }
+    ],
+    "fallos": 835
+  },
+  {
+    "auxiliares": 1220,
+    "estado": "GREEN",
+    "exit": 0,
+    "invocaciones": 39.0,
+    "casos": 29,
+    "etapa": "green",
+    "dominios": [],
+    "fallos": 0
+  },
+  {
+    "auxiliares": 1224,
+    "estado": "RED",
+    "exit": 1,
+    "invocaciones": 39.0,
+    "casos": 29,
+    "etapa": "mutacion-config",
+    "dominios": [
+      {
+        "dominio": "config",
+        "fallos": 662
+      },
+      {
+        "dominio": "historial",
+        "fallos": 17
+      },
+      {
+        "dominio": "reader",
+        "fallos": 86
+      }
+    ],
+    "fallos": 765
+  },
+  {
+    "auxiliares": 1220,
+    "estado": "RED",
+    "exit": 1,
+    "invocaciones": 39.0,
+    "casos": 29,
+    "etapa": "mutacion-hub_clients",
+    "dominios": [
+      {
+        "dominio": "hub_clients",
+        "fallos": 70
+      }
+    ],
+    "fallos": 70
+  }
+]

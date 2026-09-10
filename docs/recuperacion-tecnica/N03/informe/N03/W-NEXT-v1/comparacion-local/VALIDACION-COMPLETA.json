@@ -1,0 +1,2889 @@
+{
+  "result": "GREEN",
+  "controles": 719,
+  "fallos": [],
+  "detalle": [
+    {
+      "nombre": "Comparación HTTP y sensibilidad",
+      "ok": true,
+      "detalle": {
+        "result": "GREEN",
+        "errores": [],
+        "casosPorVariante": 129,
+        "fallosEsperadosMutante": 14
+      }
+    },
+    {
+      "nombre": "Fuente intacta src/middleware.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Fuente intacta src/auth.config.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Fuente intacta package.json",
+      "ok": true
+    },
+    {
+      "nombre": "Fuente intacta next.config.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Fuente intacta node_modules/next/package.json",
+      "ok": true
+    },
+    {
+      "nombre": "Fuente intacta node_modules/next-auth/package.json",
+      "ok": true
+    },
+    {
+      "nombre": "Fuente intacta node_modules/@auth/core/jwt.js",
+      "ok": true
+    },
+    {
+      "nombre": "Fuente intacta node_modules/next-auth/lib/index.js",
+      "ok": true
+    },
+    {
+      "nombre": "Continuidad previa src/middleware.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Continuidad previa src/auth.config.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Continuidad previa package.json",
+      "ok": true
+    },
+    {
+      "nombre": "Continuidad previa node_modules/next/package.json",
+      "ok": true
+    },
+    {
+      "nombre": "Única convención middleware",
+      "ok": true
+    },
+    {
+      "nombre": "auth.config exacto middleware",
+      "ok": true
+    },
+    {
+      "nombre": "Guard bytes exactos middleware",
+      "ok": true
+    },
+    {
+      "nombre": "Exit y disposición middleware",
+      "ok": true
+    },
+    {
+      "nombre": "Aislamiento middleware",
+      "ok": true
+    },
+    {
+      "nombre": "Versiones y red middleware",
+      "ok": true
+    },
+    {
+      "nombre": "Build real middleware",
+      "ok": true
+    },
+    {
+      "nombre": "Registro Edge",
+      "ok": true
+    },
+    {
+      "nombre": "Población middleware",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware / ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware / owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /login ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /login owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /privacy ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /privacy owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /terms ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /terms owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /robots.txt ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /robots.txt owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /sitemap.xml ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /sitemap.xml owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /manifest.webmanifest ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /manifest.webmanifest owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /onboarding/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /onboarding/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /onboarding-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /onboarding-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /pago/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /pago/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /pago-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /pago-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /mi-cuenta/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /mi-cuenta/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /mi-cuenta-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /mi-cuenta-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/auth/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/auth/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/auth-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/auth-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/cardcom/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/cardcom/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/cardcom-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/cardcom-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/onboarding/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/onboarding/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/onboarding-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/onboarding-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/free/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/free/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/free-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/free-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/cron/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/cron/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/cron-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/cron-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/appointments/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/appointments/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/appointments-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/appointments-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/bookings/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/bookings/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/bookings-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/bookings-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/contract-leads/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/contract-leads/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/contract-leads-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/contract-leads-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/tenant-claim/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/tenant-claim/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/tenant-claim-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/tenant-claim-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/sales-assistant/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/sales-assistant/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/sales-assistant-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/sales-assistant-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/deploy/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/deploy/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/deploy-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/deploy-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/payments/contract/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/payments/contract/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/payments/contract-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/payments/contract-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /opengraph-image/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /opengraph-image/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /opengraph-image-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /opengraph-image-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /clients ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /clients owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /clients segundo",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /clients ajeno",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /clients invalido",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /clients expirado",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/private ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/private owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/private segundo",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/private ajeno",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/private invalido",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/private expirado",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/whatsapp-config/x ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/whatsapp-config/x ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/whatsapp-config/x ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/whatsapp-config ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /api/private ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /_next/static/inexistente.js ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /_next/static/inexistente.js owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /_next/image ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /_next/image owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /favicon.ico ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /favicon.ico owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /privado.svg ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /privado.svg owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /privado.png ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /privado.png owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /privado.jpg ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /privado.jpg owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /privado.jpeg ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /privado.jpeg owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /privado.gif ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /privado.gif owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /privado.webp ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /privado.webp owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /privado.ico ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /privado.ico owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /privado.webm ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /privado.webm owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /privado.mp4 ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /privado.mp4 owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /privado.mov ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /privado.mov owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /privado.txt ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /privado.txt owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /privado.svg/extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /privado.svg/extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /_next/static-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /_next/static-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /favicon.ico-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo middleware /favicon.ico-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Token expirado rechazado middleware",
+      "ok": true
+    },
+    {
+      "nombre": "Única convención proxy",
+      "ok": true
+    },
+    {
+      "nombre": "auth.config exacto proxy",
+      "ok": true
+    },
+    {
+      "nombre": "Guard bytes exactos proxy",
+      "ok": true
+    },
+    {
+      "nombre": "Exit y disposición proxy",
+      "ok": true
+    },
+    {
+      "nombre": "Aislamiento proxy",
+      "ok": true
+    },
+    {
+      "nombre": "Versiones y red proxy",
+      "ok": true
+    },
+    {
+      "nombre": "Build real proxy",
+      "ok": true
+    },
+    {
+      "nombre": "Registro Node proxy",
+      "ok": true
+    },
+    {
+      "nombre": "Población proxy",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy / ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy / owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /login ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /login owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /privacy ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /privacy owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /terms ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /terms owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /robots.txt ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /robots.txt owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /sitemap.xml ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /sitemap.xml owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /manifest.webmanifest ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /manifest.webmanifest owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /onboarding/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /onboarding/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /onboarding-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /onboarding-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /pago/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /pago/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /pago-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /pago-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /mi-cuenta/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /mi-cuenta/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /mi-cuenta-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /mi-cuenta-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/auth/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/auth/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/auth-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/auth-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/cardcom/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/cardcom/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/cardcom-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/cardcom-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/onboarding/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/onboarding/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/onboarding-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/onboarding-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/free/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/free/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/free-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/free-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/cron/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/cron/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/cron-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/cron-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/appointments/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/appointments/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/appointments-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/appointments-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/bookings/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/bookings/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/bookings-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/bookings-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/contract-leads/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/contract-leads/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/contract-leads-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/contract-leads-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/tenant-claim/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/tenant-claim/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/tenant-claim-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/tenant-claim-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/sales-assistant/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/sales-assistant/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/sales-assistant-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/sales-assistant-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/deploy/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/deploy/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/deploy-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/deploy-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/payments/contract/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/payments/contract/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/payments/contract-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/payments/contract-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /opengraph-image/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /opengraph-image/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /opengraph-image-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /opengraph-image-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /clients ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /clients owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /clients segundo",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /clients ajeno",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /clients invalido",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /clients expirado",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/private ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/private owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/private segundo",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/private ajeno",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/private invalido",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/private expirado",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/whatsapp-config/x ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/whatsapp-config/x ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/whatsapp-config/x ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/whatsapp-config ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /api/private ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /_next/static/inexistente.js ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /_next/static/inexistente.js owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /_next/image ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /_next/image owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /favicon.ico ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /favicon.ico owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /privado.svg ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /privado.svg owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /privado.png ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /privado.png owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /privado.jpg ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /privado.jpg owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /privado.jpeg ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /privado.jpeg owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /privado.gif ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /privado.gif owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /privado.webp ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /privado.webp owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /privado.ico ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /privado.ico owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /privado.webm ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /privado.webm owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /privado.mp4 ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /privado.mp4 owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /privado.mov ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /privado.mov owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /privado.txt ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /privado.txt owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /privado.svg/extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /privado.svg/extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /_next/static-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /_next/static-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /favicon.ico-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo proxy /favicon.ico-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher idéntico proxy",
+      "ok": true
+    },
+    {
+      "nombre": "Token expirado rechazado proxy",
+      "ok": true
+    },
+    {
+      "nombre": "Única convención mutante",
+      "ok": true
+    },
+    {
+      "nombre": "auth.config exacto mutante",
+      "ok": true
+    },
+    {
+      "nombre": "Mutación sólo callback",
+      "ok": true
+    },
+    {
+      "nombre": "Exit y disposición mutante",
+      "ok": true
+    },
+    {
+      "nombre": "Aislamiento mutante",
+      "ok": true
+    },
+    {
+      "nombre": "Versiones y red mutante",
+      "ok": true
+    },
+    {
+      "nombre": "Build real mutante",
+      "ok": true
+    },
+    {
+      "nombre": "Registro Node mutante",
+      "ok": true
+    },
+    {
+      "nombre": "Población mutante",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante / ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante / owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /login ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /login owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /privacy ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /privacy owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /terms ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /terms owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /robots.txt ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /robots.txt owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /sitemap.xml ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /sitemap.xml owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /manifest.webmanifest ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /manifest.webmanifest owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /onboarding/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /onboarding/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /onboarding-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /onboarding-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /pago/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /pago/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /pago-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /pago-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /mi-cuenta/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /mi-cuenta/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /mi-cuenta-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /mi-cuenta-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/auth/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/auth/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/auth-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/auth-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/cardcom/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/cardcom/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/cardcom-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/cardcom-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/onboarding/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/onboarding/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/onboarding-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/onboarding-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/free/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/free/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/free-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/free-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/cron/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/cron/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/cron-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/cron-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/appointments/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/appointments/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/appointments-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/appointments-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/bookings/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/bookings/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/bookings-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/bookings-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/contract-leads/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/contract-leads/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/contract-leads-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/contract-leads-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/tenant-claim/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/tenant-claim/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/tenant-claim-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/tenant-claim-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/sales-assistant/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/sales-assistant/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/sales-assistant-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/sales-assistant-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/deploy/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/deploy/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/deploy-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/deploy-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/payments/contract/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/payments/contract/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/payments/contract-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/payments/contract-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /opengraph-image/prueba ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /opengraph-image/prueba owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /opengraph-image-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /opengraph-image-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /clients ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /clients owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /clients segundo",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /clients ajeno",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /clients invalido",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /clients expirado",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/private ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/private owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/private segundo",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/private ajeno",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/private invalido",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/private expirado",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/whatsapp-config/x ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/whatsapp-config/x ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/whatsapp-config/x ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/whatsapp-config ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /api/private ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /_next/static/inexistente.js ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /_next/static/inexistente.js owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /_next/image ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /_next/image owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /favicon.ico ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /favicon.ico owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /privado.svg ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /privado.svg owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /privado.png ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /privado.png owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /privado.jpg ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /privado.jpg owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /privado.jpeg ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /privado.jpeg owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /privado.gif ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /privado.gif owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /privado.webp ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /privado.webp owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /privado.ico ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /privado.ico owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /privado.webm ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /privado.webm owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /privado.mp4 ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /privado.mp4 owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /privado.mov ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /privado.mov owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /privado.txt ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /privado.txt owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /privado.svg/extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /privado.svg/extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /_next/static-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /_next/static-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /favicon.ico-extra ausente",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher efectivo mutante /favicon.ico-extra owner",
+      "ok": true
+    },
+    {
+      "nombre": "Matcher idéntico mutante",
+      "ok": true
+    },
+    {
+      "nombre": "Token expirado rechazado mutante",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\auth.config.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\instrumentation.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\middleware.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\apple-icon.png",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\globals.css",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\icon.png",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\layout.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\manifest.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\page.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\robots.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\sitemap.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\api-costs\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\api-costs\\fetch\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\api-costs\\[serviceId]\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\api-keys\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\appointments\\available\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\appointments\\book\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\appointments\\config\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\appointments\\[id]\\cancel\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\auth\\lead\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\auth\\upsert-lead\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\auth\\[...nextauth]\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\bookings\\increment\\[clientId]\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\calendar\\auth\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\calendar\\callback\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\calendar\\[clientId]\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\cardcom\\create-onboarding-payment\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\cardcom\\create-payment\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\cardcom\\verify-onboarding-payment\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\cardcom\\verify-payment\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\cardcom\\webhook\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\classify\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\clients\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\clients\\changes-request\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\clients\\counts\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\clients\\kill\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\clients\\provision\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\clients\\redeploy\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\clients\\[clientId]\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\clients\\[clientId]\\status-history\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\clients\\[clientId]\\tier\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\config\\[clientId]\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\config\\[clientId]\\history\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\config\\[clientId]\\payment-credentials\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\contract-leads\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\crm\\import\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\crm\\parse-text\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\crm-stats\\[clientId]\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\cron\\cardcom-charges\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\cron\\reset-bookings\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\deploy\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\email\\health\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\expenses\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\expenses\\export\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\free\\lead\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\generate-content\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\leads\\[clientId]\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\messages\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\messages\\reply\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\messages\\thread\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\monitor\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\onboarding\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\onboarding\\client-info\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\onboarding\\draft\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\onboarding\\status\\[clientId]\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\onboarding\\upload\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\operational-costs\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\operational-costs\\seed\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\payments\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\payments\\contract\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\payments\\[clientId]\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\prospects\\follow-up\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\prospects\\follow-up\\check\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\sales\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\sales\\notes\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\sales-assistant\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\tenant-claim\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\upload\\[clientId]\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\upload-logo\\[clientId]\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\users\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\voice-config\\[clientId]\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\whatsapp-config\\[clientId]\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\whatsapp-config\\[clientId]\\send-template\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\whatsapp-config\\[clientId]\\status\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\whatsapp-config\\[clientId]\\templates\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\whatsapp-config\\[clientId]\\test\\route.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api-costs\\page.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\asistente\\page.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\clients\\page.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\clients\\new\\page.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\clients\\[clientId]\\page.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\expenses\\page.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\login\\page.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\messages\\page.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\mi-cuenta\\page.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\monitor\\page.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\onboarding\\free\\free-wizard-client.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\onboarding\\free\\layout.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\onboarding\\free\\page.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\onboarding\\info\\layout.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\onboarding\\info\\page.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\onboarding\\info\\paid-wizard-client.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\onboarding\\pago\\layout.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\onboarding\\pago\\onboarding-pago-client.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\onboarding\\pago\\page.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\onboarding\\pago\\error\\page.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\onboarding\\pago\\expired\\page.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\onboarding\\pago\\success\\page.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\onboarding\\preview\\page.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\onboarding\\status\\[clientId]\\page.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\pago\\layout.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\pago\\error\\page.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\pago\\success\\page.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\pago\\[clientId]\\page.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\pago\\[clientId]\\pago-client.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\payments\\page.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\privacy\\page.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\sales\\page.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\seguimiento\\page.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\terms\\page.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\app-shell.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\booking-tier-panel.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\brand-package-import.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\client-config-tab.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\client-content-tab.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\client-language-banner.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\client-leads-tab.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\client-site-preview.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\config-history-panel.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\crm-import-modal.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\empty-state.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\hub-status-history-panel.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\image-upload-field.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\language-mismatch-warning.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\loading.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\logo-upload-field.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\messages-panel.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\payment-badges.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\pending-review-banner.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\prospect-timeline.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\providers.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\save-diff-modal.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\sidebar.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\splash-variant-preview.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\stat-card.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\status-badge.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\tier-badge.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\voice-config-tab.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\whatsapp-config-tab.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\whatsapp-templates-section.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\config-editors\\ambience-editor.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\config-editors\\benefits-editor.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\config-editors\\composition-layers-editor.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\config-editors\\global-style-editor.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\config-editors\\hero-objects-editor.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\config-editors\\hero-slot-picker.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\config-editors\\layout-variants-editor.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\config-editors\\menu-editor.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\config-editors\\numbered-steps-editor.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\config-editors\\payment-provider-editor.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\config-editors\\portfolio-editor.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\config-editors\\reorder-controls.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\config-editors\\schedule-editor.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\config-editors\\section-variant-selector.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\config-editors\\services-editor.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\config-editors\\staff-editor.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\config-editors\\testimonials-editor.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\config-editors\\transparent-png-uploader.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\config-editors\\variant-specific-configs.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\config-editors\\variant-thumbnails.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\agent-section.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\animated-stepper.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\atelier-page.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\auth-modal.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\auto-rotating-tabs.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\crm-section.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\evergreen.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\everything.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\faq.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\final-cta.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\footer.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\founder.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\header.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\hero.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\lang-switch.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\logo-mark.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\manifesto.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\mascot.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\pricing.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\process.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\section-cta.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\showcase.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\tech-stack.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\landing\\whatsapp-fab.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\changes-requested-banner.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\field-error.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\wizard-hint.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\wizard-nav.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\wizard-progress.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\wizard-ref-image.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\wizard-review.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\wizard-shell.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\wizard-step.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\wizard-transition.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\steps\\step-benefits.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\steps\\step-brand.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\steps\\step-business.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\steps\\step-contact.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\steps\\step-demo-contact.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\steps\\step-faq.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\steps\\step-gallery.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\steps\\step-hours.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\steps\\step-logo-upload.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\steps\\step-mode.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\steps\\step-niche.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\steps\\step-owner.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\steps\\step-services.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\steps\\step-style.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\components\\wizard\\steps\\step-testimonials.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\hooks\\use-language-mismatch.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\hooks\\use-scroll-reveal.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\api-cost-fetchers.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\auth-types.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\auth.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\brand-package-parser.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\branding-resolver.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\builder-storage.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\cardcom-credit-paths.test.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\cardcom-promote.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\cardcom.test.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\cardcom.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\classify.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\client-language-context.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\client-language.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\config-diff.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\config-validator.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\contracts.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\dashboard-placeholders.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\deploy.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\detect-language.test.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\detect-language.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\email-templates.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\email.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\env-check.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\firebase-admin.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\firebase-client.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\image-compress.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\instagram-analyzer.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\logo-generator.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\niche-defaults.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\onboarding-token.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\png-validation.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\postgres.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\pricing.test.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\pricing.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\rate-limit.test.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\rate-limit.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\safe-compare.test.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\safe-compare.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\schemas.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\security.test.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\security.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\sites.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\user-auth-context.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\user-auth.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\with-agent-auth.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\client-config\\services.test.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\client-config\\services.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\i18n\\context.tsx",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\i18n\\index.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\i18n\\types.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\i18n\\locales\\ar.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\i18n\\locales\\en.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\i18n\\locales\\es.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\i18n\\locales\\he.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\i18n\\locales\\ru.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\repos\\health.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\repos\\payments.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\wizard\\config-to-wizard.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\wizard\\upload-helpers.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\wizard\\use-wizard.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\wizard\\wizard-storage.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\wizard\\wizard-types.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\wizard\\wizard-validation.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Conservación producto C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\types\\index.ts",
+      "ok": true
+    },
+    {
+      "nombre": "Producto sigue middleware",
+      "ok": true
+    },
+    {
+      "nombre": "Contrato congelado intacto",
+      "ok": true
+    }
+  ]
+}

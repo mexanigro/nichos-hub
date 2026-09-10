@@ -1,0 +1,14 @@
+[
+  {
+    "file": "CONTRATO-MONEDA.md",
+    "sha256": "92739e233a0915a8b0b681507e053761dfd4b6e633f23dab549d533ddf0a1d79"
+  },
+  {
+    "file": "moneda-handler.cjs",
+    "sha256": "24c2ad90f76555875c0364ce5111ddffa6bdfce3f34ece023554f63892ec9f1e"
+  },
+  {
+    "file": "moneda-gateway.cjs",
+    "sha256": "24ceac52455057835108327e538c0450fbbe1d65ee81b197ae07ff668e068373"
+  }
+]

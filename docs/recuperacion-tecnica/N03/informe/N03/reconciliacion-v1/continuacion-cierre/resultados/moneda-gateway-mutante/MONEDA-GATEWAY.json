@@ -1,0 +1,135 @@
+{
+  "result": "RED",
+  "rows": [
+    {
+      "currency": "ils",
+      "captured": {
+        "body": {
+          "payment_method_types": [
+            "card"
+          ],
+          "customer_email": "local@example.invalid",
+          "line_items": [
+            {
+              "price_data": {
+                "currency": "usd",
+                "product_data": {
+                  "name": "svc"
+                },
+                "unit_amount": 15000
+              },
+              "quantity": 1
+            }
+          ],
+          "mode": "payment",
+          "success_url": "https://synthetic.invalid/ok",
+          "cancel_url": "https://synthetic.invalid/cancel",
+          "metadata": {
+            "appointmentId": "appt",
+            "clientId": "tenant",
+            "paymentProvider": "stripe",
+            "paymentMode": "full"
+          }
+        },
+        "opts": {
+          "idempotencyKey": "checkout_tenant_appt"
+        }
+      }
+    },
+    {
+      "currency": "usd",
+      "captured": {
+        "body": {
+          "payment_method_types": [
+            "card"
+          ],
+          "customer_email": "local@example.invalid",
+          "line_items": [
+            {
+              "price_data": {
+                "currency": "usd",
+                "product_data": {
+                  "name": "svc"
+                },
+                "unit_amount": 15000
+              },
+              "quantity": 1
+            }
+          ],
+          "mode": "payment",
+          "success_url": "https://synthetic.invalid/ok",
+          "cancel_url": "https://synthetic.invalid/cancel",
+          "metadata": {
+            "appointmentId": "appt",
+            "clientId": "tenant",
+            "paymentProvider": "stripe",
+            "paymentMode": "full"
+          }
+        },
+        "opts": {
+          "idempotencyKey": "checkout_tenant_appt"
+        }
+      }
+    },
+    {
+      "currency": "eur",
+      "captured": {
+        "body": {
+          "payment_method_types": [
+            "card"
+          ],
+          "customer_email": "local@example.invalid",
+          "line_items": [
+            {
+              "price_data": {
+                "currency": "usd",
+                "product_data": {
+                  "name": "svc"
+                },
+                "unit_amount": 15000
+              },
+              "quantity": 1
+            }
+          ],
+          "mode": "payment",
+          "success_url": "https://synthetic.invalid/ok",
+          "cancel_url": "https://synthetic.invalid/cancel",
+          "metadata": {
+            "appointmentId": "appt",
+            "clientId": "tenant",
+            "paymentProvider": "stripe",
+            "paymentMode": "full"
+          }
+        },
+        "opts": {
+          "idempotencyKey": "checkout_tenant_appt"
+        }
+      }
+    }
+  ],
+  "failures": [
+    {
+      "currency": "ils",
+      "actual": {
+        "currency": "usd",
+        "product_data": {
+          "name": "svc"
+        },
+        "unit_amount": 15000
+      },
+      "message": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n  {\n+   currency: 'usd',\n-   currency: 'ils',\n    product_data: {\n      name: 'svc'\n    },\n    unit_amount: 15000\n  }\n"
+    },
+    {
+      "currency": "eur",
+      "actual": {
+        "currency": "usd",
+        "product_data": {
+          "name": "svc"
+        },
+        "unit_amount": 15000
+      },
+      "message": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n  {\n+   currency: 'usd',\n-   currency: 'eur',\n    product_data: {\n      name: 'svc'\n    },\n    unit_amount: 15000\n  }\n"
+    }
+  ],
+  "limite": "Builder real, transporte Stripe interceptado, sin red ni proveedor real"
+}

@@ -1,0 +1,4352 @@
+{
+  "result": "RED",
+  "cases": 44,
+  "rows": 220,
+  "checks": 697,
+  "failures": [
+    {
+      "label": "proyectos-contradictorios/firestoreRestGetDocument/operations",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "label": "proyectos-contradictorios/firestoreRestGetDocument/return",
+      "actual": "document",
+      "expected": "error"
+    },
+    {
+      "label": "proyectos-contradictorios/firestoreRestGetDocument/error",
+      "actual": null,
+      "expected": "Firestore destination mismatch"
+    },
+    {
+      "label": "proyectos-contradictorios/firestoreRestPatchDocument/operations",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "label": "proyectos-contradictorios/firestoreRestPatchDocument/return",
+      "actual": "undefined",
+      "expected": "error"
+    },
+    {
+      "label": "proyectos-contradictorios/firestoreRestPatchDocument/error",
+      "actual": null,
+      "expected": "Firestore destination mismatch"
+    },
+    {
+      "label": "incompleto-admin-contradiccion/firestoreRestGetDocument/operations",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "label": "incompleto-admin-contradiccion/firestoreRestGetDocument/return",
+      "actual": "document",
+      "expected": "error"
+    },
+    {
+      "label": "incompleto-admin-contradiccion/firestoreRestGetDocument/error",
+      "actual": null,
+      "expected": "Firestore destination mismatch"
+    },
+    {
+      "label": "incompleto-admin-contradiccion/firestoreRestPatchDocument/operations",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "label": "incompleto-admin-contradiccion/firestoreRestPatchDocument/return",
+      "actual": "undefined",
+      "expected": "error"
+    },
+    {
+      "label": "incompleto-admin-contradiccion/firestoreRestPatchDocument/error",
+      "actual": null,
+      "expected": "Firestore destination mismatch"
+    }
+  ],
+  "mutant": "context",
+  "mutations": 1,
+  "observations": [
+    {
+      "case": "coincidentes-ausencia-base",
+      "consumer": "server",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "[DEFAULT]",
+          "project": "project-a",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "default",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/default/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "[DEFAULT]"
+      ]
+    },
+    {
+      "case": "coincidentes-ausencia-base",
+      "consumer": "api",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "[DEFAULT]",
+          "project": "project-a",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "default",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/default/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "[DEFAULT]"
+      ]
+    },
+    {
+      "case": "coincidentes-ausencia-base",
+      "consumer": "firestoreRestCreate",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe",
+          "method": "POST",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "coincidentes-ausencia-base",
+      "consumer": "firestoreRestGetDocument",
+      "result": "document",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1",
+          "method": "GET",
+          "body": null
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "coincidentes-ausencia-base",
+      "consumer": "firestoreRestPatchDocument",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1?updateMask.fieldPaths=flag",
+          "method": "PATCH",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "proyecto-rest-ausente",
+      "consumer": "server",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "[DEFAULT]",
+          "project": "project-a",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "default",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/default/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "[DEFAULT]"
+      ]
+    },
+    {
+      "case": "proyecto-rest-ausente",
+      "consumer": "api",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "[DEFAULT]",
+          "project": "project-a",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "default",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/default/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "[DEFAULT]"
+      ]
+    },
+    {
+      "case": "proyecto-rest-ausente",
+      "consumer": "firestoreRestCreate",
+      "result": "undefined",
+      "error": null,
+      "operations": [],
+      "logs": []
+    },
+    {
+      "case": "proyecto-rest-ausente",
+      "consumer": "firestoreRestGetDocument",
+      "result": "error",
+      "error": "FIREBASE_PROJECT_ID not set",
+      "operations": [],
+      "logs": []
+    },
+    {
+      "case": "proyecto-rest-ausente",
+      "consumer": "firestoreRestPatchDocument",
+      "result": "error",
+      "error": "FIREBASE_PROJECT_ID not set",
+      "operations": [],
+      "logs": []
+    },
+    {
+      "case": "proyecto-admin-ausente",
+      "consumer": "server",
+      "result": "null",
+      "error": null,
+      "selected": [],
+      "operations": [],
+      "registry": []
+    },
+    {
+      "case": "proyecto-admin-ausente",
+      "consumer": "api",
+      "result": "null",
+      "error": null,
+      "selected": [],
+      "operations": [],
+      "registry": []
+    },
+    {
+      "case": "proyecto-admin-ausente",
+      "consumer": "firestoreRestCreate",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe",
+          "method": "POST",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "proyecto-admin-ausente",
+      "consumer": "firestoreRestGetDocument",
+      "result": "document",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1",
+          "method": "GET",
+          "body": null
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "proyecto-admin-ausente",
+      "consumer": "firestoreRestPatchDocument",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1?updateMask.fieldPaths=flag",
+          "method": "PATCH",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "base-ausente",
+      "consumer": "server",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "[DEFAULT]",
+          "project": "project-a",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "default",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/default/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "[DEFAULT]"
+      ]
+    },
+    {
+      "case": "base-ausente",
+      "consumer": "api",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "[DEFAULT]",
+          "project": "project-a",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "default",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/default/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "[DEFAULT]"
+      ]
+    },
+    {
+      "case": "base-ausente",
+      "consumer": "firestoreRestCreate",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe",
+          "method": "POST",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "base-ausente",
+      "consumer": "firestoreRestGetDocument",
+      "result": "document",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1",
+          "method": "GET",
+          "body": null
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "base-ausente",
+      "consumer": "firestoreRestPatchDocument",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1?updateMask.fieldPaths=flag",
+          "method": "PATCH",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "rest-fallback-vite-ausente",
+      "consumer": "server",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "[DEFAULT]",
+          "project": "project-a",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "default",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/default/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "[DEFAULT]"
+      ]
+    },
+    {
+      "case": "rest-fallback-vite-ausente",
+      "consumer": "api",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "[DEFAULT]",
+          "project": "project-a",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "default",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/default/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "[DEFAULT]"
+      ]
+    },
+    {
+      "case": "rest-fallback-vite-ausente",
+      "consumer": "firestoreRestCreate",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe",
+          "method": "POST",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "rest-fallback-vite-ausente",
+      "consumer": "firestoreRestGetDocument",
+      "result": "document",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1",
+          "method": "GET",
+          "body": null
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "rest-fallback-vite-ausente",
+      "consumer": "firestoreRestPatchDocument",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1?updateMask.fieldPaths=flag",
+          "method": "PATCH",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "email-ausente",
+      "consumer": "server",
+      "result": "null",
+      "error": null,
+      "selected": [],
+      "operations": [],
+      "registry": []
+    },
+    {
+      "case": "email-ausente",
+      "consumer": "api",
+      "result": "null",
+      "error": null,
+      "selected": [],
+      "operations": [],
+      "registry": []
+    },
+    {
+      "case": "email-ausente",
+      "consumer": "firestoreRestCreate",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe",
+          "method": "POST",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "email-ausente",
+      "consumer": "firestoreRestGetDocument",
+      "result": "document",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1",
+          "method": "GET",
+          "body": null
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "email-ausente",
+      "consumer": "firestoreRestPatchDocument",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1?updateMask.fieldPaths=flag",
+          "method": "PATCH",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "clave-ausente",
+      "consumer": "server",
+      "result": "null",
+      "error": null,
+      "selected": [],
+      "operations": [],
+      "registry": []
+    },
+    {
+      "case": "clave-ausente",
+      "consumer": "api",
+      "result": "null",
+      "error": null,
+      "selected": [],
+      "operations": [],
+      "registry": []
+    },
+    {
+      "case": "clave-ausente",
+      "consumer": "firestoreRestCreate",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe",
+          "method": "POST",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "clave-ausente",
+      "consumer": "firestoreRestGetDocument",
+      "result": "document",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1",
+          "method": "GET",
+          "body": null
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "clave-ausente",
+      "consumer": "firestoreRestPatchDocument",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1?updateMask.fieldPaths=flag",
+          "method": "PATCH",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "proyecto-rest-vacio",
+      "consumer": "server",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "[DEFAULT]",
+          "project": "project-a",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "default",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/default/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "[DEFAULT]"
+      ]
+    },
+    {
+      "case": "proyecto-rest-vacio",
+      "consumer": "api",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "[DEFAULT]",
+          "project": "project-a",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "default",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/default/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "[DEFAULT]"
+      ]
+    },
+    {
+      "case": "proyecto-rest-vacio",
+      "consumer": "firestoreRestCreate",
+      "result": "undefined",
+      "error": null,
+      "operations": [],
+      "logs": []
+    },
+    {
+      "case": "proyecto-rest-vacio",
+      "consumer": "firestoreRestGetDocument",
+      "result": "error",
+      "error": "FIREBASE_PROJECT_ID not set",
+      "operations": [],
+      "logs": []
+    },
+    {
+      "case": "proyecto-rest-vacio",
+      "consumer": "firestoreRestPatchDocument",
+      "result": "error",
+      "error": "FIREBASE_PROJECT_ID not set",
+      "operations": [],
+      "logs": []
+    },
+    {
+      "case": "proyecto-admin-vacio",
+      "consumer": "server",
+      "result": "null",
+      "error": null,
+      "selected": [],
+      "operations": [],
+      "registry": []
+    },
+    {
+      "case": "proyecto-admin-vacio",
+      "consumer": "api",
+      "result": "null",
+      "error": null,
+      "selected": [],
+      "operations": [],
+      "registry": []
+    },
+    {
+      "case": "proyecto-admin-vacio",
+      "consumer": "firestoreRestCreate",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe",
+          "method": "POST",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "proyecto-admin-vacio",
+      "consumer": "firestoreRestGetDocument",
+      "result": "document",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1",
+          "method": "GET",
+          "body": null
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "proyecto-admin-vacio",
+      "consumer": "firestoreRestPatchDocument",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1?updateMask.fieldPaths=flag",
+          "method": "PATCH",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "base-vacio",
+      "consumer": "server",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "[DEFAULT]",
+          "project": "project-a",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "default",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/default/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "[DEFAULT]"
+      ]
+    },
+    {
+      "case": "base-vacio",
+      "consumer": "api",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "[DEFAULT]",
+          "project": "project-a",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "default",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/default/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "[DEFAULT]"
+      ]
+    },
+    {
+      "case": "base-vacio",
+      "consumer": "firestoreRestCreate",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe",
+          "method": "POST",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "base-vacio",
+      "consumer": "firestoreRestGetDocument",
+      "result": "document",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1",
+          "method": "GET",
+          "body": null
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "base-vacio",
+      "consumer": "firestoreRestPatchDocument",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1?updateMask.fieldPaths=flag",
+          "method": "PATCH",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "rest-fallback-vite-vacio",
+      "consumer": "server",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "[DEFAULT]",
+          "project": "project-a",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "default",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/default/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "[DEFAULT]"
+      ]
+    },
+    {
+      "case": "rest-fallback-vite-vacio",
+      "consumer": "api",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "[DEFAULT]",
+          "project": "project-a",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "default",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/default/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "[DEFAULT]"
+      ]
+    },
+    {
+      "case": "rest-fallback-vite-vacio",
+      "consumer": "firestoreRestCreate",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe",
+          "method": "POST",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "rest-fallback-vite-vacio",
+      "consumer": "firestoreRestGetDocument",
+      "result": "document",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1",
+          "method": "GET",
+          "body": null
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "rest-fallback-vite-vacio",
+      "consumer": "firestoreRestPatchDocument",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1?updateMask.fieldPaths=flag",
+          "method": "PATCH",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "email-vacio",
+      "consumer": "server",
+      "result": "null",
+      "error": null,
+      "selected": [],
+      "operations": [],
+      "registry": []
+    },
+    {
+      "case": "email-vacio",
+      "consumer": "api",
+      "result": "null",
+      "error": null,
+      "selected": [],
+      "operations": [],
+      "registry": []
+    },
+    {
+      "case": "email-vacio",
+      "consumer": "firestoreRestCreate",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe",
+          "method": "POST",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "email-vacio",
+      "consumer": "firestoreRestGetDocument",
+      "result": "document",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1",
+          "method": "GET",
+          "body": null
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "email-vacio",
+      "consumer": "firestoreRestPatchDocument",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1?updateMask.fieldPaths=flag",
+          "method": "PATCH",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "clave-vacio",
+      "consumer": "server",
+      "result": "null",
+      "error": null,
+      "selected": [],
+      "operations": [],
+      "registry": []
+    },
+    {
+      "case": "clave-vacio",
+      "consumer": "api",
+      "result": "null",
+      "error": null,
+      "selected": [],
+      "operations": [],
+      "registry": []
+    },
+    {
+      "case": "clave-vacio",
+      "consumer": "firestoreRestCreate",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe",
+          "method": "POST",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "clave-vacio",
+      "consumer": "firestoreRestGetDocument",
+      "result": "document",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1",
+          "method": "GET",
+          "body": null
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "clave-vacio",
+      "consumer": "firestoreRestPatchDocument",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1?updateMask.fieldPaths=flag",
+          "method": "PATCH",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "proyecto-rest-blancos",
+      "consumer": "server",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "[DEFAULT]",
+          "project": "project-a",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "default",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/default/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "[DEFAULT]"
+      ]
+    },
+    {
+      "case": "proyecto-rest-blancos",
+      "consumer": "api",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "[DEFAULT]",
+          "project": "project-a",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "default",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/default/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "[DEFAULT]"
+      ]
+    },
+    {
+      "case": "proyecto-rest-blancos",
+      "consumer": "firestoreRestCreate",
+      "result": "undefined",
+      "error": null,
+      "operations": [],
+      "logs": []
+    },
+    {
+      "case": "proyecto-rest-blancos",
+      "consumer": "firestoreRestGetDocument",
+      "result": "error",
+      "error": "FIREBASE_PROJECT_ID not set",
+      "operations": [],
+      "logs": []
+    },
+    {
+      "case": "proyecto-rest-blancos",
+      "consumer": "firestoreRestPatchDocument",
+      "result": "error",
+      "error": "FIREBASE_PROJECT_ID not set",
+      "operations": [],
+      "logs": []
+    },
+    {
+      "case": "proyecto-admin-blancos",
+      "consumer": "server",
+      "result": "null",
+      "error": null,
+      "selected": [],
+      "operations": [],
+      "registry": []
+    },
+    {
+      "case": "proyecto-admin-blancos",
+      "consumer": "api",
+      "result": "null",
+      "error": null,
+      "selected": [],
+      "operations": [],
+      "registry": []
+    },
+    {
+      "case": "proyecto-admin-blancos",
+      "consumer": "firestoreRestCreate",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe",
+          "method": "POST",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "proyecto-admin-blancos",
+      "consumer": "firestoreRestGetDocument",
+      "result": "document",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1",
+          "method": "GET",
+          "body": null
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "proyecto-admin-blancos",
+      "consumer": "firestoreRestPatchDocument",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1?updateMask.fieldPaths=flag",
+          "method": "PATCH",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "base-blancos",
+      "consumer": "server",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "[DEFAULT]",
+          "project": "project-a",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "default",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/default/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "[DEFAULT]"
+      ]
+    },
+    {
+      "case": "base-blancos",
+      "consumer": "api",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "[DEFAULT]",
+          "project": "project-a",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "default",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/default/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "[DEFAULT]"
+      ]
+    },
+    {
+      "case": "base-blancos",
+      "consumer": "firestoreRestCreate",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe",
+          "method": "POST",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "base-blancos",
+      "consumer": "firestoreRestGetDocument",
+      "result": "document",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1",
+          "method": "GET",
+          "body": null
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "base-blancos",
+      "consumer": "firestoreRestPatchDocument",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1?updateMask.fieldPaths=flag",
+          "method": "PATCH",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "rest-fallback-vite-blancos",
+      "consumer": "server",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "[DEFAULT]",
+          "project": "project-a",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "default",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/default/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "[DEFAULT]"
+      ]
+    },
+    {
+      "case": "rest-fallback-vite-blancos",
+      "consumer": "api",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "[DEFAULT]",
+          "project": "project-a",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "default",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/default/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "[DEFAULT]"
+      ]
+    },
+    {
+      "case": "rest-fallback-vite-blancos",
+      "consumer": "firestoreRestCreate",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe",
+          "method": "POST",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "rest-fallback-vite-blancos",
+      "consumer": "firestoreRestGetDocument",
+      "result": "document",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1",
+          "method": "GET",
+          "body": null
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "rest-fallback-vite-blancos",
+      "consumer": "firestoreRestPatchDocument",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1?updateMask.fieldPaths=flag",
+          "method": "PATCH",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "email-blancos",
+      "consumer": "server",
+      "result": "null",
+      "error": null,
+      "selected": [],
+      "operations": [],
+      "registry": []
+    },
+    {
+      "case": "email-blancos",
+      "consumer": "api",
+      "result": "null",
+      "error": null,
+      "selected": [],
+      "operations": [],
+      "registry": []
+    },
+    {
+      "case": "email-blancos",
+      "consumer": "firestoreRestCreate",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe",
+          "method": "POST",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "email-blancos",
+      "consumer": "firestoreRestGetDocument",
+      "result": "document",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1",
+          "method": "GET",
+          "body": null
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "email-blancos",
+      "consumer": "firestoreRestPatchDocument",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1?updateMask.fieldPaths=flag",
+          "method": "PATCH",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "clave-blancos",
+      "consumer": "server",
+      "result": "error",
+      "error": "app/invalid-credential",
+      "selected": [],
+      "operations": [],
+      "registry": []
+    },
+    {
+      "case": "clave-blancos",
+      "consumer": "api",
+      "result": "error",
+      "error": "app/invalid-credential",
+      "selected": [],
+      "operations": [],
+      "registry": []
+    },
+    {
+      "case": "clave-blancos",
+      "consumer": "firestoreRestCreate",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe",
+          "method": "POST",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "clave-blancos",
+      "consumer": "firestoreRestGetDocument",
+      "result": "document",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1",
+          "method": "GET",
+          "body": null
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "clave-blancos",
+      "consumer": "firestoreRestPatchDocument",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1?updateMask.fieldPaths=flag",
+          "method": "PATCH",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "fallback-next",
+      "consumer": "server",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "[DEFAULT]",
+          "project": "project-a",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "default",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/default/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "[DEFAULT]"
+      ]
+    },
+    {
+      "case": "fallback-next",
+      "consumer": "api",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "[DEFAULT]",
+          "project": "project-a",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "default",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/default/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "[DEFAULT]"
+      ]
+    },
+    {
+      "case": "fallback-next",
+      "consumer": "firestoreRestCreate",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe",
+          "method": "POST",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "fallback-next",
+      "consumer": "firestoreRestGetDocument",
+      "result": "document",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1",
+          "method": "GET",
+          "body": null
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "fallback-next",
+      "consumer": "firestoreRestPatchDocument",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1?updateMask.fieldPaths=flag",
+          "method": "PATCH",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "mirrors-iguales",
+      "consumer": "server",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "[DEFAULT]",
+          "project": "project-a",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "default",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/default/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "[DEFAULT]"
+      ]
+    },
+    {
+      "case": "mirrors-iguales",
+      "consumer": "api",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "[DEFAULT]",
+          "project": "project-a",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "default",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/default/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "[DEFAULT]"
+      ]
+    },
+    {
+      "case": "mirrors-iguales",
+      "consumer": "firestoreRestCreate",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe",
+          "method": "POST",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "mirrors-iguales",
+      "consumer": "firestoreRestGetDocument",
+      "result": "document",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1",
+          "method": "GET",
+          "body": null
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "mirrors-iguales",
+      "consumer": "firestoreRestPatchDocument",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1?updateMask.fieldPaths=flag",
+          "method": "PATCH",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "proyectos-contradictorios",
+      "consumer": "server",
+      "result": "error",
+      "error": "Firestore destination mismatch",
+      "selected": [
+        {
+          "name": "[DEFAULT]",
+          "project": "project-a",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [],
+      "registry": [
+        "[DEFAULT]"
+      ]
+    },
+    {
+      "case": "proyectos-contradictorios",
+      "consumer": "api",
+      "result": "error",
+      "error": "Firestore destination mismatch",
+      "selected": [
+        {
+          "name": "[DEFAULT]",
+          "project": "project-a",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [],
+      "registry": [
+        "[DEFAULT]"
+      ]
+    },
+    {
+      "case": "proyectos-contradictorios",
+      "consumer": "firestoreRestCreate",
+      "result": "undefined",
+      "error": null,
+      "operations": [],
+      "logs": [
+        "[firestoreRestCreate] probe error: Firestore destination mismatch"
+      ]
+    },
+    {
+      "case": "proyectos-contradictorios",
+      "consumer": "firestoreRestGetDocument",
+      "result": "document",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-b/databases/default/documents/probe/id%20%2F%C3%B1",
+          "method": "GET",
+          "body": null
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "proyectos-contradictorios",
+      "consumer": "firestoreRestPatchDocument",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-b/databases/default/documents/probe/id%20%2F%C3%B1?updateMask.fieldPaths=flag",
+          "method": "PATCH",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "trim",
+      "consumer": "server",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "[DEFAULT]",
+          "project": "project-a",
+          "database": "named",
+          "requestedDatabase": "named"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "named",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/named/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "[DEFAULT]"
+      ]
+    },
+    {
+      "case": "trim",
+      "consumer": "api",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "[DEFAULT]",
+          "project": "project-a",
+          "database": "named",
+          "requestedDatabase": "named"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "named",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/named/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "[DEFAULT]"
+      ]
+    },
+    {
+      "case": "trim",
+      "consumer": "firestoreRestCreate",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/named/documents/probe",
+          "method": "POST",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "trim",
+      "consumer": "firestoreRestGetDocument",
+      "result": "document",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/named/documents/probe/id%20%2F%C3%B1",
+          "method": "GET",
+          "body": null
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "trim",
+      "consumer": "firestoreRestPatchDocument",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/named/documents/probe/id%20%2F%C3%B1?updateMask.fieldPaths=flag",
+          "method": "PATCH",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "base-vite",
+      "consumer": "server",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "[DEFAULT]",
+          "project": "project-a",
+          "database": "named",
+          "requestedDatabase": "named"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "named",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/named/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "[DEFAULT]"
+      ]
+    },
+    {
+      "case": "base-vite",
+      "consumer": "api",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "[DEFAULT]",
+          "project": "project-a",
+          "database": "named",
+          "requestedDatabase": "named"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "named",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/named/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "[DEFAULT]"
+      ]
+    },
+    {
+      "case": "base-vite",
+      "consumer": "firestoreRestCreate",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/named/documents/probe",
+          "method": "POST",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "base-vite",
+      "consumer": "firestoreRestGetDocument",
+      "result": "document",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/named/documents/probe/id%20%2F%C3%B1",
+          "method": "GET",
+          "body": null
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "base-vite",
+      "consumer": "firestoreRestPatchDocument",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/named/documents/probe/id%20%2F%C3%B1?updateMask.fieldPaths=flag",
+          "method": "PATCH",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "bases-contradictorias",
+      "consumer": "server",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "[DEFAULT]",
+          "project": "project-a",
+          "database": "primary",
+          "requestedDatabase": "primary"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "primary",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/primary/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "[DEFAULT]"
+      ]
+    },
+    {
+      "case": "bases-contradictorias",
+      "consumer": "api",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "[DEFAULT]",
+          "project": "project-a",
+          "database": "primary",
+          "requestedDatabase": "primary"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "primary",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/primary/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "[DEFAULT]"
+      ]
+    },
+    {
+      "case": "bases-contradictorias",
+      "consumer": "firestoreRestCreate",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/primary/documents/probe",
+          "method": "POST",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "bases-contradictorias",
+      "consumer": "firestoreRestGetDocument",
+      "result": "document",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/primary/documents/probe/id%20%2F%C3%B1",
+          "method": "GET",
+          "body": null
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "bases-contradictorias",
+      "consumer": "firestoreRestPatchDocument",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/primary/documents/probe/id%20%2F%C3%B1?updateMask.fieldPaths=flag",
+          "method": "PATCH",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "base-default-explicita",
+      "consumer": "server",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "[DEFAULT]",
+          "project": "project-a",
+          "database": "(default)",
+          "requestedDatabase": "(default)"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "(default)",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/(default)/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "[DEFAULT]"
+      ]
+    },
+    {
+      "case": "base-default-explicita",
+      "consumer": "api",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "[DEFAULT]",
+          "project": "project-a",
+          "database": "(default)",
+          "requestedDatabase": "(default)"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "(default)",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/(default)/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "[DEFAULT]"
+      ]
+    },
+    {
+      "case": "base-default-explicita",
+      "consumer": "firestoreRestCreate",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/(default)/documents/probe",
+          "method": "POST",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "base-default-explicita",
+      "consumer": "firestoreRestGetDocument",
+      "result": "document",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/(default)/documents/probe/id%20%2F%C3%B1",
+          "method": "GET",
+          "body": null
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "base-default-explicita",
+      "consumer": "firestoreRestPatchDocument",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/(default)/documents/probe/id%20%2F%C3%B1?updateMask.fieldPaths=flag",
+          "method": "PATCH",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "app-igual",
+      "consumer": "server",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "existing",
+          "project": "project-a",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "default",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/default/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "existing"
+      ]
+    },
+    {
+      "case": "app-igual",
+      "consumer": "api",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "existing",
+          "project": "project-a",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "default",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/default/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "existing"
+      ]
+    },
+    {
+      "case": "app-igual",
+      "consumer": "firestoreRestCreate",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe",
+          "method": "POST",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "app-igual",
+      "consumer": "firestoreRestGetDocument",
+      "result": "document",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1",
+          "method": "GET",
+          "body": null
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "app-igual",
+      "consumer": "firestoreRestPatchDocument",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1?updateMask.fieldPaths=flag",
+          "method": "PATCH",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "app-ajena",
+      "consumer": "server",
+      "result": "error",
+      "error": "Firestore destination mismatch",
+      "selected": [
+        {
+          "name": "existing",
+          "project": "project-b",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [],
+      "registry": [
+        "existing"
+      ]
+    },
+    {
+      "case": "app-ajena",
+      "consumer": "api",
+      "result": "error",
+      "error": "Firestore destination mismatch",
+      "selected": [
+        {
+          "name": "existing",
+          "project": "project-b",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [],
+      "registry": [
+        "existing"
+      ]
+    },
+    {
+      "case": "app-ajena",
+      "consumer": "firestoreRestCreate",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe",
+          "method": "POST",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "app-ajena",
+      "consumer": "firestoreRestGetDocument",
+      "result": "document",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1",
+          "method": "GET",
+          "body": null
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "app-ajena",
+      "consumer": "firestoreRestPatchDocument",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1?updateMask.fieldPaths=flag",
+          "method": "PATCH",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "apps-ajena-primera",
+      "consumer": "server",
+      "result": "error",
+      "error": "Firestore destination mismatch",
+      "selected": [
+        {
+          "name": "foreign",
+          "project": "project-b",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [],
+      "registry": [
+        "foreign",
+        "matching"
+      ]
+    },
+    {
+      "case": "apps-ajena-primera",
+      "consumer": "api",
+      "result": "error",
+      "error": "Firestore destination mismatch",
+      "selected": [
+        {
+          "name": "foreign",
+          "project": "project-b",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [],
+      "registry": [
+        "foreign",
+        "matching"
+      ]
+    },
+    {
+      "case": "apps-ajena-primera",
+      "consumer": "firestoreRestCreate",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe",
+          "method": "POST",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "apps-ajena-primera",
+      "consumer": "firestoreRestGetDocument",
+      "result": "document",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1",
+          "method": "GET",
+          "body": null
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "apps-ajena-primera",
+      "consumer": "firestoreRestPatchDocument",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1?updateMask.fieldPaths=flag",
+          "method": "PATCH",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "apps-igual-primera",
+      "consumer": "server",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "matching",
+          "project": "project-a",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "default",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/default/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "matching",
+        "foreign"
+      ]
+    },
+    {
+      "case": "apps-igual-primera",
+      "consumer": "api",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "matching",
+          "project": "project-a",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "default",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/default/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "matching",
+        "foreign"
+      ]
+    },
+    {
+      "case": "apps-igual-primera",
+      "consumer": "firestoreRestCreate",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe",
+          "method": "POST",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "apps-igual-primera",
+      "consumer": "firestoreRestGetDocument",
+      "result": "document",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1",
+          "method": "GET",
+          "body": null
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "apps-igual-primera",
+      "consumer": "firestoreRestPatchDocument",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1?updateMask.fieldPaths=flag",
+          "method": "PATCH",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "app-sin-env-admin",
+      "consumer": "server",
+      "result": "null",
+      "error": null,
+      "selected": [],
+      "operations": [],
+      "registry": [
+        "existing"
+      ]
+    },
+    {
+      "case": "app-sin-env-admin",
+      "consumer": "api",
+      "result": "null",
+      "error": null,
+      "selected": [],
+      "operations": [],
+      "registry": [
+        "existing"
+      ]
+    },
+    {
+      "case": "app-sin-env-admin",
+      "consumer": "firestoreRestCreate",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe",
+          "method": "POST",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "app-sin-env-admin",
+      "consumer": "firestoreRestGetDocument",
+      "result": "document",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1",
+          "method": "GET",
+          "body": null
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "app-sin-env-admin",
+      "consumer": "firestoreRestPatchDocument",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1?updateMask.fieldPaths=flag",
+          "method": "PATCH",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "app-clave-blancos",
+      "consumer": "server",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "existing",
+          "project": "project-a",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "default",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/default/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "existing"
+      ]
+    },
+    {
+      "case": "app-clave-blancos",
+      "consumer": "api",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "existing",
+          "project": "project-a",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "default",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/default/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "existing"
+      ]
+    },
+    {
+      "case": "app-clave-blancos",
+      "consumer": "firestoreRestCreate",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe",
+          "method": "POST",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "app-clave-blancos",
+      "consumer": "firestoreRestGetDocument",
+      "result": "document",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1",
+          "method": "GET",
+          "body": null
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "app-clave-blancos",
+      "consumer": "firestoreRestPatchDocument",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1?updateMask.fieldPaths=flag",
+          "method": "PATCH",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "sin-token",
+      "consumer": "server",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "[DEFAULT]",
+          "project": "project-a",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "default",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/default/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "[DEFAULT]"
+      ]
+    },
+    {
+      "case": "sin-token",
+      "consumer": "api",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "[DEFAULT]",
+          "project": "project-a",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "default",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/default/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "[DEFAULT]"
+      ]
+    },
+    {
+      "case": "sin-token",
+      "consumer": "firestoreRestCreate",
+      "result": "undefined",
+      "error": null,
+      "operations": [],
+      "logs": []
+    },
+    {
+      "case": "sin-token",
+      "consumer": "firestoreRestGetDocument",
+      "result": "error",
+      "error": "Cannot authenticate with Firestore",
+      "operations": [],
+      "logs": []
+    },
+    {
+      "case": "sin-token",
+      "consumer": "firestoreRestPatchDocument",
+      "result": "error",
+      "error": "Cannot authenticate with Firestore",
+      "operations": [],
+      "logs": []
+    },
+    {
+      "case": "http404",
+      "consumer": "server",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "[DEFAULT]",
+          "project": "project-a",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "default",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/default/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "[DEFAULT]"
+      ]
+    },
+    {
+      "case": "http404",
+      "consumer": "api",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "[DEFAULT]",
+          "project": "project-a",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "default",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/default/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "[DEFAULT]"
+      ]
+    },
+    {
+      "case": "http404",
+      "consumer": "firestoreRestCreate",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe",
+          "method": "POST",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": [
+        "[firestoreRestCreate] probe write failed: 404 synthetic-response"
+      ]
+    },
+    {
+      "case": "http404",
+      "consumer": "firestoreRestGetDocument",
+      "result": "null",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1",
+          "method": "GET",
+          "body": null
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "http404",
+      "consumer": "firestoreRestPatchDocument",
+      "result": "error",
+      "error": "[firestoreRestPatchDocument] probe/id /ñ failed: 404 synthetic-response",
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1?updateMask.fieldPaths=flag",
+          "method": "PATCH",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "http403",
+      "consumer": "server",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "[DEFAULT]",
+          "project": "project-a",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "default",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/default/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "[DEFAULT]"
+      ]
+    },
+    {
+      "case": "http403",
+      "consumer": "api",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "[DEFAULT]",
+          "project": "project-a",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "default",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/default/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "[DEFAULT]"
+      ]
+    },
+    {
+      "case": "http403",
+      "consumer": "firestoreRestCreate",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe",
+          "method": "POST",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": [
+        "[firestoreRestCreate] probe write failed: 403 synthetic-response"
+      ]
+    },
+    {
+      "case": "http403",
+      "consumer": "firestoreRestGetDocument",
+      "result": "error",
+      "error": "[firestoreRestGetDocument] probe/id /ñ failed: 403 synthetic-response",
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1",
+          "method": "GET",
+          "body": null
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "http403",
+      "consumer": "firestoreRestPatchDocument",
+      "result": "error",
+      "error": "[firestoreRestPatchDocument] probe/id /ñ failed: 403 synthetic-response",
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1?updateMask.fieldPaths=flag",
+          "method": "PATCH",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "rest-only",
+      "consumer": "server",
+      "result": "null",
+      "error": null,
+      "selected": [],
+      "operations": [],
+      "registry": []
+    },
+    {
+      "case": "rest-only",
+      "consumer": "api",
+      "result": "null",
+      "error": null,
+      "selected": [],
+      "operations": [],
+      "registry": []
+    },
+    {
+      "case": "rest-only",
+      "consumer": "firestoreRestCreate",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe",
+          "method": "POST",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "rest-only",
+      "consumer": "firestoreRestGetDocument",
+      "result": "document",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1",
+          "method": "GET",
+          "body": null
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "rest-only",
+      "consumer": "firestoreRestPatchDocument",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1?updateMask.fieldPaths=flag",
+          "method": "PATCH",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "admin-only",
+      "consumer": "server",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "[DEFAULT]",
+          "project": "project-a",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "default",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/default/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "[DEFAULT]"
+      ]
+    },
+    {
+      "case": "admin-only",
+      "consumer": "api",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "[DEFAULT]",
+          "project": "project-a",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "default",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/default/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "[DEFAULT]"
+      ]
+    },
+    {
+      "case": "admin-only",
+      "consumer": "firestoreRestCreate",
+      "result": "undefined",
+      "error": null,
+      "operations": [],
+      "logs": []
+    },
+    {
+      "case": "admin-only",
+      "consumer": "firestoreRestGetDocument",
+      "result": "error",
+      "error": "FIREBASE_PROJECT_ID not set",
+      "operations": [],
+      "logs": []
+    },
+    {
+      "case": "admin-only",
+      "consumer": "firestoreRestPatchDocument",
+      "result": "error",
+      "error": "FIREBASE_PROJECT_ID not set",
+      "operations": [],
+      "logs": []
+    },
+    {
+      "case": "incompleto-admin-contradiccion",
+      "consumer": "server",
+      "result": "null",
+      "error": null,
+      "selected": [],
+      "operations": [],
+      "registry": []
+    },
+    {
+      "case": "incompleto-admin-contradiccion",
+      "consumer": "api",
+      "result": "null",
+      "error": null,
+      "selected": [],
+      "operations": [],
+      "registry": []
+    },
+    {
+      "case": "incompleto-admin-contradiccion",
+      "consumer": "firestoreRestCreate",
+      "result": "undefined",
+      "error": null,
+      "operations": [],
+      "logs": [
+        "[firestoreRestCreate] probe error: Firestore destination mismatch"
+      ]
+    },
+    {
+      "case": "incompleto-admin-contradiccion",
+      "consumer": "firestoreRestGetDocument",
+      "result": "document",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-b/databases/default/documents/probe/id%20%2F%C3%B1",
+          "method": "GET",
+          "body": null
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "incompleto-admin-contradiccion",
+      "consumer": "firestoreRestPatchDocument",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-b/databases/default/documents/probe/id%20%2F%C3%B1?updateMask.fieldPaths=flag",
+          "method": "PATCH",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "token-ausente-contradiccion",
+      "consumer": "server",
+      "result": "error",
+      "error": "Firestore destination mismatch",
+      "selected": [
+        {
+          "name": "[DEFAULT]",
+          "project": "project-a",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [],
+      "registry": [
+        "[DEFAULT]"
+      ]
+    },
+    {
+      "case": "token-ausente-contradiccion",
+      "consumer": "api",
+      "result": "error",
+      "error": "Firestore destination mismatch",
+      "selected": [
+        {
+          "name": "[DEFAULT]",
+          "project": "project-a",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [],
+      "registry": [
+        "[DEFAULT]"
+      ]
+    },
+    {
+      "case": "token-ausente-contradiccion",
+      "consumer": "firestoreRestCreate",
+      "result": "undefined",
+      "error": null,
+      "operations": [],
+      "logs": []
+    },
+    {
+      "case": "token-ausente-contradiccion",
+      "consumer": "firestoreRestGetDocument",
+      "result": "error",
+      "error": "Cannot authenticate with Firestore",
+      "operations": [],
+      "logs": []
+    },
+    {
+      "case": "token-ausente-contradiccion",
+      "consumer": "firestoreRestPatchDocument",
+      "result": "error",
+      "error": "Cannot authenticate with Firestore",
+      "operations": [],
+      "logs": []
+    },
+    {
+      "case": "app-ajena-sin-rest",
+      "consumer": "server",
+      "result": "error",
+      "error": "Firestore destination mismatch",
+      "selected": [
+        {
+          "name": "existing",
+          "project": "project-b",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [],
+      "registry": [
+        "existing"
+      ]
+    },
+    {
+      "case": "app-ajena-sin-rest",
+      "consumer": "api",
+      "result": "error",
+      "error": "Firestore destination mismatch",
+      "selected": [
+        {
+          "name": "existing",
+          "project": "project-b",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [],
+      "registry": [
+        "existing"
+      ]
+    },
+    {
+      "case": "app-ajena-sin-rest",
+      "consumer": "firestoreRestCreate",
+      "result": "undefined",
+      "error": null,
+      "operations": [],
+      "logs": []
+    },
+    {
+      "case": "app-ajena-sin-rest",
+      "consumer": "firestoreRestGetDocument",
+      "result": "error",
+      "error": "FIREBASE_PROJECT_ID not set",
+      "operations": [],
+      "logs": []
+    },
+    {
+      "case": "app-ajena-sin-rest",
+      "consumer": "firestoreRestPatchDocument",
+      "result": "error",
+      "error": "FIREBASE_PROJECT_ID not set",
+      "operations": [],
+      "logs": []
+    },
+    {
+      "case": "app-credencial-ajena-opcion-correcta",
+      "consumer": "server",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "same-name",
+          "project": "project-a",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "default",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/default/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "same-name"
+      ]
+    },
+    {
+      "case": "app-credencial-ajena-opcion-correcta",
+      "consumer": "api",
+      "result": "operation",
+      "error": null,
+      "selected": [
+        {
+          "name": "same-name",
+          "project": "project-a",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [
+        {
+          "type": "get",
+          "project": "project-a",
+          "database": "default",
+          "path": "probe/id"
+        },
+        {
+          "type": "set",
+          "name": "projects/project-a/databases/default/documents/probe/id",
+          "fields": {
+            "flag": {
+              "booleanValue": true
+            }
+          }
+        }
+      ],
+      "registry": [
+        "same-name"
+      ]
+    },
+    {
+      "case": "app-credencial-ajena-opcion-correcta",
+      "consumer": "firestoreRestCreate",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe",
+          "method": "POST",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "app-credencial-ajena-opcion-correcta",
+      "consumer": "firestoreRestGetDocument",
+      "result": "document",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1",
+          "method": "GET",
+          "body": null
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "app-credencial-ajena-opcion-correcta",
+      "consumer": "firestoreRestPatchDocument",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1?updateMask.fieldPaths=flag",
+          "method": "PATCH",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "app-opcion-ajena-credencial-correcta",
+      "consumer": "server",
+      "result": "error",
+      "error": "Firestore destination mismatch",
+      "selected": [
+        {
+          "name": "same-name",
+          "project": "project-b",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [],
+      "registry": [
+        "same-name"
+      ]
+    },
+    {
+      "case": "app-opcion-ajena-credencial-correcta",
+      "consumer": "api",
+      "result": "error",
+      "error": "Firestore destination mismatch",
+      "selected": [
+        {
+          "name": "same-name",
+          "project": "project-b",
+          "database": "default",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [],
+      "registry": [
+        "same-name"
+      ]
+    },
+    {
+      "case": "app-opcion-ajena-credencial-correcta",
+      "consumer": "firestoreRestCreate",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe",
+          "method": "POST",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "app-opcion-ajena-credencial-correcta",
+      "consumer": "firestoreRestGetDocument",
+      "result": "document",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1",
+          "method": "GET",
+          "body": null
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "app-opcion-ajena-credencial-correcta",
+      "consumer": "firestoreRestPatchDocument",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1?updateMask.fieldPaths=flag",
+          "method": "PATCH",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "sdk-base-distinta",
+      "consumer": "server",
+      "result": "error",
+      "error": "Firestore destination mismatch",
+      "selected": [
+        {
+          "name": "[DEFAULT]",
+          "project": "project-a",
+          "database": "(default)",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [],
+      "registry": [
+        "[DEFAULT]"
+      ]
+    },
+    {
+      "case": "sdk-base-distinta",
+      "consumer": "api",
+      "result": "error",
+      "error": "Firestore destination mismatch",
+      "selected": [
+        {
+          "name": "[DEFAULT]",
+          "project": "project-a",
+          "database": "(default)",
+          "requestedDatabase": "default"
+        }
+      ],
+      "operations": [],
+      "registry": [
+        "[DEFAULT]"
+      ]
+    },
+    {
+      "case": "sdk-base-distinta",
+      "consumer": "firestoreRestCreate",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe",
+          "method": "POST",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "sdk-base-distinta",
+      "consumer": "firestoreRestGetDocument",
+      "result": "document",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1",
+          "method": "GET",
+          "body": null
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "sdk-base-distinta",
+      "consumer": "firestoreRestPatchDocument",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1?updateMask.fieldPaths=flag",
+          "method": "PATCH",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "app-ajena-sin-env-admin",
+      "consumer": "server",
+      "result": "null",
+      "error": null,
+      "selected": [],
+      "operations": [],
+      "registry": [
+        "existing"
+      ]
+    },
+    {
+      "case": "app-ajena-sin-env-admin",
+      "consumer": "api",
+      "result": "null",
+      "error": null,
+      "selected": [],
+      "operations": [],
+      "registry": [
+        "existing"
+      ]
+    },
+    {
+      "case": "app-ajena-sin-env-admin",
+      "consumer": "firestoreRestCreate",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe",
+          "method": "POST",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "app-ajena-sin-env-admin",
+      "consumer": "firestoreRestGetDocument",
+      "result": "document",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1",
+          "method": "GET",
+          "body": null
+        }
+      ],
+      "logs": []
+    },
+    {
+      "case": "app-ajena-sin-env-admin",
+      "consumer": "firestoreRestPatchDocument",
+      "result": "undefined",
+      "error": null,
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-a/databases/default/documents/probe/id%20%2F%C3%B1?updateMask.fieldPaths=flag",
+          "method": "PATCH",
+          "body": {
+            "fields": {
+              "flag": {
+                "booleanValue": true
+              }
+            }
+          }
+        }
+      ],
+      "logs": []
+    }
+  ]
+}

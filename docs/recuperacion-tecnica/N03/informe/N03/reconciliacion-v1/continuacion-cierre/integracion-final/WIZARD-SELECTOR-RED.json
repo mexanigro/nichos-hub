@@ -1,0 +1,26 @@
+{
+  "result": "RED",
+  "rows": [
+    {
+      "provider": "manual",
+      "want": false,
+      "actual": true
+    },
+    {
+      "provider": "none",
+      "want": false,
+      "actual": false
+    },
+    {
+      "provider": "stripe",
+      "want": true,
+      "actual": true
+    },
+    {
+      "provider": "cardcom",
+      "want": true,
+      "actual": true
+    }
+  ],
+  "limit": "Cardcom conserva intento bloqueado en backend; no se convierte automáticamente una reserva pendiente en confirmada."
+}

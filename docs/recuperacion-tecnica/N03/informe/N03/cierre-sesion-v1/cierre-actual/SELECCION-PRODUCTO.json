@@ -1,0 +1,209 @@
+[
+  {
+    "name": "hub",
+    "root": "C:/Users/liama/Desktop/Nichos-hub",
+    "head": "2e751a92536666c325ed6eca6b731f4180a646ea",
+    "selected": [
+      "src/app/api/onboarding/client-info/route.ts",
+      "src/components/client-config-tab.tsx",
+      "src/components/client-language-banner.tsx",
+      "src/components/config-editors/payment-provider-editor.tsx",
+      "src/lib/wizard/config-to-wizard.ts",
+      "src/lib/email-templates.ts",
+      "src/proxy.ts",
+      "src/middleware.ts"
+    ],
+    "preserved": [
+      {
+        "file": ".gitignore",
+        "sha256": "7a07012b488d8b966ae68050e4b0f485dc195b0dd65a08d5d86eaca7d603e376"
+      },
+      {
+        "file": "ruvector.db",
+        "sha256": "45038a64c058e67c2d7797d2ad5cc164ae0e3b1b442c808c87d42df4aea1edca"
+      },
+      {
+        "file": "social-content/instagram/03-pinned-coverage/frame-1.png",
+        "sha256": "6433664a272b7ad983b7839d6d534f309dcf02484a2a6e7ee65bda03c2bb7fbb"
+      },
+      {
+        "file": "social-content/instagram/07-video-whatsapp-demo/frame-1.png",
+        "sha256": "cc995c51381189e0281af3375b57a6ab6b8c2ced5cc5a2cc1fbaca73588d1399"
+      },
+      {
+        "file": "social-content/instagram/07-video-whatsapp-demo/frame-2.png",
+        "sha256": "367edcc7f94dbc1015d9c59e928c44e19edb701f1e162fc78f2fd0d393722657"
+      },
+      {
+        "file": "social-content/instagram/07-video-whatsapp-demo/frame-3.png",
+        "sha256": "0824907bfd3d9b68b4d21af4f7bfeaac0d17acf63143514e07ab2278a03e6e6d"
+      },
+      {
+        "file": "social-content/instagram/07-video-whatsapp-demo/frame-4.png",
+        "sha256": "4680283c820beab68310d02776de93d140dba8971c33243a1532608ac57bb336"
+      },
+      {
+        "file": "social-content/instagram/07-video-whatsapp-demo/frame-5.png",
+        "sha256": "9b30e4ee6ea50a2ffb5892c45b9429822d9abe174c5519c8b89e0f4339f383f8"
+      },
+      {
+        "file": "src/app/api/cardcom/verify-payment/route.ts",
+        "sha256": "bb69cf2d8529c11c09b379be2d3bf8894cdb12f608eeaa236372c64776081ca1"
+      },
+      {
+        "file": "src/lib/cardcom-promote.ts",
+        "sha256": "671a0a085796b0d4c585d6217535c0181ef0d8bdde70935eac4a839cd86afb93"
+      },
+      {
+        "file": "src/lib/cardcom.ts",
+        "sha256": "c4c1ef6c99f9877909c6ea8a3600b4d8086d2d19b0f766352fb23251b7c60ae8"
+      },
+      {
+        "file": "src/lib/deploy.ts",
+        "sha256": "2c3dbd8d10a2e7f7827cadc8aff5c5c4edb19627a4c7a322adb1f5a9efaa3543"
+      }
+    ],
+    "selectedHashes": [
+      {
+        "file": "src/app/api/onboarding/client-info/route.ts",
+        "sha256": "a89047927517fa676499d93da2ec7780f6b972f90a0c6ca9a0757c5960fcf172"
+      },
+      {
+        "file": "src/components/client-config-tab.tsx",
+        "sha256": "50617ec18ff67ebe93f9b100e5e7926f3a44e749c55f61ba2c65b38266e9a8f8"
+      },
+      {
+        "file": "src/components/client-language-banner.tsx",
+        "sha256": "ad096c341788ec236c087abe55d773b0b5db5d2ad77d422a479c54b4cb46199b"
+      },
+      {
+        "file": "src/components/config-editors/payment-provider-editor.tsx",
+        "sha256": "a69a831e7664867aff4f30e7456176e143565c681bb6dd75cbde94b872fee373"
+      },
+      {
+        "file": "src/lib/wizard/config-to-wizard.ts",
+        "sha256": "0934399c91252c5b63af26ebba105ccdcc47f46336f8f40265d48975e0d205aa"
+      },
+      {
+        "file": "src/lib/email-templates.ts",
+        "sha256": "0056ea33d60777b7faf6e3bf641236da167bbd10cac9ae1e4ac09a7fb7ca8f30"
+      },
+      {
+        "file": "src/proxy.ts",
+        "sha256": "5a20e70b747f634dcf972e098993f837a1667cc7b23a17a82d6922f26832b44b"
+      },
+      {
+        "file": "src/middleware.ts",
+        "sha256": null
+      }
+    ]
+  },
+  {
+    "name": "template",
+    "root": "C:/Users/liama/Desktop/Nichos/Barber-shop-template-main",
+    "head": "edd8f76345000bb669322486895b0e2d55eac480",
+    "selected": [
+      "AGENTS.md",
+      "server.ts",
+      "api/index.ts",
+      "src/components/admin/AdminDashboard.tsx",
+      "src/components/admin/AppointmentCalendar.tsx",
+      "src/components/booking/BookingWizard.tsx",
+      "src/config/site.ts",
+      "src/config/tour.config.ts",
+      "src/lib/api/admin-auth.ts",
+      "src/lib/api/payment-gateways.ts",
+      "src/lib/api/checkout-handler.ts",
+      "src/lib/api/crm-appointments-handler.ts",
+      "src/services/crm-appointments.ts"
+    ],
+    "preserved": [
+      {
+        "file": ".gitignore",
+        "sha256": "bdb42e095e169353d818b09368ba85569b47a17df268212084953570a678c2d6"
+      },
+      {
+        "file": "ruvector.db",
+        "sha256": "3b5047e65b3692937320300a6152be5206830c7685fb66458bb3826fa7c933dc"
+      },
+      {
+        "file": "scripts/qa-estetica-variants.mjs",
+        "sha256": "2a878d373800e516140e6a6dfe96c7bcf775dafad43ca9ae6e08004a74cbc113"
+      },
+      {
+        "file": "src/config/locales/ar.ts",
+        "sha256": "c7418be9955f639dda8114d12ce8fe94ebadeba22d140d13ee411cc9d994ed13"
+      },
+      {
+        "file": "src/config/locales/en.ts",
+        "sha256": "b6c4bd93cfd61e7404578dd75e577ef1eec6ab32621386fad94bc25a06a4a128"
+      },
+      {
+        "file": "src/config/locales/he.ts",
+        "sha256": "03bf0243cc99648135b46dec9ebb8637919af91ddb0c971f591a1ef929e0a355"
+      },
+      {
+        "file": "src/config/locales/ru.ts",
+        "sha256": "580fff512ce251704f60eccffdeed1092e827114ed6690a6b450a054d7cb60a5"
+      },
+      {
+        "file": "src/services/db.ts",
+        "sha256": "e62283cbe3a215795fe6260db1a299b0ed7f950a887d4fa79b0f272337717779"
+      }
+    ],
+    "selectedHashes": [
+      {
+        "file": "AGENTS.md",
+        "sha256": "7bd2ed1fc091e386de2041a20609b2d533e8fe70d7e202716fe89342c2710b1b"
+      },
+      {
+        "file": "server.ts",
+        "sha256": "4e5e1167cae282878b6cfc590a6e01675fedf3776487df0be577ccca20171f1d"
+      },
+      {
+        "file": "api/index.ts",
+        "sha256": "0a99770d92a97df9de7c37a22f6c8591f954678ac3e530d8bc55ba6ec1218809"
+      },
+      {
+        "file": "src/components/admin/AdminDashboard.tsx",
+        "sha256": "e636d0556110405985e3df10903eeed8165cad95ac78291886bbb0d22099e637"
+      },
+      {
+        "file": "src/components/admin/AppointmentCalendar.tsx",
+        "sha256": "e78ed3314bea04d923ea76e616bf94a9b4c199466ddc633dd739f1e04b2ec26c"
+      },
+      {
+        "file": "src/components/booking/BookingWizard.tsx",
+        "sha256": "9ef7fd9da98308fcc9f7d6e2a291254d0da7f9935722f63e8c0d220868111d3b"
+      },
+      {
+        "file": "src/config/site.ts",
+        "sha256": "e3ea39ab76a683452d7a37c60c137793c57d2ee8e5cf36afa5bf38ee91e0a91a"
+      },
+      {
+        "file": "src/config/tour.config.ts",
+        "sha256": "b4d9a642852754545c1c2e80b018f38b4c612ca40a6787e3af06b3c724908eb3"
+      },
+      {
+        "file": "src/lib/api/admin-auth.ts",
+        "sha256": "184996449b94d762f30b9bfabc7c829fa00413e3fda53e712bf4500d461f0ec2"
+      },
+      {
+        "file": "src/lib/api/payment-gateways.ts",
+        "sha256": "4b1403983540dc2e2b9d0af41e9d34169fbcd256c8f08fd57b0302e2d19f95ad"
+      },
+      {
+        "file": "src/lib/api/checkout-handler.ts",
+        "sha256": "e0152c73362a8e26573c16730bddf85ed7811102b32726bb07cb4556606befe3"
+      },
+      {
+        "file": "src/lib/api/crm-appointments-handler.ts",
+        "sha256": "e48a9ee4048c118a064cbff460fbf4e0668763691c9de41c34e9d15f3a915e4f"
+      },
+      {
+        "file": "src/services/crm-appointments.ts",
+        "sha256": "d91af2fc8648f884480a42183b364e060d911c9c4fc9bea2c18d66538fd99766"
+      }
+    ]
+  }
+]

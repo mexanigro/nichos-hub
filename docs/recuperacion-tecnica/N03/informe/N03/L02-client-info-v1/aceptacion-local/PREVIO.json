@@ -1,0 +1,31 @@
+{
+  "documentaryAcceptance": "RED_PENDIENTE_REGISTRO_DE_NUEVA_ACEPTACION",
+  "productAcceptedHash": "a89047927517fa676499d93da2ec7780f6b972f90a0c6ca9a0757c5960fcf172",
+  "evidencePreserved": 689,
+  "records": [
+    {
+      "ruta": "informe/N03/cierre-sesion-v1/RETOMA.md",
+      "sha256": "b26e8db97982b53669737024ec55961ba7f05fd2a290db1b863f61bda67e15e2"
+    },
+    {
+      "ruta": "informe/N03/reconciliacion-v1/BALANCE.md",
+      "sha256": "c5bed4e264d913d1013acc82c47a46c85e7e0161fea3d03bb82652e987abb4a6"
+    },
+    {
+      "ruta": "informe/N03/reconciliacion-v1/SIGUIENTE-ACCION.md",
+      "sha256": "b3bb312d7b02df0fc32b363c76db99ac171086eda928a89b7082589a12a64da0"
+    },
+    {
+      "ruta": "indice/tareas/N03.md",
+      "sha256": "98701417ddb1bfe12def36faf08bd108bb776b5bf782e9ada2a7598584bd4edf"
+    },
+    {
+      "ruta": "indice/README.md",
+      "sha256": "1843139a39fd261b5f5bb48c3baaa35a023eadb9859299a3551a80af39117fcf"
+    },
+    {
+      "ruta": "indice/CALENDARIO.md",
+      "sha256": "7869da1ddccf3fe8ce18649625e7f6f54adb803134f96e913621d0165f028e9f"
+    }
+  ]
+}

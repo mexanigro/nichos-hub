@@ -1,0 +1,537 @@
+{
+  "result": "GREEN",
+  "checks": 37,
+  "failures": [],
+  "paths": 22,
+  "rows": [
+    {
+      "id": "editor-writer",
+      "kind": "server",
+      "creds": {
+        "merchantId": "synthetic-merchant",
+        "apiKey": "legacy-key-independent",
+        "apiName": "synthetic-api-name",
+        "terminalNumber": "1000"
+      },
+      "expected": {
+        "merchantId": "synthetic-merchant",
+        "apiKey": "legacy-key-independent",
+        "terminalNumber": "1000",
+        "apiName": "synthetic-api-name"
+      },
+      "fetches": []
+    },
+    {
+      "id": "editor-writer",
+      "kind": "api",
+      "creds": {
+        "merchantId": "synthetic-merchant",
+        "apiKey": "legacy-key-independent",
+        "apiName": "synthetic-api-name",
+        "terminalNumber": "1000"
+      },
+      "expected": {
+        "merchantId": "synthetic-merchant",
+        "apiKey": "legacy-key-independent",
+        "terminalNumber": "1000",
+        "apiName": "synthetic-api-name"
+      },
+      "fetches": []
+    },
+    {
+      "id": "reedit-writer",
+      "kind": "server",
+      "creds": {
+        "terminalNumber": "1000",
+        "apiName": "synthetic-api-name",
+        "apiKey": "legacy-key-independent"
+      },
+      "expected": {
+        "terminalNumber": "1000",
+        "apiName": "synthetic-api-name",
+        "apiKey": "legacy-key-independent"
+      },
+      "fetches": []
+    },
+    {
+      "id": "reedit-writer",
+      "kind": "api",
+      "creds": {
+        "terminalNumber": "1000",
+        "apiName": "synthetic-api-name",
+        "apiKey": "legacy-key-independent"
+      },
+      "expected": {
+        "terminalNumber": "1000",
+        "apiName": "synthetic-api-name",
+        "apiKey": "legacy-key-independent"
+      },
+      "fetches": []
+    },
+    {
+      "id": "legacy-only-absence",
+      "kind": "server",
+      "creds": {
+        "terminalNumber": "2000",
+        "apiName": "legacy-api-name",
+        "apiKey": "legacy-api-key"
+      },
+      "expected": {
+        "terminalNumber": "2000",
+        "apiName": "legacy-api-name",
+        "apiKey": "legacy-api-key"
+      },
+      "fetches": []
+    },
+    {
+      "id": "legacy-only-absence",
+      "kind": "api",
+      "creds": {
+        "terminalNumber": "2000",
+        "apiName": "legacy-api-name",
+        "apiKey": "legacy-api-key"
+      },
+      "expected": {
+        "terminalNumber": "2000",
+        "apiName": "legacy-api-name",
+        "apiKey": "legacy-api-key"
+      },
+      "fetches": []
+    },
+    {
+      "id": "nested-conflict-authority",
+      "kind": "server",
+      "creds": {
+        "terminalNumber": "1000",
+        "apiName": "synthetic-api-name"
+      },
+      "expected": {
+        "terminalNumber": "1000",
+        "apiName": "synthetic-api-name"
+      },
+      "fetches": []
+    },
+    {
+      "id": "nested-conflict-authority",
+      "kind": "api",
+      "creds": {
+        "terminalNumber": "1000",
+        "apiName": "synthetic-api-name"
+      },
+      "expected": {
+        "terminalNumber": "1000",
+        "apiName": "synthetic-api-name"
+      },
+      "fetches": []
+    },
+    {
+      "id": "nested-empty-no-fallback",
+      "kind": "server",
+      "creds": {},
+      "expected": {},
+      "fetches": []
+    },
+    {
+      "id": "nested-empty-no-fallback",
+      "kind": "api",
+      "creds": {},
+      "expected": {},
+      "fetches": []
+    },
+    {
+      "id": "nested-null-no-fallback",
+      "kind": "server",
+      "creds": {},
+      "expected": {},
+      "fetches": []
+    },
+    {
+      "id": "nested-null-no-fallback",
+      "kind": "api",
+      "creds": {},
+      "expected": {},
+      "fetches": []
+    },
+    {
+      "id": "nested-array-no-fallback",
+      "kind": "server",
+      "creds": {},
+      "expected": {},
+      "fetches": []
+    },
+    {
+      "id": "nested-array-no-fallback",
+      "kind": "api",
+      "creds": {},
+      "expected": {},
+      "fetches": []
+    },
+    {
+      "id": "nested-string-no-fallback",
+      "kind": "server",
+      "creds": {},
+      "expected": {},
+      "fetches": []
+    },
+    {
+      "id": "nested-string-no-fallback",
+      "kind": "api",
+      "creds": {},
+      "expected": {},
+      "fetches": []
+    },
+    {
+      "id": "nested-partial-no-mixing",
+      "kind": "server",
+      "creds": {
+        "apiName": "synthetic-api-name"
+      },
+      "expected": {
+        "apiName": "synthetic-api-name"
+      },
+      "fetches": []
+    },
+    {
+      "id": "nested-partial-no-mixing",
+      "kind": "api",
+      "creds": {
+        "apiName": "synthetic-api-name"
+      },
+      "expected": {
+        "apiName": "synthetic-api-name"
+      },
+      "fetches": []
+    },
+    {
+      "id": "nested-key-never-name",
+      "kind": "server",
+      "creds": {
+        "terminalNumber": "1000",
+        "apiKey": "legacy-key-independent"
+      },
+      "expected": {
+        "terminalNumber": "1000",
+        "apiKey": "legacy-key-independent"
+      },
+      "fetches": []
+    },
+    {
+      "id": "nested-key-never-name",
+      "kind": "api",
+      "creds": {
+        "terminalNumber": "1000",
+        "apiKey": "legacy-key-independent"
+      },
+      "expected": {
+        "terminalNumber": "1000",
+        "apiKey": "legacy-key-independent"
+      },
+      "fetches": []
+    },
+    {
+      "id": "nested-nonstring-filter",
+      "kind": "server",
+      "creds": {
+        "apiName": "synthetic-api-name"
+      },
+      "expected": {
+        "apiName": "synthetic-api-name"
+      },
+      "fetches": []
+    },
+    {
+      "id": "nested-nonstring-filter",
+      "kind": "api",
+      "creds": {
+        "apiName": "synthetic-api-name"
+      },
+      "expected": {
+        "apiName": "synthetic-api-name"
+      },
+      "fetches": []
+    }
+  ],
+  "emitted": [
+    {
+      "provider": "cardcom",
+      "credentials": {
+        "merchantId": "synthetic-merchant",
+        "apiKey": "legacy-key-independent",
+        "apiName": "synthetic-api-name",
+        "terminalNumber": "1000"
+      }
+    }
+  ],
+  "wireWrites": [
+    {
+      "name": "projects/synthetic-local/databases/(default)/documents/payment_credentials/tenant",
+      "fields": {
+        "provider": {
+          "stringValue": "cardcom"
+        },
+        "credentials": {
+          "mapValue": {
+            "fields": {
+              "merchantId": {
+                "stringValue": "synthetic-merchant"
+              },
+              "apiKey": {
+                "stringValue": "legacy-key-independent"
+              },
+              "apiName": {
+                "stringValue": "synthetic-api-name"
+              },
+              "terminalNumber": {
+                "stringValue": "1000"
+              }
+            }
+          }
+        },
+        "updatedAt": {
+          "stringValue": "2026-09-10T12:25:53.198Z"
+        },
+        "updatedBy": {
+          "stringValue": "owner@example.invalid"
+        }
+      }
+    },
+    {
+      "name": "projects/synthetic-local/databases/(default)/documents/payment_credentials/tenant",
+      "fields": {
+        "provider": {
+          "stringValue": "cardcom"
+        },
+        "credentials": {
+          "mapValue": {
+            "fields": {
+              "terminalNumber": {
+                "stringValue": "1000"
+              },
+              "apiName": {
+                "stringValue": "synthetic-api-name"
+              },
+              "apiKey": {
+                "stringValue": "legacy-key-independent"
+              }
+            }
+          }
+        },
+        "updatedAt": {
+          "stringValue": "2026-09-10T12:25:53.390Z"
+        },
+        "updatedBy": {
+          "stringValue": "owner@example.invalid"
+        }
+      }
+    },
+    {
+      "name": "projects/synthetic-local/databases/(default)/documents/payment_credentials/tenant",
+      "fields": {
+        "terminalNumber": {
+          "stringValue": "2000"
+        },
+        "apiName": {
+          "stringValue": "legacy-api-name"
+        },
+        "apiKey": {
+          "stringValue": "legacy-api-key"
+        }
+      }
+    },
+    {
+      "name": "projects/synthetic-local/databases/(default)/documents/payment_credentials/tenant",
+      "fields": {
+        "terminalNumber": {
+          "stringValue": "2000"
+        },
+        "apiName": {
+          "stringValue": "legacy-api-name"
+        },
+        "apiKey": {
+          "stringValue": "legacy-api-key"
+        },
+        "credentials": {
+          "mapValue": {
+            "fields": {
+              "terminalNumber": {
+                "stringValue": "1000"
+              },
+              "apiName": {
+                "stringValue": "synthetic-api-name"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "projects/synthetic-local/databases/(default)/documents/payment_credentials/tenant",
+      "fields": {
+        "terminalNumber": {
+          "stringValue": "2000"
+        },
+        "apiName": {
+          "stringValue": "legacy-api-name"
+        },
+        "apiKey": {
+          "stringValue": "legacy-api-key"
+        },
+        "credentials": {
+          "mapValue": {}
+        }
+      }
+    },
+    {
+      "name": "projects/synthetic-local/databases/(default)/documents/payment_credentials/tenant",
+      "fields": {
+        "terminalNumber": {
+          "stringValue": "2000"
+        },
+        "apiName": {
+          "stringValue": "legacy-api-name"
+        },
+        "apiKey": {
+          "stringValue": "legacy-api-key"
+        },
+        "credentials": {
+          "nullValue": "NULL_VALUE"
+        }
+      }
+    },
+    {
+      "name": "projects/synthetic-local/databases/(default)/documents/payment_credentials/tenant",
+      "fields": {
+        "terminalNumber": {
+          "stringValue": "2000"
+        },
+        "apiName": {
+          "stringValue": "legacy-api-name"
+        },
+        "apiKey": {
+          "stringValue": "legacy-api-key"
+        },
+        "credentials": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "synthetic-api-name"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "projects/synthetic-local/databases/(default)/documents/payment_credentials/tenant",
+      "fields": {
+        "terminalNumber": {
+          "stringValue": "2000"
+        },
+        "apiName": {
+          "stringValue": "legacy-api-name"
+        },
+        "apiKey": {
+          "stringValue": "legacy-api-key"
+        },
+        "credentials": {
+          "stringValue": "synthetic-api-name"
+        }
+      }
+    },
+    {
+      "name": "projects/synthetic-local/databases/(default)/documents/payment_credentials/tenant",
+      "fields": {
+        "terminalNumber": {
+          "stringValue": "2000"
+        },
+        "apiName": {
+          "stringValue": "legacy-api-name"
+        },
+        "apiKey": {
+          "stringValue": "legacy-api-key"
+        },
+        "credentials": {
+          "mapValue": {
+            "fields": {
+              "apiName": {
+                "stringValue": "synthetic-api-name"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "projects/synthetic-local/databases/(default)/documents/payment_credentials/tenant",
+      "fields": {
+        "terminalNumber": {
+          "stringValue": "2000"
+        },
+        "apiName": {
+          "stringValue": "legacy-api-name"
+        },
+        "apiKey": {
+          "stringValue": "legacy-api-key"
+        },
+        "credentials": {
+          "mapValue": {
+            "fields": {
+              "terminalNumber": {
+                "stringValue": "1000"
+              },
+              "apiKey": {
+                "stringValue": "legacy-key-independent"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "projects/synthetic-local/databases/(default)/documents/payment_credentials/tenant",
+      "fields": {
+        "terminalNumber": {
+          "stringValue": "2000"
+        },
+        "apiName": {
+          "stringValue": "legacy-api-name"
+        },
+        "apiKey": {
+          "stringValue": "legacy-api-key"
+        },
+        "credentials": {
+          "mapValue": {
+            "fields": {
+              "apiName": {
+                "stringValue": "synthetic-api-name"
+              },
+              "terminalNumber": {
+                "integerValue": 1000
+              },
+              "nested": {
+                "mapValue": {
+                  "fields": {
+                    "x": {
+                      "stringValue": "y"
+                    }
+                  }
+                }
+              },
+              "empty": {
+                "nullValue": "NULL_VALUE"
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "hashes": {
+    "editor": "a69a831e7664867aff4f30e7456176e143565c681bb6dd75cbde94b872fee373",
+    "route": "0641ee8a23377a26ef743de147677660a870ee60ba1f5f480de6c90068965253",
+    "server": "ef6d90b25f61a9bf247271426ace4db1c0c5ba70e87e76ac5f5d5228188c7e38",
+    "api": "281dd24d649af2c1afd3e98f5e90381f18c841810c7374df146d5988145cead4",
+    "gateway": "4b1403983540dc2e2b9d0af41e9d34169fbcd256c8f08fd57b0302e2d19f95ad"
+  },
+  "limits": "Producto actual leído al correr; editor/route/loaders/cache reales, serialización SDK sin commit. Normalización no se sustituye. Gate owner, DB y REST interceptados. La inspección de campos loader no certifica moneda ni proveedor. Rechazo parcial Cardcom independiente."
+}

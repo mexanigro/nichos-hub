@@ -1,0 +1,21 @@
+{
+  "scope": "Aceptación local L01 y actualización documental de cierre; ningún producto",
+  "gates": 3,
+  "precondiciones": "PASS",
+  "producto": 623,
+  "evidencias": 91,
+  "fuentes": [
+    {
+      "ruta": "ACEPTACION.md",
+      "sha256": "d52ae82888da598084ccbfb5caf36ed45e6fa0c94b4e52a5a33871925e97c595"
+    },
+    {
+      "ruta": "SIGUIENTE-ACCION.md",
+      "sha256": "1caf95e64c31db66ef29d38a612cf3e2d65e231bb70e45fd83d274aa333956c4"
+    },
+    {
+      "ruta": "BALANCE-NUEVO.md",
+      "sha256": "c1657eee5f10721beb11aedfcc273dff6a1bc9921a4d1fa38a4750c3ebf27097"
+    }
+  ]
+}

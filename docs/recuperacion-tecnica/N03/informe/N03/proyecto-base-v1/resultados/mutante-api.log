@@ -1,0 +1,9 @@
+AssertionError [ERR_ASSERTION]: app-igual/api/app
++ actual - expected
+
++ '[DEFAULT]'
+- 'existing'
+
+    at eq (/control/sondeo.cjs:6:31)
+    at admin (/control/sondeo.cjs:19:119)
+    at async /control/sondeo.cjs:32:68

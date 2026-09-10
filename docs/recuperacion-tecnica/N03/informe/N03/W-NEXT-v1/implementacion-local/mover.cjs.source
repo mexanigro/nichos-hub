@@ -1,0 +1,14 @@
+const fs=require('node:fs'),p=require('node:path'),crypto=require('node:crypto');
+const base=__dirname,hub='C:/Users/liama/Desktop/Nichos-hub',sha=b=>crypto.createHash('sha256').update(b).digest('hex');
+const freeze=JSON.parse(fs.readFileSync(p.join(base,'FREEZE.json')));
+for(const f of freeze.fuentes)if(sha(fs.readFileSync(p.join(hub,f.ruta)))!==f.sha256)throw Error('Fuente cambió '+f.ruta);
+for(const f of freeze.instrumentos)if(sha(fs.readFileSync(p.join(base,f.ruta)))!==f.sha256)throw Error('Freeze cambió '+f.ruta);
+const origen=p.resolve(hub,'src/middleware.ts'),destino=p.resolve(hub,'src/proxy.ts'),raiz=p.resolve(hub,'src')+p.sep;
+if(!origen.startsWith(raiz)||!destino.startsWith(raiz)||fs.existsSync(destino))throw Error('Destino no válido/existente');
+const preimagen=fs.readFileSync(p.join(base,'preimagenes/src/middleware.ts'));
+if(!preimagen.equals(fs.readFileSync(origen)))throw Error('Preimagen difiere');
+fs.renameSync(origen,destino);
+if(fs.existsSync(origen)||!preimagen.equals(fs.readFileSync(destino)))throw Error('Renombrado no idéntico');
+for(const nombre of ['proxy.ts','auth.config.ts'])fs.writeFileSync(p.join(base,'copias/proxy/src',nombre),fs.readFileSync(p.join(hub,'src',nombre)),{flag:'wx'});
+fs.writeFileSync(p.join(base,'MOVIMIENTO.json'),JSON.stringify({origen,destino,bytes:preimagen.length,sha256:sha(preimagen),origenAusente:!fs.existsSync(origen),identico:true,fecha:new Date().toISOString()},null,2),{flag:'wx'});
+console.log(JSON.stringify({P1:true,bytes:preimagen.length,sha256:sha(preimagen)}));

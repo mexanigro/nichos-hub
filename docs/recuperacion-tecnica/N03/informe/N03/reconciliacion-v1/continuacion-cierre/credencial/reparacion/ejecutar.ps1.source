@@ -1,0 +1,13 @@
+param([string]$Nombre='red')
+$ErrorActionPreference='Stop'
+$base=$PSScriptRoot
+$salida=Join-Path $base ('resultados\'+$Nombre)
+if(Test-Path -LiteralPath $salida){throw 'Resultado existente'}
+New-Item -ItemType Directory -Path $salida -Force | Out-Null
+$argumentos=@('run','--rm','--pull=never','--network=none','--read-only','--cap-drop=ALL','--security-opt=no-new-privileges','--memory=768m','--tmpfs=/tmp:rw,size=64m','--mount',"type=bind,source=$base,target=/control,readonly",'--mount',"type=bind,source=$salida,target=/salida",'--mount','type=bind,source=C:\Users\liama\Desktop\Nichos-hub,target=/hub,readonly','--mount','type=bind,source=C:\Users\liama\Desktop\Nichos\Barber-shop-template-main,target=/template,readonly','sha256:16e22a550f3863206a3f701448c45f7912c6896a62de43add43bb9c86130c3e2','/usr/bin/env','-i','PATH=/usr/local/bin:/usr/bin:/bin','HOME=/tmp','node','/control/contrato.cjs')
+$argumentos | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $salida 'COMANDO.json')
+& docker @argumentos *> (Join-Path $salida 'ejecucion.log')
+$code=$LASTEXITCODE
+$code | Set-Content -LiteralPath (Join-Path $salida 'exit.txt')
+Get-Content -LiteralPath (Join-Path $salida 'ejecucion.log') -Tail 8
+exit $code

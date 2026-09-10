@@ -1,0 +1,141 @@
+// Instrumento exclusivo L02. Sin commit Firestore; DB y correo sólo en memoria.
+const fs = require('fs');
+const path = require('path');
+const assert = require('assert/strict');
+const {createRequire} = require('module');
+const req = createRequire('/deps/package.json');
+const ts = req('typescript');
+const {Firestore, FieldValue, Timestamp} = req('firebase-admin/firestore');
+const {DocumentSnapshot, DocumentMask, DocumentTransform} = req('@google-cloud/firestore/build/src/document.js');
+const sdk = new Firestore({projectId:'l02-synthetic-no-network'});
+sdk.request = () => {throw new Error('RED_INSTRUMENTO: solicitud DB prohibida');};
+let docs, writes, emails, cache, sequence = 0;
+const checks = [], defects = [], cases = [];
+const ok = (name, condition) => {assert.ok(condition, name); checks.push(name);};
+const equal = (name, actual, expected) => {assert.deepStrictEqual(actual, expected, name); checks.push(name);};
+const objective = (name, actual, expected) => {if(!require('util').isDeepStrictEqual(actual, expected)) defects.push({name,actual:actual??null,expected});};
+const clone = value => value === undefined ? undefined : DocumentSnapshot.fromObject(sdk.doc('probe/clone'),{value}).data().value;
+const get = (obj, segments) => segments.reduce((v,k)=>v?.[k],obj);
+function put(obj, segments, value) {
+  let cursor=obj;
+  for(const k of segments.slice(0,-1)) {if(!cursor[k] || typeof cursor[k]!=='object' || Array.isArray(cursor[k])) cursor[k]={}; cursor=cursor[k];}
+  if(value===undefined) delete cursor[segments.at(-1)]; else cursor[segments.at(-1)]=clone(value);
+}
+function serialize(documentPath, data, options={merge:true}, before={}) {
+  const ref=sdk.doc(documentPath), batch=sdk.batch();
+  batch.set(ref,data,options);
+  assert.equal(batch._ops.length,1);
+  const proto=batch._ops[0].op(); // SDK real, sin llamar commit.
+  const mask=DocumentMask.fromObject(data);
+  assert.ok(Array.isArray(mask._sortedPaths));
+  equal('SDK mascara coincide '+documentPath,proto.updateMask.fieldPaths,mask.toProto().fieldPaths);
+  const decoded=DocumentSnapshot.fromObject(ref,data).data();
+  const after=clone(before)||{};
+  const paths=mask._sortedPaths.map(p=>({wire:p.formattedName,segments:[...p.segments]}));
+  equal('SDK segmentos/formattedName '+documentPath,paths.map(p=>p.wire),proto.updateMask.fieldPaths);
+  for(const p of paths) put(after,p.segments,get(decoded,p.segments));
+  const transforms=DocumentTransform.fromObject(ref,data);
+  const transformPaths=transforms.fields.map(p=>[...p.segments]);
+  const protos=proto.updateTransforms||[];
+  equal('SDK transforms numero '+documentPath,transformPaths.length,protos.length);
+  protos.forEach((t,i)=>{
+    equal('SDK transform ruta '+documentPath,t.fieldPath,transforms.fields[i].formattedName);
+    if(t.setToServerValue==='REQUEST_TIME') put(after,transformPaths[i],new Timestamp(1700000000,0));
+    else if(t.increment) {const old=get(after,transformPaths[i]); put(after,transformPaths[i],(typeof old==='number'?old:0)+Number(t.increment.integerValue??t.increment.doubleValue));}
+    else throw new Error('Transform fuera del instrumento L02');
+  });
+  return {proto,paths,transformPaths,decoded,after};
+}
+// Se concatena después del serializador L02 conservado; no se modifica su interpretación.
+const vm=require('node:vm'),crypto=require('node:crypto');
+const fuentes=new Map(),resultados=[],fallos=[];
+const read=(f)=>{const s=fs.readFileSync(f,'utf8');fuentes.set(f,crypto.createHash('sha256').update(s).digest('hex'));return s;};
+let templateCache,tenantDoc,activeNiche='barberia';
+const transpile=s=>ts.transpileModule(s,{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022,jsx:ts.JsxEmit.ReactJSX}}).outputText;
+function extract(f,predicate){const s=read(f),tree=ts.createSourceFile(f,s,ts.ScriptTarget.Latest,true,f.endsWith('tsx')?ts.ScriptKind.TSX:ts.ScriptKind.TS),out=[];function walk(n){if(predicate(n))out.push(n.getText(tree));ts.forEachChild(n,walk);}walk(tree);assert.equal(out.length,1,f);return out[0];}
+const fn=(f,n)=>extract(f,x=>ts.isFunctionDeclaration(x)&&x.name?.text===n);
+function ref(name){return {id:name.split('/').at(-1),async get(){return {exists:docs.has(name),data:()=>clone(docs.get(name)),ref:ref(name)};},async set(data,options){const r=serialize(name,data,options||{merge:true},options?.merge?docs.get(name):{});const batch=sdk.batch();if(options)batch.set(sdk.doc(name),data,options);else batch.set(sdk.doc(name),data);writes.push({path:name,...r,originalSetOptions:options??null,wireOriginal:batch._ops[0].op()});docs.set(name,r.after);},async update(data){throw Error('update inesperado '+name);},collection:c=>collection(name+'/'+c)};}
+function collection(name){return {doc:(id='synthetic-hub')=>ref(name+'/'+id),where:()=>({limit:()=>({get:async()=>({empty:true,docs:[]})})}),add:async data=>ref(name+'/history').set(data,{merge:true})};}
+function loadHub(f){if(cache.has(f))return cache.get(f);const m={exports:{}};cache.set(f,m.exports);const deps=id=>{
+ if(id==='@/lib/firebase-admin')return {db:{collection}};
+ if(id==='@/lib/auth')return {auth:async()=>({user:{email:'owner@example.invalid'}}),withOwner:handler=>handler};
+ if(id==='@/lib/rate-limit')return {isRateLimited:()=>false};
+ if(id==='@/lib/onboarding-token')return {verifyOnboardingToken:async()=>({clientId:'tenant-l01'})};
+ if(id==='@/lib/email')return {sendEmail:async()=>{}};
+ if(id==='@/lib/logo-generator')return {generateLogoSvg:()=>{throw Error('logo prohibido');}};
+ if(id==='@/lib/deploy')return {deployToVercel:async()=>({projectId:'synthetic'})};
+ if(id.startsWith('@/'))return loadHub('/hub/src/'+id.slice(2)+'.ts');
+ if(id.startsWith('.'))return loadHub(path.resolve(path.dirname(f),id)+'.ts');
+ if(id==='next/server'||id==='firebase-admin/firestore')return req(id);
+ throw Error('import hub no autorizado '+id);
+ };new Function('require','module','exports','fetch',transpile(read(f)))(deps,m,m.exports,async()=>({ok:true}));cache.set(f,m.exports);return m.exports;}
+function loadTemplate(f){if(templateCache.has(f))return templateCache.get(f);const m={exports:{}};templateCache.set(f,m.exports);const deps=id=>{
+ if(id==='./env'||id==='../config/env')return {env:{activeNiche,uiLanguage:'en',clientId:'tenant-l01'}};
+ if(id==='../lib/firebase')return {db:{},isFirebaseConfigured:true};
+ if(id==='firebase/firestore')return {doc:(_db,col)=>col,getDoc:async()=>({exists:()=>true,data:()=>clone(tenantDoc)}),getDocFromServer:async()=>({exists:()=>true,data:()=>({status:'active'})})};
+ if(id.startsWith('.'))return loadTemplate(path.resolve(path.dirname(f),id)+'.ts');
+ throw Error('import template no autorizado '+id);
+ };const source=read(f).replaceAll('import.meta.env','__env');new Function('require','module','exports','__env',transpile(source))(deps,m,m.exports,{});templateCache.set(f,m.exports);return m.exports;}
+const bookingFile='/template/src/components/booking/BookingWizard.tsx';
+const decl=name=>extract(bookingFile,n=>ts.isVariableDeclaration(n)&&(ts.isIdentifier(n.name)?n.name.text===name:n.name.getText().includes(name)));
+const booking=transpile('const '+decl('isSolo')+';const '+decl('setStep')+';const '+decl('setSelectedStaff')+';return {isSolo,step,staff:selectedStaff?.id??null};');
+async function consumers(config,niche='barberia'){
+ activeNiche=niche;templateCache=new Map();tenantDoc=clone(config);const before=clone(config);
+ const site=loadTemplate('/template/src/config/site.ts'),tenant=loadTemplate('/template/src/services/tenant.ts');
+ const baseline=clone(site.siteConfig.features);await tenant.bootstrapTenantConfig();
+ const view=()=>new Function('siteConfig','SERVICES','STAFF','initialServiceId','React',booking)(site.siteConfig,site.siteConfig.services,site.siteConfig.staff,site.siteConfig.services[0]?.id,{useState:v=>[typeof v==='function'?v():v,()=>{}]});
+ const initial=view(),features=clone(site.siteConfig.features),top=site.siteConfig.businessMode;
+ site.switchSiteLanguage('ru');const language=view();
+ const reader=loadHub('/hub/src/lib/wizard/config-to-wizard.ts').configToWizardData(config);
+ const empty=loadHub('/hub/src/lib/wizard/wizard-types.ts').createEmptyWizardData();
+ // Ejecutar hydrate real con borrador vacío y con borrador local contrario.
+ const hydrateSource=fn('/hub/src/lib/wizard/use-wizard.ts','hydrate');
+ const hydrate=async draft=>{let data;await new Function('loadWizardDraft','variant','clientId','locale','serverDraftToken','initialData','cancelled','setData','setHydrated',transpile(hydrateSource)+';return hydrate();')(()=>draft,'paid','tenant-l01','en',undefined,reader,false,v=>{data=v;},()=>{});return data;};
+ const data=await hydrate(empty),draft=await hydrate({...empty,businessMode:reader.businessMode==='solo'?'team':'solo'});
+ const React=req('react'),{renderToStaticMarkup}=req('react-dom/server');
+ const wizard={};
+ for(const [name,file] of [['StepMode','step-mode'],['StepOwner','step-owner']]){
+  const code=transpile(fn('/hub/src/components/wizard/steps/'+file+'.tsx',name));
+  const labels=new Proxy({},{get:(_,k)=>String(k)});
+  const Component=new Function('require','exports','useT','WizardStep','PhotoUploader','MultiPhotoUploader','WizardHint',code+';return '+name)(req,{},()=>({t:{wizard:labels}}),({children,title})=>React.createElement('section',{'data-title':title},children),()=>null,()=>null,()=>null);
+  wizard[name]=renderToStaticMarkup(React.createElement(Component,{data,updateField:()=>{},errors:[]}));
+ }
+ assert.deepEqual(config,before,'consumidores no cambian documento');
+ return {readerMode:reader.businessMode??'ABSENT',hydratedMode:data.businessMode,draftMode:draft.businessMode,ownerBranch:wizard.StepOwner.includes('data-title="ownerTitle"')?'solo':'team',selectedSolo:wizard.StepMode.includes('wiz-card-lg selected')&&data.businessMode==='solo',top,features,baseline,booking:initial,language,wizard};
+}
+async function writer(which,mode,before){docs=new Map();writes=[];cache=new Map();if(before)docs.set('config/tenant-l01',clone(before));docs.set('hub_clients/tenant-l01',{clientId:'tenant-l01',status:'pending_payment',keep:'hub'});
+ let body={businessName:'Synthetic',niche:'barberia',...(mode!==undefined?{businessMode:mode}:{})},request;
+ if(which==='onboarding')request={headers:new Headers({origin:'http://localhost'}),nextUrl:{origin:'http://localhost'},formData:async()=>({get:k=>body[k]??null})};
+ else request={headers:new Headers(),json:async()=>({...body,clientId:'tenant-l01'})};
+ const f=which==='provision'?'clients/provision':which==='client-info'?'onboarding/client-info':'onboarding';
+ const response=await loadHub('/hub/src/app/api/'+f+'/route.ts').POST(request);assert.ok(response.ok,await response.text());
+ const found=[...docs].find(([key])=>key.startsWith('config/'));assert.ok(found);const config=found[1];
+ if(before){assert.deepEqual(config.outside,before.outside);assert.deepEqual(config.features,before.features);assert.deepEqual(config.services,before.services);}
+ return {config:clone(config),writes:clone(writes),status:response.status};
+}
+async function main(){
+ for(const which of ['onboarding','provision','client-info'])for(const mode of [undefined,null,'invalid','solo','team']){
+  const w=await writer(which,mode);const c=await consumers(w.config);const id=which+'-'+String(mode);
+  resultados.push({id,input:mode??String(mode),...w,...c});
+  if(['solo','team'].includes(mode)&&c.booking.isSolo!==(mode==='solo'))fallos.push({id,wanted:mode,actual:c.booking});
+ }
+ const initial=(await writer('onboarding','solo')).config;initial.outside={keep:[1,2]};initial.services=[{id:'keep',duration:30,price:9}];
+ const edit=await writer('client-info','team',initial),c=await consumers(edit.config);resultados.push({id:'reedicion-solo-a-team',...edit,...c});if(c.booking.isSolo)fallos.push({id:'reedicion-solo-a-team',wanted:'team',actual:c.booking});
+ for(const nested of [undefined,null,'invalid','solo','team'])for(const top of [undefined,null,'invalid','solo','team']){
+  const config={business:{type:'barberia',keep:'B',...(nested!==undefined?{mode:nested}:{})},...(top!==undefined?{businessMode:top}:{}),outside:{keep:[1,2]}};
+  resultados.push({id:'matriz-'+String(nested)+'-'+String(top),config,...await consumers(config)});
+ }
+ for(const [id,config,niche] of [
+  ['flags-solo',{business:{type:'barberia',mode:'team'},features:{showAbout:true,showTeam:false}},'barberia'],
+  ['top-solo-flags-team',{business:{type:'barberia',mode:'team'},businessMode:'solo',features:{showAbout:false,showTeam:true}},'barberia'],
+  ['safe-ausente',{business:{mode:'solo'}},'barberia'],
+  ['safe-conflicto',{business:{type:'nails',mode:'solo'}},'barberia'],
+  ['default-employment',{},'employment'],
+  ['default-cafeteria',{},'cafeteria'],
+  ['control-top-solo',{business:{type:'barberia'},businessMode:'solo'},'barberia'],
+  ['control-desarmado',{business:{type:'barberia'}},'barberia']])resultados.push({id,config,...await consumers(config,niche)});
+ assert.equal(resultados.find(x=>x.id==='control-top-solo').booking.step,'datetime');assert.equal(resultados.find(x=>x.id==='control-desarmado').booking.step,'staff');
+ fs.writeFileSync('/salida/RESULTADOS.json',JSON.stringify(resultados,null,2));fs.writeFileSync('/salida/FUENTES.json',JSON.stringify([...fuentes].map(([ruta,sha256])=>({ruta,sha256})),null,2));
+ fs.writeFileSync('/salida/RESUMEN.json',JSON.stringify({preparacion:'PASS',casos:resultados.length,conexion:fallos.length?'RED':'GREEN',fallos,limites:'Handlers y SDK reales sin commit; auth/rate/deploy/email interceptados. Bootstrap/site/presets reales. AST ramas/hydrate reales, SSR steps. No navegador completo ni DB/estados reales.'},null,2));console.log(JSON.stringify({cases:resultados.length,fallos}));
+}
+main().catch(e=>{fs.writeFileSync('/salida/ERROR.txt',e.stack);console.error(e);process.exitCode=2;});

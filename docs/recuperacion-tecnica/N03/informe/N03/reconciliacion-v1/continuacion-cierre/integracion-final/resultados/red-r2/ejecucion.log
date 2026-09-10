@@ -1,0 +1,23 @@
+PayloadTooLargeError: request entity too large
+    at readStream (/deps/node_modules/raw-body/index.js:163:17)
+    at getRawBody (/deps/node_modules/raw-body/index.js:116:12)
+    at read (/deps/node_modules/body-parser/lib/read.js:79:3)
+    at jsonParser (/deps/node_modules/body-parser/lib/types/json.js:138:5)
+    at Layer.handle [as handle_request] (/deps/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/deps/node_modules/express/lib/router/index.js:328:13)
+    at /deps/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/deps/node_modules/express/lib/router/index.js:346:12)
+    at next (/deps/node_modules/express/lib/router/index.js:280:10)
+    at securityHeaders (eval at <anonymous> (/control/pipeline.cjs:131:18), <anonymous>:133:5)
+PayloadTooLargeError: request entity too large
+    at readStream (/deps/node_modules/raw-body/index.js:163:17)
+    at getRawBody (/deps/node_modules/raw-body/index.js:116:12)
+    at read (/deps/node_modules/body-parser/lib/read.js:79:3)
+    at jsonParser (/deps/node_modules/body-parser/lib/types/json.js:138:5)
+    at Layer.handle [as handle_request] (/deps/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/deps/node_modules/express/lib/router/index.js:328:13)
+    at /deps/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/deps/node_modules/express/lib/router/index.js:346:12)
+    at next (/deps/node_modules/express/lib/router/index.js:280:10)
+    at securityHeaders (eval at <anonymous> (/control/pipeline.cjs:131:18), <anonymous>:131:5)
+{"cases":46,"checks":246,"failures":48}

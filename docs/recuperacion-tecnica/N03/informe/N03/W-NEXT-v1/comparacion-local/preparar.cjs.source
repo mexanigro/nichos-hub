@@ -1,0 +1,24 @@
+const fs = require('node:fs'), p = require('node:path'), crypto = require('node:crypto');
+const base = __dirname, hub = 'C:/Users/liama/Desktop/Nichos-hub';
+const sha = b => crypto.createHash('sha256').update(b).digest('hex');
+const escribir = (ruta, texto) => { fs.mkdirSync(p.dirname(ruta), {recursive:true}); fs.writeFileSync(ruta, texto, {flag:'wx'}); };
+const fuentes = ['src/middleware.ts','src/auth.config.ts','package.json','next.config.ts','node_modules/next/package.json','node_modules/next-auth/package.json','node_modules/@auth/core/jwt.js','node_modules/next-auth/lib/index.js'];
+const manifiesto = fuentes.map(ruta => { const bytes = fs.readFileSync(p.join(hub,ruta)); escribir(p.join(base,'preimagenes',ruta),bytes); return {ruta,bytes:bytes.length,sha256:sha(bytes)}; });
+escribir(p.join(base,'FUENTES.json'),JSON.stringify(manifiesto,null,2));
+const middleware = fs.readFileSync(p.join(hub,'src/middleware.ts'),'utf8');
+for (const modo of ['middleware','proxy','mutante']) {
+ const raiz = p.join(base,'copias',modo); fs.mkdirSync(p.join(raiz,'node_modules'),{recursive:true});
+ let contenido = middleware;
+ if(modo==='mutante') {
+  const inicio = contenido.indexOf('  const { pathname } = req.nextUrl;'), fin = contenido.indexOf('\n});',inicio);
+  if(inicio<0||fin<inicio) throw Error('Callback no localizado');
+  contenido = contenido.slice(0,inicio)+'  return NextResponse.next();'+contenido.slice(fin);
+ }
+ escribir(p.join(raiz,'src',modo==='middleware'?'middleware.ts':'proxy.ts'),contenido);
+ escribir(p.join(raiz,'src/auth.config.ts'),fs.readFileSync(p.join(hub,'src/auth.config.ts')));
+ escribir(p.join(raiz,'package.json'),JSON.stringify({private:true,dependencies:{next:'16.2.9','next-auth':'5.0.0-beta.31',react:'19.2.6','react-dom':'19.2.6'}}));
+ escribir(p.join(raiz,'tsconfig.json'),JSON.stringify({compilerOptions:{target:'ES2022',lib:['dom','dom.iterable','esnext'],strict:true,noEmit:true,esModuleInterop:true,module:'esnext',moduleResolution:'bundler',resolveJsonModule:true,isolatedModules:true,jsx:'react-jsx',plugins:[{name:'next'}],paths:{'@/*':['./src/*']},skipLibCheck:true},include:['next-env.d.ts','**/*.ts','.next/types/**/*.ts'],exclude:['node_modules']}));
+ escribir(p.join(raiz,'next.config.mjs'),'export default { experimental: { cpus: 2 } };\n');
+ escribir(p.join(raiz,'src/app/[[...ruta]]/route.ts'),`export const dynamic = 'force-dynamic';\nexport async function GET(req: Request): Promise<Response> { return Response.json({destino:'W-NEXT-sintetico',ruta:new URL(req.url).pathname}); }\n`);
+}
+console.log(JSON.stringify({copias:3,fuentes:manifiesto.length,productoModificado:false}));

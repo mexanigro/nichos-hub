@@ -1,0 +1,15 @@
+const fs=require('node:fs'),p=require('node:path'),crypto=require('node:crypto');const base=__dirname;
+const roots={hub:'C:/Users/liama/Desktop/Nichos-hub',template:'C:/Users/liama/Desktop/Nichos/Barber-shop-template-main'};
+const sha=b=>crypto.createHash('sha256').update(b).digest('hex');const write=(f,b)=>{fs.mkdirSync(p.dirname(f),{recursive:true});fs.writeFileSync(f,typeof b==='string'||Buffer.isBuffer(b)?b:JSON.stringify(b,null,2),{flag:'wx'});};
+for(const [name,rel] of [['hub','src/lib/wizard/config-to-wizard.ts'],['template','src/config/site.ts']])write(p.join(base,'preimagenes',name+'.ts'),fs.readFileSync(p.join(roots[name],rel)));
+const walk=d=>fs.readdirSync(d,{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(p.join(d,e.name)):[p.join(d,e.name)]);
+const paths=[];for(const [name,root] of Object.entries(roots)){for(const f of walk(root+'/src'))paths.push({repo:name,ruta:p.relative(root,f).replaceAll('\\','/'),sha256:sha(fs.readFileSync(f))});for(const rel of ['server.ts','api/index.ts','package.json','package-lock.json','tsconfig.json'])if(fs.existsSync(root+'/'+rel))paths.push({repo:name,ruta:rel,sha256:sha(fs.readFileSync(root+'/'+rel))});}
+write(p.join(base,'PRODUCTO-ANTES.json'),paths);
+let s=fs.readFileSync(p.join(base,'../sondeo.cjs'),'utf8');s=s.slice(0,s.indexOf('async function main(){'));
+s=s.replace("const read=(f)=>{const s=fs.readFileSync(f,'utf8');", "let baselineMode=false;const read=(f)=>{let target=f;if(f==='/hub/src/lib/wizard/config-to-wizard.ts')target=baselineMode?'/control/preimagenes/hub.ts':process.env.MUTANT==='hub'?'/control/preimagenes/hub.ts':f;if(f==='/template/src/config/site.ts')target=baselineMode?'/control/preimagenes/template.ts':process.env.MUTANT==='site'?'/control/preimagenes/template.ts':process.env.MUTANT==='idioma'?'/control/mutantes/idioma.ts':f;const s=fs.readFileSync(target,'utf8');");
+s=s.replace('const transpile=s=>ts.transpileModule(s,','const compiled=new Map();const transpile=s=>{if(compiled.has(s))return compiled.get(s);const code=ts.transpileModule(s,').replace('jsx:ts.JsxEmit.ReactJSX}}).outputText;','jsx:ts.JsxEmit.ReactJSX}}).outputText;compiled.set(s,code);return code;};');
+s=s.replace("site.switchSiteLanguage('ru');const language=view();","const snapshot=JSON.parse(JSON.stringify(site.siteConfig));const languages=[];for(const lang of ['he','ru','ar']){site.switchSiteLanguage(lang);languages.push({lang,view:view(),snapshot:JSON.parse(JSON.stringify(site.siteConfig))});}const language=languages[1].view;");
+s=s.replace('return {readerMode:reader.businessMode', 'return {snapshot,languages,readerData:reader,readerMode:reader.businessMode');
+write(p.join(base,'contrato.cjs'),s+fs.readFileSync(p.join(base,'pruebas.cjs'),'utf8'));
+write(p.join(base,'FUENTES-P0.json'),{reutilizado:sha(fs.readFileSync(p.join(base,'../sondeo.cjs'))),contrato:sha(fs.readFileSync(p.join(base,'contrato.cjs'))),plan:sha(fs.readFileSync(p.join(base,'CONTRATO.md')))});
+console.log(JSON.stringify({archivos:paths.length,preimagenes:2}));

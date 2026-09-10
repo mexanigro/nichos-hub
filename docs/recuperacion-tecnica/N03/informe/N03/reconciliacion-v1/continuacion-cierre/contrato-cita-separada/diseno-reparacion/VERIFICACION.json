@@ -1,0 +1,15 @@
+{
+  "result": "RED: pendiente decisión de confianza antes de freeze/implementación",
+  "gatesPreparation": "3/4",
+  "diagnosticSourceHashesUnchanged": 7,
+  "newSourceSnapshots": 7,
+  "records": 12,
+  "custodyCopies": 40,
+  "newFunctionalTests": "NO EJECUTADOS",
+  "reusedTests": "Caracterización57, sensibilidad4; no repetidos",
+  "productWrites": 0,
+  "externalEffects": false,
+  "usageObserved": 92,
+  "ceiling": 100,
+  "n03": "ABIERTA"
+}

@@ -1,0 +1,17 @@
+{
+  "scope": "aceptacion y descuento documental acotado; propuesta L12 sin ejecucion",
+  "gates": 3,
+  "producto": 623,
+  "evidenciaAceptada": 84,
+  "archivado": 85,
+  "docs": [
+    {
+      "ruta": "ACEPTACION.md",
+      "sha256": "d01a322caa2e65b9b64dce571c83c98a79b83536f6c6dd9e2490f3adcf65640b"
+    },
+    {
+      "ruta": "SIGUIENTE-ACCION.md",
+      "sha256": "081c07a8245d57c258b3a905860b502c6d9e4029e60601db7d3c5137753f047f"
+    }
+  ]
+}

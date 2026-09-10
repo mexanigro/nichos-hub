@@ -1,0 +1,9 @@
+C:\Users\liama\Desktop\Nichos\Barber-shop-template-main\src\types.ts:1414:    bookingAlerts: boolean;
+C:\Users\liama\Desktop\Nichos\Barber-shop-template-main\src\types.ts:1415:    contactInquiries: boolean;
+C:\Users\liama\Desktop\Nichos\Barber-shop-template-main\src\config\site.ts:103:    bookingAlerts: true,
+C:\Users\liama\Desktop\Nichos\Barber-shop-template-main\src\config\site.ts:104:    contactInquiries: true,
+src\components\client-config-tab.tsx:111:  notifications?: { enabled?: boolean; bookingAlerts?: boolean; contactInquiries?: boolean };
+src\components\client-config-tab.tsx:419:          notifications: { enabled: true, bookingAlerts: true, contactInquiries: true },
+src\components\client-config-tab.tsx:1138:        <ToggleField label="Notificaciones habilitadas" path="notifications.enabled" value={getNested("notifications.enabled") as boolean} onChange={updateNested} />
+src\components\client-config-tab.tsx:1139:        <ToggleField label="Alertas de reserva" path="notifications.bookingAlerts" value={getNested("notifications.bookingAlerts") as boolean} onChange={updateNested} />
+src\components\client-config-tab.tsx:1140:        <ToggleField label="Consultas de contacto" path="notifications.contactInquiries" value={getNested("notifications.contactInquiries") as boolean} onChange={updateNested} />

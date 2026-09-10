@@ -1,0 +1,1 @@
+warning: in the working copy of 'src/app/api/onboarding/client-info/route.ts', LF will be replaced by CRLF the next time Git touches it

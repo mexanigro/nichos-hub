@@ -1,0 +1,40 @@
+const fs=require('fs'), assert=require('assert/strict'), {createRequire}=require('module'), crypto=require('crypto');
+const req=createRequire('/deps/package.json'),ts=req('typescript'), apps=req('firebase-admin/app'), firestore=req('firebase-admin/firestore');
+const privateKey=crypto.generateKeyPairSync('rsa',{modulusLength:2048,privateKeyEncoding:{type:'pkcs8',format:'pem'},publicKeyEncoding:{type:'spki',format:'pem'}}).privateKey;
+const cert=projectId=>apps.cert({projectId,clientEmail:'test@example.invalid',privateKey});
+const cases=JSON.parse(fs.readFileSync('/control/CASOS.json','utf8'));const rows=[],checks=[];
+function eq(a,b,label){assert.deepStrictEqual(a,b,label);checks.push(label)}
+function extract(file,names){const source=fs.readFileSync(file,'utf8'),ast=ts.createSourceFile(file,source,ts.ScriptTarget.Latest,true);return names.map(name=>{const matches=ast.statements.filter(n=>ts.isFunctionDeclaration(n)&&n.name?.text===name);assert.equal(matches.length,1,name);return matches[0].getText(ast)}).join('\n')}
+const functions=['firestoreRestCreate','getFirestoreRestContext','firestoreRestGetDocument','firestoreRestPatchDocument'];
+const texts={server:extract('/sources/server.ts',['getAdminDb']),api:extract('/sources/api/index.ts',['loadAdminFirestore']),rest:extract('/sources/api/index.ts',functions)};
+const mutant=process.argv[2]; if(mutant==='server'||mutant==='api')texts[mutant]=texts[mutant].replace('getAdminApps().length > 0','false'); if(mutant==='rest')texts.rest=texts.rest.replaceAll('process.env.FIREBASE_PROJECT_ID?.trim()', "'project-z'");
+function load(text,names,env,requireFn,fetchFn,token,logs){const js=ts.transpileModule(text,{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.CommonJS}}).outputText;return new Function('require','process','fetch','getFirestoreAccessToken','console',js+'\nreturn {'+names.join(',')+'};')(requireFn,{env},fetchFn,async()=>token?'synthetic-local-token':null,{log(){},error(){logs.push('error registrado')}})}
+async function admin(c,kind){for(const a of apps.getApps())await apps.deleteApp(a);for(const a of c.apps)apps.initializeApp({projectId:a.project,credential:cert(a.project)},a.name);
+ const env={...c.env};if(env.FIREBASE_ADMIN_PRIVATE_KEY==='SYNTHETIC')env.FIREBASE_ADMIN_PRIVATE_KEY=privateKey;
+ const captured=[],calls=[],logs=[];const requireFn=id=>id==='firebase-admin/app'?apps:id==='firebase-admin/firestore'?{...firestore,getFirestore(app,db){const real=firestore.getFirestore(app,db);captured.push({name:app.name,project:real.projectId,database:real.databaseId});real.request=()=>{throw Error('NETWORK_PROHIBITED')};real.getAll=async(ref)=>{calls.push({project:ref.firestore.projectId,database:ref.firestore.databaseId,path:ref.path});return[{exists:false}]};return real}}:req(id);
+ const name=kind==='server'?'getAdminDb':'loadAdminFirestore';let result,error=null;
+ try{const fn=load(texts[kind],[name],env,requireFn,()=>{throw Error('NETWORK_PROHIBITED')},false,logs);let raw=await fn[name]();const db=kind==='server'?raw:raw?.db;if(db){await db.collection('probe').doc('id').get();result='operation'}else result='null'}catch(e){error=e.code||e.name;result='error'}
+ const expected=c.expected.admin;eq(result,expected==='ERROR_CERT'?'error':expected===null?'null':'operation',c.id+'/'+kind+'/return');
+ eq(calls.length,expected&&expected!=='ERROR_CERT'?1:0,c.id+'/'+kind+'/calls');
+ if(calls.length){eq(calls[0],{project:expected,database:c.expected.db,path:'probe/id'},c.id+'/'+kind+'/destination');eq(captured[0].name,c.apps[0]?.name||'[DEFAULT]',c.id+'/'+kind+'/app')}
+ if(expected==='ERROR_CERT')eq(error,'app/invalid-credential',c.id+'/'+kind+'/cert');
+ const row={case:c.id,consumer:kind,result,error,selected:captured,operations:calls,registry:apps.getApps().map(a=>a.name)};for(const a of apps.getApps())await apps.deleteApp(a);return row;
+}
+async function rest(c){const calls=[],logs=[];const fetchFn=async(url,options={})=>{calls.push({url,method:options.method||'GET'});return{ok:c.status<300,status:c.status,text:async()=>'synthetic-response',json:async()=>({fields:{}})}};
+ const f=load(texts.rest,functions,c.env,req,fetchFn,c.token,logs),out=[];
+ for(const name of ['firestoreRestCreate','firestoreRestGetDocument','firestoreRestPatchDocument']){let result,error=null;const before=calls.length;try{let value=await f[name](...(name==='firestoreRestCreate'?['probe',{flag:{booleanValue:true}}]:name==='firestoreRestGetDocument'?['probe','id /ñ']:['probe','id /ñ',{flag:{booleanValue:true}}]));result=value===null?'null':value===undefined?'undefined':'document'}catch(e){result='error';error=e.message}
+ const active=!!c.token&&c.expected.rest!==null;eq(calls.length-before,active?1:0,c.id+'/'+name+'/calls');
+ if(active){const prefix='https://firestore.googleapis.com/v1/projects/'+c.expected.rest+'/databases/'+c.expected.db+'/documents/probe';const suffix=name==='firestoreRestCreate'?'':'/id%20%2F%C3%B1'+(name==='firestoreRestPatchDocument'?'?updateMask.fieldPaths=flag':'');eq(calls.at(-1),{url:prefix+suffix,method:name==='firestoreRestCreate'?'POST':name==='firestoreRestPatchDocument'?'PATCH':'GET'},c.id+'/'+name+'/url')}
+ const want=name==='firestoreRestCreate'?'undefined':!active?'error':c.status===404&&name==='firestoreRestGetDocument'?'null':c.status>=300?'error':name==='firestoreRestGetDocument'?'document':'undefined';eq(result,want,c.id+'/'+name+'/return');
+ if(!active&&name!=='firestoreRestCreate')eq(error,c.token?'FIREBASE_PROJECT_ID not set':'Cannot authenticate with Firestore',c.id+'/'+name+'/error');
+ out.push({case:c.id,consumer:name,result,error,operations:calls.slice(before)})}return out;
+}
+(async()=>{for(const c of cases){rows.push(await admin(c,'server'),await admin(c,'api'),...await rest(c))}
+// Controles adversos del instrumento: oraculo fijo debe rechazar una captura desarmada.
+const sensitivity=[];
+for(const [label,row,mutate,expected] of [
+ ['Admin-app-ajena',rows.find(r=>r.case==='app-ajena'&&r.consumer==='server'),r=>r.operations[0].project='project-a','project-b'],
+ ['Admin-api-app-ajena',rows.find(r=>r.case==='app-ajena'&&r.consumer==='api'),r=>r.operations[0].project='project-a','project-b'],
+ ['REST-url',rows.find(r=>r.case==='coincidentes-ausencia-base'&&r.consumer==='firestoreRestCreate'),r=>r.operations[0].url=r.operations[0].url.replace('project-a','project-z'),null]]){
+ const copy=structuredClone(row);mutate(copy);let red=false;try{assert.deepStrictEqual(copy.operations,row.operations)}catch{red=true}eq(red,true,label+'/RED');sensitivity.push({control:label,result:'RED esperado; captura alterada detectada',boundary:'instrumento, no mutacion de producto'})}
+fs.writeFileSync('/salida/RESULTADO.json',JSON.stringify({result:'GREEN',cases:cases.length,rows:rows.length,checks:checks.length,versions:{admin:JSON.parse(fs.readFileSync('/deps/node_modules/firebase-admin/package.json','utf8')).version},sensitivity,rows},null,2));console.log(JSON.stringify({result:'GREEN',cases:cases.length,rows:rows.length,checks:checks.length}));})().catch(e=>{console.error(e.stack);process.exitCode=1});

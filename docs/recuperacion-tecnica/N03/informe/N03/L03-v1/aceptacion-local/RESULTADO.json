@@ -1,0 +1,19 @@
+{
+  "result": "GREEN",
+  "gates": 3,
+  "total": 3,
+  "L03": "aceptada sólo interfaz y descontada",
+  "N03": "abierta",
+  "siguiente": "Proponer preparación local L01; no ejecutada",
+  "productoConservado": 285,
+  "evidenciasConservadas": 184,
+  "preparacionConservada": 31,
+  "archivoPrevioConservado": 185,
+  "registros": 12,
+  "preimagenes": 12,
+  "blockers": [],
+  "techoTotal": 90,
+  "reservaN04": 10,
+  "consumoObservado": 84,
+  "resets": 0
+}

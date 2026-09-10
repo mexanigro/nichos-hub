@@ -1,0 +1,26 @@
+{
+  "checks": 29,
+  "failures": [
+    {
+      "id": "service/both-same-id-visible",
+      "actual": 1,
+      "expected": 2
+    },
+    {
+      "id": "service/unique-view-identities",
+      "actual": 1,
+      "expected": 2
+    },
+    {
+      "id": "service/distinct-base-no-merge",
+      "actual": 1,
+      "expected": 2
+    },
+    {
+      "id": "service/browser-error-keeps-backend",
+      "actual": false,
+      "expected": true
+    }
+  ],
+  "limits": "Callbacks UI reales por AST; SDK browser real descriptor; auth/eventos/transportes interceptados, no render completo."
+}

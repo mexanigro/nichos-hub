@@ -1,0 +1,15 @@
+const fs=require('node:fs'),p=require('node:path'),assert=require('node:assert/strict'),{pathToFileURL}=require('node:url');
+const base=__dirname,hub='C:/Users/liama/Desktop/Nichos-hub';
+(async()=>{
+ const {ESLint}=require(hub+'/node_modules/eslint');
+ const vitals=(await import(pathToFileURL(hub+'/node_modules/eslint-config-next/dist/core-web-vitals.js'))).default;
+ const typescript=(await import(pathToFileURL(hub+'/node_modules/eslint-config-next/dist/typescript.js'))).default;
+ const eslint=new ESLint({cwd:hub,overrideConfigFile:true,overrideConfig:[...vitals,...typescript]});
+ const basal=await eslint.lintText(fs.readFileSync(p.join(base,'copias/basal.tsx'),'utf8'),{filePath:hub+'/src/components/client-config-tab.tsx'});
+ fs.writeFileSync(p.join(base,'LINT-BASAL.json'),JSON.stringify(basal,null,2),{flag:'wx'});
+ const final=JSON.parse(fs.readFileSync(p.join(base,'LINT.json'),'utf8'));
+ assert.deepEqual(final[0].messages,basal[0].messages);
+ assert.ok(final[0].messages.every(m=>m.line<1138||m.line>1140));
+ const result={result:'PASS_SIN_REGRESION',diagnosticosIdenticos:true,erroresPrevios:basal[0].errorCount,advertenciasPrevias:basal[0].warningCount,nuevos:0,productoModificado:false,limite:'Lint global del componente sigue RED por deuda previa ajena al bloque autorizado; no se suprimen reglas ni diagnósticos.'};
+ fs.writeFileSync(p.join(base,'LINT-COMPARATIVO.json'),JSON.stringify(result,null,2),{flag:'wx'});console.log(JSON.stringify(result));
+})().catch(e=>{console.error(e);process.exitCode=1;});

@@ -1,0 +1,4 @@
+[Kill-switch] PROJECT_ID or CLIENT_ID missing — skipping kill-switch, defaulting active.
+[Kill-switch] PROJECT_ID or CLIENT_ID missing — skipping kill-switch, defaulting active.
+[Kill-switch] PROJECT_ID or CLIENT_ID missing — skipping kill-switch, defaulting active.
+{ rows: 30, checks: 90, failures: 27 }

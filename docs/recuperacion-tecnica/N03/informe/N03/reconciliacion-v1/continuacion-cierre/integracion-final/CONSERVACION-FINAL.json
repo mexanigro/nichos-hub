@@ -1,0 +1,47 @@
+{
+  "baselineCount": 337,
+  "unchanged": 329,
+  "changed": [
+    "src/lib/api/checkout-handler.ts",
+    "api/index.ts",
+    "server.ts",
+    "src/components/admin/AdminDashboard.tsx",
+    "src/components/admin/AppointmentCalendar.tsx",
+    "src/components/booking/BookingWizard.tsx",
+    "src/lib/api/admin-auth.ts",
+    "src/lib/api/payment-gateways.ts"
+  ],
+  "unexpected": [],
+  "functionChanges": [
+    {
+      "file": "server.ts",
+      "changed": [
+        "getClientRuntimeState",
+        "registerExpressRoutes"
+      ]
+    },
+    {
+      "file": "api/index.ts",
+      "changed": [
+        "getClientRuntimeState",
+        "registerExpressRoutes"
+      ]
+    }
+  ],
+  "editorCallbacksEqual": true,
+  "guardTenantEqual": true,
+  "bookingHandlerEqual": true,
+  "finalHashes": {
+    "server.ts": "4e5e1167cae282878b6cfc590a6e01675fedf3776487df0be577ccca20171f1d",
+    "api/index.ts": "0a99770d92a97df9de7c37a22f6c8591f954678ac3e530d8bc55ba6ec1218809",
+    "src/lib/api/admin-auth.ts": "184996449b94d762f30b9bfabc7c829fa00413e3fda53e712bf4500d461f0ec2",
+    "src/components/admin/AdminDashboard.tsx": "e636d0556110405985e3df10903eeed8165cad95ac78291886bbb0d22099e637",
+    "src/components/admin/AppointmentCalendar.tsx": "e78ed3314bea04d923ea76e616bf94a9b4c199466ddc633dd739f1e04b2ec26c",
+    "src/lib/api/checkout-handler.ts": "e0152c73362a8e26573c16730bddf85ed7811102b32726bb07cb4556606befe3",
+    "src/lib/api/payment-gateways.ts": "4b1403983540dc2e2b9d0af41e9d34169fbcd256c8f08fd57b0302e2d19f95ad",
+    "src/components/booking/BookingWizard.tsx": "9ef7fd9da98308fcc9f7d6e2a291254d0da7f9935722f63e8c0d220868111d3b",
+    "src/lib/api/crm-appointments-handler.ts": "e48a9ee4048c118a064cbff460fbf4e0668763691c9de41c34e9d15f3a915e4f",
+    "src/services/crm-appointments.ts": "d91af2fc8648f884480a42183b364e060d911c9c4fc9bea2c18d66538fd99766"
+  },
+  "hubEditorHash": "a69a831e7664867aff4f30e7456176e143565c681bb6dd75cbde94b872fee373"
+}

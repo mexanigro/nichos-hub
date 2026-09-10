@@ -1,0 +1,5 @@
+# N03 — integración de autoridad y cobro
+
+**Estado vigente — N03 RED/abierta por autoridad de precio pendiente.** Aprobaciones de autoridad backend clients/config/credenciales y coherencia de cobro aplicadas y verificadas localmente. Reserva→lectura/acción de agenda alcanza la misma cita con destinos separados y middleware real; no se descuenta cobro completo: book no guarda precio y checkout rechaza400. Liam decidió mantener pendiente la propuesta de precio del catálogo backend; booking-handler e históricos no se modifican. Pipeline48casos264checks conserva16fallos de ese impedimento; mutantes detectan bypass24adicionales y rechazo de válidos52nuevos. Revisión integrada de siete filas y cambios recientes registrada; entregas aceptadas intactas. Techo100% TOTAL, observado96%, reserva98–100sinconsumir, sinresets/externos/push/deploy; etapas y prestaciones por tenant antes de despliegue vigentes.
+
+Se conserva acta RED; no aceptación inventada ni cierre por cuota. La decisión de precio permanece pendiente y no se aplica.

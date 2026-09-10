@@ -1,0 +1,62 @@
+{
+  "result": "GREEN",
+  "checks": 360,
+  "failures": [],
+  "rows": [
+    {
+      "id": "barberia/matching"
+    },
+    {
+      "id": "barberia/missing"
+    },
+    {
+      "id": "barberia/foreign"
+    },
+    {
+      "id": "estetica/matching"
+    },
+    {
+      "id": "estetica/missing"
+    },
+    {
+      "id": "estetica/foreign"
+    },
+    {
+      "id": "tattoo/matching"
+    },
+    {
+      "id": "tattoo/missing"
+    },
+    {
+      "id": "tattoo/foreign"
+    },
+    {
+      "id": "nails/matching"
+    },
+    {
+      "id": "nails/missing"
+    },
+    {
+      "id": "nails/foreign"
+    },
+    {
+      "id": "cafeteria/matching"
+    },
+    {
+      "id": "cafeteria/missing"
+    },
+    {
+      "id": "cafeteria/foreign"
+    },
+    {
+      "id": "remodelaciones/matching"
+    },
+    {
+      "id": "remodelaciones/missing"
+    },
+    {
+      "id": "remodelaciones/foreign"
+    }
+  ],
+  "limits": "Un bootstrap por documento; null ordinario conserva preset, horas reemplazan semana, arrays reemplazan. No edición live repetida ni DB."
+}

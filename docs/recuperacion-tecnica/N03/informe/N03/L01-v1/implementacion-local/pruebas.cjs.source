@@ -1,0 +1,36 @@
+async function main(){
+ cache=new Map();
+ const cases=[];const valid=v=>v==='solo'||v==='team';
+ const valores=[undefined,null,'invalid','solo','team'];
+ for(const nested of valores)for(const top of valores)cases.push({id:'matriz-'+String(nested)+'-'+String(top),config:{business:{type:'barberia',keep:'B',...(nested!==undefined?{mode:nested}:{})},...(top!==undefined?{businessMode:top}:{}),outside:{keep:[1,2]}},hub:valid(nested)?nested:valid(top)?top:null,remote:valid(nested)?nested:valid(top)?top:null});
+ for(const niche of ['barberia','estetica','tattoo','nails','cafeteria','remodelaciones','employment']){
+  for(const mode of ['solo','team'])cases.push({id:niche+'-'+mode,niche,config:{business:{type:niche,mode},businessMode:mode==='solo'?'team':'solo',features:{showAbout:mode!=='solo',showTeam:mode==='solo',enableStaffPages:false,showHero:false},outside:{array:[1,2]}},hub:mode,remote:mode});
+  for(const mode of [undefined,null,'invalid'])cases.push({id:niche+'-sin-valido-'+String(mode),niche,config:{business:{type:niche,...(mode!==undefined?{mode}:{})},...(mode!==undefined?{businessMode:mode}:{}),features:{showAbout:true,showTeam:false,showHero:false}},hub:null,remote:null});
+ }
+ for(const type of [undefined,'nails'])for(const top of [undefined,'solo','team'])cases.push({id:'SAFE-'+type+'-'+top,config:{business:{...(type?{type}:{}),mode:'solo'},...(top?{businessMode:top}:{}),features:{showAbout:false,showTeam:true}},hub:'solo',remote:top||null});
+ for(const which of ['onboarding','provision','client-info'])for(const mode of ['solo','team']){const w=await writer(which,mode);cases.push({id:which+'-'+mode,config:w.config,hub:mode,remote:mode,writes:w.writes});}
+ const initial=(await writer('onboarding','solo')).config;initial.outside={keep:[1,2]};initial.services=[{id:'keep',duration:30,price:9}];
+ const edit=await writer('client-info','team',initial);cases.push({id:'reedicion-solo-team',config:edit.config,hub:'team',remote:'team',writes:edit.writes});
+ const failures=[],out=[];let checks=0;
+ function check(id,actual,expected){checks++;if(!require('node:util').isDeepStrictEqual(actual,expected))failures.push({id,actual,expected});}
+ const strip=s=>{const c=structuredClone(s);delete c.features.showAbout;delete c.features.showTeam;return c;};
+ for(const item of cases){
+  baselineMode=true;cache=new Map();const before=await consumers(item.config,item.niche);baselineMode=false;cache=new Map();const after=await consumers(item.config,item.niche);
+  const mode=item.hub;check(item.id+'/lector',after.readerMode,mode||'ABSENT');check(item.id+'/hidratacion',after.hydratedMode,mode||'');check(item.id+'/borrador',after.draftMode,'team');check(item.id+'/borrador-solo',after.draftSolo,'solo');
+  check(item.id+'/owner',after.ownerBranch,mode==='solo'?'solo':'team');
+  const priorReader={...before.readerData},currentReader={...after.readerData};delete priorReader.businessMode;delete currentReader.businessMode;check(item.id+'/otros-campos-wizard',currentReader,priorReader);
+  let about=before.features.showAbout,team=before.features.showTeam;
+  if(item.remote){about=item.remote==='solo';team=item.remote==='team';if(item.niche==='employment')team=false;}
+  check(item.id+'/showAbout',after.features.showAbout,about);check(item.id+'/showTeam',after.features.showTeam,team);
+  check(item.id+'/config-ajena',strip(after.snapshot),strip(before.snapshot));
+  const isSolo=about&&!team;check(item.id+'/booking-solo',after.booking.isSolo,isSolo);
+  check(item.id+'/booking-paso',after.booking.step,after.snapshot.services.length?(isSolo?'datetime':'staff'):'service');check(item.id+'/booking-staff',after.booking.staff,isSolo&&after.snapshot.staff.length?after.snapshot.staff[0].id:null);
+  for(let i=0;i<after.languages.length;i++){
+   const l=after.languages[i],b=before.languages[i];check(item.id+'/'+l.lang+'/ajeno',strip(l.snapshot),strip(b.snapshot));check(item.id+'/'+l.lang+'/about',l.snapshot.features.showAbout,item.remote?about:b.snapshot.features.showAbout);check(item.id+'/'+l.lang+'/team',l.snapshot.features.showTeam,item.remote?team:b.snapshot.features.showTeam);check(item.id+'/'+l.lang+'/booking',l.view.isSolo,item.remote?isSolo:b.view.isSolo);
+  }
+  out.push({id:item.id,config:item.config,expected:{hub:mode,remote:item.remote,about,team},before,after,writes:item.writes});
+ }
+ fs.writeFileSync('/salida/CASOS.json',JSON.stringify(out,null,2));fs.writeFileSync('/salida/FUENTES.json',JSON.stringify([...fuentes].map(([ruta,sha256])=>({ruta,sha256})),null,2));
+ const report={result:failures.length?'RED':'GREEN',cases:cases.length,checks,failures};fs.writeFileSync('/salida/RESULTADO.json',JSON.stringify(report,null,2));console.log(JSON.stringify({result:report.result,cases:cases.length,checks,failures:failures.length}));process.exitCode=failures.length?1:0;
+}
+main().catch(e=>{fs.writeFileSync('/salida/ERROR.txt',e.stack);console.error(e);process.exitCode=2;});

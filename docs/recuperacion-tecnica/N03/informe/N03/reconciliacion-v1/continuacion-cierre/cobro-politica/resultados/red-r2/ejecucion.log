@@ -1,0 +1,9 @@
+Error creating checkout session: Error: SENSITIVE config failure
+    at Object.get (/control/contrato.cjs:7:322)
+    at eval (eval at <anonymous> (/control/contrato.cjs:6:173), <anonymous>:50:81)
+    at async /control/contrato.cjs:8:88
+Error creating checkout session: Error: SENSITIVE config failure
+    at Object.get (/control/contrato.cjs:7:322)
+    at eval (eval at <anonymous> (/control/contrato.cjs:6:173), <anonymous>:50:81)
+    at async /control/contrato.cjs:8:88
+{"cases":23,"checks":366,"failures":106}

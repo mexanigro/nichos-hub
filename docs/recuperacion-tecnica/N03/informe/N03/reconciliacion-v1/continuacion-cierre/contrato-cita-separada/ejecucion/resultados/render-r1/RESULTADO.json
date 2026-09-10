@@ -1,0 +1,5 @@
+{
+  "checks": 4,
+  "failures": [],
+  "limit": "SSR componente Calendar real, locale en real; sin navegación browser, CSS visual ni drag DOM."
+}

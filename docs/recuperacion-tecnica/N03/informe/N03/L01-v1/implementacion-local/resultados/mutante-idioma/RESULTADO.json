@@ -1,0 +1,697 @@
+{
+  "result": "RED",
+  "cases": 73,
+  "checks": 1752,
+  "failures": [
+    {
+      "id": "matriz-team-solo/he/about",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "matriz-team-solo/he/team",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "matriz-team-solo/he/booking",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "matriz-team-solo/ru/about",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "matriz-team-solo/ru/team",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "matriz-team-solo/ru/booking",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "matriz-team-solo/ar/about",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "matriz-team-solo/ar/team",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "matriz-team-solo/ar/booking",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "barberia-solo/he/about",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "barberia-solo/he/team",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "barberia-solo/he/booking",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "barberia-solo/ru/about",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "barberia-solo/ru/team",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "barberia-solo/ru/booking",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "barberia-solo/ar/about",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "barberia-solo/ar/team",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "barberia-solo/ar/booking",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "barberia-team/he/about",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "barberia-team/he/team",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "barberia-team/he/booking",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "barberia-team/ru/about",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "barberia-team/ru/team",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "barberia-team/ru/booking",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "barberia-team/ar/about",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "barberia-team/ar/team",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "barberia-team/ar/booking",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "estetica-solo/he/about",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "estetica-solo/he/team",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "estetica-solo/he/booking",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "estetica-solo/ru/about",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "estetica-solo/ru/team",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "estetica-solo/ru/booking",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "estetica-solo/ar/about",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "estetica-solo/ar/team",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "estetica-solo/ar/booking",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "estetica-team/he/about",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "estetica-team/he/team",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "estetica-team/he/booking",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "estetica-team/ru/about",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "estetica-team/ru/team",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "estetica-team/ru/booking",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "estetica-team/ar/about",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "estetica-team/ar/team",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "estetica-team/ar/booking",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "tattoo-solo/he/about",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "tattoo-solo/he/team",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "tattoo-solo/he/booking",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "tattoo-solo/ru/about",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "tattoo-solo/ru/team",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "tattoo-solo/ru/booking",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "tattoo-solo/ar/about",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "tattoo-solo/ar/team",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "tattoo-solo/ar/booking",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "tattoo-team/he/about",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "tattoo-team/he/team",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "tattoo-team/he/booking",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "tattoo-team/ru/about",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "tattoo-team/ru/team",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "tattoo-team/ru/booking",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "tattoo-team/ar/about",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "tattoo-team/ar/team",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "tattoo-team/ar/booking",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "nails-solo/he/about",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "nails-solo/he/team",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "nails-solo/he/booking",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "nails-solo/ru/about",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "nails-solo/ru/team",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "nails-solo/ru/booking",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "nails-solo/ar/about",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "nails-solo/ar/team",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "nails-solo/ar/booking",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "nails-team/he/about",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "nails-team/he/team",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "nails-team/he/booking",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "nails-team/ru/about",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "nails-team/ru/team",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "nails-team/ru/booking",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "nails-team/ar/about",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "nails-team/ar/team",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "nails-team/ar/booking",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "cafeteria-solo/he/about",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "cafeteria-solo/he/team",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "cafeteria-solo/he/booking",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "cafeteria-solo/ru/about",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "cafeteria-solo/ru/team",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "cafeteria-solo/ru/booking",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "cafeteria-solo/ar/about",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "cafeteria-solo/ar/team",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "cafeteria-solo/ar/booking",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "cafeteria-team/he/about",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "cafeteria-team/he/team",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "cafeteria-team/he/booking",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "cafeteria-team/ru/about",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "cafeteria-team/ru/team",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "cafeteria-team/ru/booking",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "cafeteria-team/ar/about",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "cafeteria-team/ar/team",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "cafeteria-team/ar/booking",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "remodelaciones-solo/he/about",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "remodelaciones-solo/he/team",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "remodelaciones-solo/he/booking",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "remodelaciones-solo/ru/about",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "remodelaciones-solo/ru/team",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "remodelaciones-solo/ru/booking",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "remodelaciones-solo/ar/about",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "remodelaciones-solo/ar/team",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "remodelaciones-solo/ar/booking",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "remodelaciones-team/he/about",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "remodelaciones-team/he/team",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "remodelaciones-team/he/booking",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "remodelaciones-team/ru/about",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "remodelaciones-team/ru/team",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "remodelaciones-team/ru/booking",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "remodelaciones-team/ar/about",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "remodelaciones-team/ar/team",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "remodelaciones-team/ar/booking",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "employment-solo/he/about",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "employment-solo/he/booking",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "employment-solo/ru/about",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "employment-solo/ru/booking",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "employment-solo/ar/about",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "employment-solo/ar/booking",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "employment-team/he/about",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "employment-team/he/booking",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "employment-team/ru/about",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "employment-team/ru/booking",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "employment-team/ar/about",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "employment-team/ar/booking",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "reedicion-solo-team/he/about",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "reedicion-solo-team/he/team",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "reedicion-solo-team/he/booking",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "reedicion-solo-team/ru/about",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "reedicion-solo-team/ru/team",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "reedicion-solo-team/ru/booking",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "reedicion-solo-team/ar/about",
+      "actual": true,
+      "expected": false
+    },
+    {
+      "id": "reedicion-solo-team/ar/team",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "reedicion-solo-team/ar/booking",
+      "actual": true,
+      "expected": false
+    }
+  ]
+}

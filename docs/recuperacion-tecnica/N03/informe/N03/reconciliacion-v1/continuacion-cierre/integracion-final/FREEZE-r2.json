@@ -1,0 +1,17 @@
+[
+  {
+    "Algorithm": "SHA256",
+    "Hash": "9C2BEA556193FFF3C6B873352F3FFEBF8D16643AF0221139CC70EE9C2073AB66",
+    "Path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\pipeline.cjs"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "A14104CDA5EE0F0FDE0422FF6E614D44AB595DFCC6ABC1D39682B40F7E19E03E",
+    "Path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\CONTRATO.md"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "FF8773AC180B59D66641DE23F25489548756546DC30652CDC29C9E30F56055FB",
+    "Path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\ejecutar.ps1"
+  }
+]

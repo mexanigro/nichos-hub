@@ -1,0 +1,3117 @@
+[
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/api-costs/fetch/route.ts",
+    "sha256": "78c0eacce2cb138ebb15b567720d53fd762bff0c273c48b8ffa16ea677439546"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/api-costs/route.ts",
+    "sha256": "3ad82a787cd173df5327c4d80ac5cb234a77d62f96d3202b23ec1be71236d781"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/api-costs/[serviceId]/route.ts",
+    "sha256": "5d1505596aac7436bac7bde029df51ae53b374f13699d8bd43e842e41aa2cfe3"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/api-keys/route.ts",
+    "sha256": "ff52c98e737d316eb0c5863fa490adb655cdfcbea4a789b60bb4636735b11990"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/appointments/available/route.ts",
+    "sha256": "ef8388e99b4abc453ba96cd5ce553df5b7e5b962e11827d5cecd1952147e1b5e"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/appointments/book/route.ts",
+    "sha256": "eb2ae1735a5924d03c6e6ac931a4ff8b968f3e7920f852b2f4afa8a25fec5e1d"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/appointments/config/route.ts",
+    "sha256": "8c32c5a6515d8cba6da4719d3cc395dd87800edcf405e7eabfda73a4707573e2"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/appointments/[id]/cancel/route.ts",
+    "sha256": "1b74bf362be7e8b91af59e44d6f57688460e9408f3a5347744a02dcd681550e9"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/auth/lead/route.ts",
+    "sha256": "ea46e6022df44632d4a3b304bc2c3bad3ab65a4d99122e3a87adff40d761285c"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/auth/upsert-lead/route.ts",
+    "sha256": "2d6457634b48d3ff1a52e10433d52ce2e0953e3b470c75ff981bb8d476862b3f"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/auth/[...nextauth]/route.ts",
+    "sha256": "9c29da987ebf4fe2ea2cc237eb213fccf02bf7f5c3607746fed8401b19564dee"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/bookings/increment/[clientId]/route.ts",
+    "sha256": "a21391283e7ff256b359f386cf0553a2421523c57dc95444767093b53b7a1e39"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/calendar/auth/route.ts",
+    "sha256": "3707202d9ba8827f3c0a6233eaf0ef5f84fd72631190f018749912bd70ed4fe7"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/calendar/callback/route.ts",
+    "sha256": "151fc0f9ae8f55251d04f4b88ccea34da6e6d06d5ed9e0e0667a02ce924f0572"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/calendar/[clientId]/route.ts",
+    "sha256": "3ac27ae2c1d5980084c1b191924de3f1346a623cdc51b255f1343376580186e6"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/cardcom/create-onboarding-payment/route.ts",
+    "sha256": "f40f717fea0bc378dccfcbbe59d4100fdcd3eef59101b24b5bb8556be04af691"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/cardcom/create-payment/route.ts",
+    "sha256": "88537fe8cbf0423d7bc359d4919989a4f76fb71a5ff49c8c8fe81a48367813b0"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/cardcom/verify-onboarding-payment/route.ts",
+    "sha256": "495e956daf137e0fc3f163781e992d5982cfe1eedb037dda3e55d0f164ef9bc4"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/cardcom/verify-payment/route.ts",
+    "sha256": "bb69cf2d8529c11c09b379be2d3bf8894cdb12f608eeaa236372c64776081ca1"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/cardcom/webhook/route.ts",
+    "sha256": "a18efd59676ecc9d78c736ab737fe799430bf912fc8c3328047501406ddc0a30"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/classify/route.ts",
+    "sha256": "cb2d8c12129b48c4cdfa5d274e47b23e613c72fa54a10317a2d5a328298a3ff0"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/clients/changes-request/route.ts",
+    "sha256": "e67536ce431c115afacd1796feceaa8b02c2382750ef8c92061a807458d410a5"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/clients/counts/route.ts",
+    "sha256": "4a8f9454a2ce1f5538100fd49d5982d3f5be2e7a4e43d52e4f310e9e7293ce35"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/clients/kill/route.ts",
+    "sha256": "c500ffcf5861fb04cc65e5c476cd0fd0de45c35ce7d7342c0e1971a5c850c3ec"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/clients/provision/route.ts",
+    "sha256": "735f14b3a55b276a370d49c699ec07af4f3caf0c034fa6367592b186cbcfc732"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/clients/redeploy/route.ts",
+    "sha256": "2e0923c58211ca3e9e9b96f82d59557325e549e385af36cd687104847b1f8750"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/clients/route.ts",
+    "sha256": "a22a812ac99cbe51282dbeb6336be51f76fcc9da80fdddc7f14b99094fcb6191"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/clients/[clientId]/route.ts",
+    "sha256": "52fa2d00473e32430763935791082b02e8c8107f003977dca11ee62296c367a6"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/clients/[clientId]/status-history/route.ts",
+    "sha256": "7ec876487a63b9c39ca4a1ca06b718a88020176f5995d5c070de8f88c4886dc4"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/clients/[clientId]/tier/route.ts",
+    "sha256": "41f730aaf26af2bbc0026c5e0e8da381664c710f327ad5e91a6ed6a11574d8e2"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/config/[clientId]/history/route.ts",
+    "sha256": "6a43c187c16736a8f1d5228550bf1506c341634583552563cb012cfb889cc6db"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/config/[clientId]/payment-credentials/route.ts",
+    "sha256": "0641ee8a23377a26ef743de147677660a870ee60ba1f5f480de6c90068965253"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/config/[clientId]/route.ts",
+    "sha256": "afc200cb92d2370eb3b88667ca76ccd598d885b0d903c8338ce3594784210d83"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/contract-leads/route.ts",
+    "sha256": "459a81f84ce6eaeda17e3b951d17c1ca36fe068403b979d5cde798d0e48ed032"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/crm/import/route.ts",
+    "sha256": "52db5f26542c7a9b004b9b1494ff6fc935932c6920da232680cb6f2b5dd89e36"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/crm/parse-text/route.ts",
+    "sha256": "8a12c41d5b02f96d77a6f69dfaf612af76e5040c23b547915a9178c1394b0403"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/crm-stats/[clientId]/route.ts",
+    "sha256": "65b45d5a8b5e7a04ba5a0e1b1494f4c5916fc7bf0b24580fb7626d6c4c0e8334"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/cron/cardcom-charges/route.ts",
+    "sha256": "92fe89ccfb20bef75d73b9c53bd8e30a9e0c14d114510ba990833bc70b8b0300"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/cron/reset-bookings/route.ts",
+    "sha256": "b95d2c08fdb108c4d794d9f5029f1aab08e280caeca7f69fc19d3ea0fad0266c"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/deploy/route.ts",
+    "sha256": "855896515ddf5ab92de355261826eb8516586f6bec5a9df244858558bf203698"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/email/health/route.ts",
+    "sha256": "1199c5792f4b991dc083a91795e2d9325cf14dc65d64c6765310113588bac994"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/expenses/export/route.ts",
+    "sha256": "32442d6ebfd22f47621f57c2bab6393943507a65a5b72113a555b89fdd79f525"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/expenses/route.ts",
+    "sha256": "25d6a917af1f9bbc6c28332b8fe0c6cef1b606577ca1f4e5aa695ad1e1b0ff2b"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/free/lead/route.ts",
+    "sha256": "c93037f3fd183d8d44f1aefdb1fb001b4ad68cd64285e20339124070737109b3"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/generate-content/route.ts",
+    "sha256": "f3a74e5859c7a0c352918d5798393202f80d53559a66570ff17a469b3e7e6aa5"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/leads/[clientId]/route.ts",
+    "sha256": "ddfe70789919bfc920f4e60bec7b9fa8a636c49afda37feaef4be2fb09c4e16d"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/messages/reply/route.ts",
+    "sha256": "ae2a728b6bc6d195d945f11e9739654db9f5d9e673269b65485db342119294a4"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/messages/route.ts",
+    "sha256": "eab6612b373dd841d28fd8f541dac091f2fca12db163da3d2e51eac1b0122f5b"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/messages/thread/route.ts",
+    "sha256": "075297dcc85ea7b9f36d9b12203121fa026c69c8d875bfc56a95df7923f80c6d"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/monitor/route.ts",
+    "sha256": "43d7bdbeffd3e42beeaf38608d562d3740882a97dd1c3630447116dfa6e0a47f"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/onboarding/client-info/route.ts",
+    "sha256": "a89047927517fa676499d93da2ec7780f6b972f90a0c6ca9a0757c5960fcf172"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/onboarding/draft/route.ts",
+    "sha256": "1f312863c084fe3106dcc67fd7d0d1de8e0286cf253e6cbceb7a20148313f075"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/onboarding/route.ts",
+    "sha256": "e84e50cce05bb87e831094de50f1c362213b4a1597e2f54f22899a31216c21bd"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/onboarding/status/[clientId]/route.ts",
+    "sha256": "2256bc101649dd8c65d8b2cc4eec0d495c9ed5ae2c38f5f21e08a0a634d60c16"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/onboarding/upload/route.ts",
+    "sha256": "2bcdd0e124331209bef4fcf9d099d93f8cf05f39a8968a5eac91feb7946d5d1c"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/operational-costs/route.ts",
+    "sha256": "a715e19c7e203fb9e49f535988c2d84f3e3d4dfd09d6edb433467ec1218474e6"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/operational-costs/seed/route.ts",
+    "sha256": "93275951a34a162a649c1694fe35a59ed029fe114f14628324e3804cf6aef752"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/payments/contract/route.ts",
+    "sha256": "9d1102803ee98d3cb39c20f027694c98fadc0e4fe0d98e06496771ad5c129bde"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/payments/route.ts",
+    "sha256": "d166a1105ab0d28822691441570ee66fa3b5b879e2b488bea7d8c7c27981de9a"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/payments/[clientId]/route.ts",
+    "sha256": "bd50aed195bd55ba7e58661fd87721081e3f4957dc9fb2a62bb111a49e00e852"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/prospects/follow-up/check/route.ts",
+    "sha256": "40c541e21b841f6d5b708fa825c3a32d97a0852814f7aa488178015ced51ae5c"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/prospects/follow-up/route.ts",
+    "sha256": "f5e166312cd1459d260f0fdd499d259446177e4f1ed09ca08865336893e2d360"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/sales/notes/route.ts",
+    "sha256": "106c88029eec29a282752add58f1dce5d066b6b18136c129bf0ebca0da72b147"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/sales/route.ts",
+    "sha256": "3907380ea19f759428d4c66f03a559a6b984ace96680fea32886d9aacc589248"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/sales-assistant/route.ts",
+    "sha256": "58c85ff9464f57371c80e30b0db2bbff615279c7f51ae7ac0389e535e1babad4"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/tenant-claim/route.ts",
+    "sha256": "3ead5106d20bc76a47fc59516fe3f70f0c322e8e714d6bc243eb68449de2a107"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/upload/[clientId]/route.ts",
+    "sha256": "de651ed0335099d48965dd526469a6b2d507fca4fb2bdadc0063c74b7c445b99"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/upload-logo/[clientId]/route.ts",
+    "sha256": "5049afc247d021ff1ae02862bb1b9d86572e84d3cf746c570128d8bf3cd7d4f2"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/users/route.ts",
+    "sha256": "a9f4ae5195fec72ba46cd7cd396d8357cf087de48a4e6607c5b1fb91569155cf"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/voice-config/[clientId]/route.ts",
+    "sha256": "3b54c9e3600f69b9c72cf1ca22a5bac2f2cac96d4fbe068c3da2383f2477f018"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/whatsapp-config/[clientId]/route.ts",
+    "sha256": "75b77b58ac93bd2a0df2b82187004866dbad72a5061d6de32f3f9e578c057d46"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/whatsapp-config/[clientId]/send-template/route.ts",
+    "sha256": "9927470290074b8c05c5293bb3ae96b59c5f701dfc38b5d0592ff558a36ed21a"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/whatsapp-config/[clientId]/status/route.ts",
+    "sha256": "bbcabbb55e9679f4e7002b00cffa59d97d244f881a4261e08c49dc9bf02aa483"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/whatsapp-config/[clientId]/templates/route.ts",
+    "sha256": "fe705910d3151c401fdb9ae43ccd0ba891ea380181e461cbaf0f3423de39fa65"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api/whatsapp-config/[clientId]/test/route.ts",
+    "sha256": "856e413a0f250ff4842dfd052e64944c2df51e116d2f91ad4125e0b855cc0ca3"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/api-costs/page.tsx",
+    "sha256": "c407a932c84fcbacc4fefb9543956a76c9a66c0a78811b19d4c4d5fc5f090f91"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/apple-icon.png",
+    "sha256": "5dc43224c1fa682ceef0c2a95a5c3be05f1ce10fec8adcb6bafd681ef833d759"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/asistente/page.tsx",
+    "sha256": "b8eb9a44b06b6c26ccfbe4315c84a5d99cef9f6ebc51768e60e160aee11f17d5"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/clients/new/page.tsx",
+    "sha256": "cab4538754d8d469bafaafc2a7c8247e49d6116ac023ea19ec08c1af6f948f56"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/clients/page.tsx",
+    "sha256": "343861b7e913adfcfe7b5f962bda94f445a4f65360b7e94650926141b8d631fa"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/clients/[clientId]/page.tsx",
+    "sha256": "54edbe0021588817a2098414d435449440d32289e38fd3f06abc08db29f24c0e"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/expenses/page.tsx",
+    "sha256": "b618d2eabbeff60cb14f0a1f221583b6abe69cd877c834fa7bfae59670beba09"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/globals.css",
+    "sha256": "ef7826b36ea9d63da4d919e2b4f5b1792ed967dc3c5d669c05c5d5b64e417861"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/icon.png",
+    "sha256": "944a639b3efe7b5c7db978f78b221ac367acc5952995bd1fe4e3ebefaac4e9c2"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/layout.tsx",
+    "sha256": "110a0279d071a0ab6f9979a2e73bc2d86468571b23509d9aa32dad898167299e"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/login/page.tsx",
+    "sha256": "7c1a0221e178c0e6cbf2eee454db0ca2eb15f98268028523c7be6604f6e42785"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/manifest.ts",
+    "sha256": "15ba4d4af5fa4123f19e4605ff7ca3f6ee27d61bdd6646aa34b181f1c31ecf59"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/messages/page.tsx",
+    "sha256": "ecd339b86b26f831b03d54c7775620c8fa2fb7983d63ca71c02b3a328c2f9729"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/mi-cuenta/page.tsx",
+    "sha256": "c10dece08a19b802e8712c9cf8da68eb75bb02058ef771ffb2d5b58fb0e216ca"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/monitor/page.tsx",
+    "sha256": "239a02ecd9df5c989860ce90c7b0319d4eb4856461e674c411eef3313095e587"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/onboarding/free/free-wizard-client.tsx",
+    "sha256": "0edb883daa8fed5aa08fe2da082a898e4973ad00516e265ea273f16b898c56ac"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/onboarding/free/layout.tsx",
+    "sha256": "2836782031060462b09ec13d7a158bce09bf3385f15c8591c91708839e4cec22"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/onboarding/free/page.tsx",
+    "sha256": "249c806451a8608c379f15abd0831cf840f8842a25e693422fdad1b9c89094c5"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/onboarding/info/layout.tsx",
+    "sha256": "c4e5ae9f64dfda747f3b150c76b1357cc7b701b3e26845a12132abdea48544f8"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/onboarding/info/page.tsx",
+    "sha256": "83289c96a0dd21f233ee85bcb18f2320d286516d9c95b165900dfe5f0d783ed8"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/onboarding/info/paid-wizard-client.tsx",
+    "sha256": "5a5b79d299875117341fc909df60ea60654d969a9741599254a69688da9c10a8"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/onboarding/pago/error/page.tsx",
+    "sha256": "e6a408123c2fab8c3bd127a59c1cc84562892dc685d6de81aad63c7b71181f40"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/onboarding/pago/expired/page.tsx",
+    "sha256": "063c81f2a46e56fc01049ab5e5956915b8245ab3512a1abb060594e9084158d7"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/onboarding/pago/layout.tsx",
+    "sha256": "0b74cfdeb082d51d7cf596676360b6e271105f8348b282ffe495e25f6210478f"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/onboarding/pago/onboarding-pago-client.tsx",
+    "sha256": "a26088417069645ab6c275eb020f37acabdcc2e761c33452227e03ead36dd024"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/onboarding/pago/page.tsx",
+    "sha256": "6ce200e2fc2a032c40e312e340249e47c6dd122b513408ad5f0ae186cae29c9d"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/onboarding/pago/success/page.tsx",
+    "sha256": "44deabc9aa532ce3571fdc199bd5639f9ea5aff2296665ff14cc34b33c60c0b6"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/onboarding/preview/page.tsx",
+    "sha256": "9d6a2b72bc68fd5b749504144dea425cfa0986572a2e3dd3ad21224482208d6e"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/onboarding/status/[clientId]/page.tsx",
+    "sha256": "7e9c914ed23040e268210f1c087d4f92dbc265982f53c3da7effce2864e86258"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/page.tsx",
+    "sha256": "2e2d41965550b7a7cf92eeede4c058e61da9ac9386d4b5bb50f2e1877e8d4db1"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/pago/error/page.tsx",
+    "sha256": "8576121ab16e1ed5914eb9d6743344f1c99eda342eb3527a9562340ee1f59e53"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/pago/layout.tsx",
+    "sha256": "dad8482e4862de8177f7bfc4bcd33f86b2cf41e1b3c6c8f5aa007325e0881ded"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/pago/success/page.tsx",
+    "sha256": "6073589ff3e1e9da5d50b71a7506b0fe4ca0140ea4808ffd135a7a89a68b7794"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/pago/[clientId]/page.tsx",
+    "sha256": "916290ce6dbc6c9c4c359c176c73c96636711d0d94d06d1a5efa59dda5ab20fb"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/pago/[clientId]/pago-client.tsx",
+    "sha256": "364d58a4a6d70e62215082fca1cc3b923d4e8892efc367fddff8632a17110fb2"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/payments/page.tsx",
+    "sha256": "e59a838f3bcbbed4f789948d7cb92ea836d2b63851e909415989ec7f1356739f"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/privacy/page.tsx",
+    "sha256": "b00e31a30eb45604b7b0f8e1713bb6a87bd58d104ae102600d3b6549d44d9c3d"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/robots.ts",
+    "sha256": "81c9b03a872247492ff9e725ac144880d04d862171cad9c91387202640c6b292"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/sales/page.tsx",
+    "sha256": "855f57ce7d79c283c4f62834ee7342030572eb01385770204c2ff4d3457a9ae2"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/seguimiento/page.tsx",
+    "sha256": "9b3d955176e9d4689e4742da88a5223259178aeea64d963f33d7ddcd34559f7f"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/sitemap.ts",
+    "sha256": "fbb6efb674c95b90469655151b1cd9081f07a312a02daebd1e351ae0d0feaa5a"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/app/terms/page.tsx",
+    "sha256": "832f98e300e38316fcbfaf8d022ffffe325d9323f93681a57f1ebdae31e84749"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/auth.config.ts",
+    "sha256": "f9da40e7cd7cb05838674f072677e21110f2fab1ee264bb8eaf0176675abcb0e"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/app-shell.tsx",
+    "sha256": "8c0a1bccbeddd0c4bb18b5448e09aca26b74d8ac357abbdb5091a9868d7aa59e"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/booking-tier-panel.tsx",
+    "sha256": "145b04da031ef7e12bac28726e6cd436c64d9ca5cd7d86a36ae5aeaf043c32cd"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/brand-package-import.tsx",
+    "sha256": "700af7578689122046c8b2b94e567488d43c77773a58733f5a710bedeefc8bd1"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/client-config-tab.tsx",
+    "sha256": "50617ec18ff67ebe93f9b100e5e7926f3a44e749c55f61ba2c65b38266e9a8f8"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/client-content-tab.tsx",
+    "sha256": "ea530cec80601a871d6bb5a1b814ca20e2caf20a371b5dd863a9dfe8d4476ec2"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/client-language-banner.tsx",
+    "sha256": "20a43bb4c85b589e5d478962795ba754eb88c80f236ec765f0f7e98f256303e2"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/client-leads-tab.tsx",
+    "sha256": "c2920c35ac94e7f35dc937ca5948c8880b9ac0d63d72a41042f9a84b091147e5"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/client-site-preview.tsx",
+    "sha256": "6e15d4da236e597d650020bab464e45e2f9fcf05af21e1025574501a05529b78"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/config-editors/ambience-editor.tsx",
+    "sha256": "5f612351faf49bbdd4cb28bde3672453305193960dcedbc647a8d1f12519d936"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/config-editors/benefits-editor.tsx",
+    "sha256": "a4932d146157732e76322d371d1923a5a6ed684d3f5e1fc4030759a66b6de4a4"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/config-editors/composition-layers-editor.tsx",
+    "sha256": "83ddb7b6132da7b042811e3bbbf384c7697b61817e1a2cdf4acebb988ff73406"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/config-editors/global-style-editor.tsx",
+    "sha256": "3f744ca3123b883871a1ed774126d9eed1e39bf0b79c51f36386514078d12f9e"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/config-editors/hero-objects-editor.tsx",
+    "sha256": "836cbedbf3f8f2e94a7ff05a2c1705e94ffd461d4891f1a5ef6e33ce3881eaa5"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/config-editors/hero-slot-picker.tsx",
+    "sha256": "8db96caa4c077df2d86011a61eaa41baef071397c133b0d0c4f96c3a6f242738"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/config-editors/layout-variants-editor.tsx",
+    "sha256": "dc6d8a21877a518f36727f96b5c883a9e1bd4af006d98c5ce001b763d5288230"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/config-editors/menu-editor.tsx",
+    "sha256": "346d8c14ed5ee02f496924d6bc51190f7643beba09a683fe1d7d72774b9ac77e"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/config-editors/numbered-steps-editor.tsx",
+    "sha256": "394496bc0e4aec32dc399df8258c56079b8fd3e693c956e17d9e660c4565e7a5"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/config-editors/payment-provider-editor.tsx",
+    "sha256": "815a9f3c7b54437924d8a31d8e1baff67c7d4c9e96800312413421837e3eb512"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/config-editors/portfolio-editor.tsx",
+    "sha256": "67f6a354462fece4a16ca471d9b5d9e64e3fd11afe79d0f864bf39c06c315f32"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/config-editors/reorder-controls.tsx",
+    "sha256": "3d3b71560c42e2f1046a6f349f5a123b2d9544d0596929952349063771cca8ea"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/config-editors/schedule-editor.tsx",
+    "sha256": "cf73957a945ec15b921f9e8b9893ccba965f92a168e70445feda17c3236eb2d1"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/config-editors/section-variant-selector.tsx",
+    "sha256": "7eeffcba1a442f3ddb4ed23585f9cf1412116881972b6f7126f68ed09c0edbbe"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/config-editors/services-editor.tsx",
+    "sha256": "01fe9cbe0a2777d8a0067cfbfcf198c0446e20de4321018a4312d28d39d150ab"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/config-editors/staff-editor.tsx",
+    "sha256": "c5111d747ae1bae8e2616650f15047d0eadd855cf3848a51e4eaba6f60b9dbe1"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/config-editors/testimonials-editor.tsx",
+    "sha256": "9c008a301dfea4778f9ae74327c6794769504c6b0828c24e10db37f179320362"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/config-editors/transparent-png-uploader.tsx",
+    "sha256": "21e1e7c60bce310b46b8ee4b6615d3e189074021fca8e7abb7d2db9069c024d0"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/config-editors/variant-specific-configs.tsx",
+    "sha256": "37a0a9e6b667bba75af4e5f1b2a5e6bb1190e9ac9db3ca9adaca130b449cfbbb"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/config-editors/variant-thumbnails.tsx",
+    "sha256": "abfc6e0ed8fceb0f89b238e7ce1a44b0010be3dacd88d2203bcd56069b6727be"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/config-history-panel.tsx",
+    "sha256": "a2129219243c7bd5217108ea7db3676e9a337f75ebd674c67b012a20b23c9111"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/crm-import-modal.tsx",
+    "sha256": "d17ccdb9f6d06397d32108fa6aa85acee2336542ee1d2eb787d2edce5c3e9e87"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/empty-state.tsx",
+    "sha256": "b093955cc8a81684b71dbf05abe49ffec9883410e39abfb8edbfc5123b565c5b"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/hub-status-history-panel.tsx",
+    "sha256": "9b929025e6810c37098d752bcd4a981b07830b64ea58dafa5bec8040d8d39e20"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/image-upload-field.tsx",
+    "sha256": "058cfe757c76f70b916876878fb4055bd8209b7318929f578ac74664a9ee5d26"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/landing/agent-section.tsx",
+    "sha256": "3c4329ecee6469794ca3831658ca26a5219b247122fb51f8ad6f0f15be0956a1"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/landing/animated-stepper.tsx",
+    "sha256": "2a5baf9489cf34bb838d3f768893458ddee79e08ccfb1bfd1b51cc403fdb1670"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/landing/atelier-page.tsx",
+    "sha256": "be83287de86bc1fa3d594b359e2e3da76a6ea3389e7d0405983e4861adee9c03"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/landing/auth-modal.tsx",
+    "sha256": "a82408b3145399e5f266e62ee8fc655817a46f5b433873a3cde808e530150c59"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/landing/auto-rotating-tabs.tsx",
+    "sha256": "428024b36cf5928cb82296bcda76245adc2cc7977cdcdbeb35a202cc037812c3"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/landing/crm-section.tsx",
+    "sha256": "dea626b27dbd2f2212a6948916a2635975602b36e5a670017157a1e3f0c7de8e"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/landing/evergreen.tsx",
+    "sha256": "35f3d9fa6a2986fa3174e58559bda071aeaf10ea1eb3fc7f17528dbcd2cd4732"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/landing/everything.tsx",
+    "sha256": "4e9119addbd06343e539c91bfd5685267d048afb2ec71ba9356e100e42b1b136"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/landing/faq.tsx",
+    "sha256": "11e157d37b2b8238ce1793b1de0a08a80aa7730b08f5969047144d68fc8b3150"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/landing/final-cta.tsx",
+    "sha256": "bd9ebf4d7d3f374d44dce67fb400805c818833556712fdae5c9dc762c6b16e66"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/landing/footer.tsx",
+    "sha256": "55ab46d2de0ccc0033ad6afb8c3a84533b021d56a32d3e99455c612db5b105f7"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/landing/founder.tsx",
+    "sha256": "b9fe962a16b6c372e728be8b80e29d1f27c643c804c90c462bb935fc90eed118"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/landing/header.tsx",
+    "sha256": "976ea2a549108e3a57900f8e658ab80968a8673494a7e0d4e67f89a54708efd0"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/landing/hero.tsx",
+    "sha256": "44b692f1fa41ecf8fd348b8da4ed0862a9e75467f4c76da70d873e754f7af992"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/landing/lang-switch.tsx",
+    "sha256": "2175d4e48222fe856f2e4d10bd2073e01908f52f4ad38b2412f7a6b18c974a34"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/landing/logo-mark.tsx",
+    "sha256": "0da60be51f270c7139ee44f17afdc1b774aedac487c87b3556bc91fe66270e78"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/landing/manifesto.tsx",
+    "sha256": "ae5cee890a1d2a15e9bfbf09d5fa2105d35096c6c27c5e6d6750ffa002fb083b"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/landing/mascot.tsx",
+    "sha256": "534372bc44db98864336e465236e7561365b17817b669c4958972b5adf45a405"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/landing/pricing.tsx",
+    "sha256": "b4bb07a85106ccfdbe1be9628b1a30881f9f7e059ea69ccabd7ad9f7283c32cd"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/landing/process.tsx",
+    "sha256": "cec1ca04fee8ddae8860cea784c317e1ffbff964789fabac3ceaa50baf6ac79f"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/landing/section-cta.tsx",
+    "sha256": "1f41d2a1a85f691f2b0b870f97d67ac8d5695b5c6e7ab7332d908eb4fb694621"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/landing/showcase.tsx",
+    "sha256": "21ed1e707866fb729ad1c5c2a7d2a4dde29289b5cde9a49fa0f86a5eb301eded"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/landing/tech-stack.tsx",
+    "sha256": "a8c0a0b06c4627ffb86fd00a74bba7e3d09aaa0b9935bec232ce43dc70d4218a"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/landing/whatsapp-fab.tsx",
+    "sha256": "da6e1518d847efacb94cc8fe8ac6d3ea5d49dc45cf00454d7abc9d537f6865bc"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/language-mismatch-warning.tsx",
+    "sha256": "7364a68a64a9d1891d076e2e99419ffe85595c7da6999f5cf0ddb20076f2f133"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/loading.tsx",
+    "sha256": "846fb97be1e289b122780fcfb861754058f2af552f73fc254aa19b00bb750268"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/logo-upload-field.tsx",
+    "sha256": "8536459a86cd7e7098aa2b3f6dd74dd6fbb374676a615f519c40a6f3cf7ef131"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/messages-panel.tsx",
+    "sha256": "1d3a57c2146e5223d290122b7af2861c3147340924423d9b413395a30447eb49"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/payment-badges.tsx",
+    "sha256": "9b28e4d2bac91f8f8be9052c9c3781ab5f2bc04e8606e8b04039fa385667320b"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/pending-review-banner.tsx",
+    "sha256": "a58ac0baf6d264227a02ab87f447a08f48b7b3f854fa2eafe75e40cac0fe0a88"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/prospect-timeline.tsx",
+    "sha256": "e9bb99110130235986f82f78324649d60b61a63c8e64468f6cd183a797c6ed8c"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/providers.tsx",
+    "sha256": "7c674f0dd302e6b67b6db2599c4b7289454625565902d4bae7806c7e83bd2aad"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/save-diff-modal.tsx",
+    "sha256": "811e4e5ef783eda5bd18893ea5e5bac08b434b90222e8fa17ce186589db7c2ee"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/sidebar.tsx",
+    "sha256": "db10879bb0bf20d6f1894c7d17d74050c1b7575a3631baac01f5049035502224"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/splash-variant-preview.tsx",
+    "sha256": "1c07d61d9a99ee85c3b4f645955e6dfce3405c103ecf1f5dd0e3a3d2856b1261"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/stat-card.tsx",
+    "sha256": "281974b4dc5e8b2f1c0fbafe43970233700bb556bd0ac139f133219f582e18f0"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/status-badge.tsx",
+    "sha256": "a48b135c6e1b2679c728e288d54e8144b58d8d572d240e629e3539c77a52ee11"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/tier-badge.tsx",
+    "sha256": "835acbb8091c4721e4a34a7d7901f7ccf38a6973aafd3b75d3d4f02735039f52"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/voice-config-tab.tsx",
+    "sha256": "b7f2800ce84ff0cf18c5c94f47b7be09fb0b606fd2e7cf38e7ada4706ca836b5"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/whatsapp-config-tab.tsx",
+    "sha256": "dc15b288dc65e618556f7f985a4c9d5783a596f1e9fcc38b497400261000faba"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/whatsapp-templates-section.tsx",
+    "sha256": "f63619ed4874d8de1fda90dd9a8fba58359afe711e767b036e8e1240edfd6a8f"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/wizard/changes-requested-banner.tsx",
+    "sha256": "39ccb4363ab09c690fd484f604e000cb8ce790dc562582d216d358cc6c6c876a"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/wizard/field-error.tsx",
+    "sha256": "b77c14742465383de62492657f76b3c9f35083c1c42f2505e65f26a35ff4694f"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/wizard/steps/step-benefits.tsx",
+    "sha256": "caa46e1e50457e2cda595a1ca1587b3da4519f03a4a1a630eee2791c8a0543a2"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/wizard/steps/step-brand.tsx",
+    "sha256": "74d2bc80c78f4f834965bf16d62c906abe4faec6e6880394623ec3c3160b0232"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/wizard/steps/step-business.tsx",
+    "sha256": "8065dfbb4242e8d69b9e6ef6188058a942ac8a5e7681911d7d544ce61d0b3a5a"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/wizard/steps/step-contact.tsx",
+    "sha256": "99afec957dda004191f88de4f2d6b950b3d69625f8c718f8ae889dbbbfc56835"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/wizard/steps/step-demo-contact.tsx",
+    "sha256": "5a8d0d59de93ecc6bf299f636b322d70529d277d8495461e8e3574eb50114f0b"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/wizard/steps/step-faq.tsx",
+    "sha256": "7305bbc76b757c6db641b2029689ba733d5fc2d217e34d1e2b07f126bd4ff7b3"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/wizard/steps/step-gallery.tsx",
+    "sha256": "10746267484ac7f43ca72916165e05399ba785c367ef6dce6e70cb6462d6ff23"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/wizard/steps/step-hours.tsx",
+    "sha256": "f7a1395ce2ef7b0285e071acc599abc9d53ef2357f446fb63de2d9c45e0b517f"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/wizard/steps/step-logo-upload.tsx",
+    "sha256": "383eafe19a2f28e67e1a25aca3e8868740676d9986a16b5bc99eb958567317b9"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/wizard/steps/step-mode.tsx",
+    "sha256": "b9b1a332a872c5df34b062048495c2214aa52b0e411787733d6801c6d429ceae"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/wizard/steps/step-niche.tsx",
+    "sha256": "31ef755fc648da67cf35f91fc70d84e37886e730b742ec273be078bcfe8b264f"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/wizard/steps/step-owner.tsx",
+    "sha256": "4a6189ceeb3174154d93a6e7a47dfa80265a8523bdb9ba5e333b6b6d895d88cf"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/wizard/steps/step-services.tsx",
+    "sha256": "55ac00dc75dc19c52f052104aac8815ed512c54f7f944a1fce065be01f75f0c9"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/wizard/steps/step-style.tsx",
+    "sha256": "b15c279804db62bda5fe475db0633742c7c45b2aa6a87dee64fc5fe80d30b6cd"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/wizard/steps/step-testimonials.tsx",
+    "sha256": "01be44940bca2fc4aef24e20bba23f5c3a840a7d9bebe5373e57ea53e307c5a6"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/wizard/wizard-hint.tsx",
+    "sha256": "05043d1f93f466e996d1b88fbc71b21b9af4085b309b6dd51b27aeed84aac505"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/wizard/wizard-nav.tsx",
+    "sha256": "bb3da250d2e8c8e76bef0ca84e2811343c1a45b64994474ee100bb497209e7c3"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/wizard/wizard-progress.tsx",
+    "sha256": "f2abee89fffaa01d4240f9aa77436492cf31dea2fb120c2b6fb8fb79a1e1d889"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/wizard/wizard-ref-image.tsx",
+    "sha256": "e84a6f20752b32a11daa542382d8aac2f99806b821d5df239234c37fd26aee30"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/wizard/wizard-review.tsx",
+    "sha256": "6e53149b85d50b7746f560d913e3a3917efcb24acc81134d7b103fdf4dab2fc4"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/wizard/wizard-shell.tsx",
+    "sha256": "9e1ea2eb55f6a207accd2fe3a328b2e094f40dc6c3de5e3bff426af03ed60b8a"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/wizard/wizard-step.tsx",
+    "sha256": "4bd4a649886ac92ef87e31f6bec8a8fd7c6e11ec5beaed4dbc5011a5b97db182"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/components/wizard/wizard-transition.tsx",
+    "sha256": "59fce7a4edecb5ad3a9b367f330aee518e8378d49cdcf28562095396146d6fd3"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/hooks/use-language-mismatch.ts",
+    "sha256": "ac5ffb950b96791507887be7f383bc3125e103a178e8a6df3872fdbbfd2c2084"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/hooks/use-scroll-reveal.ts",
+    "sha256": "66d1d55f353cddccdaddf00a466949f7784d766ec81561cc2fcc9220b813082c"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/instrumentation.ts",
+    "sha256": "ff585138cb2492dc668a137670f9ca552b31330655366196900cc9d365df797b"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/api-cost-fetchers.ts",
+    "sha256": "3da54bae412c3420d6333436732188d5a22fd90942fada30e522d9fa374688ed"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/auth-types.ts",
+    "sha256": "58875e19d795096006bf2b5cefa6a4c865c69e44d941ecc9833b0f3a99594d41"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/auth.ts",
+    "sha256": "fd4c708e1e2f9c6d78d591de5fefbd4f7d1f7c83272d148b1389ffa663d6ef1b"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/brand-package-parser.ts",
+    "sha256": "c764c2b8cc8a58aa99b21470b56cb2be2031bc6856d9cae815b2f6298dea6837"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/branding-resolver.ts",
+    "sha256": "a30feab7ca5002c7c808588c67d597e09ed8619a80d2fd17f3d442cb507835b4"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/builder-storage.ts",
+    "sha256": "97d234a71b9aafbfecf836e21908920d4ebaedd39d5d577169a16483b779df5d"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/cardcom-credit-paths.test.ts",
+    "sha256": "8cb9fac2ceacdb6f3e4cdeede351be732fa8838cb3b3cf80eacb3db0647fc111"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/cardcom-promote.ts",
+    "sha256": "671a0a085796b0d4c585d6217535c0181ef0d8bdde70935eac4a839cd86afb93"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/cardcom.test.ts",
+    "sha256": "3650767983ce2d951a79897b2d8e4c8d12de76c26a3609ee51bab7ce3ada25ee"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/cardcom.ts",
+    "sha256": "c4c1ef6c99f9877909c6ea8a3600b4d8086d2d19b0f766352fb23251b7c60ae8"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/classify.ts",
+    "sha256": "e7b8b87c6ec0be8781dc63acc15ea544b80ff9370e3fe55f2c60e2dff775d27a"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/client-config/services.test.ts",
+    "sha256": "eb9ce4eb227b1cc1a808ef867fcea226712d1251ee65b362b1b21dc8520c352b"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/client-config/services.ts",
+    "sha256": "de26ef727688706165246963748be7ae2c310427651c4a281c0e71267108286a"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/client-language-context.tsx",
+    "sha256": "dea9bced7cbd0db1443c93f7a8c772df4a58d20bfbd6006e579e590a30aad9fb"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/client-language.ts",
+    "sha256": "5f88040b9fd3c0689bdc8e046a0c867d307217dff236e86417004f06408803a1"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/config-diff.ts",
+    "sha256": "18569b89ffcd268061a754446c26f52bd1953aa6d781416528de3efdc1f6ba3c"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/config-validator.ts",
+    "sha256": "f2fe6e18113148973975b4d392dee35246c34c6b3d2e8250ec893dc271b04f11"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/contracts.ts",
+    "sha256": "647f679154128c971315201fce095351a217bbc959f537d867fd4f39940aeb4b"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/dashboard-placeholders.ts",
+    "sha256": "0b366cc6211129cea0aa981f5ad5345ee0afac8617c0e6964cb4c1338dbda66a"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/deploy.ts",
+    "sha256": "2c3dbd8d10a2e7f7827cadc8aff5c5c4edb19627a4c7a322adb1f5a9efaa3543"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/detect-language.test.ts",
+    "sha256": "a2f720a5733340a6db40802cbba21c2146e67096cf6a2da429544d5ebe912c09"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/detect-language.ts",
+    "sha256": "99f410847539ae40c8fbd4f787d155d42dda4f3878baca202929d4a4b9d27e70"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/email-templates.ts",
+    "sha256": "30060f29935ac8675cccc32126581f52b7f4b6fd2c4964c71c2916c65b3acb54"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/email.ts",
+    "sha256": "302e4ad5044bc3b814729bcf609943fa6fc945451d0dc582ed047585bf6f640f"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/env-check.ts",
+    "sha256": "6c9101c378d76480aa2ed595a8aeb9070c79f83426c4780bd2476eefef413b9e"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/firebase-admin.ts",
+    "sha256": "9272e8240c4241d4c28eec7d40d826a1b6323ee99dca16259860b4b2283bc7d9"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/firebase-client.ts",
+    "sha256": "8495c4e92888a0fcbc21d62dc2981f9dfa7b3944276ef6f70821d9f1fe4aa2bf"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/i18n/context.tsx",
+    "sha256": "edadda55539643bba43114fbddd23a465f4b6b5f8b816d901874b3317633075a"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/i18n/index.ts",
+    "sha256": "4e7d24f0f7302af1693d1ccc4b8c8132608c3fb2b9232a7ba8fd9c5b2cd73b7c"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/i18n/locales/ar.ts",
+    "sha256": "48105d6fa5d6d634049e0de0af37bf083aba1d40b900fe065ef8be526a8c6bb4"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/i18n/locales/en.ts",
+    "sha256": "a7d139b7f169b868f9f5b03b00eb9d219ba5ab50decc2605011fdfe159ba553a"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/i18n/locales/es.ts",
+    "sha256": "d2bc29a2e8b87c41639ec524fabce5a3109b5667c28f2ca0b82b3c25bb8d7e5e"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/i18n/locales/he.ts",
+    "sha256": "9597de066dc1c0692ccdd36d7514d22bff26e5b9dfb05ded27fd565e7b40c38a"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/i18n/locales/ru.ts",
+    "sha256": "6baa40da98140cbb72994ac0f97675d493b032fead93896bba0157c63b6acd56"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/i18n/types.ts",
+    "sha256": "3c4aa200811edd3b5227c71a0100984c2b01f0cd33cf15e6272b847568561989"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/image-compress.ts",
+    "sha256": "74983a74f6662c6852bd679058096ca9202254f2feff43941317e1fd3068ccaa"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/instagram-analyzer.ts",
+    "sha256": "ee63d321efe015b1286b40fe4200d8a24b6c4af7079039dadec718e50fa6e33d"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/logo-generator.ts",
+    "sha256": "092c8698a57269e590b09c8872257fadc4fdc0f37103bfc468c57299f5043718"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/niche-defaults.ts",
+    "sha256": "24225af0567ef2add37470dd1e33e7ee240b728edbd02e7bedc219f07fce812f"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/onboarding-token.ts",
+    "sha256": "2623be31693de4d9320da3482d1a027338d64381985f4f554a983db6b09056ce"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/png-validation.ts",
+    "sha256": "9270e5add0a91181214a4cbaddbb809a62ae236e1749a0a7e744cfe50810b5f1"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/postgres.ts",
+    "sha256": "7ff49d7312d29dce149c7fd18f879caacac2bc6a9461d6da625e2cfcb2fc7624"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/pricing.test.ts",
+    "sha256": "78710cacd963e88a4cba96af1a76e21331144113e8a7e1ffb9b6a11f4f1c9df0"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/pricing.ts",
+    "sha256": "b587bd75057108ecee0c77727fa6588803dbecbe13279c7ec2fda0f72af4b6a7"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/rate-limit.test.ts",
+    "sha256": "6df654690f9bbd0464a6b0777cc62694a5a72a7d298f1c49be704e54aef5b366"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/rate-limit.ts",
+    "sha256": "9fdb53599f9fca96b714920db393ced1443434d1b67117cf7d3ef422fc17dab7"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/repos/health.ts",
+    "sha256": "aff71a2cee4a56a13d394f364838e79b3ad7abb068116e64c749f9ca59616474"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/repos/payments.ts",
+    "sha256": "91dd72d01fddf2a1cf3b10aa4026ee4d850fb3a3935c5b28ce64f8ff9cb203ae"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/safe-compare.test.ts",
+    "sha256": "f737f9da3e28d9ab856d1a7bc8124e11bb23c1563172bd3f6941d17330aa567c"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/safe-compare.ts",
+    "sha256": "89708671160d48830b32b4326f89e6cff508e32e3f3821b10a1caa5b68e8fc0c"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/schemas.ts",
+    "sha256": "9fc9660dd726f3b6592a76ba4e4b4304f0da8bf093f4612df11841e65fdc9483"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/security.test.ts",
+    "sha256": "526dcb1e19767c231eeb242831a77734100bac462c3127029d6c266d1c6b79ba"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/security.ts",
+    "sha256": "39716f4e1c799b5666df886b1def3c3cd7c34f3f9940553f0b9fa99e96d59008"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/sites.ts",
+    "sha256": "949c543ac624210733e95ef02da0bd52d8c6426c8d37c10afd68f712bc98c6c7"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/user-auth-context.tsx",
+    "sha256": "7c8665be4fcc16a9c294df8be5bdcc367b27c610e7ff27ecbf822249c0f52a09"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/user-auth.ts",
+    "sha256": "29e5ef4f468da8291e6d1b8dd75ed4d3aa5159f05f3569ed5b9d7c9c6fe2415e"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/with-agent-auth.ts",
+    "sha256": "e3113483ae31859bc27f8867ac41c22159697c8e8acd1b537a42d2c34c1a33fe"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/wizard/config-to-wizard.ts",
+    "sha256": "55d590aa6604772dd9c79b90694ebbda3856346f46e6b8dfcdce93e443669e53"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/wizard/upload-helpers.ts",
+    "sha256": "4040e174941bb7df1b830dadfc75677316d5f86e8a25ab99ea76d473ec7f824d"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/wizard/use-wizard.ts",
+    "sha256": "facda715606d469ec7ba11f286915c01d40b5bfb9f66de2a2fa595bb18d6313b"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/wizard/wizard-storage.ts",
+    "sha256": "89129e3866af5b2d96154a1ef281c81c38b5d603472e0aae217bd1593089701e"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/wizard/wizard-types.ts",
+    "sha256": "9f9e12dd5da55cff6e26667a4978fe2e70ba511df17af1a3402aea0297edad23"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/lib/wizard/wizard-validation.ts",
+    "sha256": "1dd408de4f12f226f9cc5b640ac9b491c13ebc660f6d67637d44cd4610228f35"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/proxy.ts",
+    "sha256": "5a20e70b747f634dcf972e098993f837a1667cc7b23a17a82d6922f26832b44b"
+  },
+  {
+    "repo": "hub",
+    "ruta": "src/types/index.ts",
+    "sha256": "505f793ba86c6c0b02901994c010e09520bf57f38f09d55215f1400b71a17d5a"
+  },
+  {
+    "repo": "hub",
+    "ruta": "package.json",
+    "sha256": "d630c5016c91322ad91f3345742d6406cc0030df1b629fb85a88c4eb9c9ef5eb"
+  },
+  {
+    "repo": "hub",
+    "ruta": "package-lock.json",
+    "sha256": "d49f15968a32312f0c14e0061a3f3208505389ab7cde998dcae8949939cd63dd"
+  },
+  {
+    "repo": "hub",
+    "ruta": "tsconfig.json",
+    "sha256": "7ac8827182b5352c034401edd2417e7454ad6f39b3aee139a0ea3cfa49470563"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/App.tsx",
+    "sha256": "11d6aed7e9ba5bd32eea54181a925d184c595dc862063059b15c6bd67f7aab62"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/3d-impact/ambient-particles.tsx",
+    "sha256": "8885e541b48a2aa8ffe84b386048b2fc0d051b245401ead5985bc123d9f84a63"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/3d-impact/cta-button-3d.tsx",
+    "sha256": "071ab3b7ce2ef30473e5fb8b8851e1ee4160afcf7bc98451da3fa2f1441ab933"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/3d-impact/DemoPage.tsx",
+    "sha256": "c4f6a649f1e1db926b6fdfac2e267acb60852296c48b1f0d44d60b4ebbd462b9"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/3d-impact/hero-object-3d.tsx",
+    "sha256": "cc9fd368c36094bb3c2a59feb68d09645dfa549f86d066b50b9d3bc60ac37120"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/3d-impact/index.ts",
+    "sha256": "3d4fb4756d46e0072917141379242104c6f58d11af185893bd5b810bc3c2cfc5"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/3d-impact/paper-card.tsx",
+    "sha256": "72c3d1b3665c60d06c6aae2aec2b47919dce9c3617654280238c806bdb79fe1b"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/3d-impact/splash-impact-reveal-3d.tsx",
+    "sha256": "0af045b36bf83ceaa7411b0815768b410c2da85b5fa8a0091ca004190779cbf4"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/3d-impact/splash-impact-scale.tsx",
+    "sha256": "654802a0c4b2061acfc615d4e0d1d65cd2fb986bdecd9a52602929e7261abb7d"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/3d-impact/splash-impact-split.tsx",
+    "sha256": "0def1ef9a655d939194fbc659729824c24e5d26009cf7fbe55dc6e0ff7fff6ba"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/about/AboutPage.tsx",
+    "sha256": "d56ef6e29699d8fb3a9766f46a67f02eefbdee7a9f02e2cf3b080e0fcb8d8605"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/admin/AdminDashboard.tsx",
+    "sha256": "b46c75ad579f988fae8f8b02610218a7516695aa80754bf0ba043befd2600f5e"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/admin/AdminLoginPanel.tsx",
+    "sha256": "460a25b25a785e91cbfb6dbe552d11a544e7cc537628e703228837dd4cbd3f63"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/admin/AppointmentCalendar.tsx",
+    "sha256": "05aa60f456f7c7385c2d6d30e8563afd86d824edab605c0fcc131532c15fe605"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/admin/BusinessRulesTab.tsx",
+    "sha256": "342cf57809ce33c830cccb1200b132a2c78d166fd8ef2f8fc6979bffa5cfcdd8"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/admin/CustomerDetailPanel.tsx",
+    "sha256": "cdd7763081161bce5048608533805e2e309afe2b519b430a51e76c64be91e704"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/admin/CustomersKanban.tsx",
+    "sha256": "d22ed898f9de3d9d49a53a4df89db85287810250cafb3f9a1bf6ce0308690d44"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/admin/CustomersTab.tsx",
+    "sha256": "2c742ebea0df48cae9c1a4fa74668c945f628fc085e3b73364923b63a6cfce75"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/admin/DashboardTab.tsx",
+    "sha256": "7cc4e31d3a71bbe24df6d03fb8434a2e436dfc7ba85ce266b10576c83d4ee269"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/admin/InboxTab.tsx",
+    "sha256": "69da079e5c421af48fac965bfedc779015fa42b5dde90ff6106aac8012dde62d"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/admin/KnowledgeTab.tsx",
+    "sha256": "ce2b683a166f4260aefa6e48e5caa50c31d91a94e4b1b1886fe81d36301efd2f"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/admin/MetricsDashboard.tsx",
+    "sha256": "351c1bdc2dd3ddae040f41e2280c91f8ee18ca3482138ca20ce4511efe2220ad"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/admin/NotificationLogsTab.tsx",
+    "sha256": "02ed476b495901c66e70e865c06443532b91773c1f29d9abcb6b8ccdf6ce5594"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/admin/PaymentsTab.tsx",
+    "sha256": "1ab867b9a110d07fa6ee54cb794ae5ddcedd9862ebbba8a84803d4cb171f5eb7"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/admin/ProtectedRoute.tsx",
+    "sha256": "a078d0899705ec3314a94e57905d637cceb934d611f575c6929cc3f060b9dc6d"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/admin/StaffLogistics.tsx",
+    "sha256": "f3be337861ac6794106a84a3249f069b282566ffb2f3c534eac08c2a5579d666"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/admin/StockTab.tsx",
+    "sha256": "4d35ba8b59444381da1a9af3888af3fbd6e21e2113fb313686a9534ef4e6b55c"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/admin/SupportTab.tsx",
+    "sha256": "b766d2bda70db972a6b3cfe911c67d7ac8ffa39a01bdde81aca64b679310c0e3"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/admin/TasksTab.tsx",
+    "sha256": "4b5735d295626e6f219d81f23a500392df33643fae201bd33b74c11793fa7d8f"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/admin/UnauthorizedAdmin.tsx",
+    "sha256": "0987dd6281e6b8cc9383081abf49558d84ad6c12690131f03a35488b705eecb4"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/admin/UsersTab.tsx",
+    "sha256": "9dca1b98cf750222227092edf13cab578bbd357ce36345f12e917a21a6296d2f"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/booking/BookingWizard.tsx",
+    "sha256": "389b6a3ec0b9719f967c3f7ca268e5a3943378133c52f3e9bf874f21d1b253fa"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/branding/logo-svg.tsx",
+    "sha256": "681eabad27295f8f35199b801c3859713b81d64247d4dd7bd2526ce0a2e50abe"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/chat/Chatbot.tsx",
+    "sha256": "72fc8412f7287dc59037c0db10359783879c280ff6d3b0ba98350558ec9eab92"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/dev/VariantsPreview.tsx",
+    "sha256": "2592034ac43a5c493a532dee3e5e225e6673b16edc37c3850d7f5a52a0a5db66"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/dev/WizardRefsPreview.tsx",
+    "sha256": "4322541f91086e5ef3fc742af92a2cfd069c7c5b2f8bc5efd3432d109a5f5ba1"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/ErrorBoundary.tsx",
+    "sha256": "8c1544ccc8c4e01031a6037192a180b05169a9c48e8d27f28b8b6fb5cf0aa940"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/gallery/GalleryPage.tsx",
+    "sha256": "349ff45af307c7f99b87dc2f731a58f02c5572dd31c9d7eda35a15f69fb215df"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/Ambience.tsx",
+    "sha256": "f1d467c324bb21d6255b5b94cb527a75f09346cc68311cc5cb79b7ab04edccdb"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/aura/aura-before-after.tsx",
+    "sha256": "5bfa49c46b19ab6096938fba2d83df17ea525defea3bba2c0ac9e1ec3b09e5a5"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/aura/aura-contact.tsx",
+    "sha256": "1b09590dec77f6ffcfa2cb0e096da3f9aaf31bcdf1f4b2a24d841750f1b26dca"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/aura/aura-faq.tsx",
+    "sha256": "ed0d7fab6dc04c81430f076b156657eb141b68473da2e55ec9bf4ad641ee00fa"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/aura/aura-hero.tsx",
+    "sha256": "860260ca5c719ad03ab8fe1ff06ad41341cad70e7a94b5dad1e1f231de9c1ed2"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/aura/aura-instagram.tsx",
+    "sha256": "31fdae53311de3cb1a137e7cbaedfed07d288adfe5347b13b77b1e8f5519399c"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/aura/aura-services.tsx",
+    "sha256": "b016ef8f7ee91d8321f963d5d20d5999275520238d710d74e907183b219e622c"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/aura/aura-team.tsx",
+    "sha256": "c6e5ade96377193f5aff306be65efccbe9232e25fb41755e91404e0bbf826f61"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/aura/aura-testimonials.tsx",
+    "sha256": "8f55c5319ff84bf732fd437f0adb1327021cd4d34cf6b1670f0d1b889d3ef721"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/aura/aura-why-choose-us.tsx",
+    "sha256": "35292b7d7a40980efc25d7da8205b853754bbadb800b2edb98334aef4684942a"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/aura/index.ts",
+    "sha256": "9afa4f16ca582776d8aa8465399382223d15c2d45ff8e3693519627a3825fbd4"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/BeforeAfter.tsx",
+    "sha256": "36fdedaa449a009ce52df9313d7fbef06f393482a30f1cea7961f2692f8a31bc"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/booking-form-map-hours-3d.tsx",
+    "sha256": "17f9456907384cdd1ae221804441c29cfaf4ff647b24b270a6a78435c25c5e68"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/BusinessHours.tsx",
+    "sha256": "3d3f3ab016e3bb1caebf2094f2142e0fa36d94cca97d275ae6f5d75e253ea633"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/contact/contact-v2.tsx",
+    "sha256": "20d84126e879519c6d5426a71e645392d0ef5fc3400dc37767fd2afb6734aa5f"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/contact/contact-v3.tsx",
+    "sha256": "5ef4e82ba1be04856cbd3b43444f71660f28063cd0730d458ba7794563601a08"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/contact/contact-v4.tsx",
+    "sha256": "696c5512652a1789b8269b0797c5ddcdf5c23c8d7aaa360dafe11fc6da6b7086"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/contact/contact-v5.tsx",
+    "sha256": "e86e760150536502a492e0b54206dbb47eabb7a849bb398049739b5ef2ffe39f"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/contact/estetica/contact-form.tsx",
+    "sha256": "ed4b28999cad593489a495288f46383179e2cdfe448b1dbb680503964a4e2b79"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/contact/estetica/contact-v2.tsx",
+    "sha256": "342862001a0790ae3ebb8fa026f79b64ce820d1e6c7b380c699879c7703410f8"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/contact/estetica/contact-v3.tsx",
+    "sha256": "68ee50ff485f2e2dca2b2baeddc7df7e4c30a6fdcfc7d060171495b546a566e2"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/contact/estetica/contact-v4.tsx",
+    "sha256": "3fd5112361ac0c7d365bf9ef6d1bf064bec93369a9b7490b6cad951dce49cc8c"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/contact/estetica/contact-v5.tsx",
+    "sha256": "62187c505f3d6b9d9bd07bcdfa92d3351176cd524228b80f1b8584a809ffce5a"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/ContactHub.tsx",
+    "sha256": "247a8c99095d1438871033eba2104edbba771f69acd74080401154bc2366cd5a"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/employment/AudienceChoice.tsx",
+    "sha256": "3a8a3a5bbd7678062daa86c3634806e84b47b953ad285db25759ac66462caec4"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/employment/business/BusinessBenefits.tsx",
+    "sha256": "5fede08c676b6078ddaad89be11ddcebcd1b866fab969321a850010928c14c6f"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/employment/business/BusinessFAQ.tsx",
+    "sha256": "b17903f6a6b5db47563177139f967170fe0b65182fc2d55cabc46652ff02d8e7"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/employment/business/BusinessHero.tsx",
+    "sha256": "b224ea4c87d3e53009dad706d4f22b990488bcef93abe18be16002412238850c"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/employment/business/BusinessProcess.tsx",
+    "sha256": "a24b79b3a1654bcb4941326a9aa6e53a9f486cb673893198bd7161940775b937"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/employment/business/BusinessRegistrationForm.tsx",
+    "sha256": "bbbb463715ac7a32f242b82160ea2a44d11705954bcd684f740af5274c2c192e"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/employment/business/BusinessTestimonials.tsx",
+    "sha256": "e106a90c24c942fd918ef9a23a57c0fb9b419ce9885844ef42c1d01adb0354bb"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/employment/business/useBusinessLocale.ts",
+    "sha256": "8392455789ec4acb8e4d27a5ebb0b94b519ab8c6973ab0758cb8a81602c2eec4"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/employment/business/WorkerCategories.tsx",
+    "sha256": "a910b93f43ec79e5ab39318b5b3359e727f9a40e0eb61c6d754e174c239a6315"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/employment/EmploymentHero.tsx",
+    "sha256": "1903c4a9ce6a4e4c53794195ecfe513fd9f15939183b9a2c9c84adaeb4ca853a"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/employment/HowItWorks.tsx",
+    "sha256": "2022836b8bdad79ac70eae4b2362c5b5f072c466a72877a4080126ec12749abc"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/employment/index.ts",
+    "sha256": "c24d8819b78a78fa39ce0a1b1e9169274d4c681526a4521813a97939b1938edb"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/employment/JobCategories.tsx",
+    "sha256": "fb0397acc0b7384a9dc48ca979d4c36247da2e57f78f3063a9d9e9c7a05f16b1"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/employment/RegistrationWizard.tsx",
+    "sha256": "e5db5dbb2d3733fe12be6d1807f3a082bf54d4226a11aba961e627b235b8d69c"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/faq/estetica/faq-v2.tsx",
+    "sha256": "788f93a81aec22b78bb28de4e21454c860e89f7e48e5f93a4377393c115ced03"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/faq/estetica/faq-v3.tsx",
+    "sha256": "8eebe5e155fb934758e6399cbe3489155957fe7bd2bf0ac1d39850e570985df1"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/faq/estetica/faq-v4.tsx",
+    "sha256": "f7d415c82a3d6d361007d672eeae56b996e33cf9d37135d7ae99d97558cbce34"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/faq/estetica/faq-v5.tsx",
+    "sha256": "af1c31e14916026e912b406032ede5453f7439792afa29f8bbc153f94db5917b"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/faq/faq-v2.tsx",
+    "sha256": "5521a37c456514057224c31237a8ff748e1ca1906368206142604cb63990fe7e"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/faq/faq-v3.tsx",
+    "sha256": "d8e38e46a04b62615605908dba3f7736c7e7b6f78f9b39583cb7e9bd05414e2d"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/faq/faq-v4.tsx",
+    "sha256": "ec87c550b808cfa0f40a98241313bb2db3566e30166a1ab6166587d096e6b358"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/faq/faq-v5.tsx",
+    "sha256": "ce226c0ff1fb036433c01e47b1d123ebf254f7768cbaf450808e45acc67a5634"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/FAQ.tsx",
+    "sha256": "888e6c352ec822feb4e126cc393656ca559f58c342abb110d1ed06d0725804ea"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/gallery/estetica/gallery-v2.tsx",
+    "sha256": "0e9bf5f197796177cb77d41b7e93ed8b1b8f6b3656a4e1cdd7182397752fabee"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/gallery/estetica/gallery-v3.tsx",
+    "sha256": "17ff565f94aba30680d7a6bbd45ec50325e543304dcb32fbb0934066da1f5392"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/gallery/estetica/gallery-v4.tsx",
+    "sha256": "b79484966800d038d37bf94a4d2f577dd80ac33c4528aa23c40c95d3fe4c8657"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/gallery/estetica/gallery-v5.tsx",
+    "sha256": "da973a866ae9823d5504584ef527824ba06e44260105b4fd49bef353e6dc4bd8"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/gallery/gallery-v2.tsx",
+    "sha256": "a55a529f3d0efe3474df48424528f3a693fbe3b54fc49da6aa55081de44772a5"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/gallery/gallery-v3.tsx",
+    "sha256": "fed8c14a996515de93f3d98b35eba443fc3dc2cffb2d3fbbbb486992c0c0d126"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/gallery/gallery-v4.tsx",
+    "sha256": "9bf12cdbd1cfbbbccde3dc7de58a460778e1ee8156dba1d98a75d0c5157376c2"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/gallery/gallery-v5.tsx",
+    "sha256": "d57bcc93f707d9b57c30230eee1d7a41a3b89ae91b0a32163fe3c348160681f7"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/gallery-bento-stats.tsx",
+    "sha256": "6f36f5001578346106b4d29c40b672d827fb5d77064ba9146d7b89cbb737a886"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/gallery-grid-with-filters.tsx",
+    "sha256": "6d3ca730e18adce08addcba5f06783e97d9e7664834abb3e64f27812c6ff310d"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/gallery-portrait-bento-3d-cameo.tsx",
+    "sha256": "6042d622964ed22028c0f3129421fdef81823c708e7046d6863e3d06bf6c822c"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/Gallery.tsx",
+    "sha256": "3bdda741e1fca7227e2cb65db23add65d782d65dbf34f864e76c15de4bff93b2"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/GalleryTeaser.tsx",
+    "sha256": "151a9b2ba05892eb5e9ef57817e76a9f750f800ee8071bd2ecb47aaac707caf4"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/hero/estetica/hero-v2.tsx",
+    "sha256": "7dfd66e133daddf779e67312d80fa1814bacaeb0c40fdbee947ad6f6182d3b16"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/hero/estetica/hero-v3.tsx",
+    "sha256": "b4ade2dccc440f260cc08f6fea09c8adfc4c6f185383758b6648abf8d34808f4"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/hero/estetica/hero-v4.tsx",
+    "sha256": "f8a2a2af3dfa283c5caafa810abad0e6d2df9efc849db78afba2f571638a7d59"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/hero/estetica/hero-v5.tsx",
+    "sha256": "1a6f0efcd13e09eb590d7358582c0963154dd90b8d931a4c947d7de0a15800aa"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/hero/floating-cards.tsx",
+    "sha256": "762788d7ef7d030d6cca2e08a415cd6135bcd9f50bc88c5cfca8d08a79658d7e"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/hero/hero-v2.tsx",
+    "sha256": "45161852bf7b79d9a210d7aaf1d22b036cc91341c1341bed29d57dc1e29169c8"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/hero/hero-v3.tsx",
+    "sha256": "2c628b6e49d86c6a18a5de165228452bd86a125937175ca11cc6c6c050ecb0f2"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/hero/hero-v4.tsx",
+    "sha256": "6f661689f810e474da3dc3cfcd93b11e9be26c49938c4c1bce3e7da8e8cdc753"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/hero/hero-v5.tsx",
+    "sha256": "64ce8b708693a24118df810d06f9d7efdd3b40b2b90f9c971594f94b0792425c"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/hero/stats-bar-v2.tsx",
+    "sha256": "db458f6246ecbbd3836a80551a2a397e5b0e8f07384f58d0bb92041a7de30641"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/hero/stats-bar-v3.tsx",
+    "sha256": "2b765885c66a07efe312206225908d9064feb0e77dd1a94dab4a57ff5d6b6460"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/hero/stats-bar-v4.tsx",
+    "sha256": "86bfd88bd467631546615d832f745a647b98555c42d3e3e2486386a5217e5f47"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/hero/stats-bar-v5.tsx",
+    "sha256": "0f6c641ff76e8681f76bf3f76331ccf9c89a1493d103323d9b96b2af4950a3c0"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/hero/stats-bar.tsx",
+    "sha256": "ef5136bedd4f6244fb1b7f02d680618d632a4f38ec5edd5a8722221921e96608"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/hero/title-with-italic.tsx",
+    "sha256": "0749ee4553f0c05a901605adc33f792ceb909b62f0646750f09c1995f1fc6e2d"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/hero-variant-3d-object.tsx",
+    "sha256": "8aa0096e5d5e2f0197f070bd385c84b5d3444f91aa03b6f54ba2c94207b577a8"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/Hero.tsx",
+    "sha256": "50129c116591017bc21fdb9b98b09f9bfdc44227432a816d4f143d9adc08d5de"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/instagram/estetica/instagram-v2.tsx",
+    "sha256": "c3b7056ab531a6981b966c2b416563a8bc1c317dc2944d75b884bf9a501fe2b1"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/instagram/estetica/instagram-v3.tsx",
+    "sha256": "e0f937b07d5f42b888ddb85916193170fe03490f56c7c8c70eb27fbf76cb6a1a"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/instagram/estetica/instagram-v4.tsx",
+    "sha256": "cb42662003c9dfc33bf7f6fd9f565c4bf1aacb22aa025681f605cb0de94573f0"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/instagram/estetica/instagram-v5.tsx",
+    "sha256": "afc9db83259bcd5e00c4d0339051a13c30365366b98a0ce77cfe860eaf9b8f65"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/instagram/instagram-v2.tsx",
+    "sha256": "6b8bb08df8804671d9926e2f75e6fa0f25b5fca9ee43b9163da35e73dcfb2149"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/instagram/instagram-v3.tsx",
+    "sha256": "8dac47ebf9b464a894b7f875afde20adde6030bcf7ba294508a71fff29fd5168"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/instagram/instagram-v4.tsx",
+    "sha256": "2bca64c843aa1f5cb06595965038af7fb10df3fd6cec9d58a790045731b57a7e"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/instagram/instagram-v5.tsx",
+    "sha256": "92cfac6b03db472bbad84fbc156fe97e0a55bfe6e91f17a2ca1b1a189ade7611"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/InstagramFeed.tsx",
+    "sha256": "f308c75640006e8e5803f1b04af643a3181e23e5344b6d06e8ea38984def14e0"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/InstagramTeaser.tsx",
+    "sha256": "0944ae7d1473efef2bfe25d0b08c919a017a2005e6eec9ec37ff742161d19f59"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/LandingBackdrop.tsx",
+    "sha256": "59ea7f8064c89fe8c62075b5cea3f35ba3552251a307be95c35341139cc4a314"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/Location.tsx",
+    "sha256": "199ac005e848271c92d7297594e331a828c8e31d60f9c6e3ff3abe93f208f4ca"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/Menu.tsx",
+    "sha256": "c8510c412af7bc048fd87560fd040876d829bf6436431f4504f5191244a62062"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/Philosophy.tsx",
+    "sha256": "d94ef4cd48fd893bf64368b7de54868a4f6247e587ac5453b24481c7197f5de8"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/Portfolio.tsx",
+    "sha256": "ca92e05f2ae83c88a303adb3630bbed5702c198477061aa9d93a1717880d6fe3"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/Process.tsx",
+    "sha256": "1baec63b9ec364b07a401456592cd9001a82a0ae5d8c52f219522dc116c5bc6d"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/QuickInquiry.tsx",
+    "sha256": "c7236272d33ea9318774a8a84a348ced3d085fb59b8dd06f81dc451b0c5b27bd"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/SectionDivider.tsx",
+    "sha256": "35c25a382be03566423d1adaf224b965d6fcfeb23e1a1cdc6fc44eb0355fa9d7"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/services/estetica/services-v2.tsx",
+    "sha256": "add33d80ac1209fec3b81b5206c8bfa16a84cb723ac997978949a8aaebef9bfd"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/services/estetica/services-v3.tsx",
+    "sha256": "6faedbee41c89e05157ad81401d2b230cee6cfbaf5cf3b3630c97596becd9e75"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/services/estetica/services-v4.tsx",
+    "sha256": "6e7758ded8c56b5f82e11b6a8a67a27f6d112e1ee97efe80421fe3aba360012e"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/services/estetica/services-v5.tsx",
+    "sha256": "e0187d6834989df7fc95b05e56c67254a0cb97d38ed572a05ee5ef12b0caddeb"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/services/services-v2.tsx",
+    "sha256": "3006ce1cc347643010c966bc8e7875912cbbb8dc10011b086e36e97766d70630"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/services/services-v3.tsx",
+    "sha256": "f280e616f3c4ff571403bc46d57c45564c5422556f6f5ae9c53278c78222ff2a"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/services/services-v4.tsx",
+    "sha256": "9ede6d8e2148a2230a5673212e088bb6ada995504066f6ee2bb8c6a9114372cb"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/services/services-v5.tsx",
+    "sha256": "e3358d838ce02c896440253e69bca593768273a7ae8695daebdff44a50fab544"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/services-card-stack-tabs.tsx",
+    "sha256": "3bd8d00526e86b59498aee04edd43e370f9df05d96fc056d23205233f256aba3"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/services-list-with-icons.tsx",
+    "sha256": "b244cfb4f480746a19ae669dcc32d509f464387b0c0cd55eb83f0339820a8d03"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/services-treatment-card-grid.tsx",
+    "sha256": "695662eda3ce7541411391af5fcb0b23775c2989704cc76d692e1b4e8bc879ba"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/Services.tsx",
+    "sha256": "3ac82ce7867b0db496cfc73de95df9020e245404dbad994d80c44a5b13ce5e46"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/team/estetica/team-v2.tsx",
+    "sha256": "bf104652dcd363aa0273702f9a880acd57237b62588cdebcf02659c65ac882f2"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/team/estetica/team-v3.tsx",
+    "sha256": "1008474b7bde33a06fe01772a915ae23cf06e2adb6525d29c8ca3dfa30f7282d"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/team/estetica/team-v4.tsx",
+    "sha256": "19731877594ff2926ce8dad77dd9d1c72d12ccd4045a9e530248b718dbe93554"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/team/estetica/team-v5.tsx",
+    "sha256": "3d5adc7cd612278f2d2221e015afcb646bbc2932b881909021f503b9b554cd2b"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/team/team-v2.tsx",
+    "sha256": "ce692168903431d9266e0cc7b570e97e518995f9783afa3a682c7ff5473240e4"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/team/team-v3.tsx",
+    "sha256": "2eabc4f03ae4bf759731e338e90ce5b7799d13d9c59531e7fdf00c6571532f25"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/team/team-v4.tsx",
+    "sha256": "337ef4c3d2519e3c317e6bb994f863a89579923141c23614c636185321f34ab2"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/team/team-v5.tsx",
+    "sha256": "883ee6306e1d74e756bc65e6505c1f0c27cb4f56fa6cd7a1b441a9866515cb96"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/Team.tsx",
+    "sha256": "ee627f3f77abb79805ed1f7d57bc6a3c19bae282ab2bcfae819203fcdb6fedeb"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/testimonials/estetica/testimonials-v2.tsx",
+    "sha256": "9a48db30cc23dda9bd3386d923750b1556dffff8c433738f801786cfef90b81e"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/testimonials/estetica/testimonials-v3.tsx",
+    "sha256": "aa8a72f036baf22afb6d3cdb619a9877bf628c3cdafb77e1441fe566c61077f4"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/testimonials/estetica/testimonials-v4.tsx",
+    "sha256": "b542b82849bceb922bb106f9e26c6d9efe0bf00963d570246b71044ce9a8ca3a"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/testimonials/estetica/testimonials-v5.tsx",
+    "sha256": "78a2e1f1465b6517c0b49bf854791dde1aee2c6efe16eb3018d8bc8c26202c41"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/testimonials/testimonials-v2.tsx",
+    "sha256": "e96192cfe1ad795cf18905dc7ca166e5c45f3a53aabdac8b0127ac38b20a944d"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/testimonials/testimonials-v3.tsx",
+    "sha256": "95c1cacd082d866232644d6fe5f2565472d9a56e4eace7469b56db213b90b96d"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/testimonials/testimonials-v4.tsx",
+    "sha256": "8e0ff1ff0872beb48411391c0e79eded4b639ecb6f386cace781c1cd0b33c735"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/testimonials/testimonials-v5.tsx",
+    "sha256": "109c5237231fde9e033984f2e8c934cf5e181c55ad1c187dd9a42c722a0d5c97"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/Testimonials.tsx",
+    "sha256": "4b99aa0fe3ac424f981f58853443fd8506ee716afb96abe4927593ed08a363eb"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/why-choose-us/estetica/why-choose-us-v2.tsx",
+    "sha256": "07975a661799a9a44b8a320ea92d153a2c4b9da6e27f2cd369855754db7bb6f1"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/why-choose-us/estetica/why-choose-us-v3.tsx",
+    "sha256": "0e30c57e8e40a1ded74671a1195312d41688dece700ea45ee204b50d51943371"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/why-choose-us/estetica/why-choose-us-v4.tsx",
+    "sha256": "a0a3301c7e50125fb6e450967d0057d74c77ee1b888ebf1a171ead3a041006bd"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/why-choose-us/estetica/why-choose-us-v5.tsx",
+    "sha256": "cea7a2cb0bc0c101ce61a036a9bb70da147471b003cd36c6b3fd2cf03083d2b5"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/why-choose-us/why-choose-us-v2.tsx",
+    "sha256": "cf2686d84d2f31d45c5074d1fa9be520a878a274bd57ffe3c15d6118e3132be8"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/why-choose-us/why-choose-us-v3.tsx",
+    "sha256": "0694ce0b92fa85574c4d7f6a1be87c74b583dc9c99e854ec7f3ddfeb5b14e754"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/why-choose-us/why-choose-us-v4.tsx",
+    "sha256": "d2ee412ffa6e3230c1e8996b81eb9f4198b9055d6c9ec24a1772d54fd260f1e3"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/why-choose-us/why-choose-us-v5.tsx",
+    "sha256": "42f24baf0ce0054f7f1f8ecf12f3d92c9223a28ac0fb3cb7f93952de2916b00d"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/why-choose-us-icon-grid-3d.tsx",
+    "sha256": "ed168d3065de0e40be9dee2a380589373bacbf7234848335c31babdb6db7bb4a"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/landing/WhyChooseUs.tsx",
+    "sha256": "db4352889f248b64c0b7e42d9b3b1057399abb47ceb522a04e563a03838c3e9e"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/layout/footer/footer-v2.tsx",
+    "sha256": "2719ec0821104d8febc98c9752e21ea40af1eed00e95997f2d2b5f53d4bde4be"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/layout/footer/footer-v3.tsx",
+    "sha256": "5f7a8717f77daa77be566694f7bcd29bf2057c766e9a3fade1a917e7db59d157"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/layout/footer/footer-v4.tsx",
+    "sha256": "8d0b3b42943d54c1a0b27f8ee5fb067c17a6c3dfc6b83bddfb47309c123427d9"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/layout/footer/footer-v5.tsx",
+    "sha256": "c048b7317b9594c66d32df0a3ee3b5d8cae0068d72c4ef8fd070da6518ad3933"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/layout/Footer.tsx",
+    "sha256": "64c97c5f2ab935629c7cc61ef92ae19c8f7e0bec1054e5d980b3f5288b007426"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/layout/navbar/navbar-v2.tsx",
+    "sha256": "a5de829b7a328291c9921ec3fd1e389b3f897c44533ee365ad3cd750d4f4b682"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/layout/navbar/navbar-v3.tsx",
+    "sha256": "fe269d4aa526f1545e744c9fac4fd4037712793294cf16cbd1d9d11b3376f72e"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/layout/navbar/navbar-v4.tsx",
+    "sha256": "1907276471870df3faf906a05c30b77d413626f4eaf77d942cb4f7095f08b120"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/layout/navbar/navbar-v5.tsx",
+    "sha256": "20632bf8bac52a50c2aa886dc7e1790b2e6689379f1c818648d9963eeb15b612"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/layout/Navbar.tsx",
+    "sha256": "9997224f87e9dd88b64b4d06b6c848a406046c3cb6bc5e27d70e6a7115590306"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/layout/ScrollToTop.tsx",
+    "sha256": "7ceae3837002977e6fd2e25eadeb2242f13c7b13b76d387d8063c9e458efa457"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/layout/splash/index.ts",
+    "sha256": "48c2e663b8113057a6eb2c4a3fc85629733512bd6d861ccb55f8f1b1ca495c34"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/layout/splash/SplashCafeteria.tsx",
+    "sha256": "a00aba2ca6e86f69492584c97ad5a2809e0c7ad97ff2c9eda150df87bdc6c1b0"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/layout/splash/SplashClassic.tsx",
+    "sha256": "6f8da770986147557a92b9013961bcbd9d408a6d0aeebc3a7850443862d0103f"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/layout/splash/SplashCurtain.tsx",
+    "sha256": "3f2bd45ed41782d86f8f773d0362f3c25d595c4a8a3980708584e19b4374c952"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/layout/splash/SplashFadeScale.tsx",
+    "sha256": "9c962e5642e99391e2565d266525feba7f52221d825dd411d7782ae8f15a8512"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/layout/splash/SplashGradientSweep.tsx",
+    "sha256": "dae5c52b0f88859c3bc9f1f365cca27409b255a6c45a39bc9171dd3ab26ba723"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/layout/splash/SplashMinimalPulse.tsx",
+    "sha256": "a0141cc40095d32dd687a73602f73afaba9c17643c564b229722c51b7a029c64"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/layout/splash/SplashParticles.tsx",
+    "sha256": "e9b67800ca6091355cea10e139481e963e0d9819dab5910ee9cfa109c1c800eb"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/layout/splash/SplashPulse.tsx",
+    "sha256": "c5c7136a30d0f62b9aa185a5700bc9ed810dc74a43b4ba76b0e5a8d70fd9f5d8"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/layout/splash/SplashRemodelaciones.tsx",
+    "sha256": "00ce5024bc94eb94515ed56a560eb749a8034c226fe80bcba99645742e42bee4"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/layout/splash/SplashTypewriter.tsx",
+    "sha256": "204a629022f48ea5b72a69a61b07f8127a5499fde4a4ebda053591ad03b97e23"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/layout/splash/SplashVortex.tsx",
+    "sha256": "155d778d5d00029f9028f1d0e27489e9c46a52117a766201cc06ce630b03b25f"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/layout/splash/types.ts",
+    "sha256": "74d36c5f3d7ee9ed92643ce06086cb3b7923be0cad28c78cbaac668795da9db5"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/layout/SplashScreen.tsx",
+    "sha256": "d8fd72550c5f164bed6ae328c743a1b9ee740a1ca74f693c946274d4f36b93b0"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/legal/LegalPage.tsx",
+    "sha256": "0503a94b1bf9d419123cbd1029e64abe35cae914c1725bdefbc78ddcc90bb4c4"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/portfolio/ProjectsPage.tsx",
+    "sha256": "e62b41fdf78ff83059d2aac4f059ab6c79c588695ef1c701fb6865f6ff374205"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/ProductTour.tsx",
+    "sha256": "e586d2c3fff8fdfc95f3995ecfa23d47cf38c8977f35ab113a496986735a589a"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/QuoteRequestModal.tsx",
+    "sha256": "04135d8b06ec4f496715a24027f6e4594742188a1761c67532f3f17541ff5769"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/services/ServicesPage.tsx",
+    "sha256": "86675dad5c73bdef937ac0c575d0843e95ce2493af2566ebed9e8e71a7216237"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/shared/PolicyModal.tsx",
+    "sha256": "6e707cc17acc7b8bfbc7687aeadeca0163d558ff08e9df11e94326db03f089e6"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/staff/StaffProfilePage.tsx",
+    "sha256": "746df43ce4ae7be7a944e357bf7b98a61b9c9c083f5e23b94e4a1f7206ff430d"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/theme/ThemeProvider.tsx",
+    "sha256": "9bf76af004443b788bb06e301cc61f0f91947562ff3bcb5753835a580cd6e9a8"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/theme/ThemeToggle.tsx",
+    "sha256": "b77c9d2b880891eaac6e8e06890eb17f6b69a182730af2323f3be081ec433c31"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/TourButton.tsx",
+    "sha256": "b9c9f4cec3eacb2e9b39e17f85d481379689f23f17f586aabe99538d6931b29e"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/ui/AccessibilityWidget.tsx",
+    "sha256": "759e2e7bfa96fab80fa9ce6b95120d29e1ceade75f22c39ed8552d7d4c2a3cb2"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/ui/BrandLogo.tsx",
+    "sha256": "0fa3e491088f01c7b7d00ac1d65f5a89f82687e7ebe70a2989e781c3b4559903"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/ui/calendar.tsx",
+    "sha256": "6729fa78ada642b6a96b38f875d2899515e7b7e816148b0ef7c27a9de1ad6e2f"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/ui/LanguageSwitcher.tsx",
+    "sha256": "7a6bd5e59deca424cbcf5b8e63c3e0999e151e755251803acee66ee5533136d5"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/components/ui/Toast.tsx",
+    "sha256": "a4e018f5d64d0a57f70447c6e76831de711488f243974a7b444c3d6cee94ca8e"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/config/demo-data.ts",
+    "sha256": "0165f180d3d3e2a0f5b5790b3424571b1e2fa29dcaf5b41500e192ce9fc637c6"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/config/env.ts",
+    "sha256": "e84789f61c9ca0a31b00ee3af1ffffa577a802a23f327ce3cf2128b838f3998f"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/config/envQuotes.ts",
+    "sha256": "b70cdfb6235f03459aba3a15252b8523bec713833ecc20351cd48b8f604e10e7"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/config/legalContent.ts",
+    "sha256": "9bcab9196cebb6dba0967d9256cf16379b20408009773da7c37c5deb220275fb"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/config/locale.ts",
+    "sha256": "b9540d7730b3aa7b8d596d38c23737d627001066cfcc53596326e56730e324c7"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/config/locales/ar.ts",
+    "sha256": "c7418be9955f639dda8114d12ce8fe94ebadeba22d140d13ee411cc9d994ed13"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/config/locales/en.ts",
+    "sha256": "b6c4bd93cfd61e7404578dd75e577ef1eec6ab32621386fad94bc25a06a4a128"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/config/locales/he.ts",
+    "sha256": "03bf0243cc99648135b46dec9ebb8637919af91ddb0c971f591a1ef929e0a355"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/config/locales/ru.ts",
+    "sha256": "580fff512ce251704f60eccffdeed1092e827114ed6690a6b450a054d7cb60a5"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/config/localeTypes.ts",
+    "sha256": "36e481368eba246ee1d16169a84c0c391f224efe64e516c6dd8e4b6176edb5bb"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/config/presets/barberia.ar.ts",
+    "sha256": "dcd3693de1116f442c8fa8ee5c451b2c5743ef6b1e7ca05665ba3b6d3539ff44"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/config/presets/barberia.en.ts",
+    "sha256": "ebbf8743abbfe208f1f1262a57362177ccd90822d24253a43fde149b8dc4caed"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/config/presets/barberia.he.ts",
+    "sha256": "a865ce45cf1e5c550c4823e4f526fa746812c014e9db2cec6cc2e28af327a527"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/config/presets/barberia.ru.ts",
+    "sha256": "6757c26849cfed30427ba7adf60881de63a53678a6590d033be3c3a1ddc0c1c4"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/config/presets/cafeteria.ar.ts",
+    "sha256": "411646dbd3cec844f91a736217c8dcf823c83ac90d30dba00446fdfc69835a2c"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/config/presets/cafeteria.en.ts",
+    "sha256": "3fec28b8049e30ac526f13de8c07756ac25f995ca9a26be3dc3a1f07a4690e25"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/config/presets/cafeteria.he.ts",
+    "sha256": "ee58fb9fc56514ac674db310cecfb8cfac81202118125ee57d0eb323dc7e3ea1"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/config/presets/cafeteria.ru.ts",
+    "sha256": "d15299144c37d040fb7d10336174b0fad05d04076ff6bca123dcc5916eef2075"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/config/presets/employment.ar.ts",
+    "sha256": "172d69948e807813ae49a28f1bd5e4d1197c5e82500bd5b4cdd67f60f8f755e0"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/config/presets/employment.en.ts",
+    "sha256": "5a218f91dc94ad4d6ffe9666554dc19b2a52dc81d8ee1f595d6b214febf6161e"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/config/presets/employment.he.ts",
+    "sha256": "c1a0427091157f64ba563c31c414866a646fe0c797991372d42a81fea4e4f0b0"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/config/presets/employment.ru.ts",
+    "sha256": "dc5669f450255d089919a5c593351962e8646ae496cc010abf663c0035a0c8d2"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/config/presets/estetica.ar.ts",
+    "sha256": "cdcdd37bd3203308bbe822cd4b05422c91b12314fdf9a9f8c1135e8fa099d06e"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/config/presets/estetica.en.ts",
+    "sha256": "ec93d0b129c768d5346d1115fe5f4b1fc089a6b129cb66239411757fa34687ba"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/config/presets/estetica.he.ts",
+    "sha256": "d14205a97d4c3693ab3816b4747aea16c2cdf1468c0716c584ae75431de594a8"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/config/presets/estetica.ru.ts",
+    "sha256": "b8127cda853ae6d21c1362600b8957a9121adfeab8317cff505cd88d5ac1827a"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/config/presets/nails.ar.ts",
+    "sha256": "9d5b29fecd4aefac83354f102eb762724212c327ceba482f0a64360d70531807"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/config/presets/nails.en.ts",
+    "sha256": "8d18633f2fdb88f7cce9c9624b1d96628cf5bae1458923bc506a109c11a6657c"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/config/presets/nails.he.ts",
+    "sha256": "670240e99a0006d6abaf8c01ad10f00cf0cdde0aed43e4f6762bde7e48be112b"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/config/presets/nails.ru.ts",
+    "sha256": "c4baf269b827664c3270a247a3f14a014d8b3ace74fda6df53726ade03678611"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/config/presets/remodelaciones.ar.ts",
+    "sha256": "586ba337af25b9f03ad9eecd21f5bf6cc2a4b3f68fbbf849920d88eb5fb98861"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/config/presets/remodelaciones.en.ts",
+    "sha256": "4529e9931580b1e9c7662348541a181d7d6bc76d43a923cba21c920e0ef1c22a"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/config/presets/remodelaciones.he.ts",
+    "sha256": "8f2eb4fa567d3a1bb2f2633c7011b717510097b8ce06dbae33d4e26b2283eb3e"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/config/presets/remodelaciones.ru.ts",
+    "sha256": "cf5042c338299468ac099c4c7360e29bce5f074b559e7da1acb31832dd1703fa"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/config/presets/tattoo.ar.ts",
+    "sha256": "ea6777305288fa765e76693ef91df3c39506b16131df42af3c30e8aa81528040"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/config/presets/tattoo.en.ts",
+    "sha256": "c41ea4d7031616b70a247507827e73655554a8e52fb0f49b1962220b87a9fb7c"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/config/presets/tattoo.he.ts",
+    "sha256": "02472b48cf232dcdfce43c0dfdb6c17be1af709a0049d237d246cf0468128941"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/config/presets/tattoo.ru.ts",
+    "sha256": "ae3981ef334ac87b1f6ca20302f0991621aa7e9f1bd5382a0ffbdd7f1bf28b3f"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/config/presets/themes.ts",
+    "sha256": "2a0f280b1e892099a1f8d07c5d3a389f96b8d92e9c3c3cf8ddfc81a14fb427c5"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/config/site.ts",
+    "sha256": "9dd148a16bc22b704d8e35daf349f574654f9901152a1cc4676d69443af4b084"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/config/tenant.ts",
+    "sha256": "5d4ee5534da7f2aa79a376da289e1814525ec67d30e940a0b096a0eb91597bae"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/config/tour.config.ts",
+    "sha256": "754e36e9594d40a9c9d5389f140f1cd6d3e7a09cab80c9173ba24215ea3a9853"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/config/tour.translations.ts",
+    "sha256": "f1cb06a304bfd220ecae23656ae75fc801f2d876cd7e65519a4a6b103cecb9a6"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/config/uiLanguage.ts",
+    "sha256": "e25f366b144a778b5828b7a42118a10612bfdbefe88ae96758bb45203877f329"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/constants.ts",
+    "sha256": "6a695ec0765b787369c708f253990c9ce30bc19af5e8bbf78cf8e605775e4240"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/contexts/LanguageContext.tsx",
+    "sha256": "d0fb1837f1e4228e3d35362193947a79bc1e9a2de315fee912fa95e737489abb"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/hooks/use-hero-object.ts",
+    "sha256": "66946d99a393d1b01abafe5c880a126b339bc2d57a2cd984e912c4d266023442"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/hooks/use-paper-spring.ts",
+    "sha256": "549e5cb30e7401fc011ddaa5cde6e9a8d6769f16a479b9c1b7950ea5a4883722"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/hooks/useAdminAccess.ts",
+    "sha256": "0be16100e260c2215107ab472e25d364a731d1d671e2e39ece39c665ae99396d"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/hooks/useModalA11y.ts",
+    "sha256": "142bbf01f55efd9dc6fd6667ef605459c10cbf6e7bc3fe509a889c4078e3072d"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/hooks/useSchema.ts",
+    "sha256": "dce4bacf41047af1355dd78eab454a0c7fe169c9b7cc95b4540df59c7c4b2761"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/hooks/useSEO.ts",
+    "sha256": "7b151b75136cc831f4dfe2b7e13c47c581cf41f724263eafb475256c81e2b922"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/hooks/useSwipeNavigation.ts",
+    "sha256": "45b2bb351b0bf21f5910b89d118f989c22579d698c328c4ea8943759bc5369ca"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/index.css",
+    "sha256": "751b8eb078c81bff05af58ea79af629833423c64b8922b5c9a9571d4ac24364f"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/3d-impact-utils.ts",
+    "sha256": "e045dc1fbe07d281d3e2a5d1c3447211f84ecfe605346aa072ca4932db3e9361"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/admin-auth.ts",
+    "sha256": "83819b2d1cf1be81dc8900ffbfa87ead360a7f5b8dcd4b39a6bb5a228a6b4f11"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/admin-users.ts",
+    "sha256": "bf20aeae951907d691f87b983de0ce21a81613b3becc2a9cace43fc5f9cab47a"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/ai/admin-tools.test.ts",
+    "sha256": "ecc6d637b41c95d5eddae930fbe28f6117a77bb25d574f45060b7f5f643b05bd"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/ai/admin-tools.ts",
+    "sha256": "70707fc16a92156fde592814079b71a7fddeac161c2747fa4a052e88f5ea9299"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/ai/stock-tools.test.ts",
+    "sha256": "eb6f4a42279b26c193bd244f9808d261a6dab3cd5ceea76483fcc7fa0ae26ce4"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/ai/stock-tools.ts",
+    "sha256": "a9718ea17e8cc74a71968e373dd8ccd02552539ee87c96007b5d7da6b8bc77c9"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/ai/tasks-tools.ts",
+    "sha256": "de702eddfa782b7ecbbd7a8a3e3ed380395005439e83389e95f2a129ae7d29fa"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/api/admin-auth.ts",
+    "sha256": "68f7528b764a06317ca7d6d4d69569f2b3691a95eaf8a5f5dbd1adaaf30f8696"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/api/booking-handler.ts",
+    "sha256": "d7bff4865597d29a48cf765c464d579faf38ed24b9f09405415c24ec9bf2dd33"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/api/booking-validation.ts",
+    "sha256": "456f7f8a9ebe4015e19eac8246a2ddaada68d1ab0fe4c23949c640e9a71b934e"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/api/optional-services.ts",
+    "sha256": "db03ebf2b43e87b10375b7f8f9decb680bb94642e74fb20921eb93725a3f42f9"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/api/payment-gateways.ts",
+    "sha256": "fa603093f1333c4a7339968643ba36df94acc34ce30d538c315968f86732e0db"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/api/runtime-health.ts",
+    "sha256": "b76346f328ac7934b0bd292bf5f9d2fb365bb375db65e0ead9adc9d3a41d591c"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/api/stock-handlers.ts",
+    "sha256": "575131cd558e77dafbe1727d0e80e0a17c8e0290c695d744f89a903a6b4e651f"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/api/support-handler.ts",
+    "sha256": "247b2b1c84548124972d6b0c19407c54771a94006ecf5f11cb7ef196e27c8b86"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/api/tenant-access.ts",
+    "sha256": "98e914224316040091677e4ebbb3b0811cedb4bd671f3cf49477bbe2767faecc"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/appointment-notify-client.ts",
+    "sha256": "9f900eaad61a3da294ed4cb552eca1efce9440c08f45bd455582e4143e7d605b"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/booking.ts",
+    "sha256": "54781ece46e6bb5b6edddb0839d3e30d7da04a2d9a6d65ffd90951bc7845e8cb"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/crm-metrics.ts",
+    "sha256": "e8facf101113965b7026f1e596e3ea744fbf938d75c6e53b1d0ed7dd66a38238"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/crm-store.ts",
+    "sha256": "9844d73ad36c6bd8ad29f3dde5af5a3025616355cfa06a7a61f5489ad96f4ae9"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/currency.ts",
+    "sha256": "c0ed90e37d0df14ed8b1b785cb1501227969b66dcc6991b80dd0a4ffe493a232"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/customer-pipeline.ts",
+    "sha256": "427b2efaa12e0824723ea31a155b81580de353e058388dd56b2aba3b2b254932"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/dateLocale.ts",
+    "sha256": "c5004cc1d0be34ca33e40f1e4f3addda01b3a8e050d009d13a4b7793cf0933a3"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/employment-audience.ts",
+    "sha256": "4ec732f7a9b275acec97b2dab9206b7946747a5d665f52aee19a0d62d0df9918"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/exportCsv.ts",
+    "sha256": "149fdedef1587a7885e437984c9cec55a99e48ebd4259ebba38916030e734912"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/firebase.ts",
+    "sha256": "c4ae4c45fa95fd356e684aa50baad6fc3b893b3f1fb2e8920dfc0297eb646595"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/google-auth.ts",
+    "sha256": "ebe62296cdf2da8191f402e0a40bc478b8eb0da611c85d2ebd3d418fd0bf5eab"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/hours-display.ts",
+    "sha256": "279fc544e6102c5690fe57995b863d27a9efb4c2a83b4d63a2e452736887243e"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/intent-router.test.ts",
+    "sha256": "44ea3488ebf2704290d480fc55ae9dd0b3fec0f92ac64be51519fb9c09ed882c"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/intent-router.ts",
+    "sha256": "e1e03d9a0763d9c2e3f2f390e8ac994d06f56a11aded0ca1155f648e440f925f"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/interpolate.ts",
+    "sha256": "9ca05d3d71a6d59c057736037eb69941d0dd0546399760dc25545cd1c34d7a73"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/knowledge-rag.test.ts",
+    "sha256": "4366b3957354146b2bb75a4adc6aa6703bd545f90b8ba1ef6d4ec6f5bda27f49"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/knowledge-rag.ts",
+    "sha256": "a417a9a50cedabc4132f2b8befd04c00386d3a3dc6ecee1970981195152a0eba"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/lucide-icons.ts",
+    "sha256": "595fac0ee3350d567461701b6f1e9303cabf830fe6ad945697924d649f74099c"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/motion.ts",
+    "sha256": "4bb60eae039fc4c87eb6bea12c2f36710f1e5f9dc97a68670364fb9e5e1318f1"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/notification-channels.ts",
+    "sha256": "1ab3dd63f04e1aa602da62f8b5970559ec6ea8cdf348f413a58e9c44d6919790"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/notify-agentkit.ts",
+    "sha256": "d1b6a2d411716f68aa6668f9eca73830b656e7651356d8250edc98178c23ef9f"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/payment/types.ts",
+    "sha256": "b60c0a8a954939118b35ef8d329575bfe5a83c6429f7732668cd1edec1c7a77f"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/sanitize.ts",
+    "sha256": "3eefa6f99fa804c97022da682f8995cdfc979c6056b85d803fcc5907cec1b90b"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/schedulingRules.ts",
+    "sha256": "9318a86e55d5243d3160dba1cf234474edf1c4b7f5d30bd7cd41975a8b12cf5c"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/section-presence.ts",
+    "sha256": "93222dae2832bfcc2d06b72786e5f02b3d44b4767a5ffc94b87a391e400ec0f1"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/section-variants.ts",
+    "sha256": "dd1729a5415ea0893b0bcbe3695790d2ef7769264bad9e4afa35fd03dd002324"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/seo-defaults.ts",
+    "sha256": "63784edfc86586b65246fdba8814fa6a8b1ede4082223f20e344d233a7a2e656"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/site-theme.ts",
+    "sha256": "5c40a4a8db090f1dd2883e301c963fd8c95070c5967bb51f969f470a3a4f9502"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/splash-session.ts",
+    "sha256": "fd5d1aa5d2ab031d1cb804f69fd5a0a7ad00c8068b9070c9b9f99dc45db79e8d"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/staff.ts",
+    "sha256": "f20051081d1eea97af62ed8e9f1f62d643045dfd8268b2cf797257c421314769"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/tasks.test.ts",
+    "sha256": "c30f65d0227c86c4fe8808a9d1b58f251ef0009a76fd95df53b374e887ad3fe6"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/tasks.ts",
+    "sha256": "073c278ba04fb7c29e0473b2e93fde36940a0ff37f266c860ae786bd7ba574d6"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/typography.ts",
+    "sha256": "8f08aac85cdaa385ddd22a4622fd78f1693d7a6ebd451e443c4b2e9c2b3e90b0"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/utils.ts",
+    "sha256": "6c9f31138b1c80bb98ad3a8add8b58b9e8d0132143522326ccaa430452cb2d4c"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/lib/whatsapp-inbox.ts",
+    "sha256": "b818ac3ce3048ac3b6c9e90c20149af1846ed672827838f9047969dac9917185"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/main.tsx",
+    "sha256": "60ae64853cd3b1234b273430e0511f96d9bae5815f78ffd1eb66df7ad2940454"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/services/ai.ts",
+    "sha256": "62925989a805e7bd2d4fceaa1f3faaa513466ae124738bf7141a80742f22b67d"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/services/customers.ts",
+    "sha256": "78d239ed2b41658dd2348e74c6d08f6f9fc41e1f9abfc00e09da4417e2e9fbb9"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/services/db.ts",
+    "sha256": "e62283cbe3a215795fe6260db1a299b0ed7f950a887d4fa79b0f272337717779"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/services/inbox.ts",
+    "sha256": "00137aa90f65da6f2af7c0de5a2bf809b00274041d17f441f541ba481adbf0ae"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/services/notificationLogs.ts",
+    "sha256": "b94308ddbdaf75e2273b496a016fc38f99b2733782a837a223390146e247f390"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/services/stock.ts",
+    "sha256": "598f24b65868e6c825ced60138ae80bf0395e82feba932caef6e4ef511881a7e"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/services/support.ts",
+    "sha256": "994f9c859f652a44f767c9410a9baeca78d47879b93ee98504bc12cf2205e1f9"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/services/tenant.ts",
+    "sha256": "09cad0c18f9702fc5791fda18aae1678a14384b90d7c772eb19e2eff839bbea7"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/types.ts",
+    "sha256": "0fa06a433ae7ac2248f3a233ef461f8a3f8938f033dcfc60b2feae603a85d3c2"
+  },
+  {
+    "repo": "template",
+    "ruta": "src/vite-env.d.ts",
+    "sha256": "fe3dd5e9d45f0f223e885da9c4fadb15ae20dd6cb72fe60c7975366e7eb2238a"
+  },
+  {
+    "repo": "template",
+    "ruta": "server.ts",
+    "sha256": "48a5d4a415c704d1f7c5ff609d96c4e214d107fa0020b0c5d7d30d51ac84e80f"
+  },
+  {
+    "repo": "template",
+    "ruta": "api/index.ts",
+    "sha256": "1dbc951f710e2f3e586247faf79ae65d76714eb52fcf768001d929a8521a646f"
+  },
+  {
+    "repo": "template",
+    "ruta": "package.json",
+    "sha256": "e55706bb10e67b3cc8949c73397ee359f55ce14bbf2fa2dbd9a5975b402dc844"
+  },
+  {
+    "repo": "template",
+    "ruta": "package-lock.json",
+    "sha256": "4f6b6f55b9ed6ae3b787dda407e53efccbd37ad723614b4c269168c9f37697d6"
+  },
+  {
+    "repo": "template",
+    "ruta": "tsconfig.json",
+    "sha256": "139b276136a17c253f4f453df1bdcdab587c5680b8c7bb8d0cd44010f89efb40"
+  }
+]

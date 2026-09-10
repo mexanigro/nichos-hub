@@ -1,0 +1,17 @@
+[
+  {
+    "Algorithm": "SHA256",
+    "Hash": "C5E148AEC327777AB57E060A85AC0DB9F7393DDE71EF4AEA420E93F866A8566C",
+    "Path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\contrato-cita-separada\\recorrido.cjs"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "3D8D7F7BCF59CD83F36662B9BA9DCD3699392E24A6D74627525135EE5C4A28FD",
+    "Path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\contrato-cita-separada\\PLAN.md"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "2702BBF73DACC8ED0D14EA5C59B63CB31B6E3F152890C24853FC9C70F8C3A293",
+    "Path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\contrato-cita-separada\\REVISION.md"
+  }
+]

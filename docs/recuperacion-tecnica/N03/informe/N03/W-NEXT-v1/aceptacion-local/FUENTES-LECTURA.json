@@ -1,0 +1,21 @@
+{
+  "limite": "Lectura acotada para seleccionar propuesta; no ejecución de endpoint/SDK ni nueva auditoría",
+  "fuentes": [
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\onboarding\\route.ts",
+      "sha256": "e84e50cce05bb87e831094de50f1c362213b4a1597e2f54f22899a31216c21bd"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\app\\api\\onboarding\\client-info\\route.ts",
+      "sha256": "64c66a80a4f0de17f66444df5b87b2b98684d61e8d3b8733e30adbb4dbb80132"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\src\\lib\\wizard\\config-to-wizard.ts",
+      "sha256": "55d590aa6604772dd9c79b90694ebbda3856346f46e6b8dfcdce93e443669e53"
+    },
+    {
+      "ruta": "C:\\Users\\liama\\Desktop\\Nichos-hub\\node_modules\\@google-cloud\\firestore\\build\\src\\document.js",
+      "sha256": "3ab692225407b5f463ba77c8e9c00c3ea8961a5c42f486311620150b1b19f1bd"
+    }
+  ]
+}

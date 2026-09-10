@@ -1,0 +1,67 @@
+{
+  "baseline": 623,
+  "identical": 616,
+  "changed": [
+    {
+      "repo": "hub",
+      "ruta": "src/components/client-language-banner.tsx",
+      "sha256": "20a43bb4c85b589e5d478962795ba754eb88c80f236ec765f0f7e98f256303e2",
+      "actual": "ad096c341788ec236c087abe55d773b0b5db5d2ad77d422a479c54b4cb46199b"
+    },
+    {
+      "repo": "hub",
+      "ruta": "src/lib/email-templates.ts",
+      "sha256": "30060f29935ac8675cccc32126581f52b7f4b6fd2c4964c71c2916c65b3acb54",
+      "actual": "0056ea33d60777b7faf6e3bf641236da167bbd10cac9ae1e4ac09a7fb7ca8f30"
+    },
+    {
+      "repo": "template",
+      "ruta": "src/config/site.ts",
+      "sha256": "a85f4938b2172286d6b954b059bd26bd17b686f3717ab3346a9a3fa7a9008cda",
+      "actual": "e3ea39ab76a683452d7a37c60c137793c57d2ee8e5cf36afa5bf38ee91e0a91a"
+    },
+    {
+      "repo": "template",
+      "ruta": "src/config/tour.config.ts",
+      "sha256": "754e36e9594d40a9c9d5389f140f1cd6d3e7a09cab80c9173ba24215ea3a9853",
+      "actual": "b4d9a642852754545c1c2e80b018f38b4c612ca40a6787e3af06b3c724908eb3"
+    },
+    {
+      "repo": "template",
+      "ruta": "src/lib/api/payment-gateways.ts",
+      "sha256": "fa603093f1333c4a7339968643ba36df94acc34ce30d538c315968f86732e0db",
+      "actual": "580ff87947a952f8cbf4d3873647028dd6131da58f7d16a08104f6ddd6bfddd6"
+    },
+    {
+      "repo": "template",
+      "ruta": "server.ts",
+      "sha256": "fe749e1703c1a07a2f7762f68eb1fc57783c99cd30fbc833b271c898aa83a980",
+      "actual": "884ed361649c0aa2b406c317e7cc0fe36f70d30f9cd83785f6680fee7c9970f0"
+    },
+    {
+      "repo": "template",
+      "ruta": "api/index.ts",
+      "sha256": "4be7a9c1e536da183dfe44a9a72d94df5848b36d56d2bf696607d514523dc0bd",
+      "actual": "748b245f1b1c56184de7f57119d89a4a690ff383fdff504a4431ac2aae0af007"
+    }
+  ],
+  "extra": [
+    {
+      "repo": "template",
+      "ruta": "src/lib/api/checkout-handler.ts",
+      "actual": "fa1fa7c49f4089db815a7e603cf41af0ba0c08460718734a8b0a6c0dde927010"
+    },
+    {
+      "repo": "hub",
+      "ruta": "AGENTS.md",
+      "actual": "64dc7aabd01b76cb286f1563a475683a43276c5f2d441c10b112e5ffd331fff4"
+    },
+    {
+      "repo": "template",
+      "ruta": "AGENTS.md",
+      "actual": "7bd2ed1fc091e386de2041a20609b2d533e8fe70d7e202716fe89342c2710b1b"
+    }
+  ],
+  "unexpected": [],
+  "acceptedDeliveryScope": "Archivos fuera de cambios previstos conservados. Funciones aceptadas dentro de site/server/API requieren conservación de bloques; ver revisión independiente y preimágenes. No se repiten suites aceptadas."
+}

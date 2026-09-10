@@ -1,0 +1,3 @@
+# N03 — aceptación local L02 client-info
+
+Liam aceptó y se descontó exclusivamente L02 de POST /api/onboarding/client-info. Version/evidencia verificadas por huella; no producto ni nuevas suites. [Aceptación](../informe/N03/L02-client-info-v1/aceptacion-local/ACEPTACION.md). [Única propuesta](../informe/N03/L02-client-info-v1/aceptacion-local/SIGUIENTE-ACCION.md): preparar contrato L03 de toggles/notificaciones con D05 conservado; no ejecutada. RestoL02 y N03 abiertos. Techo85% TOTAL,observado83%,sin resets,externos,push/deploy. Etapas posteriores y condición de prestaciones por tenant antes del despliegue conservadas.

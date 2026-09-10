@@ -1,0 +1,22 @@
+[
+  {
+    "source": "api/index.ts",
+    "matchesResult": true,
+    "sha256": "4A0F38B03787D4F118EFA70272B967D0A9D1154D22A4203BF90FF3B8A29DB8A1"
+  },
+  {
+    "source": "src/lib/api/tenant-access.ts",
+    "matchesResult": true,
+    "sha256": "98E914224316040091677E4EBBB3B0811CEDB4BD671F3CF49477BBE2767FAECC"
+  },
+  {
+    "source": "src/lib/api/crm-appointments-handler.ts",
+    "matchesResult": true,
+    "sha256": "E48A9EE4048C118A064CBFF460FBF4E0668763691C9DE41C34E9D15F3A915E4F"
+  },
+  {
+    "source": "src/lib/api/booking-validation.ts",
+    "matchesResult": true,
+    "sha256": "456F7F8A9EBE4015E19EAC8246A2DDAADA68D1AB0FE4C23949C640E9A71B934E"
+  }
+]

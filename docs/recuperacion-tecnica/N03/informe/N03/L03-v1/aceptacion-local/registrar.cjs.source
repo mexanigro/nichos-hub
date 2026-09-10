@@ -1,0 +1,65 @@
+const fs=require('node:fs'),p=require('node:path'),crypto=require('node:crypto'),assert=require('node:assert/strict'),cp=require('node:child_process');
+const base=__dirname,canon='C:/Users/liama/Desktop/Nichos/recuperacion-tecnica',hub='C:/Users/liama/Desktop/Nichos-hub',archive=hub+'/docs/recuperacion-tecnica/N03',impl=p.join(base,'../implementacion-local');
+const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
+const readJson=f=>JSON.parse(fs.readFileSync(f,'utf8').replace(/^\uFEFF/,''));
+const write=(f,x)=>{fs.mkdirSync(p.dirname(f),{recursive:true});fs.writeFileSync(f,typeof x==='string'||Buffer.isBuffer(x)?x:JSON.stringify(x,null,2),{flag:'wx'});};
+const walk=d=>fs.readdirSync(d,{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(p.join(d,e.name)):[p.join(d,e.name)]);
+const manifest=d=>walk(d).map(f=>({ruta:p.relative(hub,f).replaceAll('\\','/'),sha256:hash(fs.readFileSync(f))})).sort((a,b)=>a.ruta.localeCompare(b.ruta));
+const producto=manifest(hub+'/src');
+const expected=readJson(p.join(impl,'PRODUCTO-ANTES.json')).map(f=>({ruta:f.ruta.replaceAll('\\','/'),sha256:f.ruta.replaceAll('\\','/')==='src/components/client-config-tab.tsx'?'50617ec18ff67ebe93f9b100e5e7926f3a44e749c55f61ba2c65b38266e9a8f8':f.sha256})).sort((a,b)=>a.ruta.localeCompare(b.ruta));
+assert.deepEqual(producto,expected);
+const evidencias=readJson(p.join(impl,'EVIDENCIA.json'));
+for(const f of evidencias)assert.equal(hash(fs.readFileSync(p.join(impl,f.ruta))),f.sha256,f.ruta);
+const prep=readJson(p.join(base,'../continuacion/EVIDENCIA.json'));
+for(const f of prep)assert.equal(hash(fs.readFileSync(f.ruta)),f.sha256,f.ruta);
+const prevArchive=readJson(p.join(impl,'ARCHIVO.json'));
+for(const f of prevArchive)assert.equal(hash(fs.readFileSync(f.destino)),f.sha256,f.destino);
+write(p.join(base,'PRODUCTO-ANTES.json'),producto);
+write(p.join(base,'GIT-ANTES.txt'),cp.execFileSync('git',['status','--short'],{cwd:hub,encoding:'utf8'}));
+const method='C:/Users/liama/Documents/ChatGPT/Test ML/tester-mercado-libre/metodo/METODO.md';
+assert.equal(hash(fs.readFileSync(method)),'f090f5f8e5429bc7fcb74d187e105a14e3d1153d37d40b9036436b0e885b0c7d');
+// Incorporar el hallazgo de revisión a la propuesta, con preimagen física.
+const proposal=p.join(base,'SIGUIENTE-ACCION.md'),oldProposal=fs.readFileSync(proposal);
+write(p.join(base,'preimagenes/SIGUIENTE-ACCION-inicial.md'),oldProposal);
+fs.writeFileSync(proposal,oldProposal.toString('utf8').replace('valores admitidos, ausencia, representación','valores admitidos, ausencia, null, valores inválidos, representación'));
+write(p.join(base,'REVISION.md'),'# Revisión de la selección y del descuento\n\nRevisor independiente interno Newton, agente existente refutacion_wnext, lectura del balance y deuda adjudicada. Sin BLOCKERS para proponer L01. MATERIAL incorporado: no convertir diagnóstico histórico en defecto vigente ni elegir precedencia nested/top por preferencia; verificar conexión antes de fijar expectativas, incluir ausencia/null/inválidos/conflictos y pedir decisión si hay políticas alternativas. La propuesta contiene ese freno. NON-BLOCKING: vigencia de fuentes L01 se comprobará durante su futura preparación; no se reconstruye auditoría ahora.\n\nLa selección no reabre L02, L03, D05, L05 ni L06. Sólo se descuenta interfaz L03 aceptada. Descuento futuro L01 limitado a conexión local comprobada; N08/N10 y migraciones quedan fuera. No representa aceptación externa nueva de la propuesta.\n');
+const records=['informe/N03/cierre-sesion-v1/RETOMA.md','informe/N03/reconciliacion-v1/BALANCE.md','informe/N03/reconciliacion-v1/SIGUIENTE-ACCION.md','indice/tareas/N03.md','indice/README.md','indice/CALENDARIO.md'];
+const links=['ACEPTACION.md','SIGUIENTE-ACCION.md'];
+const entries=[];
+for(const rel of records)for(const [kind,root] of [['canonico',canon],['archivo',archive]]){
+ const dest=p.join(root,rel),bytes=fs.readFileSync(dest),backup=p.join(base,'preimagenes/registros',kind,rel);
+ write(backup,bytes);entries.push({rel,kind,dest,backup,before:hash(bytes),bytes});
+}
+write(p.join(base,'FREEZE.json'),{utc:new Date().toISOString(),scope:'Documentos de aceptación y continuidad: sin cambio de producto ni ejecución L01',gates:['P0 vigencia y aceptación acotada','P1 descuento y registros','P2 propuesta única y conservación'],precondiciones:'PASS',producto:producto.length,evidencias:evidencias.length,preparacion:prep.length,archivoPrevio:prevArchive.length,fuentes:links.map(ruta=>({ruta,sha256:hash(fs.readFileSync(p.join(base,ruta)))}))});
+for(const e of entries){
+ const root=e.kind==='canonico'?canon:archive;
+ const paths=links.map(name=>p.relative(p.dirname(e.dest),p.join(root,'informe/N03/L03-v1/aceptacion-local',name)).replaceAll('\\','/'));
+ const text='**L03 aceptada localmente y descontada sólo su interfaz.** Liam aceptó retirar los tres controles y explicar la política; datos, guardado y D05 conservados, con los límites SSR/PUT interceptado y lint previo sin regresión. D13/NOT-A restante y N03 siguen abiertos. Única siguiente acción propuesta, aún no ejecutada: preparar contrato local L01 de business.mode/businessMode entre hub y consumidores wizard/template, sin elegir precedencia ni autorizar migraciones. Entregas aceptadas intactas. Techo **90% TOTAL compartido de N03**, último **10% reservado a N04**, observado 84%; sin resets, instalaciones, efectos externos, push ni deploy. Etapas posteriores y condición de prestaciones por tenant antes del despliegue conservadas. Esta adenda sustituye sólo el pendiente de revisión/descuento de la interfaz L03 y la siguiente acción anterior; los cortes inferiores son históricos. [Aceptación y límites]('+paths[0]+'). [Única siguiente propuesta]('+paths[1]+').';
+ let before=e.bytes.toString('utf8');
+ if(e.rel.endsWith('/BALANCE.md')){
+  const row=/^\| L03 y D13\/NOT-A:[^\r\n]+/m;
+  assert.ok(row.test(before));
+  before=before.replace(row,'| L03 interfaz aceptada / D13–NOT-A restante | Descontada sólo la interfaz L03: retirados los tres controles y añadida explicación; datos y D05 conservados. No se exige de nuevo conectar esos toggles. Otros eventos y obligaciones NOT continúan pendientes según adjudicación. [Aceptación](../L03-v1/aceptacion-local/ACEPTACION.md). | N06/N07 reminder_24h y staff cuando aplique; N04 destinatario/identidad; N07 idioma, entrega, dedup/retry y fallos reales. Auto-reply, soporte, resumen y proveedores: N01 identifica compromiso y Liam decide excepción; N05/N07/N08 verifican recorrido. |');
+ }
+ const at=before.indexOf('\n')+1;assert.ok(at>0);
+ fs.writeFileSync(e.dest,before.slice(0,at)+'\r\n'+text+'\r\n\r\n'+before.slice(at));
+ e.after=hash(fs.readFileSync(e.dest));delete e.bytes;
+}
+const hist='historial/2026-09-10-N03-L03-aceptacion-local.md';
+const history='# N03 — aceptación local L03 de interfaz\n\nLiam aceptó retirar tres controles y explicar política, con límites revisados. Se descuenta únicamente esa interfaz; D05 y demás obligaciones NOT siguen en sus alcances. [Aceptación](../informe/N03/L03-v1/aceptacion-local/ACEPTACION.md). Se reutilizó evidencia por hashes, sin repetir suites.\n\nÚnica siguiente propuesta: [contrato local L01 del modo de negocio](../informe/N03/L03-v1/aceptacion-local/SIGUIENTE-ACCION.md), no ejecutado; no hay otra reparación. N03 abierta. Techo 90% TOTAL, reserva último 10% N04, observado 84%, sin resets ni efectos externos/push/deploy. Etapas posteriores y condición por tenant conservadas.\n';
+write(p.join(canon,hist),history);write(p.join(archive,hist),history);
+assert.deepEqual(manifest(hub+'/src'),producto);
+for(const f of evidencias)assert.equal(hash(fs.readFileSync(p.join(impl,f.ruta))),f.sha256);
+for(const e of entries){assert.equal(hash(fs.readFileSync(e.backup)),e.before);assert.equal(hash(fs.readFileSync(e.dest)),e.after);}
+write(p.join(base,'REGISTROS.json'),entries);
+write(p.join(base,'RESULTADO.json'),{result:'GREEN',gates:3,total:3,L03:'aceptada sólo interfaz y descontada',N03:'abierta',siguiente:'Proponer preparación local L01; no ejecutada',productoConservado:producto.length,evidenciasConservadas:evidencias.length,preparacionConservada:prep.length,archivoPrevioConservado:prevArchive.length,registros:entries.length,preimagenes:entries.length,blockers:[],techoTotal:90,reservaN04:10,consumoObservado:84,resets:0});
+const evidence=walk(base).map(f=>({ruta:p.relative(base,f).replaceAll('\\','/'),sha256:hash(fs.readFileSync(f))}));
+write(p.join(base,'EVIDENCIA.json'),evidence);
+const destBase=p.join(archive,'informe/N03/L03-v1/aceptacion-local'),copies=[];
+for(const f of walk(base)){
+ const dest=p.join(destBase,p.relative(base,f))+(['.cjs','.mjs','.js','.ts','.tsx','.ps1'].includes(p.extname(f))?'.source':'');
+ write(dest,fs.readFileSync(f));assert.equal(hash(fs.readFileSync(dest)),hash(fs.readFileSync(f)));copies.push({origen:f,destino:dest,sha256:hash(fs.readFileSync(f))});
+}
+write(p.join(base,'ARCHIVO.json'),copies);write(p.join(destBase,'ARCHIVO.json'),copies);
+for(const e of entries){const contents=fs.readFileSync(e.dest,'utf8');for(const label of ['Aceptación y límites','Única siguiente propuesta']){const match=contents.match(new RegExp('\\['+label+'\\]\\(([^)]+)\\)'));assert.ok(match);assert.ok(fs.existsSync(p.resolve(p.dirname(e.dest),match[1])));}}
+console.log(JSON.stringify({result:'GREEN',gates:'3/3',productoConservado:producto.length,registros:entries.length,archivados:copies.length}));

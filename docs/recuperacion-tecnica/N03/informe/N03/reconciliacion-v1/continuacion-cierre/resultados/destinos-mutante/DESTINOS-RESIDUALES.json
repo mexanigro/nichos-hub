@@ -1,0 +1,436 @@
+{
+  "result": "RED",
+  "checks": 90,
+  "failures": [
+    {
+      "id": "contradiccion/runtime/urls",
+      "actual": [
+        "https://firestore.googleapis.com/v1/projects/p-b/databases/default/documents/clients/n03",
+        "https://firestore.googleapis.com/v1/projects/p-b/databases/default/documents/config/n03"
+      ],
+      "expected": []
+    },
+    {
+      "id": "contradiccion/runtime/error",
+      "expected": "Firestore destination mismatch"
+    },
+    {
+      "id": "contradiccion/runtime/return",
+      "actual": {
+        "status": "active",
+        "provider": "none"
+      }
+    },
+    {
+      "id": "contradiccion/guard/urls",
+      "actual": [
+        "https://firestore.googleapis.com/v1/projects/p-b/databases/default/documents/clients/n03"
+      ],
+      "expected": []
+    },
+    {
+      "id": "contradiccion/guard/error",
+      "expected": "Firestore destination mismatch"
+    },
+    {
+      "id": "contradiccion/guard/return",
+      "actual": "active"
+    },
+    {
+      "id": "contradiccion/credentials/urls",
+      "actual": [
+        "https://firestore.googleapis.com/v1/projects/p-b/databases/default/documents/payment_credentials/n03"
+      ],
+      "expected": []
+    },
+    {
+      "id": "contradiccion/credentials/error",
+      "expected": "Firestore destination mismatch"
+    },
+    {
+      "id": "contradiccion/credentials/return",
+      "actual": {
+        "status": "active",
+        "defaultPaymentProvider": "none"
+      }
+    },
+    {
+      "id": "admin-general/runtime/urls",
+      "actual": [
+        "https://firestore.googleapis.com/v1/projects/p-a/databases/default/documents/clients/n03",
+        "https://firestore.googleapis.com/v1/projects/p-a/databases/default/documents/config/n03"
+      ],
+      "expected": []
+    },
+    {
+      "id": "admin-general/runtime/error",
+      "expected": "Firestore destination mismatch"
+    },
+    {
+      "id": "admin-general/runtime/return",
+      "actual": {
+        "status": "active",
+        "provider": "none"
+      }
+    },
+    {
+      "id": "admin-general/guard/urls",
+      "actual": [
+        "https://firestore.googleapis.com/v1/projects/p-a/databases/default/documents/clients/n03"
+      ],
+      "expected": []
+    },
+    {
+      "id": "admin-general/guard/error",
+      "expected": "Firestore destination mismatch"
+    },
+    {
+      "id": "admin-general/guard/return",
+      "actual": "active"
+    },
+    {
+      "id": "admin-general/credentials/urls",
+      "actual": [
+        "https://firestore.googleapis.com/v1/projects/p-a/databases/default/documents/payment_credentials/n03"
+      ],
+      "expected": []
+    },
+    {
+      "id": "admin-general/credentials/error",
+      "expected": "Firestore destination mismatch"
+    },
+    {
+      "id": "admin-general/credentials/return",
+      "actual": {
+        "status": "active",
+        "defaultPaymentProvider": "none"
+      }
+    },
+    {
+      "id": "admin-otro/runtime/urls",
+      "actual": [
+        "https://firestore.googleapis.com/v1/projects/p-a/databases/default/documents/clients/n03",
+        "https://firestore.googleapis.com/v1/projects/p-a/databases/default/documents/config/n03"
+      ],
+      "expected": []
+    },
+    {
+      "id": "admin-otro/runtime/error",
+      "expected": "Firestore destination mismatch"
+    },
+    {
+      "id": "admin-otro/runtime/return",
+      "actual": {
+        "status": "active",
+        "provider": "none"
+      }
+    },
+    {
+      "id": "admin-otro/guard/urls",
+      "actual": [
+        "https://firestore.googleapis.com/v1/projects/p-a/databases/default/documents/clients/n03"
+      ],
+      "expected": []
+    },
+    {
+      "id": "admin-otro/guard/error",
+      "expected": "Firestore destination mismatch"
+    },
+    {
+      "id": "admin-otro/guard/return",
+      "actual": "active"
+    },
+    {
+      "id": "admin-otro/credentials/urls",
+      "actual": [
+        "https://firestore.googleapis.com/v1/projects/p-a/databases/default/documents/payment_credentials/n03"
+      ],
+      "expected": []
+    },
+    {
+      "id": "admin-otro/credentials/error",
+      "expected": "Firestore destination mismatch"
+    },
+    {
+      "id": "admin-otro/credentials/return",
+      "actual": {
+        "status": "active",
+        "defaultPaymentProvider": "none"
+      }
+    }
+  ],
+  "source": "d20a45694e6cd2dd69040e8f2d57eafe00b83a22952a3a59ec5cff9cb0d8486d",
+  "rows": [
+    {
+      "id": "coinciden",
+      "kind": "runtime",
+      "result": {
+        "status": "active",
+        "provider": "none"
+      },
+      "calls": [
+        "https://firestore.googleapis.com/v1/projects/p-a/databases/default/documents/clients/n03",
+        "https://firestore.googleapis.com/v1/projects/p-a/databases/default/documents/config/n03"
+      ]
+    },
+    {
+      "id": "coinciden",
+      "kind": "guard",
+      "result": "active",
+      "calls": [
+        "https://firestore.googleapis.com/v1/projects/p-a/databases/default/documents/clients/n03"
+      ]
+    },
+    {
+      "id": "coinciden",
+      "kind": "credentials",
+      "result": {
+        "status": "active",
+        "defaultPaymentProvider": "none"
+      },
+      "calls": [
+        "https://firestore.googleapis.com/v1/projects/p-a/databases/default/documents/payment_credentials/n03"
+      ]
+    },
+    {
+      "id": "contradiccion",
+      "kind": "runtime",
+      "result": {
+        "status": "active",
+        "provider": "none"
+      },
+      "calls": [
+        "https://firestore.googleapis.com/v1/projects/p-b/databases/default/documents/clients/n03",
+        "https://firestore.googleapis.com/v1/projects/p-b/databases/default/documents/config/n03"
+      ]
+    },
+    {
+      "id": "contradiccion",
+      "kind": "guard",
+      "result": "active",
+      "calls": [
+        "https://firestore.googleapis.com/v1/projects/p-b/databases/default/documents/clients/n03"
+      ]
+    },
+    {
+      "id": "contradiccion",
+      "kind": "credentials",
+      "result": {
+        "status": "active",
+        "defaultPaymentProvider": "none"
+      },
+      "calls": [
+        "https://firestore.googleapis.com/v1/projects/p-b/databases/default/documents/payment_credentials/n03"
+      ]
+    },
+    {
+      "id": "admin-general",
+      "kind": "runtime",
+      "result": {
+        "status": "active",
+        "provider": "none"
+      },
+      "calls": [
+        "https://firestore.googleapis.com/v1/projects/p-a/databases/default/documents/clients/n03",
+        "https://firestore.googleapis.com/v1/projects/p-a/databases/default/documents/config/n03"
+      ]
+    },
+    {
+      "id": "admin-general",
+      "kind": "guard",
+      "result": "active",
+      "calls": [
+        "https://firestore.googleapis.com/v1/projects/p-a/databases/default/documents/clients/n03"
+      ]
+    },
+    {
+      "id": "admin-general",
+      "kind": "credentials",
+      "result": {
+        "status": "active",
+        "defaultPaymentProvider": "none"
+      },
+      "calls": [
+        "https://firestore.googleapis.com/v1/projects/p-a/databases/default/documents/payment_credentials/n03"
+      ]
+    },
+    {
+      "id": "admin-otro",
+      "kind": "runtime",
+      "result": {
+        "status": "active",
+        "provider": "none"
+      },
+      "calls": [
+        "https://firestore.googleapis.com/v1/projects/p-a/databases/default/documents/clients/n03",
+        "https://firestore.googleapis.com/v1/projects/p-a/databases/default/documents/config/n03"
+      ]
+    },
+    {
+      "id": "admin-otro",
+      "kind": "guard",
+      "result": "active",
+      "calls": [
+        "https://firestore.googleapis.com/v1/projects/p-a/databases/default/documents/clients/n03"
+      ]
+    },
+    {
+      "id": "admin-otro",
+      "kind": "credentials",
+      "result": {
+        "status": "active",
+        "defaultPaymentProvider": "none"
+      },
+      "calls": [
+        "https://firestore.googleapis.com/v1/projects/p-a/databases/default/documents/payment_credentials/n03"
+      ]
+    },
+    {
+      "id": "solo-server",
+      "kind": "runtime",
+      "result": {
+        "status": "active",
+        "provider": "stripe"
+      },
+      "calls": []
+    },
+    {
+      "id": "solo-server",
+      "kind": "guard",
+      "result": null,
+      "calls": []
+    },
+    {
+      "id": "solo-server",
+      "kind": "credentials",
+      "result": {},
+      "calls": []
+    },
+    {
+      "id": "sin-token-contradictorio",
+      "kind": "runtime",
+      "result": {
+        "status": "active",
+        "provider": "stripe"
+      },
+      "calls": []
+    },
+    {
+      "id": "sin-token-contradictorio",
+      "kind": "guard",
+      "result": null,
+      "calls": []
+    },
+    {
+      "id": "sin-token-contradictorio",
+      "kind": "credentials",
+      "result": {},
+      "calls": []
+    },
+    {
+      "id": "blancos",
+      "kind": "runtime",
+      "result": {
+        "status": "active",
+        "provider": "none"
+      },
+      "calls": [
+        "https://firestore.googleapis.com/v1/projects/p-c/databases/(default)/documents/clients/n03",
+        "https://firestore.googleapis.com/v1/projects/p-c/databases/(default)/documents/config/n03"
+      ]
+    },
+    {
+      "id": "blancos",
+      "kind": "guard",
+      "result": "active",
+      "calls": [
+        "https://firestore.googleapis.com/v1/projects/p-c/databases/(default)/documents/clients/n03"
+      ]
+    },
+    {
+      "id": "blancos",
+      "kind": "credentials",
+      "result": {
+        "status": "active",
+        "defaultPaymentProvider": "none"
+      },
+      "calls": [
+        "https://firestore.googleapis.com/v1/projects/p-c/databases/(default)/documents/payment_credentials/n03"
+      ]
+    },
+    {
+      "id": "solo-vite",
+      "kind": "runtime",
+      "result": {
+        "status": "active",
+        "provider": "none"
+      },
+      "calls": [
+        "https://firestore.googleapis.com/v1/projects/p-a/databases/named/documents/clients/n03",
+        "https://firestore.googleapis.com/v1/projects/p-a/databases/named/documents/config/n03"
+      ]
+    },
+    {
+      "id": "solo-vite",
+      "kind": "guard",
+      "result": "active",
+      "calls": [
+        "https://firestore.googleapis.com/v1/projects/p-a/databases/named/documents/clients/n03"
+      ]
+    },
+    {
+      "id": "solo-vite",
+      "kind": "credentials",
+      "result": {
+        "status": "active",
+        "defaultPaymentProvider": "none"
+      },
+      "calls": [
+        "https://firestore.googleapis.com/v1/projects/p-a/databases/named/documents/payment_credentials/n03"
+      ]
+    },
+    {
+      "id": "vacio",
+      "kind": "runtime",
+      "result": {
+        "status": "active",
+        "provider": "stripe"
+      },
+      "calls": []
+    },
+    {
+      "id": "vacio",
+      "kind": "guard",
+      "result": null,
+      "calls": []
+    },
+    {
+      "id": "vacio",
+      "kind": "credentials",
+      "result": {},
+      "calls": []
+    },
+    {
+      "id": "ausencia",
+      "kind": "runtime",
+      "result": {
+        "status": "active",
+        "provider": "stripe"
+      },
+      "calls": []
+    },
+    {
+      "id": "ausencia",
+      "kind": "guard",
+      "result": null,
+      "calls": []
+    },
+    {
+      "id": "ausencia",
+      "kind": "credentials",
+      "result": {},
+      "calls": []
+    }
+  ],
+  "limite": "Funciones/callbacks reales con fetch y token interceptados; no aplicación alojada ni reglas ni DB."
+}

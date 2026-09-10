@@ -1,0 +1,5 @@
+TypeError: Cannot read properties of undefined (reading 'body')
+    at /control/contrato.cjs:42:704
+    at call (/control/contrato.cjs:33:452)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async run (/control/contrato.cjs:42:398)

@@ -1,0 +1,156 @@
+const fs = require('fs'), path = require('path'), crypto = require('crypto'), assert = require('assert/strict');
+const req = require('module').createRequire('/deps/package.json');
+const ts = req('typescript'), express = req('express'), apps = req('firebase-admin/app'), sdk = req('firebase-admin/firestore');
+const sourceRoot = '/template', sourceHashes = {}, rows = [], failures = [];
+let checks = 0;
+const mutation = process.argv[2] || null;
+const read = file => { const text = fs.readFileSync(sourceRoot + '/' + file, 'utf8'); sourceHashes[file] = crypto.createHash('sha256').update(text).digest('hex'); return text; };
+const compile = text => ts.transpileModule(text, { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, esModuleInterop: true } }).outputText;
+const check = (id, actual, expected) => { checks++; try { assert.deepEqual(actual, expected); } catch { failures.push({ id, actual, expected }); } };
+const keys = crypto.generateKeyPairSync('rsa', { modulusLength: 2048, privateKeyEncoding: { type: 'pkcs8', format: 'pem' }, publicKeyEncoding: { type: 'spki', format: 'pem' } });
+function jwt(project) {
+ const now = Math.floor(Date.now() / 1000), b64 = x => Buffer.from(JSON.stringify(x)).toString('base64url');
+ const raw = b64({ alg: 'RS256', kid: 'synthetic' }) + '.' + b64({ iss: 'https://securetoken.google.com/' + project, aud: project, sub: 'admin', email: 'admin@example.invalid', email_verified: true, exp: now + 3600, iat: now - 60 });
+ return raw + '.' + crypto.sign('RSA-SHA256', Buffer.from(raw), keys.privateKey).toString('base64url');
+}
+const cases = [
+ { id: 'equal', browser: 'backend-project', status: 'active', expected: 200, journey: true },
+ { id: 'separate', browser: 'browser-project', status: 'active', expected: 200, journey: true },
+ { id: 'trial-separated', browser: 'browser-project', status: 'trial', expected: 200 },
+ { id: 'suspended', status: 'suspended', expected: 423 },
+ { id: 'archived', status: 'archived', expected: 423 },
+ { id: 'state-missing', missing: true, expected: 503 },
+ { id: 'state-invalid', status: 'unexpected', expected: 503 },
+ { id: 'state-error', stateError: true, expected: 503 },
+ { id: 'state-timeout', timeout: true, expected: 503 },
+ { id: 'origin', status: 'active', badOrigin: true, expected: 403 },
+ { id: 'auth', status: 'active', noAuth: true, expected: 401 },
+ { id: 'membership-tenant', status: 'active', memberTenant: 'other', expected: 403 },
+ { id: 'body-limit', status: 'active', oversized: true, expected: 413 },
+ { id: 'rate', status: 'active', rate: true, expected: 429 },
+];
+function select(file) {
+ const source = read(file), ast = ts.createSourceFile(file, source, 99, true), functions = new Map(), variables = new Map(), registrations = [];
+ const middlewareNames = ['securityHeaders', 'requireTrustedOrigin', 'rateLimit', 'attachTenantContext', 'enforceClientActive'];
+ function walk(n) {
+  if (ts.isFunctionDeclaration(n) && n.name) functions.set(n.name.text, n.getText(ast));
+  if (ts.isVariableDeclaration(n) && ts.isIdentifier(n.name)) variables.set(n.name.text, n.getText(ast));
+  if (ts.isCallExpression(n)) {
+   const called = n.expression.getText(ast), args = [...n.arguments];
+   if (called === 'app.use' && (args.some(a => middlewareNames.includes(a.getText(ast))) || args.some(a => ts.isCallExpression(a) && a.expression.getText(ast) === 'express.json'))) registrations.push(n);
+   if (['app.get', 'app.post', 'app.patch'].includes(called) && ['/api/book', '/api/crm/appointments', '/api/crm/appointments/:id', '/api/create-checkout-session'].includes(args[0]?.text)) registrations.push(n);
+  }
+  ts.forEachChild(n, walk);
+ }
+ walk(ast); registrations.sort((a, b) => a.getStart(ast) - b.getStart(ast));
+ assert.equal(registrations.filter(n => n.expression.getText(ast) === 'app.use').length, 6, file + ' applicable middleware population');
+ assert.equal(registrations.length, 10, file + ' route population');
+ const fnNames = ['getAdminDb', 'loadAdminFirestore', 'sanitizeText', 'isValidEmail', 'getClientIp', 'getAllowedOrigins', 'resolveRequestClientId', 'securityHeaders', 'requireTrustedOrigin', 'rateLimit', 'attachTenantContext', 'lookupAdminUser', 'requireCrmAdminAuth', 'getClientRuntimeState', 'decodeFirestoreValue'];
+ const varNames = ['RATE_LIMIT_WINDOW_MS', 'RATE_LIMIT_MAX_PER_WINDOW', 'rateLimitStore', 'clientStateCache', 'getPaymentCredentials', 'enforceClientActive', 'crmAgenda'];
+ return { source, declarations: fnNames.filter(n => functions.has(n)).map(n => functions.get(n)).join('\n') + '\n' + varNames.filter(n => variables.has(n)).map(n => 'let ' + variables.get(n) + ';').join('\n'), registrations: registrations.map(n => ({ text: n.getText(ast), line: ast.getLineAndCharacterOfPosition(n.getStart(ast)).line + 1 })) };
+}
+(async () => {
+ for (const runtime of ['server.ts', 'api/index.ts']) {
+  const selected = select(runtime);
+  for (const c of cases) {
+   for (const app of apps.getApps()) await apps.deleteApp(app);
+   const trace = [], writes = [], gatewayCalls = [], store = new Map();
+   const identity = ref => ({ project: ref.firestore.projectId, database: ref.firestore.databaseId, path: ref.path });
+   const key = x => JSON.stringify([x.project, x.database, x.path]);
+   const backendKey = p => JSON.stringify(['backend-project', 'backend-db', p]);
+   if (!c.missing) store.set(backendKey('clients/tenant'), { status: c.status || 'active', defaultPaymentProvider: 'stripe' });
+   store.set(backendKey('config/tenant'), { payment: { mode: 'deposit', depositAmount: 2500, currency: 'ILS', provider: 'stripe' } });
+   store.set(backendKey('admin_users/admin@example.invalid'), { clientId: c.memberTenant || 'tenant', role: 'owner', status: 'active' });
+   store.set(backendKey('payment_credentials/tenant'), { credentials: { secretKey: 'synthetic-stripe-key' } });
+   const browserProject = c.browser || 'backend-project';
+   if (browserProject !== 'backend-project') store.set(JSON.stringify([browserProject, 'backend-db', 'clients/tenant']), { status: 'active' });
+   const stateRead = async ident => {
+    trace.push({ op: 'read', ...ident });
+    if (ident.path === 'clients/tenant') {
+     if (c.stateError) throw new Error('synthetic-state-error');
+     if (c.timeout) return new Promise(() => {});
+    }
+    return store.get(key(ident));
+   };
+   sdk.DocumentReference.prototype.get = async function () { const data = await stateRead(identity(this)); return { id: this.id, exists: data !== undefined, data: () => data }; };
+   sdk.DocumentReference.prototype.update = async function (patch) { const ident = identity(this); writes.push({ op: 'update', ...ident, patch }); store.set(key(ident), { ...store.get(key(ident)), ...patch }); };
+   sdk.Query.prototype.get = async function () {
+    const opts = this._queryOptions, namespace = { project: this.firestore.projectId, database: this.firestore.databaseId };
+    trace.push({ op: 'query', ...namespace, collection: opts.collectionId });
+    if (opts.collectionId === 'customers') return { empty: false, docs: [] };
+    let found = [...store].filter(([k, data]) => { const [project, database, p] = JSON.parse(k); return project === namespace.project && database === namespace.database && p.startsWith(opts.collectionId + '/') && opts.filters.every(f => { assert.equal(f.op, 'EQUAL'); return data[f.field.segments.join('.')] === f.value; }); }).map(([k, data]) => ({ id: JSON.parse(k)[2].split('/')[1], data: () => data }));
+    for (const order of opts.fieldOrders) found.sort((a, b) => { const field = order.field.segments.join('.'), av = a.data()[field]?.toMillis?.() ?? 0, bv = b.data()[field]?.toMillis?.() ?? 0; return (av - bv) * (order.direction === 'DESCENDING' ? -1 : 1); });
+    if (opts.limit) found = found.slice(0, opts.limit);
+    return { empty: !found.length, docs: found };
+   };
+   const wrappedSdk = { ...sdk, getFirestore(app, database) {
+    const db = sdk.getFirestore(app, database);
+    db.runTransaction = async callback => {
+     const pending = [];
+     const result = await callback({ get: ref => ref.get(), set(ref, data) { pending.push([ref, data, false]); return this; }, update(ref, data) { pending.push([ref, data, true]); return this; } });
+     for (const [ref, value, merge] of pending) { const ident = identity(ref), material = { ...value }; if ('createdAt' in material) material.createdAt = sdk.Timestamp.fromMillis(1800000000000); store.set(key(ident), { ...(merge ? store.get(key(ident)) : {}), ...material }); writes.push({ op: merge ? 'txupdate' : 'txset', ...ident }); }
+     return result;
+    };
+    return db;
+   } };
+   const env = { NODE_ENV: 'production', APP_URL: 'https://site.example.invalid', FIREBASE_ADMIN_PROJECT_ID: 'backend-project', FIREBASE_PROJECT_ID: 'backend-project', FIREBASE_ADMIN_CLIENT_EMAIL: 'synthetic@example.invalid', FIREBASE_ADMIN_PRIVATE_KEY: keys.privateKey, FIREBASE_DATABASE_ID: 'backend-db', VITE_FIREBASE_PROJECT_ID: browserProject, VITE_FIREBASE_DATABASE_ID: 'browser-db', API_RATE_LIMIT_MAX: c.rate ? '1' : '60' };
+   const wire = data => ({ fields: Object.fromEntries(Object.entries(data || {}).map(([k, v]) => [k, typeof v === 'string' ? { stringValue: v } : { mapValue: wire(v) }])) });
+   const interceptedFetch = async url => {
+    if (url === 'https://www.googleapis.com/robot/v1/metadata/x509/securetoken@system.gserviceaccount.com') return { ok: true, headers: { get: () => null }, json: async () => ({ synthetic: keys.publicKey }) };
+    const m = /^https:\/\/firestore.googleapis.com\/v1\/projects\/([^/]+)\/databases\/([^/]+)\/documents\/(.+)$/.exec(url);
+    assert.ok(m, 'unexpected external fetch'); const data = await stateRead({ project: m[1], database: m[2], path: m[3] }); return { ok: data !== undefined, json: async () => wire(data) };
+   };
+   const modules = new Map();
+   function load(file) {
+    if (modules.has(file)) return modules.get(file);
+    const m = { exports: {} }; modules.set(file, m.exports);
+    const customRequire = id => id === 'firebase-admin/app' ? apps : id === 'firebase-admin/firestore' ? wrappedSdk : id.startsWith('.') ? load(path.posix.join(path.posix.dirname(file), id.replace(/\.js$/, '') + '.ts')) : req(id);
+    new Function('require', 'module', 'exports', 'process', 'fetch', 'console', compile(read(file)))(customRequire, m, m.exports, { env }, interceptedFetch, { log() {}, warn() {}, error() {} });
+    return m.exports;
+   }
+   const dependencies = { ...load('src/lib/api/payment-gateways.ts'), ...load('src/lib/admin-users.ts'), ...load('src/lib/api/booking-handler.ts'), ...load('src/lib/api/crm-appointments-handler.ts'), ...load('src/lib/api/checkout-handler.ts') };
+   const realGuard = load('src/lib/api/tenant-access.ts').createTenantAccessGuard;
+   const createTenantAccessGuard = callback => mutation === 'bypass-tenant' ? (_req, _res, next) => next() : mutation === 'reject-valid' ? (_req, res) => res.status(503).json({ error: 'mutant reject' }) : realGuard(callback);
+   const app = express();
+   const bindings = { ...dependencies, app, express, process: { env }, console: { log() {}, warn() {}, error() {} }, CLIENT_ID: 'tenant', port: 3000, createTenantAccessGuard, requireAdminAuthGate: load('src/lib/api/admin-auth.ts').requireAdminAuth, require: id => id === 'firebase-admin/app' ? apps : id === 'firebase-admin/firestore' ? wrappedSdk : req(id), fetch: interceptedFetch, getFirestoreAccessToken: async () => 'synthetic-token', firestoreRestGetDocument: async (collection, id) => { const data = await stateRead({ project: 'backend-project', database: 'backend-db', path: collection + '/' + id }); return data === undefined ? null : wire(data); } };
+   const gateway = async provider => { trace.push({ op: 'resolve-provider', provider }); return { createCheckoutSession: async params => { gatewayCalls.push(params); return { sessionId: 'synthetic-session', redirectUrl: 'https://checkout.example.invalid' }; } }; };
+   bindings.resolvePaymentGateway = gateway;
+   const assembled = selected.declarations + '\n' + selected.registrations.map(x => x.text + ';').join('\n');
+   new Function(...Object.keys(bindings), compile(assembled))(...Object.values(bindings));
+   const server = app.listen(0, '127.0.0.1'); await new Promise((resolve, reject) => { server.once('listening', resolve); server.once('error', reject); });
+   const responses = [], authorization = 'Bearer ' + jwt(browserProject);
+   async function request(method, route, body, overrides = {}) {
+    const headers = { 'Content-Type': 'application/json', Origin: c.badOrigin ? 'https://attacker.invalid' : 'https://site.example.invalid', ...(c.noAuth ? {} : { Authorization: authorization }), ...overrides };
+    const r = await fetch('http://127.0.0.1:' + server.address().port + route, { method, headers, ...(body === undefined ? {} : { body: JSON.stringify(body) }) });
+    const text = await r.text(); let result; try { result = JSON.parse(text); } catch { result = { nonJson: text.slice(0, 90) }; }
+    responses.push({ method, route, status: r.status, body: result, nosniff: r.headers.get('x-content-type-options') }); return { status: r.status, body: result };
+   }
+   try {
+    if (c.journey) {
+     const booked = await request('POST', '/api/book', { customerName: 'Synthetic appointment', customerEmail: 'a@example.invalid', customerPhone: '123', serviceId: 's', staffId: 'staff', date: '2026-10-10', time: '10:00', duration: 30, status: 'confirmed' });
+     check(runtime + '/' + c.id + '/book', booked.status, 200);
+     const id = booked.body.appointmentId;
+     if (id) {
+      const list = await request('GET', '/api/crm/appointments'); check(runtime + '/' + c.id + '/list', list.status, 200); check(runtime + '/' + c.id + '/same-id', list.body.appointments?.map(x => x.id), [id]);
+      const patch = await request('PATCH', '/api/crm/appointments/' + id, { date: '2026-10-11', time: '11:00' }); check(runtime + '/' + c.id + '/patch', patch.status, 200); check(runtime + '/' + c.id + '/same-storage', store.get(backendKey('appointments/' + id))?.date, '2026-10-11');
+      // Precio autorizado preexistente del CRM: no se atribuye su escritura a /api/book.
+      store.set(backendKey('appointments/' + id), { ...store.get(backendKey('appointments/' + id)), priceCents: 15000 }); trace.push({ op: 'fixture-authorized-price', id });
+      const checkout = await request('POST', '/api/create-checkout-session', { appointmentId: id, name: 'Service', customerEmail: 'a@example.invalid', price: 1, mode: 'full' }); check(runtime + '/' + c.id + '/checkout', checkout.status, 200); check(runtime + '/' + c.id + '/amount', gatewayCalls[0]?.amountCents, 2500); check(runtime + '/' + c.id + '/currency', gatewayCalls[0]?.currency, 'ils');
+     }
+    } else {
+     if (c.rate) await request('GET', '/api/crm/appointments');
+     const result = c.badOrigin || c.oversized ? await request('POST', '/api/book', { pad: 'x'.repeat(c.oversized ? 40000 : 1) }) : await request('GET', '/api/crm/appointments');
+     check(runtime + '/' + c.id + '/http', result.status, c.expected);
+     check(runtime + '/' + c.id + '/no-writes', writes.length, 0);
+     if (!c.rate && c.expected !== 200) check(runtime + '/' + c.id + '/no-appointment-read', trace.filter(x => x.path?.startsWith('appointments/') || x.collection === 'appointments').length, 0);
+    }
+    check(runtime + '/' + c.id + '/security-headers', responses.every(x => x.nosniff === 'nosniff'), true);
+    if (c.expected === 200) check(runtime + '/' + c.id + '/state-authority', trace.filter(x => x.path === 'clients/tenant').every(x => x.project === 'backend-project' && x.database === 'backend-db'), true);
+   } finally { server.closeAllConnections(); await new Promise(resolve => server.close(resolve)); }
+   rows.push({ runtime, id: c.id, responses, trace, writes, gatewayCalls, registrationOrder: selected.registrations.map(x => ({ line: x.line, text: x.text })) });
+  }
+ }
+ for (const app of apps.getApps()) await apps.deleteApp(app);
+ fs.writeFileSync('/salida/PIPELINE.json', JSON.stringify({ result: failures.length ? 'RED' : 'GREEN', cases: rows.length, checks, failures, rows, sourceHashes, mutation, limits: 'HTTP Express y seis middlewares aplicables en orden AST real; handlers y accessors SDK reales, auth RSA y lookup reales. Store/transacciones/REST/certificados/gateway interceptados. Precio de cita añadido como fixture autorizado tras book. No startup completo, proveedor remoto, rules o concurrencia. API membership REST helper interceptado; su lookup real decide tenant/rol.' }, null, 2));
+ console.log(JSON.stringify({ cases: rows.length, checks, failures: failures.length })); process.exitCode = failures.length ? 1 : 0;
+})().catch(error => { console.error(error.stack); process.exitCode = 2; });

@@ -1,0 +1,13 @@
+{
+  "exit": 0,
+  "command": [
+    "C:\\Program Files\\nodejs\\node.exe",
+    "C:/Users/liama/Desktop/Nichos/Barber-shop-template-main/node_modules/typescript/bin/tsc",
+    "--project",
+    "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\proyecto-base-v1\\implementacion-local\\tsconfig-final.json",
+    "--noEmit",
+    "--incremental",
+    "false"
+  ],
+  "lint": "package.json lint = tsc --noEmit; ejecutado sobre ambos archivos y dependencias transitivas"
+}

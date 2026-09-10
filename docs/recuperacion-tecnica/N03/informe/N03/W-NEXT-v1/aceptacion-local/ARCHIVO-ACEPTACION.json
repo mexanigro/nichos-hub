@@ -1,0 +1,164 @@
+[
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\ACEPTACION-Y-REVISION-EXTERNA.md",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\ACEPTACION-Y-REVISION-EXTERNA.md",
+    "sha256": "3183ec3b5fbdf0f85a5f5d33e5883486f8767a453253bb7096c7300f6c6ef368",
+    "bytes": 3642
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\CONTRATO-DOCUMENTAL.md",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\CONTRATO-DOCUMENTAL.md",
+    "sha256": "fa4a47d250cfb16bfd2797b7edbffbf5f9e910d47400bc91c7d213c2f568a979",
+    "bytes": 1607
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\CUSTODIA-REGISTROS.json",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\CUSTODIA-REGISTROS.json",
+    "sha256": "05787f42cc8b48f03892aaa36fd463c485621f88a053d1fcbd81c638c7ef6a08",
+    "bytes": 7546
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\FREEZE-DOCUMENTAL.json",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\FREEZE-DOCUMENTAL.json",
+    "sha256": "f131c53d92552c507457cbc3cd45820c59bce9a1e048c00cd195f39bc9761a03",
+    "bytes": 392
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\FUENTES-LECTURA.json",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\FUENTES-LECTURA.json",
+    "sha256": "4dcbbd800c14bfbe0df4b265a673476c527e8984db5a62d3f56aff5c59a637f5",
+    "bytes": 925
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\preimagenes-propuesta\\ACEPTACION-Y-REVISION-EXTERNA.md",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\preimagenes-propuesta\\ACEPTACION-Y-REVISION-EXTERNA.md",
+    "sha256": "96686a9ba45a8be1f039ed2425f58beea8c92e29ad59c833d166cd7b03be78e1",
+    "bytes": 3641
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\preimagenes-propuesta\\SIGUIENTE-ACCION.md",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\preimagenes-propuesta\\SIGUIENTE-ACCION.md",
+    "sha256": "455c6f7b2fa4172e123a62c2142fde054859a4195aaf02c67fd9b7543cc25e52",
+    "bytes": 3640
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\preimagenes-registros\\archivo\\indice\\CALENDARIO.md",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\preimagenes-registros\\archivo\\indice\\CALENDARIO.md",
+    "sha256": "08df9ce3ccdaa9637872a8f339e5e24d586c5841a49d43a57cb443322fde424d",
+    "bytes": 22867
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\preimagenes-registros\\archivo\\indice\\README.md",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\preimagenes-registros\\archivo\\indice\\README.md",
+    "sha256": "8dd5543fb5518eafed70d85a97104a7790858d4a3ed52f73eff7ca2089b8a190",
+    "bytes": 25511
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\preimagenes-registros\\archivo\\indice\\tareas\\N03.md",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\preimagenes-registros\\archivo\\indice\\tareas\\N03.md",
+    "sha256": "a423824a864cd5139295df60ee2e6bfec9e0ab34341c355d6d5d76adbd9e4130",
+    "bytes": 28943
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\preimagenes-registros\\archivo\\informe\\N03\\cierre-sesion-v1\\RETOMA.md",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\preimagenes-registros\\archivo\\informe\\N03\\cierre-sesion-v1\\RETOMA.md",
+    "sha256": "3ab14d312576c13fd7531650b1182df6f3b9e2ccdeea3bf7ef678beb9b0c9f5e",
+    "bytes": 11425
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\preimagenes-registros\\archivo\\informe\\N03\\reconciliacion-v1\\BALANCE.md",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\preimagenes-registros\\archivo\\informe\\N03\\reconciliacion-v1\\BALANCE.md",
+    "sha256": "44f3417136212a3b41e400d4a50699fb55f19c0edcd036ca4f54b96c14adbad8",
+    "bytes": 14240
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\preimagenes-registros\\archivo\\informe\\N03\\reconciliacion-v1\\SIGUIENTE-ACCION.md",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\preimagenes-registros\\archivo\\informe\\N03\\reconciliacion-v1\\SIGUIENTE-ACCION.md",
+    "sha256": "51bad0a3bdefd9e0b2b81648f440bbfbe6e63e4310b24b5909a1fd32356b3faa",
+    "bytes": 3526
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\preimagenes-registros\\archivo\\informe\\N03\\W-NEXT-v1\\INFORME.md",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\preimagenes-registros\\archivo\\informe\\N03\\W-NEXT-v1\\INFORME.md",
+    "sha256": "ee9e00461b1b4d83f988e6c62d9e26eda5ff54426ecabf66f1efa02d757a75c1",
+    "bytes": 5458
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\preimagenes-registros\\archivo\\informe\\N03\\W-NEXT-v1\\PROPUESTA.md",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\preimagenes-registros\\archivo\\informe\\N03\\W-NEXT-v1\\PROPUESTA.md",
+    "sha256": "a31f145f5ea3b536f22bd9df77e1f34c9da64909e54d9a5976a374634e3a79e9",
+    "bytes": 8437
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\preimagenes-registros\\canon\\indice\\CALENDARIO.md",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\preimagenes-registros\\canon\\indice\\CALENDARIO.md",
+    "sha256": "08df9ce3ccdaa9637872a8f339e5e24d586c5841a49d43a57cb443322fde424d",
+    "bytes": 22867
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\preimagenes-registros\\canon\\indice\\README.md",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\preimagenes-registros\\canon\\indice\\README.md",
+    "sha256": "8dd5543fb5518eafed70d85a97104a7790858d4a3ed52f73eff7ca2089b8a190",
+    "bytes": 25511
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\preimagenes-registros\\canon\\indice\\tareas\\N03.md",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\preimagenes-registros\\canon\\indice\\tareas\\N03.md",
+    "sha256": "a423824a864cd5139295df60ee2e6bfec9e0ab34341c355d6d5d76adbd9e4130",
+    "bytes": 28943
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\preimagenes-registros\\canon\\informe\\N03\\cierre-sesion-v1\\RETOMA.md",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\preimagenes-registros\\canon\\informe\\N03\\cierre-sesion-v1\\RETOMA.md",
+    "sha256": "3ab14d312576c13fd7531650b1182df6f3b9e2ccdeea3bf7ef678beb9b0c9f5e",
+    "bytes": 11425
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\preimagenes-registros\\canon\\informe\\N03\\reconciliacion-v1\\BALANCE.md",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\preimagenes-registros\\canon\\informe\\N03\\reconciliacion-v1\\BALANCE.md",
+    "sha256": "44f3417136212a3b41e400d4a50699fb55f19c0edcd036ca4f54b96c14adbad8",
+    "bytes": 14240
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\preimagenes-registros\\canon\\informe\\N03\\reconciliacion-v1\\SIGUIENTE-ACCION.md",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\preimagenes-registros\\canon\\informe\\N03\\reconciliacion-v1\\SIGUIENTE-ACCION.md",
+    "sha256": "51bad0a3bdefd9e0b2b81648f440bbfbe6e63e4310b24b5909a1fd32356b3faa",
+    "bytes": 3526
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\preimagenes-registros\\canon\\informe\\N03\\W-NEXT-v1\\INFORME.md",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\preimagenes-registros\\canon\\informe\\N03\\W-NEXT-v1\\INFORME.md",
+    "sha256": "ee9e00461b1b4d83f988e6c62d9e26eda5ff54426ecabf66f1efa02d757a75c1",
+    "bytes": 5458
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\preimagenes-registros\\canon\\informe\\N03\\W-NEXT-v1\\PROPUESTA.md",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\preimagenes-registros\\canon\\informe\\N03\\W-NEXT-v1\\PROPUESTA.md",
+    "sha256": "a31f145f5ea3b536f22bd9df77e1f34c9da64909e54d9a5976a374634e3a79e9",
+    "bytes": 8437
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\registrar.cjs",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\registrar.cjs.source",
+    "sha256": "ae63276e23304bcb3ed936d14018f83daae4aeaa15dd1b9cf6ca4af0f60d8df4",
+    "bytes": 9234
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\RESULTADO.json",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\RESULTADO.json",
+    "sha256": "6ccebab66805754b0660859bbdcba21db71f2faa1fdadff3228d261b90803734",
+    "bytes": 347
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\REVISION-EXTERNA-FUENTE.json",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\REVISION-EXTERNA-FUENTE.json",
+    "sha256": "3224d49d1eadab9c4d0b5b329c75ad89e9784b1b5c7a9170c980df53b3b70f1a",
+    "bytes": 5117
+  },
+  {
+    "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\SIGUIENTE-ACCION.md",
+    "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\aceptacion-local\\SIGUIENTE-ACCION.md",
+    "sha256": "b2f15e293207d55413b7da53bf07bdca46d384795997a50ffd83e28609b124c1",
+    "bytes": 4497
+  }
+]

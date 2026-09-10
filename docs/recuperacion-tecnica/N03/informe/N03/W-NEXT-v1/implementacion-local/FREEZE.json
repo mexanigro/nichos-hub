@@ -1,0 +1,74 @@
+{
+  "fecha": "2026-09-09T20:41:46.352Z",
+  "autorizacion": "Liam acepta preparación y autoriza únicamente renombrado idéntico y verificaciones",
+  "gate": "P0",
+  "fuentes": [
+    {
+      "ruta": "src/middleware.ts",
+      "bytes": 2085,
+      "sha256": "5a20e70b747f634dcf972e098993f837a1667cc7b23a17a82d6922f26832b44b"
+    },
+    {
+      "ruta": "src/auth.config.ts",
+      "bytes": 348,
+      "sha256": "f9da40e7cd7cb05838674f072677e21110f2fab1ee264bb8eaf0176675abcb0e"
+    },
+    {
+      "ruta": "tsconfig.json",
+      "bytes": 764,
+      "sha256": "7ac8827182b5352c034401edd2417e7454ad6f39b3aee139a0ea3cfa49470563"
+    },
+    {
+      "ruta": "next.config.ts",
+      "bytes": 1533,
+      "sha256": "7116c350468557b1b291135412d7afdd75ca49fd21d21fd653d3c86e3beb4aa0"
+    },
+    {
+      "ruta": "package.json",
+      "bytes": 1471,
+      "sha256": "d630c5016c91322ad91f3345742d6406cc0030df1b629fb85a88c4eb9c9ef5eb"
+    },
+    {
+      "ruta": "package-lock.json",
+      "bytes": 359617,
+      "sha256": "d49f15968a32312f0c14e0061a3f3208505389ab7cde998dcae8949939cd63dd"
+    },
+    {
+      "ruta": "next-env.d.ts",
+      "bytes": 253,
+      "sha256": "4e4da12aa061aac172fb1bcb48e9b6e4b293080d2f494327925fdba8f39632ac"
+    }
+  ],
+  "instrumentos": [
+    {
+      "ruta": "CONTRATO.md",
+      "sha256": "002866cebc5ff0f36e3735690138b3a24fac192ed5aff931390f10fb696beca9"
+    },
+    {
+      "ruta": "aceptacion.cjs",
+      "sha256": "d93f1f49bdafe41287ee693433b198122c042c8635fb377e26f3b7947d10d983"
+    },
+    {
+      "ruta": "runner.cjs",
+      "sha256": "48766e00b52df8b1fdcba6ddae0998031f8be0c1e4857e68c984b38eeb7854b3"
+    },
+    {
+      "ruta": "ejecutar.ps1",
+      "sha256": "612e327fb66e65df4a25d797af516fd21085955ffc892933ba0c8b7c3e1a750d"
+    },
+    {
+      "ruta": "tsconfig-pertinente.json",
+      "sha256": "a75a1c007d80c994f15ff3098c732209f70be8c40eee0f0c3d288e6bbf18974d"
+    },
+    {
+      "ruta": "tipos-lint.cjs",
+      "sha256": "b72b883ad37fd27a4d14970db5f2bac9d09af1ca385b3422ebafaa425263f8a1"
+    }
+  ],
+  "fuentesPreviasVigentes": 8,
+  "evidenciasAceptadasVigentes": 387,
+  "consumo": 81,
+  "techoTotal": 85,
+  "resets": 0,
+  "redExit": 1
+}

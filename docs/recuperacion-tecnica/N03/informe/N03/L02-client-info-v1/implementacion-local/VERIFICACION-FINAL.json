@@ -1,0 +1,14 @@
+{
+  "gates": "4/4",
+  "resets": 0,
+  "L02Descontada": false,
+  "ceiling": 85,
+  "records": 12,
+  "result": "GREEN_LOCAL_PARA_REVISION",
+  "productSHA": "a89047927517fa676499d93da2ec7780f6b972f90a0c6ca9a0757c5960fcf172",
+  "archiveFiles": 80,
+  "fixedContractUnchanged": true,
+  "usedPercent": 83,
+  "N03": "ABIERTA",
+  "evidenceFiles": 79
+}

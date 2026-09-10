@@ -1,0 +1,13 @@
+{
+  "result": "PASS",
+  "producto": 623,
+  "fuentes": 6,
+  "contrato": "sin cambios",
+  "presupuesto": {
+    "inicio": 86,
+    "actual": 87,
+    "techo": 90,
+    "reservaN04": 10,
+    "resets": 0
+  }
+}

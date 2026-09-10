@@ -1,0 +1,3 @@
+# N03 — proyecto/base implementado localmente
+
+Liam aprobó compatibilidad cuando ambos destinos definidos y rechazo de app Admin efectiva incompatible; autorizó sólo server.ts/api/index.ts. Contrato congelado, RED previo58 y finalGREEN44casos/697checks; cuatro mutantes permiten operaciones prohibidas y fallan.200 observaciones conservadas,20 prohibidas bloqueadas,621 archivos ajenos intactos. [Acta y límites](../informe/N03/proyecto-base-v1/implementacion-local/CIERRE-LOCAL.md). Sólo para revisión, sin descuento. N03 abierta; techo90%TOTAL, observado87%, último10%N04. Sin resets/instalaciones/externos/push/deploy. Etapas posteriores y condición por tenant vigentes.

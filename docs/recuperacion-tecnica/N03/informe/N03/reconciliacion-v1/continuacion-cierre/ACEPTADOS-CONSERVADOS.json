@@ -1,0 +1,44 @@
+[
+  {
+    "file": "C:/Users/liama/Desktop/Nichos/Barber-shop-template-main/server.ts",
+    "name": "getAdminDb",
+    "identical": true,
+    "sha256": "adeefa5bf41c188c7d5450072dd6d1a2e52890e7a1f2e54c5e1aa4e5c3bcdd2e"
+  },
+  {
+    "file": "C:/Users/liama/Desktop/Nichos/Barber-shop-template-main/api/index.ts",
+    "name": "loadAdminFirestore",
+    "identical": true,
+    "sha256": "28274b12824f7523497dcfb700aa98580ed8ed6a5a2ac0e295c2c7da806be163"
+  },
+  {
+    "file": "C:/Users/liama/Desktop/Nichos/Barber-shop-template-main/api/index.ts",
+    "name": "firestoreRestCreate",
+    "identical": true,
+    "sha256": "6b08ba5d43604093b674e5921d3b69799d422f9881fb4ccd72841d7ab3d90bfe"
+  },
+  {
+    "file": "C:/Users/liama/Desktop/Nichos/Barber-shop-template-main/api/index.ts",
+    "name": "getFirestoreRestContext",
+    "identical": true,
+    "sha256": "8be1976a1251d4302f6949a90bead82c9b728fd72d3c86e5bbaebd738c70d50d"
+  },
+  {
+    "file": "C:/Users/liama/Desktop/Nichos/Barber-shop-template-main/api/index.ts",
+    "name": "firestoreRestGetDocument",
+    "identical": true,
+    "sha256": "ada668b68762370d5e7264b4a5b4d08be9390481950a43bec13354ebdd5600bf"
+  },
+  {
+    "file": "C:/Users/liama/Desktop/Nichos/Barber-shop-template-main/api/index.ts",
+    "name": "firestoreRestPatchDocument",
+    "identical": true,
+    "sha256": "2742d599649197008725ec7bfefe9b365bd2b702822fd71a1e9b7c37c649b3e9"
+  },
+  {
+    "file": "C:/Users/liama/Desktop/Nichos/Barber-shop-template-main/src/config/site.ts",
+    "name": "_applyBusinessMode",
+    "identical": true,
+    "sha256": "fcb238775c77a4b02042a762e843b5db361c4ed5a171e8da2a648b17ddcabcb7"
+  }
+]

@@ -1,0 +1,26 @@
+const fs=require('fs'),assert=require('assert/strict'),crypto=require('crypto'),ts=require('/deps/node_modules/typescript');
+const failures=[],rows=[],hashes={};let checks=0;
+const check=(id,a,b)=>{checks++;try{assert.deepEqual(a,b)}catch{failures.push({id,actual:a,expected:b})}};
+const compile=s=>ts.transpileModule(s,{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText;
+(async()=>{for(const file of ['server.ts','api/index.ts']){
+ const source=fs.readFileSync('/template/'+file,'utf8'),ast=ts.createSourceFile(file,source,99,true),callbacks=new Map();hashes[file]=crypto.createHash('sha256').update(source).digest('hex');
+ function visit(n){if(ts.isCallExpression(n)&&['app.get','app.post'].includes(n.expression.getText(ast))&&['/api/webhook','/api/tenant/status'].includes(n.arguments[0]?.text)){assert.equal(callbacks.has(n.arguments[0].text),false);callbacks.set(n.arguments[0].text,n.arguments[n.arguments.length-1].getText(ast))}ts.forEachChild(n,visit)}visit(ast);assert.equal(callbacks.size,2);
+ for(const [route,callback]of callbacks)for(const failure of [false,true]){
+  let stateCalls=0,gatewayCalls=0,verifyCalls=0,effects=0,status=200,body,reply=false,rejected=null;
+  const fn=new Function('getClientRuntimeState','resolvePaymentGateway','reconcilePaidCheckout','sendNotification','CLIENT_ID','console',compile('const fn='+callback+';')+'\nreturn fn;')(
+   async()=>{stateCalls++;if(failure)throw Error('SENSITIVE synthetic-state-error');return{status:'active',provider:'stripe'}},
+   async()=>{gatewayCalls++;return{verifyWebhookEvent:()=>{verifyCalls++;return null}}},
+   async()=>{effects++},async()=>{effects++},'tenant',{log(){},warn(){},error(){}});
+  const res={locals:{tenantAccessStatus:'active'},status(value){status=value;return this},json(value){body=value;reply=true;return this},send(value){body=value;reply=true;return this}};
+  try{await fn({headers:{},body:Buffer.alloc(0)},res)}catch(error){rejected=error.message}
+  const usesState=route==='/api/webhook'||file==='api/index.ts';
+  const expected=failure&&usesState?503:route==='/api/webhook'?400:200;
+  const label=file+route+(failure?'/state-error':'/compatible');
+  check(label+'/settled',rejected,null);check(label+'/status',status,expected);check(label+'/replied',reply,true);check(label+'/state-calls',stateCalls,usesState?1:0);
+  check(label+'/gateway-calls',gatewayCalls,route==='/api/webhook'&&!failure?1:0);check(label+'/verify-calls',verifyCalls,route==='/api/webhook'&&!failure?1:0);check(label+'/effects',effects,0);check(label+'/redacted',JSON.stringify(body??null).includes('SENSITIVE'),false);
+  if(route==='/api/tenant/status'&&expected===200)check(label+'/compatible-body',body,file==='server.ts'?{status:'active',active:true}:{clientId:'tenant',status:'active',paymentProvider:'stripe',active:true});
+  rows.push({file,route,failure,status,body,reply,rejected,stateCalls,gatewayCalls,verifyCalls,effects});
+ }
+}
+fs.writeFileSync('/salida/CONSUMIDORES.json',JSON.stringify({result:failures.length?'RED':'GREEN',cases:rows.length,checks,failures,rows,hashes,limits:'Callbacks reales por AST invocados y promesa observada. Fallo getClientRuntimeState inyectado; webhook cuerpo vacío y verifier null, sin evento/cargo real. No prueba middleware/Express global en este archivo.'},null,2));console.log(JSON.stringify({cases:rows.length,checks,failures:failures.length}));process.exitCode=failures.length?1:0;
+})().catch(error=>{console.error(error.stack);process.exitCode=2});

@@ -1,0 +1,22 @@
+{
+  "result": "GREEN",
+  "gates": 4,
+  "total": 4,
+  "accepted": "L02_POST_CLIENT_INFO_LOCAL",
+  "L02": {
+    "clientInfo": "aceptada_local_descontada",
+    "resto": "pendiente"
+  },
+  "N03": "ABIERTA",
+  "propuestaUnica": "Preparar contrato local L03 toggles/notificaciones",
+  "L03Ejecutada": false,
+  "productoModificado": false,
+  "srcPreservados": 285,
+  "evidenciasPreservadas": 689,
+  "registros": 12,
+  "enlacesComprobados": 17,
+  "consumo": 83,
+  "techo": 85,
+  "resets": 0,
+  "blockers": []
+}

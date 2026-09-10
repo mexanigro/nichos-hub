@@ -1,0 +1,20 @@
+{
+  "result": "GREEN",
+  "gates": 3,
+  "total": 3,
+  "L01": "aceptada y descontada sólo conexión dos consumidores",
+  "N03": "abierta",
+  "familiasPendientes": 7,
+  "siguiente": "Proponer contrato proyecto/base Admin y REST general; no ejecutado",
+  "productoConservado": 623,
+  "evidenciasConservadas": 91,
+  "archivoAnteriorConservado": 92,
+  "registros": 12,
+  "blockersRegistro": [],
+  "presupuesto": {
+    "observado": 86,
+    "techo": 90,
+    "reservaN04": 10,
+    "resets": 0
+  }
+}

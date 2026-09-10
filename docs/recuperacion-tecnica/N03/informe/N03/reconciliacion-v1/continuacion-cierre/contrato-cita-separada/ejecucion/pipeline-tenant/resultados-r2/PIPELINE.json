@@ -1,0 +1,87 @@
+{
+  "result": "GREEN-caracterizacion",
+  "compatibility": "RED: proyectos separados bloqueados antes de la ruta CRM",
+  "checks": 14,
+  "failures": [],
+  "rows": [
+    {
+      "id": "projects-equal",
+      "env": {
+        "FIREBASE_ADMIN_PROJECT_ID": "backend-project",
+        "FIREBASE_PROJECT_ID": "backend-project",
+        "VITE_FIREBASE_PROJECT_ID": "backend-project",
+        "FIREBASE_DATABASE_ID": "backend-db",
+        "VITE_FIREBASE_DATABASE_ID": "browser-db"
+      },
+      "status": 200,
+      "body": {
+        "source": {
+          "project": "backend-project",
+          "database": "backend-db",
+          "collection": "appointments"
+        },
+        "appointments": [
+          {
+            "clientId": "tenant-local",
+            "customerName": "Synthetic",
+            "createdAt": "2027-01-15T08:00:00.000Z",
+            "id": "synthetic-appointment",
+            "staffId": ""
+          }
+        ]
+      },
+      "trace": [
+        "synthetic-access-token",
+        "clients-fetch",
+        "crm-authenticate",
+        "crm-load-admin",
+        "collection:appointments",
+        "where:clientId==tenant-local",
+        "order:createdAt:desc",
+        "limit:500",
+        "appointments-read"
+      ],
+      "fetches": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/backend-project/databases/backend-db/documents/clients/tenant-local",
+          "authorizationPresent": true
+        }
+      ]
+    },
+    {
+      "id": "projects-separated",
+      "env": {
+        "FIREBASE_ADMIN_PROJECT_ID": "backend-project",
+        "FIREBASE_PROJECT_ID": "backend-project",
+        "VITE_FIREBASE_PROJECT_ID": "browser-project",
+        "FIREBASE_DATABASE_ID": "backend-db",
+        "VITE_FIREBASE_DATABASE_ID": "browser-db"
+      },
+      "status": 503,
+      "body": {
+        "error": "Tenant state unavailable."
+      },
+      "trace": [
+        "synthetic-access-token"
+      ],
+      "fetches": []
+    }
+  ],
+  "sourceOrder": [
+    {
+      "line": 2792,
+      "call": "app.use(\"/api\", enforceClientActive)"
+    },
+    {
+      "line": 5293,
+      "call": "app.get(\"/api/crm/appointments\", crmAgenda.list)"
+    }
+  ],
+  "hashes": {
+    "api/index.ts": "4a0f38b03787d4f118efa70272b967d0a9d1154d22a4203bf90ff3b8a29db8a1",
+    "src/lib/api/tenant-access.ts": "98e914224316040091677e4ebbb3b0811cedb4bd671f3cf49477bbe2767faecc",
+    "src/lib/api/crm-appointments-handler.ts": "e48a9ee4048c118a064cbff460fbf4e0668763691c9de41c34e9d15f3a915e4f",
+    "src/lib/api/booking-validation.ts": "456f7f8a9ebe4015e19eac8246a2ddaada68d1ab0fe4c23949c640e9a71b934e"
+  },
+  "limits": "Express HTTP loopback real, createTenantAccessGuard/loadStatus/registro/handler reales. Token, fetch clients, auth CRM y DB de citas interceptados. Aísla este middleware global; no otros middlewares, Auth remoto ni Firestore. No modifica ni desarma guardas aceptadas."
+}

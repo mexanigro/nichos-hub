@@ -1,0 +1,14 @@
+const fs=require('node:fs'),p=require('node:path');
+const base=__dirname;const errores=[];
+const datos={};for(const modo of ['middleware','proxy','mutante']){const ruta=p.join(base,'resultados',modo==='middleware'?'middleware-r2':modo,'HTTP.json');if(!fs.existsSync(ruta))errores.push('Falta evidencia '+modo);else datos[modo]=JSON.parse(fs.readFileSync(ruta));}
+if(Object.keys(datos).length===3){
+ for(const modo of ['middleware','proxy'])if(datos[modo].fallos.length)errores.push(modo+': fallos semánticos/ejecución');
+ const estable=x=>JSON.stringify(x.casos.map(c=>({ruta:c.ruta,sesion:c.sesion,agente:c.agente,status:c.status,location:c.location,body:c.body,renueva:c.renueva,destino:c.destino})));
+ if(estable(datos.middleware)!==estable(datos.proxy))errores.push('Diferencias middleware/proxy');
+ if(!datos.middleware.warning||datos.proxy.warning||datos.mutante.warning)errores.push('Advertencia inesperada');
+ const rechazos=datos.proxy.casos.filter(x=>['401','login'].includes(x.esperado));
+ if(!rechazos.length||datos.mutante.fallos.length!==rechazos.length)errores.push('Mutación insensible o fallos adicionales');
+ for(const c of datos.mutante.casos)if(!c.ejecucion||(['401','login'].includes(c.esperado)?c.ok||c.status!==200||!c.destino:!c.ok))errores.push('Mutación no semántica '+c.ruta);
+}
+const resultado={result:errores.length?'RED':'GREEN',errores,casosPorVariante:datos.proxy?.casos.length,fallosEsperadosMutante:datos.mutante?.fallos.length};
+console.log(JSON.stringify(resultado,null,2));process.exitCode=errores.length?1:0;

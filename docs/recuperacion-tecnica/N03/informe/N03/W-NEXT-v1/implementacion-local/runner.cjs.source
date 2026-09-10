@@ -1,0 +1,60 @@
+const fs=require('node:fs'),p=require('node:path'),{spawn}=require('node:child_process'),{createRequire}=require('node:module');
+const req=createRequire('/app/package.json'), modo=process.argv[2];
+const guardar=(nombre,obj)=>fs.writeFileSync('/salida/'+nombre,typeof obj==='string'?obj:JSON.stringify(obj,null,2),{flag:'wx'});
+const pausa=ms=>new Promise(r=>setTimeout(r,ms));
+async function comando(args,nombre) {
+ const hijo=spawn(process.execPath,args,{cwd:'/app',env:process.env});let out='',err='';
+ hijo.stdout.on('data',b=>out+=b);hijo.stderr.on('data',b=>err+=b);
+ const codigo=await new Promise(r=>hijo.on('exit',r));guardar(nombre+'-stdout.txt',out);guardar(nombre+'-stderr.txt',err);
+ guardar(nombre+'-exit.json',{codigo});if(codigo!==0)throw Error(nombre+' exit '+codigo);
+ return {out,err};
+}
+(async()=>{
+ const swc=req('next/dist/build/swc');const transformado=swc.transformSync('export const x: number = 1',{jsc:{parser:{syntax:'typescript'}},module:{type:'commonjs'}});
+ const {encode,decode}=await import('/app/node_modules/next-auth/jwt.js');
+ const salt='authjs.session-token',secret=process.env.AUTH_SECRET;
+ const token=await encode({token:{email:'OWNER@example.invalid'},secret,salt});
+ if((await decode({token,secret,salt})).email!=='OWNER@example.invalid'||!transformado.code.includes('1'))throw Error('preflight');
+ guardar('PREFLIGHT.json',{next:req('next/package.json').version,nextAuth:req('next-auth/package.json').version,node:process.version,swc:req.resolve('@next/swc-linux-x64-musl'),JWT:true,interfaces:require('node:os').networkInterfaces()});
+ if(modo==='preflight')return;
+ guardar('tsconfig-pre-build.json',fs.readFileSync('/app/tsconfig.json','utf8'));
+ const build=process.env.W_NEXT_REUSAR==='1'?{out:fs.readFileSync('/control/resultados/middleware/build-stdout.txt','utf8'),err:fs.readFileSync('/control/resultados/middleware/build-stderr.txt','utf8')}:await comando(['/app/node_modules/next/dist/bin/next','build','--webpack'],'build');
+ if(process.env.W_NEXT_REUSAR==='1')guardar('BUILD-REUTILIZADO.json',{fuente:'../middleware/build-exit.json',motivo:'Sólo se corrigen expectativas del arnés; producto/build sin cambios'});
+ const manifest=JSON.parse(fs.readFileSync('/app/.next/server/middleware-manifest.json','utf8'));guardar('REGISTRO.json',manifest);
+ const rutas=JSON.parse(fs.readFileSync('/app/.next/routes-manifest.json','utf8'));guardar('RUTAS.json',rutas);
+ const hijo=spawn(process.execPath,['/app/node_modules/next/dist/bin/next','start','--hostname','127.0.0.1','--port','3210'],{cwd:'/app',env:process.env});let out='',err='';
+ hijo.stdout.on('data',b=>out+=b);hijo.stderr.on('data',b=>err+=b);
+ let terminado=false;hijo.on('exit',()=>terminado=true);
+ const filas=[];
+ try {
+  for(let i=0;i<200&&!out.includes('Ready');i++){if(terminado)throw Error('servidor terminó');await pausa(100);}
+  if(!out.includes('Ready'))throw Error('timeout arranque');
+  const cookies={ausente:'',owner:token,segundo:await encode({token:{email:'second@example.invalid'},secret,salt}),ajeno:await encode({token:{email:'other@example.invalid'},secret,salt}),invalido:'sintetico-invalido',expirado:await encode({token:{email:'owner@example.invalid'},secret,salt,maxAge:-120})};
+  try {await decode({token:cookies.expirado,secret,salt});throw Error('Expirado aceptado');}catch(e){if(e.message==='Expirado aceptado')throw e;guardar('EXPIRADO.json',{rechazado:true,motivo:e.code||e.name});}
+  const casos=[];const agregar=(ruta,sesion,esperado,incluido=true,agente)=>casos.push({ruta,sesion,esperado,incluido,agente});
+  const publicos=['/','/login','/privacy','/terms','/robots.txt','/sitemap.xml','/manifest.webmanifest'];
+  const prefijos=['/onboarding','/pago','/mi-cuenta','/api/auth','/api/cardcom','/api/onboarding','/api/free','/api/cron','/api/appointments','/api/bookings','/api/contract-leads','/api/tenant-claim','/api/sales-assistant','/api/deploy','/api/payments/contract','/opengraph-image'];
+  for(const ruta of [...publicos,...prefijos.flatMap(x=>[x+'/prueba',x+'-extra'])])for(const sesion of ['ausente','owner'])agregar(ruta,sesion,'permite');
+  for(const ruta of ['/clients','/api/private'])for(const sesion of Object.keys(cookies))agregar(ruta,sesion,['owner','segundo'].includes(sesion)?'permite':ruta.startsWith('/api/')?'401':'login');
+  for(const agente of [undefined,'','sintetico'])agregar('/api/whatsapp-config/x','ausente',agente?'permite':'401',true,agente);
+  agregar('/api/whatsapp-config','ausente','401',true,'sintetico');agregar('/api/private','ausente','401',true,'sintetico');
+  const excluidos=['/_next/static/inexistente.js','/_next/image','/favicon.ico',...['svg','png','jpg','jpeg','gif','webp','ico','webm','mp4','mov'].map(x=>'/privado.'+x)];
+  for(const ruta of excluidos)for(const sesion of ['ausente','owner'])agregar(ruta,sesion,ruta==='/_next/image'?'interno':'permite',false);
+  for(const ruta of ['/privado.txt','/privado.svg/extra','/_next/static-extra','/favicon.ico-extra'])for(const sesion of ['ausente','owner'])agregar(ruta,sesion,sesion==='owner'?'permite':'login',!ruta.startsWith('/_next/static')&&!ruta.startsWith('/favicon.ico'));
+  for(const c of casos){
+   // El prefijo negativo de Next excluye también static-extra; conserva esa semántica.
+   if(!c.incluido&&['/_next/static-extra','/favicon.ico-extra'].includes(c.ruta))c.esperado='permite';
+   const headers={};if(cookies[c.sesion])headers.cookie=salt+'='+cookies[c.sesion];if(c.agente!==undefined)headers['x-agent-secret']=c.agente;
+   const r=await fetch('http://127.0.0.1:3210'+c.ruta,{headers,redirect:'manual',signal:AbortSignal.timeout(10000)}),body=await r.text(),location=r.headers.get('location'),renueva=(r.headers.get('set-cookie')||'').includes(salt+'=');
+   let destino=false;try{destino=JSON.parse(body).destino==='W-NEXT-sintetico';}catch{}
+   const permite=r.status===200&&destino;
+   const ok=c.esperado==='permite'?permite:c.esperado==='401'?r.status===401&&body==='{"error":"No autorizado"}':c.esperado==='login'?r.status===307&&new URL(location,'http://127.0.0.1:3210').pathname==='/login':[400,404].includes(r.status)&&!destino;
+   const ejecucion=c.sesion==='owner'?renueva===c.incluido:true;
+   filas.push({...c,status:r.status,location,body,renueva,destino,ok,ejecucion});
+  }
+  const warning=(build.out+build.err).includes('The "middleware" file convention is deprecated');
+  guardar('HTTP.json',{modo,casos:filas,warning,fallos:filas.filter(x=>!x.ok||!x.ejecucion).map(x=>({ruta:x.ruta,sesion:x.sesion,esperado:x.esperado,status:x.status,ejecucion:x.ejecucion})),limite:'HTTP local con destino sintético; no app completa ni OAuth real'});
+  console.log(JSON.stringify({modo,casos:filas.length,fallos:filas.filter(x=>!x.ok||!x.ejecucion).length,warning}));
+  if(filas.some(x=>!x.ok||!x.ejecucion))process.exitCode=1;
+ }finally{hijo.kill('SIGTERM');for(let i=0;i<50&&!terminado;i++)await pausa(100);if(!terminado)hijo.kill('SIGKILL');guardar('server-stdout.txt',out);guardar('server-stderr.txt',err);}
+})().catch(e=>{guardar('ERROR.json',{message:e.message,stack:e.stack});console.error(e);process.exitCode=2;});

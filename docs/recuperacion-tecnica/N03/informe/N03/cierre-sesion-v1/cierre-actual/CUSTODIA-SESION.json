@@ -1,0 +1,200 @@
+[
+  {
+    "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\archivar-stage.cjs",
+    "target": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\archivar-stage.cjs.source",
+    "bytes": 2756,
+    "sha256": "7a0c9ccb056dccac57291fcfed69c3a4ab11a8c4de3fcf86f4bdf08bf7727829"
+  },
+  {
+    "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\CHECK-hub.txt",
+    "target": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\CHECK-hub.txt",
+    "bytes": 263316,
+    "sha256": "6677b2626a6b02b72e92ac3cd35b1ce0df936513e3341321d4b96cc4b3c8bac2"
+  },
+  {
+    "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\CHECK-r2-hub.txt",
+    "target": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\CHECK-r2-hub.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\CHECK-r2-template.txt",
+    "target": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\CHECK-r2-template.txt",
+    "bytes": 1024,
+    "sha256": "6d3411186a8930077c708ac5ec50757aee947884f46224a05f4952db38a770c3"
+  },
+  {
+    "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\CIERRE-SESION.md",
+    "target": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\CIERRE-SESION.md",
+    "bytes": 2674,
+    "sha256": "ab3a6311b26fe794945781e40257b8aca5eca85529416b1c31141f15b0f51df9"
+  },
+  {
+    "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\commit-producto-r2.cjs",
+    "target": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\commit-producto-r2.cjs.source",
+    "bytes": 1717,
+    "sha256": "8ac4f094258f7f7b3934a67c02ad7445fc38f5a2f8cc1facc802015e1324c054"
+  },
+  {
+    "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\commit-producto-r3.cjs",
+    "target": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\commit-producto-r3.cjs.source",
+    "bytes": 1780,
+    "sha256": "93f2ee1322df64378d9429ecaad8ecc93f8731d07e44c7e8e1f006e4c5441f97"
+  },
+  {
+    "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\commit-producto.cjs",
+    "target": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\commit-producto.cjs.source",
+    "bytes": 1678,
+    "sha256": "6513bf3cfb3e1849a1b66d91cad6388374c832bef409965f2b221d075830fd47"
+  },
+  {
+    "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\COMMITS.json",
+    "target": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\COMMITS.json",
+    "bytes": 1242,
+    "sha256": "f18b860b0441b1192a8248a2603a6e4cd388fce571f542a56301a7f8208774bf"
+  },
+  {
+    "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\DIFF-STAGED-hub.patch",
+    "target": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\DIFF-STAGED-hub.patch",
+    "bytes": 236313,
+    "sha256": "39720731370676dbad740f54da398c1b8f07498e5e2c9babfef477514a83227a"
+  },
+  {
+    "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\DIFF-STAGED-r2-hub.patch",
+    "target": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\DIFF-STAGED-r2-hub.patch",
+    "bytes": 236313,
+    "sha256": "39720731370676dbad740f54da398c1b8f07498e5e2c9babfef477514a83227a"
+  },
+  {
+    "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\DIFF-STAGED-r2-template.patch",
+    "target": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\DIFF-STAGED-r2-template.patch",
+    "bytes": 346151,
+    "sha256": "d57c9138ae8f01f8682025e8c86b0c21d93e2592c5105cfa79465f72721a87d3"
+  },
+  {
+    "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\EVIDENCIA-EXCLUIDA.json",
+    "target": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\EVIDENCIA-EXCLUIDA.json",
+    "bytes": 2,
+    "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  {
+    "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\preimagenes\\0\\indice\\CALENDARIO.md",
+    "target": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\preimagenes\\0\\indice\\CALENDARIO.md",
+    "bytes": 40967,
+    "sha256": "a7d0a55ecd8166d1af3aba66b1ee48acc7e3e08d112f452a29493df0cce2b5f1"
+  },
+  {
+    "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\preimagenes\\0\\indice\\README.md",
+    "target": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\preimagenes\\0\\indice\\README.md",
+    "bytes": 43611,
+    "sha256": "222e09d1ccc914325507ad2887a2410da1294b10d08bcb40a82193432d13d92d"
+  },
+  {
+    "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\preimagenes\\0\\indice\\tareas\\N03.md",
+    "target": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\preimagenes\\0\\indice\\tareas\\N03.md",
+    "bytes": 47124,
+    "sha256": "92d00a5e351aaabb18d81d12cdf68f20792ba1d8af6d31affa13c9504116efa9"
+  },
+  {
+    "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\preimagenes\\0\\informe\\N03\\cierre-sesion-v1\\RETOMA.md",
+    "target": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\preimagenes\\0\\informe\\N03\\cierre-sesion-v1\\RETOMA.md",
+    "bytes": 29201,
+    "sha256": "3dadc3557d6167674398548523d5fa345729a4b89b174fa373bc58f0f4470957"
+  },
+  {
+    "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\preimagenes\\0\\informe\\N03\\reconciliacion-v1\\BALANCE.md",
+    "target": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\preimagenes\\0\\informe\\N03\\reconciliacion-v1\\BALANCE.md",
+    "bytes": 13286,
+    "sha256": "7f62f8483ec1c62653c211279f20ad4cd1a376630a05cadc47f24580401a5378"
+  },
+  {
+    "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\preimagenes\\0\\informe\\N03\\reconciliacion-v1\\SIGUIENTE-ACCION.md",
+    "target": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\preimagenes\\0\\informe\\N03\\reconciliacion-v1\\SIGUIENTE-ACCION.md",
+    "bytes": 21701,
+    "sha256": "ebcce53e328a15cc340bf258f23b395f183819ab7844977798e3e2fa8cf13681"
+  },
+  {
+    "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\preimagenes\\1\\indice\\CALENDARIO.md",
+    "target": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\preimagenes\\1\\indice\\CALENDARIO.md",
+    "bytes": 40967,
+    "sha256": "a7d0a55ecd8166d1af3aba66b1ee48acc7e3e08d112f452a29493df0cce2b5f1"
+  },
+  {
+    "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\preimagenes\\1\\indice\\README.md",
+    "target": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\preimagenes\\1\\indice\\README.md",
+    "bytes": 43611,
+    "sha256": "222e09d1ccc914325507ad2887a2410da1294b10d08bcb40a82193432d13d92d"
+  },
+  {
+    "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\preimagenes\\1\\indice\\tareas\\N03.md",
+    "target": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\preimagenes\\1\\indice\\tareas\\N03.md",
+    "bytes": 47124,
+    "sha256": "92d00a5e351aaabb18d81d12cdf68f20792ba1d8af6d31affa13c9504116efa9"
+  },
+  {
+    "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\preimagenes\\1\\informe\\N03\\cierre-sesion-v1\\RETOMA.md",
+    "target": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\preimagenes\\1\\informe\\N03\\cierre-sesion-v1\\RETOMA.md",
+    "bytes": 29201,
+    "sha256": "3dadc3557d6167674398548523d5fa345729a4b89b174fa373bc58f0f4470957"
+  },
+  {
+    "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\preimagenes\\1\\informe\\N03\\reconciliacion-v1\\BALANCE.md",
+    "target": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\preimagenes\\1\\informe\\N03\\reconciliacion-v1\\BALANCE.md",
+    "bytes": 13286,
+    "sha256": "7f62f8483ec1c62653c211279f20ad4cd1a376630a05cadc47f24580401a5378"
+  },
+  {
+    "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\preimagenes\\1\\informe\\N03\\reconciliacion-v1\\SIGUIENTE-ACCION.md",
+    "target": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\preimagenes\\1\\informe\\N03\\reconciliacion-v1\\SIGUIENTE-ACCION.md",
+    "bytes": 21701,
+    "sha256": "ebcce53e328a15cc340bf258f23b395f183819ab7844977798e3e2fa8cf13681"
+  },
+  {
+    "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\preimagenes\\README-archivo.md",
+    "target": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\preimagenes\\README-archivo.md",
+    "bytes": 730,
+    "sha256": "bcb5155aee84f84b4702362eace0baab20fa8927e9adcf4027f4557dac133282"
+  },
+  {
+    "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\preparar.cjs",
+    "target": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\preparar.cjs.source",
+    "bytes": 6881,
+    "sha256": "86539828b08b5c3c42b2d7fa82a34129ccfb56d6a1d064cb3f0c3334d92c78b3"
+  },
+  {
+    "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\REGISTROS.json",
+    "target": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\REGISTROS.json",
+    "bytes": 3436,
+    "sha256": "ed28bf46bb9fc4858c38f0315c0806bb4b9916423bac1d5566bfbd1a1142a6c1"
+  },
+  {
+    "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\REVISION-SELECCION.md",
+    "target": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\REVISION-SELECCION.md",
+    "bytes": 1066,
+    "sha256": "bca17015a657e6ebdb33294448de1fbbd2a4620640bf9835d35e2333b0281b85"
+  },
+  {
+    "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\SELECCION-PRODUCTO.json",
+    "target": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\SELECCION-PRODUCTO.json",
+    "bytes": 7483,
+    "sha256": "6c95592e8e00836ba2e1bb01093fe9ffe6c1ee8819100fa761547bc7f6bcdcbb"
+  },
+  {
+    "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\STATUS-PRE-hub.txt",
+    "target": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\STATUS-PRE-hub.txt",
+    "bytes": 240742,
+    "sha256": "d763cce2880ef13d008c612718d2032af86f9e300ef3ec6b26cd343702305a49"
+  },
+  {
+    "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\STATUS-PRE-template.txt",
+    "target": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\STATUS-PRE-template.txt",
+    "bytes": 47400,
+    "sha256": "9a9e7b761ca3e4f82c42fa532be5cdb0545b7d3b8fbc01c9db90ed52f64f7b05"
+  },
+  {
+    "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\verificar-commits.cjs",
+    "target": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\cierre-sesion-v1\\cierre-actual\\verificar-commits.cjs.source",
+    "bytes": 2117,
+    "sha256": "875986ccf02f3426e11d8bd3f01b5e51bc4ab2e9ad213357dd331fc41f3b8308"
+  }
+]

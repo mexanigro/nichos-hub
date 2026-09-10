@@ -1,0 +1,5 @@
+{
+  "checks": 34,
+  "failures": [],
+  "limits": "Callbacks UI reales por AST; SDK browser real descriptor; auth/eventos/transportes interceptados, no render completo."
+}

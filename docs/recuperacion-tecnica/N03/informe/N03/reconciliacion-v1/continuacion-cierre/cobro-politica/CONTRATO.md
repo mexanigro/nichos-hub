@@ -1,0 +1,9 @@
+# Cobro: contrato de política aprobado, antes de producto
+
+Liam aprobó modo y seña desde config tenant, depósito entero en unidades menores dentro de límites y <=precio total; inválido/ausente rechaza sin fallback2000. Cardcom sin mapeo moneda demostrado debe detenerse antes de iniciar cobro; no inventar CoinId. Stripe moneda preservada; no repetir suite completa aceptada.
+
+Reutilización del instrumento moneda-handler: misma extracción de registros y handler real, oráculos NUEVOS separados para decisiones aprobadas. Config.payment.mode full/deposit; ninguno inválido/none/cash-only habilita online. Cita conserva su precio autorizado y límites vigentes. Sin config válida503; fallo lectura500 redactado. Cardcom503 antes de resolver proveedor/sesión. Casos de seña fronteras50..total, ausente,null,string,noentero,mayortotal; body.price/mode nunca manda. Full no requiere depósito. Writer credenciales tiene contrato separado pero integrado en misma obligación COB-A.
+
+Cambio mínimo propuesto: src/lib/api/checkout-handler.ts, leer config para regla antes de crear sesión; retirar modo visitante, amountCents según política autorizada, bloquear Cardcom. No modificar precio de cita, escrituras, guards previas ni proveedorStripe. UI wizard puede seguir enviando estimación: no autoriza cobro y rechazo servidor explícito no redirige. No afirmar certificación completa wizard/cobro/N07. La diferencia de promesa de UI se revisará en integración, no se oculta con esta prueba.
+
+P0 RED/refutación/freeze→P1 reparación concreta→P2 GREEN y mutantes (precio total restaurado en seña; modo visitante; guardaCardcom desarmada)→P3 tipos/conservación e integración BALANCE. Sin red,DB,credencialesreales,instalaciones,push/deploy. Cardcom queda no operativo, no certificado ni anunciado como funcional por este contrato.

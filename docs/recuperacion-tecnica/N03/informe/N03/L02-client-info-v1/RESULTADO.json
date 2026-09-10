@@ -1,0 +1,31 @@
+{
+  "result": "GREEN",
+  "scope": "PREPARACION_L02_CLIENT_INFO",
+  "product": "RED_NO_IMPLEMENTADO",
+  "gates": 4,
+  "total": 4,
+  "N03": "ABIERTA",
+  "L02Descontada": false,
+  "srcPreservados": 285,
+  "evidenciasWNEXTPreservadas": 546,
+  "registros": 12,
+  "checks": 815,
+  "semanticFailures": 599,
+  "cases": 21,
+  "requests": 31,
+  "quota": {
+    "usedPercent": 82,
+    "windowDurationMins": 10080,
+    "resetsAt": 1789454384,
+    "ceiling": 85,
+    "resetsUsed": 0,
+    "scope": "TOTAL compartido codex; consulta herramienta antes del cierre",
+    "initialUsedPercent": 82
+  },
+  "blockers": [],
+  "remaining": [
+    "Autorización de reparación",
+    "Controles futuros explícitos de PROPUESTA",
+    "Implementación y GREEN producto"
+  ]
+}

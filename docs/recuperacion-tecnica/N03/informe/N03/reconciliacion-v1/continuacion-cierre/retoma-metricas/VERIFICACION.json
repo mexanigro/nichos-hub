@@ -1,0 +1,80 @@
+{
+  "scope": "Selección/rechazo de destinos inline",
+  "result": "GREEN local para revisión",
+  "productUnchanged": [
+    {
+      "path": "C:\\Users\\liama\\Desktop\\Nichos\\Barber-shop-template-main\\api\\index.ts",
+      "sha256": "748b245f1b1c56184de7f57119d89a4a690ff383fdff504a4431ac2aae0af007"
+    },
+    {
+      "path": "C:\\Users\\liama\\Desktop\\Nichos\\Barber-shop-template-main\\server.ts",
+      "sha256": "884ed361649c0aa2b406c317e7cc0fe36f70d30f9cd83785f6680fee7c9970f0"
+    },
+    {
+      "path": "C:\\Users\\liama\\Desktop\\Nichos\\Barber-shop-template-main\\src\\config\\site.ts",
+      "sha256": "e3ea39ab76a683452d7a37c60c137793c57d2ee8e5cf36afa5bf38ee91e0a91a"
+    },
+    {
+      "path": "C:\\Users\\liama\\Desktop\\Nichos\\Barber-shop-template-main\\src\\lib\\api\\checkout-handler.ts",
+      "sha256": "fa1fa7c49f4089db815a7e603cf41af0ba0c08460718734a8b0a6c0dde927010"
+    },
+    {
+      "path": "C:\\Users\\liama\\Desktop\\Nichos\\Barber-shop-template-main\\src\\lib\\api\\payment-gateways.ts",
+      "sha256": "580ff87947a952f8cbf4d3873647028dd6131da58f7d16a08104f6ddd6bfddd6"
+    }
+  ],
+  "expectationsUnchanged": true,
+  "evidence": [
+    {
+      "name": "preimagen",
+      "checks": 48,
+      "cases": 16,
+      "failures": 7,
+      "exit": 1,
+      "source": "d20a45694e6cd2dd69040e8f2d57eafe00b83a22952a3a59ec5cff9cb0d8486d",
+      "metricsCompatible": {
+        "calls": 3,
+        "status": 500,
+        "error": "STOP_LOCAL_READ"
+      },
+      "metricsIncompatible": {
+        "calls": 3,
+        "status": 500
+      }
+    },
+    {
+      "name": "producto",
+      "checks": 48,
+      "cases": 16,
+      "failures": 0,
+      "exit": 0,
+      "source": "748b245f1b1c56184de7f57119d89a4a690ff383fdff504a4431ac2aae0af007",
+      "metricsCompatible": {
+        "calls": 3,
+        "status": 500,
+        "error": "STOP_LOCAL_READ"
+      },
+      "metricsIncompatible": {
+        "calls": 0,
+        "status": 503
+      }
+    },
+    {
+      "name": "mutante",
+      "checks": 48,
+      "cases": 16,
+      "failures": 7,
+      "exit": 1,
+      "source": "748b245f1b1c56184de7f57119d89a4a690ff383fdff504a4431ac2aae0af007",
+      "metricsCompatible": {
+        "calls": 3,
+        "status": 500,
+        "error": "STOP_LOCAL_READ"
+      },
+      "metricsIncompatible": {
+        "calls": 3,
+        "status": 500
+      }
+    }
+  ]
+}

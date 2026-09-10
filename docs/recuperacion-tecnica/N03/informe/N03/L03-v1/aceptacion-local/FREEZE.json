@@ -1,0 +1,24 @@
+{
+  "utc": "2026-09-10T08:26:52.085Z",
+  "scope": "Documentos de aceptación y continuidad: sin cambio de producto ni ejecución L01",
+  "gates": [
+    "P0 vigencia y aceptación acotada",
+    "P1 descuento y registros",
+    "P2 propuesta única y conservación"
+  ],
+  "precondiciones": "PASS",
+  "producto": 285,
+  "evidencias": 184,
+  "preparacion": 31,
+  "archivoPrevio": 185,
+  "fuentes": [
+    {
+      "ruta": "ACEPTACION.md",
+      "sha256": "4729679311a8782cb00ea24230ad39e63aebec5509501247271fe18284bcb951"
+    },
+    {
+      "ruta": "SIGUIENTE-ACCION.md",
+      "sha256": "64fa2ab5b8e2053f23ccda010beced290f8b4cbc7fd7d2cb4b71eeb3d2b7831f"
+    }
+  ]
+}

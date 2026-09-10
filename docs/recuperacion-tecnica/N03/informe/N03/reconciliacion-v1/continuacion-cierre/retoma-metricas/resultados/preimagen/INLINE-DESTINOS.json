@@ -1,0 +1,273 @@
+{
+  "result": "RED",
+  "checks": 48,
+  "failures": [
+    {
+      "id": "/api/daily-digest/incompatible/destino",
+      "actual": [
+        "https://firestore.googleapis.com/v1/projects/p-a/databases/(default)/documents:runQuery"
+      ],
+      "expected": []
+    },
+    {
+      "id": "/api/daily-digest/incompatible/rechazo",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "/sitemap.xml/incompatible/destino",
+      "actual": [
+        "https://firestore.googleapis.com/v1/projects/p-a/databases/(default)/documents/config/tenant"
+      ],
+      "expected": []
+    },
+    {
+      "id": "/api/crm-metrics/incompatible/destino",
+      "actual": [
+        "https://firestore.googleapis.com/v1/projects/p-a/databases/(default)/documents:runQuery"
+      ],
+      "expected": []
+    },
+    {
+      "id": "/api/crm-metrics/incompatible/rechazo",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "/api/services/incompatible/destino",
+      "actual": [
+        "https://firestore.googleapis.com/v1/projects/p-a/databases/(default)/documents/config/tenant"
+      ],
+      "expected": []
+    },
+    {
+      "id": "/api/services/incompatible/rechazo",
+      "actual": false,
+      "expected": true
+    }
+  ],
+  "rows": [
+    {
+      "route": "/api/daily-digest",
+      "kind": "compatible",
+      "status": 502,
+      "response": {
+        "error": "Firestore query failed."
+      },
+      "calls": [
+        "https://firestore.googleapis.com/v1/projects/p-a/databases/(default)/documents:runQuery"
+      ],
+      "internalErrors": [
+        [
+          "[Daily Digest] Firestore query error:",
+          {
+            "name": "Error",
+            "message": "STOP_LOCAL_READ"
+          }
+        ]
+      ]
+    },
+    {
+      "route": "/api/daily-digest",
+      "kind": "incompatible",
+      "status": 502,
+      "response": {
+        "error": "Firestore query failed."
+      },
+      "calls": [
+        "https://firestore.googleapis.com/v1/projects/p-a/databases/(default)/documents:runQuery"
+      ],
+      "internalErrors": [
+        [
+          "[Daily Digest] Firestore query error:",
+          {
+            "name": "Error",
+            "message": "STOP_LOCAL_READ"
+          }
+        ]
+      ]
+    },
+    {
+      "route": "/api/daily-digest",
+      "kind": "sin-token",
+      "status": 503,
+      "response": {
+        "error": "Cannot authenticate with Firestore."
+      },
+      "calls": [],
+      "internalErrors": []
+    },
+    {
+      "route": "/api/daily-digest",
+      "kind": "sin-proyecto",
+      "status": 500,
+      "response": {
+        "error": "FIREBASE_PROJECT_ID not set."
+      },
+      "calls": [],
+      "internalErrors": []
+    },
+    {
+      "route": "/sitemap.xml",
+      "kind": "compatible",
+      "status": 200,
+      "response": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n  <url>\n    <loc>https://local.invalid/</loc>\n    <lastmod>2026-09-10</lastmod>\n    <priority>1.0</priority>\n  </url>\n  <url>\n    <loc>https://local.invalid/gallery</loc>\n    <lastmod>2026-09-10</lastmod>\n    <priority>0.8</priority>\n  </url>\n  <url>\n    <loc>https://local.invalid/privacy</loc>\n    <lastmod>2026-09-10</lastmod>\n    <priority>0.3</priority>\n  </url>\n  <url>\n    <loc>https://local.invalid/terms</loc>\n    <lastmod>2026-09-10</lastmod>\n    <priority>0.3</priority>\n  </url>\n  <url>\n    <loc>https://local.invalid/cancellation</loc>\n    <lastmod>2026-09-10</lastmod>\n    <priority>0.3</priority>\n  </url>\n</urlset>",
+      "calls": [
+        "https://firestore.googleapis.com/v1/projects/p-a/databases/(default)/documents/config/tenant"
+      ],
+      "internalErrors": []
+    },
+    {
+      "route": "/sitemap.xml",
+      "kind": "incompatible",
+      "status": 200,
+      "response": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n  <url>\n    <loc>https://local.invalid/</loc>\n    <lastmod>2026-09-10</lastmod>\n    <priority>1.0</priority>\n  </url>\n  <url>\n    <loc>https://local.invalid/gallery</loc>\n    <lastmod>2026-09-10</lastmod>\n    <priority>0.8</priority>\n  </url>\n  <url>\n    <loc>https://local.invalid/privacy</loc>\n    <lastmod>2026-09-10</lastmod>\n    <priority>0.3</priority>\n  </url>\n  <url>\n    <loc>https://local.invalid/terms</loc>\n    <lastmod>2026-09-10</lastmod>\n    <priority>0.3</priority>\n  </url>\n  <url>\n    <loc>https://local.invalid/cancellation</loc>\n    <lastmod>2026-09-10</lastmod>\n    <priority>0.3</priority>\n  </url>\n</urlset>",
+      "calls": [
+        "https://firestore.googleapis.com/v1/projects/p-a/databases/(default)/documents/config/tenant"
+      ],
+      "internalErrors": []
+    },
+    {
+      "route": "/sitemap.xml",
+      "kind": "sin-token",
+      "status": 200,
+      "response": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n  <url>\n    <loc>https://local.invalid/</loc>\n    <lastmod>2026-09-10</lastmod>\n    <priority>1.0</priority>\n  </url>\n  <url>\n    <loc>https://local.invalid/gallery</loc>\n    <lastmod>2026-09-10</lastmod>\n    <priority>0.8</priority>\n  </url>\n  <url>\n    <loc>https://local.invalid/privacy</loc>\n    <lastmod>2026-09-10</lastmod>\n    <priority>0.3</priority>\n  </url>\n  <url>\n    <loc>https://local.invalid/terms</loc>\n    <lastmod>2026-09-10</lastmod>\n    <priority>0.3</priority>\n  </url>\n  <url>\n    <loc>https://local.invalid/cancellation</loc>\n    <lastmod>2026-09-10</lastmod>\n    <priority>0.3</priority>\n  </url>\n</urlset>",
+      "calls": [],
+      "internalErrors": []
+    },
+    {
+      "route": "/sitemap.xml",
+      "kind": "sin-proyecto",
+      "status": 200,
+      "response": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n  <url>\n    <loc>https://local.invalid/</loc>\n    <lastmod>2026-09-10</lastmod>\n    <priority>1.0</priority>\n  </url>\n  <url>\n    <loc>https://local.invalid/gallery</loc>\n    <lastmod>2026-09-10</lastmod>\n    <priority>0.8</priority>\n  </url>\n  <url>\n    <loc>https://local.invalid/privacy</loc>\n    <lastmod>2026-09-10</lastmod>\n    <priority>0.3</priority>\n  </url>\n  <url>\n    <loc>https://local.invalid/terms</loc>\n    <lastmod>2026-09-10</lastmod>\n    <priority>0.3</priority>\n  </url>\n  <url>\n    <loc>https://local.invalid/cancellation</loc>\n    <lastmod>2026-09-10</lastmod>\n    <priority>0.3</priority>\n  </url>\n</urlset>",
+      "calls": [],
+      "internalErrors": []
+    },
+    {
+      "route": "/api/crm-metrics",
+      "kind": "compatible",
+      "status": 500,
+      "response": {
+        "error": "Failed to compute metrics"
+      },
+      "calls": [
+        "https://firestore.googleapis.com/v1/projects/p-a/databases/(default)/documents:runQuery",
+        "https://firestore.googleapis.com/v1/projects/p-a/databases/(default)/documents:runQuery",
+        "https://firestore.googleapis.com/v1/projects/p-a/databases/(default)/documents:runQuery"
+      ],
+      "internalErrors": [
+        [
+          "[CRM Metrics] read failed:",
+          {
+            "name": "Error",
+            "message": "STOP_LOCAL_READ"
+          }
+        ]
+      ]
+    },
+    {
+      "route": "/api/crm-metrics",
+      "kind": "incompatible",
+      "status": 500,
+      "response": {
+        "error": "Failed to compute metrics"
+      },
+      "calls": [
+        "https://firestore.googleapis.com/v1/projects/p-a/databases/(default)/documents:runQuery",
+        "https://firestore.googleapis.com/v1/projects/p-a/databases/(default)/documents:runQuery",
+        "https://firestore.googleapis.com/v1/projects/p-a/databases/(default)/documents:runQuery"
+      ],
+      "internalErrors": [
+        [
+          "[CRM Metrics] read failed:",
+          {
+            "name": "Error",
+            "message": "STOP_LOCAL_READ"
+          }
+        ]
+      ]
+    },
+    {
+      "route": "/api/crm-metrics",
+      "kind": "sin-token",
+      "status": 503,
+      "response": {
+        "error": "Database not available"
+      },
+      "calls": [],
+      "internalErrors": []
+    },
+    {
+      "route": "/api/crm-metrics",
+      "kind": "sin-proyecto",
+      "status": 500,
+      "response": {
+        "error": "FIREBASE_PROJECT_ID not set"
+      },
+      "calls": [],
+      "internalErrors": []
+    },
+    {
+      "route": "/api/services",
+      "kind": "compatible",
+      "status": 500,
+      "response": {
+        "error": "Failed to fetch services."
+      },
+      "calls": [
+        "https://firestore.googleapis.com/v1/projects/p-a/databases/(default)/documents/config/tenant"
+      ],
+      "internalErrors": [
+        [
+          "[/api/services]",
+          {
+            "name": "Error",
+            "message": "STOP_LOCAL_READ"
+          }
+        ]
+      ]
+    },
+    {
+      "route": "/api/services",
+      "kind": "incompatible",
+      "status": 500,
+      "response": {
+        "error": "Failed to fetch services."
+      },
+      "calls": [
+        "https://firestore.googleapis.com/v1/projects/p-a/databases/(default)/documents/config/tenant"
+      ],
+      "internalErrors": [
+        [
+          "[/api/services]",
+          {
+            "name": "Error",
+            "message": "STOP_LOCAL_READ"
+          }
+        ]
+      ]
+    },
+    {
+      "route": "/api/services",
+      "kind": "sin-token",
+      "status": 503,
+      "response": {
+        "error": "Firestore not configured."
+      },
+      "calls": [],
+      "internalErrors": []
+    },
+    {
+      "route": "/api/services",
+      "kind": "sin-proyecto",
+      "status": 503,
+      "response": {
+        "error": "Firestore not configured."
+      },
+      "calls": [],
+      "internalErrors": []
+    }
+  ],
+  "source": "d20a45694e6cd2dd69040e8f2d57eafe00b83a22952a3a59ec5cff9cb0d8486d",
+  "limite": "Callbacks reales, auth válida inyectada para llegar al selector; fetch intercepta primer acceso y falla deliberadamente. No certifica respuesta funcional completa ni auth."
+}

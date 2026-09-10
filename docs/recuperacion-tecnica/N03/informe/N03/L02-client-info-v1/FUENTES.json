@@ -1,0 +1,87 @@
+[
+  {
+    "sha256": "64c66a80a4f0de17f66444df5b87b2b98684d61e8d3b8733e30adbb4dbb80132",
+    "ruta": "src/app/api/onboarding/client-info/route.ts",
+    "bytes": 19305
+  },
+  {
+    "sha256": "55d590aa6604772dd9c79b90694ebbda3856346f46e6b8dfcdce93e443669e53",
+    "ruta": "src/lib/wizard/config-to-wizard.ts",
+    "bytes": 5819
+  },
+  {
+    "sha256": "2623be31693de4d9320da3482d1a027338d64381985f4f554a983db6b09056ce",
+    "ruta": "src/lib/onboarding-token.ts",
+    "bytes": 3420
+  },
+  {
+    "sha256": "9fdb53599f9fca96b714920db393ced1443434d1b67117cf7d3ef422fc17dab7",
+    "ruta": "src/lib/rate-limit.ts",
+    "bytes": 1149
+  },
+  {
+    "sha256": "a30feab7ca5002c7c808588c67d597e09ed8619a80d2fd17f3d442cb507835b4",
+    "ruta": "src/lib/branding-resolver.ts",
+    "bytes": 5102
+  },
+  {
+    "sha256": "30060f29935ac8675cccc32126581f52b7f4b6fd2c4964c71c2916c65b3acb54",
+    "ruta": "src/lib/email-templates.ts",
+    "bytes": 11240
+  },
+  {
+    "sha256": "18569b89ffcd268061a754446c26f52bd1953aa6d781416528de3efdc1f6ba3c",
+    "ruta": "src/lib/config-diff.ts",
+    "bytes": 3159
+  },
+  {
+    "sha256": "5f88040b9fd3c0689bdc8e046a0c867d307217dff236e86417004f06408803a1",
+    "ruta": "src/lib/client-language.ts",
+    "bytes": 1896
+  },
+  {
+    "sha256": "de26ef727688706165246963748be7ae2c310427651c4a281c0e71267108286a",
+    "ruta": "src/lib/client-config/services.ts",
+    "bytes": 5584
+  },
+  {
+    "sha256": "d630c5016c91322ad91f3345742d6406cc0030df1b629fb85a88c4eb9c9ef5eb",
+    "ruta": "package.json",
+    "bytes": 1471
+  },
+  {
+    "sha256": "d49f15968a32312f0c14e0061a3f3208505389ab7cde998dcae8949939cd63dd",
+    "ruta": "package-lock.json",
+    "bytes": 359617
+  },
+  {
+    "sha256": "3ab692225407b5f463ba77c8e9c00c3ea8961a5c42f486311620150b1b19f1bd",
+    "ruta": "node_modules/@google-cloud/firestore/build/src/document.js",
+    "bytes": 30532
+  },
+  {
+    "sha256": "9b429d132f15b9a4e7d49471c1926c078bfea3f8df543c06f717a59ab032ab77",
+    "ruta": "node_modules/@google-cloud/firestore/build/src/write-batch.js",
+    "bytes": 27662
+  },
+  {
+    "sha256": "4be5d635f9ee1f6f9ed4e941904bcda86343e3081a51b659b070ddfadb75ed94",
+    "ruta": "node_modules/@google-cloud/firestore/build/src/path.js",
+    "bytes": 20197
+  },
+  {
+    "sha256": "693f6c55b478b21a7a51a03d961b00ff780c49aeb7393ad828e4a8614b5de8d0",
+    "ruta": "node_modules/@google-cloud/firestore/build/src/serializer.js",
+    "bytes": 16105
+  },
+  {
+    "sha256": "276a3257e1ebcf899c8a572c7b5c05417600370153234e7dc9ae440ede44871b",
+    "ruta": "node_modules/@google-cloud/firestore/package.json",
+    "bytes": 4758
+  },
+  {
+    "sha256": "eeea23150ca753f4d3b82e4bd1cfd194b8b4771d6a008be9ff8ae98ff669e490",
+    "ruta": "node_modules/firebase-admin/package.json",
+    "bytes": 8378
+  }
+]

@@ -1,0 +1,9 @@
+# E-NOT-01: CTA fiel al destino de liamMessage
+
+Objetivo y alcance: sólo texto condicional de liamMessage en hub/src/lib/email-templates.ts. Caller POST messages no pasa portalUrl; el fallback SITE debe invitar a visitar Arzac Studio, sin prometer respuesta en portal. portalUrl explícita conserva texto/enlace exactos. No crear portal, modificar sender/caller/guardias ni enviar correo. No cerrar D13 global ni reinterpretar política NOT.
+
+Expectativas fijas: ausencia o cadena vacía de portalUrl -> texto "Podés visitar Arzac Studio:" y botón "Visitar Arzac Studio →"; portalUrl no vacío -> texto y botón actuales de responder en portal. Destinos intactos: SITE definido por env o https://arzac.studio, portal explícito intacto. Subject, saludo, body, escape HTML, saltos, firma y demás plantillas conservados. 3 estados portal × 2 SITE × 2 cuerpos con caracteres especiales =12 casos sobre plantilla real transpilada y process sintético. Se compara salida íntegra contra preimagen cambiando sólo ambas frases autorizadas, además de objetivos fijos.
+
+P0: preimagen, contrato, RED basal antes de producto. P1: refutación y freeze. P2: dos expresiones condicionales y GREEN. P3/DONE: mutante restaura función basal y causa RED por promesa falsa, tipos/lint existentes pertinentes, hashes y reporte. Instrumento no importa caller ni transporte, ni carga entorno real. Mutación en memoria; no producto.
+
+Refutación previa: usar misma condición truthy de portalUrl que el selector de destino evita diferenciar URL y texto ante cadena vacía; no agregar trim ni validación que cambie semántica. No aseverar existencia operacional del portal explícito; se preserva contrato del caller que lo proporciona. La conservación se verifica por bytes fuera de función y salida completa, no sólo presencia de una frase. Ningún BLOCKER/MATERIAL pendiente para este alcance.

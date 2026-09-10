@@ -1,0 +1,171 @@
+{
+  "result": "RED",
+  "cases": 8,
+  "checks": 67,
+  "failures": [
+    {
+      "id": "server.ts/api/webhook/state-error/settled",
+      "actual": "SENSITIVE synthetic-state-error",
+      "expected": null
+    },
+    {
+      "id": "server.ts/api/webhook/state-error/status",
+      "actual": 200,
+      "expected": 503
+    },
+    {
+      "id": "server.ts/api/webhook/state-error/replied",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "api/index.ts/api/webhook/state-error/settled",
+      "actual": "SENSITIVE synthetic-state-error",
+      "expected": null
+    },
+    {
+      "id": "api/index.ts/api/webhook/state-error/status",
+      "actual": 200,
+      "expected": 503
+    },
+    {
+      "id": "api/index.ts/api/webhook/state-error/replied",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "id": "api/index.ts/api/tenant/status/state-error/settled",
+      "actual": "SENSITIVE synthetic-state-error",
+      "expected": null
+    },
+    {
+      "id": "api/index.ts/api/tenant/status/state-error/status",
+      "actual": 200,
+      "expected": 503
+    },
+    {
+      "id": "api/index.ts/api/tenant/status/state-error/replied",
+      "actual": false,
+      "expected": true
+    }
+  ],
+  "rows": [
+    {
+      "file": "server.ts",
+      "route": "/api/webhook",
+      "failure": false,
+      "status": 400,
+      "body": "Webhook verification failed",
+      "reply": true,
+      "rejected": null,
+      "stateCalls": 1,
+      "gatewayCalls": 1,
+      "verifyCalls": 1,
+      "effects": 0
+    },
+    {
+      "file": "server.ts",
+      "route": "/api/webhook",
+      "failure": true,
+      "status": 200,
+      "reply": false,
+      "rejected": "SENSITIVE synthetic-state-error",
+      "stateCalls": 1,
+      "gatewayCalls": 0,
+      "verifyCalls": 0,
+      "effects": 0
+    },
+    {
+      "file": "server.ts",
+      "route": "/api/tenant/status",
+      "failure": false,
+      "status": 200,
+      "body": {
+        "status": "active",
+        "active": true
+      },
+      "reply": true,
+      "rejected": null,
+      "stateCalls": 0,
+      "gatewayCalls": 0,
+      "verifyCalls": 0,
+      "effects": 0
+    },
+    {
+      "file": "server.ts",
+      "route": "/api/tenant/status",
+      "failure": true,
+      "status": 200,
+      "body": {
+        "status": "active",
+        "active": true
+      },
+      "reply": true,
+      "rejected": null,
+      "stateCalls": 0,
+      "gatewayCalls": 0,
+      "verifyCalls": 0,
+      "effects": 0
+    },
+    {
+      "file": "api/index.ts",
+      "route": "/api/webhook",
+      "failure": false,
+      "status": 400,
+      "body": "Webhook verification failed",
+      "reply": true,
+      "rejected": null,
+      "stateCalls": 1,
+      "gatewayCalls": 1,
+      "verifyCalls": 1,
+      "effects": 0
+    },
+    {
+      "file": "api/index.ts",
+      "route": "/api/webhook",
+      "failure": true,
+      "status": 200,
+      "reply": false,
+      "rejected": "SENSITIVE synthetic-state-error",
+      "stateCalls": 1,
+      "gatewayCalls": 0,
+      "verifyCalls": 0,
+      "effects": 0
+    },
+    {
+      "file": "api/index.ts",
+      "route": "/api/tenant/status",
+      "failure": false,
+      "status": 200,
+      "body": {
+        "clientId": "tenant",
+        "status": "active",
+        "paymentProvider": "stripe",
+        "active": true
+      },
+      "reply": true,
+      "rejected": null,
+      "stateCalls": 1,
+      "gatewayCalls": 0,
+      "verifyCalls": 0,
+      "effects": 0
+    },
+    {
+      "file": "api/index.ts",
+      "route": "/api/tenant/status",
+      "failure": true,
+      "status": 200,
+      "reply": false,
+      "rejected": "SENSITIVE synthetic-state-error",
+      "stateCalls": 1,
+      "gatewayCalls": 0,
+      "verifyCalls": 0,
+      "effects": 0
+    }
+  ],
+  "hashes": {
+    "server.ts": "ef6d90b25f61a9bf247271426ace4db1c0c5ba70e87e76ac5f5d5228188c7e38",
+    "api/index.ts": "281dd24d649af2c1afd3e98f5e90381f18c841810c7374df146d5988145cead4"
+  },
+  "limits": "Callbacks reales por AST invocados y promesa observada. Fallo getClientRuntimeState inyectado; webhook cuerpo vacío y verifier null, sin evento/cargo real. No prueba middleware/Express global en este archivo."
+}

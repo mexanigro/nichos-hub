@@ -1,0 +1,42 @@
+[
+  {
+    "ruta": "src/middleware.ts",
+    "bytes": 2085,
+    "sha256": "5a20e70b747f634dcf972e098993f837a1667cc7b23a17a82d6922f26832b44b"
+  },
+  {
+    "ruta": "src/auth.config.ts",
+    "bytes": 348,
+    "sha256": "f9da40e7cd7cb05838674f072677e21110f2fab1ee264bb8eaf0176675abcb0e"
+  },
+  {
+    "ruta": "package.json",
+    "bytes": 1471,
+    "sha256": "d630c5016c91322ad91f3345742d6406cc0030df1b629fb85a88c4eb9c9ef5eb"
+  },
+  {
+    "ruta": "next.config.ts",
+    "bytes": 1533,
+    "sha256": "7116c350468557b1b291135412d7afdd75ca49fd21d21fd653d3c86e3beb4aa0"
+  },
+  {
+    "ruta": "node_modules/next/package.json",
+    "bytes": 11243,
+    "sha256": "d80d1672ce2b502402340e6c5aa8fa99449db3ccda705e864bfbb1e91df7999e"
+  },
+  {
+    "ruta": "node_modules/next-auth/package.json",
+    "bytes": 2732,
+    "sha256": "d244bcefca4ce81b1fcfce7ebf86c2142147b2336318b6d571939438673ff60f"
+  },
+  {
+    "ruta": "node_modules/@auth/core/jwt.js",
+    "bytes": 4974,
+    "sha256": "cdd04c94b9635edfecfeb02c9cbac41e55f9bdfe3f6f8d62e05f05bc12bee456"
+  },
+  {
+    "ruta": "node_modules/next-auth/lib/index.js",
+    "bytes": 8207,
+    "sha256": "1b80aa2204f5dff68779f96321881db5b9717142d446343be08630ca96c2d93e"
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "result": "RED",
+  "controles": 1,
+  "fallos": [
+    {
+      "nombre": "Nombre único proxy final",
+      "ok": false
+    }
+  ],
+  "detalle": [
+    {
+      "nombre": "Nombre único proxy final",
+      "ok": false
+    }
+  ]
+}

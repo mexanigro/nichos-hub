@@ -1,0 +1,32 @@
+{
+  "gate": "P0 completo para construcción; ramas futuras NO_VERIFICADAS",
+  "scope": "admin-auth.ts,server.ts,api/index.ts,crm-appointments-handler.ts,crm-appointments.ts,AdminDashboard.tsx,AppointmentCalendar.tsx",
+  "refutation": "refutacion_wnext sin BLOCKERS; materiales corregidos antes de freeze",
+  "red": "auth38/61 RED26; registros34 RED10; agenda13 RED9; conexión5 RED1",
+  "files": [
+    {
+      "file": "CONTRATO.md",
+      "sha256": "7CCF95A37647AB153F3957F531556B83F9F3599A92C4324BB068B1138A18390A"
+    },
+    {
+      "file": "conexion.cjs",
+      "sha256": "275F8E875D68B31DDC4FA0303EA70AC13CFB64F1E500B47F6F90398C9B29C8DA"
+    },
+    {
+      "file": "agenda.cjs",
+      "sha256": "E9443EB7B832EF4442002195FB0AB6AF18E53794B8A7252D52EA5BA358E616F2"
+    },
+    {
+      "file": "registro.cjs",
+      "sha256": "FAD28A82AAD90943D93B9ED1A8C68161CF89F2F455F14684E3CA5DDEE1F2A86A"
+    },
+    {
+      "file": "auth\\contrato.cjs",
+      "sha256": "AA8104243DC43EAC79BC7E2ABF16543DF93DEF3D7A38D9C3EF33E9F43B2251F5"
+    },
+    {
+      "file": "auth\\lookups.cjs",
+      "sha256": "B220DEE8E57116E4C1E4A74DBA7E1D8622B042B3131409ABB64AE1B0B09C919F"
+    }
+  ]
+}

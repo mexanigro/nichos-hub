@@ -1,0 +1,11 @@
+TypeError: Cannot read properties of undefined (reading 'useState')
+    at BookingWizard (eval at load (/control/l12.cjs:8:1), <anonymous>:37:45)
+    at Object.react_stack_bottom_frame (/deps/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:9808:18)
+    at renderWithHooks (/deps/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:5062:19)
+    at renderElement (/deps/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:5497:23)
+    at retryNode (/deps/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:6417:31)
+    at performWork (/deps/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:7435:17)
+    at startWork (/deps/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:8270:7)
+    at renderToStringImpl (/deps/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:8380:7)
+    at process.env.NODE_ENV.exports.renderToStaticMarkup (/deps/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:9861:14)
+    at /control/l12.cjs:13:435

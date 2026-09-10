@@ -1,0 +1,19 @@
+Error creating checkout session: Error: SENSITIVE config failure
+    at Object.get (/control/moneda-handler.cjs:7:307)
+    at eval (eval at <anonymous> (/control/moneda-handler.cjs:6:341), <anonymous>:50:81)
+    at async /control/moneda-handler.cjs:8:88
+[Checkout] Failed to resolve gateway "stripe": SENSITIVE: secret
+Error creating checkout session: Error: SENSITIVE: secret
+    at Object.createCheckoutSession (/control/moneda-handler.cjs:7:708)
+    at eval (eval at <anonymous> (/control/moneda-handler.cjs:6:341), <anonymous>:66:42)
+    at async /control/moneda-handler.cjs:8:88
+Error creating checkout session: Error: SENSITIVE config failure
+    at Object.get (/control/moneda-handler.cjs:7:307)
+    at eval (eval at <anonymous> (/control/moneda-handler.cjs:6:341), <anonymous>:50:81)
+    at async /control/moneda-handler.cjs:8:88
+[Checkout] Failed to resolve gateway "stripe": SENSITIVE: secret
+Error creating checkout session: Error: SENSITIVE: secret
+    at Object.createCheckoutSession (/control/moneda-handler.cjs:7:708)
+    at eval (eval at <anonymous> (/control/moneda-handler.cjs:6:341), <anonymous>:66:42)
+    at async /control/moneda-handler.cjs:8:88
+{"cases":31,"checks":482,"failures":0}

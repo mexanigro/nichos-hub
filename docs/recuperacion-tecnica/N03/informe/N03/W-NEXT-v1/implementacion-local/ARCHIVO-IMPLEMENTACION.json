@@ -1,0 +1,407 @@
+{
+  "nota": "Copias y.next retenidos físicamente en canon;code.source evita descubrimiento por compilador.",
+  "archivos": [
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\ACEPTACION-DE-LIAM.md",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\ACEPTACION-DE-LIAM.md",
+      "bytes": 1105,
+      "sha256": "23ac24ec7b32e85a71aaf379f6121e3e03cbe1d56b33916b0a8678df3ccc66d9"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\ACEPTACION-FINAL-EXIT.json",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\ACEPTACION-FINAL-EXIT.json",
+      "bytes": 132,
+      "sha256": "0285fe3cc84cb0a3481d912113cbee99420fdf497be83f3e5ee813b04411bc0b"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\ACEPTACION-FINAL.json",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\ACEPTACION-FINAL.json",
+      "bytes": 30825,
+      "sha256": "7e482ca988ef11d3d370837d2eaaa0832a18efcbd06e381451309c399642da0c"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\aceptacion.cjs",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\aceptacion.cjs.source",
+      "bytes": 4954,
+      "sha256": "d93f1f49bdafe41287ee693433b198122c042c8635fb377e26f3b7947d10d983"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\cerrar.cjs",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\cerrar.cjs.source",
+      "bytes": 11560,
+      "sha256": "6dae259de4b842936f5e548f9d81d85b72a6f059c61cf6b0595f168dd94cf13e"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\CIERRE-LOCAL.md",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\CIERRE-LOCAL.md",
+      "bytes": 5133,
+      "sha256": "a69dca28dfcd30bd477b1db480546b66c6c0242298de4c2e039d49779a561961"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\CONTRATO.md",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\CONTRATO.md",
+      "bytes": 3767,
+      "sha256": "002866cebc5ff0f36e3735690138b3a24fac192ed5aff931390f10fb696beca9"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\CUOTA-FINAL.json",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\CUOTA-FINAL.json",
+      "bytes": 215,
+      "sha256": "2341ca5d685b7fdba62dde78419eb3ac54999ebc5281ad751422babf8b92b368"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\CUSTODIA-REGISTROS.json",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\CUSTODIA-REGISTROS.json",
+      "bytes": 6585,
+      "sha256": "935ddcadf51a0bab1a7fc4d8c6922636f68433a5bf8f90910317eb94b6ba78e7"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\ejecutar.ps1",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\ejecutar.ps1.source",
+      "bytes": 3520,
+      "sha256": "612e327fb66e65df4a25d797af516fd21085955ffc892933ba0c8b7c3e1a750d"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\EVIDENCIA-FISICA.json",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\EVIDENCIA-FISICA.json",
+      "bytes": 45657,
+      "sha256": "2412ced5ea546407545395970ef12e78d86bc7cc87a7574e5d2c3e940ef6286d"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\FREEZE.json",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\FREEZE.json",
+      "bytes": 2161,
+      "sha256": "41917e5390c19f4812e7dfec04c7781a379fdd8eb720b1c2a8c3a764ed948339"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\FUENTES.json",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\FUENTES.json",
+      "bytes": 980,
+      "sha256": "a99fa8b3314505d4ae0384f14cf284a7715d58b959f457ff91fa021564059017"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\GATES-FINAL.json",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\GATES-FINAL.json",
+      "bytes": 239,
+      "sha256": "c5f3864fed9b4bbb710f6b00dcc532de4e1535c66c9c6853b88607a4bdfed24b"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\GIT-ANTES.txt",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\GIT-ANTES.txt",
+      "bytes": 20135,
+      "sha256": "2dc3d88a0374d34707e7fa6521a4799d84bb61dffdb6dea48d10578dd603bf6f"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\LINT-RESUMEN.json",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\LINT-RESUMEN.json",
+      "bytes": 167,
+      "sha256": "03aec0197697d37cec3a681f0fb342baccdae37f9983a0c0f8a4544550eeb1b1"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\LINT.json",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\LINT.json",
+      "bytes": 586,
+      "sha256": "0e8f0dee95deeb5f90eb8f34fc4841e6f20fc1cba93f1b65c8a2c8134591ed3c"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\mover.cjs",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\mover.cjs.source",
+      "bytes": 1546,
+      "sha256": "45c25013c8a1739f6d4648a0312eadb3911b1e2d9d5994631e64bbb44533cfe0"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\MOVIMIENTO.json",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\MOVIMIENTO.json",
+      "bytes": 325,
+      "sha256": "09a163925f00d7ae32b9b713bdffccf6921b018e4f290489b762da1d75ca5b35"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\P2.json",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\P2.json",
+      "bytes": 202,
+      "sha256": "c0a77c85705079177a28342f80e8dce52af611877161722615d1f53633532e3d"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\preimagenes\\next-env.d.ts",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\preimagenes\\next-env.d.ts.source",
+      "bytes": 253,
+      "sha256": "4e4da12aa061aac172fb1bcb48e9b6e4b293080d2f494327925fdba8f39632ac"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\preimagenes\\next.config.ts",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\preimagenes\\next.config.ts.source",
+      "bytes": 1533,
+      "sha256": "7116c350468557b1b291135412d7afdd75ca49fd21d21fd653d3c86e3beb4aa0"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\preimagenes\\package-lock.json",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\preimagenes\\package-lock.json",
+      "bytes": 359617,
+      "sha256": "d49f15968a32312f0c14e0061a3f3208505389ab7cde998dcae8949939cd63dd"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\preimagenes\\package.json",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\preimagenes\\package.json",
+      "bytes": 1471,
+      "sha256": "d630c5016c91322ad91f3345742d6406cc0030df1b629fb85a88c4eb9c9ef5eb"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\preimagenes\\src\\auth.config.ts",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\preimagenes\\src\\auth.config.ts.source",
+      "bytes": 348,
+      "sha256": "f9da40e7cd7cb05838674f072677e21110f2fab1ee264bb8eaf0176675abcb0e"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\preimagenes\\src\\middleware.ts",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\preimagenes\\src\\middleware.ts.source",
+      "bytes": 2085,
+      "sha256": "5a20e70b747f634dcf972e098993f837a1667cc7b23a17a82d6922f26832b44b"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\preimagenes\\tsconfig.json",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\preimagenes\\tsconfig.json",
+      "bytes": 764,
+      "sha256": "7ac8827182b5352c034401edd2417e7454ad6f39b3aee139a0ea3cfa49470563"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\preimagenes-registros\\archivo\\indice\\CALENDARIO.md",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\preimagenes-registros\\archivo\\indice\\CALENDARIO.md",
+      "bytes": 22136,
+      "sha256": "039b8d5d1afeb2d3ea7f28679cd05d30d8406a7512ed2f80d33a4ca043a998a3"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\preimagenes-registros\\archivo\\indice\\README.md",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\preimagenes-registros\\archivo\\indice\\README.md",
+      "bytes": 24780,
+      "sha256": "c1fc96fa7ea221eda60bf4f586d3e51be5b9053f16616109963b0233800520c8"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\preimagenes-registros\\archivo\\indice\\tareas\\N03.md",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\preimagenes-registros\\archivo\\indice\\tareas\\N03.md",
+      "bytes": 28209,
+      "sha256": "791aedd1408519cdc9c9d135d2fe9b61e0b5987f3446c5be38a6d7222f7e0eea"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\preimagenes-registros\\archivo\\informe\\N03\\cierre-sesion-v1\\RETOMA.md",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\preimagenes-registros\\archivo\\informe\\N03\\cierre-sesion-v1\\RETOMA.md",
+      "bytes": 10706,
+      "sha256": "fab3dd34100b3dd1a38201f72b051b3dee52fcba6effa02b7984ee53830116cc"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\preimagenes-registros\\archivo\\informe\\N03\\reconciliacion-v1\\BALANCE.md",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\preimagenes-registros\\archivo\\informe\\N03\\reconciliacion-v1\\BALANCE.md",
+      "bytes": 13521,
+      "sha256": "ac42a9c6ac087e5a10ef1fc70f4d9859670779992b6833e28780083703379a71"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\preimagenes-registros\\archivo\\informe\\N03\\W-NEXT-v1\\INFORME.md",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\preimagenes-registros\\archivo\\informe\\N03\\W-NEXT-v1\\INFORME.md",
+      "bytes": 4752,
+      "sha256": "74c1d3d0e6a9f172ed072c2251bda25679342ddb62c1705a2516635ea218d798"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\preimagenes-registros\\archivo\\informe\\N03\\W-NEXT-v1\\PROPUESTA.md",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\preimagenes-registros\\archivo\\informe\\N03\\W-NEXT-v1\\PROPUESTA.md",
+      "bytes": 7731,
+      "sha256": "a4b378c3e744726aedf15cd0732378b1a302b889ccd72b5e60161cf1941d145d"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\preimagenes-registros\\canon\\indice\\CALENDARIO.md",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\preimagenes-registros\\canon\\indice\\CALENDARIO.md",
+      "bytes": 22136,
+      "sha256": "039b8d5d1afeb2d3ea7f28679cd05d30d8406a7512ed2f80d33a4ca043a998a3"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\preimagenes-registros\\canon\\indice\\README.md",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\preimagenes-registros\\canon\\indice\\README.md",
+      "bytes": 24780,
+      "sha256": "c1fc96fa7ea221eda60bf4f586d3e51be5b9053f16616109963b0233800520c8"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\preimagenes-registros\\canon\\indice\\tareas\\N03.md",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\preimagenes-registros\\canon\\indice\\tareas\\N03.md",
+      "bytes": 28209,
+      "sha256": "791aedd1408519cdc9c9d135d2fe9b61e0b5987f3446c5be38a6d7222f7e0eea"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\preimagenes-registros\\canon\\informe\\N03\\cierre-sesion-v1\\RETOMA.md",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\preimagenes-registros\\canon\\informe\\N03\\cierre-sesion-v1\\RETOMA.md",
+      "bytes": 10706,
+      "sha256": "fab3dd34100b3dd1a38201f72b051b3dee52fcba6effa02b7984ee53830116cc"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\preimagenes-registros\\canon\\informe\\N03\\reconciliacion-v1\\BALANCE.md",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\preimagenes-registros\\canon\\informe\\N03\\reconciliacion-v1\\BALANCE.md",
+      "bytes": 13521,
+      "sha256": "ac42a9c6ac087e5a10ef1fc70f4d9859670779992b6833e28780083703379a71"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\preimagenes-registros\\canon\\informe\\N03\\W-NEXT-v1\\INFORME.md",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\preimagenes-registros\\canon\\informe\\N03\\W-NEXT-v1\\INFORME.md",
+      "bytes": 4752,
+      "sha256": "74c1d3d0e6a9f172ed072c2251bda25679342ddb62c1705a2516635ea218d798"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\preimagenes-registros\\canon\\informe\\N03\\W-NEXT-v1\\PROPUESTA.md",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\preimagenes-registros\\canon\\informe\\N03\\W-NEXT-v1\\PROPUESTA.md",
+      "bytes": 7731,
+      "sha256": "a4b378c3e744726aedf15cd0732378b1a302b889ccd72b5e60161cf1941d145d"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\preparar.cjs",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\preparar.cjs.source",
+      "bytes": 3637,
+      "sha256": "126dcb563f8e4f828b5519fadeeed333c02481d4c44ab9e0896946e5b625c140"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\PRODUCTO-ANTES.json",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\PRODUCTO-ANTES.json",
+      "bytes": 40123,
+      "sha256": "551cd5a6796b91a385674111b589d04a4775a10cefb158d3bc200e71a26cf5ec"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\PROGRESO.jsonl",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\PROGRESO.jsonl",
+      "bytes": 343,
+      "sha256": "07bcdda4b548e1c8d8e2883d7a93650c0a1ab50d4c36829e96d8017950264fdf"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\RED-INICIAL.stderr.txt",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\RED-INICIAL.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\RED-INICIAL.stdout.txt",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\RED-INICIAL.stdout.txt",
+      "bytes": 229,
+      "sha256": "061ddb38352fb740defa887b9e203543f30daea544e31f925f237471aa65912c"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\resultados\\proxy\\build-exit.json",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\resultados\\proxy\\build-exit.json",
+      "bytes": 17,
+      "sha256": "29e3287a1bc3d0fb0b82eaaafb5c5d61abb37221ba3d6bf0360151ab64396cca"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\resultados\\proxy\\build-stderr.txt",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\resultados\\proxy\\build-stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\resultados\\proxy\\build-stdout.txt",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\resultados\\proxy\\build-stdout.txt",
+      "bytes": 940,
+      "sha256": "733d178d5dfeb6e27c81c8df74c149447110138db5de39fdc0005312848b0780"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\resultados\\proxy\\DISPOSICION.json",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\resultados\\proxy\\DISPOSICION.json",
+      "bytes": 59,
+      "sha256": "845603ceff8d672755deab298d56308762a7fbab505001984366dfc2dd0061f2"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\resultados\\proxy\\DOCKER.json",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\resultados\\proxy\\DOCKER.json",
+      "bytes": 5645,
+      "sha256": "4dd10b0c936ebc51737c696e8bfe82f9ad582b96318366af9000c332d3e9de70"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\resultados\\proxy\\EXPIRADO.json",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\resultados\\proxy\\EXPIRADO.json",
+      "bytes": 54,
+      "sha256": "dc966ee4f734aebd182c3c686fcb462d09015ced9fcf5ecdfc934c8614864e33"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\resultados\\proxy\\HTTP.json",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\resultados\\proxy\\HTTP.json",
+      "bytes": 43803,
+      "sha256": "5237a721d17ac1bca2e931a3398fdb3e81d2cd596cbbaa259e1f2967955b7942"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\resultados\\proxy\\PREFLIGHT.json",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\resultados\\proxy\\PREFLIGHT.json",
+      "bytes": 657,
+      "sha256": "94525f083dc97d56a81567afd174c3e6236c4e0bd721af5989040833da9433ec"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\resultados\\proxy\\REGISTRO.json",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\resultados\\proxy\\REGISTRO.json",
+      "bytes": 83,
+      "sha256": "0a8520bc7e076f7ae717c2d62713990c83e8a3d74626f327a3844bc0504e210c"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\resultados\\proxy\\RUTAS.json",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\resultados\\proxy\\RUTAS.json",
+      "bytes": 1653,
+      "sha256": "e4d5079a52317ae3be78d50b3154ca0147fc107596f436cffe895474d3070cc9"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\resultados\\proxy\\server-stderr.txt",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\resultados\\proxy\\server-stderr.txt",
+      "bytes": 3476,
+      "sha256": "2a027a1a46c7eb3def456c51caceaeb1b880fb2c0e91fe4621add1b5c4fd3f13"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\resultados\\proxy\\server-stdout.txt",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\resultados\\proxy\\server-stdout.txt",
+      "bytes": 115,
+      "sha256": "eef1638bfbf887bc465a6031bee37d3a38b06471af13f014d3b1d47dcc59b9fb"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\resultados\\proxy\\stderr.txt",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\resultados\\proxy\\stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\resultados\\proxy\\stdout.txt",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\resultados\\proxy\\stdout.txt",
+      "bytes": 56,
+      "sha256": "6da29482649466440526d4d8ce82a6ef7eeb35f949358da19030cab0b5519c7f"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\resultados\\proxy\\tsconfig-pre-build.json",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\resultados\\proxy\\tsconfig-pre-build.json",
+      "bytes": 404,
+      "sha256": "b5cbd058b19791f7f8519b3e3dc2d39bfb270531089333afb2d70d5542dc8146"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\runner.cjs",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\runner.cjs.source",
+      "bytes": 7095,
+      "sha256": "48766e00b52df8b1fdcba6ddae0998031f8be0c1e4857e68c984b38eeb7854b3"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\tipos-lint.cjs",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\tipos-lint.cjs.source",
+      "bytes": 2019,
+      "sha256": "b72b883ad37fd27a4d14970db5f2bac9d09af1ca385b3422ebafaa425263f8a1"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\TIPOS.json",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\TIPOS.json",
+      "bytes": 515,
+      "sha256": "385aae00fe0717ced6e65b7c9b8c42d148b8b4bb14d12b8a10dc3add861890e5"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\TIPOS.stderr.txt",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\TIPOS.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\TIPOS.stdout.txt",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\TIPOS.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "origen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\W-NEXT-v1\\implementacion-local\\tsconfig-pertinente.json",
+      "destino": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\W-NEXT-v1\\implementacion-local\\tsconfig-pertinente.json",
+      "bytes": 324,
+      "sha256": "a75a1c007d80c994f15ff3098c732209f70be8c40eee0f0c3d288e6bbf18974d"
+    }
+  ]
+}

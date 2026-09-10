@@ -1,0 +1,25 @@
+const fs=require('node:fs'),p=require('node:path'),crypto=require('node:crypto'),{spawnSync}=require('node:child_process');
+const base=__dirname,previo=p.resolve(base,'../comparacion-local'),hub='C:/Users/liama/Desktop/Nichos-hub';
+const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
+const escribir=(ruta,b)=>{fs.mkdirSync(p.dirname(ruta),{recursive:true});fs.writeFileSync(ruta,b,{flag:'wx'});};
+const leer=r=>JSON.parse(fs.readFileSync(r,'utf8').replace(/^\uFEFF/,''));
+const fuentes=leer(p.join(previo,'FUENTES.json'));
+for(const f of fuentes)if(sha(fs.readFileSync(p.join(hub,f.ruta)))!==f.sha256)throw Error('Fuente no vigente '+f.ruta);
+const evidencia=leer(p.join(previo,'EVIDENCIA-FISICA.json'));
+for(const f of evidencia.archivos)if(sha(fs.readFileSync(f.ruta))!==f.sha256)throw Error('Evidencia aceptada alterada '+f.ruta);
+const originales=['src/middleware.ts','src/auth.config.ts','tsconfig.json','next.config.ts','package.json','package-lock.json','next-env.d.ts'];
+const propios=originales.map(ruta=>{const b=fs.readFileSync(p.join(hub,ruta));escribir(p.join(base,'preimagenes',ruta),b);return {ruta,bytes:b.length,sha256:sha(b)};});
+function caminar(dir){return fs.readdirSync(dir,{withFileTypes:true}).flatMap(x=>x.isDirectory()?caminar(p.join(dir,x.name)):[p.join(dir,x.name)]);}
+const producto=caminar(p.join(hub,'src')).map(ruta=>({ruta:p.relative(hub,ruta).replaceAll('\\','/'),sha256:sha(fs.readFileSync(ruta))}));
+escribir(p.join(base,'PRODUCTO-ANTES.json'),JSON.stringify(producto,null,2));escribir(p.join(base,'FUENTES.json'),JSON.stringify(propios,null,2));
+for(const nombre of ['runner.cjs','ejecutar.ps1'])escribir(p.join(base,nombre),fs.readFileSync(p.join(previo,nombre)));
+const copia=p.join(base,'copias/proxy');fs.mkdirSync(p.join(copia,'node_modules'),{recursive:true});
+// La infraestructura sintética sigue siendo la aceptada; el guard se poblará desde producto tras P1.
+for(const ruta of ['package.json','next.config.mjs','src/app/[[...ruta]]/route.ts'])escribir(p.join(copia,ruta),fs.readFileSync(p.join(previo,'copias/proxy',ruta)));
+escribir(p.join(copia,'tsconfig.json'),fs.readFileSync(p.join(previo,'preimagenes-instrumento-r1/tsconfig-inicial-comun.json')));
+escribir(p.join(base,'tsconfig-pertinente.json'),JSON.stringify({extends:hub+'/tsconfig.json',compilerOptions:{incremental:false},include:[hub+'/src/proxy.ts',hub+'/src/auth.config.ts',hub+'/next-env.d.ts'],exclude:[]},null,2));
+const estado=spawnSync('git',['-C',hub,'status','--porcelain=v1','-uall'],{encoding:'utf8'});if(estado.status!==0)throw Error('git status');escribir(p.join(base,'GIT-ANTES.txt'),estado.stdout);
+const red=spawnSync(process.execPath,[p.join(base,'aceptacion.cjs'),'nombre'],{encoding:'utf8'});escribir(p.join(base,'RED-INICIAL.stdout.txt'),red.stdout);escribir(p.join(base,'RED-INICIAL.stderr.txt'),red.stderr);if(red.status!==1)throw Error('RED incorrecto');
+const huellas=['CONTRATO.md','aceptacion.cjs','runner.cjs','ejecutar.ps1','tsconfig-pertinente.json','tipos-lint.cjs'].map(ruta=>({ruta,sha256:sha(fs.readFileSync(p.join(base,ruta)))}));
+escribir(p.join(base,'FREEZE.json'),JSON.stringify({fecha:new Date().toISOString(),autorizacion:'Liam acepta preparación y autoriza únicamente renombrado idéntico y verificaciones',gate:'P0',fuentes:propios,instrumentos:huellas,fuentesPreviasVigentes:fuentes.length,evidenciasAceptadasVigentes:evidencia.archivos.length,consumo:81,techoTotal:85,resets:0,redExit:red.status},null,2));
+console.log(JSON.stringify({P0:true,fuentesPrevias:fuentes.length,evidenciasPrevias:evidencia.archivos.length,producto:producto.length,redExit:red.status}));

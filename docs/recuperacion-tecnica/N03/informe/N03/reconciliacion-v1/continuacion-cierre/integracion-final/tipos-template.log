@@ -1,0 +1,1 @@
+src/components/booking/BookingWizard.tsx(42,102): error TS2367: This comparison appears to be unintentional because the types '"stripe" | "cardcom" | "paypal" | "meshulam" | "bit" | "yaadpay" | "authorize_net" | "square" | "other"' and '"manual"' have no overlap.

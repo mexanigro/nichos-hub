@@ -1,0 +1,5 @@
+# N03 — W-NEXT entregada para revisión
+
+**W-NEXT implementada: GREEN local4/4,para revisión.** Liam aceptó la preparación y autorizó sólo el renombrado;src/proxy.ts conserva2085bytes/SHA de middleware,que ya no existe. Proxy final:build0,registroNode/matcher,HTTP129/129 idénticos,tipos0,lint0/0;mutación14reutilizada sin repetir. Resto del producto conservado. Implementación aún no aceptada por Liam. N03 abierta;sin otra reparación,push/deploy/externos. Consumo81%/techo85% TOTAL,sin resets;etapas posteriores y condición de prestaciones por tenant antes de despliegue vigentes. Esta adenda sustituye sólo el pendiente de implementación W-NEXT de los cortes inferiores.
+
+[Acta](../informe/N03/W-NEXT-v1/implementacion-local/CIERRE-LOCAL.md). Prometido y hecho:renombrado único idéntico,custodia,registro/matcher/HTTP final,tipo/lint pertinentes y conservación. Aceptación de preparación documentada separadamente. Diferido:revisión de esta implementación por Liam;resto de N03 conserva destinos. Detener después de esta entrega,sin nueva reparación.

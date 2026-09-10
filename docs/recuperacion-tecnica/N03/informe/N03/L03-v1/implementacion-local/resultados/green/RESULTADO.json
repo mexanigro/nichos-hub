@@ -1,0 +1,1036 @@
+{
+  "result": "GREEN",
+  "renderCases": 29,
+  "saveCases": 29,
+  "failures": [],
+  "renders": [
+    {
+      "id": "flags-1",
+      "expanded": true,
+      "buttons": 1
+    },
+    {
+      "id": "flags-2",
+      "expanded": true,
+      "buttons": 1
+    },
+    {
+      "id": "flags-3",
+      "expanded": true,
+      "buttons": 1
+    },
+    {
+      "id": "flags-4",
+      "expanded": true,
+      "buttons": 1
+    },
+    {
+      "id": "flags-5",
+      "expanded": true,
+      "buttons": 1
+    },
+    {
+      "id": "flags-6",
+      "expanded": true,
+      "buttons": 1
+    },
+    {
+      "id": "flags-7",
+      "expanded": true,
+      "buttons": 1
+    },
+    {
+      "id": "flags-8",
+      "expanded": true,
+      "buttons": 1
+    },
+    {
+      "id": "flags-9",
+      "expanded": true,
+      "buttons": 1
+    },
+    {
+      "id": "flags-10",
+      "expanded": true,
+      "buttons": 1
+    },
+    {
+      "id": "flags-11",
+      "expanded": true,
+      "buttons": 1
+    },
+    {
+      "id": "flags-12",
+      "expanded": true,
+      "buttons": 1
+    },
+    {
+      "id": "flags-13",
+      "expanded": true,
+      "buttons": 1
+    },
+    {
+      "id": "flags-14",
+      "expanded": true,
+      "buttons": 1
+    },
+    {
+      "id": "flags-15",
+      "expanded": true,
+      "buttons": 1
+    },
+    {
+      "id": "flags-16",
+      "expanded": true,
+      "buttons": 1
+    },
+    {
+      "id": "flags-17",
+      "expanded": true,
+      "buttons": 1
+    },
+    {
+      "id": "flags-18",
+      "expanded": true,
+      "buttons": 1
+    },
+    {
+      "id": "flags-19",
+      "expanded": true,
+      "buttons": 1
+    },
+    {
+      "id": "flags-20",
+      "expanded": true,
+      "buttons": 1
+    },
+    {
+      "id": "flags-21",
+      "expanded": true,
+      "buttons": 1
+    },
+    {
+      "id": "flags-22",
+      "expanded": true,
+      "buttons": 1
+    },
+    {
+      "id": "flags-23",
+      "expanded": true,
+      "buttons": 1
+    },
+    {
+      "id": "flags-24",
+      "expanded": true,
+      "buttons": 1
+    },
+    {
+      "id": "flags-25",
+      "expanded": true,
+      "buttons": 1
+    },
+    {
+      "id": "flags-26",
+      "expanded": true,
+      "buttons": 1
+    },
+    {
+      "id": "flags-27",
+      "expanded": true,
+      "buttons": 1
+    },
+    {
+      "id": "notifications-ausente",
+      "expanded": true,
+      "buttons": 1
+    },
+    {
+      "id": "cerrado",
+      "expanded": false,
+      "buttons": 1
+    }
+  ],
+  "saves": [
+    {
+      "id": "flags-1",
+      "payload": {
+        "notifications": {
+          "channels": {
+            "new_lead_owner": "both",
+            "new_booking_owner": "email"
+          },
+          "unknownSibling": {
+            "keep": true
+          }
+        },
+        "adminEmail": "owner@example.invalid",
+        "business": {
+          "type": "barberia"
+        },
+        "services": [
+          {
+            "id": "x",
+            "price": 9
+          }
+        ],
+        "outside": {
+          "keep": [
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "id": "flags-2",
+      "payload": {
+        "notifications": {
+          "channels": {
+            "new_lead_owner": "both",
+            "new_booking_owner": "email"
+          },
+          "unknownSibling": {
+            "keep": true
+          },
+          "contactInquiries": false
+        },
+        "adminEmail": "owner@example.invalid",
+        "business": {
+          "type": "barberia"
+        },
+        "services": [
+          {
+            "id": "x",
+            "price": 9
+          }
+        ],
+        "outside": {
+          "keep": [
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "id": "flags-3",
+      "payload": {
+        "notifications": {
+          "channels": {
+            "new_lead_owner": "both",
+            "new_booking_owner": "email"
+          },
+          "unknownSibling": {
+            "keep": true
+          },
+          "contactInquiries": true
+        },
+        "adminEmail": "owner@example.invalid",
+        "business": {
+          "type": "barberia"
+        },
+        "services": [
+          {
+            "id": "x",
+            "price": 9
+          }
+        ],
+        "outside": {
+          "keep": [
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "id": "flags-4",
+      "payload": {
+        "notifications": {
+          "channels": {
+            "new_lead_owner": "both",
+            "new_booking_owner": "email"
+          },
+          "unknownSibling": {
+            "keep": true
+          },
+          "bookingAlerts": false
+        },
+        "adminEmail": "owner@example.invalid",
+        "business": {
+          "type": "barberia"
+        },
+        "services": [
+          {
+            "id": "x",
+            "price": 9
+          }
+        ],
+        "outside": {
+          "keep": [
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "id": "flags-5",
+      "payload": {
+        "notifications": {
+          "channels": {
+            "new_lead_owner": "both",
+            "new_booking_owner": "email"
+          },
+          "unknownSibling": {
+            "keep": true
+          },
+          "bookingAlerts": false,
+          "contactInquiries": false
+        },
+        "adminEmail": "owner@example.invalid",
+        "business": {
+          "type": "barberia"
+        },
+        "services": [
+          {
+            "id": "x",
+            "price": 9
+          }
+        ],
+        "outside": {
+          "keep": [
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "id": "flags-6",
+      "payload": {
+        "notifications": {
+          "channels": {
+            "new_lead_owner": "both",
+            "new_booking_owner": "email"
+          },
+          "unknownSibling": {
+            "keep": true
+          },
+          "bookingAlerts": false,
+          "contactInquiries": true
+        },
+        "adminEmail": "owner@example.invalid",
+        "business": {
+          "type": "barberia"
+        },
+        "services": [
+          {
+            "id": "x",
+            "price": 9
+          }
+        ],
+        "outside": {
+          "keep": [
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "id": "flags-7",
+      "payload": {
+        "notifications": {
+          "channels": {
+            "new_lead_owner": "both",
+            "new_booking_owner": "email"
+          },
+          "unknownSibling": {
+            "keep": true
+          },
+          "bookingAlerts": true
+        },
+        "adminEmail": "owner@example.invalid",
+        "business": {
+          "type": "barberia"
+        },
+        "services": [
+          {
+            "id": "x",
+            "price": 9
+          }
+        ],
+        "outside": {
+          "keep": [
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "id": "flags-8",
+      "payload": {
+        "notifications": {
+          "channels": {
+            "new_lead_owner": "both",
+            "new_booking_owner": "email"
+          },
+          "unknownSibling": {
+            "keep": true
+          },
+          "bookingAlerts": true,
+          "contactInquiries": false
+        },
+        "adminEmail": "owner@example.invalid",
+        "business": {
+          "type": "barberia"
+        },
+        "services": [
+          {
+            "id": "x",
+            "price": 9
+          }
+        ],
+        "outside": {
+          "keep": [
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "id": "flags-9",
+      "payload": {
+        "notifications": {
+          "channels": {
+            "new_lead_owner": "both",
+            "new_booking_owner": "email"
+          },
+          "unknownSibling": {
+            "keep": true
+          },
+          "bookingAlerts": true,
+          "contactInquiries": true
+        },
+        "adminEmail": "owner@example.invalid",
+        "business": {
+          "type": "barberia"
+        },
+        "services": [
+          {
+            "id": "x",
+            "price": 9
+          }
+        ],
+        "outside": {
+          "keep": [
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "id": "flags-10",
+      "payload": {
+        "notifications": {
+          "channels": {
+            "new_lead_owner": "both",
+            "new_booking_owner": "email"
+          },
+          "unknownSibling": {
+            "keep": true
+          },
+          "enabled": false
+        },
+        "adminEmail": "owner@example.invalid",
+        "business": {
+          "type": "barberia"
+        },
+        "services": [
+          {
+            "id": "x",
+            "price": 9
+          }
+        ],
+        "outside": {
+          "keep": [
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "id": "flags-11",
+      "payload": {
+        "notifications": {
+          "channels": {
+            "new_lead_owner": "both",
+            "new_booking_owner": "email"
+          },
+          "unknownSibling": {
+            "keep": true
+          },
+          "enabled": false,
+          "contactInquiries": false
+        },
+        "adminEmail": "owner@example.invalid",
+        "business": {
+          "type": "barberia"
+        },
+        "services": [
+          {
+            "id": "x",
+            "price": 9
+          }
+        ],
+        "outside": {
+          "keep": [
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "id": "flags-12",
+      "payload": {
+        "notifications": {
+          "channels": {
+            "new_lead_owner": "both",
+            "new_booking_owner": "email"
+          },
+          "unknownSibling": {
+            "keep": true
+          },
+          "enabled": false,
+          "contactInquiries": true
+        },
+        "adminEmail": "owner@example.invalid",
+        "business": {
+          "type": "barberia"
+        },
+        "services": [
+          {
+            "id": "x",
+            "price": 9
+          }
+        ],
+        "outside": {
+          "keep": [
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "id": "flags-13",
+      "payload": {
+        "notifications": {
+          "channels": {
+            "new_lead_owner": "both",
+            "new_booking_owner": "email"
+          },
+          "unknownSibling": {
+            "keep": true
+          },
+          "enabled": false,
+          "bookingAlerts": false
+        },
+        "adminEmail": "owner@example.invalid",
+        "business": {
+          "type": "barberia"
+        },
+        "services": [
+          {
+            "id": "x",
+            "price": 9
+          }
+        ],
+        "outside": {
+          "keep": [
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "id": "flags-14",
+      "payload": {
+        "notifications": {
+          "channels": {
+            "new_lead_owner": "both",
+            "new_booking_owner": "email"
+          },
+          "unknownSibling": {
+            "keep": true
+          },
+          "enabled": false,
+          "bookingAlerts": false,
+          "contactInquiries": false
+        },
+        "adminEmail": "owner@example.invalid",
+        "business": {
+          "type": "barberia"
+        },
+        "services": [
+          {
+            "id": "x",
+            "price": 9
+          }
+        ],
+        "outside": {
+          "keep": [
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "id": "flags-15",
+      "payload": {
+        "notifications": {
+          "channels": {
+            "new_lead_owner": "both",
+            "new_booking_owner": "email"
+          },
+          "unknownSibling": {
+            "keep": true
+          },
+          "enabled": false,
+          "bookingAlerts": false,
+          "contactInquiries": true
+        },
+        "adminEmail": "owner@example.invalid",
+        "business": {
+          "type": "barberia"
+        },
+        "services": [
+          {
+            "id": "x",
+            "price": 9
+          }
+        ],
+        "outside": {
+          "keep": [
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "id": "flags-16",
+      "payload": {
+        "notifications": {
+          "channels": {
+            "new_lead_owner": "both",
+            "new_booking_owner": "email"
+          },
+          "unknownSibling": {
+            "keep": true
+          },
+          "enabled": false,
+          "bookingAlerts": true
+        },
+        "adminEmail": "owner@example.invalid",
+        "business": {
+          "type": "barberia"
+        },
+        "services": [
+          {
+            "id": "x",
+            "price": 9
+          }
+        ],
+        "outside": {
+          "keep": [
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "id": "flags-17",
+      "payload": {
+        "notifications": {
+          "channels": {
+            "new_lead_owner": "both",
+            "new_booking_owner": "email"
+          },
+          "unknownSibling": {
+            "keep": true
+          },
+          "enabled": false,
+          "bookingAlerts": true,
+          "contactInquiries": false
+        },
+        "adminEmail": "owner@example.invalid",
+        "business": {
+          "type": "barberia"
+        },
+        "services": [
+          {
+            "id": "x",
+            "price": 9
+          }
+        ],
+        "outside": {
+          "keep": [
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "id": "flags-18",
+      "payload": {
+        "notifications": {
+          "channels": {
+            "new_lead_owner": "both",
+            "new_booking_owner": "email"
+          },
+          "unknownSibling": {
+            "keep": true
+          },
+          "enabled": false,
+          "bookingAlerts": true,
+          "contactInquiries": true
+        },
+        "adminEmail": "owner@example.invalid",
+        "business": {
+          "type": "barberia"
+        },
+        "services": [
+          {
+            "id": "x",
+            "price": 9
+          }
+        ],
+        "outside": {
+          "keep": [
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "id": "flags-19",
+      "payload": {
+        "notifications": {
+          "channels": {
+            "new_lead_owner": "both",
+            "new_booking_owner": "email"
+          },
+          "unknownSibling": {
+            "keep": true
+          },
+          "enabled": true
+        },
+        "adminEmail": "owner@example.invalid",
+        "business": {
+          "type": "barberia"
+        },
+        "services": [
+          {
+            "id": "x",
+            "price": 9
+          }
+        ],
+        "outside": {
+          "keep": [
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "id": "flags-20",
+      "payload": {
+        "notifications": {
+          "channels": {
+            "new_lead_owner": "both",
+            "new_booking_owner": "email"
+          },
+          "unknownSibling": {
+            "keep": true
+          },
+          "enabled": true,
+          "contactInquiries": false
+        },
+        "adminEmail": "owner@example.invalid",
+        "business": {
+          "type": "barberia"
+        },
+        "services": [
+          {
+            "id": "x",
+            "price": 9
+          }
+        ],
+        "outside": {
+          "keep": [
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "id": "flags-21",
+      "payload": {
+        "notifications": {
+          "channels": {
+            "new_lead_owner": "both",
+            "new_booking_owner": "email"
+          },
+          "unknownSibling": {
+            "keep": true
+          },
+          "enabled": true,
+          "contactInquiries": true
+        },
+        "adminEmail": "owner@example.invalid",
+        "business": {
+          "type": "barberia"
+        },
+        "services": [
+          {
+            "id": "x",
+            "price": 9
+          }
+        ],
+        "outside": {
+          "keep": [
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "id": "flags-22",
+      "payload": {
+        "notifications": {
+          "channels": {
+            "new_lead_owner": "both",
+            "new_booking_owner": "email"
+          },
+          "unknownSibling": {
+            "keep": true
+          },
+          "enabled": true,
+          "bookingAlerts": false
+        },
+        "adminEmail": "owner@example.invalid",
+        "business": {
+          "type": "barberia"
+        },
+        "services": [
+          {
+            "id": "x",
+            "price": 9
+          }
+        ],
+        "outside": {
+          "keep": [
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "id": "flags-23",
+      "payload": {
+        "notifications": {
+          "channels": {
+            "new_lead_owner": "both",
+            "new_booking_owner": "email"
+          },
+          "unknownSibling": {
+            "keep": true
+          },
+          "enabled": true,
+          "bookingAlerts": false,
+          "contactInquiries": false
+        },
+        "adminEmail": "owner@example.invalid",
+        "business": {
+          "type": "barberia"
+        },
+        "services": [
+          {
+            "id": "x",
+            "price": 9
+          }
+        ],
+        "outside": {
+          "keep": [
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "id": "flags-24",
+      "payload": {
+        "notifications": {
+          "channels": {
+            "new_lead_owner": "both",
+            "new_booking_owner": "email"
+          },
+          "unknownSibling": {
+            "keep": true
+          },
+          "enabled": true,
+          "bookingAlerts": false,
+          "contactInquiries": true
+        },
+        "adminEmail": "owner@example.invalid",
+        "business": {
+          "type": "barberia"
+        },
+        "services": [
+          {
+            "id": "x",
+            "price": 9
+          }
+        ],
+        "outside": {
+          "keep": [
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "id": "flags-25",
+      "payload": {
+        "notifications": {
+          "channels": {
+            "new_lead_owner": "both",
+            "new_booking_owner": "email"
+          },
+          "unknownSibling": {
+            "keep": true
+          },
+          "enabled": true,
+          "bookingAlerts": true
+        },
+        "adminEmail": "owner@example.invalid",
+        "business": {
+          "type": "barberia"
+        },
+        "services": [
+          {
+            "id": "x",
+            "price": 9
+          }
+        ],
+        "outside": {
+          "keep": [
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "id": "flags-26",
+      "payload": {
+        "notifications": {
+          "channels": {
+            "new_lead_owner": "both",
+            "new_booking_owner": "email"
+          },
+          "unknownSibling": {
+            "keep": true
+          },
+          "enabled": true,
+          "bookingAlerts": true,
+          "contactInquiries": false
+        },
+        "adminEmail": "owner@example.invalid",
+        "business": {
+          "type": "barberia"
+        },
+        "services": [
+          {
+            "id": "x",
+            "price": 9
+          }
+        ],
+        "outside": {
+          "keep": [
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "id": "flags-27",
+      "payload": {
+        "notifications": {
+          "channels": {
+            "new_lead_owner": "both",
+            "new_booking_owner": "email"
+          },
+          "unknownSibling": {
+            "keep": true
+          },
+          "enabled": true,
+          "bookingAlerts": true,
+          "contactInquiries": true
+        },
+        "adminEmail": "owner@example.invalid",
+        "business": {
+          "type": "barberia"
+        },
+        "services": [
+          {
+            "id": "x",
+            "price": 9
+          }
+        ],
+        "outside": {
+          "keep": [
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "id": "notifications-ausente",
+      "payload": {
+        "adminEmail": "",
+        "outside": "keep"
+      }
+    },
+    {
+      "id": "cerrado",
+      "payload": {
+        "adminEmail": "owner@example.invalid",
+        "notifications": {
+          "enabled": false
+        }
+      }
+    }
+  ],
+  "limits": "SSR real de sección y subcomponentes actuales; handler de guardado real extraído; fetch interceptado; no navegador/hidratación ni DB real"
+}

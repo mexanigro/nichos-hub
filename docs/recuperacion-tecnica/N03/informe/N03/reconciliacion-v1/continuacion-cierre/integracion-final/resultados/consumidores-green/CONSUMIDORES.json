@@ -1,0 +1,134 @@
+{
+  "result": "GREEN",
+  "cases": 8,
+  "checks": 67,
+  "failures": [],
+  "rows": [
+    {
+      "file": "server.ts",
+      "route": "/api/webhook",
+      "failure": false,
+      "status": 400,
+      "body": "Webhook verification failed",
+      "reply": true,
+      "rejected": null,
+      "stateCalls": 1,
+      "gatewayCalls": 1,
+      "verifyCalls": 1,
+      "effects": 0
+    },
+    {
+      "file": "server.ts",
+      "route": "/api/webhook",
+      "failure": true,
+      "status": 503,
+      "body": {
+        "error": "Tenant payment configuration not verifiable."
+      },
+      "reply": true,
+      "rejected": null,
+      "stateCalls": 1,
+      "gatewayCalls": 0,
+      "verifyCalls": 0,
+      "effects": 0
+    },
+    {
+      "file": "server.ts",
+      "route": "/api/tenant/status",
+      "failure": false,
+      "status": 200,
+      "body": {
+        "status": "active",
+        "active": true
+      },
+      "reply": true,
+      "rejected": null,
+      "stateCalls": 0,
+      "gatewayCalls": 0,
+      "verifyCalls": 0,
+      "effects": 0
+    },
+    {
+      "file": "server.ts",
+      "route": "/api/tenant/status",
+      "failure": true,
+      "status": 200,
+      "body": {
+        "status": "active",
+        "active": true
+      },
+      "reply": true,
+      "rejected": null,
+      "stateCalls": 0,
+      "gatewayCalls": 0,
+      "verifyCalls": 0,
+      "effects": 0
+    },
+    {
+      "file": "api/index.ts",
+      "route": "/api/webhook",
+      "failure": false,
+      "status": 400,
+      "body": "Webhook verification failed",
+      "reply": true,
+      "rejected": null,
+      "stateCalls": 1,
+      "gatewayCalls": 1,
+      "verifyCalls": 1,
+      "effects": 0
+    },
+    {
+      "file": "api/index.ts",
+      "route": "/api/webhook",
+      "failure": true,
+      "status": 503,
+      "body": {
+        "error": "Tenant payment configuration not verifiable."
+      },
+      "reply": true,
+      "rejected": null,
+      "stateCalls": 1,
+      "gatewayCalls": 0,
+      "verifyCalls": 0,
+      "effects": 0
+    },
+    {
+      "file": "api/index.ts",
+      "route": "/api/tenant/status",
+      "failure": false,
+      "status": 200,
+      "body": {
+        "clientId": "tenant",
+        "status": "active",
+        "paymentProvider": "stripe",
+        "active": true
+      },
+      "reply": true,
+      "rejected": null,
+      "stateCalls": 1,
+      "gatewayCalls": 0,
+      "verifyCalls": 0,
+      "effects": 0
+    },
+    {
+      "file": "api/index.ts",
+      "route": "/api/tenant/status",
+      "failure": true,
+      "status": 503,
+      "body": {
+        "error": "Tenant payment configuration not verifiable."
+      },
+      "reply": true,
+      "rejected": null,
+      "stateCalls": 1,
+      "gatewayCalls": 0,
+      "verifyCalls": 0,
+      "effects": 0
+    }
+  ],
+  "hashes": {
+    "server.ts": "4e5e1167cae282878b6cfc590a6e01675fedf3776487df0be577ccca20171f1d",
+    "api/index.ts": "0a99770d92a97df9de7c37a22f6c8591f954678ac3e530d8bc55ba6ec1218809"
+  },
+  "limits": "Callbacks reales por AST invocados y promesa observada. Fallo getClientRuntimeState inyectado; webhook cuerpo vacío y verifier null, sin evento/cargo real. No prueba middleware/Express global en este archivo."
+}

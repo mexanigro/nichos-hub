@@ -1,0 +1,17 @@
+{
+  "checks": 3,
+  "failures": [
+    {
+      "id": "connection/backend-handler-exists",
+      "actual": false,
+      "expected": true
+    }
+  ],
+  "rows": [
+    {
+      "missing": "/template/src/lib/api/crm-appointments-handler.ts",
+      "diagnostic": "RED funcional de conexión aún no implementada; book control positivo ejecutado"
+    }
+  ],
+  "scope": "Book real+Admin refs reales; transporte/persistencia interceptados. No prueba auth real ni UI en este archivo."
+}

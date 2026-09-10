@@ -1,0 +1,29 @@
+{
+  "limite": "Sólo lectura acotada para proponer L03; no se ejecutó ni preparó su arnés",
+  "files": [
+    {
+      "ruta": "C:/Users/liama/Desktop/Nichos-hub/src/components/client-config-tab.tsx",
+      "sha256": "554a215376a026148100442da459a2b4cf3b57ab7a3167ecc1deed1b71a27c57"
+    },
+    {
+      "ruta": "C:/Users/liama/Desktop/Nichos/Barber-shop-template-main/server.ts",
+      "sha256": "48a5d4a415c704d1f7c5ff609d96c4e214d107fa0020b0c5d7d30d51ac84e80f"
+    },
+    {
+      "ruta": "C:/Users/liama/Desktop/Nichos/Barber-shop-template-main/api/index.ts",
+      "sha256": "1dbc951f710e2f3e586247faf79ae65d76714eb52fcf768001d929a8521a646f"
+    },
+    {
+      "ruta": "C:/Users/liama/Desktop/Nichos/Barber-shop-template-main/src/lib/notification-channels.ts",
+      "sha256": "1ab3dd63f04e1aa602da62f8b5970559ec6ea8cdf348f413a58e9c44d6919790"
+    },
+    {
+      "ruta": "C:/Users/liama/Desktop/Nichos/recuperacion-tecnica/informe/N03/D05-v1/INFORME.md",
+      "sha256": "c9941651460bd75ec5dce87a046a18c7461248aec595c438fe319d0b799d6429"
+    },
+    {
+      "ruta": "C:/Users/liama/Desktop/Nichos/recuperacion-tecnica/informe/N01/SA-01-L-v1/DEUDA.md",
+      "sha256": "c6b5c02e6c6a5e0840a00a3b6c54c99ce8a2705722026947b49bea8ca5e2bafe"
+    }
+  ]
+}

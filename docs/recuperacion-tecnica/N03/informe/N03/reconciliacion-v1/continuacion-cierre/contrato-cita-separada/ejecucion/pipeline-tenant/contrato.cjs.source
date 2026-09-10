@@ -1,0 +1,39 @@
+const fs=require('fs'),path=require('path'),crypto=require('crypto'),assert=require('assert/strict'),{createRequire}=require('module');
+const req=createRequire('/deps/package.json'),ts=req('typescript'),express=req('express'),root='/template',sources={},rows=[],failures=[];let checks=0;
+const read=p=>sources[p]??(sources[p]=fs.readFileSync(root+'/'+p,'utf8'));
+const compile=s=>ts.transpileModule(s,{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022,esModuleInterop:true}}).outputText;
+const code=read('api/index.ts'),ast=ts.createSourceFile('api.ts',code,99,true),variables=new Map(),registrations=[];
+function visit(n){if(ts.isVariableDeclaration(n)&&['enforceClientActive','crmAgenda'].includes(n.name.getText(ast)))variables.set(n.name.getText(ast),n);if(ts.isCallExpression(n)&&((n.expression.getText(ast)==='app.use'&&n.arguments[1]?.getText(ast)==='enforceClientActive')||(n.expression.getText(ast)==='app.get'&&n.arguments[0]?.text==='/api/crm/appointments')))registrations.push(n);ts.forEachChild(n,visit)}visit(ast);
+assert.equal(variables.size,2);assert.equal(registrations.length,2);registrations.sort((a,b)=>a.getStart(ast)-b.getStart(ast));assert.equal(registrations[0].expression.getText(ast),'app.use');
+const cache=new Map();function load(file){if(cache.has(file))return cache.get(file);const m={exports:{}};cache.set(file,m.exports);new Function('require','module','exports',compile(read(file)))(id=>id.startsWith('.')?load(path.posix.join(path.posix.dirname(file),id.replace(/\.js$/,'.ts'))):req(id),m,m.exports);return m.exports}
+const {createTenantAccessGuard}=load('src/lib/api/tenant-access.ts'),{createCrmAppointmentsHandlers}=load('src/lib/api/crm-appointments-handler.ts');
+function check(id,a,b){checks++;try{assert.deepEqual(a,b)}catch{failures.push({id,actual:a,expected:b})}}
+(async()=>{for(const c of [{id:'projects-equal',browser:'backend-project',status:200,reachable:true},{id:'projects-separated',browser:'browser-project',status:503,reachable:false}]){
+ const trace=[],fetches=[],env={FIREBASE_ADMIN_PROJECT_ID:'backend-project',FIREBASE_PROJECT_ID:'backend-project',VITE_FIREBASE_PROJECT_ID:c.browser,FIREBASE_DATABASE_ID:'backend-db',VITE_FIREBASE_DATABASE_ID:'browser-db'};
+ const enforce=new Function('createTenantAccessGuard','process','CLIENT_ID','getFirestoreAccessToken','fetch',compile('const '+variables.get('enforceClientActive').getText(ast)+';')+'\nreturn enforceClientActive;')(createTenantAccessGuard,{env},'tenant-local',async()=>{trace.push('synthetic-access-token');return 'synthetic-token'},async(url,options)=>{trace.push('clients-fetch');fetches.push({url,authorizationPresent:!!options.headers.Authorization});return{ok:true,json:async()=>({fields:{status:{stringValue:'active'}}})}});
+ const syntheticDb = {
+  projectId: 'backend-project', databaseId: 'backend-db',
+  collection(name) {
+   trace.push('collection:' + name);
+   return {
+    where(field, op, value) { trace.push('where:' + field + op + value); return this; },
+    orderBy(field, direction) { trace.push('order:' + field + ':' + direction); return this; },
+    limit(n) { trace.push('limit:' + n); return this; },
+    async get() {
+     trace.push('appointments-read');
+     return { docs: [{ id: 'synthetic-appointment', data: () => ({ clientId: 'tenant-local', customerName: 'Synthetic', createdAt: { toDate: () => new Date(1800000000000) } }) }] };
+    },
+   };
+  },
+ };
+ const authenticate=async()=>{trace.push('crm-authenticate');return{email:'admin@example.invalid',uid:'synthetic',role:'owner'}};
+ const agenda=new Function('createCrmAppointmentsHandlers','CLIENT_ID','loadAdminFirestore','requireCrmAdminAuth',compile('const '+variables.get('crmAgenda').getText(ast)+';')+'\nreturn crmAgenda;')(createCrmAppointmentsHandlers,'tenant-local',async()=>{trace.push('crm-load-admin');return{db:syntheticDb}},authenticate);
+ const app=express();for(const n of registrations)new Function('app','enforceClientActive','crmAgenda',compile(n.getText(ast)))(app,enforce,agenda);
+ const server=app.listen(0,'127.0.0.1');await new Promise((resolve,reject)=>{server.once('listening',resolve);server.once('error',reject)});let status,body;
+ try{const r=await fetch('http://127.0.0.1:'+server.address().port+'/api/crm/appointments',{headers:{Authorization:'Bearer synthetic-token'}});status=r.status;body=await r.json()}finally{server.closeAllConnections();await new Promise(resolve=>server.close(resolve))}
+ check(c.id+'/status',status,c.status);check(c.id+'/crm-reached',trace.includes('crm-authenticate'),c.reachable);check(c.id+'/appointments-read',trace.includes('appointments-read'),c.reachable);check(c.id+'/clients-fetch-count',fetches.length,c.reachable?1:0);check(c.id+'/token-before-guard',trace[0],'synthetic-access-token');
+ if(c.reachable){check(c.id+'/clients-destination',fetches[0]?.url,'https://firestore.googleapis.com/v1/projects/backend-project/databases/backend-db/documents/clients/tenant-local');check(c.id+'/response-id',body.appointments?.[0]?.id,'synthetic-appointment')}else{check(c.id+'/failure',body,{error:'Tenant state unavailable.'});check(c.id+'/trace',trace,['synthetic-access-token'])}
+ rows.push({id:c.id,env,status,body,trace,fetches});
+ }
+ fs.writeFileSync('/salida/PIPELINE.json',JSON.stringify({result:failures.length?'RED-instrumento':'GREEN-caracterizacion',compatibility:'RED: proyectos separados bloqueados antes de la ruta CRM',checks,failures,rows,sourceOrder:registrations.map(n=>({line:ast.getLineAndCharacterOfPosition(n.getStart(ast)).line+1,call:n.getText(ast)})),hashes:Object.fromEntries(Object.entries(sources).map(([p,s])=>[p,crypto.createHash('sha256').update(s).digest('hex')])),limits:'Express HTTP loopback real, createTenantAccessGuard/loadStatus/registro/handler reales. Token, fetch clients, auth CRM y DB de citas interceptados. Aísla este middleware global; no otros middlewares, Auth remoto ni Firestore. No modifica ni desarma guardas aceptadas.'},null,2));console.log(JSON.stringify({checks,failures:failures.length}));process.exitCode=failures.length?1:0;
+})().catch(e=>{console.error(e.stack);process.exitCode=2});

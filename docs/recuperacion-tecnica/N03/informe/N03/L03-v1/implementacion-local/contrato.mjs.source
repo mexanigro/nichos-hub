@@ -1,0 +1,31 @@
+import fs from 'node:fs';import vm from 'node:vm';import assert from 'node:assert/strict';import {createRequire} from 'node:module';
+const req=createRequire('/deps/package.json'),ts=req('typescript'),React=req('react'),{renderToStaticMarkup}=req('react-dom/server');
+const source=fs.readFileSync('/control/copias/'+process.env.SOURCE,'utf8');
+const tree=ts.createSourceFile('source.tsx',source,ts.ScriptTarget.Latest,true,ts.ScriptKind.TSX);
+const expected='Sin agente, los avisos base de contacto y reservas usan email. Con agente, usan los canales configurados.';
+const failures=[],renders=[],saves=[];
+const check=(name,ok,data)=>{if(!ok)failures.push({name,data});};
+function find(predicate){const out=[];function walk(n){if(predicate(n))out.push(n);ts.forEachChild(n,walk);}walk(tree);assert.equal(out.length,1);return out[0].getText(tree);}
+const fn=name=>find(n=>ts.isFunctionDeclaration(n)&&n.name?.text===name);
+const section=find(n=>ts.isJsxElement(n)&&n.openingElement.tagName.getText(tree)==='Section'&&n.openingElement.attributes.properties.some(a=>ts.isJsxAttribute(a)&&a.name.getText(tree)==='sectionKey'&&a.initializer?.getText(tree)==='"notifications"'));
+const functions=['Section','Field','ToggleField','getNested','updateNested','handleConfirmedSave'].map(fn).join('\n');
+const transpile=s=>ts.transpileModule(s,{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.CommonJS,jsx:ts.JsxEmit.ReactJSX}}).outputText;
+async function run(id,seed,expanded){
+ let sent,errors=[];
+ const c={require:req,exports:{},seed:structuredClone(seed),expand:expanded,setTimeout:()=>0,setError:e=>errors.push(e),fetch:async(url,options)=>{sent={url,method:options.method,payload:JSON.parse(options.body)};return {ok:true,json:async()=>({})};}};
+ const code=`let config=seed;const clientId='tenant-control',originalConfigRef={current:{}},expandedSections=new Set(expand?['notifications']:[]);const {Bell,ChevronDown,ChevronRight}=require('lucide-react');const toggleSection=()=>{},setConfig=f=>{config=f(config)},setSaving=()=>{},setWarning=()=>{},setIssues=()=>{},setSaved=()=>{},setIsNew=()=>{},setDiffModalOpen=()=>{},onSaved=()=>{};${functions}\nfunction view(){return (${section});}`;
+ vm.createContext(c);vm.runInContext(transpile(code)+';globalThis.view=view;globalThis.save=handleConfirmedSave',c);
+ const html=renderToStaticMarkup(c.view());fs.writeFileSync('/salida/'+id+'.html',html);
+ const buttons=(html.match(/<button\b/g)||[]).length;
+ if(expanded){check(id+' nota visible',html.includes(expected),html);for(const label of ['Notificaciones habilitadas','Alertas de reserva','Consultas de contacto'])check(id+' sin control '+label,!html.includes(label),buttons);check(id+' solo boton seccion',buttons===1,buttons);assert.ok(html.includes('Admin Email'));assert.ok(html.includes(seed.adminEmail||'Sin admin email'));}
+ else{assert.equal(buttons,1);assert.ok(!html.includes('Admin Email'));assert.ok(!html.includes(expected));}
+ await c.save();assert.equal(sent.url,'/api/config/tenant-control');assert.equal(sent.method,'PUT');const {_customServicesBackup:ignored,...payload}=seed;assert.deepEqual(sent.payload,payload);assert.ok(errors.every(e=>e===''));
+ saves.push({id,payload:sent.payload});renders.push({id,expanded,buttons});
+}
+try{
+ const flags=['enabled','bookingAlerts','contactInquiries'],values=[undefined,false,true];let i=0;
+ for(const a of values)for(const b of values)for(const c of values){const notifications={channels:{new_lead_owner:'both',new_booking_owner:'email'},unknownSibling:{keep:true}};for(const [k,v] of flags.map((k,n)=>[k,[a,b,c][n]]))if(v!==undefined)notifications[k]=v;await run('flags-'+(++i),{notifications,adminEmail:'owner@example.invalid',business:{type:'barberia'},services:[{id:'x',price:9}],outside:{keep:[1,2]},_customServicesBackup:[{id:'local'}]},true);}
+ await run('notifications-ausente',{adminEmail:'',outside:'keep'},true);
+ await run('cerrado',{adminEmail:'owner@example.invalid',notifications:{enabled:false}},false);
+ fs.writeFileSync('/salida/RESULTADO.json',JSON.stringify({result:failures.length?'RED':'GREEN',renderCases:renders.length,saveCases:saves.length,failures,renders,saves,limits:'SSR real de sección y subcomponentes actuales; handler de guardado real extraído; fetch interceptado; no navegador/hidratación ni DB real'},null,2));console.log(JSON.stringify({result:failures.length?'RED':'GREEN',render:renders.length,save:saves.length,failures:failures.length}));process.exitCode=failures.length?1:0;
+}catch(e){fs.writeFileSync('/salida/ERROR.txt',e.stack);console.error(e);process.exitCode=2;}

@@ -1,0 +1,25 @@
+{
+  "result": "GREEN_LOCAL_PARA_REVISION",
+  "gates": 4,
+  "total": 4,
+  "cases": 73,
+  "checks": 1752,
+  "mutants": {
+    "hub": 15,
+    "site": 282,
+    "idioma": 138
+  },
+  "types": 0,
+  "lint": 0,
+  "L01Descontada": false,
+  "N03": "abierta",
+  "blockers": [],
+  "presupuesto": {
+    "inicio": 85,
+    "observado": 86,
+    "techo": 90,
+    "reservaN04": 10,
+    "resets": 0
+  },
+  "limite": "SSR/AST y SDK local sin commit; no navegador completo ni servicios reales"
+}

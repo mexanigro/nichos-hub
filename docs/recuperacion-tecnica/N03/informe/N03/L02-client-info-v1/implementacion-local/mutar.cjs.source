@@ -1,0 +1,15 @@
+const fs=require('fs'),assert=require('assert/strict'),crypto=require('crypto');
+const base=__dirname;
+const original=fs.readFileSync(base+'/handlers/basal.ts','utf8'),final=fs.readFileSync(base+'/handlers/final.ts','utf8');
+const sha=s=>crypto.createHash('sha256').update(s).digest('hex');
+const records=[];
+for(const [domain,start,end] of [['config','    // Build config update','    // Snapshot del config previo'],['hub_clients','    const hubUpdate: Record<string, unknown> = {','    if (isResubmit) {']]){
+  const a=original.indexOf(start),b=original.indexOf(end,a),c=final.indexOf(start),d=final.indexOf(end,c);
+  assert.ok(a>=0&&b>a&&c>=0&&d>c);
+  const restored=original.slice(a,b),mutant=final.slice(0,c)+restored+final.slice(d);
+  assert.notEqual(sha(mutant),sha(final));assert.equal(mutant.slice(c,c+restored.length),restored);
+  assert.equal(mutant.slice(0,c),final.slice(0,c));assert.equal(mutant.slice(c+restored.length),final.slice(d));
+  const destination=base+'/handlers/mutante-'+domain+'.ts';fs.writeFileSync(destination,mutant,{flag:'wx'});
+  records.push({domain,destination,final:sha(final),mutant:sha(mutant),restoredBlock:sha(restored),method:'Bloque literal exacto de preimagen en handler final; prefijo/sufijo intactos'});
+}
+fs.writeFileSync(base+'/MUTACIONES.json',JSON.stringify(records,null,2),{flag:'wx'});

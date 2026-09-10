@@ -1,0 +1,11 @@
+# L01 — contrato de reparación aprobado
+
+Liam aceptó la preparación y aprobó ambas reglas: nested exactamente solo/team prevalece, top válido fallback; sin modo válido conservar comportamiento anterior. Sólo modo del override admitido gobierna showAbout/showTeam, en ambos sentidos, luego restricciones por nicho y después de cambios de idioma. Alcance exclusivo: hub src/lib/wizard/config-to-wizard.ts y template src/config/site.ts. No descuento L01; entregar para revisión.
+
+P0: controles fijos, preimágenes, RED pertinente y refutación; freeze antes de producto. P1: dos modificaciones mínimas. P2: GREEN, conservación y mutantes independientes de fallback, aplicación y cambio de idioma. P3: tipos/lint pertinentes, revisión, custodia y registros. No reparación adicional.
+
+Oracle fijado antes de editar: matriz 25 pares ausente/null/inválido/solo/team con nested válido prioritario; wizard hidrata ese modo excepto borrador ya existente, que prevalece. Template sólo usa modo remoto admitido: solo true/false, team false/true, employment fuerza showTeam=false después; no modo válido equivale a preimagen, no a defaults inventados. Config top-only compatible. SAFE con tipo ausente/incompatible descarta nested, conserva top admitido. Siete nichos por dos modos con flags contrarios; conservación de otras flags/arrays/campos y resultado tras he/ru/ar. Recorridos de escritores originales y reedición se conservan, con errores de conexión corregidos. Input inmutable.
+
+Se reutiliza instrumento L01, SDK y consumidores reales. Para conservación se compara la misma entrada con preimágenes físicas inmutables; expectativas de modo/precedencia son fijas, independientes de la reparación. Fallo de instrumento exit2, RED semántico exit1, GREEN exit0. Mutantes viven sólo en copias: restaurar lector previo, restaurar site previo y omitir override en cambio de idioma deben fallar por causas respectivas. No se presenta SSR/ramas AST como navegador completo ni certificación DB/auth/entrega.
+
+Presupuesto observado85% de techo90% TOTAL N03; último10% N04. Sin resets, instalaciones, migraciones, efectos externos, push/deploy. N03 abierta, entregas aceptadas, etapas posteriores y condición por tenant conservadas.

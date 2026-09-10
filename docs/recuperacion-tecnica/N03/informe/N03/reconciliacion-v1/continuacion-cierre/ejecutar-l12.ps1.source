@@ -1,0 +1,9 @@
+param([string]$Nombre,[string]$Mutante='')
+$salida=Join-Path $PSScriptRoot "resultados\$Nombre"
+New-Item -ItemType Directory -Path $salida -Force | Out-Null
+$argumentos=@('run','--rm','--pull=never','--network=none','--read-only','--cap-drop=ALL','--security-opt=no-new-privileges','--memory=1g','--tmpfs=/tmp:rw,size=64m','--mount',"type=bind,source=$PSScriptRoot,target=/control,readonly",'--mount',"type=bind,source=$salida,target=/salida",'--mount','type=bind,source=C:\Users\liama\Desktop\Nichos\Barber-shop-template-main\src,target=/template/src,readonly','--mount','type=bind,source=C:\Users\liama\Desktop\Nichos\Barber-shop-template-main\node_modules,target=/deps/node_modules,readonly','sha256:16e22a550f3863206a3f701448c45f7912c6896a62de43add43bb9c86130c3e2','/usr/bin/env','-i','PATH=/usr/local/bin:/usr/bin:/bin','HOME=/tmp','node','/control/l12.cjs')
+if($Mutante){$argumentos+=$Mutante}
+$argumentos | ConvertTo-Json | Set-Content "$salida\COMANDO.json"
+& docker @argumentos *> "$salida\ejecucion.log"
+$LASTEXITCODE | Set-Content "$salida\exit.txt"
+Get-Content "$salida\ejecucion.log" -Tail 8

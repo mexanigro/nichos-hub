@@ -1,0 +1,90 @@
+[
+  {
+    "ruta": "ACEPTACION.md",
+    "sha256": "4729679311a8782cb00ea24230ad39e63aebec5509501247271fe18284bcb951"
+  },
+  {
+    "ruta": "FREEZE.json",
+    "sha256": "beb91cf1c986d71860961a6b209bebc928eaa0f9640272610531472d83209a3e"
+  },
+  {
+    "ruta": "GIT-ANTES.txt",
+    "sha256": "13d223786ec0797ed58d642719d992abf76207b168613cd78d8452b0f78cf2b1"
+  },
+  {
+    "ruta": "preimagenes/registros/archivo/indice/CALENDARIO.md",
+    "sha256": "82b8639add1c86f993729e703ce82ccff0178a42ddda0a3ac4bc12b99ac59022"
+  },
+  {
+    "ruta": "preimagenes/registros/archivo/indice/README.md",
+    "sha256": "edf49bc64cee093b14a0598f9a51e93372a167a2d7f37828043c53cc0f6f6e08"
+  },
+  {
+    "ruta": "preimagenes/registros/archivo/indice/tareas/N03.md",
+    "sha256": "362300dd33df65070ffac7c21b16f1827bbef84fa12a9e3c7a335af642e33bff"
+  },
+  {
+    "ruta": "preimagenes/registros/archivo/informe/N03/cierre-sesion-v1/RETOMA.md",
+    "sha256": "46fdd515c77af42281191b906c8c2377849c10767240634f0c2475e03d625b10"
+  },
+  {
+    "ruta": "preimagenes/registros/archivo/informe/N03/reconciliacion-v1/BALANCE.md",
+    "sha256": "9e638a10ad1c2c806c8073ee45a33e19d3dfa5064cac1e63ace85683d243f06b"
+  },
+  {
+    "ruta": "preimagenes/registros/archivo/informe/N03/reconciliacion-v1/SIGUIENTE-ACCION.md",
+    "sha256": "b4790647de5827dc465c2896e61e9a2e9104b08377e2db229df50610a79ae7f7"
+  },
+  {
+    "ruta": "preimagenes/registros/canonico/indice/CALENDARIO.md",
+    "sha256": "82b8639add1c86f993729e703ce82ccff0178a42ddda0a3ac4bc12b99ac59022"
+  },
+  {
+    "ruta": "preimagenes/registros/canonico/indice/README.md",
+    "sha256": "edf49bc64cee093b14a0598f9a51e93372a167a2d7f37828043c53cc0f6f6e08"
+  },
+  {
+    "ruta": "preimagenes/registros/canonico/indice/tareas/N03.md",
+    "sha256": "362300dd33df65070ffac7c21b16f1827bbef84fa12a9e3c7a335af642e33bff"
+  },
+  {
+    "ruta": "preimagenes/registros/canonico/informe/N03/cierre-sesion-v1/RETOMA.md",
+    "sha256": "46fdd515c77af42281191b906c8c2377849c10767240634f0c2475e03d625b10"
+  },
+  {
+    "ruta": "preimagenes/registros/canonico/informe/N03/reconciliacion-v1/BALANCE.md",
+    "sha256": "9e638a10ad1c2c806c8073ee45a33e19d3dfa5064cac1e63ace85683d243f06b"
+  },
+  {
+    "ruta": "preimagenes/registros/canonico/informe/N03/reconciliacion-v1/SIGUIENTE-ACCION.md",
+    "sha256": "b4790647de5827dc465c2896e61e9a2e9104b08377e2db229df50610a79ae7f7"
+  },
+  {
+    "ruta": "preimagenes/SIGUIENTE-ACCION-inicial.md",
+    "sha256": "7da6e477511660d5d2d402521625538bcd9fe4cc1791ddce8a97a7a0e489c010"
+  },
+  {
+    "ruta": "PRODUCTO-ANTES.json",
+    "sha256": "32dc730d2e496e93d6086628817850c656d612eebc7ff17322cf42a5cb704bb2"
+  },
+  {
+    "ruta": "registrar.cjs",
+    "sha256": "01f148e6e126787cb6afb2d174e8004db12f70bbfcdb086f92d88ff832a4be7f"
+  },
+  {
+    "ruta": "REGISTROS.json",
+    "sha256": "e09e9df9d21020414bbcc06b25548c05d11a1044c9ebb84dab19f93d09da7b6e"
+  },
+  {
+    "ruta": "RESULTADO.json",
+    "sha256": "6999610fd633063d964d0b795a91f16205fd40d339f8bf674d6f92f24a2e054f"
+  },
+  {
+    "ruta": "REVISION.md",
+    "sha256": "dda596ccad5e14910f6254851b33d372baddb6c8e827f0ba22040df3b1fe6f20"
+  },
+  {
+    "ruta": "SIGUIENTE-ACCION.md",
+    "sha256": "64fa2ab5b8e2053f23ccda010beced290f8b4cbc7fd7d2cb4b71eeb3d2b7831f"
+  }
+]

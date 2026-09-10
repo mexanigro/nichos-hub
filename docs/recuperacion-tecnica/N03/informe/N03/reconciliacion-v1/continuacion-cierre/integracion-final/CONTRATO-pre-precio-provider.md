@@ -1,0 +1,9 @@
+# Pipeline HTTP integrado antes de reparar autoridad
+
+Decisión aprobada: clients/config/payment_credentials de esta API proceden del backend de citas, conservando navegador separado. No bypass ni excepción de guarda. Middleware debe rechazar suspended/archived y ausencia/inválido/error/timeout antes de rutas. Este contrato no cambia reglas ni políticas de roles.
+
+Población fija: 14 casos por runtime. Viaje positivo coincidente y separado POST book → GET CRM de la misma cita → PATCH del mismo documento → checkout con precio autorizado de fixture15000 y seña config2500 ILS. El precio se añade a la MISMA cita como fixture de precio autorizado; no se atribuye su escritura a book. Otros casos: trial, suspended, archived, estado ausente/inválido/error/timeout, origin ajeno, ausencia auth, membresía otrotenant, body>32kb y segunda petición rate limit.
+
+Se extraen todos los seis middleware aplicables a estas rutas en orden AST: securityHeaders, express.json, requireTrustedOrigin, rateLimit, attachTenantContext, enforceClientActive. /api/ai no aplica al path. Luego registros reales de book, GET/PATCH CRM y checkout. Funciones/accessors SDK reales; tokenRSA/lookup reales; DB pornamespace e I/O interceptados. Resolver real de provider/credenciales; sólo builder/transporte final sustituido. REST helper de lookup de membresía se intercepta en su límite collection/id, con lookup real tenant/rol.
+
+Oráculos fijados antes de primer resultado/producto runtime. P0 RED alcanzable→P1 reparación autorizada→P2 GREEN y mutantes bypass-tenant/reject-valid en memoria→revisión local. Mutantes no cambian expectativas ni producto. Requests/trace/writes/resultados conservados. Sin startup entero, proveedor, reglas, concurrencia o SDK remoto; este montaje acredita la cadena local explícita, no todos los endpoints del repositorio.

@@ -1,0 +1,1 @@
+{"cases":49,"fallos":[{"id":"client-info-solo","wanted":"solo","actual":{"isSolo":false,"step":"staff","staff":null}},{"id":"reedicion-solo-a-team","wanted":"team","actual":{"isSolo":true,"step":"datetime","staff":"alex"}}]}

@@ -1,0 +1,3 @@
+# Refutación interna independiente
+
+/root/refutacion_wnext (Newton) revisó sondeo/resultados r2 y propuesta: sin BLOCKER para retirar los tres controles y añadir nota, conservando datos/payload/backend. Conclusión acotada a cinco eventos, no ausencia universal de consumidores. Precisiones integradas: cuatro controles son dos de sensibilidad con agente y dos de invariancia sin agente; isOptionalServiceEnabled se sustituye por el estado en la sonda, la implementación de permisos sigue respaldada por D05 y no se recertifica aquí. No nuevas llamadas HTTP ni envíos reales. No aceptación de implementación, que no existe.

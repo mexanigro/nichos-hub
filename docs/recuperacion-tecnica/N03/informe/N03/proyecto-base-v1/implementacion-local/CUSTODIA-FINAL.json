@@ -1,0 +1,41 @@
+{
+  "sources": [
+    {
+      "ruta": "server.ts",
+      "sha256": "fe749e1703c1a07a2f7762f68eb1fc57783c99cd30fbc833b271c898aa83a980",
+      "copia": "final/server.ts"
+    },
+    {
+      "ruta": "api/index.ts",
+      "sha256": "4be7a9c1e536da183dfe44a9a72d94df5848b36d56d2bf696607d514523dc0bd",
+      "copia": "final/api/index.ts"
+    }
+  ],
+  "evidence": [
+    {
+      "ruta": "FREEZE.json",
+      "sha256": "e1198c1bdcf88d1203eb5b81eac5f40ab18c9e78f6772bfe66e2751f8495e7ed"
+    },
+    {
+      "ruta": "CONSERVACION.json",
+      "sha256": "16256910ddc0241d7962ff5d82f754a550db93534d029c8710b0dd9cb5cd4882"
+    },
+    {
+      "ruta": "resultados/final/RESULTADO.json",
+      "sha256": "e73d0135ece1390175cedcbec955e41a034371ac968ab0b41f28f93995aee09f"
+    },
+    {
+      "ruta": "resultados/final/COMANDO.json",
+      "sha256": "ba042f8f015508282d4c8391caeae104fdaa2fa5ed58e53c39b388d05e7c3b0f"
+    },
+    {
+      "ruta": "resultados/final/exit.txt",
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+    },
+    {
+      "ruta": "TIPOS-LINT-FINAL.json",
+      "sha256": "cddba97d004218f2e24f0403cb29fa4ec425010cb4c1a3951d957ade86582699"
+    }
+  ],
+  "nota": "Fuentes finales conservadas tras ajuste de tipos, sin escrituras posteriores; vinculadas a corrida final y conservacion. CAMBIOS.json es historico de P1 antes de ajuste tipos, no manifiesto final."
+}

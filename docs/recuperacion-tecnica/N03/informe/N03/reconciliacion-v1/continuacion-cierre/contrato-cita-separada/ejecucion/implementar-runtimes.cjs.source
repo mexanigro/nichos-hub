@@ -1,0 +1,13 @@
+const fs=require('fs'),p=require('path');const root='C:/Users/liama/Desktop/Nichos/Barber-shop-template-main';for(const file of['server.ts','api/index.ts']){let s=fs.readFileSync(p.join(root,file),'utf8');const prefix=file==='server.ts'?'./src':'../src';s=`import { createCrmAppointmentsHandlers } from "${prefix}/lib/api/crm-appointments-handler.js";\n`+s;const at=s.indexOf('async function requireAdminAuth(');if(at<0)throw Error('missing gate');s=s.slice(0,at)+`/** Sólo agenda y sus avisos: identidad del proyecto navegador configurado por servidor. */
+async function requireCrmAdminAuth(req: Request, res: Response, allowLegacy = false) {
+  const browserProject = process.env.VITE_FIREBASE_PROJECT_ID?.trim();
+  const legacyProject = process.env.FIREBASE_PROJECT_ID?.trim() || process.env.FIREBASE_ADMIN_PROJECT_ID?.trim() || process.env.VITE_FIREBASE_PROJECT_ID?.trim() || process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID?.trim();
+  const projects = [...new Set([browserProject, ...(allowLegacy ? [legacyProject] : [])].filter((value): value is string => Boolean(value)))];
+  return requireAdminAuthGate(req, res, lookupAdminUser, projects);
+}
+
+`+s.slice(at);const needle='app.post("/api/appointment/notify", async (req, res) => {\n';const crlfNeedle=needle.replaceAll('\n','\r\n');const found=s.includes(crlfNeedle)?crlfNeedle:needle;if(!s.includes(found))throw Error('notify registration absent');const old=found+'    const auth = await requireAdminAuth(req, res);';if(!s.includes(old))throw Error('notify auth missing');s=s.replace(old,found+'    const auth = await requireCrmAdminAuth(req, res, true);');const book=s.indexOf('app.post("/api/book", createBookingHandler(');if(book<0)throw Error('book absent');const db=file==='server.ts'?'getAdminDb':'async () => (await loadAdminFirestore())?.db ?? null';s=s.slice(0,book)+`const crmAgenda = createCrmAppointmentsHandlers({ clientId: CLIENT_ID, loadDb: ${db}, authenticate: requireCrmAdminAuth });
+  app.get("/api/crm/appointments", crmAgenda.list);
+  app.patch("/api/crm/appointments/:id", crmAgenda.patch);
+
+  `+s.slice(book);fs.writeFileSync(p.join(root,file),s);}

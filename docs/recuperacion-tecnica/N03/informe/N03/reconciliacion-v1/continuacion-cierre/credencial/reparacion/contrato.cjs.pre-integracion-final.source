@@ -1,0 +1,46 @@
+const fs=require('fs'),assert=require('assert/strict'),crypto=require('crypto'),{createRequire}=require('module');
+const hr=createRequire('/hub/package.json'),tr=createRequire('/template/package.json'),ts=hr('typescript'),{NextResponse}=hr('next/server'),{Firestore}=hr('firebase-admin/firestore'),{DocumentSnapshot}=hr('@google-cloud/firestore/build/src/document.js');
+const paths={editor:'/hub/src/components/config-editors/payment-provider-editor.tsx',route:'/hub/src/app/api/config/[clientId]/payment-credentials/route.ts',server:'/template/server.ts',api:'/template/api/index.ts',gateway:'/template/src/lib/api/payment-gateways.ts'};
+const sources=Object.fromEntries(Object.entries(paths).map(([k,p])=>[k,fs.readFileSync(p,'utf8')]));
+const ast=(name,s)=>ts.createSourceFile(name,s,99,true,name.endsWith('tsx')?ts.ScriptKind.TSX:ts.ScriptKind.TS),compile=s=>ts.transpileModule(s,{compilerOptions:{module:1,target:9,jsx:4,esModuleInterop:true}}).outputText;
+function evaluate(s,bindings,tail=''){return new Function(...Object.keys(bindings),compile(s)+'\n'+tail)(...Object.values(bindings))}
+function variable(a,name){const found=a.statements.flatMap(n=>ts.isVariableStatement(n)?[...n.declarationList.declarations]:[]).find(n=>n.name.getText(a)===name);assert.ok(found,name);return found.initializer.getText(a)}
+const failures=[],checks=[],rows=[],wireWrites=[];function eq(a,b,id){checks.push(id);try{assert.deepStrictEqual(a,b)}catch{failures.push({id,actual:a,expected:b})}}
+const sdk=new Firestore({projectId:'synthetic-local'});sdk.request=()=>{throw Error('NETWORK_FORBIDDEN')};const docref=sdk.doc('payment_credentials/tenant');let stored=null,wire=null;
+function setDocument(data){const batch=sdk.batch();batch.set(docref,data);wire=batch._ops[0].op().update;stored=DocumentSnapshot.fromObject(docref,data).data();wireWrites.push(wire)}
+const db={collection:name=>{assert.equal(name,'payment_credentials');return{doc:id=>{assert.equal(id,'tenant');return{get:async()=>({exists:stored!==null,data:()=>stored}),set:async data=>setDocument(data)}}}}};
+const routeModule={exports:{}};evaluate(sources.route,{require:id=>id==='next/server'?{NextResponse}:id==='@/lib/firebase-admin'?{db}:id==='@/lib/auth'?{withOwner:handler=>handler}:hr(id),module:routeModule,exports:routeModule.exports});
+const routes=routeModule.exports,ctx={params:Promise.resolve({clientId:'tenant'})},session={user:{email:'owner@example.invalid'}};
+const editor=ast('editor.tsx',sources.editor),providers=evaluate('const PROVIDERS='+variable(editor,'PROVIDERS')+';',{},'return PROVIDERS;'),cardcom=providers.find(x=>x.id==='cardcom');
+let saveNode,inputNode;function find(n){if(ts.isFunctionDeclaration(n)&&n.name?.text==='saveCredentials')saveNode=n;if(ts.isJsxAttribute(n)&&n.name.getText(editor)==='onChange'&&n.initializer?.getText(editor).includes('setCredentials'))inputNode=n.initializer.expression;ts.forEachChild(n,find)}find(editor);assert.ok(saveNode&&inputNode);
+const synthetic={merchantId:'synthetic-merchant',apiKey:'legacy-key-independent',terminalNumber:'1000',apiName:'synthetic-api-name'};let credentials={};
+const transport=[];const gatewayModule={exports:{}};evaluate(sources.gateway,{require:tr,module:gatewayModule,exports:gatewayModule.exports,process:{env:{}},fetch:async(url,opts)=>{transport.push({url,body:JSON.parse(opts.body)});return{ok:true,json:async()=>({LowProfileId:'synthetic-session',Url:'https://checkout.example.invalid'})}}});
+async function consume(id,expected){for(const kind of ['server','api']){
+ const a=ast('runtime.ts',sources[kind]),loader=variable(a,'getPaymentCredentials'),fetches=[];
+ const load=evaluate('const load='+loader+';',{...gatewayModule.exports,getAdminDb:async()=>db,getFirestoreAccessToken:async()=>'synthetic-token',CLIENT_ID:'tenant',process:{env:{VITE_FIREBASE_PROJECT_ID:'project-local',FIREBASE_PROJECT_ID:'project-local',FIREBASE_ADMIN_PROJECT_ID:'project-local'}},fetch:async url=>{fetches.push(url);return{ok:true,json:async()=>wire}},console:{warn(){}}},'return load;');
+ const creds=await load();eq(creds,expected,id+'/'+kind+'/credential-fields');
+ rows.push({id,kind,creds,expected,fetches});
+}}
+(async()=>{
+ eq(cardcom.fields.some(f=>f.key==='apiName'),true,'editor/apiName-independent-field');eq(cardcom.fields.some(f=>f.key==='apiKey'&&f.secret),true,'editor/legacy-apiKey-preserved');
+ for(const field of cardcom.fields){const onChange=evaluate('const onChange='+inputNode.getText(editor)+';',{field,setCredentials:updater=>credentials=updater(credentials),setCredsDirty:()=>{}},'return onChange;');onChange({target:{value:synthetic[field.key]||'synthetic'}})}
+ const emitted=[];const save=evaluate(saveNode.getText(editor),{credentials,currentProvider:'cardcom',clientId:'tenant',fetch:async(url,opts)=>{eq(url,'/api/config/tenant/payment-credentials','editor/destination');const body=JSON.parse(opts.body);emitted.push(body);return routes.PUT({json:async()=>body},session,ctx)},setSavingCreds:()=>{},setCredsError:()=>{},setCredsSaved:()=>{},setCredsDirty:()=>{},fetchCredentials:async()=>{},setTimeout:()=>0},'return saveCredentials;');
+ await save();eq(emitted.length,1,'editor/single-put');eq(stored.credentials.apiName,synthetic.apiName,'writer/editor-apiName');eq(stored.credentials.apiKey,synthetic.apiKey,'writer/editor-apiKey-independent');await consume('editor-writer',synthetic);
+ const response=await routes.PUT({json:async()=>({provider:'cardcom',credentials:{terminalNumber:' 1000 ',apiName:' synthetic-api-name '}})},session,ctx);eq(response.status,200,'writer/reedit-status');const expected={terminalNumber:'1000',apiName:synthetic.apiName,apiKey:synthetic.apiKey};eq(stored.credentials,expected,'writer/reedit-trim-secret-preserved');const get=await routes.GET({},session,ctx),body=await get.json();eq(body.credentials.apiName,synthetic.apiName,'writer/get-apiName');eq('apiKey'in body.credentials,false,'writer/get-apiKey-masked');eq(typeof body.credentials.apiKey_masked,'string','writer/get-mask-present');await consume('reedit-writer',expected);
+ const flat={terminalNumber:'2000',apiName:'legacy-api-name',apiKey:'legacy-api-key'};
+ const matrix=[
+  {id:'legacy-only-absence',doc:flat,want:flat},
+  {id:'nested-conflict-authority',doc:{...flat,credentials:{terminalNumber:'1000',apiName:synthetic.apiName}},want:{terminalNumber:'1000',apiName:synthetic.apiName}},
+  {id:'nested-empty-no-fallback',doc:{...flat,credentials:{}},want:{}},
+  {id:'nested-null-no-fallback',doc:{...flat,credentials:null},want:{}},
+  {id:'nested-array-no-fallback',doc:{...flat,credentials:[synthetic.apiName]},want:{}},
+  {id:'nested-string-no-fallback',doc:{...flat,credentials:synthetic.apiName},want:{}},
+  {id:'nested-partial-no-mixing',doc:{...flat,credentials:{apiName:synthetic.apiName}},want:{apiName:synthetic.apiName}},
+  {id:'nested-key-never-name',doc:{...flat,credentials:{terminalNumber:'1000',apiKey:synthetic.apiKey}},want:{terminalNumber:'1000',apiKey:synthetic.apiKey}},
+  {id:'nested-nonstring-filter',doc:{...flat,credentials:{apiName:synthetic.apiName,terminalNumber:1000,nested:{x:'y'},empty:null}},want:{apiName:synthetic.apiName}},
+ ];
+ for(const c of matrix){setDocument(c.doc);await consume(c.id,c.want)}
+ // El requisito Cardcom parcial se prueba separadamente del bloqueo monetario futuro.
+ for(const [id,partial]of [['missing-terminal',{apiName:synthetic.apiName}],['apiKey-not-apiName',{terminalNumber:'1000',apiKey:synthetic.apiKey}]]){transport.length=0;let error=null;try{await gatewayModule.exports.buildCardcomGateway(partial,'tenant').createCheckoutSession({appointmentId:'appt',customerEmail:'a@example.invalid',serviceName:'s',amountCents:10000,mode:'full',currency:'ils',successUrl:'https://site.example.invalid/ok',cancelUrl:'https://site.example.invalid/no',clientId:'tenant'})}catch(e){error=e.message}eq(transport.length,0,id+'/no-cardcom-transport');eq(Boolean(error),true,id+'/rejected')}
+ const output={result:failures.length?'RED':'GREEN',checks:checks.length,failures,paths:rows.length,rows,emitted,wireWrites,hashes:Object.fromEntries(Object.entries(sources).map(([k,s])=>[k,crypto.createHash('sha256').update(s).digest('hex')])),limits:'Producto actual leído al correr; editor/route/loaders/cache reales, serialización SDK sin commit. Normalización no se sustituye. Gate owner, DB y REST interceptados. La inspección de campos loader no certifica moneda ni proveedor. Rechazo parcial Cardcom independiente.'};fs.writeFileSync('/salida/CONTRATO.json',JSON.stringify(output,null,2));console.log(JSON.stringify({result:output.result,checks:checks.length,failures:failures.length,paths:rows.length}));process.exitCode=failures.length?1:0;
+})().catch(e=>{fs.writeFileSync('/salida/ERROR-INSTRUMENTO.txt',e.stack);console.error(e.stack);process.exitCode=2});

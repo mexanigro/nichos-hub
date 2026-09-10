@@ -1,0 +1,16 @@
+{
+  "result": "GREEN",
+  "alcanzados": 4,
+  "total": 4,
+  "W_NEXT": "aceptada_localmente_descontada",
+  "N03": "en_curso",
+  "unicaPropuesta": "Preparar L02 de client-info",
+  "L02Implementada": false,
+  "evidenciasConservadas": 546,
+  "srcConservados": 285,
+  "registros": 16,
+  "enlacesCanon": 16,
+  "consumo": 81,
+  "techo": 85,
+  "resets": 0
+}

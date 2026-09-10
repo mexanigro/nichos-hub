@@ -1,0 +1,107 @@
+[
+  {
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L02-client-info-v1\\aceptacion-local\\ACEPTACION.md",
+    "sha256": "f504767fb05b583505a5ce40bbb8d975465d71d9e12b0e75180a55953b1bd40f",
+    "bytes": 1827
+  },
+  {
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L02-client-info-v1\\aceptacion-local\\CONTRATO-REGISTRO.md",
+    "sha256": "9609a642cadc4df0ec8358f13fc004e5a0681d8abaffde58c5b1a4d81f5e771f",
+    "bytes": 1319
+  },
+  {
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L02-client-info-v1\\aceptacion-local\\CUSTODIA.json",
+    "sha256": "39bfb9f22776d73ba97a383fd4600da799b22fc490afbc2345c129d075f805dd",
+    "bytes": 5457
+  },
+  {
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L02-client-info-v1\\aceptacion-local\\FUENTES-PROPUESTA.json",
+    "sha256": "221bf189f386ef6dd3fb2677b83be89a4c7f3fdbb1707bfe7d47cf60fffde662",
+    "bytes": 1250
+  },
+  {
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L02-client-info-v1\\aceptacion-local\\preimagenes\\archivo\\indice\\CALENDARIO.md",
+    "sha256": "7869da1ddccf3fe8ce18649625e7f6f54adb803134f96e913621d0165f028e9f",
+    "bytes": 25725
+  },
+  {
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L02-client-info-v1\\aceptacion-local\\preimagenes\\archivo\\indice\\README.md",
+    "sha256": "1843139a39fd261b5f5bb48c3baaa35a023eadb9859299a3551a80af39117fcf",
+    "bytes": 28369
+  },
+  {
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L02-client-info-v1\\aceptacion-local\\preimagenes\\archivo\\indice\\tareas\\N03.md",
+    "sha256": "98701417ddb1bfe12def36faf08bd108bb776b5bf782e9ada2a7598584bd4edf",
+    "bytes": 31816
+  },
+  {
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L02-client-info-v1\\aceptacion-local\\preimagenes\\archivo\\informe\\N03\\cierre-sesion-v1\\RETOMA.md",
+    "sha256": "b26e8db97982b53669737024ec55961ba7f05fd2a290db1b863f61bda67e15e2",
+    "bytes": 14223
+  },
+  {
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L02-client-info-v1\\aceptacion-local\\preimagenes\\archivo\\informe\\N03\\reconciliacion-v1\\BALANCE.md",
+    "sha256": "c5bed4e264d913d1013acc82c47a46c85e7e0161fea3d03bb82652e987abb4a6",
+    "bytes": 17011
+  },
+  {
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L02-client-info-v1\\aceptacion-local\\preimagenes\\archivo\\informe\\N03\\reconciliacion-v1\\SIGUIENTE-ACCION.md",
+    "sha256": "b3bb312d7b02df0fc32b363c76db99ac171086eda928a89b7082589a12a64da0",
+    "bytes": 6420
+  },
+  {
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L02-client-info-v1\\aceptacion-local\\preimagenes\\canon\\indice\\CALENDARIO.md",
+    "sha256": "7869da1ddccf3fe8ce18649625e7f6f54adb803134f96e913621d0165f028e9f",
+    "bytes": 25725
+  },
+  {
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L02-client-info-v1\\aceptacion-local\\preimagenes\\canon\\indice\\README.md",
+    "sha256": "1843139a39fd261b5f5bb48c3baaa35a023eadb9859299a3551a80af39117fcf",
+    "bytes": 28369
+  },
+  {
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L02-client-info-v1\\aceptacion-local\\preimagenes\\canon\\indice\\tareas\\N03.md",
+    "sha256": "98701417ddb1bfe12def36faf08bd108bb776b5bf782e9ada2a7598584bd4edf",
+    "bytes": 31816
+  },
+  {
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L02-client-info-v1\\aceptacion-local\\preimagenes\\canon\\informe\\N03\\cierre-sesion-v1\\RETOMA.md",
+    "sha256": "b26e8db97982b53669737024ec55961ba7f05fd2a290db1b863f61bda67e15e2",
+    "bytes": 14223
+  },
+  {
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L02-client-info-v1\\aceptacion-local\\preimagenes\\canon\\informe\\N03\\reconciliacion-v1\\BALANCE.md",
+    "sha256": "c5bed4e264d913d1013acc82c47a46c85e7e0161fea3d03bb82652e987abb4a6",
+    "bytes": 17011
+  },
+  {
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L02-client-info-v1\\aceptacion-local\\preimagenes\\canon\\informe\\N03\\reconciliacion-v1\\SIGUIENTE-ACCION.md",
+    "sha256": "b3bb312d7b02df0fc32b363c76db99ac171086eda928a89b7082589a12a64da0",
+    "bytes": 6420
+  },
+  {
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L02-client-info-v1\\aceptacion-local\\PREVIO.json",
+    "sha256": "9b44f437f71d646570a182155371f50acfbc3eafb7bf8736be468560c7b63742",
+    "bytes": 1083
+  },
+  {
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L02-client-info-v1\\aceptacion-local\\PRODUCTO-ANTES.json",
+    "sha256": "3d9a7b717d0783aa69ac9bdd106add3fbae87404159eae9c8b2d23bd7ef291ca",
+    "bytes": 41071
+  },
+  {
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L02-client-info-v1\\aceptacion-local\\registrar.cjs",
+    "sha256": "17c27272869babc232dd6382e595993bb50aa708d06ddcbd48e6e19d80b17a59",
+    "bytes": 8090
+  },
+  {
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L02-client-info-v1\\aceptacion-local\\RESULTADO.json",
+    "sha256": "6ae4c2e796e8625315f1d9d492173be4283f970750b7e829d8f85a84bae7172a",
+    "bytes": 503
+  },
+  {
+    "ruta": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L02-client-info-v1\\aceptacion-local\\SIGUIENTE-ACCION.md",
+    "sha256": "19f78de2cd2e9c6d01ffb2288e737f4e27ee3262db5ea5157d4abd672622395d",
+    "bytes": 3614
+  }
+]

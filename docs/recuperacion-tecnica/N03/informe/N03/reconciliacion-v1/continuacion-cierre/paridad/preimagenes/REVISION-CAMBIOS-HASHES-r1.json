@@ -1,0 +1,690 @@
+{
+  "at": "2026-09-10T10:20:23.409Z",
+  "comparison": [
+    {
+      "runtime": "server.ts",
+      "allNonCheckoutRegistrationsEqual": true,
+      "countBefore": 45,
+      "countAfter": 45,
+      "registrations": [
+        {
+          "method": "use",
+          "route": null,
+          "sha256": "a719ed18dbf3e94c9fcaa8d7676c453fa42f0652f61e67d8c16f5afc873b51c0",
+          "actualSha256": "a719ed18dbf3e94c9fcaa8d7676c453fa42f0652f61e67d8c16f5afc873b51c0",
+          "equal": true
+        },
+        {
+          "method": "post",
+          "route": "/api/webhook",
+          "sha256": "a2b95a30fc0d909757e5fc9bd5377c7a1b0b1985494f0ac28cd79800da9054aa",
+          "actualSha256": "a2b95a30fc0d909757e5fc9bd5377c7a1b0b1985494f0ac28cd79800da9054aa",
+          "equal": true
+        },
+        {
+          "method": "use",
+          "route": null,
+          "sha256": "0fbffed5749a8201dd4ce2f9bd72a651dc7fc9399dab2dbe0a961190bdc878b6",
+          "actualSha256": "0fbffed5749a8201dd4ce2f9bd72a651dc7fc9399dab2dbe0a961190bdc878b6",
+          "equal": true
+        },
+        {
+          "method": "use",
+          "route": null,
+          "sha256": "daa636fa1ab88032381ca921f269561251b2ddb830da8919210d24ce66d7a576",
+          "actualSha256": "daa636fa1ab88032381ca921f269561251b2ddb830da8919210d24ce66d7a576",
+          "equal": true
+        },
+        {
+          "method": "use",
+          "route": "/api",
+          "sha256": "aa38a06d3ff0e85d3c16893db136da556565801deaeaa1d0a593e3465eb9da84",
+          "actualSha256": "aa38a06d3ff0e85d3c16893db136da556565801deaeaa1d0a593e3465eb9da84",
+          "equal": true
+        },
+        {
+          "method": "use",
+          "route": "/api/ai",
+          "sha256": "ade756f292e518ac81993988bbee2325bd53afdf516a7d8f7544ca00b23d6b77",
+          "actualSha256": "ade756f292e518ac81993988bbee2325bd53afdf516a7d8f7544ca00b23d6b77",
+          "equal": true
+        },
+        {
+          "method": "use",
+          "route": "/api",
+          "sha256": "c3ce881d924026b4eb78ba0ab56f42f845d4c30dc5d726e0ffd0650c9f18ad00",
+          "actualSha256": "c3ce881d924026b4eb78ba0ab56f42f845d4c30dc5d726e0ffd0650c9f18ad00",
+          "equal": true
+        },
+        {
+          "method": "get",
+          "route": "/sitemap.xml",
+          "sha256": "d2fd9edee96e05238866a253c76cfaffb0ce08768da9f6905ac648e1e97016be",
+          "actualSha256": "d2fd9edee96e05238866a253c76cfaffb0ce08768da9f6905ac648e1e97016be",
+          "equal": true
+        },
+        {
+          "method": "use",
+          "route": "/api",
+          "sha256": "84dd0f107d6eac4ba54a47e50574dcc13cb8b90fede290e172fa5f1a3e109894",
+          "actualSha256": "84dd0f107d6eac4ba54a47e50574dcc13cb8b90fede290e172fa5f1a3e109894",
+          "equal": true
+        },
+        {
+          "method": "get",
+          "route": "/api/tenant/status",
+          "sha256": "274877a94dc789c5dcda4d4c5e629090d146097a43577cbe7398cb1eb52008b4",
+          "actualSha256": "274877a94dc789c5dcda4d4c5e629090d146097a43577cbe7398cb1eb52008b4",
+          "equal": true
+        },
+        {
+          "method": "post",
+          "route": "/api/ai/analyze",
+          "sha256": "808ecb7607f6666d3f71fe66587c1d3fc49036798e1ee9bc9d20a735896edfc7",
+          "actualSha256": "808ecb7607f6666d3f71fe66587c1d3fc49036798e1ee9bc9d20a735896edfc7",
+          "equal": true
+        },
+        {
+          "method": "post",
+          "route": "/api/ai/chat",
+          "sha256": "2b923ebb1325f5378f2dfe056c554247e00f8105188a6e64aa1d0e6731b0fb53",
+          "actualSha256": "2b923ebb1325f5378f2dfe056c554247e00f8105188a6e64aa1d0e6731b0fb53",
+          "equal": true
+        },
+        {
+          "method": "post",
+          "route": "/api/ai/action",
+          "sha256": "96f1fad0a4013dc9d8c16bb0cad50785f47122eba6de5a49432d4c76f39123a3",
+          "actualSha256": "96f1fad0a4013dc9d8c16bb0cad50785f47122eba6de5a49432d4c76f39123a3",
+          "equal": true
+        },
+        {
+          "method": "post",
+          "route": "/api/knowledge/upload",
+          "sha256": "155c8dcb21e2fa7072eadcb4acf867fc1d9f5f94354d56cf94aabf4c2a7d4c67",
+          "actualSha256": "155c8dcb21e2fa7072eadcb4acf867fc1d9f5f94354d56cf94aabf4c2a7d4c67",
+          "equal": true
+        },
+        {
+          "method": "get",
+          "route": "/api/knowledge/list",
+          "sha256": "290a14becc1281daf4b52b5a47996f00f470d91d20ebb66f0bda0f4d304ab86e",
+          "actualSha256": "290a14becc1281daf4b52b5a47996f00f470d91d20ebb66f0bda0f4d304ab86e",
+          "equal": true
+        },
+        {
+          "method": "get",
+          "route": "/api/knowledge/preview/:docId",
+          "sha256": "e0b96032c433a07bd3eeb507724fc922535ab5e70327f3b863c20d4e9d1aa17a",
+          "actualSha256": "e0b96032c433a07bd3eeb507724fc922535ab5e70327f3b863c20d4e9d1aa17a",
+          "equal": true
+        },
+        {
+          "method": "delete",
+          "route": "/api/knowledge/:docId",
+          "sha256": "075a752966304caf0fe367264a8ddfd99d755ecc7ea7a1355859c0a3c4b0bd9b",
+          "actualSha256": "075a752966304caf0fe367264a8ddfd99d755ecc7ea7a1355859c0a3c4b0bd9b",
+          "equal": true
+        },
+        {
+          "method": "post",
+          "route": "/api/stock/migrate",
+          "sha256": "ea3e57211fe834e21ba326d86dde6da9e21f2db4be94a49dc1f25ff536ebe46a",
+          "actualSha256": "ea3e57211fe834e21ba326d86dde6da9e21f2db4be94a49dc1f25ff536ebe46a",
+          "equal": true
+        },
+        {
+          "method": "post",
+          "route": "/api/stock/consume",
+          "sha256": "b6d2ec2d96cc686e65d565e274341595dc6c263bbe9a4974fe41c5ab3c7d4c10",
+          "actualSha256": "b6d2ec2d96cc686e65d565e274341595dc6c263bbe9a4974fe41c5ab3c7d4c10",
+          "equal": true
+        },
+        {
+          "method": "post",
+          "route": "/api/stock/add",
+          "sha256": "cf79d7b5f10ba5bcef4212de00171fe7faa9ea89bff39993a1de5c40861947e1",
+          "actualSha256": "cf79d7b5f10ba5bcef4212de00171fe7faa9ea89bff39993a1de5c40861947e1",
+          "equal": true
+        },
+        {
+          "method": "get",
+          "route": "/api/stock/items",
+          "sha256": "3f2513a52e5d20cec4e251ddd4cd0759bb5fd4959682e11ee6f363478c0f5028",
+          "actualSha256": "3f2513a52e5d20cec4e251ddd4cd0759bb5fd4959682e11ee6f363478c0f5028",
+          "equal": true
+        },
+        {
+          "method": "get",
+          "route": "/api/whatsapp/conversation",
+          "sha256": "fb8c442b40f4024a8d80b4d5e760f77a4e71cbd7af04c6baf3c4b4ce5655c398",
+          "actualSha256": "fb8c442b40f4024a8d80b4d5e760f77a4e71cbd7af04c6baf3c4b4ce5655c398",
+          "equal": true
+        },
+        {
+          "method": "post",
+          "route": "/api/whatsapp/queue-message",
+          "sha256": "efef79572f577915f7ace3de53ddbce6b380726e8c3b75794c3e01523d3afa6d",
+          "actualSha256": "efef79572f577915f7ace3de53ddbce6b380726e8c3b75794c3e01523d3afa6d",
+          "equal": true
+        },
+        {
+          "method": "patch",
+          "route": "/api/whatsapp/pause",
+          "sha256": "648c0995f132e8a4897afd68f4fda7eea31c5c5cdb174d2ead81043bba5c2443",
+          "actualSha256": "648c0995f132e8a4897afd68f4fda7eea31c5c5cdb174d2ead81043bba5c2443",
+          "equal": true
+        },
+        {
+          "method": "get",
+          "route": "/api/whatsapp/config",
+          "sha256": "4c46e013a5662201c7289a6dd6dadd4d9744dcac80f44a124129ffe01b2f0278",
+          "actualSha256": "4c46e013a5662201c7289a6dd6dadd4d9744dcac80f44a124129ffe01b2f0278",
+          "equal": true
+        },
+        {
+          "method": "get",
+          "route": "/api/crm-metrics",
+          "sha256": "0bfb01f7ddabb2f0f86175176d1fd1a41937cda4aa3e9e83ce952aa4f7f5c999",
+          "actualSha256": "0bfb01f7ddabb2f0f86175176d1fd1a41937cda4aa3e9e83ce952aa4f7f5c999",
+          "equal": true
+        },
+        {
+          "method": "patch",
+          "route": "/api/customers/:customerId/stage",
+          "sha256": "09964e15e9536a083e421003436e6cadc69c610ce9918a5c344297c7e2798d45",
+          "actualSha256": "09964e15e9536a083e421003436e6cadc69c610ce9918a5c344297c7e2798d45",
+          "equal": true
+        },
+        {
+          "method": "patch",
+          "route": "/api/customers/:customerId/tags",
+          "sha256": "c40abc5638854aae4c484e11ab634f3d1f45fdb12d931a8cba8becaf4aa04fc9",
+          "actualSha256": "c40abc5638854aae4c484e11ab634f3d1f45fdb12d931a8cba8becaf4aa04fc9",
+          "equal": true
+        },
+        {
+          "method": "get",
+          "route": "/api/admin/users",
+          "sha256": "5e998701ebd2dce70c86143563f777a6cdc49832290bffe2ae4dd65cbf9bb8ec",
+          "actualSha256": "5e998701ebd2dce70c86143563f777a6cdc49832290bffe2ae4dd65cbf9bb8ec",
+          "equal": true
+        },
+        {
+          "method": "post",
+          "route": "/api/admin/users",
+          "sha256": "63f8942d0faf8e2e4edfb2af8b3704fcacc004c9aefa966e440a735ecc959481",
+          "actualSha256": "63f8942d0faf8e2e4edfb2af8b3704fcacc004c9aefa966e440a735ecc959481",
+          "equal": true
+        },
+        {
+          "method": "patch",
+          "route": "/api/admin/users/:userId/role",
+          "sha256": "7b9f490c7e8a38e136407e8511339cc6d2445d82c8e41ace6c1509b652a6e71d",
+          "actualSha256": "7b9f490c7e8a38e136407e8511339cc6d2445d82c8e41ace6c1509b652a6e71d",
+          "equal": true
+        },
+        {
+          "method": "delete",
+          "route": "/api/admin/users/:userId",
+          "sha256": "5e79abf55f3e72c27ce32a363e16ebef8b100dd12bd5692008a534efc87c0710",
+          "actualSha256": "5e79abf55f3e72c27ce32a363e16ebef8b100dd12bd5692008a534efc87c0710",
+          "equal": true
+        },
+        {
+          "method": "get",
+          "route": "/api/tasks",
+          "sha256": "f5eb919c93975c3b3fdba8640dfbd7bc6a484a5acf54496ea0ea37068ccf9aa1",
+          "actualSha256": "f5eb919c93975c3b3fdba8640dfbd7bc6a484a5acf54496ea0ea37068ccf9aa1",
+          "equal": true
+        },
+        {
+          "method": "get",
+          "route": "/api/tasks/:taskId",
+          "sha256": "7e685cde1fc5d36f4e565f8510c94e5957ba3977c25d12efff586038385a12b5",
+          "actualSha256": "7e685cde1fc5d36f4e565f8510c94e5957ba3977c25d12efff586038385a12b5",
+          "equal": true
+        },
+        {
+          "method": "post",
+          "route": "/api/tasks",
+          "sha256": "3fe747f81fa93e11e6442656ee6ad503a683f24daadef31b6e731e4b2bd583be",
+          "actualSha256": "3fe747f81fa93e11e6442656ee6ad503a683f24daadef31b6e731e4b2bd583be",
+          "equal": true
+        },
+        {
+          "method": "patch",
+          "route": "/api/tasks/:taskId",
+          "sha256": "dfb6c9164d28706f2761811e3a4d3b69cebc585e592e29f760e4b7ee01e444f6",
+          "actualSha256": "dfb6c9164d28706f2761811e3a4d3b69cebc585e592e29f760e4b7ee01e444f6",
+          "equal": true
+        },
+        {
+          "method": "delete",
+          "route": "/api/tasks/:taskId",
+          "sha256": "d79d450c91bc8485eec4910cc9f7d720144c11fcc435e5601f4b5e906c769402",
+          "actualSha256": "d79d450c91bc8485eec4910cc9f7d720144c11fcc435e5601f4b5e906c769402",
+          "equal": true
+        },
+        {
+          "method": "post",
+          "route": "/api/contact",
+          "sha256": "ad48000936fdd4b274b016db6f24503d8f8ef870bbc90cbbfa8cdc6d83fa5596",
+          "actualSha256": "ad48000936fdd4b274b016db6f24503d8f8ef870bbc90cbbfa8cdc6d83fa5596",
+          "equal": true
+        },
+        {
+          "method": "post",
+          "route": "/api/book",
+          "sha256": "a7af264e1ad589c18d68d2adcad9370ca9845fcaa8b91dd7b3711dc8d8aa6e18",
+          "actualSha256": "a7af264e1ad589c18d68d2adcad9370ca9845fcaa8b91dd7b3711dc8d8aa6e18",
+          "equal": true
+        },
+        {
+          "method": "post",
+          "route": "/api/notify-booking",
+          "sha256": "94d0927652a06d0c1219104fead8d1adf85db1272af57a2906ff43af496d58a5",
+          "actualSha256": "94d0927652a06d0c1219104fead8d1adf85db1272af57a2906ff43af496d58a5",
+          "equal": true
+        },
+        {
+          "method": "post",
+          "route": "/api/appointment/notify",
+          "sha256": "e3d3b58aee2ac43420b06acf9c14bd5a07c308fb3a3d69808cbfc65963d73140",
+          "actualSha256": "e3d3b58aee2ac43420b06acf9c14bd5a07c308fb3a3d69808cbfc65963d73140",
+          "equal": true
+        },
+        {
+          "method": "post",
+          "route": "/api/support/message",
+          "sha256": "34b5f05e1e1fa48280d54a131ab6848331fc996da10917fea324c6b8e76b6ad1",
+          "actualSha256": "34b5f05e1e1fa48280d54a131ab6848331fc996da10917fea324c6b8e76b6ad1",
+          "equal": true
+        },
+        {
+          "method": "use",
+          "route": null,
+          "sha256": "1d837b9b07bfcd357822954b8d597d74cfe5613071b41a76c6f8e2b6aa2432ca",
+          "actualSha256": "1d837b9b07bfcd357822954b8d597d74cfe5613071b41a76c6f8e2b6aa2432ca",
+          "equal": true
+        },
+        {
+          "method": "use",
+          "route": null,
+          "sha256": "40694a81a63c37ae39376b38b824b822b30d9013aeb413835c7c94fcee9de6c3",
+          "actualSha256": "40694a81a63c37ae39376b38b824b822b30d9013aeb413835c7c94fcee9de6c3",
+          "equal": true
+        },
+        {
+          "method": "get",
+          "route": "*",
+          "sha256": "77734ceba05d7492afb66f30cfe789883319baa287a636aa6ac07fb08872a804",
+          "actualSha256": "77734ceba05d7492afb66f30cfe789883319baa287a636aa6ac07fb08872a804",
+          "equal": true
+        }
+      ]
+    },
+    {
+      "runtime": "api/index.ts",
+      "allNonCheckoutRegistrationsEqual": true,
+      "countBefore": 46,
+      "countAfter": 46,
+      "registrations": [
+        {
+          "method": "use",
+          "route": null,
+          "sha256": "a719ed18dbf3e94c9fcaa8d7676c453fa42f0652f61e67d8c16f5afc873b51c0",
+          "actualSha256": "a719ed18dbf3e94c9fcaa8d7676c453fa42f0652f61e67d8c16f5afc873b51c0",
+          "equal": true
+        },
+        {
+          "method": "post",
+          "route": "/api/webhook",
+          "sha256": "a2b95a30fc0d909757e5fc9bd5377c7a1b0b1985494f0ac28cd79800da9054aa",
+          "actualSha256": "a2b95a30fc0d909757e5fc9bd5377c7a1b0b1985494f0ac28cd79800da9054aa",
+          "equal": true
+        },
+        {
+          "method": "get",
+          "route": "/api/daily-digest",
+          "sha256": "7ca87af8ff9e393584fec8e291f8625f0d3688ded1f003dac9299a1c2cb8673c",
+          "actualSha256": "7ca87af8ff9e393584fec8e291f8625f0d3688ded1f003dac9299a1c2cb8673c",
+          "equal": true
+        },
+        {
+          "method": "get",
+          "route": "/sitemap.xml",
+          "sha256": "5ce760b57cb4fa70d9fed1b1d46cc05b90fa80b4a635bca1b0d680dd52306ab8",
+          "actualSha256": "5ce760b57cb4fa70d9fed1b1d46cc05b90fa80b4a635bca1b0d680dd52306ab8",
+          "equal": true
+        },
+        {
+          "method": "use",
+          "route": null,
+          "sha256": "0fbffed5749a8201dd4ce2f9bd72a651dc7fc9399dab2dbe0a961190bdc878b6",
+          "actualSha256": "0fbffed5749a8201dd4ce2f9bd72a651dc7fc9399dab2dbe0a961190bdc878b6",
+          "equal": true
+        },
+        {
+          "method": "use",
+          "route": null,
+          "sha256": "daa636fa1ab88032381ca921f269561251b2ddb830da8919210d24ce66d7a576",
+          "actualSha256": "daa636fa1ab88032381ca921f269561251b2ddb830da8919210d24ce66d7a576",
+          "equal": true
+        },
+        {
+          "method": "use",
+          "route": "/api",
+          "sha256": "aa38a06d3ff0e85d3c16893db136da556565801deaeaa1d0a593e3465eb9da84",
+          "actualSha256": "aa38a06d3ff0e85d3c16893db136da556565801deaeaa1d0a593e3465eb9da84",
+          "equal": true
+        },
+        {
+          "method": "use",
+          "route": "/api",
+          "sha256": "c3ce881d924026b4eb78ba0ab56f42f845d4c30dc5d726e0ffd0650c9f18ad00",
+          "actualSha256": "c3ce881d924026b4eb78ba0ab56f42f845d4c30dc5d726e0ffd0650c9f18ad00",
+          "equal": true
+        },
+        {
+          "method": "use",
+          "route": "/api",
+          "sha256": "84dd0f107d6eac4ba54a47e50574dcc13cb8b90fede290e172fa5f1a3e109894",
+          "actualSha256": "84dd0f107d6eac4ba54a47e50574dcc13cb8b90fede290e172fa5f1a3e109894",
+          "equal": true
+        },
+        {
+          "method": "use",
+          "route": "/api/ai",
+          "sha256": "ade756f292e518ac81993988bbee2325bd53afdf516a7d8f7544ca00b23d6b77",
+          "actualSha256": "ade756f292e518ac81993988bbee2325bd53afdf516a7d8f7544ca00b23d6b77",
+          "equal": true
+        },
+        {
+          "method": "get",
+          "route": "/api/tenant/status",
+          "sha256": "e4a20aa03907da19ead5392b754252002aab034c77f742a25b3618ca0a383a16",
+          "actualSha256": "e4a20aa03907da19ead5392b754252002aab034c77f742a25b3618ca0a383a16",
+          "equal": true
+        },
+        {
+          "method": "post",
+          "route": "/api/ai/analyze",
+          "sha256": "1ae033d6d2419cc36fe2d93d1da4733acfa31a0a33be5ca7a8bfee8974ed9962",
+          "actualSha256": "1ae033d6d2419cc36fe2d93d1da4733acfa31a0a33be5ca7a8bfee8974ed9962",
+          "equal": true
+        },
+        {
+          "method": "post",
+          "route": "/api/ai/chat",
+          "sha256": "a5004b8bd2da71db3d9a0704eb4302a9ec9b258f53e9dc2a3309618b0622ae4c",
+          "actualSha256": "a5004b8bd2da71db3d9a0704eb4302a9ec9b258f53e9dc2a3309618b0622ae4c",
+          "equal": true
+        },
+        {
+          "method": "post",
+          "route": "/api/ai/action",
+          "sha256": "b71c43234d7473d1a76d12fc94d81a935c97f07b1319c1bf898c4d336bd2343d",
+          "actualSha256": "b71c43234d7473d1a76d12fc94d81a935c97f07b1319c1bf898c4d336bd2343d",
+          "equal": true
+        },
+        {
+          "method": "get",
+          "route": "/api/whatsapp/conversation",
+          "sha256": "c187408cc4734ab34661277bc92b389eff11a283a9548878a23882aa9830216d",
+          "actualSha256": "c187408cc4734ab34661277bc92b389eff11a283a9548878a23882aa9830216d",
+          "equal": true
+        },
+        {
+          "method": "post",
+          "route": "/api/whatsapp/queue-message",
+          "sha256": "c2910529c953d882126f7d3fcf7d56f9469d7ac75086b25a6a3772cfb8c51217",
+          "actualSha256": "c2910529c953d882126f7d3fcf7d56f9469d7ac75086b25a6a3772cfb8c51217",
+          "equal": true
+        },
+        {
+          "method": "patch",
+          "route": "/api/whatsapp/pause",
+          "sha256": "c05d205e5af4ccab5b8ec2e67619fb66feecb0fd32e5dcd54cf668f68a84d675",
+          "actualSha256": "c05d205e5af4ccab5b8ec2e67619fb66feecb0fd32e5dcd54cf668f68a84d675",
+          "equal": true
+        },
+        {
+          "method": "get",
+          "route": "/api/whatsapp/config",
+          "sha256": "4fa9f257452437c6265031a4981c6f768d021191b0bcbf2bed9114b75390c9c8",
+          "actualSha256": "4fa9f257452437c6265031a4981c6f768d021191b0bcbf2bed9114b75390c9c8",
+          "equal": true
+        },
+        {
+          "method": "post",
+          "route": "/api/knowledge/upload",
+          "sha256": "ebf7f7b50865bba4c328e4f5915ac9e84472436e0cadee23d83a9170db17affa",
+          "actualSha256": "ebf7f7b50865bba4c328e4f5915ac9e84472436e0cadee23d83a9170db17affa",
+          "equal": true
+        },
+        {
+          "method": "get",
+          "route": "/api/knowledge/list",
+          "sha256": "08ea9d1d52aa4bf4dac741e9335a1aa52548db3d33ceab679899958d631e1627",
+          "actualSha256": "08ea9d1d52aa4bf4dac741e9335a1aa52548db3d33ceab679899958d631e1627",
+          "equal": true
+        },
+        {
+          "method": "get",
+          "route": "/api/knowledge/preview/:docId",
+          "sha256": "3ab641644c2f695902ef3d9eb46d471b8961e171d148d18ed52f4d69f5260bbb",
+          "actualSha256": "3ab641644c2f695902ef3d9eb46d471b8961e171d148d18ed52f4d69f5260bbb",
+          "equal": true
+        },
+        {
+          "method": "delete",
+          "route": "/api/knowledge/:docId",
+          "sha256": "0b956a8fad58e151397b6efff36b0ffad80661037fdf9c51d3ebb9ba8d7102a1",
+          "actualSha256": "0b956a8fad58e151397b6efff36b0ffad80661037fdf9c51d3ebb9ba8d7102a1",
+          "equal": true
+        },
+        {
+          "method": "post",
+          "route": "/api/stock/add",
+          "sha256": "f96c64b137eb2cfad2406ce5f786372ea02d21dbafecf51e87c45137c0c1136b",
+          "actualSha256": "f96c64b137eb2cfad2406ce5f786372ea02d21dbafecf51e87c45137c0c1136b",
+          "equal": true
+        },
+        {
+          "method": "get",
+          "route": "/api/stock/items",
+          "sha256": "f9a8a31d313087429cdc9dd62666894733eca779c89b26f1ece6b5ecbdb873ff",
+          "actualSha256": "f9a8a31d313087429cdc9dd62666894733eca779c89b26f1ece6b5ecbdb873ff",
+          "equal": true
+        },
+        {
+          "method": "post",
+          "route": "/api/stock/migrate",
+          "sha256": "f270a76d13aa559e874ed51f21035306cca2fe739a9c2c65f842f2d6017e80f1",
+          "actualSha256": "f270a76d13aa559e874ed51f21035306cca2fe739a9c2c65f842f2d6017e80f1",
+          "equal": true
+        },
+        {
+          "method": "post",
+          "route": "/api/stock/consume",
+          "sha256": "5b8d17b985190e16bdb20cbb76f0d3ff111b1d1e3b4fadbc41eaa5d77beae3b0",
+          "actualSha256": "5b8d17b985190e16bdb20cbb76f0d3ff111b1d1e3b4fadbc41eaa5d77beae3b0",
+          "equal": true
+        },
+        {
+          "method": "patch",
+          "route": "/api/customers/:customerId/stage",
+          "sha256": "8133a3f6c1bf593885fbef3617eb9c77b008de9b65a930b939e23551e9ee6771",
+          "actualSha256": "8133a3f6c1bf593885fbef3617eb9c77b008de9b65a930b939e23551e9ee6771",
+          "equal": true
+        },
+        {
+          "method": "patch",
+          "route": "/api/customers/:customerId/tags",
+          "sha256": "6a6ff582554cf6ab9a53ef7f7ca74699c9c4edde215c03cc6b4046fa36163d0d",
+          "actualSha256": "6a6ff582554cf6ab9a53ef7f7ca74699c9c4edde215c03cc6b4046fa36163d0d",
+          "equal": true
+        },
+        {
+          "method": "get",
+          "route": "/api/admin/users",
+          "sha256": "9ba02bbc745ea4e255f3f01cf11d8e61af730a61799cf48df9b3024ea4ce3105",
+          "actualSha256": "9ba02bbc745ea4e255f3f01cf11d8e61af730a61799cf48df9b3024ea4ce3105",
+          "equal": true
+        },
+        {
+          "method": "post",
+          "route": "/api/admin/users",
+          "sha256": "7f3ab7b793d7962724e44ff3f5d2c7d91ae6c7464cca53de4e64815ae4ad3162",
+          "actualSha256": "7f3ab7b793d7962724e44ff3f5d2c7d91ae6c7464cca53de4e64815ae4ad3162",
+          "equal": true
+        },
+        {
+          "method": "patch",
+          "route": "/api/admin/users/:userId/role",
+          "sha256": "ab140eba02d53b761b469cfe0ae2ed2ae8758be0c857cef34c12780c6d09ae9b",
+          "actualSha256": "ab140eba02d53b761b469cfe0ae2ed2ae8758be0c857cef34c12780c6d09ae9b",
+          "equal": true
+        },
+        {
+          "method": "delete",
+          "route": "/api/admin/users/:userId",
+          "sha256": "5aa85c12bd8a8975d846ac823b13d8183f96f1b3c86b4f9300aa0acc68401d57",
+          "actualSha256": "5aa85c12bd8a8975d846ac823b13d8183f96f1b3c86b4f9300aa0acc68401d57",
+          "equal": true
+        },
+        {
+          "method": "get",
+          "route": "/api/tasks",
+          "sha256": "f2abb32e651ee60ce92cd59d62099eb0f6e501744af03b2e20cb5559bea7c247",
+          "actualSha256": "f2abb32e651ee60ce92cd59d62099eb0f6e501744af03b2e20cb5559bea7c247",
+          "equal": true
+        },
+        {
+          "method": "get",
+          "route": "/api/tasks/:taskId",
+          "sha256": "002d001679132f92d59edf11bb0a5e27c4847ac8db7cf6874b4e1af19cc331a8",
+          "actualSha256": "002d001679132f92d59edf11bb0a5e27c4847ac8db7cf6874b4e1af19cc331a8",
+          "equal": true
+        },
+        {
+          "method": "post",
+          "route": "/api/tasks",
+          "sha256": "faf48682ee4031b8ed95dff96de44862e414f62570dacdcc731c43530ad1a0a0",
+          "actualSha256": "faf48682ee4031b8ed95dff96de44862e414f62570dacdcc731c43530ad1a0a0",
+          "equal": true
+        },
+        {
+          "method": "patch",
+          "route": "/api/tasks/:taskId",
+          "sha256": "22c1d5753b74f442d6202072146eaa982e8f7df07256094a50cf3385608c7f56",
+          "actualSha256": "22c1d5753b74f442d6202072146eaa982e8f7df07256094a50cf3385608c7f56",
+          "equal": true
+        },
+        {
+          "method": "delete",
+          "route": "/api/tasks/:taskId",
+          "sha256": "481aa8dc15cae48de27cf4fc9374b959b76e59f0671065b20fb0c9c260c14c66",
+          "actualSha256": "481aa8dc15cae48de27cf4fc9374b959b76e59f0671065b20fb0c9c260c14c66",
+          "equal": true
+        },
+        {
+          "method": "get",
+          "route": "/api/crm-metrics",
+          "sha256": "b69a2853f4ade64563d97e875322f45ffa2fd310b8dea795e8e4d38a0a583be2",
+          "actualSha256": "b69a2853f4ade64563d97e875322f45ffa2fd310b8dea795e8e4d38a0a583be2",
+          "equal": true
+        },
+        {
+          "method": "post",
+          "route": "/api/contact",
+          "sha256": "9d7cdf10a9e1aaefdae04933159bba041a8ef1612ae5df8ddfbf62ab45a25949",
+          "actualSha256": "9d7cdf10a9e1aaefdae04933159bba041a8ef1612ae5df8ddfbf62ab45a25949",
+          "equal": true
+        },
+        {
+          "method": "post",
+          "route": "/api/notify-booking",
+          "sha256": "bf9d2966b51de7d1955c30920a96b2ab8ab6a92584f5b8e40238365d9e49c47c",
+          "actualSha256": "bf9d2966b51de7d1955c30920a96b2ab8ab6a92584f5b8e40238365d9e49c47c",
+          "equal": true
+        },
+        {
+          "method": "post",
+          "route": "/api/appointment/notify",
+          "sha256": "bba9cfa3378e51765d4cfaf805cb2a2d1e4605c83f6d3bc1db4f4b98059a258a",
+          "actualSha256": "bba9cfa3378e51765d4cfaf805cb2a2d1e4605c83f6d3bc1db4f4b98059a258a",
+          "equal": true
+        },
+        {
+          "method": "get",
+          "route": "/api/services",
+          "sha256": "5101d1a1afb244a97136e4660a735e6191a61b7c08234c450b2f1aa637d3db37",
+          "actualSha256": "5101d1a1afb244a97136e4660a735e6191a61b7c08234c450b2f1aa637d3db37",
+          "equal": true
+        },
+        {
+          "method": "post",
+          "route": "/api/availability",
+          "sha256": "d542e872d5a93f503101f789c9d5ddd769545e285311a0e1b9d91866edc3032c",
+          "actualSha256": "d542e872d5a93f503101f789c9d5ddd769545e285311a0e1b9d91866edc3032c",
+          "equal": true
+        },
+        {
+          "method": "post",
+          "route": "/api/support/message",
+          "sha256": "93c79934b21bef72dc1e60df67e9a2f3d78050afec2f4e789e4ed6429bc78147",
+          "actualSha256": "93c79934b21bef72dc1e60df67e9a2f3d78050afec2f4e789e4ed6429bc78147",
+          "equal": true
+        },
+        {
+          "method": "post",
+          "route": "/api/book",
+          "sha256": "a33074ef04ae52231a076305a49aa16bcd78905245cc3c81ad7fc6d93f4b109b",
+          "actualSha256": "a33074ef04ae52231a076305a49aa16bcd78905245cc3c81ad7fc6d93f4b109b",
+          "equal": true
+        },
+        {
+          "method": "post",
+          "route": "/api/bookings/validate",
+          "sha256": "126996b38abbd523642f1d017f58035d091ec81a5cf1577e725a3bf67f6a1d4b",
+          "actualSha256": "126996b38abbd523642f1d017f58035d091ec81a5cf1577e725a3bf67f6a1d4b",
+          "equal": true
+        }
+      ]
+    }
+  ],
+  "checkoutBasalBodyEqualExceptInjectedBaseUrl": true,
+  "files": [
+    {
+      "file": "C:/Users/liama/Desktop/Nichos/Barber-shop-template-main/server.ts",
+      "sha256": "884ed361649c0aa2b406c317e7cc0fe36f70d30f9cd83785f6680fee7c9970f0"
+    },
+    {
+      "file": "C:/Users/liama/Desktop/Nichos/Barber-shop-template-main/api/index.ts",
+      "sha256": "465679349588865c93b5fc2c06a02dd9b25de11ae85870687cf2cb5f8d2a3564"
+    },
+    {
+      "file": "C:/Users/liama/Desktop/Nichos/Barber-shop-template-main/src/lib/api/checkout-handler.ts",
+      "sha256": "11f8d7a03799a67d35713f6e057cf5978dd1b62a13430e7b5f72a0b6c6b62a3f"
+    },
+    {
+      "file": "C:/Users/liama/Desktop/Nichos/Barber-shop-template-main/src/config/site.ts",
+      "sha256": "e3ea39ab76a683452d7a37c60c137793c57d2ee8e5cf36afa5bf38ee91e0a91a"
+    },
+    {
+      "file": "C:/Users/liama/Desktop/Nichos-hub/src/components/client-language-banner.tsx",
+      "sha256": "ad096c341788ec236c087abe55d773b0b5db5d2ad77d422a479c54b4cb46199b"
+    },
+    {
+      "file": "C:/Users/liama/Desktop/Nichos/Barber-shop-template-main/vercel.json",
+      "sha256": "daa729f27a1b8a241110ea00b9810edf5504a53e65f7a412387fb68c64cc0db2"
+    },
+    {
+      "file": "C:/Users/liama/Desktop/Nichos/Barber-shop-template-main/src/lib/api/booking-validation.ts",
+      "sha256": "456f7f8a9ebe4015e19eac8246a2ddaada68d1ab0fe4c23949c640e9a71b934e"
+    }
+  ],
+  "limits": "Lectura AST/hashes; no suites ni import runtime. Comparación de registros y cuerpos no certifica proveedor/plataforma."
+}

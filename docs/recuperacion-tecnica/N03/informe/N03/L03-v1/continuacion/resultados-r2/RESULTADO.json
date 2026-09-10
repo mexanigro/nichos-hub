@@ -1,0 +1,2035 @@
+{
+  "result": "PASS_CARACTERIZACION",
+  "matrixCases": 108,
+  "channelControls": 4,
+  "uiCases": 9,
+  "rows": [
+    {
+      "runtime": "server",
+      "agent": false,
+      "flags": {
+        "enabled": "absent",
+        "bookingAlerts": "absent",
+        "contactInquiries": "absent"
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "server",
+      "agent": false,
+      "flags": {
+        "enabled": "absent",
+        "bookingAlerts": "absent",
+        "contactInquiries": false
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "server",
+      "agent": false,
+      "flags": {
+        "enabled": "absent",
+        "bookingAlerts": "absent",
+        "contactInquiries": true
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "server",
+      "agent": false,
+      "flags": {
+        "enabled": "absent",
+        "bookingAlerts": false,
+        "contactInquiries": "absent"
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "server",
+      "agent": false,
+      "flags": {
+        "enabled": "absent",
+        "bookingAlerts": false,
+        "contactInquiries": false
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "server",
+      "agent": false,
+      "flags": {
+        "enabled": "absent",
+        "bookingAlerts": false,
+        "contactInquiries": true
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "server",
+      "agent": false,
+      "flags": {
+        "enabled": "absent",
+        "bookingAlerts": true,
+        "contactInquiries": "absent"
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "server",
+      "agent": false,
+      "flags": {
+        "enabled": "absent",
+        "bookingAlerts": true,
+        "contactInquiries": false
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "server",
+      "agent": false,
+      "flags": {
+        "enabled": "absent",
+        "bookingAlerts": true,
+        "contactInquiries": true
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "server",
+      "agent": false,
+      "flags": {
+        "enabled": false,
+        "bookingAlerts": "absent",
+        "contactInquiries": "absent"
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "server",
+      "agent": false,
+      "flags": {
+        "enabled": false,
+        "bookingAlerts": "absent",
+        "contactInquiries": false
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "server",
+      "agent": false,
+      "flags": {
+        "enabled": false,
+        "bookingAlerts": "absent",
+        "contactInquiries": true
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "server",
+      "agent": false,
+      "flags": {
+        "enabled": false,
+        "bookingAlerts": false,
+        "contactInquiries": "absent"
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "server",
+      "agent": false,
+      "flags": {
+        "enabled": false,
+        "bookingAlerts": false,
+        "contactInquiries": false
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "server",
+      "agent": false,
+      "flags": {
+        "enabled": false,
+        "bookingAlerts": false,
+        "contactInquiries": true
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "server",
+      "agent": false,
+      "flags": {
+        "enabled": false,
+        "bookingAlerts": true,
+        "contactInquiries": "absent"
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "server",
+      "agent": false,
+      "flags": {
+        "enabled": false,
+        "bookingAlerts": true,
+        "contactInquiries": false
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "server",
+      "agent": false,
+      "flags": {
+        "enabled": false,
+        "bookingAlerts": true,
+        "contactInquiries": true
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "server",
+      "agent": false,
+      "flags": {
+        "enabled": true,
+        "bookingAlerts": "absent",
+        "contactInquiries": "absent"
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "server",
+      "agent": false,
+      "flags": {
+        "enabled": true,
+        "bookingAlerts": "absent",
+        "contactInquiries": false
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "server",
+      "agent": false,
+      "flags": {
+        "enabled": true,
+        "bookingAlerts": "absent",
+        "contactInquiries": true
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "server",
+      "agent": false,
+      "flags": {
+        "enabled": true,
+        "bookingAlerts": false,
+        "contactInquiries": "absent"
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "server",
+      "agent": false,
+      "flags": {
+        "enabled": true,
+        "bookingAlerts": false,
+        "contactInquiries": false
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "server",
+      "agent": false,
+      "flags": {
+        "enabled": true,
+        "bookingAlerts": false,
+        "contactInquiries": true
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "server",
+      "agent": false,
+      "flags": {
+        "enabled": true,
+        "bookingAlerts": true,
+        "contactInquiries": "absent"
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "server",
+      "agent": false,
+      "flags": {
+        "enabled": true,
+        "bookingAlerts": true,
+        "contactInquiries": false
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "server",
+      "agent": false,
+      "flags": {
+        "enabled": true,
+        "bookingAlerts": true,
+        "contactInquiries": true
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "server",
+      "agent": true,
+      "flags": {
+        "enabled": "absent",
+        "bookingAlerts": "absent",
+        "contactInquiries": "absent"
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "server",
+      "agent": true,
+      "flags": {
+        "enabled": "absent",
+        "bookingAlerts": "absent",
+        "contactInquiries": false
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "server",
+      "agent": true,
+      "flags": {
+        "enabled": "absent",
+        "bookingAlerts": "absent",
+        "contactInquiries": true
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "server",
+      "agent": true,
+      "flags": {
+        "enabled": "absent",
+        "bookingAlerts": false,
+        "contactInquiries": "absent"
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "server",
+      "agent": true,
+      "flags": {
+        "enabled": "absent",
+        "bookingAlerts": false,
+        "contactInquiries": false
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "server",
+      "agent": true,
+      "flags": {
+        "enabled": "absent",
+        "bookingAlerts": false,
+        "contactInquiries": true
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "server",
+      "agent": true,
+      "flags": {
+        "enabled": "absent",
+        "bookingAlerts": true,
+        "contactInquiries": "absent"
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "server",
+      "agent": true,
+      "flags": {
+        "enabled": "absent",
+        "bookingAlerts": true,
+        "contactInquiries": false
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "server",
+      "agent": true,
+      "flags": {
+        "enabled": "absent",
+        "bookingAlerts": true,
+        "contactInquiries": true
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "server",
+      "agent": true,
+      "flags": {
+        "enabled": false,
+        "bookingAlerts": "absent",
+        "contactInquiries": "absent"
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "server",
+      "agent": true,
+      "flags": {
+        "enabled": false,
+        "bookingAlerts": "absent",
+        "contactInquiries": false
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "server",
+      "agent": true,
+      "flags": {
+        "enabled": false,
+        "bookingAlerts": "absent",
+        "contactInquiries": true
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "server",
+      "agent": true,
+      "flags": {
+        "enabled": false,
+        "bookingAlerts": false,
+        "contactInquiries": "absent"
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "server",
+      "agent": true,
+      "flags": {
+        "enabled": false,
+        "bookingAlerts": false,
+        "contactInquiries": false
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "server",
+      "agent": true,
+      "flags": {
+        "enabled": false,
+        "bookingAlerts": false,
+        "contactInquiries": true
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "server",
+      "agent": true,
+      "flags": {
+        "enabled": false,
+        "bookingAlerts": true,
+        "contactInquiries": "absent"
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "server",
+      "agent": true,
+      "flags": {
+        "enabled": false,
+        "bookingAlerts": true,
+        "contactInquiries": false
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "server",
+      "agent": true,
+      "flags": {
+        "enabled": false,
+        "bookingAlerts": true,
+        "contactInquiries": true
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "server",
+      "agent": true,
+      "flags": {
+        "enabled": true,
+        "bookingAlerts": "absent",
+        "contactInquiries": "absent"
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "server",
+      "agent": true,
+      "flags": {
+        "enabled": true,
+        "bookingAlerts": "absent",
+        "contactInquiries": false
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "server",
+      "agent": true,
+      "flags": {
+        "enabled": true,
+        "bookingAlerts": "absent",
+        "contactInquiries": true
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "server",
+      "agent": true,
+      "flags": {
+        "enabled": true,
+        "bookingAlerts": false,
+        "contactInquiries": "absent"
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "server",
+      "agent": true,
+      "flags": {
+        "enabled": true,
+        "bookingAlerts": false,
+        "contactInquiries": false
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "server",
+      "agent": true,
+      "flags": {
+        "enabled": true,
+        "bookingAlerts": false,
+        "contactInquiries": true
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "server",
+      "agent": true,
+      "flags": {
+        "enabled": true,
+        "bookingAlerts": true,
+        "contactInquiries": "absent"
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "server",
+      "agent": true,
+      "flags": {
+        "enabled": true,
+        "bookingAlerts": true,
+        "contactInquiries": false
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "server",
+      "agent": true,
+      "flags": {
+        "enabled": true,
+        "bookingAlerts": true,
+        "contactInquiries": true
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "server",
+      "agent": false,
+      "positive": "channels=email",
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      }
+    },
+    {
+      "runtime": "server",
+      "agent": true,
+      "positive": "channels=email",
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      }
+    },
+    {
+      "runtime": "api",
+      "agent": false,
+      "flags": {
+        "enabled": "absent",
+        "bookingAlerts": "absent",
+        "contactInquiries": "absent"
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "api",
+      "agent": false,
+      "flags": {
+        "enabled": "absent",
+        "bookingAlerts": "absent",
+        "contactInquiries": false
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "api",
+      "agent": false,
+      "flags": {
+        "enabled": "absent",
+        "bookingAlerts": "absent",
+        "contactInquiries": true
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "api",
+      "agent": false,
+      "flags": {
+        "enabled": "absent",
+        "bookingAlerts": false,
+        "contactInquiries": "absent"
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "api",
+      "agent": false,
+      "flags": {
+        "enabled": "absent",
+        "bookingAlerts": false,
+        "contactInquiries": false
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "api",
+      "agent": false,
+      "flags": {
+        "enabled": "absent",
+        "bookingAlerts": false,
+        "contactInquiries": true
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "api",
+      "agent": false,
+      "flags": {
+        "enabled": "absent",
+        "bookingAlerts": true,
+        "contactInquiries": "absent"
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "api",
+      "agent": false,
+      "flags": {
+        "enabled": "absent",
+        "bookingAlerts": true,
+        "contactInquiries": false
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "api",
+      "agent": false,
+      "flags": {
+        "enabled": "absent",
+        "bookingAlerts": true,
+        "contactInquiries": true
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "api",
+      "agent": false,
+      "flags": {
+        "enabled": false,
+        "bookingAlerts": "absent",
+        "contactInquiries": "absent"
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "api",
+      "agent": false,
+      "flags": {
+        "enabled": false,
+        "bookingAlerts": "absent",
+        "contactInquiries": false
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "api",
+      "agent": false,
+      "flags": {
+        "enabled": false,
+        "bookingAlerts": "absent",
+        "contactInquiries": true
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "api",
+      "agent": false,
+      "flags": {
+        "enabled": false,
+        "bookingAlerts": false,
+        "contactInquiries": "absent"
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "api",
+      "agent": false,
+      "flags": {
+        "enabled": false,
+        "bookingAlerts": false,
+        "contactInquiries": false
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "api",
+      "agent": false,
+      "flags": {
+        "enabled": false,
+        "bookingAlerts": false,
+        "contactInquiries": true
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "api",
+      "agent": false,
+      "flags": {
+        "enabled": false,
+        "bookingAlerts": true,
+        "contactInquiries": "absent"
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "api",
+      "agent": false,
+      "flags": {
+        "enabled": false,
+        "bookingAlerts": true,
+        "contactInquiries": false
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "api",
+      "agent": false,
+      "flags": {
+        "enabled": false,
+        "bookingAlerts": true,
+        "contactInquiries": true
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "api",
+      "agent": false,
+      "flags": {
+        "enabled": true,
+        "bookingAlerts": "absent",
+        "contactInquiries": "absent"
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "api",
+      "agent": false,
+      "flags": {
+        "enabled": true,
+        "bookingAlerts": "absent",
+        "contactInquiries": false
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "api",
+      "agent": false,
+      "flags": {
+        "enabled": true,
+        "bookingAlerts": "absent",
+        "contactInquiries": true
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "api",
+      "agent": false,
+      "flags": {
+        "enabled": true,
+        "bookingAlerts": false,
+        "contactInquiries": "absent"
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "api",
+      "agent": false,
+      "flags": {
+        "enabled": true,
+        "bookingAlerts": false,
+        "contactInquiries": false
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "api",
+      "agent": false,
+      "flags": {
+        "enabled": true,
+        "bookingAlerts": false,
+        "contactInquiries": true
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "api",
+      "agent": false,
+      "flags": {
+        "enabled": true,
+        "bookingAlerts": true,
+        "contactInquiries": "absent"
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "api",
+      "agent": false,
+      "flags": {
+        "enabled": true,
+        "bookingAlerts": true,
+        "contactInquiries": false
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "api",
+      "agent": false,
+      "flags": {
+        "enabled": true,
+        "bookingAlerts": true,
+        "contactInquiries": true
+      },
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      },
+      "configReads": 0
+    },
+    {
+      "runtime": "api",
+      "agent": true,
+      "flags": {
+        "enabled": "absent",
+        "bookingAlerts": "absent",
+        "contactInquiries": "absent"
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "api",
+      "agent": true,
+      "flags": {
+        "enabled": "absent",
+        "bookingAlerts": "absent",
+        "contactInquiries": false
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "api",
+      "agent": true,
+      "flags": {
+        "enabled": "absent",
+        "bookingAlerts": "absent",
+        "contactInquiries": true
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "api",
+      "agent": true,
+      "flags": {
+        "enabled": "absent",
+        "bookingAlerts": false,
+        "contactInquiries": "absent"
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "api",
+      "agent": true,
+      "flags": {
+        "enabled": "absent",
+        "bookingAlerts": false,
+        "contactInquiries": false
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "api",
+      "agent": true,
+      "flags": {
+        "enabled": "absent",
+        "bookingAlerts": false,
+        "contactInquiries": true
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "api",
+      "agent": true,
+      "flags": {
+        "enabled": "absent",
+        "bookingAlerts": true,
+        "contactInquiries": "absent"
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "api",
+      "agent": true,
+      "flags": {
+        "enabled": "absent",
+        "bookingAlerts": true,
+        "contactInquiries": false
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "api",
+      "agent": true,
+      "flags": {
+        "enabled": "absent",
+        "bookingAlerts": true,
+        "contactInquiries": true
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "api",
+      "agent": true,
+      "flags": {
+        "enabled": false,
+        "bookingAlerts": "absent",
+        "contactInquiries": "absent"
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "api",
+      "agent": true,
+      "flags": {
+        "enabled": false,
+        "bookingAlerts": "absent",
+        "contactInquiries": false
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "api",
+      "agent": true,
+      "flags": {
+        "enabled": false,
+        "bookingAlerts": "absent",
+        "contactInquiries": true
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "api",
+      "agent": true,
+      "flags": {
+        "enabled": false,
+        "bookingAlerts": false,
+        "contactInquiries": "absent"
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "api",
+      "agent": true,
+      "flags": {
+        "enabled": false,
+        "bookingAlerts": false,
+        "contactInquiries": false
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "api",
+      "agent": true,
+      "flags": {
+        "enabled": false,
+        "bookingAlerts": false,
+        "contactInquiries": true
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "api",
+      "agent": true,
+      "flags": {
+        "enabled": false,
+        "bookingAlerts": true,
+        "contactInquiries": "absent"
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "api",
+      "agent": true,
+      "flags": {
+        "enabled": false,
+        "bookingAlerts": true,
+        "contactInquiries": false
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "api",
+      "agent": true,
+      "flags": {
+        "enabled": false,
+        "bookingAlerts": true,
+        "contactInquiries": true
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "api",
+      "agent": true,
+      "flags": {
+        "enabled": true,
+        "bookingAlerts": "absent",
+        "contactInquiries": "absent"
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "api",
+      "agent": true,
+      "flags": {
+        "enabled": true,
+        "bookingAlerts": "absent",
+        "contactInquiries": false
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "api",
+      "agent": true,
+      "flags": {
+        "enabled": true,
+        "bookingAlerts": "absent",
+        "contactInquiries": true
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "api",
+      "agent": true,
+      "flags": {
+        "enabled": true,
+        "bookingAlerts": false,
+        "contactInquiries": "absent"
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "api",
+      "agent": true,
+      "flags": {
+        "enabled": true,
+        "bookingAlerts": false,
+        "contactInquiries": false
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "api",
+      "agent": true,
+      "flags": {
+        "enabled": true,
+        "bookingAlerts": false,
+        "contactInquiries": true
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "api",
+      "agent": true,
+      "flags": {
+        "enabled": true,
+        "bookingAlerts": true,
+        "contactInquiries": "absent"
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "api",
+      "agent": true,
+      "flags": {
+        "enabled": true,
+        "bookingAlerts": true,
+        "contactInquiries": false
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "api",
+      "agent": true,
+      "flags": {
+        "enabled": true,
+        "bookingAlerts": true,
+        "contactInquiries": true
+      },
+      "actual": {
+        "booking_confirmation_customer": "whatsapp",
+        "cancellation_customer": "whatsapp",
+        "reschedule_customer": "whatsapp",
+        "new_lead_owner": "both",
+        "new_booking_owner": "both"
+      },
+      "configReads": 1
+    },
+    {
+      "runtime": "api",
+      "agent": false,
+      "positive": "channels=email",
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      }
+    },
+    {
+      "runtime": "api",
+      "agent": true,
+      "positive": "channels=email",
+      "actual": {
+        "booking_confirmation_customer": "email",
+        "cancellation_customer": "email",
+        "reschedule_customer": "email",
+        "new_lead_owner": "email",
+        "new_booking_owner": "email"
+      }
+    }
+  ],
+  "ui": [
+    {
+      "flag": "enabled",
+      "before": "absent",
+      "payload": {
+        "notifications": {
+          "channels": {
+            "new_lead_owner": "both"
+          },
+          "keep": "sibling",
+          "enabled": true
+        },
+        "outside": 1
+      }
+    },
+    {
+      "flag": "enabled",
+      "before": false,
+      "payload": {
+        "notifications": {
+          "channels": {
+            "new_lead_owner": "both"
+          },
+          "keep": "sibling",
+          "enabled": true
+        },
+        "outside": 1
+      }
+    },
+    {
+      "flag": "enabled",
+      "before": true,
+      "payload": {
+        "notifications": {
+          "channels": {
+            "new_lead_owner": "both"
+          },
+          "keep": "sibling",
+          "enabled": false
+        },
+        "outside": 1
+      }
+    },
+    {
+      "flag": "bookingAlerts",
+      "before": "absent",
+      "payload": {
+        "notifications": {
+          "channels": {
+            "new_lead_owner": "both"
+          },
+          "keep": "sibling",
+          "bookingAlerts": true
+        },
+        "outside": 1
+      }
+    },
+    {
+      "flag": "bookingAlerts",
+      "before": false,
+      "payload": {
+        "notifications": {
+          "channels": {
+            "new_lead_owner": "both"
+          },
+          "keep": "sibling",
+          "bookingAlerts": true
+        },
+        "outside": 1
+      }
+    },
+    {
+      "flag": "bookingAlerts",
+      "before": true,
+      "payload": {
+        "notifications": {
+          "channels": {
+            "new_lead_owner": "both"
+          },
+          "keep": "sibling",
+          "bookingAlerts": false
+        },
+        "outside": 1
+      }
+    },
+    {
+      "flag": "contactInquiries",
+      "before": "absent",
+      "payload": {
+        "notifications": {
+          "channels": {
+            "new_lead_owner": "both"
+          },
+          "keep": "sibling",
+          "contactInquiries": true
+        },
+        "outside": 1
+      }
+    },
+    {
+      "flag": "contactInquiries",
+      "before": false,
+      "payload": {
+        "notifications": {
+          "channels": {
+            "new_lead_owner": "both"
+          },
+          "keep": "sibling",
+          "contactInquiries": true
+        },
+        "outside": 1
+      }
+    },
+    {
+      "flag": "contactInquiries",
+      "before": true,
+      "payload": {
+        "notifications": {
+          "channels": {
+            "new_lead_owner": "both"
+          },
+          "keep": "sibling",
+          "contactInquiries": false
+        },
+        "outside": 1
+      }
+    }
+  ],
+  "fidelity": [
+    {
+      "runtime": "server",
+      "function": "getChannelConfig",
+      "sha256": "b619ea89a11a57eb7eece8bb6385c433b123af6d92c23560716a4b849702e0f2",
+      "identicalToD05": true
+    },
+    {
+      "runtime": "api",
+      "function": "getChannelConfig",
+      "sha256": "bf7b35239baf0d4b596b4c3a11d11b24e1d5d82a02b7f317431b137120a122d1",
+      "identicalToD05": true
+    }
+  ],
+  "limits": "Funciones reales extraídas; frontera config de fixture D05; no nueva corrida HTTP/envío/DB real. Recorridos D05 aceptados reutilizados."
+}

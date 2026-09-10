@@ -1,0 +1,104 @@
+{
+  "result": "GREEN_LOCAL_PARA_REVISION",
+  "gates": 4,
+  "total": 4,
+  "scope": "src/app/api/onboarding/client-info/route.ts",
+  "finalHash": "a89047927517fa676499d93da2ec7780f6b972f90a0c6ca9a0757c5960fcf172",
+  "beforeHash": "64c66a80a4f0de17f66444df5b87b2b98684d61e8d3b8733e30adbb4dbb80132",
+  "productOtherFilesPreserved": 284,
+  "previousEvidencePreserved": 610,
+  "N03": "ABIERTA",
+  "L02Descontada": false,
+  "acceptedPreparation": true,
+  "acceptedImplementation": false,
+  "blockers": [],
+  "remaining": [
+    "Revisión de Liam"
+  ],
+  "quota": {
+    "usedPercent": 83,
+    "windowDurationMins": 10080,
+    "resetsAt": 1789454383,
+    "initialUsedPercent": 82,
+    "ceiling": 85,
+    "resetsUsed": 0,
+    "scope": "TOTAL compartido codex observado antes del cierre"
+  },
+  "summary": [
+    {
+      "auxiliares": 1224,
+      "estado": "RED",
+      "exit": 1,
+      "invocaciones": 39,
+      "casos": 29,
+      "etapa": "red-p0",
+      "dominios": [
+        {
+          "dominio": "config",
+          "fallos": 662
+        },
+        {
+          "dominio": "historial",
+          "fallos": 17
+        },
+        {
+          "dominio": "hub_clients",
+          "fallos": 70
+        },
+        {
+          "dominio": "reader",
+          "fallos": 86
+        }
+      ],
+      "fallos": 835
+    },
+    {
+      "auxiliares": 1220,
+      "estado": "GREEN",
+      "exit": 0,
+      "invocaciones": 39,
+      "casos": 29,
+      "etapa": "green",
+      "dominios": [],
+      "fallos": 0
+    },
+    {
+      "auxiliares": 1224,
+      "estado": "RED",
+      "exit": 1,
+      "invocaciones": 39,
+      "casos": 29,
+      "etapa": "mutacion-config",
+      "dominios": [
+        {
+          "dominio": "config",
+          "fallos": 662
+        },
+        {
+          "dominio": "historial",
+          "fallos": 17
+        },
+        {
+          "dominio": "reader",
+          "fallos": 86
+        }
+      ],
+      "fallos": 765
+    },
+    {
+      "auxiliares": 1220,
+      "estado": "RED",
+      "exit": 1,
+      "invocaciones": 39,
+      "casos": 29,
+      "etapa": "mutacion-hub_clients",
+      "dominios": [
+        {
+          "dominio": "hub_clients",
+          "fallos": 70
+        }
+      ],
+      "fallos": 70
+    }
+  ]
+}

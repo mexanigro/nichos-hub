@@ -1,0 +1,3 @@
+# Extensión fija: moneda por tenant
+Regla aprobada por Liam: USD fijo es incorrecto, moneda depende del tenant. Config/{clientId}.payment.currency es la fuente; request.currency nunca manda. Casos ILS/USD/EUR deben llegar en minúsculas al adaptador Stripe real y al payload sessions.create interceptado; falta/null/vacío/blancos/valor no admitido rechazan antes de crear sesión. Sin default USD silencioso. Se preserva importe validado, tenant y resto L08. No se decide aquí seña ni modo. Cardcom requiere representar la moneda en su API: no inventar CoinId ni certificación sin fuente local. Esa parte permanece abierta.
+P0 controles previos y RED; P1 mínimo handler+gateway; P2 conservación/mutación/tipos; P3 integración al balance sin cerrar L04 completa.

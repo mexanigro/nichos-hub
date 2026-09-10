@@ -1,0 +1,117 @@
+{
+  "checks": 8,
+  "failures": [
+    {
+      "id": "ui/cancel-origin",
+      "actual": {
+        "legacyId": "[\"booking-backend\",\"same\"]",
+        "patch": {
+          "status": "cancelled"
+        }
+      },
+      "expected": {
+        "origin": {
+          "source": "booking-backend",
+          "documentId": "same"
+        },
+        "patch": {
+          "status": "cancelled"
+        }
+      }
+    },
+    {
+      "id": "ui/cancel-notify-original-id",
+      "actual": "[\"booking-backend\",\"same\"]",
+      "expected": "same"
+    },
+    {
+      "id": "ui/move-origin",
+      "actual": {
+        "legacyId": "[\"browser\",\"same\"]",
+        "patch": {
+          "id": "[\"browser\",\"same\"]",
+          "clientId": "tenant-local",
+          "customerName": "browser",
+          "customerEmail": "a@example.invalid",
+          "customerPhone": "123",
+          "staffId": "staff",
+          "serviceId": "s",
+          "date": "2026-10-11",
+          "time": "11:00",
+          "duration": 30,
+          "status": "confirmed",
+          "createdAt": "2027-01-15T08:00:00.000Z",
+          "origin": {
+            "source": "browser",
+            "documentId": "same"
+          }
+        }
+      },
+      "expected": {
+        "origin": {
+          "source": "browser",
+          "documentId": "same"
+        },
+        "patch": {
+          "date": "2026-10-11",
+          "time": "11:00"
+        }
+      }
+    },
+    {
+      "id": "ui/move-notify-id",
+      "actual": "[\"browser\",\"same\"]",
+      "expected": "same"
+    },
+    {
+      "id": "ui/rollback",
+      "actual": {
+        "id": "[\"booking-backend\",\"same\"]",
+        "clientId": "tenant-local",
+        "customerName": "booking-backend",
+        "customerEmail": "a@example.invalid",
+        "customerPhone": "123",
+        "staffId": "staff",
+        "serviceId": "s",
+        "date": "2026-10-12",
+        "time": "12:00",
+        "duration": 30,
+        "status": "confirmed",
+        "createdAt": "2027-01-15T08:00:00.000Z",
+        "origin": {
+          "source": "booking-backend",
+          "documentId": "same"
+        }
+      },
+      "expected": {
+        "id": "[\"booking-backend\",\"same\"]",
+        "clientId": "tenant-local",
+        "customerName": "booking-backend",
+        "customerEmail": "a@example.invalid",
+        "customerPhone": "123",
+        "staffId": "staff",
+        "serviceId": "s",
+        "date": "2026-10-10",
+        "time": "10:00",
+        "duration": 30,
+        "status": "confirmed",
+        "createdAt": "2027-01-15T08:00:00.000Z",
+        "origin": {
+          "source": "booking-backend",
+          "documentId": "same"
+        }
+      }
+    },
+    {
+      "id": "ui/failure-no-notify",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "service/exists",
+      "actual": false,
+      "expected": true
+    }
+  ],
+  "limits": "Callbacks UI reales por AST; SDK browser real descriptor; auth/eventos/transportes interceptados, no render completo."
+}

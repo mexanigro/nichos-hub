@@ -1,0 +1,22 @@
+[
+  {
+    "Algorithm": "SHA256",
+    "Hash": "184996449B94D762F30B9BFABC7C829FA00413E3FDA53E712BF4500D461F0EC2",
+    "Path": "C:\\Users\\liama\\Desktop\\Nichos\\Barber-shop-template-main\\src\\lib\\api\\admin-auth.ts"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "184996449B94D762F30B9BFABC7C829FA00413E3FDA53E712BF4500D461F0EC2",
+    "Path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\contrato-cita-separada\\ejecucion\\auth\\mutante-issuer\\preimagen-admin-auth.ts"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "0B940BE02CA2CD80E14607A18F3BDC10ACE918D617E361D0802D95A7C4E02E98",
+    "Path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\contrato-cita-separada\\ejecucion\\auth\\mutante-issuer\\admin-auth.ts"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "AA8104243DC43EAC79BC7E2ABF16543DF93DEF3D7A38D9C3EF33E9F43B2251F5",
+    "Path": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\contrato-cita-separada\\ejecucion\\auth\\contrato.cjs"
+  }
+]

@@ -1,0 +1,809 @@
+{
+  "result": "RED",
+  "cases": 27,
+  "checks": 101,
+  "failures": [
+    {
+      "label": "registro//api/services",
+      "actual": false,
+      "expected": true
+    },
+    {
+      "label": "services/status",
+      "actual": 404,
+      "expected": 200
+    },
+    {
+      "label": "services/projection",
+      "actual": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /api/services</pre>\n</body>\n</html>\n",
+      "expected": {
+        "services": [
+          {
+            "id": "cut",
+            "name": "Corte",
+            "duration": 30,
+            "price": 125.5
+          }
+        ]
+      }
+    },
+    {
+      "label": "services/tenant-destination",
+      "actual": [],
+      "expected": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-local/databases/base-local/documents/config/tenant-local",
+          "method": "GET",
+          "body": null
+        }
+      ]
+    },
+    {
+      "label": "services/no-token",
+      "actual": 404,
+      "expected": 503
+    },
+    {
+      "label": "services/no-project",
+      "actual": 404,
+      "expected": 503
+    },
+    {
+      "label": "services/upstream404/reads",
+      "actual": 0,
+      "expected": 1
+    },
+    {
+      "label": "services/upstream500",
+      "actual": 404,
+      "expected": 502
+    },
+    {
+      "label": "services/upstream500/reads",
+      "actual": 0,
+      "expected": 1
+    },
+    {
+      "label": "services/throw",
+      "actual": 404,
+      "expected": 500
+    },
+    {
+      "label": "services/throw/reads",
+      "actual": 0,
+      "expected": 1
+    }
+  ],
+  "mutant": "remove-0",
+  "mutations": 1,
+  "registry": [
+    {
+      "route": "/api/availability",
+      "methods": [
+        "post"
+      ]
+    },
+    {
+      "route": "/api/bookings/validate",
+      "methods": [
+        "post"
+      ]
+    },
+    {
+      "route": "/api/daily-digest",
+      "methods": [
+        "get"
+      ]
+    }
+  ],
+  "spaRegistry": [
+    {
+      "route": "/api/probe",
+      "methods": [
+        "get"
+      ]
+    },
+    {
+      "route": "*",
+      "methods": [
+        "get"
+      ]
+    }
+  ],
+  "sources": {
+    "api": "4be7a9c1e536da183dfe44a9a72d94df5848b36d56d2bf696607d514523dc0bd",
+    "server": "fe749e1703c1a07a2f7762f68eb1fc57783c99cd30fbc833b271c898aa83a980"
+  },
+  "extracted": [
+    {
+      "method": "get",
+      "route": "/api/services",
+      "text": "app.get(\"/api/services\", async (_req, res) => {\n    const token = await getFirestoreAccessToken();\n    const projectId =\n      process.env.FIREBASE_PROJECT_ID?.trim() ||\n      process.env.VITE_FIREBASE_PROJECT_ID?.trim() ||\n      process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID?.trim();\n    const databaseId =\n      process.env.FIREBASE_DATABASE_ID?.trim() ||\n      process.env.VITE_FIREBASE_DATABASE_ID?.trim() ||\n      \"default\";\n\n    if (!token || !projectId) {\n      return res.status(503).json({ error: \"Firestore not configured.\" });\n    }\n\n    try {\n      const url = `https://firestore.googleapis.com/v1/projects/${projectId}/databases/${databaseId}/documents/config/${CLIENT_ID}`;\n      const fsRes = await fetch(url, { headers: { Authorization: `Bearer ${token}` } });\n      if (!fsRes.ok) {\n        return res.status(fsRes.status === 404 ? 404 : 502).json({ error: `Firestore responded ${fsRes.status}` });\n      }\n\n      const doc = (await fsRes.json()) as {\n        fields?: { services?: { arrayValue?: { values?: Array<{ mapValue?: { fields?: Record<string, { stringValue?: string; integerValue?: string; doubleValue?: number }> } }> } } };\n      };\n\n      const raw = doc.fields?.services?.arrayValue?.values ?? [];\n      const services = raw.map((svc) => ({\n        id: svc.mapValue?.fields?.id?.stringValue ?? \"\",\n        name: svc.mapValue?.fields?.name?.stringValue ?? \"\",\n        duration: Number(svc.mapValue?.fields?.duration?.integerValue ?? svc.mapValue?.fields?.duration?.doubleValue ?? 0),\n        price: Number(svc.mapValue?.fields?.price?.integerValue ?? svc.mapValue?.fields?.price?.doubleValue ?? 0),\n      }));\n\n      res.json({ services });\n    } catch (err) {\n      console.error(\"[/api/services]\", err);\n      res.status(500).json({ error: \"Failed to fetch services.\" });\n    }\n  })",
+      "sha256": "5101d1a1afb244a97136e4660a735e6191a61b7c08234c450b2f1aa637d3db37"
+    },
+    {
+      "method": "post",
+      "route": "/api/availability",
+      "text": "app.post(\"/api/availability\", async (req, res) => {\n    const { date, serviceId } = req.body ?? {};\n    if (!date || !serviceId) {\n      return res.status(400).json({ error: \"date and serviceId are required.\" });\n    }\n    if (!/^\\d{4}-\\d{2}-\\d{2}$/.test(date)) {\n      return res.status(400).json({ error: \"date must be YYYY-MM-DD.\" });\n    }\n    // For monitor probes (_monitor_test) and real clients alike, return a\n    // lightweight response confirming the endpoint is reachable and the\n    // date is parseable.  Full slot computation lives in the frontend.\n    res.json({ available: true, date, serviceId });\n  })",
+      "sha256": "d542e872d5a93f503101f789c9d5ddd769545e285311a0e1b9d91866edc3032c"
+    },
+    {
+      "method": "post",
+      "route": "/api/bookings/validate",
+      "text": "app.post(\"/api/bookings/validate\", async (req, res) => {\n    const { serviceId, date, time, clientName, clientPhone, duration } = req.body ?? {};\n    const errors: string[] = [];\n    if (!serviceId || typeof serviceId !== \"string\" || serviceId.length > 120) errors.push(\"serviceId is required\");\n    if (!date || !isValidBookingDate(date ?? \"\")) errors.push(\"date must be YYYY-MM-DD\");\n    if (!time || !isValidBookingTime(time ?? \"\")) errors.push(\"time must be HH:mm\");\n    if (!clientName || typeof clientName !== \"string\" || clientName.trim().length === 0 || clientName.length > 120) errors.push(\"clientName is required (max 120 chars)\");\n    if (!clientPhone || typeof clientPhone !== \"string\" || clientPhone.trim().length === 0 || clientPhone.length > 40) errors.push(\"clientPhone is required (max 40 chars)\");\n    if (duration !== undefined && !isValidBookingDuration(duration)) {\n      errors.push(\"duration must be an integer between 5 and 480 minutes\");\n    }\n\n    if (errors.length > 0) {\n      return res.status(400).json({ valid: false, errors });\n    }\n    res.json({ valid: true });\n  })",
+      "sha256": "126996b38abbd523642f1d017f58035d091ec81a5cf1577e725a3bf67f6a1d4b"
+    },
+    {
+      "method": "get",
+      "route": "/api/daily-digest",
+      "text": "app.get(\"/api/daily-digest\", async (req, res) => {\n    const cronSecret = process.env.CRON_SECRET;\n    if (!cronSecret) {\n      return res.status(500).json({ error: \"CRON_SECRET not configured.\" });\n    }\n    if (req.headers.authorization !== `Bearer ${cronSecret}`) {\n      return res.status(401).json({ error: \"Unauthorized.\" });\n    }\n\n    const token = await getFirestoreAccessToken();\n    if (!token) {\n      return res.status(503).json({ error: \"Cannot authenticate with Firestore.\" });\n    }\n\n    const projectId =\n      process.env.FIREBASE_PROJECT_ID?.trim() ||\n      process.env.VITE_FIREBASE_PROJECT_ID?.trim() ||\n      process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID?.trim();\n    const databaseId =\n      process.env.FIREBASE_DATABASE_ID?.trim() ||\n      process.env.VITE_FIREBASE_DATABASE_ID?.trim() ||\n      \"default\";\n\n    if (!projectId) {\n      return res.status(500).json({ error: \"FIREBASE_PROJECT_ID not set.\" });\n    }\n\n    const today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD\n\n    // Fetch today's appointments via Firestore REST runQuery\n    const queryUrl = `https://firestore.googleapis.com/v1/projects/${projectId}/databases/${databaseId}/documents:runQuery`;\n    let apptRes: globalThis.Response;\n    try {\n      apptRes = await fetch(queryUrl, {\n        method: \"POST\",\n        headers: { Authorization: `Bearer ${token}`, \"Content-Type\": \"application/json\" },\n        body: JSON.stringify({\n          structuredQuery: {\n            from: [{ collectionId: \"appointments\" }],\n            where: {\n              compositeFilter: {\n                op: \"AND\",\n                filters: [\n                  { fieldFilter: { field: { fieldPath: \"clientId\" }, op: \"EQUAL\", value: { stringValue: CLIENT_ID } } },\n                  { fieldFilter: { field: { fieldPath: \"date\" }, op: \"EQUAL\", value: { stringValue: today } } },\n                ],\n              },\n            },\n          },\n        }),\n      });\n    } catch (err) {\n      console.error(\"[Daily Digest] Firestore query error:\", err);\n      return res.status(502).json({ error: \"Firestore query failed.\" });\n    }\n\n    if (!apptRes.ok) {\n      console.error(\"[Daily Digest] Firestore query HTTP\", apptRes.status, await apptRes.text().catch(() => \"\"));\n      return res.status(502).json({ error: \"Firestore query failed.\" });\n    }\n\n    type FirestoreDoc = { document?: { fields?: Record<string, { stringValue?: string; integerValue?: string; doubleValue?: number }> } };\n    const rawDocs = (await apptRes.json()) as FirestoreDoc[];\n\n    const appointments = rawDocs\n      .filter((d): d is FirestoreDoc & { document: NonNullable<FirestoreDoc[\"document\"]> } => !!d.document?.fields)\n      .map((d) => ({\n        status: d.document.fields?.status?.stringValue ?? \"pending\",\n        serviceId: d.document.fields?.serviceId?.stringValue ?? \"\",\n      }));\n\n    const total = appointments.length;\n    const confirmed = appointments.filter((a) => a.status === \"confirmed\" || a.status === \"completed\").length;\n    const cancelled = appointments.filter((a) => a.status === \"cancelled\").length;\n\n    // Revenue: fetch config/{clientId} for service prices; graceful fallback to 0\n    let revenue = 0;\n    try {\n      const configUrl = `https://firestore.googleapis.com/v1/projects/${projectId}/databases/${databaseId}/documents/config/${CLIENT_ID}`;\n      const configRes = await fetch(configUrl, { headers: { Authorization: `Bearer ${token}` } });\n      if (configRes.ok) {\n        const configDoc = (await configRes.json()) as {\n          fields?: { services?: { arrayValue?: { values?: Array<{ mapValue?: { fields?: Record<string, { stringValue?: string; integerValue?: string; doubleValue?: number }> } }> } } };\n        };\n        const servicesArr = configDoc.fields?.services?.arrayValue?.values ?? [];\n        const priceMap: Record<string, number> = {};\n        for (const svc of servicesArr) {\n          const id = svc.mapValue?.fields?.id?.stringValue;\n          const price = Number(svc.mapValue?.fields?.price?.integerValue ?? svc.mapValue?.fields?.price?.doubleValue ?? 0);\n          if (id) priceMap[id] = price;\n        }\n        revenue = appointments\n          .filter((a) => a.status !== \"cancelled\")\n          .reduce((sum, a) => sum + (priceMap[a.serviceId] ?? 0), 0);\n      }\n    } catch {\n      // revenue stays 0 — config unavailable\n    }\n\n    // Build HTML email\n    const subject = `Daily Digest — ${today}`;\n    const html = `\n      <div style=\"font-family:sans-serif;max-width:600px;margin:0 auto;padding:24px;border:1px solid #e5e7eb;border-radius:12px;\">\n        <h2 style=\"color:#f59e0b;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:20px;\">Daily Digest — ${today}</h2>\n        <div style=\"background:#f9fafb;padding:20px;border-radius:8px;margin-bottom:20px;\">\n          <p style=\"margin:8px 0;font-size:16px;\"><strong>Total bookings:</strong> ${total}</p>\n          <p style=\"margin:8px 0;font-size:16px;color:#10b981;\"><strong>Confirmed:</strong> ${confirmed}</p>\n          <p style=\"margin:8px 0;font-size:16px;color:#ef4444;\"><strong>Cancelled:</strong> ${cancelled}</p>\n          <p style=\"margin:8px 0;font-size:16px;\"><strong>Estimated revenue:</strong> $${revenue}</p>\n        </div>\n        <p style=\"font-size:12px;color:#6b7280;\">Sent automatically from your booking system.</p>\n      </div>`;\n\n    // Send via Resend\n    const ownerEmail = process.env.BUSINESS_OWNER_EMAIL;\n    if (!ownerEmail) {\n      writeNotificationLog({ type: \"marketing\", recipient: \"(none)\", subject, status: \"failed\", error: \"BUSINESS_OWNER_EMAIL not set.\" });\n      return res.status(500).json({ error: \"BUSINESS_OWNER_EMAIL not configured.\" });\n    }\n\n    const resend = getResend();\n    if (!resend) {\n      console.warn(\"[Daily Digest] Resend not configured — digest logged only.\");\n      writeNotificationLog({ type: \"marketing\", recipient: ownerEmail, subject, status: \"queued\" });\n      return res.json({ status: \"queued\", message: \"Resend not configured. Digest logged.\" });\n    }\n\n    const fromEmail = process.env.EMAIL_FROM_ADDRESS || \"onboarding@resend.dev\";\n    try {\n      const { data: resData, error } = await resend.emails.send({ from: fromEmail, to: ownerEmail, subject, html });\n      if (error) {\n        console.error(\"[Daily Digest] Resend error:\", error);\n        writeNotificationLog({ type: \"marketing\", recipient: ownerEmail, subject, status: \"failed\", error: JSON.stringify(error) });\n        return res.status(502).json({ error: \"Email send failed.\" });\n      }\n      writeNotificationLog({ type: \"marketing\", recipient: ownerEmail, subject, status: \"sent\", providerMessageId: resData?.id });\n      return res.json({ status: \"sent\", id: resData?.id, appointments: total });\n    } catch (err) {\n      console.error(\"[Daily Digest] Email delivery error:\", err);\n      writeNotificationLog({ type: \"marketing\", recipient: ownerEmail, subject, status: \"failed\", error: String(err) });\n      return res.status(500).json({ error: \"Email delivery failed.\" });\n    }\n  })",
+      "sha256": "7ca87af8ff9e393584fec8e291f8625f0d3688ded1f003dac9299a1c2cb8673c"
+    },
+    {
+      "method": "get",
+      "route": "*",
+      "text": "app.get('*', (req, res) => {\n        res.sendFile(path.join(distPath, 'index.html'));\n      })",
+      "sha256": "77734ceba05d7492afb66f30cfe789883319baa287a636aa6ac07fb08872a804"
+    }
+  ],
+  "observations": [
+    {
+      "id": "services-positive",
+      "status": 404,
+      "body": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /api/services</pre>\n</body>\n</html>\n",
+      "operations": [],
+      "emails": [],
+      "logs": []
+    },
+    {
+      "id": "services-no-token",
+      "status": 404,
+      "body": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /api/services</pre>\n</body>\n</html>\n",
+      "operations": [],
+      "emails": [],
+      "logs": []
+    },
+    {
+      "id": "services-no-project",
+      "status": 404,
+      "body": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /api/services</pre>\n</body>\n</html>\n",
+      "operations": [],
+      "emails": [],
+      "logs": []
+    },
+    {
+      "id": "services-upstream404",
+      "status": 404,
+      "body": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /api/services</pre>\n</body>\n</html>\n",
+      "operations": [],
+      "emails": [],
+      "logs": []
+    },
+    {
+      "id": "services-upstream500",
+      "status": 404,
+      "body": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /api/services</pre>\n</body>\n</html>\n",
+      "operations": [],
+      "emails": [],
+      "logs": []
+    },
+    {
+      "id": "services-throw",
+      "status": 404,
+      "body": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /api/services</pre>\n</body>\n</html>\n",
+      "operations": [],
+      "emails": [],
+      "logs": []
+    },
+    {
+      "id": "availability-valid",
+      "status": 200,
+      "body": {
+        "available": true,
+        "date": "2026-09-11",
+        "serviceId": "cut"
+      },
+      "operations": [],
+      "emails": [],
+      "logs": []
+    },
+    {
+      "id": "availability-missing",
+      "status": 400,
+      "body": {
+        "error": "date and serviceId are required."
+      },
+      "operations": [],
+      "emails": [],
+      "logs": []
+    },
+    {
+      "id": "availability-format",
+      "status": 400,
+      "body": {
+        "error": "date must be YYYY-MM-DD."
+      },
+      "operations": [],
+      "emails": [],
+      "logs": []
+    },
+    {
+      "id": "validate-valid",
+      "status": 200,
+      "body": {
+        "valid": true
+      },
+      "operations": [],
+      "emails": [],
+      "logs": []
+    },
+    {
+      "id": "validate-missing",
+      "status": 400,
+      "body": {
+        "valid": false,
+        "errors": [
+          "serviceId is required",
+          "date must be YYYY-MM-DD",
+          "time must be HH:mm",
+          "clientName is required (max 120 chars)",
+          "clientPhone is required (max 40 chars)"
+        ]
+      },
+      "operations": [],
+      "emails": [],
+      "logs": []
+    },
+    {
+      "id": "validate-bad-duration",
+      "status": 400,
+      "body": {
+        "valid": false,
+        "errors": [
+          "duration must be an integer between 5 and 480 minutes"
+        ]
+      },
+      "operations": [],
+      "emails": [],
+      "logs": []
+    },
+    {
+      "id": "validate-bad-time",
+      "status": 400,
+      "body": {
+        "valid": false,
+        "errors": [
+          "time must be HH:mm"
+        ]
+      },
+      "operations": [],
+      "emails": [],
+      "logs": []
+    },
+    {
+      "id": "digest-no-secret",
+      "status": 500,
+      "body": {
+        "error": "CRON_SECRET not configured."
+      },
+      "operations": [],
+      "emails": [],
+      "logs": []
+    },
+    {
+      "id": "digest-wrong-secret",
+      "status": 401,
+      "body": {
+        "error": "Unauthorized."
+      },
+      "operations": [],
+      "emails": [],
+      "logs": []
+    },
+    {
+      "id": "digest-no-token",
+      "status": 503,
+      "body": {
+        "error": "Cannot authenticate with Firestore."
+      },
+      "operations": [],
+      "emails": [],
+      "logs": []
+    },
+    {
+      "id": "digest-no-project",
+      "status": 500,
+      "body": {
+        "error": "FIREBASE_PROJECT_ID not set."
+      },
+      "operations": [],
+      "emails": [],
+      "logs": []
+    },
+    {
+      "id": "digest-db-error",
+      "status": 502,
+      "body": {
+        "error": "Firestore query failed."
+      },
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-local/databases/base-local/documents:runQuery",
+          "method": "POST",
+          "body": {
+            "structuredQuery": {
+              "from": [
+                {
+                  "collectionId": "appointments"
+                }
+              ],
+              "where": {
+                "compositeFilter": {
+                  "op": "AND",
+                  "filters": [
+                    {
+                      "fieldFilter": {
+                        "field": {
+                          "fieldPath": "clientId"
+                        },
+                        "op": "EQUAL",
+                        "value": {
+                          "stringValue": "tenant-local"
+                        }
+                      }
+                    },
+                    {
+                      "fieldFilter": {
+                        "field": {
+                          "fieldPath": "date"
+                        },
+                        "op": "EQUAL",
+                        "value": {
+                          "stringValue": "2026-09-10"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "emails": [],
+      "logs": []
+    },
+    {
+      "id": "digest-db-throws",
+      "status": 502,
+      "body": {
+        "error": "Firestore query failed."
+      },
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-local/databases/base-local/documents:runQuery",
+          "method": "POST",
+          "body": {
+            "structuredQuery": {
+              "from": [
+                {
+                  "collectionId": "appointments"
+                }
+              ],
+              "where": {
+                "compositeFilter": {
+                  "op": "AND",
+                  "filters": [
+                    {
+                      "fieldFilter": {
+                        "field": {
+                          "fieldPath": "clientId"
+                        },
+                        "op": "EQUAL",
+                        "value": {
+                          "stringValue": "tenant-local"
+                        }
+                      }
+                    },
+                    {
+                      "fieldFilter": {
+                        "field": {
+                          "fieldPath": "date"
+                        },
+                        "op": "EQUAL",
+                        "value": {
+                          "stringValue": "2026-09-10"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "emails": [],
+      "logs": []
+    },
+    {
+      "id": "digest-no-owner",
+      "status": 500,
+      "body": {
+        "error": "BUSINESS_OWNER_EMAIL not configured."
+      },
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-local/databases/default/documents:runQuery",
+          "method": "POST",
+          "body": {
+            "structuredQuery": {
+              "from": [
+                {
+                  "collectionId": "appointments"
+                }
+              ],
+              "where": {
+                "compositeFilter": {
+                  "op": "AND",
+                  "filters": [
+                    {
+                      "fieldFilter": {
+                        "field": {
+                          "fieldPath": "clientId"
+                        },
+                        "op": "EQUAL",
+                        "value": {
+                          "stringValue": "tenant-local"
+                        }
+                      }
+                    },
+                    {
+                      "fieldFilter": {
+                        "field": {
+                          "fieldPath": "date"
+                        },
+                        "op": "EQUAL",
+                        "value": {
+                          "stringValue": "2026-09-10"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-local/databases/default/documents/config/tenant-local",
+          "method": "GET",
+          "body": null
+        }
+      ],
+      "emails": [],
+      "logs": [
+        {
+          "type": "marketing",
+          "recipient": "(none)",
+          "subject": "Daily Digest — 2026-09-10",
+          "status": "failed",
+          "error": "BUSINESS_OWNER_EMAIL not set."
+        }
+      ]
+    },
+    {
+      "id": "digest-queued",
+      "status": 200,
+      "body": {
+        "status": "queued",
+        "message": "Resend not configured. Digest logged."
+      },
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-local/databases/base-local/documents:runQuery",
+          "method": "POST",
+          "body": {
+            "structuredQuery": {
+              "from": [
+                {
+                  "collectionId": "appointments"
+                }
+              ],
+              "where": {
+                "compositeFilter": {
+                  "op": "AND",
+                  "filters": [
+                    {
+                      "fieldFilter": {
+                        "field": {
+                          "fieldPath": "clientId"
+                        },
+                        "op": "EQUAL",
+                        "value": {
+                          "stringValue": "tenant-local"
+                        }
+                      }
+                    },
+                    {
+                      "fieldFilter": {
+                        "field": {
+                          "fieldPath": "date"
+                        },
+                        "op": "EQUAL",
+                        "value": {
+                          "stringValue": "2026-09-10"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-local/databases/base-local/documents/config/tenant-local",
+          "method": "GET",
+          "body": null
+        }
+      ],
+      "emails": [],
+      "logs": [
+        {
+          "type": "marketing",
+          "recipient": "owner@example.invalid",
+          "subject": "Daily Digest — 2026-09-10",
+          "status": "queued"
+        }
+      ]
+    },
+    {
+      "id": "digest-sent",
+      "status": 200,
+      "body": {
+        "status": "sent",
+        "id": "synthetic-provider-id",
+        "appointments": 3
+      },
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-local/databases/base-local/documents:runQuery",
+          "method": "POST",
+          "body": {
+            "structuredQuery": {
+              "from": [
+                {
+                  "collectionId": "appointments"
+                }
+              ],
+              "where": {
+                "compositeFilter": {
+                  "op": "AND",
+                  "filters": [
+                    {
+                      "fieldFilter": {
+                        "field": {
+                          "fieldPath": "clientId"
+                        },
+                        "op": "EQUAL",
+                        "value": {
+                          "stringValue": "tenant-local"
+                        }
+                      }
+                    },
+                    {
+                      "fieldFilter": {
+                        "field": {
+                          "fieldPath": "date"
+                        },
+                        "op": "EQUAL",
+                        "value": {
+                          "stringValue": "2026-09-10"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-local/databases/base-local/documents/config/tenant-local",
+          "method": "GET",
+          "body": null
+        }
+      ],
+      "emails": [
+        {
+          "from": "sender@example.invalid",
+          "to": "owner@example.invalid",
+          "subject": "Daily Digest — 2026-09-10",
+          "html": "\n      <div style=\"font-family:sans-serif;max-width:600px;margin:0 auto;padding:24px;border:1px solid #e5e7eb;border-radius:12px;\">\n        <h2 style=\"color:#f59e0b;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:20px;\">Daily Digest — 2026-09-10</h2>\n        <div style=\"background:#f9fafb;padding:20px;border-radius:8px;margin-bottom:20px;\">\n          <p style=\"margin:8px 0;font-size:16px;\"><strong>Total bookings:</strong> 3</p>\n          <p style=\"margin:8px 0;font-size:16px;color:#10b981;\"><strong>Confirmed:</strong> 1</p>\n          <p style=\"margin:8px 0;font-size:16px;color:#ef4444;\"><strong>Cancelled:</strong> 1</p>\n          <p style=\"margin:8px 0;font-size:16px;\"><strong>Estimated revenue:</strong> $251</p>\n        </div>\n        <p style=\"font-size:12px;color:#6b7280;\">Sent automatically from your booking system.</p>\n      </div>"
+        }
+      ],
+      "logs": [
+        {
+          "type": "marketing",
+          "recipient": "owner@example.invalid",
+          "subject": "Daily Digest — 2026-09-10",
+          "status": "sent",
+          "providerMessageId": "synthetic-provider-id"
+        }
+      ]
+    },
+    {
+      "id": "digest-provider-error",
+      "status": 502,
+      "body": {
+        "error": "Email send failed."
+      },
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-local/databases/base-local/documents:runQuery",
+          "method": "POST",
+          "body": {
+            "structuredQuery": {
+              "from": [
+                {
+                  "collectionId": "appointments"
+                }
+              ],
+              "where": {
+                "compositeFilter": {
+                  "op": "AND",
+                  "filters": [
+                    {
+                      "fieldFilter": {
+                        "field": {
+                          "fieldPath": "clientId"
+                        },
+                        "op": "EQUAL",
+                        "value": {
+                          "stringValue": "tenant-local"
+                        }
+                      }
+                    },
+                    {
+                      "fieldFilter": {
+                        "field": {
+                          "fieldPath": "date"
+                        },
+                        "op": "EQUAL",
+                        "value": {
+                          "stringValue": "2026-09-10"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-local/databases/base-local/documents/config/tenant-local",
+          "method": "GET",
+          "body": null
+        }
+      ],
+      "emails": [
+        {
+          "from": "sender@example.invalid",
+          "to": "owner@example.invalid",
+          "subject": "Daily Digest — 2026-09-10",
+          "html": "\n      <div style=\"font-family:sans-serif;max-width:600px;margin:0 auto;padding:24px;border:1px solid #e5e7eb;border-radius:12px;\">\n        <h2 style=\"color:#f59e0b;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:20px;\">Daily Digest — 2026-09-10</h2>\n        <div style=\"background:#f9fafb;padding:20px;border-radius:8px;margin-bottom:20px;\">\n          <p style=\"margin:8px 0;font-size:16px;\"><strong>Total bookings:</strong> 3</p>\n          <p style=\"margin:8px 0;font-size:16px;color:#10b981;\"><strong>Confirmed:</strong> 1</p>\n          <p style=\"margin:8px 0;font-size:16px;color:#ef4444;\"><strong>Cancelled:</strong> 1</p>\n          <p style=\"margin:8px 0;font-size:16px;\"><strong>Estimated revenue:</strong> $251</p>\n        </div>\n        <p style=\"font-size:12px;color:#6b7280;\">Sent automatically from your booking system.</p>\n      </div>"
+        }
+      ],
+      "logs": [
+        {
+          "type": "marketing",
+          "recipient": "owner@example.invalid",
+          "subject": "Daily Digest — 2026-09-10",
+          "status": "failed",
+          "error": "{\"message\":\"synthetic rejected\"}"
+        }
+      ]
+    },
+    {
+      "id": "digest-provider-throws",
+      "status": 500,
+      "body": {
+        "error": "Email delivery failed."
+      },
+      "operations": [
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-local/databases/base-local/documents:runQuery",
+          "method": "POST",
+          "body": {
+            "structuredQuery": {
+              "from": [
+                {
+                  "collectionId": "appointments"
+                }
+              ],
+              "where": {
+                "compositeFilter": {
+                  "op": "AND",
+                  "filters": [
+                    {
+                      "fieldFilter": {
+                        "field": {
+                          "fieldPath": "clientId"
+                        },
+                        "op": "EQUAL",
+                        "value": {
+                          "stringValue": "tenant-local"
+                        }
+                      }
+                    },
+                    {
+                      "fieldFilter": {
+                        "field": {
+                          "fieldPath": "date"
+                        },
+                        "op": "EQUAL",
+                        "value": {
+                          "stringValue": "2026-09-10"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "url": "https://firestore.googleapis.com/v1/projects/project-local/databases/base-local/documents/config/tenant-local",
+          "method": "GET",
+          "body": null
+        }
+      ],
+      "emails": [
+        {
+          "from": "sender@example.invalid",
+          "to": "owner@example.invalid",
+          "subject": "Daily Digest — 2026-09-10",
+          "html": "\n      <div style=\"font-family:sans-serif;max-width:600px;margin:0 auto;padding:24px;border:1px solid #e5e7eb;border-radius:12px;\">\n        <h2 style=\"color:#f59e0b;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:20px;\">Daily Digest — 2026-09-10</h2>\n        <div style=\"background:#f9fafb;padding:20px;border-radius:8px;margin-bottom:20px;\">\n          <p style=\"margin:8px 0;font-size:16px;\"><strong>Total bookings:</strong> 3</p>\n          <p style=\"margin:8px 0;font-size:16px;color:#10b981;\"><strong>Confirmed:</strong> 1</p>\n          <p style=\"margin:8px 0;font-size:16px;color:#ef4444;\"><strong>Cancelled:</strong> 1</p>\n          <p style=\"margin:8px 0;font-size:16px;\"><strong>Estimated revenue:</strong> $251</p>\n        </div>\n        <p style=\"font-size:12px;color:#6b7280;\">Sent automatically from your booking system.</p>\n      </div>"
+        }
+      ],
+      "logs": [
+        {
+          "type": "marketing",
+          "recipient": "owner@example.invalid",
+          "subject": "Daily Digest — 2026-09-10",
+          "status": "failed",
+          "error": "Error: synthetic send failure"
+        }
+      ]
+    },
+    {
+      "id": "spa-deep-link",
+      "status": 200,
+      "body": "<html>LOCAL-SPA-SENTINEL</html>",
+      "operations": [],
+      "emails": [],
+      "logs": []
+    },
+    {
+      "id": "spa-static",
+      "status": 200,
+      "body": "STATIC-SENTINEL",
+      "operations": [],
+      "emails": [],
+      "logs": []
+    },
+    {
+      "id": "spa-api-priority",
+      "status": 418,
+      "body": {
+        "api": true
+      },
+      "operations": [],
+      "emails": [],
+      "logs": []
+    }
+  ]
+}

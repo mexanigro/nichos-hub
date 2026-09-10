@@ -1,0 +1,38 @@
+{
+  "result": "PASS",
+  "archivos": 623,
+  "conservados": 621,
+  "changes": [
+    {
+      "repo": "hub",
+      "ruta": "src/lib/wizard/config-to-wizard.ts",
+      "sha256": "55d590aa6604772dd9c79b90694ebbda3856346f46e6b8dfcdce93e443669e53",
+      "after": "0934399c91252c5b63af26ebba105ccdcc47f46336f8f40265d48975e0d205aa"
+    },
+    {
+      "repo": "template",
+      "ruta": "src/config/site.ts",
+      "sha256": "9dd148a16bc22b704d8e35daf349f574654f9901152a1cc4676d69443af4b084",
+      "after": "a85f4938b2172286d6b954b059bd26bd17b686f3717ab3346a9a3fa7a9008cda"
+    }
+  ],
+  "contratoCongelado": true,
+  "evidenciasPreparacionPreservadas": 88,
+  "mutations": {
+    "hub": {
+      "failures": 15,
+      "causaAtribuible": true
+    },
+    "site": {
+      "failures": 282,
+      "causaAtribuible": true
+    },
+    "idioma": {
+      "failures": 138,
+      "causaAtribuible": true
+    }
+  },
+  "types": 0,
+  "lintErrors": 0,
+  "lintWarnings": 0
+}

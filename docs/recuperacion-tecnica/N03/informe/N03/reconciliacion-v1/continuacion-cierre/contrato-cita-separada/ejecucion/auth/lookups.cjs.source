@@ -1,0 +1,49 @@
+const fs=require('fs'),crypto=require('crypto'),assert=require('assert/strict');
+const req=require('module').createRequire('/deps/package.json'),ts=req('typescript'),apps=req('firebase-admin/app'),sdk=req('firebase-admin/firestore');
+const root='/template',sources={},rows=[],failures=[];let checks=0;
+const read=file=>sources[file]??(sources[file]=fs.readFileSync(root+'/'+file,'utf8'));
+const compile=s=>ts.transpileModule(s,{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText;
+function extract(file,name){const ast=ts.createSourceFile(file,read(file),99,true);const found=ast.statements.filter(n=>ts.isFunctionDeclaration(n)&&n.name?.text===name);assert.equal(found.length,1);return found[0].getText(ast)}
+function check(id,a,b){checks++;try{assert.deepEqual(a,b)}catch{failures.push({id,actual:a,expected:b})}}
+const roles={exports:{}};new Function('exports','module',compile(read('src/lib/admin-users.ts')))(roles.exports,roles);
+const key=crypto.generateKeyPairSync('rsa',{modulusLength:2048}),now=Math.floor(Date.now()/1000),b64=x=>Buffer.from(JSON.stringify(x)).toString('base64url');
+const jwtBase=b64({alg:'RS256',kid:'synthetic'})+'.'+b64({iss:'https://securetoken.google.com/backend-project',aud:'backend-project',sub:'synthetic-admin',email:' ADMIN@Example.Invalid ',email_verified:true,exp:now+3600,iat:now-60});
+const token=jwtBase+'.'+crypto.sign('RSA-SHA256',Buffer.from(jwtBase),key.privateKey).toString('base64url');
+const gateModule={exports:{}};new Function('require','exports','module','process','fetch','console',compile(read('src/lib/api/admin-auth.ts')))(require,gateModule.exports,gateModule,{env:{FIREBASE_PROJECT_ID:'backend-project'}},async url=>{assert.equal(url,'https://www.googleapis.com/robot/v1/metadata/x509/securetoken@system.gserviceaccount.com');return{ok:true,headers:{get:()=>null},json:async()=>({synthetic:key.publicKey.export({type:'spki',format:'pem'})})}},{warn(){},error(){}});
+const app=apps.initializeApp({projectId:'backend-project'}),db=sdk.getFirestore(app,'backend-db');
+const base={clientId:'tenant-local',role:'owner',status:'active'};
+const cases=[
+ {id:'active-owner',data:base,result:{role:'owner',status:'active'},status:200},
+ {id:'active-manager',data:{...base,role:'manager'},result:{role:'manager',status:'active'},status:200},
+ {id:'active-staff',data:{...base,role:'staff'},result:{role:'staff',status:'active'},status:200},
+ {id:'other-tenant',data:{...base,clientId:'other'},result:null,status:403},
+ {id:'tenant-missing',data:{role:'owner',status:'active'},result:null,status:403},
+ {id:'role-invalid',data:{...base,role:'superadmin'},result:null,status:403},
+ {id:'role-missing',data:{clientId:'tenant-local'},result:null,status:403},
+ {id:'absent',data:null,result:null,status:403},
+ {id:'removed',data:{...base,status:'removed'},result:{role:'owner',status:'removed'},status:403},
+ {id:'pending',data:{...base,status:'pending'},result:{role:'owner',status:'pending'},status:200},
+ {id:'status-invalid-fallback',data:{...base,status:'unknown'},result:{role:'owner',status:'active'},status:200},
+ {id:'status-missing-fallback',data:{clientId:'tenant-local',role:'owner'},result:{role:'owner',status:'active'},status:200},
+ {id:'transport-error',data:base,transportError:true,result:null,status:403},
+];
+const lookupSource={server:extract('server.ts','lookupAdminUser'),api:extract('api/index.ts','lookupAdminUser')};
+const decode=extract('api/index.ts','decodeFirestoreValue');
+(async()=>{for(const runtime of ['server','api'])for(const c of cases){const ops=[];let lookup;
+ if(runtime==='server'){
+  sdk.DocumentReference.prototype.get=async function(){ops.push({project:this.firestore.projectId,database:this.firestore.databaseId,path:this.path});if(c.transportError)throw new Error('synthetic transport failure');return{exists:c.data!==null,data:()=>c.data}};
+  lookup=new Function('getAdminDb','CLIENT_ID','isAdminRole','isAdminStatus','console',compile(lookupSource.server)+'\nreturn lookupAdminUser;')(async()=>db,'tenant-local',roles.exports.isAdminRole,roles.exports.isAdminStatus,{warn(){}});
+ }else{
+  const rest=async(collection,id)=>{ops.push({collection,id});if(c.transportError)throw new Error('synthetic transport failure');return c.data===null?null:{fields:Object.fromEntries(Object.entries(c.data).map(([k,v])=>[k,{stringValue:v}]))}};
+  lookup=new Function('firestoreRestGetDocument','CLIENT_ID','isAdminRole','isAdminStatus','console',compile(decode+'\n'+lookupSource.api)+'\nreturn lookupAdminUser;')(rest,'tenant-local',roles.exports.isAdminRole,roles.exports.isAdminStatus,{warn(){}});
+ }
+ const observed=await lookup('admin@example.invalid');check(runtime+'/'+c.id+'/lookup-result',observed,c.result);
+ let status=200;const res={status(x){status=x;return this},json(){return this}};
+ const authenticated=await gateModule.exports.requireAdminAuth({headers:{authorization:'Bearer '+token}},res,lookup);
+ check(runtime+'/'+c.id+'/gate-status',status,c.status);check(runtime+'/'+c.id+'/gate-result',!!authenticated,c.status===200);
+ check(runtime+'/'+c.id+'/calls',ops.length,2);
+ const expected=runtime==='server'?{project:'backend-project',database:'backend-db',path:'admin_users/admin@example.invalid'}:{collection:'admin_users',id:'admin@example.invalid'};
+ check(runtime+'/'+c.id+'/target',ops,[expected,expected]);rows.push({runtime,id:c.id,lookupResult:observed,status,authenticated:!!authenticated,ops});
+ }
+ const output={result:failures.length?'RED':'GREEN',cases:rows.length,checks,failures,rows,hashes:Object.fromEntries(Object.entries(sources).map(([p,s])=>[p,crypto.createHash('sha256').update(s).digest('hex')])),limits:'Lookups AST reales + validadores/decoder/gate reales. Admin referencias SDK reales con get interceptado; API helper REST interceptado en su interfaz collection/id, sin certificar URL/contexto REST. Token RSA sintético legacy válido para alcanzar cada lookup. No modificación de política ni producto.'};fs.writeFileSync('/salida/LOOKUPS.json',JSON.stringify(output,null,2));console.log(JSON.stringify({result:output.result,cases:output.cases,checks,failures:failures.length}));await apps.deleteApp(app);process.exitCode=failures.length?1:0;
+})().catch(e=>{console.error(e.stack);process.exitCode=2});

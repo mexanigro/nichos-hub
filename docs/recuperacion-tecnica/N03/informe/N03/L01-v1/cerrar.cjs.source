@@ -1,0 +1,42 @@
+const fs=require('node:fs'),p=require('node:path'),assert=require('node:assert/strict'),crypto=require('node:crypto'),cp=require('node:child_process');
+const base=__dirname,canon='C:/Users/liama/Desktop/Nichos/recuperacion-tecnica',hub='C:/Users/liama/Desktop/Nichos-hub',template='C:/Users/liama/Desktop/Nichos/Barber-shop-template-main',archive=hub+'/docs/recuperacion-tecnica/N03';
+const hash=b=>crypto.createHash('sha256').update(b).digest('hex'),json=f=>JSON.parse(fs.readFileSync(f,'utf8').replace(/^\uFEFF/,''));
+const write=(f,v)=>{fs.mkdirSync(p.dirname(f),{recursive:true});fs.writeFileSync(f,typeof v==='string'||Buffer.isBuffer(v)?v:JSON.stringify(v,null,2),{flag:'wx'});};
+const walk=d=>fs.readdirSync(d,{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(p.join(d,e.name)):[p.join(d,e.name)]);
+const expected=json(p.join(base,'PRODUCTO-ANTES.json'));
+assert.equal(walk(hub+'/src').length,expected.length);for(const f of expected)assert.equal(hash(fs.readFileSync(p.join(hub,f.ruta))),f.sha256,f.ruta);
+const rows=json(p.join(base,'resultados-r2/RESULTADOS.json')),r1=json(p.join(base,'resultados-r1/RESULTADOS.json'));
+assert.equal(rows.length,49);assert.deepEqual(rows.map(({writes,...r})=>r),r1.map(({writes,...r})=>r));
+for(const r of rows){assert.equal(r.booking.step,r.language.step,r.id+' idioma');if(r.readerMode!=='ABSENT'){assert.equal(r.hydratedMode,r.readerMode);assert.notEqual(r.draftMode,r.readerMode);}for(const w of r.writes||[]){if(w.originalSetOptions===null)assert.equal(w.wireOriginal.updateMask,undefined);else assert.deepEqual(w.wireOriginal.updateMask,w.proto.updateMask);}}
+const byId=id=>rows.find(r=>r.id===id);assert.equal(byId('client-info-solo').booking.step,'staff');assert.equal(byId('reedicion-solo-a-team').booking.step,'datetime');
+assert.equal(byId('control-top-solo').booking.step,'datetime');assert.equal(byId('control-desarmado').booking.step,'staff');
+const summary=json(p.join(base,'resultados-r2/RESUMEN.json'));assert.equal(summary.fallos.length,2);
+const sources=json(p.join(base,'resultados-r2/FUENTES.json')),custody=[];
+for(const f of sources){const local=f.ruta.replace('/hub',hub).replace('/template',template),b=fs.readFileSync(local);assert.equal(hash(b),f.sha256,local);const copy=p.join(base,'fuentes',f.ruta.slice(1));write(copy,b);custody.push({ruta:local,copia:copy,bytes:b.length,sha256:hash(b)});}
+const prior=canon+'/informe/N03/L02-client-info-v1/sondeo.cjs';write(p.join(base,'fuentes/sondeo-L02.cjs'),fs.readFileSync(prior));
+const accepted=[['L03-v1/implementacion-local',false],['L03-v1/continuacion',true]];let priorCount=0;
+for(const [folder,absolute] of accepted){const old=canon+'/informe/N03/'+folder;for(const f of json(old+'/EVIDENCIA.json')){assert.equal(hash(fs.readFileSync(absolute?f.ruta:p.join(old,f.ruta))),f.sha256);priorCount++;}}
+write(p.join(base,'CUSTODIA.json'),custody);
+write(p.join(base,'REVISION.md'),'# Refutación independiente — L01\n\nNewton, agente refutacion_wnext, lectura de decisiones, evidencia e instrumento. Sin BLOCKERS para presentar preparación/política. MATERIAL incorporado: pares exactos de flags; resolución sobre override remoto aceptado, no sobre siteConfig ya mezclado con presets; SAFE conserva descarte de nested ante tipo ausente/incompatible. No afirmar convergencia universal ni navegador completo.\n\nLos dos RED de inicialización están sustentados. Sólo site.ts corregiría esos dos casos; config-to-wizard.ts es necesario además si Liam acepta compatibilidad legacy top-only. La propuesta de dos consumidores queda condicionada a esa decisión. Escritores, hidratación y entregas aceptadas intactos. No se congela precedencia por opinión del revisor.\n');
+write(p.join(base,'VERIFICACION.json'),{result:'PASS',casos:49,fallosConexion:2,productoHubConservado:expected.length,fuentesConservadas:sources.length,evidenciasAceptadasConservadas:priorCount,wireOriginalVerificado:true,r1r2MismosResultados:true,versiones:Object.fromEntries(['firebase-admin','@google-cloud/firestore','typescript','next','react'].map(n=>[n,json(hub+'/node_modules/'+n+'/package.json').version])),head:cp.execFileSync('git',['rev-parse','HEAD'],{cwd:hub,encoding:'utf8'}).trim(),limite:'Sin commit SDK, navegador completo ni servicios reales'});
+const records=['informe/N03/cierre-sesion-v1/RETOMA.md','informe/N03/reconciliacion-v1/BALANCE.md','informe/N03/reconciliacion-v1/SIGUIENTE-ACCION.md','indice/tareas/N03.md','indice/README.md','indice/CALENDARIO.md'],changes=[];
+for(const rel of records)for(const [kind,root] of [['canonico',canon],['archivo',archive]]){
+ const dest=p.join(root,rel),bytes=fs.readFileSync(dest),backup=p.join(base,'preimagenes',kind,rel);write(backup,bytes);
+ const links=['INFORME.md','PROPUESTA.md'].map(n=>p.relative(p.dirname(dest),p.join(root,'informe/N03/L01-v1',n)).replaceAll('\\','/'));
+ const adenda='**L01: preparación local completada 4/4; conexión RED, producto intacto y NO descontado.** Sondeo 49 casos: altas onboarding/provision correctas por flags; client-info solo y reedición solo→team divergen en wizard/template y paso/asignación de staff. Dos decisiones para Liam antes de congelar reparación: precedencia nested válida con fallback top legacy, y modo remoto válido sobre showAbout/showTeam. Propuesta mínima condicionada en consumidores; no se implementó. SAFE, defaults, borrador local y restricciones por nicho conservados. L03 interfaz y demás entregas aceptadas intactas. N03 abierta, techo 90% TOTAL, último 10% reservado N04, observado 85%, sin resets/instalaciones/efectos externos/push/deploy. Etapas posteriores y condición por tenant antes de despliegue vigentes. Sustituye sólo la propuesta de preparar L01 de los cortes inferiores. [Evidencia y límites]('+links[0]+'). [Decisiones y propuesta]('+links[1]+').';
+ const at=bytes.indexOf(10)+1;assert.ok(at>0);const after=Buffer.concat([bytes.subarray(0,at),Buffer.from('\r\n'+adenda+'\r\n\r\n'),bytes.subarray(at)]);fs.writeFileSync(dest,after);
+ changes.push({ruta:dest,preimagen:backup,shaAntes:hash(bytes),shaDespues:hash(after)});
+}
+write(p.join(base,'REGISTROS.json'),changes);
+const hist='historial/2026-09-10-N03-L01-preparacion-local.md';
+const h='# N03 — preparación L01\n\n49 casos locales, dos fallos efectivos de conexión y altas conservadas. Sin cambio de producto ni descuento L01. [Evidencia](../informe/N03/L01-v1/INFORME.md) y [dos decisiones de compatibilidad/propuesta mínima](../informe/N03/L01-v1/PROPUESTA.md). No ejecutar reparación antes de decisión y autorización. L03 interfaz y demás entregas aceptadas intactas. N03 abierta, techo 90% TOTAL y último 10% para N04, observado 85%, sin resets/externos/push/deploy. Etapas posteriores y condición por tenant conservadas.\n';
+write(p.join(canon,hist),h);write(p.join(archive,hist),h);
+write(p.join(base,'RESULTADO.json'),{result:'GREEN_PREPARACION',conexion:'RED',gates:4,total:4,L01Descontada:false,N03:'abierta',decisionesPendientes:2,blockersPreparacion:[],implementacion:'NO_AUTORIZADA_NI_EJECUTADA',presupuesto:{observado:85,techo:90,reservaN04:10,resets:0}});
+for(const f of expected)assert.equal(hash(fs.readFileSync(p.join(hub,f.ruta))),f.sha256);
+for(const f of custody)assert.equal(hash(fs.readFileSync(f.ruta)),f.sha256);
+write(p.join(base,'EVIDENCIA.json'),walk(base).map(f=>({ruta:p.relative(base,f).replaceAll('\\','/'),sha256:hash(fs.readFileSync(f))})));
+const destBase=p.join(archive,'informe/N03/L01-v1'),copies=[];
+for(const f of walk(base)){const dest=p.join(destBase,p.relative(base,f))+(['.cjs','.mjs','.js','.ts','.tsx','.ps1'].includes(p.extname(f))?'.source':'');write(dest,fs.readFileSync(f));assert.equal(hash(fs.readFileSync(dest)),hash(fs.readFileSync(f)));copies.push({origen:f,destino:dest,sha256:hash(fs.readFileSync(f))});}
+write(p.join(base,'ARCHIVO.json'),copies);write(p.join(destBase,'ARCHIVO.json'),copies);
+for(const f of changes){assert.equal(hash(fs.readFileSync(f.preimagen)),f.shaAntes);assert.equal(hash(fs.readFileSync(f.ruta)),f.shaDespues);}
+console.log(JSON.stringify({result:'GREEN_PREPARACION',conexion:'RED',casos:49,fuentes:sources.length,producto:expected.length,registros:changes.length,archivados:copies.length}));

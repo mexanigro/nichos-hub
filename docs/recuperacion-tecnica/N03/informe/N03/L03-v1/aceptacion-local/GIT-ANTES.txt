@@ -1,0 +1,115 @@
+ M .gitignore
+ M docs/recuperacion-tecnica/N03/indice/CALENDARIO.md
+ M docs/recuperacion-tecnica/N03/indice/README.md
+ M docs/recuperacion-tecnica/N03/indice/tareas/N03.md
+ M docs/recuperacion-tecnica/N03/informe/N03/W-NEXT-v1/INFORME.md
+ M docs/recuperacion-tecnica/N03/informe/N03/W-NEXT-v1/PROPUESTA.md
+ M docs/recuperacion-tecnica/N03/informe/N03/cierre-sesion-v1/RETOMA.md
+ M docs/recuperacion-tecnica/N03/informe/N03/reconciliacion-v1/BALANCE.md
+ M docs/recuperacion-tecnica/N03/informe/N03/reconciliacion-v1/SIGUIENTE-ACCION.md
+ M ruvector.db
+ M social-content/instagram/03-pinned-coverage/frame-1.png
+ M social-content/instagram/07-video-whatsapp-demo/frame-1.png
+ M social-content/instagram/07-video-whatsapp-demo/frame-2.png
+ M social-content/instagram/07-video-whatsapp-demo/frame-3.png
+ M social-content/instagram/07-video-whatsapp-demo/frame-4.png
+ M social-content/instagram/07-video-whatsapp-demo/frame-5.png
+ M src/app/api/cardcom/verify-payment/route.ts
+ M src/app/api/onboarding/client-info/route.ts
+ M src/components/client-config-tab.tsx
+ M src/lib/cardcom-promote.ts
+ M src/lib/cardcom.ts
+ M src/lib/deploy.ts
+ D src/middleware.ts
+?? .agents/skills/design1/
+?? .claude/agent-memory/
+?? .playwright-mcp/
+?? AGENTS.md
+?? API-COSTS-AUDIT.md
+?? AUDIT-FIREBASE.md
+?? AUDIT-NICHOS-HUB.md
+?? CREDENCIALES-SEGURAS.md
+?? Contrato_Arzac_Studio_ES.pdf
+?? MASCOT-PLACEMENT-ANALYSIS.md
+?? SECRET-MANIFEST.md
+?? WEB-CREATION-PLAYBOOK.md
+?? arzac-desktop-1440-full.png
+?? arzac-desktop-1440.png
+?? arzac-desktop-allrevealed.png
+?? arzac-sales-assistant-SKILL.md
+?? arzac-sales-assistant.skill
+?? blink-compare.png
+?? blink-frames-check.png
+?? blink07-compare.png
+?? blink07-frames.png
+?? critique-pricing.jpeg
+?? critique-process.jpeg
+?? critique-techstack.jpeg
+?? docs/recuperacion-tecnica/N03/historial/2026-09-09-N03-L02-client-info-implementacion.md
+?? docs/recuperacion-tecnica/N03/historial/2026-09-09-N03-L02-client-info-preparacion.md
+?? docs/recuperacion-tecnica/N03/historial/2026-09-09-N03-W-NEXT-aceptada-localmente.md
+?? docs/recuperacion-tecnica/N03/historial/2026-09-09-N03-W-NEXT-comparacion-local.md
+?? docs/recuperacion-tecnica/N03/historial/2026-09-09-N03-W-NEXT-implementacion-local.md
+?? docs/recuperacion-tecnica/N03/historial/2026-09-10-N03-L02-client-info-aceptacion.md
+?? docs/recuperacion-tecnica/N03/historial/2026-09-10-N03-L03-decision-pendiente.md
+?? docs/recuperacion-tecnica/N03/historial/2026-09-10-N03-L03-implementacion.md
+?? docs/recuperacion-tecnica/N03/historial/2026-09-10-N03-L03-preparacion.md
+?? docs/recuperacion-tecnica/N03/informe/N03/L02-client-info-v1/
+?? docs/recuperacion-tecnica/N03/informe/N03/L03-v1/
+?? docs/recuperacion-tecnica/N03/informe/N03/W-NEXT-v1/aceptacion-local/
+?? docs/recuperacion-tecnica/N03/informe/N03/W-NEXT-v1/comparacion-local/
+?? docs/recuperacion-tecnica/N03/informe/N03/W-NEXT-v1/implementacion-local/
+?? e2e/
+?? final-doze.jpeg
+?? manifesto-doze.jpeg
+?? marganink-1440-hero.png
+?? marganink-final-hero.png
+?? marganink-full-viewport.png
+?? marganink-fullpage.png
+?? marganink-gallery-check.png
+?? marganink-gallery2-check.png
+?? marganink-hero-check.png
+?? marganink-lower-check.png
+?? marganink-mid-check.png
+?? marganink-nav-1440.png
+?? marganink-navbar-check.png
+?? marganink-navbar-zoomed.png
+?? marganink-services-check.png
+?? marganink-staff-bio.png
+?? marganink-staff-card.png
+?? marganink-staff-check.png
+?? marganink-staff-full.png
+?? marganink-team-check.png
+?? marganink-whychoose-check.png
+?? mascot-cutout-check.png
+?? navbar-scrolled-desktop.jpeg
+?? playwright.config.ts
+?? prod-he-desktop.jpeg
+?? prod-he-mobile.jpeg
+?? public/mascot/hedgehog/hedgehog-01-belly-flower.png
+?? public/mascot/hedgehog/hedgehog-02-belly-A-green.png
+?? public/mascot/hedgehog/hedgehog-03-belly-A-warm.png
+?? public/mascot/hedgehog/hedgehog-04-curled-A.png
+?? public/mascot/hedgehog/hedgehog-05-curled-A-deep.png
+?? public/mascot/hedgehog/hedgehog-06-cozy-green.png
+?? public/mascot/hedgehog/hedgehog-07-relaxed.png
+?? public/mascot/hedgehog/ref-4pose-sheet.jpg
+?? public/mascot/hedgehog/ref-single-curled.png
+?? qa-everything-mobile.jpeg
+?? qa-footer-mobile.jpeg
+?? review-en-desktop-hero.jpeg
+?? scatter-agent.jpeg
+?? scatter-crm.jpeg
+?? scatter-showcase-mobile.jpeg
+?? scatter-showcase.jpeg
+?? scripts/credenciales-seguras.ps1
+?? scripts/update-marganink-stock.mjs
+?? scripts/upload-marganink-images.mjs
+?? src/lib/cardcom-credit-paths.test.ts
+?? src/lib/cardcom.test.ts
+?? src/lib/security.ts
+?? src/proxy.ts
+?? tech-stack-desktop.png
+?? tech-stack-mobile.png
+?? tech-stack-section.png
+?? test-results/

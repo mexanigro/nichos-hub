@@ -1,0 +1,28 @@
+[
+  {
+    "repo": "hub",
+    "exit": 0,
+    "command": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:/Users/liama/Desktop/Nichos-hub/node_modules/typescript/bin/tsc",
+      "--project",
+      "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L01-v1\\implementacion-local\\tsconfig-hub.json",
+      "--noEmit",
+      "--incremental",
+      "false"
+    ]
+  },
+  {
+    "repo": "template",
+    "exit": 0,
+    "command": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:/Users/liama/Desktop/Nichos/Barber-shop-template-main/node_modules/typescript/bin/tsc",
+      "--project",
+      "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L01-v1\\implementacion-local\\tsconfig-template.json",
+      "--noEmit",
+      "--incremental",
+      "false"
+    ]
+  }
+]

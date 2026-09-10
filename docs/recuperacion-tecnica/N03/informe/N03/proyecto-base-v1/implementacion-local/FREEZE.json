@@ -1,0 +1,14 @@
+[
+  {
+    "ruta": "CONTRATO.md",
+    "sha256": "16fee32a9b6c20bcf372f86b9098850b9451405018e1bf0c42e416c2804b349d"
+  },
+  {
+    "ruta": "CASOS.json",
+    "sha256": "b09d43d191ec3d676899a3c76e5fa06b43c13e39b895f5f34bfae5633ecccf76"
+  },
+  {
+    "ruta": "contrato.cjs",
+    "sha256": "3ffdfd800afb1bcdd836aadda515bc5accb101853bdf2386f9e40474db2a3d85"
+  }
+]

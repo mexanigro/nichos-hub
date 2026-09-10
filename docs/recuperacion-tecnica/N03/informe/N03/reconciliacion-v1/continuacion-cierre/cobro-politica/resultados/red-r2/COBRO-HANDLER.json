@@ -1,0 +1,1633 @@
+{
+  "result": "RED",
+  "cases": 23,
+  "checks": 366,
+  "failures": [
+    {
+      "id": "server.ts/deposit-server-authority/amount",
+      "actual": 15000,
+      "expected": 2500
+    },
+    {
+      "id": "server.ts/deposit-server-authority/mode",
+      "actual": "full",
+      "expected": "deposit"
+    },
+    {
+      "id": "server.ts/full-server-authority/mode",
+      "actual": "deposit",
+      "expected": "full"
+    },
+    {
+      "id": "server.ts/deposit-invalid-undefined/status",
+      "actual": 200,
+      "expected": 503
+    },
+    {
+      "id": "server.ts/deposit-invalid-undefined/gateway-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "server.ts/deposit-invalid-undefined/resolve-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "server.ts/deposit-invalid-null/status",
+      "actual": 200,
+      "expected": 503
+    },
+    {
+      "id": "server.ts/deposit-invalid-null/gateway-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "server.ts/deposit-invalid-null/resolve-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "server.ts/deposit-invalid-0/status",
+      "actual": 200,
+      "expected": 503
+    },
+    {
+      "id": "server.ts/deposit-invalid-0/gateway-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "server.ts/deposit-invalid-0/resolve-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "server.ts/deposit-invalid--1/status",
+      "actual": 200,
+      "expected": 503
+    },
+    {
+      "id": "server.ts/deposit-invalid--1/gateway-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "server.ts/deposit-invalid--1/resolve-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "server.ts/deposit-invalid-49/status",
+      "actual": 200,
+      "expected": 503
+    },
+    {
+      "id": "server.ts/deposit-invalid-49/gateway-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "server.ts/deposit-invalid-49/resolve-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "server.ts/deposit-invalid-2.5/status",
+      "actual": 200,
+      "expected": 503
+    },
+    {
+      "id": "server.ts/deposit-invalid-2.5/gateway-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "server.ts/deposit-invalid-2.5/resolve-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "server.ts/deposit-invalid-15001/status",
+      "actual": 200,
+      "expected": 503
+    },
+    {
+      "id": "server.ts/deposit-invalid-15001/gateway-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "server.ts/deposit-invalid-15001/resolve-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "server.ts/deposit-invalid-2500/status",
+      "actual": 200,
+      "expected": 503
+    },
+    {
+      "id": "server.ts/deposit-invalid-2500/gateway-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "server.ts/deposit-invalid-2500/resolve-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "server.ts/deposit-boundary-50/amount",
+      "actual": 15000,
+      "expected": 50
+    },
+    {
+      "id": "server.ts/deposit-boundary-50/mode",
+      "actual": "full",
+      "expected": "deposit"
+    },
+    {
+      "id": "server.ts/deposit-boundary-15000/mode",
+      "actual": "full",
+      "expected": "deposit"
+    },
+    {
+      "id": "server.ts/mode-invalid-undefined/status",
+      "actual": 200,
+      "expected": 503
+    },
+    {
+      "id": "server.ts/mode-invalid-undefined/gateway-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "server.ts/mode-invalid-undefined/resolve-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "server.ts/mode-invalid-null/status",
+      "actual": 200,
+      "expected": 503
+    },
+    {
+      "id": "server.ts/mode-invalid-null/gateway-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "server.ts/mode-invalid-null/resolve-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "server.ts/mode-invalid-/status",
+      "actual": 200,
+      "expected": 503
+    },
+    {
+      "id": "server.ts/mode-invalid-/gateway-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "server.ts/mode-invalid-/resolve-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "server.ts/mode-invalid-none/status",
+      "actual": 200,
+      "expected": 503
+    },
+    {
+      "id": "server.ts/mode-invalid-none/gateway-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "server.ts/mode-invalid-none/resolve-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "server.ts/mode-invalid-cash-only/status",
+      "actual": 200,
+      "expected": 503
+    },
+    {
+      "id": "server.ts/mode-invalid-cash-only/gateway-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "server.ts/mode-invalid-cash-only/resolve-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "server.ts/mode-invalid-invalid/status",
+      "actual": 200,
+      "expected": 503
+    },
+    {
+      "id": "server.ts/mode-invalid-invalid/gateway-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "server.ts/mode-invalid-invalid/resolve-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "server.ts/cardcom-bloqueado/status",
+      "actual": 200,
+      "expected": 503
+    },
+    {
+      "id": "server.ts/cardcom-bloqueado/gateway-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "server.ts/cardcom-bloqueado/resolve-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "server.ts/request-mode-invalid/amount",
+      "actual": 15000,
+      "expected": 2500
+    },
+    {
+      "id": "server.ts/request-mode-invalid/mode",
+      "actual": "full",
+      "expected": "deposit"
+    },
+    {
+      "id": "api/index.ts/deposit-server-authority/amount",
+      "actual": 15000,
+      "expected": 2500
+    },
+    {
+      "id": "api/index.ts/deposit-server-authority/mode",
+      "actual": "full",
+      "expected": "deposit"
+    },
+    {
+      "id": "api/index.ts/full-server-authority/mode",
+      "actual": "deposit",
+      "expected": "full"
+    },
+    {
+      "id": "api/index.ts/deposit-invalid-undefined/status",
+      "actual": 200,
+      "expected": 503
+    },
+    {
+      "id": "api/index.ts/deposit-invalid-undefined/gateway-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "api/index.ts/deposit-invalid-undefined/resolve-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "api/index.ts/deposit-invalid-null/status",
+      "actual": 200,
+      "expected": 503
+    },
+    {
+      "id": "api/index.ts/deposit-invalid-null/gateway-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "api/index.ts/deposit-invalid-null/resolve-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "api/index.ts/deposit-invalid-0/status",
+      "actual": 200,
+      "expected": 503
+    },
+    {
+      "id": "api/index.ts/deposit-invalid-0/gateway-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "api/index.ts/deposit-invalid-0/resolve-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "api/index.ts/deposit-invalid--1/status",
+      "actual": 200,
+      "expected": 503
+    },
+    {
+      "id": "api/index.ts/deposit-invalid--1/gateway-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "api/index.ts/deposit-invalid--1/resolve-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "api/index.ts/deposit-invalid-49/status",
+      "actual": 200,
+      "expected": 503
+    },
+    {
+      "id": "api/index.ts/deposit-invalid-49/gateway-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "api/index.ts/deposit-invalid-49/resolve-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "api/index.ts/deposit-invalid-2.5/status",
+      "actual": 200,
+      "expected": 503
+    },
+    {
+      "id": "api/index.ts/deposit-invalid-2.5/gateway-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "api/index.ts/deposit-invalid-2.5/resolve-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "api/index.ts/deposit-invalid-15001/status",
+      "actual": 200,
+      "expected": 503
+    },
+    {
+      "id": "api/index.ts/deposit-invalid-15001/gateway-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "api/index.ts/deposit-invalid-15001/resolve-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "api/index.ts/deposit-invalid-2500/status",
+      "actual": 200,
+      "expected": 503
+    },
+    {
+      "id": "api/index.ts/deposit-invalid-2500/gateway-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "api/index.ts/deposit-invalid-2500/resolve-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "api/index.ts/deposit-boundary-50/amount",
+      "actual": 15000,
+      "expected": 50
+    },
+    {
+      "id": "api/index.ts/deposit-boundary-50/mode",
+      "actual": "full",
+      "expected": "deposit"
+    },
+    {
+      "id": "api/index.ts/deposit-boundary-15000/mode",
+      "actual": "full",
+      "expected": "deposit"
+    },
+    {
+      "id": "api/index.ts/mode-invalid-undefined/status",
+      "actual": 200,
+      "expected": 503
+    },
+    {
+      "id": "api/index.ts/mode-invalid-undefined/gateway-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "api/index.ts/mode-invalid-undefined/resolve-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "api/index.ts/mode-invalid-null/status",
+      "actual": 200,
+      "expected": 503
+    },
+    {
+      "id": "api/index.ts/mode-invalid-null/gateway-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "api/index.ts/mode-invalid-null/resolve-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "api/index.ts/mode-invalid-/status",
+      "actual": 200,
+      "expected": 503
+    },
+    {
+      "id": "api/index.ts/mode-invalid-/gateway-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "api/index.ts/mode-invalid-/resolve-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "api/index.ts/mode-invalid-none/status",
+      "actual": 200,
+      "expected": 503
+    },
+    {
+      "id": "api/index.ts/mode-invalid-none/gateway-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "api/index.ts/mode-invalid-none/resolve-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "api/index.ts/mode-invalid-cash-only/status",
+      "actual": 200,
+      "expected": 503
+    },
+    {
+      "id": "api/index.ts/mode-invalid-cash-only/gateway-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "api/index.ts/mode-invalid-cash-only/resolve-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "api/index.ts/mode-invalid-invalid/status",
+      "actual": 200,
+      "expected": 503
+    },
+    {
+      "id": "api/index.ts/mode-invalid-invalid/gateway-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "api/index.ts/mode-invalid-invalid/resolve-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "api/index.ts/cardcom-bloqueado/status",
+      "actual": 200,
+      "expected": 503
+    },
+    {
+      "id": "api/index.ts/cardcom-bloqueado/gateway-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "api/index.ts/cardcom-bloqueado/resolve-calls",
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "id": "api/index.ts/request-mode-invalid/amount",
+      "actual": 15000,
+      "expected": 2500
+    },
+    {
+      "id": "api/index.ts/request-mode-invalid/mode",
+      "actual": "full",
+      "expected": "deposit"
+    }
+  ],
+  "rows": [
+    {
+      "label": "server.ts/deposit-server-authority",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "full",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "server.ts/full-server-authority",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "deposit",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "server.ts/deposit-invalid-undefined",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "full",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "server.ts/deposit-invalid-null",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "full",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "server.ts/deposit-invalid-0",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "full",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "server.ts/deposit-invalid--1",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "full",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "server.ts/deposit-invalid-49",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "full",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "server.ts/deposit-invalid-2.5",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "full",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "server.ts/deposit-invalid-15001",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "full",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "server.ts/deposit-invalid-2500",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "full",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "server.ts/deposit-boundary-50",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "full",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "server.ts/deposit-boundary-15000",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "full",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "server.ts/mode-invalid-undefined",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "full",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "server.ts/mode-invalid-null",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "full",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "server.ts/mode-invalid-",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "full",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "server.ts/mode-invalid-none",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "full",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "server.ts/mode-invalid-cash-only",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "full",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "server.ts/mode-invalid-invalid",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "full",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "server.ts/config-ausente",
+      "status": 503,
+      "response": {
+        "error": "Payment currency not configured."
+      },
+      "calls": [],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "server.ts/config-falla",
+      "status": 500,
+      "response": {
+        "error": "Failed to create checkout session."
+      },
+      "calls": [],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "server.ts/cardcom-bloqueado",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "mode": "full",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt"
+      ]
+    },
+    {
+      "label": "server.ts/full-eur",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "eur",
+          "mode": "full",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "server.ts/request-mode-invalid",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "full",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "api/index.ts/deposit-server-authority",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "full",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "api/index.ts/full-server-authority",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "deposit",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "api/index.ts/deposit-invalid-undefined",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "full",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "api/index.ts/deposit-invalid-null",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "full",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "api/index.ts/deposit-invalid-0",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "full",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "api/index.ts/deposit-invalid--1",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "full",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "api/index.ts/deposit-invalid-49",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "full",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "api/index.ts/deposit-invalid-2.5",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "full",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "api/index.ts/deposit-invalid-15001",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "full",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "api/index.ts/deposit-invalid-2500",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "full",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "api/index.ts/deposit-boundary-50",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "full",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "api/index.ts/deposit-boundary-15000",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "full",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "api/index.ts/mode-invalid-undefined",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "full",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "api/index.ts/mode-invalid-null",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "full",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "api/index.ts/mode-invalid-",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "full",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "api/index.ts/mode-invalid-none",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "full",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "api/index.ts/mode-invalid-cash-only",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "full",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "api/index.ts/mode-invalid-invalid",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "full",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "api/index.ts/config-ausente",
+      "status": 503,
+      "response": {
+        "error": "Payment currency not configured."
+      },
+      "calls": [],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "api/index.ts/config-falla",
+      "status": 500,
+      "response": {
+        "error": "Failed to create checkout session."
+      },
+      "calls": [],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "api/index.ts/cardcom-bloqueado",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "mode": "full",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt"
+      ]
+    },
+    {
+      "label": "api/index.ts/full-eur",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "eur",
+          "mode": "full",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    },
+    {
+      "label": "api/index.ts/request-mode-invalid",
+      "status": 200,
+      "response": {
+        "id": "session",
+        "url": "https://synthetic.invalid/checkout"
+      },
+      "calls": [
+        {
+          "appointmentId": "appt",
+          "customerEmail": "test@example.invalid",
+          "serviceName": "Service",
+          "amountCents": 15000,
+          "currency": "ils",
+          "mode": "full",
+          "successUrl": "https://synthetic.invalid/?booking_status=success&session_id={CHECKOUT_SESSION_ID}",
+          "cancelUrl": "https://synthetic.invalid/?booking_status=cancelled",
+          "clientId": "tenant"
+        }
+      ],
+      "reads": [
+        "appointments/appt",
+        "config/tenant"
+      ]
+    }
+  ]
+}

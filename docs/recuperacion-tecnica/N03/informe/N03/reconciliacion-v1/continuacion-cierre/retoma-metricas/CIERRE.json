@@ -1,0 +1,8 @@
+{
+  "result": "PASS custody; GREEN scoped control; N03 open",
+  "copies": 34,
+  "records": 12,
+  "product": "5 sources unchanged, including endpoint",
+  "expectations": "unchanged",
+  "outputs": "three new directories, existing evidence preserved"
+}

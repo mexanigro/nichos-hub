@@ -1,0 +1,645 @@
+[
+  {
+    "id": "coincidentes-ausencia-base",
+    "env": {
+      "FIREBASE_ADMIN_PROJECT_ID": "project-a",
+      "FIREBASE_ADMIN_CLIENT_EMAIL": "test@example.invalid",
+      "FIREBASE_ADMIN_PRIVATE_KEY": "SYNTHETIC",
+      "FIREBASE_PROJECT_ID": "project-a"
+    },
+    "apps": [],
+    "token": true,
+    "status": 200,
+    "expected": {
+      "admin": "project-a",
+      "rest": "project-a",
+      "db": "default"
+    }
+  },
+  {
+    "id": "proyecto-rest-ausente",
+    "env": {
+      "FIREBASE_ADMIN_PROJECT_ID": "project-a",
+      "FIREBASE_ADMIN_CLIENT_EMAIL": "test@example.invalid",
+      "FIREBASE_ADMIN_PRIVATE_KEY": "SYNTHETIC"
+    },
+    "apps": [],
+    "token": true,
+    "status": 200,
+    "expected": {
+      "admin": "project-a",
+      "rest": null,
+      "db": "default"
+    }
+  },
+  {
+    "id": "proyecto-admin-ausente",
+    "env": {
+      "FIREBASE_ADMIN_CLIENT_EMAIL": "test@example.invalid",
+      "FIREBASE_ADMIN_PRIVATE_KEY": "SYNTHETIC",
+      "FIREBASE_PROJECT_ID": "project-a"
+    },
+    "apps": [],
+    "token": true,
+    "status": 200,
+    "expected": {
+      "admin": null,
+      "rest": "project-a",
+      "db": "default"
+    }
+  },
+  {
+    "id": "base-ausente",
+    "env": {
+      "FIREBASE_ADMIN_PROJECT_ID": "project-a",
+      "FIREBASE_ADMIN_CLIENT_EMAIL": "test@example.invalid",
+      "FIREBASE_ADMIN_PRIVATE_KEY": "SYNTHETIC",
+      "FIREBASE_PROJECT_ID": "project-a"
+    },
+    "apps": [],
+    "token": true,
+    "status": 200,
+    "expected": {
+      "admin": "project-a",
+      "rest": "project-a",
+      "db": "default"
+    }
+  },
+  {
+    "id": "rest-fallback-vite-ausente",
+    "env": {
+      "FIREBASE_ADMIN_PROJECT_ID": "project-a",
+      "FIREBASE_ADMIN_CLIENT_EMAIL": "test@example.invalid",
+      "FIREBASE_ADMIN_PRIVATE_KEY": "SYNTHETIC",
+      "VITE_FIREBASE_PROJECT_ID": "project-a"
+    },
+    "apps": [],
+    "token": true,
+    "status": 200,
+    "expected": {
+      "admin": "project-a",
+      "rest": "project-a",
+      "db": "default"
+    }
+  },
+  {
+    "id": "email-ausente",
+    "env": {
+      "FIREBASE_ADMIN_PROJECT_ID": "project-a",
+      "FIREBASE_ADMIN_PRIVATE_KEY": "SYNTHETIC",
+      "FIREBASE_PROJECT_ID": "project-a"
+    },
+    "apps": [],
+    "token": true,
+    "status": 200,
+    "expected": {
+      "admin": null,
+      "rest": "project-a",
+      "db": "default"
+    }
+  },
+  {
+    "id": "clave-ausente",
+    "env": {
+      "FIREBASE_ADMIN_PROJECT_ID": "project-a",
+      "FIREBASE_ADMIN_CLIENT_EMAIL": "test@example.invalid",
+      "FIREBASE_PROJECT_ID": "project-a"
+    },
+    "apps": [],
+    "token": true,
+    "status": 200,
+    "expected": {
+      "admin": null,
+      "rest": "project-a",
+      "db": "default"
+    }
+  },
+  {
+    "id": "proyecto-rest-vacio",
+    "env": {
+      "FIREBASE_ADMIN_PROJECT_ID": "project-a",
+      "FIREBASE_ADMIN_CLIENT_EMAIL": "test@example.invalid",
+      "FIREBASE_ADMIN_PRIVATE_KEY": "SYNTHETIC",
+      "FIREBASE_PROJECT_ID": ""
+    },
+    "apps": [],
+    "token": true,
+    "status": 200,
+    "expected": {
+      "admin": "project-a",
+      "rest": null,
+      "db": "default"
+    }
+  },
+  {
+    "id": "proyecto-admin-vacio",
+    "env": {
+      "FIREBASE_ADMIN_PROJECT_ID": "",
+      "FIREBASE_ADMIN_CLIENT_EMAIL": "test@example.invalid",
+      "FIREBASE_ADMIN_PRIVATE_KEY": "SYNTHETIC",
+      "FIREBASE_PROJECT_ID": "project-a"
+    },
+    "apps": [],
+    "token": true,
+    "status": 200,
+    "expected": {
+      "admin": null,
+      "rest": "project-a",
+      "db": "default"
+    }
+  },
+  {
+    "id": "base-vacio",
+    "env": {
+      "FIREBASE_ADMIN_PROJECT_ID": "project-a",
+      "FIREBASE_ADMIN_CLIENT_EMAIL": "test@example.invalid",
+      "FIREBASE_ADMIN_PRIVATE_KEY": "SYNTHETIC",
+      "FIREBASE_PROJECT_ID": "project-a",
+      "FIREBASE_DATABASE_ID": ""
+    },
+    "apps": [],
+    "token": true,
+    "status": 200,
+    "expected": {
+      "admin": "project-a",
+      "rest": "project-a",
+      "db": "default"
+    }
+  },
+  {
+    "id": "rest-fallback-vite-vacio",
+    "env": {
+      "FIREBASE_ADMIN_PROJECT_ID": "project-a",
+      "FIREBASE_ADMIN_CLIENT_EMAIL": "test@example.invalid",
+      "FIREBASE_ADMIN_PRIVATE_KEY": "SYNTHETIC",
+      "FIREBASE_PROJECT_ID": "",
+      "VITE_FIREBASE_PROJECT_ID": "project-a"
+    },
+    "apps": [],
+    "token": true,
+    "status": 200,
+    "expected": {
+      "admin": "project-a",
+      "rest": "project-a",
+      "db": "default"
+    }
+  },
+  {
+    "id": "email-vacio",
+    "env": {
+      "FIREBASE_ADMIN_PROJECT_ID": "project-a",
+      "FIREBASE_ADMIN_CLIENT_EMAIL": "",
+      "FIREBASE_ADMIN_PRIVATE_KEY": "SYNTHETIC",
+      "FIREBASE_PROJECT_ID": "project-a"
+    },
+    "apps": [],
+    "token": true,
+    "status": 200,
+    "expected": {
+      "admin": null,
+      "rest": "project-a",
+      "db": "default"
+    }
+  },
+  {
+    "id": "clave-vacio",
+    "env": {
+      "FIREBASE_ADMIN_PROJECT_ID": "project-a",
+      "FIREBASE_ADMIN_CLIENT_EMAIL": "test@example.invalid",
+      "FIREBASE_ADMIN_PRIVATE_KEY": "",
+      "FIREBASE_PROJECT_ID": "project-a"
+    },
+    "apps": [],
+    "token": true,
+    "status": 200,
+    "expected": {
+      "admin": null,
+      "rest": "project-a",
+      "db": "default"
+    }
+  },
+  {
+    "id": "proyecto-rest-blancos",
+    "env": {
+      "FIREBASE_ADMIN_PROJECT_ID": "project-a",
+      "FIREBASE_ADMIN_CLIENT_EMAIL": "test@example.invalid",
+      "FIREBASE_ADMIN_PRIVATE_KEY": "SYNTHETIC",
+      "FIREBASE_PROJECT_ID": "   "
+    },
+    "apps": [],
+    "token": true,
+    "status": 200,
+    "expected": {
+      "admin": "project-a",
+      "rest": null,
+      "db": "default"
+    }
+  },
+  {
+    "id": "proyecto-admin-blancos",
+    "env": {
+      "FIREBASE_ADMIN_PROJECT_ID": "   ",
+      "FIREBASE_ADMIN_CLIENT_EMAIL": "test@example.invalid",
+      "FIREBASE_ADMIN_PRIVATE_KEY": "SYNTHETIC",
+      "FIREBASE_PROJECT_ID": "project-a"
+    },
+    "apps": [],
+    "token": true,
+    "status": 200,
+    "expected": {
+      "admin": null,
+      "rest": "project-a",
+      "db": "default"
+    }
+  },
+  {
+    "id": "base-blancos",
+    "env": {
+      "FIREBASE_ADMIN_PROJECT_ID": "project-a",
+      "FIREBASE_ADMIN_CLIENT_EMAIL": "test@example.invalid",
+      "FIREBASE_ADMIN_PRIVATE_KEY": "SYNTHETIC",
+      "FIREBASE_PROJECT_ID": "project-a",
+      "FIREBASE_DATABASE_ID": "   "
+    },
+    "apps": [],
+    "token": true,
+    "status": 200,
+    "expected": {
+      "admin": "project-a",
+      "rest": "project-a",
+      "db": "default"
+    }
+  },
+  {
+    "id": "rest-fallback-vite-blancos",
+    "env": {
+      "FIREBASE_ADMIN_PROJECT_ID": "project-a",
+      "FIREBASE_ADMIN_CLIENT_EMAIL": "test@example.invalid",
+      "FIREBASE_ADMIN_PRIVATE_KEY": "SYNTHETIC",
+      "FIREBASE_PROJECT_ID": "   ",
+      "VITE_FIREBASE_PROJECT_ID": "project-a"
+    },
+    "apps": [],
+    "token": true,
+    "status": 200,
+    "expected": {
+      "admin": "project-a",
+      "rest": "project-a",
+      "db": "default"
+    }
+  },
+  {
+    "id": "email-blancos",
+    "env": {
+      "FIREBASE_ADMIN_PROJECT_ID": "project-a",
+      "FIREBASE_ADMIN_CLIENT_EMAIL": "   ",
+      "FIREBASE_ADMIN_PRIVATE_KEY": "SYNTHETIC",
+      "FIREBASE_PROJECT_ID": "project-a"
+    },
+    "apps": [],
+    "token": true,
+    "status": 200,
+    "expected": {
+      "admin": null,
+      "rest": "project-a",
+      "db": "default"
+    }
+  },
+  {
+    "id": "clave-blancos",
+    "env": {
+      "FIREBASE_ADMIN_PROJECT_ID": "project-a",
+      "FIREBASE_ADMIN_CLIENT_EMAIL": "test@example.invalid",
+      "FIREBASE_ADMIN_PRIVATE_KEY": "   ",
+      "FIREBASE_PROJECT_ID": "project-a"
+    },
+    "apps": [],
+    "token": true,
+    "status": 200,
+    "expected": {
+      "admin": "ERROR_CERT",
+      "rest": "project-a",
+      "db": "default"
+    }
+  },
+  {
+    "id": "fallback-next",
+    "env": {
+      "FIREBASE_ADMIN_PROJECT_ID": "project-a",
+      "FIREBASE_ADMIN_CLIENT_EMAIL": "test@example.invalid",
+      "FIREBASE_ADMIN_PRIVATE_KEY": "SYNTHETIC",
+      "FIREBASE_PROJECT_ID": "",
+      "VITE_FIREBASE_PROJECT_ID": " ",
+      "NEXT_PUBLIC_FIREBASE_PROJECT_ID": "project-a"
+    },
+    "apps": [],
+    "token": true,
+    "status": 200,
+    "expected": {
+      "admin": "project-a",
+      "rest": "project-a",
+      "db": "default"
+    }
+  },
+  {
+    "id": "mirrors-iguales",
+    "env": {
+      "FIREBASE_ADMIN_PROJECT_ID": "project-a",
+      "FIREBASE_ADMIN_CLIENT_EMAIL": "test@example.invalid",
+      "FIREBASE_ADMIN_PRIVATE_KEY": "SYNTHETIC",
+      "FIREBASE_PROJECT_ID": "project-a",
+      "VITE_FIREBASE_PROJECT_ID": "project-a",
+      "NEXT_PUBLIC_FIREBASE_PROJECT_ID": "project-a"
+    },
+    "apps": [],
+    "token": true,
+    "status": 200,
+    "expected": {
+      "admin": "project-a",
+      "rest": "project-a",
+      "db": "default"
+    }
+  },
+  {
+    "id": "proyectos-contradictorios",
+    "env": {
+      "FIREBASE_ADMIN_PROJECT_ID": "project-a",
+      "FIREBASE_ADMIN_CLIENT_EMAIL": "test@example.invalid",
+      "FIREBASE_ADMIN_PRIVATE_KEY": "SYNTHETIC",
+      "FIREBASE_PROJECT_ID": "project-b",
+      "VITE_FIREBASE_PROJECT_ID": "project-c",
+      "NEXT_PUBLIC_FIREBASE_PROJECT_ID": "project-d"
+    },
+    "apps": [],
+    "token": true,
+    "status": 200,
+    "expected": {
+      "admin": "project-a",
+      "rest": "project-b",
+      "db": "default"
+    }
+  },
+  {
+    "id": "trim",
+    "env": {
+      "FIREBASE_ADMIN_PROJECT_ID": " project-a ",
+      "FIREBASE_ADMIN_CLIENT_EMAIL": "test@example.invalid",
+      "FIREBASE_ADMIN_PRIVATE_KEY": "SYNTHETIC",
+      "FIREBASE_PROJECT_ID": " project-a ",
+      "FIREBASE_DATABASE_ID": " named "
+    },
+    "apps": [],
+    "token": true,
+    "status": 200,
+    "expected": {
+      "admin": "project-a",
+      "rest": "project-a",
+      "db": "named"
+    }
+  },
+  {
+    "id": "base-vite",
+    "env": {
+      "FIREBASE_ADMIN_PROJECT_ID": "project-a",
+      "FIREBASE_ADMIN_CLIENT_EMAIL": "test@example.invalid",
+      "FIREBASE_ADMIN_PRIVATE_KEY": "SYNTHETIC",
+      "FIREBASE_PROJECT_ID": "project-a",
+      "VITE_FIREBASE_DATABASE_ID": "named"
+    },
+    "apps": [],
+    "token": true,
+    "status": 200,
+    "expected": {
+      "admin": "project-a",
+      "rest": "project-a",
+      "db": "named"
+    }
+  },
+  {
+    "id": "bases-contradictorias",
+    "env": {
+      "FIREBASE_ADMIN_PROJECT_ID": "project-a",
+      "FIREBASE_ADMIN_CLIENT_EMAIL": "test@example.invalid",
+      "FIREBASE_ADMIN_PRIVATE_KEY": "SYNTHETIC",
+      "FIREBASE_PROJECT_ID": "project-a",
+      "FIREBASE_DATABASE_ID": "primary",
+      "VITE_FIREBASE_DATABASE_ID": "secondary"
+    },
+    "apps": [],
+    "token": true,
+    "status": 200,
+    "expected": {
+      "admin": "project-a",
+      "rest": "project-a",
+      "db": "primary"
+    }
+  },
+  {
+    "id": "base-default-explicita",
+    "env": {
+      "FIREBASE_ADMIN_PROJECT_ID": "project-a",
+      "FIREBASE_ADMIN_CLIENT_EMAIL": "test@example.invalid",
+      "FIREBASE_ADMIN_PRIVATE_KEY": "SYNTHETIC",
+      "FIREBASE_PROJECT_ID": "project-a",
+      "FIREBASE_DATABASE_ID": "(default)"
+    },
+    "apps": [],
+    "token": true,
+    "status": 200,
+    "expected": {
+      "admin": "project-a",
+      "rest": "project-a",
+      "db": "(default)"
+    }
+  },
+  {
+    "id": "app-igual",
+    "env": {
+      "FIREBASE_ADMIN_PROJECT_ID": "project-a",
+      "FIREBASE_ADMIN_CLIENT_EMAIL": "test@example.invalid",
+      "FIREBASE_ADMIN_PRIVATE_KEY": "SYNTHETIC",
+      "FIREBASE_PROJECT_ID": "project-a"
+    },
+    "apps": [
+      {
+        "name": "existing",
+        "project": "project-a"
+      }
+    ],
+    "token": true,
+    "status": 200,
+    "expected": {
+      "admin": "project-a",
+      "rest": "project-a",
+      "db": "default"
+    }
+  },
+  {
+    "id": "app-ajena",
+    "env": {
+      "FIREBASE_ADMIN_PROJECT_ID": "project-a",
+      "FIREBASE_ADMIN_CLIENT_EMAIL": "test@example.invalid",
+      "FIREBASE_ADMIN_PRIVATE_KEY": "SYNTHETIC",
+      "FIREBASE_PROJECT_ID": "project-a"
+    },
+    "apps": [
+      {
+        "name": "existing",
+        "project": "project-b"
+      }
+    ],
+    "token": true,
+    "status": 200,
+    "expected": {
+      "admin": "project-b",
+      "rest": "project-a",
+      "db": "default"
+    }
+  },
+  {
+    "id": "apps-ajena-primera",
+    "env": {
+      "FIREBASE_ADMIN_PROJECT_ID": "project-a",
+      "FIREBASE_ADMIN_CLIENT_EMAIL": "test@example.invalid",
+      "FIREBASE_ADMIN_PRIVATE_KEY": "SYNTHETIC",
+      "FIREBASE_PROJECT_ID": "project-a"
+    },
+    "apps": [
+      {
+        "name": "foreign",
+        "project": "project-b"
+      },
+      {
+        "name": "matching",
+        "project": "project-a"
+      }
+    ],
+    "token": true,
+    "status": 200,
+    "expected": {
+      "admin": "project-b",
+      "rest": "project-a",
+      "db": "default"
+    }
+  },
+  {
+    "id": "apps-igual-primera",
+    "env": {
+      "FIREBASE_ADMIN_PROJECT_ID": "project-a",
+      "FIREBASE_ADMIN_CLIENT_EMAIL": "test@example.invalid",
+      "FIREBASE_ADMIN_PRIVATE_KEY": "SYNTHETIC",
+      "FIREBASE_PROJECT_ID": "project-a"
+    },
+    "apps": [
+      {
+        "name": "matching",
+        "project": "project-a"
+      },
+      {
+        "name": "foreign",
+        "project": "project-b"
+      }
+    ],
+    "token": true,
+    "status": 200,
+    "expected": {
+      "admin": "project-a",
+      "rest": "project-a",
+      "db": "default"
+    }
+  },
+  {
+    "id": "app-sin-env-admin",
+    "env": {
+      "FIREBASE_ADMIN_CLIENT_EMAIL": "test@example.invalid",
+      "FIREBASE_ADMIN_PRIVATE_KEY": "SYNTHETIC",
+      "FIREBASE_PROJECT_ID": "project-a"
+    },
+    "apps": [
+      {
+        "name": "existing",
+        "project": "project-a"
+      }
+    ],
+    "token": true,
+    "status": 200,
+    "expected": {
+      "admin": null,
+      "rest": "project-a",
+      "db": "default"
+    }
+  },
+  {
+    "id": "app-clave-blancos",
+    "env": {
+      "FIREBASE_ADMIN_PROJECT_ID": "project-a",
+      "FIREBASE_ADMIN_CLIENT_EMAIL": "test@example.invalid",
+      "FIREBASE_ADMIN_PRIVATE_KEY": " ",
+      "FIREBASE_PROJECT_ID": "project-a"
+    },
+    "apps": [
+      {
+        "name": "existing",
+        "project": "project-a"
+      }
+    ],
+    "token": true,
+    "status": 200,
+    "expected": {
+      "admin": "project-a",
+      "rest": "project-a",
+      "db": "default"
+    }
+  },
+  {
+    "id": "sin-token",
+    "env": {
+      "FIREBASE_ADMIN_PROJECT_ID": "project-a",
+      "FIREBASE_ADMIN_CLIENT_EMAIL": "test@example.invalid",
+      "FIREBASE_ADMIN_PRIVATE_KEY": "SYNTHETIC",
+      "FIREBASE_PROJECT_ID": "project-a"
+    },
+    "apps": [],
+    "token": false,
+    "status": 200,
+    "expected": {
+      "admin": "project-a",
+      "rest": "project-a",
+      "db": "default"
+    }
+  },
+  {
+    "id": "http404",
+    "env": {
+      "FIREBASE_ADMIN_PROJECT_ID": "project-a",
+      "FIREBASE_ADMIN_CLIENT_EMAIL": "test@example.invalid",
+      "FIREBASE_ADMIN_PRIVATE_KEY": "SYNTHETIC",
+      "FIREBASE_PROJECT_ID": "project-a"
+    },
+    "apps": [],
+    "token": true,
+    "status": 404,
+    "expected": {
+      "admin": "project-a",
+      "rest": "project-a",
+      "db": "default"
+    }
+  },
+  {
+    "id": "http403",
+    "env": {
+      "FIREBASE_ADMIN_PROJECT_ID": "project-a",
+      "FIREBASE_ADMIN_CLIENT_EMAIL": "test@example.invalid",
+      "FIREBASE_ADMIN_PRIVATE_KEY": "SYNTHETIC",
+      "FIREBASE_PROJECT_ID": "project-a"
+    },
+    "apps": [],
+    "token": true,
+    "status": 403,
+    "expected": {
+      "admin": "project-a",
+      "rest": "project-a",
+      "db": "default"
+    }
+  }
+]

@@ -1,0 +1,96 @@
+const fs = require('fs');
+const crypto = require('crypto');
+const assert = require('assert/strict');
+const ts = require('/deps/node_modules/typescript');
+const filename = '/template/src/lib/api/admin-auth.ts';
+const source = fs.readFileSync(filename, 'utf8');
+const code = ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } }).outputText;
+const keys = crypto.generateKeyPairSync('rsa', { modulusLength: 2048 });
+const otherKeys = crypto.generateKeyPairSync('rsa', { modulusLength: 2048 });
+const cert = keys.publicKey.export({ type: 'spki', format: 'pem' });
+const now = Math.floor(Date.now() / 1000);
+const rows = [], failures = [];
+let checks = 0;
+const hash = s => crypto.createHash('sha256').update(s).digest('hex');
+function check(id, actual, expected) {
+  checks++;
+  try { assert.deepEqual(actual, expected); } catch { failures.push({ id, actual, expected }); }
+}
+function token(project, edits = {}, headerEdits = {}, badSignature = false) {
+  const payload = { iss: `https://securetoken.google.com/${project}`, aud: project, sub: 'same-uid', email: ' Admin@Example.Invalid ', email_verified: true, exp: now + 3600, iat: now - 60, ...edits };
+  const header = { alg: 'RS256', kid: 'synthetic-key', ...headerEdits };
+  const b64 = x => Buffer.from(JSON.stringify(x)).toString('base64url');
+  const input = `${b64(header)}.${b64(payload)}`;
+  return `${input}.${crypto.sign('RSA-SHA256', Buffer.from(input), badSignature ? otherKeys.privateKey : keys.privateKey).toString('base64url')}`;
+}
+function moduleForCase() {
+  const m = { exports: {} }, calls = [];
+  const fetch = async url => {
+    assert.equal(url, 'https://www.googleapis.com/robot/v1/metadata/x509/securetoken@system.gserviceaccount.com');
+    calls.push('cert-fetch-intercepted');
+    return { ok: true, headers: { get: () => 'max-age=3600' }, json: async () => ({ 'synthetic-key': cert }) };
+  };
+  new Function('require', 'exports', 'module', 'process', 'fetch', 'console', code)(require, m.exports, m, { env: { FIREBASE_PROJECT_ID: 'backend-project', FIREBASE_ADMIN_PROJECT_ID: 'backend-project', VITE_FIREBASE_PROJECT_ID: 'web-project' } }, fetch, { warn() {}, error() {} });
+  return { ...m.exports, calls };
+}
+const cases = [
+  { id: 'legacy-backend', project: 'backend-project', expected: true },
+  { id: 'legacy-web-denied', project: 'web-project', expected: false },
+  { id: 'explicit-web', project: 'web-project', projects: ['web-project'], expected: true },
+  { id: 'explicit-backend-denied', project: 'backend-project', projects: ['web-project'], expected: false },
+  { id: 'empty-list-denied', project: 'backend-project', projects: [], expected: false },
+  { id: 'notify-list-backend', project: 'backend-project', projects: ['backend-project', 'web-project'], expected: true },
+  { id: 'notify-list-web', project: 'web-project', projects: ['backend-project', 'web-project'], expected: true },
+  { id: 'notify-list-foreign', project: 'foreign-project', projects: ['backend-project', 'web-project'], expected: false },
+  { id: 'same-uid-foreign', project: 'foreign-project', projects: ['web-project'], expected: false },
+  { id: 'issuer-wrong', project: 'web-project', edits: { iss: 'https://securetoken.google.com/backend-project' } },
+  { id: 'aud-wrong', project: 'web-project', edits: { aud: 'backend-project' } },
+  { id: 'issuer-suffix', project: 'web-project', edits: { iss: 'https://securetoken.google.com/web-project.evil' } },
+  { id: 'aud-array', project: 'web-project', edits: { aud: ['web-project'] } },
+  { id: 'signature-invalid', project: 'web-project', badSignature: true },
+  { id: 'algorithm-invalid', project: 'web-project', header: { alg: 'HS256' } },
+  { id: 'kid-unknown', project: 'web-project', header: { kid: 'missing' } },
+  { id: 'sub-absent', project: 'web-project', edits: { sub: undefined } },
+  { id: 'expired', project: 'web-project', edits: { exp: now - 1 } },
+  { id: 'iat-future', project: 'web-project', edits: { iat: now + 3600 } },
+  ...['exp', 'iat'].flatMap(field => [undefined, 'not-a-number', String(now + (field === 'exp' ? 3600 : -60)), null].map((value, i) => ({ id: `scoped-${field}-invalid-${i}`, project: 'backend-project', projects: ['backend-project'], edits: { [field]: value } })),
+];
+const gateCases = [
+  { id: 'gate-web-owner', project: 'web-project', projects: ['web-project'], expectedStatus: 200, expectedLookups: 1 },
+  { id: 'gate-legacy-owner', project: 'backend-project', expectedStatus: 200, expectedLookups: 1 },
+  { id: 'gate-no-token', noToken: true, expectedStatus: 401, expectedLookups: 0 },
+  { id: 'gate-foreign', project: 'foreign-project', expectedStatus: 401, expectedLookups: 0 },
+  { id: 'gate-no-email', edits: { email: undefined }, expectedStatus: 401, expectedLookups: 0 },
+  { id: 'gate-unverified', edits: { email_verified: false }, expectedStatus: 403, expectedLookups: 0 },
+  { id: 'gate-unverified-missing', edits: { email_verified: undefined }, expectedStatus: 403, expectedLookups: 0 },
+  { id: 'gate-membership-absent', membership: null, expectedStatus: 403, expectedLookups: 1 },
+  { id: 'gate-membership-removed', membership: { role: 'owner', status: 'removed' }, expectedStatus: 403, expectedLookups: 1 },
+  { id: 'gate-membership-pending-preserved', membership: { role: 'owner', status: 'pending' }, expectedStatus: 200, expectedLookups: 1 },
+  { id: 'gate-empty-list', project: 'backend-project', projects: [], expectedStatus: 401, expectedLookups: 0 },
+];
+(async () => {
+  for (const c of cases) {
+    const api = moduleForCase();
+    const projects = Object.hasOwn(c, 'projects') ? c.projects : c.id.startsWith('legacy-') ? undefined : ['web-project'];
+    const accepted = !!(await api.verifyFirebaseIdToken(token(c.project, c.edits, c.header, c.badSignature), projects));
+    check(c.id, accepted, c.expected ?? false);
+    rows.push({ id: c.id, type: 'verify', projects, accepted, expected: c.expected ?? false, certFetches: api.calls.length });
+  }
+  for (const c of gateCases) {
+    const api = moduleForCase(), lookedUp = [];
+    const projects = Object.hasOwn(c, 'projects') ? c.projects : c.id === 'gate-legacy-owner' ? undefined : ['web-project'];
+    let status = 200;
+    const res = { status(x) { status = x; return this; }, json() { return this; } };
+    const membership = Object.hasOwn(c, 'membership') ? c.membership : { role: 'owner', status: 'active' };
+    const result = await api.requireAdminAuth({ headers: c.noToken ? {} : { authorization: 'Bearer ' + token(c.project ?? 'web-project', c.edits) } }, res, async email => { lookedUp.push(email); return membership; }, projects);
+    check(c.id + '/status', status, c.expectedStatus);
+    check(c.id + '/lookup-count', lookedUp.length, c.expectedLookups);
+    check(c.id + '/result', !!result, c.expectedStatus === 200);
+    if (c.expectedLookups && lookedUp.length) check(c.id + '/normalized-email', lookedUp, ['admin@example.invalid']);
+    rows.push({ id: c.id, type: 'gate', projects, status, accepted: !!result, lookedUp, expectedStatus: c.expectedStatus, certFetches: api.calls.length });
+  }
+  const output = { result: failures.length ? 'RED' : 'GREEN', cases: rows.length, checks, failures, rows, sourceSha256: hash(source), instrumentSha256: hash(fs.readFileSync(__filename)), limits: 'Gate y verificador reales transpilados; firma RSA real; fetch de certificados y lookup de membresía interceptados. No acredita wrappers de tenant/rol, registros HTTP, configuración efectiva, Firebase remoto ni UI. No credenciales reales.' };
+  fs.writeFileSync('/salida/RESULTADO.json', JSON.stringify(output, null, 2));
+  console.log(JSON.stringify({ result: output.result, cases: output.cases, checks, failures: failures.length }));
+  process.exitCode = failures.length ? 1 : 0;
+})().catch(error => { console.error(error.stack); process.exitCode = 2; });

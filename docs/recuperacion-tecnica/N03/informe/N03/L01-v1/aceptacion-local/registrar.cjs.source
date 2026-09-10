@@ -1,0 +1,43 @@
+const fs=require('node:fs'),p=require('node:path'),crypto=require('node:crypto'),assert=require('node:assert/strict');const base=__dirname;
+const canon='C:/Users/liama/Desktop/Nichos/recuperacion-tecnica',hub='C:/Users/liama/Desktop/Nichos-hub',template='C:/Users/liama/Desktop/Nichos/Barber-shop-template-main',archive=hub+'/docs/recuperacion-tecnica/N03',impl=p.join(base,'../implementacion-local');
+const hash=b=>crypto.createHash('sha256').update(b).digest('hex'),json=f=>JSON.parse(fs.readFileSync(f,'utf8').replace(/^\uFEFF/,''));
+const write=(f,x)=>{fs.mkdirSync(p.dirname(f),{recursive:true});fs.writeFileSync(f,typeof x==='string'||Buffer.isBuffer(x)?x:JSON.stringify(x,null,2),{flag:'wx'});};
+const walk=d=>fs.readdirSync(d,{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(p.join(d,e.name)):[p.join(d,e.name)]);
+const verification=json(p.join(impl,'CONSERVACION.json')),before=json(p.join(impl,'PRODUCTO-ANTES.json'));
+const current=before.map(f=>{const c=verification.changes.find(c=>c.repo===f.repo&&c.ruta===f.ruta);return {...f,sha256:c?c.after:f.sha256};});
+for(const f of current)assert.equal(hash(fs.readFileSync(p.join(f.repo==='hub'?hub:template,f.ruta))),f.sha256,f.ruta);
+const evidence=json(p.join(impl,'EVIDENCIA.json'));for(const f of evidence)assert.equal(hash(fs.readFileSync(p.join(impl,f.ruta))),f.sha256);
+const oldArchive=json(p.join(impl,'ARCHIVO.json'));for(const f of oldArchive)assert.equal(hash(fs.readFileSync(f.destino)),f.sha256);
+write(p.join(base,'PRODUCTO-ANTES.json'),current);
+write(p.join(base,'REVISION.md'),'# Refutación independiente del balance y siguiente acción\n\nNewton, agente existente refutacion_wnext, lectura acotada de adjudicaciones. Sin BLOCKER. Siete familias residuales válidas al descontar alcances aceptados; no son siete reparaciones demostradas. H07 es recepción, no nueve defectos.\n\nMATERIAL incorporado: SELECTORES v4 es fidelidad preparatoria, no prueba actual del destino efectivo. La propuesta exige observar argumentos/destinos Admin y REST interceptados, distinguir ausencia/vacío/default/rechazo/error y pedir política si destinos diferentes pudieran ser legítimos. No reabrir clientId ni trasladar toda identidad a N04. Cierre futuro sólo subconjunto demostrado y aceptado. No se ejecutó nueva preparación.\n');
+const records=['informe/N03/cierre-sesion-v1/RETOMA.md','informe/N03/reconciliacion-v1/BALANCE.md','informe/N03/reconciliacion-v1/SIGUIENTE-ACCION.md','indice/tareas/N03.md','indice/README.md','indice/CALENDARIO.md'],entries=[];
+for(const rel of records)for(const [kind,root] of [['canonico',canon],['archivo',archive]]){const dest=p.join(root,rel),bytes=fs.readFileSync(dest),backup=p.join(base,'preimagenes',kind,rel);write(backup,bytes);entries.push({rel,root,dest,backup,bytes,before:hash(bytes)});}
+const balance=fs.readFileSync(p.join(base,'BALANCE-NUEVO.md'));
+write(p.join(base,'preimagenes/BALANCE-plantilla.md.source'),balance);
+// Mantener la instantánea legible con enlaces relativos a su ubicación propia.
+fs.writeFileSync(p.join(base,'BALANCE-NUEVO.md'),balance.toString('utf8').replaceAll('](../','](../../'));
+write(p.join(base,'FREEZE.json'),{scope:'Aceptación local L01 y actualización documental de cierre; ningún producto',gates:3,precondiciones:'PASS',producto:current.length,evidencias:evidence.length,fuentes:['ACEPTACION.md','SIGUIENTE-ACCION.md','BALANCE-NUEVO.md'].map(ruta=>({ruta,sha256:hash(fs.readFileSync(p.join(base,ruta)))}))});
+for(const e of entries){
+ let after;
+ if(e.rel.endsWith('/BALANCE.md'))after=balance;
+ else {
+  const link=name=>p.relative(p.dirname(e.dest),p.join(e.root,'informe/N03/L01-v1/aceptacion-local',name)).replaceAll('\\','/');
+  const bal=p.relative(p.dirname(e.dest),p.join(e.root,'informe/N03/reconciliacion-v1/BALANCE.md')).replaceAll('\\','/');
+  const note='**L01 aceptada localmente y descontada en sus dos consumidores.** Precedencia, aplicación de modo e idioma aceptados con límites locales; no se reabre esa conexión. N03 sigue abierta. Balance vigente actualizado desde registros: siete familias residuales, no siete reparaciones confirmadas; L05 y lint aceptados dejan de figurar como impedimentos locales. Única siguiente propuesta: preparar contrato local proyecto/base Admin↔REST general del template, sin ejecutarlo ni modificar producto. Entregas aceptadas intactas. Techo90% TOTAL compartido, observado86%, último10% reservado N04; sin resets/instalaciones/efectos externos/push/deploy. Etapas posteriores y condición por tenant antes del despliegue conservadas. Esta adenda sustituye el pendiente de revisión/descuento L01 y la siguiente acción anterior. [Aceptación]('+link('ACEPTACION.md')+'). [Balance de cierre]('+bal+'). [Única siguiente acción]('+link('SIGUIENTE-ACCION.md')+').';
+  const at=e.bytes.indexOf(10)+1;assert.ok(at>0);after=Buffer.concat([e.bytes.subarray(0,at),Buffer.from('\r\n'+note+'\r\n\r\n'),e.bytes.subarray(at)]);
+ }
+ fs.writeFileSync(e.dest,after);e.after=hash(after);delete e.bytes;delete e.root;
+}
+write(p.join(base,'REGISTROS.json'),entries);
+const hist='historial/2026-09-10-N03-L01-aceptacion-balance.md',h='# N03 — L01 aceptada y balance actualizado\n\nLiam aceptó localmente los dos consumidores L01 y sus límites. Se descuenta sólo esa conexión. [Aceptación](../informe/N03/L01-v1/aceptacion-local/ACEPTACION.md). [Balance vigente](../informe/N03/reconciliacion-v1/BALANCE.md) actualizado por aceptaciones ya registradas, sin investigación nueva: siete familias residuales, ninguna nueva reparación ejecutada. Corte anterior completo conservado en preimágenes.\n\nÚnica siguiente propuesta: contrato local proyecto/base Admin–REST general del template, pendiente autorización. No reabrir clientId ni entregas aceptadas. N03 abierta; techo90%TOTAL, observado86%, último10%N04; sin resets/externos/push/deploy. Etapas posteriores y condición por tenant conservadas.\n';write(p.join(canon,hist),h);write(p.join(archive,hist),h);
+for(const f of current)assert.equal(hash(fs.readFileSync(p.join(f.repo==='hub'?hub:template,f.ruta))),f.sha256);
+for(const e of entries){assert.equal(hash(fs.readFileSync(e.backup)),e.before);assert.equal(hash(fs.readFileSync(e.dest)),e.after);}
+write(p.join(base,'RESULTADO.json'),{result:'GREEN',gates:3,total:3,L01:'aceptada y descontada sólo conexión dos consumidores',N03:'abierta',familiasPendientes:7,siguiente:'Proponer contrato proyecto/base Admin y REST general; no ejecutado',productoConservado:current.length,evidenciasConservadas:evidence.length,archivoAnteriorConservado:oldArchive.length,registros:entries.length,blockersRegistro:[],presupuesto:{observado:86,techo:90,reservaN04:10,resets:0}});
+write(p.join(base,'EVIDENCIA.json'),walk(base).map(f=>({ruta:p.relative(base,f).replaceAll('\\','/'),sha256:hash(fs.readFileSync(f))})));
+const destBase=p.join(archive,'informe/N03/L01-v1/aceptacion-local'),copies=[];
+for(const f of walk(base)){const dest=p.join(destBase,p.relative(base,f))+(p.extname(f)==='.cjs'?'.source':'');const bytes=fs.readFileSync(f);write(dest,bytes);assert.equal(hash(fs.readFileSync(dest)),hash(bytes));copies.push({origen:f,destino:dest,sha256:hash(bytes)});}
+write(p.join(base,'ARCHIVO.json'),copies);write(p.join(destBase,'ARCHIVO.json'),copies);
+const checkLinks=file=>{for(const m of fs.readFileSync(file,'utf8').matchAll(/\]\(([^)]+)\)/g)){if(m[1].includes('://'))continue;assert.ok(fs.existsSync(p.resolve(p.dirname(file),m[1])),file+' '+m[1]);}};
+for(const file of ['ACEPTACION.md','SIGUIENTE-ACCION.md','BALANCE-NUEVO.md']){checkLinks(p.join(base,file));checkLinks(p.join(destBase,file));}
+checkLinks(p.join(canon,'informe/N03/reconciliacion-v1/BALANCE.md'));checkLinks(p.join(archive,'informe/N03/reconciliacion-v1/BALANCE.md'));
+console.log(JSON.stringify({result:'PASS',registros:entries.length,archivados:copies.length,productoConservado:current.length,familiasPendientes:7,enlaces:'PASS'}));

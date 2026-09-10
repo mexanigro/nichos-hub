@@ -1,0 +1,12 @@
+[
+  {
+    "ruta": "server.ts",
+    "before": "48a5d4a415c704d1f7c5ff609d96c4e214d107fa0020b0c5d7d30d51ac84e80f",
+    "after": "be332adef08b5a082f25fb1f332b57ab6d0cdc34dc68fcfff469dfe4407e23ad"
+  },
+  {
+    "ruta": "api/index.ts",
+    "before": "1dbc951f710e2f3e586247faf79ae65d76714eb52fcf768001d929a8521a646f",
+    "after": "3f033ddb5dd6f74d27b94e10fd662244fee5a73c7f56c07e2542707e0f2e2588"
+  }
+]

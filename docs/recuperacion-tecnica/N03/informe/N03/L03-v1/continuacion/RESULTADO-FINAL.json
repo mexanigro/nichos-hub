@@ -1,0 +1,18 @@
+{
+  "result": "GREEN_PREPARACION",
+  "gates": 4,
+  "total": 4,
+  "srcPreservados": 285,
+  "L03Descontada": false,
+  "productoModificado": false,
+  "N03": "ABIERTA",
+  "consumo": 84,
+  "techo": 85,
+  "resets": 0,
+  "matriz": 108,
+  "sensibilidad": 2,
+  "invariancia": 2,
+  "ui": 9,
+  "blockers": [],
+  "remaining": "Revisión de la propuesta; implementación no autorizada"
+}

@@ -1,0 +1,10 @@
+{
+  "utc": "2026-09-10T08:13:30.969Z",
+  "result": "PASS",
+  "before": "554a215376a026148100442da459a2b4cf3b57ab7a3167ecc1deed1b71a27c57",
+  "after": "50617ec18ff67ebe93f9b100e5e7926f3a44e749c55f61ba2c65b38266e9a8f8",
+  "prefixBytes": 54152,
+  "suffixBytes": 44618,
+  "bytesOutsideChangeEqual": true,
+  "mutation": "Restaurar tres ToggleField manteniendo la nota; copia aislada, producto final intacto"
+}

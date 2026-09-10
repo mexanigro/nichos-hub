@@ -1,0 +1,18 @@
+const fs=require('fs'),path=require('path'),crypto=require('crypto'),{createRequire}=require('module');
+const template='C:/Users/liama/Desktop/Nichos/Barber-shop-template-main',hub='C:/Users/liama/Desktop/Nichos-hub',req=createRequire(template+'/package.json'),ts=req('typescript');
+const hash=x=>crypto.createHash('sha256').update(x).digest('hex'),root=path.dirname(__dirname);
+function parse(file){const text=fs.readFileSync(file,'utf8'),ast=ts.createSourceFile(file,text,ts.ScriptTarget.Latest,true,file.endsWith('tsx')?ts.ScriptKind.TSX:ts.ScriptKind.TS);return {text,ast}}
+function calls(file){const {ast}=parse(file),out=[];function walk(n){if(ts.isCallExpression(n)&&ts.isPropertyAccessExpression(n.expression)&&n.expression.expression.getText(ast)==='app'&&['get','post','put','delete','patch','use','all'].includes(n.expression.name.text))out.push({method:n.expression.name.text,route:ts.isStringLiteral(n.arguments[0])?n.arguments[0].text:null,text:n.getText(ast),node:n});ts.forEachChild(n,walk)}walk(ast);return out}
+const comparison=[];
+for(const [runtime,snapshot] of [['server.ts','server.ts'],['api/index.ts','api.ts']]){
+ const before=calls(__dirname+'/preimagenes/'+snapshot),after=calls(template+'/'+runtime);
+ const filtered=x=>x.filter(c=>c.route!=='/api/create-checkout-session').map(({node,...rest})=>({...rest,sha256:hash(rest.text)}));
+ const a=filtered(before),b=filtered(after);comparison.push({runtime,allNonCheckoutRegistrationsEqual:JSON.stringify(a)===JSON.stringify(b),countBefore:a.length,countAfter:b.length,registrations:a.map(({text,...x},i)=>({...x,actualSha256:b[i]?.sha256,equal:x.sha256===b[i]?.sha256}))});
+}
+const oldCalls=calls(root+'/preimagenes/checkout/server.ts'),old=oldCalls.find(x=>x.route==='/api/create-checkout-session').node.arguments[1].body.getText();
+const shared=parse(template+'/src/lib/api/checkout-handler.ts');let body;function walk(n){if(ts.isReturnStatement(n)&&n.expression&&ts.isArrowFunction(n.expression))body=n.expression.body.getText(shared.ast);ts.forEachChild(n,walk)}walk(shared.ast);
+const norm=s=>s.replace(/\r\n/g,'\n');
+const oldCallbackEquivalent=norm(old)===norm(body.replace('const baseUrl = getBaseUrl();','const baseUrl = process.env.APP_URL || `http://localhost:${port}`;'));
+const files=[template+'/server.ts',template+'/api/index.ts',template+'/src/lib/api/checkout-handler.ts',template+'/src/config/site.ts',hub+'/src/components/client-language-banner.tsx',template+'/vercel.json',template+'/src/lib/api/booking-validation.ts'];
+const result={at:new Date().toISOString(),comparison,checkoutBasalBodyEqualExceptInjectedBaseUrl:oldCallbackEquivalent,files:files.map(file=>({file,sha256:hash(fs.readFileSync(file))})),limits:'Lectura AST/hashes; no suites ni import runtime. Comparación de registros y cuerpos no certifica proveedor/plataforma.'};
+fs.writeFileSync(__dirname+'/REVISION-CAMBIOS-HASHES.json',JSON.stringify(result,null,2));console.log(JSON.stringify({nonCheckout:comparison.map(x=>({runtime:x.runtime,equal:x.allNonCheckoutRegistrationsEqual,count:x.countAfter})),checkoutBody:oldCallbackEquivalent}));

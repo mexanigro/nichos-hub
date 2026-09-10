@@ -1,0 +1,29 @@
+{
+  "inicio": {
+    "usedPercent": 80,
+    "techoTotalN03": 85,
+    "resetsConsumidos": 0
+  },
+  "checkpoints": [
+    {
+      "gate": "P0",
+      "usedPercent": 80
+    },
+    {
+      "gate": "P1",
+      "usedPercent": 80
+    },
+    {
+      "gate": "P2",
+      "usedPercent": 80
+    }
+  ],
+  "cierre": {
+    "observadoEn": "cierre-comparacion",
+    "usedPercent": 80,
+    "windowDurationMins": 10080,
+    "resetsAt": 1789454383,
+    "techoTotalN03": 85,
+    "resetsConsumidos": 0
+  }
+}

@@ -1,0 +1,9 @@
+AssertionError [ERR_ASSERTION]: limite11 response resubmit
++ actual - expected
+
++ undefined
+- false
+
+    at equal (/control/sondeo.cjs:15:51)
+    at run (/control/sondeo.cjs:126:5)
+    at async main (/control/sondeo.cjs:153:14)

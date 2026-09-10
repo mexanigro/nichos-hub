@@ -1,0 +1,137 @@
+{
+  "checks": 34,
+  "failures": [],
+  "rows": [
+    {
+      "ops": [
+        [
+          "txget",
+          "[\"backend-project\",\"backend-db\",\"daily_manifests/tenant-local_staff_2026-10-10\"]"
+        ],
+        [
+          "txset",
+          "[\"backend-project\",\"backend-db\",\"appointments/WdUocdPldwCS5OVX7X6y\"]"
+        ],
+        [
+          "txset",
+          "[\"backend-project\",\"backend-db\",\"daily_manifests/tenant-local_staff_2026-10-10\"]"
+        ],
+        [
+          "query",
+          {
+            "project": "backend-project",
+            "database": "backend-db"
+          },
+          "customers",
+          [
+            {
+              "field": "clientId",
+              "op": "EQUAL",
+              "value": "tenant-local"
+            },
+            {
+              "field": "email",
+              "op": "EQUAL",
+              "value": "a@example.invalid"
+            }
+          ],
+          [],
+          1
+        ],
+        [
+          "query",
+          {
+            "project": "backend-project",
+            "database": "backend-db"
+          },
+          "appointments",
+          [
+            {
+              "field": "clientId",
+              "op": "EQUAL",
+              "value": "tenant-local"
+            }
+          ],
+          [],
+          null
+        ],
+        [
+          "query",
+          {
+            "project": "backend-project",
+            "database": "backend-db"
+          },
+          "appointments",
+          [],
+          [],
+          null
+        ],
+        [
+          "query",
+          {
+            "project": "backend-project",
+            "database": "backend-db"
+          },
+          "appointments",
+          [
+            {
+              "field": "clientId",
+              "op": "EQUAL",
+              "value": "tenant-local"
+            }
+          ],
+          [
+            {
+              "field": "createdAt",
+              "direction": "DESCENDING"
+            }
+          ],
+          500
+        ],
+        [
+          "get",
+          "[\"backend-project\",\"backend-db\",\"appointments/WdUocdPldwCS5OVX7X6y\"]"
+        ],
+        [
+          "update",
+          "[\"backend-project\",\"backend-db\",\"appointments/WdUocdPldwCS5OVX7X6y\"]",
+          {
+            "status": "cancelled"
+          }
+        ],
+        [
+          "txget",
+          "[\"backend-project\",\"backend-db\",\"daily_manifests/tenant-local_staff_2026-10-10\"]"
+        ],
+        [
+          "txupdate",
+          "[\"backend-project\",\"backend-db\",\"daily_manifests/tenant-local_staff_2026-10-10\"]",
+          {
+            "intervals": []
+          }
+        ],
+        [
+          "get",
+          "[\"backend-project\",\"backend-db\",\"appointments/WdUocdPldwCS5OVX7X6y\"]"
+        ],
+        [
+          "update",
+          "[\"backend-project\",\"backend-db\",\"appointments/WdUocdPldwCS5OVX7X6y\"]",
+          {
+            "date": "2026-10-11",
+            "time": "11:00"
+          }
+        ],
+        [
+          "get",
+          "[\"backend-project\",\"backend-db\",\"appointments/other\"]"
+        ],
+        [
+          "get",
+          "[\"backend-project\",\"backend-db\",\"appointments/missing\"]"
+        ]
+      ]
+    }
+  ],
+  "scope": "Book real+Admin refs reales; transporte/persistencia interceptados. No prueba auth real ni UI en este archivo."
+}

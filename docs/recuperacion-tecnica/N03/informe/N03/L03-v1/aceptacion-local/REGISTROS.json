@@ -1,0 +1,98 @@
+[
+  {
+    "rel": "informe/N03/cierre-sesion-v1/RETOMA.md",
+    "kind": "canonico",
+    "dest": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\cierre-sesion-v1\\RETOMA.md",
+    "backup": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L03-v1\\aceptacion-local\\preimagenes\\registros\\canonico\\informe\\N03\\cierre-sesion-v1\\RETOMA.md",
+    "before": "46fdd515c77af42281191b906c8c2377849c10767240634f0c2475e03d625b10",
+    "after": "24bc9c6fdf83134b0cf9a591fa2d3d33d3ad13f7c923e0c16c151445095b0154"
+  },
+  {
+    "rel": "informe/N03/cierre-sesion-v1/RETOMA.md",
+    "kind": "archivo",
+    "dest": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\cierre-sesion-v1\\RETOMA.md",
+    "backup": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L03-v1\\aceptacion-local\\preimagenes\\registros\\archivo\\informe\\N03\\cierre-sesion-v1\\RETOMA.md",
+    "before": "46fdd515c77af42281191b906c8c2377849c10767240634f0c2475e03d625b10",
+    "after": "24bc9c6fdf83134b0cf9a591fa2d3d33d3ad13f7c923e0c16c151445095b0154"
+  },
+  {
+    "rel": "informe/N03/reconciliacion-v1/BALANCE.md",
+    "kind": "canonico",
+    "dest": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\BALANCE.md",
+    "backup": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L03-v1\\aceptacion-local\\preimagenes\\registros\\canonico\\informe\\N03\\reconciliacion-v1\\BALANCE.md",
+    "before": "9e638a10ad1c2c806c8073ee45a33e19d3dfa5064cac1e63ace85683d243f06b",
+    "after": "e3c90e4372a1ad717237a5320249da6cfe634e2a3600d4ff925bf899411b33cd"
+  },
+  {
+    "rel": "informe/N03/reconciliacion-v1/BALANCE.md",
+    "kind": "archivo",
+    "dest": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\BALANCE.md",
+    "backup": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L03-v1\\aceptacion-local\\preimagenes\\registros\\archivo\\informe\\N03\\reconciliacion-v1\\BALANCE.md",
+    "before": "9e638a10ad1c2c806c8073ee45a33e19d3dfa5064cac1e63ace85683d243f06b",
+    "after": "e3c90e4372a1ad717237a5320249da6cfe634e2a3600d4ff925bf899411b33cd"
+  },
+  {
+    "rel": "informe/N03/reconciliacion-v1/SIGUIENTE-ACCION.md",
+    "kind": "canonico",
+    "dest": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\SIGUIENTE-ACCION.md",
+    "backup": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L03-v1\\aceptacion-local\\preimagenes\\registros\\canonico\\informe\\N03\\reconciliacion-v1\\SIGUIENTE-ACCION.md",
+    "before": "b4790647de5827dc465c2896e61e9a2e9104b08377e2db229df50610a79ae7f7",
+    "after": "a9969ac1bbc7850d24f4d5e7b86a0907680507833b51942913b499f0eced6ea1"
+  },
+  {
+    "rel": "informe/N03/reconciliacion-v1/SIGUIENTE-ACCION.md",
+    "kind": "archivo",
+    "dest": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\SIGUIENTE-ACCION.md",
+    "backup": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L03-v1\\aceptacion-local\\preimagenes\\registros\\archivo\\informe\\N03\\reconciliacion-v1\\SIGUIENTE-ACCION.md",
+    "before": "b4790647de5827dc465c2896e61e9a2e9104b08377e2db229df50610a79ae7f7",
+    "after": "a9969ac1bbc7850d24f4d5e7b86a0907680507833b51942913b499f0eced6ea1"
+  },
+  {
+    "rel": "indice/tareas/N03.md",
+    "kind": "canonico",
+    "dest": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\indice\\tareas\\N03.md",
+    "backup": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L03-v1\\aceptacion-local\\preimagenes\\registros\\canonico\\indice\\tareas\\N03.md",
+    "before": "362300dd33df65070ffac7c21b16f1827bbef84fa12a9e3c7a335af642e33bff",
+    "after": "85fe9262ecb7edfd18c482ee72cee86978d822b8e5929e4faa6dc5f182a47e77"
+  },
+  {
+    "rel": "indice/tareas/N03.md",
+    "kind": "archivo",
+    "dest": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\indice\\tareas\\N03.md",
+    "backup": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L03-v1\\aceptacion-local\\preimagenes\\registros\\archivo\\indice\\tareas\\N03.md",
+    "before": "362300dd33df65070ffac7c21b16f1827bbef84fa12a9e3c7a335af642e33bff",
+    "after": "85fe9262ecb7edfd18c482ee72cee86978d822b8e5929e4faa6dc5f182a47e77"
+  },
+  {
+    "rel": "indice/README.md",
+    "kind": "canonico",
+    "dest": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\indice\\README.md",
+    "backup": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L03-v1\\aceptacion-local\\preimagenes\\registros\\canonico\\indice\\README.md",
+    "before": "edf49bc64cee093b14a0598f9a51e93372a167a2d7f37828043c53cc0f6f6e08",
+    "after": "fb25b06805f166a9ba2b4097592aaf79392539e5a954bb3182c244335001a0ed"
+  },
+  {
+    "rel": "indice/README.md",
+    "kind": "archivo",
+    "dest": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\indice\\README.md",
+    "backup": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L03-v1\\aceptacion-local\\preimagenes\\registros\\archivo\\indice\\README.md",
+    "before": "edf49bc64cee093b14a0598f9a51e93372a167a2d7f37828043c53cc0f6f6e08",
+    "after": "fb25b06805f166a9ba2b4097592aaf79392539e5a954bb3182c244335001a0ed"
+  },
+  {
+    "rel": "indice/CALENDARIO.md",
+    "kind": "canonico",
+    "dest": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\indice\\CALENDARIO.md",
+    "backup": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L03-v1\\aceptacion-local\\preimagenes\\registros\\canonico\\indice\\CALENDARIO.md",
+    "before": "82b8639add1c86f993729e703ce82ccff0178a42ddda0a3ac4bc12b99ac59022",
+    "after": "fc9300ef8de6fbf247831b81a4582eda2efd4ce7532d6fa7b495d9f80bf750b2"
+  },
+  {
+    "rel": "indice/CALENDARIO.md",
+    "kind": "archivo",
+    "dest": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\indice\\CALENDARIO.md",
+    "backup": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L03-v1\\aceptacion-local\\preimagenes\\registros\\archivo\\indice\\CALENDARIO.md",
+    "before": "82b8639add1c86f993729e703ce82ccff0178a42ddda0a3ac4bc12b99ac59022",
+    "after": "fc9300ef8de6fbf247831b81a4582eda2efd4ce7532d6fa7b495d9f80bf750b2"
+  }
+]

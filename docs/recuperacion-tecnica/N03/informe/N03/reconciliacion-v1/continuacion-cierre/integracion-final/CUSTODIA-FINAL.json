@@ -1,0 +1,812 @@
+{
+  "files": 134,
+  "rows": [
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\credencial\\reparacion\\contrato.cjs",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\credencial\\reparacion\\contrato.cjs.source",
+      "bytes": 8807,
+      "sha256": "8b9872fd89f6796d707c282db3591cbd0d592dc1bdc6571c0557492b4ba0b0da"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\credencial\\reparacion\\contrato.cjs.pre-integracion-final.source",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\credencial\\reparacion\\contrato.cjs.pre-integracion-final.source",
+      "bytes": 8772,
+      "sha256": "1f45338e1b334fb371fed4f345e2f80d4abe65f9f3ae424c6144f33336ab6627"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\credencial\\reparacion\\resultados\\integracion-final\\CONTRATO.json",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\credencial\\reparacion\\resultados\\integracion-final\\CONTRATO.json",
+      "bytes": 13341,
+      "sha256": "9f25dd8a672244160fc267412c6a64368f792a3ff58aa3a05f98a183e677e265"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\credencial\\reparacion\\resultados\\integracion-final\\COMANDO.json",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\credencial\\reparacion\\resultados\\integracion-final\\COMANDO.json",
+      "bytes": 1029,
+      "sha256": "d3e4c9f61ca4ace2e676cdc0ddc3c6bd77acd3c63e1d279130a73f80c3cd9656"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\credencial\\reparacion\\resultados\\integracion-final\\ejecucion.log",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\credencial\\reparacion\\resultados\\integracion-final\\ejecucion.log",
+      "bytes": 56,
+      "sha256": "7c1dd14c146ff9000fd963e47b9debc7d1792ed4521e650235534830277a6451"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\credencial\\reparacion\\resultados\\integracion-final\\exit.txt",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\credencial\\reparacion\\resultados\\integracion-final\\exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\ACTA-RED-RETOMA.md",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\ACTA-RED-RETOMA.md",
+      "bytes": 10414,
+      "sha256": "a90117bccf57bf1217654f4349bf324359e722de13f209ca8f69709da9ca4ede"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\ACTA-REVISION-FINAL.md",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\ACTA-REVISION-FINAL.md",
+      "bytes": 6485,
+      "sha256": "80171844cb334a63bebd39362bcbaa36d2ad15b77e670a89b69dfade1d5ebcfa"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\aplicar-consumidores.cjs",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\aplicar-consumidores.cjs.source",
+      "bytes": 749,
+      "sha256": "c6315f217cb803a0e61f800a894b002153ecb7898779b47d0a85791fe1066683"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\aplicar-runtime.cjs",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\aplicar-runtime.cjs.source",
+      "bytes": 3316,
+      "sha256": "de9aded5dd8cb3d7e8dbe70f45d49a912bf373797190233a93d75acaa285be34"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\aplicar-ui.cjs",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\aplicar-ui.cjs.source",
+      "bytes": 3383,
+      "sha256": "ce57168c9d41cf7f99745d0f21cd8e352d4649e5ada7953480d34116c1f77f80"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\archivar.cjs",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\archivar.cjs.source",
+      "bytes": 2470,
+      "sha256": "bddfd5971ce62ded2a114a0e05ea93fc0ff563a148664efcb0286057ce8a6a6b"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\CONSERVACION-FINAL.json",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\CONSERVACION-FINAL.json",
+      "bytes": 1937,
+      "sha256": "8fabb231f74270beb7a3a6f7f595185ae0e6c93944c3463ef3abdb47bcf20197"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\conservacion.cjs",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\conservacion.cjs.source",
+      "bytes": 2927,
+      "sha256": "6de4b761b45f7d949fa600b4d4c9792d7043dd9042f15c2f6f42d57ff720bb3b"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\CONSUMIDORES-FREEZE.json",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\CONSUMIDORES-FREEZE.json",
+      "bytes": 277,
+      "sha256": "bbddc901992220f94bf9db0d7044e5ba08200a501015e3cb816a68344fcdf9ad"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\consumidores-state.cjs",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\consumidores-state.cjs.source",
+      "bytes": 3516,
+      "sha256": "445bba81e892033ae70b93a930ecefa5c434b335c641f76d16e1591189c71c14"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\CONTRATO-pre-cred-error.md",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\CONTRATO-pre-cred-error.md",
+      "bytes": 3104,
+      "sha256": "a14104cda5ee0f0fde0422ff6e614d44ab595dfcc6abc1d39682b40f7e19e03e"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\CONTRATO-pre-precio-provider.md",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\CONTRATO-pre-precio-provider.md",
+      "bytes": 1860,
+      "sha256": "14ad21e9a3177a9f98c9ffa2839957e6cf1df6dd7eb0d8acc028de8b32138d10"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\CONTRATO.md",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\CONTRATO.md",
+      "bytes": 3557,
+      "sha256": "b7e60d5920a19d0a672be30d98700e83149d8e0bd8d95190b54b88be96c0e3e0"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\ejecutar.ps1",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\ejecutar.ps1.source",
+      "bytes": 1307,
+      "sha256": "ff8773ac180b59d66641de23f25489548756546dc30652cdc29c9e30f56055fb"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\FREEZE-r2.json",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\FREEZE-r2.json",
+      "bytes": 838,
+      "sha256": "3c70f670ec7c07ccf270f6a411d4f8ecaec715ed455abdcc2993ab4c1737c40c"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\FREEZE-r3.json",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\FREEZE-r3.json",
+      "bytes": 838,
+      "sha256": "735d2b94ecd8fa5148942c742dd72cfe0d15bdb1cebd08197632e2bc0cf6377e"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\FREEZE-UI.json",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\FREEZE-UI.json",
+      "bytes": 913,
+      "sha256": "807f7adc4eaa974c83a09212f069ba71c58e3cc52f3f125b5e2233263dd2273c"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\FREEZE.json",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\FREEZE.json",
+      "bytes": 838,
+      "sha256": "a6d2ab61b548cdb01ea27d0c12cf7c0813b74dd5d99283692255ad3c09759e36"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\lint-comparativo.cjs",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\lint-comparativo.cjs.source",
+      "bytes": 1187,
+      "sha256": "0f6be577775b8ecd5faf48c0ac7238e051739b57793811ec2ecaee30dd2bc8f1"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\lint-comparativo.exit",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\lint-comparativo.exit",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\LINT-COMPARATIVO.json",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\LINT-COMPARATIVO.json",
+      "bytes": 50609,
+      "sha256": "13a730d4184a977e8ed22cf0f95ff16b2b3659296a4ae8e4bae6eb9815f2667d"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\lint-comparativo.log",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\lint-comparativo.log",
+      "bytes": 2434,
+      "sha256": "41c7ef692d6faebcdbcb3263bcbcfe679794844996a5a96312a3723e09fd9cdd"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\lint-hub.exit",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\lint-hub.exit",
+      "bytes": 3,
+      "sha256": "df4e26a04a444901b95afef44e4a96cfae34690fff2ad2c66389c70079cdff2b"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\lint-hub.json",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\lint-hub.json",
+      "bytes": 518,
+      "sha256": "d0c941d2842a6e9bc845643f08bf0196a1dce4e474f3cea11aecacf784e85993"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\pipeline-pre-cred-error.cjs",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\pipeline-pre-cred-error.cjs.source",
+      "bytes": 19757,
+      "sha256": "9c2bea556193fff3c6b873352f3ffebf8d16643af0221139cc70ee9c2073ab66"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\pipeline-pre-ejecucion.cjs",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\pipeline-pre-ejecucion.cjs.source",
+      "bytes": 16720,
+      "sha256": "a348a15ef5d883899a948d575334615e4d0fc66690a43757d7b22bb46862d2e3"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\pipeline-pre-precio-provider.cjs",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\pipeline-pre-precio-provider.cjs.source",
+      "bytes": 16966,
+      "sha256": "a1362db36a5224e0dfe3f9b019f53fcf2b5f213cec6ff58e6acbf2ab1e0c0f19"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\pipeline.cjs",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\pipeline.cjs.source",
+      "bytes": 19975,
+      "sha256": "fb30200354e46711e85d3bb67abb164080c8722e468816946e590ef81322ef65"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes\\api__index.ts",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes\\api__index.ts.source",
+      "bytes": 231195,
+      "sha256": "4a0f38b03787d4f118efa70272b967d0a9d1154d22a4203bf90ff3b8a29db8a1"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes\\server.ts",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes\\server.ts.source",
+      "bytes": 172981,
+      "sha256": "3eb84deaad9fdba429cdb746ad015a3798890cd68b0dbde80683471e10424f04"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes\\src__lib__admin-users.ts",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes\\src__lib__admin-users.ts.source",
+      "bytes": 2651,
+      "sha256": "bf20aeae951907d691f87b983de0ce21a81613b3becc2a9cace43fc5f9cab47a"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes\\src__lib__api__admin-auth.ts",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes\\src__lib__api__admin-auth.ts.source",
+      "bytes": 6843,
+      "sha256": "184996449b94d762f30b9bfabc7c829fa00413e3fda53e712bf4500d461f0ec2"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes\\src__lib__api__booking-handler.ts",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes\\src__lib__api__booking-handler.ts.source",
+      "bytes": 4088,
+      "sha256": "d7bff4865597d29a48cf765c464d579faf38ed24b9f09405415c24ec9bf2dd33"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes\\src__lib__api__booking-validation.ts",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes\\src__lib__api__booking-validation.ts.source",
+      "bytes": 5302,
+      "sha256": "456f7f8a9ebe4015e19eac8246a2ddaada68d1ab0fe4c23949c640e9a71b934e"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes\\src__lib__api__checkout-handler.ts",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes\\src__lib__api__checkout-handler.ts.source",
+      "bytes": 5246,
+      "sha256": "e0152c73362a8e26573c16730bddf85ed7811102b32726bb07cb4556606befe3"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes\\src__lib__api__crm-appointments-handler.ts",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes\\src__lib__api__crm-appointments-handler.ts.source",
+      "bytes": 4561,
+      "sha256": "e48a9ee4048c118a064cbff460fbf4e0668763691c9de41c34e9d15f3a915e4f"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes\\src__lib__api__payment-gateways.ts",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes\\src__lib__api__payment-gateways.ts.source",
+      "bytes": 10102,
+      "sha256": "4ffc8c45203d87b5b8f1ce6a803adaf7b8353115820e18cd137511e7c664c261"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes\\src__lib__api__tenant-access.ts",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes\\src__lib__api__tenant-access.ts.source",
+      "bytes": 2356,
+      "sha256": "98e914224316040091677e4ebbb3b0811cedb4bd671f3cf49477bbe2767faecc"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes-espejo\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\credencial\\reparacion\\contrato.cjs.source",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes-espejo\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\credencial\\reparacion\\contrato.cjs.source",
+      "bytes": 8772,
+      "sha256": "1f45338e1b334fb371fed4f345e2f80d4abe65f9f3ae424c6144f33336ab6627"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes-registros\\0\\indice\\CALENDARIO.md",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes-registros\\0\\indice\\CALENDARIO.md",
+      "bytes": 39924,
+      "sha256": "4ad41636f66da5b67444a83b51eda0495064be66b648c1c514d10eba008f2980"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes-registros\\0\\indice\\README.md",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes-registros\\0\\indice\\README.md",
+      "bytes": 42568,
+      "sha256": "0b4da9d0965c169e8e00823f2fb6a14670035d53951cce80d1bba0bed62adc64"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes-registros\\0\\indice\\tareas\\N03.md",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes-registros\\0\\indice\\tareas\\N03.md",
+      "bytes": 46078,
+      "sha256": "ec74a0362cb719765ada1c4c5bd0cd7895be50680d3aeb5048819447097d4b9f"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes-registros\\0\\informe\\N03\\cierre-sesion-v1\\RETOMA.md",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes-registros\\0\\informe\\N03\\cierre-sesion-v1\\RETOMA.md",
+      "bytes": 28170,
+      "sha256": "3220cb1f9ce3e7071d863212a3e22fc2e3c5526eaa4668221524aba30e731f35"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes-registros\\0\\informe\\N03\\reconciliacion-v1\\BALANCE.md",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes-registros\\0\\informe\\N03\\reconciliacion-v1\\BALANCE.md",
+      "bytes": 11893,
+      "sha256": "dd7ed289103babb8c7abc2b4c5e7c344674bfd3d8e76238b7bf8ba8db224c64c"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes-registros\\0\\informe\\N03\\reconciliacion-v1\\SIGUIENTE-ACCION.md",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes-registros\\0\\informe\\N03\\reconciliacion-v1\\SIGUIENTE-ACCION.md",
+      "bytes": 20283,
+      "sha256": "b39a602a953a93a3dd48f0350f167e23d7de6fdc50f0f1dd2367f74fb1142702"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes-registros\\1\\indice\\CALENDARIO.md",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes-registros\\1\\indice\\CALENDARIO.md",
+      "bytes": 39924,
+      "sha256": "4ad41636f66da5b67444a83b51eda0495064be66b648c1c514d10eba008f2980"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes-registros\\1\\indice\\README.md",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes-registros\\1\\indice\\README.md",
+      "bytes": 42568,
+      "sha256": "0b4da9d0965c169e8e00823f2fb6a14670035d53951cce80d1bba0bed62adc64"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes-registros\\1\\indice\\tareas\\N03.md",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes-registros\\1\\indice\\tareas\\N03.md",
+      "bytes": 46078,
+      "sha256": "ec74a0362cb719765ada1c4c5bd0cd7895be50680d3aeb5048819447097d4b9f"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes-registros\\1\\informe\\N03\\cierre-sesion-v1\\RETOMA.md",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes-registros\\1\\informe\\N03\\cierre-sesion-v1\\RETOMA.md",
+      "bytes": 28170,
+      "sha256": "3220cb1f9ce3e7071d863212a3e22fc2e3c5526eaa4668221524aba30e731f35"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes-registros\\1\\informe\\N03\\reconciliacion-v1\\BALANCE.md",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes-registros\\1\\informe\\N03\\reconciliacion-v1\\BALANCE.md",
+      "bytes": 11893,
+      "sha256": "dd7ed289103babb8c7abc2b4c5e7c344674bfd3d8e76238b7bf8ba8db224c64c"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes-registros\\1\\informe\\N03\\reconciliacion-v1\\SIGUIENTE-ACCION.md",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes-registros\\1\\informe\\N03\\reconciliacion-v1\\SIGUIENTE-ACCION.md",
+      "bytes": 20283,
+      "sha256": "b39a602a953a93a3dd48f0350f167e23d7de6fdc50f0f1dd2367f74fb1142702"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes-ui\\ACTA-RED-antes-precision-mutante.md",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes-ui\\ACTA-RED-antes-precision-mutante.md",
+      "bytes": 10381,
+      "sha256": "65aa685b0c2ab495f1d3cf8be4ea1eac4d02d8a38f80bee58f38c0aa0f0432a5"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes-ui\\api-index.ts-antes-consumidores.source",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes-ui\\api-index.ts-antes-consumidores.source",
+      "bytes": 226206,
+      "sha256": "281dd24d649af2c1afd3e98f5e90381f18c841810c7374df146d5988145cead4"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes-ui\\api-index.ts.source",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes-ui\\api-index.ts.source",
+      "bytes": 231195,
+      "sha256": "4a0f38b03787d4f118efa70272b967d0a9d1154d22a4203bf90ff3b8a29db8a1"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes-ui\\editor.source",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes-ui\\editor.source",
+      "bytes": 22685,
+      "sha256": "0c51aa1e972caad11c18a4ac2e07b1ece81c55ab8a06ad801bd2670df0f4ad37"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes-ui\\gateway.source",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes-ui\\gateway.source",
+      "bytes": 10102,
+      "sha256": "4ffc8c45203d87b5b8f1ce6a803adaf7b8353115820e18cd137511e7c664c261"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes-ui\\server.ts-antes-consumidores.source",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes-ui\\server.ts-antes-consumidores.source",
+      "bytes": 172313,
+      "sha256": "ef6d90b25f61a9bf247271426ace4db1c0c5ba70e87e76ac5f5d5228188c7e38"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes-ui\\server.ts.source",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes-ui\\server.ts.source",
+      "bytes": 172981,
+      "sha256": "3eb84deaad9fdba429cdb746ad015a3798890cd68b0dbde80683471e10424f04"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes-ui\\wizard-antes-manual.source",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes-ui\\wizard-antes-manual.source",
+      "bytes": 45580,
+      "sha256": "f5e15f24627123e1424294fb64e53514263720fb783c59b9c335fd3190256354"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes-ui\\wizard-antes-tipos.source",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes-ui\\wizard-antes-tipos.source",
+      "bytes": 45620,
+      "sha256": "b1753c4f67942f5208b148f84fad7fc6f6b9367ce21f09a8aec979b69519dccf"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes-ui\\wizard.source",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\preimagenes-ui\\wizard.source",
+      "bytes": 45962,
+      "sha256": "389b6a3ec0b9719f967c3f7ca268e5a3943378133c52f3e9bf874f21d1b253fa"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\PREIMAGENES.json",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\PREIMAGENES.json",
+      "bytes": 1605,
+      "sha256": "792e7c168de2172a861b957ce1f3f8990c634e6b6fcbbef7a27304a8fec2e3bd"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\producto-final\\hub\\payment-provider-editor.tsx.source",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\producto-final\\hub\\payment-provider-editor.tsx.source",
+      "bytes": 22410,
+      "sha256": "a69a831e7664867aff4f30e7456176e143565c681bb6dd75cbde94b872fee373"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\producto-final\\template\\api\\index.ts.source",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\producto-final\\template\\api\\index.ts.source",
+      "bytes": 226520,
+      "sha256": "0a99770d92a97df9de7c37a22f6c8591f954678ac3e530d8bc55ba6ec1218809"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\producto-final\\template\\server.ts.source",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\producto-final\\template\\server.ts.source",
+      "bytes": 172470,
+      "sha256": "4e5e1167cae282878b6cfc590a6e01675fedf3776487df0be577ccca20171f1d"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\producto-final\\template\\src\\components\\admin\\AdminDashboard.tsx.source",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\producto-final\\template\\src\\components\\admin\\AdminDashboard.tsx.source",
+      "bytes": 72371,
+      "sha256": "e636d0556110405985e3df10903eeed8165cad95ac78291886bbb0d22099e637"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\producto-final\\template\\src\\components\\admin\\AppointmentCalendar.tsx.source",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\producto-final\\template\\src\\components\\admin\\AppointmentCalendar.tsx.source",
+      "bytes": 30884,
+      "sha256": "e78ed3314bea04d923ea76e616bf94a9b4c199466ddc633dd739f1e04b2ec26c"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\producto-final\\template\\src\\components\\booking\\BookingWizard.tsx.source",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\producto-final\\template\\src\\components\\booking\\BookingWizard.tsx.source",
+      "bytes": 45628,
+      "sha256": "9ef7fd9da98308fcc9f7d6e2a291254d0da7f9935722f63e8c0d220868111d3b"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\producto-final\\template\\src\\lib\\api\\admin-auth.ts.source",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\producto-final\\template\\src\\lib\\api\\admin-auth.ts.source",
+      "bytes": 6843,
+      "sha256": "184996449b94d762f30b9bfabc7c829fa00413e3fda53e712bf4500d461f0ec2"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\producto-final\\template\\src\\lib\\api\\checkout-handler.ts.source",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\producto-final\\template\\src\\lib\\api\\checkout-handler.ts.source",
+      "bytes": 5246,
+      "sha256": "e0152c73362a8e26573c16730bddf85ed7811102b32726bb07cb4556606befe3"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\producto-final\\template\\src\\lib\\api\\crm-appointments-handler.ts.source",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\producto-final\\template\\src\\lib\\api\\crm-appointments-handler.ts.source",
+      "bytes": 4561,
+      "sha256": "e48a9ee4048c118a064cbff460fbf4e0668763691c9de41c34e9d15f3a915e4f"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\producto-final\\template\\src\\lib\\api\\payment-gateways.ts.source",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\producto-final\\template\\src\\lib\\api\\payment-gateways.ts.source",
+      "bytes": 10903,
+      "sha256": "4b1403983540dc2e2b9d0af41e9d34169fbcd256c8f08fd57b0302e2d19f95ad"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\producto-final\\template\\src\\services\\crm-appointments.ts.source",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\producto-final\\template\\src\\services\\crm-appointments.ts.source",
+      "bytes": 6910,
+      "sha256": "d91af2fc8648f884480a42183b364e060d911c9c4fc9bea2c18d66538fd99766"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\registrar.cjs",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\registrar.cjs.source",
+      "bytes": 5275,
+      "sha256": "2d5a77809b724862cff7f00494903565e3bf95e8b0f15771bd7305c2af1d2c5c"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\REGISTROS.json",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\REGISTROS.json",
+      "bytes": 5916,
+      "sha256": "9651cca34653a2b5ae1056bcedcc14f3b5edefee90cef242b888a70eb0c1ad48"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\consumidores-green\\COMANDO.json",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\consumidores-green\\COMANDO.json",
+      "bytes": 1079,
+      "sha256": "cb89ce428d4d87e21dc8221ea5699c2c0d5f189734b726d6d934ffba57bd1537"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\consumidores-green\\CONSUMIDORES.json",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\consumidores-green\\CONSUMIDORES.json",
+      "bytes": 3203,
+      "sha256": "8dd394cae008a90ccfc4c28b0cc3698b5d1b37631c62a0f01bd863f9b55ccd95"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\consumidores-green\\ejecucion.log",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\consumidores-green\\ejecucion.log",
+      "bytes": 38,
+      "sha256": "58590a783ac79dedf424b52c9efeccea50f4abaafee0b549c8e6e65412faa1f9"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\consumidores-green\\exit.txt",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\consumidores-green\\exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\consumidores-red\\COMANDO.json",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\consumidores-red\\COMANDO.json",
+      "bytes": 1077,
+      "sha256": "2e50c4c438274a4cbf4bbd41ec0a2a135b4ec39be7780d41a88fd245ac1c883f"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\consumidores-red\\CONSUMIDORES.json",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\consumidores-red\\CONSUMIDORES.json",
+      "bytes": 4178,
+      "sha256": "68a6bbfbeb92b2951e888c1f04b0f1f3dfbf157b043276a788aa02c5c23c7206"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\consumidores-red\\ejecucion.log",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\consumidores-red\\ejecucion.log",
+      "bytes": 38,
+      "sha256": "bd6a478b84e2246fb22ba3eb5eac4be9885ec714870e138708bf6f1f8b72ac5a"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\consumidores-red\\exit.txt",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\consumidores-red\\exit.txt",
+      "bytes": 3,
+      "sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\mutante-bypass-final\\COMANDO.json",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\mutante-bypass-final\\COMANDO.json",
+      "bytes": 1091,
+      "sha256": "42ed64c3fd54af71383209492f5491abae462ed7fffe5a6ee1d202f2512912f6"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\mutante-bypass-final\\ejecucion.log",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\mutante-bypass-final\\ejecucion.log",
+      "bytes": 1645,
+      "sha256": "4eda8ba4f9bb929ac932a193aff99d4083b41408d223430e520c549920747d5b"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\mutante-bypass-final\\exit.txt",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\mutante-bypass-final\\exit.txt",
+      "bytes": 3,
+      "sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\mutante-bypass-final\\PIPELINE.json",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\mutante-bypass-final\\PIPELINE.json",
+      "bytes": 135394,
+      "sha256": "74bf0e5553b3381c6f6318a1e6fd15827f6cd1c3497e6756bac6fc98f92c73eb"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\mutante-reject-final\\COMANDO.json",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\mutante-reject-final\\COMANDO.json",
+      "bytes": 1090,
+      "sha256": "f3551d419421666287aeea29e3b6ac302f8f84c1d6f054d674b4b7f38ad8f8a5"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\mutante-reject-final\\ejecucion.log",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\mutante-reject-final\\ejecucion.log",
+      "bytes": 1645,
+      "sha256": "9024386a0209e52ce9ceea08abb18ca76ffc97b4ee07f87a89a413a410f28731"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\mutante-reject-final\\exit.txt",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\mutante-reject-final\\exit.txt",
+      "bytes": 3,
+      "sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\mutante-reject-final\\PIPELINE.json",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\mutante-reject-final\\PIPELINE.json",
+      "bytes": 99913,
+      "sha256": "d53ad0a6ed5851b63817115a9ffb798d4a8fc31bdf19e78344084bc253b88272"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\parcial-final\\COMANDO.json",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\parcial-final\\COMANDO.json",
+      "bytes": 1064,
+      "sha256": "35db2a70eb6962be1a0d940ee71974d35c120aceecd4ed055b88c9e1b21f7036"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\parcial-final\\ejecucion.log",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\parcial-final\\ejecucion.log",
+      "bytes": 1645,
+      "sha256": "833616c4fbd9fe1b8ac4ada5a0133d1bc18811e9aa8abbc0778ab601ce853e59"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\parcial-final\\exit.txt",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\parcial-final\\exit.txt",
+      "bytes": 3,
+      "sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\parcial-final\\PIPELINE.json",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\parcial-final\\PIPELINE.json",
+      "bytes": 133985,
+      "sha256": "6b2a2c782ad7eed42bb36813be977d14b394705a49124d8d07b2a3c12df2bac1"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\parcial-r1\\COMANDO.json",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\parcial-r1\\COMANDO.json",
+      "bytes": 1061,
+      "sha256": "0d6539be8e77162090c4dd7f01d808b74d503bc483c1a2af8b942a9567eb62bc"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\parcial-r1\\ejecucion.log",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\parcial-r1\\ejecucion.log",
+      "bytes": 1645,
+      "sha256": "833616c4fbd9fe1b8ac4ada5a0133d1bc18811e9aa8abbc0778ab601ce853e59"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\parcial-r1\\exit.txt",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\parcial-r1\\exit.txt",
+      "bytes": 3,
+      "sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\parcial-r1\\PIPELINE.json",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\parcial-r1\\PIPELINE.json",
+      "bytes": 133985,
+      "sha256": "5d4aba0b95c496f68496caa6da1bd2d7c1b8fcbb4afc63ad40683772244133b7"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\red\\COMANDO.json",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\red\\COMANDO.json",
+      "bytes": 1054,
+      "sha256": "b9e181ae8a1dfc4216996fdf00a6b3d3491d204cca1a1a5cefbf5130b8770410"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\red\\ejecucion.log",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\red\\ejecucion.log",
+      "bytes": 1642,
+      "sha256": "54bb6da187b25d4c012fe19e86253486bffea582777b30557e72251239f1d52e"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\red\\exit.txt",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\red\\exit.txt",
+      "bytes": 3,
+      "sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\red\\PIPELINE.json",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\red\\PIPELINE.json",
+      "bytes": 75306,
+      "sha256": "75245518595562de6f2dfcf55f6fdbe34b4bee300130c52c4d4b81357271a669"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\red-r2\\COMANDO.json",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\red-r2\\COMANDO.json",
+      "bytes": 1057,
+      "sha256": "a8599870a096e06191d07a29459f4b51e0cfc0c6f9c5ec779cd22091a15c11b1"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\red-r2\\ejecucion.log",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\red-r2\\ejecucion.log",
+      "bytes": 1645,
+      "sha256": "9f579ced1cdcf3b502e3a48326c385d7c2230701721cb2ac082d1e47361c28b6"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\red-r2\\exit.txt",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\red-r2\\exit.txt",
+      "bytes": 3,
+      "sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\red-r2\\PIPELINE.json",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\red-r2\\PIPELINE.json",
+      "bytes": 133696,
+      "sha256": "03c46292f290cebf7399f39badc33952bd78a96b1394d53fa7fa7dd244cebab1"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\red-r3\\COMANDO.json",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\red-r3\\COMANDO.json",
+      "bytes": 1057,
+      "sha256": "c4d2f89e19b506bf68faa6d4eb11bacd059e685550666974f590878aeaf8cf51"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\red-r3\\ejecucion.log",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\red-r3\\ejecucion.log",
+      "bytes": 1645,
+      "sha256": "5a79579e552d0639c996f2a632258ca92f68dd6c3108bab32bf7fa5714a68991"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\red-r3\\exit.txt",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\red-r3\\exit.txt",
+      "bytes": 3,
+      "sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\red-r3\\PIPELINE.json",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\resultados\\red-r3\\PIPELINE.json",
+      "bytes": 141505,
+      "sha256": "a092b97c9c1bd6e8c571877e5e74b7c1479a2a04dfb310d180c308109a4a4616"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\REVISION-RESULTADOS.json",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\REVISION-RESULTADOS.json",
+      "bytes": 9957,
+      "sha256": "98afce0efe739ebed72aaac0e97544c7bbdcf2d5619f0fd74b725c34fbf33fdd"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\tipos-hub.exit",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\tipos-hub.exit",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\tipos-hub.log",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\tipos-hub.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\tipos-template-final.exit",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\tipos-template-final.exit",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\tipos-template-final.log",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\tipos-template-final.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\tipos-template.exit",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\tipos-template.exit",
+      "bytes": 3,
+      "sha256": "df4e26a04a444901b95afef44e4a96cfae34690fff2ad2c66389c70079cdff2b"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\tipos-template.log",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\tipos-template.log",
+      "bytes": 265,
+      "sha256": "d9ca189b874a8b3b727afde4781ef8a8527ec08f8da8061be527e85b3eb2d1b5"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\UI-MUTANTE-RESTAURAR.json",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\UI-MUTANTE-RESTAURAR.json",
+      "bytes": 3069,
+      "sha256": "c5eaf9ff4a3e02cb95dac475a4e072bfd976bb1539fef52f839aafdaa7f8a6df"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\ui-mutante.cjs",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\ui-mutante.cjs.source",
+      "bytes": 537,
+      "sha256": "decd616038bcbcbc193db17ef9954a8e09f32595aa9ce57e910de80531a2e0ec"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\UI-PROVIDER-FINAL.json",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\UI-PROVIDER-FINAL.json",
+      "bytes": 209,
+      "sha256": "9a9a6c6362bc81e32a4eeb0d5a9ed75fd9ce0dbf182ebc309b80105bf6a6906c"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\UI-PROVIDER-GREEN.json",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\UI-PROVIDER-GREEN.json",
+      "bytes": 209,
+      "sha256": "9a9a6c6362bc81e32a4eeb0d5a9ed75fd9ce0dbf182ebc309b80105bf6a6906c"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\UI-PROVIDER-RED.json",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\UI-PROVIDER-RED.json",
+      "bytes": 3745,
+      "sha256": "3c455eba9bdb8d4c0ee1945163a9a53e37766f8030ba6c6a90a1e6346c6cdd17"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\ui-provider.cjs",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\ui-provider.cjs.source",
+      "bytes": 3863,
+      "sha256": "843cfca9b13b44fc08007637908fbd9bad0ed45e5c66ff8a561f20633b5217ff"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\WIZARD-SELECTOR-FINAL.json",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\WIZARD-SELECTOR-FINAL.json",
+      "bytes": 501,
+      "sha256": "685f7d7facdf2aab7bcfb5c2bcf9b2af51428880ec36551be0adbafab560e013"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\WIZARD-SELECTOR-GREEN.json",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\WIZARD-SELECTOR-GREEN.json",
+      "bytes": 501,
+      "sha256": "685f7d7facdf2aab7bcfb5c2bcf9b2af51428880ec36551be0adbafab560e013"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\WIZARD-SELECTOR-RED.json",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\WIZARD-SELECTOR-RED.json",
+      "bytes": 498,
+      "sha256": "19535e3a547af5c98da30a22994b220fbd95597b0435a976692ed110c2fc30d0"
+    },
+    {
+      "source": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\wizard-selector.cjs",
+      "destination": "C:\\Users\\liama\\Desktop\\Nichos-hub\\docs\\recuperacion-tecnica\\N03\\informe\\N03\\reconciliacion-v1\\continuacion-cierre\\integracion-final\\wizard-selector.cjs.source",
+      "bytes": 1109,
+      "sha256": "6ec4b70de60551988a645dc679e6f69fc1a97ba282337cf1f1b653e1abaea28d"
+    }
+  ],
+  "recordsVerified": 12,
+  "productVerified": 11,
+  "result": "GREEN_CUSTODIA_NO_CIERRE_N03"
+}

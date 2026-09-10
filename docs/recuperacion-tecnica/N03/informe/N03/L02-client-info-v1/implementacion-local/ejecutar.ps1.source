@@ -1,0 +1,14 @@
+param([Parameter(Mandatory=$true)][string]$Etapa,[Parameter(Mandatory=$true)][string]$Handler)
+$ErrorActionPreference='Stop'
+$base=$PSScriptRoot
+$prev=Split-Path $base
+$salida=Join-Path $base "resultados/$Etapa"
+if(Test-Path -LiteralPath $salida){throw 'No sobrescribir corrida'}
+New-Item -ItemType Directory -Path $salida | Out-Null
+$argsDocker=@('run','--rm','--pull=never','--network=none','--read-only','--cap-drop=ALL','--security-opt=no-new-privileges','--pids-limit=128','--memory=1g','--user=65534:65534','--tmpfs=/tmp:rw,nosuid,size=64m','--mount',"type=bind,source=$base,target=/control,readonly",'--mount',"type=bind,source=$prev,target=/preparacion,readonly",'--mount',"type=bind,source=$salida,target=/salida",'--mount','type=bind,source=C:\Users\liama\Desktop\Nichos-hub\node_modules,target=/deps/node_modules,readonly','sha256:16e22a550f3863206a3f701448c45f7912c6896a62de43add43bb9c86130c3e2','/usr/bin/env','-i','PATH=/usr/local/bin:/usr/bin:/bin','HOME=/tmp','TMPDIR=/tmp','ONBOARDING_TOKEN_SECRET=l02-synthetic-public-test-secret','OWNER_EMAIL=owner@example.invalid','NEXT_PUBLIC_SITE_URL=http://localhost','NEXT_TELEMETRY_DISABLED=1',"HANDLER=/control/handlers/$Handler",'node','/control/arnes.cjs')
+$argsDocker | ConvertTo-Json | Set-Content -Encoding utf8 "$salida/COMANDO.json"
+& docker @argsDocker 1> "$salida/stdout.txt" 2> "$salida/stderr.txt"
+$code=$LASTEXITCODE
+@{exit=$code;utc=[DateTime]::UtcNow.ToString('o');handler=$Handler;sha256=(Get-FileHash -LiteralPath "$base/handlers/$Handler").Hash.ToLower()} | ConvertTo-Json | Set-Content -Encoding utf8 "$salida/EXIT.json"
+Get-Content "$salida/stdout.txt","$salida/stderr.txt"
+exit $code

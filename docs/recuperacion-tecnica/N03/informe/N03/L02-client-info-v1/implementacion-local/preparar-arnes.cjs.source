@@ -1,0 +1,34 @@
+const fs=require('fs'),assert=require('assert/strict'),p=require('path');
+const base=__dirname,prev=p.dirname(base);
+let source=fs.readFileSync(prev+'/sondeo.cjs','utf8');
+function change(a,b){assert.ok(source.includes(a),a);source=source.replace(a,b);}
+change("const {Firestore, FieldValue, Timestamp}","const {Firestore, FieldValue, Timestamp}");
+change("const ts = req('typescript');","const ts = req('typescript');\nconst fixed = require('/control/fijos.cjs');");
+change("'/control/fuentes/'+relative","relative==='src/app/api/onboarding/client-info/route.ts'?process.env.HANDLER:'/preparacion/fuentes/'+relative");
+change("repeat=1,status}={}","repeat=1,status,countMissing=false,noChange=false}={}");
+change("if(config)docs.set('config/'+tenant,clone(existing));","if(config)docs.set('config/'+tenant,noChange?fixed.seed(existing):clone(existing));");
+change("value.status=status||", "if(countMissing)delete value.resubmissionCount;value.status=status||");
+const start=source.indexOf('    for(const w of writes.filter');
+const end=source.indexOf("    const h=docs.get",start);assert.ok(start>0&&end>start);source=source.slice(0,start)+source.slice(end);
+change("h.resubmissionCount,4)","h.resubmissionCount,countMissing?1:4)");
+change("if(repeat===1){equal(name+' historial config numero'","if(repeat===1&&!noChange){equal(name+' historial config numero'");
+change("if(!body.logoUrl&&config)equal(name+' logo omitido'","if(!body.logoUrl&&config&&!noChange)equal(name+' logo omitido'");
+change("if(!body.services?.length&&config)equal(name+' arrays omitidos/vacios'","if(!body.services?.length&&config&&!noChange)equal(name+' arrays omitidos/vacios'");
+change("if(body.locale===undefined)equal(name+' idioma omitido'","if(body.locale===undefined&&!noChange)equal(name+' idioma omitido'");
+// Preservación vinculada a la preimagen de cada escenario, no siempre existing.
+change("current.outside,existing.outside","current.outside,before.get('config/'+tenant).outside");
+change("  const result={name,statuses,", "  fixed.verify({name,before,docs,writes,emails,consumer,body,mode,config,hub,lookup,countMissing,noChange,repeat,statusExpected}, {objective,load,Timestamp,clone});\n  const result={name,statuses,");
+change("  // Sonda positiva",`  await run('contador-ausente',{mode:'resubmit',countMissing:true});
+  await run('sin-cambio',{noChange:true});
+  await run('parcial-email',{body:{clientId:tenant,contact:{email:'new@example.invalid'}}});
+  await run('parcial-calle',{body:{clientId:tenant,contact:{address:{street:'Nueva'}}}});
+  await run('parcial-faq',{body:{clientId:tenant,faqItems:full.faqItems}});
+  await run('historial-truncado',{body:{clientId:tenant,hours:Object.fromEntries(Array.from({length:110},(_,i)=>['day'+String(i).padStart(3,'0'),'10:00']))}});
+  await run('hours-vacio',{body:{clientId:tenant,hours:{}}});
+  await run('nicho-otro',{body:{clientId:tenant,niche:'otro'}});
+  // Sonda positiva`);
+change("productAcceptance:'RED'","productAcceptance:defects.length?'RED':'GREEN'");
+change("  ok('RED semantico presente',defects.length>0);","  // Exit1 corresponde sólo a discrepancias semánticas; exit2 a fallo de instrumento.");
+change("result:'RED_ESPERADO'","result:defects.length?'RED':'GREEN'");
+change("process.exitCode=1;","process.exitCode=defects.length?1:0;");
+assert.ok(!fs.existsSync(base+'/arnes.cjs'));fs.writeFileSync(base+'/arnes.cjs',source);

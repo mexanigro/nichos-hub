@@ -1,0 +1,375 @@
+{
+  "scope": "17 rutas con merge:true literal en src/app/api y onboarding/route.ts adjudicada. Sólo sintaxis propia de patches; no datos arbitrarios del request ni consumidores externos/scripts.",
+  "files": 18,
+  "mergeCalls": 28,
+  "dotted": [
+    {
+      "file": "src/app/api/onboarding/route.ts",
+      "line": 192,
+      "key": "brand.logo",
+      "sink": "db.collection(\"config\").doc(slug).update",
+      "syntax": "\"brand.logo\": svgDataUrl"
+    }
+  ],
+  "rows": [
+    {
+      "file": "src/app/api/crm/import/route.ts",
+      "sha256": "52db5f26542c7a9b004b9b1494ff6fc935932c6920da232680cb6f2b5dd89e36",
+      "mergeSets": [
+        {
+          "line": 98,
+          "callee": "batch.set",
+          "arguments": [
+            "db.collection(\"customers\").doc(docId)",
+            "{\n              clientId,\n              fullName: c.fullName.trim(),\n              email: email || null,\n              phone: (c.phone || \"\").trim() || null,\n              tags: c.tags ? c.tags.split(\",\").map((t) => t.trim()).filter(Boolean) : [],\n              notes: (c.notes || \"\").trim() || null,\n              preferences: c.preferences ? c.preferences.split(\",\").map((p) => p.trim()).filter(Boolean) : [],\n              source: \"import\",\n              visitCount: c.visitCount ?? 0,\n              paymentMethod: c.paymentMethod || null,\n              createdAt: now,\n              updatedAt: now,\n            }",
+            "{ merge: true }"
+          ]
+        }
+      ],
+      "dotted": []
+    },
+    {
+      "file": "src/app/api/whatsapp-config/[clientId]/templates/route.ts",
+      "sha256": "fe705910d3151c401fdb9ae43ccd0ba891ea380181e461cbaf0f3423de39fa65",
+      "mergeSets": [
+        {
+          "line": 62,
+          "callee": "db.collection(\"whatsapp_templates\").doc(clientId).set",
+          "arguments": [
+            "data",
+            "{ merge: true }"
+          ]
+        }
+      ],
+      "dotted": []
+    },
+    {
+      "file": "src/app/api/whatsapp-config/[clientId]/route.ts",
+      "sha256": "75b77b58ac93bd2a0df2b82187004866dbad72a5061d6de32f3f9e578c057d46",
+      "mergeSets": [
+        {
+          "line": 83,
+          "callee": "db.collection(\"whatsapp_config\").doc(clientId).set",
+          "arguments": [
+            "cleaned",
+            "{ merge: true }"
+          ]
+        }
+      ],
+      "dotted": []
+    },
+    {
+      "file": "src/app/api/api-keys/route.ts",
+      "sha256": "ff52c98e737d316eb0c5863fa490adb655cdfcbea4a789b60bb4636735b11990",
+      "mergeSets": [
+        {
+          "line": 47,
+          "callee": "db.collection(\"hub_api_keys\").doc(\"keys\").set",
+          "arguments": [
+            "update",
+            "{ merge: true }"
+          ]
+        }
+      ],
+      "dotted": []
+    },
+    {
+      "file": "src/app/api/config/[clientId]/route.ts",
+      "sha256": "afc200cb92d2370eb3b88667ca76ccd598d885b0d903c8338ce3594784210d83",
+      "mergeSets": [
+        {
+          "line": 203,
+          "callee": "db.collection(\"config\").doc(clientId).set",
+          "arguments": [
+            "cleaned",
+            "{ merge: true }"
+          ]
+        }
+      ],
+      "dotted": []
+    },
+    {
+      "file": "src/app/api/voice-config/[clientId]/route.ts",
+      "sha256": "3b54c9e3600f69b9c72cf1ca22a5bac2f2cac96d4fbe068c3da2383f2477f018",
+      "mergeSets": [
+        {
+          "line": 68,
+          "callee": "db.collection(\"voice_config\").doc(clientId).set",
+          "arguments": [
+            "data",
+            "{ merge: true }"
+          ]
+        },
+        {
+          "line": 71,
+          "callee": "db.collection(\"config\").doc(clientId).set",
+          "arguments": [
+            "{ features: { hasVoiceAgent: validated.enabled } }",
+            "{ merge: true }"
+          ]
+        }
+      ],
+      "dotted": []
+    },
+    {
+      "file": "src/app/api/api-costs/fetch/route.ts",
+      "sha256": "78c0eacce2cb138ebb15b567720d53fd762bff0c273c48b8ffa16ea677439546",
+      "mergeSets": [
+        {
+          "line": 57,
+          "callee": "db.collection(\"hub_api_costs\").doc(serviceId).set",
+          "arguments": [
+            "update",
+            "{ merge: true }"
+          ]
+        },
+        {
+          "line": 59,
+          "callee": "db\n      .collection(\"hub_api_costs\")\n      .doc(serviceId)\n      .set",
+          "arguments": [
+            "{ lastAutoFetch: now, autoFetchError: result.error ?? \"Error desconocido\" }",
+            "{ merge: true }"
+          ]
+        }
+      ],
+      "dotted": []
+    },
+    {
+      "file": "src/app/api/auth/upsert-lead/route.ts",
+      "sha256": "2d6457634b48d3ff1a52e10433d52ce2e0953e3b470c75ff981bb8d476862b3f",
+      "mergeSets": [
+        {
+          "line": 41,
+          "callee": "ref.set",
+          "arguments": [
+            "{ builderData, lastLoginAt: new Date() }",
+            "{ merge: true }"
+          ]
+        },
+        {
+          "line": 52,
+          "callee": "ref.set",
+          "arguments": [
+            "{\n          email: email || \"\",\n          name: name || \"\",\n          photoURL: photoURL || \"\",\n          lastLoginAt: new Date(),\n        }",
+            "{ merge: true }"
+          ]
+        },
+        {
+          "line": 62,
+          "callee": "ref.set",
+          "arguments": [
+            "{\n          email: email || \"\",\n          name: name || \"\",\n          photoURL: photoURL || \"\",\n          provider: provider || \"google\",\n          plan: null,\n          clientId: null,\n          builderData: null,\n          createdAt: new Date(),\n          lastLoginAt: new Date(),\n        }",
+            "{ merge: true }"
+          ]
+        }
+      ],
+      "dotted": []
+    },
+    {
+      "file": "src/app/api/api-costs/[serviceId]/route.ts",
+      "sha256": "5d1505596aac7436bac7bde029df51ae53b374f13699d8bd43e842e41aa2cfe3",
+      "mergeSets": [
+        {
+          "line": 68,
+          "callee": "db\n    .collection(\"hub_api_costs\")\n    .doc(serviceId)\n    .set",
+          "arguments": [
+            "update",
+            "{ merge: true }"
+          ]
+        }
+      ],
+      "dotted": []
+    },
+    {
+      "file": "src/app/api/clients/kill/route.ts",
+      "sha256": "c500ffcf5861fb04cc65e5c476cd0fd0de45c35ce7d7342c0e1971a5c850c3ec",
+      "mergeSets": [
+        {
+          "line": 71,
+          "callee": "db.collection(\"clients\").doc(clientId).set",
+          "arguments": [
+            "{ status: newStatus }",
+            "{ merge: true }"
+          ]
+        }
+      ],
+      "dotted": []
+    },
+    {
+      "file": "src/app/api/clients/[clientId]/route.ts",
+      "sha256": "52fa2d00473e32430763935791082b02e8c8107f003977dca11ee62296c367a6",
+      "mergeSets": [
+        {
+          "line": 65,
+          "callee": "db.collection(\"clients\").doc(internalClientId).set",
+          "arguments": [
+            "{ status: clientStatus }",
+            "{ merge: true }"
+          ]
+        },
+        {
+          "line": 243,
+          "callee": "tx.set",
+          "arguments": [
+            "hubRef",
+            "{ language: newLanguage, updatedAt: now }",
+            "{ merge: true }"
+          ]
+        },
+        {
+          "line": 244,
+          "callee": "tx.set",
+          "arguments": [
+            "db.collection(\"config\").doc(internalClientId)",
+            "{ language: newLanguage }",
+            "{ merge: true }"
+          ]
+        }
+      ],
+      "dotted": []
+    },
+    {
+      "file": "src/app/api/clients/route.ts",
+      "sha256": "a22a812ac99cbe51282dbeb6336be51f76fcc9da80fdddc7f14b99094fcb6191",
+      "mergeSets": [
+        {
+          "line": 96,
+          "callee": "db.collection(\"clients\").doc(clientId).set",
+          "arguments": [
+            "{ status: \"active\" }",
+            "{ merge: true }"
+          ]
+        },
+        {
+          "line": 144,
+          "callee": "db.collection(\"clients\").doc(clientId).set",
+          "arguments": [
+            "{ status: updates.status }",
+            "{ merge: true }"
+          ]
+        }
+      ],
+      "dotted": []
+    },
+    {
+      "file": "src/app/api/clients/provision/route.ts",
+      "sha256": "735f14b3a55b276a370d49c699ec07af4f3caf0c034fa6367592b186cbcfc732",
+      "mergeSets": [
+        {
+          "line": 173,
+          "callee": "db.collection(\"clients\").doc(data.clientId).set",
+          "arguments": [
+            "{ status: status === \"demo\" ? \"active\" : status }",
+            "{ merge: true }"
+          ]
+        }
+      ],
+      "dotted": []
+    },
+    {
+      "file": "src/app/api/appointments/book/route.ts",
+      "sha256": "eb2ae1735a5924d03c6e6ac931a4ff8b968f3e7920f852b2f4afa8a25fec5e1d",
+      "mergeSets": [
+        {
+          "line": 143,
+          "callee": "db.collection(\"customers\")\n      .doc(`${clientId}_${customerPhone.replace(/\\+/g, \"\")}`)\n      .set",
+          "arguments": [
+            "{\n          clientId,\n          fullName: customerName,\n          email: customerEmail,\n          phone: customerPhone,\n          source: \"whatsapp\",\n          updatedAt: FieldValue.serverTimestamp(),\n        }",
+            "{ merge: true }"
+          ]
+        }
+      ],
+      "dotted": []
+    },
+    {
+      "file": "src/app/api/onboarding/draft/route.ts",
+      "sha256": "1f312863c084fe3106dcc67fd7d0d1de8e0286cf253e6cbceb7a20148313f075",
+      "mergeSets": [
+        {
+          "line": 61,
+          "callee": "db.collection(COLLECTION).doc(clientId).set",
+          "arguments": [
+            "{\n      data: cleaned,\n      currentStep: typeof body.currentStep === \"number\" ? body.currentStep : 0,\n      updatedAt: FieldValue.serverTimestamp(),\n    }",
+            "{ merge: true }"
+          ]
+        }
+      ],
+      "dotted": []
+    },
+    {
+      "file": "src/app/api/clients/changes-request/route.ts",
+      "sha256": "e67536ce431c115afacd1796feceaa8b02c2382750ef8c92061a807458d410a5",
+      "mergeSets": [
+        {
+          "line": 68,
+          "callee": "db.collection(\"hub_clients\").doc(hubDocId).set",
+          "arguments": [
+            "{\r\n        status: \"changes_requested\",\r\n        changesRequestedAt: FieldValue.serverTimestamp(),\r\n        changesRequestedBy: approverEmail,\r\n        lastChangesRequestMessage: text.slice(0, 500),\r\n        updatedAt: FieldValue.serverTimestamp(),\r\n      }",
+            "{ merge: true }"
+          ]
+        },
+        {
+          "line": 78,
+          "callee": "db.collection(\"clients\").doc(clientId).set",
+          "arguments": [
+            "{ status: \"changes_requested\" }",
+            "{ merge: true }"
+          ]
+        }
+      ],
+      "dotted": []
+    },
+    {
+      "file": "src/app/api/onboarding/client-info/route.ts",
+      "sha256": "a89047927517fa676499d93da2ec7780f6b972f90a0c6ca9a0757c5960fcf172",
+      "mergeSets": [
+        {
+          "line": 296,
+          "callee": "db\n      .collection(\"config\")\n      .doc(clientId)\n      .set",
+          "arguments": [
+            "configUpdate",
+            "{ merge: true }"
+          ]
+        },
+        {
+          "line": 364,
+          "callee": "hubDocRef.set",
+          "arguments": [
+            "hubUpdate",
+            "{ merge: true }"
+          ]
+        },
+        {
+          "line": 370,
+          "callee": "newRef.set",
+          "arguments": [
+            "{\n          clientId,\n          ...hubUpdate,\n          createdAt: now,\n          source: \"info-submit-fallback\",\n        }",
+            "{ merge: true }"
+          ]
+        },
+        {
+          "line": 440,
+          "callee": "db.collection(\"clients\").doc(clientId).set",
+          "arguments": [
+            "{ status: \"pending_review\", reviewRequestedAt: now }",
+            "{ merge: true }"
+          ]
+        }
+      ],
+      "dotted": []
+    },
+    {
+      "file": "src/app/api/onboarding/route.ts",
+      "sha256": "e84e50cce05bb87e831094de50f1c362213b4a1597e2f54f22899a31216c21bd",
+      "mergeSets": [],
+      "dotted": [
+        {
+          "line": 192,
+          "key": "brand.logo",
+          "sink": "db.collection(\"config\").doc(slug).update",
+          "syntax": "\"brand.logo\": svgDataUrl"
+        }
+      ]
+    }
+  ]
+}

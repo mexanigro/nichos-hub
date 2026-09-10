@@ -1,0 +1,27 @@
+const fs=require('fs'),p=require('path'),crypto=require('crypto');const d=__dirname,template='C:/Users/liama/Desktop/Nichos/Barber-shop-template-main',hub='C:/Users/liama/Desktop/Nichos-hub';const files=[[template,'src/lib/api/payment-gateways.ts'],[template,'server.ts'],[template,'api/index.ts'],[hub,'src/components/config-editors/payment-provider-editor.tsx']];for(const [root,file]of files){const to=p.join(d,'preimagenes-integracion',root===hub?'hub':'template',file);fs.mkdirSync(p.dirname(to),{recursive:true});fs.copyFileSync(p.join(root,file),to,fs.constants.COPYFILE_EXCL);}fs.writeFileSync(p.join(d,'REFUTACION-INTEGRADOR.md'),'Contrato revisado antes de producto: distingue own property de ausencia; mapa parcial conserva sus propios strings sin mezclar generaciones ni imponer campos Cardcom a Stripe. Decoder REST mantiene campo credentials presente aunque inválido. No toca selectors/TTL/auth. Riesgo separado descubierto: VITE destino distinto bloquea clientes/credenciales API; esta reparación sólo representación, no certifica conexión física general. Gate de identidad/destino previo intacto; requiere decisión antes de ampliarlo. Freeze agente conserva oráculos previos; RED37/22; scope editor+dosloaders+helperpuro payment-gateways existente.\n',{flag:'wx'});
+let file=p.join(template,'src/lib/api/payment-gateways.ts'),s=fs.readFileSync(file,'utf8');s+=`\n/** Mapa actual autoritativo; formato plano sólo si credentials está ausente. */
+export function resolveStoredPaymentCredentials(document: unknown): PaymentCredentials {
+  if (!document || typeof document !== "object" || Array.isArray(document)) return {};
+  const data = document as Record<string, unknown>;
+  const selected = Object.prototype.hasOwnProperty.call(data, "credentials") ? data.credentials : data;
+  if (!selected || typeof selected !== "object" || Array.isArray(selected)) return {};
+  return Object.fromEntries(Object.entries(selected).filter((entry): entry is [string, string] => typeof entry[1] === "string"));
+}
+`;fs.writeFileSync(file,s);
+for(const runtime of['server.ts','api/index.ts']){file=p.join(template,runtime);s=fs.readFileSync(file,'utf8');s=s.replace('  createCredentialCache,','  createCredentialCache,\n  resolveStoredPaymentCredentials,');if(runtime==='server.ts'){const before='return (snap.exists ? (snap.data() as PaymentCredentials) : {}) ?? {};';if(!s.includes(before))throw Error('Admin loader anchor');s=s.replace(before,'return resolveStoredPaymentCredentials(snap.exists ? snap.data() : {});');}else{const start=s.indexOf('    const doc = (await res.json()) as { fields?: Record<string, { stringValue?: string }> };',s.indexOf('const getPaymentCredentials'));const end=s.indexOf('    return creds;',start);if(start<0||end<0)throw Error('REST loader anchor');s=s.slice(0,start)+`    type CredentialValue = { stringValue?: string; mapValue?: { fields?: Record<string, CredentialValue> } };
+    const doc = (await res.json()) as { fields?: Record<string, CredentialValue> };
+    const fields = doc.fields ?? {};
+    const nestedPresent = Object.prototype.hasOwnProperty.call(fields, "credentials");
+    const selected = nestedPresent ? (fields.credentials?.mapValue?.fields ?? {}) : fields;
+    const values = Object.fromEntries(Object.entries(selected)
+      .filter(([, value]) => typeof value.stringValue === "string")
+      .map(([key, value]) => [key, value.stringValue]));
+    return resolveStoredPaymentCredentials(nestedPresent ? { credentials: values } : values);
+`+s.slice(end+'    return creds;'.length); }fs.writeFileSync(file,s);}
+file=p.join(hub,'src/components/config-editors/payment-provider-editor.tsx');s=fs.readFileSync(file,'utf8');const anchor='        key: "terminalNumber",';const pos=s.indexOf(anchor);if(pos<0)throw Error('editor anchor');const begin=s.lastIndexOf('      {',pos);s=s.slice(0,begin)+`      {
+        key: "apiName",
+        label: "API Name",
+        placeholder: "Nombre API de Cardcom",
+        hint: "Requerido por Cardcom; no es la API Key histórica.",
+      },
+`+s.slice(begin);fs.writeFileSync(file,s);

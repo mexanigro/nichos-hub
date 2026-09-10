@@ -1,0 +1,50 @@
+[
+  {
+    "snapshot": "editor.tsx",
+    "current": "/hub/src/components/config-editors/payment-provider-editor.tsx",
+    "unit": "archivo completo",
+    "beforeSha256": "815a9f3c7b54437924d8a31d8e1baff67c7d4c9e96800312413421837e3eb512",
+    "currentSha256": "815a9f3c7b54437924d8a31d8e1baff67c7d4c9e96800312413421837e3eb512",
+    "same": true
+  },
+  {
+    "snapshot": "route.ts",
+    "current": "/hub/src/app/api/config/[clientId]/payment-credentials/route.ts",
+    "unit": "archivo completo",
+    "beforeSha256": "0641ee8a23377a26ef743de147677660a870ee60ba1f5f480de6c90068965253",
+    "currentSha256": "0641ee8a23377a26ef743de147677660a870ee60ba1f5f480de6c90068965253",
+    "same": true
+  },
+  {
+    "snapshot": "server.ts",
+    "current": "/template/server.ts",
+    "unit": "getPaymentCredentials",
+    "beforeSha256": "12da66f78abd3ebccdd3f87b9e812dbf69c626d8b50b177e89538abbc6918c21",
+    "currentSha256": "12da66f78abd3ebccdd3f87b9e812dbf69c626d8b50b177e89538abbc6918c21",
+    "same": true
+  },
+  {
+    "snapshot": "api.ts",
+    "current": "/template/api/index.ts",
+    "unit": "getPaymentCredentials",
+    "beforeSha256": "dc578a99318f9c5826f250ce00ec73b91f4aeb2d87f15ef2770add83ad993c28",
+    "currentSha256": "dc578a99318f9c5826f250ce00ec73b91f4aeb2d87f15ef2770add83ad993c28",
+    "same": true
+  },
+  {
+    "snapshot": "gateway.ts",
+    "current": "/template/src/lib/api/payment-gateways.ts",
+    "unit": "buildCardcomGateway",
+    "beforeSha256": "ec6612b421812b56ca2c69383333e772f7b4eaa1554bc9d747ef69d646234584",
+    "currentSha256": "ec6612b421812b56ca2c69383333e772f7b4eaa1554bc9d747ef69d646234584",
+    "same": true
+  },
+  {
+    "snapshot": "gateway.ts",
+    "current": "/template/src/lib/api/payment-gateways.ts",
+    "unit": "createCredentialCache",
+    "beforeSha256": "1df249e4ffa080981b7964814fbe653343f0aef7c0f16052301b19efd50ff508",
+    "currentSha256": "1df249e4ffa080981b7964814fbe653343f0aef7c0f16052301b19efd50ff508",
+    "same": true
+  }
+]

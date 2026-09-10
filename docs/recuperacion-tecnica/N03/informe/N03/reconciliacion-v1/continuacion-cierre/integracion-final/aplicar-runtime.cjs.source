@@ -1,0 +1,43 @@
+const fs=require('fs'),{createRequire}=require('module'),root='C:/Users/liama/Desktop/Nichos/Barber-shop-template-main',ts=createRequire(root+'/package.json')('typescript');
+for(const file of ['server.ts','api/index.ts']){
+ const p=root+'/'+file;let s=fs.readFileSync(p,'utf8');fs.copyFileSync(p,__dirname+'/preimagenes-ui/'+file.replaceAll('/','-')+'.source',fs.constants.COPYFILE_EXCL);
+ function replaceNode(name,replacement,variable=false){const a=ts.createSourceFile(file,s,99,true);let node;if(variable)node=a.statements.find(n=>ts.isVariableStatement(n)&&n.declarationList.declarations.some(d=>d.name.getText(a)===name));else node=a.statements.find(n=>ts.isFunctionDeclaration(n)&&n.name?.text===name);if(!node)throw Error(name);s=s.slice(0,node.getStart(a))+replacement+s.slice(node.end)}
+ const accessor=file==='server.ts'?'await getAdminDb()':'(await loadAdminFirestore())?.db';
+ replaceNode('getClientRuntimeState',`async function getClientRuntimeState(): Promise<{ status: ClientStatus; provider: PaymentProvider }> {
+  const now = Date.now();
+  if (clientStateCache && clientStateCache.expiresAt > now) {
+    return { status: clientStateCache.status, provider: clientStateCache.provider };
+  }
+  const db = ${accessor};
+  if (!db) throw new Error("Backend database not configured");
+  const snap = await db.collection("clients").doc(CLIENT_ID).get();
+  const rawStatus: unknown = snap.exists ? snap.data()?.status : undefined;
+  const statuses: ClientStatus[] = ["active", "trial", "maintenance", "suspended", "archived"];
+  if (!statuses.includes(rawStatus as ClientStatus)) throw new Error("Tenant status not verifiable");
+  const status = rawStatus as ClientStatus;
+  // Sólo la ausencia del campo permite compatibilidad; una lectura fallida se propaga.
+  const configSnap = await db.collection("config").doc(CLIENT_ID).get();
+  const provider = resolveConfiguredPaymentProvider(
+    configSnap.exists ? configSnap.data()?.payment : undefined,
+    snap.data()?.defaultPaymentProvider,
+    process.env.PAYMENT_PROVIDER,
+  );
+  clientStateCache = { status, provider, expiresAt: now + 30_000 };
+  return { status, provider };
+}`);
+ if(file==='api/index.ts')replaceNode('enforceClientActive',`const enforceClientActive = createTenantAccessGuard(async () => {
+  const db = (await loadAdminFirestore())?.db;
+  if (!db || !CLIENT_ID) return null;
+  const snap = await db.collection("clients").doc(CLIENT_ID).get();
+  return snap.exists ? snap.data()?.status : undefined;
+});`,true);
+ replaceNode('getPaymentCredentials',`const getPaymentCredentials = createCredentialCache(async (): Promise<PaymentCredentials> => {
+  const db = ${accessor};
+  if (!db) throw new Error("Backend database not configured");
+  const snap = await db.collection("payment_credentials").doc(CLIENT_ID).get();
+  return resolveStoredPaymentCredentials(snap.exists ? snap.data() : {});
+});`,true);
+ s=s.replace('  VALID_PROVIDERS,','  resolveConfiguredPaymentProvider,');
+ s=s.replace('// El fallback active de getClientRuntimeState se conserva para sus consumidores\r\n// legacy de pagos. No autoriza acceso: enforceClientActive verifica por separado.','// Estado, configuración y credenciales proceden del backend de citas.\r\n// La guarda de acceso conserva sus rechazos ante estado no verificable.');
+ fs.writeFileSync(p,s);
+}

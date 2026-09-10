@@ -1,0 +1,41 @@
+const fs=require('fs'),p=require('path'),crypto=require('crypto');
+const root='C:/Users/liama/Desktop/Nichos/recuperacion-tecnica/informe/N03/proyecto-base-v1';
+const template='C:/Users/liama/Desktop/Nichos/Barber-shop-template-main';
+const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
+const files=['server.ts','api/index.ts','node_modules/firebase-admin/package.json','node_modules/@google-cloud/firestore/package.json','node_modules/firebase-admin/lib/firestore/firestore-internal.js','node_modules/@google-cloud/firestore/build/src/reference/document-reference.js'];
+const sources=files.map((f,i)=>{let b=fs.readFileSync(p.join(template,f)),name=i+'-'+p.basename(f);fs.writeFileSync(p.join(root,'fuentes',name),b,{flag:'wx'});return{ruta:f,copia:'fuentes/'+name,sha256:hash(b)}});
+fs.writeFileSync(p.join(root,'FUENTES.json'),JSON.stringify(sources,null,2));
+fs.copyFileSync('C:/Users/liama/Desktop/Nichos/recuperacion-tecnica/informe/N03/L01-v1/aceptacion-local/PRODUCTO-ANTES.json',p.join(root,'PRODUCTO-ANTES.json'));
+// Expectativas observacionales fijas: no constituyen una politica de unificacion.
+const base={FIREBASE_ADMIN_PROJECT_ID:'project-a',FIREBASE_ADMIN_CLIENT_EMAIL:'test@example.invalid',FIREBASE_ADMIN_PRIVATE_KEY:'SYNTHETIC',FIREBASE_PROJECT_ID:'project-a'};
+const cases=[];
+function add(id,patch={},apps=[],admin='project-a',rest='project-a',db='default',token=true,status=200){let env={...base,...patch};for(const k of Object.keys(env))if(env[k]===null)delete env[k];cases.push({id,env,apps,token,status,expected:{admin,rest,db}})}
+add('coincidentes-ausencia-base');
+for(const [tag,v] of [['ausente',null],['vacio',''],['blancos','   ']]){
+ add('proyecto-rest-'+tag,{FIREBASE_PROJECT_ID:v},[],'project-a',null);
+ add('proyecto-admin-'+tag,{FIREBASE_ADMIN_PROJECT_ID:v},[],null);
+ add('base-'+tag,{FIREBASE_DATABASE_ID:v});
+ add('rest-fallback-vite-'+tag,{FIREBASE_PROJECT_ID:v,VITE_FIREBASE_PROJECT_ID:'project-a'});
+ add('email-'+tag,{FIREBASE_ADMIN_CLIENT_EMAIL:v},[],null);
+ add('clave-'+tag,{FIREBASE_ADMIN_PRIVATE_KEY:v},[],tag==='blancos'?'ERROR_CERT':null);
+}
+add('fallback-next',{FIREBASE_PROJECT_ID:'',VITE_FIREBASE_PROJECT_ID:' ',NEXT_PUBLIC_FIREBASE_PROJECT_ID:'project-a'});
+add('mirrors-iguales',{VITE_FIREBASE_PROJECT_ID:'project-a',NEXT_PUBLIC_FIREBASE_PROJECT_ID:'project-a'});
+add('proyectos-contradictorios',{FIREBASE_PROJECT_ID:'project-b',VITE_FIREBASE_PROJECT_ID:'project-c',NEXT_PUBLIC_FIREBASE_PROJECT_ID:'project-d'},[],'project-a','project-b');
+add('trim',{FIREBASE_ADMIN_PROJECT_ID:' project-a ',FIREBASE_PROJECT_ID:' project-a ',FIREBASE_DATABASE_ID:' named '},[],'project-a','project-a','named');
+add('base-vite',{VITE_FIREBASE_DATABASE_ID:'named'},[],'project-a','project-a','named');
+add('bases-contradictorias',{FIREBASE_DATABASE_ID:'primary',VITE_FIREBASE_DATABASE_ID:'secondary'},[],'project-a','project-a','primary');
+add('base-default-explicita',{FIREBASE_DATABASE_ID:'(default)'},[],'project-a','project-a','(default)');
+add('app-igual',{},[{name:'existing',project:'project-a'}]);
+add('app-ajena',{},[{name:'existing',project:'project-b'}],'project-b');
+add('apps-ajena-primera',{},[{name:'foreign',project:'project-b'},{name:'matching',project:'project-a'}],'project-b');
+add('apps-igual-primera',{},[{name:'matching',project:'project-a'},{name:'foreign',project:'project-b'}]);
+add('app-sin-env-admin',{FIREBASE_ADMIN_PROJECT_ID:null},[{name:'existing',project:'project-a'}],null);
+add('app-clave-blancos',{FIREBASE_ADMIN_PRIVATE_KEY:' '},[{name:'existing',project:'project-a'}]);
+add('sin-token',{},[],'project-a','project-a','default',false);
+add('http404',{},[],'project-a','project-a','default',true,404);
+add('http403',{},[],'project-a','project-a','default',true,403);
+fs.writeFileSync(p.join(root,'CASOS.json'),JSON.stringify(cases,null,2));
+fs.writeFileSync(p.join(root,'CONTRATO.md'),`# Contrato local proyecto/base — preparación\n\nAlcance congelado: getAdminDb (server.ts), loadAdminFirestore (api/index.ts), firestoreRestCreate, getFirestoreRestContext, firestoreRestGetDocument y firestoreRestPatchDocument. Sin modificar producto.\n\nP0: fuentes y ${cases.length} entradas/expectativas fijas preservadas. P1: capturas efectivas con SDK instalado y operaciones interceptadas. P2: conservación y sensibilidad (alterar app reutilizada y URL observada debe producir RED atribuible). P3: matriz, límites, recomendación y revisión archivados.\n\nAceptación de preparación: cada caso captura dos accesores Admin, app real seleccionada, projectId/databaseId reales y referencia SDK; cada helper REST captura URL/método o ausencia de operación y retorno/error. Registros/cache aislados por caso. SDK real; cert RSA sintético generado sólo en memoria; no registrar valores de claves/tokens. Docker sin red ni entorno anfitrión. Fuentes readonly. HTTP simulado, no prueba OAuth/permisos/DB.\n\nAusencia, vacío y blancos permanecen entradas diferentes. Clave en blancos con app nueva: error cert; con app existente no se parsea y puede operar. default literal no se equipara con (default). Política de destino común NO aprobada: las expectativas describen el comportamiento actual; GREEN instrumental no descuenta ni legitima discrepancias. No reabrir clientId, pagos, kill-switch, otros accesores o escritores.\n\nRefutación previa Newton: sin BLOCKERS; cubrir registro real/cachés, app ajena primera, cero operaciones y bases distintas. Incorporado. Fuentes vigentes y deuda ya adjudicada, sin nueva auditoría. Techo90% TOTAL compartido (inicio86%), reserva10%N04; N03 abierta, etapas posteriores y condición por tenant antes del despliegue intactas.\n`);
+fs.writeFileSync(p.join(root,'FREEZE.json'),JSON.stringify(['CONTRATO.md','CASOS.json','FUENTES.json'].map(f=>({ruta:f,sha256:hash(fs.readFileSync(p.join(root,f)))})),null,2));
+console.log('P0 fijo: '+cases.length+' casos; sin producto modificado');

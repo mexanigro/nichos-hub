@@ -1,0 +1,18 @@
+const fs=require('fs'),p=require('path'),assert=require('assert/strict'),crypto=require('crypto');const d=__dirname,f='C:/Users/liama/Desktop/Nichos/Barber-shop-template-main/src/config/site.ts',hash=b=>crypto.createHash('sha256').update(b).digest('hex');const before=fs.readFileSync(f);assert.deepStrictEqual(before,fs.readFileSync(p.join(d,'preimagenes/producto/src/config/site.ts')));for(const e of JSON.parse(fs.readFileSync(p.join(d,'L12-FREEZE.json'))))assert.equal(hash(fs.readFileSync(p.join(d,e.ruta))),e.sha256);const red=JSON.parse(fs.readFileSync(p.join(d,'resultados/l12-red-fijo/L12-RESULTADO.json')));assert.equal(red.result,'RED');assert.ok(red.failures.some(x=>x.id.endsWith('/ids'))&&red.failures.some(x=>x.id.endsWith('/price')));let s=before.toString('utf8');assert.equal(s.split('if (ids && ids.length > 0)').length,2);s=s.replace('if (ids && ids.length > 0)','if (Array.isArray(ids))');const old=/    if \(filtered.length > 0\) \{\r?\n      siteConfig.services = filtered;\r?\n      if \(siteConfig.sections\?\.services\) \{\r?\n        siteConfig.sections.services.images = filteredImages;\r?\n      }\r?\n    }/;assert.ok(old.test(s));s=s.replace(old,`    siteConfig.services = filtered;
+    if (siteConfig.sections?.services) {
+      siteConfig.sections.services.images = filteredImages;
+    }`);
+const marker='  return safe as DeepPartial<SiteConfig>;';assert.equal(s.split(marker).length,2);s=s.replace(marker,`  // Precio, duración e imagen no cambian con el idioma; el texto usa el preset.
+  if (override.serviceOverrides) {
+    const servicePatches: Record<string, { price?: number; duration?: number; image?: string }> = {};
+    for (const [id, patch] of Object.entries(override.serviceOverrides)) {
+      if (!patch || typeof patch !== "object") continue;
+      const structural: { price?: number; duration?: number; image?: string } = {};
+      if (patch.price !== undefined) structural.price = patch.price;
+      if (patch.duration !== undefined) structural.duration = patch.duration;
+      if (patch.image !== undefined) structural.image = patch.image;
+      if (Object.keys(structural).length > 0) servicePatches[id] = structural;
+    }
+    if (Object.keys(servicePatches).length > 0) safe.serviceOverrides = servicePatches;
+  }
+${marker}`);fs.writeFileSync(f,s);fs.writeFileSync(p.join(d,'L12-CAMBIO.json'),JSON.stringify({file:f,before:hash(before),after:hash(Buffer.from(s)),scope:['_applyVisibleServicesFilter','pickLanguageSafeOverride']},null,2),{flag:'wx'});console.log('L12 reparación mínima, RED fijo conservado');

@@ -1,0 +1,32 @@
+{
+  "result": "GREEN_LOCAL_PARA_REVISION",
+  "gates": 4,
+  "totalGates": 4,
+  "render": 29,
+  "save": 29,
+  "mutationFailures": 112,
+  "mutationSave": 29,
+  "typesExit": 0,
+  "lintGlobal": "RED_PREVIO",
+  "lintErrors": 2,
+  "lintWarnings": 2,
+  "lintNew": 0,
+  "blockers": [],
+  "L03Descontada": false,
+  "N03": "abierta",
+  "scope": [
+    "src/components/client-config-tab.tsx"
+  ],
+  "limites": "SSR sección real, PUT interceptado; no navegador, DB ni entregas reales",
+  "presupuesto": {
+    "utc": "2026-09-10T08:17:56.626Z",
+    "fuente": "mcp__codex_app__get_usage_limits",
+    "bucket": "codex",
+    "usedPercent": 84,
+    "windowDurationMins": 10080,
+    "resetsAt": 1789454383,
+    "techoN03": 90,
+    "reservaN04": 10,
+    "resetsEjecutados": 0
+  }
+}

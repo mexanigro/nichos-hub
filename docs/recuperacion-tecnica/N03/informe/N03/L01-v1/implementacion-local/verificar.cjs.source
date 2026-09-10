@@ -1,0 +1,26 @@
+const fs=require('node:fs'),p=require('node:path'),crypto=require('node:crypto'),assert=require('node:assert/strict'),cp=require('node:child_process');const base=__dirname;
+const roots={hub:'C:/Users/liama/Desktop/Nichos-hub',template:'C:/Users/liama/Desktop/Nichos/Barber-shop-template-main'};
+const sha=b=>crypto.createHash('sha256').update(b).digest('hex'),json=f=>JSON.parse(fs.readFileSync(p.join(base,f),'utf8').replace(/^\uFEFF/,''));
+const write=(f,x)=>fs.writeFileSync(p.join(base,f),typeof x==='string'?x:JSON.stringify(x,null,2),{flag:'wx'});
+const before=json('PRODUCTO-ANTES.json'),changes=[];
+for(const f of before){const actual=sha(fs.readFileSync(p.join(roots[f.repo],f.ruta)));if(actual!==f.sha256)changes.push({...f,after:actual});}
+assert.deepEqual(changes.map(f=>f.repo+'/'+f.ruta),['hub/src/lib/wizard/config-to-wizard.ts','template/src/config/site.ts']);
+for(const [repo,file] of [['hub','src/lib/wizard/config-to-wizard.ts'],['template','src/config/site.ts']])assert.deepEqual(fs.readFileSync(p.join(roots[repo],file)),fs.readFileSync(p.join(base,'final',repo+'.ts')));
+for(const f of json('FREEZE.json').files)assert.equal(sha(fs.readFileSync(p.join(base,f.ruta))),f.sha256);
+const green=json('resultados/green/RESULTADO.json');assert.equal(green.result,'GREEN');assert.equal(green.failures.length,0);assert.equal(green.cases,73);assert.equal(green.checks,1752);
+const mutations={};
+for(const [name,count] of [['hub',15],['site',282],['idioma',138]]){
+ const r=json('resultados/mutante-'+name+'/RESULTADO.json');assert.equal(r.result,'RED');assert.equal(r.failures.length,count);assert.equal(json('resultados/mutante-'+name+'/EXIT.json').exit,1);
+ for(const f of r.failures){if(name==='hub')assert.ok(/\/(lector|hidratacion|owner)$/.test(f.id));if(name==='idioma')assert.ok(/\/(he|ru|ar)\/(about|team|booking)$/.test(f.id));assert.ok(!f.id.includes('ajeno')&&!f.id.includes('borrador'));}
+ mutations[name]={failures:count,causaAtribuible:true};
+}
+let preserved=0;for(const f of json('../EVIDENCIA.json')){assert.equal(sha(fs.readFileSync(p.join(base,'..',f.ruta))),f.sha256);preserved++;}
+for(const c of json('TIPOS.json'))assert.equal(c.exit,0);const lint=json('LINT-RESUMEN.json');assert.equal(lint.errors,0);assert.equal(lint.warnings,0);
+for(const [name,root] of Object.entries(roots)){
+ const target=name==='hub'?'src/lib/wizard/config-to-wizard.ts':'src/config/site.ts';
+ write('DIFF-'+name+'.txt',cp.execFileSync('git',['diff','--',target],{cwd:root,encoding:'utf8'}));
+ cp.execFileSync('git',['diff','--check','--',target],{cwd:root,encoding:'utf8'});
+ write('STATUS-'+name+'.txt',cp.execFileSync('git',['status','--short'],{cwd:root,encoding:'utf8'}));
+}
+write('CONSERVACION.json',{result:'PASS',archivos:before.length,conservados:before.length-changes.length,changes,contratoCongelado:true,evidenciasPreparacionPreservadas:preserved,mutations,types:0,lintErrors:0,lintWarnings:0});
+console.log(JSON.stringify({result:'PASS',archivos:before.length,conservados:before.length-2,changes:2,mutations}));

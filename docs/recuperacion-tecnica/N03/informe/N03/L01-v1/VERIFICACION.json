@@ -1,0 +1,19 @@
+{
+  "result": "PASS",
+  "casos": 49,
+  "fallosConexion": 2,
+  "productoHubConservado": 285,
+  "fuentesConservadas": 46,
+  "evidenciasAceptadasConservadas": 215,
+  "wireOriginalVerificado": true,
+  "r1r2MismosResultados": true,
+  "versiones": {
+    "firebase-admin": "13.10.0",
+    "@google-cloud/firestore": "7.11.6",
+    "typescript": "6.0.3",
+    "next": "16.2.9",
+    "react": "19.2.6"
+  },
+  "head": "2e751a92536666c325ed6eca6b731f4180a646ea",
+  "limite": "Sin commit SDK, navegador completo ni servicios reales"
+}

@@ -1,0 +1,17 @@
+{
+  "result": "GREEN_PREPARACION",
+  "conexion": "RED",
+  "gates": 4,
+  "total": 4,
+  "L01Descontada": false,
+  "N03": "abierta",
+  "decisionesPendientes": 2,
+  "blockersPreparacion": [],
+  "implementacion": "NO_AUTORIZADA_NI_EJECUTADA",
+  "presupuesto": {
+    "observado": 85,
+    "techo": 90,
+    "reservaN04": 10,
+    "resets": 0
+  }
+}

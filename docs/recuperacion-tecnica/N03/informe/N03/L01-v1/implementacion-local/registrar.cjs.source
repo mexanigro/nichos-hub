@@ -1,0 +1,28 @@
+const fs=require('node:fs'),p=require('node:path'),crypto=require('node:crypto'),assert=require('node:assert/strict');const base=__dirname;
+const canon='C:/Users/liama/Desktop/Nichos/recuperacion-tecnica',hub='C:/Users/liama/Desktop/Nichos-hub',template='C:/Users/liama/Desktop/Nichos/Barber-shop-template-main',archive=hub+'/docs/recuperacion-tecnica/N03';
+const sha=b=>crypto.createHash('sha256').update(b).digest('hex'),json=f=>JSON.parse(fs.readFileSync(f,'utf8').replace(/^\uFEFF/,''));
+const write=(f,x)=>{fs.mkdirSync(p.dirname(f),{recursive:true});fs.writeFileSync(f,typeof x==='string'||Buffer.isBuffer(x)?x:JSON.stringify(x,null,2),{flag:'wx'});};
+const walk=d=>fs.readdirSync(d,{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(p.join(d,e.name)):[p.join(d,e.name)]);
+const before=json(p.join(base,'PRODUCTO-ANTES.json'));
+for(const [repo,root] of [['hub',hub],['template',template]])assert.deepEqual(walk(root+'/src').map(f=>p.relative(root,f).replaceAll('\\','/')).sort(),before.filter(f=>f.repo===repo&&f.ruta.startsWith('src/')).map(f=>f.ruta).sort());
+const state=json(p.join(base,'CONSERVACION.json'));assert.equal(state.result,'PASS');
+const records=['informe/N03/cierre-sesion-v1/RETOMA.md','informe/N03/reconciliacion-v1/BALANCE.md','informe/N03/reconciliacion-v1/SIGUIENTE-ACCION.md','indice/tareas/N03.md','indice/README.md','indice/CALENDARIO.md'];
+const changes=[];
+for(const rel of records)for(const [kind,root] of [['canonico',canon],['archivo',archive]]){
+ const dest=p.join(root,rel),b=fs.readFileSync(dest),backup=p.join(base,'preimagenes/registros',kind,rel);write(backup,b);
+ const link=p.relative(p.dirname(dest),p.join(root,'informe/N03/L01-v1/implementacion-local/CIERRE-LOCAL.md')).replaceAll('\\','/');
+ const adenda='**L01 implementada: GREEN local 4/4, para revisión; NO descontada.** Liam aceptó la preparación y las dos reglas de compatibilidad, y autorizó exclusivamente config-to-wizard.ts del hub y site.ts del template. Contrato fijo con RED previo; final 73 casos/1.752 comprobaciones GREEN; mutantes hub/site/idioma con 15/282/138 fallos atribuibles. Tipos ambos0, lint pertinente limpio. SAFE, borradores, defaults sin modo válido, nichos, escritores y campos ajenos conservados. No queda decisión de precedencia pendiente: fue aprobada; los cortes inferiores son históricos. Próximo paso sólo revisión de esta implementación, sin otra reparación. L03 y demás entregas aceptadas intactas. N03 abierta; techo90% TOTAL compartido, último10% N04, observado86%, sin resets/migraciones/instalaciones/efectos externos/push/deploy. Etapas posteriores y condición por tenant antes del despliegue vigentes. [Acta, evidencia y límites]('+link+').';
+ const at=b.indexOf(10)+1;assert.ok(at>0);const after=Buffer.concat([b.subarray(0,at),Buffer.from('\r\n'+adenda+'\r\n\r\n'),b.subarray(at)]);fs.writeFileSync(dest,after);changes.push({ruta:dest,preimagen:backup,shaAntes:sha(b),shaDespues:sha(after)});
+}
+write(p.join(base,'REGISTROS.json'),changes);
+const hist='historial/2026-09-10-N03-L01-implementacion-local.md';
+const text='# N03 — implementación local L01 para revisión\n\nLiam aceptó preparación y reglas nested/top/flags; reparación limitada a dos consumidores. P0–P3 4/4: RED previo, GREEN 73/1752, tres mutantes sensibles15/282/138, tipos/lint pertinentes correctos. [Acta y límites](../informe/N03/L01-v1/implementacion-local/CIERRE-LOCAL.md). L01 no descontada; N03 abierta. Próximo paso sólo revisión, sin otra reparación. SAFE, borrador, escritores y entregas aceptadas conservados.\n\nTecho90% TOTAL compartido, observado86%, último10% reservado N04; sin resets, instalaciones, migraciones, externos, push/deploy. Etapas posteriores y condición por tenant antes de despliegue intactas.\n';write(p.join(canon,hist),text);write(p.join(archive,hist),text);
+write(p.join(base,'RESULTADO-FINAL.json'),{result:'GREEN_LOCAL_PARA_REVISION',gates:4,total:4,cases:73,checks:1752,mutants:{hub:15,site:282,idioma:138},types:0,lint:0,L01Descontada:false,N03:'abierta',blockers:[],presupuesto:{inicio:85,observado:86,techo:90,reservaN04:10,resets:0},limite:'SSR/AST y SDK local sin commit; no navegador completo ni servicios reales'});
+for(const f of changes){assert.equal(sha(fs.readFileSync(f.preimagen)),f.shaAntes);assert.equal(sha(fs.readFileSync(f.ruta)),f.shaDespues);}
+for(const f of before){const change=state.changes.find(c=>c.repo===f.repo&&c.ruta===f.ruta);assert.equal(sha(fs.readFileSync(p.join(f.repo==='hub'?hub:template,f.ruta))),change?change.after:f.sha256);}
+write(p.join(base,'EVIDENCIA.json'),walk(base).map(f=>({ruta:p.relative(base,f).replaceAll('\\','/'),bytes:fs.statSync(f).size,sha256:sha(fs.readFileSync(f))})));
+const destBase=p.join(archive,'informe/N03/L01-v1/implementacion-local'),copies=[];
+for(const f of walk(base)){const dest=p.join(destBase,p.relative(base,f))+(['.cjs','.mjs','.js','.ts','.tsx','.ps1'].includes(p.extname(f))?'.source':'');const bytes=fs.readFileSync(f);write(dest,bytes);assert.equal(sha(fs.readFileSync(dest)),sha(bytes));copies.push({origen:f,destino:dest,sha256:sha(bytes)});}
+write(p.join(base,'ARCHIVO.json'),copies);write(p.join(destBase,'ARCHIVO.json'),copies);
+for(const f of changes){const text=fs.readFileSync(f.ruta,'utf8'),match=text.match(/\[Acta, evidencia y límites\]\(([^)]+)\)/);assert.ok(match);assert.ok(fs.existsSync(p.resolve(p.dirname(f.ruta),match[1])));}
+console.log(JSON.stringify({result:'PASS',registros:changes.length,preimagenes:changes.length,archivados:copies.length,sinAltasBajasSrc:true}));

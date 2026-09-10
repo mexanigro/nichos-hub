@@ -1,0 +1,74 @@
+[
+  {
+    "ruta": "C:/Users/liama/Desktop/Nichos/recuperacion-tecnica/informe/N03/cierre-sesion-v1/RETOMA.md",
+    "preimagen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L03-v1/preimagenes/canon/informe/N03/cierre-sesion-v1/RETOMA.md",
+    "antes": "01d8d2a183c38ba26e37bf927a8e5157cf65cbd8e17afa6fc00695a77f764697",
+    "despues": "92fcc078acdf7dfe2863a4ce626a2d174debcac7a44f18d19c9bc06ab03f2a67"
+  },
+  {
+    "ruta": "C:/Users/liama/Desktop/Nichos-hub/docs/recuperacion-tecnica/N03/informe/N03/cierre-sesion-v1/RETOMA.md",
+    "preimagen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L03-v1/preimagenes/archivo/informe/N03/cierre-sesion-v1/RETOMA.md",
+    "antes": "01d8d2a183c38ba26e37bf927a8e5157cf65cbd8e17afa6fc00695a77f764697",
+    "despues": "92fcc078acdf7dfe2863a4ce626a2d174debcac7a44f18d19c9bc06ab03f2a67"
+  },
+  {
+    "ruta": "C:/Users/liama/Desktop/Nichos/recuperacion-tecnica/informe/N03/reconciliacion-v1/BALANCE.md",
+    "preimagen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L03-v1/preimagenes/canon/informe/N03/reconciliacion-v1/BALANCE.md",
+    "antes": "50238c90e256bf84f6d3d2dc548d330aef7eb372c6442bf037fd28b8bdfa5ccb",
+    "despues": "30bac909b84ff3a88f730fc30805371e38dee19df0d8ba68d13b544149a078f9"
+  },
+  {
+    "ruta": "C:/Users/liama/Desktop/Nichos-hub/docs/recuperacion-tecnica/N03/informe/N03/reconciliacion-v1/BALANCE.md",
+    "preimagen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L03-v1/preimagenes/archivo/informe/N03/reconciliacion-v1/BALANCE.md",
+    "antes": "50238c90e256bf84f6d3d2dc548d330aef7eb372c6442bf037fd28b8bdfa5ccb",
+    "despues": "30bac909b84ff3a88f730fc30805371e38dee19df0d8ba68d13b544149a078f9"
+  },
+  {
+    "ruta": "C:/Users/liama/Desktop/Nichos/recuperacion-tecnica/informe/N03/reconciliacion-v1/SIGUIENTE-ACCION.md",
+    "preimagen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L03-v1/preimagenes/canon/informe/N03/reconciliacion-v1/SIGUIENTE-ACCION.md",
+    "antes": "b87ad380fa1836efb37e6f56289ec4fccbe006b3a0eeb7f2c2231cc89cb30443",
+    "despues": "36215fa3934c3eb97297dd3b50c7aa54d28e57166f1252552ba375428051ec34"
+  },
+  {
+    "ruta": "C:/Users/liama/Desktop/Nichos-hub/docs/recuperacion-tecnica/N03/informe/N03/reconciliacion-v1/SIGUIENTE-ACCION.md",
+    "preimagen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L03-v1/preimagenes/archivo/informe/N03/reconciliacion-v1/SIGUIENTE-ACCION.md",
+    "antes": "b87ad380fa1836efb37e6f56289ec4fccbe006b3a0eeb7f2c2231cc89cb30443",
+    "despues": "36215fa3934c3eb97297dd3b50c7aa54d28e57166f1252552ba375428051ec34"
+  },
+  {
+    "ruta": "C:/Users/liama/Desktop/Nichos/recuperacion-tecnica/indice/tareas/N03.md",
+    "preimagen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L03-v1/preimagenes/canon/indice/tareas/N03.md",
+    "antes": "c390bf3417ea995c58643210e437d90bb73c5051a2c735d1038dfc658f7b8d6f",
+    "despues": "f4d83529e62480c74b521bccc05c557f5e81748dbdf158786be50e14b88b33b8"
+  },
+  {
+    "ruta": "C:/Users/liama/Desktop/Nichos-hub/docs/recuperacion-tecnica/N03/indice/tareas/N03.md",
+    "preimagen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L03-v1/preimagenes/archivo/indice/tareas/N03.md",
+    "antes": "c390bf3417ea995c58643210e437d90bb73c5051a2c735d1038dfc658f7b8d6f",
+    "despues": "f4d83529e62480c74b521bccc05c557f5e81748dbdf158786be50e14b88b33b8"
+  },
+  {
+    "ruta": "C:/Users/liama/Desktop/Nichos/recuperacion-tecnica/indice/README.md",
+    "preimagen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L03-v1/preimagenes/canon/indice/README.md",
+    "antes": "65aea6f2a7e6b57763fec63bbc4c823e817e7d1435ad618a31fc860b73798114",
+    "despues": "917d144d1a486f49eae3c33cabaf61e167b29022c4d8b36d2b34df6cd272618f"
+  },
+  {
+    "ruta": "C:/Users/liama/Desktop/Nichos-hub/docs/recuperacion-tecnica/N03/indice/README.md",
+    "preimagen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L03-v1/preimagenes/archivo/indice/README.md",
+    "antes": "65aea6f2a7e6b57763fec63bbc4c823e817e7d1435ad618a31fc860b73798114",
+    "despues": "917d144d1a486f49eae3c33cabaf61e167b29022c4d8b36d2b34df6cd272618f"
+  },
+  {
+    "ruta": "C:/Users/liama/Desktop/Nichos/recuperacion-tecnica/indice/CALENDARIO.md",
+    "preimagen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L03-v1/preimagenes/canon/indice/CALENDARIO.md",
+    "antes": "393bfcfb3d9647a50a25b76135b0d237086f3b45da9aa6b36aae5fec2712accf",
+    "despues": "c77f89dcd8cd629d6d3e30e0146b70766ce69b356e62a63c4b3f6b225eec7f77"
+  },
+  {
+    "ruta": "C:/Users/liama/Desktop/Nichos-hub/docs/recuperacion-tecnica/N03/indice/CALENDARIO.md",
+    "preimagen": "C:\\Users\\liama\\Desktop\\Nichos\\recuperacion-tecnica\\informe\\N03\\L03-v1/preimagenes/archivo/indice/CALENDARIO.md",
+    "antes": "393bfcfb3d9647a50a25b76135b0d237086f3b45da9aa6b36aae5fec2712accf",
+    "despues": "c77f89dcd8cd629d6d3e30e0146b70766ce69b356e62a63c4b3f6b225eec7f77"
+  }
+]

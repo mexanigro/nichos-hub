@@ -1,0 +1,51 @@
+{
+  "utc": "2026-09-09T21:32:54.7419055Z",
+  "scope": "src/app/api/onboarding/client-info/route.ts",
+  "files": [
+    {
+      "sha256": "e12c71dea11d5b9aac6158933032e61c9c15ebeca5f4ebc101e03d99385d4b72",
+      "ruta": "CONTRATO.md"
+    },
+    {
+      "sha256": "f01050a939d2c6475cfd258947e08c0ba7149dad30c181396e988c95cf3e9cdd",
+      "ruta": "REFUTACION-P0.md"
+    },
+    {
+      "sha256": "ffcc60583ffd0c7728de646c13c367d14a13c2d446a325882533790fd369896f",
+      "ruta": "arnes.cjs"
+    },
+    {
+      "sha256": "166429c0ca715d3dd28ea62a8a60c43bfbf20f2b9b9dad58fbf67c708fd2f9f9",
+      "ruta": "fijos.cjs"
+    },
+    {
+      "sha256": "f82d054cc409a6c6f09840941bb14985b56bcc7f42de535b98631055fcd2a10c",
+      "ruta": "VECTORES-BASALES.json"
+    },
+    {
+      "sha256": "968577b33f72e8526c654eacbe344817961ca0dc160d9d6926ed03529ab26016",
+      "ruta": "ejecutar.ps1"
+    },
+    {
+      "sha256": "ad03f7d91fedfe32055e013e69c3ee9b476df8f0ae93dde46356f78a109b2856",
+      "ruta": "tsconfig-pertinente.json"
+    },
+    {
+      "sha256": "531c3fd95cb08056d53ed7210f60019bcc9287beafdefb7e18191f9934f90810",
+      "ruta": "tipos-lint.cjs"
+    },
+    {
+      "sha256": "64c66a80a4f0de17f66444df5b87b2b98684d61e8d3b8733e30adbb4dbb80132",
+      "ruta": "handlers/basal.ts"
+    },
+    {
+      "sha256": "4237c43f83a1a81e8aa1546983293aa8203cca26cd17238758f392c41f21538d",
+      "ruta": "resultados/red-p0/RED.json"
+    },
+    {
+      "sha256": "d6f4b4cd3c33908988fdf21f12ceb097267e93d49e158625de763f8df6eee7a5",
+      "ruta": "resultados/red-p0/EXIT.json"
+    }
+  ],
+  "P0": "COMPLETO_RED"
+}

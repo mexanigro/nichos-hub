@@ -1,0 +1,10 @@
+{
+  "result": "PASS",
+  "producto": 623,
+  "preimagenesRegistros": 12,
+  "manifest": 51,
+  "archivo": 52,
+  "enlaces": "PASS",
+  "freeze": "PASS",
+  "mutantes": "3 RED atribuibles"
+}

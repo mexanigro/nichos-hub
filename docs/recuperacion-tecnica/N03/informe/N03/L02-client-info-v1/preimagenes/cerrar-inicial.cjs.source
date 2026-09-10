@@ -1,0 +1,83 @@
+// Cierre documental de preparación. No edita producto ni ejecuta sus pruebas.
+const fs=require('fs'),p=require('path'),crypto=require('crypto'),assert=require('assert/strict');
+const root='C:/Users/liama/Desktop/Nichos-hub';
+const canon='C:/Users/liama/Desktop/Nichos/recuperacion-tecnica';
+const archive=root+'/docs/recuperacion-tecnica/N03';
+const rel='informe/N03/L02-client-info-v1',base=canon+'/'+rel;
+const read=file=>JSON.parse(fs.readFileSync(file,'utf8').replace(/^\uFEFF/,''));
+const sha=file=>crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+function fresh(file,data){assert.ok(!fs.existsSync(file),'No sobrescribir '+file);fs.mkdirSync(p.dirname(file),{recursive:true});fs.writeFileSync(file,data);}
+const json=(file,data)=>fresh(file,JSON.stringify(data,null,2)+'\n');
+const quota=read(base+'/CONSUMO.json');assert.ok(quota.usedPercent<85);
+const report=read(base+'/resultados/r3/RED.json'),cases=read(base+'/resultados/r3/CASOS.json');
+assert.equal(read(base+'/resultados/r3/EXIT.json').exit,1);assert.equal(report.productAcceptance,'RED');assert.equal(cases.length,21);assert.ok(report.semanticFailures.length>0);assert.ok(!fs.existsSync(base+'/resultados/r3/ERROR.txt'));
+const sources=read(base+'/FUENTES.json');for(const f of sources){assert.equal(sha(root+'/'+f.ruta),f.sha256);assert.equal(sha(base+'/fuentes/'+f.ruta),f.sha256);}
+const product=read(base+'/PRODUCTO-ANTES.json');for(const f of product)assert.equal(sha(root+'/'+f.ruta),f.sha256);
+function walk(dir){return fs.readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(p.join(dir,e.name)):[p.join(dir,e.name)]);}
+assert.equal(walk(root+'/src').length,product.length);
+let preserved=0;
+for(const part of ['comparacion-local','implementacion-local'])for(const f of read(canon+'/informe/N03/W-NEXT-v1/'+part+'/EVIDENCIA-FISICA.json').archivos){assert.equal(sha(f.ruta),f.sha256);preserved++;}
+for(const f of read(canon+'/informe/N03/W-NEXT-v1/aceptacion-local/ARCHIVO-ACEPTACION.json')){assert.equal(sha(f.origen),f.sha256);assert.equal(sha(f.destino),f.sha256);}
+// Congela valores/paths del parche basal como datos para el contrato futuro.
+// No se ejecuta un parche alternativo ni se modifica el handler.
+const vectors=cases.filter(c=>c.name!=='limite11').map(c=>({name:c.name,status:c.statuses[0],expectedReader:c.failures.filter(f=>f.name.includes(' reader ')).map(f=>({field:f.name.split(' reader ')[1],value:f.expected})),patches:c.writes.filter(w=>w.path.startsWith('config/')||w.path.startsWith('hub_clients/')).map(w=>({document:w.path,fields:w.paths.map(f=>({segments:f.segments.length===1&&f.segments[0].includes('.')?f.segments[0].split('.'):f.segments,value:f.segments.reduce((o,k)=>o?.[k],w.decoded),delete:f.segments.reduce((o,k)=>o?.[k],w.decoded)===undefined})),transforms:w.proto.updateTransforms||[]}))}));
+json(base+'/ORACULO-FUTURO.json',{purpose:'Vectores basales fijos; no regenerar contra implementación reparada. expectedReader aquí incluye discrepancias actuales; ampliar asserts explícitos de conservación/lector/historial según PROPUESTA antes de GREEN reparación.',vectors});
+const elapsed=new Date().toISOString();
+const summary=`# L02 client-info — preparación terminada, producto RED
+
+**Recomendar autorizar la reparación local descrita en [PROPUESTA](PROPUESTA.md). No se implementó. L02 no descontada; N03 sigue abierta.**
+
+Fuentes adjudicadas vigentes: las cuatro huellas de W-NEXT/aceptacion-local coinciden; ${sources.length} fuentes/dependencias custodiadas. Runtime aislado Node${report.versions.node}, Firebase Admin${report.versions.admin}, Firestore${report.versions.firestore}, Next${report.versions.next}; dependencias existentes, sin instalaciones. Docker network=none, filesystem read-only salvo resultados/tmp, entorno sintético. [Contrato](CONTRATO-PREPARACION.md), [fuentes](FUENTES.json), [comando y exit](resultados/r3/EXIT.json).
+
+## Evidencia RED
+
+Handler real transpilado, NextRequest/NextResponse reales, token firmado/verificado con jose y secreto público sintético, rate limiter, branding, servicios, idioma, diff, templates y configToWizardData reales. Se interceptan exclusivamente DB y envío de emails. Cada set del endpoint pasa por batch.set del SDK instalado y se extrae el write sin commit. [Casos y writes](resultados/r3/CASOS.json), [RED](resultados/r3/RED.json).
+
+| Caso | Resultado observado |
+|---|---|
+| Alta config ausente, hub ausente o existente | HTTP200; claves literales business.mode/name y contact.email; lector sin los valores anidados solicitados. Fallback hub creado en memoria cuando falta. |
+| Alta con config existente | HTTP200; lector sigue viendo mode=team, nombre=Anterior y email viejo aunque el envío pidió solo/Nuevo/new@example.invalid. |
+| Resubmit con hub changes_requested y config ausente/existente | HTTP200; mismo defecto, estado pending_review; SDK emite delete/increment/serverTimestamp. |
+| Resubmit con hub ausente o status indebido | HTTP403 sin escrituras ni correos. |
+| Omisiones/contact/address vacíos/arrays vacíos | Defaults siguen emitidos; hermanos e imágenes fuera del parche conservados en modelo; arrays vacíos no reemplazan servicios. Defaults anidados siguen defectuosos. |
+| Auth/tenant/límite | Token ausente/inválido/expirado401; tenant ajeno403; body/idioma inválido400; 10 respuestas200 y llamada11=429 sin efectos adicionales. Otro tenant intacto. |
+
+21 escenarios /31 invocaciones del handler. ${report.checksPassed} comprobaciones auxiliares completadas, más aserción final de presencia de RED. ${report.semanticFailures.length} discrepancias registradas, incluyendo repetición del ensayo de límite: **no son ${report.semanticFailures.length} defectos distintos ni documentos reales afectados**. Exit1 es RED esperado; no hubo error del instrumento en r3. r1/r2 exit2 y preimágenes conservadas; r2 ya dejó20 casos durables. [Refutación y progreso](REFUTACION.md).
+
+## Qué prueba el SDK y qué no
+
+DocumentMask.fromObject construye un FieldPath por clave, sin dividir puntos. El write literal codifica la máscara con el nombre completo entre backticks; su segments contiene un solo elemento business.mode. El mapa business:{mode:...} produce dos segmentos y máscara business.mode sin escape. La materialización usa esos segmentos del SDK y decode de DocumentSnapshot, no un mock que separa puntos. Los únicos splits del instrumento pertenecen al oracle que expresa el objetivo futuro, no a aplicar writes.
+
+[Sondas SDK](resultados/r3/SONDAS-SDK.json): anidado→lector solo y hermano conservado; literal/restaurado→lector team antiguo. Arrays son hojas y conservan claves literales dentro de sus elementos. delete figura en máscara y fuera de fields; serverTimestamp/increment en updateTransforms, idénticos entre las dos sondas. contact:{} demuestra reemplazo del mapa: la propuesta prohíbe introducir ramas opcionales vacías.
+
+**Límites:** aplicación de merge y transforms en memoria, timestamp fijo sintético e incremento numérico acotado; no servidor Firestore. No persistencia, reglas/claims, transacción, concurrencia, atomicidad, red, notificaciones ni despliegue certificados. El stub add del historial usa set/merge y sólo acredita payload/secuencia modelados, no la precondición create real. El lector no hidrata imágenes ni lee hub_clients; sus datos se observan aparte. Las sondas de contraste no son una implementación del endpoint ni sustituyen la mutación futura del handler reparado. Contrato futuro y checks de historial más precisos en PROPUESTA; expectativas basales congeladas en [ORACULO-FUTURO](ORACULO-FUTURO.json).
+
+## Cierre de preparación
+
+P0 fuentes/preimágenes/islamiento; P1 RED completo; P2 SDK positivo/negativo, conservación y refutación; P3 propuesta y registros. 4/4. Sin BLOCKERS de preparación. ${product.length} archivos src intactos; ${preserved} artefactos comparativos/de implementación W-NEXT verificados por huella, aceptación también intacta. No se repitieron sus pruebas ni otras entregas aceptadas.
+
+Consumo observado ${quota.usedPercent}% TOTAL compartido (inicio82), techo85%, sin resets. N03 abierta; L01, otros escritores L02, L12 y demás BALANCE intactos. N04/N08/N10 conservan validaciones reales y antes del despliegue se mantienen identificación de tenants/prestaciones, evidencia y decisión de Liam sobre excepciones. Sin push/deploy ni efectos externos. Pendiente autorización de reparación local; no aceptación anticipada de GREEN producto.
+`;
+fresh(base+'/INFORME.md',summary);
+const records=['informe/N03/cierre-sesion-v1/RETOMA.md','informe/N03/reconciliacion-v1/BALANCE.md','informe/N03/reconciliacion-v1/SIGUIENTE-ACCION.md','indice/tareas/N03.md','indice/README.md','indice/CALENDARIO.md'];
+const prepared=[];
+for(const r of records){assert.equal(sha(canon+'/'+r),sha(archive+'/'+r),'Registro fuera de sincronía '+r);const original=fs.readFileSync(canon+'/'+r,'utf8');const link=p.relative(p.dirname(canon+'/'+r),base+'/INFORME.md').replaceAll('\\','/');const proposal=p.relative(p.dirname(canon+'/'+r),base+'/PROPUESTA.md').replaceAll('\\','/');const adenda=`**L02 client-info: preparación GREEN4/4 para revisión; producto RED, NO reparado ni descontado.** Liam autorizó únicamente preparación del endpoint.21escenarios locales con SDK/lector reales, máscaras/transforms capturados sin DB; defecto de claves literales reproducido. Propuesta mínima: mapas anidados explícitos sólo en configUpdate/hubUpdate, sin ramas opcionales vacías ni cambiar defaults. Pendiente autorización de implementación y contrato GREEN/mutación del handler. W-NEXT aceptada localmente y demás entregas intactas. N03 abierta; resto L01/L02/L12, etapas posteriores y condición sobre prestaciones por tenant antes del despliegue conservadas. Consumo${quota.usedPercent}%/techo85% TOTAL compartido,sin resets,push/deploy/externos. Esta adenda sustituye sólo el estado de preparación L02 de los cortes inferiores. [Evidencia y límites](${link}). [Solución para autorizar](${proposal}).\n\n`;
+const end=original.indexOf('\n');assert.ok(end>=0);prepared.push({r,data:original.slice(0,end+1)+'\n'+adenda+original.slice(end+1)});}
+const custody=[];
+for(const f of prepared)for(const [name,dir] of [['canon',canon],['archivo',archive]]){const file=dir+'/'+f.r,backup=base+'/preimagenes-registros/'+name+'/'+f.r;const old=fs.readFileSync(file);fresh(backup,old);fs.writeFileSync(file,f.data);custody.push({file,preimage:backup,before:sha(backup),after:sha(file)});}
+json(base+'/CUSTODIA-REGISTROS.json',custody);
+const history='historial/2026-09-09-N03-L02-client-info-preparacion.md';
+fresh(canon+'/'+history,'# N03 — preparación L02 client-info\n\n'+elapsed+'\n\n'+prepared[0].data.split('\n').find(l=>l.startsWith('**L02'))+'\n\nEvidencia: ../informe/N03/L02-client-info-v1/INFORME.md. La aceptación de W-NEXT local se conserva; esto no es aceptación de L02 ni autorización para implementar.\n');
+// El historial usa enlace propio, sin importar links relativos de RETOMA.
+const historyText='# N03 — preparación L02 client-info\n\n'+elapsed+'\n\nPreparación autorizada completada4/4. Producto RED,21 escenarios, sin reparación. N03 abierta; L02 no descontada. W-NEXT y entregas aceptadas intactas. [Informe](../informe/N03/L02-client-info-v1/INFORME.md), [propuesta](../informe/N03/L02-client-info-v1/PROPUESTA.md). Techo85% TOTAL compartido, observado'+quota.usedPercent+'%,sin resets. N04/N08/N10 y condición de prestaciones por tenant antes del despliegue conservadas. Sin instalaciones/externos/push/deploy.\n';
+// Preimagen incluso para corrección documental dentro del mismo cierre.
+fresh(base+'/preimagenes/historial-inicial.md',fs.readFileSync(canon+'/'+history));fs.writeFileSync(canon+'/'+history,historyText);fresh(archive+'/'+history,historyText);
+json(base+'/RESULTADO.json',{result:'GREEN',scope:'PREPARACION_L02_CLIENT_INFO',product:'RED_NO_IMPLEMENTADO',gates:4,total:4,N03:'ABIERTA',L02Descontada:false,srcPreservados:product.length,evidenciasWNEXTPreservadas:preserved,registros:custody.length,checks:report.checksPassed,semanticFailures:report.semanticFailures.length,cases:21,requests:31,quota,blockers:[],remaining:['Autorización de reparación','Controles futuros explícitos de PROPUESTA','Implementación y GREEN producto']});
+// Custodia de todo el expediente, excluye sólo índices propios para no autorreferirse.
+const files=walk(base);json(base+'/EVIDENCIA-FISICA.json',{fecha:elapsed,archivos:files.map(file=>({ruta:file,bytes:fs.statSync(file).size,sha256:sha(file)}))});
+const mapped=[];
+for(const file of walk(base)){let destRel=p.relative(base,file).replaceAll('\\','/').replaceAll('node_modules/','sdk-instalado/');if(/\.(cjs|mjs|js|ts|tsx|ps1)$/.test(destRel))destRel+='.source';const dest=archive+'/'+rel+'/'+destRel;fresh(dest,fs.readFileSync(file));assert.equal(sha(dest),sha(file));mapped.push({origen:file,destino:dest,sha256:sha(file)});}
+json(base+'/ARCHIVO.json',mapped);
+for(const f of product)assert.equal(sha(root+'/'+f.ruta),f.sha256);
+for(const f of custody)assert.equal(sha(f.file),f.after);
+console.log(JSON.stringify({result:'GREEN_PREPARACION',product:'RED',gates:'4/4',sources:sources.length,productPreserved:product.length,evidencePreserved:preserved,records:custody.length,archive:mapped.length}));

@@ -1,0 +1,1 @@
+[{"unit":"archivo completo","file":"editor.tsx","same":true},{"unit":"archivo completo","file":"route.ts","same":true},{"unit":"getPaymentCredentials","file":"server.ts","same":true},{"unit":"getPaymentCredentials","file":"api.ts","same":true},{"unit":"buildCardcomGateway","file":"gateway.ts","same":true},{"unit":"createCredentialCache","file":"gateway.ts","same":true}]

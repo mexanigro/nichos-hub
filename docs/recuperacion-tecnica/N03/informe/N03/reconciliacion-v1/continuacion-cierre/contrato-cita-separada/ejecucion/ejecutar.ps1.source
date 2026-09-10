@@ -1,0 +1,14 @@
+param([string]$Script,[string]$Nombre,[string]$Mutante='',[string]$Target='')
+$ErrorActionPreference='Stop'
+$out=Join-Path $PSScriptRoot ('resultados\'+$Nombre)
+if(Test-Path -LiteralPath $out){throw 'No sobrescribir evidencia'}
+New-Item -ItemType Directory -Path $out|Out-Null
+$argsList=Get-Content -Raw (Join-Path $PSScriptRoot 'resultados\red-conexion\COMANDO.json')|ConvertFrom-Json
+$argsList=@($argsList|ForEach-Object {if($_ -eq '/control/conexion.cjs'){"/control/$Script"}elseif($_ -like '*target=/salida'){"type=bind,source=$out,target=/salida"}else{$_}})
+if($Mutante){$imageIndex=[array]::IndexOf($argsList,'sha256:16e22a550f3863206a3f701448c45f7912c6896a62de43add43bb9c86130c3e2');$argsList=@($argsList[0..($imageIndex-1)])+@('--mount',"type=bind,source=$PSScriptRoot\mutantes\$Mutante,target=/template/$Target,readonly")+@($argsList[$imageIndex..($argsList.Length-1)])}
+$argsList|ConvertTo-Json|Set-Content (Join-Path $out 'COMANDO.json') -Encoding utf8
+& docker @argsList *> (Join-Path $out 'ejecucion.log')
+$code=$LASTEXITCODE
+$code|Set-Content (Join-Path $out 'exit.txt')
+Get-Content (Join-Path $out 'ejecucion.log')
+exit $code
