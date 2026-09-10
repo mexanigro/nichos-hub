@@ -1,5 +1,8 @@
 # Única siguiente acción vigente — N03
 
+**Estado vigente: N03 completada localmente — GREEN, P0→P3 4/4.** Liam aprobó autoridad de precio del catálogo config backend por serviceId y rechazo previo si no verificable. Handler compartido persiste priceCents sin confiar en body ni alterar históricos. Reserva→agenda→checkout por middleware real de ambos runtimes:78casos452checksGREEN; preimagenRED100 y mutanteRED60; tipos0, conservación y revisión independiente sin BLOCKERS. Las siete filas del balance original quedan acreditadas localmente, sin transferir pendientes para cerrar. Cardcom sigue bloqueado; no se certifica cobro remoto. Commit producto0670e71. Push pendiente: condición no desplegar no acreditada; no se ejecutó ni se cambió hosting. Técnico hasta99%TOTAL, último1%commit/push; observado97%, sin resets. Etapas posteriores y prestaciones por tenant antes de despliegue intactas. [Acta, alcance y evidencia](<continuacion-cierre/precio-conexion/ACTA-CIERRE-LOCAL.md>). Todos los cortes inferiores de autoridad pendiente/16fallos son históricos y conservan sus límites.
+
+
 **Cierre de sesión vigente: N03 abierta.** Agenda integrada localmente; reserva→checkout pendiente por autoridad del precio, que Liam mantiene sin decidir. Revisión externa comunicada reproduce48/264con16fallos y custodia/huellas. Trabajo técnico hasta99% TOTAL; último1% commit/push. Commit propio autorizado; push detenido hasta acreditar que no despliega (conexiones Git Vercel constatadas; desactivación automática no verificada). No modificar booking/históricos; etapas y condición por tenant intactas. [Retoma y publicación](<../cierre-sesion-v1/cierre-actual/CIERRE-SESION.md>). Cortes inferiores históricos.
 
 
@@ -87,3 +90,7 @@ N03 seguirá abierta tras este arreglo por las obligaciones locales/decisiones d
 ## Acción vigente única
 
 Resolver la decisión funcional de autoridad/escritura de precio para book→checkout, dejada pendiente por Liam. Propuesta ya presentada: serviceId en catálogo config backend y rechazo previo si precio no verificable en reserva online; no está aprobada. No ejecutar reparación de booking ni otra familia. Reutilizar pipeline congelado, que conserva200esperado y REDporprecio.
+
+## Siguiente acción vigente
+
+No otra reparación N03. Publicar los commits sólo tras acreditar desactivación de despliegues automáticos; no cambia hosting ni crea ramas esta autorización. Siguiente etapa técnica según calendario, sin ejecutarla aquí. Si aparece evidencia invalidante, reabrir únicamente obligación afectada; no repetir suites aceptadas por rutina.

@@ -1,5 +1,8 @@
 # Calendario de dependencias — Nichos
 
+**Estado vigente: N03 completada localmente — GREEN, P0→P3 4/4.** Liam aprobó autoridad de precio del catálogo config backend por serviceId y rechazo previo si no verificable. Handler compartido persiste priceCents sin confiar en body ni alterar históricos. Reserva→agenda→checkout por middleware real de ambos runtimes:78casos452checksGREEN; preimagenRED100 y mutanteRED60; tipos0, conservación y revisión independiente sin BLOCKERS. Las siete filas del balance original quedan acreditadas localmente, sin transferir pendientes para cerrar. Cardcom sigue bloqueado; no se certifica cobro remoto. Commit producto0670e71. Push pendiente: condición no desplegar no acreditada; no se ejecutó ni se cambió hosting. Técnico hasta99%TOTAL, último1%commit/push; observado97%, sin resets. Etapas posteriores y prestaciones por tenant antes de despliegue intactas. [Acta, alcance y evidencia](<../informe/N03/reconciliacion-v1/continuacion-cierre/precio-conexion/ACTA-CIERRE-LOCAL.md>). Todos los cortes inferiores de autoridad pendiente/16fallos son históricos y conservan sus límites.
+
+
 **Cierre de sesión vigente: N03 abierta.** Agenda integrada localmente; reserva→checkout pendiente por autoridad del precio, que Liam mantiene sin decidir. Revisión externa comunicada reproduce48/264con16fallos y custodia/huellas. Trabajo técnico hasta99% TOTAL; último1% commit/push. Commit propio autorizado; push detenido hasta acreditar que no despliega (conexiones Git Vercel constatadas; desactivación automática no verificada). No modificar booking/históricos; etapas y condición por tenant intactas. [Retoma y publicación](<../informe/N03/cierre-sesion-v1/cierre-actual/CIERRE-SESION.md>). Cortes inferiores históricos.
 
 
@@ -141,7 +144,7 @@ N01 completa como diagnóstico; N02 parcial y pausada con dirección documental 
 | N00 | Recuperación técnica integral | pendiente | N01–N10 | [Madre](tareas/N00-RECUPERACION.md) |
 | N01 | Estado y alcance | completa | Continuidad en N02; límites transferidos | [Ficha](tareas/N01.md) |
 | N02 | Infraestructura local | completa, alcance local revisado | Remoto transferido NO_VERIFICADO; acta local | [Ficha](tareas/N02.md) |
-| N03 | Backend y funciones opcionales | en curso; book-v1, support-v1 y stock-v1 locales cumplidas | Resto de N03 pendiente; remoto no certificado | [Ficha](tareas/N03.md) |
+| N03 | Backend y funciones opcionales | completada localmente; GREEN 4/4 | Push condicionado; remoto no certificado; N04–N10 vigentes | [Ficha](tareas/N03.md) |
 | N04 | Datos, accesos y entorno remoto aislado | pendiente | N03; R04-ENV/SDK; preparar runtime antes N06 | [Ficha](tareas/N04.md) |
 | N05 | Micro CRM | pendiente | N04 | [Ficha](tareas/N05.md) |
 | N06 | Agenda y reservas | pendiente | N05 + handler N03 + R06-HOST comprobado previamente | [Ficha](tareas/N06.md) |

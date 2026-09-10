@@ -1,5 +1,8 @@
 # Retoma N03 — cierre de sesión, no cierre de tarea
 
+**Estado vigente: N03 completada localmente — GREEN, P0→P3 4/4.** Liam aprobó autoridad de precio del catálogo config backend por serviceId y rechazo previo si no verificable. Handler compartido persiste priceCents sin confiar en body ni alterar históricos. Reserva→agenda→checkout por middleware real de ambos runtimes:78casos452checksGREEN; preimagenRED100 y mutanteRED60; tipos0, conservación y revisión independiente sin BLOCKERS. Las siete filas del balance original quedan acreditadas localmente, sin transferir pendientes para cerrar. Cardcom sigue bloqueado; no se certifica cobro remoto. Commit producto0670e71. Push pendiente: condición no desplegar no acreditada; no se ejecutó ni se cambió hosting. Técnico hasta99%TOTAL, último1%commit/push; observado97%, sin resets. Etapas posteriores y prestaciones por tenant antes de despliegue intactas. [Acta, alcance y evidencia](<../reconciliacion-v1/continuacion-cierre/precio-conexion/ACTA-CIERRE-LOCAL.md>). Todos los cortes inferiores de autoridad pendiente/16fallos son históricos y conservan sus límites.
+
+
 **Cierre de sesión vigente: N03 abierta.** Agenda integrada localmente; reserva→checkout pendiente por autoridad del precio, que Liam mantiene sin decidir. Revisión externa comunicada reproduce48/264con16fallos y custodia/huellas. Trabajo técnico hasta99% TOTAL; último1% commit/push. Commit propio autorizado; push detenido hasta acreditar que no despliega (conexiones Git Vercel constatadas; desactivación automática no verificada). No modificar booking/históricos; etapas y condición por tenant intactas. [Retoma y publicación](<cierre-actual/CIERRE-SESION.md>). Cortes inferiores históricos.
 
 
