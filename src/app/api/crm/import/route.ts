@@ -24,7 +24,9 @@ interface CustomerRow {
   notes?: string;
   source?: string;
   visitCount?: number;
-  preferences?: string;
+  // `preferences` retirado (N05 · T4, D-5 b1): el template dejo de declararlo en
+  // `Customer` porque no tenia ningun lector. Tampoco se ofrece ya como columna
+  // mapeable en el modal de importacion.
   paymentMethod?: string;
 }
 
@@ -107,7 +109,6 @@ export const POST = withOwner(async (req) => {
               phone: (c.phone || "").trim() || null,
               tags: c.tags ? c.tags.split(",").map((t) => t.trim()).filter(Boolean) : [],
               notes: (c.notes || "").trim() || null,
-              preferences: c.preferences ? c.preferences.split(",").map((p) => p.trim()).filter(Boolean) : [],
               source: "import",
               visitCount: c.visitCount ?? 0,
               paymentMethod: c.paymentMethod || null,

@@ -36,7 +36,8 @@ const CUSTOMER_FIELDS = [
   { value: "notes", label: "Notas" },
   { value: "visitCount", label: "Cant. visitas" },
   { value: "paymentMethod", label: "Metodo de pago" },
-  { value: "preferences", label: "Preferencias" },
+  // "Preferencias" retirado (N05 · T4, D-5 b1) junto con el campo: dejarlo aqui
+  // habria dado una columna mapeable que el endpoint descarta en silencio.
 ] as const;
 
 const APPOINTMENT_FIELDS = [
