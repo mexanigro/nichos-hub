@@ -7,7 +7,7 @@ import { sendEmail } from "@/lib/email";
 import { infoSubmittedThanks, changesResubmitted } from "@/lib/email-templates";
 import { verifyOnboardingToken } from "@/lib/onboarding-token";
 import { diffConfig, summarizeValue } from "@/lib/config-diff";
-import { isValidClientLanguage } from "@/lib/client-language";
+import { isValidClientLanguage, VALID_CLIENT_LANGUAGES_LABEL } from "@/lib/client-language";
 import { NICHE_SERVICES, type BusinessNiche } from "@/lib/client-config/services";
 
 const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://arzac.studio";
@@ -47,7 +47,7 @@ export async function POST(req: NextRequest) {
     // pisamos lo que ya está en hub_clients (lo respeta el resto del flujo).
     if (body.locale !== undefined && !isValidClientLanguage(body.locale)) {
       return NextResponse.json(
-        { error: "Idioma inválido. Valores aceptados: he, en, ru, ar, es." },
+        { error: `Idioma inválido. Valores aceptados: ${VALID_CLIENT_LANGUAGES_LABEL}.` },
         { status: 400 },
       );
     }

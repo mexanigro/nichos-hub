@@ -5,7 +5,7 @@ import { FieldValue } from "firebase-admin/firestore";
 import { getClientHealth } from "@/lib/repos/health";
 import { vercelFetch } from "@/lib/deploy";
 import { validateConfig } from "@/lib/config-validator";
-import { isValidClientLanguage, normalizeClientLanguage } from "@/lib/client-language";
+import { isValidClientLanguage, normalizeClientLanguage, VALID_CLIENT_LANGUAGES_LABEL } from "@/lib/client-language";
 
 export const GET = withOwner(async (_req, _session, ctx) => {
   const { clientId } = await ctx.params;
@@ -217,7 +217,7 @@ export const PATCH = withOwner(async (req, session, ctx) => {
   }
   if (!isValidClientLanguage(body.language)) {
     return NextResponse.json(
-      { error: "Idioma inválido. Valores aceptados: he, en, ru, ar, es." },
+      { error: `Idioma inválido. Valores aceptados: ${VALID_CLIENT_LANGUAGES_LABEL}.` },
       { status: 400 },
     );
   }

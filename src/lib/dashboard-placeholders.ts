@@ -205,42 +205,9 @@ const ar: Dict = {
     "صف العمل في فقرة: ماذا يفعلون، من هم عملاؤهم، ما يميّزهم…",
 };
 
-const es: Dict = {
-  heroTitlePrefix: "Bienvenidos a",
-  heroTitleHighlight: "Tu barbería",
-  heroSubtitle: "Descripción breve del negocio.",
-  heroCtaPrimary: "Reservar ahora",
-  heroCtaSecondary: "Ver servicios",
-  servicesTitle: "Nuestros servicios",
-  whyChooseUsTitle: "Por qué elegirnos",
-  teamTitle: "Nuestro equipo",
-  testimonialsTitle: "Lo que dicen nuestros clientes",
-  galleryTitle: "Galería",
-  locationTitle: "Dónde estamos",
-  contactTitle: "Contactanos",
-  bookingTitle: "Reservá tu turno",
-  philosophyTitle: "Nuestra filosofía",
-  processTitle: "Nuestro proceso",
-  ambienceTitle: "Nuestro espacio",
-  portfolioTitle: "Nuestros proyectos",
-  faqTitle: "Preguntas frecuentes",
-  faqSubtitle: "Lo que nuestros clientes quieren saber",
-  tagline: "Frase corta debajo del nombre del negocio",
-  description: "1-2 líneas que explican lo que hacen",
-  aiPersona: "Tono del agente IA (ej: amable, profesional).",
-  benefitTitle: "Ej: 15 años de experiencia",
-  benefitDesc: "Una línea explicando por qué importa",
-  testimonialName: "Ej: María R.",
-  testimonialTitle: "Cliente hace 2 años",
-  testimonialText: "El mejor servicio que tuve.",
-  serviceName: "Nombre del servicio",
-  faqQuestion: "Ej: ¿Hace falta sacar turno antes?",
-  faqAnswer: "Recomendado, pero también atendemos walk-in.",
-  businessDescription:
-    "Describí el negocio en un párrafo: qué hacen, quiénes son sus clientes, qué los diferencia…",
-};
-
-const ALL: Record<ClientLanguage, Dict> = { en, he, ru, ar, es };
+// Sin "es": dejó de ser un idioma de web de cliente en T5 (D-8 a), y su
+// diccionario de placeholders se retiró con él.
+const ALL: Record<ClientLanguage, Dict> = { en, he, ru, ar };
 
 /**
  * Devuelve el placeholder para una clave en el idioma del cliente. Si la clave

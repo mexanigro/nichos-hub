@@ -4,7 +4,7 @@ import { FieldValue } from "firebase-admin/firestore";
 import { isRateLimited } from "@/lib/rate-limit";
 import { sendEmail } from "@/lib/email";
 import { demoLeadNotification } from "@/lib/email-templates";
-import { isValidClientLanguage, DEFAULT_CLIENT_LANGUAGE } from "@/lib/client-language";
+import { isValidClientLanguage, DEFAULT_CLIENT_LANGUAGE, VALID_CLIENT_LANGUAGES_LABEL } from "@/lib/client-language";
 
 const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://arzac.studio";
 const OWNER_EMAIL = process.env.OWNER_EMAIL || "website@arzac.studio";
@@ -57,7 +57,7 @@ export async function POST(req: NextRequest) {
   }
   if (body.locale !== undefined && !isValidClientLanguage(body.locale)) {
     return NextResponse.json(
-      { error: "Idioma inválido. Valores aceptados: he, en, ru, ar, es." },
+      { error: `Idioma inválido. Valores aceptados: ${VALID_CLIENT_LANGUAGES_LABEL}.` },
       { status: 400 },
     );
   }

@@ -4,7 +4,7 @@ import { db } from "@/lib/firebase-admin";
 import { FieldValue } from "firebase-admin/firestore";
 import { buildFeatures, getDefaultTheme, getDefaultSplash, VALID_NICHES, type BusinessNiche } from "@/lib/niche-defaults";
 import { deployToVercel } from "@/lib/deploy";
-import { isValidClientLanguage, DEFAULT_CLIENT_LANGUAGE, type ClientLanguage } from "@/lib/client-language";
+import { isValidClientLanguage, DEFAULT_CLIENT_LANGUAGE, type ClientLanguage, VALID_CLIENT_LANGUAGES_LABEL } from "@/lib/client-language";
 
 function slugify(name: string): string {
   return name
@@ -42,7 +42,7 @@ export const POST = withOwner(async (req: NextRequest) => {
     // language es opcional; si no viene cae al default. Si viene, validar.
     if (body.language !== undefined && !isValidClientLanguage(body.language)) {
       return NextResponse.json(
-        { error: "Idioma inválido. Valores aceptados: he, en, ru, ar, es." },
+        { error: `Idioma inválido. Valores aceptados: ${VALID_CLIENT_LANGUAGES_LABEL}.` },
         { status: 400 },
       );
     }

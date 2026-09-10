@@ -1,3 +1,5 @@
+import type { ClientLanguage } from "@/lib/client-language";
+
 export type UserRole = "owner" | "seller" | "lead";
 
 // --- Booking Tiers ---
@@ -51,8 +53,12 @@ export interface Client {
   contactPhone?: string;
   /** Número de WhatsApp si difiere del contactPhone. */
   contactWhatsapp?: string;
-  /** Idioma del negocio del cliente — controla i18n del template y del LLM. */
-  language?: "he" | "en" | "ru" | "ar" | "es";
+  /**
+   * Idioma del negocio del cliente — controla i18n del template y del LLM.
+   * Redeclaraba el union a mano y por eso seguía admitiendo "es" después de T5;
+   * ahora sale de la fuente única (`@/lib/client-language`).
+   */
+  language?: ClientLanguage;
   /** Tier de bookings — controla límites y pricing mensual. */
   tier?: BookingTier;
   /** Bookings del mes actual. */

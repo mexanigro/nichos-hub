@@ -20,6 +20,11 @@ import {
   Briefcase,
 } from "lucide-react";
 import { LogoPicker } from "@/components/logo-upload-field";
+import {
+  VALID_CLIENT_LANGUAGES,
+  CLIENT_LANGUAGE_LABELS_ES,
+  DEFAULT_CLIENT_LANGUAGE,
+} from "@/lib/client-language";
 
 type BusinessNiche = "barberia" | "estetica" | "tattoo" | "nails" | "cafeteria" | "remodelaciones" | "employment";
 
@@ -33,13 +38,12 @@ const NICHES: { id: BusinessNiche; label: string; icon: React.ComponentType<{ si
   { id: "employment", label: "Employment", icon: Briefcase },
 ];
 
-const LANGUAGES = [
-  { value: "he", label: "Hebreo" },
-  { value: "en", label: "Inglés" },
-  { value: "ru", label: "Ruso" },
-  { value: "ar", label: "Árabe" },
-  { value: "es", label: "Español" },
-];
+// Derivado de la fuente única: el wizard no puede ofrecer un idioma que el hub no
+// acepta. "es" salió de esa lista en T5 (D-8 a) y por eso ya no aparece aquí.
+const LANGUAGES = VALID_CLIENT_LANGUAGES.map((value) => ({
+  value,
+  label: CLIENT_LANGUAGE_LABELS_ES[value],
+}));
 
 type ProvisionState = "form" | "deploying" | "success" | "error";
 
@@ -66,7 +70,7 @@ export default function NewClientPage() {
   const [address, setAddress] = useState("");
   const [instagram, setInstagram] = useState("");
   const [description, setDescription] = useState("");
-  const [language, setLanguage] = useState("he");
+  const [language, setLanguage] = useState<string>(DEFAULT_CLIENT_LANGUAGE);
   const [adminEmail, setAdminEmail] = useState("");
 
   // Logo files (uploaded after provision)

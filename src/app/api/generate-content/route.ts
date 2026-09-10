@@ -8,6 +8,7 @@ import {
   normalizeClientLanguage,
   CLIENT_LANGUAGE_NAME_EN,
   type ClientLanguage,
+  VALID_CLIENT_LANGUAGES_LABEL,
 } from "@/lib/client-language";
 
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
@@ -88,7 +89,7 @@ export const POST = withOwner(async (req) => {
       resolvedLanguage = body.language;
     } else if (body.language !== undefined) {
       return NextResponse.json(
-        { error: "Idioma inválido. Valores aceptados: he, en, ru, ar, es." },
+        { error: `Idioma inválido. Valores aceptados: ${VALID_CLIENT_LANGUAGES_LABEL}.` },
         { status: 400 },
       );
     } else if (typeof clientId === "string" && clientId.length > 0) {
