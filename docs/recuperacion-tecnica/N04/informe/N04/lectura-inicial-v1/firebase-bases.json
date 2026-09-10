@@ -1,0 +1,61 @@
+{
+  "status": "fulfilled",
+  "value": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"databases\": [\n    {\n      \"appEngineIntegrationMode\": \"DISABLED\",\n      \"backupConfig\": {\n        \"backupSchedulesEnabled\": true\n      },\n      \"concurrencyMode\": \"OPTIMISTIC\",\n      \"createTime\": \"2026-04-24T14:28:36.353082Z\",\n      \"databaseEdition\": \"ENTERPRISE\",\n      \"deleteProtectionState\": \"DELETE_PROTECTION_DISABLED\",\n      \"earliestVersionTime\": \"2026-09-10T12:15:35.235272Z\",\n      \"enhancedTextSearchQueryMode\": \"ENHANCED_QUERY_MODE_ENABLED\",\n      \"etag\": \"IMq69ZqM5JYDMOu28Za7y5YD\",\n      \"firestoreDataAccessMode\": \"DATA_ACCESS_MODE_ENABLED\",\n      \"freeTier\": true,\n      \"locationId\": \"me-west1\",\n      \"mongodbCompatibleDataAccessMode\": \"DATA_ACCESS_MODE_DISABLED\",\n      \"name\": \"projects/barbertemplate-madre/databases/default\",\n      \"pointInTimeRecoveryEnablement\": \"POINT_IN_TIME_RECOVERY_DISABLED\",\n      \"realtimeUpdatesMode\": \"REALTIME_UPDATES_MODE_ENABLED\",\n      \"type\": \"FIRESTORE_NATIVE\",\n      \"uid\": \"7d3c789c-9900-474f-83fb-ae615751d9d3\",\n      \"updateTime\": \"2026-04-24T14:28:36.353082Z\",\n      \"versionRetentionPeriod\": \"3600s\"\n    },\n    {\n      \"appEngineIntegrationMode\": \"DISABLED\",\n      \"backupConfig\": {\n        \"backupSchedulesEnabled\": true\n      },\n      \"concurrencyMode\": \"PESSIMISTIC\",\n      \"createTime\": \"2026-04-25T11:09:54.051970Z\",\n      \"databaseEdition\": \"STANDARD\",\n      \"deleteProtectionState\": \"DELETE_PROTECTION_DISABLED\",\n      \"earliestVersionTime\": \"2026-09-10T12:15:35.235387Z\",\n      \"enhancedTextSearchQueryMode\": \"ENHANCED_QUERY_MODE_ENABLED\",\n      \"etag\": \"INvK8pqM5JYDMNPg7or6iJQD\",\n      \"freeTier\": false,\n      \"locationId\": \"nam5\",\n      \"name\": \"projects/barbertemplate-madre/databases/nichos-us-prod\",\n      \"pointInTimeRecoveryEnablement\": \"POINT_IN_TIME_RECOVERY_DISABLED\",\n      \"realtimeUpdatesMode\": \"REALTIME_UPDATES_MODE_ENABLED\",\n      \"type\": \"FIRESTORE_NATIVE\",\n      \"uid\": \"a80b7088-52e5-4fec-8f58-f19ce647842f\",\n      \"updateTime\": \"2026-04-25T11:09:54.051970Z\",\n      \"versionRetentionPeriod\": \"3600s\"\n    }\n  ]\n}\n"
+      }
+    ],
+    "structuredContent": {
+      "databases": [
+        {
+          "appEngineIntegrationMode": "DISABLED",
+          "backupConfig": {
+            "backupSchedulesEnabled": true
+          },
+          "concurrencyMode": "OPTIMISTIC",
+          "createTime": "2026-04-24T14:28:36.353082Z",
+          "databaseEdition": "ENTERPRISE",
+          "deleteProtectionState": "DELETE_PROTECTION_DISABLED",
+          "earliestVersionTime": "2026-09-10T12:15:35.235272Z",
+          "enhancedTextSearchQueryMode": "ENHANCED_QUERY_MODE_ENABLED",
+          "etag": "IMq69ZqM5JYDMOu28Za7y5YD",
+          "firestoreDataAccessMode": "DATA_ACCESS_MODE_ENABLED",
+          "freeTier": true,
+          "locationId": "me-west1",
+          "mongodbCompatibleDataAccessMode": "DATA_ACCESS_MODE_DISABLED",
+          "name": "projects/barbertemplate-madre/databases/default",
+          "pointInTimeRecoveryEnablement": "POINT_IN_TIME_RECOVERY_DISABLED",
+          "realtimeUpdatesMode": "REALTIME_UPDATES_MODE_ENABLED",
+          "type": "FIRESTORE_NATIVE",
+          "uid": "7d3c789c-9900-474f-83fb-ae615751d9d3",
+          "updateTime": "2026-04-24T14:28:36.353082Z",
+          "versionRetentionPeriod": "3600s"
+        },
+        {
+          "appEngineIntegrationMode": "DISABLED",
+          "backupConfig": {
+            "backupSchedulesEnabled": true
+          },
+          "concurrencyMode": "PESSIMISTIC",
+          "createTime": "2026-04-25T11:09:54.051970Z",
+          "databaseEdition": "STANDARD",
+          "deleteProtectionState": "DELETE_PROTECTION_DISABLED",
+          "earliestVersionTime": "2026-09-10T12:15:35.235387Z",
+          "enhancedTextSearchQueryMode": "ENHANCED_QUERY_MODE_ENABLED",
+          "etag": "INvK8pqM5JYDMNPg7or6iJQD",
+          "freeTier": false,
+          "locationId": "nam5",
+          "name": "projects/barbertemplate-madre/databases/nichos-us-prod",
+          "pointInTimeRecoveryEnablement": "POINT_IN_TIME_RECOVERY_DISABLED",
+          "realtimeUpdatesMode": "REALTIME_UPDATES_MODE_ENABLED",
+          "type": "FIRESTORE_NATIVE",
+          "uid": "a80b7088-52e5-4fec-8f58-f19ce647842f",
+          "updateTime": "2026-04-25T11:09:54.051970Z",
+          "versionRetentionPeriod": "3600s"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,219 @@
+{
+  "status": "fulfilled",
+  "value": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"indexes\": [\n    {\n      \"density\": \"DENSE\",\n      \"fields\": [\n        {\n          \"fieldPath\": \"clientId\",\n          \"order\": \"ASCENDING\"\n        },\n        {\n          \"fieldPath\": \"createdAt\",\n          \"order\": \"DESCENDING\"\n        }\n      ],\n      \"name\": \"projects/barbertemplate-madre/databases/default/collectionGroups/notification_logs/indexes/CICAgOjXh8EI\",\n      \"queryScope\": \"COLLECTION\",\n      \"state\": \"READY\"\n    },\n    {\n      \"density\": \"DENSE\",\n      \"fields\": [\n        {\n          \"fieldPath\": \"clientId\",\n          \"order\": \"ASCENDING\"\n        },\n        {\n          \"fieldPath\": \"status\",\n          \"order\": \"ASCENDING\"\n        },\n        {\n          \"fieldPath\": \"createdAt\",\n          \"order\": \"DESCENDING\"\n        }\n      ],\n      \"name\": \"projects/barbertemplate-madre/databases/default/collectionGroups/contact_inbox/indexes/CICAgJiUpsMI\",\n      \"queryScope\": \"COLLECTION\",\n      \"state\": \"READY\"\n    },\n    {\n      \"density\": \"DENSE\",\n      \"fields\": [\n        {\n          \"fieldPath\": \"clientId\",\n          \"order\": \"ASCENDING\"\n        },\n        {\n          \"fieldPath\": \"createdAt\",\n          \"order\": \"DESCENDING\"\n        }\n      ],\n      \"name\": \"projects/barbertemplate-madre/databases/default/collectionGroups/invoices/indexes/CICAgOjXh4EJ\",\n      \"queryScope\": \"COLLECTION\",\n      \"state\": \"READY\"\n    },\n    {\n      \"density\": \"DENSE\",\n      \"fields\": [\n        {\n          \"fieldPath\": \"clientId\",\n          \"order\": \"ASCENDING\"\n        },\n        {\n          \"fieldPath\": \"lastVisitAt\",\n          \"order\": \"DESCENDING\"\n        }\n      ],\n      \"name\": \"projects/barbertemplate-madre/databases/default/collectionGroups/customers/indexes/CICAgJiUpoMJ\",\n      \"queryScope\": \"COLLECTION\",\n      \"state\": \"READY\"\n    },\n    {\n      \"density\": \"DENSE\",\n      \"fields\": [\n        {\n          \"fieldPath\": \"sender\",\n          \"order\": \"ASCENDING\"\n        },\n        {\n          \"fieldPath\": \"category\",\n          \"order\": \"ASCENDING\"\n        },\n        {\n          \"fieldPath\": \"createdAt\",\n          \"order\": \"DESCENDING\"\n        }\n      ],\n      \"name\": \"projects/barbertemplate-madre/databases/default/collectionGroups/provider_messages/indexes/CICAgJim14AK\",\n      \"queryScope\": \"COLLECTION\",\n      \"state\": \"READY\"\n    },\n    {\n      \"density\": \"DENSE\",\n      \"fields\": [\n        {\n          \"fieldPath\": \"clientId\",\n          \"order\": \"ASCENDING\"\n        },\n        {\n          \"fieldPath\": \"createdAt\",\n          \"order\": \"DESCENDING\"\n        }\n      ],\n      \"name\": \"projects/barbertemplate-madre/databases/default/collectionGroups/appointments/indexes/CICAgOjXh4EK\",\n      \"queryScope\": \"COLLECTION\",\n      \"state\": \"READY\"\n    },\n    {\n      \"density\": \"DENSE\",\n      \"fields\": [\n        {\n          \"fieldPath\": \"clientId\",\n          \"order\": \"ASCENDING\"\n        },\n        {\n          \"fieldPath\": \"date\",\n          \"order\": \"ASCENDING\"\n        },\n        {\n          \"fieldPath\": \"status\",\n          \"order\": \"ASCENDING\"\n        }\n      ],\n      \"name\": \"projects/barbertemplate-madre/databases/default/collectionGroups/appointments/indexes/CICAgJiUpoMK\",\n      \"queryScope\": \"COLLECTION\",\n      \"state\": \"READY\"\n    },\n    {\n      \"density\": \"DENSE\",\n      \"fields\": [\n        {\n          \"fieldPath\": \"clientId\",\n          \"order\": \"ASCENDING\"\n        },\n        {\n          \"fieldPath\": \"createdAt\",\n          \"order\": \"ASCENDING\"\n        }\n      ],\n      \"name\": \"projects/barbertemplate-madre/databases/default/collectionGroups/provider_messages/indexes/CICAgOi3kJAK\",\n      \"queryScope\": \"COLLECTION\",\n      \"state\": \"READY\"\n    },\n    {\n      \"density\": \"DENSE\",\n      \"fields\": [\n        {\n          \"fieldPath\": \"parentId\",\n          \"order\": \"ASCENDING\"\n        },\n        {\n          \"fieldPath\": \"createdAt\",\n          \"order\": \"ASCENDING\"\n        }\n      ],\n      \"name\": \"projects/barbertemplate-madre/databases/default/collectionGroups/provider_messages/indexes/CICAgJjmiJEK\",\n      \"queryScope\": \"COLLECTION\",\n      \"state\": \"READY\"\n    },\n    {\n      \"density\": \"DENSE\",\n      \"fields\": [\n        {\n          \"fieldPath\": \"sender\",\n          \"order\": \"ASCENDING\"\n        },\n        {\n          \"fieldPath\": \"createdAt\",\n          \"order\": \"DESCENDING\"\n        }\n      ],\n      \"name\": \"projects/barbertemplate-madre/databases/default/collectionGroups/provider_messages/indexes/CICAgJiUsZIK\",\n      \"queryScope\": \"COLLECTION\",\n      \"state\": \"READY\"\n    },\n    {\n      \"density\": \"DENSE\",\n      \"fields\": [\n        {\n          \"fieldPath\": \"clientId\",\n          \"order\": \"ASCENDING\"\n        },\n        {\n          \"fieldPath\": \"createdAt\",\n          \"order\": \"DESCENDING\"\n        }\n      ],\n      \"name\": \"projects/barbertemplate-madre/databases/default/collectionGroups/payments/indexes/CICAgOjXh4EL\",\n      \"queryScope\": \"COLLECTION\",\n      \"state\": \"READY\"\n    },\n    {\n      \"density\": \"DENSE\",\n      \"fields\": [\n        {\n          \"fieldPath\": \"clientId\",\n          \"order\": \"ASCENDING\"\n        },\n        {\n          \"fieldPath\": \"createdAt\",\n          \"order\": \"DESCENDING\"\n        }\n      ],\n      \"name\": \"projects/barbertemplate-madre/databases/default/collectionGroups/contact_inbox/indexes/CICAgJiUpoML\",\n      \"queryScope\": \"COLLECTION\",\n      \"state\": \"READY\"\n    }\n  ]\n}\n"
+      }
+    ],
+    "structuredContent": {
+      "indexes": [
+        {
+          "density": "DENSE",
+          "fields": [
+            {
+              "fieldPath": "clientId",
+              "order": "ASCENDING"
+            },
+            {
+              "fieldPath": "createdAt",
+              "order": "DESCENDING"
+            }
+          ],
+          "name": "projects/barbertemplate-madre/databases/default/collectionGroups/notification_logs/indexes/CICAgOjXh8EI",
+          "queryScope": "COLLECTION",
+          "state": "READY"
+        },
+        {
+          "density": "DENSE",
+          "fields": [
+            {
+              "fieldPath": "clientId",
+              "order": "ASCENDING"
+            },
+            {
+              "fieldPath": "status",
+              "order": "ASCENDING"
+            },
+            {
+              "fieldPath": "createdAt",
+              "order": "DESCENDING"
+            }
+          ],
+          "name": "projects/barbertemplate-madre/databases/default/collectionGroups/contact_inbox/indexes/CICAgJiUpsMI",
+          "queryScope": "COLLECTION",
+          "state": "READY"
+        },
+        {
+          "density": "DENSE",
+          "fields": [
+            {
+              "fieldPath": "clientId",
+              "order": "ASCENDING"
+            },
+            {
+              "fieldPath": "createdAt",
+              "order": "DESCENDING"
+            }
+          ],
+          "name": "projects/barbertemplate-madre/databases/default/collectionGroups/invoices/indexes/CICAgOjXh4EJ",
+          "queryScope": "COLLECTION",
+          "state": "READY"
+        },
+        {
+          "density": "DENSE",
+          "fields": [
+            {
+              "fieldPath": "clientId",
+              "order": "ASCENDING"
+            },
+            {
+              "fieldPath": "lastVisitAt",
+              "order": "DESCENDING"
+            }
+          ],
+          "name": "projects/barbertemplate-madre/databases/default/collectionGroups/customers/indexes/CICAgJiUpoMJ",
+          "queryScope": "COLLECTION",
+          "state": "READY"
+        },
+        {
+          "density": "DENSE",
+          "fields": [
+            {
+              "fieldPath": "sender",
+              "order": "ASCENDING"
+            },
+            {
+              "fieldPath": "category",
+              "order": "ASCENDING"
+            },
+            {
+              "fieldPath": "createdAt",
+              "order": "DESCENDING"
+            }
+          ],
+          "name": "projects/barbertemplate-madre/databases/default/collectionGroups/provider_messages/indexes/CICAgJim14AK",
+          "queryScope": "COLLECTION",
+          "state": "READY"
+        },
+        {
+          "density": "DENSE",
+          "fields": [
+            {
+              "fieldPath": "clientId",
+              "order": "ASCENDING"
+            },
+            {
+              "fieldPath": "createdAt",
+              "order": "DESCENDING"
+            }
+          ],
+          "name": "projects/barbertemplate-madre/databases/default/collectionGroups/appointments/indexes/CICAgOjXh4EK",
+          "queryScope": "COLLECTION",
+          "state": "READY"
+        },
+        {
+          "density": "DENSE",
+          "fields": [
+            {
+              "fieldPath": "clientId",
+              "order": "ASCENDING"
+            },
+            {
+              "fieldPath": "date",
+              "order": "ASCENDING"
+            },
+            {
+              "fieldPath": "status",
+              "order": "ASCENDING"
+            }
+          ],
+          "name": "projects/barbertemplate-madre/databases/default/collectionGroups/appointments/indexes/CICAgJiUpoMK",
+          "queryScope": "COLLECTION",
+          "state": "READY"
+        },
+        {
+          "density": "DENSE",
+          "fields": [
+            {
+              "fieldPath": "clientId",
+              "order": "ASCENDING"
+            },
+            {
+              "fieldPath": "createdAt",
+              "order": "ASCENDING"
+            }
+          ],
+          "name": "projects/barbertemplate-madre/databases/default/collectionGroups/provider_messages/indexes/CICAgOi3kJAK",
+          "queryScope": "COLLECTION",
+          "state": "READY"
+        },
+        {
+          "density": "DENSE",
+          "fields": [
+            {
+              "fieldPath": "parentId",
+              "order": "ASCENDING"
+            },
+            {
+              "fieldPath": "createdAt",
+              "order": "ASCENDING"
+            }
+          ],
+          "name": "projects/barbertemplate-madre/databases/default/collectionGroups/provider_messages/indexes/CICAgJjmiJEK",
+          "queryScope": "COLLECTION",
+          "state": "READY"
+        },
+        {
+          "density": "DENSE",
+          "fields": [
+            {
+              "fieldPath": "sender",
+              "order": "ASCENDING"
+            },
+            {
+              "fieldPath": "createdAt",
+              "order": "DESCENDING"
+            }
+          ],
+          "name": "projects/barbertemplate-madre/databases/default/collectionGroups/provider_messages/indexes/CICAgJiUsZIK",
+          "queryScope": "COLLECTION",
+          "state": "READY"
+        },
+        {
+          "density": "DENSE",
+          "fields": [
+            {
+              "fieldPath": "clientId",
+              "order": "ASCENDING"
+            },
+            {
+              "fieldPath": "createdAt",
+              "order": "DESCENDING"
+            }
+          ],
+          "name": "projects/barbertemplate-madre/databases/default/collectionGroups/payments/indexes/CICAgOjXh4EL",
+          "queryScope": "COLLECTION",
+          "state": "READY"
+        },
+        {
+          "density": "DENSE",
+          "fields": [
+            {
+              "fieldPath": "clientId",
+              "order": "ASCENDING"
+            },
+            {
+              "fieldPath": "createdAt",
+              "order": "DESCENDING"
+            }
+          ],
+          "name": "projects/barbertemplate-madre/databases/default/collectionGroups/contact_inbox/indexes/CICAgJiUpoML",
+          "queryScope": "COLLECTION",
+          "state": "READY"
+        }
+      ]
+    }
+  }
+}

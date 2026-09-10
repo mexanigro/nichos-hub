@@ -1,0 +1,52 @@
+[
+  {
+    "path": "informe\\N04\\lectura-inicial-v1\\firebase-bases.json",
+    "bytes": 4570,
+    "sha256": "44B00298BEFEE73FE1C2B37277D5F5E593E6CB502DF2260F8C06152047140CB7"
+  },
+  {
+    "path": "informe\\N04\\lectura-inicial-v1\\firebase-entorno.json",
+    "bytes": 694,
+    "sha256": "8AAA734EC20F746BD144112728AA4EFB27DB1BC78FFFF457DA258218C5738E48"
+  },
+  {
+    "path": "informe\\N04\\lectura-inicial-v1\\firebase-indices-default.json",
+    "bytes": 12130,
+    "sha256": "A4234F49DA9B491A7E9FF62399421CD9ECD3BFB56520C520210EF55220B54FA9"
+  },
+  {
+    "path": "informe\\N04\\lectura-inicial-v1\\firebase-rules-sin-atribucion.json",
+    "bytes": 10338,
+    "sha256": "A57F8DA5BB5D10267A7D4965DEFD64D6A7AB7DD9C643E2B78CBE477D9E1A22AC"
+  },
+  {
+    "path": "informe\\N04\\lectura-inicial-v1\\railway-documentacion.json",
+    "bytes": 4750,
+    "sha256": "E456F09E19B0211D3A6EAE2B2E754662159D82141140203DE9A6CAE474A5A4E3"
+  },
+  {
+    "path": "informe\\N04\\lectura-inicial-v1\\RETOMA.md",
+    "bytes": 6467,
+    "sha256": "1B1BD4130621159DC0B0436D0D252019ECE2D221BBE871494013CD43BD80A750"
+  },
+  {
+    "path": "informe\\N04\\lectura-inicial-v1\\vercel-proyectos.json",
+    "bytes": 8175,
+    "sha256": "64D64578E9311DEDE3C2A1F6BFE34DDFB120FE3BA875FCFFC3713394991DAA2D"
+  },
+  {
+    "path": "informe\\N04\\lectura-inicial-v1\\preimagenes\\CALENDARIO.md",
+    "bytes": 42698,
+    "sha256": "CD9F53F1C5EDF97B17AB6E4AED3B4D6019CBCC4141628E2A0A5DC23E64DFD23A"
+  },
+  {
+    "path": "informe\\N04\\lectura-inicial-v1\\preimagenes\\N03.md",
+    "bytes": 48872,
+    "sha256": "E266510218DE54DDAF85ECECAA8236AE1E3743AD45EBD72DF5A6B2C9F52D20AC"
+  },
+  {
+    "path": "informe\\N04\\lectura-inicial-v1\\preimagenes\\N04.md",
+    "bytes": 11341,
+    "sha256": "7F57969430BB6430D44CD4C497533E44E058097CB1752AFF2FFCE0E50468DD52"
+  }
+]

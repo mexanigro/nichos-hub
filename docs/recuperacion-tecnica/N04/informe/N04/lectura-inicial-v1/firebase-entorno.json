@@ -1,0 +1,11 @@
+{
+  "status": "fulfilled",
+  "value": {
+    "content": [
+      {
+        "type": "text",
+        "text": "# Environment Information\n\nProject Directory: C:\\Users\\liama\\Desktop\\Nichos-hub\nProject Config Path: C:\\Users\\liama\\Desktop\\Nichos-hub\\firebase.json\nActive Project ID: barbertemplate-madre (alias: default)\nGemini in Firebase Terms of Service: <NOT ACCEPTED>\nBilling Enabled: Yes\nAuthenticated User: liam.arzac@gmail.com\nDetected App IDs: <NONE>\nAvailable Project Aliases (format: '[alias]: [projectId]'): \n\ndefault: barbertemplate-madre\n\n\nfirebase.json contents:\n\n```json\n{\n  \"storage\": {\n    \"rules\": \"storage.rules\"\n  }\n}\n\n```"
+      }
+    ]
+  }
+}
