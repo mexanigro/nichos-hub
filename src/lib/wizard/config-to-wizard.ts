@@ -31,7 +31,9 @@ export function configToWizardData(
   // Business
   const niche = business.type as string | undefined;
   if (niche) out.niche = niche as WizardNiche;
-  const mode = business.mode as "solo" | "team" | undefined;
+  const mode = business.mode === "solo" || business.mode === "team"
+    ? business.mode
+    : config.businessMode;
   if (mode === "solo" || mode === "team") out.businessMode = mode;
   if (typeof business.name === "string") out.businessName = business.name;
   else if (typeof brand.name === "string") out.businessName = brand.name;

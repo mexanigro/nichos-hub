@@ -207,7 +207,7 @@ export function liamMessage(v: LiamMessageVars) {
       ``,
       v.body,
       ``,
-      `Podés responderme entrando al portal:`,
+      v.portalUrl ? "Podés responderme entrando al portal:" : "Podés visitar Arzac Studio:",
       cta,
       ``,
       `Liam`,
@@ -215,7 +215,7 @@ export function liamMessage(v: LiamMessageVars) {
     ].join("\n"),
     html: `<p>Hola${name ? " " + escape(name) : ""},</p>
 <p style="white-space:pre-wrap">${escape(v.body).replace(/\n/g, "<br>")}</p>
-<p><a href="${cta}" style="display:inline-block;background:#0f0f0f;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600">Responder en el portal →</a></p>
+<p><a href="${cta}" style="display:inline-block;background:#0f0f0f;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600">${v.portalUrl ? "Responder en el portal" : "Visitar Arzac Studio"} →</a></p>
 <p>—<br>Liam<br><a href="${SITE}">Arzac Studio</a></p>`,
   };
 }

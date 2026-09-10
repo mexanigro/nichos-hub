@@ -84,6 +84,12 @@ export function ClientLanguageBanner({
             <p className="text-[10px] text-text-muted">
               Controla placeholders, wizard del cliente y generación con IA. No
               traduce textos ya cargados.
+              {current === "es" && (
+                <span className="block">
+                  La interfaz de la web usa inglés como alternativa al español.
+                  El español se conserva en el hub y en los contenidos existentes.
+                </span>
+              )}
             </p>
           </div>
         </div>

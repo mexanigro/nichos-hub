@@ -83,10 +83,17 @@ export async function POST(req: NextRequest) {
       : { themeOverrides: {} };
 
     const configUpdate: Record<string, unknown> = {
-      "business.type": niche,
-      "business.mode": body.businessMode || "team",
-      "business.name": body.businessName || "",
+      business: {
+        type: niche,
+        mode: body.businessMode || "team",
+        name: body.businessName || "",
+      },
     };
+    const brandUpdate: Record<string, unknown> = {};
+    const ownerUpdate: Record<string, unknown> = {};
+    const themeUpdate: Record<string, unknown> = {};
+    const whyChooseUsUpdate: Record<string, unknown> = {};
+    const faqUpdate: Record<string, unknown> = {};
 
     // Persistir idioma del cliente en config (lo lee el template para localizar
     // labels de servicios, formatos de hora, etc.). Sólo escribimos si vino
@@ -97,33 +104,38 @@ export async function POST(req: NextRequest) {
 
     // Brand
     if (body.businessName)
-      configUpdate["brand.name"] = body.businessName;
-    if (body.tagline) configUpdate["brand.tagline"] = body.tagline;
+      brandUpdate.name = body.businessName;
+    if (body.tagline) brandUpdate.tagline = body.tagline;
     if (body.description)
-      configUpdate["brand.description"] = body.description;
-    if (body.faviconEmoji) configUpdate["brand.faviconEmoji"] = body.faviconEmoji;
+      brandUpdate.description = body.description;
+    if (body.faviconEmoji) brandUpdate.faviconEmoji = body.faviconEmoji;
 
-    // Contact (flatten for dot-notation merge)
+    // Contact: mapas anidados con sólo las hojas enviadas para set+merge.
     if (body.contact) {
+      const contactUpdate: Record<string, unknown> = {};
       if (body.contact.phone)
-        configUpdate["contact.phone"] = body.contact.phone;
+        contactUpdate.phone = body.contact.phone;
       if (body.contact.email)
-        configUpdate["contact.email"] = body.contact.email;
+        contactUpdate.email = body.contact.email;
       if (body.contact.instagram)
-        configUpdate["contact.instagram"] = body.contact.instagram;
+        contactUpdate.instagram = body.contact.instagram;
       if (body.contact.facebook)
-        configUpdate["contact.facebook"] = body.contact.facebook;
+        contactUpdate.facebook = body.contact.facebook;
       if (body.contact.whatsapp)
-        configUpdate["contact.whatsapp"] = body.contact.whatsapp;
+        contactUpdate.whatsapp = body.contact.whatsapp;
       if (body.contact.address) {
+        const addressUpdate: Record<string, unknown> = {};
         if (body.contact.address.street)
-          configUpdate["contact.address.street"] = body.contact.address.street;
+          addressUpdate.street = body.contact.address.street;
         if (body.contact.address.district)
-          configUpdate["contact.address.district"] =
-            body.contact.address.district;
+          addressUpdate.district = body.contact.address.district;
         if (body.contact.address.city)
-          configUpdate["contact.address.city"] = body.contact.address.city;
+          addressUpdate.city = body.contact.address.city;
+        if (Object.keys(addressUpdate).length > 0)
+          contactUpdate.address = addressUpdate;
       }
+      if (Object.keys(contactUpdate).length > 0)
+        configUpdate.contact = contactUpdate;
     }
 
     // Services
@@ -178,35 +190,35 @@ export async function POST(req: NextRequest) {
     }
 
     // Owner
-    if (body.ownerName) configUpdate["owner.name"] = body.ownerName;
-    if (body.ownerRole) configUpdate["owner.role"] = body.ownerRole;
-    if (body.ownerBio) configUpdate["owner.bio"] = body.ownerBio;
+    if (body.ownerName) ownerUpdate.name = body.ownerName;
+    if (body.ownerRole) ownerUpdate.role = body.ownerRole;
+    if (body.ownerBio) ownerUpdate.bio = body.ownerBio;
 
     // Accent color / branding
     if (body.accentColor) {
-      configUpdate["themeOverrides.accentColor"] = body.accentColor;
+      themeUpdate.accentColor = body.accentColor;
     }
     if (Object.keys(branding.themeOverrides).length > 0) {
       for (const [k, v] of Object.entries(branding.themeOverrides)) {
-        configUpdate[`themeOverrides.${k}`] = v;
+        themeUpdate[k] = v;
       }
     }
 
     // Branding input (raw user input for re-resolution)
-    configUpdate["brandingInput.colors"] = body.colors || "";
+    configUpdate.brandingInput = { colors: body.colors || "" };
 
     // Image uploads (URLs from /api/onboarding/upload)
     if (typeof body.logoUrl === "string" && body.logoUrl) {
-      configUpdate["brand.logo"] = body.logoUrl;
+      brandUpdate.logo = body.logoUrl;
     }
     if (typeof body.logoDarkUrl === "string" && body.logoDarkUrl) {
-      configUpdate["brand.logoDark"] = body.logoDarkUrl;
+      brandUpdate.logoDark = body.logoDarkUrl;
     }
     if (typeof body.ownerPhotoUrl === "string" && body.ownerPhotoUrl) {
-      configUpdate["owner.photo"] = body.ownerPhotoUrl;
+      ownerUpdate.photo = body.ownerPhotoUrl;
     }
     if (typeof body.heroImageUrl === "string" && body.heroImageUrl) {
-      configUpdate["hero.backgroundImage"] = body.heroImageUrl;
+      configUpdate.hero = { backgroundImage: body.heroImageUrl };
     }
     if (Array.isArray(body.staffPhotoUrls) && body.staffPhotoUrls.length > 0) {
       // Stub: array de URLs. Liam mapea a staff[].photo en config-tab cuando
@@ -229,10 +241,10 @@ export async function POST(req: NextRequest) {
           desc: (b.desc || "").trim(),
           iconName: b.iconName || "Star",
         }));
-      if (cleaned.length > 0) configUpdate["sections.whyChooseUs.benefits"] = cleaned;
+      if (cleaned.length > 0) whyChooseUsUpdate.benefits = cleaned;
     }
     if (typeof body.whyChooseUsMainImage === "string" && body.whyChooseUsMainImage) {
-      configUpdate["sections.whyChooseUs.mainImage"] = body.whyChooseUsMainImage;
+      whyChooseUsUpdate.mainImage = body.whyChooseUsMainImage;
     }
 
     // Testimonials → testimonials[]: { name, title, text, rating }
@@ -253,8 +265,18 @@ export async function POST(req: NextRequest) {
       const cleaned = body.faqItems
         .filter((f: { q?: string; a?: string }) => f.q?.trim() && f.a?.trim())
         .map((f: { q: string; a: string }) => ({ q: f.q.trim(), a: f.a.trim() }));
-      if (cleaned.length > 0) configUpdate["sections.faq.items"] = cleaned;
+      if (cleaned.length > 0) faqUpdate.items = cleaned;
     }
+
+    // Un mapa vacío en set+merge reemplaza su rama: adjuntar sólo mapas con hojas.
+    if (Object.keys(brandUpdate).length > 0) configUpdate.brand = brandUpdate;
+    if (Object.keys(ownerUpdate).length > 0) configUpdate.owner = ownerUpdate;
+    if (Object.keys(themeUpdate).length > 0) configUpdate.themeOverrides = themeUpdate;
+    const sectionsUpdate: Record<string, unknown> = {};
+    if (Object.keys(whyChooseUsUpdate).length > 0)
+      sectionsUpdate.whyChooseUs = whyChooseUsUpdate;
+    if (Object.keys(faqUpdate).length > 0) sectionsUpdate.faq = faqUpdate;
+    if (Object.keys(sectionsUpdate).length > 0) configUpdate.sections = sectionsUpdate;
 
     // Snapshot del config previo — usado más abajo para escribir un audit log
     // en config_history con changedBy="customer" cuando es un resubmit. Esto
@@ -322,9 +344,12 @@ export async function POST(req: NextRequest) {
     if (body.businessName) hubUpdate.businessName = body.businessName;
     if (body.niche) hubUpdate.niche = body.niche;
     if (clientLanguage) hubUpdate.language = clientLanguage;
-    if (body.contact?.email) hubUpdate["contact.email"] = body.contact.email;
+    const hubContactUpdate: Record<string, unknown> = {};
+    if (body.contact?.email) hubContactUpdate.email = body.contact.email;
     if (body.contact?.whatsapp)
-      hubUpdate["contact.whatsapp"] = body.contact.whatsapp;
+      hubContactUpdate.whatsapp = body.contact.whatsapp;
+    if (Object.keys(hubContactUpdate).length > 0)
+      hubUpdate.contact = hubContactUpdate;
 
     if (isResubmit) {
       // Limpiar marcas del ciclo changes_requested + bumpear contador.

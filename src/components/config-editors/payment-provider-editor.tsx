@@ -88,7 +88,7 @@ const PROVIDERS: ProviderMeta[] = [
   {
     id: "cardcom",
     label: "Cardcom",
-    description: "Proveedor israelí — shekels, tarjetas locales",
+    description: "Cardcom bloqueado: moneda pendiente de validación",
     icon: "🇮🇱",
     fields: [
       {
@@ -101,6 +101,12 @@ const PROVIDERS: ProviderMeta[] = [
         label: "API Key",
         placeholder: "API key de Cardcom",
         secret: true,
+      },
+      {
+        key: "apiName",
+        label: "API Name",
+        placeholder: "Nombre API de Cardcom",
+        hint: "Requerido por Cardcom; no es la API Key histórica.",
       },
       {
         key: "terminalNumber",
@@ -348,7 +354,7 @@ export function PaymentProviderEditor({
                   <ExternalLink size={9} />
                 </a>
               )}
-              {allCredsConfigured && !credsDirty && (
+              {currentProvider !== "cardcom" && allCredsConfigured && !credsDirty && (
                 <span className="flex items-center gap-1 rounded-full bg-green-500/10 px-2 py-0.5 text-[10px] font-medium text-green-400">
                   <CheckCircle2 size={10} />
                   Configurado
@@ -530,22 +536,11 @@ export function PaymentProviderEditor({
             </div>
           </div>
 
-          {/* Accept cash */}
-          <ToggleRow
-            label="Aceptar pago en efectivo"
-            value={payment?.acceptCash ?? false}
-            onChange={(v) => onPaymentChange("payment.acceptCash", v)}
-          />
+          <p className="text-[11px] text-text-muted">
+            El cobro lo determina payment.mode. Los datos históricos de efectivo y seña se conservan, pero no gobiernan el cobro.
+          </p>
 
-          {/* Deposit */}
-          <ToggleRow
-            label="Requiere seña para reservar"
-            value={payment?.depositRequired ?? false}
-            onChange={(v) => onPaymentChange("payment.depositRequired", v)}
-          />
-
-          {(payment?.depositRequired ||
-            payment?.mode === "deposit") && (
+          {payment?.mode === "deposit" && (
             <div>
               <label className="mb-1 block text-[11px] font-medium text-text-muted">
                 Monto de seña
