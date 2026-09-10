@@ -1,9 +1,5 @@
 # N04 — primera lectura real y publicación pendiente
 
-## Cierre de sesión vigente — 2026-09-10
-
-Por orden de Liam, sesión cerrada: N03 aceptada localmente; N04 abierta, atribución pendiente. Intervención vigente: los dos GET releases.get/rulesets.get descritos inmediatamente debajo; sustituyen la orientación histórica de abrir la pestaña Rules. No se ejecutaron nuevas pruebas ni consultas remotas. Evidencias y preimágenes del manifiesto anterior verificadas por SHA256 sin diferencias; RETOMA.md es la única fuente de ese manifiesto actualizada y conserva ambas preimágenes. Commit documental anterior: 5b70b53eccfd651dc9fc6ab93f940429c219781e; producto template: 0670e71bb86746e534cfacb66bf3ed47757f4714. El commit que contiene esta adenda identifica el cierre documental final. Los HEAD y refs del bloque inferior son observaciones históricas, no nuevas consultas. Push NO ejecutado: Railway Unauthorized y desactivación de automatismos Vercel no acreditada; sin repetir intentos ni cambiar hosting. Índices Git de ambos repositorios vacíos antes de seleccionar exclusivamente este cierre; verificar de nuevo tras commit. Trabajo ajeno fuera de selección. N06/N10, bloqueo Cardcom y prestaciones por tenant antes de desplegar conservados.
-
 ## Retoma acotada vigente — atribución de reglas, 2026-09-10
 
 Resultado: NO_VERIFICADO; P2 sigue pendiente. Se revisó el catálogo actual de herramientas: firebase_get_security_rules admite únicamente type (firestore/rtdb/storage), sin proyecto/base/release como argumentos, y declara devolver la instancia predeterminada. No hay herramientas de lectura de releases/rulesets expuestas en el conector. Se reutilizó firebase-rules-sin-atribucion.json, SHA256 A57F8DA5BB5D10267A7D4965DEFD64D6A7AB7DD9C643E2B78CBE477D9E1A22AC. No se repitió la llamada ni los intentos de navegador fallidos. No se construyó adaptador.

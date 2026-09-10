@@ -1,25 +1,5 @@
 # N04 — primera lectura real y publicación pendiente
 
-## Cierre de sesión vigente — 2026-09-10
-
-Por orden de Liam, sesión cerrada: N03 aceptada localmente; N04 abierta, atribución pendiente. Intervención vigente: los dos GET releases.get/rulesets.get descritos inmediatamente debajo; sustituyen la orientación histórica de abrir la pestaña Rules. No se ejecutaron nuevas pruebas ni consultas remotas. Evidencias y preimágenes del manifiesto anterior verificadas por SHA256 sin diferencias; RETOMA.md es la única fuente de ese manifiesto actualizada y conserva ambas preimágenes. Commit documental anterior: 5b70b53eccfd651dc9fc6ab93f940429c219781e; producto template: 0670e71bb86746e534cfacb66bf3ed47757f4714. El commit que contiene esta adenda identifica el cierre documental final. Los HEAD y refs del bloque inferior son observaciones históricas, no nuevas consultas. Push NO ejecutado: Railway Unauthorized y desactivación de automatismos Vercel no acreditada; sin repetir intentos ni cambiar hosting. Índices Git de ambos repositorios vacíos antes de seleccionar exclusivamente este cierre; verificar de nuevo tras commit. Trabajo ajeno fuera de selección. N06/N10, bloqueo Cardcom y prestaciones por tenant antes de desplegar conservados.
-
-## Retoma acotada vigente — atribución de reglas, 2026-09-10
-
-Resultado: NO_VERIFICADO; P2 sigue pendiente. Se revisó el catálogo actual de herramientas: firebase_get_security_rules admite únicamente type (firestore/rtdb/storage), sin proyecto/base/release como argumentos, y declara devolver la instancia predeterminada. No hay herramientas de lectura de releases/rulesets expuestas en el conector. Se reutilizó firebase-rules-sin-atribucion.json, SHA256 A57F8DA5BB5D10267A7D4965DEFD64D6A7AB7DD9C643E2B78CBE477D9E1A22AC. No se repitió la llamada ni los intentos de navegador fallidos. No se construyó adaptador.
-
-Corrección a la intervención anterior: la pestaña Rules de Firebase no garantiza esta cadena para una base nombrada. La documentación oficial limita la consola a la base predeterminada y distingue releases/cloud.firestore/(default) de la base literal default. Para evitar otra captura no atribuible, se necesita la siguiente intervención de sólo lectura en el explorador oficial de API, con la sesión de Google de Liam:
-
-1. Abrir https://firebase.google.com/docs/reference/rules/rest/v1/projects.releases/get , panel Try it. En name ingresar exactamente projects/barbertemplate-madre/releases/cloud.firestore/default y ejecutar GET. Conservar cuerpo JSON de respuesta y estado HTTP; se necesitan name, rulesetName y updateTime (si viene). No sustituir default por (default) ni por cloud.firestore sin sufijo.
-2. Si GET devuelve 200, abrir https://firebase.google.com/docs/reference/rules/rest/v1/projects.rulesets/get . En name copiar EXACTAMENTE el rulesetName devuelto y ejecutar GET. Conservar name y source completo (files[].name/content y attachment_point si viene), junto con estado HTTP. No elegir un ruleset por fecha ni por parecido del texto.
-3. Entregar sólo esos cuerpos de respuesta y la hora de consulta; no tokens, cabeceras Authorization, cookies ni HAR. Si hay 403/404, conservar ese error y detenerse: no crear release, habilitar servicios ni cambiar permisos por esta instrucción. Un error no autoriza inferir falta general de acceso.
-
-Comprobación posterior pendiente: base ya inventariada projects/barbertemplate-madre/databases/default → release exacta /cloud.firestore/default → rulesetName idéntico al name del segundo GET → fuente íntegra. Comparar después la fuente con la captura existente; similitud o hash idéntico por sí solos NO prueban la atribución. Estos GET no publican reglas ni escriben documentos.
-
-Fuentes verificadas de la intervención: https://firebase.google.com/docs/rules/manage-deploy (nombre de release por base y límite de consola), https://firebase.google.com/docs/reference/rules/rest/v1/projects.releases/get y https://firebase.google.com/docs/reference/rules/rest (GET de ruleset incluye fuente). Esta consulta documental no es una consulta de la release real.
-
-Custodia: preimagen de esta retoma en preimagenes/RETOMA-antes-atribucion.md; CUSTODIA.json anterior se conserva como corte histórico. Cambio exclusivamente documental. Push pendiente; sin cambios de hosting, publicación de reglas ni pruebas con escritura. N03 aceptada localmente; N04 abierta. Consumo observado al iniciar: 98% TOTAL; sin resets. No se consumirá deliberadamente el margen hasta 99%.
-
 Fecha: 2026-09-10. N03 aceptada por Liam exclusivamente en su alcance técnico local. No se repiten sus suites ni se certifica producción con mocks. Fuente: orden vigente de aceptación, publicación condicionada y comienzo N04; ficha N04 y método vigente leídos. Sin cambios de producto, hosting, datos, claims o reglas.
 
 ## Publicación Git: DETENIDA
