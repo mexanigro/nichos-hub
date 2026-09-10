@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { withOwner } from "@/lib/auth";
 import { db } from "@/lib/firebase-admin";
 import { Timestamp } from "firebase-admin/firestore";
+import { normalizeAppointmentRow } from "@/lib/crm-import-rows";
 
 const CLIENT_ID_RE = /^[a-zA-Z0-9_-]+$/;
 const BATCH_SIZE = 500;
@@ -71,6 +72,8 @@ export const POST = withOwner(async (req) => {
 
   const errors: string[] = [];
   let imported = 0;
+  // R2: filas que no pueden producir un documento editable desde el CRM.
+  let rejected = 0;
 
   // Process in batches of 500
   for (let i = 0; i < rows.length; i += BATCH_SIZE) {
@@ -115,28 +118,16 @@ export const POST = withOwner(async (req) => {
           );
           imported++;
         } else {
-          const a = row as AppointmentRow;
-          if (!a.customerName?.trim() || !a.date || !a.time || !a.serviceId) {
-            errors.push(`Fila ${rowIdx}: customerName, date, time, serviceId requeridos`);
+          // R2: la fila se normaliza para que nazca válida ante firestore.rules.
+          // El docId se obtiene ANTES de escribir porque el email de relleno lo usa.
+          const docRef = db.collection("appointments").doc();
+          const outcome = normalizeAppointmentRow(row as AppointmentRow, clientId, docRef.id);
+          if (!outcome.ok) {
+            rejected++;
+            errors.push(`Fila ${rowIdx}: ${outcome.reason}`);
             continue;
           }
-
-          const docRef = db.collection("appointments").doc();
-          batch.set(docRef, {
-            clientId,
-            customerName: a.customerName.trim(),
-            customerEmail: (a.customerEmail || "").trim().toLowerCase() || null,
-            customerPhone: (a.customerPhone || "").trim() || null,
-            serviceId: a.serviceId.trim(),
-            staffId: (a.staffId || "").trim() || null,
-            date: a.date.trim(),
-            time: a.time.trim(),
-            duration: a.duration ?? 30,
-            status: a.status || "completed",
-            paymentStatus: a.paymentStatus || null,
-            amountPaidCents: a.amountPaidCents ?? null,
-            createdAt: Timestamp.now(),
-          });
+          batch.set(docRef, { ...outcome.fields, createdAt: Timestamp.now() });
           imported++;
         }
       } catch (err) {
@@ -153,5 +144,5 @@ export const POST = withOwner(async (req) => {
     }
   }
 
-  return NextResponse.json({ imported, errors, total: rows.length });
+  return NextResponse.json({ imported, rejected, errors, total: rows.length });
 });
