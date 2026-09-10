@@ -1,6 +1,6 @@
 import { db } from "@/lib/firebase-admin";
 import { FieldValue, Timestamp } from "firebase-admin/firestore";
-import { verifyPayment } from "@/lib/cardcom";
+import { verifyPayment, checkPaymentTerminal, TERMINAL, SANDBOX } from "@/lib/cardcom";
 import { getPlanAmount, type PlanType } from "@/lib/pricing";
 import { sendEmail } from "@/lib/email";
 import { paymentConfirmed } from "@/lib/email-templates";
@@ -99,6 +99,36 @@ export async function processCardcomPayment(
   const plan = (lead.plan || "web_crm") as PlanType;
   const tier = lead.tier || "base";
   const amount = getPlanAmount(plan);
+
+  // Validar el terminal ANTES de acreditar. Cierra el caso de credenciales de
+  // sandbox mezcladas en un deploy productivo: un cobro del terminal de prueba
+  // (1000) nunca puede promover un cliente real. Fail closed.
+  const terminalCheck = checkPaymentTerminal({
+    reported: verify.terminalNumber,
+    expected: TERMINAL,
+    sandboxMode: SANDBOX,
+    isProduction: process.env.NODE_ENV === "production",
+  });
+  if (!terminalCheck.ok) {
+    console.error("[cardcom-promote] ALERTA: terminal invalido, no se acredita", {
+      leadId,
+      lowProfileCode,
+      reason: terminalCheck.reason,
+      detail: terminalCheck.detail,
+    });
+    await leadRef.update({
+      paymentStatus: "failed",
+      paymentError: `${terminalCheck.reason}: ${terminalCheck.detail}`,
+      updatedAt: FieldValue.serverTimestamp(),
+    });
+    return { ok: false, reason: terminalCheck.reason };
+  }
+  if (!verify.terminalNumber) {
+    console.warn("[cardcom-promote] Cardcom no devolvió TerminalNumber — solo se validó el configurado", {
+      leadId,
+      lowProfileCode,
+    });
+  }
 
   // Validar monto cobrado vs. esperado del plan (tolerancia 1 agora).
   // Cardcom devuelve el monto en ExtShvaParams.Sum36 (parseado a NIS en verifyPayment).

@@ -2,8 +2,69 @@ export const SANDBOX = process.env.CARDCOM_SANDBOX === "true";
 const SANDBOX_TERMINAL = "1000";
 const SANDBOX_API_NAME = "CardTest1994";
 
-const TERMINAL = SANDBOX ? SANDBOX_TERMINAL : (process.env.CARDCOM_TERMINAL ?? "");
+/** Terminales de prueba de Cardcom — un cobro ahi NUNCA es dinero real. */
+export const SANDBOX_TERMINALS: readonly string[] = [SANDBOX_TERMINAL];
+
+/** Terminal efectivo con el que este proceso habla con Cardcom. */
+export const TERMINAL = SANDBOX ? SANDBOX_TERMINAL : (process.env.CARDCOM_TERMINAL ?? "");
 const API_NAME = SANDBOX ? SANDBOX_API_NAME : (process.env.CARDCOM_API_NAME ?? "");
+
+export type TerminalCheck =
+  | { ok: true }
+  | {
+      ok: false;
+      reason: "terminal_not_configured" | "terminal_mismatch" | "sandbox_terminal_in_production";
+      detail: string;
+    };
+
+/**
+ * Valida el terminal de un pago ANTES de acreditarlo. Dos capas:
+ *
+ *   1. El terminal que Cardcom reporta para el deal tiene que ser el mismo con
+ *      el que consultamos (si Cardcom no lo devolvio, no se puede validar y se
+ *      pasa a la capa 2 — misma convencion que la validacion de monto).
+ *   2. Un terminal de prueba (o CARDCOM_SANDBOX=true) nunca puede acreditar en
+ *      un deploy productivo. Esta capa NO depende de la respuesta de Cardcom:
+ *      si se mezclan credenciales de sandbox en prod, corta igual.
+ *
+ * Pura a proposito (sin leer env adentro) para poder testear los dos escenarios.
+ */
+export function checkPaymentTerminal(opts: {
+  /** Terminal que Cardcom reporto en el verify (`TerminalNumber`). */
+  reported?: string;
+  /** Terminal con el que este proceso consulto a Cardcom. */
+  expected: string;
+  /** `CARDCOM_SANDBOX === "true"`. */
+  sandboxMode: boolean;
+  /** `NODE_ENV === "production"` — deploy que acredita clientes reales. */
+  isProduction: boolean;
+}): TerminalCheck {
+  const expected = (opts.expected || "").trim();
+  const reported = (opts.reported || "").trim();
+
+  if (!expected) {
+    return { ok: false, reason: "terminal_not_configured", detail: "CARDCOM_TERMINAL vacio" };
+  }
+
+  if (reported && reported !== expected) {
+    return {
+      ok: false,
+      reason: "terminal_mismatch",
+      detail: `Cardcom reporto terminal ${reported}, esperado ${expected}`,
+    };
+  }
+
+  const effective = reported || expected;
+  if (opts.isProduction && (opts.sandboxMode || SANDBOX_TERMINALS.includes(effective))) {
+    return {
+      ok: false,
+      reason: "sandbox_terminal_in_production",
+      detail: `terminal ${effective} es de prueba (sandbox=${opts.sandboxMode}) y NODE_ENV=production`,
+    };
+  }
+
+  return { ok: true };
+}
 
 if (SANDBOX) {
   console.warn("[cardcom] ⚠ SANDBOX MODE — terminal 1000, no real charges");
@@ -112,6 +173,12 @@ export interface VerifyPaymentResult {
   /** ReturnValue que se envio en el create (nuestro leadId). */
   returnValue?: string;
   /**
+   * Terminal que Cardcom reporta para este deal. Doc oficial (Name-to-Value,
+   * "Parameters table, answer reciving" #1): viene como `TerminalNumber`.
+   * undefined si no vino — ver checkPaymentTerminal().
+   */
+  terminalNumber?: string;
+  /**
    * Monto efectivamente cobrado en NIS. Verificado contra sandbox real:
    * Cardcom lo devuelve en `ExtShvaParams.Sum36` en agorot (7.7 NIS → "770").
    * undefined si el campo no vino o no es numerico.
@@ -162,6 +229,7 @@ export async function verifyPayment(lowProfileCode: string): Promise<VerifyPayme
       cardValidityYear: parsed.CardValidityYear || parsed.TokenExDate?.slice(2, 4) || undefined,
       approvalNumber: parsed.ApprovalNumber || parsed["ExtShvaParams.ApprovalNumber"] || parsed["ExtShvaParams.ApprovalNumber71"] || undefined,
       returnValue: parsed.ReturnValue || undefined,
+      terminalNumber: parsed.TerminalNumber || parsed.terminalnumber || parsed.terminalNumber || undefined,
       raw: parsed,
     };
   }

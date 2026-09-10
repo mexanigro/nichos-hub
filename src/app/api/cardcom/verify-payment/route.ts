@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/firebase-admin";
-import { verifyPayment } from "@/lib/cardcom";
+import { verifyPayment, checkPaymentTerminal, TERMINAL, SANDBOX } from "@/lib/cardcom";
 import { FieldValue } from "firebase-admin/firestore";
 import { isRateLimited } from "@/lib/rate-limit";
 
@@ -48,6 +48,35 @@ export async function POST(req: NextRequest) {
 
   if (!result.success) {
     return NextResponse.json({ error: result.error }, { status: 400 });
+  }
+
+  // Validar el terminal ANTES de marcar el pago como pagado o activar al
+  // cliente: un cobro del terminal de prueba (credenciales de sandbox mezcladas
+  // en un deploy productivo) no puede acreditarse como real. Fail closed.
+  const terminalCheck = checkPaymentTerminal({
+    reported: result.terminalNumber,
+    expected: TERMINAL,
+    sandboxMode: SANDBOX,
+    isProduction: process.env.NODE_ENV === "production",
+  });
+  if (!terminalCheck.ok) {
+    console.error("[verify-payment] ALERTA: terminal invalido, no se acredita", {
+      clientId,
+      lowProfileCode,
+      reason: terminalCheck.reason,
+      detail: terminalCheck.detail,
+    });
+    // Mensaje generico al cliente — el motivo queda solo en el log.
+    return NextResponse.json(
+      { error: "El pago no pudo ser validado" },
+      { status: 409 },
+    );
+  }
+  if (!result.terminalNumber) {
+    console.warn("[verify-payment] Cardcom no devolvió TerminalNumber — solo se validó el configurado", {
+      clientId,
+      lowProfileCode,
+    });
   }
 
   if (result.returnValue && result.returnValue !== clientId) {
