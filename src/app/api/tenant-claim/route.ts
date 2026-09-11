@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { withOwner } from "@/lib/auth";
 import { db, auth } from "@/lib/firebase-admin";
+import { setTenantOwnerClaim } from "@/lib/tenant-claim";
 
 /**
  * POST /api/tenant-claim
@@ -37,32 +38,19 @@ export const POST = withOwner(async (req) => {
       );
     }
 
-    // Buscar el usuario en Firebase Auth por email
-    let user;
-    try {
-      user = await auth.getUserByEmail(email.trim().toLowerCase());
-    } catch {
+    // Claims + revocación: implementación compartida con el bootstrap del dueño.
+    const result = await setTenantOwnerClaim({ auth, email, clientId });
+    if (!result.ok) {
       return NextResponse.json(
         { error: `Usuario con email "${email}" no encontrado en Firebase Auth. Debe loguearse al menos una vez en el template.` },
         { status: 404 },
       );
     }
 
-    // Setear custom claims preservando claims existentes
-    const currentClaims = (user.customClaims ?? {}) as Record<string, unknown>;
-    await auth.setCustomUserClaims(user.uid, {
-      ...currentClaims,
-      clientId,
-      tenantRole: "owner",
-    });
-
-    // Revocar refresh tokens para forzar re-auth con el nuevo claim
-    await auth.revokeRefreshTokens(user.uid);
-
     return NextResponse.json({
       ok: true,
-      uid: user.uid,
-      email: user.email,
+      uid: result.uid,
+      email: result.email,
       clientId,
       tenantRole: "owner",
       note: "Claim seteado. El usuario debe cerrar sesión y volver a entrar para que tome efecto.",

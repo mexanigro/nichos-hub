@@ -23,6 +23,7 @@ import {
   Rocket,
   RefreshCw,
   KeyRound,
+  UserPlus,
   Trash2,
   AlertCircle,
   RotateCcw,
@@ -155,6 +156,8 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
   const [redeploying, setRedeploying] = useState(false);
   const [reprovisioning, setReprovisioning] = useState(false);
   const [reprovisionMsg, setReprovisionMsg] = useState<string | null>(null);
+  const [bootstrapping, setBootstrapping] = useState(false);
+  const [bootstrapMsg, setBootstrapMsg] = useState<string | null>(null);
   /** Bumped on every successful save in Config/Contenido. ClientSitePreview reads it to schedule an iframe reload. */
   const [saveTick, setSaveTick] = useState(0);
   const [mobilePreviewOpen, setMobilePreviewOpen] = useState(false);
@@ -289,6 +292,33 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
     setReprovisioning(false);
   }
 
+  // n05-persona-owner: crea admin_users/{email} (owner) en el tenant y sincroniza claims.
+  async function handleBootstrapOwner() {
+    if (!data) return;
+    const email = window.prompt("Email del dueño del negocio (sera owner del CRM):", data.client.adminEmail || "");
+    if (!email) return;
+    setBootstrapping(true);
+    setBootstrapMsg(null);
+    try {
+      const res = await fetch(`/api/clients/${clientId}/admin-bootstrap`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      const body = await res.json().catch(() => ({}));
+      if (res.ok) {
+        setBootstrapMsg(
+          `Dueño ${body.rosterWritten ? "creado" : "ya existia"}; claims ${body.claimsSynced ? "sincronizadas (debe volver a iniciar sesion)" : `pendientes: ${body.claimsReason}`}`,
+        );
+      } else {
+        setBootstrapMsg(body.error || `Error ${res.status}`);
+      }
+    } catch {
+      setBootstrapMsg("Error de conexion");
+    }
+    setBootstrapping(false);
+  }
+
   if (loading) return <LoadingSpinner />;
 
   if (!data) return null;
@@ -393,6 +423,15 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
                 <span className="hidden sm:inline">Entorno</span>
               </button>
             )}
+            <button
+              onClick={handleBootstrapOwner}
+              disabled={bootstrapping}
+              title={bootstrapMsg ?? "Crea el dueño del CRM (admin_users owner) y sincroniza sus claims"}
+              className="inline-flex items-center gap-1.5 rounded-lg border border-border px-2.5 py-1.5 text-[11px] font-medium text-text-secondary transition-colors hover:bg-bg-hover disabled:opacity-50"
+            >
+              {bootstrapping ? <Loader2 size={12} className="animate-spin" /> : <UserPlus size={12} />}
+              <span className="hidden sm:inline">Dueño</span>
+            </button>
             <button
               onClick={() => setConfirmAction("kill")}
               disabled={killing}
