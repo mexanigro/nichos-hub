@@ -36,6 +36,16 @@ test("buildAdminEnvVars: las cuatro variables, tipos y targets exactos", () => {
   assert.equal(byKey.FIREBASE_ADMIN_PRIVATE_KEY.value, "key-marker");
 });
 
+test("buildAdminEnvVars: la clave privada viaja normalizada como la consume el hub (sin comillas, saltos reales)", () => {
+  const raw = '"-----BEGIN PRIVATE KEY-----\\nMARKER\\n-----END PRIVATE KEY-----\\n"';
+  const expected = "-----BEGIN PRIVATE KEY-----\nMARKER\n-----END PRIVATE KEY-----";
+  const key = buildAdminEnvVars({ ...HUB_ENV, FIREBASE_PRIVATE_KEY: raw }).find((v) => v.key === "FIREBASE_ADMIN_PRIVATE_KEY")!;
+  assert.equal(key.value, expected);
+  // ya normalizada: idempotente
+  const again = buildAdminEnvVars({ ...HUB_ENV, FIREBASE_PRIVATE_KEY: key.value }).find((v) => v.key === "FIREBASE_ADMIN_PRIVATE_KEY")!;
+  assert.equal(again.value, expected);
+});
+
 test("buildAdminEnvVars: FIREBASE_DATABASE_ID viaja (plain) solo si el hub la tiene", () => {
   const con = buildAdminEnvVars(HUB_ENV).find((v) => v.key === "FIREBASE_DATABASE_ID");
   assert.ok(con);

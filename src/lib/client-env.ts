@@ -22,11 +22,24 @@ function required(env: Record<string, string | undefined>, key: string): string 
   return v;
 }
 
+/**
+ * Misma normalizacion que src/lib/firebase-admin.ts: el template solo hace
+ * `replace(/\\n/g, "\n")`, asi que comillas envolventes o escapes dobles que el
+ * hub tolera romperian `cert()` alla. Viaja ya limpia (saltos reales).
+ */
+export function normalizePrivateKey(raw: string): string {
+  let key = raw.trim();
+  if (/^["'`]/.test(key) && key[0] === key[key.length - 1]) key = key.slice(1, -1);
+  key = key.replace(/\\n/g, "\n");
+  key = key.replace(/\\\n/g, "\n");
+  return key.trim();
+}
+
 /** Las variables que el servidor del template exige para arrancar con Admin SDK. */
 export function buildAdminEnvVars(env: Record<string, string | undefined>): VercelEnvVar[] {
   const projectId = required(env, "FIREBASE_PROJECT_ID");
   const clientEmail = required(env, "FIREBASE_CLIENT_EMAIL");
-  const privateKey = required(env, "FIREBASE_PRIVATE_KEY");
+  const privateKey = normalizePrivateKey(required(env, "FIREBASE_PRIVATE_KEY"));
   const vars: VercelEnvVar[] = [
     { key: "FIREBASE_PROJECT_ID", value: projectId, target: TARGETS, type: "plain" },
     { key: "FIREBASE_ADMIN_PROJECT_ID", value: projectId, target: TARGETS, type: "plain" },
