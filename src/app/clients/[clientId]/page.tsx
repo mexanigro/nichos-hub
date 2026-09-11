@@ -22,6 +22,7 @@ import {
   Upload,
   Rocket,
   RefreshCw,
+  KeyRound,
   Trash2,
   AlertCircle,
   RotateCcw,
@@ -152,6 +153,8 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
   const [deleting, setDeleting] = useState(false);
   const [deleteError, setDeleteError] = useState("");
   const [redeploying, setRedeploying] = useState(false);
+  const [reprovisioning, setReprovisioning] = useState(false);
+  const [reprovisionMsg, setReprovisionMsg] = useState<string | null>(null);
   /** Bumped on every successful save in Config/Contenido. ClientSitePreview reads it to schedule an iframe reload. */
   const [saveTick, setSaveTick] = useState(0);
   const [mobilePreviewOpen, setMobilePreviewOpen] = useState(false);
@@ -259,6 +262,33 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
     setRedeploying(false);
   }
 
+  // R06-ENV: upsert de la credencial Admin en el proyecto Vercel + redeploy.
+  async function handleReprovision() {
+    if (!data) return;
+    setReprovisioning(true);
+    setReprovisionMsg(null);
+    try {
+      const res = await fetch("/api/clients/reprovision", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ hubDocId: clientId }),
+      });
+      const body = await res.json().catch(() => ({}));
+      if (res.ok) {
+        setReprovisionMsg(`Entorno actualizado (${(body.keys ?? []).length} variables); redeploy en curso`);
+        setData((d) => d ? {
+          ...d,
+          client: { ...d.client, deployStatus: "building", deployError: undefined },
+        } : d);
+      } else {
+        setReprovisionMsg(body.error || `Error ${res.status}`);
+      }
+    } catch {
+      setReprovisionMsg("Error de conexion");
+    }
+    setReprovisioning(false);
+  }
+
   if (loading) return <LoadingSpinner />;
 
   if (!data) return null;
@@ -350,6 +380,17 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
               >
                 {redeploying ? <Loader2 size={12} className="animate-spin" /> : <RefreshCw size={12} />}
                 <span className="hidden sm:inline">Redeploy</span>
+              </button>
+            )}
+            {client.vercelProjectId && (
+              <button
+                onClick={handleReprovision}
+                disabled={reprovisioning}
+                title={reprovisionMsg ?? "Propaga la credencial Admin al proyecto Vercel y redespliega"}
+                className="inline-flex items-center gap-1.5 rounded-lg border border-border px-2.5 py-1.5 text-[11px] font-medium text-text-secondary transition-colors hover:bg-bg-hover disabled:opacity-50"
+              >
+                {reprovisioning ? <Loader2 size={12} className="animate-spin" /> : <KeyRound size={12} />}
+                <span className="hidden sm:inline">Entorno</span>
               </button>
             )}
             <button

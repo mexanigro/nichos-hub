@@ -1,4 +1,5 @@
 import { db } from "@/lib/firebase-admin";
+import { buildAdminEnvVars } from "@/lib/client-env";
 
 const VERCEL_TOKEN = process.env.VERCEL_TOKEN;
 const VERCEL_TEAM_ID = process.env.VERCEL_TEAM_ID;
@@ -132,6 +133,9 @@ export async function deployToVercel({ clientId, niche, hubDocId, demoMode = fal
   if (adminEmail) {
     envVars.push({ key: "BUSINESS_OWNER_EMAIL", value: adminEmail, target: ["production", "preview"], type: "plain" });
   }
+
+  // R06-ENV: sin la credencial Admin el servidor del template responde 503 en toda su /api.
+  envVars.push(...buildAdminEnvVars(process.env));
 
   await vercelFetchWithRetry(`/v3/projects/${projectId}/env`, {
     method: "POST",
