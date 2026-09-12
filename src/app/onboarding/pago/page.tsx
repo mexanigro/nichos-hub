@@ -1,17 +1,12 @@
+import { redirect } from "next/navigation";
 import { OnboardingPagoClient } from "./onboarding-pago-client";
-import type { PlanType } from "@/lib/pricing";
+import { isWebCheckoutEnabled } from "@/lib/web-checkout";
 
-const VALID_PLANS = new Set<PlanType>(["solo_web", "base", "pro", "enterprise", "web_crm", "completo"]);
-
-interface Props {
-  searchParams: Promise<{ plan?: string }>;
-}
-
-export default async function OnboardingPagoPage({ searchParams }: Props) {
-  const { plan } = await searchParams;
-  const validPlan: PlanType = plan && VALID_PLANS.has(plan as PlanType)
-    ? (plan as PlanType)
-    : "base";
-
-  return <OnboardingPagoClient defaultPlan={validPlan} />;
+/**
+ * Compra por la web. P-5 (Liam, 2026-09-12): desactivada hasta certificar el cobro — la landing
+ * lleva al lead por WhatsApp y esta página redirige a #pricing. El endpoint de pago responde 403 en el mismo estado.
+ */
+export default async function OnboardingPagoPage() {
+  if (!isWebCheckoutEnabled()) redirect("/#pricing");
+  return <OnboardingPagoClient />;
 }

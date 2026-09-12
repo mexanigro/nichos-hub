@@ -40,6 +40,7 @@ import { ClientConfigTab } from "@/components/client-config-tab";
 import { ClientContentTab } from "@/components/client-content-tab";
 import { ClientSitePreview } from "@/components/client-site-preview";
 import { WhatsAppConfigTab } from "@/components/whatsapp-config-tab";
+import { SetupAmountPanel } from "@/components/setup-amount-panel";
 import { VoiceConfigTab } from "@/components/voice-config-tab";
 import { ClientLeadsTab } from "@/components/client-leads-tab";
 import { CrmImportModal } from "@/components/crm-import-modal";
@@ -106,6 +107,7 @@ type ClientReview = ClientWithHealth & {
   tierAutoUpgraded?: boolean;
   tierAutoUpgradedAt?: string | null;
   tierHistory?: TierChangeEvent[];
+  setupAmount?: number | null;
 };
 
 /**
@@ -997,6 +999,14 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
             Ver todos
           </Link>
         </div>
+        {tenantId && (
+          <SetupAmountPanel
+            docId={clientId}
+            tenantId={tenantId}
+            initial={client.setupAmount ?? undefined}
+            onSaved={(amount) => setData((d) => d ? { ...d, client: { ...d.client, setupAmount: amount } } : d)}
+          />
+        )}
         {payments.length === 0 ? (
           <p className="py-4 text-center text-xs text-text-muted">Sin registros de pago</p>
         ) : (

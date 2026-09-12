@@ -11,26 +11,26 @@ const inter = Inter({ subsets: ["latin"] });
 // requiere URLs distintas por idioma. El canonical se declara por página.
 export const metadata: Metadata = {
   title: {
-    default: "בניית אתר לעסק עם CRM וסוכן וואטסאפ AI | Arzac Studio",
+    default: "בניית אתר לעסק עם CRM והתראות במייל | Arzac Studio",
     template: "%s | Arzac Studio",
   },
   description:
-    "אתר מקצועי לעסק שלך + CRM חכם + סוכן וואטסאפ AI שקובע תורים 24/7. ללא עלות הקמה, הכל כלול במנוי חודשי. מתאים למספרות, מכוני יופי, קעקועים ושיפוצים.",
+    "אתר מקצועי לעסק שלך + מערכת CRM ללקוחות ותורים + התראות במייל. הקמה חד-פעמית ומנוי חודשי קבוע של 250 ₪. מתאים למספרות, מכוני יופי, קעקועים ושיפוצים.",
   metadataBase: new URL("https://arzac.studio"),
   openGraph: {
-    title: "Arzac Studio — בניית אתר לעסק עם CRM וסוכן וואטסאפ AI",
-    description: "אתר + CRM + סוכן וואטסאפ AI לעסקים מקומיים בישראל. אפס דמי הקמה, הכל כלול במנוי חודשי.",
+    title: "Arzac Studio — בניית אתר לעסק עם CRM והתראות במייל",
+    description: "אתר + CRM + התראות במייל לעסקים מקומיים בישראל. הקמה חד-פעמית 1,500 ₪ ומנוי 250 ₪ לחודש.",
     url: "https://arzac.studio",
     siteName: "Arzac Studio",
     locale: "he_IL",
     alternateLocale: ["en_US", "es_ES", "ru_RU", "ar_SA"],
     type: "website",
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Arzac Studio — אתר + CRM + סוכן וואטסאפ AI לעסקים מקומיים בישראל" }],
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Arzac Studio — אתר + CRM + התראות במייל לעסקים מקומיים בישראל" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Arzac Studio — בניית אתר לעסק עם CRM וסוכן וואטסאפ AI",
-    description: "אתר + CRM + סוכן וואטסאפ AI לעסקים מקומיים בישראל. אפס דמי הקמה, הכל כלול במנוי חודשי.",
+    title: "Arzac Studio — בניית אתר לעסק עם CRM והתראות במייל",
+    description: "אתר + CRM + התראות במייל לעסקים מקומיים בישראל. הקמה חד-פעמית 1,500 ₪ ומנוי 250 ₪ לחודש.",
     images: ["/og.png"],
   },
   robots: {

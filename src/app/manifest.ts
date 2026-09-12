@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "Arzac Studio",
     short_name: "Arzac",
     description:
-      "אתר מקצועי + CRM + סוכן וואטסאפ AI לעסקים מקומיים בישראל. אפס דמי הקמה, הכל כלול במנוי חודשי.",
+      "אתר מקצועי + CRM + התראות במייל לעסקים מקומיים בישראל. הקמה חד-פעמית ומנוי חודשי קבוע.",
     start_url: "/",
     display: "standalone",
     background_color: "#09090b",

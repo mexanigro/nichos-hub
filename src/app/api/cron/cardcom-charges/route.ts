@@ -2,9 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/firebase-admin";
 import { FieldValue, Timestamp } from "firebase-admin/firestore";
 import { chargeToken } from "@/lib/cardcom";
-import { getPlanAmount, getTierAmount, type PlanType } from "@/lib/pricing";
+import { monthlyChargeFor, PLAN_LABEL } from "@/lib/pricing";
 import { safeCompare } from "@/lib/safe-compare";
-import type { BookingTier } from "@/types";
 
 /**
  * Cron mensual que ejecuta los cobros recurrentes de las suscripciones.
@@ -43,9 +42,8 @@ function isAuthorized(req: NextRequest): boolean {
 async function runOne(clientDoc: FirebaseFirestore.QueryDocumentSnapshot) {
   const c = clientDoc.data();
   const clientId = clientDoc.id;
-  const plan = (c.plan || "web_crm") as PlanType;
-  const tier = (c.tier || "base") as BookingTier;
-  const amount = tier !== "base" ? getTierAmount(tier) : getPlanAmount(plan);
+  // Cuota mensual única (250), sea cual sea el plan/tier heredado del documento.
+  const amount = monthlyChargeFor(c);
 
   if (!c.cardcomToken) {
     return { clientId, ok: false, reason: "no_token" };
@@ -79,7 +77,7 @@ async function runOne(clientDoc: FirebaseFirestore.QueryDocumentSnapshot) {
       cardValidityMonth: c.cardcomTokenExpMonth,
       cardValidityYear: c.cardcomTokenExpYear,
       amount,
-      productName: tier !== "base" ? `Web+CRM (${tier})` : plan === "completo" ? "Web+CRM+Agente" : "Web+CRM",
+      productName: `${PLAN_LABEL} (mensualidad)`,
       customerEmail: c.email || undefined,
       customerName: c.businessName || c.adminEmail || undefined,
       language: "he",

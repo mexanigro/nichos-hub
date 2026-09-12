@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/firebase-admin";
 import { createLowProfilePayment } from "@/lib/cardcom";
-import { getPlanAmount, type PlanType } from "@/lib/pricing";
+import { PLAN_LABEL } from "@/lib/pricing";
+import { resolveClientCharge } from "@/lib/charges";
 import { isRateLimited } from "@/lib/rate-limit";
 
 export async function POST(req: NextRequest) {
@@ -10,19 +11,17 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Demasiadas solicitudes. Intentá de nuevo en un minuto." }, { status: 429 });
   }
 
-  let body: { clientId?: string; plan?: string };
+  let body: { clientId?: string };
   try {
     body = await req.json();
   } catch {
     return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
   }
 
-  const { clientId, plan } = body;
+  const { clientId } = body;
   if (!clientId) {
     return NextResponse.json({ error: "clientId es requerido" }, { status: 400 });
   }
-
-  const validPlan: PlanType = plan === "solo_web" ? "solo_web" : plan === "completo" ? "completo" : "web_crm";
 
   const snap = await db
     .collection("hub_clients")
@@ -35,11 +34,13 @@ export async function POST(req: NextRequest) {
   }
 
   const clientData = snap.docs[0].data();
-  const amount = getPlanAmount(validPlan);
+  // Mismo importe que el hub_payments pendiente creado por /api/payments/contract (verify-payment los compara).
+  const charge = await resolveClientCharge(clientId, clientData);
+  const amount = charge.amount;
   const lang: "he" | "en" = clientData.language === "he" ? "he" : "en";
 
-  const planLabel = validPlan === "solo_web" ? "Solo Web" : validPlan === "completo" ? "Completo" : "Web+CRM";
-  const productName = `${planLabel} - ${clientData.businessName || clientId}`;
+  const kindLabel = charge.kind === "initial" ? "alta" : "mensualidad";
+  const productName = `${PLAN_LABEL} (${kindLabel}) - ${clientData.businessName || clientId}`;
 
   const result = await createLowProfilePayment({
     amount,

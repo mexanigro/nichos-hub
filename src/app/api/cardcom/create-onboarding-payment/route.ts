@@ -2,13 +2,19 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/firebase-admin";
 import { FieldValue } from "firebase-admin/firestore";
 import { createLowProfilePayment } from "@/lib/cardcom";
-import { getPlanAmount, type PlanType } from "@/lib/pricing";
+import { getChargeAmount, PLAN_LABEL, type PlanType } from "@/lib/pricing";
+import { isWebCheckoutEnabled } from "@/lib/web-checkout";
 import { isRateLimited } from "@/lib/rate-limit";
 import { isContractLang, type ContractLang } from "@/lib/contracts";
 
 const VALID_PLANS = new Set<PlanType>(["solo_web", "web_crm", "completo", "base", "pro", "enterprise"]);
 
 export async function POST(req: NextRequest) {
+  // P-5: compra directa por la web desactivada hasta certificar el cobro (sólo venta en persona desde el hub).
+  if (!isWebCheckoutEnabled()) {
+    return NextResponse.json({ error: "web_checkout_disabled" }, { status: 403 });
+  }
+
   const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
 
   if (isRateLimited(ip, "create-onboarding-payment", 3, 60_000)) {
@@ -74,14 +80,10 @@ export async function POST(req: NextRequest) {
     createdAt: FieldValue.serverTimestamp(),
   });
 
-  // 2. Crear pago en Cardcom
-  const amount = getPlanAmount(plan as PlanType);
+  // 2. Crear pago en Cardcom: por la web el alta es fija (1500).
+  const amount = getChargeAmount("initial");
   const cardcomLang: "he" | "en" = lang === "he" ? "he" : "en";
-  const tierLabels: Record<string, string> = { base: "Base", pro: "Pro", enterprise: "Enterprise", solo_web: "Solo Web" };
-  const planLabel = tierLabels[plan] || (plan === "completo" ? "Completo" : "Web+CRM");
-  const productName = plan === "solo_web"
-    ? `Solo Web - ${name.trim()}`
-    : `Web+CRM (${planLabel}) - ${name.trim()}`;
+  const productName = `${PLAN_LABEL} (alta) - ${name.trim()}`;
 
   const result = await createLowProfilePayment({
     amount,

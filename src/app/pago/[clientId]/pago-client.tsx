@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { TIER_PRICING, type PlanType } from "@/lib/pricing";
+import { MONTHLY_AMOUNT } from "@/lib/pricing";
 import { getContract, type ContractLang } from "@/lib/contracts";
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -20,34 +20,20 @@ const i18n = {
     processing: "מעבד...",
     error: "שגיאה, נסה שוב",
     securePayment: "תשלום מאובטח",
-    monthlyAmount: "סכום חודשי",
-    planNames: {
-      base: "Base — אתר + CRM + WhatsApp AI",
-      pro: "Pro — הכל ב-Base + שיחות קוליות AI",
-      enterprise: "Enterprise — הכל ללא הגבלה",
-    },
-    features: {
-      base: [
-        "אתר אישי מעוצב",
-        "CRM עם עוזר AI",
-        "סוכן WhatsApp AI 24/7",
-        "עד 100 תורים/חודש",
-        "דומיין + אחסון כלול",
-        "תחזוקה ותמיכה",
-        "5 שפות (HE, EN, RU, ES, AR)",
-      ],
-      pro: [
-        "הכל ב-Base",
-        "שיחות קוליות עם AI (קול משוכפל)",
-        "עד 300 תורים/חודש",
-      ],
-      enterprise: [
-        "הכל ב-Pro",
-        "תורים ללא הגבלה",
-        "שיחות קוליות ללא הגבלה",
-        "תמיכה בעדיפות (2 שעות עסקיות)",
-      ],
-    },
+    planName: "אתר + CRM + התראות במייל",
+    setupLabel: "דמי הקמה (תשלום חד-פעמי)",
+    monthlyLabel: "דמי מנוי חודשיים",
+    payNow: "לתשלום עכשיו",
+    thenMonthly: "ולאחר מכן",
+    features: [
+      "אתר אישי מעוצב, אחסון ודומיין",
+      "CRM ללקוחות ולידים",
+      "יומן תורים אונליין",
+      "התראות במייל לבעל העסק וללקוחות",
+      "תחזוקה ותמיכה שוטפת",
+      "5 שפות (HE, EN, RU, ES, AR)",
+    ],
+    optional: "WhatsApp, בינה מלאכותית ושיחות קוליות — שירותים אופציונליים בהצעת מחיר נפרדת.",
   },
   en: {
     greeting: "Hello,",
@@ -60,34 +46,20 @@ const i18n = {
     processing: "Processing...",
     error: "An error occurred, please try again",
     securePayment: "Secure payment",
-    monthlyAmount: "Monthly amount",
-    planNames: {
-      base: "Base — Web + CRM + WhatsApp AI",
-      pro: "Pro — Everything in Base + AI Voice Calls",
-      enterprise: "Enterprise — Unlimited Everything",
-    },
-    features: {
-      base: [
-        "Custom designed website",
-        "CRM with AI assistant",
-        "24/7 AI WhatsApp Agent",
-        "Up to 100 bookings/month",
-        "Domain + hosting included",
-        "Maintenance & support",
-        "5 languages (HE, EN, RU, ES, AR)",
-      ],
-      pro: [
-        "Everything in Base",
-        "AI voice calls (cloned voice)",
-        "Up to 300 bookings/month",
-      ],
-      enterprise: [
-        "Everything in Pro",
-        "Unlimited bookings",
-        "Unlimited voice calls",
-        "Priority support (2 business hours)",
-      ],
-    },
+    planName: "Website + CRM + Email notifications",
+    setupLabel: "Setup fee (one-time)",
+    monthlyLabel: "Monthly subscription",
+    payNow: "Due now",
+    thenMonthly: "then",
+    features: [
+      "Custom designed website, hosting and domain",
+      "CRM for customers and leads",
+      "Online booking calendar",
+      "Email notifications to the owner and customers",
+      "Maintenance & support",
+      "5 languages (HE, EN, RU, ES, AR)",
+    ],
+    optional: "WhatsApp, AI and voice calls are optional services, quoted separately.",
   },
   es: {
     greeting: "Hola,",
@@ -100,34 +72,20 @@ const i18n = {
     processing: "Procesando...",
     error: "Error, intenta de nuevo",
     securePayment: "Pago seguro",
-    monthlyAmount: "Monto mensual",
-    planNames: {
-      base: "Base — Web + CRM + WhatsApp IA",
-      pro: "Pro — Todo en Base + Llamadas de Voz IA",
-      enterprise: "Enterprise — Todo Ilimitado",
-    },
-    features: {
-      base: [
-        "Sitio web profesional a medida",
-        "CRM con asistente IA",
-        "Agente WhatsApp IA 24/7",
-        "Hasta 100 reservas/mes",
-        "Dominio + hosting incluido",
-        "Mantenimiento y soporte",
-        "5 idiomas (HE, EN, RU, ES, AR)",
-      ],
-      pro: [
-        "Todo en Base",
-        "Llamadas de voz con IA (voz clonada)",
-        "Hasta 300 reservas/mes",
-      ],
-      enterprise: [
-        "Todo en Pro",
-        "Reservas ilimitadas",
-        "Llamadas de voz ilimitadas",
-        "Soporte prioritario (2 horas habiles)",
-      ],
-    },
+    planName: "Web + CRM + Notificaciones por email",
+    setupLabel: "Alta (pago unico)",
+    monthlyLabel: "Suscripcion mensual",
+    payNow: "A pagar ahora",
+    thenMonthly: "luego",
+    features: [
+      "Sitio web profesional, hosting y dominio",
+      "CRM de clientes y leads",
+      "Reservas online",
+      "Notificaciones por email al dueño y a los clientes",
+      "Mantenimiento y soporte",
+      "5 idiomas (HE, EN, RU, ES, AR)",
+    ],
+    optional: "WhatsApp, IA y llamadas de voz son servicios opcionales, a cotizar aparte.",
   },
   ru: {
     greeting: "Здравствуйте,",
@@ -140,34 +98,20 @@ const i18n = {
     processing: "Обработка...",
     error: "Ошибка, попробуйте снова",
     securePayment: "Безопасная оплата",
-    monthlyAmount: "Ежемесячная сумма",
-    planNames: {
-      base: "Base — Сайт + CRM + WhatsApp AI",
-      pro: "Pro — Всё из Base + Голосовые вызовы AI",
-      enterprise: "Enterprise — Всё без ограничений",
-    },
-    features: {
-      base: [
-        "Индивидуальный профессиональный сайт",
-        "CRM с AI-помощником",
-        "WhatsApp AI агент 24/7",
-        "До 100 записей/мес",
-        "Домен + хостинг включены",
-        "Обслуживание и поддержка",
-        "5 языков (HE, EN, RU, ES, AR)",
-      ],
-      pro: [
-        "Всё из Base",
-        "Голосовые вызовы с AI (клон голоса)",
-        "До 300 записей/мес",
-      ],
-      enterprise: [
-        "Всё из Pro",
-        "Записи без ограничений",
-        "Голосовые вызовы без ограничений",
-        "Приоритетная поддержка (2 рабочих часа)",
-      ],
-    },
+    planName: "Сайт + CRM + Email-уведомления",
+    setupLabel: "Подключение (разовый платёж)",
+    monthlyLabel: "Ежемесячная подписка",
+    payNow: "К оплате сейчас",
+    thenMonthly: "затем",
+    features: [
+      "Индивидуальный сайт, хостинг и домен",
+      "CRM для клиентов и лидов",
+      "Онлайн-запись",
+      "Email-уведомления владельцу и клиентам",
+      "Обслуживание и поддержка",
+      "5 языков (HE, EN, RU, ES, AR)",
+    ],
+    optional: "WhatsApp, ИИ и голосовые звонки — дополнительные услуги, рассчитываются отдельно.",
   },
 };
 
@@ -180,22 +124,21 @@ interface Props {
   clientDocId: string;
   businessName: string;
   lang: "he" | "en" | "es" | "ru";
-  defaultPlan?: PlanType;
-  isUpgrade?: boolean;
+  /** Alta negociada en persona (1000–1500), ya validada por el servidor; 1500 por defecto. */
+  setupAmount: number;
 }
 
-export default function PagoClient({ clientId, clientDocId, businessName, lang, defaultPlan = "base" }: Props) {
-  const tier = (defaultPlan === "pro" || defaultPlan === "enterprise") ? defaultPlan : "base";
-  const selectedPlan: PlanType = tier;
-  const amount = TIER_PRICING[tier as keyof typeof TIER_PRICING] ?? TIER_PRICING.base;
+export default function PagoClient({ clientId, clientDocId, businessName, lang, setupAmount }: Props) {
   const [accepted, setAccepted] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
   const [contractExpanded, setContractExpanded] = useState(false);
   const t = i18n[lang];
-  const planName = t.planNames[tier as keyof typeof t.planNames] ?? t.planNames.base;
-  const features = t.features[tier as keyof typeof t.features] ?? t.features.base;
-  const { text: contract, version: contractVersion } = getContract(lang as ContractLang, selectedPlan);
+  const planName = t.planName;
+  const features = t.features;
+  // Mismo formato que el contrato (fmt de contracts.ts): 1,500 / 1.500 / 1 500 según idioma, no el locale del navegador.
+  const setupFmt = setupAmount.toLocaleString(lang === "es" ? "es-ES" : lang === "ru" ? "ru-RU" : "en-US");
+  const { text: contract, version: contractVersion } = getContract(lang as ContractLang, { setupAmount });
   const dir = lang === "he" ? "rtl" : "ltr";
 
   async function handleContinue() {
@@ -205,7 +148,7 @@ export default function PagoClient({ clientId, clientDocId, businessName, lang, 
       const contractRes = await fetch("/api/payments/contract", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ clientId, clientDocId, contractVersion, plan: selectedPlan }),
+        body: JSON.stringify({ clientId, clientDocId, contractVersion }),
       });
       if (!contractRes.ok) {
         const data = await contractRes.json().catch(() => null);
@@ -215,7 +158,7 @@ export default function PagoClient({ clientId, clientDocId, businessName, lang, 
       const paymentRes = await fetch("/api/cardcom/create-payment", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ clientId, plan: selectedPlan }),
+        body: JSON.stringify({ clientId }),
       });
       if (!paymentRes.ok) {
         const data = await paymentRes.json().catch(() => null);
@@ -266,8 +209,8 @@ export default function PagoClient({ clientId, clientDocId, businessName, lang, 
           <div className="rounded-2xl border-2 border-[var(--pg-accent)] bg-[var(--pg-paper)] p-5 shadow-md">
             <p className="text-[0.9rem] font-semibold text-[var(--pg-ink)]">{planName}</p>
             <p className="mt-1">
-              <span className="text-2xl font-bold text-[var(--pg-ink)]">₪{amount}</span>
-              <span className="text-sm text-[var(--pg-ink-2)]">{t.perMonth}</span>
+              <span className="text-2xl font-bold text-[var(--pg-ink)]">₪{setupFmt}</span>
+              <span className="text-sm text-[var(--pg-ink-2)]"> {t.setupLabel.toLowerCase()} · {t.thenMonthly} ₪{MONTHLY_AMOUNT}{t.perMonth}</span>
             </p>
             <ul className="mt-4 space-y-1.5">
               {features.map((f: string) => (
@@ -279,17 +222,22 @@ export default function PagoClient({ clientId, clientDocId, businessName, lang, 
                 </li>
               ))}
             </ul>
+            <p className="mt-3 text-[0.75rem] text-[var(--pg-ink-3)]">{t.optional}</p>
           </div>
         </section>
 
-        {/* Amount summary */}
+        {/* Amount summary: alta ahora, cuota después */}
         <div className="mb-8 rounded-xl border border-[var(--pg-line)] bg-[var(--pg-paper)] p-5">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-[var(--pg-ink)]">{planName}</p>
-              <p className="text-xs text-[var(--pg-ink-3)]">{t.monthlyAmount}</p>
+              <p className="text-sm font-medium text-[var(--pg-ink)]">{t.setupLabel}</p>
+              <p className="text-xs text-[var(--pg-ink-3)]">{t.payNow}</p>
             </div>
-            <p className="text-2xl font-bold text-[var(--pg-ink)]">₪{amount}</p>
+            <p className="text-2xl font-bold text-[var(--pg-ink)]">₪{setupFmt}</p>
+          </div>
+          <div className="mt-3 flex items-center justify-between border-t border-[var(--pg-line)] pt-3">
+            <p className="text-sm text-[var(--pg-ink-2)]">{t.monthlyLabel}</p>
+            <p className="text-base font-semibold text-[var(--pg-ink)]">₪{MONTHLY_AMOUNT}<span className="text-xs font-normal text-[var(--pg-ink-2)]">{t.perMonth}</span></p>
           </div>
         </div>
 

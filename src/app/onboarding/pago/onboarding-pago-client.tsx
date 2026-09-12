@@ -5,14 +5,11 @@ import { useT } from "@/lib/i18n/context";
 import { RTL_LOCALES } from "@/lib/i18n/types";
 import { LogoMark } from "@/components/landing/logo-mark";
 import { LangSwitch } from "@/components/landing/lang-switch";
-import { type PlanType } from "@/lib/pricing";
+import { PLAN_ID, SETUP_AMOUNT_DEFAULT } from "@/lib/pricing";
 import { getContract, type ContractLang } from "@/lib/contracts";
 
-interface Props {
-  defaultPlan: PlanType;
-}
-
-export function OnboardingPagoClient({ defaultPlan }: Props) {
+// Compra por la web: plan único con alta fija (1500). Sólo se renderiza con la bandera de compra web encendida.
+export function OnboardingPagoClient() {
   const { t, locale } = useT();
   const dir = RTL_LOCALES.includes(locale) ? "rtl" : "ltr";
 
@@ -26,19 +23,11 @@ export function OnboardingPagoClient({ defaultPlan }: Props) {
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
 
-  const planObj = useMemo(() => {
-    const plans = t.pricing.plans;
-    const match = plans.find((p) => p.planId === defaultPlan);
-    if (match) return match;
-    if (defaultPlan === "web_crm" || defaultPlan === "completo") {
-      return plans.find((p) => p.planId === "base") || plans[0];
-    }
-    return plans[0];
-  }, [t, defaultPlan]);
+  const planObj = useMemo(() => t.pricing.plans[0], [t]);
 
   // Map PlanType to contract lang
   const contractLang: ContractLang = (["he", "en", "es", "ru", "ar"].includes(locale) ? locale : "en") as ContractLang;
-  const { text: fullContract, version: contractVersion } = getContract(contractLang, defaultPlan);
+  const { text: fullContract, version: contractVersion } = getContract(contractLang, { setupAmount: SETUP_AMOUNT_DEFAULT });
 
   const formValid = name && email && phone && biz && niche && agreed;
 
@@ -52,7 +41,7 @@ export function OnboardingPagoClient({ defaultPlan }: Props) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          plan: defaultPlan,
+          plan: PLAN_ID,
           lang: contractLang,
           email,
           name,

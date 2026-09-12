@@ -5,15 +5,16 @@ import { useRouter } from "next/navigation";
 import { useUserAuth } from "@/lib/user-auth-context";
 import { getLeadData, signOut, type HubLead } from "@/lib/user-auth";
 import { AuthModal } from "@/components/landing/auth-modal";
-import { getPlanAmount, type PlanType } from "@/lib/pricing";
+import { MONTHLY_AMOUNT, PLAN_LABEL, SETUP_AMOUNT_DEFAULT } from "@/lib/pricing";
 
+// Los planes viejos en datos se muestran mapeados al plan único (sin migrar datos).
 const PLAN_LABELS: Record<string, string> = {
-  solo_web: "Solo Web",
-  web_crm: "Web + CRM + Agent",
-  completo: "Web + CRM + Agent",
-  base: "Base",
-  pro: "Pro",
-  enterprise: "Enterprise",
+  solo_web: PLAN_LABEL,
+  web_crm: PLAN_LABEL,
+  completo: PLAN_LABEL,
+  base: PLAN_LABEL,
+  pro: PLAN_LABEL,
+  enterprise: PLAN_LABEL,
 };
 
 export default function MiCuentaPage() {
@@ -60,7 +61,7 @@ export default function MiCuentaPage() {
   }
 
   const planLabel = lead?.plan ? PLAN_LABELS[lead.plan] ?? null : null;
-  const planPrice = lead?.plan ? getPlanAmount(lead.plan as PlanType) : null;
+  const planPrice = lead?.plan ? MONTHLY_AMOUNT : null;
 
   return (
     <div className="min-h-screen bg-[#fafafa] px-4 py-12">
@@ -135,17 +136,18 @@ export default function MiCuentaPage() {
               <p className="text-sm text-gray-500">No tenés un plan activo</p>
               <div className="mt-4">
                 <div className="rounded-xl border-2 border-gray-900 p-4">
-                  <p className="font-semibold text-gray-900">Web + CRM + Agent</p>
-                  <p className="mt-1 text-2xl font-bold text-gray-900">₪480<span className="text-sm font-normal text-gray-500">/mes</span></p>
+                  <p className="font-semibold text-gray-900">{PLAN_LABEL}</p>
+                  <p className="mt-1 text-2xl font-bold text-gray-900">₪{MONTHLY_AMOUNT}<span className="text-sm font-normal text-gray-500">/mes</span></p>
+                  <p className="text-[0.8rem] text-gray-500">Alta única ₪{SETUP_AMOUNT_DEFAULT.toLocaleString()}</p>
                   <ul className="mt-3 space-y-1.5 text-[0.8rem] text-gray-600">
                     <li>✓ Sitio web profesional</li>
-                    <li>✓ CRM con asistente IA</li>
-                    <li>✓ Reservas online</li>
-                    <li>✓ Agente WhatsApp IA 24/7</li>
-                    <li>✓ Soporte prioritario</li>
+                    <li>✓ CRM de clientes y reservas</li>
+                    <li>✓ Notificaciones por email</li>
+                    <li>✓ Hosting, dominio y mantenimiento</li>
+                    <li>· WhatsApp, IA y voz: opcionales a cotizar</li>
                   </ul>
                   <a
-                    href={lead?.clientId ? `/pago/${lead.clientId}?plan=completo` : `https://wa.me/${(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "").replace(/\D/g, "")}`}
+                    href={lead?.clientId ? `/pago/${lead.clientId}` : `https://wa.me/${(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "").replace(/\D/g, "")}`}
                     className="mt-4 block rounded-full bg-gray-900 px-4 py-2.5 text-center text-[0.82rem] font-semibold text-white transition-all hover:bg-gray-800"
                   >
                     Empezar

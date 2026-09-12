@@ -2,6 +2,7 @@
 import { useT } from "@/lib/i18n/context";
 import { useReveal } from "@/hooks/use-scroll-reveal";
 import React from "react";
+import { isWebCheckoutEnabled } from "@/lib/web-checkout";
 
 const WA_HREF = `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "972557719141"}`;
 
@@ -22,10 +23,8 @@ export function Pricing() {
         <div className="at-plans-wrap">
         <div className="at-plans" ref={staggerRef} data-stagger>
           {t.pricing.plans.map((p, i) => {
-            const planId = p.planId || "base";
-            // El plan destacado dentro del par prominente es Base (la oferta núcleo);
-            // Pro/Enterprise quedan accesibles vía scroll horizontal.
-            const recommended = planId === "base";
+            const planId = p.planId || "web_crm";
+            const recommended = !!p.highlight;
             return (
             <div className={`at-plan${recommended ? " hl" : ""}`} key={i} style={{ "--si": i } as React.CSSProperties}>
               {recommended && t.pricing.stamp && <span className="stamp">{t.pricing.stamp}</span>}
@@ -53,8 +52,11 @@ export function Pricing() {
                 )}
               </ul>
               <div className="ctas">
-                <a className="at-plan-btn primary" href={`/onboarding/pago?plan=${planId}`}>{t.pricing.cta} →</a>
-                <a className="at-plan-btn ghost" href={WA_HREF} target="_blank" rel="noopener noreferrer">{t.pricing.ctaSecondary}</a>
+                {/* P-5: sin compra web, el camino es el lead por WhatsApp (venta en persona desde el hub). */}
+                {isWebCheckoutEnabled()
+                  ? <a className="at-plan-btn primary" href={`/onboarding/pago?plan=${planId}`}>{t.pricing.cta} →</a>
+                  : <a className="at-plan-btn primary" href={WA_HREF} target="_blank" rel="noopener noreferrer">{t.pricing.cta} →</a>}
+                <a className="at-plan-btn ghost" href="#work">{t.pricing.ctaSecondary}</a>
               </div>
             </div>
             );

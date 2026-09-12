@@ -64,14 +64,14 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   // absolute: evita el template "%s | Arzac Studio" del layout (doble marca).
-  title: { absolute: "בניית אתר לעסק עם CRM וסוכן וואטסאפ AI | 770 ₪ לחודש" },
+  title: { absolute: "בניית אתר לעסק עם CRM והתראות במייל | 250 ₪ לחודש" },
   description:
-    "אתר מקצועי לעסק שלך + CRM חכם + סוכן וואטסאפ AI שקובע תורים 24/7. ללא עלות הקמה, הכל כלול ב-770 ₪ לחודש. מתאים למספרות, מכוני יופי, קעקועים ושיפוצים.",
+    "אתר מקצועי לעסק שלך + מערכת CRM ללקוחות ותורים + התראות במייל. הקמה חד-פעמית 1,500 ₪ ואחר כך 250 ₪ לחודש. מתאים למספרות, מכוני יופי, קעקועים ושיפוצים. סוכן וואטסאפ AI — תוספת לפי בקשה.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "בניית אתר לעסק עם CRM וסוכן וואטסאפ AI — אפס דמי הקמה",
+    title: "בניית אתר לעסק עם CRM והתראות במייל — 250 ₪ לחודש",
     description:
-      "אתר מקצועי + CRM + סוכן וואטסאפ AI לעסקים מקומיים בישראל. הכל כלול במנוי חודשי, באוויר תוך 72 שעות.",
+      "אתר מקצועי + CRM + התראות במייל לעסקים מקומיים בישראל. הקמה חד-פעמית 1,500 ₪, מנוי 250 ₪ לחודש, באוויר תוך 72 שעות.",
     url: "https://arzac.studio",
     locale: "he_IL",
     type: "website",
@@ -92,7 +92,7 @@ const jsonLd = {
       logo: "https://arzac.studio/logo.png",
       image: "https://arzac.studio/og.png",
       description:
-        "סטודיו לבניית אתרים לעסקים קטנים בישראל: אתר מקצועי, מערכת CRM חכמה וסוכן וואטסאפ AI שקובע תורים 24/7. אפס דמי הקמה, הכל כלול במנוי חודשי.",
+        "סטודיו לבניית אתרים לעסקים קטנים בישראל: אתר מקצועי, מערכת CRM ללקוחות ותורים והתראות במייל. הקמה חד-פעמית ומנוי חודשי קבוע.",
       address: {
         "@type": "PostalAddress",
         addressLocality: "Tel Aviv",
@@ -122,32 +122,41 @@ const jsonLd = {
       "@type": "WebPage",
       "@id": "https://arzac.studio/#webpage",
       url: "https://arzac.studio",
-      name: "בניית אתר לעסק עם CRM וסוכן וואטסאפ AI | Arzac Studio",
+      name: "בניית אתר לעסק עם CRM והתראות במייל | Arzac Studio",
       isPartOf: { "@id": "https://arzac.studio/#website" },
       about: { "@id": "https://arzac.studio/#organization" },
       inLanguage: "he",
       description:
-        "אתר מקצועי לעסק שלך + CRM חכם + סוכן וואטסאפ AI שקובע תורים 24/7. ללא עלות הקמה, הכל כלול במנוי חודשי.",
+        "אתר מקצועי לעסק שלך + מערכת CRM ללקוחות ותורים + התראות במייל. הקמה חד-פעמית 1,500 ₪ ואחר כך 250 ₪ לחודש.",
     },
     {
       "@type": "Service",
       "@id": "https://arzac.studio/#service",
-      name: "אתר + CRM + סוכן וואטסאפ AI לעסקים מקומיים",
+      name: "אתר + CRM + התראות במייל לעסקים מקומיים",
       serviceType: "בניית אתרים לעסקים קטנים",
       description:
-        "אתר מקצועי עם מערכת קביעת תורים אונליין, CRM לניהול לקוחות ולידים, וסוכן וואטסאפ AI שעונה וקובע תורים 24/7. מתאים למספרות, מכוני יופי, סטודיו קעקועים, מעצבות ציפורניים, בתי קפה וקבלני שיפוצים.",
+        "אתר מקצועי עם מערכת קביעת תורים אונליין, CRM לניהול לקוחות ולידים והתראות במייל. מתאים למספרות, מכוני יופי, סטודיו קעקועים, מעצבות ציפורניים, בתי קפה וקבלני שיפוצים. סוכן וואטסאפ AI זמין כתוספת.",
       provider: { "@id": "https://arzac.studio/#organization" },
       areaServed: { "@type": "Country", name: "IL" },
       availableLanguage: ["he", "en", "ru", "es", "ar"],
-      offers: {
-        "@type": "AggregateOffer",
-        lowPrice: "480",
-        highPrice: "1270",
-        priceCurrency: "ILS",
-        offerCount: 4,
-        availability: "https://schema.org/InStock",
-        url: "https://arzac.studio/#pricing",
-      },
+      offers: [
+        {
+          "@type": "Offer",
+          name: "מנוי חודשי — אתר + CRM + התראות במייל",
+          price: "250",
+          priceCurrency: "ILS",
+          availability: "https://schema.org/InStock",
+          url: "https://arzac.studio/#pricing",
+        },
+        {
+          "@type": "Offer",
+          name: "הקמה חד-פעמית",
+          price: "1500",
+          priceCurrency: "ILS",
+          availability: "https://schema.org/InStock",
+          url: "https://arzac.studio/#pricing",
+        },
+      ],
     },
     {
       "@type": "FAQPage",

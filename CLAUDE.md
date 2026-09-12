@@ -1,6 +1,6 @@
 # nichos-hub
 
-Dashboard de operaciones Arzac Studio. Arzac Studio vende webs SaaS (landing + CRM + agente WhatsApp IA) para PYMEs locales en Israel, en 6 nichos. Modelo: 0 setup + 770 NIS/mes (960 con voice).
+Dashboard de operaciones Arzac Studio. Arzac Studio vende webs SaaS (landing + CRM + agente WhatsApp IA) para PYMEs locales en Israel, en 6 nichos. Modelo (desde 2026-09-12): un plan web + CRM + emails — alta 1500 NIS (en persona 1000–1500) + 250 NIS/mes; WhatsApp/IA/voz opcionales a cotizar.
 Propietario: Liam Arzac (website@arzac.studio).
 
 - Nichos-hub es EXCLUSIVAMENTE para Liam — ningun cliente entra aqui. El CRM del dueño de cada negocio vive dentro de su propia web (master-template), no en este dashboard.
@@ -55,14 +55,16 @@ Cardcom Low Profile. Flujo: firma contrato -> pending -> redirect Cardcom -> ver
 
 ## Pricing
 
-Moneda ILS (₪). Planes en `src/lib/pricing.ts` y contratos en `src/lib/contracts.ts`:
+Moneda ILS (₪). Modelo único desde 2026-09-12 (`src/lib/pricing.ts`, contrato v8.0 en `src/lib/contracts.ts`):
 
-- **Solo Web** — 480 NIS/mes: solo landing (sin CRM ni agente). `solo_web` en `pricing.ts`.
-- **Base** — 770 NIS/mes: web + CRM + agente WhatsApp (hasta 100 turnos/mes).
-- **Pro** — 960 NIS/mes: Base + llamadas de voz IA + WhatsApp avanzado (hasta 300 turnos/mes).
-- **Enterprise** — 1270 NIS/mes: ilimitado (turnos sin límite).
+- **Un plan**: web + CRM + notificaciones por email. Sin WhatsApp, IA ni voz incluidos (opcionales «a cotizar», fuera del contrato).
+- **Alta**: 1500 NIS fija por la web; en persona negociable 1000–1500, fijada por cliente en la ficha del hub (`hub_clients.setupAmount`, `PATCH /api/clients/{docId}`), validada en servidor.
+- **Cuota**: 250 NIS/mes fija (`MONTHLY_AMOUNT`); el cron cobra 250 a todos (`monthlyChargeFor`).
+- `getChargeAmount("initial"|"monthly", setupAmount)`; `payments/contract` y `create-payment` usan `resolveClientCharge` (mismo importe, verify-payment los compara).
+- Los `plan`/`tier` viejos en datos se muestran mapeados al plan único; `TIER_PRICING` es plano (250). No hay niveles ni subida automática de precio.
+- **Compra web desactivada** (`NEXT_PUBLIC_WEB_CHECKOUT_ENABLED` ≠ "true"): `create-onboarding-payment` → 403, `/onboarding/pago` → `/#pricing`, CTA de la landing → WhatsApp. Venta en persona: ficha → alta negociada → enlace `/pago/{clientId}`.
 
-Terminal Cardcom: **189298** (prod, via `CARDCOM_TERMINAL`), **1000** (sandbox, hardcodeado en `src/lib/cardcom.ts` cuando `CARDCOM_SANDBOX=true`). Tarjeta de prueba sandbox: 4580280000000008 CVV 123 (menos de 5000 NIS = exito).
+Terminal Cardcom: **189298** (prod, via `CARDCOM_TERMINAL`), **1000** (sandbox cuando `CARDCOM_SANDBOX=true`; el usuario API del terminal de pruebas ya no es público — pedirlo a soporte y ponerlo en `CARDCOM_SANDBOX_API_NAME`; el fallback `CardTest1994` responde 603 desde 2026-09). Tarjeta de prueba sandbox: 4580280000000008 CVV 123 (menos de 5000 NIS = exito).
 
 ## Deploy
 

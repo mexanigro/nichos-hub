@@ -6,6 +6,7 @@ import { getClientHealth } from "@/lib/repos/health";
 import { vercelFetch } from "@/lib/deploy";
 import { validateConfig } from "@/lib/config-validator";
 import { isValidClientLanguage, normalizeClientLanguage, VALID_CLIENT_LANGUAGES_LABEL } from "@/lib/client-language";
+import { isValidSetupAmount, SETUP_AMOUNT_MIN, SETUP_AMOUNT_MAX } from "@/lib/pricing";
 
 export const GET = withOwner(async (_req, _session, ctx) => {
   const { clientId } = await ctx.params;
@@ -54,6 +55,7 @@ export const GET = withOwner(async (_req, _session, ctx) => {
     tierAutoUpgraded: d.tierAutoUpgraded || false,
     tierAutoUpgradedAt: d.tierAutoUpgradedAt?.toDate?.()?.toISOString() ?? null,
     tierHistory: d.tierHistory || [],
+    setupAmount: typeof d.setupAmount === "number" ? d.setupAmount : null,
   };
   const internalClientId = d.clientId;
   const clientStatus = d.status || "active";
@@ -209,9 +211,26 @@ export const PATCH = withOwner(async (req, session, ctx) => {
   const { clientId } = await ctx.params;
   const body = await req.json().catch(() => ({}));
 
+  // Alta negociada en persona (P-3): entero entre SETUP_AMOUNT_MIN y SETUP_AMOUNT_MAX; sólo owner (withOwner).
+  if (body.setupAmount !== undefined) {
+    if (!isValidSetupAmount(body.setupAmount)) {
+      return NextResponse.json(
+        { error: `setupAmount debe ser un entero entre ${SETUP_AMOUNT_MIN} y ${SETUP_AMOUNT_MAX}.` },
+        { status: 400 },
+      );
+    }
+    const ref = db.collection("hub_clients").doc(clientId);
+    const snap = await ref.get();
+    if (!snap.exists) {
+      return NextResponse.json({ error: "Cliente no encontrado" }, { status: 404 });
+    }
+    await ref.set({ setupAmount: body.setupAmount, updatedAt: FieldValue.serverTimestamp() }, { merge: true });
+    return NextResponse.json({ ok: true, setupAmount: body.setupAmount });
+  }
+
   if (body.language === undefined) {
     return NextResponse.json(
-      { error: "Sólo se soporta language en PATCH por ahora." },
+      { error: "Sólo se soporta language o setupAmount en PATCH." },
       { status: 400 },
     );
   }

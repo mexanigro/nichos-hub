@@ -16,29 +16,21 @@ export default function TermsPage() {
         <section>
           <h2>The service</h2>
           <p>
-            Arzac Studio provides professional websites, CRM systems, AI-powered WhatsApp agents, and AI voice calling
-            for local businesses in Israel. The service is subscription-based, billed monthly in Israeli New Shekels (ILS).
+            Arzac Studio provides professional websites, a CRM for customers and bookings, and automated email
+            notifications for local businesses in Israel. The service has a one-time setup fee and a fixed monthly
+            subscription, billed in Israeli New Shekels (ILS). AI-powered WhatsApp agents, AI assistants and AI voice
+            calling are optional services, quoted separately.
           </p>
         </section>
 
         <section>
-          <h2>Plans and pricing</h2>
+          <h2>Pricing</h2>
           <ul>
-            <li><strong>Solo Web</strong> — ₪480/month. Website, hosting, domain, AI chatbot, email notifications.</li>
-            <li><strong>Base</strong> — ₪770/month. Website, hosting, domain, CRM, AI WhatsApp agent (24/7), up to 100 bookings/month.</li>
-            <li><strong>Pro</strong> — ₪960/month. Everything in Base + AI voice calls (cloned voice), up to 300 bookings/month.</li>
-            <li><strong>Enterprise</strong> — ₪1,270/month. Everything in Pro + unlimited bookings, unlimited voice calls, priority support.</li>
+            <li><strong>Setup</strong> — ₪1,500, one-time, charged upon signing. For in-person signups the setup fee may be agreed between ₪1,000 and ₪1,500.</li>
+            <li><strong>Subscription</strong> — ₪250/month, fixed. Website, hosting, domain, CRM and email notifications.</li>
+            <li><strong>Optional</strong> — WhatsApp agent, AI assistant and AI voice calls: quoted separately, no activation deadline.</li>
           </ul>
-          <p>Setup is free on all plans. The first payment is charged upon subscription. Subsequent payments are charged monthly on the same date.</p>
-        </section>
-
-        <section>
-          <h2>Automatic tier upgrade</h2>
-          <p>
-            If you reach your plan&apos;s booking limit during a billing cycle, you will be automatically upgraded to the
-            next tier starting from the following billing cycle. You will be notified via WhatsApp and/or email within
-            24 hours. You can request a downgrade with 30 days&apos; written notice, provided your usage fits the lower tier.
-          </p>
+          <p>The subscription is charged monthly on the same date. There are no service tiers, automatic upgrades or automatic price changes.</p>
         </section>
 
         <section>

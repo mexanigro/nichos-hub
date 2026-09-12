@@ -1,6 +1,8 @@
 export const SANDBOX = process.env.CARDCOM_SANDBOX === "true";
 const SANDBOX_TERMINAL = "1000";
-const SANDBOX_API_NAME = "CardTest1994";
+// Cardcom dejó de publicar el usuario del terminal de pruebas (doc «מידע לביצוע טסטים», 2026-09): se pide a soporte y se pone
+// en CARDCOM_SANDBOX_API_NAME. La constante histórica queda como fallback y hoy responde 603 (N10 n10-precios-v1 G3).
+const SANDBOX_API_NAME = process.env.CARDCOM_SANDBOX_API_NAME || "CardTest1994";
 
 /** Terminales de prueba de Cardcom — un cobro ahi NUNCA es dinero real. */
 export const SANDBOX_TERMINALS: readonly string[] = [SANDBOX_TERMINAL];
@@ -180,7 +182,7 @@ export interface VerifyPaymentResult {
   terminalNumber?: string;
   /**
    * Monto efectivamente cobrado en NIS. Verificado contra sandbox real:
-   * Cardcom lo devuelve en `ExtShvaParams.Sum36` en agorot (7.7 NIS → "770").
+   * Cardcom lo devuelve en `ExtShvaParams.Sum36` en agorot (2.5 NIS → "250").
    * undefined si el campo no vino o no es numerico.
    */
   amount?: number;

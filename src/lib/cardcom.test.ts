@@ -3,8 +3,8 @@
  *
  * Escenario que cubre: si se mezclan credenciales de sandbox y produccion entre
  * deploys, un cobro hecho en el terminal de prueba (1000) NO puede acreditarse
- * como un cliente real. El monto solo ya no alcanza: 770 NIS en sandbox son
- * indistinguibles de 770 NIS reales.
+ * como un cliente real. El monto solo ya no alcanza: 1500 NIS en sandbox son
+ * indistinguibles de 1500 NIS reales.
  */
 import test from "node:test";
 import assert from "node:assert/strict";
@@ -118,7 +118,7 @@ test("verifyPayment: extrae TerminalNumber y el deal de sandbox no pasa el check
     CardValidityMonth: "12",
     CardValidityYear: "2030",
     ReturnValue: "lead-123",
-    "ExtShvaParams.Sum36": "77000", // 770 NIS — el monto exacto del plan base
+    "ExtShvaParams.Sum36": "150000", // 1500 NIS — el alta del plan único
     "ExtShvaParams.CardNumber5": "0008",
   }).toString();
 
@@ -129,7 +129,7 @@ test("verifyPayment: extrae TerminalNumber y el deal de sandbox no pasa el check
     const v = await verifyPayment("5BAF4BD5-76FB-4C81-8654-DF481B22EDF3");
 
     assert.equal(v.success, true);
-    assert.equal(v.amount, 770, "el monto coincide con el plan: la validacion de monto pasa");
+    assert.equal(v.amount, 1500, "el monto coincide con el alta: la validacion de monto pasa");
     assert.equal(v.terminalNumber, SANDBOX_TERMINAL);
 
     // Hub configurado en prod (189298) recibiendo un deal del terminal 1000.

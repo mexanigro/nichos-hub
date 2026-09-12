@@ -41,7 +41,7 @@ import type { LucideIcon } from "lucide-react";
 /* ─── Constants ─── */
 
 const DEFAULT_RATE = 3.6;
-const REVENUE_PER_CLIENT_ILS = 770;
+const REVENUE_PER_CLIENT_ILS = 250; // cuota mensual del plan único (N10 n10-precios-v1)
 
 const CATEGORIES: {
   key: OperationalCostCategory;
