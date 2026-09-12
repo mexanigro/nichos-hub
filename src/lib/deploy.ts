@@ -1,5 +1,6 @@
 import { db } from "@/lib/firebase-admin";
 import { buildAdminEnvVars } from "@/lib/client-env";
+import { resolveOwnerNotificationEmail } from "@/lib/provisioning";
 
 const VERCEL_TOKEN = process.env.VERCEL_TOKEN;
 const VERCEL_TEAM_ID = process.env.VERCEL_TEAM_ID;
@@ -107,7 +108,9 @@ export async function deployToVercel({ clientId, niche, hubDocId, demoMode = fal
   const configSnap = await db.collection("config").doc(clientId).get();
   const configData = configSnap.data() ?? {};
   const uiLanguage = resolveClientLanguage(configData.language);
-  const adminEmail = configData.adminEmail as string | undefined;
+  // N08 T1: el alta escribe adminEmail en config; los clientes anteriores sólo lo tienen en hub_clients.
+  const hubData = hubDocId ? (await db.collection("hub_clients").doc(hubDocId).get()).data() ?? {} : {};
+  const adminEmail = resolveOwnerNotificationEmail(configData, hubData);
 
   const envVars: Array<{ key: string; value: string; target: string[]; type: string }> = [
     { key: "VITE_CLIENT_ID", value: clientId, target: ["production", "preview"], type: "plain" },

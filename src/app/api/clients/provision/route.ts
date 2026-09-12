@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { withOwner } from "@/lib/auth";
-import { db } from "@/lib/firebase-admin";
+import { db, auth } from "@/lib/firebase-admin";
 import { FieldValue } from "firebase-admin/firestore";
-import { buildFeatures, getDefaultTheme, getDefaultSplash, VALID_NICHES, type BusinessNiche } from "@/lib/niche-defaults";
+import { VALID_NICHES, type BusinessNiche } from "@/lib/niche-defaults";
+import { buildProvisionDocs } from "@/lib/provisioning";
+import { bootstrapTenantOwner } from "@/lib/admin-bootstrap";
 import { deployToVercel } from "@/lib/deploy";
 import { isValidClientLanguage, DEFAULT_CLIENT_LANGUAGE, type ClientLanguage, VALID_CLIENT_LANGUAGES_LABEL } from "@/lib/client-language";
 
@@ -13,8 +15,6 @@ function slugify(name: string): string {
     .replace(/^-+|-+$/g, "")
     .slice(0, 40);
 }
-
-// buildFeatures, getDefaultTheme, getDefaultSplash, VALID_NICHES importados de @/lib/niche-defaults
 
 export const POST = withOwner(async (req: NextRequest) => {
   try {
@@ -54,59 +54,37 @@ export const POST = withOwner(async (req: NextRequest) => {
     const mode = businessMode === "solo" ? "solo" : "team";
     const slug = `demo-${slugify(businessName.trim())}-${crypto.randomUUID().slice(0, 8)}`;
     const domain = `${slug}.arzac.studio`;
-    const features = buildFeatures(nicheKey, mode);
+    // N08 T1: los tres documentos del alta salen de un constructor puro (src/lib/provisioning.ts, con test):
+    // config nace con el catálogo del nicho (services/staff/businessRules del preset del template) y adminEmail,
+    // que es lo que deploy.ts propaga como BUSINESS_OWNER_EMAIL.
+    const docs = buildProvisionDocs({
+      businessName, niche: nicheKey, mode, slug, domain, language: lang,
+      phone, email, address, instagram, tagline, description, adminEmail,
+    });
 
     // 1. Create hub_clients doc
     const hubRef = db.collection("hub_clients").doc();
-    await hubRef.set({
-      businessName: businessName.trim(),
-      niche: nicheKey,
-      businessMode: mode,
-      clientId: slug,
-      status: "demo",
-      deployUrl: `https://${domain}`,
-      domain,
-      adminEmail: adminEmail || email || "",
-      createdAt: new Date(),
-      activationDate: new Date(),
-      contact: {
-        phone: phone || "",
-        email: email || "",
-        address: address || "",
-        instagram: instagram || "",
-      },
-      description: description || "",
-      language: lang,
-      notes: "",
-    });
+    await hubRef.set(docs.hubClient);
 
     // 2. Create clients/{clientId} — template depends on this for Firestore rules
-    await db.collection("clients").doc(slug).set({
-      status: "active",
-    });
+    await db.collection("clients").doc(slug).set(docs.client);
 
     // 3. Create config/{clientId} — remote config for the landing page
-    // tagline (frase corta tipo claim) y description (1-2 párrafos) son cosas
-    // distintas. Antes se metía description en tagline → en el template salía
-    // el párrafo entero como subtítulo. Si el provisioner sólo mandó uno, el
-    // otro queda vacío y Liam lo completa después en /clients/[id]/contenido.
-    await db.collection("config").doc(slug).set({
-      business: { type: nicheKey, mode, name: businessName.trim() },
-      brand: {
-        name: businessName.trim(),
-        tagline: tagline || "",
-        description: description || "",
-      },
-      contact: {
-        phone: phone || "",
-        email: email || "",
-        address: { street: address || "" },
-      },
-      features,
-      activeTheme: getDefaultTheme(nicheKey),
-      splash: { enabled: true, variant: getDefaultSplash(nicheKey) },
-      language: lang,
-    });
+    await db.collection("config").doc(slug).set(docs.config);
+
+    // 3b. Dueño en admin_users del tenant (antes era un botón aparte en la ficha; sin él el CRM responde 403).
+    let ownerBootstrap: Record<string, unknown> | null = null;
+    if (docs.ownerBootstrap) {
+      try {
+        const r = await bootstrapTenantOwner({ ...docs.ownerBootstrap, db, auth });
+        ownerBootstrap = r.ok
+          ? { ok: true, email: r.email, rosterWritten: r.rosterWritten, claimsSynced: r.claimsSynced, ...(r.claimsReason ? { claimsReason: r.claimsReason } : {}) }
+          : { ok: false, status: r.status, error: r.error };
+      } catch (err) {
+        ownerBootstrap = { ok: false, error: err instanceof Error ? err.message.slice(0, 300) : "bootstrap failed" };
+      }
+      await hubRef.update({ ownerBootstrap });
+    }
 
     // 4. Trigger Vercel deploy (direct call, no self-fetch)
     let deployResult: { projectId?: string; domain?: string; error?: string } = {};
@@ -127,6 +105,7 @@ export const POST = withOwner(async (req: NextRequest) => {
       deployStatus: deployResult.error ? "error" : "building",
       deployError: deployResult.error || null,
       vercelProjectId: deployResult.projectId || null,
+      ownerBootstrap,
     }, { status: 201 });
   } catch (error) {
     console.error("[provision] Error:", error);

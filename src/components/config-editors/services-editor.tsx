@@ -172,8 +172,8 @@ export function ServicesEditor({
               id: s.id,
               name: (patch.name as string) || s.label,
               description: (patch.description as string) || "",
-              duration: Number(patch.duration) || 30,
-              price: Number(patch.price) || 0,
+              duration: Number(patch.duration) || s.duration || 30,
+              price: Number(patch.price) || s.price || 0,
               image: (patch.image as string) || undefined,
             };
           });

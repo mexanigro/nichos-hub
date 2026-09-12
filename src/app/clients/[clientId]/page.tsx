@@ -188,6 +188,32 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
       .catch(() => {});
   }, [clientId]);
 
+  // N08 T1 (H-3): «building» no es un estado final. Mientras dure, la ficha consulta la ruta existente
+  // /api/onboarding/status/[clientId], que pregunta a Vercel y persiste deployStatus real (ready/error).
+  const tenantId = data?.client.clientId;
+  const deployStatusNow = data?.client.deployStatus;
+  useEffect(() => {
+    if (deployStatusNow !== "building" || !tenantId) return;
+    let cancelled = false;
+    let attempts = 0;
+    const tick = async () => {
+      if (cancelled || attempts++ >= 40) return;
+      try {
+        const res = await fetch(`/api/onboarding/status/${tenantId}`);
+        if (res.ok) {
+          const st = (await res.json()) as { status?: string };
+          if (!cancelled && st.status && st.status !== "building" && st.status !== "pending_review") {
+            setData((d) => d ? { ...d, client: { ...d.client, deployStatus: st.status as ClientWithHealth["deployStatus"] } } : d);
+            return;
+          }
+        }
+      } catch { /* siguiente intento */ }
+      if (!cancelled) timer = setTimeout(tick, 15_000);
+    };
+    let timer = setTimeout(tick, 3_000);
+    return () => { cancelled = true; clearTimeout(timer); };
+  }, [deployStatusNow, tenantId]);
+
   async function toggleStatus() {
     if (!data) return;
     setToggling(true);
@@ -836,7 +862,7 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
 
       {/* CRM Import Modal */}
       {showImport && (
-        <CrmImportModal clientId={clientId} onClose={() => setShowImport(false)} />
+        <CrmImportModal clientId={client.clientId} onClose={() => setShowImport(false)} />
       )}
 
       {/* Response Time Chart */}

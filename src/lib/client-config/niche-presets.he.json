@@ -1,0 +1,1824 @@
+{
+  "_provenance": "Generado desde Barber-shop-template@65507e0 src/config/presets/{nicho}.he.ts (services + staff). N08 T1, 2026-09-12. No editar a mano: regenerar con el script del expediente n08-apertura-v1.",
+  "barberia": {
+    "services": [
+      {
+        "id": "haircut",
+        "name": "תספורת קלאסית",
+        "description": "חיתוך מדויק למבנה הפנים, גימור בתער, ומוצר סטיילינג פרימיום.",
+        "duration": 30,
+        "price": 45
+      },
+      {
+        "id": "beard-sculpt",
+        "name": "פיסול זקן",
+        "description": "קווים מושלמים בתער ישר, קונטור ומשחה לחות עם שמן ארגן.",
+        "duration": 25,
+        "price": 35
+      },
+      {
+        "id": "straight-shave",
+        "name": "גילוח בתער קלאסי",
+        "description": "גילוח חם, קצף איכותי ותער פלדה — עור חלק ונעים.",
+        "duration": 35,
+        "price": 40
+      },
+      {
+        "id": "color-treatment",
+        "name": "צבע והדגשות",
+        "description": "הסוואת שיבה או צביעה מלאה עם פיגמנטים נטולי אמוניה — טבעי ועמיד.",
+        "duration": 50,
+        "price": 65
+      },
+      {
+        "id": "full-ritual",
+        "name": "חוויית Ritual מלאה",
+        "description": "תספורת, זקן, מגבת חמה וסרום משקם — החוויה המלאה של Onyx & Steel.",
+        "duration": 75,
+        "price": 90
+      }
+    ],
+    "staff": [
+      {
+        "id": "alex",
+        "slug": "alex-reed",
+        "name": "Alex 'The Blade' Reed",
+        "photoUrl": "https://images.unsplash.com/photo-1717700921740-a1440f3b89a4?auto=format&fit=crop&q=80&w=800",
+        "specialty": "פייד קלאסי וצורות נקיות",
+        "bio": "מעל 12 שנות ניסיון במגוון פיידים וקווים קלאסיים — דיוק שהופך כל תספורת לחתימה אישית.",
+        "portfolio": [
+          "https://images.unsplash.com/photo-1568339434343-2a640a1a9946?auto=format&fit=crop&q=80&w=1200",
+          "https://images.unsplash.com/photo-1618049049816-43a00d5b0c3d?auto=format&fit=crop&q=80&w=1200",
+          "https://images.unsplash.com/photo-1456327102063-fb5054efe647?auto=format&fit=crop&q=80&w=1200",
+          "https://images.unsplash.com/photo-1578390432942-d323db577792?auto=format&fit=crop&q=80&w=1200"
+        ],
+        "social": {
+          "instagram": "https://instagram.com/alexblade"
+        },
+        "schedule": {
+          "monday": {
+            "isOpen": true,
+            "hours": {
+              "start": "09:00",
+              "end": "18:00"
+            },
+            "breaks": [
+              {
+                "start": "13:00",
+                "end": "14:00",
+                "label": "צהריים"
+              }
+            ]
+          },
+          "tuesday": {
+            "isOpen": true,
+            "hours": {
+              "start": "09:00",
+              "end": "18:00"
+            },
+            "breaks": [
+              {
+                "start": "13:00",
+                "end": "14:00",
+                "label": "צהריים"
+              }
+            ]
+          },
+          "wednesday": {
+            "isOpen": true,
+            "hours": {
+              "start": "09:00",
+              "end": "18:00"
+            },
+            "breaks": [
+              {
+                "start": "13:00",
+                "end": "14:00",
+                "label": "צהריים"
+              }
+            ]
+          },
+          "thursday": {
+            "isOpen": true,
+            "hours": {
+              "start": "09:00",
+              "end": "18:00"
+            },
+            "breaks": [
+              {
+                "start": "13:00",
+                "end": "14:00",
+                "label": "צהריים"
+              }
+            ]
+          },
+          "friday": {
+            "isOpen": true,
+            "hours": {
+              "start": "09:00",
+              "end": "18:00"
+            },
+            "breaks": [
+              {
+                "start": "13:00",
+                "end": "14:00",
+                "label": "צהריים"
+              }
+            ]
+          },
+          "saturday": {
+            "isOpen": true,
+            "hours": {
+              "start": "10:00",
+              "end": "16:00"
+            },
+            "breaks": []
+          },
+          "sunday": {
+            "isOpen": false,
+            "hours": {
+              "start": "00:00",
+              "end": "00:00"
+            },
+            "breaks": []
+          }
+        }
+      },
+      {
+        "id": "daniel",
+        "slug": "daniel-petrocelli",
+        "name": "Daniel Petrocelli",
+        "photoUrl": "https://images.unsplash.com/photo-1723021073699-77f5442510a2?auto=format&fit=crop&q=80&w=800",
+        "specialty": "אומנות זקן וטיפוח פנים",
+        "bio": "שליטה בתער ובקונטור זקן — מהמובילים בעיר בגילוח רטוב יוקרתי.",
+        "portfolio": [
+          "https://images.unsplash.com/photo-1657105052388-e839d5d0f395?auto=format&fit=crop&q=80&w=1200",
+          "https://images.unsplash.com/photo-1659212165922-b1b64fc04ccf?auto=format&fit=crop&q=80&w=1200",
+          "https://images.unsplash.com/photo-1674456483643-05448d24cd77?auto=format&fit=crop&q=80&w=1200",
+          "https://images.unsplash.com/photo-1551810104-58185e8cfd0c?auto=format&fit=crop&q=80&w=1200"
+        ],
+        "social": {
+          "instagram": "https://instagram.com/danielgrooming"
+        },
+        "schedule": {
+          "monday": {
+            "isOpen": false,
+            "hours": {
+              "start": "00:00",
+              "end": "00:00"
+            },
+            "breaks": []
+          },
+          "tuesday": {
+            "isOpen": true,
+            "hours": {
+              "start": "10:00",
+              "end": "19:00"
+            },
+            "breaks": [
+              {
+                "start": "14:00",
+                "end": "15:00",
+                "label": "הפסקה"
+              }
+            ]
+          },
+          "wednesday": {
+            "isOpen": true,
+            "hours": {
+              "start": "10:00",
+              "end": "19:00"
+            },
+            "breaks": [
+              {
+                "start": "14:00",
+                "end": "15:00",
+                "label": "הפסקה"
+              }
+            ]
+          },
+          "thursday": {
+            "isOpen": true,
+            "hours": {
+              "start": "10:00",
+              "end": "19:00"
+            },
+            "breaks": [
+              {
+                "start": "14:00",
+                "end": "15:00",
+                "label": "הפסקה"
+              }
+            ]
+          },
+          "friday": {
+            "isOpen": true,
+            "hours": {
+              "start": "10:00",
+              "end": "19:00"
+            },
+            "breaks": [
+              {
+                "start": "14:00",
+                "end": "15:00",
+                "label": "הפסקה"
+              }
+            ]
+          },
+          "saturday": {
+            "isOpen": true,
+            "hours": {
+              "start": "10:00",
+              "end": "19:00"
+            },
+            "breaks": [
+              {
+                "start": "14:00",
+                "end": "15:00",
+                "label": "הפסקה"
+              }
+            ]
+          },
+          "sunday": {
+            "isOpen": false,
+            "hours": {
+              "start": "00:00",
+              "end": "00:00"
+            },
+            "breaks": []
+          }
+        }
+      },
+      {
+        "id": "michael",
+        "slug": "michael-vane",
+        "name": "Michael Vane",
+        "photoUrl": "https://images.unsplash.com/photo-1619233543112-fe382ff3693d?auto=format&fit=crop&q=80&w=800",
+        "specialty": "עבודת מספריים ומרקם",
+        "bio": "משלב טכניקות אירופיות עם טקסטורה עכשווית — סגנון שלא מתאמץ ומשדר סמכות.",
+        "portfolio": [
+          "https://images.unsplash.com/photo-1587776535733-b4c80a99ef82?auto=format&fit=crop&q=80&w=1200",
+          "https://images.unsplash.com/photo-1584864650621-95648f07518e?auto=format&fit=crop&q=80&w=1200",
+          "https://images.unsplash.com/photo-1648742468740-6347e05c7faa?auto=format&fit=crop&q=80&w=1200",
+          "https://images.unsplash.com/photo-1516646720587-727f6728837d?auto=format&fit=crop&q=80&w=1200"
+        ],
+        "social": {
+          "instagram": "https://instagram.com/michaelvane"
+        },
+        "schedule": {
+          "monday": {
+            "isOpen": true,
+            "hours": {
+              "start": "09:00",
+              "end": "17:00"
+            },
+            "breaks": [
+              {
+                "start": "12:00",
+                "end": "13:00",
+                "label": "צהריים"
+              }
+            ]
+          },
+          "tuesday": {
+            "isOpen": true,
+            "hours": {
+              "start": "09:00",
+              "end": "17:00"
+            },
+            "breaks": [
+              {
+                "start": "12:00",
+                "end": "13:00",
+                "label": "צהריים"
+              }
+            ]
+          },
+          "wednesday": {
+            "isOpen": true,
+            "hours": {
+              "start": "09:00",
+              "end": "17:00"
+            },
+            "breaks": [
+              {
+                "start": "12:00",
+                "end": "13:00",
+                "label": "צהריים"
+              }
+            ]
+          },
+          "thursday": {
+            "isOpen": true,
+            "hours": {
+              "start": "09:00",
+              "end": "17:00"
+            },
+            "breaks": [
+              {
+                "start": "12:00",
+                "end": "13:00",
+                "label": "צהריים"
+              }
+            ]
+          },
+          "friday": {
+            "isOpen": true,
+            "hours": {
+              "start": "09:00",
+              "end": "17:00"
+            },
+            "breaks": [
+              {
+                "start": "12:00",
+                "end": "13:00",
+                "label": "צהריים"
+              }
+            ]
+          },
+          "saturday": {
+            "isOpen": false,
+            "hours": {
+              "start": "00:00",
+              "end": "00:00"
+            },
+            "breaks": []
+          },
+          "sunday": {
+            "isOpen": false,
+            "hours": {
+              "start": "00:00",
+              "end": "00:00"
+            },
+            "breaks": []
+          }
+        }
+      }
+    ]
+  },
+  "estetica": {
+    "services": [
+      {
+        "id": "lip-filler",
+        "name": "פילר שפתיים",
+        "description": "נפח עדין והגדרה מדויקת עם חומצה היאלורונית פרימיום. קו שפתיים טבעי, ללא זמן החלמה, תוצאות מיידיות.",
+        "duration": 45,
+        "price": 1800
+      },
+      {
+        "id": "cheek-filler",
+        "name": "פילר לחיים וקו לסת",
+        "description": "עיצוב מבני עם חומצה היאלורונית בטכנולוגיה מתקדמת. שחזור נפח, הרמה והגדרה של אמצע הפנים בדיוק קליני.",
+        "duration": 50,
+        "price": 2200
+      },
+      {
+        "id": "botox",
+        "name": "בוטוקס",
+        "description": "נוירומודולטור מאושר לקמטי הבעה — מצח, רגליי עורב וקמט בין הגבות. תוצאה עדינה, טבעית, ללא השבתה.",
+        "duration": 30,
+        "price": 1400
+      },
+      {
+        "id": "facial",
+        "name": "טיפול פנים סיגנטורי",
+        "description": "טיפול פנים קליני מותאם אישית — ניקוי עומק, פילינג רפואי וסרומים ממוקדים. זוהר מיידי.",
+        "duration": 60,
+        "price": 750
+      },
+      {
+        "id": "skin-booster",
+        "name": "סקין בוסטר",
+        "description": "מיקרו-הזרקות של חומצה היאלורונית לא-מקושרת ללחות עמוקה, שיפור גמישות ושחזור ברק פנימי.",
+        "duration": 45,
+        "price": 2000
+      }
+    ],
+    "staff": [
+      {
+        "id": "dr-anika",
+        "slug": "dr-anika-chen",
+        "name": "ד״ר אניקה צ׳ן",
+        "photoUrl": "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=800",
+        "specialty": "אסתטיקה רפואית והזרקות",
+        "bio": "מומחית באסתטיקה רפואית עם למעלה מ-10 שנות ניסיון בהזרקות פנים. ד״ר צ׳ן ידועה בגישת ה-'פחות זה יותר' — חיזוק התווים הטבעיים מבלי לשנות את הזהות.",
+        "portfolio": [
+          "https://images.unsplash.com/photo-1746017062285-13c77e29fc25?auto=format&fit=crop&q=80&w=1200",
+          "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&q=80&w=1200",
+          "https://images.unsplash.com/photo-1746708810803-722593e53772?auto=format&fit=crop&q=80&w=1200",
+          "https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&q=80&w=1200"
+        ],
+        "social": {
+          "instagram": "https://instagram.com/dranikachen"
+        },
+        "schedule": {
+          "monday": {
+            "isOpen": true,
+            "hours": {
+              "start": "09:00",
+              "end": "18:00"
+            },
+            "breaks": [
+              {
+                "start": "13:00",
+                "end": "14:00",
+                "label": "צהריים"
+              }
+            ]
+          },
+          "tuesday": {
+            "isOpen": true,
+            "hours": {
+              "start": "09:00",
+              "end": "18:00"
+            },
+            "breaks": [
+              {
+                "start": "13:00",
+                "end": "14:00",
+                "label": "צהריים"
+              }
+            ]
+          },
+          "wednesday": {
+            "isOpen": true,
+            "hours": {
+              "start": "09:00",
+              "end": "18:00"
+            },
+            "breaks": [
+              {
+                "start": "13:00",
+                "end": "14:00",
+                "label": "צהריים"
+              }
+            ]
+          },
+          "thursday": {
+            "isOpen": true,
+            "hours": {
+              "start": "09:00",
+              "end": "18:00"
+            },
+            "breaks": [
+              {
+                "start": "13:00",
+                "end": "14:00",
+                "label": "צהריים"
+              }
+            ]
+          },
+          "friday": {
+            "isOpen": true,
+            "hours": {
+              "start": "09:00",
+              "end": "14:00"
+            },
+            "breaks": []
+          },
+          "saturday": {
+            "isOpen": false,
+            "hours": {
+              "start": "00:00",
+              "end": "00:00"
+            },
+            "breaks": []
+          },
+          "sunday": {
+            "isOpen": true,
+            "hours": {
+              "start": "09:00",
+              "end": "18:00"
+            },
+            "breaks": [
+              {
+                "start": "13:00",
+                "end": "14:00",
+                "label": "צהריים"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "maya",
+        "slug": "maya-torres",
+        "name": "מאיה טורס",
+        "photoUrl": "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=800",
+        "specialty": "טיפולי פנים מתקדמים ובריאות העור",
+        "bio": "קוסמטיקאית רפואית עם הסמכה כפולה בטיפוח קליני ופילינגים כימיים. מאיה מתכננת כל טיפול פנים כפרוטוקול — שיטתי, מבוסס ראיות ומותאם למצב העור הנוכחי.",
+        "portfolio": [
+          "https://images.unsplash.com/photo-1731355771317-b2ab72c79124?auto=format&fit=crop&q=80&w=1200",
+          "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&q=80&w=1200",
+          "https://images.unsplash.com/photo-1643684391140-c5056cfd3436?auto=format&fit=crop&q=80&w=1200",
+          "https://images.unsplash.com/photo-1647004692483-c5d942fe1137?auto=format&fit=crop&q=80&w=1200"
+        ],
+        "social": {
+          "instagram": "https://instagram.com/mayatorres_skin"
+        },
+        "schedule": {
+          "monday": {
+            "isOpen": true,
+            "hours": {
+              "start": "10:00",
+              "end": "18:00"
+            },
+            "breaks": [
+              {
+                "start": "13:30",
+                "end": "14:30",
+                "label": "הפסקה"
+              }
+            ]
+          },
+          "tuesday": {
+            "isOpen": true,
+            "hours": {
+              "start": "10:00",
+              "end": "18:00"
+            },
+            "breaks": [
+              {
+                "start": "13:30",
+                "end": "14:30",
+                "label": "הפסקה"
+              }
+            ]
+          },
+          "wednesday": {
+            "isOpen": true,
+            "hours": {
+              "start": "10:00",
+              "end": "18:00"
+            },
+            "breaks": [
+              {
+                "start": "13:30",
+                "end": "14:30",
+                "label": "הפסקה"
+              }
+            ]
+          },
+          "thursday": {
+            "isOpen": true,
+            "hours": {
+              "start": "10:00",
+              "end": "18:00"
+            },
+            "breaks": [
+              {
+                "start": "13:30",
+                "end": "14:30",
+                "label": "הפסקה"
+              }
+            ]
+          },
+          "friday": {
+            "isOpen": true,
+            "hours": {
+              "start": "09:00",
+              "end": "14:00"
+            },
+            "breaks": []
+          },
+          "saturday": {
+            "isOpen": false,
+            "hours": {
+              "start": "00:00",
+              "end": "00:00"
+            },
+            "breaks": []
+          },
+          "sunday": {
+            "isOpen": false,
+            "hours": {
+              "start": "00:00",
+              "end": "00:00"
+            },
+            "breaks": []
+          }
+        }
+      },
+      {
+        "id": "david",
+        "slug": "david-park",
+        "name": "דייויד פארק, RN",
+        "photoUrl": "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=800",
+        "specialty": "מומחה הזרקות וסקין בוסטר",
+        "bio": "אח מוסמך עם התמחות מתקדמת בפילרים ופרוטוקולי סקין בוסטר. דייויד משלב דיוק קליני עם עין אמנותית לסימטריה ופרופורציה פנים.",
+        "portfolio": [
+          "https://images.unsplash.com/photo-1761819922656-d1b77eef49c0?auto=format&fit=crop&q=80&w=1200",
+          "https://images.unsplash.com/photo-1761819921052-2c34973e012c?auto=format&fit=crop&q=80&w=1200",
+          "https://images.unsplash.com/photo-1731355771418-f10ab62c9f86?auto=format&fit=crop&q=80&w=1200",
+          "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&q=80&w=1200"
+        ],
+        "social": {
+          "instagram": "https://instagram.com/davidpark_aesthetics"
+        },
+        "schedule": {
+          "monday": {
+            "isOpen": true,
+            "hours": {
+              "start": "09:00",
+              "end": "17:00"
+            },
+            "breaks": [
+              {
+                "start": "12:30",
+                "end": "13:30",
+                "label": "צהריים"
+              }
+            ]
+          },
+          "tuesday": {
+            "isOpen": true,
+            "hours": {
+              "start": "09:00",
+              "end": "17:00"
+            },
+            "breaks": [
+              {
+                "start": "12:30",
+                "end": "13:30",
+                "label": "צהריים"
+              }
+            ]
+          },
+          "wednesday": {
+            "isOpen": true,
+            "hours": {
+              "start": "09:00",
+              "end": "17:00"
+            },
+            "breaks": [
+              {
+                "start": "12:30",
+                "end": "13:30",
+                "label": "צהריים"
+              }
+            ]
+          },
+          "thursday": {
+            "isOpen": true,
+            "hours": {
+              "start": "09:00",
+              "end": "17:00"
+            },
+            "breaks": [
+              {
+                "start": "12:30",
+                "end": "13:30",
+                "label": "צהריים"
+              }
+            ]
+          },
+          "friday": {
+            "isOpen": false,
+            "hours": {
+              "start": "00:00",
+              "end": "00:00"
+            },
+            "breaks": []
+          },
+          "saturday": {
+            "isOpen": false,
+            "hours": {
+              "start": "00:00",
+              "end": "00:00"
+            },
+            "breaks": []
+          },
+          "sunday": {
+            "isOpen": true,
+            "hours": {
+              "start": "09:00",
+              "end": "17:00"
+            },
+            "breaks": [
+              {
+                "start": "12:30",
+                "end": "13:30",
+                "label": "צהריים"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "tattoo": {
+    "services": [
+      {
+        "id": "consultation",
+        "name": "פגישת ייעוץ חינם",
+        "description": "מתחילים כאן — ללא עלות וללא התחייבות. פגישה עם האמן ל־30–60 דק׳, סקירת תיק, דיון ברעיון, מיקום וסגנון, ותכנון הפרויקט לפני כל מקדמה.",
+        "duration": 60,
+        "price": 0
+      },
+      {
+        "id": "custom-design",
+        "name": "עיצוב מותאם אישית",
+        "description": "יצירה מקורית סביב החזון שלכם. חיוב לפי 180₪ לשעה — רוב הפרויקטים נפרסים על 1–4 סשנים לפי גודל ומורכבות. כולל ייעוץ חינם ואישור סקיצה לפני הסשן.",
+        "duration": 180,
+        "price": 180
+      },
+      {
+        "id": "fine-line",
+        "name": "קו עדין ומינימליזם",
+        "description": "דיוק במחט בודדת לקווים עדינים, מיקרו־ריאליזם והרכבים מינימליסטיים. חיוב לפי 150₪ לשעה. עיצובים קטנים מתחת ל־2 אינץ׳ — לעיתים מחיר קבוע; יאושר בייעוץ.",
+        "duration": 120,
+        "price": 150
+      },
+      {
+        "id": "black-grey-realism",
+        "name": "ריאליזם שחור־אפור",
+        "description": "דיוקן היפר־ריאליסטי ותמוניות קולנועיות בשחור־אפור. חיוב לפי 200₪ לשעה — פרויקטים גדולים מחולקים לסשנים לרוויית דיו וריפוי מיטבי. דורש ייעוץ חינם.",
+        "duration": 240,
+        "price": 200
+      },
+      {
+        "id": "cover-up",
+        "name": "כיסוי ושיפור קעקוע",
+        "description": "הופכים דיו לא רצוי לאמנות חדשה. ייעוץ חובה להערכת כיסוי. חיוב לפי 160₪ לשעה — רוב הכיסויים 2–3 סשנים. מקדמת עיצוב של 100₪ אחרי הייעוץ מקוזזת מהחשבון הסופי.",
+        "duration": 180,
+        "price": 160
+      },
+      {
+        "id": "flash-small",
+        "name": "פלאש וקטנים",
+        "description": "עיצובי פלאש מוכנים ויצירות קטנות מתחת ל־3 אינץ׳. מינימום סטודיו החל מ־120₪ במחיר קבוע — בלי חיוב שעתי. מתאים למתחילים או להוספה לקולקציה בלי ייעוץ.",
+        "duration": 60,
+        "price": 120
+      },
+      {
+        "id": "piercing",
+        "name": "פירסינג מדויק",
+        "description": "פירסינג מקצועי בטיטניום דרגת שתל ופלדה כירורגית. מלובים קלאסיים ועד סחוס גבוה ועוגנים — מחיר קבוע, שירות באותו יום, ערכת טיפול אחרי מלאה.",
+        "duration": 30,
+        "price": 80
+      }
+    ],
+    "staff": [
+      {
+        "id": "izzy",
+        "slug": "izzy-cross",
+        "name": "Izzy Cross",
+        "photoUrl": "https://images.unsplash.com/photo-1677286061466-7cc3531e5027?auto=format&fit=crop&q=80&w=800",
+        "specialty": "קו עדין ובוטניקה",
+        "bio": "חמש שנים כאיורנית בוטנית לפני הקעקועים. קו עדין במחט בודדת עם תחושה אורגנית כמעט אקוורלית. מתמחה בצמחים, חיות ומינימליזם מופשט — יצירות שנראות טבעיות על העור.",
+        "portfolio": [
+          "https://images.unsplash.com/photo-1501939387519-cf9c35d4f4eb?auto=format&fit=crop&q=80&w=1200",
+          "https://images.unsplash.com/photo-1610942933193-8fafd0973f6d?auto=format&fit=crop&q=80&w=1200",
+          "https://images.unsplash.com/photo-1562379825-415aea84ebcf?auto=format&fit=crop&q=80&w=1200",
+          "https://images.unsplash.com/photo-1515369867962-4661872b6366?auto=format&fit=crop&q=80&w=1200"
+        ],
+        "social": {
+          "instagram": "https://instagram.com/izzycross.ink"
+        },
+        "schedule": {
+          "monday": {
+            "isOpen": false,
+            "hours": {
+              "start": "00:00",
+              "end": "00:00"
+            },
+            "breaks": []
+          },
+          "tuesday": {
+            "isOpen": true,
+            "hours": {
+              "start": "11:00",
+              "end": "19:00"
+            },
+            "breaks": [
+              {
+                "start": "14:00",
+                "end": "15:00",
+                "label": "צהריים"
+              }
+            ]
+          },
+          "wednesday": {
+            "isOpen": true,
+            "hours": {
+              "start": "11:00",
+              "end": "19:00"
+            },
+            "breaks": [
+              {
+                "start": "14:00",
+                "end": "15:00",
+                "label": "צהריים"
+              }
+            ]
+          },
+          "thursday": {
+            "isOpen": true,
+            "hours": {
+              "start": "11:00",
+              "end": "19:00"
+            },
+            "breaks": [
+              {
+                "start": "14:00",
+                "end": "15:00",
+                "label": "צהריים"
+              }
+            ]
+          },
+          "friday": {
+            "isOpen": true,
+            "hours": {
+              "start": "11:00",
+              "end": "20:00"
+            },
+            "breaks": [
+              {
+                "start": "15:00",
+                "end": "16:00",
+                "label": "הפסקה"
+              }
+            ]
+          },
+          "saturday": {
+            "isOpen": true,
+            "hours": {
+              "start": "10:00",
+              "end": "18:00"
+            },
+            "breaks": []
+          },
+          "sunday": {
+            "isOpen": false,
+            "hours": {
+              "start": "00:00",
+              "end": "00:00"
+            },
+            "breaks": []
+          }
+        }
+      },
+      {
+        "id": "marco",
+        "slug": "marco-veil",
+        "name": "Marco Veil",
+        "photoUrl": "https://images.unsplash.com/photo-1746703509843-af889aa20300?auto=format&fit=crop&q=80&w=800",
+        "specialty": "ריאליזם שחור־אפור",
+        "bio": "מרקו נחשב לאחד אמני הריאליזם השחור־אפור המובילים בחוף המערבי. מעל 14 שנות ניסיון, דיוקנים היפר־מפורטים והרכבים קולנועיים שפורסמו בכתבי עת בינלאומיים. כל יצירה — לימוד באור, צל וקביעות.",
+        "portfolio": [
+          "https://images.unsplash.com/photo-1707390588496-6c50ad954935?auto=format&fit=crop&q=80&w=1200",
+          "https://images.unsplash.com/photo-1699270065530-eb99dbf1d77e?auto=format&fit=crop&q=80&w=1200",
+          "https://images.unsplash.com/photo-1640202352521-66c98a02e612?auto=format&fit=crop&q=80&w=1200",
+          "https://images.unsplash.com/photo-1662524518420-bbded8ec7811?auto=format&fit=crop&q=80&w=1200"
+        ],
+        "social": {
+          "instagram": "https://instagram.com/marcoveil.tattoo"
+        },
+        "schedule": {
+          "monday": {
+            "isOpen": false,
+            "hours": {
+              "start": "00:00",
+              "end": "00:00"
+            },
+            "breaks": []
+          },
+          "tuesday": {
+            "isOpen": false,
+            "hours": {
+              "start": "00:00",
+              "end": "00:00"
+            },
+            "breaks": []
+          },
+          "wednesday": {
+            "isOpen": true,
+            "hours": {
+              "start": "12:00",
+              "end": "20:00"
+            },
+            "breaks": [
+              {
+                "start": "16:00",
+                "end": "17:00",
+                "label": "הפסקה"
+              }
+            ]
+          },
+          "thursday": {
+            "isOpen": true,
+            "hours": {
+              "start": "12:00",
+              "end": "20:00"
+            },
+            "breaks": [
+              {
+                "start": "16:00",
+                "end": "17:00",
+                "label": "הפסקה"
+              }
+            ]
+          },
+          "friday": {
+            "isOpen": true,
+            "hours": {
+              "start": "11:00",
+              "end": "21:00"
+            },
+            "breaks": [
+              {
+                "start": "15:00",
+                "end": "16:00",
+                "label": "צהריים"
+              }
+            ]
+          },
+          "saturday": {
+            "isOpen": true,
+            "hours": {
+              "start": "10:00",
+              "end": "21:00"
+            },
+            "breaks": [
+              {
+                "start": "14:00",
+                "end": "15:00",
+                "label": "צהריים"
+              }
+            ]
+          },
+          "sunday": {
+            "isOpen": true,
+            "hours": {
+              "start": "12:00",
+              "end": "18:00"
+            },
+            "breaks": []
+          }
+        }
+      },
+      {
+        "id": "devon",
+        "slug": "devon-ash",
+        "name": "Devon Ash",
+        "photoUrl": "https://images.unsplash.com/photo-1659693707379-f7b696d92011?auto=format&fit=crop&q=80&w=800",
+        "specialty": "עיצוב מותאם וכיסויים",
+        "bio": "דבון פותרת אתגרים המורכבים ביותר בסטודיו. רקע בעיצוב גרפי והרכבים נועזים — מתמחה בפרויקטים מותאמים ובכיסוי קעקועים טרנספורמטיבי. סיפור על העור — או תיקון — דבון האמנית שלכם.",
+        "portfolio": [
+          "https://images.unsplash.com/photo-1759247943688-5d47a84dd615?auto=format&fit=crop&q=80&w=1200",
+          "https://images.unsplash.com/photo-1712212601990-8274d5566304?auto=format&fit=crop&q=80&w=1200",
+          "https://images.unsplash.com/photo-1479767574301-a01c78234a0c?auto=format&fit=crop&q=80&w=1200",
+          "https://images.unsplash.com/photo-1686577677352-c9249ed5972a?auto=format&fit=crop&q=80&w=1200"
+        ],
+        "social": {
+          "instagram": "https://instagram.com/devonash.ink"
+        },
+        "schedule": {
+          "monday": {
+            "isOpen": false,
+            "hours": {
+              "start": "00:00",
+              "end": "00:00"
+            },
+            "breaks": []
+          },
+          "tuesday": {
+            "isOpen": true,
+            "hours": {
+              "start": "11:00",
+              "end": "20:00"
+            },
+            "breaks": [
+              {
+                "start": "15:00",
+                "end": "16:00",
+                "label": "הפסקה"
+              }
+            ]
+          },
+          "wednesday": {
+            "isOpen": true,
+            "hours": {
+              "start": "11:00",
+              "end": "20:00"
+            },
+            "breaks": [
+              {
+                "start": "15:00",
+                "end": "16:00",
+                "label": "הפסקה"
+              }
+            ]
+          },
+          "thursday": {
+            "isOpen": true,
+            "hours": {
+              "start": "11:00",
+              "end": "20:00"
+            },
+            "breaks": [
+              {
+                "start": "15:00",
+                "end": "16:00",
+                "label": "הפסקה"
+              }
+            ]
+          },
+          "friday": {
+            "isOpen": true,
+            "hours": {
+              "start": "11:00",
+              "end": "20:00"
+            },
+            "breaks": [
+              {
+                "start": "15:00",
+                "end": "16:00",
+                "label": "הפסקה"
+              }
+            ]
+          },
+          "saturday": {
+            "isOpen": true,
+            "hours": {
+              "start": "10:00",
+              "end": "19:00"
+            },
+            "breaks": []
+          },
+          "sunday": {
+            "isOpen": false,
+            "hours": {
+              "start": "00:00",
+              "end": "00:00"
+            },
+            "breaks": []
+          }
+        }
+      }
+    ]
+  },
+  "nails": {
+    "services": [
+      {
+        "id": "classic-manicure",
+        "name": "מניקור קלאסי",
+        "description": "בסיס לציפורניים מושלמות: עיצוב ושיוף לפי צורה, טיפוח זיקית, עיסוי יד ושורש כף היד, ולכה ללא פסים. טקס מלא של 45 דקות.",
+        "duration": 45,
+        "price": 45
+      },
+      {
+        "id": "gel-manicure",
+        "name": "מניקור ג׳ל",
+        "description": "צבע עמיד המאובחן ב־UV לברק מראה ועמידות עד שלושה שבועות. כולל צורה, זיקיות, טיפוח יד ובחירה מספריית הג׳ל. אידיאלי ללו״ז צפוף ונסיעות.",
+        "duration": 60,
+        "price": 65
+      },
+      {
+        "id": "acrylic-full-set",
+        "name": "סט אקריל מלא",
+        "description": "הארכות אקריל מפוסלות לפי המפרט שלכם — אורך, צורה וגימור בזמן הישיבה. ארון, שקד, ריבוע או סטילטו — כל ציפורן נבנית לשלמות מבנית ואינטגרציה חלקה עם הציפורן הטבעית.",
+        "duration": 90,
+        "price": 85
+      },
+      {
+        "id": "nail-art",
+        "name": "אמנות ציפורניים והתאמה אישית",
+        "description": "הפיכת הציפורניים לאמנות לבישה: מוטיבים בצבע יד, מיקרו־דיטייל, אבנים, כרום ופיסול תלת־ממדי — לפי בריף אישי. מחיר לפי ציפורן לפי מורכבות. הביאו השראה או נעצב בשבילכם.",
+        "duration": 60,
+        "price": 25
+      },
+      {
+        "id": "spa-pedicure",
+        "name": "פדיקור ספא יוקרתי",
+        "description": "טקס רגליים מלא: השריה חמה במלחי מינרל, פילינג, מסכה לחה, עיסוי שוק וכף רגל, עיצוב ציפורניים וגימור ג׳ל לבחירה. 75 דקות של פינוק רצוף.",
+        "duration": 75,
+        "price": 75
+      },
+      {
+        "id": "extensions-infills",
+        "name": "הארכות ומילויים",
+        "description": "תחזוקה לסט אקריל או ג׳ל קשיח עם מילוי מדויק — משחזר אורך, מתקן פערי צמיחה ומרענן גימור. כולל צורה, זיקיות וריענון צבע. זמין גם כהארכה מלאה מעל הציפורן הטבעית.",
+        "duration": 60,
+        "price": 55
+      }
+    ],
+    "staff": [
+      {
+        "id": "sofia",
+        "slug": "sofia-reyes",
+        "name": "Sofia Reyes",
+        "photoUrl": "https://images.unsplash.com/photo-1687293233752-ec42de2050db?auto=format&fit=crop&q=80&w=800",
+        "specialty": "ג׳ל ואמנות ציפורניים",
+        "bio": "סופיה אמנית לפני שהציפורן הפכה לקנבס. שמונה שנות ניסיון ואיור — עין חדה לפרטים. מפורסמת בעיצובים צבועים ביד, בוטניקה עדינה ודיוקנים מיניאטוריים שמופיעים בתקשורת מיאמי. כל בריף הוא שיתוף פעולה יצירתי.",
+        "portfolio": [
+          "https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&q=80&w=1200",
+          "https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&q=80&w=1200",
+          "https://images.unsplash.com/photo-1607779097040-26e80aa78e66?auto=format&fit=crop&q=80&w=1200",
+          "https://images.unsplash.com/photo-1519014816548-bf5fe059798b?auto=format&fit=crop&q=80&w=1200"
+        ],
+        "social": {
+          "instagram": "https://instagram.com/sofiareyes.nails"
+        },
+        "schedule": {
+          "monday": {
+            "isOpen": false,
+            "hours": {
+              "start": "00:00",
+              "end": "00:00"
+            },
+            "breaks": []
+          },
+          "tuesday": {
+            "isOpen": true,
+            "hours": {
+              "start": "10:00",
+              "end": "18:00"
+            },
+            "breaks": [
+              {
+                "start": "13:00",
+                "end": "14:00",
+                "label": "צהריים"
+              }
+            ]
+          },
+          "wednesday": {
+            "isOpen": true,
+            "hours": {
+              "start": "10:00",
+              "end": "18:00"
+            },
+            "breaks": [
+              {
+                "start": "13:00",
+                "end": "14:00",
+                "label": "צהריים"
+              }
+            ]
+          },
+          "thursday": {
+            "isOpen": true,
+            "hours": {
+              "start": "10:00",
+              "end": "19:00"
+            },
+            "breaks": [
+              {
+                "start": "13:00",
+                "end": "14:00",
+                "label": "צהריים"
+              }
+            ]
+          },
+          "friday": {
+            "isOpen": true,
+            "hours": {
+              "start": "10:00",
+              "end": "19:00"
+            },
+            "breaks": [
+              {
+                "start": "14:00",
+                "end": "15:00",
+                "label": "הפסקה"
+              }
+            ]
+          },
+          "saturday": {
+            "isOpen": true,
+            "hours": {
+              "start": "10:00",
+              "end": "18:00"
+            },
+            "breaks": []
+          },
+          "sunday": {
+            "isOpen": false,
+            "hours": {
+              "start": "00:00",
+              "end": "00:00"
+            },
+            "breaks": []
+          }
+        }
+      },
+      {
+        "id": "camille",
+        "slug": "camille-dupont",
+        "name": "Camille Dupont",
+        "photoUrl": "https://images.unsplash.com/photo-1570697756485-aa4f6b0e1fac?auto=format&fit=crop&q=80&w=800",
+        "specialty": "אקריל ופיסול",
+        "bio": "קמיל התמחתה באקדמיה מובילה בפריז לפני מיאמי — דיוק אירופי בפיסול. צורות אדריכליות — ארון ארוך, שקד מעודן, סטילטו דרמטי — אקריל חלק שנשמר שבועות. טכניקה וויזואל חדים.",
+        "portfolio": [
+          "https://images.unsplash.com/photo-1633955726992-2b7c0d2d2a69?auto=format&fit=crop&q=80&w=1200",
+          "https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&q=80&w=1200",
+          "https://images.unsplash.com/photo-1672405313394-93dff75eae32?auto=format&fit=crop&q=80&w=1200",
+          "https://images.unsplash.com/photo-1643648855003-f536c436f399?auto=format&fit=crop&q=80&w=1200"
+        ],
+        "social": {
+          "instagram": "https://instagram.com/camilledupont.nails",
+          "facebook": "https://facebook.com/camilledupont"
+        },
+        "schedule": {
+          "monday": {
+            "isOpen": false,
+            "hours": {
+              "start": "00:00",
+              "end": "00:00"
+            },
+            "breaks": []
+          },
+          "tuesday": {
+            "isOpen": false,
+            "hours": {
+              "start": "00:00",
+              "end": "00:00"
+            },
+            "breaks": []
+          },
+          "wednesday": {
+            "isOpen": true,
+            "hours": {
+              "start": "10:00",
+              "end": "19:00"
+            },
+            "breaks": [
+              {
+                "start": "13:00",
+                "end": "14:00",
+                "label": "צהריים"
+              }
+            ]
+          },
+          "thursday": {
+            "isOpen": true,
+            "hours": {
+              "start": "10:00",
+              "end": "19:00"
+            },
+            "breaks": [
+              {
+                "start": "13:00",
+                "end": "14:00",
+                "label": "צהריים"
+              }
+            ]
+          },
+          "friday": {
+            "isOpen": true,
+            "hours": {
+              "start": "10:00",
+              "end": "19:00"
+            },
+            "breaks": [
+              {
+                "start": "14:00",
+                "end": "15:00",
+                "label": "הפסקה"
+              }
+            ]
+          },
+          "saturday": {
+            "isOpen": true,
+            "hours": {
+              "start": "10:00",
+              "end": "19:00"
+            },
+            "breaks": [
+              {
+                "start": "13:30",
+                "end": "14:30",
+                "label": "צהריים"
+              }
+            ]
+          },
+          "sunday": {
+            "isOpen": true,
+            "hours": {
+              "start": "11:00",
+              "end": "17:00"
+            },
+            "breaks": []
+          }
+        }
+      },
+      {
+        "id": "yuki",
+        "slug": "yuki-tanaka",
+        "name": "Yuki Tanaka",
+        "photoUrl": "https://images.unsplash.com/photo-1552498756-415112c43ac3?auto=format&fit=crop&q=80&w=800",
+        "specialty": "קלאסי וטיפולי ספא",
+        "bio": "יוקי התמחתה במסורת ציפורניים ובריאות יפנית — טכניקה מוקפדת ושקט ללקוח באותה משקל. מניקור קלאסי, ג׳ל ופדיקור ספא יוקרתי כאמנות בהתאמה. הלקוחות מתארות מפגש כמרגיע כמו יפה.",
+        "portfolio": [
+          "https://images.unsplash.com/photo-1599206676335-193c82b13c9e?auto=format&fit=crop&q=80&w=1200",
+          "https://images.unsplash.com/photo-1619615787228-ce0fa8440e18?auto=format&fit=crop&q=80&w=1200",
+          "https://images.unsplash.com/photo-1587729927069-ef3b7a5ab9b4?auto=format&fit=crop&q=80&w=1200",
+          "https://images.unsplash.com/photo-1457972729786-0411a3b2b626?auto=format&fit=crop&q=80&w=1200"
+        ],
+        "social": {
+          "instagram": "https://instagram.com/yukitanaka.nails"
+        },
+        "schedule": {
+          "monday": {
+            "isOpen": false,
+            "hours": {
+              "start": "00:00",
+              "end": "00:00"
+            },
+            "breaks": []
+          },
+          "tuesday": {
+            "isOpen": true,
+            "hours": {
+              "start": "10:00",
+              "end": "19:00"
+            },
+            "breaks": [
+              {
+                "start": "13:00",
+                "end": "14:00",
+                "label": "צהריים"
+              }
+            ]
+          },
+          "wednesday": {
+            "isOpen": true,
+            "hours": {
+              "start": "10:00",
+              "end": "19:00"
+            },
+            "breaks": [
+              {
+                "start": "13:00",
+                "end": "14:00",
+                "label": "צהריים"
+              }
+            ]
+          },
+          "thursday": {
+            "isOpen": true,
+            "hours": {
+              "start": "10:00",
+              "end": "19:00"
+            },
+            "breaks": [
+              {
+                "start": "13:00",
+                "end": "14:00",
+                "label": "צהריים"
+              }
+            ]
+          },
+          "friday": {
+            "isOpen": true,
+            "hours": {
+              "start": "10:00",
+              "end": "19:00"
+            },
+            "breaks": [
+              {
+                "start": "14:00",
+                "end": "15:00",
+                "label": "הפסקה"
+              }
+            ]
+          },
+          "saturday": {
+            "isOpen": true,
+            "hours": {
+              "start": "10:00",
+              "end": "19:00"
+            },
+            "breaks": []
+          },
+          "sunday": {
+            "isOpen": true,
+            "hours": {
+              "start": "11:00",
+              "end": "17:00"
+            },
+            "breaks": []
+          }
+        }
+      }
+    ]
+  },
+  "cafeteria": {
+    "services": [
+      {
+        "id": "espresso",
+        "name": "אספרסו קלאסי",
+        "subtitle": "הנשמה הטהורה",
+        "description": "אינטנסיבי, קרמי ומלא גוף. שוט כפול שחושף את מלוא אופי הפולים.",
+        "duration": 0,
+        "price": 0,
+        "category": "hot",
+        "image": "/images/menu/espresso.jpg"
+      },
+      {
+        "id": "cappuccino",
+        "name": "קפוצ'ינו רך",
+        "subtitle": "ענן קצף",
+        "description": "קצף משי מעל אספרסו כפול, עם בועיות שנמסות על החיך.",
+        "duration": 0,
+        "price": 0,
+        "category": "hot",
+        "image": "/images/menu/cappuccino.jpg"
+      },
+      {
+        "id": "flat-white",
+        "name": "פלט וויט",
+        "subtitle": "משי נוזלי",
+        "description": "מיקרופום מושלם מעל ריסטרטו כפול. מועדף בקרב חובבי קפה.",
+        "duration": 0,
+        "price": 0,
+        "category": "hot",
+        "image": "/images/menu/flatwhite.jpg"
+      },
+      {
+        "id": "cold-brew",
+        "name": "קולד ברו",
+        "subtitle": "סבלנות קרה",
+        "description": "חליטה קרה של 12 שעות. חלק, מתוק ורענן.",
+        "duration": 0,
+        "price": 0,
+        "category": "cold",
+        "image": "/images/menu/coldbrew.jpg"
+      },
+      {
+        "id": "iced-latte",
+        "name": "אייס לאטה",
+        "subtitle": "קרח ותשוקה",
+        "description": "חלב קרמי ואספרסו מאוזן על קרח. מרענן לחלוטין.",
+        "duration": 0,
+        "price": 0,
+        "category": "cold",
+        "image": "/images/menu/icedlatte.jpg"
+      },
+      {
+        "id": "frappe-moka",
+        "name": "פרפה מוקה",
+        "subtitle": "פינוק מתוק",
+        "description": "קפה, שוקולד וקצפת מעורבבים למשקה בסגנון קינוח.",
+        "duration": 0,
+        "price": 0,
+        "category": "cold",
+        "image": "/images/menu/frappemoka.jpg"
+      },
+      {
+        "id": "tiramisu",
+        "name": "טירמיסו ביתי",
+        "subtitle": "שכבות של שמחה",
+        "description": "שכבות קפה, מסקרפונה וקקאו. מתכון משפחתי מושלם.",
+        "duration": 0,
+        "price": 0,
+        "category": "desserts",
+        "image": "/images/menu/tiramisu.jpg"
+      },
+      {
+        "id": "cheesecake",
+        "name": "עוגת גבינה קרמל",
+        "subtitle": "איזון מתוק",
+        "description": "בסיס ביסקוויט, גבינת שמנת ורוטב קרמל מלוח.",
+        "duration": 0,
+        "price": 0,
+        "category": "desserts",
+        "image": "/images/menu/cheesecake.jpg"
+      }
+    ],
+    "staff": [
+      {
+        "id": "lucas",
+        "slug": "lucas-fernandez",
+        "name": "לוקאס פרננדז",
+        "specialty": "בריסטה ראשי ומייסד",
+        "bio": "אלוף לאטה ארט לאומי לשעבר עם 10 שנות ניסיון בקפה מיוחד.",
+        "photoUrl": "https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&q=80&w=800",
+        "portfolio": [],
+        "schedule": {
+          "monday": {
+            "isOpen": true,
+            "hours": {
+              "start": "07:00",
+              "end": "20:00"
+            },
+            "breaks": []
+          },
+          "tuesday": {
+            "isOpen": true,
+            "hours": {
+              "start": "07:00",
+              "end": "20:00"
+            },
+            "breaks": []
+          },
+          "wednesday": {
+            "isOpen": true,
+            "hours": {
+              "start": "07:00",
+              "end": "20:00"
+            },
+            "breaks": []
+          },
+          "thursday": {
+            "isOpen": true,
+            "hours": {
+              "start": "07:00",
+              "end": "20:00"
+            },
+            "breaks": []
+          },
+          "friday": {
+            "isOpen": true,
+            "hours": {
+              "start": "07:00",
+              "end": "15:00"
+            },
+            "breaks": []
+          },
+          "saturday": {
+            "isOpen": false,
+            "hours": {
+              "start": "09:00",
+              "end": "18:00"
+            },
+            "breaks": []
+          },
+          "sunday": {
+            "isOpen": true,
+            "hours": {
+              "start": "07:00",
+              "end": "20:00"
+            },
+            "breaks": []
+          }
+        }
+      },
+      {
+        "id": "martina",
+        "slug": "martina-lopez",
+        "name": "מרטינה לופז",
+        "specialty": "בריסטה בכירה",
+        "bio": "מומחית חליטה וקולד ברו עם חיך מאומן.",
+        "photoUrl": "https://images.unsplash.com/photo-1554151228-14d9def656e4?auto=format&fit=crop&q=80&w=800",
+        "portfolio": [],
+        "schedule": {
+          "monday": {
+            "isOpen": true,
+            "hours": {
+              "start": "07:00",
+              "end": "20:00"
+            },
+            "breaks": []
+          },
+          "tuesday": {
+            "isOpen": true,
+            "hours": {
+              "start": "07:00",
+              "end": "20:00"
+            },
+            "breaks": []
+          },
+          "wednesday": {
+            "isOpen": true,
+            "hours": {
+              "start": "07:00",
+              "end": "20:00"
+            },
+            "breaks": []
+          },
+          "thursday": {
+            "isOpen": true,
+            "hours": {
+              "start": "07:00",
+              "end": "20:00"
+            },
+            "breaks": []
+          },
+          "friday": {
+            "isOpen": true,
+            "hours": {
+              "start": "07:00",
+              "end": "15:00"
+            },
+            "breaks": []
+          },
+          "saturday": {
+            "isOpen": false,
+            "hours": {
+              "start": "09:00",
+              "end": "18:00"
+            },
+            "breaks": []
+          },
+          "sunday": {
+            "isOpen": true,
+            "hours": {
+              "start": "07:00",
+              "end": "20:00"
+            },
+            "breaks": []
+          }
+        }
+      },
+      {
+        "id": "santiago",
+        "slug": "santiago-ruiz",
+        "name": "סנטיאגו רואיס",
+        "specialty": "קלי",
+        "bio": "אומן אש איטית שמתייחס לכל פרופיל קלייה כיצירת אמנות.",
+        "photoUrl": "https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?auto=format&fit=crop&q=80&w=800",
+        "portfolio": [],
+        "schedule": {
+          "monday": {
+            "isOpen": true,
+            "hours": {
+              "start": "07:00",
+              "end": "20:00"
+            },
+            "breaks": []
+          },
+          "tuesday": {
+            "isOpen": true,
+            "hours": {
+              "start": "07:00",
+              "end": "20:00"
+            },
+            "breaks": []
+          },
+          "wednesday": {
+            "isOpen": true,
+            "hours": {
+              "start": "07:00",
+              "end": "20:00"
+            },
+            "breaks": []
+          },
+          "thursday": {
+            "isOpen": true,
+            "hours": {
+              "start": "07:00",
+              "end": "20:00"
+            },
+            "breaks": []
+          },
+          "friday": {
+            "isOpen": true,
+            "hours": {
+              "start": "07:00",
+              "end": "15:00"
+            },
+            "breaks": []
+          },
+          "saturday": {
+            "isOpen": false,
+            "hours": {
+              "start": "09:00",
+              "end": "18:00"
+            },
+            "breaks": []
+          },
+          "sunday": {
+            "isOpen": true,
+            "hours": {
+              "start": "07:00",
+              "end": "20:00"
+            },
+            "breaks": []
+          }
+        }
+      }
+    ]
+  },
+  "remodelaciones": {
+    "services": [
+      {
+        "id": "consultation",
+        "name": "ייעוץ חינם",
+        "description": "אנו מבקרים בנכס שלך, דנים בצבעים ומספקים הצעת מחיר מפורטת. ללא התחייבות.",
+        "duration": 60,
+        "price": 0,
+        "fromPrice": "חינם",
+        "popular": true,
+        "features": [
+          "ייעוץ צבעים באתר",
+          "הצעת מחיר תוך 24 שעות",
+          "ללא התחייבות",
+          "ייעוץ מומחה בצבעים וגימורים"
+        ]
+      },
+      {
+        "id": "interior",
+        "name": "צביעה פנימית",
+        "description": "צביעה פנימית מלאה כולל קירות, תקרות, פנלים וקירות אקצנט עם צבעים פרימיום.",
+        "duration": 0,
+        "price": 1200,
+        "fromPrice": "מ-₪4,500",
+        "features": [
+          "קירות ותקרות",
+          "פנלים ומסגרות",
+          "קירות אקצנט",
+          "ייעוץ צבעים כלול"
+        ]
+      },
+      {
+        "id": "exterior",
+        "name": "צביעה חיצונית",
+        "description": "צביעה חיצונית מלאה עם ציפויים עמידים למזג אוויר להגנה מתמשכת.",
+        "duration": 0,
+        "price": 2500,
+        "fromPrice": "מ-₪8,000",
+        "features": [
+          "קירות חיצוניים",
+          "מרזבים ומסגרות",
+          "חלונות ודלתות",
+          "ציפוי עמיד למזג אוויר"
+        ]
+      },
+      {
+        "id": "deck-fence",
+        "name": "צביעת דק וגדר",
+        "description": "צביעת דק עץ וגדרות עם הגנה מפני UV ומזג אוויר.",
+        "duration": 0,
+        "price": 800,
+        "fromPrice": "מ-₪3,000",
+        "features": [
+          "צביעת דק עץ",
+          "צביעת גדרות",
+          "שטיפה בלחץ כלולה",
+          "הגנת UV ומזג אוויר"
+        ]
+      }
+    ],
+    "staff": [
+      {
+        "id": "lead-painter",
+        "slug": "lead-painter",
+        "name": "צבע ראשי",
+        "specialty": "מנהל פרויקטים",
+        "bio": "15+ שנות ניסיון בצביעה למגורים ומסחר.",
+        "photoUrl": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&q=80&w=800",
+        "portfolio": [],
+        "schedule": {
+          "monday": {
+            "isOpen": true,
+            "hours": {
+              "start": "07:00",
+              "end": "17:00"
+            },
+            "breaks": []
+          },
+          "tuesday": {
+            "isOpen": true,
+            "hours": {
+              "start": "07:00",
+              "end": "17:00"
+            },
+            "breaks": []
+          },
+          "wednesday": {
+            "isOpen": true,
+            "hours": {
+              "start": "07:00",
+              "end": "17:00"
+            },
+            "breaks": []
+          },
+          "thursday": {
+            "isOpen": true,
+            "hours": {
+              "start": "07:00",
+              "end": "17:00"
+            },
+            "breaks": []
+          },
+          "friday": {
+            "isOpen": true,
+            "hours": {
+              "start": "07:00",
+              "end": "14:00"
+            },
+            "breaks": []
+          },
+          "saturday": {
+            "isOpen": false,
+            "hours": {
+              "start": "08:00",
+              "end": "13:00"
+            },
+            "breaks": []
+          },
+          "sunday": {
+            "isOpen": true,
+            "hours": {
+              "start": "07:00",
+              "end": "17:00"
+            },
+            "breaks": []
+          }
+        }
+      }
+    ]
+  }
+}
