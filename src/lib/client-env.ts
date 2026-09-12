@@ -45,6 +45,10 @@ export function buildAdminEnvVars(env: Record<string, string | undefined>): Verc
     { key: "FIREBASE_ADMIN_PROJECT_ID", value: projectId, target: TARGETS, type: "plain" },
     { key: "FIREBASE_ADMIN_CLIENT_EMAIL", value: clientEmail, target: TARGETS, type: "plain" },
     { key: "FIREBASE_ADMIN_PRIVATE_KEY", value: privateKey, target: TARGETS, type: "sensitive" },
+    // N08 T1c (NC-12): el REST del template (api/index.ts getFirestoreAccessToken: admin_users,
+    // /api/contact, sitemap, /api/services...) lee SOLO estas dos; mismos valores que las Admin.
+    { key: "FIREBASE_SERVICE_ACCOUNT_EMAIL", value: clientEmail, target: TARGETS, type: "plain" },
+    { key: "FIREBASE_SERVICE_ACCOUNT_KEY", value: privateKey, target: TARGETS, type: "sensitive" },
   ];
   const databaseId = env.FIREBASE_DATABASE_ID?.trim();
   if (databaseId) vars.push({ key: "FIREBASE_DATABASE_ID", value: databaseId, target: TARGETS, type: "plain" });
@@ -61,11 +65,13 @@ interface ReprovisionParams {
   templateRepo: string;
   env: Record<string, string | undefined>;
   fetchVercel: VercelFetch;
+  /** N08 T1c: variables adicionales del mismo lote (p. ej. BUSINESS_OWNER_EMAIL resuelta por la ruta). */
+  extraVars?: VercelEnvVar[];
 }
 
 /** Upsert de las variables (v10, `upsert=true`) y, solo si TODAS entraron, redeploy de main. */
-export async function reprovisionAndRedeploy({ projectId, projectName, templateRepo, env, fetchVercel }: ReprovisionParams): Promise<ReprovisionResult> {
-  const vars = buildAdminEnvVars(env);
+export async function reprovisionAndRedeploy({ projectId, projectName, templateRepo, env, fetchVercel, extraVars = [] }: ReprovisionParams): Promise<ReprovisionResult> {
+  const vars = [...buildAdminEnvVars(env), ...extraVars];
   const keys = vars.map((v) => v.key);
 
   const upsertRes = await fetchVercel(`/v10/projects/${projectId}/env?upsert=true`, {
