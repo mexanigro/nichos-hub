@@ -1,6 +1,7 @@
 import { db } from "@/lib/firebase-admin";
 import { buildAdminEnvVars } from "@/lib/client-env";
 import { resolveOwnerNotificationEmail } from "@/lib/provisioning";
+import { runVercelProvision, type VercelProvisionResult } from "@/lib/deploy-flow";
 
 const VERCEL_TOKEN = process.env.VERCEL_TOKEN;
 const VERCEL_TEAM_ID = process.env.VERCEL_TEAM_ID;
@@ -62,11 +63,7 @@ function resolveClientLanguage(value: unknown): UiLanguage {
   return (ALLOWED_UI_LANGUAGES as readonly string[]).includes(v) ? (v as UiLanguage) : "he";
 }
 
-interface DeployResult {
-  projectId: string;
-  domain: string;
-  status: string;
-}
+type DeployResult = VercelProvisionResult;
 
 export async function deployToVercel({ clientId, niche, hubDocId, demoMode = false }: DeployParams): Promise<DeployResult> {
   if (!VERCEL_TOKEN) {
@@ -80,24 +77,6 @@ export async function deployToVercel({ clientId, niche, hubDocId, demoMode = fal
   }
 
   const projectName = clientId;
-
-  // 1. Create project from repo
-  const createRes = await vercelFetchWithRetry("/v1/projects", {
-    method: "POST",
-    body: JSON.stringify({
-      name: projectName,
-      gitRepository: { repo: TEMPLATE_REPO, type: "github" },
-      framework: "vite",
-    }),
-  });
-
-  if (!createRes.ok) {
-    const err = await createRes.text();
-    throw new Error(`Failed to create project: ${err}`);
-  }
-
-  const project = await createRes.json();
-  const projectId = project.id;
 
   // 2. Set env vars
   // VITE_UI_LANGUAGE is build-time. Pull the client's language from Firestore
@@ -140,51 +119,20 @@ export async function deployToVercel({ clientId, niche, hubDocId, demoMode = fal
   // R06-ENV: sin la credencial Admin el servidor del template responde 503 en toda su /api.
   envVars.push(...buildAdminEnvVars(process.env));
 
-  await vercelFetchWithRetry(`/v3/projects/${projectId}/env`, {
-    method: "POST",
-    body: JSON.stringify(envVars),
-  });
-
-  // 3. Add custom domain
+  // N08 T1b: crear proyecto → variables (v10 upsert) → dominio → deployment, con fallo cerrado
+  // (deploy-flow.ts, con test): si Vercel rechaza variables o dominio, hub_clients queda en "error"
+  // con deployError y NO se dispara el deployment; vercelProjectId se conserva para reprovision.
   const domain = `${clientId}.arzac.studio`;
-  await vercelFetchWithRetry(`/v9/projects/${projectId}/domains`, {
-    method: "POST",
-    body: JSON.stringify({ name: domain }),
+  return runVercelProvision({
+    clientId,
+    projectName,
+    templateRepo: TEMPLATE_REPO,
+    domain,
+    envVars,
+    fetchVercel: vercelFetchWithRetry,
+    updateHub: async (fields) => {
+      if (hubDocId) await db.collection("hub_clients").doc(hubDocId).update(fields);
+    },
+    log: (msg) => console.error(msg),
   });
-
-  // 4. Trigger explicit deployment (project creation via API doesn't always auto-build)
-  const [repoOwner, repoName] = TEMPLATE_REPO.split("/");
-  const deployRes = await vercelFetchWithRetry("/v13/deployments", {
-    method: "POST",
-    body: JSON.stringify({
-      name: projectName,
-      project: projectId,
-      target: "production",
-      gitSource: {
-        type: "github",
-        org: repoOwner,
-        repo: repoName,
-        ref: "main",
-      },
-    }),
-  });
-
-  if (!deployRes.ok) {
-    const err = await deployRes.text();
-    console.error("[deploy] Trigger deployment failed:", err);
-    // Project exists but deploy didn't start — not fatal, can retry from dashboard
-  }
-
-  // 5. Update hub_clients with vercel info
-  if (hubDocId) {
-    await db.collection("hub_clients").doc(hubDocId).update({
-      vercelProjectId: projectId,
-      vercelProjectName: projectName,
-      domain,
-      deployStatus: "building",
-      deployError: null,
-    });
-  }
-
-  return { projectId, domain, status: "building" };
 }

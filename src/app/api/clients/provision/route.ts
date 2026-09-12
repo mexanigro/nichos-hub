@@ -90,7 +90,10 @@ export const POST = withOwner(async (req: NextRequest) => {
     let deployResult: { projectId?: string; domain?: string; error?: string } = {};
     try {
       const result = await deployToVercel({ clientId: slug, niche: nicheKey, hubDocId: hubRef.id });
-      deployResult = { projectId: result.projectId, domain: result.domain };
+      // T1b: un rechazo de Vercel (variables/dominio/deployment) ya quedó en hub_clients como error; se refleja aquí.
+      deployResult = result.status === "error"
+        ? { projectId: result.projectId, domain: result.domain, error: `${result.stage}: ${result.deployError}`.slice(0, 500) }
+        : { projectId: result.projectId, domain: result.domain };
     } catch (err) {
       const msg = err instanceof Error ? err.message : "Deploy failed";
       console.error("[provision] Deploy error:", msg);
