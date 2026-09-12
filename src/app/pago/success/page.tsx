@@ -6,6 +6,7 @@ import { Suspense } from "react";
 import { useT } from "@/lib/i18n/context";
 import { RTL_LOCALES } from "@/lib/i18n/types";
 import { LogoMark } from "@/components/landing/logo-mark";
+import { whatsappHref } from "@/lib/whatsapp";
 
 function SuccessContent() {
   const params = useSearchParams();
@@ -84,7 +85,7 @@ function SuccessContent() {
               <h1>{pendingTitle}<em>.</em></h1>
               <p style={{ marginInline: "auto" }}>{pendingSub}</p>
               <div className="pgerr-actions" style={{ marginTop: 16 }}>
-                <a href="https://wa.me/972557719141" className="pago-btn" style={{ textDecoration: "none" }} target="_blank" rel="noopener noreferrer">{contactCta} <span className="pago-btn-arrow">→</span></a>
+                <a href={whatsappHref()} className="pago-btn" style={{ textDecoration: "none" }} target="_blank" rel="noopener noreferrer">{contactCta} <span className="pago-btn-arrow">→</span></a>
                 <a href="/" className="pago-btn pago-btn-ghost" style={{ textDecoration: "none" }}>{t.pagoErr.ctaSecondary}</a>
               </div>
             </div>

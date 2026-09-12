@@ -226,7 +226,7 @@ export function AgentSection() {
                   <div className="name">Arzac Studio</div>
                   <div className="status">{t.agent.chatStatus || "online · auto-reply"}</div>
                 </div>
-                <span className="badge">24/7</span>
+                <span className="badge">{t.agent.addonBadge || "תוספת בהצעת מחיר נפרדת"}</span>
               </div>
               <AnimatedChat messages={t.agent.chat} />
               <div className="at-wa-input">

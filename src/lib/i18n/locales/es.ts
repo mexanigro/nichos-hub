@@ -1,3 +1,4 @@
+import { whatsappHref } from "@/lib/whatsapp";
 import type { Translations } from "../types";
 
 export const es: Translations = {
@@ -58,7 +59,7 @@ export const es: Translations = {
       "Seguimiento inteligente — sabe qué clientes no vuelven",
       "Marketing automatizado que se adapta a tu rubro",
       "Chatbot IA embebido que responde en tu web por vos",
-      "Llamadas de voz con IA integradas al calendario",
+      "Opcional: agente de WhatsApp y llamadas de voz IA — presupuesto aparte",
       "WhatsApp, formulario y walk-in en una bandeja",
       "Calendario sincronizado a Google",
       "Recordatorios automáticos para reducir no-shows",
@@ -105,6 +106,7 @@ export const es: Translations = {
       { from: "agent",  text: "Reservado con Yossi a las 14:30 ✓ Te paso recordatorio 2h antes. Algo más?" },
     ],
     chatStatus: "online · respuesta automática",
+    addonBadge: "añadidura · presupuesto aparte",
     chatField: "Mensaje…",
   },
 
@@ -218,9 +220,9 @@ export const es: Translations = {
       { q: "¿Puedo ver cambios antes de que se publiquen?",
         a: "Siempre. Te mandamos un link privado con la versión previa. Nada sale al aire sin tu OK." },
       { q: "¿El agente de IA también atiende llamadas telefónicas?",
-        a: "Sí. Tu negocio tiene un agente de voz IA que contesta el teléfono como si fuera tu mejor empleado. Agenda turnos, responde consultas sobre servicios y precios, y si la situación lo requiere, te transfiere la llamada. Funciona 24/7 en todos los idiomas." },
+        a: "Disponible como añadidura con presupuesto aparte — no está incluido en el plan. Si lo querés, agregamos un agente de voz IA que contesta el teléfono, agenda turnos y te pasa la llamada cuando hace falta; se cotiza por negocio y se activa aparte de la web." },
       { q: "¿El agente puede hablar en árabe?",
-        a: "Sí. Tanto el agente de WhatsApp como el de voz responden en el idioma en el que les hablan: árabe, hebreo, inglés, ruso o español. No hace falta configurar nada, lo detectan solo." },
+        a: "Si contratás la añadidura (presupuesto aparte), tanto el agente de WhatsApp como el de voz responden en el idioma en el que les hablan: árabe, hebreo, inglés, ruso o español. No hace falta configurar nada, lo detectan solo." },
     ],
   },
 
@@ -228,7 +230,7 @@ export const es: Translations = {
     a: "Ocupate de tu negocio.",
     b: "Nosotros, de lo digital.",
     cta: "Hablar con Liam por WhatsApp",
-    ctaHref: `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "972557719141"}`,
+    ctaHref: whatsappHref(),
     note: "Tu mensaje es mi prioridad, te espero.",
   },
 

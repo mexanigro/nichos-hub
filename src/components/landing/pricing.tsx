@@ -3,8 +3,9 @@ import { useT } from "@/lib/i18n/context";
 import { useReveal } from "@/hooks/use-scroll-reveal";
 import React from "react";
 import { isWebCheckoutEnabled } from "@/lib/web-checkout";
+import { whatsappHref } from "@/lib/whatsapp";
 
-const WA_HREF = `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "972557719141"}`;
+const WA_HREF = whatsappHref();
 
 export function Pricing() {
   const { t } = useT();

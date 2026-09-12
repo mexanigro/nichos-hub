@@ -3,8 +3,9 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useT } from "@/lib/i18n/context";
 import { Mascot } from "./mascot";
+import { whatsappHref } from "@/lib/whatsapp";
 
-const WA_HREF = `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "972557719141"}`;
+const WA_HREF = whatsappHref();
 
 export function Hero() {
   const { t } = useT();

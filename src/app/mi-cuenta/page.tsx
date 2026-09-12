@@ -6,6 +6,7 @@ import { useUserAuth } from "@/lib/user-auth-context";
 import { getLeadData, signOut, type HubLead } from "@/lib/user-auth";
 import { AuthModal } from "@/components/landing/auth-modal";
 import { MONTHLY_AMOUNT, PLAN_LABEL, SETUP_AMOUNT_DEFAULT } from "@/lib/pricing";
+import { whatsappHref } from "@/lib/whatsapp";
 
 // Los planes viejos en datos se muestran mapeados al plan único (sin migrar datos).
 const PLAN_LABELS: Record<string, string> = {
@@ -147,7 +148,7 @@ export default function MiCuentaPage() {
                     <li>· WhatsApp, IA y voz: opcionales a cotizar</li>
                   </ul>
                   <a
-                    href={lead?.clientId ? `/pago/${lead.clientId}` : `https://wa.me/${(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "").replace(/\D/g, "")}`}
+                    href={lead?.clientId ? `/pago/${lead.clientId}` : whatsappHref()}
                     className="mt-4 block rounded-full bg-gray-900 px-4 py-2.5 text-center text-[0.82rem] font-semibold text-white transition-all hover:bg-gray-800"
                   >
                     Empezar

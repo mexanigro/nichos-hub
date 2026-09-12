@@ -23,6 +23,8 @@ export interface Translations {
     chat: { from: "client" | "agent"; text: string }[];
     chatStatus?: string;
     chatField?: string;
+    /** Insignia del chat de ejemplo: la IA es una añadidura con presupuesto aparte (P-4). */
+    addonBadge?: string;
   };
   everything: {
     eyebrow: string; title: string; titleEm: string; sub: string;

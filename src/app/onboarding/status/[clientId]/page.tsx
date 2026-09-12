@@ -7,7 +7,8 @@ import { Loader2, CheckCircle2, ExternalLink, AlertCircle, Sparkles } from "luci
 import { getTranslations, detectLocale } from "@/lib/i18n";
 import { RTL_LOCALES } from "@/lib/i18n";
 
-const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "972557719141";
+import { whatsappHref } from "@/lib/whatsapp";
+const WA_HREF = whatsappHref();
 const POLL_INTERVAL = 5000;
 type Status = "building" | "ready" | "error" | "pending" | "pending_review";
 
@@ -70,7 +71,7 @@ export default function OnboardingStatusPage() {
               {t.status.reviewBody}
             </p>
             <a
-              href={`https://wa.me/${WHATSAPP_NUMBER}`}
+              href={WA_HREF}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-6 inline-flex items-center gap-2 rounded-md bg-gradient-to-r from-accent-from to-accent-to px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
@@ -122,7 +123,7 @@ export default function OnboardingStatusPage() {
               {t.status.errorSub}
             </p>
             <a
-              href={`https://wa.me/${WHATSAPP_NUMBER}`}
+              href={WA_HREF}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-6 inline-flex items-center gap-2 rounded-md border border-border px-5 py-2.5 text-sm font-medium text-text transition-colors hover:border-accent hover:text-accent"

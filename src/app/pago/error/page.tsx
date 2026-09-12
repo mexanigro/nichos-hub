@@ -6,6 +6,7 @@ import { Suspense } from "react";
 import { useT } from "@/lib/i18n/context";
 import { RTL_LOCALES } from "@/lib/i18n/types";
 import { LogoMark } from "@/components/landing/logo-mark";
+import { whatsappHref } from "@/lib/whatsapp";
 
 function ErrorContent() {
   const params = useSearchParams();
@@ -42,7 +43,7 @@ function ErrorContent() {
               {clientId ? (
                 <a href={`/pago/${clientId}`} className="pago-btn" style={{ textDecoration: "none" }}>{t.pagoErr.cta} <span className="pago-btn-arrow">→</span></a>
               ) : (
-                <a href="https://wa.me/972557719141" className="pago-btn" style={{ textDecoration: "none" }} target="_blank" rel="noopener noreferrer">
+                <a href={whatsappHref()} className="pago-btn" style={{ textDecoration: "none" }} target="_blank" rel="noopener noreferrer">
                   {locale === "es" ? "Contactar por WhatsApp"
                     : locale === "en" ? "Contact via WhatsApp"
                     : locale === "he" ? "צור קשר בוואטסאפ"

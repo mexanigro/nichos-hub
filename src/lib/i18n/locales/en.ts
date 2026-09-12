@@ -1,3 +1,4 @@
+import { whatsappHref } from "@/lib/whatsapp";
 import type { Translations } from "../types";
 
 export const en: Translations = {
@@ -58,7 +59,7 @@ export const en: Translations = {
       "Smart follow-up — knows which clients aren't coming back",
       "Automated marketing that adapts to your industry",
       "Built-in AI chatbot that replies on your website for you",
-      "AI voice calls integrated with your calendar",
+      "Optional: WhatsApp agent and AI voice calls — separate quote",
       "WhatsApp, form and walk-in in one inbox",
       "Calendar synced to Google",
       "Automatic reminders to reduce no-shows",
@@ -105,6 +106,7 @@ export const en: Translations = {
       { from: "agent",  text: "Booked with Yossi at 14:30 ✓ I'll send a reminder 2h before. Anything else?" },
     ],
     chatStatus: "online · auto-reply",
+    addonBadge: "add-on · separate quote",
     chatField: "Message…",
   },
 
@@ -218,9 +220,9 @@ export const en: Translations = {
       { q: "Can I see changes before they go live?",
         a: "Always. We send you a private link with the preview. Nothing goes live without your approval." },
       { q: "Does the AI agent also answer phone calls?",
-        a: "Yes. Your business gets an AI voice agent that answers the phone like your best employee. It books appointments, answers questions about services and prices, and transfers the call to you when needed. Works 24/7 in all supported languages." },
+        a: "Available as an add-on with a separate quote — not included in the plan. If you want it, we add an AI voice agent that answers the phone, books appointments and hands the call to you when needed; priced per business and activated separately from the site." },
       { q: "Can the agent speak Arabic?",
-        a: "Yes. Both the WhatsApp and voice agents reply in whatever language the client uses: Arabic, Hebrew, English, Russian or Spanish. No setup needed, they detect it automatically." },
+        a: "If you add them (separate quote), both the WhatsApp and voice agents reply in whatever language the client uses: Arabic, Hebrew, English, Russian or Spanish. No setup needed, they detect it automatically." },
     ],
   },
 
@@ -228,7 +230,7 @@ export const en: Translations = {
     a: "Run your business.",
     b: "We'll run the digital.",
     cta: "Message Liam on WhatsApp",
-    ctaHref: `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "972557719141"}`,
+    ctaHref: whatsappHref(),
     note: "Your message is my priority. I'll be waiting.",
   },
 

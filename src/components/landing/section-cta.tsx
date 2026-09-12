@@ -5,8 +5,9 @@
  * Reusa strings ya traducidos (nav.start, hero.cta) — no agrega claves i18n.
  */
 import { useT } from "@/lib/i18n/context";
+import { whatsappHref } from "@/lib/whatsapp";
 
-const WA_HREF = `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "972557719141"}`;
+const WA_HREF = whatsappHref();
 
 export function SectionCta({ to = "pricing" }: { to?: "pricing" | "whatsapp" }) {
   const { t } = useT();
