@@ -3,6 +3,7 @@ import { db } from "@/lib/firebase-admin";
 import { Timestamp } from "firebase-admin/firestore";
 import { chargeToken } from "@/lib/cardcom";
 import { chargeDueClient, type ChargePorts, type DueClient } from "@/lib/recurring-charge";
+import { summarizeChargeResults } from "@/lib/cron-report";
 import { safeCompare } from "@/lib/safe-compare";
 
 /**
@@ -77,19 +78,19 @@ export async function GET(req: NextRequest) {
     .limit(MAX_BATCH)
     .get();
 
+  // P-02: el disparador (GitHub Actions) lee charged/failed/skipped/reasons; skipped = vencidos sin token.
   if (due.empty) {
-    return NextResponse.json({ ok: true, processed: 0, results: [] });
+    return NextResponse.json({ ok: true, processed: 0, charged: 0, failed: 0, skipped: 0, reasons: [], results: [] });
   }
 
   const results = await Promise.all(due.docs.map(runOne));
-  const succeeded = results.filter((r) => r.ok).length;
-  const failed = results.length - succeeded;
+  const summary = summarizeChargeResults(results);
 
   return NextResponse.json({
     ok: true,
     processed: results.length,
-    succeeded,
-    failed,
+    succeeded: summary.charged,
+    ...summary,
     results,
   });
 }

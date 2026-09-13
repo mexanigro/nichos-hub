@@ -1,0 +1,23 @@
+# P-02 (Capa A) — disparador del cron de cobros mensuales. Antes (N11 H-N11-2) nadie llamaba a
+# /api/cron/cardcom-charges: Railway sin cronSchedule. Diario 06:00 UTC (09:00 Israel en verano, 08:00 en invierno).
+# Falla (rojo en GitHub) si HTTP ≠ 200 o si algún cobro falló (failed > 0). Sin email hasta P-04.
+name: cardcom-charges
+on:
+  schedule:
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+jobs:
+  charge:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Cobrar cuotas vencidas
+        env:
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+        run: |
+          set -u
+          code=$(curl -sS -o response.json -w "%{http_code}" --max-time 120 \
+            -H "Authorization: Bearer $CRON_SECRET" \
+            https://arzac.studio/api/cron/cardcom-charges)
+          node .github/scripts/check-cron.mjs "$code" response.json
