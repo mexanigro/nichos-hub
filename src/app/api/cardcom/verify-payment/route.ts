@@ -3,6 +3,7 @@ import { db } from "@/lib/firebase-admin";
 import { verifyPayment, checkPaymentTerminal, TERMINAL, SANDBOX } from "@/lib/cardcom";
 import { FieldValue } from "firebase-admin/firestore";
 import { isRateLimited } from "@/lib/rate-limit";
+import { creditVerifiedPayment, type CreditPorts } from "@/lib/payment-credit";
 
 export async function POST(req: NextRequest) {
   const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
@@ -26,22 +27,11 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // Idempotency: check if this lowProfileCode was already verified
-  const alreadyVerified = await db
-    .collection("hub_payments")
-    .where("cardcomLowProfileCode", "==", lowProfileCode)
-    .where("status", "==", "paid")
-    .limit(1)
-    .get();
-
-  if (!alreadyVerified.empty) {
-    const existing = alreadyVerified.docs[0].data();
-    return NextResponse.json({
-      success: true,
-      transactionId: existing.cardcomTransactionId,
-      cardLastFour: existing.cardLastFour,
-      alreadyVerified: true,
-    });
+  // Idempotencia antes de llamar a Cardcom (mismo comportamiento que antes): un lowProfileCode ya acreditado no se re-verifica.
+  const ports = firestoreCreditPorts();
+  const already = await ports.findPaidByLowProfile(lowProfileCode);
+  if (already) {
+    return NextResponse.json({ success: true, transactionId: already.transactionId, cardLastFour: already.cardLastFour, alreadyVerified: true });
   }
 
   const result = await verifyPayment(lowProfileCode);
@@ -86,78 +76,68 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const paymentsSnap = await db
-    .collection("hub_payments")
-    .where("clientId", "==", clientId)
-    .where("status", "==", "pending")
-    .orderBy("createdAt", "desc")
-    .limit(1)
-    .get();
+  // P-01 (Capa A): la acreditación vive en src/lib/payment-credit.ts (puertos, con test). Persiste el token de
+  // Cardcom, su vigencia, últimos 4, nextChargeAt (+1 mes) y activa al cliente demo (D-P1-1); idempotente por lowProfileCode.
+  const credit = await creditVerifiedPayment(ports, { clientId, lowProfileCode, verify: result });
 
-  if (!paymentsSnap.empty) {
-    const paymentRef = paymentsSnap.docs[0].ref;
-
-    // Validar que el monto cobrado por Cardcom coincide con el monto esperado
-    // del pago pendiente (tolerancia de 1 agora por redondeo).
-    const expectedAmount = paymentsSnap.docs[0].data().amount;
-    if (
-      typeof expectedAmount === "number" &&
-      result.amount !== undefined &&
-      Math.abs(result.amount - expectedAmount) > 0.01
-    ) {
-      console.error("[verify-payment] ALERTA: monto cobrado no coincide con el esperado", {
-        clientId,
-        lowProfileCode,
-        charged: result.amount,
-        expected: expectedAmount,
-      });
-      return NextResponse.json(
-        { error: "El monto del pago no coincide con el esperado" },
-        { status: 409 },
-      );
-    }
-    if (result.amount === undefined) {
-      console.warn("[verify-payment] Cardcom no devolvió monto (Sum36) — no se pudo validar", {
-        clientId,
-        lowProfileCode,
-      });
-    }
-
-    await db.runTransaction(async (tx) => {
-      const fresh = await tx.get(paymentRef);
-      if (!fresh.exists || fresh.data()?.status !== "pending") return;
-      tx.update(paymentRef, {
-        status: "paid",
-        cardcomTransactionId: result.transactionId || null,
-        cardcomLowProfileCode: lowProfileCode,
-        cardLastFour: result.cardLastFour || null,
-        updatedAt: FieldValue.serverTimestamp(),
-      });
-    });
-  } else {
-    console.warn("[verify-payment] no pending payment found", { clientId, lowProfileCode });
-    return NextResponse.json(
-      { error: "No se encontro un pago pendiente para este cliente" },
-      { status: 404 },
-    );
+  if (credit.outcome === "already_verified") {
+    return NextResponse.json({ success: true, transactionId: credit.transactionId, cardLastFour: credit.cardLastFour, alreadyVerified: true });
   }
-
-  const clientSnap = await db
-    .collection("hub_clients")
-    .where("clientId", "==", clientId)
-    .limit(1)
-    .get();
-
-  if (!clientSnap.empty) {
-    await clientSnap.docs[0].ref.update({
-      paymentStatus: "active",
-      updatedAt: FieldValue.serverTimestamp(),
-    });
+  if (credit.outcome === "amount_mismatch") {
+    console.error("[verify-payment] ALERTA: monto cobrado no coincide con el esperado", { clientId, lowProfileCode, charged: credit.charged, expected: credit.expected });
+    return NextResponse.json({ error: "El monto del pago no coincide con el esperado" }, { status: 409 });
+  }
+  if (credit.outcome === "no_pending") {
+    console.warn("[verify-payment] no pending payment found", { clientId, lowProfileCode });
+    return NextResponse.json({ error: "No se encontro un pago pendiente para este cliente" }, { status: 404 });
+  }
+  if (result.amount === undefined) {
+    console.warn("[verify-payment] Cardcom no devolvió monto (Sum36) — no se pudo validar", { clientId, lowProfileCode });
+  }
+  if (!credit.clientDocId) {
+    console.warn("[verify-payment] pago acreditado sin hub_clients para clientId", { clientId, lowProfileCode });
   }
 
   return NextResponse.json({
     success: true,
     transactionId: result.transactionId,
     cardLastFour: result.cardLastFour,
+    activated: credit.activated,
+    nextChargeAt: credit.nextChargeAt.toISOString(),
   });
+}
+
+/** Puertos Firestore para creditVerifiedPayment (hub_payments / hub_clients por campo clientId). */
+function firestoreCreditPorts(): CreditPorts {
+  return {
+    async findPaidByLowProfile(lowProfileCode) {
+      const snap = await db.collection("hub_payments").where("cardcomLowProfileCode", "==", lowProfileCode).where("status", "==", "paid").limit(1).get();
+      if (snap.empty) return null;
+      const d = snap.docs[0].data();
+      return { transactionId: d.cardcomTransactionId ?? null, cardLastFour: d.cardLastFour ?? null };
+    },
+    async findLatestPending(clientId) {
+      const snap = await db.collection("hub_payments").where("clientId", "==", clientId).where("status", "==", "pending").orderBy("createdAt", "desc").limit(1).get();
+      if (snap.empty) return null;
+      const d = snap.docs[0].data();
+      return { id: snap.docs[0].id, amount: typeof d.amount === "number" ? d.amount : undefined, type: d.type };
+    },
+    async markPaid(paymentId, fields) {
+      const ref = db.collection("hub_payments").doc(paymentId);
+      return db.runTransaction(async (tx) => {
+        const fresh = await tx.get(ref);
+        if (!fresh.exists || fresh.data()?.status !== "pending") return false;
+        tx.update(ref, { ...fields, updatedAt: FieldValue.serverTimestamp() });
+        return true;
+      });
+    },
+    async findClient(clientId) {
+      const snap = await db.collection("hub_clients").where("clientId", "==", clientId).limit(1).get();
+      if (snap.empty) return null;
+      return { id: snap.docs[0].id, status: snap.docs[0].data().status };
+    },
+    async updateClient(docId, fields) {
+      await db.collection("hub_clients").doc(docId).update({ ...fields, updatedAt: FieldValue.serverTimestamp() });
+    },
+  };
 }

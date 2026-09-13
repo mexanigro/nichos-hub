@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/firebase-admin";
-import { FieldValue, Timestamp } from "firebase-admin/firestore";
+import { Timestamp } from "firebase-admin/firestore";
 import { chargeToken } from "@/lib/cardcom";
-import { monthlyChargeFor, PLAN_LABEL } from "@/lib/pricing";
+import { chargeDueClient, type ChargePorts, type DueClient } from "@/lib/recurring-charge";
 import { safeCompare } from "@/lib/safe-compare";
 
 /**
@@ -39,103 +39,29 @@ function isAuthorized(req: NextRequest): boolean {
   return safeCompare(xCronSecret, secret) || safeCompare(bearerToken, secret);
 }
 
-async function runOne(clientDoc: FirebaseFirestore.QueryDocumentSnapshot) {
+/** P-01 (Capa A): el cobro vive en src/lib/recurring-charge.ts (puertos, con test); identidad = hub_clients.clientId (D-P1-3). */
+function toDueClient(clientDoc: FirebaseFirestore.QueryDocumentSnapshot): DueClient {
   const c = clientDoc.data();
-  const clientId = clientDoc.id;
-  // Cuota mensual única (250), sea cual sea el plan/tier heredado del documento.
-  const amount = monthlyChargeFor(c);
+  const next = c.nextChargeAt;
+  return {
+    docId: clientDoc.id,
+    clientId: typeof c.clientId === "string" ? c.clientId : undefined,
+    businessName: c.businessName, email: c.email, adminEmail: c.adminEmail,
+    cardcomToken: c.cardcomToken, cardcomTokenExpMonth: c.cardcomTokenExpMonth, cardcomTokenExpYear: c.cardcomTokenExpYear,
+    paymentStatus: c.paymentStatus, pastDueAt: c.pastDueAt, plan: c.plan, tier: c.tier,
+    nextChargeAt: next && typeof next.toDate === "function" ? next.toDate() : next instanceof Date ? next : null,
+  };
+}
 
-  if (!c.cardcomToken) {
-    return { clientId, ok: false, reason: "no_token" };
-  }
-  if (!c.cardcomTokenExpMonth || !c.cardcomTokenExpYear) {
-    return { clientId, ok: false, reason: "no_token_expiry" };
-  }
+const firestoreChargePorts: ChargePorts = {
+  chargeToken,
+  async createPayment(fields) { const ref = db.collection("hub_payments").doc(); await ref.set(fields); return ref.id; },
+  async updatePayment(paymentId, fields) { await db.collection("hub_payments").doc(paymentId).update(fields); },
+  async updateClient(docId, fields) { await db.collection("hub_clients").doc(docId).update(fields); },
+};
 
-  const externalId = `${clientId}-${Date.now()}`;
-  const now = FieldValue.serverTimestamp();
-
-  // Write-intent-first: crear el registro en "pending" ANTES de cobrar.
-  // Si el write-after-charge falla, al menos queda evidencia del intento de cobro.
-  // Un proceso de reconciliación puede buscar docs "pending" con más de X horas
-  // y verificar contra Cardcom si el cobro efectivamente ocurrió.
-  const paymentRef = db.collection("hub_payments").doc();
-  await paymentRef.set({
-    clientId,
-    amount,
-    currency: "ILS",
-    type: "subscription_recurring",
-    status: "pending",
-    externalId,
-    createdAt: now,
-  });
-
-  let result: Awaited<ReturnType<typeof chargeToken>>;
-  try {
-    result = await chargeToken({
-      token: c.cardcomToken,
-      cardValidityMonth: c.cardcomTokenExpMonth,
-      cardValidityYear: c.cardcomTokenExpYear,
-      amount,
-      productName: `${PLAN_LABEL} (mensualidad)`,
-      customerEmail: c.email || undefined,
-      customerName: c.businessName || c.adminEmail || undefined,
-      language: "he",
-      externalId,
-    });
-  } catch (err) {
-    // La llamada a Cardcom lanzó una excepción — confirmar como fallo en Firestore
-    const errMsg = err instanceof Error ? err.message : "charge_exception";
-    await paymentRef.update({ status: "failed", error: errMsg });
-    await db.collection("hub_clients").doc(clientId).update({
-      paymentStatus: "past_due",
-      pastDueAt: c.pastDueAt || now,
-      pastDueReason: "charge_exception",
-      nextChargeAt: Timestamp.fromDate(new Date(Date.now() + 24 * 60 * 60 * 1000)),
-      updatedAt: now,
-    });
-    return { clientId, ok: false, reason: "charge_exception" };
-  }
-
-  const next = new Date();
-  next.setMonth(next.getMonth() + 1);
-  const nextChargeTimestamp = Timestamp.fromDate(next);
-
-  if (result.success) {
-    // Confirmar pago exitoso — actualizar el doc pendiente
-    await paymentRef.update({
-      status: "success",
-      cardcomTransactionId: result.transactionId || null,
-      approvalNumber: result.approvalNumber || null,
-    });
-
-    await db.collection("hub_clients").doc(clientId).update({
-      paymentStatus: "active",
-      lastChargedAt: now,
-      nextChargeAt: nextChargeTimestamp,
-      cardcomTransactionId: result.transactionId || null,
-      pastDueAt: null,
-      pastDueReason: null,
-      updatedAt: now,
-    });
-
-    return { clientId, ok: true, transactionId: result.transactionId };
-  }
-
-  // Falla reportada por Cardcom — marcar past_due. No suspendemos en el primer
-  // fallo — damos al menos 2-3 reintentos en dias subsiguientes.
-  await paymentRef.update({ status: "failed", error: result.error || null });
-
-  await db.collection("hub_clients").doc(clientId).update({
-    paymentStatus: "past_due",
-    pastDueAt: c.pastDueAt || now,
-    pastDueReason: result.error || "charge_failed",
-    // Reintentar mañana
-    nextChargeAt: Timestamp.fromDate(new Date(Date.now() + 24 * 60 * 60 * 1000)),
-    updatedAt: now,
-  });
-
-  return { clientId, ok: false, reason: result.error };
+function runOne(clientDoc: FirebaseFirestore.QueryDocumentSnapshot) {
+  return chargeDueClient(firestoreChargePorts, toDueClient(clientDoc));
 }
 
 export async function GET(req: NextRequest) {
