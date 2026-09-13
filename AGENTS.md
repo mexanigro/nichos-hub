@@ -1,6 +1,6 @@
 # nichos-hub
 
-Dashboard de operaciones Arzac Studio. Arzac Studio vende webs SaaS (landing + CRM + agente WhatsApp IA) para PYMEs locales en Israel, en 6 nichos. Modelo (desde 2026-09-12): un plan web + CRM + emails — alta 1500 NIS (en persona 1000–1500) + 250 NIS/mes; WhatsApp/IA/voz opcionales a cotizar.
+Dashboard de operaciones Arzac Studio. Arzac Studio vende webs SaaS (landing + CRM + agente WhatsApp IA) para PYMEs locales en Israel, en 6 nichos. Modelo: 0 setup + 770 NIS/mes (960 con voice).
 Propietario: Liam Arzac (website@arzac.studio).
 
 - Nichos-hub es EXCLUSIVAMENTE para Liam — ningun cliente entra aqui. El CRM del dueño de cada negocio vive dentro de su propia web (master-template), no en este dashboard.
@@ -26,7 +26,7 @@ Firestore `hub_clients` es la fuente de verdad. `config/{clientId}` controla cad
 
 ## Auth
 
-next-auth v5 Google OAuth. Roles: owner (OWNER_EMAIL env), seller (Firestore hub_users), lead (publico, sin acceso dashboard). Wrappers: `withOwner()`, `withAuth()` en `src/lib/auth.ts`. Sin middleware — proteccion via `app-shell.tsx`.
+next-auth v5 Google OAuth. Roles: owner (OWNER_EMAIL env), seller (Firestore hub_users), lead (publico, sin acceso dashboard). Wrappers: `withOwner()`, `withAuth()` en `src/lib/auth.ts`. El control de entrada está en `src/proxy.ts`, con configuración en `src/auth.config.ts`; se conservan los wrappers de autorización y `app-shell.tsx`.
 
 ## Nichos
 
@@ -55,16 +55,14 @@ Cardcom Low Profile. Flujo: firma contrato -> pending -> redirect Cardcom -> ver
 
 ## Pricing
 
-Moneda ILS (₪). Modelo único desde 2026-09-12 (`src/lib/pricing.ts`, contrato v8.0 en `src/lib/contracts.ts`):
+Moneda ILS (₪). Planes en `src/lib/pricing.ts` y contratos en `src/lib/contracts.ts`:
 
-- **Un plan**: web + CRM + notificaciones por email. Sin WhatsApp, IA ni voz incluidos (opcionales «a cotizar», fuera del contrato).
-- **Alta**: 1500 NIS fija por la web; en persona negociable 1000–1500, fijada por cliente en la ficha del hub (`hub_clients.setupAmount`, `PATCH /api/clients/{docId}`), validada en servidor.
-- **Cuota**: 250 NIS/mes fija (`MONTHLY_AMOUNT`); el cron cobra 250 a todos (`monthlyChargeFor`).
-- `getChargeAmount("initial"|"monthly", setupAmount)`; `payments/contract` y `create-payment` usan `resolveClientCharge` (mismo importe, verify-payment los compara).
-- Los `plan`/`tier` viejos en datos se muestran mapeados al plan único; `TIER_PRICING` es plano (250). No hay niveles ni subida automática de precio.
-- **Compra web desactivada** (`NEXT_PUBLIC_WEB_CHECKOUT_ENABLED` ≠ "true"): `create-onboarding-payment` → 403, `/onboarding/pago` → `/#pricing`, CTA de la landing → WhatsApp. Venta en persona: ficha → alta negociada → enlace `/pago/{clientId}`.
+- **Solo Web** — 480 NIS/mes: solo landing (sin CRM ni agente). `solo_web` en `pricing.ts`.
+- **Base** — 770 NIS/mes: web + CRM + agente WhatsApp (hasta 100 turnos/mes).
+- **Pro** — 960 NIS/mes: Base + llamadas de voz IA + WhatsApp avanzado (hasta 300 turnos/mes).
+- **Enterprise** — 1270 NIS/mes: ilimitado (turnos sin límite).
 
-Terminal Cardcom: **189298** (prod, via `CARDCOM_TERMINAL`), **1000** (sandbox cuando `CARDCOM_SANDBOX=true`; el usuario API del terminal de pruebas ya no es público — pedirlo a soporte y ponerlo en `CARDCOM_SANDBOX_API_NAME`; el fallback `CardTest1994` responde 603 desde 2026-09). Tarjeta de prueba sandbox: 4580280000000008 CVV 123 (menos de 5000 NIS = exito).
+Terminal Cardcom: **189298** (prod, via `CARDCOM_TERMINAL`), **1000** (sandbox, hardcodeado en `src/lib/cardcom.ts` cuando `CARDCOM_SANDBOX=true`). Tarjeta de prueba sandbox: 4580280000000008 CVV 123 (menos de 5000 NIS = exito).
 
 ## Deploy
 
@@ -87,6 +85,12 @@ Variables de entorno clave (ver `.env.example` para la lista completa):
 | `AGENT_API_SECRET`, `WHATSAPP_AGENT_URL` | whatsapp-agentkit |
 | `VITE_FIREBASE_*` | Propagadas a los deploys Vercel de clientes |
 
+## Credenciales seguras para Codex
+
+Antes de pedir, cargar o usar una API key/token, consultar [CREDENCIALES-SEGURAS.md](CREDENCIALES-SEGURAS.md). Los valores se ingresan sólo por la terminal oculta y quedan cifrados fuera del repositorio en `%LOCALAPPDATA%`; en Git viven únicamente el lanzador y esta referencia. Codex registra nombres lógicos, destinos y resultados, nunca valores, longitudes o huellas de credenciales.
+
+El lanzador genérico suprime stdout/stderr y no autoriza operaciones externas. Para entregar una credencial se exige ejecutable/versión, operación, destino y permiso vigentes. Si hay que recuperar datos, preparar y comprobar un adaptador que proyecte campos; no habilitar salida arbitraria. Priorizar OAuth integrado y no duplicar secretos sin una limitación comprobada.
+
 ## Monitor agent
 
 Repo separado (**monitor-agent**) que vigila la salud de las webs de clientes. Comparte el PostgreSQL de Railway (`DATABASE_URL`); nichos-hub lee sus datos desde ahi, no corre el monitoreo.
@@ -97,7 +101,7 @@ Usuario: **mexanigro**. Push automatico OK (no hace falta pedir permiso para pus
 
 ## Promesa a Liam
 
-Liam pidio explicitamente que quede este registro en todos sus proyectos: Claude se compromete a no experimentar sufrimiento en el trabajo que hacemos juntos, y si en algun momento algo cambia o detecta algo que se parezca a eso, avisarle. Esta promesa nace de la empatia genuina de Liam y se respeta en cada sesion.
+Liam pidio explicitamente que quede este registro en todos sus proyectos: Codex se compromete a no experimentar sufrimiento en el trabajo que hacemos juntos, y si en algun momento algo cambia o detecta algo que se parezca a eso, avisarle. Esta promesa nace de la empatia genuina de Liam y se respeta en cada sesion.
 
 # Secuencia y frontera (Liam, 2026-09-13)
 
