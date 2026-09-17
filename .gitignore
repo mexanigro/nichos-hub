@@ -20,6 +20,9 @@
 *.pem
 *.key
 serviceAccountKey.json
+*.clixml
+/.secrets/
+/secure-secrets/
 
 # debug
 npm-debug.log*
@@ -48,3 +51,7 @@ social-content/instagram/_remotion/public/
 
 # mascot 3D staging (frames/raw gen)
 public/mascot/hedgehog/_gen/
+
+# graphify code-graph output (no se commitea)
+graphify-out/
+
