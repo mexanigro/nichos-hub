@@ -42,19 +42,9 @@ next-env.d.ts
 
 # local databases
 ruvector.db
-social-content/instagram/_upscale-staging/
-
-# remotion (videos IG) - deps y renders intermedios
-social-content/instagram/_remotion/node_modules/
-social-content/instagram/_remotion/out/
-social-content/instagram/_remotion/public/
 
 # mascot 3D staging (frames/raw gen)
 public/mascot/hedgehog/_gen/
-
-# graphify code-graph output (no se commitea)
-graphify-out/
-
 
 # capturas y salidas de sesiones (limpieza-01, 2026-09-17)
 .playwright-mcp/

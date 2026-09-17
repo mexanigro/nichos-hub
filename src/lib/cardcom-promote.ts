@@ -29,7 +29,6 @@ interface LeadDoc {
   businessName?: string;
   niche?: string;
   plan?: PlanType;
-  tier?: string;
   contractVersion?: string;
   contractAcceptedAt?: Timestamp;
   contractIp?: string;
@@ -97,7 +96,6 @@ export async function processCardcomPayment(
   // Cuando Liam provisione el sitio real puede renombrar el clientId si quiere.
   const clientId = leadId;
   const plan = (lead.plan || "web_crm") as PlanType;
-  const tier = lead.tier || "base";
   // Compra web: alta fija (1500). El cobro mensual posterior lo hace el cron a 250.
   const amount = getChargeAmount("initial");
 
@@ -208,9 +206,6 @@ export async function processCardcomPayment(
         deployUrl: "",
         language: clientLanguage,
         plan,
-        tier,
-        bookingCount: 0,
-        bookingCountResetAt: now,
         paymentStatus: "active",
         cardcomToken: verify.token || null,
         cardcomTokenExpMonth: verify.cardValidityMonth || null,
@@ -234,7 +229,6 @@ export async function processCardcomPayment(
       // Solo tocar campos de pago — NUNCA pisar businessName/niche/infoSubmitted.
       tx.update(clientRef, {
         plan,
-        tier,
         paymentStatus: "active",
         cardcomToken: verify.token || null,
         cardcomTokenExpMonth: verify.cardValidityMonth || null,

@@ -34,9 +34,6 @@ export const GET = withOwner(async () => {
       resubmissionCount: typeof d.resubmissionCount === "number" ? d.resubmissionCount : 0,
       contactPhone: contact.phone || d["contact.phone"] || "",
       contactWhatsapp: contact.whatsapp || d["contact.whatsapp"] || "",
-      tier: d.tier || "base",
-      bookingCount: d.bookingCount || 0,
-      tierAutoUpgraded: d.tierAutoUpgraded || false,
     };
   });
 
@@ -111,7 +108,6 @@ const ALLOWED_CLIENT_FIELDS = new Set([
   "vercelProjectId", "deployStatus", "deployError",
   "notes", "status", "language",
   "monitorChecks", "paymentStatus",
-  "tier",
 ]);
 
 export const PUT = withOwner(async (req) => {

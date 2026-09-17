@@ -1,15 +1,11 @@
 import { NextResponse } from "next/server";
-import { withAuth, withOwner } from "@/lib/auth";
+import { withOwner } from "@/lib/auth";
 import { db } from "@/lib/firebase-admin";
 import type { ProspectStatus } from "@/types";
 
-export const GET = withAuth(async (_req, session) => {
+export const GET = withOwner(async () => {
 
-  let query: FirebaseFirestore.Query = db.collection("hub_prospects").orderBy("createdAt", "desc");
-
-  if (session.user.role === "seller") {
-    query = query.where("assignedSeller", "==", session.user.email);
-  }
+  const query: FirebaseFirestore.Query = db.collection("hub_prospects").orderBy("createdAt", "desc");
 
   const snap = await query.get();
 
@@ -60,7 +56,7 @@ export const POST = withOwner(async (req, session) => {
   return NextResponse.json({ id: docRef.id }, { status: 201 });
 });
 
-export const PATCH = withAuth(async (req, session) => {
+export const PATCH = withOwner(async (req) => {
   const body = await req.json();
   const { id, ...updates } = body;
 
@@ -76,25 +72,12 @@ export const PATCH = withAuth(async (req, session) => {
   }
 
   try {
-    if (session.user.role === "seller") {
-      const doc = await db.collection("hub_prospects").doc(id).get();
-      if (doc.data()?.assignedSeller !== session.user.email) {
-        return NextResponse.json({ error: "Sin permisos" }, { status: 403 });
-      }
-      const allowed = ["status", "rejectionReason", "lastContact"];
-      const filtered: Record<string, unknown> = {};
-      for (const key of allowed) {
-        if (key in updates) filtered[key] = updates[key];
-      }
-      await db.collection("hub_prospects").doc(id).update(filtered);
-    } else {
-      const ownerAllowed = ["businessName", "city", "nicheTarget", "assignedSeller", "status", "rejectionReason", "lastContact"];
-      const filtered: Record<string, unknown> = {};
-      for (const key of ownerAllowed) {
-        if (key in updates) filtered[key] = updates[key];
-      }
-      await db.collection("hub_prospects").doc(id).update(filtered);
+    const ownerAllowed = ["businessName", "city", "nicheTarget", "assignedSeller", "status", "rejectionReason", "lastContact"];
+    const filtered: Record<string, unknown> = {};
+    for (const key of ownerAllowed) {
+      if (key in updates) filtered[key] = updates[key];
     }
+    await db.collection("hub_prospects").doc(id).update(filtered);
   } catch (err) {
     console.error("[api/sales PATCH]", err);
     return NextResponse.json({ error: "Error al actualizar prospecto" }, { status: 500 });

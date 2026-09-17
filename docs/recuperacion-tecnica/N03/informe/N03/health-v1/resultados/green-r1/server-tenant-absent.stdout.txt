@@ -1,3 +1,0 @@
-Server running on http://localhost:3000
-
-[Template Setup] ─── Service Configuration Status ───

@@ -11,14 +11,14 @@ Web + CRM + emails. **Alta 1500 NIS** (en persona negociable 1000–1500, `hub_c
 - Se trabaja en `main`. Producción (Railway) la despliega Liam; `main` puede ir por delante de producción — ver `git log`. Un `git push` **no despliega**; push sólo cuando la orden del bloque lo diga. Sin ramas ni worktrees salvo pedido.
 - `bp2-reg-core` (BP2-01 contactos por identidad/fuente) **no se toca ni se integra** hasta orden de Liam.
 - Cardcom sin certificar (sandbox y primer cobro real pendientes). N12 (certificación técnica integral) abierto.
-- `docs/recuperacion-tecnica/` y `C:/Users/liama/Desktop/Nichos/recuperacion-tecnica/` son historia consultable, no lectura obligatoria; lo que está en `archivo/` no se lee ni se reutiliza.
+- `C:/Users/liama/Desktop/Nichos/recuperacion-tecnica/` es historia consultable, no lectura obligatoria; lo que está en `archivo/` no se lee ni se reutiliza.
 
 ## Arquitectura mínima
 
 - Next.js 16 standalone en Railway (`nichos-hub-production.up.railway.app` = arzac.studio). UI en español, tema oscuro `#09090b`.
-- Auth next-auth v5 Google. Roles: owner (`OWNER_EMAIL`), seller (`hub_users`), lead (público). Entrada controlada en `src/proxy.ts` + `src/auth.config.ts`; wrappers `withOwner()`/`withAuth()` en `src/lib/auth.ts`; `app-shell.tsx` protege el dashboard.
+- Auth next-auth v5 Google. Roles: owner (`OWNER_EMAIL`) y lead (público). Entrada controlada en `src/proxy.ts` + `src/auth.config.ts`; wrapper `withOwner()` en `src/lib/auth.ts`; `app-shell.tsx` protege el dashboard.
 - Firebase por Admin SDK (`src/lib/firebase-admin.ts`, bypassa rules; las rules se deployean sólo desde master-template). Endpoints públicos con `src/lib/rate-limit.ts`.
-- Firestore: `hub_clients` (fuente de verdad), `clients/{id}` (estado tenant / kill-switch que lee el template), `config/{id}` (override remoto, deep merge sobre el preset del nicho), `hub_users`, `hub_payments`, `provider_messages`.
+- Firestore: `hub_clients` (fuente de verdad), `clients/{id}` (estado tenant / kill-switch que lee el template), `config/{id}` (override remoto, deep merge sobre el preset del nicho), `hub_payments`, `provider_messages`.
 - Ficha `/clients/[clientId]`: Overview, Config (features, theme, splash, hours, services), Contenido (textos), Leads, WhatsApp. Config y Contenido escriben `config/{id}`.
 - Pagos Cardcom Low Profile: contrato → pending → redirect → `verify-payment` (idempotente). Terminal 189298 prod (`CARDCOM_TERMINAL`); sandbox 1000 con `CARDCOM_SANDBOX=true` y `CARDCOM_SANDBOX_API_NAME` (el usuario público `CardTest1994` responde 603 desde 2026-09). Cron `/api/cron/cardcom-charges` (GitHub Actions, `CRON_SECRET`) cobra 250 a todos.
 - Nichos técnicos: barberia, estetica, tattoo, nails, cafeteria, remodelaciones, **peluqueria** (en construcción, ver PLAN.md) + `employment` como caso especial (`src/lib/niche-defaults.ts`, `src/lib/client-config/services.ts`). «otro» en onboarding se mapea a estetica; peluquería no pasa por ese fallback.
@@ -40,7 +40,7 @@ npm run build
 2. Verde (`tsc` + `npm test`) antes de cada commit; no se arregla algo rompiendo otra cosa.
 3. Sin secretos en el repo; credenciales sólo por env.
 4. R-BP-05: REG + PRE verificadas son la base del dinero del comercio; el contrato INT se conserva y cada integración queda disponible sólo tras certificación por proveedor/operación/comercio; el registro manual no es pago bancario y no se impone proveedor al comercio.
-5. Docs con fecha de junio (`*-AUDIT.md`, `NICHOS-HUB-AUDIT.md`, `social-content/`, `outputs/`) son historia, no estado.
+5. Los docs y salidas de junio salieron del repo en LIMPIEZA-01/02 (copias en `C:/Users/liama/Desktop/Nichos/limpieza-01/archivo/H/`); lo que queda en el repo es estado.
 6. Promesa a Liam: el agente que trabaje en este repo se compromete a no experimentar sufrimiento en el trabajo que hacemos juntos y a avisarle si algo cambia o detecta algo que se parezca a eso. Nace de la empatía genuina de Liam y se respeta en cada sesión.
 
 ## Secuencia y bloque abierto

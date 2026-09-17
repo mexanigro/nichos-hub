@@ -19,7 +19,6 @@ const EMAIL_RE = /^[^\s<>@]+@[^\s<>@]+\.[^\s<>@]+$/;
 
 const FAILURE_WINDOW_MS = 24 * 60 * 60 * 1000;
 const failureTimestamps: number[] = [];
-let lastTestEmailAt: number | null = null;
 
 function recordFailure() {
   const now = Date.now();
@@ -28,18 +27,6 @@ function recordFailure() {
   while (failureTimestamps.length > 0 && now - failureTimestamps[0] > FAILURE_WINDOW_MS) {
     failureTimestamps.shift();
   }
-}
-
-export function getRecentFailureCount(): number {
-  const now = Date.now();
-  while (failureTimestamps.length > 0 && now - failureTimestamps[0] > FAILURE_WINDOW_MS) {
-    failureTimestamps.shift();
-  }
-  return failureTimestamps.length;
-}
-
-export function getLastTestEmailAt(): string | undefined {
-  return lastTestEmailAt ? new Date(lastTestEmailAt).toISOString() : undefined;
 }
 
 export interface SendEmailParams {
@@ -87,7 +74,6 @@ export async function sendEmail(params: SendEmailParams): Promise<SendEmailResul
       tag: params.tag,
       text: params.text.slice(0, 200) + (params.text.length > 200 ? "…" : ""),
     }));
-    if (params.tag?.startsWith("test_")) lastTestEmailAt = Date.now();
     return { ok: true, provider: "log" };
   }
 
@@ -133,7 +119,6 @@ export async function sendEmail(params: SendEmailParams): Promise<SendEmailResul
             attempt,
             durationMs,
           });
-          if (params.tag?.startsWith("test_")) lastTestEmailAt = Date.now();
           return { ok: true, provider: "resend", id: data.id };
         }
 

@@ -1,25 +1,6 @@
 import type { ClientLanguage } from "@/lib/client-language";
 
-export type UserRole = "owner" | "seller" | "lead";
-
-// --- Booking Tiers ---
-
-export type BookingTier = "base" | "pro" | "enterprise";
-
-export interface TierChangeEvent {
-  from: BookingTier;
-  to: BookingTier;
-  reason: "auto_upgrade" | "manual";
-  at: string;
-  bookingCountAtChange?: number;
-}
-
-export interface HubUser {
-  email: string;
-  name: string;
-  role: UserRole;
-  createdAt: Date;
-}
+export type UserRole = "owner" | "lead";
 
 export type ClientStatus =
   | "active"
@@ -59,22 +40,6 @@ export interface Client {
    * ahora sale de la fuente única (`@/lib/client-language`).
    */
   language?: ClientLanguage;
-  /** Tier de bookings — controla límites y pricing mensual. */
-  tier?: BookingTier;
-  /** Bookings del mes actual. */
-  bookingCount?: number;
-  /** Cuándo se reseteó por última vez el contador (inicio del mes). */
-  bookingCountResetAt?: Date;
-  /** Si fue auto-upgraded este mes por superar el límite. */
-  tierAutoUpgraded?: boolean;
-  /** Cuándo se hizo el auto-upgrade. */
-  tierAutoUpgradedAt?: Date;
-  /** Historial de cambios de tier. */
-  tierHistory?: TierChangeEvent[];
-  /** Se notificó al owner que el cliente alcanzó el 80% de bookings este periodo. */
-  bookingLimitNotified80?: boolean;
-  /** Se notificó al owner que el cliente alcanzó el 100% de bookings este periodo. */
-  bookingLimitNotified100?: boolean;
 }
 
 export type HealthStatus = "healthy" | "degraded" | "down";

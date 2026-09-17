@@ -33,7 +33,6 @@ export default function SalesPage() {
   const [showForm, setShowForm] = useState(false);
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [noteText, setNoteText] = useState("");
-  const [sellers, setSellers] = useState<string[]>([]);
   const [rejectTarget, setRejectTarget] = useState<string | null>(null);
   const [rejectionReason, setRejectionReason] = useState("");
   const [moving, setMoving] = useState<string | null>(null);
@@ -44,7 +43,6 @@ export default function SalesPage() {
 
   useEffect(() => {
     fetchProspects();
-    if (isOwner) fetchSellers();
   }, [isOwner]);
 
   async function fetchProspects() {
@@ -64,14 +62,6 @@ export default function SalesPage() {
       );
     }
     setLoading(false);
-  }
-
-  async function fetchSellers() {
-    const res = await fetch("/api/users");
-    if (res.ok) {
-      const data = await res.json();
-      setSellers(data.map((u: { email: string }) => u.email));
-    }
   }
 
   async function handleCreate(e: React.FormEvent<HTMLFormElement>) {
@@ -389,16 +379,7 @@ export default function SalesPage() {
               </div>
               <div>
                 <label className="mb-1 block text-[11px] font-medium text-text-muted">Vendedor asignado</label>
-                {sellers.length > 0 ? (
-                  <select name="assignedSeller" className="w-full rounded-lg border border-border bg-bg-elevated px-3 py-2 text-sm text-text focus:border-accent focus:outline-none">
-                    <option value="">Sin asignar</option>
-                    {sellers.map((s) => (
-                      <option key={s} value={s}>{s}</option>
-                    ))}
-                  </select>
-                ) : (
-                  <input name="assignedSeller" type="email" placeholder="email@vendedor.com" className="w-full rounded-lg border border-border bg-bg-elevated px-3 py-2 text-sm text-text placeholder:text-text-muted focus:border-accent focus:outline-none" />
-                )}
+                <input name="assignedSeller" type="email" placeholder="email@vendedor.com" className="w-full rounded-lg border border-border bg-bg-elevated px-3 py-2 text-sm text-text placeholder:text-text-muted focus:border-accent focus:outline-none" />
               </div>
               <div className="flex justify-end gap-2 pt-2">
                 <button type="button" onClick={() => setShowForm(false)} disabled={creating} className="rounded-lg px-3 py-2 text-xs font-medium text-text-secondary hover:text-text">

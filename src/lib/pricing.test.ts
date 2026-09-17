@@ -55,10 +55,3 @@ test("monthlyChargeFor (cron): 250 para cualquier plan/tier heredado", () => {
   assert.equal(pricing.monthlyChargeFor({}), 250);
   assert.notEqual(pricing.monthlyChargeFor({}), pricing.SETUP_AMOUNT_DEFAULT);
 });
-
-test("TIER_PRICING plano: los tiers heredados no cambian el precio (sin subida automática de precio)", () => {
-  assert.equal(pricing.TIER_PRICING.base, 250);
-  assert.equal(pricing.TIER_PRICING.pro, 250);
-  assert.equal(pricing.TIER_PRICING.enterprise, 250);
-  assert.equal(pricing.getTierAmount("enterprise"), 250);
-});

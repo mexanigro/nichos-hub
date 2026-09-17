@@ -1,9 +1,0 @@
-{
-  "exit": 0,
-  "args": [
-    "/app/node_modules/tsx/dist/cli.mjs",
-    "--test",
-    "--test-name-pattern=route parity|both runtimes|inline duplicates",
-    "/app/tests/api-parity.test.ts"
-  ]
-}

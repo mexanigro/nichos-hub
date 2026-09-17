@@ -1,5 +1,3 @@
-import type { BookingTier } from "@/types";
-
 /**
  * Modelo comercial único (N10 n10-precios-v1, decisiones de Liam 2026-09-12):
  * un plan — web + CRM + emails — con alta única y cuota mensual fija.
@@ -43,34 +41,4 @@ export function getChargeAmount(kind: ChargeKind, setupAmount?: unknown, _plan?:
 /** Cuota mensual de un documento hub_clients (cron): 250, sea cual sea su plan/tier heredado. */
 export function monthlyChargeFor(_client: { plan?: unknown; tier?: unknown }): number {
   return MONTHLY_AMOUNT;
-}
-
-/* ── Tiers heredados (mecánica de límites de reservas, N-anteriores). Sin efecto en precio: todos cobran la cuota única. ── */
-export const TIER_PRICING: Record<BookingTier, number> = {
-  base: MONTHLY_AMOUNT,
-  pro: MONTHLY_AMOUNT,
-  enterprise: MONTHLY_AMOUNT,
-};
-
-export const TIER_LIMITS: Record<BookingTier, number> = {
-  base: 100,
-  pro: 300,
-  enterprise: Infinity,
-};
-
-export const TIER_LABELS: Record<BookingTier, string> = {
-  base: "Base",
-  pro: "Pro",
-  enterprise: "Enterprise",
-};
-
-export const TIER_ORDER: BookingTier[] = ["base", "pro", "enterprise"];
-
-export function getNextTier(current: BookingTier): BookingTier | null {
-  const idx = TIER_ORDER.indexOf(current);
-  return idx < TIER_ORDER.length - 1 ? TIER_ORDER[idx + 1] : null;
-}
-
-export function getTierAmount(tier: BookingTier): number {
-  return TIER_PRICING[tier];
 }

@@ -31,10 +31,6 @@ const ownerNav = [
   { href: "/monitor", label: "Monitor", icon: Activity },
 ];
 
-const sellerNav = [
-  { href: "/sales", label: "Ventas", icon: TrendingUp },
-];
-
 type ClientsCounts = {
   pending_review?: number;
   pending_provision?: number;
@@ -53,7 +49,7 @@ export function Sidebar() {
   const [badges, setBadges] = useState<BadgeCounts>({ clients: 0, followups: 0 });
 
   const role = session?.user?.role;
-  const nav = role === "owner" ? ownerNav : sellerNav;
+  const nav = ownerNav;
 
   useEffect(() => {
     if (role !== "owner") return;
