@@ -55,3 +55,10 @@ public/mascot/hedgehog/_gen/
 # graphify code-graph output (no se commitea)
 graphify-out/
 
+
+# capturas y salidas de sesiones (limpieza-01, 2026-09-17)
+.playwright-mcp/
+test-results/
+/*.png
+/*.jpeg
+.claude/agent-memory/
