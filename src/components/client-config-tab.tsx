@@ -265,6 +265,7 @@ const NICHE_DEFAULTS: Record<BusinessNiche, { accent: string; accentLight: strin
   nails: { accent: "#dca2ac", accentLight: "#edc2c9", surfaceDark: "#6f4a56" },
   cafeteria: { accent: "#6b8e5e", accentLight: "#a3c490", surfaceDark: "#1a1c17" },
   remodelaciones: { accent: "#3b82f6", accentLight: "#60a5fa", surfaceDark: "#0f172a" },
+  peluqueria: { accent: "#c4775a", accentLight: "#e0a98f", surfaceDark: "#14100d" },
   employment: { accent: "#0d9488", accentLight: "#2dd4bf", surfaceDark: "#0f172a" },
 };
 
@@ -400,6 +401,9 @@ export function ClientConfigTab({
           nicheFeatures.showBooking = false;
           nicheFeatures.showPortfolio = true;
           nicheFeatures.showProcess = true;
+        } else if (nicheKey === "peluqueria") {
+          nicheFeatures.showWhyChooseUs = false;
+          nicheFeatures.showInquiry = false;
         }
         setConfig({
           business: { type: nicheKey },

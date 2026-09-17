@@ -6,7 +6,7 @@ import type { StepProps } from "@/lib/wizard/wizard-types";
 import type { WizardNiche } from "@/lib/wizard/wizard-types";
 
 const NICHE_IDS: WizardNiche[] = [
-  "barberia", "estetica", "tattoo", "nails", "cafeteria", "remodelaciones", "employment", "otro",
+  "barberia", "estetica", "tattoo", "nails", "cafeteria", "remodelaciones", "peluqueria", "employment", "otro",
 ];
 
 const NICHE_ICONS: Record<string, React.ReactNode> = {
@@ -43,6 +43,13 @@ const NICHE_ICONS: Record<string, React.ReactNode> = {
   remodelaciones: (
     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" /><polyline points="9 22 9 12 15 12 15 22" />
+    </svg>
+  ),
+  peluqueria: (
+    // Secador de pelo
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3 9a6 6 0 0 1 6-6h3l8 2v8l-8 2H9a6 6 0 0 1-6-6z" /><circle cx="9" cy="9" r="2" />
+      <path d="M11 15l-1 6h3" />
     </svg>
   ),
   employment: (

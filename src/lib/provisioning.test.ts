@@ -81,7 +81,7 @@ test("6 · modo solo siembra un solo miembro de personal; employment no siembra 
 // Sólo corre si el checkout del template está al lado (misma máquina de Liam); si no, se declara omitida.
 const TEMPLATE_PRESETS = "C:/Users/liama/Desktop/Nichos/Barber-shop-template-main/src/config/presets";
 test("7 · el catálogo sembrado coincide con los presets he del template (id, duración, precio, nombre)", { skip: !existsSync(TEMPLATE_PRESETS) && "template no disponible en esta máquina" }, () => {
-  for (const niche of ["barberia", "estetica", "tattoo", "nails", "cafeteria", "remodelaciones"] as const) {
+  for (const niche of ["barberia", "estetica", "tattoo", "nails", "cafeteria", "remodelaciones", "peluqueria"] as const) {
     const src = readFileSync(`${TEMPLATE_PRESETS}/${niche}.he.ts`, "utf8");
     const block = src.slice(src.indexOf("\n  services: ["), src.indexOf("\n  ],", src.indexOf("\n  services: [")));
     // Un bloque por servicio ("    {" …), campos por regex independiente: el orden de claves varía por nicho.

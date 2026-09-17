@@ -1,15 +1,16 @@
-export type BusinessNiche = "barberia" | "estetica" | "tattoo" | "nails" | "cafeteria" | "remodelaciones" | "employment";
+export type BusinessNiche = "barberia" | "estetica" | "tattoo" | "nails" | "cafeteria" | "remodelaciones" | "peluqueria" | "employment";
 
 // N08 T1: ids, nombre (he), duración y precio = presets *.he.ts del template (niche-presets.he.json);
 // antes cafetería y remodelaciones tenían ids que el template no conoce. employment no tiene preset.
-export type NicheService = { id: string; label: string; duration?: number; price?: number };
+// BLOQUE-04: priceMax (tope del rango) y mode (reserva|consulta; ausente = reserva) — opcionales, sólo peluquería los usa.
+export type NicheService = { id: string; label: string; duration?: number; price?: number; priceMax?: number; mode?: "reserva" | "consulta" };
 
 export type ServiceVisibilityConfig = {
   visibleServices?: string[] | null;
   features?: Record<string, boolean>;
 };
 
-const BUSINESS_NICHES = ["barberia", "estetica", "tattoo", "nails", "cafeteria", "remodelaciones", "employment"] as const;
+const BUSINESS_NICHES = ["barberia", "estetica", "tattoo", "nails", "cafeteria", "remodelaciones", "peluqueria", "employment"] as const;
 
 export const NICHE_SERVICES: Record<BusinessNiche, NicheService[]> = {
   barberia: [
@@ -59,6 +60,20 @@ export const NICHE_SERVICES: Record<BusinessNiche, NicheService[]> = {
     { id: "exterior", label: "צביעה חיצונית", duration: 0, price: 2500 },
     { id: "deck-fence", label: "צביעת דק וגדר", duration: 0, price: 800 },
   ],
+  peluqueria: [
+    { id: "cut", label: "תספורת אישה", duration: 60, price: 120, priceMax: 350 },
+    { id: "cut-blowdry", label: "תספורת + פן", duration: 90, price: 150, priceMax: 450 },
+    { id: "blowdry", label: "פן", duration: 45, price: 50, priceMax: 160 },
+    { id: "root-color", label: "צבע שורש", duration: 90, price: 130, priceMax: 300 },
+    { id: "full-color", label: "צבע ראש מלא", duration: 120, price: 180, priceMax: 600 },
+    { id: "highlights", label: "גוונים / בליאז׳", duration: 180, price: 600, priceMax: 1500, mode: "consulta" },
+    { id: "straightening", label: "החלקה (קרטין / אורגנית)", duration: 240, price: 600, priceMax: 2500, mode: "consulta" },
+    { id: "treatment", label: "טיפול שיער (לחות / שיקום)", duration: 60, price: 580, priceMax: 1100 },
+    { id: "event-style", label: "תסרוקת לאירוע", duration: 90, price: 250, priceMax: 800 },
+    { id: "bride", label: "תסרוקת כלה + ניסיון", duration: 120, price: 800, priceMax: 2500, mode: "consulta" },
+    { id: "kids-cut", label: "תספורת ילדים", duration: 30, price: 86, priceMax: 216 },
+    { id: "consult", label: "ייעוץ ואבחון", duration: 15, price: 0, priceMax: 250 },
+  ],
   employment: [
     { id: "job-placement", label: "Job Placement" },
     { id: "resume-review", label: "Resume Review" },
@@ -75,6 +90,7 @@ export const LANDING_SERVICES_DEFAULTS: Record<BusinessNiche, number> = {
   nails: 3,
   cafeteria: 4,
   remodelaciones: 4,
+  peluqueria: 4,
   employment: 4,
 };
 

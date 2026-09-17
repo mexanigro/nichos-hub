@@ -14,7 +14,7 @@ function slugify(name: string): string {
     .slice(0, 40);
 }
 
-const VALID_NICHES = ["barberia", "estetica", "tattoo", "nails", "cafeteria", "remodelaciones", "employment", "otro"];
+const VALID_NICHES = ["barberia", "estetica", "tattoo", "nails", "cafeteria", "remodelaciones", "peluqueria", "employment", "otro"];
 
 const ALLOWED_ORIGINS = [
   "arzac.studio",

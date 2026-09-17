@@ -374,6 +374,7 @@ export default function SalesPage() {
                     <option value="nails">Nails</option>
                     <option value="cafeteria">Cafetería</option>
                     <option value="remodelaciones">Remodelaciones</option>
+                    <option value="peluqueria">Peluquería</option>
                   </select>
                 </div>
               </div>

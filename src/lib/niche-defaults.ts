@@ -3,9 +3,9 @@
  * Fuente única de verdad para onboarding y provision.
  */
 
-export type BusinessNiche = "barberia" | "estetica" | "tattoo" | "nails" | "cafeteria" | "remodelaciones" | "employment";
+export type BusinessNiche = "barberia" | "estetica" | "tattoo" | "nails" | "cafeteria" | "remodelaciones" | "peluqueria" | "employment";
 
-export const VALID_NICHES: BusinessNiche[] = ["barberia", "estetica", "tattoo", "nails", "cafeteria", "remodelaciones", "employment"];
+export const VALID_NICHES: BusinessNiche[] = ["barberia", "estetica", "tattoo", "nails", "cafeteria", "remodelaciones", "peluqueria", "employment"];
 
 export function buildFeatures(niche: string, mode: "solo" | "team"): Record<string, boolean> {
   const base: Record<string, boolean> = {
@@ -38,6 +38,10 @@ export function buildFeatures(niche: string, mode: "solo" | "team"): Record<stri
   } else if (niche === "employment") {
     base.showBooking = false;
     base.showProcess = true;
+  } else if (niche === "peluqueria") {
+    // Brief peluquería: sin whyChooseUs ni formulario; antes/después llega con su variante (4.3).
+    base.showWhyChooseUs = false;
+    base.showInquiry = false;
   }
 
   return base;
@@ -51,6 +55,7 @@ export function getDefaultTheme(niche: string): string {
     nails: "pastel-soft",
     cafeteria: "warm-cream",
     remodelaciones: "pro-slate",
+    peluqueria: "classic-dark",
     employment: "pro-slate",
   };
   return map[niche] || "classic-dark";
@@ -69,6 +74,7 @@ export function getDefaultSplash(niche: string): number {
     nails: 3,            // Pulse
     cafeteria: 6,        // Cafeteria — was 3 (Pulse), template uses 6
     remodelaciones: 7,   // Remodelaciones — was 1 (Classic), template uses 7
+    peluqueria: 1,       // Classic — el logo del cliente manda
     employment: 1,       // Classic
   };
   return map[niche] || 1;

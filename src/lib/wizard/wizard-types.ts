@@ -8,6 +8,7 @@ export const WIZARD_NICHES = [
   "nails",
   "cafeteria",
   "remodelaciones",
+  "peluqueria",
   "employment",
   "otro",
 ] as const;

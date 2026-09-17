@@ -18,6 +18,7 @@ import {
   User,
   Users,
   Briefcase,
+  Wind,
 } from "lucide-react";
 import { LogoPicker } from "@/components/logo-upload-field";
 import {
@@ -26,7 +27,7 @@ import {
   DEFAULT_CLIENT_LANGUAGE,
 } from "@/lib/client-language";
 
-type BusinessNiche = "barberia" | "estetica" | "tattoo" | "nails" | "cafeteria" | "remodelaciones" | "employment";
+type BusinessNiche = "barberia" | "estetica" | "tattoo" | "nails" | "cafeteria" | "remodelaciones" | "peluqueria" | "employment";
 
 const NICHES: { id: BusinessNiche; label: string; icon: React.ComponentType<{ size?: number; className?: string }> }[] = [
   { id: "barberia", label: "Barbería", icon: Scissors },
@@ -35,6 +36,7 @@ const NICHES: { id: BusinessNiche; label: string; icon: React.ComponentType<{ si
   { id: "nails", label: "Nails", icon: Palette },
   { id: "cafeteria", label: "Cafetería", icon: Coffee },
   { id: "remodelaciones", label: "Remodelaciones", icon: Hammer },
+  { id: "peluqueria", label: "Peluquería", icon: Wind },
   { id: "employment", label: "Employment", icon: Briefcase },
 ];
 

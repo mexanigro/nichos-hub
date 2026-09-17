@@ -63,3 +63,10 @@ test("unknown visible service IDs are ignored before counting or saving", () => 
     ["lip-filler"],
   );
 });
+
+test("peluqueria: catálogo PEL de 12 servicios, modo consulta sólo en los tres cotizados (BLOQUE-04)", () => {
+  const pel = getNicheServices("peluqueria");
+  assert.equal(pel.length, 12);
+  assert.deepEqual(pel.filter((s) => s.mode === "consulta").map((s) => s.id), ["highlights", "straightening", "bride"]);
+  assert.ok(pel.every((s) => s.priceMax !== undefined && s.priceMax >= (s.price ?? 0)));
+});

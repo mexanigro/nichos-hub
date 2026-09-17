@@ -587,6 +587,7 @@ export default function SeguimientoPage() {
                     <option value="nails">Nails</option>
                     <option value="cafeteria">Cafeteria</option>
                     <option value="remodelaciones">Remodelaciones</option>
+                    <option value="peluqueria">Peluquería</option>
                     <option value="empleo">Empleo</option>
                   </select>
                 </div>
