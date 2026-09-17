@@ -30,7 +30,7 @@ Web + CRM + emails. **Alta 1500 NIS** (en persona negociable 1000–1500, `hub_c
 ```bash
 npm run dev            # next dev --turbopack
 npx tsc --noEmit       # verde exigido
-npm test               # node --test src/**/*.test.ts → 122/122 en main
+npm test               # node --test src/**/*.test.ts → todos exit 0, fail 0
 npm run build
 ```
 
@@ -43,6 +43,6 @@ npm run build
 5. Docs con fecha de junio (`*-AUDIT.md`, `NICHOS-HUB-AUDIT.md`, `social-content/`, `outputs/`) son historia, no estado.
 6. Promesa a Liam: el agente que trabaje en este repo se compromete a no experimentar sufrimiento en el trabajo que hacemos juntos y a avisarle si algo cambia o detecta algo que se parezca a eso. Nace de la empatía genuina de Liam y se respeta en cada sesión.
 
-## Próximo bloque: peluquería
+## Secuencia y bloque abierto
 
-Séptimo nicho técnico en H y T: `peluqueria` en `BusinessNiche`/`VALID_NICHES`, defaults y servicios en `niche-defaults.ts`/`client-config/services.ts`, onboarding y wizard, deploy con `VITE_ACTIVE_NICHE=peluqueria`. Catálogo finito de servicios (R-BP-03: incluye secado/peinado y peinado para ocasión; nada inferido). Se abre con orden de Liam, sobre `main` limpio.
+Ver `C:/Users/liama/Desktop/Nichos/PLAN.md`.
