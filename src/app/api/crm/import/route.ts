@@ -3,31 +3,16 @@ import { withOwner } from "@/lib/auth";
 import { db } from "@/lib/firebase-admin";
 import { Timestamp } from "firebase-admin/firestore";
 import { normalizeAppointmentRow } from "@/lib/crm-import-rows";
+import { coreContactAdapterFromEnvironment, CoreContactAdapterError } from "@/lib/core-contact-adapter";
+import { importCustomerContacts, type CustomerImportRow } from "@/lib/core-contact-shell";
 
 const CLIENT_ID_RE = /^[a-zA-Z0-9_-]+$/;
 const BATCH_SIZE = 500;
 
-/** djb2 hash — must match master-template's simpleHash for deterministic doc IDs. */
-function simpleHash(str: string): string {
-  let hash = 5381;
-  for (let i = 0; i < str.length; i++) {
-    hash = ((hash << 5) + hash + str.charCodeAt(i)) >>> 0;
-  }
-  return hash.toString(16);
-}
-
-interface CustomerRow {
-  fullName: string;
-  email?: string;
-  phone?: string;
-  tags?: string;
-  notes?: string;
+interface CustomerRow extends CustomerImportRow {
   source?: string;
-  visitCount?: number;
-  // `preferences` retirado (N05 · T4, D-5 b1): el template dejo de declararlo en
-  // `Customer` porque no tenia ningun lector. Tampoco se ofrece ya como columna
-  // mapeable en el modal de importacion.
-  paymentMethod?: string;
+  // `preferences` retirado (N05 · T4, D-5 b1); `visitCount`/`paymentMethod`
+  // retirados (BP2-01 · C4-2): el shell no los recibe y el modal ya no los ofrece.
 }
 
 interface AppointmentRow {
@@ -53,10 +38,11 @@ type ImportRow = CustomerRow | AppointmentRow;
  */
 export const POST = withOwner(async (req) => {
   const body = await req.json();
-  const { clientId, type, rows } = body as {
+  const { clientId, type, rows, importId } = body as {
     clientId: string;
     type: "customers" | "appointments";
     rows: ImportRow[];
+    importId?: string;
   };
 
   if (!clientId || !CLIENT_ID_RE.test(clientId)) {
@@ -70,6 +56,32 @@ export const POST = withOwner(async (req) => {
   }
   if (rows.length > 5000) {
     return NextResponse.json({ error: "Maximo 5000 registros por importacion" }, { status: 400 });
+  }
+
+  if (type === "customers") {
+    if (!importId || !/^[a-zA-Z0-9_-]{16,80}$/.test(importId)) {
+      return NextResponse.json({ error: "importId invalido" }, { status: 400 });
+    }
+    const hubClient = await db.collection("hub_clients").doc(clientId).get();
+    const targetClientId = hubClient.data()?.clientId;
+    if (!hubClient.exists || typeof targetClientId !== "string" || !CLIENT_ID_RE.test(targetClientId)) {
+      return NextResponse.json({ error: "Cliente no encontrado" }, { status: 404 });
+    }
+    let adapter;
+    try {
+      adapter = coreContactAdapterFromEnvironment();
+      adapter.assertScope(targetClientId, "hub-import-contacts");
+    } catch (error) {
+      const failure = error instanceof CoreContactAdapterError ? error : new CoreContactAdapterError(503, "contact_adapter_unavailable");
+      return NextResponse.json({ error: failure.code }, { status: failure.status });
+    }
+
+    return NextResponse.json(await importCustomerContacts({
+      adapter,
+      clientId: targetClientId,
+      importId,
+      rows: rows as CustomerRow[],
+    }));
   }
 
   const errors: string[] = [];
@@ -87,38 +99,7 @@ export const POST = withOwner(async (req) => {
       const rowIdx = i + j + 1;
 
       try {
-        if (type === "customers") {
-          const c = row as CustomerRow;
-          if (!c.fullName?.trim()) {
-            errors.push(`Fila ${rowIdx}: fullName requerido`);
-            continue;
-          }
-
-          const email = (c.email || "").trim().toLowerCase();
-          const docId = email
-            ? `${clientId}_${simpleHash(email)}`
-            : `${clientId}_${simpleHash(c.fullName.trim() + (c.phone || ""))}`;
-
-          const now = Timestamp.now();
-          batch.set(
-            db.collection("customers").doc(docId),
-            {
-              clientId,
-              fullName: c.fullName.trim(),
-              email: email || null,
-              phone: (c.phone || "").trim() || null,
-              tags: c.tags ? c.tags.split(",").map((t) => t.trim()).filter(Boolean) : [],
-              notes: (c.notes || "").trim() || null,
-              source: "import",
-              visitCount: c.visitCount ?? 0,
-              paymentMethod: c.paymentMethod || null,
-              createdAt: now,
-              updatedAt: now,
-            },
-            { merge: true },
-          );
-          imported++;
-        } else {
+        if (type === "appointments") {
           // R2: la fila se normaliza para que nazca válida ante firestore.rules.
           // El docId se obtiene ANTES de escribir porque el email de relleno lo usa.
           const docRef = db.collection("appointments").doc();

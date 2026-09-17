@@ -41,10 +41,9 @@ const CUSTOMER_FIELDS = [
   { value: "phone", label: "Telefono" },
   { value: "tags", label: "Tags (separados por coma)" },
   { value: "notes", label: "Notas" },
-  { value: "visitCount", label: "Cant. visitas" },
-  { value: "paymentMethod", label: "Metodo de pago" },
-  // "Preferencias" retirado (N05 · T4, D-5 b1) junto con el campo: dejarlo aqui
-  // habria dado una columna mapeable que el endpoint descarta en silencio.
+  // "Preferencias" retirado (N05 · T4, D-5 b1) y "Cant. visitas"/"Metodo de pago"
+  // retirados (BP2-01 · C4-2): el shell de contactos los descartaba en silencio;
+  // visitas y dinero no son contacto y no se importan por esta via.
 ] as const;
 
 const APPOINTMENT_FIELDS = [
@@ -90,6 +89,7 @@ export function CrmImportModal({
   const [mappedRows, setMappedRows] = useState<Record<string, unknown>[]>([]);
   const [result, setResult] = useState<ImportResult | null>(null);
   const [error, setError] = useState("");
+  const importIdRef = useRef<string | null>(null);
 
   const fields = importType === "customers" ? CUSTOMER_FIELDS : APPOINTMENT_FIELDS;
 
@@ -153,7 +153,7 @@ export function CrmImportModal({
         if (!field) continue;
         const val = row[Number(colIdx)]?.trim();
         if (val) {
-          obj[field] = field === "visitCount" || field === "duration" || field === "amountPaidCents"
+          obj[field] = field === "duration" || field === "amountPaidCents"
             ? Number(val) || 0
             : val;
           hasData = true;
@@ -196,10 +196,12 @@ export function CrmImportModal({
     setStep("importing");
     setError("");
     try {
+      const importId = importIdRef.current ?? `import-${globalThis.crypto.randomUUID()}`;
+      importIdRef.current = importId;
       const res = await fetch("/api/crm/import", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ clientId, type: importType, rows: mappedRows }),
+        body: JSON.stringify({ clientId, type: importType, rows: mappedRows, importId }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Error al importar");
@@ -262,7 +264,7 @@ export function CrmImportModal({
                   {(["customers", "appointments"] as const).map((t) => (
                     <button
                       key={t}
-                      onClick={() => setImportType(t)}
+                      onClick={() => { setImportType(t); importIdRef.current = null; }}
                       className={`rounded-lg border px-4 py-2 text-xs transition-colors ${
                         importType === t
                           ? "border-accent/40 bg-accent/10 text-accent"

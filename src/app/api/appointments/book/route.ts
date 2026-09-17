@@ -15,6 +15,8 @@ import {
   isAfter,
 } from "date-fns";
 import type { AppointmentService } from "@/types";
+import { coreContactAdapterFromEnvironment, CoreContactAdapterError } from "@/lib/core-contact-adapter";
+import { recordBookedContact } from "@/lib/core-contact-shell";
 
 const CLIENT_ID_RE = /^[a-zA-Z0-9_-]+$/;
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
@@ -58,6 +60,15 @@ export const POST = withAgentAuth(async (req: NextRequest) => {
     return NextResponse.json({ error: "date invalido (YYYY-MM-DD)" }, { status: 400 });
   if (!time || !TIME_RE.test(time))
     return NextResponse.json({ error: "time invalido (HH:mm)" }, { status: 400 });
+
+  let contactAdapter;
+  try {
+    contactAdapter = coreContactAdapterFromEnvironment();
+    contactAdapter.assertScope(clientId, "hub-book-contact");
+  } catch (error) {
+    const failure = error instanceof CoreContactAdapterError ? error : new CoreContactAdapterError(503, "contact_adapter_unavailable");
+    return NextResponse.json({ success: false, error: failure.code }, { status: failure.status });
+  }
 
   // Leer config para obtener duracion del servicio y buffer
   const configSnap = await db.collection("config").doc(clientId).get();
@@ -144,34 +155,27 @@ export const POST = withAgentAuth(async (req: NextRequest) => {
       return docRef.id;
     });
 
-    // Fire-and-forget: upsert customer
-    db.collection("customers")
-      .doc(`${clientId}_${customerPhone.replace(/\+/g, "")}`)
-      .set(
-        {
-          clientId,
-          fullName: customerName,
-          email: customerEmail,
-          phone: customerPhone,
-          source: "whatsapp",
-          updatedAt: FieldValue.serverTimestamp(),
-        },
-        { merge: true }
-      )
-      .catch((err) =>
-        console.warn("[appointments/book] customer upsert failed:", err)
-      );
+    const contact = await recordBookedContact({
+      adapter: contactAdapter,
+      clientId,
+      appointmentId,
+      customerName,
+      customerEmail,
+      customerPhone,
+    });
 
     // Fire-and-forget: notify admin phones about the new booking
-    notifyAdminPhones(clientId, {
-      customerName,
-      serviceName: servicio.name,
-      staffName: staffInfo.name,
-      date,
-      time,
-    }).catch((err) =>
-      console.warn("[appointments/book] admin notification failed:", err)
-    );
+    if (contact.state === "confirmed") {
+      notifyAdminPhones(clientId, {
+        customerName,
+        serviceName: servicio.name,
+        staffName: staffInfo.name,
+        date,
+        time,
+      }).catch((err) =>
+        console.warn("[appointments/book] admin notification failed:", err)
+      );
+    }
 
     return NextResponse.json({
       success: true,
@@ -184,6 +188,7 @@ export const POST = withAgentAuth(async (req: NextRequest) => {
         serviceName: servicio.name,
         customerName,
       },
+      contact,
     });
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err);
