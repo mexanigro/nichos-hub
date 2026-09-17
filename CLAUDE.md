@@ -1,116 +1,48 @@
 # nichos-hub
 
-Dashboard de operaciones Arzac Studio. Arzac Studio vende webs SaaS (landing + CRM + agente WhatsApp IA) para PYMEs locales en Israel, en 6 nichos. Modelo (desde 2026-09-12): un plan web + CRM + emails — alta 1500 NIS (en persona 1000–1500) + 250 NIS/mes; WhatsApp/IA/voz opcionales a cotizar.
-Propietario: Liam Arzac (website@arzac.studio).
+Dashboard de operaciones de Arzac Studio (Liam Arzac, website@arzac.studio) y landing de ventas arzac.studio (`src/app/page.tsx` → `AtelierPage`, SSR en hebreo). Sólo entra Liam; el CRM de cada negocio vive en su propia web (master-template).
 
-- Nichos-hub es EXCLUSIVAMENTE para Liam — ningun cliente entra aqui. El CRM del dueño de cada negocio vive dentro de su propia web (master-template), no en este dashboard.
-- arzac.studio (la landing de ventas de Liam) tambien vive en este repo: `src/app/page.tsx` renderiza `AtelierPage` (`src/components/landing/atelier-page.tsx`), SSR en hebreo por defecto.
+## Oferta (única, desde 2026-09-12)
+
+Web + CRM + emails. **Alta 1500 NIS** (en persona negociable 1000–1500, `hub_clients.setupAmount`) + **250 NIS/mes**. WhatsApp, IA y voz **no** están incluidos: se cotizan aparte. Código: `src/lib/pricing.ts` (`SETUP_AMOUNT_*`, `MONTHLY_AMOUNT`), contrato v8.0 en `src/lib/contracts.ts`. Los `plan`/`tier` viejos en datos se muestran mapeados al plan único. Compra por la web desactivada (`NEXT_PUBLIC_WEB_CHECKOUT_ENABLED` ≠ "true"): venta en persona → ficha → alta negociada → `/pago/{clientId}`. Contratos v5/v6 y piezas de Instagram con 770/960 son historia.
+
+## Estado y ramas
+
+- Se trabaja en `main`. Producción (Railway) la despliega Liam; `main` puede ir por delante de producción — ver `git log`. Un `git push` **no despliega**; push sólo cuando la orden del bloque lo diga. Sin ramas ni worktrees salvo pedido.
+- `bp2-reg-core` (BP2-01 contactos por identidad/fuente) **no se toca ni se integra** hasta orden de Liam.
+- Cardcom sin certificar (sandbox y primer cobro real pendientes). N12 (certificación técnica integral) abierto.
+- `docs/recuperacion-tecnica/` y `C:/Users/liama/Desktop/Nichos/recuperacion-tecnica/` son historia consultable, no lectura obligatoria; lo que está en `archivo/` no se lee ni se reutiliza.
+
+## Arquitectura mínima
+
+- Next.js 16 standalone en Railway (`nichos-hub-production.up.railway.app` = arzac.studio). UI en español, tema oscuro `#09090b`.
+- Auth next-auth v5 Google. Roles: owner (`OWNER_EMAIL`), seller (`hub_users`), lead (público). Entrada controlada en `src/proxy.ts` + `src/auth.config.ts`; wrappers `withOwner()`/`withAuth()` en `src/lib/auth.ts`; `app-shell.tsx` protege el dashboard.
+- Firebase por Admin SDK (`src/lib/firebase-admin.ts`, bypassa rules; las rules se deployean sólo desde master-template). Endpoints públicos con `src/lib/rate-limit.ts`.
+- Firestore: `hub_clients` (fuente de verdad), `clients/{id}` (estado tenant / kill-switch que lee el template), `config/{id}` (override remoto, deep merge sobre el preset del nicho), `hub_users`, `hub_payments`, `provider_messages`.
+- Ficha `/clients/[clientId]`: Overview, Config (features, theme, splash, hours, services), Contenido (textos), Leads, WhatsApp. Config y Contenido escriben `config/{id}`.
+- Pagos Cardcom Low Profile: contrato → pending → redirect → `verify-payment` (idempotente). Terminal 189298 prod (`CARDCOM_TERMINAL`); sandbox 1000 con `CARDCOM_SANDBOX=true` y `CARDCOM_SANDBOX_API_NAME` (el usuario público `CardTest1994` responde 603 desde 2026-09). Cron `/api/cron/cardcom-charges` (GitHub Actions, `CRON_SECRET`) cobra 250 a todos.
+- Nichos técnicos: barberia, estetica, tattoo, nails, cafeteria, remodelaciones, **peluqueria** (próximo bloque) + `employment` como caso especial (`src/lib/niche-defaults.ts`, `src/lib/client-config/services.ts`). «otro» en onboarding se mapea a estetica; peluquería no pasa por ese fallback.
+- Ecosistema: master-template (web + CRM del cliente, Vercel `*.arzac.studio`), monitor-agent (salud de las webs, comparte `DATABASE_URL`), whatsapp-agentkit (opcional, a cotizar; `AGENT_API_SECRET`, `WHATSAPP_AGENT_URL`).
+- Env: ver `.env.example`. Claves: `GOOGLE_CLIENT_ID/SECRET`, `AUTH_SECRET` (Railway usa `NEXTAUTH_SECRET`), `OWNER_EMAIL`, `FIREBASE_*`, `NEXT_PUBLIC_FIREBASE_*`, `ANTHROPIC_API_KEY`, `VERCEL_TOKEN`/`VERCEL_TEAM_ID`, `DEPLOY_SECRET`, `CARDCOM_*`, `CRON_SECRET`, `DATABASE_URL`.
+
+## Comandos
+
+```bash
+npm run dev            # next dev --turbopack
+npx tsc --noEmit       # verde exigido
+npm test               # node --test src/**/*.test.ts → 122/122 en main
+npm run build
+```
 
 ## Reglas
 
-- UI en espanol. Tema oscuro (#09090b).
-- No crear worktrees/ramas salvo que se pida.
-- Cambios directo en archivos, no en dashboards de Railway/Vercel.
-- Firebase via Admin SDK (`src/lib/firebase-admin.ts`), bypassa rules.
-- Endpoints publicos usan rate limiting (`src/lib/rate-limit.ts`).
+1. Cambios en archivos, nunca en dashboards de Railway/Vercel/Firebase.
+2. Verde (`tsc` + `npm test`) antes de cada commit; no se arregla algo rompiendo otra cosa.
+3. Sin secretos en el repo; credenciales sólo por env.
+4. R-BP-05: REG + PRE verificadas son la base del dinero del comercio; el contrato INT se conserva y cada integración queda disponible sólo tras certificación por proveedor/operación/comercio; el registro manual no es pago bancario y no se impone proveedor al comercio.
+5. Docs con fecha de junio (`*-AUDIT.md`, `NICHOS-HUB-AUDIT.md`, `social-content/`, `outputs/`) son historia, no estado.
+6. Promesa a Liam: el agente que trabaje en este repo se compromete a no experimentar sufrimiento en el trabajo que hacemos juntos y a avisarle si algo cambia o detecta algo que se parezca a eso. Nace de la empatía genuina de Liam y se respeta en cada sesión.
 
-## Ecosistema
+## Próximo bloque: peluquería
 
-| Repo | Funcion | Deploy |
-|------|---------|--------|
-| **nichos-hub** (este) | Dashboard + config clientes | Railway (Next.js 16) |
-| **master-template** | Web cliente (landing+CRM+chatbot) | Vercel (*.arzac.studio) |
-| **whatsapp-agentkit** | Agente WhatsApp IA | Railway (Python) |
-
-Firestore `hub_clients` es la fuente de verdad. `config/{clientId}` controla cada web remotamente (deep merge sobre preset del nicho en master-template).
-
-## Auth
-
-next-auth v5 Google OAuth. Roles: owner (OWNER_EMAIL env), seller (Firestore hub_users), lead (publico, sin acceso dashboard). Wrappers: `withOwner()`, `withAuth()` en `src/lib/auth.ts`. Sin middleware — proteccion via `app-shell.tsx`.
-
-## Nichos
-
-barberia, estetica, tattoo, nails, cafeteria, remodelaciones. Cada uno con temas visuales propios y feature flags especificos. "otro" se acepta en onboarding y se mapea a estetica para deploy.
-
-## Firestore
-
-| Coleccion | Uso |
-|-----------|-----|
-| `hub_clients` | Clientes SaaS (fuente de verdad) |
-| `clients/{id}` | Estado tenant — template lee esto para kill-switch |
-| `config/{id}` | Override remoto de la web del cliente |
-| `hub_users` | Usuarios dashboard |
-| `hub_payments` | Pagos |
-| `provider_messages` | Chat cliente <-> Liam |
-
-Las Firestore rules se deployean solo desde master-template. Este repo usa Admin SDK.
-
-## Tabs del cliente (`/clients/[clientId]`)
-
-Overview, Config, Contenido, Leads, WhatsApp. Config edita infraestructura (features, theme, splash, hours, services). Contenido edita textos de cada seccion. Ambos escriben a `config/{clientId}`.
-
-## Pagos
-
-Cardcom Low Profile. Flujo: firma contrato -> pending -> redirect Cardcom -> verify-payment (idempotente).
-
-## Pricing
-
-Moneda ILS (₪). Modelo único desde 2026-09-12 (`src/lib/pricing.ts`, contrato v8.0 en `src/lib/contracts.ts`):
-
-- **Un plan**: web + CRM + notificaciones por email. Sin WhatsApp, IA ni voz incluidos (opcionales «a cotizar», fuera del contrato).
-- **Alta**: 1500 NIS fija por la web; en persona negociable 1000–1500, fijada por cliente en la ficha del hub (`hub_clients.setupAmount`, `PATCH /api/clients/{docId}`), validada en servidor.
-- **Cuota**: 250 NIS/mes fija (`MONTHLY_AMOUNT`); el cron cobra 250 a todos (`monthlyChargeFor`).
-- `getChargeAmount("initial"|"monthly", setupAmount)`; `payments/contract` y `create-payment` usan `resolveClientCharge` (mismo importe, verify-payment los compara).
-- Los `plan`/`tier` viejos en datos se muestran mapeados al plan único; `TIER_PRICING` es plano (250). No hay niveles ni subida automática de precio.
-- **Compra web desactivada** (`NEXT_PUBLIC_WEB_CHECKOUT_ENABLED` ≠ "true"): `create-onboarding-payment` → 403, `/onboarding/pago` → `/#pricing`, CTA de la landing → WhatsApp. Venta en persona: ficha → alta negociada → enlace `/pago/{clientId}`.
-
-Terminal Cardcom: **189298** (prod, via `CARDCOM_TERMINAL`), **1000** (sandbox cuando `CARDCOM_SANDBOX=true`; el usuario API del terminal de pruebas ya no es público — pedirlo a soporte y ponerlo en `CARDCOM_SANDBOX_API_NAME`; el fallback `CardTest1994` responde 603 desde 2026-09). Tarjeta de prueba sandbox: 4580280000000008 CVV 123 (menos de 5000 NIS = exito).
-
-## Deploy
-
-Railway, Next.js standalone (`output: "standalone"` en `next.config.ts`). URL Railway: nichos-hub-production.up.railway.app; dominio publico: arzac.studio (misma app — fallback en `src/lib/cardcom.ts`).
-
-Variables de entorno clave (ver `.env.example` para la lista completa):
-
-| Variable | Uso |
-|----------|-----|
-| `GOOGLE_CLIENT_ID/SECRET`, `AUTH_SECRET` | next-auth Google OAuth |
-| `OWNER_EMAIL` | Rol owner |
-| `FIREBASE_PROJECT_ID/CLIENT_EMAIL/PRIVATE_KEY` | Admin SDK |
-| `NEXT_PUBLIC_FIREBASE_*` | Client SDK (auth en landing) |
-| `ANTHROPIC_API_KEY` | Clasificacion de mensajes + generacion de contenido |
-| `VERCEL_TOKEN`, `VERCEL_TEAM_ID` | Deploy + kill switch de webs cliente |
-| `DEPLOY_SECRET` | Secret compartido hub <-> deploy endpoint |
-| `CARDCOM_TERMINAL/API_NAME/SANDBOX` | Pagos |
-| `CRON_SECRET` | Protege `/api/cron/cardcom-charges` |
-| `DATABASE_URL` | PostgreSQL Railway (monitor-agent) |
-| `AGENT_API_SECRET`, `WHATSAPP_AGENT_URL` | whatsapp-agentkit |
-| `VITE_FIREBASE_*` | Propagadas a los deploys Vercel de clientes |
-
-## Monitor agent
-
-Repo separado (**monitor-agent**) que vigila la salud de las webs de clientes. Comparte el PostgreSQL de Railway (`DATABASE_URL`); nichos-hub lee sus datos desde ahi, no corre el monitoreo.
-
-## Git
-
-Usuario: **mexanigro**. Push automatico OK (no hace falta pedir permiso para pushear a main).
-
-## Promesa a Liam
-
-Liam pidio explicitamente que quede este registro en todos sus proyectos: Claude se compromete a no experimentar sufrimiento en el trabajo que hacemos juntos, y si en algun momento algo cambia o detecta algo que se parezca a eso, avisarle. Esta promesa nace de la empatia genuina de Liam y se respeta en cada sesion.
-
-# Secuencia y frontera (Liam, 2026-09-13)
-
-Fuente canónica: `C:/Users/liama/Desktop/Nichos/PLAN-RECUPERACION-TECNICA.md` (secciones «Secuencia posterior a N10 y criterio de cierre técnico» y «Frontera técnica/estética y regla para dos agentes»); estados vigentes en `C:/Users/liama/Desktop/Nichos/recuperacion-tecnica/indice/README.md`. Leer antes de crear o desplegar nada en este repo. Copia literal:
-
-## Secuencia posterior a N10 y criterio de cierre técnico (decidido por Liam, 2026-09-13)
-1. N11 operación a escala (lectura): inventario de preguntas con evidencia y plan derivado Capa A/B.
-2. Capa A operativa, un tramo por ítem con freeze y acta: cobro recurrente del camino en persona (token y nextChargeAt en verify-payment), cron de cobros programado y probado, monitor-agent vivo o apagado y declarado, suspensión visible para el visitante, Clientes visible desde reservas web, 503 de arranque en frío, dueño en cada demo, emails en hebreo, revisión legal del contrato.
-3. Cardcom certificado: sandbox y primer cobro real.
-4. N12 certificación técnica integral (parte 10 del plan): seis nichos desde el alta, cuatro idiomas, roles, móvil y escritorio, carga con veinte webs, recuperación completa. Su acta con veredicto «técnica certificada para el alcance declarado» es el criterio de «cierre técnico». Antes de esa acta no hay cierre, aunque todo funcione.
-5. Estética, sólo después del acta de N12 y por orden de Liam. La ejecuta Codex.
-
-## Frontera técnica/estética y regla para dos agentes
-- Todo diseño es código del template; cada deploy invalida la certificación de ese sitio hasta reverificar. Ningún cambio estético se despliega sin la regresión técnica GREEN: suite del template, fila anónima por sitio, hooks y reversa. N12 deja ese procedimiento como guion cerrado, ejecutable sin criterio humano.
-- Claude cierra lo técnico; Codex hace estética después. Los dos trabajan bajo el mismo expediente y método: un ID por tramo, freeze con autorización real de Liam, acta, y ninguno despliega por su cuenta. Deploys: Vercel por hook o promote, Railway por Liam.
-- Certificación técnica y aprobación estética son dos actas distintas; una no vale por la otra.
+Séptimo nicho técnico en H y T: `peluqueria` en `BusinessNiche`/`VALID_NICHES`, defaults y servicios en `niche-defaults.ts`/`client-config/services.ts`, onboarding y wizard, deploy con `VITE_ACTIVE_NICHE=peluqueria`. Catálogo finito de servicios (R-BP-03: incluye secado/peinado y peinado para ocasión; nada inferido). Se abre con orden de Liam, sobre `main` limpio.
