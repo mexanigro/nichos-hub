@@ -13,7 +13,6 @@ import {
   addMinutes,
   isBefore,
   isAfter,
-  format,
 } from "date-fns";
 import type { AppointmentService } from "@/types";
 
@@ -26,10 +25,12 @@ function parseTime(time: string, date: Date): Date {
   return setMinutes(setHours(startOfDay(date), h), m);
 }
 
-function sumarMinutos(hora: string, minutos: number): string {
-  const date = new Date(2000, 0, 1);
-  const t = parseTime(hora, date);
-  return format(addMinutes(t, minutos), "HH:mm");
+function sumarMinutos(hora: string, minutos: number): string | null {
+  if (!/^([01]\d|2[0-3]):[0-5]\d$/.test(hora) || !Number.isInteger(minutos) || minutos <= 0) return null;
+  const [horas, minuto] = hora.split(":").map(Number);
+  const fin = horas * 60 + minuto + minutos;
+  if (fin > 1440) return null;
+  return `${String(Math.floor(fin / 60)).padStart(2, "0")}:${String(fin % 60).padStart(2, "0")}`;
 }
 
 export const POST = withAgentAuth(async (req: NextRequest) => {
@@ -83,6 +84,9 @@ export const POST = withAgentAuth(async (req: NextRequest) => {
   const customerEmail = `wa_${customerPhone.replace(/\+/g, "")}@whatsapp.local`;
   const duration = servicio.duration;
   const endWithBuffer = sumarMinutos(time, duration + bufferMinutes);
+  if (!Number.isInteger(duration) || duration <= 0 || !Number.isInteger(bufferMinutes) || bufferMinutes < 0 || endWithBuffer === null) {
+    return NextResponse.json({ success: false, error: "occupancy_unverifiable" }, { status: 400 });
+  }
 
   // Transaccion: verificar conflicto + escribir appointment + actualizar manifest
   const manifestId = `${clientId}_${staffId}_${date}`;
@@ -122,6 +126,7 @@ export const POST = withAgentAuth(async (req: NextRequest) => {
         date,
         time,
         duration,
+        manifestEnd: endWithBuffer,
         status: "confirmed",
         createdAt: FieldValue.serverTimestamp(),
       });
