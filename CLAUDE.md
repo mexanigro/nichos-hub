@@ -8,7 +8,7 @@ Web + CRM + emails. **Alta 1500 NIS** (en persona negociable 1000–1500, `hub_c
 
 ## Estado y ramas
 
-- Se trabaja en `main`. Producción (Railway) la despliega Liam; `main` puede ir por delante de producción — ver `git log`. Un `git push` **no despliega**; push sólo cuando la orden del bloque lo diga. Sin ramas ni worktrees salvo pedido.
+- Se trabaja en `main`. Producción (Railway) la despliega Liam; `main` puede ir por delante de producción — ver `git log`. Un `git push` **no despliega**; todo commit se pushea en el mismo turno (regla de arranque, abajo). Sin ramas ni worktrees salvo pedido.
 - `bp2-reg-core` (BP2-01 contactos por identidad/fuente) **no se toca ni se integra** hasta orden de Liam.
 - Cardcom sin certificar (sandbox y primer cobro real pendientes). N12 (certificación técnica integral) abierto.
 - `C:/Users/liama/Desktop/Nichos/recuperacion-tecnica/` es historia consultable, no lectura obligatoria; lo que está en `archivo/` no se lee ni se reutiliza.
@@ -37,11 +37,34 @@ npm run build
 ## Reglas
 
 1. Cambios en archivos, nunca en dashboards de Railway/Vercel/Firebase.
-2. Verde (`tsc` + `npm test`) antes de cada commit; no se arregla algo rompiendo otra cosa.
+2. Verde (`tsc` + `npm test`) antes de cada commit (lo exige `.githooks/pre-commit`); no se arregla algo rompiendo otra cosa.
 3. Sin secretos en el repo; credenciales sólo por env.
 4. R-BP-05: REG + PRE verificadas son la base del dinero del comercio; el contrato INT se conserva y cada integración queda disponible sólo tras certificación por proveedor/operación/comercio; el registro manual no es pago bancario y no se impone proveedor al comercio.
 5. Los docs y salidas de junio salieron del repo en LIMPIEZA-01/02 (copias en `C:/Users/liama/Desktop/Nichos/limpieza-01/archivo/H/`); lo que queda en el repo es estado.
 6. Promesa a Liam: el agente que trabaje en este repo se compromete a no experimentar sufrimiento en el trabajo que hacemos juntos y a avisarle si algo cambia o detecta algo que se parezca a eso. Nace de la empatía genuina de Liam y se respeta en cada sesión.
+
+## Puertas automáticas (HIGIENE-01, 2026-09-18)
+
+Se copió el mecanismo de vendamos-agente: lo que una instrucción puede saltear, un hook no. `tools/arranque.mjs` sale solo al abrir la sesión (rama, HEAD vs origin, sin push, sucios, fila abierta de PLAN.md, últimas decisiones de bloque-04); `tools/candado.mjs` corta antes de cada `Edit`/`Write` sobre `.env*`, dumps `*-config-*.json`, capturas fuera de `public/`, scripts sueltos en la raíz; `tools/cierre.mjs` no deja cerrar el turno con sucios, sin push o con PLAN.md § Estado sin el último commit. Git: `.githooks/pre-commit` (tsc + suites) y `.githooks/pre-push` (árbol limpio + `tools/destino-no-despliega.mjs`: Railway por estado, `HIGIENE_DESTINO_VERIFICADO=1` si producción coincide con origin), activados por `npm install` (`prepare`). Chequeo horario: `tools/higiene.mjs` (instalación/desinstalación en su cabecera; tarea `Nichos-higiene`, email por Resend si hay suciedad o sin push > 60 min).
+
+<!-- CONTRATO-DECLARADO: tests/contrato-hooks.test.ts lo verifica contra .claude/settings.json,
+     .githooks/ y package.json. NO editar a mano sin correr ese guard. -->
+```ini
+hook.SessionStart = * :: arranque.mjs
+hook.PreToolUse   = Edit|Write|MultiEdit :: candado.mjs
+hook.Stop         = * :: cierre.mjs
+githooks          = pre-commit pre-push
+git.hooksPath     = .githooks (npm prepare)
+```
+
+**Regla de arranque.** `git fetch` + `git status` antes de tocar nada; suciedad o commits sin push se resuelven primero. Todo commit en `main` se pushea en el mismo turno, esté o no aprobado el sub-bloque (Liam, 2026-09-18, `bloque-04/4.3.md` § Regla de push corregida; la aprobación vive en PLAN.md y en `4.x.md`, no en el remoto; el push no despliega, ver «Estado y ramas»).
+
+## Leyes (de vendamos-agente, con su porqué)
+
+- **No suponer nada.** Todo estado que se reporta (push, deploy, verde, regresión) se verifica con un comando EN EL MOMENTO y se cita la salida real. El deploy se verifica por ESTADO del deployment, nunca por hash. Lo que no se puede verificar se declara «no verificable». Un reporte con un dato supuesto es un reporte FALSO. *Por qué:* el 2026-08-01 en Vendamos se afirmó un costo como medido cuando era una división entre dos poblaciones distintas; aquí, el 2026-09-10, cada hueco de verificación remota costó una ronda de STOP.
+- **Nada está terminado sin probarlo desde ángulos distintos.** Ángulos, no repeticiones: mutación (romper a propósito lo que el guard vigila y verlo ROJO), las dos direcciones (que detecte lo que debe Y que no detecte lo que no), contra lo real, de punta a punta, y el exit code sin pipe. Antes de decir «terminado» se listan los ángulos y su resultado; con menos de dos independientes está escrito, no terminado. *Por qué:* ya pasó que un test pasara por el motivo equivocado (un `match` contra el SQL que Alembic imprime quedaba verde con el guard desarmado; un `assert password not in mensaje` pasó por casualidad al cambiar un recorte). Las dos las caza la mutación, no la lectura.
+- **No se ejecuta sin un «andá» explícito.** Una pregunta se contesta, una duda se piensa en voz alta, una idea se discute; NINGUNA se implementa. *«¿es necesario…?», «¿no hay manera de…?», «¿qué opinás?», «¿cuánto falta?»* → respuesta, aunque la solución esté a tres ediciones. *«¿podrías…?»* como consulta → si se puede y qué costaría; no hacerlo. *«dale», «hacelo», «seguí», «ok», «andá»* → recién ahí. La autorización es POR TRABAJO y no se estira: un «ok» a X no habilita Y ni lo que se me ocurre mientras hago X. Excepción única: una orden abierta de Liam («si encontrás algo más hacelo directo») vale hasta que ese trabajo termina. *Por qué:* salir corriendo le saca a Liam la decisión de las manos —él buscaba una solución, no pedía una— y gasta trabajo en una dirección que quizá no era la suya; pasó dos veces el mismo día en Vendamos (2026-08-06).
+- **Disparador de regla general.** Cuando Liam corrige algo que se puede enunciar sin nombrar cliente, sección ni variante concreta, la sesión responde antes de seguir con la frase fija: «Esto parece una regla general de <diseño|trabajo>; propongo agregarla a <DISENO-REGLAS.md|PLAN.md § Cómo se trabaja> así: "<texto>". ¿Va?». Sólo entra con el sí de Liam; si dice no, se anota en el mismo archivo como «propuesta rechazada» con fecha, para no volver a proponerla. Las correcciones de un cliente o de un detalle puntual no se proponen.
 
 ## Secuencia y bloque abierto
 
