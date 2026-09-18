@@ -640,6 +640,72 @@ export function validateConfig(config: unknown): ConfigIssue[] {
     }
   }
 
+  issues.push(...validateVariantContracts(config));
+
+  return issues;
+}
+
+// ── Contratos de hueco por variante (bloque-04/CONTRATOS-HUECOS.md) ──
+// Sólo actúan cuando la sección usa la variante contratada (hero v6, services v6); para el
+// resto de variantes y para los seis nichos no añaden nada. Todo es "warning": el template
+// recorta o oculta lo que sobra (clampWords/leadSentences), aquí se avisa al editar.
+const words = (v: unknown): number =>
+  typeof v === "string" ? v.trim().split(/\s+/).filter(Boolean).length : 0;
+
+export function validateVariantContracts(config: unknown): ConfigIssue[] {
+  const issues: ConfigIssue[] = [];
+  const warn = (path: string, message: string) => issues.push({ path, message, severity: "warning" });
+
+  if (getNested(config, "hero.variant") === "v6") {
+    const eyebrow = getNested(config, "hero.eyebrow");
+    if (words(eyebrow) > 4) warn("hero.eyebrow", `El eyebrow tiene ${words(eyebrow)} palabras; el hero v6 admite 4 (se recorta).`);
+    const title = ["hero.titlePrefix", "hero.titleHighlight", "hero.titleSuffix"].map((k) => getNested(config, k)).filter((v) => typeof v === "string").join(" ");
+    const tw = words(title);
+    if (tw > 0 && (tw < 2 || tw > 6)) warn("hero.titlePrefix", `El titular tiene ${tw} palabras; el hero v6 pide 2–6 (con 6 y sufijo ocupa 3 lineas en movil).`);
+    const subtitle = getNested(config, "hero.subtitle");
+    if (words(subtitle) > 12) warn("hero.subtitle", `La frase tiene ${words(subtitle)} palabras; el hero v6 admite 12 (se recorta).`);
+    for (const k of ["hero.ctaPrimary", "hero.ctaSecondary"]) {
+      const n = words(getNested(config, k));
+      if (n > 2) warn(k, `El CTA tiene ${n} palabras; el hero v6 pide 1–2 (la suma sobre el video no puede pasar de 30).`);
+    }
+    const video = getNested(config, "hero.video");
+    if (video && typeof video === "object") {
+      const v = video as Record<string, unknown>;
+      if (typeof v.mp4 !== "string" || !v.mp4.trim()) warn("hero.video.mp4", "Hay video sin mp4: el hero cae a la foto.");
+      if (typeof v.poster !== "string" || !v.poster.trim()) warn("hero.video.poster", "Video sin poster: hasta que cargue (y con reduced-motion) se ve la foto de fondo; conviene un AVIF del primer cuadro.");
+      if (!v.portrait) warn("hero.video.portrait", "Video sin clip 9:16: en movil se recorta el horizontal con cover.");
+    }
+  }
+
+  if (getNested(config, "sections.services.variant") === "v6") {
+    const services = getNested(config, "services");
+    const images = getNested(config, "sections.services.images");
+    const phone = getNested(config, "contact.phone");
+    if (Array.isArray(services)) {
+      const list = services.filter((s): s is Record<string, unknown> => !!s && typeof s === "object");
+      const popular = list.filter((s) => s.popular === true);
+      const rest = list.filter((s) => s.popular !== true);
+      const featured = new Set([...popular, ...rest].slice(0, 6));
+      list.forEach((s, i) => {
+        const nw = words(s.name);
+        if (nw > 5) warn(`services[${i}].name`, `El nombre tiene ${nw} palabras; en la tarjeta caben 5 (dos lineas en movil).`);
+        if (typeof s.description === "string" && s.description.trim()) {
+          const first = s.description.trim().split(/(?<=[.!?…])\s+/)[0];
+          if (words(first) > 12) warn(`services[${i}].description`, `La primera oracion tiene ${words(first)} palabras; la tarjeta muestra oraciones completas de hasta 12 (si no, recorta con "…").`);
+        }
+        if (typeof s.priceMax === "number" && typeof s.price === "number" && s.priceMax < s.price) {
+          warn(`services[${i}].priceMax`, "priceMax es menor que price.");
+        }
+        if (s.mode === "consulta" && (typeof phone !== "string" || !phone.trim())) {
+          warn(`services[${i}].mode`, "Servicio a consulta sin contact.phone: no hay a donde enviar la foto por WhatsApp.");
+        }
+        if (featured.has(s) && Array.isArray(images) && !(typeof images[i] === "string" && (images[i] as string).trim())) {
+          warn(`sections.services.images[${i}]`, `Falta la foto del servicio destacado "${String(s.name ?? s.id ?? i)}": la tarjeta P-A sale sin foto.`);
+        }
+      });
+    }
+  }
+
   return issues;
 }
 
