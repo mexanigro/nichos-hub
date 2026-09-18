@@ -39,6 +39,8 @@ function getNested(obj: unknown, path: string): unknown {
 }
 
 export function validateConfig(config: unknown): ConfigIssue[] {
+  // `translations.{lang}` (BLOQUE-04 · 4.2) es texto por idioma escrito desde Contenido:
+  // no se valida aquí (sólo shape de raíz); el template cae al preset ante claves ausentes.
   const issues: ConfigIssue[] = [];
   if (!config || typeof config !== "object") {
     issues.push({ path: "", message: "El config debe ser un objeto.", severity: "error" });

@@ -14,6 +14,8 @@ import { ClientLanguageBanner } from "./client-language-banner";
 import { ClientLanguageProvider } from "@/lib/client-language-context";
 import {
   type ClientLanguage,
+  VALID_CLIENT_LANGUAGES,
+  CLIENT_LANGUAGE_LABELS_ES,
   normalizeClientLanguage,
 } from "@/lib/client-language";
 import {
@@ -201,7 +203,13 @@ export function ClientContentTab({
   onSaved?: () => void;
 }) {
   const lang = normalizeClientLanguage(language);
+  // BLOQUE-04 · 4.2: idioma que se edita. Base (= idioma del cliente) escribe la raíz de
+  // config/{id}; otro idioma lee/escribe config.translations[lang] con el mismo set merge.
+  const [editLang, setEditLang] = useState<ClientLanguage>(lang);
+  const isBase = editLang === lang;
+  const [rawConfig, setRawConfig] = useState<Record<string, unknown>>({});
   const [content, setContent] = useState<Record<string, string>>({});
+  const [baseContent, setBaseContent] = useState<Record<string, string>>({});
   const [faqItems, setFaqItems] = useState<FaqItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -213,28 +221,52 @@ export function ClientContentTab({
 
   const sections = useMemo(() => getSections(niche), [niche]);
 
+  const flatten = useCallback((source: Record<string, unknown>) => {
+    const flat: Record<string, string> = {};
+    for (const section of sections) {
+      for (const field of section.fields) {
+        const val = getNestedValue(source, field.path);
+        if (typeof val === "string") flat[field.path] = val;
+      }
+    }
+    return flat;
+  }, [sections]);
+
+  /** Raíz para el idioma base; `translations[lang]` (o vacío) para los demás. */
+  const layerFor = useCallback((config: Record<string, unknown>, target: ClientLanguage): Record<string, unknown> => {
+    if (target === lang) return config;
+    const layer = getNestedValue(config, `translations.${target}`);
+    return layer && typeof layer === "object" ? (layer as Record<string, unknown>) : {};
+  }, [lang]);
+
   const fetchContent = useCallback(async () => {
     try {
       const res = await fetch(`/api/config/${clientId}`);
-      const config = await res.json();
-      const flat: Record<string, string> = {};
-      for (const section of sections) {
-        for (const field of section.fields) {
-          const val = getNestedValue(config, field.path);
-          if (typeof val === "string") flat[field.path] = val;
-        }
-      }
-      setContent(flat);
-      const faq = getNestedValue(config, "sections.faq.items");
-      if (Array.isArray(faq)) setFaqItems(faq);
+      const config = (await res.json()) as Record<string, unknown>;
+      setRawConfig(config);
+      setBaseContent(flatten(config));
+      const layer = layerFor(config, editLang);
+      setContent(flatten(layer));
+      const faq = getNestedValue(layer, "sections.faq.items");
+      setFaqItems(Array.isArray(faq) ? faq : []);
     } catch {
       setError("Error al cargar contenido");
     } finally {
       setLoading(false);
     }
-  }, [clientId, sections]);
+  }, [clientId, editLang, flatten, layerFor]);
 
   useEffect(() => { fetchContent(); }, [fetchContent]);
+
+  function switchEditLang(next: ClientLanguage) {
+    if (next === editLang) return;
+    setEditLang(next);
+    setSaved(false);
+    const layer = layerFor(rawConfig, next);
+    setContent(flatten(layer));
+    const faq = getNestedValue(layer, "sections.faq.items");
+    setFaqItems(Array.isArray(faq) ? faq : []);
+  }
 
   async function handleSave() {
     setSaving(true);
@@ -242,18 +274,41 @@ export function ClientContentTab({
     setSaved(false);
     try {
       const patch: Record<string, unknown> = {};
+      const previousLayer = flatten(layerFor(rawConfig, editLang));
       for (const [path, value] of Object.entries(content)) {
-        if (value !== undefined) setNestedValue(patch, path, value);
+        if (value === undefined) continue;
+        if (isBase) {
+          setNestedValue(patch, path, value);
+        } else if (value.trim()) {
+          setNestedValue(patch, path, value);
+        } else if (previousLayer[path] !== undefined) {
+          // Vaciar una traducción = quitarla de la capa (null → FieldValue.delete en la API):
+          // así el template vuelve al preset de ese idioma en vez de mostrar texto vacío.
+          setNestedValue(patch, path, null);
+        }
       }
       if (faqItems.length > 0) {
         setNestedValue(patch, "sections.faq.items", faqItems.filter(i => i.question.trim() || i.answer.trim()));
       }
+      const body = isBase ? patch : { translations: { [editLang]: patch } };
       const res = await fetch(`/api/config/${clientId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(patch),
+        body: JSON.stringify(body),
       });
       if (!res.ok) throw new Error("Error al guardar");
+      // Reflejar lo guardado en el snapshot local para que el cambio de idioma no lo pierda.
+      setRawConfig(prev => {
+        const next = structuredClone(prev);
+        const target = isBase ? next : ((getNestedValue(next, `translations.${editLang}`) as Record<string, unknown> | undefined) ?? (() => { setNestedValue(next, `translations.${editLang}`, {}); return getNestedValue(next, `translations.${editLang}`) as Record<string, unknown>; })());
+        for (const [path, value] of Object.entries(content)) {
+          if (value === undefined) continue;
+          if (isBase || value.trim()) setNestedValue(target, path, value); else deleteNestedValue(target, path);
+        }
+        if (faqItems.length > 0) setNestedValue(target, "sections.faq.items", faqItems);
+        if (isBase) setBaseContent(flatten(next));
+        return next;
+      });
       setSaved(true);
       onSaved?.();
       setTimeout(() => setSaved(false), 3000);
@@ -301,7 +356,7 @@ export function ClientContentTab({
   }
 
   return (
-    <ClientLanguageProvider language={lang}>
+    <ClientLanguageProvider language={editLang}>
     <div className="space-y-4">
       <ClientLanguageBanner
         clientId={clientId}
@@ -312,7 +367,11 @@ export function ClientContentTab({
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-sm font-semibold text-text">Contenido del sitio</h2>
-          <p className="text-[11px] text-text-muted">Edita todos los textos de la landing page</p>
+          <p className="text-[11px] text-text-muted">
+            {isBase
+              ? "Edita todos los textos de la landing page"
+              : `Traducción a ${CLIENT_LANGUAGE_LABELS_ES[editLang]}: lo que dejes vacío se muestra con el texto del nicho en ese idioma`}
+          </p>
         </div>
         <button
           onClick={handleSave}
@@ -324,11 +383,37 @@ export function ClientContentTab({
         </button>
       </div>
 
+      {/* Idioma del texto que se edita (base = raíz de config; otro = translations[lang]) */}
+      <div className="flex flex-wrap items-center gap-1.5" role="tablist" aria-label="Idioma del texto">
+        <span className="me-1 text-[11px] text-text-muted">Idioma del texto:</span>
+        {VALID_CLIENT_LANGUAGES.map((code) => {
+          const active = code === editLang;
+          const hasLayer = code !== lang && !!getNestedValue(rawConfig, `translations.${code}`);
+          return (
+            <button
+              key={code}
+              type="button"
+              role="tab"
+              aria-selected={active}
+              onClick={() => switchEditLang(code)}
+              className={`rounded-full border px-3 py-1 text-[11px] transition-colors ${
+                active
+                  ? "border-accent bg-accent/15 text-accent"
+                  : "border-border bg-bg-elevated text-text-muted hover:text-text"
+              }`}
+            >
+              {CLIENT_LANGUAGE_LABELS_ES[code]}
+              {code === lang ? " · base" : hasLayer ? " ·" : ""}
+            </button>
+          );
+        })}
+      </div>
+
       {error && <div className="rounded-lg bg-red-500/10 px-3 py-2 text-xs text-red-400">{error}</div>}
       {saved && <div className="rounded-lg bg-green-500/10 px-3 py-2 text-xs text-green-400">Contenido guardado correctamente</div>}
 
-      {/* AI Generation Card */}
-      <div className="rounded-xl border border-accent/20 bg-accent/5 p-4">
+      {/* AI Generation Card — sólo en el idioma base (la traducción asistida viene después del bloque 4) */}
+      {isBase && <div className="rounded-xl border border-accent/20 bg-accent/5 p-4">
         <div className="mb-3 flex items-center gap-2">
           <Sparkles size={14} className="text-accent" />
           <span className="text-xs font-semibold text-text">Generar contenido con IA</span>
@@ -348,7 +433,7 @@ export function ClientContentTab({
           {generating ? <Loader2 size={14} className="animate-spin" /> : <Sparkles size={14} />}
           {generating ? "Generando..." : "Generar textos"}
         </button>
-      </div>
+      </div>}
 
       {/* Content Sections */}
       {sections.map(section => (
@@ -367,8 +452,9 @@ export function ClientContentTab({
           {expandedSections.has(section.key) && (
             <div className="space-y-3 border-t border-border px-4 pb-4 pt-3">
               {section.fields.map(field => {
-                const ph = field.placeholderKey ? placeholderFor(lang, field.placeholderKey) : undefined;
+                const ph = field.placeholderKey ? placeholderFor(editLang, field.placeholderKey) : undefined;
                 const value = content[field.path] || "";
+                const baseValue = !isBase ? baseContent[field.path] : undefined;
                 return (
                 <div key={field.path}>
                   <label className="mb-1 block text-[11px] font-medium text-text-muted">{field.label}</label>
@@ -389,16 +475,21 @@ export function ClientContentTab({
                       className="w-full rounded-lg border border-border bg-bg-elevated px-3 py-2 text-xs text-text placeholder:text-text-muted/50 focus:border-accent focus:outline-none"
                     />
                   )}
+                  {baseValue && (
+                    <p className="mt-1 text-[10px] text-text-muted/80" dir="auto">
+                      <span className="font-medium">{CLIENT_LANGUAGE_LABELS_ES[lang]}:</span> {baseValue}
+                    </p>
+                  )}
                   <LanguageMismatchWarning
-                    fieldId={`${clientId}:content:${field.path}`}
+                    fieldId={`${clientId}:content:${editLang}:${field.path}`}
                     text={value}
-                    expected={lang}
+                    expected={editLang}
                   />
                 </div>
                 );
               })}
               {section.key === "faq" && (
-                <FaqEditor clientId={clientId} items={faqItems} onChange={setFaqItems} lang={lang} />
+                <FaqEditor clientId={clientId} items={faqItems} onChange={setFaqItems} lang={editLang} />
               )}
             </div>
           )}
@@ -497,6 +588,17 @@ function getNestedValue(obj: Record<string, unknown>, path: string): unknown {
     current = (current as Record<string, unknown>)[key];
   }
   return current;
+}
+
+function deleteNestedValue(obj: Record<string, unknown>, path: string) {
+  const keys = path.split(".");
+  let cur: Record<string, unknown> = obj;
+  for (const k of keys.slice(0, -1)) {
+    const next = cur[k];
+    if (!next || typeof next !== "object") return;
+    cur = next as Record<string, unknown>;
+  }
+  delete cur[keys[keys.length - 1]];
 }
 
 function setNestedValue(obj: Record<string, unknown>, path: string, value: unknown) {
