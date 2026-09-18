@@ -295,6 +295,7 @@ const FEATURES_LIST: FeatureItem[] = [
   { key: "showPortfolio", label: "Portfolio", niches: ["remodelaciones"] },
   { key: "showMenu", label: "Menu", niches: ["cafeteria"] },
   { key: "persistentBooking", label: "Barra fija de reserva (movil)", niches: ["peluqueria"] },
+  { key: "whatsappFab", label: "Boton flotante de WhatsApp", niches: ["peluqueria"] },
   { key: "showChat", label: "Chatbot IA (a cotizar aparte)" },
 ];
 
