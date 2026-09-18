@@ -43,8 +43,8 @@ export function buildFeatures(niche: string, mode: "solo" | "team"): Record<stri
     base.showWhyChooseUs = false;
     base.showInquiry = false;
     base.showChat = false; // IA a cotizar aparte
-    base.persistentBooking = true;
-    base.whatsappFab = true; // sin chat, WhatsApp es el canal directo
+    base.whatsappFab = true; // sin chat, WhatsApp es el canal directo (Liam 2026-09-18: sin barra fija ni «subir»)
+    base.scrollToTop = false;
   }
 
   return base;
