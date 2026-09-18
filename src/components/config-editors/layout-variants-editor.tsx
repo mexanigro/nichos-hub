@@ -24,9 +24,10 @@
  * referencia visual real despues de guardar.
  */
 
-export type SectionVariantValue = "v1" | "v2" | "v3" | "v4" | "v5";
+// BLOQUE-04: v6–v9 son variantes genéricas nuevas; cada sección declara sólo las que tiene.
+export type SectionVariantValue = "v1" | "v2" | "v3" | "v4" | "v5" | "v6" | "v7" | "v8" | "v9";
 
-const VARIANT_VALUES: readonly SectionVariantValue[] = ["v1", "v2", "v3", "v4", "v5"];
+const VARIANT_VALUES: readonly SectionVariantValue[] = ["v1", "v2", "v3", "v4", "v5", "v6", "v7", "v8", "v9"];
 
 type VariantInfo = { name: string; desc: string };
 
@@ -34,7 +35,10 @@ type LayoutSectionSpec = {
   /** Path en el config doc (updateNested/getNested). */
   path: string;
   label: string;
-  variants: Record<SectionVariantValue, VariantInfo>;
+  /** v1–v5 siempre; v6+ sólo en las secciones que ya tienen esa variante en el template. */
+  variants: Record<"v1" | "v2" | "v3" | "v4" | "v5", VariantInfo> & Partial<Record<SectionVariantValue, VariantInfo>>;
+  /** Sólo se ofrece a estos nichos (p. ej. beforeAfter en peluquería). */
+  niches?: readonly string[];
 };
 
 const V1: VariantInfo = { name: "Original", desc: "El diseño actual del template, sin cambios." };
@@ -60,6 +64,7 @@ export const LAYOUT_VARIANT_SECTIONS: readonly LayoutSectionSpec[] = [
       v3: { name: "Video de fondo", desc: "Video en loop detras del titulo (usa hero.videoUrl)." },
       v4: { name: "Minimal centrado", desc: "Composicion centrada y despojada, maximo aire." },
       v5: { name: "Capas parallax", desc: "Fondo, palabra gigante y contenido a distintas velocidades de scroll." },
+      v6: { name: "Cinematico + confianza", desc: "Foto a sangre, copy abajo-inicio, CTA relleno + WhatsApp, fila de confianza con datos reales y tira de servicios asomando (peluqueria, R2)." },
     },
   },
   {
@@ -177,25 +182,28 @@ export const LAYOUT_VARIANT_SECTIONS: readonly LayoutSectionSpec[] = [
 export function LayoutVariantsEditor({
   getNested,
   updateNested,
+  niche,
 }: {
   getNested: (path: string) => unknown;
   updateNested: (path: string, value: unknown) => void;
+  niche?: string;
 }) {
   return (
     <div className="grid gap-3 lg:grid-cols-2">
-      {LAYOUT_VARIANT_SECTIONS.map((spec) => {
+      {LAYOUT_VARIANT_SECTIONS.filter((spec) => !spec.niches || (niche && spec.niches.includes(niche))).map((spec) => {
+        const offered = VARIANT_VALUES.filter((v) => spec.variants[v] !== undefined);
         const raw = getNested(spec.path);
-        const current: SectionVariantValue = VARIANT_VALUES.includes(raw as SectionVariantValue)
+        const current: SectionVariantValue = offered.includes(raw as SectionVariantValue)
           ? (raw as SectionVariantValue)
           : "v1";
-        const info = spec.variants[current];
+        const info = spec.variants[current] ?? V1;
 
         return (
           <div key={spec.path} className="rounded-lg border border-border bg-bg-elevated p-3">
             <div className="mb-2 flex items-center justify-between gap-2">
               <p className="text-[11px] font-semibold text-text-secondary">{spec.label}</p>
               <div className="flex overflow-hidden rounded-md border border-border">
-                {VARIANT_VALUES.map((v) => {
+                {offered.map((v) => {
                   const isSelected = v === current;
                   return (
                     <button

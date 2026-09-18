@@ -294,6 +294,7 @@ const FEATURES_LIST: FeatureItem[] = [
   { key: "showAmbience", label: "Ambiente", niches: ["cafeteria"] },
   { key: "showPortfolio", label: "Portfolio", niches: ["remodelaciones"] },
   { key: "showMenu", label: "Menu", niches: ["cafeteria"] },
+  { key: "persistentBooking", label: "Barra fija de reserva (movil)", niches: ["peluqueria"] },
 ];
 
 type SplashVariantSpec = {
@@ -1571,7 +1572,7 @@ export function ClientConfigTab({
           original del template; v2-v5 son layouts alternativos. La variante del splash se elige en la
           seccion <strong>Splash screen</strong>. Guarda y refresca el preview para ver el resultado.
         </p>
-        <LayoutVariantsEditor getNested={getNested} updateNested={updateNested} />
+        <LayoutVariantsEditor getNested={getNested} updateNested={updateNested} niche={normalizeBusinessNiche(niche)} />
       </Section>
 
       {/* ── Flags globales de estilo ───────────────────────────────────── */}

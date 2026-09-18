@@ -86,7 +86,7 @@ export function validateConfig(config: unknown): ConfigIssue[] {
     });
   }
 
-  // ── Sistema de 5 variantes: {seccion}.variant debe ser "v1"-"v5" ──
+  // ── Sistema de variantes: {seccion}.variant debe ser "v1"-"v9" (v6+ BLOQUE-04) ──
   // Un valor desconocido no rompe el template (resolveVariant cae a "v1"),
   // asi que es warning, no error.
   const V5_VARIANT_PATHS = [
@@ -102,13 +102,14 @@ export function validateConfig(config: unknown): ConfigIssue[] {
     "sections.instagram.variant",
     "sections.faq.variant",
     "sections.contact.variant",
+    "sections.beforeAfter.variant",
   ];
   for (const path of V5_VARIANT_PATHS) {
     const v = getNested(config, path);
-    if (v !== undefined && v !== null && !(typeof v === "string" && /^v[1-5]$/.test(v))) {
+    if (v !== undefined && v !== null && !(typeof v === "string" && /^v[1-9]$/.test(v))) {
       issues.push({
         path,
-        message: `${path} debe ser "v1"-"v5". El template va a caer al layout original (v1).`,
+        message: `${path} debe ser "v1"-"v9". El template va a caer al layout original (v1).`,
         severity: "warning",
       });
     }
