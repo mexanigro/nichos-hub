@@ -53,6 +53,7 @@ export const LAYOUT_VARIANT_SECTIONS: readonly LayoutSectionSpec[] = [
       v3: { name: "Hamburguesa siempre", desc: "Barra minimal + menu editorial fullscreen en todos los breakpoints." },
       v4: { name: "Barra inferior mobile", desc: "App-like: tab bar fija abajo en mobile, barra clasica en desktop." },
       v5: { name: "Overlay transparente", desc: "Transparente sobre el hero, se solidifica con glass al scrollear." },
+      v6: { name: "Peluqueria: sin fondo sobre el hero, pildora al bajar", desc: "Logo + hamburguesa sobre el hero con banda de scrim tonal; pildora de superficie al pasar el 20 %; en escritorio se contrae y el CTA pasa a relleno; menu a pantalla completa; sin toggle claro/oscuro (R12)." },
     },
   },
   {

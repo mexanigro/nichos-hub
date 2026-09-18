@@ -45,6 +45,7 @@ export function buildFeatures(niche: string, mode: "solo" | "team"): Record<stri
     base.showChat = false; // IA a cotizar aparte
     base.whatsappFab = true; // sin chat, WhatsApp es el canal directo (Liam 2026-09-18: sin barra fija ni «subir»)
     base.scrollToTop = false;
+    base.themeToggle = false; // R12: la paleta la fija el sistema de color, no el visitante
   }
 
   return base;

@@ -297,6 +297,7 @@ const FEATURES_LIST: FeatureItem[] = [
   { key: "persistentBooking", label: "Barra fija de reserva (movil)", niches: ["peluqueria"] },
   { key: "whatsappFab", label: "Boton flotante de WhatsApp", niches: ["peluqueria"] },
   { key: "scrollToTop", label: "Boton flotante subir" },
+  { key: "themeToggle", label: "Toggle claro/oscuro (peluqueria: apagado, R12)" },
   { key: "showChat", label: "Chatbot IA (a cotizar aparte)" },
 ];
 
