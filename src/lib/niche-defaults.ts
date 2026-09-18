@@ -42,6 +42,8 @@ export function buildFeatures(niche: string, mode: "solo" | "team"): Record<stri
     // Brief peluquería: sin whyChooseUs ni formulario; antes/después llega con su variante (4.3).
     base.showWhyChooseUs = false;
     base.showInquiry = false;
+    base.showChat = false; // IA a cotizar aparte
+    base.persistentBooking = true;
   }
 
   return base;
