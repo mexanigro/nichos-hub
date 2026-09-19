@@ -47,6 +47,8 @@ npm run build
 
 Se copió el mecanismo de vendamos-agente: lo que una instrucción puede saltear, un hook no. `tools/arranque.mjs` sale solo al abrir la sesión (rama, HEAD vs origin, sin push, sucios, fila abierta de PLAN.md, últimas decisiones de bloque-04); `tools/candado.mjs` corta antes de cada `Edit`/`Write` sobre `.env*`, dumps `*-config-*.json`, capturas fuera de `public/`, scripts sueltos en la raíz; `tools/cierre.mjs` no deja cerrar el turno con sucios, sin push o con PLAN.md § Estado sin el último commit. Git: `.githooks/pre-commit` (tsc + suites) y `.githooks/pre-push` (árbol limpio + `tools/destino-no-despliega.mjs`: Railway por estado, `HIGIENE_DESTINO_VERIFICADO=1` si producción coincide con origin), activados por `npm install` (`prepare`). Chequeo horario: `tools/higiene.mjs` (instalación/desinstalación en su cabecera; tarea `Nichos-higiene`, email por Resend si hay suciedad o sin push > 60 min).
 
+**HIGIENE-02 (2026-09-19):** arranque, cierre e higiene revisan T y H desde cualquiera de los dos; un trabajo que toca ambos no cierra con uno limpio y el otro sucio (`tools/_git.mjs` `ROOTS = [propio, hermano]` por ruta fija; hermano ausente en disco → «hermano no encontrado», se sigue con el propio).
+
 <!-- CONTRATO-DECLARADO: tests/contrato-hooks.test.ts lo verifica contra .claude/settings.json,
      .githooks/ y package.json. NO editar a mano sin correr ese guard. -->
 ```ini
