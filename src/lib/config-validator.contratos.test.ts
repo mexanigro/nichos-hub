@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { validateVariantContracts } from "./config-validator.ts";
+import { validateVariantContracts, validateReplanteoHuecos } from "./config-validator.ts";
 
 const paths = (cfg: unknown) => validateVariantContracts(cfg).map((i) => i.path);
 
@@ -32,4 +32,34 @@ test("services v6: destacada sin foto, primera oración > 12, priceMax < price, 
   for (const k of ["services[0].name", "services[0].description", "services[0].priceMax", "services[1].mode", "sections.services.images[1]"]) assert.ok(p.includes(k), k);
   assert.ok(!p.includes("services[1].description"), "la primera oración corta pasa aunque la segunda sea larga");
   assert.ok(!p.includes("sections.services.images[0]"));
+});
+
+// REPLANTEO-01 (2026-09-19): huecos nuevos sin UI — featured, selection, foto del local, velo/liso, heroToBackdrop.
+const rp = (cfg: unknown) => validateReplanteoHuecos(cfg).map((i) => `${i.severity}:${i.path}`);
+
+test("replanteo: sin los campos nuevos no actúa", () => {
+  assert.deepEqual(rp({ services: [{ id: "cut" }], gallery: ["/1.jpg"], sections: { services: { surface: "alt" } } }), []);
+});
+
+test("replanteo: featured (2 ids existentes), selection (4–6 índices existentes), foto del local en par, velo/liso, heroToBackdrop", () => {
+  const p = rp({
+    services: [{ id: "cut" }, { id: "color" }],
+    gallery: ["/1.jpg", "/2.jpg", "/3.jpg"],
+    hero: { video: { mp4: "/h.mp4" } },
+    branding: { localPhoto: "/local.jpg" },
+    sections: { services: { featured: ["cut", "nope", "color"], surface: "velo", veil: 1.5 }, gallery: { selection: [0, 7] }, team: { surface: "oscuro" }, faq: { veil: 0.8 } },
+  });
+  for (const k of ["error:sections.services.featured", "warning:sections.services.featured", "error:sections.gallery.selection", "warning:sections.gallery.selection", "warning:branding.localPhotoMobile", "warning:branding.heroToBackdrop", "error:sections.team.surface", "error:sections.services.veil", "warning:sections.faq.veil"]) assert.ok(p.includes(k), k);
+  assert.ok(rp({ services: [{ id: "cut" }, { id: "color" }], sections: { services: { featured: ["cut", "cut"] } } }).includes("error:sections.services.featured"), "duplicado");
+  assert.deepEqual(rp({ services: [{ id: "cut" }, { id: "color" }], sections: { services: { featured: ["cut", "color"] } } }), [], "dos ids existentes: sin avisos");
+});
+
+test("replanteo: dentro del contrato, sin avisos", () => {
+  assert.deepEqual(rp({
+    services: [{ id: "cut" }, { id: "color" }, { id: "x" }],
+    gallery: ["/1.jpg", "/2.jpg", "/3.jpg", "/4.jpg", "/5.jpg"],
+    hero: { video: { mp4: "/h.mp4" } },
+    branding: { localPhoto: "/local.jpg", localPhotoMobile: "/local-v.jpg", heroToBackdrop: { relation: "adjacent-hue", mechanism: "veil-from-first-pixel", dH: 20, dL: 0.05 } },
+    sections: { services: { featured: ["color", "cut"], surface: "velo", veil: 0.65 }, gallery: { selection: [0, 1, 2, 3], surface: "liso" } },
+  }), []);
 });

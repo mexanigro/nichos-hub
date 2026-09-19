@@ -706,6 +706,70 @@ export function validateVariantContracts(config: unknown): ConfigIssue[] {
     }
   }
 
+  issues.push(...validateReplanteoHuecos(config));
+  return issues;
+}
+
+// ── Huecos de REPLANTEO-01 (2026-09-19; CONTRATOS-HUECOS § huecos de REPLANTEO-01) ──
+// Campos nuevos sin UI todavía (la UI va al bloque 5): `sections.services.featured` (2 ids del catálogo),
+// `sections.gallery.selection` (4–6 índices de `gallery`), `branding.localPhoto`/`localPhotoMobile` (par),
+// `sections.<id>.surface: "velo" | "liso"` (+ `veil` 0–1) y `branding.heroToBackdrop` (R19).
+// Errores sólo donde el template no puede resolverlo (id o índice inexistente, duplicados, veil fuera de 0–1).
+const SECTION_IDS = ["services", "gallery", "team", "testimonials", "faq", "instagram", "contact"] as const;
+export function validateReplanteoHuecos(config: unknown): ConfigIssue[] {
+  const issues: ConfigIssue[] = [];
+  const push = (path: string, message: string, severity: "error" | "warning") => issues.push({ path, message, severity });
+
+  const featured = getNested(config, "sections.services.featured");
+  if (featured !== undefined) {
+    const services = getNested(config, "services");
+    const ids = new Set(Array.isArray(services) ? services.map((s) => (s && typeof s === "object" ? String((s as Record<string, unknown>).id ?? "") : "")) : []);
+    if (!Array.isArray(featured) || !featured.every((v) => typeof v === "string")) {
+      push("sections.services.featured", "featured debe ser una lista de ids de servicios.", "error");
+    } else {
+      if (featured.length !== 2) push("sections.services.featured", `featured tiene ${featured.length} ids; la home muestra exactamente 2 destacados (D4).`, "warning");
+      if (new Set(featured).size !== featured.length) push("sections.services.featured", "featured repite un id.", "error");
+      for (const id of featured) if (!ids.has(id)) push("sections.services.featured", `El servicio "${id}" no existe en el catálogo.`, "error");
+    }
+  }
+
+  const selection = getNested(config, "sections.gallery.selection");
+  if (selection !== undefined) {
+    const gallery = getNested(config, "gallery");
+    const n = Array.isArray(gallery) ? gallery.length : 0;
+    if (!Array.isArray(selection) || !selection.every((v) => Number.isInteger(v) && (v as number) >= 0)) {
+      push("sections.gallery.selection", "selection debe ser una lista de índices (enteros ≥ 0) de gallery.", "error");
+    } else {
+      if (selection.length < 4 || selection.length > 6) push("sections.gallery.selection", `selection tiene ${selection.length} fotos; la home muestra 4–6 (D4).`, "warning");
+      if (new Set(selection).size !== selection.length) push("sections.gallery.selection", "selection repite un índice.", "error");
+      for (const i of selection as number[]) if (i >= n) push("sections.gallery.selection", `La foto ${i} no existe: gallery tiene ${n}.`, "error");
+    }
+  }
+
+  const local = getNested(config, "branding.localPhoto");
+  const localMobile = getNested(config, "branding.localPhotoMobile");
+  const isUrl = (v: unknown) => typeof v === "string" && v.trim().length > 0;
+  if (local !== undefined && !isUrl(local)) push("branding.localPhoto", "localPhoto debe ser una URL/ruta de imagen.", "error");
+  if (localMobile !== undefined && !isUrl(localMobile)) push("branding.localPhotoMobile", "localPhotoMobile debe ser una URL/ruta de imagen.", "error");
+  if (isUrl(local) && !isUrl(localMobile)) push("branding.localPhotoMobile", "Hay foto del local de escritorio sin la vertical: en móvil se recorta la de escritorio (D5).", "warning");
+  if (isUrl(localMobile) && !isUrl(local)) push("branding.localPhoto", "Hay foto del local vertical sin la de escritorio: la capa fija no se monta y todo va liso (D5).", "warning");
+  if (isUrl(local) && getNested(config, "hero.video") && getNested(config, "branding.heroToBackdrop") === undefined) {
+    push("branding.heroToBackdrop", "Hay vídeo del hero y foto del local sin la relación hero → fondo escrita (R19: mismo tono · tono vecino · luz distinta).", "warning");
+  }
+  const rel = getNested(config, "branding.heroToBackdrop");
+  if (rel !== undefined) {
+    const r = (rel && typeof rel === "object" ? rel : {}) as Record<string, unknown>;
+    if (!["same-hue", "adjacent-hue", "same-hue-different-light"].includes(String(r.relation))) push("branding.heroToBackdrop.relation", "relation debe ser same-hue | adjacent-hue | same-hue-different-light.", "error");
+    if (!["photo-starts-at-hero-end", "scrim-dies-into-photo", "veil-from-first-pixel"].includes(String(r.mechanism))) push("branding.heroToBackdrop.mechanism", "mechanism debe ser photo-starts-at-hero-end | scrim-dies-into-photo | veil-from-first-pixel.", "error");
+  }
+
+  for (const id of SECTION_IDS) {
+    const surface = getNested(config, `sections.${id}.surface`);
+    if (surface !== undefined && !["base", "alt", "velo", "liso"].includes(String(surface))) push(`sections.${id}.surface`, "surface debe ser velo | liso (o base | alt, histórico).", "error");
+    const veil = getNested(config, `sections.${id}.veil`);
+    if (veil !== undefined && !(typeof veil === "number" && veil >= 0 && veil <= 1)) push(`sections.${id}.veil`, "veil es la opacidad del velo, 0–1.", "error");
+    if (veil !== undefined && surface !== "velo") push(`sections.${id}.veil`, 'veil sólo actúa con surface: "velo".', "warning");
+  }
   return issues;
 }
 
