@@ -63,3 +63,11 @@ test("replanteo: dentro del contrato, sin avisos", () => {
     sections: { services: { featured: ["color", "cut"], surface: "velo", veil: 0.65 }, gallery: { selection: [0, 1, 2, 3], surface: "liso" } },
   }), []);
 });
+
+// REPLANTEO-02 (2026-09-19): branding.mode (D17), branding.texture (R21), surface "textura", heroToBackdrop.foot (R20).
+test("replanteo-02: mode light|dark, texture URL, surface textura, foot con hex", () => {
+  const bad = rp({ branding: { mode: "auto", texture: 3, heroToBackdrop: { relation: "same-hue", mechanism: "veil-from-first-pixel", foot: { hex: "gris" } } }, sections: { gallery: { surface: "liso" } } });
+  for (const k of ["error:branding.mode", "error:branding.texture", "error:branding.heroToBackdrop.foot"]) assert.ok(bad.includes(k), k);
+  assert.ok(!bad.includes("error:sections.gallery.surface"), "liso sigue admitido como histórico");
+  assert.deepEqual(rp({ branding: { mode: "dark", texture: "/t.jpg", heroToBackdrop: { relation: "adjacent-hue", mechanism: "scrim-dies-into-photo", foot: { hex: "#413c37", L: 0.36, C: 0.01, H: 66 } } }, sections: { gallery: { surface: "textura" }, services: { surface: "velo", veil: 0.65 } } }), []);
+});

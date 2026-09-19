@@ -763,9 +763,18 @@ export function validateReplanteoHuecos(config: unknown): ConfigIssue[] {
     if (!["photo-starts-at-hero-end", "scrim-dies-into-photo", "veil-from-first-pixel"].includes(String(r.mechanism))) push("branding.heroToBackdrop.mechanism", "mechanism debe ser photo-starts-at-hero-end | scrim-dies-into-photo | veil-from-first-pixel.", "error");
   }
 
+  // REPLANTEO-02 (D17 · R21): modo de la paleta y textura
+  const mode = getNested(config, "branding.mode");
+  if (mode !== undefined && mode !== "light" && mode !== "dark") push("branding.mode", "branding.mode debe ser light | dark (D17: el modo es de la paleta, por web).", "error");
+  const texture = getNested(config, "branding.texture");
+  if (texture !== undefined && !isUrl(texture)) push("branding.texture", "texture debe ser una URL/ruta de imagen (R21: mosaico 1024 sin costuras o imagen 2560).", "error");
+  if (rel && typeof rel === "object") {
+    const foot = (rel as Record<string, unknown>).foot as Record<string, unknown> | undefined;
+    if (foot !== undefined && !(foot && typeof foot === "object" && /^#[0-9a-f]{6}$/i.test(String(foot.hex)))) push("branding.heroToBackdrop.foot", "foot debe llevar hex (#rrggbb) del pie del clip (transicion.mjs).", "error");
+  }
   for (const id of SECTION_IDS) {
     const surface = getNested(config, `sections.${id}.surface`);
-    if (surface !== undefined && !["base", "alt", "velo", "liso"].includes(String(surface))) push(`sections.${id}.surface`, "surface debe ser velo | liso (o base | alt, histórico).", "error");
+    if (surface !== undefined && !["base", "alt", "velo", "liso", "textura"].includes(String(surface))) push(`sections.${id}.surface`, "surface debe ser velo | textura (liso, base y alt son históricos).", "error");
     const veil = getNested(config, `sections.${id}.veil`);
     if (veil !== undefined && !(typeof veil === "number" && veil >= 0 && veil <= 1)) push(`sections.${id}.veil`, "veil es la opacidad del velo, 0–1.", "error");
     if (veil !== undefined && surface !== "velo") push(`sections.${id}.veil`, 'veil sólo actúa con surface: "velo".', "warning");
