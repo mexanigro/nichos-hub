@@ -13,13 +13,7 @@ import { initializeApp, cert } from "firebase-admin/app";
 import { getFirestore, FieldValue } from "firebase-admin/firestore";
 import { buildProvisionDocs } from "../src/lib/provisioning.ts";
 
-// VERDAD-01 (2026-09-20, orden de Liam): `--id test-b4-peluqueria-{a,c} --fixture <ruta.json>` importa un fixture de T como
-// config/{id} del tenant de prueba (upsert: la prueba de recreación lo reescribe cada vez). Sólo ids `test-b4-peluqueria*`.
-const argv = process.argv.slice(3);
-const arg = (n: string) => { const i = argv.indexOf(`--${n}`); return i >= 0 ? argv[i + 1] : undefined; };
-const CLIENT_ID = arg("id") ?? "test-b4-peluqueria";
-const FIXTURE = arg("fixture");
-if (!/^test-b4-peluqueria(-[a-z])?$/.test(CLIENT_ID)) throw new Error(`id fuera del patrón de prueba: ${CLIENT_ID}`);
+const CLIENT_ID = "test-b4-peluqueria";
 
 for (const line of readFileSync(resolve(import.meta.dirname, "../.env.local"), "utf-8").split("\n")) {
   const t = line.trim();
@@ -44,32 +38,7 @@ const refs = {
 const stamp = () => new Date().toISOString();
 const mode = process.argv[2];
 
-if (mode === "create" && FIXTURE) {
-  // VERDAD-01 recrear.mjs (a): el fixture ES config/{id}; hub_clients y clients salen de buildProvisionDocs con los datos del fixture.
-  const fx = JSON.parse(readFileSync(resolve(FIXTURE), "utf-8")) as Record<string, unknown>;
-  const brand = (fx.brand ?? {}) as Record<string, string>;
-  const business = (fx.business ?? {}) as Record<string, string>;
-  const contact = (fx.contact ?? {}) as Record<string, string>;
-  const docs = buildProvisionDocs({
-    businessName: brand.name ?? CLIENT_ID,
-    niche: "peluqueria",
-    mode: (business.mode === "solo" ? "solo" : "team"),
-    slug: CLIENT_ID,
-    domain: `${CLIENT_ID}.arzac.studio`,
-    language: "he",
-    phone: contact.phone ?? "03-612-4477",
-    email: "website@arzac.studio",
-    address: contact.address ?? "",
-    tagline: brand.tagline ?? "",
-    description: `VERDAD-01 recreación desde fixture ${FIXTURE.replace(/^.*[\\/]/, "")}`,
-  });
-  const config = { ...docs.config, ...fx, business: { ...(docs.config.business as Record<string, unknown>), ...(fx.business as Record<string, unknown> ?? {}) } };
-  const hub = { ...docs.hubClient, notes: `VERDAD-01 tenant de recreación (${new Date().toISOString()}) — sin Vercel, sin cobro; se reescribe en cada recrear.mjs.` };
-  await refs.hub.set(hub);
-  await refs.client.set(docs.client);
-  await refs.config.set(config);
-  console.log(`recreado ${CLIENT_ID} · ${stamp()} · config keys=${Object.keys(config).length} · business.type=${String((config.business as { type: string }).type)}`);
-} else if (mode === "create") {
+if (mode === "create") {
   const existing = await Promise.all(Object.values(refs).map((r) => r.get()));
   if (existing.some((s) => s.exists)) throw new Error(`${CLIENT_ID} ya existe en Firestore; no se sobrescribe`);
   const docs = buildProvisionDocs({
@@ -120,6 +89,6 @@ if (mode === "create" && FIXTURE) {
     if (s.exists) console.log(JSON.stringify(s.data(), null, 1).slice(0, 1600));
   }
 } else {
-  console.error("uso: node scripts/b4-tenant.ts create|archive|show|keys [--id test-b4-peluqueria-a] [--fixture <ruta.json>]");
+  console.error("uso: node scripts/b4-tenant.ts create|archive|show");
   process.exit(1);
 }
