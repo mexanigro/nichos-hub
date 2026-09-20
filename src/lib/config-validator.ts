@@ -716,6 +716,8 @@ export function validateVariantContracts(config: unknown): ConfigIssue[] {
 // `sections.<id>.surface: "velo" | "liso"` (+ `veil` 0–1) y `branding.heroToBackdrop` (R19).
 // Errores sólo donde el template no puede resolverlo (id o índice inexistente, duplicados, veil fuera de 0–1).
 const SECTION_IDS = ["services", "gallery", "team", "testimonials", "faq", "instagram", "contact"] as const;
+/** GALERIA-04: tipos del brief de peluquería, orden fijo (= píldoras de `/galeria`; mismo listado que T `src/lib/gallery.ts`). */
+export const GALLERY_TYPES = ["color", "rizos", "liso", "recogidos", "novia", "cortes"] as const;
 export function validateReplanteoHuecos(config: unknown): ConfigIssue[] {
   const issues: ConfigIssue[] = [];
   const push = (path: string, message: string, severity: "error" | "warning") => issues.push({ path, message, severity });
@@ -733,16 +735,41 @@ export function validateReplanteoHuecos(config: unknown): ConfigIssue[] {
     }
   }
 
+  // GALERIA-04 (2026-09-20, CONTRATOS § página `/galeria`): `sections.gallery.items[]` = galería completa con tipo del brief
+  // (fuente cuando existe; `gallery[]` queda como respaldo sin tipo); `selection` por id de items (o por índice de gallery, histórico).
+  const items = getNested(config, "sections.gallery.items");
+  const services = getNested(config, "services");
+  const serviceIds = new Set(Array.isArray(services) ? services.map((s) => (s && typeof s === "object" ? String((s as Record<string, unknown>).id ?? "") : "")) : []);
+  const itemIds = new Set<string>();
+  if (items !== undefined) {
+    if (!Array.isArray(items)) push("sections.gallery.items", "items debe ser una lista de { id, src, type?, alt?, serviceId? }.", "error");
+    else {
+      items.forEach((it, i) => {
+        const o = it && typeof it === "object" ? (it as Record<string, unknown>) : null;
+        if (!o || typeof o.id !== "string" || !o.id.trim() || typeof o.src !== "string" || !o.src.trim()) { push(`sections.gallery.items[${i}]`, "Cada pieza necesita id y src.", "error"); return; }
+        if (itemIds.has(o.id)) push(`sections.gallery.items[${i}].id`, `El id "${o.id}" está repetido.`, "error"); itemIds.add(o.id);
+        if (o.type !== undefined && !GALLERY_TYPES.includes(o.type as (typeof GALLERY_TYPES)[number])) push(`sections.gallery.items[${i}].type`, `El tipo "${String(o.type)}" no es del brief (${GALLERY_TYPES.join(" · ")}).`, "error");
+        if (o.serviceId !== undefined && !serviceIds.has(String(o.serviceId))) push(`sections.gallery.items[${i}].serviceId`, `El servicio "${String(o.serviceId)}" no existe en el catálogo.`, "error");
+      });
+      if (items.length > 0 && items.length < 3) push("sections.gallery.items", `items tiene ${items.length} piezas; la galería de la home necesita ≥ 3 (con 3–5 se colapsan celdas).`, "warning");
+    }
+  }
+
   const selection = getNested(config, "sections.gallery.selection");
   if (selection !== undefined) {
     const gallery = getNested(config, "gallery");
     const n = Array.isArray(gallery) ? gallery.length : 0;
-    if (!Array.isArray(selection) || !selection.every((v) => Number.isInteger(v) && (v as number) >= 0)) {
-      push("sections.gallery.selection", "selection debe ser una lista de índices (enteros ≥ 0) de gallery.", "error");
+    const porId = Array.isArray(items) && items.length > 0;
+    const ok = (v: unknown) => (porId ? typeof v === "string" : Number.isInteger(v) && (v as number) >= 0);
+    if (!Array.isArray(selection) || !selection.every(ok)) {
+      push("sections.gallery.selection", porId ? "selection debe ser una lista de ids de sections.gallery.items." : "selection debe ser una lista de índices (enteros ≥ 0) de gallery.", "error");
     } else {
       if (selection.length < 4 || selection.length > 6) push("sections.gallery.selection", `selection tiene ${selection.length} fotos; la home muestra 4–6 (D4).`, "warning");
-      if (new Set(selection).size !== selection.length) push("sections.gallery.selection", "selection repite un índice.", "error");
-      for (const i of selection as number[]) if (i >= n) push("sections.gallery.selection", `La foto ${i} no existe: gallery tiene ${n}.`, "error");
+      if (new Set(selection).size !== selection.length) push("sections.gallery.selection", porId ? "selection repite un id." : "selection repite un índice.", "error");
+      for (const v of selection) {
+        if (porId) { if (!itemIds.has(v as string)) push("sections.gallery.selection", `La pieza "${String(v)}" no existe en sections.gallery.items.`, "error"); }
+        else if ((v as number) >= n) push("sections.gallery.selection", `La foto ${String(v)} no existe: gallery tiene ${n}.`, "error");
+      }
     }
   }
 

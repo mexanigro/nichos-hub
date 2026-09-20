@@ -54,6 +54,16 @@ test("replanteo: featured (2 ids existentes), selection (4–6 índices existent
   assert.deepEqual(rp({ services: [{ id: "cut" }, { id: "color" }], sections: { services: { featured: ["cut", "color"] } } }), [], "dos ids existentes: sin avisos");
 });
 
+test("galeria-04: items con tipo del brief, ids únicos, serviceId existente; selection por id", () => {
+  const base = { services: [{ id: "cut" }, { id: "color" }], gallery: ["/1.jpg"] };
+  const p = rp({ ...base, sections: { gallery: { items: [{ id: "a", src: "/a.jpg", type: "novia", serviceId: "nope" }, { id: "a", src: "/b.jpg", type: "rosa" }, { src: "/c.jpg" }], selection: ["a", "zz", 0] } } });
+  for (const k of ["error:sections.gallery.items[0].serviceId", "error:sections.gallery.items[1].id", "error:sections.gallery.items[1].type", "error:sections.gallery.items[2]", "error:sections.gallery.selection"]) assert.ok(p.includes(k), k + " en " + JSON.stringify(p));
+  assert.ok(rp({ ...base, sections: { gallery: { items: [{ id: "a", src: "/a.jpg" }, { id: "b", src: "/b.jpg" }] } } }).includes("warning:sections.gallery.items"), "< 3 piezas avisa");
+  assert.ok(rp({ ...base, sections: { gallery: { items: [{ id: "a", src: "/a.jpg" }, { id: "b", src: "/b.jpg" }, { id: "c", src: "/c.jpg" }, { id: "d", src: "/d.jpg" }], selection: ["a", "b", "c", "c"] } } }).includes("error:sections.gallery.selection"), "id repetido");
+  assert.deepEqual(rp({ ...base, sections: { gallery: { items: [{ id: "a", src: "/a.jpg", type: "color", serviceId: "color", alt: "x" }, { id: "b", src: "/b.jpg", type: "cortes", serviceId: "cut" }, { id: "c", src: "/c.jpg" }, { id: "d", src: "/d.jpg" }], selection: ["d", "c", "b", "a"] } } }), [], "dentro del contrato: sin avisos");
+  assert.deepEqual(rp({ ...base, gallery: ["/1.jpg", "/2.jpg", "/3.jpg", "/4.jpg"], sections: { gallery: { selection: [0, 1, 2, 3] } } }), [], "sin items: selection por índice sigue valiendo");
+});
+
 test("replanteo: dentro del contrato, sin avisos", () => {
   assert.deepEqual(rp({
     services: [{ id: "cut" }, { id: "color" }, { id: "x" }],
