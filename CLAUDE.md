@@ -49,12 +49,16 @@ Se copió el mecanismo de vendamos-agente: lo que una instrucción puede saltear
 
 **HIGIENE-02 (2026-09-19):** arranque, cierre e higiene revisan T y H desde cualquiera de los dos; un trabajo que toca ambos no cierra con uno limpio y el otro sucio (`tools/_git.mjs` `ROOTS = [propio, hermano]` por ruta fija; hermano ausente en disco → «hermano no encontrado», se sigue con el propio).
 
+**HIGIENE-03 (VERDAD-01, 2026-09-20):** `cierre.mjs` distingue por el transcript de la sesión (stdin `transcript_path`; `tools/_transcript.mjs`, copia byte a byte de la de T, guard `tests/higiene-03.test.ts`) si la sesión ESCRIBIÓ en T/H (Edit/Write, shell que muta git o disco, subagente) → bloquea; si sólo leyó → aviso y exit 0; sin transcript → bloquea (fail closed).
+
+**VERDAD-01 (2026-09-20) · el método antes que el diseño.** R-V1 **Afirmación = prueba**: toda afirmación de una entrega es una fila de `T verdad/VERDAD-<sha>.md`, generado por `tools/verdad/veredicto.mjs` (motor en T; aquí `tools/verdad/veredicto.mjs` lo delega con `--repo H`) desde `T verdad/entregas/<orden>.json`: las afirmaciones con `repo: "H"` se prueban en este repo (`node --experimental-strip-types --test`), con su mutación en `tests/mutaciones/<base>.mjs` registrada rojo→verde; VERIFICADO · NO VERIFICADO · FALSO; lo que no está ahí es «no verificado» y no se escribe como hecho; el mensaje de entrega pega el informe. R-V2 **Regresión por impacto**: en H no hay grafo de secciones; `veredicto --commit` toma lo staged de H y los tests que lo nombran. R-V3 **Aprobado = hueco real**: una pieza está aprobada sólo si `T tools/verdad/hueco.mjs --id <hueco>` está verde: contrato (`CONTRATOS-HUECOS.md` + `T verdad/contratos.json`), **validador en H** (`src/lib/config-validator.ts`, función exportada que nombra la clave), **UI del constructor** (ruta `src/app/…/page.tsx` montada + componente que nombra la clave; hoy casi todo «no»: se construye en CONEXION-01 bajo este mecanismo), material donde producción lo sirve, guard en T, y `recrear.mjs` (importa el fixture como `test-b4-peluqueria-{a,c}` con `scripts/b4-tenant.ts create --id … --fixture …`) con diferencia cero. Puertas: `.githooks/pre-commit` = tsc + suites + `veredicto --commit`; Stop = `cierre.mjs` + `veredicto --stop` (el informe de T debe citar el HEAD de H).
+
 <!-- CONTRATO-DECLARADO: tests/contrato-hooks.test.ts lo verifica contra .claude/settings.json,
      .githooks/ y package.json. NO editar a mano sin correr ese guard. -->
 ```ini
 hook.SessionStart = * :: arranque.mjs
 hook.PreToolUse   = Edit|Write|MultiEdit :: candado.mjs
-hook.Stop         = * :: cierre.mjs
+hook.Stop         = * :: cierre.mjs veredicto.mjs
 githooks          = pre-commit pre-push
 git.hooksPath     = .githooks (npm prepare)
 ```
