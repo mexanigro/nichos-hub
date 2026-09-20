@@ -60,7 +60,13 @@ test("galeria-04: items con tipo del brief, ids únicos, serviceId existente; se
   for (const k of ["error:sections.gallery.items[0].serviceId", "error:sections.gallery.items[1].id", "error:sections.gallery.items[1].type", "error:sections.gallery.items[2]", "error:sections.gallery.selection"]) assert.ok(p.includes(k), k + " en " + JSON.stringify(p));
   assert.ok(rp({ ...base, sections: { gallery: { items: [{ id: "a", src: "/a.jpg" }, { id: "b", src: "/b.jpg" }] } } }).includes("warning:sections.gallery.items"), "< 3 piezas avisa");
   assert.ok(rp({ ...base, sections: { gallery: { items: [{ id: "a", src: "/a.jpg" }, { id: "b", src: "/b.jpg" }, { id: "c", src: "/c.jpg" }, { id: "d", src: "/d.jpg" }], selection: ["a", "b", "c", "c"] } } }).includes("error:sections.gallery.selection"), "id repetido");
-  assert.deepEqual(rp({ ...base, sections: { gallery: { items: [{ id: "a", src: "/a.jpg", type: "color", serviceId: "color", alt: "x" }, { id: "b", src: "/b.jpg", type: "cortes", serviceId: "cut" }, { id: "c", src: "/c.jpg" }, { id: "d", src: "/d.jpg" }], selection: ["d", "c", "b", "a"] } } }), [], "dentro del contrato: sin avisos");
+  const ok4 = [{ id: "a", src: "/a.jpg", type: "color", serviceId: "color", alt: "x" }, { id: "b", src: "/b.jpg", type: "cortes", serviceId: "cut", alt: "y" }, { id: "c", src: "/c.jpg", alt: "z" }, { id: "d", src: "/d.jpg", alt: "w" }];
+  const alts = { a: "A", b: "B", c: "C", d: "D" };
+  assert.deepEqual(rp({ ...base, sections: { gallery: { items: ok4, selection: ["d", "c", "b", "a"] } }, translations: { en: { sections: { gallery: { alts } } }, ru: { sections: { gallery: { alts } } }, ar: { sections: { gallery: { alts } } } } }), [], "dentro del contrato: sin avisos");
+  // GALERIA-05 A2: alt obligatorio en el idioma base; en otro idioma por translations[lang].sections.gallery.alts (falta → warning)
+  const sinAlt = rp({ ...base, sections: { gallery: { items: ok4.map((it, i) => (i === 1 ? { ...it, alt: " " } : it)) } }, translations: { en: { sections: { gallery: { alts: { a: "A", b: "B", c: "C" } } } } } });
+  assert.ok(sinAlt.includes("error:sections.gallery.items[1].alt"), "alt vacío → error: " + JSON.stringify(sinAlt));
+  assert.ok(sinAlt.includes("warning:translations.en.sections.gallery.alts.d"), "falta el alt de d en en → warning");
   assert.deepEqual(rp({ ...base, gallery: ["/1.jpg", "/2.jpg", "/3.jpg", "/4.jpg"], sections: { gallery: { selection: [0, 1, 2, 3] } } }), [], "sin items: selection por índice sigue valiendo");
 });
 

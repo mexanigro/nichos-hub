@@ -750,7 +750,22 @@ export function validateReplanteoHuecos(config: unknown): ConfigIssue[] {
         if (itemIds.has(o.id)) push(`sections.gallery.items[${i}].id`, `El id "${o.id}" está repetido.`, "error"); itemIds.add(o.id);
         if (o.type !== undefined && !GALLERY_TYPES.includes(o.type as (typeof GALLERY_TYPES)[number])) push(`sections.gallery.items[${i}].type`, `El tipo "${String(o.type)}" no es del brief (${GALLERY_TYPES.join(" · ")}).`, "error");
         if (o.serviceId !== undefined && !serviceIds.has(String(o.serviceId))) push(`sections.gallery.items[${i}].serviceId`, `El servicio "${String(o.serviceId)}" no existe en el catálogo.`, "error");
+        if (typeof o.alt !== "string" || !o.alt.trim()) push(`sections.gallery.items[${i}].alt`, "alt obligatorio (GALERIA-05 A2): tipo + una frase corta en el idioma base.", "error");
       });
+      // GALERIA-05: en otro idioma el alt llega por translations[lang].sections.gallery.alts[id]; sin él, el template pone la etiqueta del tipo (se avisa).
+      const tr = getNested(config, "translations");
+      if (tr && typeof tr === "object") {
+        for (const [lang, layer] of Object.entries(tr as Record<string, unknown>)) {
+          const alts = getNested(layer, "sections.gallery.alts");
+          if (alts === undefined) { push(`translations.${lang}.sections.gallery.alts`, `Sin alt de galería en ${lang}: el template usa la etiqueta del tipo.`, "warning"); continue; }
+          if (!alts || typeof alts !== "object" || Array.isArray(alts)) { push(`translations.${lang}.sections.gallery.alts`, "alts debe ser un objeto { id: alt }.", "error"); continue; }
+          for (const [id, v] of Object.entries(alts as Record<string, unknown>)) {
+            if (!itemIds.has(id)) push(`translations.${lang}.sections.gallery.alts.${id}`, `La pieza "${id}" no existe en sections.gallery.items.`, "warning");
+            if (typeof v !== "string" || !v.trim()) push(`translations.${lang}.sections.gallery.alts.${id}`, "alt vacío.", "error");
+          }
+          for (const id of itemIds) if (!(id in (alts as Record<string, unknown>))) push(`translations.${lang}.sections.gallery.alts.${id}`, `Falta el alt de "${id}" en ${lang}: el template usa la etiqueta del tipo.`, "warning");
+        }
+      }
       if (items.length > 0 && items.length < 3) push("sections.gallery.items", `items tiene ${items.length} piezas; la galería de la home necesita ≥ 3 (con 3–5 se colapsan celdas).`, "warning");
     }
   }
