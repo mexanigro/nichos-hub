@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prepare": "git config core.hooksPath .githooks || exit 0",
+    "prepare": "git config core.hooksPath .githooks && git config core.autocrlf false || exit 0",
     "test": "node --experimental-strip-types --test \"src/**/*.test.ts\" \"tests/*.test.ts\"",
     "test:client-config": "node --experimental-strip-types --test src/lib/client-config/services.test.ts",
     "capture-wizard-refs": "node scripts/capture-wizard-refs.mjs"
