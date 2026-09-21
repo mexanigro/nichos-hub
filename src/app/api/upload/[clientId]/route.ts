@@ -1,46 +1,10 @@
 import { NextResponse } from "next/server";
-import { randomUUID } from "crypto";
 import { withOwner } from "@/lib/auth";
-import { getStorageBucket } from "@/lib/firebase-admin";
+import { resolveContentType, subirMaterial } from "@/lib/media-upload";
 
-const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 const MAX_FILES = 20;
-const ALLOWED_TYPES = new Set([
-  "image/jpeg",
-  "image/png",
-  "image/webp",
-  "image/gif",
-  "image/avif",
-  "image/x-icon",
-  "image/vnd.microsoft.icon",
-  "application/json",
-]);
-
-/** Fallback MIME detection by extension — webkitGetAsEntry() on Windows
- *  often produces File objects with an empty `type` string. */
-const EXT_TO_MIME: Record<string, string> = {
-  ".jpg": "image/jpeg",
-  ".jpeg": "image/jpeg",
-  ".png": "image/png",
-  ".webp": "image/webp",
-  ".gif": "image/gif",
-  ".avif": "image/avif",
-  ".json": "application/json",
-  ".ico": "image/x-icon",
-};
-
-function resolveContentType(file: File): string {
-  if (file.type && file.type !== "application/octet-stream") return file.type;
-  const ext = file.name.slice(file.name.lastIndexOf(".")).toLowerCase();
-  return EXT_TO_MIME[ext] || "";
-}
-
-function sanitizeFilename(name: string): string {
-  return name
-    .replace(/[^a-zA-Z0-9._-]/g, "_")
-    .replace(/_{2,}/g, "_")
-    .slice(0, 80);
-}
+/** image/jpeg|png|webp|avif ≤ 5 MB y video/mp4|webm ≤ 6 MB (los límites viven en subirMaterial). */
+const ALLOWED_TYPES = new Set(["image/jpeg", "image/png", "image/webp", "image/avif", "video/mp4", "video/webm"]);
 
 export const POST = withOwner(async (req, _session, ctx) => {
   const { clientId } = await ctx.params;
@@ -66,47 +30,29 @@ export const POST = withOwner(async (req, _session, ctx) => {
     return NextResponse.json({ error: `Maximo ${MAX_FILES} archivos por request` }, { status: 400 });
   }
 
-  const bucket = getStorageBucket();
+  // CONEXION-01: `rol` = hero|services|gallery|staff|branding para la peluquería; la flota sigue en `images`.
+  const rolCrudo = formData.get("rol");
+  const rol = typeof rolCrudo === "string" && /^[a-z]+$/.test(rolCrudo) ? rolCrudo : "images";
+
   const urls: string[] = [];
   const errors: string[] = [];
 
   for (const file of files) {
-    const contentType = resolveContentType(file);
+    const contentType = resolveContentType(file.name, file.type);
 
     if (!contentType || !ALLOWED_TYPES.has(contentType)) {
       errors.push(`${file.name}: tipo no permitido (${file.type || "vacío"} → ${contentType || "desconocido"})`);
       continue;
     }
 
-    if (file.size > MAX_FILE_SIZE) {
-      errors.push(`${file.name}: excede 5MB`);
-      continue;
-    }
-
-    const timestamp = Date.now();
-    const safeName = sanitizeFilename(file.name);
-    const storagePath = `clients/${clientId}/images/${timestamp}-${safeName}`;
+    // La flota sube fotos sueltas al mismo rol: prefijo de tiempo para que dos con el mismo nombre no se pisen.
+    // Los roles de la peluquería nombran el hueco (hero.mp4, retrato-1.jpg): el nombre va tal cual y el path es reproducible.
+    const nombre = rol === "images" ? `${Date.now()}-${file.name}` : file.name;
 
     try {
       const buffer = Buffer.from(await file.arrayBuffer());
-      const bucketFile = bucket.file(storagePath);
-
-      await bucketFile.save(buffer, {
-        metadata: {
-          contentType,
-          cacheControl: "public, max-age=31536000",
-        },
-      });
-
-      // Use Firebase download token instead of makePublic() — works regardless
-      // of bucket access control settings (Uniform or Fine-grained).
-      const token = randomUUID();
-      await bucketFile.setMetadata({
-        metadata: { firebaseStorageDownloadTokens: token },
-      });
-
-      const publicUrl = `https://firebasestorage.googleapis.com/v0/b/${bucket.name}/o/${encodeURIComponent(storagePath)}?alt=media&token=${token}`;
-      urls.push(publicUrl);
+      const { url } = await subirMaterial({ clientId, rol, nombre, buffer, contentType });
+      urls.push(url);
     } catch (err) {
       const msg = err instanceof Error ? err.message : String(err);
       console.error(`[upload] Error subiendo ${file.name}:`, msg);

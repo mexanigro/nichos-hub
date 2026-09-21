@@ -20,6 +20,7 @@ Web + CRM + emails. **Alta 1500 NIS** (en persona negociable 1000–1500, `hub_c
 - Firebase por Admin SDK (`src/lib/firebase-admin.ts`, bypassa rules; las rules se deployean sólo desde master-template). Endpoints públicos con `src/lib/rate-limit.ts`.
 - Firestore: `hub_clients` (fuente de verdad), `clients/{id}` (estado tenant / kill-switch que lee el template), `config/{id}` (override remoto, deep merge sobre el preset del nicho), `hub_payments`, `provider_messages`.
 - Ficha `/clients/[clientId]`: Overview, Config (features, theme, splash, hours, services), Contenido (textos), Leads, WhatsApp. Config y Contenido escriben `config/{id}`.
+- Material de un cliente (CONEXION-01): vive en Storage bajo `clients/<id>/media/<rol>/<nombre>` (rol hero|services|gallery|staff|branding; la flota, `images` con prefijo de tiempo), subido sólo por `subirMaterial` (`src/lib/media-upload.ts`: imagen ≤ 5 MB, vídeo mp4/webm ≤ 6 MB, cacheControl de un año, url `firebasestorage.googleapis.com/v0/b/…?alt=media&token=<sha256[0..32) del contenido>`, idempotente). `/api/upload/[clientId]` la usa; `scripts/b4-material.ts --paleta a|c` sube el material de los fixtures de T y los reescribe.
 - Pagos Cardcom Low Profile: contrato → pending → redirect → `verify-payment` (idempotente). Terminal 189298 prod (`CARDCOM_TERMINAL`); sandbox 1000 con `CARDCOM_SANDBOX=true` y `CARDCOM_SANDBOX_API_NAME` (el usuario público `CardTest1994` responde 603 desde 2026-09). Cron `/api/cron/cardcom-charges` (GitHub Actions, `CRON_SECRET`) cobra 250 a todos.
 - Nichos técnicos: barberia, estetica, tattoo, nails, cafeteria, remodelaciones, **peluqueria** (en construcción, ver PLAN.md) + `employment` como caso especial (`src/lib/niche-defaults.ts`, `src/lib/client-config/services.ts`). «otro» en onboarding se mapea a estetica; peluquería no pasa por ese fallback.
 - Ecosistema: master-template (web + CRM del cliente, Vercel `*.arzac.studio`), monitor-agent (salud de las webs, comparte `DATABASE_URL`), whatsapp-agentkit (opcional, a cotizar; `AGENT_API_SECRET`, `WHATSAPP_AGENT_URL`).
@@ -32,6 +33,7 @@ npm run dev            # next dev --turbopack
 npx tsc --noEmit       # verde exigido
 npm test               # node --test src/**/*.test.ts → todos exit 0, fail 0
 npm run build
+node --experimental-strip-types scripts/b4-material.ts --paleta a|c   # CONEXION-01: material del fixture de T a Storage (D-20) y fixture reescrito
 ```
 
 ## Reglas
