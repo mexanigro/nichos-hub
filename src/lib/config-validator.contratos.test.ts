@@ -16,8 +16,8 @@ test("hero v6: eyebrow > 4, titular fuera de 2–6, frase > 12, CTA > 2, vídeo 
   assert.ok(!p.includes("hero.ctaSecondary"));
 });
 
-test("hero v6 dentro del contrato: sin avisos", () => {
-  assert.deepEqual(paths({ hero: { variant: "v6", eyebrow: "מספרה לנשים", titlePrefix: "הסטודיו", titleHighlight: "לשיער שלך", titleSuffix: "ברמת גן", subtitle: "a b c", ctaPrimary: "לקביעת תור", ctaSecondary: "וואטסאפ", video: { mp4: "/a.mp4", poster: "/a.avif", portrait: { mp4: "/v.mp4" } } } }), []);
+test("hero v6 dentro del contrato: sin avisos (CONEXION-02: hero.video.* en https://, una ruta local es error)", () => {
+  assert.deepEqual(paths({ hero: { variant: "v6", eyebrow: "מספרה לנשים", titlePrefix: "הסטודיו", titleHighlight: "לשיער שלך", titleSuffix: "ברמת גן", subtitle: "a b c", ctaPrimary: "לקביעת תור", ctaSecondary: "וואטסאפ", video: { mp4: "https://s/a.mp4", poster: "https://s/a.avif", portrait: { mp4: "https://s/v.mp4" } } } }), []);
 });
 
 test("services v6: destacada sin foto, primera oración > 12, priceMax < price, consulta sin teléfono, nombre > 5", () => {

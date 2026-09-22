@@ -123,7 +123,7 @@ if (mode === "create" && FIXTURE) {
   for (const [k, r] of Object.entries(refs)) {
     const s = await r.get();
     console.log(`\n## ${k} (${s.exists ? "existe" : "no existe"})`);
-    if (s.exists) console.log(JSON.stringify(s.data(), null, 1).slice(0, 1600));
+    if (s.exists) console.log(JSON.stringify(s.data(), null, 1)); // CONEXION-02: entero (antes recortado a 1600)
   }
 } else {
   console.error("uso: node scripts/b4-tenant.ts create|archive|show|keys [--id test-b4-peluqueria-a] [--fixture <ruta.json>]");

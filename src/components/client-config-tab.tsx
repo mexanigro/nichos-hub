@@ -64,6 +64,7 @@ import { SplashVariantPreview, type SplashVariantId } from "./splash-variant-pre
 import { HeroObjectsEditor, type HeroObjectsMap } from "./config-editors/hero-objects-editor";
 import { SectionVariantSelector } from "./config-editors/section-variant-selector";
 import { HeroSlotPicker } from "./config-editors/hero-slot-picker";
+import { HeroVideoEditor } from "./config-editors/hero-video-editor";
 import {
   HERO_VARIANTS,
   WHY_CHOOSE_VARIANTS,
@@ -1175,6 +1176,19 @@ export function ClientConfigTab({
             placeholder="https://images.unsplash.com/..."
           />
         </div>
+
+        {/* CONEXION-02: vídeo del hero de peluquería (hero.video; convive con hero.videoUrl de la flota, D-33). Sólo peluquería (D-35). */}
+        {niche === "peluqueria" && (
+          <div className="border-t border-border pt-3">
+            <p className="mb-1 text-[11px] font-semibold text-text-secondary">Vídeo del Hero</p>
+            <HeroVideoEditor
+              clientId={clientId}
+              niche={niche}
+              value={getNested("hero.video") as Record<string, unknown> | undefined}
+              onChange={(video) => updateNested("hero.video", video)}
+            />
+          </div>
+        )}
 
         {/* Hero Stats */}
         {config.features?.showHeroStats !== false && (

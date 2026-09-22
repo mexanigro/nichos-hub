@@ -706,6 +706,18 @@ export function validateVariantContracts(config: unknown): ConfigIssue[] {
     }
   }
 
+  // CONEXION-02 (B2): producción sólo sirve Storage (https://). Una ruta local en hero.video.* es error, no aviso: el hub no
+  // debe guardar lo que el tenant no puede mostrar. Sólo las ocho claves de material; `focus` es texto ("50% 30%").
+  const heroVideo = getNested(config, "hero.video");
+  if (heroVideo && typeof heroVideo === "object") {
+    for (const k of ["mp4", "webm", "poster", "medium.mp4", "medium.webm", "portrait.mp4", "portrait.webm", "portrait.poster"]) {
+      const v = getNested(heroVideo, k);
+      if (typeof v === "string" && v.trim() && !v.startsWith("https://")) {
+        issues.push({ path: `hero.video.${k}`, message: `producción no sirve rutas locales: ${k} debe ser una url https:// de Storage (hay "${v}").`, severity: "error" });
+      }
+    }
+  }
+
   issues.push(...validateReplanteoHuecos(config));
   return issues;
 }
