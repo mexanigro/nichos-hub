@@ -23,7 +23,7 @@ test("hero v6 dentro del contrato: sin avisos (CONEXION-02: hero.video.* en http
 test("services v6: destacada sin foto, primera oración > 12, priceMax < price, consulta sin teléfono, nombre > 5", () => {
   const p = paths({
     contact: {},
-    sections: { services: { variant: "v6", images: ["/a.jpg", ""] } },
+    sections: { services: { variant: "v6", images: ["https://s/a.jpg", ""] } },
     services: [
       { id: "a", name: "uno dos tres cuatro cinco seis", description: "1 2 3 4 5 6 7 8 9 10 11 12 13. Corta.", price: 100, priceMax: 50, mode: "reserva" },
       { id: "b", name: "b", description: "Corta. 1 2 3 4 5 6 7 8 9 10 11 12 13 14", price: 100, mode: "consulta" },
@@ -32,6 +32,14 @@ test("services v6: destacada sin foto, primera oración > 12, priceMax < price, 
   for (const k of ["services[0].name", "services[0].description", "services[0].priceMax", "services[1].mode", "sections.services.images[1]"]) assert.ok(p.includes(k), k);
   assert.ok(!p.includes("services[1].description"), "la primera oración corta pasa aunque la segunda sea larga");
   assert.ok(!p.includes("sections.services.images[0]"));
+});
+
+// CONEXION-03 (2026-09-22): la foto de un servicio vive en Storage — una ruta local es error, no aviso (como hero.video.*).
+test("services v6: una foto local en sections.services.images[i] es error; la casilla vacía no", () => {
+  const cfg = { sections: { services: { variant: "v6", images: ["/dev-fixtures/media/paleta-a/servicio-1.jpg", ""] } }, services: [{ id: "a", name: "a", price: 10 }, { id: "b", name: "b", price: 20 }] };
+  const errores = validateVariantContracts(cfg).filter((i) => i.severity === "error");
+  assert.deepEqual(errores.map((i) => i.path), ["sections.services.images[0]"]);
+  assert.ok(errores[0].message.includes("producción no sirve rutas locales"));
 });
 
 // REPLANTEO-01 (2026-09-19): huecos nuevos sin UI — featured, selection, foto del local, velo/liso, heroToBackdrop.
@@ -49,9 +57,11 @@ test("replanteo: featured (2 ids existentes), selection (4–6 índices existent
     branding: { localPhoto: "/local.jpg" },
     sections: { services: { featured: ["cut", "nope", "color"], surface: "velo", veil: 1.5 }, gallery: { selection: [0, 7] }, team: { surface: "oscuro" }, faq: { veil: 0.8 } },
   });
-  for (const k of ["error:sections.services.featured", "warning:sections.services.featured", "error:sections.gallery.selection", "warning:sections.gallery.selection", "warning:branding.localPhotoMobile", "warning:branding.heroToBackdrop", "error:sections.team.surface", "error:sections.services.veil", "warning:sections.faq.veil"]) assert.ok(p.includes(k), k);
+  for (const k of ["error:sections.services.featured", "error:sections.gallery.selection", "warning:sections.gallery.selection", "warning:branding.localPhotoMobile", "warning:branding.heroToBackdrop", "error:sections.team.surface", "error:sections.services.veil", "warning:sections.faq.veil"]) assert.ok(p.includes(k), k);
   assert.ok(rp({ services: [{ id: "cut" }, { id: "color" }], sections: { services: { featured: ["cut", "cut"] } } }).includes("error:sections.services.featured"), "duplicado");
   assert.deepEqual(rp({ services: [{ id: "cut" }, { id: "color" }], sections: { services: { featured: ["cut", "color"] } } }), [], "dos ids existentes: sin avisos");
+  // CONEXION-03 (D-41): featured es orden, no cantidad — una lista de 1 o de 3 ids existentes ya no avisa.
+  for (const featured of [["cut"], ["cut", "color", "bride"]]) assert.deepEqual(rp({ services: [{ id: "cut" }, { id: "color" }, { id: "bride" }], sections: { services: { featured } } }), [], `featured con ${featured.length} ids: sin avisos`);
 });
 
 test("galeria-04: items con tipo del brief, ids únicos, serviceId existente; selection por id", () => {

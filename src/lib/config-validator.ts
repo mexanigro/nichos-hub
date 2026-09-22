@@ -718,6 +718,17 @@ export function validateVariantContracts(config: unknown): ConfigIssue[] {
     }
   }
 
+  // CONEXION-03 (B2): lo mismo para la foto de cada servicio — `sections.services.images[i]` presente y sin `https://` es error,
+  // no aviso: producción sólo sirve Storage y el hub no debe guardar lo que el tenant no puede mostrar. El hueco vacío ("") no.
+  const imagenesServicios = getNested(config, "sections.services.images");
+  if (Array.isArray(imagenesServicios)) {
+    imagenesServicios.forEach((v, i) => {
+      if (typeof v === "string" && v.trim() && !v.startsWith("https://")) {
+        issues.push({ path: `sections.services.images[${i}]`, message: `producción no sirve rutas locales: la foto del servicio ${i + 1} debe ser una url https:// de Storage (hay "${v}").`, severity: "error" });
+      }
+    });
+  }
+
   issues.push(...validateReplanteoHuecos(config));
   return issues;
 }
@@ -741,7 +752,8 @@ export function validateReplanteoHuecos(config: unknown): ConfigIssue[] {
     if (!Array.isArray(featured) || !featured.every((v) => typeof v === "string")) {
       push("sections.services.featured", "featured debe ser una lista de ids de servicios.", "error");
     } else {
-      if (featured.length !== 2) push("sections.services.featured", `featured tiene ${featured.length} ids; la home muestra exactamente 2 destacados (D4).`, "warning");
+      // CONEXION-03 (D-41): `featured` es ORDEN, no cantidad — services v6 muestra todas y las ordena por esta lista, así que
+      // cualquier longitud es válida. Sólo es error lo que el template no puede resolver (id inexistente o repetido).
       if (new Set(featured).size !== featured.length) push("sections.services.featured", "featured repite un id.", "error");
       for (const id of featured) if (!ids.has(id)) push("sections.services.featured", `El servicio "${id}" no existe en el catálogo.`, "error");
     }
