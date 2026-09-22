@@ -65,6 +65,7 @@ import { HeroObjectsEditor, type HeroObjectsMap } from "./config-editors/hero-ob
 import { SectionVariantSelector } from "./config-editors/section-variant-selector";
 import { HeroSlotPicker } from "./config-editors/hero-slot-picker";
 import { HeroVideoEditor } from "./config-editors/hero-video-editor";
+import { GalleryEditor } from "./config-editors/gallery-editor";
 import {
   HERO_VARIANTS,
   WHY_CHOOSE_VARIANTS,
@@ -1251,6 +1252,19 @@ export function ClientConfigTab({
             clientId={clientId}
           />
         </div>
+
+        {/* CONEXION-04: piezas de la galería de peluquería (items con tipo, alt ×4 y servicio; selección; superficie). Sólo peluquería (D-47). */}
+        {niche === "peluqueria" && (
+          <div className="border-t border-border pt-3">
+            <p className="mb-1 text-[11px] font-semibold text-text-secondary">Piezas de la galeria</p>
+            <GalleryEditor
+              niche={niche}
+              config={config}
+              setConfig={setConfig}
+              clientId={clientId}
+            />
+          </div>
+        )}
 
         {/* Instagram */}
         <div className="border-t border-border pt-3">

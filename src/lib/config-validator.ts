@@ -775,7 +775,18 @@ export function validateReplanteoHuecos(config: unknown): ConfigIssue[] {
         if (o.type !== undefined && !GALLERY_TYPES.includes(o.type as (typeof GALLERY_TYPES)[number])) push(`sections.gallery.items[${i}].type`, `El tipo "${String(o.type)}" no es del brief (${GALLERY_TYPES.join(" · ")}).`, "error");
         if (o.serviceId !== undefined && !serviceIds.has(String(o.serviceId))) push(`sections.gallery.items[${i}].serviceId`, `El servicio "${String(o.serviceId)}" no existe en el catálogo.`, "error");
         if (typeof o.alt !== "string" || !o.alt.trim()) push(`sections.gallery.items[${i}].alt`, "alt obligatorio (GALERIA-05 A2): tipo + una frase corta en el idioma base.", "error");
+        // CONEXION-04 (B2): producción sólo sirve Storage. Una ruta local en la foto de una pieza es error, no aviso.
+        if (typeof o.src === "string" && o.src.trim() && !o.src.startsWith("https://")) push(`sections.gallery.items[${i}].src`, `producción no sirve rutas locales: la foto ${i + 1} de la galería debe ser una url https:// de Storage (hay "${o.src}").`, "error");
       });
+      // CONEXION-04 (D-49): `gallery[]` de la raíz es el respaldo sin tipo y va en la misma posición que `items[].src`.
+      const respaldo = getNested(config, "gallery");
+      if (Array.isArray(respaldo)) {
+        items.forEach((it, i) => {
+          const src = it && typeof it === "object" ? (it as Record<string, unknown>).src : undefined;
+          const v = respaldo[i];
+          if (typeof src === "string" && typeof v === "string" && src !== v) push(`gallery[${i}]`, `respaldo desincronizado: gallery[${i}] debe ser la src de sections.gallery.items[${i}] (D-49) — hay "${v}".`, "error");
+        });
+      }
       // GALERIA-05: en otro idioma el alt llega por translations[lang].sections.gallery.alts[id]; sin él, el template pone la etiqueta del tipo (se avisa).
       const tr = getNested(config, "translations");
       if (tr && typeof tr === "object") {
