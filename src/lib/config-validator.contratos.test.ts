@@ -81,12 +81,12 @@ test("galeria-04: items con tipo del brief, ids únicos, serviceId existente; se
   assert.deepEqual(rp({ ...base, gallery: ["/1.jpg", "/2.jpg", "/3.jpg", "/4.jpg"], sections: { gallery: { selection: [0, 1, 2, 3] } } }), [], "sin items: selection por índice sigue valiendo");
 });
 
-test("replanteo: dentro del contrato, sin avisos", () => {
+test("replanteo: dentro del contrato, sin avisos (CONEXION-05: branding.texture/localPhoto/localPhotoMobile en https://, una ruta local es error)", () => {
   assert.deepEqual(rp({
     services: [{ id: "cut" }, { id: "color" }, { id: "x" }],
     gallery: ["/1.jpg", "/2.jpg", "/3.jpg", "/4.jpg", "/5.jpg"],
     hero: { video: { mp4: "/h.mp4" } },
-    branding: { localPhoto: "/local.jpg", localPhotoMobile: "/local-v.jpg", heroToBackdrop: { relation: "adjacent-hue", mechanism: "veil-from-first-pixel", dH: 20, dL: 0.05 } },
+    branding: { localPhoto: "https://s/local.jpg", localPhotoMobile: "https://s/local-v.jpg", heroToBackdrop: { relation: "adjacent-hue", mechanism: "veil-from-first-pixel", dH: 20, dL: 0.05 } },
     sections: { services: { featured: ["color", "cut"], surface: "velo", veil: 0.65 }, gallery: { selection: [0, 1, 2, 3], surface: "liso" } },
   }), []);
 });
@@ -96,5 +96,5 @@ test("replanteo-02: mode light|dark, texture URL, surface textura, foot con hex"
   const bad = rp({ branding: { mode: "auto", texture: 3, heroToBackdrop: { relation: "same-hue", mechanism: "veil-from-first-pixel", foot: { hex: "gris" } } }, sections: { gallery: { surface: "liso" } } });
   for (const k of ["error:branding.mode", "error:branding.texture", "error:branding.heroToBackdrop.foot"]) assert.ok(bad.includes(k), k);
   assert.ok(!bad.includes("error:sections.gallery.surface"), "liso sigue admitido como histórico");
-  assert.deepEqual(rp({ branding: { mode: "dark", texture: "/t.jpg", heroToBackdrop: { relation: "adjacent-hue", mechanism: "scrim-dies-into-photo", foot: { hex: "#413c37", L: 0.36, C: 0.01, H: 66 } } }, sections: { gallery: { surface: "textura" }, services: { surface: "velo", veil: 0.65 } } }), []);
+  assert.deepEqual(rp({ branding: { mode: "dark", texture: "https://s/t.jpg", heroToBackdrop: { relation: "adjacent-hue", mechanism: "scrim-dies-into-photo", foot: { hex: "#413c37", L: 0.36, C: 0.01, H: 66 } } }, sections: { gallery: { surface: "textura" }, services: { surface: "velo", veil: 0.65 } } }), []);
 });

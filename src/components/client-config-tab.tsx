@@ -66,6 +66,7 @@ import { SectionVariantSelector } from "./config-editors/section-variant-selecto
 import { HeroSlotPicker } from "./config-editors/hero-slot-picker";
 import { HeroVideoEditor } from "./config-editors/hero-video-editor";
 import { GalleryEditor } from "./config-editors/gallery-editor";
+import { FondoEditor } from "./config-editors/fondo-editor";
 import {
   HERO_VARIANTS,
   WHY_CHOOSE_VARIANTS,
@@ -97,6 +98,8 @@ type ConfigDoc = {
   businessMode?: "solo" | "team";
   brand?: { name?: string; tagline?: string; description?: string; logo?: string; logoDark?: string; logoIconName?: string; faviconEmoji?: string; ogImage?: string; aiPersona?: string };
   theme?: { accent?: string; accentLight?: string; surfaceDark?: string };
+  /** CONEXION-05: paleta y fondo de peluquería (mode, texture, localPhoto, localPhotoMobile, heroToBackdrop derivado). */
+  branding?: Record<string, unknown>;
   activeTheme?: string;
   features?: Record<string, boolean>;
   contact?: {
@@ -1258,6 +1261,19 @@ export function ClientConfigTab({
           <div className="border-t border-border pt-3">
             <p className="mb-1 text-[11px] font-semibold text-text-secondary">Piezas de la galeria</p>
             <GalleryEditor
+              niche={niche}
+              config={config}
+              setConfig={setConfig}
+              clientId={clientId}
+            />
+          </div>
+        )}
+
+        {/* CONEXION-05: fondo y branding de peluquería (modo de la paleta, textura, foto del local escritorio y móvil). Sólo peluquería (D-67). */}
+        {niche === "peluqueria" && (
+          <div className="border-t border-border pt-3">
+            <p className="mb-1 text-[11px] font-semibold text-text-secondary">Fondo y branding</p>
+            <FondoEditor
               niche={niche}
               config={config}
               setConfig={setConfig}

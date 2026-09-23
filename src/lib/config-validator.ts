@@ -845,6 +845,15 @@ export function validateReplanteoHuecos(config: unknown): ConfigIssue[] {
   if (mode !== undefined && mode !== "light" && mode !== "dark") push("branding.mode", "branding.mode debe ser light | dark (D17: el modo es de la paleta, por web).", "error");
   const texture = getNested(config, "branding.texture");
   if (texture !== undefined && !isUrl(texture)) push("branding.texture", "texture debe ser una URL/ruta de imagen (R21: mosaico 1024 sin costuras o imagen 2560).", "error");
+  // CONEXION-05 (B2): lo mismo para el material de fondo — `branding.texture`, `branding.localPhoto` y `branding.localPhotoMobile`
+  // presentes y sin `https://` son error, no aviso: producción sólo sirve Storage y el hub no debe guardar lo que el tenant no puede
+  // mostrar. El hueco vacío ("") ya lo cubre la regla de arriba.
+  for (const campo of ["texture", "localPhoto", "localPhotoMobile"] as const) {
+    const v = getNested(config, `branding.${campo}`);
+    if (typeof v === "string" && v.trim() && !v.startsWith("https://")) {
+      push(`branding.${campo}`, `producción no sirve rutas locales: ${campo} debe ser una url https:// de Storage (hay "${v}").`, "error");
+    }
+  }
   if (rel && typeof rel === "object") {
     const foot = (rel as Record<string, unknown>).foot as Record<string, unknown> | undefined;
     if (foot !== undefined && !(foot && typeof foot === "object" && /^#[0-9a-f]{6}$/i.test(String(foot.hex)))) push("branding.heroToBackdrop.foot", "foot debe llevar hex (#rrggbb) del pie del clip (transicion.mjs).", "error");
