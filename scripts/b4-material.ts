@@ -39,6 +39,7 @@ const RUTAS: [string, string][] = [
   ["sections.services.images[]", "services"], ["sections.gallery.items[].src", "gallery"], ["gallery[]", "gallery"],
   ["staff[].photoUrl", "staff"],
   ["branding.localPhoto", "branding"], ["branding.localPhotoMobile", "branding"], ["branding.texture", "branding"],
+  ["brand.logo", "branding"], ["brand.logoDark", "branding"],
 ];
 
 /** Bucket en disco: `<dir>/<path>`; urls con bucket «falso». */
