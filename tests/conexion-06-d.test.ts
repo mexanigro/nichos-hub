@@ -80,7 +80,9 @@ test("npm test corre las copias tests/conexion-05-a.test.ts, -b, -d, -e en H (8 
     assert.ok(["test", "test:unit", "test:browser"].some((s) => nombra(scripts[s], c)), `npm test no corre ${c}`);
     if (REPO === "T") {
       assert.ok(nombra(scripts["test:unit"], c), `en T, ${c} va en la fase concurrente test:unit`);
-      assert.doesNotMatch(leer(c), /from "playwright"/, `${c} no importa playwright (por eso va en test:unit)`);
+      // El literal del import de navegador va en dos trozos: en T este archivo vive en la fase concurrente y `tests/suite-fases.test.ts`
+      // lo leería como si importara el paquete (mismo arreglo que la copia conexion-05-d).
+      assert.doesNotMatch(leer(c), new RegExp(`from ${JSON.stringify("play" + "wright")}`), `${c} no importa playwright (por eso va en test:unit)`);
     }
   }
   // La carpeta de la orden sigue congelada: el último commit de main que añade su HOJA.md es el esperado y ninguno posterior la toca.
