@@ -67,6 +67,7 @@ import { HeroSlotPicker } from "./config-editors/hero-slot-picker";
 import { HeroVideoEditor } from "./config-editors/hero-video-editor";
 import { GalleryEditor } from "./config-editors/gallery-editor";
 import { FondoEditor } from "./config-editors/fondo-editor";
+import { PaletaEditor } from "./config-editors/paleta-editor";
 import {
   HERO_VARIANTS,
   WHY_CHOOSE_VARIANTS,
@@ -1274,6 +1275,19 @@ export function ClientConfigTab({
           <div className="border-t border-border pt-3">
             <p className="mb-1 text-[11px] font-semibold text-text-secondary">Fondo y branding</p>
             <FondoEditor
+              niche={niche}
+              config={config}
+              setConfig={setConfig}
+              clientId={clientId}
+            />
+          </div>
+        )}
+
+        {/* CONEXION-06: paleta de peluquería derivada por derivePalette (branding.colors + paletteMeta, nunca a mano). Sólo peluquería (D-70). */}
+        {niche === "peluqueria" && (
+          <div className="border-t border-border pt-3">
+            <p className="mb-1 text-[11px] font-semibold text-text-secondary">Paleta</p>
+            <PaletaEditor
               niche={niche}
               config={config}
               setConfig={setConfig}

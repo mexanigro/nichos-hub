@@ -11,6 +11,7 @@
  *
  * Keep this pure — no I/O, no Firestore calls.
  */
+import { derivePalette, ROLE_KEYS, SHADCN_KEYS, type PaletteOrigin } from "./palette.ts";
 
 export type ConfigIssue = {
   path: string;
@@ -641,6 +642,7 @@ export function validateConfig(config: unknown): ConfigIssue[] {
   }
 
   issues.push(...validateVariantContracts(config));
+  issues.push(...validatePalette(config));
 
   return issues;
 }
@@ -864,6 +866,54 @@ export function validateReplanteoHuecos(config: unknown): ConfigIssue[] {
     const veil = getNested(config, `sections.${id}.veil`);
     if (veil !== undefined && !(typeof veil === "number" && veil >= 0 && veil <= 1)) push(`sections.${id}.veil`, "veil es la opacidad del velo, 0–1.", "error");
     if (veil !== undefined && surface !== "velo") push(`sections.${id}.veil`, 'veil sólo actúa con surface: "velo".', "warning");
+  }
+  return issues;
+}
+
+// ── Paleta derivada (CONEXION-06, D-71; CONTRATOS-HUECOS § «Hueco «paleta»») ──
+// `branding.colors` no es un campo que se escriba: es la SALIDA de `derivePalette(paletteMeta, branding.mode)`, con los pares WCAG
+// medidos y el porqué viajando con la paleta. Por eso aquí sólo hay tres errores posibles, y los tres son «esto no lo escribió la
+// función»: colores sin meta (no hay con qué comprobarlo), meta que no deriva (fuente sin croma o porqué de menos de tres palabras,
+// donde la función se niega) y colores que no coinciden con los que daría (editada a mano). Sin `branding.colors` no opina.
+const CLAVES_PALETA = [...ROLE_KEYS, ...SHADCN_KEYS] as readonly string[];
+
+export function validatePalette(config: unknown): ConfigIssue[] {
+  const issues: ConfigIssue[] = [];
+  const colors = getNested(config, "branding.colors");
+  if (!colors || typeof colors !== "object" || Array.isArray(colors)) return issues;
+  const escritos = colors as Record<string, unknown>;
+
+  const meta = getNested(config, "branding.paletteMeta");
+  if (!meta || typeof meta !== "object" || Array.isArray(meta)) {
+    issues.push({ path: "branding.paletteMeta", message: "Hay branding.colors sin branding.paletteMeta: la paleta se deriva con derivePalette (source, origin, reason), nunca a mano.", severity: "error" });
+    return issues;
+  }
+  const m = meta as Record<string, unknown>;
+  // El modo es de la casilla de fondo (`branding.mode`, CONEXION-05); sin él, el que quedó escrito en la meta; sin ninguno, light.
+  const mode = (getNested(config, "branding.mode") ?? m.mode) === "dark" ? "dark" : "light";
+
+  let derivados: Record<string, string>;
+  try {
+    derivados = derivePalette({
+      source: String(m.source ?? ""),
+      origin: m.origin as PaletteOrigin,
+      reason: String(m.reason ?? ""),
+      niche: String(m.niche ?? "peluqueria"),
+      mode,
+    }).colors as unknown as Record<string, string>;
+  } catch (e) {
+    issues.push({ path: "branding.paletteMeta", message: `branding.paletteMeta no deriva una paleta: ${e instanceof Error ? e.message : String(e)}`, severity: "error" });
+    return issues;
+  }
+
+  // La primera clave que no coincide: si una sola está editada a mano, la paleta ya no es la que la función garantiza.
+  const distinta = CLAVES_PALETA.find((k) => escritos[k] !== derivados[k]);
+  if (distinta) {
+    issues.push({
+      path: `branding.colors.${distinta}`,
+      message: `branding.colors editada a mano: "${distinta}" es "${String(escritos[distinta])}" y derivePalette(paletteMeta, ${mode}) da "${derivados[distinta]}". Los colores se escriben con la casilla de paleta, nunca a mano.`,
+      severity: "error",
+    });
   }
   return issues;
 }

@@ -43,6 +43,8 @@ const BASE_SECTIONS: ContentSection[] = [
     key: "hero",
     label: "Hero",
     fields: [
+      // CONEXION-06 (D-72): el eyebrow va arriba del titular; el hero v6 lo recorta a 4 palabras (clampWords) y la flota lo rinde igual.
+      { path: "hero.eyebrow", label: "Eyebrow (≤ 4 palabras)", type: "text" },
       { path: "hero.titlePrefix", label: "Prefijo del titulo", type: "text", placeholderKey: "heroTitlePrefix" },
       { path: "hero.titleHighlight", label: "Titulo destacado", type: "text", placeholderKey: "heroTitleHighlight" },
       { path: "hero.titleSuffix", label: "Sufijo del titulo", type: "text" },
