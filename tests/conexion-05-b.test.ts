@@ -103,9 +103,15 @@ if (REPO === "H") test("`validateReplanteoHuecos` da **error** (no aviso) por ca
   const sinMovil = clon(A);
   delete branding(sinMovil).localPhotoMobile;
   assert.ok(huecos(sinMovil).some((i) => i.severity === "warning" && i.path === "branding.localPhotoMobile"), "sigue el aviso del par local/localMobile (D5)");
+  // CONEXION-09 (D-91) retiró el aviso por AUSENCIA de heroToBackdrop: D-90 dejó esa fila sin casilla en el hub y el navegador del
+  // hub no puede leer los píxeles de Storage, así que nadie podía actuar sobre ese aviso. Lo que esta copia sigue vigilando es que
+  // el valor inválido siga siendo ERROR, que es la regla que no cambió.
   const sinRel = clon(A);
   delete branding(sinRel).heroToBackdrop;
-  assert.ok(huecos(sinRel).some((i) => i.severity === "warning" && i.path === "branding.heroToBackdrop"), "sigue el aviso de heroToBackdrop cuando hay vídeo del hero y foto del local");
+  assert.deepEqual(huecos(sinRel).filter((i) => i.path.startsWith("branding.heroToBackdrop")), [], "sin heroToBackdrop no se avisa nada (D-91)");
+  const relMala = clon(A);
+  branding(relMala).heroToBackdrop = { relation: "vecino", mechanism: "veil-from-first-pixel", foot: { hex: "#112233" } };
+  assert.ok(huecos(relMala).some((i) => i.severity === "error" && i.path === "branding.heroToBackdrop.relation"), "una relation inválida sigue siendo error");
   // Y los fixtures reales pasan sin errores: las tres urls de A y de C son https:// de Storage.
   for (const p of ["a", "c"] as const) {
     const f = clon(fixture(p));

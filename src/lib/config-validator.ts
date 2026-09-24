@@ -832,9 +832,10 @@ export function validateReplanteoHuecos(config: unknown): ConfigIssue[] {
   if (localMobile !== undefined && !isUrl(localMobile)) push("branding.localPhotoMobile", "localPhotoMobile debe ser una URL/ruta de imagen.", "error");
   if (isUrl(local) && !isUrl(localMobile)) push("branding.localPhotoMobile", "Hay foto del local de escritorio sin la vertical: en móvil se recorta la de escritorio (D5).", "warning");
   if (isUrl(localMobile) && !isUrl(local)) push("branding.localPhoto", "Hay foto del local vertical sin la de escritorio: la capa fija no se monta y todo va liso (D5).", "warning");
-  if (isUrl(local) && getNested(config, "hero.video") && getNested(config, "branding.heroToBackdrop") === undefined) {
-    push("branding.heroToBackdrop", "Hay vídeo del hero y foto del local sin la relación hero → fondo escrita (R19: mismo tono · tono vecino · luz distinta).", "warning");
-  }
+  // CONEXION-09 (D-91): sin `branding.heroToBackdrop` no se avisa nada. D-90 decidió que esa fila NO tiene casilla en el hub —la
+  // página no la consume desde TRANSICION-02 y el navegador del hub no puede leer los píxeles del material de Storage—, así que un
+  // cliente real que sube vídeo y foto no puede producir ese valor: el aviso no tenía acción posible. Lo calcula `transicion.mjs`
+  // desde el material real. Lo que sigue siendo ERROR es el valor inválido cuando está.
   const rel = getNested(config, "branding.heroToBackdrop");
   if (rel !== undefined) {
     const r = (rel && typeof rel === "object" ? rel : {}) as Record<string, unknown>;

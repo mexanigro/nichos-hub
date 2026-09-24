@@ -57,7 +57,10 @@ test("replanteo: featured (2 ids existentes), selection (4–6 índices existent
     branding: { localPhoto: "/local.jpg" },
     sections: { services: { featured: ["cut", "nope", "color"], surface: "velo", veil: 1.5 }, gallery: { selection: [0, 7] }, team: { surface: "oscuro" }, faq: { veil: 0.8 } },
   });
-  for (const k of ["error:sections.services.featured", "error:sections.gallery.selection", "warning:sections.gallery.selection", "warning:branding.localPhotoMobile", "warning:branding.heroToBackdrop", "error:sections.team.surface", "error:sections.services.veil", "warning:sections.faq.veil"]) assert.ok(p.includes(k), k);
+  for (const k of ["error:sections.services.featured", "error:sections.gallery.selection", "warning:sections.gallery.selection", "warning:branding.localPhotoMobile", "error:sections.team.surface", "error:sections.services.veil", "warning:sections.faq.veil"]) assert.ok(p.includes(k), k);
+  // CONEXION-09 (D-91): con vídeo del hero y foto del local pero SIN la relación ya no se avisa nada. D-90 la dejó sin casilla en el
+  // hub y el navegador del hub no puede leer los píxeles de Storage: nadie puede escribirla desde aquí, y un aviso sin acción es ruido.
+  assert.deepEqual(p.filter((k) => k.endsWith(":branding.heroToBackdrop")), [], "sin heroToBackdrop no hay aviso (D-91)");
   assert.ok(rp({ services: [{ id: "cut" }, { id: "color" }], sections: { services: { featured: ["cut", "cut"] } } }).includes("error:sections.services.featured"), "duplicado");
   assert.deepEqual(rp({ services: [{ id: "cut" }, { id: "color" }], sections: { services: { featured: ["cut", "color"] } } }), [], "dos ids existentes: sin avisos");
   // CONEXION-03 (D-41): featured es orden, no cantidad — una lista de 1 o de 3 ids existentes ya no avisa.
