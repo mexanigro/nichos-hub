@@ -184,8 +184,8 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
 
   // N08 T1 (H-3): «building» no es un estado final. Mientras dure, la ficha consulta la ruta existente
   // /api/onboarding/status/[clientId], que pregunta a Vercel y persiste deployStatus real (ready/error).
-  const tenantId = data?.client.clientId;
-  const deployStatusNow = data?.client.deployStatus;
+  const tenantId = data?.client?.clientId;
+  const deployStatusNow = data?.client?.deployStatus;
   useEffect(() => {
     if (deployStatusNow !== "building" || !tenantId) return;
     let cancelled = false;
@@ -341,7 +341,21 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
 
   if (loading) return <LoadingSpinner />;
 
-  if (!data) return null;
+  // D-111: con un id que no existe la API responde `{ error }` SIN `client`. Antes la ficha reventaba al leer `data.client.…`
+  // mucho antes de llegar hasta acá; ahora dice qué ficha no abrió.
+  if (!data?.client) {
+    return (
+      <div className="mx-auto max-w-lg px-6 py-24 text-center">
+        <h1 className="text-lg font-medium text-zinc-100">Cliente no encontrado</h1>
+        <p className="mt-2 text-sm text-zinc-400">
+          No hay ningún cliente con el id <span className="font-mono text-zinc-200">{clientId}</span>.
+        </p>
+        <button onClick={() => router.push("/clients")} className="mt-6 text-sm text-zinc-400 underline hover:text-zinc-200">
+          Volver al listado
+        </button>
+      </div>
+    );
+  }
 
   const { client, metrics, incidents, uptime, messages } = data;
   const configIssues = data.configIssues ?? [];

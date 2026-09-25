@@ -1,22 +1,26 @@
 import { NextResponse } from "next/server";
 import { withOwner } from "@/lib/auth";
 import { db } from "@/lib/firebase-admin";
-import { FieldValue } from "firebase-admin/firestore";
+import { FieldValue, type DocumentData } from "firebase-admin/firestore";
 import { getClientHealth } from "@/lib/repos/health";
 import { vercelFetch } from "@/lib/deploy";
 import { validateConfig } from "@/lib/config-validator";
 import { isValidClientLanguage, normalizeClientLanguage, VALID_CLIENT_LANGUAGES_LABEL } from "@/lib/client-language";
 import { isValidSetupAmount, SETUP_AMOUNT_MIN, SETUP_AMOUNT_MAX } from "@/lib/pricing";
+import { buscarClienteHub } from "@/lib/hub-clients";
 
 export const GET = withOwner(async (_req, _session, ctx) => {
   const { clientId } = await ctx.params;
-  const doc = await db.collection("hub_clients").doc(clientId).get();
+  // D-111: la ficha abre con el id del documento O con el slug de la web (el campo `clientId`), que es el que está en la url
+  // pública. El PATCH y el DELETE siguen resolviendo por id de documento, que es con lo que escriben.
+  const cliente = await buscarClienteHub(clientId);
 
-  if (!doc.exists) {
+  if (!cliente) {
     return NextResponse.json({ error: "Cliente no encontrado" }, { status: 404 });
   }
 
-  const d = doc.data()!;
+  const doc = { id: cliente.id };
+  const d = cliente.data as DocumentData;
   const rawDate = d.activationDate?.toDate?.() ?? d.createdAt?.toDate?.() ?? null;
   const reviewRequestedAt = d.reviewRequestedAt?.toDate?.() ?? null;
   const changesRequestedAt = d.changesRequestedAt?.toDate?.() ?? null;

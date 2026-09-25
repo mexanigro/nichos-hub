@@ -52,6 +52,40 @@ export type BucketMinimo = {
   };
 };
 
+/**
+ * ARREGLOS-01 (2026-09-25, D-110) · el hueco fijo del logo, por variante y con la extensión REAL del archivo.
+ * El nombre que trae el cliente no manda: manda el hueco, como en el resto de las casillas (D-36, D-43, D-50, D-66). Así la
+ * casilla del hub y `scripts/b4-material.ts` producen la MISMA url para los mismos bytes.
+ */
+export function nombreLogo(variante: "light" | "dark", archivo: string): string {
+  const i = archivo.lastIndexOf(".");
+  const ext = i > 0 ? archivo.slice(i + 1).toLowerCase() : "";
+  return `${variante === "dark" ? "logo-dark" : "logo"}${ext ? `.${ext}` : ""}`;
+}
+
+/**
+ * ARREGLOS-01 (D-110) · qué se escribe en `config/{id}` tras subir uno o los dos logos.
+ * La variante subida se escribe siempre; la OTRA se rellena con ella sólo cuando el cliente no tenía nada guardado. Un cliente
+ * que ya tiene logo no lo pierde: no hay migración ni reescritura.
+ */
+export function actualizacionDeLogos(
+  { lightUrl, darkUrl, logoActual, logoDarkActual }: { lightUrl?: string; darkUrl?: string; logoActual?: string; logoDarkActual?: string },
+): { result: { logo?: string; logoDark?: string }; updates: Record<string, string> } {
+  const result: { logo?: string; logoDark?: string } = {};
+  const updates: Record<string, string> = {};
+  if (lightUrl) {
+    result.logo = lightUrl;
+    updates["brand.logo"] = lightUrl;
+    if (!darkUrl && !logoDarkActual) { result.logoDark = lightUrl; updates["brand.logoDark"] = lightUrl; }
+  }
+  if (darkUrl) {
+    result.logoDark = darkUrl;
+    updates["brand.logoDark"] = darkUrl;
+    if (!lightUrl && !logoActual) { result.logo = darkUrl; updates["brand.logo"] = darkUrl; }
+  }
+  return { result, updates };
+}
+
 export type Material = { clientId: string; rol: string; nombre: string; buffer: Buffer; contentType: string };
 export type Subida = { url: string; path: string; bytes: number };
 
