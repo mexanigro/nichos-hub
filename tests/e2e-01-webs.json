@@ -1,0 +1,53 @@
+{
+  "webs": [
+    {
+      "paleta": "a",
+      "clientId": "demo-test-e2e-peluqueria-a-efd04f31",
+      "hubDocId": "JabrxNIt3qgPdUNrFQpr",
+      "vercelProjectId": "prj_3vCJlMFeaUBHITr4Yi8Qow1BwRPy",
+      "domain": "demo-test-e2e-peluqueria-a-efd04f31.arzac.studio",
+      "deploymentId": "dpl_61BoHkyoXMLXAmJozSU5TBaqY9tK",
+      "commitSha": "cb540c5603ac01b922ccc06bb428fe8b7f7fa32b"
+    },
+    {
+      "paleta": "c",
+      "clientId": "demo-test-e2e-peluqueria-c-a5867dcd",
+      "hubDocId": "jts92wAdaIpNkPQRk45x",
+      "vercelProjectId": "prj_ECtshwCZIIG5q4B5rTkUE96Ia7U8",
+      "domain": "demo-test-e2e-peluqueria-c-a5867dcd.arzac.studio",
+      "deploymentId": "dpl_3qtzxh2UfhawqHj1JQLGuJcGjyun",
+      "commitSha": "cb540c5603ac01b922ccc06bb428fe8b7f7fa32b"
+    }
+  ],
+  "huecosDeFicha": [
+    {
+      "clave": "sections.services.variant",
+      "motivo": "La casilla existe (src/components/config-editors/layout-variants-editor.tsx:83, escribe esa ruta) pero su lista de variantes termina en v5: v6 no se puede elegir. Navbar y hero.variant si ofrecen v6.",
+      "filaContrato": null
+    },
+    {
+      "clave": "sections.gallery.variant",
+      "motivo": "Igual que services.variant: la casilla (layout-variants-editor.tsx:116) ofrece v1..v5; el fixture A usa v6 y el C usa v7.",
+      "filaContrato": "gallery.variant"
+    },
+    {
+      "clave": "sections.services.images",
+      "motivo": "La casilla sube las 11 fotos con el hueco del fixture en el indice 10, pero normalizeImageArray (src/app/api/config/[clientId]/route.ts:31) descarta las cadenas vacias y COMPACTA el array: se guardan 11 elementos y servicio-12.jpg queda en el indice 10. El indice es el que aparea con services[i], asi que la foto de todo servicio posterior a un hueco se desparea.",
+      "filaContrato": "services.images"
+    },
+    {
+      "clave": "brand.logo / brand.logoDark",
+      "motivo": "La casilla postea a /api/upload-logo/{clientId} y deja clients/<id>/logo-light-bg.png con token UUID, no clients/<id>/media/branding/logo.png con el token sha256 del contenido. Derivado a otra orden por decision de Liam (2026-09-25).",
+      "filaContrato": "brand.logo, brand.logoDark"
+    },
+    {
+      "clave": "services[].popular",
+      "motivo": "La casilla «Marcar como popular» escribe update(i,{popular:e.target.checked}), asi que destildar deja `popular:false` y NUNCA borra la clave. El fixture C omite la clave en services[5]; la web queda con false. Sin efecto en la pagina (lee !!s.popular) pero B1 compara el objeto entero.",
+      "filaContrato": null
+    }
+  ],
+  "notas": [
+    "B1 compara con JSON.stringify, que es sensible al ORDEN de claves: hero.video, branding.colors, branding.paletteMeta, sections.gallery.items y translations.<lang>.sections.gallery.alts coinciden por contenido pero no por orden. Correccion en manos de la sesion A (decision de Liam).",
+    "branding.paletteMeta tiene ademas la clave extra `mode` que escribe la casilla y un `derivedAt` distinto por construccion."
+  ]
+}

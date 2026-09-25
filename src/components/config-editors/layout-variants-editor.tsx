@@ -88,6 +88,9 @@ export const LAYOUT_VARIANT_SECTIONS: readonly LayoutSectionSpec[] = [
       v3: { name: "Acordeon editorial", desc: "Filas numeradas que expanden descripcion, foto y CTA." },
       v4: { name: "Grilla con tabs", desc: "Tabs por categoria + grilla de cards con crossfade." },
       v5: { name: "Masonry", desc: "Cards escalonadas con pill de precio." },
+      // E2E-01 (2026-09-25): la variante que usan las dos plantillas de peluqueria. Sin esta entrada la casilla escribia como mucho
+      // v5 y `sections.services.variant` no se podia poner desde la ficha, aunque la fila tenga `ui` en contratos.json.
+      v6: { name: "Peluqueria: carrusel 3D con precios", desc: "Tarjeta-boton por servicio en carrusel 3D, precio y rango, foto por servicio y destacados por orden (SERVICES-02 fase 2b)." },
     },
   },
   {
@@ -121,6 +124,9 @@ export const LAYOUT_VARIANT_SECTIONS: readonly LayoutSectionSpec[] = [
       v3: { name: "Carrusel lightbox", desc: "Imagen principal + thumbnails, fullscreen al click." },
       v4: { name: "Slider antes/despues", desc: "Comparador deslizable de transformaciones." },
       v5: { name: "Tablero Pinterest", desc: "Pin-board de columnas con hover zoom." },
+      // E2E-01 (2026-09-25): las dos de peluqueria (GALERIA-03), sobre el mismo nucleo `gallery-v6.tsx`. Faltaban las dos.
+      v6: { name: "Peluqueria: collage", desc: "Seleccion de trabajos en collage, con alt por idioma y servicio enlazado (plantilla A)." },
+      v7: { name: "Peluqueria: mosaico con relieve", desc: "El mismo nucleo que v6 en mosaico, con relieve sobre la textura (plantilla C)." },
     },
   },
   {

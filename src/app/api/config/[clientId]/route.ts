@@ -24,12 +24,19 @@ const CLIENT_ID_RE = /^[a-zA-Z0-9_-]+$/;
  *     and `owner.portfolio` are also string arrays — apply the same coercion
  *     in case any importer ever wrote rich objects there.
  */
-function normalizeImageArray(value: unknown): string[] | undefined {
+/**
+ * `conservarHuecos` (E2E-01, 2026-09-25): en `sections.services.images` el ÍNDICE es el que aparea la foto con `services[i]`, así
+ * que descartar un vacío corre a todas las posteriores y le da a cada servicio la foto del que sigue. Medido: con el hueco del
+ * fixture A en el índice 10, la casilla mandaba 12 y Firestore guardaba 11, con `servicio-12.jpg` en el 10. Donde el índice no
+ * significa nada (galería, Instagram, portfolios) se sigue compactando, que es para lo que se escribió.
+ */
+function normalizeImageArray(value: unknown, conservarHuecos = false): string[] | undefined {
   if (!Array.isArray(value)) return undefined;
   const out: string[] = [];
   for (const item of value) {
     if (typeof item === "string") {
       if (item) out.push(item);
+      else if (conservarHuecos) out.push("");
     } else if (item && typeof item === "object") {
       // Tolerate { src, alt } and { url } shapes that legacy data produced.
       const candidate =
@@ -37,7 +44,8 @@ function normalizeImageArray(value: unknown): string[] | undefined {
         (item as { url?: unknown }).url ??
         (item as { href?: unknown }).href;
       if (typeof candidate === "string" && candidate) out.push(candidate);
-    }
+      else if (conservarHuecos) out.push("");
+    } else if (conservarHuecos) out.push("");
   }
   return out;
 }
@@ -68,7 +76,7 @@ function normalizeConfigShape(data: Record<string, unknown>): Record<string, unk
     const sections = { ...(out.sections as Record<string, unknown>) };
     if (sections.services && typeof sections.services === "object") {
       const services = { ...(sections.services as Record<string, unknown>) };
-      const flat = normalizeImageArray(services.images);
+      const flat = normalizeImageArray(services.images, true);
       if (flat !== undefined) services.images = flat;
       sections.services = services;
     }
