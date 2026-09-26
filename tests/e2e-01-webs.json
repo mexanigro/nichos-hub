@@ -6,8 +6,8 @@
       "hubDocId": "JabrxNIt3qgPdUNrFQpr",
       "vercelProjectId": "prj_3vCJlMFeaUBHITr4Yi8Qow1BwRPy",
       "domain": "demo-test-e2e-peluqueria-a-efd04f31.arzac.studio",
-      "deploymentId": "dpl_7gU1SJJEZVgH55B4dhaKcG5K7VPn",
-      "commitSha": "ca50d5c794c84b9832414f75eec7653d90a792f5"
+      "deploymentId": "dpl_3AE4NMS1Fb8FhvvmhDPSJob28VpT",
+      "commitSha": "e00a81670790ed7c113becc616c9f87d6565e1a6"
     },
     {
       "paleta": "c",
@@ -15,14 +15,15 @@
       "hubDocId": "jts92wAdaIpNkPQRk45x",
       "vercelProjectId": "prj_ECtshwCZIIG5q4B5rTkUE96Ia7U8",
       "domain": "demo-test-e2e-peluqueria-c-a5867dcd.arzac.studio",
-      "deploymentId": "dpl_25zHqj5CfYydU9PwqvdBnWVZjAMg",
-      "commitSha": "ca50d5c794c84b9832414f75eec7653d90a792f5"
+      "deploymentId": "dpl_CRKNscFiddMZBphpEmXJfLavjDg9",
+      "commitSha": "e00a81670790ed7c113becc616c9f87d6565e1a6"
     }
   ],
   "huecosDeFicha": [],
   "notas": [
     "Ningun hueco de ficha queda abierto: las dos webs se cargaron ENTERAS por las casillas y config/{id} coincide con el fixture de su paleta en todas las claves juzgadas (B1 verde, 2026-09-25).",
     "Lo que la carga dejo a la vista y se arreglo donde correspondia, no se rodeo: (1) layout-variants-editor.tsx ofrecia hasta v5, asi que sections.services.variant y sections.gallery.variant no se podian poner desde la ficha aunque su fila tenga ui; ahora ofrece v6 en servicios y v6 y v7 en galeria. (2) normalizeImageArray compactaba sections.services.images y desapareaba la foto de todo servicio posterior a un hueco; ahora los conserva, que ahi el indice aparea con services[i]. (3) La casilla «Marcar como popular» escribe popular:false al destildar y no puede borrar la clave: el servicio se borro y se volvio a agregar desde la casilla, que un servicio nuevo nace sin ella. (4) T src/App.tsx: /galeria era la unica pagina sin <main id=\"main-content\">, asi que su zona no existia en ninguno de los dos lados.",
-    "brand.logo y brand.logoDark llegan por /api/upload-logo con token UUID en vez de media/branding/logo.png con el sha256 del contenido (LOGO-01). No es hueco de ficha: B1 compara el material por los bytes descargados y los da por iguales, con t.diagnostic por la ruta. La convencion la decide otra orden."
+    "brand.logo y brand.logoDark llegan por /api/upload-logo con token UUID en vez de media/branding/logo.png con el sha256 del contenido (LOGO-01). No es hueco de ficha: B1 compara el material por los bytes descargados y los da por iguales, con t.diagnostic por la ruta. La convencion la decide otra orden.",
+    "ARREGLOS-02 (2026-09-26): las dos webs se redesplegaron sobre T e00a816 -la declaracion unica de fuentes, D-123- y se verifico por ESTADO: readyState READY, meta.githubRepo Barber-shop-template, meta.githubCommitRef main y meta.githubCommitSha igual al commit. El deploy lo creo la misma llamada que usa la ficha (POST /v13/deployments con gitSource github ref main)."
   ]
 }
