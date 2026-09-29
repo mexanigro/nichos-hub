@@ -35,7 +35,7 @@ test("el modelo reproduce el defecto: sin paraFirestore, `{ translations: { en: 
   assert.deepEqual((despues.translations as Record<string, unknown>).en, {}, "un mapa vacío reemplaza la capa: es lo que pasó en la web A");
 });
 
-test("un parche vacío no borra la capa: paraFirestore quita todo mapa vacío, también el que queda vacío al quitar los suyos", () => {
+test("un parche vacío no borra la capa: dentro de translations, paraFirestore quita todo mapa vacío, también el que queda vacío al quitar los suyos", () => {
   for (const cuerpo of [
     { translations: { en: {} }, business: { type: "peluqueria" } },
     { translations: { en: { sections: {} } } },
@@ -45,6 +45,17 @@ test("un parche vacío no borra la capa: paraFirestore quita todo mapa vacío, t
     assert.deepEqual(despues.translations, DOC.translations, `el parche ${JSON.stringify(cuerpo)} no toca ninguna capa`);
   }
   assert.deepEqual(paraFirestore({ translations: { en: {} } }), {}, "sin nada que escribir, el cuerpo queda vacío");
+});
+
+test("fuera de translations, {} se sigue escribiendo: hours: {} (alta sin horario del preset), heroObjects: {} (activa Impact) y un slot nuevo", () => {
+  const cuerpo = { hours: {}, heroObjects: {}, sections: { hero: {} } };
+  assert.deepEqual(paraFirestore(cuerpo), cuerpo, "los mapas vacíos fuera de translations llegan tal cual");
+  const antes = { hours: { sunday: { start: "09:00", end: "18:00" } }, heroObjects: { a: { src: "x" } } };
+  const despues = fusionar(antes, paraFirestore({ hours: {}, heroObjects: { ...antes.heroObjects, b: {} } }));
+  assert.deepEqual(despues.hours, {}, "hours: {} reemplaza el horario, como siempre");
+  assert.deepEqual(despues.heroObjects, { a: { src: "x" }, b: {} }, "el slot vacío nuevo se escribe");
+  // Y la poda es sólo la de translations en la raíz: el mismo {} dentro de translations no llega.
+  assert.deepEqual(paraFirestore({ translations: { en: { hours: {} } }, hours: {} }), { hours: {} });
 });
 
 test("un null explícito sigue borrando sólo ese campo", () => {
