@@ -40,8 +40,8 @@ function getNested(obj: unknown, path: string): unknown {
 }
 
 export function validateConfig(config: unknown): ConfigIssue[] {
-  // `translations.{lang}` (BLOQUE-04 · 4.2) es texto por idioma escrito desde Contenido:
-  // no se valida aquí (sólo shape de raíz); el template cae al preset ante claves ausentes.
+  // `translations.{lang}` (BLOQUE-04 · 4.2) es texto por idioma escrito desde Contenido y las casillas por idioma: el texto
+  // de servicios, equipo y reseñas lo valida `validateTextosPorIdioma` (IDIOMAS-01, D-136); el resto de la capa no se valida.
   const issues: ConfigIssue[] = [];
   if (!config || typeof config !== "object") {
     issues.push({ path: "", message: "El config debe ser un objeto.", severity: "error" });
@@ -643,7 +643,42 @@ export function validateConfig(config: unknown): ConfigIssue[] {
 
   issues.push(...validateVariantContracts(config));
   issues.push(...validatePalette(config));
+  issues.push(...validateTextosPorIdioma(config));
 
+  return issues;
+}
+
+// ── Texto por idioma de servicios, equipo y reseñas (IDIOMAS-01, D11-1..3; D-136) ──
+// `translations.<lang>.services|staff|testimonials` lleva texto por id (objeto por id o array con `id`); la estructura es la de la
+// raíz en los cuatro idiomas. Error si un id no existe en la raíz; en servicios, además, `name` de 1 a 5 palabras (CT-1) y
+// `description` de 6 a 12. Equipo y reseñas sin límite de palabras hasta su orden. Un texto vacío es «pendiente», no error.
+const SECCIONES_POR_IDIOMA = ["services", "staff", "testimonials"] as const;
+
+export function validateTextosPorIdioma(config: unknown): ConfigIssue[] {
+  const issues: ConfigIssue[] = [];
+  const translations = getNested(config, "translations");
+  if (!translations || typeof translations !== "object" || Array.isArray(translations)) return issues;
+  const err = (path: string, message: string) => issues.push({ path, message, severity: "error" });
+  for (const [lang, capa] of Object.entries(translations as Record<string, unknown>)) {
+    if (!capa || typeof capa !== "object") continue;
+    for (const sec of SECCIONES_POR_IDIOMA) {
+      const v = (capa as Record<string, unknown>)[sec];
+      if (v == null) continue;
+      const filas: [string, Record<string, unknown>][] = Array.isArray(v)
+        ? v.filter((x) => x && typeof x === "object").map((x) => [String((x as Record<string, unknown>).id ?? ""), x as Record<string, unknown>])
+        : typeof v === "object" ? Object.entries(v as Record<string, Record<string, unknown>>) : [];
+      const raiz = getNested(config, sec);
+      const ids = new Set(Array.isArray(raiz) ? raiz.map((x) => (x as Record<string, unknown> | null)?.id).filter(Boolean) : []);
+      for (const [id, t] of filas) {
+        const base = `translations.${lang}.${sec}.${id}`;
+        if (!ids.has(id)) { err(base, `El id "${id}" no existe en ${sec} de la raíz: el texto de ${lang} no tiene a qué elemento aplicarse.`); continue; }
+        if (sec !== "services" || !t || typeof t !== "object") continue;
+        const nombre = words(t.name), frase = words(t.description);
+        if (nombre > 5) err(`${base}.name`, `El nombre en ${lang} tiene ${nombre} palabras; el contrato pide de 1 a 5 (CT-1).`);
+        if (frase > 0 && (frase < 6 || frase > 12)) err(`${base}.description`, `La frase en ${lang} tiene ${frase} palabras; el contrato pide de 6 a 12.`);
+      }
+    }
+  }
   return issues;
 }
 

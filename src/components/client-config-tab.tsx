@@ -1704,6 +1704,8 @@ export function ClientConfigTab({
           value={config.testimonials}
           fieldIdPrefix={clientId}
           onChange={(next) => setConfig((prev) => ({ ...prev, testimonials: next }))}
+          config={config as Record<string, unknown>}
+          setConfig={(fn) => setConfig((prev) => fn(prev as Record<string, unknown>) as ConfigDoc)}
         />
       </Section>
 
@@ -1722,6 +1724,8 @@ export function ClientConfigTab({
             onChange={(next) => setConfig((prev) => ({ ...prev, staff: next }))}
             clientId={clientId}
             businessHours={config.hours}
+            config={config as Record<string, unknown>}
+            setConfig={(fn) => setConfig((prev) => fn(prev as Record<string, unknown>) as ConfigDoc)}
           />
         </Section>
       )}

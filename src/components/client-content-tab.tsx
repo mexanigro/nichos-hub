@@ -14,10 +14,10 @@ import { ClientLanguageBanner } from "./client-language-banner";
 import { ClientLanguageProvider } from "@/lib/client-language-context";
 import {
   type ClientLanguage,
-  VALID_CLIENT_LANGUAGES,
   CLIENT_LANGUAGE_LABELS_ES,
   normalizeClientLanguage,
 } from "@/lib/client-language";
+import { SelectorIdioma } from "@/components/selector-idioma";
 import {
   placeholderFor,
   type PlaceholderKey,
@@ -386,30 +386,7 @@ export function ClientContentTab({
       </div>
 
       {/* Idioma del texto que se edita (base = raíz de config; otro = translations[lang]) */}
-      <div className="flex flex-wrap items-center gap-1.5" role="tablist" aria-label="Idioma del texto">
-        <span className="me-1 text-[11px] text-text-muted">Idioma del texto:</span>
-        {VALID_CLIENT_LANGUAGES.map((code) => {
-          const active = code === editLang;
-          const hasLayer = code !== lang && !!getNestedValue(rawConfig, `translations.${code}`);
-          return (
-            <button
-              key={code}
-              type="button"
-              role="tab"
-              aria-selected={active}
-              onClick={() => switchEditLang(code)}
-              className={`rounded-full border px-3 py-1 text-[11px] transition-colors ${
-                active
-                  ? "border-accent bg-accent/15 text-accent"
-                  : "border-border bg-bg-elevated text-text-muted hover:text-text"
-              }`}
-            >
-              {CLIENT_LANGUAGE_LABELS_ES[code]}
-              {code === lang ? " · base" : hasLayer ? " ·" : ""}
-            </button>
-          );
-        })}
-      </div>
+      <SelectorIdioma idioma={editLang} base={lang} onCambio={switchEditLang} conCapa={(code) => !!getNestedValue(rawConfig, `translations.${code}`)} />
 
       {error && <div className="rounded-lg bg-red-500/10 px-3 py-2 text-xs text-red-400">{error}</div>}
       {saved && <div className="rounded-lg bg-green-500/10 px-3 py-2 text-xs text-green-400">Contenido guardado correctamente</div>}

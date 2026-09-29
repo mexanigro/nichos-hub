@@ -6,6 +6,9 @@ import { ImageUploadField } from "../image-upload-field";
 import { ReorderControls, moveItem } from "./reorder-controls";
 import { LanguageMismatchWarning } from "../language-mismatch-warning";
 import { useClientLanguage } from "@/lib/client-language-context";
+import { SelectorIdioma } from "../selector-idioma";
+import { aplicarTextoIdioma, leerTextoIdioma } from "@/lib/textos-idioma";
+import type { ClientLanguage } from "@/lib/client-language";
 import type { BusinessNiche } from "@/lib/client-config/services";
 import {
   getNicheServices,
@@ -601,6 +604,16 @@ function CustomServicesEditor({
   const [subiendoFoto, setSubiendoFoto] = useState<number | null>(null);
   const [errorFoto, setErrorFoto] = useState("");
   const lang = useClientLanguage();
+  // IDIOMAS-01 (D11-1): el nombre y la frase de cada servicio en los otros idiomas, por id; precio, foto y orden son los mismos.
+  const [idioma, setIdioma] = useState<ClientLanguage>(lang);
+  const otro = idioma !== lang;
+  const texto = (sv: Service, campo: "name" | "description") =>
+    otro ? leerTextoIdioma(config, { seccion: "services", id: sv.id, campo, idioma, base: lang }) : (sv[campo] ?? "");
+  function escribirTexto(i: number, campo: "name" | "description", valor: string) {
+    if (!otro) return update(i, { [campo]: valor });
+    const id = services[i].id;
+    if (id) setConfig((prev) => aplicarTextoIdioma(prev as Cfg, { seccion: "services", id, campo, valor, idioma, base: lang }) as ConfigSlice);
+  }
 
   // CONEXION-03 (D-46): las cinco casillas nuevas sólo en peluquería; la flota ve el editor de siempre.
   const pelu = niche === "peluqueria";
@@ -733,6 +746,13 @@ function CustomServicesEditor({
         </div>
       )}
 
+      <SelectorIdioma idioma={idioma} base={lang} onCambio={setIdioma} conCapa={(code) => !!((config as Cfg).translations as Record<string, Record<string, unknown>> | undefined)?.[code]?.services} />
+      {otro && (
+        <p className="text-[10px] text-text-muted">
+          Nombre y frase en otro idioma: lo vacío queda pendiente y la web muestra el del idioma base. Precio, duración, foto y orden son los mismos en los cuatro idiomas.
+        </p>
+      )}
+
       <div className="space-y-2">
         {services.map((s, i) => {
           const isOpen = expanded.has(i);
@@ -778,8 +798,9 @@ function CustomServicesEditor({
                   <div className="grid gap-2 sm:grid-cols-2">
                     <PatchInput
                       label="Nombre"
-                      value={s.name}
-                      onChange={(v) => update(i, { name: v })}
+                      value={texto(s, "name")}
+                      onChange={(v) => escribirTexto(i, "name", v)}
+                      placeholder={otro ? s.name : undefined}
                     />
                     <PatchInput
                       label="ID (slug, unico)"
@@ -801,15 +822,16 @@ function CustomServicesEditor({
                   <div>
                     <label className="mb-0.5 block text-[10px] text-text-muted">Descripcion</label>
                     <textarea
-                      value={s.description}
-                      onChange={(e) => update(i, { description: e.target.value })}
+                      value={texto(s, "description")}
+                      onChange={(e) => escribirTexto(i, "description", e.target.value)}
+                      placeholder={otro ? s.description : undefined}
                       rows={2}
                       className="w-full resize-none rounded border border-border bg-bg-card px-2 py-1 text-xs text-text placeholder:text-text-muted/40 focus:border-accent focus:outline-none"
                     />
                     <LanguageMismatchWarning
-                      fieldId={`${clientId}:services:${s.id}:description`}
-                      text={s.description}
-                      expected={lang}
+                      fieldId={`${clientId}:services:${s.id}:description${otro ? `:${idioma}` : ""}`}
+                      text={texto(s, "description")}
+                      expected={idioma}
                     />
                   </div>
                   <ImageUploadField

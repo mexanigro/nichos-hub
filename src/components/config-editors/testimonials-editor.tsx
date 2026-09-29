@@ -1,13 +1,21 @@
 "use client";
 
+import { useState } from "react";
 import { Plus, Quote, Star } from "lucide-react";
 import { ReorderControls, moveItem } from "./reorder-controls";
 import { useClientLanguage } from "@/lib/client-language-context";
 import { placeholderFor } from "@/lib/dashboard-placeholders";
 import { LanguageMismatchWarning } from "../language-mismatch-warning";
+import { SelectorIdioma } from "../selector-idioma";
+import { aplicarTextoIdioma, leerTextoIdioma } from "@/lib/textos-idioma";
+import type { ClientLanguage } from "@/lib/client-language";
 
 export type Testimonial = {
+  /** IDIOMAS-01: el texto de otro idioma se ata a este id (`translations.<lang>.testimonials.<id>`). */
+  id?: string;
   name: string;
+  /** Servicio que reseña (se traduce por idioma, como el texto). */
+  service?: string;
   title: string;
   text: string;
   rating: number;
@@ -23,17 +31,32 @@ export function TestimonialsEditor({
   value,
   onChange,
   fieldIdPrefix = "testimonials",
+  config,
+  setConfig,
 }: {
   value: Testimonial[] | undefined;
   onChange: (next: Testimonial[] | undefined) => void;
   /** Prefijo para sessionStorage del aviso de mismatch (clientId, normalmente). */
   fieldIdPrefix?: string;
+  /** IDIOMAS-01: con el config entero, la casilla edita también el texto de los otros idiomas. */
+  config?: Record<string, unknown>;
+  setConfig?: (fn: (prev: Record<string, unknown>) => Record<string, unknown>) => void;
 }) {
   const items = value ?? [];
   const lang = useClientLanguage();
   const namePh = placeholderFor(lang, "testimonialName");
   const titlePh = placeholderFor(lang, "testimonialTitle");
   const textPh = placeholderFor(lang, "testimonialText");
+  const [idioma, setIdioma] = useState<ClientLanguage>(lang);
+  const otro = idioma !== lang && !!config && !!setConfig;
+  /** El texto de `campo` en el idioma que se edita: el de la raíz en el base; el de la capa (o vacío = pendiente) en otro. */
+  const texto = (t: Testimonial, campo: "name" | "title" | "text" | "service") =>
+    otro ? leerTextoIdioma(config, { seccion: "testimonials", id: t.id ?? "", campo, idioma, base: lang }) : (t[campo] ?? "");
+  function escribir(i: number, campo: "title" | "text" | "service", valor: string) {
+    const id = items[i].id;
+    if (!otro) return update(i, { [campo]: valor });
+    if (id) setConfig!((prev) => aplicarTextoIdioma(prev, { seccion: "testimonials", id, campo, valor, idioma, base: lang }));
+  }
 
   function update(index: number, patch: Partial<Testimonial>) {
     const next = items.slice();
@@ -51,7 +74,7 @@ export function TestimonialsEditor({
   }
 
   function add() {
-    onChange([...items, { name: "", title: "", text: "", rating: 5 }]);
+    onChange([...items, { id: `r-${Date.now().toString(36)}`, name: "", title: "", text: "", rating: 5 }]);
   }
 
   if (items.length === 0) {
@@ -65,6 +88,14 @@ export function TestimonialsEditor({
 
   return (
     <div className="space-y-2">
+      {config && setConfig && (
+        <SelectorIdioma idioma={idioma} base={lang} onCambio={setIdioma} conCapa={(code) => !!(config.translations as Record<string, Record<string, unknown>> | undefined)?.[code]?.testimonials} />
+      )}
+      {otro && (
+        <p className="text-[10px] text-text-muted">
+          Texto en otro idioma: lo vacío queda pendiente y la web muestra el original. El nombre, el id y el rating son los mismos en los cuatro idiomas.
+        </p>
+      )}
       {items.map((t, i) => {
         const missing: string[] = [];
         if (!t.name.trim()) missing.push("nombre");
@@ -98,18 +129,42 @@ export function TestimonialsEditor({
                   type="text"
                   value={t.name}
                   onChange={(e) => update(i, { name: e.target.value })}
+                  disabled={otro}
                   placeholder={namePh}
-                  className="w-full rounded border border-border bg-bg-card px-2 py-1 text-xs text-text placeholder:text-text-muted/40 focus:border-accent focus:outline-none"
+                  className="w-full rounded border border-border bg-bg-card px-2 py-1 text-xs text-text placeholder:text-text-muted/40 focus:border-accent focus:outline-none disabled:opacity-60"
+                />
+              </div>
+              <div>
+                <label className="mb-0.5 block text-[10px] text-text-muted">ID</label>
+                <input
+                  type="text"
+                  value={t.id ?? ""}
+                  onChange={(e) => update(i, { id: e.target.value || undefined })}
+                  disabled={otro}
+                  placeholder="r1"
+                  className="w-full rounded border border-border bg-bg-card px-2 py-1 font-mono text-xs text-text placeholder:text-text-muted/40 focus:border-accent focus:outline-none disabled:opacity-60"
                 />
               </div>
               <div>
                 <label className="mb-0.5 block text-[10px] text-text-muted">Titulo / Contexto</label>
                 <input
                   type="text"
-                  value={t.title}
-                  onChange={(e) => update(i, { title: e.target.value })}
-                  placeholder={titlePh}
-                  className="w-full rounded border border-border bg-bg-card px-2 py-1 text-xs text-text placeholder:text-text-muted/40 focus:border-accent focus:outline-none"
+                  value={texto(t, "title")}
+                  onChange={(e) => escribir(i, "title", e.target.value)}
+                  disabled={otro && !t.id}
+                  placeholder={otro ? t.title : titlePh}
+                  className="w-full rounded border border-border bg-bg-card px-2 py-1 text-xs text-text placeholder:text-text-muted/40 focus:border-accent focus:outline-none disabled:opacity-60"
+                />
+              </div>
+              <div>
+                <label className="mb-0.5 block text-[10px] text-text-muted">Servicio</label>
+                <input
+                  type="text"
+                  value={texto(t, "service")}
+                  onChange={(e) => escribir(i, "service", e.target.value)}
+                  disabled={otro && !t.id}
+                  placeholder={otro ? t.service : ""}
+                  className="w-full rounded border border-border bg-bg-card px-2 py-1 text-xs text-text placeholder:text-text-muted/40 focus:border-accent focus:outline-none disabled:opacity-60"
                 />
               </div>
             </div>
@@ -117,16 +172,17 @@ export function TestimonialsEditor({
             <div className="mt-2">
               <label className="mb-0.5 block text-[10px] text-text-muted">Texto</label>
               <textarea
-                value={t.text}
-                onChange={(e) => update(i, { text: e.target.value })}
+                value={texto(t, "text")}
+                onChange={(e) => escribir(i, "text", e.target.value)}
+                disabled={otro && !t.id}
                 rows={3}
-                placeholder={textPh}
-                className="w-full resize-none rounded border border-border bg-bg-card px-2 py-1 text-xs text-text placeholder:text-text-muted/40 focus:border-accent focus:outline-none"
+                placeholder={otro ? t.text : textPh}
+                className="w-full resize-none rounded border border-border bg-bg-card px-2 py-1 text-xs text-text placeholder:text-text-muted/40 focus:border-accent focus:outline-none disabled:opacity-60"
               />
               <LanguageMismatchWarning
-                fieldId={`${fieldIdPrefix}:testimonials:${i}:text`}
-                text={t.text}
-                expected={lang}
+                fieldId={`${fieldIdPrefix}:testimonials:${i}:text${otro ? `:${idioma}` : ""}`}
+                text={texto(t, "text")}
+                expected={idioma}
               />
             </div>
 

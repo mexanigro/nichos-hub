@@ -11,6 +11,10 @@ import {
   type WeeklySchedule,
   type BusinessHours,
 } from "./schedule-editor";
+import { SelectorIdioma } from "../selector-idioma";
+import { useClientLanguage } from "@/lib/client-language-context";
+import { aplicarTextoIdioma, leerTextoIdioma } from "@/lib/textos-idioma";
+import type { ClientLanguage } from "@/lib/client-language";
 
 export type StaffSocial = {
   instagram?: string;
@@ -54,6 +58,8 @@ export function StaffEditor({
   onChange,
   clientId,
   businessHours,
+  config,
+  setConfig,
 }: {
   value: StaffMember[] | undefined;
   onChange: (next: StaffMember[] | undefined) => void;
@@ -61,9 +67,23 @@ export function StaffEditor({
   /** Business-wide hours from `config.hours`. Passed down so each member's
    *  schedule editor can offer "Mismo horario que el negocio". */
   businessHours?: BusinessHours;
+  /** IDIOMAS-01: con el config entero, la casilla edita también el texto de los otros idiomas. */
+  config?: Record<string, unknown>;
+  setConfig?: (fn: (prev: Record<string, unknown>) => Record<string, unknown>) => void;
 }) {
   const items = value ?? [];
   const [expanded, setExpanded] = useState<Set<number>>(new Set([0]));
+  const base = useClientLanguage();
+  const [idioma, setIdioma] = useState<ClientLanguage>(base);
+  const otro = idioma !== base && !!config && !!setConfig;
+  /** El texto de `campo` en el idioma que se edita: el de la raíz en el base; el de la capa (o vacío = pendiente) en otro. */
+  const texto = (m: StaffMember, campo: "name" | "specialty" | "bio") =>
+    otro ? leerTextoIdioma(config, { seccion: "staff", id: m.id ?? "", campo, idioma, base }) : (m[campo] ?? "");
+  function escribir(i: number, campo: "name" | "specialty" | "bio", valor: string) {
+    const id = items[i].id;
+    if (!otro) return update(i, { [campo]: valor });
+    if (id) setConfig!((prev) => aplicarTextoIdioma(prev, { seccion: "staff", id, campo, valor, idioma, base }));
+  }
 
   function toggle(index: number) {
     setExpanded((prev) => {
@@ -150,6 +170,14 @@ export function StaffEditor({
 
   return (
     <div className="space-y-2">
+      {config && setConfig && (
+        <SelectorIdioma idioma={idioma} base={base} onCambio={setIdioma} conCapa={(code) => !!(config.translations as Record<string, Record<string, unknown>> | undefined)?.[code]?.staff} />
+      )}
+      {otro && (
+        <p className="text-[10px] text-text-muted">
+          Texto en otro idioma: lo vacío queda pendiente y la web muestra el del idioma base. Foto, id y horario son los mismos en los cuatro idiomas.
+        </p>
+      )}
       {items.map((m, i) => {
         const isOpen = expanded.has(i);
         const hasName = !!(m.name && m.name.trim());
@@ -205,26 +233,26 @@ export function StaffEditor({
                 <div className="grid gap-2 sm:grid-cols-2">
                   <LabeledInput
                     label="Nombre"
-                    value={m.name ?? ""}
-                    onChange={(v) => update(i, { name: v })}
-                    placeholder="Maria Lopez"
-                    required
+                    value={texto(m, "name")}
+                    onChange={(v) => escribir(i, "name", v)}
+                    placeholder={otro ? m.name ?? "" : "Maria Lopez"}
+                    required={!otro}
                   />
                   <LabeledInput
                     label="Rol / Especialidad"
-                    value={m.specialty ?? ""}
-                    onChange={(v) => update(i, { specialty: v })}
-                    placeholder="Esteticista senior"
+                    value={texto(m, "specialty")}
+                    onChange={(v) => escribir(i, "specialty", v)}
+                    placeholder={otro ? m.specialty ?? "" : "Esteticista senior"}
                   />
                 </div>
 
                 <div>
                   <label className="mb-0.5 block text-[10px] text-text-muted">Bio</label>
                   <textarea
-                    value={m.bio ?? ""}
-                    onChange={(e) => update(i, { bio: e.target.value })}
+                    value={texto(m, "bio")}
+                    onChange={(e) => escribir(i, "bio", e.target.value)}
                     rows={2}
-                    placeholder="10 anos de experiencia en tratamientos faciales..."
+                    placeholder={otro ? m.bio ?? "" : "10 anos de experiencia en tratamientos faciales..."}
                     className="w-full resize-none rounded border border-border bg-bg-card px-2 py-1 text-xs text-text placeholder:text-text-muted/40 focus:border-accent focus:outline-none"
                   />
                 </div>
