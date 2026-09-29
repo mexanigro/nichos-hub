@@ -215,6 +215,8 @@ export function ClientContentTab({
   const [faqItems, setFaqItems] = useState<FaqItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  // IDIOMAS-01: mientras llega el GET del idioma, lo escrito se pisa al llegar; guardar en ese hueco mandaba un parche vacío.
+  const [cargandoIdioma, setCargandoIdioma] = useState(true);
   const [saved, setSaved] = useState(false);
   const [error, setError] = useState("");
   const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set(["hero"]));
@@ -242,6 +244,7 @@ export function ClientContentTab({
   }, [lang]);
 
   const fetchContent = useCallback(async () => {
+    setCargandoIdioma(true);
     try {
       const res = await fetch(`/api/config/${clientId}`);
       const config = (await res.json()) as Record<string, unknown>;
@@ -255,6 +258,7 @@ export function ClientContentTab({
       setError("Error al cargar contenido");
     } finally {
       setLoading(false);
+      setCargandoIdioma(false);
     }
   }, [clientId, editLang, flatten, layerFor]);
 
@@ -292,6 +296,8 @@ export function ClientContentTab({
       if (faqItems.length > 0) {
         setNestedValue(patch, "sections.faq.items", faqItems.filter(i => i.question.trim() || i.answer.trim()));
       }
+      // IDIOMAS-01: sin cambios no se manda nada (un `{ translations: { <lang>: {} } }` borraba la capa entera en Firestore).
+      if (Object.keys(patch).length === 0) return;
       const body = isBase ? patch : { translations: { [editLang]: patch } };
       const res = await fetch(`/api/config/${clientId}`, {
         method: "PUT",
@@ -377,7 +383,7 @@ export function ClientContentTab({
         </div>
         <button
           onClick={handleSave}
-          disabled={saving}
+          disabled={saving || cargandoIdioma}
           className="inline-flex items-center gap-1.5 rounded-lg bg-accent px-4 py-2 text-xs font-medium text-white transition-colors hover:bg-accent-hover disabled:opacity-50"
         >
           {saving ? <Loader2 size={14} className="animate-spin" /> : <Save size={14} />}

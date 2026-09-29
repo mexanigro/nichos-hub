@@ -5,6 +5,7 @@ import { FieldValue } from "firebase-admin/firestore";
 import { normalizeBusinessNiche } from "@/lib/client-config/services";
 import { validateConfig, hasBlockingIssues } from "@/lib/config-validator";
 import { diffConfig, summarizeValue } from "@/lib/config-diff";
+import { paraFirestore } from "@/lib/config-firestore";
 
 type RouteCtx = { params: Promise<{ clientId: string }> };
 
@@ -54,7 +55,7 @@ function normalizeConfigShape(data: Record<string, unknown>): Record<string, unk
   const out = { ...data };
 
   // Drop legacy `brand.favicon` URL — template only reads `brand.faviconEmoji`.
-  // Mark as null so `replaceNullsWithDelete` (called later by the PUT handler)
+  // Mark as null so `paraFirestore` (called later by the PUT handler)
   // converts it to a real Firestore delete on merge.
   if (out.brand && typeof out.brand === "object" && !Array.isArray(out.brand)) {
     const brand = { ...(out.brand as Record<string, unknown>) };
@@ -120,25 +121,6 @@ export const GET = withOwner(async (_req, _session, ctx) => {
   const data = snap.data() ?? {};
   return NextResponse.json(normalizeConfigShape(data));
 });
-
-/**
- * Recursively replace `null` values with FieldValue.delete() so that
- * Firestore `set({merge:true})` actually removes cleared fields instead
- * of silently keeping the old value.
- */
-function replaceNullsWithDelete(obj: Record<string, unknown>): Record<string, unknown> {
-  const out: Record<string, unknown> = {};
-  for (const [k, v] of Object.entries(obj)) {
-    if (v === null) {
-      out[k] = FieldValue.delete();
-    } else if (v && typeof v === "object" && !Array.isArray(v)) {
-      out[k] = replaceNullsWithDelete(v as Record<string, unknown>);
-    } else {
-      out[k] = v;
-    }
-  }
-  return out;
-}
 
 function getNestedBusinessType(body: Record<string, unknown>): string | undefined {
   const business = body.business;
@@ -206,7 +188,8 @@ export const PUT = withOwner(async (req, session, ctx) => {
     console.error("[api/config PUT] failed to snapshot prev for audit log:", err);
   }
 
-  const cleaned = replaceNullsWithDelete(normalizedBody);
+  // IDIOMAS-01: sin mapas vacíos (un parche vacío no borra nada) y null → FieldValue.delete() sólo en ese campo.
+  const cleaned = paraFirestore(normalizedBody);
   try {
     await db.collection("config").doc(clientId).set(cleaned, { merge: true });
   } catch (err) {
