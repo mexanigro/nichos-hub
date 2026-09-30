@@ -670,6 +670,8 @@ export function validateTextosPorIdioma(config: unknown): ConfigIssue[] {
       const raiz = getNested(config, sec);
       const ids = new Set(Array.isArray(raiz) ? raiz.map((x) => (x as Record<string, unknown> | null)?.id).filter(Boolean) : []);
       for (const [id, t] of filas) {
+        // ARREGLOS-03: `null` es un borrado (el guardado lo manda para que Firestore quite la clave, `borradosIdioma`), no un texto.
+        if (t === null) continue;
         const base = `translations.${lang}.${sec}.${id}`;
         if (!ids.has(id)) { err(base, `El id "${id}" no existe en ${sec} de la raíz: el texto de ${lang} no tiene a qué elemento aplicarse.`); continue; }
         if (sec !== "services" || !t || typeof t !== "object") continue;

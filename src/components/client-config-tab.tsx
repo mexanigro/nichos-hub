@@ -89,6 +89,7 @@ import {
   type BusinessNiche,
 } from "@/lib/client-config/services";
 import { validateConfig, hasBlockingIssues, type ConfigIssue } from "@/lib/config-validator";
+import { borradosIdioma } from "@/lib/textos-idioma";
 
 /* ══════════════════════════════════════════════════════════════════════════
  * Types — mirrors what master-template stores in Firestore config/{clientId}
@@ -471,10 +472,12 @@ export function ClientConfigTab({
       // banner — it must not be persisted.
       const { _customServicesBackup: _ignoredBackup, ...payload } = config;
       void _ignoredBackup;
+      // ARREGLOS-03: el PUT escribe con merge, así que el texto por idioma de un elemento borrado o renombrado sólo se va de
+      // Firestore si el cuerpo lo marca con null (borradosIdioma, contra lo último cargado o guardado).
       const res = await fetch(`/api/config/${clientId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+        body: JSON.stringify(borradosIdioma(originalConfigRef.current, payload)),
       });
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));

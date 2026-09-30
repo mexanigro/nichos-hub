@@ -7,7 +7,7 @@ import { ReorderControls, moveItem } from "./reorder-controls";
 import { LanguageMismatchWarning } from "../language-mismatch-warning";
 import { useClientLanguage } from "@/lib/client-language-context";
 import { SelectorIdioma } from "../selector-idioma";
-import { aplicarTextoIdioma, leerTextoIdioma } from "@/lib/textos-idioma";
+import { aplicarTextoIdioma, leerTextoIdioma, quitarTextoIdioma } from "@/lib/textos-idioma";
 import type { ClientLanguage } from "@/lib/client-language";
 import type { BusinessNiche } from "@/lib/client-config/services";
 import {
@@ -139,6 +139,18 @@ export function aplicarServicio(config: unknown, i: number, campo: CampoServicio
   lista[i] = servicio;
   next.services = lista;
   return next;
+}
+
+/** ARREGLOS-03 (D-154): borra el servicio `i` de la raíz y su texto de cada idioma, en un solo config (un solo `setConfig`).
+ *  Lo que el servicio deja además —su foto en `sections.services.images[i]` (que aparea por índice), `featured` y el `serviceId`
+ *  de la galería— no se toca aquí: va con la orden de services y galería (D-154, «Fuera»). */
+export function quitarServicio(config: unknown, i: number): Cfg {
+  const c: Cfg = { ...((config ?? {}) as Cfg) };
+  const lista = Array.isArray(c.services) ? (c.services as Cfg[]) : [];
+  const id = lista[i]?.id;
+  const resto = lista.filter((_, j) => j !== i);
+  const sinRaiz: Cfg = { ...c, services: resto.length > 0 ? resto : undefined };
+  return typeof id === "string" && id ? quitarTextoIdioma(sinRaiz, { seccion: "services", id }) : sinRaiz;
 }
 
 /** Config nuevo con `sections.services.images[i]` = url (la lista se rellena con "" hasta i; la url vacía deja ""). */
@@ -654,7 +666,8 @@ function CustomServicesEditor({
   }
 
   function remove(index: number) {
-    onChange(services.filter((_, i) => i !== index));
+    // ARREGLOS-03: la raíz y el texto de cada idioma se van en el mismo setConfig.
+    escribir((prev) => quitarServicio(prev, index));
   }
 
   function move(from: number, dir: -1 | 1) {

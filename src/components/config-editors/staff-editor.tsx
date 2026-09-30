@@ -13,7 +13,7 @@ import {
 } from "./schedule-editor";
 import { SelectorIdioma } from "../selector-idioma";
 import { useClientLanguage } from "@/lib/client-language-context";
-import { aplicarTextoIdioma, leerTextoIdioma } from "@/lib/textos-idioma";
+import { aplicarTextoIdioma, leerTextoIdioma, quitarTextoIdioma } from "@/lib/textos-idioma";
 import type { ClientLanguage } from "@/lib/client-language";
 
 export type StaffSocial = {
@@ -51,6 +51,15 @@ function slugify(name: string): string {
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "")
     .slice(0, 40);
+}
+
+/** ARREGLOS-03 (D-154): borra la persona `i` de la raíz y su texto de cada idioma, en un solo config (un solo `setConfig`). */
+export function quitarMiembro(config: Record<string, unknown>, i: number): Record<string, unknown> {
+  const lista = Array.isArray(config.staff) ? (config.staff as StaffMember[]) : [];
+  const id = lista[i]?.id;
+  const resto = lista.filter((_, j) => j !== i);
+  const sinRaiz = { ...config, staff: resto.length > 0 ? resto : undefined };
+  return id ? quitarTextoIdioma(sinRaiz, { seccion: "staff", id }) : sinRaiz;
 }
 
 export function StaffEditor({
@@ -111,8 +120,12 @@ export function StaffEditor({
   }
 
   function remove(index: number) {
-    const next = items.filter((_, i) => i !== index);
-    onChange(next.length > 0 ? next : undefined);
+    // ARREGLOS-03: con el config entero, la raíz y el texto de cada idioma se van en el mismo setConfig.
+    if (setConfig) setConfig((prev) => quitarMiembro(prev, index));
+    else {
+      const next = items.filter((_, i) => i !== index);
+      onChange(next.length > 0 ? next : undefined);
+    }
     setExpanded((prev) => {
       const set = new Set<number>();
       for (const e of prev) {

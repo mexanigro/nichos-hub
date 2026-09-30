@@ -7,7 +7,7 @@ import { useClientLanguage } from "@/lib/client-language-context";
 import { placeholderFor } from "@/lib/dashboard-placeholders";
 import { LanguageMismatchWarning } from "../language-mismatch-warning";
 import { SelectorIdioma } from "../selector-idioma";
-import { aplicarTextoIdioma, leerTextoIdioma } from "@/lib/textos-idioma";
+import { aplicarTextoIdioma, leerTextoIdioma, quitarTextoIdioma, renombrarTextoIdioma } from "@/lib/textos-idioma";
 import type { ClientLanguage } from "@/lib/client-language";
 
 export type Testimonial = {
@@ -22,6 +22,27 @@ export type Testimonial = {
 };
 
 const RATINGS = [1, 2, 3, 4, 5] as const;
+
+type Cfg = Record<string, unknown>;
+const resenas = (config: Cfg): Testimonial[] => (Array.isArray(config.testimonials) ? (config.testimonials as Testimonial[]) : []);
+
+/** ARREGLOS-03 (D-154): borra la reseña `i` de la raíz y su texto de cada idioma, en un solo config (un solo `setConfig`). */
+export function quitarResena(config: Cfg, i: number): Cfg {
+  const lista = resenas(config);
+  const id = lista[i]?.id;
+  const resto = lista.filter((_, j) => j !== i);
+  const sinRaiz = { ...config, testimonials: resto.length > 0 ? resto : undefined };
+  return id ? quitarTextoIdioma(sinRaiz, { seccion: "testimonials", id }) : sinRaiz;
+}
+
+/** ARREGLOS-03 (D-154): cambia el id de la reseña `i` y mueve su texto de cada idioma al id nuevo, en un solo config. Un id que
+ *  pasa por vacío deja el texto bajo el último id no vacío (techo declarado en la hoja): el validador lo nombra. */
+export function cambiarIdResena(config: Cfg, i: number, nuevo: string): Cfg {
+  const lista = resenas(config);
+  const de = lista[i]?.id;
+  const conRaiz = { ...config, testimonials: lista.map((t, j) => (j === i ? { ...t, id: nuevo || undefined } : t)) };
+  return de && nuevo ? renombrarTextoIdioma(conRaiz, { seccion: "testimonials", de, a: nuevo }) : conRaiz;
+}
 
 /**
  * Editor for `testimonials[]`. The template renders these as a carousel in
@@ -65,8 +86,15 @@ export function TestimonialsEditor({
   }
 
   function remove(index: number) {
+    // ARREGLOS-03: con el config entero, la raíz y el texto de cada idioma se van en el mismo setConfig.
+    if (setConfig) return setConfig((prev) => quitarResena(prev, index));
     const next = items.filter((_, i) => i !== index);
     onChange(next.length > 0 ? next : undefined);
+  }
+
+  function cambiarId(index: number, nuevo: string) {
+    if (setConfig) return setConfig((prev) => cambiarIdResena(prev, index, nuevo));
+    update(index, { id: nuevo || undefined });
   }
 
   function move(from: number, dir: -1 | 1) {
@@ -139,7 +167,7 @@ export function TestimonialsEditor({
                 <input
                   type="text"
                   value={t.id ?? ""}
-                  onChange={(e) => update(i, { id: e.target.value || undefined })}
+                  onChange={(e) => cambiarId(i, e.target.value)}
                   disabled={otro}
                   placeholder="r1"
                   className="w-full rounded border border-border bg-bg-card px-2 py-1 font-mono text-xs text-text placeholder:text-text-muted/40 focus:border-accent focus:outline-none disabled:opacity-60"
