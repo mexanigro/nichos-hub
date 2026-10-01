@@ -14,6 +14,7 @@ import {
 import { SelectorIdioma } from "../selector-idioma";
 import { useClientLanguage } from "@/lib/client-language-context";
 import { aplicarTextoIdioma, leerTextoIdioma, quitarTextoIdioma } from "@/lib/textos-idioma";
+import { validateFraseEquipo } from "@/lib/config-validator";
 import type { ClientLanguage } from "@/lib/client-language";
 
 export type StaffSocial = {
@@ -53,13 +54,21 @@ function slugify(name: string): string {
     .slice(0, 40);
 }
 
-/** ARREGLOS-03 (D-154): borra la persona `i` de la raíz y su texto de cada idioma, en un solo config (un solo `setConfig`). */
+/** ARREGLOS-03 (D-154): borra la persona `i` de la raíz y su texto de cada idioma, en un solo config (un solo `setConfig`).
+ *  TEAM-RESENAS-01 (D-176): la única no se borra —una lista vacía no viaja por JSON y Firestore conservaría la vieja—; para no
+ *  mostrar el equipo se oculta la sección (`features.showTeam`). */
 export function quitarMiembro(config: Record<string, unknown>, i: number): Record<string, unknown> {
   const lista = Array.isArray(config.staff) ? (config.staff as StaffMember[]) : [];
-  const id = lista[i]?.id;
-  const resto = lista.filter((_, j) => j !== i);
-  const sinRaiz = { ...config, staff: resto.length > 0 ? resto : undefined };
+  if (lista.length <= 1 || !lista[i]) return config;
+  const id = lista[i].id;
+  const sinRaiz = { ...config, staff: lista.filter((_, j) => j !== i) };
   return id ? quitarTextoIdioma(sinRaiz, { seccion: "staff", id }) : sinRaiz;
+}
+
+/** Lo que la casilla llama al borrar una persona: una función pura dentro de un único `setConfig`. Exportado para que
+ *  `tests/casillas-sin-huecos.test.ts` ejecute el mismo camino que la casilla (condición 1 del revisor). */
+export function accionesEquipo(setConfig: (fn: (prev: Record<string, unknown>) => Record<string, unknown>) => void) {
+  return { quitar: (index: number) => setConfig((prev) => quitarMiembro(prev, index)) };
 }
 
 export function StaffEditor({
@@ -120,12 +129,11 @@ export function StaffEditor({
   }
 
   function remove(index: number) {
+    // TEAM-RESENAS-01 (D-176): la única no se borra (ver quitarMiembro).
+    if (items.length <= 1) return;
     // ARREGLOS-03: con el config entero, la raíz y el texto de cada idioma se van en el mismo setConfig.
-    if (setConfig) setConfig((prev) => quitarMiembro(prev, index));
-    else {
-      const next = items.filter((_, i) => i !== index);
-      onChange(next.length > 0 ? next : undefined);
-    }
+    if (setConfig) accionesEquipo(setConfig).quitar(index);
+    else onChange(items.filter((_, i) => i !== index));
     setExpanded((prev) => {
       const set = new Set<number>();
       for (const e of prev) {
@@ -172,6 +180,9 @@ export function StaffEditor({
     setExpanded((prev) => new Set([...prev, items.length]));
   }
 
+  // TEAM-RESENAS-01 (D-183, CT-2): con team v6, la primera oración de cada bio, en cada idioma, va hasta 10 palabras.
+  const avisosFrase = config ? validateFraseEquipo(config) : [];
+
   if (items.length === 0) {
     return (
       <div className="space-y-2">
@@ -190,6 +201,18 @@ export function StaffEditor({
         <p className="text-[10px] text-text-muted">
           Texto en otro idioma: lo vacío queda pendiente y la web muestra el del idioma base. Foto, id y horario son los mismos en los cuatro idiomas.
         </p>
+      )}
+      {items.length === 1 && (
+        <p className="text-[10px] text-text-muted">
+          La única persona no se puede borrar. Para no mostrar el equipo, ocultá la sección con <code>features.showTeam</code> en Config.
+        </p>
+      )}
+      {avisosFrase.length > 0 && (
+        <ul className="space-y-0.5 rounded border border-amber-500/30 bg-amber-500/5 px-2 py-1.5 text-[10px] text-amber-300">
+          {avisosFrase.map((a) => (
+            <li key={a.path}><code>{a.path}</code>: {a.message}</li>
+          ))}
+        </ul>
       )}
       {items.map((m, i) => {
         const isOpen = expanded.has(i);
@@ -395,8 +418,9 @@ function EmptyState() {
       <Users size={20} className="mx-auto mb-2 text-text-muted" />
       <p className="text-[11px] text-text-secondary">Sin miembros cargados</p>
       <p className="mt-0.5 text-[10px] text-text-muted">
-        Cada miembro aparece como una card en la seccion Equipo del cliente. Si dejas la lista
-        vacia se usan los del preset del nicho. Solo se ve en modo Equipo.
+        Cada miembro aparece como una card en la seccion Equipo del cliente. Mientras no cargues
+        ninguno, la web muestra los de ejemplo del nicho. Para no mostrar el equipo, ocultá la seccion
+        con <code>features.showTeam</code> en Config. Solo se ve en modo Equipo.
       </p>
     </div>
   );

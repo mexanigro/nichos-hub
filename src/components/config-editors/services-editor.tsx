@@ -162,13 +162,15 @@ function conServiceIds(config: Cfg, fn: (id: string) => string | undefined): Cfg
  *  `setConfig`): la raíz, su foto (`sections.services.images[i]`, que aparea por posición: la de los siguientes sigue con ellos),
  *  su lugar en `featured` (queda `[]` y no se borra la clave: `PUT /api/config` escribe con `merge: true` y conservaría la vieja),
  *  el `serviceId` de las piezas de la galería y su texto de cada idioma. Si otro servicio tiene el mismo id, sólo se van la raíz y
- *  la foto. */
+ *  la foto. TEAM-RESENAS-01 (D-176): el único no se borra —una lista vacía no viaja por JSON y Firestore conservaría la vieja—;
+ *  para no mostrar servicios se oculta la sección (`features.showServices`), y para volver a la lista del nicho, «Volver al preset». */
 export function quitarServicio(config: unknown, i: number): Cfg {
   const c: Cfg = { ...((config ?? {}) as Cfg) };
   const lista = Array.isArray(c.services) ? (c.services as Cfg[]) : [];
-  const id = lista[i]?.id;
+  if (lista.length <= 1 || !lista[i]) return c;
+  const id = lista[i].id;
   const resto = lista.filter((_, j) => j !== i);
-  let out: Cfg = { ...c, services: resto.length > 0 ? resto : undefined };
+  let out: Cfg = { ...c, services: resto };
   const imagenes = ((c.sections as Cfg | undefined)?.services as Cfg | undefined)?.images;
   if (Array.isArray(imagenes) && i < imagenes.length) {
     out = conSeccionServicios(out, (s) => ({ ...s, images: (imagenes as string[]).filter((_, j) => j !== i) }));
@@ -784,6 +786,12 @@ function CustomServicesEditor({
             Este cliente usa su propia lista de servicios. Las actualizaciones del preset del
             nicho no se aplican automaticamente.
           </p>
+          {services.length === 1 && (
+            <p className="mt-1 text-amber-300/80">
+              El único servicio no se puede borrar. Para no mostrar servicios, ocultá la sección con{" "}
+              <code>features.showServices</code> en Config; para volver a la lista del nicho, «Volver al preset».
+            </p>
+          )}
         </div>
         {confirmReset ? (
           <div className="flex shrink-0 items-center gap-1">

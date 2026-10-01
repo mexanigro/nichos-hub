@@ -644,6 +644,8 @@ export function validateConfig(config: unknown): ConfigIssue[] {
   issues.push(...validateVariantContracts(config));
   issues.push(...validatePalette(config));
   issues.push(...validateTextosPorIdioma(config));
+  issues.push(...validateIdiomaResenas(config));
+  issues.push(...validateFraseEquipo(config));
 
   return issues;
 }
@@ -959,4 +961,47 @@ export function validatePalette(config: unknown): ConfigIssue[] {
 /** Convenience: returns true if any "error" severity issue is present. */
 export function hasBlockingIssues(issues: ConfigIssue[]): boolean {
   return issues.some((i) => i.severity === "error");
+}
+
+/** TEAM-RESENAS-01 (D-182, D-145): `testimonials[i].lang` es el idioma en que se escribió la reseña (he | en | ru | ar); sin el
+ *  campo, el idioma base del cliente. Error por cualquier otro valor. */
+export const IDIOMAS_RESENA = ["he", "en", "ru", "ar"] as const;
+export function validateIdiomaResenas(config: unknown): ConfigIssue[] {
+  const issues: ConfigIssue[] = [];
+  const lista = (config as { testimonials?: unknown } | null)?.testimonials;
+  if (!Array.isArray(lista)) return issues;
+  lista.forEach((t, i) => {
+    if (!t || typeof t !== "object" || !("lang" in t)) return;
+    const lang = (t as { lang?: unknown }).lang;
+    if (lang === undefined || (IDIOMAS_RESENA as readonly unknown[]).includes(lang)) return;
+    issues.push({ path: `testimonials[${i}].lang`, message: `El idioma de la reseña tiene que ser he, en, ru o ar (vacío = el idioma base); hay ${JSON.stringify(lang)}.`, severity: "error" });
+  });
+  return issues;
+}
+
+/** TEAM-RESENAS-01 (D-183, CT-2): con team v6, la primera oración de cada bio es la frase de la tarjeta móvil y tiene hasta 10
+ *  palabras; si una pasa, ninguna tarjeta la muestra. Aviso (no bloquea) por cada bio que pasa, en la raíz y en cada idioma.
+ *  «Primera oración» y «palabras» como en el prototipo (diseno/team/prototipo/proto.js). */
+export function primeraOracion(bio: string): string {
+  return bio.trim().split(/(?<=[.!?…])\s+/)[0] ?? "";
+}
+export function validateFraseEquipo(config: unknown): ConfigIssue[] {
+  const issues: ConfigIssue[] = [];
+  const c = (config ?? {}) as { sections?: { team?: { variant?: unknown } }; staff?: unknown; translations?: unknown };
+  if (c.sections?.team?.variant !== "v6") return issues;
+  const revisar = (bio: unknown, path: string) => {
+    if (typeof bio !== "string" || !bio.trim()) return;
+    const n = primeraOracion(bio).split(/\s+/).filter(Boolean).length;
+    if (n > 10) issues.push({ path, message: `La primera oración de la bio tiene ${n} palabras: es la frase de la tarjeta móvil y va hasta 10. Si una pasa, ninguna tarjeta la muestra (CT-2).`, severity: "warning" });
+  };
+  if (Array.isArray(c.staff)) c.staff.forEach((m, i) => revisar((m as { bio?: unknown } | null)?.bio, `staff[${i}].bio`));
+  const tr = c.translations;
+  if (tr && typeof tr === "object" && !Array.isArray(tr)) {
+    for (const [lang, capa] of Object.entries(tr as Record<string, unknown>)) {
+      const staff = (capa as { staff?: unknown } | null)?.staff;
+      if (Array.isArray(staff)) for (const m of staff) { const x = m as { id?: unknown; bio?: unknown } | null; if (x && typeof x.id === "string") revisar(x.bio, `translations.${lang}.staff.${x.id}.bio`); }
+      else if (staff && typeof staff === "object") for (const [id, x] of Object.entries(staff as Record<string, unknown>)) revisar((x as { bio?: unknown } | null)?.bio, `translations.${lang}.staff.${id}.bio`);
+    }
+  }
+  return issues;
 }

@@ -102,6 +102,8 @@ export const LAYOUT_VARIANT_SECTIONS: readonly LayoutSectionSpec[] = [
       v3: { name: "Grilla con bio al hover", desc: "Fotos grandes; la bio aparece al pasar el mouse." },
       v4: { name: "Destacado + lista", desc: "Un miembro en grande + el resto en lista lateral compacta." },
       v5: { name: "Avatares minimal", desc: "Fila de circulos en B/N que toman color al hover." },
+      // TEAM-RESENAS-01 (D-173): la de las dos plantillas de peluqueria; la dinamica sale de sections.gallery.variant (v6 collage, v7 mosaico).
+      v6: { name: "Peluqueria: tarjeta-perfil", desc: "Tarjeta que es un solo enlace al perfil, foto a toda la tarjeta en movil y tres retratos 4:5 en escritorio (TEAM-01)." },
     },
   },
   {
@@ -138,6 +140,8 @@ export const LAYOUT_VARIANT_SECTIONS: readonly LayoutSectionSpec[] = [
       v3: { name: "Cards masonry", desc: "Mosaico de quotes de alturas variables." },
       v4: { name: "Video testimonios", desc: "Grilla con videos de clientes (usa videoUrl)." },
       v5: { name: "Resumen de rating", desc: "Promedio gigante + barras de distribucion + lista." },
+      // TEAM-RESENAS-01 (D-173): la de las dos plantillas de peluqueria; la dinamica sale de sections.gallery.variant.
+      v6: { name: "Peluqueria: voces en collage", desc: "Las resenas como piezas de collage, con el promedio de los datos y la nota de traduccion como Google (RESENAS-01)." },
     },
   },
   {

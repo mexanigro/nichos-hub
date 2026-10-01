@@ -16,23 +16,50 @@ export type Testimonial = {
   name: string;
   /** Servicio que reseña (se traduce por idioma, como el texto). */
   service?: string;
-  title: string;
+  title?: string;
   text: string;
   rating: number;
+  /** TEAM-RESENAS-01 (D-182): el idioma en que se escribió la reseña; sin el campo, el idioma base del cliente. */
+  lang?: string;
 };
+
+/** Campos que se borran (no quedan «») cuando se vacían: la reseña sin ellos es válida (D-184). */
+const OPCIONALES = new Set(["title", "service", "lang"]);
+/** Idiomas en que se puede haber escrito una reseña (vacío = el idioma base, sin la clave). */
+const IDIOMAS: { code: string; label: string }[] = [
+  { code: "he", label: "Hebreo" },
+  { code: "en", label: "Inglés" },
+  { code: "ru", label: "Ruso" },
+  { code: "ar", label: "Árabe" },
+];
 
 const RATINGS = [1, 2, 3, 4, 5] as const;
 
 type Cfg = Record<string, unknown>;
 const resenas = (config: Cfg): Testimonial[] => (Array.isArray(config.testimonials) ? (config.testimonials as Testimonial[]) : []);
 
-/** ARREGLOS-03 (D-154): borra la reseña `i` de la raíz y su texto de cada idioma, en un solo config (un solo `setConfig`). */
+/** ARREGLOS-03 (D-154): borra la reseña `i` de la raíz y su texto de cada idioma, en un solo config (un solo `setConfig`).
+ *  TEAM-RESENAS-01 (D-176): la única no se borra —una lista vacía no viaja por JSON y Firestore conservaría la vieja—; para no
+ *  mostrar reseñas se oculta la sección (`features.showTestimonials`). */
 export function quitarResena(config: Cfg, i: number): Cfg {
   const lista = resenas(config);
-  const id = lista[i]?.id;
-  const resto = lista.filter((_, j) => j !== i);
-  const sinRaiz = { ...config, testimonials: resto.length > 0 ? resto : undefined };
+  if (lista.length <= 1 || !lista[i]) return config;
+  const id = lista[i].id;
+  const sinRaiz = { ...config, testimonials: lista.filter((_, j) => j !== i) };
   return id ? quitarTextoIdioma(sinRaiz, { seccion: "testimonials", id }) : sinRaiz;
+}
+
+/** TEAM-RESENAS-01 (D-184): escribe `testimonials[i]` con el parche; un campo opcional (`title`, `service`, `lang`) que queda vacío
+ *  se borra en vez de quedar «». Puro: devuelve un config nuevo. */
+export function editarResena(config: Cfg, i: number, patch: Partial<Testimonial>): Cfg {
+  const lista = resenas(config);
+  if (!lista[i]) return config;
+  const r: Record<string, unknown> = { ...lista[i] };
+  for (const [k, v] of Object.entries(patch)) {
+    if (OPCIONALES.has(k) && (v === "" || v === undefined || v === null)) delete r[k];
+    else r[k] = v;
+  }
+  return { ...config, testimonials: lista.map((t, j) => (j === i ? (r as Testimonial) : t)) };
 }
 
 /** ARREGLOS-03 (D-154): cambia el id de la reseña `i` y mueve su texto de cada idioma al id nuevo, en un solo config. Un id que
@@ -42,6 +69,18 @@ export function cambiarIdResena(config: Cfg, i: number, nuevo: string): Cfg {
   const de = lista[i]?.id;
   const conRaiz = { ...config, testimonials: lista.map((t, j) => (j === i ? { ...t, id: nuevo || undefined } : t)) };
   return de && nuevo ? renombrarTextoIdioma(conRaiz, { seccion: "testimonials", de, a: nuevo }) : conRaiz;
+}
+
+type SetCfg = (fn: (prev: Record<string, unknown>) => Record<string, unknown>) => void;
+/** Lo que la casilla llama al borrar, al escribir el título o el servicio del idioma base y al elegir el idioma de la reseña: cada
+ *  acción, una función pura dentro de un único `setConfig`. Exportado para que `tests/casillas-sin-huecos.test.ts` ejecute el mismo
+ *  camino que la casilla (condición 1 del revisor). */
+export function accionesResenas(setConfig: SetCfg) {
+  return {
+    quitar: (index: number) => setConfig((prev) => quitarResena(prev, index)),
+    editar: (index: number, patch: Partial<Testimonial>) => setConfig((prev) => editarResena(prev, index, patch)),
+    idioma: (index: number, lang: string) => setConfig((prev) => editarResena(prev, index, { lang })),
+  };
 }
 
 /**
@@ -70,11 +109,14 @@ export function TestimonialsEditor({
   const textPh = placeholderFor(lang, "testimonialText");
   const [idioma, setIdioma] = useState<ClientLanguage>(lang);
   const otro = idioma !== lang && !!config && !!setConfig;
+  const acciones = setConfig ? accionesResenas(setConfig) : null;
   /** El texto de `campo` en el idioma que se edita: el de la raíz en el base; el de la capa (o vacío = pendiente) en otro. */
   const texto = (t: Testimonial, campo: "name" | "title" | "text" | "service") =>
     otro ? leerTextoIdioma(config, { seccion: "testimonials", id: t.id ?? "", campo, idioma, base: lang }) : (t[campo] ?? "");
   function escribir(i: number, campo: "title" | "text" | "service", valor: string) {
     const id = items[i].id;
+    // TEAM-RESENAS-01 (D-184): en el idioma base, vaciar el título o el servicio borra la clave.
+    if (!otro && acciones) return acciones.editar(i, { [campo]: valor });
     if (!otro) return update(i, { [campo]: valor });
     if (id) setConfig!((prev) => aplicarTextoIdioma(prev, { seccion: "testimonials", id, campo, valor, idioma, base: lang }));
   }
@@ -86,10 +128,11 @@ export function TestimonialsEditor({
   }
 
   function remove(index: number) {
+    // TEAM-RESENAS-01 (D-176): la única no se borra (ver quitarResena).
+    if (items.length <= 1) return;
     // ARREGLOS-03: con el config entero, la raíz y el texto de cada idioma se van en el mismo setConfig.
-    if (setConfig) return setConfig((prev) => quitarResena(prev, index));
-    const next = items.filter((_, i) => i !== index);
-    onChange(next.length > 0 ? next : undefined);
+    if (acciones) return acciones.quitar(index);
+    onChange(items.filter((_, i) => i !== index));
   }
 
   function cambiarId(index: number, nuevo: string) {
@@ -122,6 +165,11 @@ export function TestimonialsEditor({
       {otro && (
         <p className="text-[10px] text-text-muted">
           Texto en otro idioma: lo vacío queda pendiente y la web muestra el original. El nombre, el id y el rating son los mismos en los cuatro idiomas.
+        </p>
+      )}
+      {items.length === 1 && (
+        <p className="text-[10px] text-text-muted">
+          La única reseña no se puede borrar. Para no mostrar reseñas, ocultá la sección con <code>features.showTestimonials</code> en Config.
         </p>
       )}
       {items.map((t, i) => {
@@ -180,7 +228,7 @@ export function TestimonialsEditor({
                   value={texto(t, "title")}
                   onChange={(e) => escribir(i, "title", e.target.value)}
                   disabled={otro && !t.id}
-                  placeholder={otro ? t.title : titlePh}
+                  placeholder={otro ? t.title ?? "" : titlePh}
                   className="w-full rounded border border-border bg-bg-card px-2 py-1 text-xs text-text placeholder:text-text-muted/40 focus:border-accent focus:outline-none disabled:opacity-60"
                 />
               </div>
@@ -195,6 +243,21 @@ export function TestimonialsEditor({
                   className="w-full rounded border border-border bg-bg-card px-2 py-1 text-xs text-text placeholder:text-text-muted/40 focus:border-accent focus:outline-none disabled:opacity-60"
                 />
               </div>
+              {!otro && acciones && (
+                <div>
+                  <label className="mb-0.5 block text-[10px] text-text-muted">Idioma en que se escribió</label>
+                  <select
+                    value={t.lang ?? ""}
+                    onChange={(e) => acciones.idioma(i, e.target.value)}
+                    className="w-full rounded border border-border bg-bg-card px-2 py-1 text-xs text-text focus:border-accent focus:outline-none"
+                  >
+                    <option value="">El idioma base del cliente</option>
+                    {IDIOMAS.map((l) => (
+                      <option key={l.code} value={l.code}>{l.label} ({l.code})</option>
+                    ))}
+                  </select>
+                </div>
+              )}
             </div>
 
             <div className="mt-2">
@@ -267,8 +330,9 @@ function EmptyState() {
       <Quote size={20} className="mx-auto mb-2 text-text-muted" />
       <p className="text-[11px] text-text-secondary">Sin testimonios cargados</p>
       <p className="mt-0.5 text-[10px] text-text-muted">
-        Cada testimonio aparece en el carousel de la seccion &quot;Testimonios&quot; con nombre,
-        rating y texto. Si dejas la lista vacia se usan los del preset del nicho.
+        Cada testimonio aparece en la seccion &quot;Testimonios&quot; con nombre, rating y texto. Mientras no
+        cargues ninguno, la web muestra los de ejemplo del nicho. Para no mostrar testimonios, ocultá la
+        seccion con <code>features.showTestimonials</code> en Config.
       </p>
     </div>
   );
