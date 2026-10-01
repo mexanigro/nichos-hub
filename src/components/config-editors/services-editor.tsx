@@ -7,7 +7,7 @@ import { ReorderControls, moveItem } from "./reorder-controls";
 import { LanguageMismatchWarning } from "../language-mismatch-warning";
 import { useClientLanguage } from "@/lib/client-language-context";
 import { SelectorIdioma } from "../selector-idioma";
-import { aplicarTextoIdioma, leerTextoIdioma, quitarTextoIdioma } from "@/lib/textos-idioma";
+import { aplicarTextoIdioma, leerTextoIdioma, quitarTextoIdioma, renombrarTextoIdioma } from "@/lib/textos-idioma";
 import type { ClientLanguage } from "@/lib/client-language";
 import type { BusinessNiche } from "@/lib/client-config/services";
 import {
@@ -141,16 +141,90 @@ export function aplicarServicio(config: unknown, i: number, campo: CampoServicio
   return next;
 }
 
-/** ARREGLOS-03 (D-154): borra el servicio `i` de la raíz y su texto de cada idioma, en un solo config (un solo `setConfig`).
- *  Lo que el servicio deja además —su foto en `sections.services.images[i]` (que aparea por índice), `featured` y el `serviceId`
- *  de la galería— no se toca aquí: va con la orden de services y galería (D-154, «Fuera»). */
+/** Config nuevo con el `serviceId` de cada pieza de la galería pasado por `fn` (`undefined` borra la clave); sin cambios, el mismo. */
+function conServiceIds(config: Cfg, fn: (id: string) => string | undefined): Cfg {
+  const sections = config.sections as Cfg | undefined;
+  const gallery = sections?.gallery as Cfg | undefined;
+  if (!Array.isArray(gallery?.items)) return config;
+  let cambio = false;
+  const items = (gallery.items as Cfg[]).map((x) => {
+    if (typeof x?.serviceId !== "string") return x;
+    const nuevo = fn(x.serviceId);
+    if (nuevo === x.serviceId) return x;
+    cambio = true;
+    const { serviceId: _viejo, ...resto } = x;
+    return nuevo === undefined ? resto : { ...resto, serviceId: nuevo };
+  });
+  return cambio ? { ...config, sections: { ...sections, gallery: { ...gallery, items } } } : config;
+}
+
+/** ARREGLOS-03 (D-154) + SERVICIOS-GALERIA-01 (D-164): borra el servicio `i` y todo lo que lo nombra, en un solo config (un solo
+ *  `setConfig`): la raíz, su foto (`sections.services.images[i]`, que aparea por posición: la de los siguientes sigue con ellos),
+ *  su lugar en `featured` (queda `[]` y no se borra la clave: `PUT /api/config` escribe con `merge: true` y conservaría la vieja),
+ *  el `serviceId` de las piezas de la galería y su texto de cada idioma. Si otro servicio tiene el mismo id, sólo se van la raíz y
+ *  la foto. */
 export function quitarServicio(config: unknown, i: number): Cfg {
   const c: Cfg = { ...((config ?? {}) as Cfg) };
   const lista = Array.isArray(c.services) ? (c.services as Cfg[]) : [];
   const id = lista[i]?.id;
   const resto = lista.filter((_, j) => j !== i);
-  const sinRaiz: Cfg = { ...c, services: resto.length > 0 ? resto : undefined };
-  return typeof id === "string" && id ? quitarTextoIdioma(sinRaiz, { seccion: "services", id }) : sinRaiz;
+  let out: Cfg = { ...c, services: resto.length > 0 ? resto : undefined };
+  const imagenes = ((c.sections as Cfg | undefined)?.services as Cfg | undefined)?.images;
+  if (Array.isArray(imagenes) && i < imagenes.length) {
+    out = conSeccionServicios(out, (s) => ({ ...s, images: (imagenes as string[]).filter((_, j) => j !== i) }));
+  }
+  if (typeof id !== "string" || !id || resto.some((s) => s?.id === id)) return out;
+  const featured = ((out.sections as Cfg | undefined)?.services as Cfg | undefined)?.featured;
+  if (Array.isArray(featured) && featured.includes(id)) {
+    out = conSeccionServicios(out, (s) => ({ ...s, featured: (featured as string[]).filter((x) => x !== id) }));
+  }
+  out = conServiceIds(out, (x) => (x === id ? undefined : x));
+  return quitarTextoIdioma(out, { seccion: "services", id });
+}
+
+/** SERVICIOS-GALERIA-01 (D-164): cambia el id del servicio `i` y lo lleva a todo lo que lo nombra —`featured` (en su lugar), el
+ *  `serviceId` de la galería y el texto de cada idioma—. La casilla escribe en cada tecla: con un id nuevo vacío, o que ya es de
+ *  otro servicio, sólo cambia la raíz y no se pisa nada de ese otro servicio (el validador nombra lo que quede, como D-154). */
+export function renombrarServicio(config: unknown, i: number, nuevo: string): Cfg {
+  const c: Cfg = { ...((config ?? {}) as Cfg) };
+  const lista = Array.isArray(c.services) ? (c.services as Cfg[]).slice() : [];
+  if (!lista[i]) return c;
+  const de = String(lista[i].id ?? "");
+  lista[i] = { ...lista[i], id: nuevo };
+  let out: Cfg = { ...c, services: lista };
+  const otros = lista.filter((_, j) => j !== i).map((s) => s?.id);
+  if (!de || !nuevo || de === nuevo || otros.includes(nuevo) || otros.includes(de)) return out;
+  const featured = ((out.sections as Cfg | undefined)?.services as Cfg | undefined)?.featured;
+  if (Array.isArray(featured) && featured.includes(de)) {
+    out = conSeccionServicios(out, (s) => ({ ...s, featured: (featured as string[]).map((x) => (x === de ? nuevo : x)) }));
+  }
+  out = conServiceIds(out, (x) => (x === de ? nuevo : x));
+  return renombrarTextoIdioma(out, { seccion: "services", de, a: nuevo });
+}
+
+/** SERVICIOS-GALERIA-01 (D-164): mueve el servicio `desde` a `hasta` con su foto (`sections.services.images` aparea por
+ *  posición). `featured`, la galería y el texto por idioma van por id y no cambian. */
+export function moverServicio(config: unknown, desde: number, hasta: number): Cfg {
+  const c: Cfg = { ...((config ?? {}) as Cfg) };
+  const lista = Array.isArray(c.services) ? (c.services as Cfg[]) : [];
+  if (desde === hasta || desde < 0 || hasta < 0 || desde >= lista.length || hasta >= lista.length) return c;
+  const out: Cfg = { ...c, services: moveItem(lista, desde, hasta) };
+  const imagenes = ((c.sections as Cfg | undefined)?.services as Cfg | undefined)?.images;
+  if (!Array.isArray(imagenes) || !imagenes.length) return out;
+  const fotos = (imagenes as string[]).slice();
+  while (fotos.length < lista.length) fotos.push("");
+  return conSeccionServicios(out, (s) => ({ ...s, images: moveItem(fotos, desde, hasta) }));
+}
+
+/** Lo que la casilla llama al borrar, cambiar el id y reordenar: cada acción, una función pura dentro de un único `setConfig`.
+ *  Exportado para que `tests/servicios-casilla.test.ts` ejecute el mismo camino que la casilla (condición 1 del revisor). */
+export function accionesServicios(setConfig: SetConfig) {
+  const escribir = (fn: (prev: Cfg) => Cfg) => setConfig((prev) => fn(prev as Cfg) as ConfigSlice);
+  return {
+    quitar: (index: number) => escribir((prev) => quitarServicio(prev, index)),
+    renombrar: (index: number, id: string) => escribir((prev) => renombrarServicio(prev, index, id)),
+    mover: (desde: number, hasta: number) => escribir((prev) => moverServicio(prev, desde, hasta)),
+  };
 }
 
 /** Config nuevo con `sections.services.images[i]` = url (la lista se rellena con "" hasta i; la url vacía deja ""). */
@@ -665,13 +739,16 @@ function CustomServicesEditor({
     onChange(next);
   }
 
+  // SERVICIOS-GALERIA-01 (D-164): borrar, cambiar el id y reordenar llevan con el servicio su foto, su lugar en featured, el
+  // serviceId de la galería y su texto de cada idioma, cada uno en un único setConfig.
+  const acciones = accionesServicios(setConfig);
+
   function remove(index: number) {
-    // ARREGLOS-03: la raíz y el texto de cada idioma se van en el mismo setConfig.
-    escribir((prev) => quitarServicio(prev, index));
+    acciones.quitar(index);
   }
 
   function move(from: number, dir: -1 | 1) {
-    onChange(moveItem(services, from, from + dir));
+    acciones.mover(from, from + dir);
   }
 
   function add() {
@@ -818,7 +895,7 @@ function CustomServicesEditor({
                     <PatchInput
                       label="ID (slug, unico)"
                       value={s.id}
-                      onChange={(v) => update(i, { id: v })}
+                      onChange={(v) => acciones.renombrar(i, v)}
                       placeholder="corte-clasico"
                     />
                     <NumberInput
