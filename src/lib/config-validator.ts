@@ -994,7 +994,13 @@ export function validateFraseEquipo(config: unknown): ConfigIssue[] {
     const n = primeraOracion(bio).split(/\s+/).filter(Boolean).length;
     if (n > 10) issues.push({ path, message: `La primera oración de la bio tiene ${n} palabras: es la frase de la tarjeta móvil y va hasta 10. Si una pasa, ninguna tarjeta la muestra (CT-2).`, severity: "warning" });
   };
-  if (Array.isArray(c.staff)) c.staff.forEach((m, i) => revisar((m as { bio?: unknown } | null)?.bio, `staff[${i}].bio`));
+  if (Array.isArray(c.staff)) {
+    c.staff.forEach((m, i) => revisar((m as { bio?: unknown } | null)?.bio, `staff[${i}].bio`));
+    // INSTAGRAM-FAQ-01 (E3): la frase va en todas las tarjetas o en ninguna (CT-2), así que una persona sin bio, mientras otras la
+    // tienen, apaga la frase de todas
+    const tiene = c.staff.map((m) => { const b = (m as { bio?: unknown } | null)?.bio; return typeof b === "string" && !!b.trim(); });
+    if (tiene.some(Boolean)) tiene.forEach((t, i) => { if (!t) issues.push({ path: `staff[${i}].bio`, message: "Esta persona no tiene bio y las otras sí: la frase de la tarjeta móvil va en todas o en ninguna, así que ninguna tarjeta la muestra (CT-2).", severity: "warning" }); });
+  }
   const tr = c.translations;
   if (tr && typeof tr === "object" && !Array.isArray(tr)) {
     for (const [lang, capa] of Object.entries(tr as Record<string, unknown>)) {

@@ -28,6 +28,7 @@
 export type SectionVariantValue = "v1" | "v2" | "v3" | "v4" | "v5" | "v6" | "v7" | "v8" | "v9";
 
 const VARIANT_VALUES: readonly SectionVariantValue[] = ["v1", "v2", "v3", "v4", "v5", "v6", "v7", "v8", "v9"];
+const V1_A_V5: readonly SectionVariantValue[] = ["v1", "v2", "v3", "v4", "v5"];
 
 type VariantInfo = { name: string; desc: string };
 
@@ -153,6 +154,8 @@ export const LAYOUT_VARIANT_SECTIONS: readonly LayoutSectionSpec[] = [
       v3: { name: "Grilla con captions", desc: "Posts con barra de handle + numero." },
       v4: { name: "Destacado + grilla", desc: "Un post grande con CTA de follow + grilla compacta." },
       v5: { name: "Marquee automatico", desc: "Carrusel infinito con pill del handle al centro." },
+      // INSTAGRAM-FAQ-01 (D-189): la de las dos plantillas de peluqueria; la dinamica sale de sections.gallery.variant.
+      v6: { name: "Peluqueria: abanico de polaroids", desc: "Seis fotos en polaroid que se abren en abanico con el scroll, entre resenas y preguntas; sin cuenta, la accion lleva a la galeria (INSTAGRAM-01)." },
     },
   },
   {
@@ -164,6 +167,8 @@ export const LAYOUT_VARIANT_SECTIONS: readonly LayoutSectionSpec[] = [
       v3: { name: "Con buscador", desc: "Input de busqueda que filtra las preguntas en vivo." },
       v4: { name: "Tabs por categoria", desc: "Preguntas agrupadas en pestañas tematicas." },
       v5: { name: "Estilo chat", desc: "Pregunta y respuesta como burbujas de conversacion." },
+      // INSTAGRAM-FAQ-01 (D-189): la de las dos plantillas de peluqueria; la dinamica sale de sections.gallery.variant.
+      v6: { name: "Peluqueria: fichas sobre la mesa", desc: "Acordeon en profundidad: una pregunta abierta por vez, la ficha se acerca y la respuesta se despliega; pie con WhatsApp (FAQ-01)." },
     },
   },
   {
@@ -202,7 +207,9 @@ export function LayoutVariantsEditor({
   return (
     <div className="grid gap-3 lg:grid-cols-2">
       {LAYOUT_VARIANT_SECTIONS.filter((spec) => !spec.niches || (niche && spec.niches.includes(niche))).map((spec) => {
-        const offered = VARIANT_VALUES.filter((v) => spec.variants[v] !== undefined);
+        // INSTAGRAM-FAQ-01 (D-194): hoy toda v6+ es de peluqueria (navbar, hero, services, galeria v6 y v7, team, resenas, faq e
+        // instagram) y sus colores sólo existen en ese nicho; fuera, cada seccion termina en v5
+        const offered = VARIANT_VALUES.filter((v) => spec.variants[v] !== undefined && (V1_A_V5.includes(v) || niche === "peluqueria"));
         const raw = getNested(spec.path);
         const current: SectionVariantValue = offered.includes(raw as SectionVariantValue)
           ? (raw as SectionVariantValue)
