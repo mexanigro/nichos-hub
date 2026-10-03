@@ -661,6 +661,7 @@ export function validateTextosPorIdioma(config: unknown): ConfigIssue[] {
   const translations = getNested(config, "translations");
   if (!translations || typeof translations !== "object" || Array.isArray(translations)) return issues;
   const err = (path: string, message: string) => issues.push({ path, message, severity: "error" });
+  const warn = (path: string, message: string) => issues.push({ path, message, severity: "warning" });
   for (const [lang, capa] of Object.entries(translations as Record<string, unknown>)) {
     if (!capa || typeof capa !== "object") continue;
     for (const sec of SECCIONES_POR_IDIOMA) {
@@ -682,9 +683,29 @@ export function validateTextosPorIdioma(config: unknown): ConfigIssue[] {
         if (frase > 0 && (frase < 6 || frase > 12)) err(`${base}.description`, `La frase en ${lang} tiene ${frase} palabras; el contrato pide de 6 a 12.`);
       }
     }
+    // CONTACTO-PIE-01 (D-205): la dirección (`contact.address`: calle, barrio, ciudad) y la línea de la marca (`brand.tagline`) por
+    // idioma. Error si no es texto o no es uno de los tres campos; aviso si la raíz lo tiene y esta capa no (se vería el del idioma
+    // base, o la línea del nicho). `null` es un borrado que manda el guardado, no un error.
+    const c = capa as Record<string, unknown>;
+    const pre = `translations.${lang}`;
+    const texto = (v: unknown) => typeof v === "string" && v.trim() !== "";
+    const address = getNested(c, "contact.address");
+    if (address != null && (typeof address !== "object" || Array.isArray(address))) err(`${pre}.contact.address`, `La dirección en ${lang} tiene que ser un objeto con calle, barrio y ciudad.`);
+    const dir = address && typeof address === "object" && !Array.isArray(address) ? (address as Record<string, unknown>) : {};
+    for (const [k, v] of Object.entries(dir)) {
+      if (!DIRECCION_CAMPOS.includes(k)) err(`${pre}.contact.address.${k}`, `«${k}» no es un campo de la dirección (calle, barrio o ciudad: ${DIRECCION_CAMPOS.join(", ")}).`);
+      else if (v !== null && typeof v !== "string") err(`${pre}.contact.address.${k}`, `La dirección en ${lang} (${k}) tiene que ser texto.`);
+    }
+    for (const k of DIRECCION_CAMPOS) {
+      if (texto(getNested(config, `contact.address.${k}`)) && dir[k] == null) warn(`${pre}.contact.address.${k}`, `La capa ${lang} no tiene la dirección (${k}): en ese idioma se ve la del idioma base.`);
+    }
+    const tagline = getNested(c, "brand.tagline");
+    if (tagline != null && typeof tagline !== "string") err(`${pre}.brand.tagline`, `La línea de la marca en ${lang} tiene que ser texto.`);
+    if (texto(getNested(config, "brand.tagline")) && tagline == null) warn(`${pre}.brand.tagline`, `La capa ${lang} no tiene la línea de la marca: en ese idioma se ve la del nicho.`);
   }
   return issues;
 }
+const DIRECCION_CAMPOS = ["street", "district", "cityStateZip"];
 
 // ── Contratos de hueco por variante (bloque-04/CONTRATOS-HUECOS.md) ──
 // Sólo actúan cuando la sección usa la variante contratada (hero v6, services v6); para el

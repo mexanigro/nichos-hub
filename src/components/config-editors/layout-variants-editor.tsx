@@ -180,6 +180,8 @@ export const LAYOUT_VARIANT_SECTIONS: readonly LayoutSectionSpec[] = [
       v3: { name: "Card flotante", desc: "Tarjeta de contacto sobre foto a sangre completa." },
       v4: { name: "Inline minimal", desc: "Form de una linea + datos condensados en una fila." },
       v5: { name: "Inmersivo", desc: "Seccion oscura full-bleed con foto y formulario integrado." },
+      // CONTACTO-PIE-01 (D-202): la de las dos plantillas de peluqueria; la dinamica sale de sections.gallery.variant.
+      v6: { name: "Peluqueria: ubicacion y horarios + contacto", desc: "El mapa como una sola tarjeta-enlace con los horarios flotando sobre su borde, y el formulario sólo con showInquiry; el mapa se pide a una pantalla de distancia (CONTACTO-01)." },
     },
   },
   {
@@ -191,9 +193,14 @@ export const LAYOUT_VARIANT_SECTIONS: readonly LayoutSectionSpec[] = [
       v3: { name: "Mega columnas", desc: "Columnas de links + contacto + horarios (acordeon en mobile)." },
       v4: { name: "Stack centrado", desc: "Todo apilado y centrado con mucho aire." },
       v5: { name: "Contraste oscuro", desc: "Bloque oscuro de alto contraste sin importar el theme." },
+      // CONTACTO-PIE-01 (D-202): la misma en las dos plantillas de peluqueria.
+      v6: { name: "Peluqueria: el cierre y el pie", desc: "El cierre con la escena del hero y reservar en contorno; el pie con los mismos enlaces que el navbar, contacto y la barra legal (PIE-01)." },
     },
   },
 ] as const;
+
+/** La frase que acompaña a un valor guardado que el nicho no tiene (CONTACTO-PIE-01, D-208). */
+export const NO_DISPONIBLE = "no está disponible para este nicho";
 
 export function LayoutVariantsEditor({
   getNested,
@@ -211,10 +218,13 @@ export function LayoutVariantsEditor({
         // instagram) y sus colores sólo existen en ese nicho; fuera, cada seccion termina en v5
         const offered = VARIANT_VALUES.filter((v) => spec.variants[v] !== undefined && (V1_A_V5.includes(v) || niche === "peluqueria"));
         const raw = getNested(spec.path);
-        const current: SectionVariantValue = offered.includes(raw as SectionVariantValue)
+        // CONTACTO-PIE-01 (D-208): un valor guardado que este nicho no tiene (p. ej. una v6 de peluqueria en barberia) se sigue
+        // mostrando —la web lo pinta—, con su nombre y la frase fija; no se ofrece como boton ni se marca v1.
+        const guardadoAjeno = typeof raw === "string" && !offered.includes(raw as SectionVariantValue) && spec.variants[raw as SectionVariantValue] !== undefined;
+        const current: SectionVariantValue | null = offered.includes(raw as SectionVariantValue)
           ? (raw as SectionVariantValue)
-          : "v1";
-        const info = spec.variants[current] ?? V1;
+          : guardadoAjeno ? null : "v1";
+        const info = (guardadoAjeno ? spec.variants[raw as SectionVariantValue] : spec.variants[current ?? "v1"]) ?? V1;
 
         return (
           <div key={spec.path} className="rounded-lg border border-border bg-bg-elevated p-3">
@@ -245,6 +255,7 @@ export function LayoutVariantsEditor({
               </div>
             </div>
             <p className="text-xs font-medium text-text">{info.name}</p>
+            {guardadoAjeno && <p className="mt-0.5 text-[10px] font-semibold text-warning">{`${raw} guardada: ${NO_DISPONIBLE}`}</p>}
             <p className="mt-0.5 text-[10px] leading-snug text-text-muted">{info.desc}</p>
           </div>
         );

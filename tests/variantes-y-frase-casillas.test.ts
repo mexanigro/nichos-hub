@@ -40,7 +40,8 @@ const botones = (html: string) => [...html.matchAll(/<button\b[^>]*>(v\d)<\/butt
 
 test("la casilla de variantes ofrece las v6 y v7 de peluquería —con faq v6 e instagram v6— sólo con niche peluqueria; a barbería, ninguna", async () => {
   const pelu = botones(await casillaVariantes("peluqueria"));
-  assert.equal(pelu.filter((v) => v === "v6").length, 8, `peluquería: ocho botones v6 (navbar, hero, services, galería, team, reseñas, faq e instagram) (${pelu.filter((v) => v === "v6").length})`);
+  // CONTACTO-PIE-01 (D-202): con contacto v6 y el pie v6 son diez (antes ocho).
+  assert.equal(pelu.filter((v) => v === "v6").length, 10, `peluquería: diez botones v6 (navbar, hero, services, galería, team, reseñas, instagram, faq, contacto y pie) (${pelu.filter((v) => v === "v6").length})`);
   assert.equal(pelu.filter((v) => v === "v7").length, 1, "peluquería: galería v7");
   for (const niche of ["barberia", "estetica", "remodelaciones"]) {
     const otros = botones(await casillaVariantes(niche));

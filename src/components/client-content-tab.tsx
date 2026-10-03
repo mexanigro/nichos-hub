@@ -112,6 +112,18 @@ const BASE_SECTIONS: ContentSection[] = [
     ],
   },
   {
+    // CONTACTO-PIE-01 (D-205, inciso v): contacto y el pie leen la dirección y la línea de la marca en cada idioma
+    // (`translations.<lang>.contact.address`, `translations.<lang>.brand.tagline`); en el idioma base escribe la raíz, como la pestaña Config.
+    key: "address",
+    label: "Direccion y linea de la marca",
+    fields: [
+      { path: "contact.address.street", label: "Calle", type: "text" },
+      { path: "contact.address.district", label: "Barrio", type: "text" },
+      { path: "contact.address.cityStateZip", label: "Ciudad", type: "text" },
+      { path: "brand.tagline", label: "Linea de la marca (pie de pagina)", type: "text" },
+    ],
+  },
+  {
     key: "booking",
     label: "Reservas",
     fields: [
@@ -177,12 +189,43 @@ const FAQ_SECTION: ContentSection = {
   ],
 };
 
-function getSections(niche: string): ContentSection[] {
+/** Las secciones y campos de la pestaña Contenido para un nicho (CONTACTO-PIE-01, C5: exportada para ejecutar el camino sin navegador). */
+export function seccionesDeContenido(niche: string): ContentSection[] {
   const sections = [...BASE_SECTIONS];
   if (niche === "cafeteria") sections.push(...CAFETERIA_SECTIONS);
   if (niche === "remodelaciones") sections.push(...REMODELACIONES_SECTIONS);
   sections.push(FAQ_SECTION);
   return sections;
+}
+
+/** Lo que la pestaña muestra para `idioma`: los campos de texto de la raíz (idioma base) o de `translations.<idioma>`, aplanados por ruta. */
+export function contenidoDeCapa(config: Record<string, unknown>, niche: string, idioma: string, esBase: boolean): Record<string, string> {
+  const fuente = esBase ? config : getNestedValue(config, `translations.${idioma}`);
+  const capa = fuente && typeof fuente === "object" ? (fuente as Record<string, unknown>) : {};
+  const flat: Record<string, string> = {};
+  for (const section of seccionesDeContenido(niche)) {
+    for (const field of section.fields) {
+      const val = getNestedValue(capa, field.path);
+      if (typeof val === "string") flat[field.path] = val;
+    }
+  }
+  return flat;
+}
+
+/**
+ * El cuerpo del PUT que manda «Guardar» (sin el FAQ): en el idioma base, la raíz; en otro, `{ translations: { <idioma>: … } }` con lo
+ * no vacío, y `null` para lo que ya estaba traducido en `previa` y se vació (null → FieldValue.delete: vuelve al idioma base o al
+ * preset de ese idioma). Sin cambios, `{}` (un `{ translations: { <lang>: {} } }` borraba la capa entera en Firestore, IDIOMAS-01).
+ */
+export function parcheDeContenido(content: Record<string, string>, previa: Record<string, string>, esBase: boolean, idioma: string): Record<string, unknown> {
+  const patch: Record<string, unknown> = {};
+  for (const [path, value] of Object.entries(content)) {
+    if (value === undefined) continue;
+    if (esBase || value.trim()) setNestedValue(patch, path, value);
+    else if (previa[path] !== undefined) setNestedValue(patch, path, null);
+  }
+  if (Object.keys(patch).length === 0) return {};
+  return esBase ? patch : { translations: { [idioma]: patch } };
 }
 
 interface FaqItem {
@@ -223,18 +266,9 @@ export function ClientContentTab({
   const [generating, setGenerating] = useState(false);
   const [businessDesc, setBusinessDesc] = useState("");
 
-  const sections = useMemo(() => getSections(niche), [niche]);
+  const sections = useMemo(() => seccionesDeContenido(niche), [niche]);
 
-  const flatten = useCallback((source: Record<string, unknown>) => {
-    const flat: Record<string, string> = {};
-    for (const section of sections) {
-      for (const field of section.fields) {
-        const val = getNestedValue(source, field.path);
-        if (typeof val === "string") flat[field.path] = val;
-      }
-    }
-    return flat;
-  }, [sections]);
+  const flatten = useCallback((source: Record<string, unknown>) => contenidoDeCapa(source, niche, lang, true), [niche, lang]);
 
   /** Raíz para el idioma base; `translations[lang]` (o vacío) para los demás. */
   const layerFor = useCallback((config: Record<string, unknown>, target: ClientLanguage): Record<string, unknown> => {
@@ -279,30 +313,17 @@ export function ClientContentTab({
     setError("");
     setSaved(false);
     try {
-      const patch: Record<string, unknown> = {};
-      const previousLayer = flatten(layerFor(rawConfig, editLang));
-      for (const [path, value] of Object.entries(content)) {
-        if (value === undefined) continue;
-        if (isBase) {
-          setNestedValue(patch, path, value);
-        } else if (value.trim()) {
-          setNestedValue(patch, path, value);
-        } else if (previousLayer[path] !== undefined) {
-          // Vaciar una traducción = quitarla de la capa (null → FieldValue.delete en la API):
-          // así el template vuelve al preset de ese idioma en vez de mostrar texto vacío.
-          setNestedValue(patch, path, null);
-        }
-      }
+      // CONTACTO-PIE-01 (C5): el cuerpo lo arma `parcheDeContenido` (vaciar una traducción la borra: null → FieldValue.delete).
+      const patch = parcheDeContenido(content, contenidoDeCapa(rawConfig, niche, editLang, isBase), isBase, editLang);
       if (faqItems.length > 0) {
-        setNestedValue(patch, "sections.faq.items", faqItems.filter(i => i.question.trim() || i.answer.trim()));
+        setNestedValue(patch, isBase ? "sections.faq.items" : `translations.${editLang}.sections.faq.items`, faqItems.filter(i => i.question.trim() || i.answer.trim()));
       }
       // IDIOMAS-01: sin cambios no se manda nada (un `{ translations: { <lang>: {} } }` borraba la capa entera en Firestore).
       if (Object.keys(patch).length === 0) return;
-      const body = isBase ? patch : { translations: { [editLang]: patch } };
       const res = await fetch(`/api/config/${clientId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
+        body: JSON.stringify(patch),
       });
       if (!res.ok) throw new Error("Error al guardar");
       // Reflejar lo guardado en el snapshot local para que el cambio de idioma no lo pierda.
