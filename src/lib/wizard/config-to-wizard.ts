@@ -51,7 +51,9 @@ export function configToWizardData(
   if (typeof contact.facebook === "string") out.facebook = contact.facebook;
   if (typeof address.street === "string") out.address = address.street;
   if (typeof address.district === "string") out.district = address.district;
-  if (typeof address.city === "string") out.city = address.city;
+  // CIERRE-TRAMO-01 (C3): el alta escribe la ciudad en `cityStateZip` (lo que la página lee); `city` es el de las altas viejas.
+  if (typeof address.cityStateZip === "string") out.city = address.cityStateZip;
+  else if (typeof address.city === "string") out.city = address.city;
 
   // Brand keywords / accent
   if (typeof brandingInput.colors === "string") out.colors = brandingInput.colors;

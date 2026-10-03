@@ -121,6 +121,8 @@ const BASE_SECTIONS: ContentSection[] = [
       { path: "contact.address.district", label: "Barrio", type: "text" },
       { path: "contact.address.cityStateZip", label: "Ciudad", type: "text" },
       { path: "brand.tagline", label: "Linea de la marca (pie de pagina)", type: "text" },
+      // CIERRE-TRAMO-01 (D-219): la descripción la leen el SEO y «sobre nosotros» en cada idioma (`translations.<lang>.brand.description`).
+      { path: "brand.description", label: "Descripcion de la marca (SEO y sobre nosotros)", type: "textarea" },
     ],
   },
   {
@@ -213,19 +215,53 @@ export function contenidoDeCapa(config: Record<string, unknown>, niche: string, 
 }
 
 /**
- * El cuerpo del PUT que manda «Guardar» (sin el FAQ): en el idioma base, la raíz; en otro, `{ translations: { <idioma>: … } }` con lo
- * no vacío, y `null` para lo que ya estaba traducido en `previa` y se vació (null → FieldValue.delete: vuelve al idioma base o al
- * preset de ese idioma). Sin cambios, `{}` (un `{ translations: { <lang>: {} } }` borraba la capa entera en Firestore, IDIOMAS-01).
+ * El cuerpo del PUT que manda «Guardar» (sin el FAQ): sólo los campos cuyo valor difiere de `previa` (lo cargado) — CIERRE-TRAMO-01
+ * (D-220): mandar los que no se tocaron devolvía a su valor viejo lo que otra pestaña guardó entre la carga y el guardado. En el idioma
+ * base, la raíz (vaciar manda `""`); en otro, `{ translations: { <idioma>: … } }`, y vaciar lo que ya estaba traducido manda `null`
+ * (null → FieldValue.delete: vuelve al idioma base o al preset de ese idioma). Sin cambios, `{}` (un `{ translations: { <lang>: {} } }`
+ * borraba la capa entera en Firestore, IDIOMAS-01).
  */
 export function parcheDeContenido(content: Record<string, string>, previa: Record<string, string>, esBase: boolean, idioma: string): Record<string, unknown> {
   const patch: Record<string, unknown> = {};
   for (const [path, value] of Object.entries(content)) {
-    if (value === undefined) continue;
+    if (value === undefined || value === (previa[path] ?? "")) continue;
     if (esBase || value.trim()) setNestedValue(patch, path, value);
     else if (previa[path] !== undefined) setNestedValue(patch, path, null);
   }
+  return enCapa(patch, esBase, idioma);
+}
+
+/** El trozo del cuerpo del FAQ (D-220): las preguntas no vacías, sólo si difieren de `previos` (lo cargado); sin cambios, `{}`. */
+export function faqDeContenido(items: FaqItem[], previos: unknown[], esBase: boolean, idioma: string): Record<string, unknown> {
+  const llenos = items.filter((i) => i.question.trim() || i.answer.trim());
+  if (JSON.stringify(llenos) === JSON.stringify(previos)) return {};
+  return enCapa({ sections: { faq: { items: llenos } } }, esBase, idioma);
+}
+
+/** El cuerpo entero que manda «Guardar» (`handleSave`): los campos y el FAQ que cambiaron respecto de `cargado` (lo último leído o guardado). */
+export function cuerpoDeContenido(cargado: Record<string, unknown>, content: Record<string, string>, faqItems: FaqItem[], niche: string, idioma: string, esBase: boolean): Record<string, unknown> {
+  const capa = esBase ? cargado : getNestedValue(cargado, `translations.${idioma}`);
+  const faq = capa && typeof capa === "object" ? getNestedValue(capa as Record<string, unknown>, "sections.faq.items") : undefined;
+  return fundir(
+    parcheDeContenido(content, contenidoDeCapa(cargado, niche, idioma, esBase), esBase, idioma),
+    faqDeContenido(faqItems, Array.isArray(faq) ? faq : [], esBase, idioma),
+  );
+}
+
+function enCapa(patch: Record<string, unknown>, esBase: boolean, idioma: string): Record<string, unknown> {
   if (Object.keys(patch).length === 0) return {};
   return esBase ? patch : { translations: { [idioma]: patch } };
+}
+
+/** Funde dos cuerpos de guardado (mapas anidados; lo demás de `b` reemplaza). */
+function fundir(a: Record<string, unknown>, b: Record<string, unknown>): Record<string, unknown> {
+  const out = { ...a };
+  for (const [k, v] of Object.entries(b)) {
+    const x = out[k];
+    out[k] = x && v && typeof x === "object" && typeof v === "object" && !Array.isArray(x) && !Array.isArray(v)
+      ? fundir(x as Record<string, unknown>, v as Record<string, unknown>) : v;
+  }
+  return out;
 }
 
 interface FaqItem {
@@ -314,10 +350,8 @@ export function ClientContentTab({
     setSaved(false);
     try {
       // CONTACTO-PIE-01 (C5): el cuerpo lo arma `parcheDeContenido` (vaciar una traducción la borra: null → FieldValue.delete).
-      const patch = parcheDeContenido(content, contenidoDeCapa(rawConfig, niche, editLang, isBase), isBase, editLang);
-      if (faqItems.length > 0) {
-        setNestedValue(patch, isBase ? "sections.faq.items" : `translations.${editLang}.sections.faq.items`, faqItems.filter(i => i.question.trim() || i.answer.trim()));
-      }
+      // CIERRE-TRAMO-01 (D-220): sólo lo que cambió respecto de lo cargado, también el FAQ (`faqDeContenido`).
+      const patch = cuerpoDeContenido(rawConfig, content, faqItems, niche, editLang, isBase);
       // IDIOMAS-01: sin cambios no se manda nada (un `{ translations: { <lang>: {} } }` borraba la capa entera en Firestore).
       if (Object.keys(patch).length === 0) return;
       const res = await fetch(`/api/config/${clientId}`, {
@@ -334,7 +368,8 @@ export function ClientContentTab({
           if (value === undefined) continue;
           if (isBase || value.trim()) setNestedValue(target, path, value); else deleteNestedValue(target, path);
         }
-        if (faqItems.length > 0) setNestedValue(target, "sections.faq.items", faqItems);
+        const faqGuardado = getNestedValue(patch, isBase ? "sections.faq.items" : `translations.${editLang}.sections.faq.items`);
+        if (faqGuardado) setNestedValue(target, "sections.faq.items", faqGuardado);
         if (isBase) setBaseContent(flatten(next));
         return next;
       });

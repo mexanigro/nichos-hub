@@ -641,6 +641,17 @@ export function validateConfig(config: unknown): ConfigIssue[] {
     }
   }
 
+  // ── contact.address de la raíz (CIERRE-TRAMO-01, C3): las mismas reglas que la capa de cada idioma (D-205) ──
+  const address = getNested(config, "contact.address");
+  if (address != null && (typeof address !== "object" || Array.isArray(address))) {
+    issues.push({ path: "contact.address", message: "La dirección tiene que ser un objeto con calle, barrio y ciudad.", severity: "error" });
+  } else if (address) {
+    for (const [k, v] of Object.entries(address as Record<string, unknown>)) {
+      if (!DIRECCION_CAMPOS.includes(k)) issues.push({ path: `contact.address.${k}`, message: `«${k}» no es un campo de la dirección (calle, barrio o ciudad: ${DIRECCION_CAMPOS.join(", ")}): la página no lo lee.`, severity: "error" });
+      else if (v !== null && typeof v !== "string") issues.push({ path: `contact.address.${k}`, message: `La dirección (${k}) tiene que ser texto.`, severity: "error" });
+    }
+  }
+
   issues.push(...validateVariantContracts(config));
   issues.push(...validatePalette(config));
   issues.push(...validateTextosPorIdioma(config));
@@ -702,6 +713,10 @@ export function validateTextosPorIdioma(config: unknown): ConfigIssue[] {
     const tagline = getNested(c, "brand.tagline");
     if (tagline != null && typeof tagline !== "string") err(`${pre}.brand.tagline`, `La línea de la marca en ${lang} tiene que ser texto.`);
     if (texto(getNested(config, "brand.tagline")) && tagline == null) warn(`${pre}.brand.tagline`, `La capa ${lang} no tiene la línea de la marca: en ese idioma se ve la del nicho.`);
+    // CIERRE-TRAMO-01 (D-219): la descripción de la marca por idioma (SEO y «sobre nosotros»), con las mismas reglas que la línea.
+    const descripcion = getNested(c, "brand.description");
+    if (descripcion != null && typeof descripcion !== "string") err(`${pre}.brand.description`, `La descripción de la marca en ${lang} tiene que ser texto.`);
+    if (texto(getNested(config, "brand.description")) && descripcion == null) warn(`${pre}.brand.description`, `La capa ${lang} no tiene la descripción de la marca: en ese idioma se ve la del nicho.`);
   }
   return issues;
 }

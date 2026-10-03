@@ -77,12 +77,16 @@ test("la pestaña Contenido guarda la dirección y la línea de la marca en cada
   assert.equal(base.doc.contact.address.street, "רחוב המנופים", "en el idioma base, la raíz");
   assert.deepEqual(base.doc.translations, DOC.translations, "y la capa en no cambia");
   // (d) Sin cambios, nada que mandar.
-  assert.deepEqual(guardar(en.doc, "en", false, () => {}).body.translations.en.contact.address.street, "Florentin St", "lo cargado se reenvía igual");
+  // CIERRE-TRAMO-01 (D-220): antes «lo cargado se reenvía igual»; eso era el caso S4 (devolvía a su valor viejo lo que otra pestaña guardó).
+  assert.deepEqual(guardar(en.doc, "en", false, () => {}).body, {}, "sin cambios en una capa con datos: cuerpo vacío (no se reenvía lo cargado)");
   assert.deepEqual(guardar({ ...DOC, translations: {} }, "ru", false, () => {}).body, {}, "una capa vacía sin cambios: cuerpo vacío (no se manda)");
   // (e) La casilla usa ese camino: handleSave arma el cuerpo con parcheDeContenido y lo que carga con contenidoDeCapa.
   const fuente = readFileSync(resolve(ROOT, "src/components/client-content-tab.tsx"), "utf8");
   const save = fuente.slice(fuente.indexOf("async function handleSave"), fuente.indexOf("async function handleGenerate"));
-  assert.match(save, /parcheDeContenido\(content, contenidoDeCapa\(rawConfig, niche, editLang, isBase\), isBase, editLang\)/, "handleSave usa parcheDeContenido y contenidoDeCapa");
+  // CIERRE-TRAMO-01 (D-220): el cuerpo lo arma cuerpoDeContenido, que llama a parcheDeContenido con contenidoDeCapa de lo cargado.
+  assert.match(save, /cuerpoDeContenido\(rawConfig, content, faqItems, niche, editLang, isBase\)/, "handleSave usa cuerpoDeContenido");
+  const cuerpo = fuente.slice(fuente.indexOf("export function cuerpoDeContenido"), fuente.indexOf("function enCapa"));
+  assert.match(cuerpo, /parcheDeContenido\(content, contenidoDeCapa\(cargado, niche, idioma, esBase\), esBase, idioma\)/, "cuerpoDeContenido usa parcheDeContenido y contenidoDeCapa");
 });
 
 type El = { type: unknown; key?: string | null; props: Cfg };
