@@ -6,8 +6,12 @@
       "hubDocId": "JabrxNIt3qgPdUNrFQpr",
       "vercelProjectId": "prj_3vCJlMFeaUBHITr4Yi8Qow1BwRPy",
       "domain": "demo-test-e2e-peluqueria-a-efd04f31.arzac.studio",
-      "deploymentId": "dpl_FkCT26myVNr8fyDCHpzwNyegQWis",
-      "commitSha": "2f2cd4a2fad52c9d89a6ebb6dc88941d006dbd31"
+      "deploymentId": "dpl_BUGmew7BR711vLNdJ3LaKmgiQcVy",
+      "commitSha": "afd9a43e4e59d519ffc9f58ed7ad8b1ddd1a73b7",
+      "carga": {
+        "orden": "cierre-tramo-01",
+        "fixtureT": "afd9a43e4e59d519ffc9f58ed7ad8b1ddd1a73b7"
+      }
     },
     {
       "paleta": "c",
@@ -15,8 +19,12 @@
       "hubDocId": "jts92wAdaIpNkPQRk45x",
       "vercelProjectId": "prj_ECtshwCZIIG5q4B5rTkUE96Ia7U8",
       "domain": "demo-test-e2e-peluqueria-c-a5867dcd.arzac.studio",
-      "deploymentId": "dpl_2BDFsMXF3BBJmrvywuLnk5PMtoQk",
-      "commitSha": "2f2cd4a2fad52c9d89a6ebb6dc88941d006dbd31"
+      "deploymentId": "dpl_BEkV5DxCribtvg6AmPTesTiFuRzx",
+      "commitSha": "afd9a43e4e59d519ffc9f58ed7ad8b1ddd1a73b7",
+      "carga": {
+        "orden": "cierre-tramo-01",
+        "fixtureT": "afd9a43e4e59d519ffc9f58ed7ad8b1ddd1a73b7"
+      }
     }
   ],
   "huecosDeFicha": [],
@@ -25,6 +33,7 @@
     "Lo que la carga dejo a la vista y se arreglo donde correspondia, no se rodeo: (1) layout-variants-editor.tsx ofrecia hasta v5, asi que sections.services.variant y sections.gallery.variant no se podian poner desde la ficha aunque su fila tenga ui; ahora ofrece v6 en servicios y v6 y v7 en galeria. (2) normalizeImageArray compactaba sections.services.images y desapareaba la foto de todo servicio posterior a un hueco; ahora los conserva, que ahi el indice aparea con services[i]. (3) La casilla «Marcar como popular» escribe popular:false al destildar y no puede borrar la clave: el servicio se borro y se volvio a agregar desde la casilla, que un servicio nuevo nace sin ella. (4) T src/App.tsx: /galeria era la unica pagina sin <main id=\"main-content\">, asi que su zona no existia en ninguno de los dos lados.",
     "brand.logo y brand.logoDark llegan por /api/upload-logo con token UUID en vez de media/branding/logo.png con el sha256 del contenido (LOGO-01). No es hueco de ficha: B1 compara el material por los bytes descargados y los da por iguales, con t.diagnostic por la ruta. La convencion la decide otra orden.",
     "ARREGLOS-02 (2026-09-26): las dos webs se redesplegaron sobre T e00a816 -la declaracion unica de fuentes, D-123- y se verifico por ESTADO: readyState READY, meta.githubRepo Barber-shop-template, meta.githubCommitRef main y meta.githubCommitSha igual al commit. El deploy lo creo la misma llamada que usa la ficha (POST /v13/deployments con gitSource github ref main).",
-    "IDIOMAS-01 (2026-09-29): las dos webs se redesplegaron sobre T 2f2cd4a (overlayForLanguage con los datos de la clienta en los cuatro idiomas, D11) con la misma llamada que usa la ficha, fijando el sha en gitSource, y se verificaron por ESTADO: readyState READY, meta.githubRepo Barber-shop-template, meta.githubCommitRef main y meta.githubCommitSha igual al commit. Despues se les cargo por las casillas de la ficha lo que D-141 trae a los fixtures (servicios, equipo, resenas y encabezado de services en los cuatro idiomas). Declarado: cada resena queda con title \"\" (la casilla no puede borrar la clave). Hallazgo de la carga: un guardado de Contenido con el parche vacio borro translations.en de la web A (Firestore reemplaza un mapa vacio con merge:true); se arreglo en H (paraFirestore, e1881e8 y 44525c0) y la capa se recargo por las casillas."
+    "IDIOMAS-01 (2026-09-29): las dos webs se redesplegaron sobre T 2f2cd4a (overlayForLanguage con los datos de la clienta en los cuatro idiomas, D11) con la misma llamada que usa la ficha, fijando el sha en gitSource, y se verificaron por ESTADO: readyState READY, meta.githubRepo Barber-shop-template, meta.githubCommitRef main y meta.githubCommitSha igual al commit. Despues se les cargo por las casillas de la ficha lo que D-141 trae a los fixtures (servicios, equipo, resenas y encabezado de services en los cuatro idiomas). Declarado: cada resena queda con title \"\" (la casilla no puede borrar la clave). Hallazgo de la carga: un guardado de Contenido con el parche vacio borro translations.en de la web A (Firestore reemplaza un mapa vacio con merge:true); se arreglo en H (paraFirestore, e1881e8 y 44525c0) y la capa se recargo por las casillas.",
+    "CIERRE-TRAMO-01 (2026-10-04): las dos webs se redesplegaron sobre T afd9a43 con la misma llamada que usa la ficha (POST /v13/deployments, gitSource github ref main) fijando el sha, y se verificaron por ESTADO: readyState READY, meta.githubRepo Barber-shop-template, meta.githubCommitRef main, meta.githubCommitSha igual al commit, y cada dominio resuelve a su deployment. Los tenants test-b4-peluqueria-a y -c se reescribieron con recrear desde los fixtures de afd9a43 (0 hojas distintas). Despues se cargo por las casillas de la ficha lo que les faltaba (A 53 hojas, C 122): Config -email generico, la direccion y la linea y descripcion de la marca en la base, las variantes v6 de team, resenas, instagram, faq, contacto y pie, las 6 fotos de instagram pegando las urls de la galeria de la propia web, los 3 retratos subidos por la casilla de Equipo, lang he en cada resena y el title vacio borrado- y Contenido -hero.ctaSecondary y, en C, la descripcion de contacto, el FAQ y el hero, y en en/ru/ar la direccion, la linea, la descripcion y, en C, el hero, la descripcion de contacto y el FAQ-. config/{id} de cada web coincide con su tenant en cada hoja salvo las exclusiones de A1 (D-215), con el material por sha256: A 45 urls y C 40 en otra ruta con los mismos bytes (los retratos y las fotos de instagram que suben las casillas sin rol van a media/images/ con prefijo de tiempo). carga.fixtureT es el commit de T cuyos fixtures se cargaron."
   ]
 }
