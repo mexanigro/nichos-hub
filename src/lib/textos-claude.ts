@@ -165,18 +165,41 @@ function poner(o: C, ruta: string[], v: unknown) {
 }
 
 /**
- * El cuerpo del PUT de siempre con lo aceptado (`"<idioma>:<ruta>"`) que no tiene error. En el idioma base, la raíz: los elementos de
+ * Reparte lo aceptado (`"<idioma>:<ruta>"`): lo que entra en el cuerpo y lo que no, con su motivo (PLANTILLA-01, D-258: nada que el
+ * dueño aceptó se descarta sin decirlo). Valida con las notas de la clienta, como la propuesta: un número que sólo está en las notas entra.
+ */
+function repartir(c: C, niche: string, base: string, propuesta: Propuesta, aceptados: string[], notas?: string) {
+  const errores = new Map<string, string[]>();
+  for (const e of validarPropuesta(c, niche, base, propuesta, notas)) if (e.severity === "error") errores.set(e.path, [...(errores.get(e.path) ?? []), e.message]);
+  const entran: { l: string; ruta: string; t: string }[] = [], descartados: ConfigIssue[] = [];
+  for (const a of new Set(aceptados)) {
+    const i = a.indexOf(":"), l = a.slice(0, i), ruta = a.slice(i + 1), t = obj(propuesta)[l]?.[ruta];
+    const no = (message: string) => descartados.push({ path: a, message, severity: "warning" });
+    if (i < 0) no("No es «<idioma>:<ruta>».");
+    else if (errores.has(a)) no(errores.get(a)!.join(" "));
+    else if (typeof t !== "string") no("No hay texto propuesto para este campo.");
+    else if (t === valor(c, l, base, ruta)) no("Es igual al texto que ya tiene: no hay nada que guardar.");
+    else entran.push({ l, ruta, t });
+  }
+  return { entran, descartados };
+}
+
+/** Cada aceptado que no va en el cuerpo de `cuerpoDePropuesta`, con su motivo (D-258). Nada cuando todo entra. */
+export function descartadosDePropuesta(config: unknown, niche: string, base: string, propuesta: Propuesta, aceptados: string[], notas?: string): ConfigIssue[] {
+  return repartir(obj(config), niche, base, propuesta, aceptados, notas).descartados;
+}
+
+/**
+ * El cuerpo del PUT de siempre con lo aceptado (`"<idioma>:<ruta>"`) que no tiene error, validado con las `notas` de la clienta
+ * (D-258: sin ellas, un número que sólo dio en las notas no entra; lo que no entra lo dice `descartadosDePropuesta`). En el idioma base, la raíz: los elementos de
  * services/staff y las piezas de la galería van enteros (la fusión de Firestore reemplaza los arrays), con el texto cambiado; en otro
  * idioma, `translations.<lang>` por id (una capa que era array pasa a objeto con todo lo que tenía). El FAQ de una capa va entero:
  * cada pregunta con lo aceptado o lo que ya tenía, y sólo las que quedan con pregunta y respuesta. Sin nada aceptado, `{}`.
  */
-export function cuerpoDePropuesta(config: unknown, niche: string, base: string, propuesta: Propuesta, aceptados: string[]): C {
-  const c = obj(config), malos = new Set(validarPropuesta(c, niche, base, propuesta).filter((e) => e.severity === "error").map((e) => e.path));
+export function cuerpoDePropuesta(config: unknown, niche: string, base: string, propuesta: Propuesta, aceptados: string[], notas?: string): C {
+  const c = obj(config);
   const cuerpo: C = {};
-  for (const a of new Set(aceptados)) {
-    if (malos.has(a)) continue;
-    const i = a.indexOf(":"), l = a.slice(0, i), ruta = a.slice(i + 1), t = obj(propuesta)[l]?.[ruta];
-    if (i < 0 || typeof t !== "string" || t === valor(c, l, base, ruta)) continue;
+  for (const { l, ruta, t } of repartir(c, niche, base, propuesta, aceptados, notas).entran) {
     const [s, id, campo] = ruta.split(".");
     const faq = ruta.match(/^sections\.faq\.items\.(\d+)\.(question|answer)$/);
     if (l === base) {
@@ -214,7 +237,7 @@ export function cuerpoDePropuesta(config: unknown, niche: string, base: string, 
 
 // ─── Las llamadas (D-245, D-246) ────────────────────────────────────────────────────────────────────────────────────────────────
 /** El `system` de un idioma: depende sólo del idioma y del nicho, nunca de lo que escribió la clienta (D-246). */
-function sistema(idioma: string, niche: string): string {
+export function sistema(idioma: string, niche: string): string {
   return [
     `Escribís los textos de la web de un negocio: ${NICHO[niche] ?? "un negocio de servicios local"}. Escribís en ${NOMBRE_IDIOMA[idioma] ?? idioma}, como un original pensado y redactado en ese idioma por alguien que lo habla de nacimiento, con el tono de una buena web de este oficio en ese idioma: cálido, concreto y sin relleno. No es una traducción: no calques el orden ni las palabras de los textos que vengan en otro idioma.`,
     "Devolvés exactamente los campos que pide el esquema de salida, cada uno con su texto. La descripción de cada campo dice qué es y cuántas palabras admite; respetá ese límite siempre. Las palabras se cuentan separando por espacios: un guion o una raya sueltos (– —) cuentan como una palabra.",
@@ -226,7 +249,7 @@ function sistema(idioma: string, niche: string): string {
 }
 
 /** Qué es cada campo, para la `description` del esquema. */
-function descripcion(c: Campo): string {
+export function descripcion(c: Campo): string {
   const lim = c.oracion ? `la primera oración, hasta ${c.oracion} palabras` : c.min && c.max ? `de ${c.min} a ${c.max} palabras` : c.max ? `hasta ${c.max} palabras` : "";
   const r = c.ruta;
   const que = r.startsWith("services.") ? (r.endsWith(".name") ? "nombre del servicio" : "frase que describe el servicio")
@@ -252,6 +275,11 @@ function datosDeLaWeb(config: C): C {
   return limpiar(resto) as C;
 }
 /** JSON sin `<`, `>` ni `&` literales: nada de lo que escriba la clienta puede cerrar el bloque que lo delimita (D-246). */
+/** Lo que va dentro de `<datos_de_la_clienta>`: su web en el idioma base (sin urls, otras capas ni lo visual), el idioma base y sus
+ *  notas. Lo usan `escribirTextos` y el `exportar` de la consola (PLANTILLA-01, D-257): las mismas piezas, no una segunda versión. */
+export function datosParaEscribir(config: unknown, base: string, notas?: unknown): C {
+  return { web: datosDeLaWeb(obj(config)), idioma_base: base, notas: typeof notas === "string" ? notas : "" };
+}
 const jsonSeguro = (v: unknown) => JSON.stringify(v, null, 1).replace(/[<>&]/g, (ch) => `\\u${ch.charCodeAt(0).toString(16).padStart(4, "0")}`);
 
 /**
@@ -263,7 +291,7 @@ const jsonSeguro = (v: unknown) => JSON.stringify(v, null, 1).replace(/[<>&]/g, 
 export async function escribirTextos(cliente: ClienteClaude, e: { config: unknown; niche: string; base: string; notas?: string }): Promise<{ propuesta: Propuesta; errores: ConfigIssue[]; llamadas: Llamada[] }> {
   const config = obj(e.config), notas = typeof e.notas === "string" ? e.notas : "";
   const orden = [e.base, ...IDIOMAS.filter((l) => l !== e.base)];
-  const datos = jsonSeguro({ web: datosDeLaWeb(config), idioma_base: e.base, notas });
+  const datos = jsonSeguro(datosParaEscribir(config, e.base, notas));
   const propuesta: Propuesta = {}, fallas: ConfigIssue[] = [], llamadas: Llamada[] = [];
   await Promise.all(orden.map(async (l) => {
     const campos = camposDeTexto(config, e.niche, l, e.base);

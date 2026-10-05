@@ -70,8 +70,9 @@ test("un null explícito sigue borrando sólo ese campo", () => {
 });
 
 test("PUT /api/config escribe con paraFirestore, y Contenido no manda un parche vacío ni guarda mientras carga el idioma", () => {
-  const ruta = readFileSync(new URL("../src/app/api/config/[clientId]/route.ts", import.meta.url), "utf8");
-  assert.match(ruta, /\.set\(\s*paraFirestore\(normalizedBody\)|const cleaned = paraFirestore\(normalizedBody\)/, "la ruta pasa el cuerpo por paraFirestore antes del set");
+  // PLANTILLA-01 (D-255): la lógica del PUT vive en src/lib/guardar-config.ts (la ruta llama a guardarConfig); se busca ahí.
+  const ruta = readFileSync(new URL("../src/lib/guardar-config.ts", import.meta.url), "utf8");
+  assert.match(ruta, /\.set\(\s*paraFirestore\(normalizedBody\)|const cleaned = paraFirestore\(normalizedBody\)/, "el guardado del PUT pasa el cuerpo por paraFirestore antes del set");
   assert.doesNotMatch(ruta, /replaceNullsWithDelete/, "no queda el reemplazo viejo, que dejaba pasar los mapas vacíos");
   const contenido = readFileSync(new URL("../src/components/client-content-tab.tsx", import.meta.url), "utf8");
   assert.match(contenido, /if \(Object\.keys\(patch\)\.length === 0\) return;/, "Contenido sin cambios no manda PUT");

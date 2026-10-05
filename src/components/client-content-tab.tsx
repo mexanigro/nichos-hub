@@ -22,7 +22,7 @@ import { placeholderFor } from "@/lib/dashboard-placeholders";
 import { LanguageMismatchWarning } from "./language-mismatch-warning";
 import { seccionesDeContenido } from "@/lib/secciones-contenido";
 import { PropuestaDeTextos } from "./propuesta-textos";
-import { cuerpoDePropuesta, MODELO_TEXTOS, type Llamada, type Propuesta } from "@/lib/textos-claude";
+import { cuerpoDePropuesta, descartadosDePropuesta, MODELO_TEXTOS, type Llamada, type Propuesta } from "@/lib/textos-claude";
 import type { ConfigIssue } from "@/lib/config-validator";
 
 // ALTA-IDIOMAS-01: la lista vive en src/lib (la usa también la ruta de servidor); se reexporta para los que la leen de aquí.
@@ -133,6 +133,8 @@ export function ClientContentTab({
   const [propuesta, setPropuesta] = useState<{ propuesta: Propuesta; errores: ConfigIssue[]; llamadas: Llamada[] } | null>(null);
   const [aceptados, setAceptados] = useState<string[]>([]);
   const [guardandoPropuesta, setGuardandoPropuesta] = useState(false);
+  // PLANTILLA-01 (D-258): lo aceptado que no se guardó, con su motivo; se muestra en la propuesta.
+  const [descartados, setDescartados] = useState<ConfigIssue[]>([]);
 
   const sections = useMemo(() => seccionesDeContenido(niche), [niche]);
 
@@ -220,6 +222,7 @@ export function ClientContentTab({
     setError("");
     setPropuesta(null);
     setAceptados([]);
+    setDescartados([]);
     try {
       const res = await fetch("/api/generate-content", {
         method: "POST",
@@ -244,7 +247,10 @@ export function ClientContentTab({
     setError("");
     try {
       const actual = (await (await fetch(`/api/config/${clientId}`)).json()) as Record<string, unknown>;
-      const cuerpo = cuerpoDePropuesta(actual, niche, lang, propuesta.propuesta, aceptados);
+      // Con las notas de la clienta (D-258): un número que sólo dio en las notas entra; lo que no entra se dice.
+      const cuerpo = cuerpoDePropuesta(actual, niche, lang, propuesta.propuesta, aceptados, notas);
+      const fuera = descartadosDePropuesta(actual, niche, lang, propuesta.propuesta, aceptados, notas);
+      setDescartados(fuera);
       if (Object.keys(cuerpo).length === 0) return;
       const res = await fetch(`/api/config/${clientId}`, {
         method: "PUT",
@@ -252,7 +258,8 @@ export function ClientContentTab({
         body: JSON.stringify(cuerpo),
       });
       if (!res.ok) throw new Error((await res.json().catch(() => null))?.error ?? "Error al guardar la propuesta");
-      setPropuesta(null);
+      // Si algo aceptado no se guardó, la propuesta queda a la vista con el aviso de qué y por qué.
+      if (fuera.length === 0) setPropuesta(null);
       setAceptados([]);
       await fetchContent();
       setSaved(true);
@@ -371,7 +378,7 @@ export function ClientContentTab({
                 {MODELO_TEXTOS} · {propuesta.llamadas.map((x) => `${x.idioma} ${x.input_tokens}/${x.output_tokens}`).join(" · ")} tokens
               </span>
             </div>
-            <PropuestaDeTextos propuesta={propuesta.propuesta} errores={propuesta.errores} aceptados={aceptados} onCambio={setAceptados} />
+            <PropuestaDeTextos descartados={descartados} propuesta={propuesta.propuesta} errores={propuesta.errores} aceptados={aceptados} onCambio={setAceptados} />
           </div>
         )}
       </div>
