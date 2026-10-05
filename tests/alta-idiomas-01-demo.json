@@ -1,0 +1,51 @@
+{
+  "orden": "alta-idiomas-01",
+  "afirmacion": "W1 (D-240)",
+  "clientId": "demo-demo-alta-idiomas-f2dfb64e",
+  "nombre": "Demo Alta Idiomas",
+  "fecha": "2026-10-05",
+  "camino": "(b) hub local (npm run dev) con la clave de H .env.local que puso Liam (count_tokens ok antes de gastar); login de Google del dueño en localhost; el alta (provision) creó hub_clients, config y el proyecto de Vercel.",
+  "lo_que_dio_la_clienta": {
+    "por_la_ficha": "una reseña (Config → Testimonios: «מיכל ר.», servicio «תספורת לשיער מתולתל») y la dirección en hebreo (Contenido: calle «רחוב ויצמן», ciudad «כפר סבא», sin barrio); servicios y equipo, los del preset que sembró el alta",
+    "notas": "סטודיו קטן לשיער בכפר סבא. אנחנו מתמחות בצבע ובשיער מתולתל, עובדות רק בתיאום מראש. אווירה שקטה, בלי לחץ, וקפה טוב. לרוב באות אלינו נשים שלא מצאו מישהו שמבין את השיער שלהן."
+  },
+  "modelo": "claude-opus-5-5",
+  "precio": { "entradaUsdPorMillon": 4, "salidaUsdPorMillon": 20 },
+  "llamadas": [
+    { "corrida": 1, "idioma": "he", "input_tokens": 7030, "output_tokens": 2412 },
+    { "corrida": 1, "idioma": "en", "input_tokens": 9235, "output_tokens": 3820 },
+    { "corrida": 1, "idioma": "ar", "input_tokens": 9235, "output_tokens": 5455 },
+    { "corrida": 1, "idioma": "ru", "input_tokens": 9235, "output_tokens": 5696 },
+    { "corrida": 2, "idioma": "he", "input_tokens": 7030, "output_tokens": 2327 },
+    { "corrida": 2, "idioma": "en", "input_tokens": 9235, "output_tokens": 4088 },
+    { "corrida": 2, "idioma": "ru", "input_tokens": 9235, "output_tokens": 5203 },
+    { "corrida": 2, "idioma": "ar", "input_tokens": 9235, "output_tokens": 6047 },
+    { "corrida": 3, "idioma": "en", "input_tokens": 6828, "output_tokens": 379 },
+    { "corrida": 3, "idioma": "ar", "input_tokens": 6757, "output_tokens": 588 },
+    { "corrida": 3, "idioma": "ru", "input_tokens": 6627, "output_tokens": 766 },
+    { "corrida": 3, "idioma": "he", "input_tokens": 6808, "output_tokens": 930 }
+  ],
+  "corridas": [
+    { "corrida": 1, "segundos": 57.8, "input_tokens": 34735, "output_tokens": 17383, "costoUsd": 0.4866, "campos": 231, "errores": 1, "que_paso": "propuesta completa (he 30, en/ru/ar 67 campos); 1 error bloqueado (ar: frase de servicio de 13 palabras). «Guardar propuesta» dio 422: PUT /api/config valida el cuerpo solo y el texto por id de una capa necesitaba la lista de la raíz en el mismo cuerpo; arreglado en cuerpoDePropuesta con su guard (tests/propuesta-put.test.ts). La recarga de la página al arreglarlo se llevó la propuesta: no se guardó nada de esta corrida." },
+    { "corrida": 2, "segundos": 51.8, "input_tokens": 34735, "output_tokens": 17665, "costoUsd": 0.4922, "campos": 231, "errores": 1, "que_paso": "misma clienta y mismas notas; 1 error bloqueado (en: sufijo del titular vacío). Guardados por la ficha los 230 válidos (PUT 200). Es la corrida que juzgó Liam." },
+    { "corrida": 3, "segundos": 12.5, "input_tokens": 27020, "output_tokens": 2663, "costoUsd": 0.1613, "campos": 12, "errores": 4, "que_paso": "con las variantes v6 puestas por la casilla y los campos del hero que no cumplían vaciados por la ficha; guardados los 8 válidos. Bloqueados: el subtitle ruso (13 palabras, la raya «—» cuenta) y el titular hebreo (7: el esquema no decía que los tres campos juntos van de 2 a 6; prompt corregido después)." }
+  ],
+  "costoUsd": 1.1402,
+  "costoPorWebUsd": 0.49,
+  "costoNota": "costoUsd suma las tres corridas (input 96 490 y output 37 711 tokens a $4/$20 por millón). Una web completa en cuatro idiomas es una corrida: ≈ US$0,49 medido dos veces (0,4866 y 0,4922), dentro de la estimación de D-239 (0,30–0,80). output_tokens incluye el pensamiento adaptativo.",
+  "escritosPorConsola": {
+    "por": "Claude Code (sesión B), sin API, a pedido de Liam (2026-10-05: «No generes más con la API … escribí vos mismo … los dos textos que faltan»); cargados por la pestaña Contenido de la ficha",
+    "textos": {
+      "ru:hero.subtitle": "Цвет и кудри без спешки: только по записи, с хорошим кофе.",
+      "he:hero.titlePrefix": "צבע ותלתלים",
+      "he:hero.titleHighlight": "בידיים שמבינות"
+    }
+  },
+  "verificado": "config/{id} en Firestore (sólo lectura, 2026-10-05): en, ru y ar con hero.subtitle y el nombre de los 12 servicios; validateConfig 0 errores; con las variantes v6 (hero, navbar, footer, services, team, gallery, testimonials, instagram, faq, contact) el hero de los cuatro idiomas dentro de los límites; la raíz de datos sin cambios (precio de cut 120, 12 servicios, 1 reseña).",
+  "juicioLiam": {
+    "fecha": "2026-10-05",
+    "veredicto": "aprobada",
+    "muestra": "corrida 2 guardada: hero, servicios cut y full-color, bio de Noa y la reseña traducida, en he, en, ru y ar",
+    "nota": "Aprobada en calidad: cada idioma escrito como original, con el género y el registro correctos y los mismos datos. Tres correcciones antes de cerrar: (1) el origen de «Most of our clients find us after struggling…» (en brand.description) y su par árabe (team.description) — está en las notas de la clienta («לרוב באות אלינו נשים שלא מצאו מישהו שמבין את השיער שלהן»); (2) los límites con la variante que la web va a usar: v6 puestas por la casilla y el hero reescrito dentro de los límites (eyebrow en 4 en los cuatro idiomas); (3) el sufijo vacío del titular es opcional: ya no sale como error."
+  }
+}
