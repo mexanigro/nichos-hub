@@ -6,7 +6,8 @@
  *   (1) los textos que nombran la marca, el lugar o las personas de la plantilla (D-253): quedan VACÍOS (sin la clave; en un array,
  *       «»), así `exportar` los lista y la consola los escribe con los datos de la clienta;
  *   (2) las reseñas y (3) el equipo de la plantilla: no se copian; el cliente CONSERVA su identidad, su equipo y sus reseñas con sus
- *       capas por idioma (`CONSERVA`), y si son los del preset o faltan, `avisos` lo dice (inciso z, `avisosDePreset`).
+ *       capas por idioma (`CONSERVA`), y si son los del preset o faltan, `avisos` lo dice (inciso z, `avisosDePreset`). Si la clienta
+ *       no tiene reseñas, `testimonials` queda `[]` (no ausente): así ni la sección ni el hero cuentan las del preset.
  * El material de lo que se copia se COPIA al Storage del cliente (`clients/<id>/media/<rol>/<nombre>`, mismo rol y mismo nombre) por
  * `subirMaterial`: el token sale de los bytes copiados y ninguna url apunta a la plantilla (D-254). Retratos y logos de la plantilla
  * no se copian (son de lo que el cliente conserva).
@@ -134,6 +135,9 @@ export async function desdePlantilla(
   const armar = (): Obj => {
     const r: Obj = { ...copia };
     for (const k of CONSERVA) if (k in cliente) r[k] = structuredClone(cliente[k]);
+    // Sin reseñas de la clienta, la lista queda VACÍA, no ausente (Liam, 2026-10-05, en W1): sin la clave la página cae a las tres del
+    // preset y el hero v6 las cuenta («5.0 · 3 ביקורות») aunque la sección esté oculta; una lista vacía reemplaza al preset (A2, D-263).
+    if (!Array.isArray(cliente.testimonials) || cliente.testimonials.length === 0) r.testimonials = [];
     const capas: Obj = structuredClone(esMapa(copia.translations) ? copia.translations : {});
     for (const [l, capa] of Object.entries(esMapa(cliente.translations) ? cliente.translations : {})) {
       if (!esMapa(capa)) continue;
