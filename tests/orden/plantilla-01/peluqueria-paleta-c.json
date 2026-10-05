@@ -1,0 +1,972 @@
+{
+  "navbar": {
+    "variant": "v6"
+  },
+  "footer": {
+    "variant": "v6"
+  },
+  "palette": {
+    "source": "#775743",
+    "origin": "material",
+    "reason": "Paleta C «Noa», camino B: color fuente = media de los saturados del clip Pexels 3996967 SIN excluir la banda de piel (S4, 2026-09-19: con la exclusión salía salmón #bb6d6a porque quedaban fuera las luces ámbar); gama.mjs --fuente → #775743, OKLCH L 0,49 C 0,053 H 54° (ámbar-marrón de las luces del salón); material oscuro (L media 0,41) → mode dark (D17).",
+    "mode": "dark"
+  },
+  "business": {
+    "type": "peluqueria",
+    "name": "נועה"
+  },
+  "status": "demo",
+  "hero": {
+    "variant": "v6",
+    "eyebrow": "מספרה לנשים בפלורנטין",
+    "titlePrefix": "נועה",
+    "titleHighlight": "צבע ושיער",
+    "titleSuffix": "בפלורנטין",
+    "subtitle": "צבע, גוונים, פן ותסרוקות לערב — באור חם, בלי למהר. תור אונליין או תמונה בוואטסאפ.",
+    "ctaPrimary": "לקביעת תור",
+    "ctaSecondary": "ייעוץ בוואטסאפ",
+    "video": {
+      "mp4": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-c%2Fmedia%2Fhero%2Fhero.mp4?alt=media&token=284961ff003da49bd61f7e8ef9fc62f7",
+      "webm": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-c%2Fmedia%2Fhero%2Fhero.webm?alt=media&token=67e20dc78a6b4eb6f184c65e1f911ec5",
+      "poster": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-c%2Fmedia%2Fhero%2Fhero-poster.avif?alt=media&token=c0a54d2fd49d2de93f8563c82b64389e",
+      "medium": {
+        "mp4": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-c%2Fmedia%2Fhero%2Fhero-1280.mp4?alt=media&token=59ab6872ed4afa1bab1a64ee84662d34",
+        "webm": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-c%2Fmedia%2Fhero%2Fhero-1280.webm?alt=media&token=d03b048da345013a2c0a9738fadd5966"
+      },
+      "portrait": {
+        "mp4": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-c%2Fmedia%2Fhero%2Fhero-v.mp4?alt=media&token=a60668ba3c1a3b201575a2594fc464f2",
+        "webm": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-c%2Fmedia%2Fhero%2Fhero-v.webm?alt=media&token=e4a78fa0442fe44f2e04772fe2574581",
+        "poster": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-c%2Fmedia%2Fhero%2Fhero-v-poster.avif?alt=media&token=bd8d7a9f8079b06a0e3826f0b8bdc62f"
+      }
+    }
+  },
+  "sections": {
+    "services": {
+      "variant": "v6",
+      "surface": "velo",
+      "title": "שירותים",
+      "subtitle": "מחירון",
+      "featured": ["cut", "blowdry"],
+      "images": [
+        "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-c%2Fmedia%2Fservices%2Fservicio-1.jpg?alt=media&token=f9fef01edf68e422e6d2e112882a960b",
+        "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-c%2Fmedia%2Fservices%2Fservicio-2.jpg?alt=media&token=2a76b940ea1253dcb386f02d6bbabd36",
+        "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-c%2Fmedia%2Fservices%2Fservicio-3.jpg?alt=media&token=f33e9bddfb97a1dbeb403f6b805fcf39",
+        "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-c%2Fmedia%2Fservices%2Fservicio-4.jpg?alt=media&token=5c1968e8b24694df08a02faeb405af15",
+        "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-c%2Fmedia%2Fservices%2Fservicio-5.jpg?alt=media&token=ce9c2ce181c6bae12b0d58fb82aaf12a",
+        "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-c%2Fmedia%2Fservices%2Fservicio-6.jpg?alt=media&token=6abc025f3b301e855d49d54245797c66"
+      ]
+    },
+    "gallery": {
+      "surface": "textura",
+      "variant": "v7",
+      "items": [
+        {
+          "id": "g-color",
+          "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-c%2Fmedia%2Fgallery%2Fgaleria-1.jpg?alt=media&token=ba224b3ea4270d20c744f5640929e605",
+          "type": "color",
+          "alt": "צביעה בגוון נחושת חם",
+          "serviceId": "color"
+        },
+        {
+          "id": "g-rizos",
+          "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-c%2Fmedia%2Fgallery%2Fgaleria-2.jpg?alt=media&token=7d58afbf6aa3a82aecdae76fc36692cf",
+          "type": "rizos",
+          "alt": "תלתלים כהים מבריקים"
+        },
+        {
+          "id": "g-liso",
+          "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-c%2Fmedia%2Fgallery%2Fgaleria-3.jpg?alt=media&token=8b1ac849fa9404b63ae26d0bbacefcb7",
+          "type": "liso",
+          "alt": "החלקה עם מחליק"
+        },
+        {
+          "id": "g-recogidos",
+          "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-c%2Fmedia%2Fgallery%2Fgaleria-4.jpg?alt=media&token=018abf68cb68f3337dd3360c631060af",
+          "type": "recogidos",
+          "alt": "קוקו מסובב נמוך",
+          "serviceId": "event"
+        },
+        {
+          "id": "g-novia",
+          "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-c%2Fmedia%2Fgallery%2Fgaleria-5.jpg?alt=media&token=9994a5ed1afc6b712b83bbc0d3e8587f",
+          "type": "novia",
+          "alt": "אסוף כלה עם מסרק פרחים",
+          "serviceId": "event"
+        },
+        {
+          "id": "g-cortes",
+          "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-c%2Fmedia%2Fgallery%2Fgaleria-6.jpg?alt=media&token=47b365f73a895b1d1562ced18396f45e",
+          "type": "cortes",
+          "alt": "לונג בוב חד",
+          "serviceId": "cut"
+        }
+      ],
+      "selection": [
+        "g-color",
+        "g-rizos",
+        "g-liso",
+        "g-recogidos",
+        "g-novia",
+        "g-cortes"
+      ]
+    },
+    "team": {
+      "surface": "velo",
+      "variant": "v6"
+    },
+    "testimonials": {
+      "surface": "textura",
+      "variant": "v6"
+    },
+    "faq": {
+      "surface": "velo",
+      "variant": "v6",
+      "items": [
+        { "question": "כמה זמן לוקח כל שירות?", "answer": "תספורת 45–60 דקות; פן 30–45; צבע 90–120; גוונים 2.5–3.5 שעות; טיפול שיקום 45–60 דקות; תסרוקת לאירוע 45–90 דקות." },
+        { "question": "איך מבטלים או מזיזים תור?", "answer": "בוואטסאפ או בטלפון, עד 24 שעות לפני התור ובלי עלות. ביטול מאוחר או אי־הגעה עשויים לחייב 50% מעלות השירות." },
+        { "question": "איך משלמים?", "answer": "מזומן, אשראי או ביט, בסלון, בסוף התור." },
+        { "question": "למה גוונים רק אחרי ייעוץ?", "answer": "כי המחיר תלוי באורך, בעובי ובגוון שממנו מתחילים. שלחי תמונה של השיער באור יום בוואטסאפ ונחזור אלייך עם מחיר מדויק." },
+        { "question": "טיפול שיקום מתאים לשיער אחרי החלקות?", "answer": "כן, בשביל זה הוא נועד: לשיער שעבר החלקות או הבהרות. נועה בודקת את השיער לפני ומתאימה את הטיפול." },
+        { "question": "מי עושה תסרוקות לאירועים?", "answer": "דנה. אפשר לבחור אותה בקביעת התור ולהביא תמונה של מה שאהבת." }
+      ]
+    },
+    "instagram": {
+      "surface": "textura",
+      "variant": "v6",
+      "images": [
+        "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-c%2Fmedia%2Fgallery%2Fgaleria-1.jpg?alt=media&token=ba224b3ea4270d20c744f5640929e605",
+        "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-c%2Fmedia%2Fgallery%2Fgaleria-2.jpg?alt=media&token=7d58afbf6aa3a82aecdae76fc36692cf",
+        "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-c%2Fmedia%2Fgallery%2Fgaleria-3.jpg?alt=media&token=8b1ac849fa9404b63ae26d0bbacefcb7",
+        "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-c%2Fmedia%2Fgallery%2Fgaleria-4.jpg?alt=media&token=018abf68cb68f3337dd3360c631060af",
+        "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-c%2Fmedia%2Fgallery%2Fgaleria-5.jpg?alt=media&token=9994a5ed1afc6b712b83bbc0d3e8587f",
+        "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-c%2Fmedia%2Fgallery%2Fgaleria-6.jpg?alt=media&token=47b365f73a895b1d1562ced18396f45e"
+      ]
+    },
+    "contact": {
+      "variant": "v6",
+      "surface": "velo",
+      "description": "תור אונליין לכל השירותים; לגוונים — שלחו תמונה בוואטסאפ ונחזור עם הצעה."
+    }
+  },
+  "branding": {
+    "localPhoto": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-c%2Fmedia%2Fbranding%2Flocal.jpg?alt=media&token=6b9a55cc46ef51f3a914e8318fb5b864",
+    "localPhotoMobile": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-c%2Fmedia%2Fbranding%2Flocal-v.jpg?alt=media&token=14da3c0bc43c5c662e46e6f25db3792d",
+    "colors": {
+      "surface": "#1f1916",
+      "surfaceAlt": "#3d3632",
+      "text": "#fdf5f1",
+      "textMuted": "#dbd0c9",
+      "accent": "#94725d",
+      "accentStrong": "#a07e69",
+      "accentForeground": "#1f1916",
+      "highlight": "#d8b6a1",
+      "highlightOnDark": "#e1cec3",
+      "scrim": "#18100a",
+      "background": "#1f1916",
+      "foreground": "#fdf5f1",
+      "card": "#2a2421",
+      "cardForeground": "#fdf5f1",
+      "border": "#514a46",
+      "muted": "#3d3632",
+      "mutedForeground": "#dbd0c9",
+      "primary": "#a07e69",
+      "primaryForeground": "#1f1916",
+      "secondary": "#3d3632",
+      "secondaryForeground": "#fdf5f1",
+      "accentLight": "#6e5546",
+      "surfaceDark": "#18100a"
+    },
+    "paletteMeta": {
+      "source": "#775743",
+      "origin": "material",
+      "reason": "Paleta C «Noa», camino B: color fuente = media de los saturados del clip Pexels 3996967 SIN excluir la banda de piel (S4, 2026-09-19: con la exclusión salía salmón #bb6d6a porque quedaban fuera las luces ámbar); gama.mjs --fuente → #775743, OKLCH L 0,49 C 0,053 H 54° (ámbar-marrón de las luces del salón); material oscuro (L media 0,41) → mode dark (D17).",
+      "derivedAt": "2026-09-19T12:22:25.993Z",
+      "niche": "peluqueria",
+      "mode": "dark"
+    },
+    "mode": "dark",
+    "heroToBackdrop": {
+      "relation": "same-hue-different-light",
+      "mechanism": "scrim-dies-into-photo",
+      "dH": 6,
+      "dL": 0.118,
+      "foot": {
+        "hex": "#534442",
+        "L": 0.401,
+        "C": 0.021,
+        "H": 27
+      },
+      "footPortrait": {
+        "hex": "#0e090a",
+        "L": 0.147,
+        "C": 0.01,
+        "H": 0
+      }
+    },
+    "texture": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-c%2Fmedia%2Fbranding%2Ftextura.jpg?alt=media&token=445b3a538699f1609c920fa79d30e519"
+  },
+  "brand": {
+    "name": "נועה",
+    "tagline": "צבע ושיער · פלורנטין, תל אביב",
+    "description": "נועה — מספרה לנשים בפלורנטין, תל אביב: צבע וגוונים, תספורות, פן, טיפולי שיער ותסרוקות לערב, באור חם ובלי למהר. תור אונליין או תמונה בוואטסאפ.",
+    "logo": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-c%2Fmedia%2Fbranding%2Flogo.png?alt=media&token=e004402fa36e77528c6f13be448cc5e5",
+    "logoDark": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-c%2Fmedia%2Fbranding%2Flogo-dark.png?alt=media&token=fa7d940c7ffc9e3f86ff2fc9bdfd0178"
+  },
+  "contact": {
+    "phone": "+972 3-000-0000",
+    "email": "hello@example.com",
+    "address": {
+      "street": "רחוב פלורנטין",
+      "district": "פלורנטין",
+      "cityStateZip": "תל אביב–יפו"
+    }
+  },
+  "services": [
+    {
+      "id": "cut",
+      "name": "תספורת",
+      "description": "",
+      "duration": 30,
+      "price": 120,
+      "mode": "reserva"
+    },
+    {
+      "id": "blowdry",
+      "name": "פן",
+      "description": "",
+      "duration": 30,
+      "price": 80,
+      "mode": "reserva"
+    },
+    {
+      "id": "color",
+      "name": "צבע",
+      "description": "",
+      "duration": 60,
+      "price": 200,
+      "mode": "reserva"
+    },
+    {
+      "id": "highlights",
+      "name": "גוונים",
+      "description": "",
+      "duration": 120,
+      "price": 600,
+      "mode": "consulta"
+    },
+    {
+      "id": "treatment",
+      "name": "טיפול שיקום",
+      "description": "",
+      "duration": 30,
+      "price": 150,
+      "mode": "reserva"
+    },
+    {
+      "id": "event",
+      "name": "תסרוקת לאירוע",
+      "description": "",
+      "duration": 45,
+      "price": 250,
+      "mode": "reserva"
+    }
+  ],
+  "testimonials": [
+    {
+      "id": "c1",
+      "lang": "he",
+      "name": "רוני ש.",
+      "rating": 5,
+      "service": "צבע",
+      "text": "באתי לצבע נחושת ויצאתי בדיוק עם הגוון שרציתי. נועה בדקה את השיער לפני, ואחרי הצבע הוא נשאר רך ומבריק."
+    },
+    {
+      "id": "c2",
+      "lang": "he",
+      "name": "תמר ל.",
+      "rating": 5,
+      "service": "פן",
+      "text": "פן לחמישי בערב, בלי לחץ ובלי להמתין. החזיק עד שבת בבוקר. והמקום עצמו — אור חם, מוזיקה שקטה, כיף להיות שם."
+    },
+    {
+      "id": "c3",
+      "lang": "he",
+      "name": "עדי מ.",
+      "rating": 5,
+      "service": "תסרוקת לאירוע",
+      "text": "תסרוקת אסופה לחתונה של חברה. הגעתי עם תמונה, דנה הציעה גרסה שמתאימה לשיער שלי, וזה החזיק כל הלילה."
+    },
+    {
+      "id": "c4",
+      "lang": "he",
+      "name": "ליה ד.",
+      "rating": 5,
+      "service": "גוונים",
+      "text": "מקום קטן, יד מדויקת."
+    },
+    {
+      "id": "c5",
+      "lang": "he",
+      "name": "מאיה פ.",
+      "rating": 5,
+      "service": "תספורת",
+      "text": "תספורת קצרה שנראית טוב גם כשאני רק מתעוררת בבוקר."
+    },
+    {
+      "id": "c6",
+      "lang": "he",
+      "name": "אנה ק.",
+      "rating": 4,
+      "service": "טיפול שיקום",
+      "text": "השיער התאושש אחרי שנים של החלקות. רק התור הפנוי הראשון היה בעוד שבוע."
+    }
+  ],
+  "gallery": [
+    "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-c%2Fmedia%2Fgallery%2Fgaleria-1.jpg?alt=media&token=ba224b3ea4270d20c744f5640929e605",
+    "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-c%2Fmedia%2Fgallery%2Fgaleria-2.jpg?alt=media&token=7d58afbf6aa3a82aecdae76fc36692cf",
+    "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-c%2Fmedia%2Fgallery%2Fgaleria-3.jpg?alt=media&token=8b1ac849fa9404b63ae26d0bbacefcb7",
+    "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-c%2Fmedia%2Fgallery%2Fgaleria-4.jpg?alt=media&token=018abf68cb68f3337dd3360c631060af",
+    "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-c%2Fmedia%2Fgallery%2Fgaleria-5.jpg?alt=media&token=9994a5ed1afc6b712b83bbc0d3e8587f",
+    "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-c%2Fmedia%2Fgallery%2Fgaleria-6.jpg?alt=media&token=47b365f73a895b1d1562ced18396f45e"
+  ],
+  "staff": [
+    {
+      "id": "noa",
+      "slug": "noa-levi",
+      "name": "נועה לוי",
+      "photoUrl": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-c%2Fmedia%2Fstaff%2Fplaceholder-c-retrato-1.jpg?alt=media&token=9845047844830b9a531961beae6d4003",
+      "specialty": "צבע, בליאז׳ והבהרות",
+      "bio": "בעלת הסטודיו. 14 שנים בצבע ובהבהרות, עם דגש על מעברים טבעיים ושיער שנשאר בריא אחרי הצבע.",
+      "portfolio": [
+        "https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1470259078422-826894b933aa?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1524502397800-2eeaad7c3fe5?auto=format&fit=crop&q=80&w=1200"
+      ],
+      "schedule": {
+        "sunday": {
+          "isOpen": true,
+          "hours": {
+            "start": "09:00",
+            "end": "20:00"
+          },
+          "breaks": [
+            {
+              "start": "14:00",
+              "end": "14:30",
+              "label": "הפסקה"
+            }
+          ]
+        },
+        "monday": {
+          "isOpen": true,
+          "hours": {
+            "start": "09:00",
+            "end": "20:00"
+          },
+          "breaks": [
+            {
+              "start": "14:00",
+              "end": "14:30",
+              "label": "הפסקה"
+            }
+          ]
+        },
+        "tuesday": {
+          "isOpen": true,
+          "hours": {
+            "start": "09:00",
+            "end": "20:00"
+          },
+          "breaks": [
+            {
+              "start": "14:00",
+              "end": "14:30",
+              "label": "הפסקה"
+            }
+          ]
+        },
+        "wednesday": {
+          "isOpen": true,
+          "hours": {
+            "start": "09:00",
+            "end": "20:00"
+          },
+          "breaks": [
+            {
+              "start": "14:00",
+              "end": "14:30",
+              "label": "הפסקה"
+            }
+          ]
+        },
+        "thursday": {
+          "isOpen": true,
+          "hours": {
+            "start": "09:00",
+            "end": "20:00"
+          },
+          "breaks": [
+            {
+              "start": "14:00",
+              "end": "14:30",
+              "label": "הפסקה"
+            }
+          ]
+        },
+        "friday": {
+          "isOpen": true,
+          "hours": {
+            "start": "08:00",
+            "end": "14:00"
+          },
+          "breaks": []
+        },
+        "saturday": {
+          "isOpen": false,
+          "hours": {
+            "start": "00:00",
+            "end": "00:00"
+          },
+          "breaks": []
+        }
+      }
+    },
+    {
+      "id": "maya",
+      "slug": "maya-cohen",
+      "name": "מאיה כהן",
+      "photoUrl": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-c%2Fmedia%2Fstaff%2Fplaceholder-c-retrato-2.jpg?alt=media&token=a60ce6565314d2ad478f14b1930e9270",
+      "specialty": "תספורות ושיער מתולתל",
+      "bio": "מתמחה בתספורות לפי מרקם — ובעיקר בתלתלים. חותכת יבש כשצריך, ומלמדת איך לשמור על התוצאה בבית.",
+      "portfolio": [
+        "https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&q=80&w=1200"
+      ],
+      "schedule": {
+        "sunday": {
+          "isOpen": true,
+          "hours": {
+            "start": "09:00",
+            "end": "20:00"
+          },
+          "breaks": [
+            {
+              "start": "14:00",
+              "end": "14:30",
+              "label": "הפסקה"
+            }
+          ]
+        },
+        "monday": {
+          "isOpen": true,
+          "hours": {
+            "start": "09:00",
+            "end": "20:00"
+          },
+          "breaks": [
+            {
+              "start": "14:00",
+              "end": "14:30",
+              "label": "הפסקה"
+            }
+          ]
+        },
+        "tuesday": {
+          "isOpen": false,
+          "hours": {
+            "start": "00:00",
+            "end": "00:00"
+          },
+          "breaks": []
+        },
+        "wednesday": {
+          "isOpen": true,
+          "hours": {
+            "start": "09:00",
+            "end": "20:00"
+          },
+          "breaks": [
+            {
+              "start": "14:00",
+              "end": "14:30",
+              "label": "הפסקה"
+            }
+          ]
+        },
+        "thursday": {
+          "isOpen": true,
+          "hours": {
+            "start": "09:00",
+            "end": "20:00"
+          },
+          "breaks": [
+            {
+              "start": "14:00",
+              "end": "14:30",
+              "label": "הפסקה"
+            }
+          ]
+        },
+        "friday": {
+          "isOpen": true,
+          "hours": {
+            "start": "08:00",
+            "end": "14:00"
+          },
+          "breaks": []
+        },
+        "saturday": {
+          "isOpen": false,
+          "hours": {
+            "start": "00:00",
+            "end": "00:00"
+          },
+          "breaks": []
+        }
+      }
+    },
+    {
+      "id": "dana",
+      "slug": "dana-mizrahi",
+      "name": "דנה מזרחי",
+      "photoUrl": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-c%2Fmedia%2Fstaff%2Fplaceholder-c-retrato-3.jpg?alt=media&token=2185fbd30129edde22223dfba8883eaa",
+      "specialty": "תסרוקות לאירועים וכלות",
+      "bio": "תסרוקות שמחזיקות עד סוף הלילה. פגישת ניסיון לכל כלה, והגעה ללוקיישן ביום האירוע.",
+      "portfolio": [
+        "https://images.unsplash.com/photo-1560869713-7d0a29430803?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1519741497674-6114818635?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1523263685509-57c1d050d19b?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?auto=format&fit=crop&q=80&w=1200"
+      ],
+      "schedule": {
+        "sunday": {
+          "isOpen": false,
+          "hours": {
+            "start": "00:00",
+            "end": "00:00"
+          },
+          "breaks": []
+        },
+        "monday": {
+          "isOpen": true,
+          "hours": {
+            "start": "09:00",
+            "end": "20:00"
+          },
+          "breaks": [
+            {
+              "start": "14:00",
+              "end": "14:30",
+              "label": "הפסקה"
+            }
+          ]
+        },
+        "tuesday": {
+          "isOpen": true,
+          "hours": {
+            "start": "09:00",
+            "end": "20:00"
+          },
+          "breaks": [
+            {
+              "start": "14:00",
+              "end": "14:30",
+              "label": "הפסקה"
+            }
+          ]
+        },
+        "wednesday": {
+          "isOpen": true,
+          "hours": {
+            "start": "09:00",
+            "end": "20:00"
+          },
+          "breaks": [
+            {
+              "start": "14:00",
+              "end": "14:30",
+              "label": "הפסקה"
+            }
+          ]
+        },
+        "thursday": {
+          "isOpen": true,
+          "hours": {
+            "start": "09:00",
+            "end": "20:00"
+          },
+          "breaks": [
+            {
+              "start": "14:00",
+              "end": "14:30",
+              "label": "הפסקה"
+            }
+          ]
+        },
+        "friday": {
+          "isOpen": true,
+          "hours": {
+            "start": "08:00",
+            "end": "14:00"
+          },
+          "breaks": []
+        },
+        "saturday": {
+          "isOpen": false,
+          "hours": {
+            "start": "00:00",
+            "end": "00:00"
+          },
+          "breaks": []
+        }
+      }
+    }
+  ],
+  "translations": {
+    "en": {
+      "contact": {
+        "address": {
+          "street": "Florentin St",
+          "district": "Florentin",
+          "cityStateZip": "Tel Aviv-Yafo"
+        }
+      },
+      "brand": {
+        "tagline": "Colour & hair · Florentin, Tel Aviv",
+        "description": "Noa — a women's hair salon in Florentin, Tel Aviv: colour and highlights, cuts, blow-dries, treatments and evening up-dos, in warm light and without hurry. Book online or send a photo on WhatsApp."
+      },
+      "hero": {
+        "eyebrow": "Women's salon in Florentin",
+        "titlePrefix": "Noa",
+        "titleHighlight": "colour & hair",
+        "titleSuffix": "in Florentin",
+        "subtitle": "Colour, highlights, blow-dries and evening up-dos — in warm light, without hurry. Book online or send a photo on WhatsApp.",
+        "ctaPrimary": "Book now",
+        "ctaSecondary": "Ask on WhatsApp"
+      },
+      "testimonials": {
+        "c1": {
+          "text": "I came in for copper and left with exactly the shade I wanted. Noa checked my hair first, and after the colour it's still soft and shiny.",
+          "service": "Colour"
+        },
+        "c2": {
+          "text": "A blow-dry for Thursday night, no rush and no waiting. It held until Saturday morning. And the place itself — warm light, quiet music, a pleasure to be there.",
+          "service": "Blow-dry"
+        },
+        "c3": {
+          "text": "An updo for a friend's wedding. I brought a photo, Dana suggested a version that suits my hair, and it held all night.",
+          "service": "Event styling"
+        },
+        "c4": {
+          "text": "Small place, precise hands.",
+          "service": "Highlights"
+        },
+        "c5": {
+          "text": "A short cut that looks good even the moment I wake up.",
+          "service": "Haircut"
+        },
+        "c6": {
+          "text": "My hair recovered after years of straightening. The only catch: the first free slot was a week away.",
+          "service": "Repair treatment"
+        }
+      },
+      "sections": {
+        "contact": {
+          "description": "Book any service online; for highlights, send us a photo on WhatsApp and we'll come back with a quote."
+        },
+        "gallery": {
+          "alts": {
+            "g-color": "Colour: warm copper-brown applied section by section",
+            "g-rizos": "Curls: glossy dark curls",
+            "g-liso": "Straight: flat-iron sleek dark hair",
+            "g-recogidos": "Up-do: low twisted bun",
+            "g-novia": "Bridal: up-do with a dried-flower comb",
+            "g-cortes": "Cut: sharp long bob"
+          }
+        },
+        "services": {
+          "title": "Services",
+          "subtitle": "Price list"
+        },
+        "faq": {
+          "items": [
+            { "question": "How long does each service take?", "answer": "Haircut 45–60 min; blow-dry 30–45; colour 90–120; highlights 2.5–3.5 h; repair treatment 45–60 min; event styling 45–90 min." },
+            { "question": "How do I cancel or move an appointment?", "answer": "On WhatsApp or by phone, free up to 24 hours before. A late cancellation or a no-show may be charged 50% of the service price." },
+            { "question": "How do I pay?", "answer": "Cash, card or Bit, at the salon, at the end of your appointment." },
+            { "question": "Why are highlights by consultation only?", "answer": "Because the price depends on length, thickness and the shade you start from. Send us a daylight photo of your hair on WhatsApp and we'll come back with an exact price." },
+            { "question": "Is the repair treatment right for hair after straightening?", "answer": "Yes, that's what it's for: hair that has been straightened or lightened. Noa checks your hair first and adapts the treatment." },
+            { "question": "Who does event styling?", "answer": "Dana. You can choose her when booking and bring a photo of a look you love." }
+          ]
+        }
+      },
+      "services": {
+        "cut": {
+          "name": "Haircut"
+        },
+        "blowdry": {
+          "name": "Blow-dry"
+        },
+        "color": {
+          "name": "Colour"
+        },
+        "highlights": {
+          "name": "Highlights"
+        },
+        "treatment": {
+          "name": "Repair treatment"
+        },
+        "event": {
+          "name": "Event styling"
+        }
+      },
+      "staff": {
+        "noa": {
+          "name": "Noa Levi",
+          "specialty": "Colour, balayage and lightening",
+          "bio": "Studio owner. 14 years in colour and lightening, focused on natural transitions and hair that stays healthy after colour."
+        },
+        "maya": {
+          "name": "Maya Cohen",
+          "specialty": "Cuts and curly hair",
+          "bio": "Cuts by texture, especially curls. Dry-cuts when needed and shows you how to keep the result at home."
+        },
+        "dana": {
+          "name": "Dana Mizrahi",
+          "specialty": "Event and bridal hair",
+          "bio": "Styles that last until the end of the night. A trial for every bride, and on-location styling on the day."
+        }
+      }
+    },
+    "ru": {
+      "contact": {
+        "address": {
+          "street": "ул. Флорентин",
+          "district": "Флорентин",
+          "cityStateZip": "Тель-Авив-Яфо"
+        }
+      },
+      "brand": {
+        "tagline": "Цвет и волосы · Флорентин, Тель-Авив",
+        "description": "Ноа — женская парикмахерская во Флорентине, Тель-Авив: окрашивание и мелирование, стрижки, укладки, уход и вечерние причёски, в тёплом свете и без спешки. Запись онлайн или фото в WhatsApp."
+      },
+      "hero": {
+        "eyebrow": "Женская парикмахерская во Флорентине",
+        "titlePrefix": "Ноа",
+        "titleHighlight": "цвет и волосы",
+        "titleSuffix": "во Флорентине",
+        "subtitle": "Окрашивание, мелирование, укладки и вечерние причёски — в тёплом свете, без спешки. Запись онлайн или фото в WhatsApp.",
+        "ctaPrimary": "Записаться",
+        "ctaSecondary": "Спросить в WhatsApp"
+      },
+      "testimonials": {
+        "c1": {
+          "text": "Пришла за медным оттенком и ушла ровно с тем цветом, который хотела. Ноа сначала проверила волосы, и после окрашивания они остались мягкими и блестящими.",
+          "service": "Окрашивание"
+        },
+        "c2": {
+          "text": "Укладка на вечер четверга — без спешки и без ожидания. Продержалась до субботнего утра. А сам салон — тёплый свет, тихая музыка, там просто приятно находиться.",
+          "service": "Укладка"
+        },
+        "c3": {
+          "text": "Собранная причёска на свадьбу подруги. Я пришла с фотографией, Дана предложила вариант под мои волосы, и всё держалось всю ночь.",
+          "service": "Причёска на мероприятие"
+        },
+        "c4": {
+          "text": "Маленький салон, точная рука.",
+          "service": "Мелирование"
+        },
+        "c5": {
+          "text": "Короткая стрижка, которая хорошо выглядит, даже когда я только проснулась.",
+          "service": "Стрижка"
+        },
+        "c6": {
+          "text": "Волосы восстановились после многих лет выпрямлений. Единственное — свободное время нашлось только через неделю.",
+          "service": "Восстановление волос"
+        }
+      },
+      "sections": {
+        "contact": {
+          "description": "Записывайтесь онлайн на любую услугу; для мелирования пришлите фото в WhatsApp — мы ответим с предложением."
+        },
+        "gallery": {
+          "alts": {
+            "g-color": "Окрашивание: тёплый медно-коричневый по прядям",
+            "g-rizos": "Кудри: блестящие тёмные локоны",
+            "g-liso": "Выпрямление: гладкие тёмные волосы утюжком",
+            "g-recogidos": "Причёска: низкий закрученный пучок",
+            "g-novia": "Свадебная: причёска с гребнем из сухоцветов",
+            "g-cortes": "Стрижка: чёткий удлинённый боб"
+          }
+        },
+        "services": {
+          "title": "Услуги",
+          "subtitle": "Прайс"
+        },
+        "faq": {
+          "items": [
+            { "question": "Сколько длится каждая услуга?", "answer": "Стрижка 45–60 мин; укладка 30–45; окрашивание 90–120; мелирование 2,5–3,5 ч; восстановление 45–60 мин; причёска на мероприятие 45–90 мин." },
+            { "question": "Как отменить или перенести запись?", "answer": "В WhatsApp или по телефону — бесплатно за 24 часа. Поздняя отмена или неявка могут стоить 50% цены услуги." },
+            { "question": "Как оплатить?", "answer": "Наличными, картой или через Bit — в салоне, в конце визита." },
+            { "question": "Почему мелирование только после консультации?", "answer": "Потому что цена зависит от длины, густоты и исходного цвета. Пришлите в WhatsApp фото волос при дневном свете, и мы назовём точную цену." },
+            { "question": "Подходит ли восстановление волосам после выпрямлений?", "answer": "Да, оно для этого и создано: для волос после выпрямлений и осветлений. Ноа сначала смотрит волосы и подбирает уход." },
+            { "question": "Кто делает причёски на мероприятия?", "answer": "Дана. Её можно выбрать при записи и принести фото образа, который вам нравится." }
+          ]
+        }
+      },
+      "services": {
+        "cut": {
+          "name": "Стрижка"
+        },
+        "blowdry": {
+          "name": "Укладка"
+        },
+        "color": {
+          "name": "Окрашивание"
+        },
+        "highlights": {
+          "name": "Мелирование"
+        },
+        "treatment": {
+          "name": "Восстановление волос"
+        },
+        "event": {
+          "name": "Причёска на мероприятие"
+        }
+      },
+      "staff": {
+        "noa": {
+          "name": "Ноа Леви",
+          "specialty": "Окрашивание, балаяж и осветление",
+          "bio": "Владелица студии. 14 лет в окрашивании и осветлении: естественные переходы и волосы, которые остаются здоровыми после цвета."
+        },
+        "maya": {
+          "name": "Майя Коэн",
+          "specialty": "Стрижки и кудрявые волосы",
+          "bio": "Стрижки по текстуре волос, особенно кудри. Стрижёт по сухим, когда нужно, и учит сохранять результат дома."
+        },
+        "dana": {
+          "name": "Дана Мизрахи",
+          "specialty": "Причёски для мероприятий и невест",
+          "bio": "Причёски, которые держатся до конца вечера. Пробная встреча для каждой невесты и выезд в день торжества."
+        }
+      }
+    },
+    "ar": {
+      "contact": {
+        "address": {
+          "street": "شارع فلورنتين",
+          "district": "فلورنتين",
+          "cityStateZip": "تل أبيب-يافا"
+        }
+      },
+      "brand": {
+        "tagline": "لون وشعر · فلورنتين، تل أبيب",
+        "description": "نوعا — صالون نسائي في فلورنتين، تل أبيب: صبغة وخصلات، قصّات، تصفيف، علاجات وتسريحات للسهرة، في ضوء دافئ ومن دون عجلة. حجز أونلاين أو صورة عبر واتساب."
+      },
+      "hero": {
+        "eyebrow": "صالون نسائي في فلورنتين",
+        "titlePrefix": "نوعا",
+        "titleHighlight": "لون وشعر",
+        "titleSuffix": "في فلورنتين",
+        "subtitle": "صبغة وخصلات وتصفيف وتسريحات للسهرة — في ضوء دافئ، من دون عجلة. حجز أونلاين أو صورة عبر واتساب.",
+        "ctaPrimary": "احجزي موعدًا",
+        "ctaSecondary": "اسألي عبر واتساب"
+      },
+      "testimonials": {
+        "c1": {
+          "text": "جئت من أجل لون نحاسي وخرجت باللون الذي أردته تمامًا. نوعا فحصت شعري قبل الصبغ، وبعده بقي ناعمًا ولامعًا.",
+          "service": "صبغ"
+        },
+        "c2": {
+          "text": "سشوار لمساء الخميس، بلا استعجال وبلا انتظار. صمد حتى صباح السبت. والمكان نفسه — ضوء دافئ وموسيقى هادئة، من الممتع أن تكوني هناك.",
+          "service": "سشوار"
+        },
+        "c3": {
+          "text": "تسريحة مرفوعة لعرس صديقتي. جئت بصورة، واقترحت دانا نسخة تناسب شعري، وصمدت طوال الليل.",
+          "service": "تسريحة لمناسبة"
+        },
+        "c4": {
+          "text": "مكان صغير، ويد دقيقة.",
+          "service": "خصلات"
+        },
+        "c5": {
+          "text": "قصّة قصيرة تبدو جميلة حتى لحظة استيقاظي في الصباح.",
+          "service": "قصّة"
+        },
+        "c6": {
+          "text": "شعري تعافى بعد سنوات من الفرد. الشيء الوحيد: أقرب موعد متاح كان بعد أسبوع.",
+          "service": "علاج ترميم"
+        }
+      },
+      "sections": {
+        "contact": {
+          "description": "احجزي أونلاين لأي خدمة؛ للخصلات أرسلي صورة عبر واتساب ونعود إليكِ بعرض."
+        },
+        "gallery": {
+          "alts": {
+            "g-color": "صبغة: نحاسي-بني دافئ خصلة خصلة",
+            "g-rizos": "تجعيد: تجعيدات داكنة لامعة",
+            "g-liso": "فرد: شعر داكن ناعم بالمكواة",
+            "g-recogidos": "تسريحة: كعكة منخفضة ملفوفة",
+            "g-novia": "عروس: تسريحة مرفوعة مع مشط أزهار مجففة",
+            "g-cortes": "قصّة: بوب طويل حاد"
+          }
+        },
+        "services": {
+          "title": "الخدمات",
+          "subtitle": "قائمة الأسعار"
+        },
+        "faq": {
+          "items": [
+            { "question": "كم تستغرق كل خدمة؟", "answer": "قصّة 45–60 دقيقة؛ سشوار 30–45؛ صبغ 90–120؛ خصلات 2.5–3.5 ساعة؛ علاج ترميم 45–60 دقيقة؛ تسريحة لمناسبة 45–90 دقيقة." },
+            { "question": "كيف ألغي موعدًا أو أنقله؟", "answer": "عبر واتساب أو الهاتف، مجانًا حتى 24 ساعة قبل الموعد. الإلغاء المتأخر أو عدم الحضور قد يُحتسب 50% من سعر الخدمة." },
+            { "question": "كيف أدفع؟", "answer": "نقدًا أو ببطاقة أو عبر Bit، في الصالون، في نهاية الموعد." },
+            { "question": "لماذا الخصلات بعد استشارة فقط؟", "answer": "لأن السعر يعتمد على الطول والكثافة واللون الذي نبدأ منه. أرسلي صورة لشعرك في ضوء النهار عبر واتساب ونعود إليكِ بسعر دقيق." },
+            { "question": "هل يناسب علاج الترميم الشعر بعد الفرد؟", "answer": "نعم، هذا هو هدفه: الشعر الذي مرّ بالفرد أو التفتيح. تفحص نوعا الشعر أولًا وتختار العلاج المناسب." },
+            { "question": "من تعمل تسريحات المناسبات؟", "answer": "دانا. يمكنكِ اختيارها عند الحجز وإحضار صورة لإطلالة أعجبتكِ." }
+          ]
+        }
+      },
+      "services": {
+        "cut": {
+          "name": "قصّة"
+        },
+        "blowdry": {
+          "name": "تصفيف"
+        },
+        "color": {
+          "name": "صبغ"
+        },
+        "highlights": {
+          "name": "هايلايت"
+        },
+        "treatment": {
+          "name": "علاج ترميم"
+        },
+        "event": {
+          "name": "تسريحة لمناسبة"
+        }
+      },
+      "staff": {
+        "noa": {
+          "name": "نوعا ليفي",
+          "specialty": "صبغ، بالياج وتفتيح",
+          "bio": "صاحبة الاستوديو. 14 عامًا في الصبغ والتفتيح، مع تركيز على الانتقالات الطبيعية وشعر يبقى صحيًا بعد الصبغ."
+        },
+        "maya": {
+          "name": "مايا كوهين",
+          "specialty": "قصّات وشعر مجعّد",
+          "bio": "قصّات حسب ملمس الشعر، وخاصة الشعر المجعّد. تقصّ على الشعر الجاف عند الحاجة وتعلّمك الحفاظ على النتيجة في البيت."
+        },
+        "dana": {
+          "name": "دانا مزراحي",
+          "specialty": "تسريحات المناسبات والعرائس",
+          "bio": "تسريحات تدوم حتى نهاية الليلة. جلسة تجربة لكل عروس، والوصول إلى موقع المناسبة في يومها."
+        }
+      }
+    }
+  }
+}
