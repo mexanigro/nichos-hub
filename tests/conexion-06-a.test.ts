@@ -223,7 +223,11 @@ test("`validatePalette` exportada de src/lib/config-validator.ts da **error** cu
 });
 
 test("la pestaña Contenido edita `hero.eyebrow`: src/components/client-content-tab.tsx tiene en la sección Hero un campo `{ path: \"hero.eyebrow\", … }` antes de `hero.titlePrefix`, para todos los nichos, y `validateVariantContracts` sigue avisando con más de 4 palabras", async () => {
-  const fuente = readFileSync(resolve(ROOT, CONTENIDO), "utf8");
+  // ALTA-IDIOMAS-01 (D-242): la lista de secciones de Contenido pasó a src/lib/secciones-contenido.ts (la usa también la ruta de
+  // servidor generate-content, que no puede llamar a un módulo "use client"), y la pestaña la reexporta: el campo se busca ahí.
+  const LISTA = "src/lib/secciones-contenido.ts";
+  assert.match(readFileSync(resolve(ROOT, CONTENIDO), "utf8"), /import \{ seccionesDeContenido \} from "@\/lib\/secciones-contenido"/, `${CONTENIDO} toma la lista de ${LISTA}`);
+  const fuente = readFileSync(resolve(ROOT, LISTA), "utf8");
   // La sección Hero: desde su `key: "hero"` hasta la siguiente `key: "…"`.
   const i = fuente.search(/key:\s*"hero"/);
   assert.ok(i >= 0, `${CONTENIDO} debe tener la sección con key: "hero"`);

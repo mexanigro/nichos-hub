@@ -18,187 +18,15 @@ import {
   normalizeClientLanguage,
 } from "@/lib/client-language";
 import { SelectorIdioma } from "@/components/selector-idioma";
-import {
-  placeholderFor,
-  type PlaceholderKey,
-} from "@/lib/dashboard-placeholders";
+import { placeholderFor } from "@/lib/dashboard-placeholders";
 import { LanguageMismatchWarning } from "./language-mismatch-warning";
+import { seccionesDeContenido } from "@/lib/secciones-contenido";
+import { PropuestaDeTextos } from "./propuesta-textos";
+import { cuerpoDePropuesta, MODELO_TEXTOS, type Llamada, type Propuesta } from "@/lib/textos-claude";
+import type { ConfigIssue } from "@/lib/config-validator";
 
-interface ContentSection {
-  key: string;
-  label: string;
-  fields: ContentField[];
-}
-
-interface ContentField {
-  path: string;
-  label: string;
-  type: "text" | "textarea";
-  /** Clave en el dict de placeholders. La UI traduce según el idioma del cliente. */
-  placeholderKey?: PlaceholderKey;
-}
-
-const BASE_SECTIONS: ContentSection[] = [
-  {
-    key: "hero",
-    label: "Hero",
-    fields: [
-      // CONEXION-06 (D-72): el eyebrow va arriba del titular; el hero v6 lo recorta a 4 palabras (clampWords) y la flota lo rinde igual.
-      { path: "hero.eyebrow", label: "Eyebrow (≤ 4 palabras)", type: "text" },
-      { path: "hero.titlePrefix", label: "Prefijo del titulo", type: "text", placeholderKey: "heroTitlePrefix" },
-      { path: "hero.titleHighlight", label: "Titulo destacado", type: "text", placeholderKey: "heroTitleHighlight" },
-      { path: "hero.titleSuffix", label: "Sufijo del titulo", type: "text" },
-      { path: "hero.subtitle", label: "Subtitulo", type: "textarea", placeholderKey: "heroSubtitle" },
-      { path: "hero.ctaPrimary", label: "Boton principal (CTA)", type: "text", placeholderKey: "heroCtaPrimary" },
-      { path: "hero.ctaSecondary", label: "Boton secundario", type: "text", placeholderKey: "heroCtaSecondary" },
-    ],
-  },
-  {
-    key: "services",
-    label: "Servicios",
-    fields: [
-      { path: "sections.services.title", label: "Titulo de seccion", type: "text", placeholderKey: "servicesTitle" },
-      { path: "sections.services.subtitle", label: "Subtitulo", type: "text" },
-    ],
-  },
-  {
-    key: "whyChooseUs",
-    label: "Por que elegirnos",
-    fields: [
-      { path: "sections.whyChooseUs.title", label: "Titulo", type: "text", placeholderKey: "whyChooseUsTitle" },
-      { path: "sections.whyChooseUs.subtitle", label: "Subtitulo", type: "text" },
-    ],
-  },
-  {
-    key: "team",
-    label: "Equipo",
-    fields: [
-      { path: "sections.team.title", label: "Titulo", type: "text", placeholderKey: "teamTitle" },
-      { path: "sections.team.subtitle", label: "Subtitulo", type: "text" },
-      { path: "sections.team.description", label: "Descripcion", type: "textarea" },
-    ],
-  },
-  {
-    key: "testimonials",
-    label: "Testimonios",
-    fields: [
-      { path: "sections.testimonials.title", label: "Titulo", type: "text", placeholderKey: "testimonialsTitle" },
-      { path: "sections.testimonials.subtitle", label: "Subtitulo", type: "text" },
-    ],
-  },
-  {
-    key: "gallery",
-    label: "Galeria",
-    fields: [
-      { path: "sections.gallery.title", label: "Titulo", type: "text", placeholderKey: "galleryTitle" },
-      { path: "sections.gallery.subtitle", label: "Subtitulo", type: "text" },
-    ],
-  },
-  {
-    key: "location",
-    label: "Ubicacion",
-    fields: [
-      { path: "sections.location.title", label: "Titulo", type: "text", placeholderKey: "locationTitle" },
-      { path: "sections.location.subtitle", label: "Subtitulo", type: "text" },
-    ],
-  },
-  {
-    key: "contact",
-    label: "Contacto",
-    fields: [
-      { path: "sections.contact.title", label: "Titulo", type: "text", placeholderKey: "contactTitle" },
-      { path: "sections.contact.subtitle", label: "Subtitulo", type: "text" },
-      { path: "sections.contact.description", label: "Descripcion", type: "textarea" },
-    ],
-  },
-  {
-    // CONTACTO-PIE-01 (D-205, inciso v): contacto y el pie leen la dirección y la línea de la marca en cada idioma
-    // (`translations.<lang>.contact.address`, `translations.<lang>.brand.tagline`); en el idioma base escribe la raíz, como la pestaña Config.
-    key: "address",
-    label: "Direccion y linea de la marca",
-    fields: [
-      { path: "contact.address.street", label: "Calle", type: "text" },
-      { path: "contact.address.district", label: "Barrio", type: "text" },
-      { path: "contact.address.cityStateZip", label: "Ciudad", type: "text" },
-      { path: "brand.tagline", label: "Linea de la marca (pie de pagina)", type: "text" },
-      // CIERRE-TRAMO-01 (D-219): la descripción la leen el SEO y «sobre nosotros» en cada idioma (`translations.<lang>.brand.description`).
-      { path: "brand.description", label: "Descripcion de la marca (SEO y sobre nosotros)", type: "textarea" },
-    ],
-  },
-  {
-    key: "booking",
-    label: "Reservas",
-    fields: [
-      { path: "sections.booking.title", label: "Titulo", type: "text", placeholderKey: "bookingTitle" },
-      { path: "sections.booking.tagline", label: "Tagline", type: "text", placeholderKey: "bookingTagline" },
-    ],
-  },
-];
-
-const CAFETERIA_SECTIONS: ContentSection[] = [
-  {
-    key: "philosophy",
-    label: "Filosofia",
-    fields: [
-      { path: "sections.philosophy.title", label: "Titulo", type: "text", placeholderKey: "philosophyTitle" },
-      { path: "sections.philosophy.subtitle", label: "Subtitulo", type: "text" },
-      { path: "sections.philosophy.intro", label: "Introduccion", type: "textarea" },
-    ],
-  },
-  {
-    key: "process",
-    label: "Proceso",
-    fields: [
-      { path: "sections.process.title", label: "Titulo", type: "text", placeholderKey: "processTitle" },
-      { path: "sections.process.subtitle", label: "Subtitulo", type: "text" },
-    ],
-  },
-  {
-    key: "ambience",
-    label: "Ambiente",
-    fields: [
-      { path: "sections.ambience.title", label: "Titulo", type: "text", placeholderKey: "ambienceTitle" },
-      { path: "sections.ambience.subtitle", label: "Subtitulo", type: "text" },
-    ],
-  },
-];
-
-const REMODELACIONES_SECTIONS: ContentSection[] = [
-  {
-    key: "portfolio",
-    label: "Portfolio",
-    fields: [
-      { path: "sections.portfolio.title", label: "Titulo", type: "text", placeholderKey: "portfolioTitle" },
-      { path: "sections.portfolio.subtitle", label: "Subtitulo", type: "text" },
-    ],
-  },
-  {
-    key: "process",
-    label: "Proceso",
-    fields: [
-      { path: "sections.process.title", label: "Titulo", type: "text", placeholderKey: "processTitle" },
-      { path: "sections.process.subtitle", label: "Subtitulo", type: "text" },
-    ],
-  },
-];
-
-const FAQ_SECTION: ContentSection = {
-  key: "faq",
-  label: "Preguntas Frecuentes (FAQ)",
-  fields: [
-    { path: "sections.faq.title", label: "Titulo", type: "text", placeholderKey: "faqTitle" },
-    { path: "sections.faq.subtitle", label: "Subtitulo", type: "text", placeholderKey: "faqSubtitle" },
-  ],
-};
-
-/** Las secciones y campos de la pestaña Contenido para un nicho (CONTACTO-PIE-01, C5: exportada para ejecutar el camino sin navegador). */
-export function seccionesDeContenido(niche: string): ContentSection[] {
-  const sections = [...BASE_SECTIONS];
-  if (niche === "cafeteria") sections.push(...CAFETERIA_SECTIONS);
-  if (niche === "remodelaciones") sections.push(...REMODELACIONES_SECTIONS);
-  sections.push(FAQ_SECTION);
-  return sections;
-}
+// ALTA-IDIOMAS-01: la lista vive en src/lib (la usa también la ruta de servidor); se reexporta para los que la leen de aquí.
+export { seccionesDeContenido };
 
 /** Lo que la pestaña muestra para `idioma`: los campos de texto de la raíz (idioma base) o de `translations.<idioma>`, aplanados por ruta. */
 export function contenidoDeCapa(config: Record<string, unknown>, niche: string, idioma: string, esBase: boolean): Record<string, string> {
@@ -299,8 +127,12 @@ export function ClientContentTab({
   const [saved, setSaved] = useState(false);
   const [error, setError] = useState("");
   const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set(["hero"]));
+  // ALTA-IDIOMAS-01 (G1): la propuesta de Claude en los cuatro idiomas; se guarda sólo lo que el dueño acepta.
   const [generating, setGenerating] = useState(false);
-  const [businessDesc, setBusinessDesc] = useState("");
+  const [notas, setNotas] = useState("");
+  const [propuesta, setPropuesta] = useState<{ propuesta: Propuesta; errores: ConfigIssue[]; llamadas: Llamada[] } | null>(null);
+  const [aceptados, setAceptados] = useState<string[]>([]);
+  const [guardandoPropuesta, setGuardandoPropuesta] = useState(false);
 
   const sections = useMemo(() => seccionesDeContenido(niche), [niche]);
 
@@ -384,22 +216,52 @@ export function ClientContentTab({
   }
 
   async function handleGenerate() {
-    if (!businessDesc.trim()) return;
     setGenerating(true);
     setError("");
+    setPropuesta(null);
+    setAceptados([]);
     try {
       const res = await fetch("/api/generate-content", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ clientId, niche, businessDescription: businessDesc }),
+        body: JSON.stringify({ clientId, niche, base: lang, notas }),
       });
-      if (!res.ok) throw new Error("Error al generar contenido");
-      const generated = await res.json();
-      setContent(prev => ({ ...prev, ...generated }));
+      const r = await res.json();
+      if (!res.ok) throw new Error(r?.error ?? "Error al generar la propuesta");
+      setPropuesta(r);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Error al generar");
     } finally {
       setGenerating(false);
+    }
+  }
+
+  /** Guarda lo aceptado con el PUT de siempre (D-242). El cuerpo se arma sobre el config recién leído: lo que otra pestaña guardó
+   *  mientras tanto queda como está, y un campo que ya tiene texto sale como error y no se manda. */
+  async function guardarPropuesta() {
+    if (!propuesta) return;
+    setGuardandoPropuesta(true);
+    setError("");
+    try {
+      const actual = (await (await fetch(`/api/config/${clientId}`)).json()) as Record<string, unknown>;
+      const cuerpo = cuerpoDePropuesta(actual, niche, lang, propuesta.propuesta, aceptados);
+      if (Object.keys(cuerpo).length === 0) return;
+      const res = await fetch(`/api/config/${clientId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(cuerpo),
+      });
+      if (!res.ok) throw new Error((await res.json().catch(() => null))?.error ?? "Error al guardar la propuesta");
+      setPropuesta(null);
+      setAceptados([]);
+      await fetchContent();
+      setSaved(true);
+      onSaved?.();
+      setTimeout(() => setSaved(false), 3000);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Error al guardar la propuesta");
+    } finally {
+      setGuardandoPropuesta(false);
     }
   }
 
@@ -453,28 +315,66 @@ export function ClientContentTab({
       {error && <div className="rounded-lg bg-red-500/10 px-3 py-2 text-xs text-red-400">{error}</div>}
       {saved && <div className="rounded-lg bg-green-500/10 px-3 py-2 text-xs text-green-400">Contenido guardado correctamente</div>}
 
-      {/* AI Generation Card — sólo en el idioma base (la traducción asistida viene después del bloque 4) */}
-      {isBase && <div className="rounded-xl border border-accent/20 bg-accent/5 p-4">
-        <div className="mb-3 flex items-center gap-2">
+      {/* ALTA-IDIOMAS-01: Claude propone los textos que faltan en los cuatro idiomas; el dueño acepta campo por campo. */}
+      <div className="rounded-xl border border-accent/20 bg-accent/5 p-4">
+        <div className="mb-1 flex items-center gap-2">
           <Sparkles size={14} className="text-accent" />
-          <span className="text-xs font-semibold text-text">Generar contenido con IA</span>
+          <span className="text-xs font-semibold text-text">Escribir los textos con IA (4 idiomas)</span>
         </div>
+        <p className="mb-3 text-[11px] text-text-muted">
+          Propone sólo lo que está vacío, en hebreo, inglés, ruso y árabe, cada idioma como original. Nada se guarda hasta que lo aceptes.
+        </p>
+        <label htmlFor="notas-ia" className="mb-1 block text-[11px] font-medium text-text-muted">Lo que contó la clienta (opcional)</label>
         <textarea
-          value={businessDesc}
-          onChange={e => setBusinessDesc(e.target.value)}
+          id="notas-ia"
+          value={notas}
+          onChange={e => setNotas(e.target.value)}
           placeholder={placeholderFor(lang, "businessDescription")}
           rows={3}
           className="mb-3 w-full rounded-lg border border-border bg-bg-elevated px-3 py-2 text-xs text-text placeholder:text-text-muted/50 focus:border-accent focus:outline-none"
         />
         <button
           onClick={handleGenerate}
-          disabled={generating || !businessDesc.trim()}
+          disabled={generating}
           className="inline-flex items-center gap-1.5 rounded-lg bg-accent px-4 py-2 text-xs font-medium text-white transition-colors hover:bg-accent-hover disabled:opacity-50"
         >
           {generating ? <Loader2 size={14} className="animate-spin" /> : <Sparkles size={14} />}
-          {generating ? "Generando..." : "Generar textos"}
+          {generating ? "Escribiendo (puede tardar unos minutos)..." : "Proponer textos"}
         </button>
-      </div>}
+        {propuesta && (
+          <div className="mt-4 space-y-3">
+            <div className="flex flex-wrap items-center gap-2">
+              <button
+                type="button"
+                onClick={() => { const malos = new Set(propuesta.errores.filter((e) => e.severity === "error").map((e) => e.path)); setAceptados(Object.entries(propuesta.propuesta).flatMap(([l, t]) => Object.keys(t).map((r) => `${l}:${r}`)).filter((c) => !malos.has(c))); }}
+                className="rounded-lg border border-border px-3 py-1.5 text-[11px] text-text-muted hover:border-accent hover:text-accent"
+              >
+                Marcar todos los válidos
+              </button>
+              <button
+                type="button"
+                onClick={() => setAceptados([])}
+                className="rounded-lg border border-border px-3 py-1.5 text-[11px] text-text-muted hover:border-accent hover:text-accent"
+              >
+                Desmarcar todo
+              </button>
+              <button
+                type="button"
+                onClick={guardarPropuesta}
+                disabled={guardandoPropuesta || aceptados.length === 0}
+                className="inline-flex items-center gap-1.5 rounded-lg bg-accent px-3 py-1.5 text-[11px] font-medium text-white hover:bg-accent-hover disabled:opacity-50"
+              >
+                {guardandoPropuesta ? <Loader2 size={12} className="animate-spin" /> : <Save size={12} />}
+                Guardar propuesta ({aceptados.length})
+              </button>
+              <span className="text-[10px] text-text-muted">
+                {MODELO_TEXTOS} · {propuesta.llamadas.map((x) => `${x.idioma} ${x.input_tokens}/${x.output_tokens}`).join(" · ")} tokens
+              </span>
+            </div>
+            <PropuestaDeTextos propuesta={propuesta.propuesta} errores={propuesta.errores} aceptados={aceptados} onCambio={setAceptados} />
+          </div>
+        )}
+      </div>
 
       {/* Content Sections */}
       {sections.map(section => (
