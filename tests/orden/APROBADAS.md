@@ -31,3 +31,4 @@
 - auditoria-01 · aprobada 2026-10-05 · T 907f5dc · H 76b1535
 - alta-idiomas-01 · aprobada 2026-10-05 · T 3222922 · H 5502f02
 - plantilla-01 · aprobada 2026-10-06 · T 3222922 · H 96cef4b
+- venta-01 · aprobada 2026-10-06 · T 3222922 · H fa5674e
