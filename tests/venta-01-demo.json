@@ -1,0 +1,27 @@
+{
+  "orden": "venta-01",
+  "afirmacion": "W1 (D-271)",
+  "clientId": "demo-demo-plantilla-a-f87b89e8",
+  "hubDoc": "HL4ZHeUQ1qHhOX76UZUu",
+  "deploymentId": "dpl_5AkUNRJdZDy3uqQfKoXLrDhBGVqG",
+  "hub": "local (npm run dev en H 6c6854b + el verde de VENTA-01 sin commitear), en el Chrome de Liam con su sesión de owner",
+  "fecha": "2026-10-06",
+  "tCommit": "3222922",
+  "autorizacion": "Liam, 2026-10-06 (AskUserQuestion): «Sí, las dos» — la OG Image por la casilla y el Redeploy, sólo en esta demo",
+  "pasos": {
+    "ogImage": "Config → Marca e identidad → casilla «OG Image»: og.jpg (la foto del local de la demo, local.jpg de su Storage, JPEG 1672×941, 177146 bytes) subida por /api/upload; el modal de cambios: 1 cambio, brand.ogImage NUEVO; «Confirmar y guardar». brand.ogImage = clients/demo-demo-plantilla-a-f87b89e8/media/images/1791288074652-og.jpg, token 1ea302b03c247bfdbed152e7eadb2abb (el mismo de local.jpg: los mismos bytes)",
+    "redeploy": "botón «Redeploy» de la ficha local: las cuatro variables subidas por upsert (updatedAt 1791288117140) y el deployment pedido después (created 1791288120163)"
+  },
+  "medido": {
+    "variables": ["VITE_BRAND_NAME", "VITE_BRAND_TAGLINE", "VITE_BRAND_DESCRIPTION", "VITE_OG_IMAGE"],
+    "tipo": "plain · production y preview",
+    "deployment": "READY · target production · projectId prj_5NZhSANod9vANczJ1codvYFpAarz · githubCommitSha 322292223b3bd18dbfc03bd1cd16726d7afc82c9",
+    "title": "Demo Plantilla A — צבע, תלתלים ותספורות בתיאום מראש",
+    "ogTitle": "Demo Plantilla A — צבע, תלתלים ותספורות בתיאום מראש",
+    "ogDescription": "סלון קטן לשיער שמתמחה בצבע, בהבהרות ובתספורות לשיער מתולתל, בתיאום מראש ובאווירה רגועה.",
+    "ogImage": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Fdemo-demo-plantilla-a-f87b89e8%2Fmedia%2Fimages%2F1791288074652-og.jpg?alt=media&token=1ea302b03c247bfdbed152e7eadb2abb",
+    "ajeno": "ninguno de «Studio Noa», «רמת גן», «Ramat Gan», «Рамат-Ган», «رمات غان» en el HTML",
+    "antes": "Studio Noa — תספורת, צבע ופן — ברמת גן, og:image de Unsplash, ninguna VITE_BRAND_* en el proyecto"
+  },
+  "notas": "La OG Image es la foto del local que desde-plantilla copió de la plantilla A (material de la plantilla, D-268): sirve para la prueba del link, no para una clienta. tsconfig.json no cambió al levantar next dev (D-259)."
+}

@@ -278,9 +278,13 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
           ...d,
           client: { ...d.client, deployStatus: "building", deployError: undefined },
         } : d);
+      } else {
+        // VENTA-01: si Vercel rechaza las variables del link, no se construye y se dice por qué.
+        const body = await res.json().catch(() => ({}));
+        window.alert(body.error || `Redeploy: error ${res.status}`);
       }
     } catch {
-      // silently fail
+      window.alert("Redeploy: error de conexión");
     }
     setRedeploying(false);
   }

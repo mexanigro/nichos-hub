@@ -25,7 +25,7 @@ export type VercelProvisionResult =
   | { projectId: string; domain: string; status: "error"; stage: "env" | "domain" | "deployment"; deployError: string };
 
 /** Cuerpo de error de Vercel acotado y sin valores de variables (sólo código/mensaje/claves). */
-async function describeFailure(res: Response, failedKeys: string[] = []): Promise<string> {
+export async function describeFailure(res: Response, failedKeys: string[] = []): Promise<string> {
   const body = (await res.json().catch(() => ({}))) as { error?: { code?: string; message?: string; key?: string } };
   const parts = [`HTTP ${res.status}`];
   if (body.error?.code) parts.push(body.error.code);

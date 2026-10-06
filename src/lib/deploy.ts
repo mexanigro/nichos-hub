@@ -2,6 +2,7 @@ import { db } from "@/lib/firebase-admin";
 import { buildAdminEnvVars } from "@/lib/client-env";
 import { resolveOwnerNotificationEmail } from "@/lib/provisioning";
 import { runVercelProvision, type VercelProvisionResult } from "@/lib/deploy-flow";
+import { variablesDeDeploy } from "@/lib/variables-deploy";
 
 const VERCEL_TOKEN = process.env.VERCEL_TOKEN;
 const VERCEL_TEAM_ID = process.env.VERCEL_TEAM_ID;
@@ -118,6 +119,9 @@ export async function deployToVercel({ clientId, niche, hubDocId, demoMode = fal
 
   // R06-ENV: sin la credencial Admin el servidor del template responde 503 en toda su /api.
   envVars.push(...buildAdminEnvVars(process.env));
+
+  // VENTA-01: el nombre, la línea, la descripción y la imagen del link (sólo peluquería, D-267); el config del alta ya está escrito.
+  envVars.push(...variablesDeDeploy(configData, { ...hubData, niche }));
 
   // N08 T1b: crear proyecto → variables (v10 upsert) → dominio → deployment, con fallo cerrado
   // (deploy-flow.ts, con test): si Vercel rechaza variables o dominio, hub_clients queda en "error"
