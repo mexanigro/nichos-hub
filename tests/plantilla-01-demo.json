@@ -1,0 +1,59 @@
+{
+  "orden": "plantilla-01",
+  "afirmacion": "W1 (D-261)",
+  "clientId": "demo-demo-plantilla-a-f87b89e8",
+  "hubDoc": "HL4ZHeUQ1qHhOX76UZUu",
+  "nombre": "Demo Plantilla A",
+  "plantilla": "a",
+  "fecha": "2026-10-05",
+  "hub": "producción (arzac.studio, Railway en H 4b0bc93: el alta, las casillas de equipo y de secciones y el redeploy son iguales a HEAD), en el Chrome de Liam; las consolas con H local (f325230 + el cambio de reseñas vacías)",
+  "tCommit": "3222922",
+  "deploymentId": "dpl_aTm5kNWYBwXyUuxWFUP2AtP4nEXT",
+  "url": "https://demo-demo-plantilla-a-f87b89e8.arzac.studio",
+  "cronometro": {
+    "alta": 2.18,
+    "desdePlantilla": 0.88,
+    "ficha": 4.3,
+    "exportar": 0.02,
+    "escribir": 1.15,
+    "aplicar": 0.23,
+    "redeploy": 1.07,
+    "revision": 3.27
+  },
+  "totalMinutos": 13.1,
+  "segundos": {
+    "alta": "20:00:52 → 20:03:03 (131 s: formulario + «Crear y deployar» hasta «Cliente creado»; el primer deploy del alta quedó READY a las 20:02:19 UTC-3, dpl_6XHMG1cL…)",
+    "desdePlantilla": "20:03:03 → 20:03:56 (53 s: en seco 1,7 s + --aplicar 37,4 s, 28 archivos copiados)",
+    "ficha": "20:04:05 → 20:08:23 (258 s: casilla de Equipo —una persona de demo, las tres del preset quitadas— y «Secciones visibles» → Testimonios apagado; Guardar + «Confirmar y guardar» en el modal de diferencias)",
+    "exportar": "20:08:36 → 20:08:37 (1 s: he 24, en 32, ru 31, ar 32 campos vacíos; avisos: ninguno)",
+    "escribir": "20:08:37 → 20:09:46 (69 s: Claude Code, sin API, 40 textos en 4 idiomas desde el export)",
+    "aplicar": "20:09:46 → 20:10:00 (14 s: en seco 40 entran / 0 salen, y --aplicar)",
+    "redeploy": "20:10:11 → 20:11:15 (64 s: «Redeploy» en la ficha hasta READY por la API de Vercel)",
+    "revision": "20:11:49 → 20:14:08 y 20:31:00 → 20:31:57 (196 s: he, en, ru y ar en la web viva; la segunda pasada después de vaciar las reseñas)"
+  },
+  "avisos": {
+    "desdePlantilla": [
+      "equipo (נועה לוי, מאיה כהן, דנה מזרחי del preset)",
+      "reseñas (ninguna, sección a la vista)"
+    ],
+    "despuesDeLaFicha": [],
+    "aplicar": [],
+    "final": []
+  },
+  "loQueMideLaHoja": {
+    "material": "28 archivos copiados de clients/test-b4-peluqueria-a/media/ a clients/demo-demo-plantilla-a-f87b89e8/media/ (hero 8, services 11, gallery 6, branding 3)",
+    "vaciados": [
+      "hero.eyebrow",
+      "hero.titleSuffix",
+      "sections.services.title",
+      "translations.en.sections.services.title",
+      "translations.ar.sections.services.title"
+    ],
+    "textos": "43 por la consola: he 5 (los tres vaciados del idioma base, brand.tagline y brand.description), en 13, ru 12 y ar 13 (hero entero, títulos vaciados, marca, la persona de demo y la reseña de demostración)",
+    "equipoYResenas": "una persona de demo («מעצבת לדוגמה», id miembro-4) por la casilla de Equipo; una reseña de DEMOSTRACIÓN visible (Liam, 2026-10-05: nombre «Demo · דמו», texto «ביקורת הדגמה: הטקסט הזה הוא דוגמה בלבד ולא נכתב על ידי לקוחה.» por la casilla, y su texto en en, ru y ar por la consola, también marcado como demostración). Antes se probó con la sección oculta: el hero v6 seguía contando las tres reseñas del preset («5.0 · 3 ביקורות», T hero-v6.tsx:186) hasta guardar testimonials: [] (desde ese hallazgo desde-plantilla lo deja solo); y W1 no puede pasar con la sección oculta porque exige features.* igual a la plantilla (contradicción de la hoja, anotada en 4.3.md para el retiro)."
+  },
+  "notas": "Los minutos son de Claude Code manejando la ficha (Claude in Chrome) y las consolas: no incluyen el tiempo de Liam pidiendo y revisando, ni subir fotos o datos reales de una clienta (el demo no los tiene). El cronómetro de la corrección de reseñas (el cambio de desde-plantilla y su guard) queda fuera: es una sola vez; desde ese cambio, desde-plantilla deja testimonials: [] por sí solo.",
+  "pasosExtra": {
+    "reseñasOcultasYLuegoDemo": "20:14:08 → 20:52:24: hallazgo del hero, cambio de desde-plantilla con su guard, testimonials: [] en el demo, la contradicción de W1, y la reseña de demostración (casilla + consola). Fuera del cronómetro: es la corrección de una sola vez, no un paso de una web nueva."
+  }
+}
