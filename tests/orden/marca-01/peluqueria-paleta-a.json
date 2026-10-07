@@ -1,0 +1,1092 @@
+{
+  "navbar": {
+    "variant": "v6"
+  },
+  "footer": {
+    "variant": "v6"
+  },
+  "palette": {
+    "source": "#5d7a57",
+    "origin": "eleccion",
+    "reason": "Elección con lógica de nicho: salvia apagado, neutros teñidos hacia el verde; peluquería sin logo (camino A de SISTEMA-COLOR § 5). Ejemplo «Hadar» aprobado 2026-09-18."
+  },
+  "business": {
+    "type": "peluqueria",
+    "name": "הדר · עיצוב שיער"
+  },
+  "status": "demo",
+  "hero": {
+    "variant": "v6",
+    "eyebrow": "מספרה לנשים בהרצליה פיתוח",
+    "titlePrefix": "הסטודיו",
+    "titleHighlight": "לשיער ולצבע שלך",
+    "titleSuffix": "בהרצליה פיתוח",
+    "subtitle": "תספורות, צבע, גוונים, החלקות ותסרוקות לאירועים — תור אונליין או תמונה בוואטסאפ.",
+    "ctaPrimary": "לקביעת תור",
+    "ctaSecondary": "ייעוץ בוואטסאפ",
+    "video": {
+      "mp4": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-a%2Fmedia%2Fhero%2Fhero.mp4?alt=media&token=1183ab2201bb8aeaac6ee20f4a0d5729",
+      "webm": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-a%2Fmedia%2Fhero%2Fhero.webm?alt=media&token=0230c5b1a8f947797001598cb50cb142",
+      "poster": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-a%2Fmedia%2Fhero%2Fhero-poster.avif?alt=media&token=373f4adfb861c2f8d05219f4e610fd18",
+      "medium": {
+        "mp4": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-a%2Fmedia%2Fhero%2Fhero-1280.mp4?alt=media&token=4cd5652df80ffa7ad57e102081fa9a4b",
+        "webm": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-a%2Fmedia%2Fhero%2Fhero-1280.webm?alt=media&token=803fad48aa09efa7ff34261e933c013d"
+      },
+      "portrait": {
+        "mp4": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-a%2Fmedia%2Fhero%2Fhero-v.mp4?alt=media&token=b176b63310c87d6520465302ab5f3161",
+        "webm": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-a%2Fmedia%2Fhero%2Fhero-v.webm?alt=media&token=917de3200720cd7a921dbe740341e6ab",
+        "poster": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-a%2Fmedia%2Fhero%2Fhero-v-poster.avif?alt=media&token=5a787138aca315b54fe65208b38a4cd1"
+      }
+    }
+  },
+  "sections": {
+    "services": {
+      "variant": "v6",
+      "surface": "velo",
+      "title": "מה עושים אצלנו בהרצליה",
+      "subtitle": "שירותים, מחירים ומה כלול בכל טיפול",
+      "featured": ["cut", "cut-blowdry"],
+      "images": [
+        "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-a%2Fmedia%2Fservices%2Fservicio-1.jpg?alt=media&token=645f31153f4b899980489566c3eb42ff",
+        "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-a%2Fmedia%2Fservices%2Fservicio-2.jpg?alt=media&token=74f95f52beead99e23f6368b9ecd6e37",
+        "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-a%2Fmedia%2Fservices%2Fservicio-3.jpg?alt=media&token=23f6fceaca5448962859849c5ae93021",
+        "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-a%2Fmedia%2Fservices%2Fservicio-4.jpg?alt=media&token=7d7eafef688f589eda06a1a9467dc311",
+        "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-a%2Fmedia%2Fservices%2Fservicio-5.jpg?alt=media&token=205e66ec88cf80eb7e69637577ca3784",
+        "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-a%2Fmedia%2Fservices%2Fservicio-6.jpg?alt=media&token=3e47fcbcad93f8305917eac06b3b16d3",
+        "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-a%2Fmedia%2Fservices%2Fservicio-7.jpg?alt=media&token=092722cc71a2adf85f1b0bd9ca8adf0c",
+        "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-a%2Fmedia%2Fservices%2Fservicio-8.jpg?alt=media&token=75ee5c983c91228a2493969448069da9",
+        "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-a%2Fmedia%2Fservices%2Fservicio-9.jpg?alt=media&token=b668cd4ab837190e1c14dc1322115fca",
+        "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-a%2Fmedia%2Fservices%2Fservicio-10.jpg?alt=media&token=adf8f6646536ccd138e1c727633dfe7c",
+        "",
+        "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-a%2Fmedia%2Fservices%2Fservicio-12.jpg?alt=media&token=6be848636f876f2d33d511d56a4e11be"
+      ]
+    },
+    "gallery": {
+      "surface": "textura",
+      "variant": "v6",
+      "items": [
+        {
+          "id": "g-color",
+          "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-a%2Fmedia%2Fgallery%2Fgaleria-1.jpg?alt=media&token=3ea4613f0c70f63b0dd0dce251115ebd",
+          "type": "color",
+          "alt": "בלאיאז׳ דבש על בסיס ערמוני",
+          "serviceId": "root-color"
+        },
+        {
+          "id": "g-rizos",
+          "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-a%2Fmedia%2Fgallery%2Fgaleria-2.jpg?alt=media&token=3d420897c063889eb8df43cd95f48c9a",
+          "type": "rizos",
+          "alt": "תלתלים מוגדרים 3B"
+        },
+        {
+          "id": "g-liso",
+          "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-a%2Fmedia%2Fgallery%2Fgaleria-3.jpg?alt=media&token=a9bf5c5040bce627393024f33a2364fe",
+          "type": "liso",
+          "alt": "החלקה חלקה עם קצוות ישרים",
+          "serviceId": "straightening"
+        },
+        {
+          "id": "g-recogidos",
+          "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-a%2Fmedia%2Fgallery%2Fgaleria-4.jpg?alt=media&token=d11d4fc0cd092a34f31092377be576dc",
+          "type": "recogidos",
+          "alt": "שיניון נמוך רך",
+          "serviceId": "event-style"
+        },
+        {
+          "id": "g-novia",
+          "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-a%2Fmedia%2Fgallery%2Fgaleria-5.jpg?alt=media&token=316eee13f9436b7a7a720b791b9aae5d",
+          "type": "novia",
+          "alt": "חצי אסוף לכלה עם עלי זית",
+          "serviceId": "bride"
+        },
+        {
+          "id": "g-cortes",
+          "src": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-a%2Fmedia%2Fgallery%2Fgaleria-6.jpg?alt=media&token=903e5c55110928f933a8fb87dea9ed46",
+          "type": "cortes",
+          "alt": "בוב ישר עד הסנטר",
+          "serviceId": "cut"
+        }
+      ],
+      "selection": [
+        "g-color",
+        "g-rizos",
+        "g-liso",
+        "g-recogidos",
+        "g-novia",
+        "g-cortes"
+      ]
+    },
+    "team": {
+      "surface": "velo",
+      "variant": "v6"
+    },
+    "testimonials": {
+      "surface": "textura",
+      "variant": "v6"
+    },
+    "faq": {
+      "surface": "velo",
+      "variant": "v6"
+    },
+    "instagram": {
+      "surface": "textura",
+      "variant": "v6",
+      "images": [
+        "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-a%2Fmedia%2Fgallery%2Fgaleria-1.jpg?alt=media&token=3ea4613f0c70f63b0dd0dce251115ebd",
+        "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-a%2Fmedia%2Fgallery%2Fgaleria-2.jpg?alt=media&token=3d420897c063889eb8df43cd95f48c9a",
+        "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-a%2Fmedia%2Fgallery%2Fgaleria-3.jpg?alt=media&token=a9bf5c5040bce627393024f33a2364fe",
+        "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-a%2Fmedia%2Fgallery%2Fgaleria-4.jpg?alt=media&token=d11d4fc0cd092a34f31092377be576dc",
+        "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-a%2Fmedia%2Fgallery%2Fgaleria-5.jpg?alt=media&token=316eee13f9436b7a7a720b791b9aae5d",
+        "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-a%2Fmedia%2Fgallery%2Fgaleria-6.jpg?alt=media&token=903e5c55110928f933a8fb87dea9ed46"
+      ]
+    },
+    "contact": {
+      "variant": "v6",
+      "surface": "velo"
+    }
+  },
+  "branding": {
+    "localPhoto": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-a%2Fmedia%2Fbranding%2Flocal.jpg?alt=media&token=1ea302b03c247bfdbed152e7eadb2abb",
+    "localPhotoMobile": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-a%2Fmedia%2Fbranding%2Flocal-v.jpg?alt=media&token=830b916fdf81c6ff0446ee5bc4e8cd80",
+    "heroToBackdrop": {
+      "relation": "same-hue",
+      "mechanism": "veil-from-first-pixel",
+      "dH": 0,
+      "dL": 0.079,
+      "foot": {
+        "hex": "#827f82",
+        "L": 0.601,
+        "C": 0.005,
+        "H": 323
+      },
+      "footPortrait": {
+        "hex": "#908b8a",
+        "L": 0.64,
+        "C": 0.006,
+        "H": 27
+      }
+    },
+    "colors": {
+      "surface": "#f5f8f4",
+      "surfaceAlt": "#e9eee7",
+      "text": "#191f18",
+      "textMuted": "#5e665c",
+      "accent": "#5d7a57",
+      "accentStrong": "#4f6b49",
+      "accentForeground": "#f5f8f4",
+      "highlight": "#415b3c",
+      "highlightOnDark": "#c8d8c5",
+      "scrim": "#141913",
+      "background": "#f5f8f4",
+      "foreground": "#191f18",
+      "card": "#f9fbf8",
+      "cardForeground": "#191f18",
+      "border": "#d1d7d0",
+      "muted": "#e9eee7",
+      "mutedForeground": "#5e665c",
+      "primary": "#4f6b49",
+      "primaryForeground": "#f5f8f4",
+      "secondary": "#e9eee7",
+      "secondaryForeground": "#191f18",
+      "accentLight": "#889e84",
+      "surfaceDark": "#141913"
+    },
+    "paletteMeta": {
+      "source": "#5d7a57",
+      "origin": "eleccion",
+      "reason": "Elección con lógica de nicho: salvia apagado, neutros teñidos hacia el verde; peluquería sin logo (camino A de SISTEMA-COLOR § 5). Ejemplo «Hadar» aprobado 2026-09-18.",
+      "derivedAt": "2026-09-19T00:44:36.800Z",
+      "niche": "peluqueria"
+    },
+    "mode": "light",
+    "texture": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-a%2Fmedia%2Fbranding%2Ftextura.jpg?alt=media&token=aa97b2e37f28390190e307bbabe4c8f2"
+  },
+  "brand": {
+    "name": "הדר · עיצוב שיער",
+    "tagline": "מספרה לנשים בהרצליה פיתוח",
+    "description": "הדר — מספרה לנשים בהרצליה פיתוח: תספורות ופן, צבע וגוונים, בליאז׳, החלקה אורגנית, טיפולי שיקום ותסרוקות לאירועים ולכלות. תור אונליין או תמונה בוואטסאפ.",
+    "logo": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-a%2Fmedia%2Fbranding%2Flogo.png?alt=media&token=a6b2f00a8517b4b1762b60e314b591cc",
+    "logoDark": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-a%2Fmedia%2Fbranding%2Flogo-dark.png?alt=media&token=653ec5680b6f1cc023cf66c009e9515a"
+  },
+  "contact": {
+    "phone": "+972 3-000-0000",
+    "email": "hello@example.com",
+    "address": {
+      "street": "רחוב המנופים",
+      "district": "הרצליה פיתוח",
+      "cityStateZip": "הרצליה"
+    }
+  },
+  "services": [
+    {
+      "id": "cut",
+      "name": "תספורת אישה כולל ייעוץ ופן",
+      "description": "ייעוץ אישי, חפיפה מפנקת, תספורת מדויקת לפי מבנה הפנים וייבוש מקצועי בסיום.",
+      "duration": 90,
+      "price": 180,
+      "priceMax": 420,
+      "mode": "reserva"
+    },
+    {
+      "id": "cut-blowdry",
+      "name": "תספורת + פן מעוצב לאירוע",
+      "description": "תספורת מלאה ופן מעוצב, חלק או גלי, לפי בקשתך.",
+      "duration": 120,
+      "price": 220,
+      "priceMax": 520,
+      "mode": "reserva"
+    },
+    {
+      "id": "blowdry",
+      "name": "פן מקצועי לשיער ארוך במיוחד",
+      "description": "חפיפה, טיפול לחות קצר ופן חלק או גלי שמחזיק עד שלושה ימים.",
+      "duration": 60,
+      "price": 90,
+      "priceMax": 220,
+      "mode": "reserva"
+    },
+    {
+      "id": "root-color",
+      "name": "צבע שורש עם טיפול משקם",
+      "description": "כיסוי שורש בצבע מקצועי ללא אמוניה, כולל חפיפה, טיפול משקם קצר וייבוש.",
+      "duration": 120,
+      "price": 190,
+      "priceMax": 380,
+      "mode": "reserva"
+    },
+    {
+      "id": "full-color",
+      "name": "צבע מלא בגוון אישי",
+      "description": "צבע אחיד מהשורש עד הקצוות, בגוון שבוחרים יחד.",
+      "duration": 150,
+      "price": 260,
+      "priceMax": 780,
+      "mode": "reserva"
+    },
+    {
+      "id": "highlights",
+      "name": "גוונים / בליאז׳ / אומברה מלא",
+      "description": "הבהרה בטכניקה חופשית, עם מעברים טבעיים לפי גוון העור.",
+      "duration": 240,
+      "price": 1200,
+      "priceMax": 2500,
+      "mode": "consulta",
+      "popular": true
+    },
+    {
+      "id": "straightening",
+      "name": "החלקה אורגנית",
+      "description": "החלקה אורגנית לשיער חלק ומבריק שמחזיקה 4–6 חודשים.",
+      "duration": 240,
+      "price": 900,
+      "priceMax": 2800,
+      "mode": "consulta"
+    },
+    {
+      "id": "treatment",
+      "name": "טיפול שיקום עמוק",
+      "description": "טיפול עומק שמחזיר לשיער הפגום רכות וברק.",
+      "duration": 60,
+      "price": 580,
+      "priceMax": 1100,
+      "mode": "reserva"
+    },
+    {
+      "id": "event-style",
+      "name": "תסרוקת לאירוע",
+      "description": "אסוף, גלים או תסרוקת חלקה, לפי האירוע והשמלה.",
+      "duration": 90,
+      "price": 250,
+      "priceMax": 800,
+      "mode": "reserva"
+    },
+    {
+      "id": "bride",
+      "name": "תסרוקת כלה + ניסיון",
+      "description": "פגישת ניסיון לפני, ותסרוקת מלאה ביום החתונה עצמו.",
+      "duration": 120,
+      "price": 800,
+      "priceMax": 2500,
+      "mode": "consulta"
+    },
+    {
+      "id": "kids-cut",
+      "name": "תספורת ילדים",
+      "description": "תספורת לילדים עד גיל 12, רצוי בשעות הבוקר.",
+      "duration": 30,
+      "price": 90,
+      "priceMax": 220,
+      "mode": "reserva"
+    },
+    {
+      "id": "consult",
+      "name": "ייעוץ ואבחון",
+      "description": "שיחה של 10–15 דקות על השיער שלך, בלי התחייבות.",
+      "duration": 15,
+      "price": 0,
+      "mode": "reserva"
+    }
+  ],
+  "testimonials": [
+    {
+      "id": "a1",
+      "lang": "he",
+      "name": "יעל ב.",
+      "rating": 5,
+      "service": "בליאז׳",
+      "text": "שווה כל שקל."
+    },
+    {
+      "id": "a2",
+      "lang": "he",
+      "name": "מיכל ר.",
+      "rating": 5,
+      "service": "צבע",
+      "text": "נועה הגיעה בדיוק לגוון מהתמונה, כבר בפעם הראשונה."
+    },
+    {
+      "id": "a3",
+      "lang": "he",
+      "name": "שירה א.",
+      "rating": 5,
+      "service": "תספורת לשיער מתולתל",
+      "text": "אחרי שנים של תספורות שלא הבינו תלתלים, מאיה חתכה יבש, תלתל אחרי תלתל, והסבירה לי איך לייבש בבית. זו הפעם הראשונה שהשיער נראה אותו דבר גם שבוע אחרי."
+    },
+    {
+      "id": "a4",
+      "lang": "he",
+      "name": "רוני ג.",
+      "rating": 5,
+      "service": "פן",
+      "text": "פן שמחזיק שלושה ימים."
+    },
+    {
+      "id": "a5",
+      "lang": "he",
+      "name": "אורית ש.",
+      "rating": 4,
+      "service": "צבע שורש",
+      "text": "צבע מעולה ואווירה נעימה מאוד, רק חיכיתי קצת יותר מהצפוי."
+    },
+    {
+      "id": "a6",
+      "lang": "he",
+      "name": "דנה ל.",
+      "rating": 5,
+      "service": "תסרוקת כלה",
+      "text": "עשינו ניסיון חודש לפני החתונה, ובבוקר דנה הגיעה אליי עם הכול מוכן. התסרוקת החזיקה עד הריקוד האחרון, ובתמונות היא נראית בדיוק כמו שדמיינתי."
+    },
+    {
+      "id": "a7",
+      "lang": "he",
+      "name": "טל מ.",
+      "rating": 5,
+      "service": "החלקה אורגנית",
+      "text": "השיער רך וחלק כבר חודשיים, בלי ריח ובלי צריבה."
+    },
+    {
+      "id": "a8",
+      "lang": "he",
+      "name": "הילה ק.",
+      "rating": 5,
+      "service": "תספורת ילדים",
+      "text": "הבת שלי בת חמש ישבה רגועה עד הסוף, וזה כבר אומר הכול."
+    }
+  ],
+  "gallery": [
+    "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-a%2Fmedia%2Fgallery%2Fgaleria-1.jpg?alt=media&token=3ea4613f0c70f63b0dd0dce251115ebd",
+    "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-a%2Fmedia%2Fgallery%2Fgaleria-2.jpg?alt=media&token=3d420897c063889eb8df43cd95f48c9a",
+    "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-a%2Fmedia%2Fgallery%2Fgaleria-3.jpg?alt=media&token=a9bf5c5040bce627393024f33a2364fe",
+    "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-a%2Fmedia%2Fgallery%2Fgaleria-4.jpg?alt=media&token=d11d4fc0cd092a34f31092377be576dc",
+    "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-a%2Fmedia%2Fgallery%2Fgaleria-5.jpg?alt=media&token=316eee13f9436b7a7a720b791b9aae5d",
+    "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-a%2Fmedia%2Fgallery%2Fgaleria-6.jpg?alt=media&token=903e5c55110928f933a8fb87dea9ed46"
+  ],
+  "staff": [
+    {
+      "id": "noa",
+      "slug": "noa-levi",
+      "name": "נועה לוי",
+      "photoUrl": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-a%2Fmedia%2Fstaff%2Fretrato-1.jpg?alt=media&token=39d42802d3b3974aca12f03e53a0a1f4",
+      "specialty": "צבע, בליאז׳ והבהרות",
+      "bio": "בעלת הסטודיו. 14 שנים בצבע ובהבהרות, עם דגש על מעברים טבעיים ושיער שנשאר בריא אחרי הצבע.",
+      "portfolio": [
+        "https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1470259078422-826894b933aa?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1524502397800-2eeaad7c3fe5?auto=format&fit=crop&q=80&w=1200"
+      ],
+      "schedule": {
+        "sunday": {
+          "isOpen": true,
+          "hours": {
+            "start": "09:00",
+            "end": "20:00"
+          },
+          "breaks": [
+            {
+              "start": "14:00",
+              "end": "14:30",
+              "label": "הפסקה"
+            }
+          ]
+        },
+        "monday": {
+          "isOpen": true,
+          "hours": {
+            "start": "09:00",
+            "end": "20:00"
+          },
+          "breaks": [
+            {
+              "start": "14:00",
+              "end": "14:30",
+              "label": "הפסקה"
+            }
+          ]
+        },
+        "tuesday": {
+          "isOpen": true,
+          "hours": {
+            "start": "09:00",
+            "end": "20:00"
+          },
+          "breaks": [
+            {
+              "start": "14:00",
+              "end": "14:30",
+              "label": "הפסקה"
+            }
+          ]
+        },
+        "wednesday": {
+          "isOpen": true,
+          "hours": {
+            "start": "09:00",
+            "end": "20:00"
+          },
+          "breaks": [
+            {
+              "start": "14:00",
+              "end": "14:30",
+              "label": "הפסקה"
+            }
+          ]
+        },
+        "thursday": {
+          "isOpen": true,
+          "hours": {
+            "start": "09:00",
+            "end": "20:00"
+          },
+          "breaks": [
+            {
+              "start": "14:00",
+              "end": "14:30",
+              "label": "הפסקה"
+            }
+          ]
+        },
+        "friday": {
+          "isOpen": true,
+          "hours": {
+            "start": "08:00",
+            "end": "14:00"
+          },
+          "breaks": []
+        },
+        "saturday": {
+          "isOpen": false,
+          "hours": {
+            "start": "00:00",
+            "end": "00:00"
+          },
+          "breaks": []
+        }
+      }
+    },
+    {
+      "id": "maya",
+      "slug": "maya-cohen",
+      "name": "מאיה כהן",
+      "photoUrl": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-a%2Fmedia%2Fstaff%2Fretrato-2.jpg?alt=media&token=f2a6c5f15dc718202667537d8be4887e",
+      "specialty": "תספורות ושיער מתולתל",
+      "bio": "מתמחה בתספורות לפי מרקם — ובעיקר בתלתלים. חותכת יבש כשצריך, ומלמדת איך לשמור על התוצאה בבית.",
+      "portfolio": [
+        "https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&q=80&w=1200"
+      ],
+      "schedule": {
+        "sunday": {
+          "isOpen": true,
+          "hours": {
+            "start": "09:00",
+            "end": "20:00"
+          },
+          "breaks": [
+            {
+              "start": "14:00",
+              "end": "14:30",
+              "label": "הפסקה"
+            }
+          ]
+        },
+        "monday": {
+          "isOpen": true,
+          "hours": {
+            "start": "09:00",
+            "end": "20:00"
+          },
+          "breaks": [
+            {
+              "start": "14:00",
+              "end": "14:30",
+              "label": "הפסקה"
+            }
+          ]
+        },
+        "tuesday": {
+          "isOpen": false,
+          "hours": {
+            "start": "00:00",
+            "end": "00:00"
+          },
+          "breaks": []
+        },
+        "wednesday": {
+          "isOpen": true,
+          "hours": {
+            "start": "09:00",
+            "end": "20:00"
+          },
+          "breaks": [
+            {
+              "start": "14:00",
+              "end": "14:30",
+              "label": "הפסקה"
+            }
+          ]
+        },
+        "thursday": {
+          "isOpen": true,
+          "hours": {
+            "start": "09:00",
+            "end": "20:00"
+          },
+          "breaks": [
+            {
+              "start": "14:00",
+              "end": "14:30",
+              "label": "הפסקה"
+            }
+          ]
+        },
+        "friday": {
+          "isOpen": true,
+          "hours": {
+            "start": "08:00",
+            "end": "14:00"
+          },
+          "breaks": []
+        },
+        "saturday": {
+          "isOpen": false,
+          "hours": {
+            "start": "00:00",
+            "end": "00:00"
+          },
+          "breaks": []
+        }
+      }
+    },
+    {
+      "id": "dana",
+      "slug": "dana-mizrahi",
+      "name": "דנה מזרחי",
+      "photoUrl": "https://firebasestorage.googleapis.com/v0/b/barbertemplate-madre.firebasestorage.app/o/clients%2Ftest-b4-peluqueria-a%2Fmedia%2Fstaff%2Fretrato-3.jpg?alt=media&token=d5c7a0793f5665459d10cbf3ff573a74",
+      "specialty": "תסרוקות לאירועים וכלות",
+      "bio": "תסרוקות שמחזיקות עד סוף הלילה. פגישת ניסיון לכל כלה, והגעה ללוקיישן ביום האירוע.",
+      "portfolio": [
+        "https://images.unsplash.com/photo-1560869713-7d0a29430803?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1519741497674-6114818635?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1523263685509-57c1d050d19b?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?auto=format&fit=crop&q=80&w=1200"
+      ],
+      "schedule": {
+        "sunday": {
+          "isOpen": false,
+          "hours": {
+            "start": "00:00",
+            "end": "00:00"
+          },
+          "breaks": []
+        },
+        "monday": {
+          "isOpen": true,
+          "hours": {
+            "start": "09:00",
+            "end": "20:00"
+          },
+          "breaks": [
+            {
+              "start": "14:00",
+              "end": "14:30",
+              "label": "הפסקה"
+            }
+          ]
+        },
+        "tuesday": {
+          "isOpen": true,
+          "hours": {
+            "start": "09:00",
+            "end": "20:00"
+          },
+          "breaks": [
+            {
+              "start": "14:00",
+              "end": "14:30",
+              "label": "הפסקה"
+            }
+          ]
+        },
+        "wednesday": {
+          "isOpen": true,
+          "hours": {
+            "start": "09:00",
+            "end": "20:00"
+          },
+          "breaks": [
+            {
+              "start": "14:00",
+              "end": "14:30",
+              "label": "הפסקה"
+            }
+          ]
+        },
+        "thursday": {
+          "isOpen": true,
+          "hours": {
+            "start": "09:00",
+            "end": "20:00"
+          },
+          "breaks": [
+            {
+              "start": "14:00",
+              "end": "14:30",
+              "label": "הפסקה"
+            }
+          ]
+        },
+        "friday": {
+          "isOpen": true,
+          "hours": {
+            "start": "08:00",
+            "end": "14:00"
+          },
+          "breaks": []
+        },
+        "saturday": {
+          "isOpen": false,
+          "hours": {
+            "start": "00:00",
+            "end": "00:00"
+          },
+          "breaks": []
+        }
+      }
+    }
+  ],
+  "translations": {
+    "en": {
+      "brand": {
+        "tagline": "Women's hair salon in Herzliya Pituach",
+        "description": "Hadar — a women’s hair salon in Herzliya Pituach: cuts and blow-dries, colour and highlights, balayage, organic straightening, repair treatments and styling for events and brides. Book online or send a photo on WhatsApp."
+      },
+      "contact": {
+        "address": {
+          "street": "HaMenofim St",
+          "district": "Herzliya Pituach",
+          "cityStateZip": "Herzliya"
+        }
+      },
+      "sections": {
+        "gallery": {
+          "alts": {
+            "g-color": "Colour: honey balayage on a chestnut base",
+            "g-rizos": "Curls: defined 3B curls",
+            "g-liso": "Straight: sleek hair with a blunt hem",
+            "g-recogidos": "Up-do: soft low chignon",
+            "g-novia": "Bridal: half-up with olive leaves",
+            "g-cortes": "Cut: blunt chin-length bob"
+          }
+        },
+        "services": {
+          "title": "Our work in Herzliya",
+          "subtitle": "Services, prices and what each includes"
+        }
+      },
+      "services": {
+        "cut": {
+          "name": "Cut, consultation and blow-dry",
+          "description": "Consultation, a relaxing wash, a cut shaped to your face, blow-dry."
+        },
+        "cut-blowdry": {
+          "name": "Event cut and styled blow-dry",
+          "description": "A full cut finished with a smooth or wavy styled blow-dry."
+        },
+        "blowdry": {
+          "name": "Blow-dry for extra-long hair",
+          "description": "Wash, a quick moisture treatment and a blow-dry that lasts three days."
+        },
+        "root-color": {
+          "name": "Root colour with repair treatment",
+          "description": "Ammonia-free root colour, including wash, a short repair treatment and dry."
+        },
+        "full-color": {
+          "name": "Full colour, personal shade",
+          "description": "Even colour from root to tip, in a shade we choose together."
+        },
+        "highlights": {
+          "name": "Highlights, balayage or ombré",
+          "description": "Freehand lightening with natural transitions, matched to your skin tone."
+        },
+        "straightening": {
+          "name": "Organic straightening",
+          "description": "Organic straightening for smooth, shiny hair that lasts 4–6 months."
+        },
+        "treatment": {
+          "name": "Deep repair treatment",
+          "description": "A deep treatment that brings softness and shine back to damaged hair."
+        },
+        "event-style": {
+          "name": "Event styling",
+          "description": "An updo, soft waves or a sleek look, to suit the occasion."
+        },
+        "bride": {
+          "name": "Bridal hair with trial",
+          "description": "A trial session beforehand, then your full look on the wedding day."
+        },
+        "kids-cut": {
+          "name": "Kids' haircut",
+          "description": "Haircuts for children up to age 12, best booked in the morning."
+        },
+        "consult": {
+          "name": "Consultation and diagnosis",
+          "description": "A 10–15 minute chat about your hair, with no commitment."
+        }
+      },
+      "staff": {
+        "noa": {
+          "name": "Noa Levi",
+          "specialty": "Colour, balayage and lightening",
+          "bio": "Studio owner. 14 years in colour and lightening, focused on natural transitions and hair that stays healthy after colour."
+        },
+        "maya": {
+          "name": "Maya Cohen",
+          "specialty": "Cuts and curly hair",
+          "bio": "Cuts by texture, especially curls. Dry-cuts when needed and shows you how to keep the result at home."
+        },
+        "dana": {
+          "name": "Dana Mizrahi",
+          "specialty": "Event and bridal hair",
+          "bio": "Styles that last until the end of the night. A trial for every bride, and on-location styling on the day."
+        }
+      },
+      "testimonials": {
+        "a1": {
+          "text": "Worth every shekel.",
+          "service": "Balayage"
+        },
+        "a2": {
+          "text": "Noa matched the shade from my photo, first time round.",
+          "service": "Colour"
+        },
+        "a3": {
+          "text": "After years of cuts that didn't get curls, Maya cut dry, curl by curl, and showed me how to dry it at home. It's the first time my hair looks the same a week later.",
+          "service": "Curly cut"
+        },
+        "a4": {
+          "text": "A blow-dry that lasts three days.",
+          "service": "Blow-dry"
+        },
+        "a5": {
+          "text": "Great colour and a lovely atmosphere — I just waited a little longer than expected.",
+          "service": "Root colour"
+        },
+        "a6": {
+          "text": "We did a trial a month before the wedding, and on the morning Dana came to me with everything ready. The hair held until the last dance, and in the photos it looks exactly as I imagined.",
+          "service": "Bridal hair"
+        },
+        "a7": {
+          "text": "Soft, smooth hair for two months now — no smell, no stinging.",
+          "service": "Organic straightening"
+        },
+        "a8": {
+          "text": "My five-year-old sat calmly right to the end, which says it all.",
+          "service": "Kids' haircut"
+        }
+      }
+    },
+    "ru": {
+      "brand": {
+        "tagline": "Женская парикмахерская в Герцлии-Питуах",
+        "description": "Хадар — женская парикмахерская в Герцлии-Питуах: стрижки и укладки, окрашивание и мелирование, балаяж, органическое выпрямление, восстанавливающий уход и причёски для торжеств и невест. Запись онлайн или фото в WhatsApp."
+      },
+      "contact": {
+        "address": {
+          "street": "ул. ха-Менофим",
+          "district": "Герцлия-Питуах",
+          "cityStateZip": "Герцлия"
+        }
+      },
+      "sections": {
+        "gallery": {
+          "alts": {
+            "g-color": "Окрашивание: медовый балаяж на каштановой базе",
+            "g-rizos": "Кудри: чёткие локоны 3B",
+            "g-liso": "Выпрямление: гладкие волосы с ровным срезом",
+            "g-recogidos": "Причёска: мягкий низкий пучок",
+            "g-novia": "Свадебная: полусобранные волосы с листьями оливы",
+            "g-cortes": "Стрижка: ровное каре до подбородка"
+          }
+        },
+        "services": {
+          "title": "Наша работа в Герцлии",
+          "subtitle": "Услуги, цены и что входит"
+        }
+      },
+      "services": {
+        "cut": {
+          "name": "Женская стрижка с укладкой",
+          "description": "Консультация, мытьё с уходом, стрижка по форме лица и укладка."
+        },
+        "cut-blowdry": {
+          "name": "Стрижка и укладка к событию",
+          "description": "Полная стрижка и укладка, гладкая или волнистая, как вы захотите."
+        },
+        "blowdry": {
+          "name": "Укладка для очень длинных волос",
+          "description": "Мытьё, быстрый увлажняющий уход и укладка, которая держится до трёх дней."
+        },
+        "root-color": {
+          "name": "Окрашивание корней и уход",
+          "description": "Окрашивание корней без аммиака, мытьё, короткий восстанавливающий уход и сушка."
+        },
+        "full-color": {
+          "name": "Окрашивание в ваш оттенок",
+          "description": "Ровный цвет от корней до кончиков в оттенке, который выбираем вместе."
+        },
+        "highlights": {
+          "name": "Мелирование, балаяж или омбре",
+          "description": "Осветление в свободной технике с естественными переходами под ваш тон кожи."
+        },
+        "straightening": {
+          "name": "Органическое выпрямление",
+          "description": "Органическое выпрямление для гладких, блестящих волос на 4–6 месяцев."
+        },
+        "treatment": {
+          "name": "Глубокое восстановление",
+          "description": "Глубокий уход, который возвращает повреждённым волосам мягкость и блеск."
+        },
+        "event-style": {
+          "name": "Причёска на мероприятие",
+          "description": "Собранная причёска, волны или гладкая укладка под событие и образ."
+        },
+        "bride": {
+          "name": "Свадебная причёска и проба",
+          "description": "Пробная встреча заранее и полная причёска в день свадьбы."
+        },
+        "kids-cut": {
+          "name": "Детская стрижка",
+          "description": "Стрижка для детей до 12 лет, лучше записываться на утро."
+        },
+        "consult": {
+          "name": "Консультация и диагностика",
+          "description": "Разговор о ваших волосах на 10–15 минут, без обязательств."
+        }
+      },
+      "staff": {
+        "noa": {
+          "name": "Ноа Леви",
+          "specialty": "Окрашивание, балаяж и осветление",
+          "bio": "Владелица студии. 14 лет в окрашивании и осветлении: естественные переходы и волосы, которые остаются здоровыми после цвета."
+        },
+        "maya": {
+          "name": "Майя Коэн",
+          "specialty": "Стрижки и кудрявые волосы",
+          "bio": "Стрижки по текстуре волос, особенно кудри. Стрижёт по сухим, когда нужно, и учит сохранять результат дома."
+        },
+        "dana": {
+          "name": "Дана Мизрахи",
+          "specialty": "Причёски для мероприятий и невест",
+          "bio": "Причёски, которые держатся до конца вечера. Пробная встреча для каждой невесты и выезд в день торжества."
+        }
+      },
+      "testimonials": {
+        "a1": {
+          "text": "Стоит каждого шекеля.",
+          "service": "Балаяж"
+        },
+        "a2": {
+          "text": "Ноа попала точно в оттенок с фотографии — с первого раза.",
+          "service": "Окрашивание"
+        },
+        "a3": {
+          "text": "После многих лет стрижек, которые не понимали кудри, Майя стригла по сухим, локон за локоном, и показала, как сушить дома. Впервые волосы и через неделю выглядят так же.",
+          "service": "Стрижка кудрей"
+        },
+        "a4": {
+          "text": "Укладка держится три дня.",
+          "service": "Укладка"
+        },
+        "a5": {
+          "text": "Отличный цвет и очень приятная атмосфера, только ждать пришлось чуть дольше, чем я думала.",
+          "service": "Окрашивание корней"
+        },
+        "a6": {
+          "text": "Пробную причёску сделали за месяц до свадьбы, а утром Дана приехала ко мне со всем необходимым. Причёска продержалась до последнего танца, и на фото всё именно так, как я представляла.",
+          "service": "Свадебная причёска"
+        },
+        "a7": {
+          "text": "Волосы мягкие и гладкие уже два месяца — без запаха и без жжения.",
+          "service": "Органическое выпрямление"
+        },
+        "a8": {
+          "text": "Моя пятилетняя дочка спокойно просидела до самого конца — этим всё сказано.",
+          "service": "Детская стрижка"
+        }
+      }
+    },
+    "ar": {
+      "brand": {
+        "tagline": "صالون شعر نسائي في هرتسليا بيتوح",
+        "description": "هدار — صالون شعر نسائي في هرتسليا بيتوح: قصّات وتصفيف، صبغة وخصلات، بالياج، تمليس عضوي، علاجات ترميم وتسريحات للمناسبات والعرائس. حجز أونلاين أو صورة عبر واتساب."
+      },
+      "contact": {
+        "address": {
+          "street": "شارع هامنوفيم",
+          "district": "هرتسليا بيتوح",
+          "cityStateZip": "هرتسليا"
+        }
+      },
+      "sections": {
+        "gallery": {
+          "alts": {
+            "g-color": "صبغة: بالياج عسلي على قاعدة كستنائية",
+            "g-rizos": "تجعيد: تجعيدات محددة 3B",
+            "g-liso": "فرد: شعر ناعم بقصّة مستقيمة",
+            "g-recogidos": "تسريحة: كعكة منخفضة ناعمة",
+            "g-novia": "عروس: نصف رفعة مع أوراق زيتون",
+            "g-cortes": "قصّة: بوب مستقيم حتى الذقن"
+          }
+        },
+        "services": {
+          "title": "ماذا نقدّم في هرتسليا",
+          "subtitle": "الخدمات والأسعار وما تشمله كل خدمة"
+        }
+      },
+      "services": {
+        "cut": {
+          "name": "قصّة مع استشارة وتصفيف",
+          "description": "استشارة شخصية، غسيل مريح، قصّة تناسب شكل الوجه وتصفيف احترافي في النهاية."
+        },
+        "cut-blowdry": {
+          "name": "قصّة وتصفيف لمناسبة",
+          "description": "قصّة كاملة مع تصفيف ناعم أو مموّج حسب رغبتك."
+        },
+        "blowdry": {
+          "name": "تصفيف للشعر الطويل جدًا",
+          "description": "غسيل، ترطيب سريع وتصفيف ناعم أو مموّج يدوم حتى ثلاثة أيام."
+        },
+        "root-color": {
+          "name": "صبغ الجذور مع علاج مرمّم",
+          "description": "صبغ الجذور بلون احترافي خالٍ من الأمونيا، مع غسيل وعلاج قصير وتجفيف."
+        },
+        "full-color": {
+          "name": "صبغ كامل بدرجة تناسبك",
+          "description": "لون متساوٍ من الجذور حتى الأطراف، بدرجة نختارها معًا."
+        },
+        "highlights": {
+          "name": "هايلايت، بالياج أو أومبري",
+          "description": "تفتيح بتقنية حرّة مع انتقالات طبيعية تناسب لون بشرتك."
+        },
+        "straightening": {
+          "name": "فرد عضوي",
+          "description": "فرد عضوي لشعر ناعم ولامع يدوم من 4 إلى 6 أشهر."
+        },
+        "treatment": {
+          "name": "علاج ترميم عميق",
+          "description": "علاج عميق يعيد النعومة واللمعان للشعر المتضرر."
+        },
+        "event-style": {
+          "name": "تسريحة لمناسبة",
+          "description": "رفعة، تموّجات أو تسريحة ناعمة تناسب المناسبة والإطلالة."
+        },
+        "bride": {
+          "name": "تسريحة عروس مع تجربة",
+          "description": "جلسة تجربة مسبقة، ثم تسريحتك الكاملة في يوم الزفاف."
+        },
+        "kids-cut": {
+          "name": "قصّة للأطفال",
+          "description": "قصّة للأطفال حتى عمر 12 عامًا، ويُفضّل الحجز صباحًا."
+        },
+        "consult": {
+          "name": "استشارة وتشخيص",
+          "description": "حديث لمدة 10–15 دقيقة عن شعرك، دون أي التزام."
+        }
+      },
+      "staff": {
+        "noa": {
+          "name": "نوعا ليفي",
+          "specialty": "صبغ، بالياج وتفتيح",
+          "bio": "صاحبة الاستوديو. 14 عامًا في الصبغ والتفتيح، مع تركيز على الانتقالات الطبيعية وشعر يبقى صحيًا بعد الصبغ."
+        },
+        "maya": {
+          "name": "مايا كوهين",
+          "specialty": "قصّات وشعر مجعّد",
+          "bio": "قصّات حسب ملمس الشعر، وخاصة الشعر المجعّد. تقصّ على الشعر الجاف عند الحاجة وتعلّمك الحفاظ على النتيجة في البيت."
+        },
+        "dana": {
+          "name": "دانا مزراحي",
+          "specialty": "تسريحات المناسبات والعرائس",
+          "bio": "تسريحات تدوم حتى نهاية الليلة. جلسة تجربة لكل عروس، والوصول إلى موقع المناسبة في يومها."
+        }
+      },
+      "testimonials": {
+        "a1": {
+          "text": "يستحق كل شيكل.",
+          "service": "بالياج"
+        },
+        "a2": {
+          "text": "نوعا وصلت إلى اللون الذي في الصورة تمامًا، من المرة الأولى.",
+          "service": "صبغ"
+        },
+        "a3": {
+          "text": "بعد سنوات من قصّات لا تفهم الشعر المجعّد، قصّت مايا على الشعر الجاف، خصلة خصلة، وشرحت لي كيف أجفّفه في البيت. أول مرة يبقى شعري كما هو حتى بعد أسبوع.",
+          "service": "قصّة للشعر المجعّد"
+        },
+        "a4": {
+          "text": "سشوار يصمد ثلاثة أيام.",
+          "service": "سشوار"
+        },
+        "a5": {
+          "text": "لون ممتاز وجو لطيف جدًا، فقط انتظرت أكثر قليلًا مما توقعت.",
+          "service": "صبغ الجذور"
+        },
+        "a6": {
+          "text": "عملنا تجربة قبل العرس بشهر، وفي الصباح جاءت دانا إليّ ومعها كل شيء. التسريحة صمدت حتى آخر رقصة، وفي الصور تبدو تمامًا كما تخيّلتها.",
+          "service": "تسريحة عروس"
+        },
+        "a7": {
+          "text": "شعري ناعم ومنسدل منذ شهرين، بلا رائحة وبلا حرقة.",
+          "service": "فرد عضوي"
+        },
+        "a8": {
+          "text": "ابنتي ذات الخمس سنوات جلست هادئة حتى النهاية، وهذا يقول كل شيء.",
+          "service": "قصّة أطفال"
+        }
+      }
+    }
+  }
+}
