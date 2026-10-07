@@ -1,0 +1,244 @@
+{
+ "orden": "marca-01",
+ "clientId": "demo--50af4398",
+ "hubDoc": "jDPjEmwXtYXDzEewOokO",
+ "proyecto": "prj_lcHDkOkhgf3VRSkkfRzzyiNKUoNp",
+ "deployment": "dpl_AmMK7eXBED9trsH31zbeGTPfVDSN",
+ "commitT": "d284227",
+ "readyAt": "2026-10-07T19:42:50.288Z",
+ "nota": "Minutos de reloj de la sesión B (2026-10-07), con Claude Code manejando la consola, ChatGPT en el Chrome de Liam y la ficha. «chatgpt»: 15 conversaciones, 4 en paralelo (14 fotos + 1 repetida: la galería 2 cayó por T y se pidió de nuevo con el mismo pedido); los servicios 2–10 y 12 y la galería 1 se pidieron con el pedido anterior al arreglo de «niños» (sólo cambia la línea PERSON). «subir» incluye el guardado que borró branding.heroToBackdrop y dejó Instagram en las urls de la galería. Sin el tiempo de Liam ni el de juntar el material de la clienta.",
+ "pasos": [
+  {
+   "paso": "pedidos",
+   "minutos": 0.02
+  },
+  {
+   "paso": "graduar",
+   "minutos": 4.07
+  },
+  {
+   "paso": "chatgpt",
+   "minutos": 18.67
+  },
+  {
+   "paso": "subir",
+   "minutos": 0.58
+  },
+  {
+   "paso": "aprobar",
+   "minutos": 0.75
+  },
+  {
+   "paso": "redeploy",
+   "minutos": 0.63
+  },
+  {
+   "paso": "revisión",
+   "minutos": 9.2
+  }
+ ],
+ "huecos": [
+  {
+   "ruta": "staff.0.photoUrl",
+   "origen": "real: foto pública de la estilista (Google Maps/easy.co.il, retocada en ChatGPT antes; a confirmar que es Yulia), graduada sólo en los neutros",
+   "excepcion": "su retrato",
+   "sha256": "d86ec6dd058541d73cf206f6d496d5da64b5473162103fbb16200daf6d89e7d8"
+  },
+  {
+   "ruta": "hero.video.mp4",
+   "origen": "material de la plantilla A graduado a su paleta (graduar.mjs)",
+   "sha256": "8e27fb7d79f12d8e208be4214615f82c976faf765e216e65402082a1ca6e743c"
+  },
+  {
+   "ruta": "hero.video.medium.mp4",
+   "origen": "material de la plantilla A graduado a su paleta (graduar.mjs)",
+   "sha256": "0540972e880c1acc4a4ebd8272aaae7dcd1b33f72de6a6646113ec28726972e7"
+  },
+  {
+   "ruta": "hero.video.medium.webm",
+   "origen": "material de la plantilla A graduado a su paleta (graduar.mjs)",
+   "sha256": "b35250cada5054943cc7364ce0f42106a407d0de2fcb0d7df065c86cfe9242ad"
+  },
+  {
+   "ruta": "hero.video.portrait.mp4",
+   "origen": "material de la plantilla A graduado a su paleta (graduar.mjs)",
+   "sha256": "73fd4b3adcebd5de87fff79ccd41c31a3e4a5cf7e0a4a4399755a188bf91aaf1"
+  },
+  {
+   "ruta": "hero.video.portrait.poster",
+   "origen": "primer cuadro del clip graduado de la plantilla A (graduar.mjs)",
+   "sha256": "e2ffb9b219ad40dd0ab2b2f971a5ea5a7c20d18fc210910bbd2f6ddb931a39e4"
+  },
+  {
+   "ruta": "hero.video.portrait.webm",
+   "origen": "material de la plantilla A graduado a su paleta (graduar.mjs)",
+   "sha256": "cc0de2824aade2feddae7f900bdf8ae024d085417ceca32d639a49f4b053eda0"
+  },
+  {
+   "ruta": "hero.video.poster",
+   "origen": "primer cuadro del clip graduado de la plantilla A (graduar.mjs)",
+   "sha256": "d232283ff6dfb964e10719500725eb96b6cc83eea36c423e9f53bc036982cf8e"
+  },
+  {
+   "ruta": "hero.video.webm",
+   "origen": "material de la plantilla A graduado a su paleta (graduar.mjs)",
+   "sha256": "1a64a2d32250fc318176406f66b3142c871815d3c78e32c3e4f07a9162addadf"
+  },
+  {
+   "ruta": "brand.logo",
+   "origen": "generado en ChatGPT antes de MARCA-01 (no tiene logo; DEMOS-ASHKELON § 1), sin medir",
+   "sha256": "84e35186db8f003723e515b8f13c92a88e9b6314a529ed4bac5badf34e5eeac0"
+  },
+  {
+   "ruta": "brand.logoDark",
+   "origen": "generado en ChatGPT antes de MARCA-01 (no tiene logo; DEMOS-ASHKELON § 1), sin medir",
+   "sha256": "c63298a2275a11e1b6d61dab4e8ecfbeabebc8d1326fb0bb0642dd400677154b"
+  },
+  {
+   "ruta": "brand.ogImage",
+   "origen": "1200 × 630 del local graduado (graduar.mjs)",
+   "sha256": "f41e2f8840f5450d8993bfe0f9e7967c8f67cb908d41eaf9eedc9a2fbcbe9134"
+  },
+  {
+   "ruta": "branding.texture",
+   "origen": "material de la plantilla A graduado a su paleta (graduar.mjs)",
+   "sha256": "91bd561ea97533dd71d6a1267c4c72cbbed3856bc3f6dee5aba36d93ce8a6f9d"
+  },
+  {
+   "ruta": "branding.localPhotoMobile",
+   "origen": "real: su salón (Google Maps, retocada en ChatGPT antes de MARCA-01), graduada sólo en los neutros (graduar.mjs)",
+   "excepcion": "su salón",
+   "sha256": "ceef9b8df6a34903b017aeba2a531286b5ceb94cde90e95eb13674fe50ef1c41"
+  },
+  {
+   "ruta": "branding.localPhoto",
+   "origen": "real: su salón (Google Maps, retocada en ChatGPT antes de MARCA-01), graduada sólo en los neutros (graduar.mjs)",
+   "excepcion": "su salón",
+   "sha256": "dd6ea4ce81c322ec91b7fdfb7707398c79b7ca044bd57d5d413d5371fc675005"
+  },
+  {
+   "ruta": "sections.services.images.0",
+   "origen": "real: trabajo de Yulia (bob, Google Maps retocada antes), graduada sólo en los neutros (graduar.mjs --fotos)",
+   "excepcion": "trabajo real",
+   "sha256": "b4a08d49a5ebc85b35517f2cd9b10d068f310c13e9fabec9e30597847dbf37b4"
+  },
+  {
+   "ruta": "sections.services.images.1",
+   "origen": "generada en ChatGPT (pedido de scripts/material.ts pedidos, una conversación por foto con su local.jpg adjunto, 2026-10-07)",
+   "sha256": "4c5670f6d050a8c818513c27b316c4d0008b032e5cbfe8f8a6552b958973eb90"
+  },
+  {
+   "ruta": "sections.services.images.2",
+   "origen": "generada en ChatGPT (pedido de scripts/material.ts pedidos, una conversación por foto con su local.jpg adjunto, 2026-10-07)",
+   "sha256": "0ab19682ba1fc0b78d06540d7305c42b26030e0858ff937879f87f414b2cf9f2"
+  },
+  {
+   "ruta": "sections.services.images.3",
+   "origen": "generada en ChatGPT (pedido de scripts/material.ts pedidos, una conversación por foto con su local.jpg adjunto, 2026-10-07)",
+   "sha256": "2b14dac8ca88e0fb47efd91108f3ef3fe897075db0dcbfd0e598a5cfb4e4eb97"
+  },
+  {
+   "ruta": "sections.services.images.4",
+   "origen": "generada en ChatGPT (pedido de scripts/material.ts pedidos, una conversación por foto con su local.jpg adjunto, 2026-10-07)",
+   "sha256": "18a3c6f35595cd7e4efd7bdf5575b369075416c31409b98910a879698c5bfd01"
+  },
+  {
+   "ruta": "sections.services.images.5",
+   "origen": "real: trabajo de Yulia (platino, Google Maps retocada antes), sin graduar (pasa)",
+   "excepcion": "trabajo real",
+   "sha256": "4d363ae380be888e7ffeb5391b1e1cd0f7184205445f7cc77b69bae8a5a3edb6"
+  },
+  {
+   "ruta": "sections.services.images.6",
+   "origen": "generada en ChatGPT (pedido de scripts/material.ts pedidos, una conversación por foto con su local.jpg adjunto, 2026-10-07)",
+   "sha256": "e5d5f9267b9c7c1e2f4f487fdc758e87124c68405c01fdb5f053e053901a1f32"
+  },
+  {
+   "ruta": "sections.services.images.7",
+   "origen": "generada en ChatGPT (pedido de scripts/material.ts pedidos, una conversación por foto con su local.jpg adjunto, 2026-10-07)",
+   "sha256": "25637584e652d8e948ec6f088cb65023d745e61563d13b918b9651d1d7e4eabe"
+  },
+  {
+   "ruta": "sections.services.images.8",
+   "origen": "generada en ChatGPT (pedido de scripts/material.ts pedidos, una conversación por foto con su local.jpg adjunto, 2026-10-07)",
+   "sha256": "99a236e367cdb918454da598b7fe957439cee6820d179a197f9574367dcb1905"
+  },
+  {
+   "ruta": "sections.services.images.9",
+   "origen": "generada en ChatGPT (pedido de scripts/material.ts pedidos, una conversación por foto con su local.jpg adjunto, 2026-10-07)",
+   "sha256": "44a2ec166553a6b1eecc3ab0a0540d333ad3cdaa9d60a93f18afcc54a25b4a42"
+  },
+  {
+   "ruta": "sections.services.images.10",
+   "origen": "generada en ChatGPT (pedido de scripts/material.ts pedidos, una conversación por foto con su local.jpg adjunto, 2026-10-07)",
+   "sha256": "5ef48f5ae0d2c1bb0a7a26acbc78eb5f77d44844e5d67b40dc707147a6a30c76"
+  },
+  {
+   "ruta": "sections.services.images.11",
+   "origen": "generada en ChatGPT (pedido de scripts/material.ts pedidos, una conversación por foto con su local.jpg adjunto, 2026-10-07)",
+   "sha256": "0fb903d33b8f713ac99376093bd220e53fdbd8cb9101d5803387045b903daef7"
+  },
+  {
+   "ruta": "sections.gallery.items.0.src",
+   "origen": "generada en ChatGPT (pedido de scripts/material.ts pedidos, una conversación por foto con su local.jpg adjunto, 2026-10-07)",
+   "sha256": "80ae77ae276183b190c4d2d8b21ed3ff9486046e8c4cf0c70f2587912ebde39e"
+  },
+  {
+   "ruta": "sections.gallery.items.1.src",
+   "origen": "generada en ChatGPT (pedido de scripts/material.ts pedidos, una conversación por foto con su local.jpg adjunto, 2026-10-07)",
+   "sha256": "068ac7cb3564a3cc64e1c0570091f555c8c48b20486aa6f8558abf454d585b39"
+  },
+  {
+   "ruta": "sections.gallery.items.2.src",
+   "origen": "real: trabajo de Yulia (liso platino, Google Maps retocada antes), sin graduar (pasa)",
+   "excepcion": "trabajo real",
+   "sha256": "be327d4ee9ee84e33d6b3e97ae8d759d2da00aa0fb56fea257cd281635a5402e"
+  },
+  {
+   "ruta": "sections.gallery.items.3.src",
+   "origen": "generada en ChatGPT (pedido de scripts/material.ts pedidos, una conversación por foto con su local.jpg adjunto, 2026-10-07)",
+   "sha256": "605ed12b599eeee998aee1f068774382e49eca713412349ea631761ec19ce23b"
+  },
+  {
+   "ruta": "sections.gallery.items.4.src",
+   "origen": "generada en ChatGPT (pedido de scripts/material.ts pedidos, una conversación por foto con su local.jpg adjunto, 2026-10-07)",
+   "sha256": "b149ca75be2f1b9cb21211f2cd935fc4fa57b1b6df0f92abf4e5f9fcba1548d2"
+  },
+  {
+   "ruta": "sections.gallery.items.5.src",
+   "origen": "real: trabajo de Yulia (bob rosa y azul, Google Maps retocada antes), graduada sólo en los neutros (graduar.mjs --fotos)",
+   "excepcion": "trabajo real",
+   "sha256": "77a33df71794c33b5045c2d8793c1541aee8d9d247a963f2e2ba5187f24a9db3"
+  },
+  {
+   "ruta": "sections.instagram.images.0",
+   "origen": "sigue a la galería (pieza 1, la misma url)",
+   "sha256": "80ae77ae276183b190c4d2d8b21ed3ff9486046e8c4cf0c70f2587912ebde39e"
+  },
+  {
+   "ruta": "sections.instagram.images.1",
+   "origen": "sigue a la galería (pieza 2, la misma url)",
+   "sha256": "068ac7cb3564a3cc64e1c0570091f555c8c48b20486aa6f8558abf454d585b39"
+  },
+  {
+   "ruta": "sections.instagram.images.2",
+   "origen": "sigue a la galería (pieza 3, la misma url)",
+   "sha256": "be327d4ee9ee84e33d6b3e97ae8d759d2da00aa0fb56fea257cd281635a5402e"
+  },
+  {
+   "ruta": "sections.instagram.images.3",
+   "origen": "sigue a la galería (pieza 4, la misma url)",
+   "sha256": "605ed12b599eeee998aee1f068774382e49eca713412349ea631761ec19ce23b"
+  },
+  {
+   "ruta": "sections.instagram.images.4",
+   "origen": "sigue a la galería (pieza 5, la misma url)",
+   "sha256": "b149ca75be2f1b9cb21211f2cd935fc4fa57b1b6df0f92abf4e5f9fcba1548d2"
+  },
+  {
+   "ruta": "sections.instagram.images.5",
+   "origen": "sigue a la galería (pieza 6, la misma url)",
+   "sha256": "77a33df71794c33b5045c2d8793c1541aee8d9d247a963f2e2ba5187f24a9db3"
+  }
+ ]
+}

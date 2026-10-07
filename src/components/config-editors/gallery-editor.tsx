@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { GALLERY_TYPES } from "@/lib/config-validator";
+import { instagramSigueA } from "@/lib/galeria-instagram";
 // Sólo el tipo (se borra al compilar): la casilla lee `id` y `name` del catálogo, pero el `config` que recibe es el de la pestaña.
 import type { Service } from "./services-editor";
 
@@ -71,6 +72,7 @@ function leerPiezas(config: unknown): Cfg[] {
 
 /** Config nuevo con sólo `sections.gallery.items[i].<campo>` cambiado (vacío borra la clave); `src` reescribe `gallery[i]` (D-49). */
 export function aplicarPieza(config: unknown, i: number, campo: CampoPieza, valor: unknown): Cfg {
+  const anterior = campo === "src" ? leerPiezas(config)[i]?.src : undefined;
   const next = conSeccionGaleria(config, (seccion) => {
     const items = Array.isArray(seccion.items) ? (seccion.items as Cfg[]).slice() : [];
     while (items.length < i) items.push({});
@@ -87,7 +89,8 @@ export function aplicarPieza(config: unknown, i: number, campo: CampoPieza, valo
   while (respaldo.length < i) respaldo.push("");
   respaldo[i] = typeof valor === "string" ? valor : "";
   next.gallery = respaldo;
-  return next;
+  // MARCA-01 (D-291): Instagram sigue a la galería (src/lib/galeria-instagram.ts): sus fotos del mismo archivo pasan a la url nueva.
+  return instagramSigueA(next, anterior, valor);
 }
 
 /** Config nuevo con `translations.<lang>.sections.gallery.alts[id]` = texto (vacío borra la clave); no muta la entrada (D-52). */

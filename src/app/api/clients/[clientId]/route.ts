@@ -7,13 +7,13 @@ import { vercelFetch } from "@/lib/deploy";
 import { validateConfig } from "@/lib/config-validator";
 import { isValidClientLanguage, normalizeClientLanguage, VALID_CLIENT_LANGUAGES_LABEL } from "@/lib/client-language";
 import { isValidSetupAmount, SETUP_AMOUNT_MIN, SETUP_AMOUNT_MAX } from "@/lib/pricing";
-import { buscarClienteHub } from "@/lib/hub-clients";
+import { buscarClienteHub, type ColeccionMinima } from "@/lib/hub-clients";
 
 export const GET = withOwner(async (_req, _session, ctx) => {
   const { clientId } = await ctx.params;
   // D-111: la ficha abre con el id del documento O con el slug de la web (el campo `clientId`), que es el que está en la url
   // pública. El PATCH y el DELETE siguen resolviendo por id de documento, que es con lo que escriben.
-  const cliente = await buscarClienteHub(clientId);
+  const cliente = await buscarClienteHub(clientId, { coleccion: db.collection("hub_clients") as unknown as ColeccionMinima });
 
   if (!cliente) {
     return NextResponse.json({ error: "Cliente no encontrado" }, { status: 404 });

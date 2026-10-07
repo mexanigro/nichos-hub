@@ -912,7 +912,9 @@ export function validateReplanteoHuecos(config: unknown): ConfigIssue[] {
   // cliente real que sube vídeo y foto no puede producir ese valor: el aviso no tenía acción posible. Lo calcula `transicion.mjs`
   // desde el material real. Lo que sigue siendo ERROR es el valor inválido cuando está.
   const rel = getNested(config, "branding.heroToBackdrop");
-  if (rel !== undefined) {
+  // MARCA-01 (D-290): `null` es un BORRADO (desde-plantilla ya no copia el de la plantilla y borra el que el cliente tenía; `paraFirestore`
+  // lo convierte en FieldValue.delete()), no un objeto sin relation ni mechanism: antes daba error y el guardado salía 422.
+  if (rel !== undefined && rel !== null) {
     const r = (rel && typeof rel === "object" ? rel : {}) as Record<string, unknown>;
     if (!["same-hue", "adjacent-hue", "same-hue-different-light"].includes(String(r.relation))) push("branding.heroToBackdrop.relation", "relation debe ser same-hue | adjacent-hue | same-hue-different-light.", "error");
     if (!["photo-starts-at-hero-end", "scrim-dies-into-photo", "veil-from-first-pixel"].includes(String(r.mechanism))) push("branding.heroToBackdrop.mechanism", "mechanism debe ser photo-starts-at-hero-end | scrim-dies-into-photo | veil-from-first-pixel.", "error");

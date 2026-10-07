@@ -14,6 +14,10 @@
  * En seco por defecto: dice qué copiaría y no baja, ni sube, ni escribe nada. Con `aplicar`: primero el material, después el config,
  * por `guardarConfig` (la lógica del PUT, D-255). El cuerpo es el resultado entero más un `null` por cada clave del cliente que no
  * está en el resultado: la fusión de Firestore deja exactamente el resultado.
+ * MARCA-01 (D-290): `branding.heroToBackdrop` NO se copia (describe el vídeo y el local de la plantilla, y la página no lo lee, D-90:
+ * era un dato falso) y, si el cliente tenía uno, el cuerpo lo borra (`null`); `deLaPlantilla` es la ruta de cada hueco cuyo material
+ * copió, y `avisos` suma un aviso «material de la plantilla» por cada uno (por el token, sin medir): se reemplaza por el de la clienta
+ * en su paleta (`scripts/material.ts`) antes del Redeploy.
  * Rechaza, sin escribir nada, una plantilla que no es a ni c, el tenant de una plantilla, las webs de prueba de E2E
  * (`tests/e2e-01-webs.json`: su config es la línea base de D2), un id sin config y un cliente que no es de peluquería.
  */
@@ -23,6 +27,7 @@ import { resolveContentType, subirMaterial, type BucketMinimo } from "./media-up
 import { guardarConfig, type DbMinima } from "./guardar-config.ts";
 import { buscarClienteHub, type ColeccionMinima } from "./hub-clients.ts";
 import { avisosDePreset, type AvisoPreset } from "./avisos-preset.ts";
+import { avisosDeMaterialDePlantilla } from "./material-cliente.ts";
 
 type Obj = Record<string, any>;
 export type Paleta = "a" | "c";
@@ -36,7 +41,7 @@ const IDIOMAS = ["he", "en", "ru", "ar"];
 
 export type BucketCopia = { name: string; file(path: string): ReturnType<BucketMinimo["file"]> & { download(): Promise<[Buffer]> } };
 export type Copia = { de: string; a: string; rol: string; nombre: string };
-export type Resultado = { material: Copia[]; vaciados: string[]; cuerpo: Obj; escrito: boolean; avisos: AvisoPreset[] };
+export type Resultado = { material: Copia[]; vaciados: string[]; cuerpo: Obj; escrito: boolean; avisos: AvisoPreset[]; deLaPlantilla: string[] };
 
 const esMapa = (v: unknown): v is Obj => !!v && typeof v === "object" && !Array.isArray(v);
 const STORAGE = /^https:\/\/firebasestorage\.googleapis\.com\/v0\/b\/[^/]+\/o\/([^?]+)\?alt=media&token=[0-9a-f]+$/;
@@ -106,10 +111,14 @@ export async function desdePlantilla(
   const t = await deps.db.collection("config").doc(PLANTILLAS[p]).get();
   if (!t.exists) throw new Error(`no existe config/${PLANTILLAS[p]} (la plantilla ${p}); no se tocó nada`);
   const tenant: Obj = t.data() ?? {};
+  const otra = await deps.db.collection("config").doc(PLANTILLAS[p === "a" ? "c" : "a"]).get();
+  const plantillas = p === "a" ? { a: tenant, c: otra.exists ? otra.data() ?? {} : {} } : { a: otra.exists ? otra.data() ?? {} : {}, c: tenant };
 
   // Lo que se copia: la plantilla sin lo que el cliente conserva.
   const copia: Obj = structuredClone(tenant);
   for (const k of CONSERVA) delete copia[k];
+  // MARCA-01 (D-290, M1-7): la relación hero → fondo de la plantilla describe SU vídeo y SU local: no se copia.
+  if (esMapa(copia.branding)) delete copia.branding.heroToBackdrop;
   for (const capa of Object.values(esMapa(copia.translations) ? copia.translations : {})) if (esMapa(capa)) for (const k of CONSERVA_CAPA) delete capa[k];
 
   // (1) Vacíos: los textos que nombran a la plantilla (sin los metadatos de la paleta, que la página no pinta).
@@ -147,8 +156,21 @@ export async function desdePlantilla(
     return r;
   };
   let resultado = armar();
-  const avisos = avisosDePreset(resultado, "peluqueria");
-  const plan = (cuerpo: Obj, escrito: boolean): Resultado => ({ material: [...material.values()], vaciados, cuerpo, escrito, avisos });
+  const copiados = new Set([...material.values()].flatMap((m) => [m.de, m.a]));
+  /** Cada hueco del resultado cuya url es un archivo que esta copia trae de la plantilla (D-290 (3)). */
+  const deLaPlantilla = (r: Obj): string[] => {
+    const out: string[] = [];
+    const ver = (v: unknown, ruta: string): void => {
+      const path = pathDe(v);
+      if (path) { if (copiados.has(decodeURIComponent(path))) out.push(ruta); }
+      else if (Array.isArray(v)) v.forEach((x, i) => ver(x, ruta ? `${ruta}.${i}` : String(i)));
+      else if (esMapa(v)) for (const [k, x] of Object.entries(v)) ver(x, ruta ? `${ruta}.${k}` : k);
+    };
+    ver(r, "");
+    return out;
+  };
+  const avisosDe = (r: Obj): AvisoPreset[] => [...avisosDePreset(r, "peluqueria"), ...avisosDeMaterialDePlantilla(r, plantillas)];
+  const plan = (cuerpo: Obj, escrito: boolean): Resultado => ({ material: [...material.values()], vaciados, cuerpo, escrito, avisos: avisosDe(resultado), deLaPlantilla: deLaPlantilla(resultado) });
   if (!aplicar) return plan(fundir(resultado, nulos(cliente, resultado)), false);
 
   // Con aplicar: primero el material (idempotente: los mismos bytes dan la misma url), después el config.

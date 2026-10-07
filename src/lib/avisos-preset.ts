@@ -9,7 +9,8 @@
 import { getNichePreset } from "./client-config/niche-presets.ts";
 import type { BusinessNiche } from "./client-config/services.ts";
 
-export type AvisoPreset = { seccion: "equipo" | "reseñas"; message: string };
+/** MARCA-01 (D-289): «material» lo suman desde-plantilla y la consola de textos (`avisosDeMaterialDePlantilla`, material-cliente.ts). */
+export type AvisoPreset = { seccion: "equipo" | "reseñas" | "material"; message: string };
 
 type Obj = Record<string, any>;
 const lista = (v: unknown): Obj[] => (Array.isArray(v) ? v.filter((x) => x && typeof x === "object") : []);
@@ -41,4 +42,4 @@ export function avisosDePreset(config: unknown, niche: string): AvisoPreset[] {
 
 /** Las líneas que imprimen las consolas. */
 export const lineasDeAvisos = (avisos: AvisoPreset[]) =>
-  avisos.length ? ["AVISOS (inciso z: equipo y reseñas reales, o la sección de reseñas oculta, antes del redeploy):", ...avisos.map((a) => `  ! ${a.seccion}: ${a.message}`)] : ["avisos: ninguno (equipo y reseñas de la clienta)"];
+  avisos.length ? ["AVISOS (inciso z: equipo y reseñas reales, o la sección de reseñas oculta; MARCA-01: el material de la clienta en su paleta; antes del redeploy):", ...avisos.map((a) => `  ! ${a.seccion}: ${a.message}`)] : ["avisos: ninguno (equipo y reseñas de la clienta)"];

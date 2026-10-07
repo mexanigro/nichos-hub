@@ -58,18 +58,21 @@ test("avisosDePreset da un aviso de equipo cuando el equipo falta o tiene una pe
   assert.match(resenas.message, /features\.showTestimonials/, "o que se oculta la sección con features.showTestimonials en false");
 
   // (3) desde-plantilla: en seco y aplicado, con el cliente recién dado de alta (equipo del preset) y con uno con lo suyo.
+  // MARCA-01 (D-289): desde-plantilla suma además un aviso «material» por cada hueco copiado de la plantilla; aquí se miran los de
+  // equipo y reseñas (los de material los vigila la orden marca-01, D2).
+  const dePreset = (avisos: Aviso[] | undefined) => (avisos ?? []).filter((a) => (a.seccion as string) !== "material");
   const { desdePlantilla } = await importarModulo("src/lib/desde-plantilla.ts");
   for (const aplicar of [false, true]) {
     const w = await mundo();
     const r = await desdePlantilla({ clientId: CLIENTE, plantilla: "a", aplicar }, { db: w.db, bucket: w.bucket });
-    assert.deepEqual(((r.avisos ?? []) as Aviso[]).map((a) => a.seccion).sort(), ["equipo"], `desde-plantilla ${aplicar ? "aplicado" : "en seco"}: avisa el equipo del preset (el cliente de alta tiene una reseña propia)`);
+    assert.deepEqual(dePreset(r.avisos as Aviso[]).map((a) => a.seccion).sort(), ["equipo"], `desde-plantilla ${aplicar ? "aplicado" : "en seco"}: avisa el equipo del preset (el cliente de alta tiene una reseña propia)`);
     assert.equal(r.escrito, aplicar, `desde-plantilla ${aplicar ? "aplicado" : "en seco"}: el aviso no cambia si escribe`);
     const w2 = await mundo();
     const antes = w2.inicial[`config/${CLIENTE}`];
     const propio = { ...antes, staff: EQUIPO, translations: { en: { testimonials: antes.translations.en.testimonials } } };
     const w3 = await dbFalsa({ ...w2.inicial, [`config/${CLIENTE}`]: propio });
     const r2 = await desdePlantilla({ clientId: CLIENTE, plantilla: "a", aplicar }, { db: w3.db, bucket: w2.bucket });
-    assert.deepEqual(r2.avisos ?? [], [], `desde-plantilla ${aplicar ? "aplicado" : "en seco"}: con equipo y reseñas propios, ningún aviso`);
+    assert.deepEqual(dePreset(r2.avisos as Aviso[]), [], `desde-plantilla ${aplicar ? "aplicado" : "en seco"}: con equipo y reseñas propios, ningún aviso`);
   }
 
   // (4) aplicar (la consola de textos): en seco y aplicado.

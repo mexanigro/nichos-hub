@@ -31,6 +31,9 @@ type C = Record<string, any>;
 export type Campo = { ruta: string; min?: number; max?: number; oracion?: number; titular?: boolean };
 /** `{ <idioma>: { <ruta>: texto } }` */
 export type Propuesta = Record<string, Record<string, unknown>>;
+/** MARCA-01 (D-298): campos que ya tienen texto y se pueden REESCRIBIR, por idioma (los alt de la galería que siguen siendo los de la
+ *  plantilla). Sólo lo pasa la consola de textos; el camino de la API (escribirTextos, generate-content) no. */
+export type Reescribibles = Record<string, Campo[]>;
 export type Llamada = { idioma: string; input_tokens: number; output_tokens: number };
 export type ClienteClaude = { messages: { create(params: any): Promise<any> } };
 
@@ -128,13 +131,14 @@ const OPCIONALES = new Set(["hero.titleSuffix"]);
 /**
  * Los problemas de una propuesta, con `path` «<idioma>:<ruta>». Error (no se guarda): una ruta que no es un texto que se pueda
  * escribir en ese idioma (un dato, un elemento que no existe, lo que ya tiene texto, una reseña en su idioma, un nombre de reseña),
- * un texto vacío o que no es texto, fuera de los límites del contrato (F1) o con un número que la clienta no dio (C1).
+ * un texto vacío o que no es texto, fuera de los límites del contrato (F1) o con un número que la clienta no dio (C1). `reescribir`
+ * (MARCA-01, D-298) suma, por idioma, campos que ya tienen texto y se pueden reescribir.
  */
-export function validarPropuesta(config: unknown, niche: string, base: string, propuesta: Propuesta, notas?: string): ConfigIssue[] {
+export function validarPropuesta(config: unknown, niche: string, base: string, propuesta: Propuesta, notas?: string, reescribir?: Reescribibles): ConfigIssue[] {
   const c = obj(config), out: ConfigIssue[] = [], dados = numerosDados(c, notas);
   const err = (path: string, message: string) => out.push({ path, message, severity: "error" });
   for (const [l, textos] of Object.entries(obj(propuesta))) {
-    const campos = new Map(camposDeTexto(c, niche, l, base).map((x) => [x.ruta, x]));
+    const campos = new Map([...camposDeTexto(c, niche, l, base), ...(reescribir?.[l] ?? [])].map((x) => [x.ruta, x]));
     for (const [ruta, t] of Object.entries(obj(textos))) {
       const p = `${l}:${ruta}`, campo = campos.get(ruta);
       if (!campo) { err(p, lleno(valor(c, l, base, ruta)) ? "Ya tiene texto en este idioma: no se reescribe (para rehacerlo, vacialo)." : "No es un texto que se pueda escribir aquí (es un dato, no existe o no se escribe en este idioma)."); continue; }
@@ -168,9 +172,9 @@ function poner(o: C, ruta: string[], v: unknown) {
  * Reparte lo aceptado (`"<idioma>:<ruta>"`): lo que entra en el cuerpo y lo que no, con su motivo (PLANTILLA-01, D-258: nada que el
  * dueño aceptó se descarta sin decirlo). Valida con las notas de la clienta, como la propuesta: un número que sólo está en las notas entra.
  */
-function repartir(c: C, niche: string, base: string, propuesta: Propuesta, aceptados: string[], notas?: string) {
+function repartir(c: C, niche: string, base: string, propuesta: Propuesta, aceptados: string[], notas?: string, reescribir?: Reescribibles) {
   const errores = new Map<string, string[]>();
-  for (const e of validarPropuesta(c, niche, base, propuesta, notas)) if (e.severity === "error") errores.set(e.path, [...(errores.get(e.path) ?? []), e.message]);
+  for (const e of validarPropuesta(c, niche, base, propuesta, notas, reescribir)) if (e.severity === "error") errores.set(e.path, [...(errores.get(e.path) ?? []), e.message]);
   const entran: { l: string; ruta: string; t: string }[] = [], descartados: ConfigIssue[] = [];
   for (const a of new Set(aceptados)) {
     const i = a.indexOf(":"), l = a.slice(0, i), ruta = a.slice(i + 1), t = obj(propuesta)[l]?.[ruta];
@@ -185,8 +189,8 @@ function repartir(c: C, niche: string, base: string, propuesta: Propuesta, acept
 }
 
 /** Cada aceptado que no va en el cuerpo de `cuerpoDePropuesta`, con su motivo (D-258). Nada cuando todo entra. */
-export function descartadosDePropuesta(config: unknown, niche: string, base: string, propuesta: Propuesta, aceptados: string[], notas?: string): ConfigIssue[] {
-  return repartir(obj(config), niche, base, propuesta, aceptados, notas).descartados;
+export function descartadosDePropuesta(config: unknown, niche: string, base: string, propuesta: Propuesta, aceptados: string[], notas?: string, reescribir?: Reescribibles): ConfigIssue[] {
+  return repartir(obj(config), niche, base, propuesta, aceptados, notas, reescribir).descartados;
 }
 
 /**
@@ -196,10 +200,10 @@ export function descartadosDePropuesta(config: unknown, niche: string, base: str
  * idioma, `translations.<lang>` por id (una capa que era array pasa a objeto con todo lo que tenía). El FAQ de una capa va entero:
  * cada pregunta con lo aceptado o lo que ya tenía, y sólo las que quedan con pregunta y respuesta. Sin nada aceptado, `{}`.
  */
-export function cuerpoDePropuesta(config: unknown, niche: string, base: string, propuesta: Propuesta, aceptados: string[], notas?: string): C {
+export function cuerpoDePropuesta(config: unknown, niche: string, base: string, propuesta: Propuesta, aceptados: string[], notas?: string, reescribir?: Reescribibles): C {
   const c = obj(config);
   const cuerpo: C = {};
-  for (const { l, ruta, t } of repartir(c, niche, base, propuesta, aceptados, notas).entran) {
+  for (const { l, ruta, t } of repartir(c, niche, base, propuesta, aceptados, notas, reescribir).entran) {
     const [s, id, campo] = ruta.split(".");
     const faq = ruta.match(/^sections\.faq\.items\.(\d+)\.(question|answer)$/);
     if (l === base) {
@@ -232,6 +236,10 @@ export function cuerpoDePropuesta(config: unknown, niche: string, base: string, 
     // lectura y el PUT se pisaría (la pestaña lee el config justo antes de guardar).
     for (const s of POR_ID) if (capa[s] && cuerpo[s] === undefined) cuerpo[s] = structuredClone(lista(c[s]));
   }
+  // MARCA-01 (defecto medido por A): las piezas de la galería del idioma base van enteras, y el `serviceId` de cada una se busca en el
+  // catálogo del MISMO cuerpo (validateConfig valida el cuerpo solo). Sin `services`, reescribir un alt en hebreo salía 422 («El
+  // servicio "root-color" no existe en el catálogo»). Va sin cambios, del config recién leído, como las listas de arriba.
+  if (Array.isArray(get(cuerpo, "sections.gallery.items")) && cuerpo.services === undefined && Array.isArray(c.services)) cuerpo.services = structuredClone(lista(c.services));
   return cuerpo;
 }
 

@@ -102,6 +102,8 @@ test("desde-plantilla con aplicar, desde la plantilla A y desde la C: el config 
     for (const [ruta, v] of hojas(tenant)) {
       if (esConserva(ruta)) continue;
       const got = leer(config, ruta);
+      // MARCA-01 (D-290, M1-7): la relación hero → fondo de la plantilla describe SU vídeo y SU local: ya no se copia (dato falso).
+      if (ruta.startsWith("branding.heroToBackdrop.")) { assert.equal(got, undefined, `${p}: ${ruta} es de la plantilla y no se copia (D-290)`); continue; }
       if (vaciados.includes(ruta)) { assert.ok(got === undefined || got === "", `${p}: ${ruta} nombra a la plantilla y queda vacío (hay «${got}»)`); continue; }
       const s = deStorage(v);
       if (!s) { assert.deepEqual(got, v, `${p}: ${ruta} es de la plantilla y se copia igual`); continue; }

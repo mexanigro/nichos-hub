@@ -9,9 +9,9 @@
  * Primero el id del documento (una lectura, el caso de siempre) y sólo si no está, una consulta por el campo `clientId`.
  * Dependencias inyectables como en `media-upload.ts` (`BucketMinimo`): así se prueba con una colección en memoria, sin Firestore.
  * Importable con `node --experimental-strip-types` (import relativo con extensión, sin alias `@/`) y sin inicializar Firebase al
- * importarse: la colección real se toma sólo al llamar sin `deps`.
+ * importarse. MARCA-01 (D-292): sin `firebase-admin` en este módulo —la ficha, un componente de cliente, importa `rutaDeFicha`—; quien
+ * llama pasa su colección (la ruta del GET, desde-plantilla y la consola de textos).
  */
-import { db } from "./firebase-admin.ts";
 
 /** Forma mínima de una colección de Firestore que usa `buscarClienteHub`. */
 export type ColeccionMinima = {
@@ -23,9 +23,20 @@ export type ColeccionMinima = {
 
 export type ClienteHub = { id: string; data: Record<string, unknown> };
 
+/**
+ * MARCA-01 (D-292, Liam: «La ficha pasa al id») · la ruta de la ficha por el id del documento. Abierta por el slug, la ficha llama
+ * con ese id a todo lo demás (Redeploy, Reprovision, estado, borrar…), que resuelve por id de documento y fallaba: con el cliente que
+ * devuelve el GET, la ficha se cambia sola a `/clients/<id del documento>`. `null` cuando la url ya trae ese id.
+ */
+export function rutaDeFicha(idDeLaUrl: string, cliente: { id?: unknown } | null | undefined): string | null {
+  const id = typeof cliente?.id === "string" ? cliente.id : "";
+  if (!id || idDeLaUrl === id) return null;
+  return `/clients/${id}`;
+}
+
 export async function buscarClienteHub(
   id: string,
-  deps: { coleccion: ColeccionMinima } = { coleccion: db.collection("hub_clients") as unknown as ColeccionMinima },
+  deps: { coleccion: ColeccionMinima },
 ): Promise<ClienteHub | undefined> {
   if (!id) return undefined;
   const doc = await deps.coleccion.doc(id).get();

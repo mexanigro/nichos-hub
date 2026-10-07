@@ -33,6 +33,7 @@ import {
   Mic,
 } from "lucide-react";
 import { HealthDot, ClientStatusBadge } from "@/components/status-badge";
+import { rutaDeFicha } from "@/lib/hub-clients";
 import { LoadingSpinner } from "@/components/loading";
 import { StatCard } from "@/components/stat-card";
 import { PaymentStatusBadge, PaymentTypeBadge } from "@/components/payment-badges";
@@ -150,6 +151,8 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
   const [redeploying, setRedeploying] = useState(false);
   const [reprovisioning, setReprovisioning] = useState(false);
   const [reprovisionMsg, setReprovisionMsg] = useState<string | null>(null);
+  /** MARCA-01 (D-292): el error del Redeploy y del Reprovision va a un aviso de la página, nunca a `window.alert` (congelaba la pestaña). */
+  const [deployAviso, setDeployAviso] = useState<string | null>(null);
   const [bootstrapping, setBootstrapping] = useState(false);
   const [bootstrapMsg, setBootstrapMsg] = useState<string | null>(null);
   /** Bumped on every successful save in Config/Contenido. ClientSitePreview reads it to schedule an iframe reload. */
@@ -160,8 +163,14 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
   useEffect(() => {
     fetch(`/api/clients/${clientId}`)
       .then((r) => r.json())
-      .then(setData)
-      .finally(() => setLoading(false));
+      .then((data) => {
+        // MARCA-01 (D-292): abierta por el slug, la ficha pasa al id del documento; desde ahí todas sus llamadas usan ese id.
+        const ruta = data?.client ? rutaDeFicha(clientId, data.client) : null;
+        if (ruta) { router.replace(ruta); return; }
+        setData(data);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
     fetch(`/api/payments/${clientId}`)
       .then((r) => r.json())
       .then((data: Payment[]) =>
@@ -180,7 +189,7 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
       .then((r) => r.json())
       .then(setCrmStats)
       .catch(() => {});
-  }, [clientId]);
+  }, [clientId, router]);
 
   // N08 T1 (H-3): «building» no es un estado final. Mientras dure, la ficha consulta la ruta existente
   // /api/onboarding/status/[clientId], que pregunta a Vercel y persiste deployStatus real (ready/error).
@@ -267,6 +276,7 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
   async function handleRedeploy() {
     if (!data) return;
     setRedeploying(true);
+    setDeployAviso(null);
     try {
       const res = await fetch("/api/clients/redeploy", {
         method: "POST",
@@ -281,10 +291,10 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
       } else {
         // VENTA-01: si Vercel rechaza las variables del link, no se construye y se dice por qué.
         const body = await res.json().catch(() => ({}));
-        window.alert(body.error || `Redeploy: error ${res.status}`);
+        setDeployAviso(body.error || `Redeploy: error ${res.status}`);
       }
     } catch {
-      window.alert("Redeploy: error de conexión");
+      setDeployAviso("Redeploy: error de conexión");
     }
     setRedeploying(false);
   }
@@ -294,6 +304,7 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
     if (!data) return;
     setReprovisioning(true);
     setReprovisionMsg(null);
+    setDeployAviso(null);
     try {
       const res = await fetch("/api/clients/reprovision", {
         method: "POST",
@@ -309,9 +320,11 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
         } : d);
       } else {
         setReprovisionMsg(body.error || `Error ${res.status}`);
+        setDeployAviso(`Entorno: ${body.error || `error ${res.status}`}`);
       }
     } catch {
       setReprovisionMsg("Error de conexion");
+      setDeployAviso("Entorno: error de conexión");
     }
     setReprovisioning(false);
   }
@@ -486,6 +499,13 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
           </div>
         </div>
       </div>
+
+      {deployAviso && (
+        <div role="alert" className="mb-4 flex items-start justify-between gap-3 rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 text-xs text-red-300">
+          <span>{deployAviso}</span>
+          <button type="button" onClick={() => setDeployAviso(null)} className="shrink-0 text-red-300/80 underline hover:text-red-200">Cerrar</button>
+        </div>
+      )}
 
       {/* Tabs */}
       <div className="mb-6 flex gap-1 border-b border-border">
