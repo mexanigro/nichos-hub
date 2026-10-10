@@ -817,7 +817,7 @@ export function validateVariantContracts(config: unknown): ConfigIssue[] {
 // Errores sólo donde el template no puede resolverlo (id o índice inexistente, duplicados, veil fuera de 0–1).
 const SECTION_IDS = ["services", "gallery", "team", "testimonials", "faq", "instagram", "contact"] as const;
 /** GALERIA-04: tipos del brief de peluquería, orden fijo (= píldoras de `/galeria`; mismo listado que T `src/lib/gallery.ts`). */
-export const GALLERY_TYPES = ["color", "rizos", "liso", "recogidos", "novia", "cortes"] as const;
+export const GALLERY_TYPES = ["color", "rizos", "liso", "recogidos", "novia", "cortes", "extensiones"] as const;
 export function validateReplanteoHuecos(config: unknown): ConfigIssue[] {
   const issues: ConfigIssue[] = [];
   const push = (path: string, message: string, severity: "error" | "warning") => issues.push({ path, message, severity });
