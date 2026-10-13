@@ -78,8 +78,8 @@ test("fallo de Cardcom → pago failed, cliente past_due y reintento a 24 h", as
 });
 
 const ROUTE = fileURLToPath(new URL("../app/api/cron/cardcom-charges/route.ts", import.meta.url));
-test("cableado: el cron delega en chargeDueClient y no usa el id del documento como identidad", () => {
+test("cableado: el cron delega en cobrarSiVence (que llama a chargeDueClient) y no usa el id del documento como identidad", () => {
   const src = readFileSync(ROUTE, "utf8");
-  assert.ok(src.includes("chargeDueClient("), "el cron no llama a chargeDueClient");
+  assert.ok(src.includes("cobrarSiVence("), "el cron no llama a cobrarSiVence (CARDCOM-01)");
   assert.equal(/const clientId = clientDoc\.id/.test(src), false, "identidad por doc id (C-10)");
 });

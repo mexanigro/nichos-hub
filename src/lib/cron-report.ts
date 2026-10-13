@@ -4,7 +4,8 @@ import type { ChargeResult } from "./recurring-charge.ts";
 
 export type CronSummary = { charged: number; failed: number; skipped: number; reasons: string[] };
 
-const SKIP_REASONS = new Set(["no_token", "no_token_expiry"]);
+// not_due (CARDCOM-01): cobrarSiVence no cobró porque no vence; no es un fallo de cobro.
+const SKIP_REASONS = new Set(["no_token", "no_token_expiry", "not_due"]);
 
 export function summarizeChargeResults(results: ChargeResult[]): CronSummary {
   const s: CronSummary = { charged: 0, failed: 0, skipped: 0, reasons: [] };

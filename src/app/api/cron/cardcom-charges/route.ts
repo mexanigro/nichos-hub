@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/firebase-admin";
 import { Timestamp } from "firebase-admin/firestore";
 import { chargeToken } from "@/lib/cardcom";
-import { chargeDueClient, type ChargePorts, type DueClient } from "@/lib/recurring-charge";
+import { cobrarSiVence, puertosFirestore, toDueClient } from "@/lib/cobro-mensual";
 import { summarizeChargeResults } from "@/lib/cron-report";
 import { safeCompare } from "@/lib/safe-compare";
 
@@ -40,29 +40,12 @@ function isAuthorized(req: NextRequest): boolean {
   return safeCompare(xCronSecret, secret) || safeCompare(bearerToken, secret);
 }
 
-/** P-01 (Capa A): el cobro vive en src/lib/recurring-charge.ts (puertos, con test); identidad = hub_clients.clientId (D-P1-3). */
-function toDueClient(clientDoc: FirebaseFirestore.QueryDocumentSnapshot): DueClient {
-  const c = clientDoc.data();
-  const next = c.nextChargeAt;
-  return {
-    docId: clientDoc.id,
-    clientId: typeof c.clientId === "string" ? c.clientId : undefined,
-    businessName: c.businessName, email: c.email, adminEmail: c.adminEmail,
-    cardcomToken: c.cardcomToken, cardcomTokenExpMonth: c.cardcomTokenExpMonth, cardcomTokenExpYear: c.cardcomTokenExpYear,
-    paymentStatus: c.paymentStatus, pastDueAt: c.pastDueAt, plan: c.plan, tier: c.tier,
-    nextChargeAt: next && typeof next.toDate === "function" ? next.toDate() : next instanceof Date ? next : null,
-  };
-}
-
-const firestoreChargePorts: ChargePorts = {
-  chargeToken,
-  async createPayment(fields) { const ref = db.collection("hub_payments").doc(); await ref.set(fields); return ref.id; },
-  async updatePayment(paymentId, fields) { await db.collection("hub_payments").doc(paymentId).update(fields); },
-  async updateClient(docId, fields) { await db.collection("hub_clients").doc(docId).update(fields); },
-};
+/** P-01 (Capa A): el cobro vive en src/lib/recurring-charge.ts; CARDCOM-01: el de UN cliente (cobrarSiVence, puertos y
+ * toDueClient) en src/lib/cobro-mensual.ts, el mismo que usa scripts/cobro-mensual-uno.ts. Identidad = hub_clients.clientId (D-P1-3). */
+const ports = puertosFirestore(db, chargeToken);
 
 function runOne(clientDoc: FirebaseFirestore.QueryDocumentSnapshot) {
-  return chargeDueClient(firestoreChargePorts, toDueClient(clientDoc));
+  return cobrarSiVence(ports, toDueClient(clientDoc));
 }
 
 export async function GET(req: NextRequest) {
