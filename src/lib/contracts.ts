@@ -291,76 +291,76 @@ Arzac Studio — Подписка
 
 function ES(monthly: string): string {
   return `ACUERDO DE SERVICIOS — SITIO WEB, CRM Y NOTIFICACIONES POR EMAIL
-Arzac Studio — Suscripcion
+Arzac Studio — Suscripción
 
 Entre: Arzac Studio (en adelante: "el Proveedor")
 Y: El Cliente (en adelante: "el Cliente")
 
-Considerando que el Proveedor ha desarrollado una infraestructura tecnologica que incluye hosting de sitios web (SaaS), un sistema CRM, notificaciones automaticas por email, mantenimiento y almacenamiento (el "Sistema de Plantilla Maestra");
+Considerando que el Proveedor ha desarrollado una infraestructura tecnológica que incluye hosting de sitios web (SaaS), un sistema CRM, notificaciones automáticas por email, mantenimiento y almacenamiento (el "Sistema de Plantilla Maestra");
 
-Y considerando que el Cliente desea suscribirse al Servicio para visibilidad en internet, digitalizacion y gestion operativa de su negocio;
+Y considerando que el Cliente desea suscribirse al Servicio para visibilidad en internet, digitalización y gestión operativa de su negocio;
 
 LAS PARTES ACUERDAN LO SIGUIENTE:
 
-1. El Servicio (plan unico)
+1. El Servicio (plan único)
 
-1.1. Sitio web personalizado usando el Sistema de Plantilla Maestra, incluyendo landing, servicios, galeria y contacto.
-1.2. Visibilidad online: presencia en internet, compra de dominio y renovacion anual.
-1.3. Micro-CRM: panel de gestion de clientes, leads y reservas online.
-1.4. Notificaciones por email: avisos automaticos al dueño del negocio y a clientes/leads (confirmaciones de reserva, cancelaciones, consultas desde la web). Opcionalmente, al staff.
-1.5. Mantenimiento continuo y soporte tecnico: actualizaciones de contenido, correccion de errores.
+1.1. Sitio web personalizado usando el Sistema de Plantilla Maestra, incluyendo landing, servicios, galería y contacto.
+1.2. Visibilidad online: presencia en internet, compra de dominio y renovación anual.
+1.3. Micro-CRM: panel de gestión de clientes, leads y reservas online.
+1.4. Notificaciones por email: avisos automáticos al dueño del negocio y a clientes/leads (confirmaciones de reserva, cancelaciones, consultas desde la web). Opcionalmente, al staff.
+1.5. Mantenimiento continuo y soporte técnico: actualizaciones de contenido, corrección de errores.
 1.6. Hosting en infraestructura de terceros.
 
 2. Servicios opcionales (no incluidos)
 
 2.1. Los siguientes servicios NO forman parte de este acuerdo y se cotizan aparte, a pedido, mediante presupuesto escrito: agente de WhatsApp con IA, asistente/chatbot con IA, llamadas de voz con IA, notificaciones por WhatsApp.
-2.2. Los servicios opcionales no tienen plazo de activacion salvo que se acuerde por escrito en su propio presupuesto.
-2.3. Este acuerdo no contiene niveles de servicio ni upgrades automaticos ni cambios automaticos de precio.
+2.2. Los servicios opcionales no tienen plazo de activación salvo que se acuerde por escrito en su propio presupuesto.
+2.3. Este acuerdo no contiene niveles de servicio ni upgrades automáticos ni cambios automáticos de precio.
 
 3. Precio y Pago
 
-3.1. Cuota de suscripcion: ${monthly} por mes, fija. Cubre todo lo de la seccion 1, incluida la creacion del sitio web y del CRM, el hosting y el dominio. No hay alta ni ningun otro cargo.
+3.1. Cuota de suscripción: ${monthly} por mes, fija. Cubre todo lo de la sección 1, incluida la creación del sitio web y del CRM, el hosting y el dominio. No hay alta ni ningún otro cargo.
 3.2. El primer mes se cobra cuando el Cliente acepta este acuerdo y cubre un mes completo desde esa fecha. Cada mes siguiente se cobra en la misma fecha.
-3.3. Los pagos se procesan via Cardcom, procesador de pagos israeli. El Proveedor nunca almacena los datos de tarjeta del Cliente.
-3.4. La falta de pago resultara en la suspension del sitio web y del CRM. Eliminacion permanente 7 dias despues del impago y rescision del acuerdo.
+3.3. Los pagos se procesan vía Cardcom, procesador de pagos israelí. El Proveedor nunca almacena los datos de tarjeta del Cliente.
+3.4. La falta de pago resultará en la suspensión del sitio web y del CRM. Eliminación permanente 7 días después del impago y rescisión del acuerdo.
 
 4. Plazos de Entrega
 
-4.1. Un sitio web funcional se entrega dentro de las 48 horas posteriores a la recepcion de los materiales de diseño.
+4.1. Un sitio web funcional se entrega dentro de las 48 horas posteriores a la recepción de los materiales de diseño.
 
 5. Propiedad Intelectual y Licencias
 
-5.1. El Cliente recibe una licencia no exclusiva por la duracion de este acuerdo.
-5.2. El codigo fuente, archivos de diseño y todos los derechos de PI sobre el diseño del sitio web son propiedad exclusiva del Proveedor.
-5.3. Logos, activos de marca y contenido del Cliente son su PI exclusiva, utilizados unicamente para este acuerdo.
+5.1. El Cliente recibe una licencia no exclusiva por la duración de este acuerdo.
+5.2. El código fuente, archivos de diseño y todos los derechos de PI sobre el diseño del sitio web son propiedad exclusiva del Proveedor.
+5.3. Logos, activos de marca y contenido del Cliente son su PI exclusiva, utilizados únicamente para este acuerdo.
 5.4. El nombre de dominio es propiedad del Cliente.
-5.5. Los datos del CRM cargados por el Cliente le pertenecen y seran entregados a solicitud al momento de la rescision.
+5.5. Los datos del CRM cargados por el Cliente le pertenecen y serán entregados a solicitud al momento de la rescisión.
 
-6. Politica de Uso Aceptable
+6. Política de Uso Aceptable
 
 6.1. El sitio web y el CRM no pueden ser utilizados para enviar spam o almacenar material ilegal.
-6.2. Esta estrictamente prohibido subir contenido ofensivo, engañoso o legalmente prohibido.
-6.3. La violacion de esta seccion constituye un incumplimiento material que otorga al Proveedor el derecho de rescindir de forma inmediata y unilateral.
+6.2. Está estrictamente prohibido subir contenido ofensivo, engañoso o legalmente prohibido.
+6.3. La violación de esta sección constituye un incumplimiento material que otorga al Proveedor el derecho de rescindir de forma inmediata y unilateral.
 
-7. Limitacion de Responsabilidad
+7. Limitación de Responsabilidad
 
 7.1. El Cliente asume responsabilidad exclusiva por todo el contenido del sitio y los datos cargados en el CRM.
 7.2. El Proveedor no garantiza resultados comerciales, ventas ni retornos financieros.
 7.3. El Proveedor no es responsable por fallas de plataformas de terceros (hosting, registradores de dominio, proveedores de email) o fuerza mayor.
-7.4. En ningun caso la responsabilidad del Proveedor excedera el monto total pagado bajo este acuerdo.
+7.4. En ningún caso la responsabilidad del Proveedor excederá el monto total pagado bajo este acuerdo.
 
-8. Rescision
+8. Rescisión
 
-8.1. El Cliente puede cancelar en cualquier momento con un aviso por escrito. La cancelacion rige desde el dia en que se recibe.
-8.2. Cuando el Cliente cancela, el Proveedor le devuelve la parte no usada del mes ya pagado, en proporcion a los dias que faltan: por ejemplo, cancelar el dia 12 de un mes de 30 dias devuelve 18/30 de la cuota.
-8.3. El Proveedor puede rescindir inmediatamente por violacion de la Politica de Uso Aceptable.
-8.4. El Proveedor puede rescindir por falta de pago con 7 dias de aviso por escrito.
-8.5. Tras la rescision, el sitio web y el CRM seran dados de baja.
-8.6. A solicitud, el Proveedor entregara el codigo fuente del sitio (HTML/CSS/JS) y los datos del CRM. No se otorgara acceso a la infraestructura interna.
+8.1. El Cliente puede cancelar en cualquier momento con un aviso por escrito. La cancelación rige desde el día en que se recibe.
+8.2. Cuando el Cliente cancela, el Proveedor le devuelve la parte no usada del mes ya pagado, en proporción a los días que faltan: por ejemplo, cancelar el día 12 de un mes de 30 días devuelve 18/30 de la cuota.
+8.3. El Proveedor puede rescindir inmediatamente por violación de la Política de Uso Aceptable.
+8.4. El Proveedor puede rescindir por falta de pago con 7 días de aviso por escrito.
+8.5. Tras la rescisión, el sitio web y el CRM serán dados de baja.
+8.6. A solicitud, el Proveedor entregará el código fuente del sitio (HTML/CSS/JS) y los datos del CRM. No se otorgará acceso a la infraestructura interna.
 
-9. Ley Aplicable y Jurisdiccion
+9. Ley Aplicable y Jurisdicción
 
-Este acuerdo se rige por la ley israeli. Jurisdiccion exclusiva: tribunales competentes del distrito de Tel Aviv.`;
+Este acuerdo se rige por la ley israelí. Jurisdicción exclusiva: tribunales competentes del distrito de Tel Aviv.`;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════

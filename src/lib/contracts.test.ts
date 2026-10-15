@@ -24,7 +24,7 @@ const AVISO_30: Record<ContractLang, RegExp> = {
   en: /30 days' written notice/,
   he: /הודעה מוקדמת בכתב של 30 יום/,
   ru: /уведомлением за 30 дней/,
-  es: /30 dias de aviso/,
+  es: /30 d[ií]as de aviso/,
   ar: /إشعار خطي مسبق من 30 يوماً/,
 };
 // La devolución proporcional (8.2 / 29): el ejemplo del día 12 de un mes de 30.
