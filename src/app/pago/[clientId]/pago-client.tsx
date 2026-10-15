@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { MONTHLY_AMOUNT } from "@/lib/pricing";
 import { getContract, type ContractLang } from "@/lib/contracts";
+import { LogoMark } from "@/components/landing/logo-mark";
 
 /* ═══════════════════════════════════════════════════════════════════════════
  * i18n
@@ -25,7 +26,7 @@ const i18n = {
     firstMonth: "החודש הראשון",
     firstMonthNote: "מכסה חודש מלא מהיום",
     payNow: "לתשלום עכשיו",
-    thenLabel: "ולאחר מכן, באותו תאריך בכל חודש",
+    thenLabel: "כל חודש, באותו תאריך",
     cancelNote: "אפשר לבטל בכל עת, והימים שלא נוצלו מוחזרים.",
     features: [
       "אתר אישי מעוצב, אחסון ודומיין",
@@ -53,7 +54,7 @@ const i18n = {
     firstMonth: "First month",
     firstMonthNote: "Covers a full month from today",
     payNow: "Due now",
-    thenLabel: "Then, on the same date every month",
+    thenLabel: "Every month, same date",
     cancelNote: "Cancel anytime; unused days are refunded.",
     features: [
       "Custom designed website, hosting and domain",
@@ -81,7 +82,7 @@ const i18n = {
     firstMonth: "Primer mes",
     firstMonthNote: "Cubre un mes entero desde hoy",
     payNow: "A pagar ahora",
-    thenLabel: "Despues, el mismo dia de cada mes",
+    thenLabel: "Cada mes, el mismo dia",
     cancelNote: "Cancelas cuando quieras y se devuelven los dias que no usaste.",
     features: [
       "Sitio web profesional, hosting y dominio",
@@ -109,7 +110,7 @@ const i18n = {
     firstMonth: "Первый месяц",
     firstMonthNote: "Покрывает полный месяц с сегодняшнего дня",
     payNow: "К оплате сейчас",
-    thenLabel: "Далее — в ту же дату каждого месяца",
+    thenLabel: "Каждый месяц, в ту же дату",
     cancelNote: "Отменить можно в любой момент, неиспользованные дни возвращаются.",
     features: [
       "Индивидуальный сайт, хостинг и домен",
@@ -185,12 +186,10 @@ export default function PagoClient({ clientId, clientDocId, businessName, lang }
       {/* Header */}
       <header className="border-b border-[var(--pg-line)] bg-[var(--pg-paper)]/80 backdrop-blur-md">
         <div className="mx-auto flex h-16 max-w-3xl items-center justify-between px-6">
-          <a href="/" className="flex items-center gap-2.5">
-            <img src="/logo-icon.svg" alt="Arzac Studio" className="h-8 w-8" />
-            <span className="hidden items-baseline gap-0.5 sm:flex" style={{ fontFamily: "var(--pg-serif, system-ui)" }}>
-              <span className="text-[0.95rem] font-bold tracking-tight text-[var(--pg-ink)]">ARZAC</span>
-              <span className="text-[0.6rem] font-medium text-[var(--pg-accent)]">.studio</span>
-            </span>
+          {/* La misma marca que la landing y /pago/success: LogoMark en tinta + «Arzac studio» en serif. */}
+          <a href="/" className="pago-brand" aria-label="Arzac Studio">
+            <LogoMark size={20} color="var(--pg-ink)" />
+            <span className="wm">Arzac <em>studio</em></span>
           </a>
           <div className="flex items-center gap-1.5 text-[0.78rem] text-[var(--pg-ink-3)]">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -232,13 +231,11 @@ export default function PagoClient({ clientId, clientDocId, businessName, lang }
 
         {/* Amount summary: el primer mes ahora (cubre un mes entero), la misma cuota después */}
         <div className="mb-8 rounded-xl border border-[var(--pg-line)] bg-[var(--pg-paper)] p-5">
-          <div className="flex items-center justify-between gap-4">
-            <div>
-              <p className="text-sm font-medium text-[var(--pg-ink)]">{t.firstMonth}</p>
-              <p className="text-xs text-[var(--pg-ink-3)]">{t.payNow} · {t.firstMonthNote}</p>
-            </div>
-            <p className="text-2xl font-bold text-[var(--pg-ink)]">₪{MONTHLY_AMOUNT}</p>
+          <div className="flex items-baseline justify-between gap-4">
+            <p className="text-sm font-medium text-[var(--pg-ink)]">{t.firstMonth}</p>
+            <p className="shrink-0 text-2xl font-bold text-[var(--pg-ink)]">₪{MONTHLY_AMOUNT}</p>
           </div>
+          <p className="mt-1 text-xs text-[var(--pg-ink-3)]">{t.payNow} · {t.firstMonthNote}</p>
           <div className="mt-3 flex items-center justify-between gap-4 border-t border-[var(--pg-line)] pt-3">
             <p className="text-sm text-[var(--pg-ink-2)]">{t.thenLabel}</p>
             <p className="shrink-0 text-base font-semibold text-[var(--pg-ink)]">₪{MONTHLY_AMOUNT}<span className="text-xs font-normal text-[var(--pg-ink-2)]">{t.perMonth}</span></p>
@@ -266,7 +263,7 @@ export default function PagoClient({ clientId, clientDocId, businessName, lang }
           </div>
 
           <div
-            className={`mt-4 overflow-hidden transition-all duration-300 ease-in-out ${
+            className={`relative mt-4 overflow-hidden transition-all duration-300 ease-in-out ${
               contractExpanded ? "max-h-[60vh] overflow-y-auto" : "max-h-28"
             }`}
             style={{ direction: dir }}
@@ -275,7 +272,7 @@ export default function PagoClient({ clientId, clientDocId, businessName, lang }
               {contract}
             </div>
             {!contractExpanded && (
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[var(--pg-paper)] to-transparent" style={{ position: "relative", marginTop: "-4rem" }} />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[var(--pg-paper)] to-transparent" />
             )}
           </div>
 

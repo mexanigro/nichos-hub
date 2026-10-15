@@ -6,6 +6,7 @@ import { useUserAuth } from "@/lib/user-auth-context";
 import { getLeadData, signOut, type HubLead } from "@/lib/user-auth";
 import { AuthModal } from "@/components/landing/auth-modal";
 import { MONTHLY_AMOUNT, PLAN_LABEL } from "@/lib/pricing";
+import { LogoMark } from "@/components/landing/logo-mark";
 import { whatsappHref } from "@/lib/whatsapp";
 
 // Los planes viejos en datos se muestran mapeados al plan único (sin migrar datos).
@@ -69,11 +70,11 @@ export default function MiCuentaPage() {
       <div className="mx-auto max-w-[560px]">
         {/* Header */}
         <div className="mb-8 flex items-center justify-between">
-          <a href="/" className="flex items-center gap-2.5">
-            <img src="/logo-icon.svg" alt="Arzac Studio" className="h-8 w-8" />
-            <span className="hidden items-baseline gap-0.5 sm:flex">
-              <span className="text-[0.95rem] font-bold tracking-tight text-gray-900">ARZAC</span>
-              <span className="text-[0.6rem] font-medium text-teal-600">.studio</span>
+          {/* La misma marca que la landing: LogoMark en tinta + «Arzac studio» en serif. */}
+          <a href="/" className="flex items-center gap-2 text-gray-900" aria-label="Arzac Studio">
+            <LogoMark size={20} color="currentColor" />
+            <span className="text-[18px] leading-none tracking-[-0.01em]" style={{ fontFamily: "var(--font-at-serif, Georgia), serif" }}>
+              Arzac <em className="font-normal italic text-[#b3522e]">studio</em>
             </span>
           </a>
           <button
