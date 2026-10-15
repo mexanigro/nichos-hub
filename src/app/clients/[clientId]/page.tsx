@@ -100,6 +100,8 @@ type ClientReview = ClientWithHealth & {
   resubmissionCount?: number;
   contactPhone?: string;
   contactWhatsapp?: string;
+  paymentStatus?: string | null;
+  nextChargeAt?: string | null;
 };
 
 /**
@@ -177,7 +179,7 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
           data.map((p) => ({
             ...p,
             billingDate: new Date(p.billingDate),
-            nextBillingDate: new Date(p.nextBillingDate),
+            nextBillingDate: p.nextBillingDate ? new Date(p.nextBillingDate) : (undefined as unknown as Date),
             createdAt: new Date(p.createdAt),
             updatedAt: new Date(p.updatedAt),
           })),
@@ -811,9 +813,9 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
         <div className="mb-4 flex items-start gap-2 rounded-xl border border-amber-500/20 bg-amber-500/5 p-3 text-[11px] text-amber-300">
           <AlertTriangle size={14} className="mt-0.5 shrink-0" />
           <div>
-            <p className="font-medium">Metricas de salud no disponibles</p>
+            <p className="font-medium">Métricas de salud no disponibles</p>
             <p className="text-amber-300/70">
-              La base de PostgreSQL no responde. Los valores de uptime e incidentes mostrados a continuacion pueden no reflejar la realidad.
+              La base de PostgreSQL no responde. Los valores de uptime e incidentes mostrados a continuación pueden no reflejar la realidad.
             </p>
           </div>
         </div>
@@ -1008,7 +1010,10 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
                     {paidRecurring} mensualidad{paidRecurring !== 1 ? "es" : ""} pagada{paidRecurring !== 1 ? "s" : ""}
                   </span>
                   <span className="text-text-muted">
-                    Próximo cobro: {format(payments[0].nextBillingDate, "dd MMM yyyy", { locale: es })}
+                    {/* El próximo cobro es el de la suscripción (hub_clients.nextChargeAt), no la fecha de un pago pendiente. */}
+                    {client.nextChargeAt && (client.paymentStatus === "active" || client.paymentStatus === "past_due")
+                      ? <>Próximo cobro: {format(new Date(client.nextChargeAt), "dd MMM yyyy", { locale: es })}{client.paymentStatus === "past_due" ? " · atrasado" : ""}</>
+                      : "Sin suscripción activa"}
                   </span>
                 </div>
               );
@@ -1030,7 +1035,7 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
                         {format(p.billingDate, "dd MMM yyyy", { locale: es })}
                       </td>
                       <td className="px-3 py-2 font-medium tabular-nums text-text">
-                        ₪{p.amount.toLocaleString()}
+                        ₪{p.amount.toLocaleString("en-US")}
                       </td>
                       <td className="px-3 py-2">
                         <PaymentTypeBadge type={p.type} />
@@ -1389,12 +1394,12 @@ function DemoActivationBanner({
           <Clock size={14} className="text-yellow-500" />
         </div>
         <div>
-          <p className="text-xs font-medium text-text">Este cliente esta en modo demo</p>
+          <p className="text-xs font-medium text-text">Este cliente está en modo demo</p>
           <p className="text-[10px] text-text-muted">
             {canActivate
-              ? "Activalo cuando la configuracion y el contenido esten listos para produccion."
+              ? "Activalo cuando la configuración y el contenido estén listos para producción."
               : !vercelProjectId
-                ? "Necesitas deployar el proyecto primero."
+                ? "Necesitás deployar el proyecto primero."
                 : deployStatus === "building"
                   ? "Esperando que termine el deploy..."
                   : "Necesitas un deploy exitoso antes de activar."}

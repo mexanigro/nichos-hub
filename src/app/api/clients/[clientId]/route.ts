@@ -52,6 +52,9 @@ export const GET = withOwner(async (_req, _session, ctx) => {
     contactPhone: contact.phone || d["contact.phone"] || "",
     contactWhatsapp: contact.whatsapp || d["contact.whatsapp"] || "",
     language: normalizeClientLanguage(d.language),
+    // La suscripción (la escriben verify-payment y el cron): la ficha muestra el próximo cobro desde acá.
+    paymentStatus: typeof d.paymentStatus === "string" ? d.paymentStatus : null,
+    nextChargeAt: typeof d.nextChargeAt?.toDate === "function" ? d.nextChargeAt.toDate().toISOString() : null,
   };
   const internalClientId = d.clientId;
   const clientStatus = d.status || "active";

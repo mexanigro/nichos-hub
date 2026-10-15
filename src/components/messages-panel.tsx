@@ -266,7 +266,7 @@ export function MessagesPanel({
       <div ref={scrollerRef} className="flex max-h-72 flex-col-reverse gap-2 overflow-y-auto px-3 py-3">
         {messages.length === 0 ? (
           <p className="py-6 text-center text-xs text-text-muted">
-            {composing ? "Empezá la conversación con el cliente arriba." : "Sin mensajes todavia."}
+            {composing ? "Empezá la conversación con el cliente arriba." : "Sin mensajes todavía."}
           </p>
         ) : (
           messages.map((msg) => {

@@ -40,7 +40,8 @@ export default function PaymentsPage() {
           data.map((p) => ({
             ...p,
             billingDate: new Date(p.billingDate),
-            nextBillingDate: new Date(p.nextBillingDate),
+            // Los cobros del cron no traen nextBillingDate: new Date(undefined) es Invalid Date y format() rompía la página.
+            nextBillingDate: p.nextBillingDate ? new Date(p.nextBillingDate) : (undefined as unknown as Date),
             createdAt: new Date(p.createdAt),
             updatedAt: new Date(p.updatedAt),
           })),
@@ -81,8 +82,8 @@ export default function PaymentsPage() {
 
       {/* Stats */}
       <div className="mb-6 grid grid-cols-2 gap-3 lg:grid-cols-4">
-        <StatCard icon={DollarSign} label="Cobrado este mes" value={`₪${totalCobrado.toLocaleString()}`} iconBg="bg-success-muted" iconColor="text-success" valueColor="text-success" />
-        <StatCard icon={Repeat} label="Total mensualidades" value={`₪${totalMensualidades.toLocaleString()}`} iconBg="bg-bg-elevated" iconColor="text-text-secondary" />
+        <StatCard icon={DollarSign} label="Cobrado este mes" value={`₪${totalCobrado.toLocaleString("en-US")}`} iconBg="bg-success-muted" iconColor="text-success" valueColor="text-success" />
+        <StatCard icon={Repeat} label="Total mensualidades" value={`₪${totalMensualidades.toLocaleString("en-US")}`} iconBg="bg-bg-elevated" iconColor="text-text-secondary" />
         <StatCard icon={Clock} label="Pendientes" value={pendientes} iconBg="bg-warning-muted" iconColor="text-warning" valueColor="text-warning" />
         <StatCard icon={AlertTriangle} label="Fallidos" value={fallidos} iconBg="bg-danger-muted" iconColor="text-danger" valueColor="text-danger" />
       </div>
@@ -125,7 +126,7 @@ export default function PaymentsPage() {
                 <th className="px-4 py-3">Monto</th>
                 <th className="px-4 py-3">Tipo</th>
                 <th className="px-4 py-3">Estado</th>
-                <th className="hidden px-4 py-3 md:table-cell">Último cobro</th>
+                <th className="hidden px-4 py-3 md:table-cell">Fecha</th>
                 <th className="hidden px-4 py-3 md:table-cell">Próximo cobro</th>
                 <th className="hidden px-4 py-3 lg:table-cell">Tarjeta</th>
               </tr>
@@ -148,7 +149,7 @@ export default function PaymentsPage() {
                   </td>
                   <td className="px-4 py-3">
                     <span className="font-medium tabular-nums text-text">
-                      ₪{p.amount.toLocaleString()}
+                      ₪{p.amount.toLocaleString("en-US")}
                     </span>
                   </td>
                   <td className="px-4 py-3">
@@ -161,7 +162,10 @@ export default function PaymentsPage() {
                     {format(p.billingDate, "dd MMM yyyy", { locale: es })}
                   </td>
                   <td className="hidden whitespace-nowrap px-4 py-3 text-xs text-text-muted md:table-cell">
-                    {format(p.nextBillingDate, "dd MMM yyyy", { locale: es })}
+                    {/* Sólo una cuota cobrada anuncia la siguiente; un alta vieja pendiente no tiene próximo cobro. */}
+                    {p.type === "recurring" && p.status === "paid" && p.nextBillingDate && !isNaN(p.nextBillingDate.getTime())
+                      ? format(p.nextBillingDate, "dd MMM yyyy", { locale: es })
+                      : "—"}
                   </td>
                   <td className="hidden px-4 py-3 lg:table-cell">
                     <span className="font-mono text-xs text-text-muted">
