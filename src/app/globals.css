@@ -917,6 +917,16 @@ body:has(.pago) {
 /* spinner */
 @keyframes pago-spin { to { transform: rotate(360deg); } }
 .pago-spinner { width: 20px; height: 20px; border: 2.5px solid white; border-top-color: transparent; border-radius: 50%; animation: pago-spin 0.6s linear infinite; }
+/* Sola en la página (no dentro de un botón oscuro), la ruedita va en tinta: blanca sobre el crema no se veía. */
+.pago-main > .pago-spinner { width: 28px; height: 28px; border-color: var(--pg-ink-3); border-top-color: transparent; }
+/* RTL: «adelante» apunta a la izquierda. */
+.pago[dir="rtl"] .pago-btn-arrow { display: inline-block; transform: scaleX(-1); }
+.pago[dir="rtl"] .pgerr-tips li::before { content: "←"; }
+/* El espaciado entre letras es para mayúsculas latinas: en hebreo separa las letras y en árabe rompe su unión. */
+.pago[dir="rtl"] :is(.eyebrow, .pago-foot, .pgerr-ref) { letter-spacing: normal; }
+/* Sobre el verde de la tarjeta, el botón fantasma va en crema (en tinta no se leía). */
+.pgok-hero .pago-btn-ghost { color: var(--pg-paper); border-color: rgba(244,240,232,0.4); }
+.pgok-hero .pago-btn-ghost:hover { background: rgba(244,240,232,0.12); color: var(--pg-paper); border-color: var(--pg-paper); }
 
 /* ─── Wizard (.wiz scope) ─── */
 

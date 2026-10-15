@@ -52,7 +52,17 @@ function ErrorContent() {
                   {" "}<span className="pago-btn-arrow">→</span>
                 </a>
               )}
-              <a href="/" className="pago-btn pago-btn-ghost" style={{ textDecoration: "none" }}>{t.pagoErr.ctaSecondary}</a>
+              {clientId ? (
+                <a href={whatsappHref()} className="pago-btn pago-btn-ghost" style={{ textDecoration: "none" }} target="_blank" rel="noopener noreferrer">{t.pagoErr.ctaSecondary}</a>
+              ) : (
+                <a href="/" className="pago-btn pago-btn-ghost" style={{ textDecoration: "none" }}>
+                  {locale === "es" ? "Volver al inicio"
+                    : locale === "en" ? "Back to home"
+                    : locale === "he" ? "חזרה לדף הבית"
+                    : locale === "ru" ? "На главную"
+                    : "العودة إلى الصفحة الرئيسية"}
+                </a>
+              )}
             </div>
             <div className="pgerr-ref">{t.pagoErr.ref}: ARZ-PAY-{new Date().getFullYear()}-{String(new Date().getMonth() + 1).padStart(2, "0")}{String(new Date().getDate()).padStart(2, "0")}</div>
           </div>
