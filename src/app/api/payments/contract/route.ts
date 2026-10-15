@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/firebase-admin";
 import { FieldValue } from "firebase-admin/firestore";
-import { CURRENCY, PLAN_ID } from "@/lib/pricing";
-import { resolveClientCharge } from "@/lib/charges";
+import { CURRENCY, MONTHLY_AMOUNT, PLAN_ID } from "@/lib/pricing";
 import { isRateLimited } from "@/lib/rate-limit";
 
 export async function POST(req: NextRequest) {
@@ -49,10 +48,10 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Estado del cliente no permite crear contrato" }, { status: 403 });
   }
 
-  // Alta (setupAmount negociado o 1500) si nunca pagó el alta; si no, cuota 250. Mismo criterio que create-payment.
-  const charge = await resolveClientCharge(clientId, clientData);
-  const type = charge.kind === "initial" ? "initial" : "recurring";
-  const amount = charge.amount;
+  // Sin alta (Liam, 2026-10-15): el primer cobro es la cuota de 250 y cubre un mes entero. Mismo importe que
+  // create-payment: verify-payment compara lo cobrado con este hub_payments pendiente.
+  const type = "recurring";
+  const amount = MONTHLY_AMOUNT;
 
   const now = FieldValue.serverTimestamp();
   const today = new Date();

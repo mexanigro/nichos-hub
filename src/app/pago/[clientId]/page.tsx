@@ -1,6 +1,5 @@
 import { db } from "@/lib/firebase-admin";
 import { notFound } from "next/navigation";
-import { resolveSetupAmount } from "@/lib/pricing";
 import PagoClient from "./pago-client";
 
 interface Props {
@@ -30,7 +29,6 @@ export default async function PagoPage({ params }: Props) {
       clientDocId={doc.id}
       businessName={data.businessName || data.name || clientId}
       lang={lang}
-      setupAmount={resolveSetupAmount(data.setupAmount)}
     />
   );
 }

@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useUserAuth } from "@/lib/user-auth-context";
 import { getLeadData, signOut, type HubLead } from "@/lib/user-auth";
 import { AuthModal } from "@/components/landing/auth-modal";
-import { MONTHLY_AMOUNT, PLAN_LABEL, SETUP_AMOUNT_DEFAULT } from "@/lib/pricing";
+import { MONTHLY_AMOUNT, PLAN_LABEL } from "@/lib/pricing";
 import { whatsappHref } from "@/lib/whatsapp";
 
 // Los planes viejos en datos se muestran mapeados al plan único (sin migrar datos).
@@ -139,7 +139,7 @@ export default function MiCuentaPage() {
                 <div className="rounded-xl border-2 border-gray-900 p-4">
                   <p className="font-semibold text-gray-900">{PLAN_LABEL}</p>
                   <p className="mt-1 text-2xl font-bold text-gray-900">₪{MONTHLY_AMOUNT}<span className="text-sm font-normal text-gray-500">/mes</span></p>
-                  <p className="text-[0.8rem] text-gray-500">Alta única ₪{SETUP_AMOUNT_DEFAULT.toLocaleString()}</p>
+                  <p className="text-[0.8rem] text-gray-500">Todo incluido, sin alta</p>
                   <ul className="mt-3 space-y-1.5 text-[0.8rem] text-gray-600">
                     <li>✓ Sitio web profesional</li>
                     <li>✓ CRM de clientes y reservas</li>

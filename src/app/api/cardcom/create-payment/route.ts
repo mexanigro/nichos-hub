@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/firebase-admin";
 import { createLowProfilePayment } from "@/lib/cardcom";
-import { PLAN_LABEL } from "@/lib/pricing";
-import { resolveClientCharge } from "@/lib/charges";
+import { MONTHLY_AMOUNT, PLAN_LABEL } from "@/lib/pricing";
 import { isRateLimited } from "@/lib/rate-limit";
 
 export async function POST(req: NextRequest) {
@@ -35,12 +34,10 @@ export async function POST(req: NextRequest) {
 
   const clientData = snap.docs[0].data();
   // Mismo importe que el hub_payments pendiente creado por /api/payments/contract (verify-payment los compara).
-  const charge = await resolveClientCharge(clientId, clientData);
-  const amount = charge.amount;
+  const amount = MONTHLY_AMOUNT;
   const lang: "he" | "en" = clientData.language === "he" ? "he" : "en";
 
-  const kindLabel = charge.kind === "initial" ? "alta" : "mensualidad";
-  const productName = `${PLAN_LABEL} (${kindLabel}) - ${clientData.businessName || clientId}`;
+  const productName = `${PLAN_LABEL} (mensualidad) - ${clientData.businessName || clientId}`;
 
   const result = await createLowProfilePayment({
     amount,

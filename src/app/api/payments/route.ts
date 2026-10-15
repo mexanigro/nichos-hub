@@ -33,9 +33,10 @@ export const POST = withOwner(async (req) => {
     );
   }
 
-  if (type !== "initial" && type !== "recurring") {
+  // Sin alta desde 2026-10-15: un pago nuevo es siempre una cuota («initial» queda sólo en datos viejos).
+  if (type !== "recurring") {
     return NextResponse.json(
-      { error: "type debe ser 'initial' o 'recurring'" },
+      { error: "type debe ser 'recurring'" },
       { status: 400 },
     );
   }

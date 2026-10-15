@@ -8,7 +8,6 @@ import {
   DollarSign,
   AlertTriangle,
   Clock,
-  Zap,
   Repeat,
 } from "lucide-react";
 import { EmptyState } from "@/components/empty-state";
@@ -59,9 +58,6 @@ export default function PaymentsPage() {
   const totalCobrado = thisMonthPayments
     .filter((p) => p.status === "paid")
     .reduce((s, p) => s + p.amount, 0);
-  const totalSetups = payments
-    .filter((p) => p.type === "initial" && p.status === "paid")
-    .reduce((s, p) => s + p.amount, 0);
   const totalMensualidades = payments
     .filter((p) => p.type === "recurring" && p.status === "paid")
     .reduce((s, p) => s + p.amount, 0);
@@ -84,9 +80,8 @@ export default function PaymentsPage() {
       </div>
 
       {/* Stats */}
-      <div className="mb-6 grid grid-cols-2 gap-3 lg:grid-cols-5">
+      <div className="mb-6 grid grid-cols-2 gap-3 lg:grid-cols-4">
         <StatCard icon={DollarSign} label="Cobrado este mes" value={`₪${totalCobrado.toLocaleString()}`} iconBg="bg-success-muted" iconColor="text-success" valueColor="text-success" />
-        <StatCard icon={Zap} label="Total setups" value={`₪${totalSetups.toLocaleString()}`} iconBg="bg-accent-muted" iconColor="text-accent" valueColor="text-accent" />
         <StatCard icon={Repeat} label="Total mensualidades" value={`₪${totalMensualidades.toLocaleString()}`} iconBg="bg-bg-elevated" iconColor="text-text-secondary" />
         <StatCard icon={Clock} label="Pendientes" value={pendientes} iconBg="bg-warning-muted" iconColor="text-warning" valueColor="text-warning" />
         <StatCard icon={AlertTriangle} label="Fallidos" value={fallidos} iconBg="bg-danger-muted" iconColor="text-danger" valueColor="text-danger" />

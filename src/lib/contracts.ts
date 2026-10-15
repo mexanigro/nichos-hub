@@ -1,19 +1,16 @@
-import { MONTHLY_AMOUNT, resolveSetupAmount } from "./pricing.ts";
+import { MONTHLY_AMOUNT } from "./pricing.ts";
 
 export type ContractLang = "en" | "es" | "ru" | "he" | "ar";
 
 /**
- * v8.0 (N10 n10-precios-v1, 2026-09-12): un solo plan — web + CRM + notificaciones por email — con alta única
- * (importe variable, negociable en persona) y cuota mensual fija. WhatsApp, IA y voz son servicios opcionales
- * a cotizar aparte, sin plazo de activación. Sin niveles ni subida automática de precio.
+ * v9.0 (Liam, 2026-10-15): un solo plan — web + CRM + notificaciones por email — por una cuota mensual fija que lo
+ * cubre todo (sin alta, sin hosting ni dominio aparte). El primer mes se cobra al aceptar y cubre un mes entero; el
+ * cliente cancela cuando quiere, rige ese día, y se le devuelve la parte no usada del mes en proporción a los días.
+ * WhatsApp, IA y voz son servicios opcionales a cotizar aparte, sin plazo de activación. Sin niveles ni subida
+ * automática de precio. v8.0 (2026-09-12) llevaba alta negociable 1000–1500, hosting y dominio anuales y aviso de 30 días.
  * Cambiar cifras o cláusulas = nueva versión.
  */
-const CONTRACT_VERSION = "8.0";
-
-export interface ContractOptions {
-  /** Alta negociada (1000–1500); fuera de rango o ausente → 1500. */
-  setupAmount?: unknown;
-}
+const CONTRACT_VERSION = "9.0";
 
 const fmt = (n: number, lang: ContractLang): string => {
   const sep = lang === "es" ? "." : lang === "ru" ? " " : ",";
@@ -24,7 +21,7 @@ const fmt = (n: number, lang: ContractLang): string => {
  * ENGLISH CONTRACT
  * ═══════════════════════════════════════════════════════════════════════════ */
 
-function EN(setup: string, monthly: string): string {
+function EN(monthly: string): string {
   return `SERVICE AGREEMENT — WEBSITE, CRM & EMAIL NOTIFICATIONS
 Arzac Studio — Subscription
 
@@ -54,13 +51,10 @@ THE PARTIES AGREE AS FOLLOWS:
 
 3. Pricing & Payment
 
-3.1. Setup fee: ${setup}, one-time, payable upon signing this agreement. The setup fee covers the creation and initial configuration of the website and CRM.
-3.2. Subscription fee: ${monthly} per month, fixed, for the services in section 1.
-3.3. Payments are processed via Cardcom, Israel's payment processor. The Provider never stores the Client's card details. The subscription is charged monthly on the same date.
-3.4. Annual hosting fee: variable amount per year. May change annually subject to third-party costs. Payable within 7 days of the Provider's demand.
-3.5. Domain fee: variable amount per year. May change annually. Payable within 7 days of the Provider's demand.
-3.6. Late payment will result in the website and the CRM being suspended. Permanent deletion occurs 7 days after the missed payment and this agreement is terminated.
-3.7. No refunds or credits are issued for the setup fee or for annual hosting or domain fees upon early termination.
+3.1. Subscription fee: ${monthly} per month, fixed. It covers everything in section 1, including the creation of the website and the CRM, hosting and the domain. There is no setup fee and no other charge.
+3.2. The first month is charged when the Client accepts this agreement and covers one full month from that date. Each following month is charged on the same date.
+3.3. Payments are processed via Cardcom, Israel's payment processor. The Provider never stores the Client's card details.
+3.4. Late payment will result in the website and the CRM being suspended. Permanent deletion occurs 7 days after the missed payment and this agreement is terminated.
 
 4. Delivery Timeline
 
@@ -89,11 +83,11 @@ THE PARTIES AGREE AS FOLLOWS:
 
 8. Termination
 
-8.1. The Client may cancel with 30 days' written notice.
-8.2. The Provider may terminate immediately for breach of the Acceptable Use Policy.
-8.3. The Provider may terminate for non-payment after 7 days' written notice.
-8.4. Upon termination the website and the CRM will be taken offline.
-8.5. No refunds of the setup fee or annual fees will be issued.
+8.1. The Client may cancel at any time by written notice. The cancellation takes effect on the day it is received.
+8.2. When the Client cancels, the Provider refunds the unused part of the month already paid, in proportion to the days left: for example, cancelling on day 12 of a 30-day month refunds 18/30 of the monthly fee.
+8.3. The Provider may terminate immediately for breach of the Acceptable Use Policy.
+8.4. The Provider may terminate for non-payment after 7 days' written notice.
+8.5. Upon termination the website and the CRM will be taken offline.
 8.6. Upon request, the Provider will deliver the website source code (HTML/CSS/JS) and the Client's CRM data. No access to internal infrastructure will be granted.
 
 9. Governing Law & Jurisdiction
@@ -105,7 +99,7 @@ This agreement is governed by Israeli law. Exclusive jurisdiction: competent cou
  * HEBREW CONTRACT
  * ═══════════════════════════════════════════════════════════════════════════ */
 
-function HE(setup: string, monthly: string): string {
+function HE(monthly: string): string {
   return `הסכם מתן שירות בניית אתרים, תחזוקה, אירוח, מערכת CRM והתראות במייל
 
 שנערך ונחתם ביום _____ לחודש _____ שנת _____
@@ -146,67 +140,61 @@ function HE(setup: string, monthly: string): string {
 
 התמורה
 
-11. דמי הקמה: ${setup}, תשלום חד-פעמי, ישולם עם חתימת הסכם זה. דמי ההקמה מכסים את בניית האתר ומערכת ה-CRM והגדרתם הראשונית.
+11. דמי מנוי חודשיים: ${monthly} לחודש, סכום קבוע. דמי המנוי כוללים את כל השירותים המפורטים בסעיפים 1 עד 7, לרבות בניית האתר ומערכת ה-CRM, האחסון והדומיין. אין דמי הקמה ואין כל תשלום נוסף.
 
-12. דמי מנוי חודשיים: ${monthly} לחודש, סכום קבוע, עבור השירותים המפורטים בסעיפים 1 עד 7.
+12. החודש הראשון ייגבה עם אישור הסכם זה על ידי המזמין ויכסה חודש מלא מאותו תאריך. כל חודש נוסף ייגבה באותו תאריך.
 
-13. התשלומים יבוצעו באמצעות מערכת הסליקה Cardcom. החברה אינה שומרת פרטי כרטיס אשראי של המזמין. דמי המנוי ייגבו מדי חודש באותו תאריך.
+13. התשלומים יבוצעו באמצעות מערכת הסליקה Cardcom. החברה אינה שומרת פרטי כרטיס אשראי של המזמין.
 
-14. אחסון אתר: עלות שנתית משתנה. העלות עשויה להשתנות בהתאם לעלויות צד שלישי. ישולם תוך 7 ימים מדרישת החברה.
-
-15. דומיין: עלות שנתית משתנה. עשויה להשתנות בהתאם לתנאי ספקי שמות המתחם. ישולם תוך 7 ימים מדרישת החברה.
-
-16. לא שולמה התמורה במועדה, יושבתו האתר ומערכת ה-CRM. אם לא שולמה התמורה תוך 7 ימים ממועד התשלום, יימחק האתר לצמיתות ויבוטל הסכם זה.
-
-17. החברה לא תעניק זיכוי בגין דמי ההקמה או בגין תשלומים שנתיים ששולמו (אחסון ודומיין) אם ההסכם מבוטל לפני תום התקופה.
+14. לא שולמה התמורה במועדה, יושבתו האתר ומערכת ה-CRM. אם לא שולמה התמורה תוך 7 ימים ממועד התשלום, יימחק האתר לצמיתות ויבוטל הסכם זה.
 
 זמנים
 
-18. אתר אינטרנט פונקציונלי יימסר תוך 48 שעות ממועד קבלת חומרי העיצוב מהמזמין.
+15. אתר אינטרנט פונקציונלי יימסר תוך 48 שעות ממועד קבלת חומרי העיצוב מהמזמין.
 
 זכויות / קניין רוחני ורישוי
 
-19. המזמין יקבל רישיון שימוש לא בלעדי, שאינו ניתן להעברה, אך ורק לתקופת ההסכם.
+16. המזמין יקבל רישיון שימוש לא בלעדי, שאינו ניתן להעברה, אך ורק לתקופת ההסכם.
 
-20. קוד המקור, קבצי העיצוב וכל זכויות הקניין הרוחני על עיצוב האתר הם ויישארו קניינה הבלעדי של החברה. המזמין מקבל רישיון שימוש באתר בלבד.
+17. קוד המקור, קבצי העיצוב וכל זכויות הקניין הרוחני על עיצוב האתר הם ויישארו קניינה הבלעדי של החברה. המזמין מקבל רישיון שימוש באתר בלבד.
 
-21. לוגו, סימן מסחרי וכל תוכן שסיפק המזמין לחברה הם קניינו הבלעדי של המזמין. החברה תשתמש בהם אך ורק לצורך הסכם זה.
+18. לוגו, סימן מסחרי וכל תוכן שסיפק המזמין לחברה הם קניינו הבלעדי של המזמין. החברה תשתמש בהם אך ורק לצורך הסכם זה.
 
-22. שם המתחם (דומיין) הוא בבעלות המזמין.
+19. שם המתחם (דומיין) הוא בבעלות המזמין.
 
-23. נתוני ה-CRM שהוזנו על ידי המזמין שייכים למזמין ויועברו לבקשתו עם סיום ההסכם.
+20. נתוני ה-CRM שהוזנו על ידי המזמין שייכים למזמין ויועברו לבקשתו עם סיום ההסכם.
 
 מדיניות שימוש מקובל
 
-24. אין להשתמש באתר ובמערכת ה-CRM לשליחת דואר זבל (ספאם) או לאחסון חומרים בלתי חוקיים.
+21. אין להשתמש באתר ובמערכת ה-CRM לשליחת דואר זבל (ספאם) או לאחסון חומרים בלתי חוקיים.
 
-25. אין להעלות או לפרסם תוכן פוגעני, מטעה, אסור על פי דין או הפוגע בזכויות צד שלישי.
+22. אין להעלות או לפרסם תוכן פוגעני, מטעה, אסור על פי דין או הפוגע בזכויות צד שלישי.
 
-26. הפרת מדיניות שימוש מקובל מהווה הפרה יסודית של הסכם זה, המקנה לחברה את הזכות לסיים את ההסכם לאלתר ובאופן חד-צדדי, ללא כל הודעה מוקדמת.
+23. הפרת מדיניות שימוש מקובל מהווה הפרה יסודית של הסכם זה, המקנה לחברה את הזכות לסיים את ההסכם לאלתר ובאופן חד-צדדי, ללא כל הודעה מוקדמת.
 
 הגבלת אחריות
 
-27. כל תוכן המועלה לאתר וכל מידע המוזן למערכת ה-CRM הוא באחריותו הבלעדית של המזמין.
+24. כל תוכן המועלה לאתר וכל מידע המוזן למערכת ה-CRM הוא באחריותו הבלעדית של המזמין.
 
-28. החברה אינה מתחייבת לתוצאות מסחריות, מכירות, הכנסות או כל תשואה כלכלית אחרת.
+25. החברה אינה מתחייבת לתוצאות מסחריות, מכירות, הכנסות או כל תשואה כלכלית אחרת.
 
-29. החברה אינה אחראית לכשלים, תקלות או הפסקות שירות הנובעים מפלטפורמות צד שלישי (ספקי אחסון, רשמי דומיינים, ספקי דוא"ל וכיוצא בזה) או מאירועי כוח עליון.
+26. החברה אינה אחראית לכשלים, תקלות או הפסקות שירות הנובעים מפלטפורמות צד שלישי (ספקי אחסון, רשמי דומיינים, ספקי דוא"ל וכיוצא בזה) או מאירועי כוח עליון.
 
-30. בכל מקרה, סך אחריותה הכוללת של החברה על פי הסכם זה לא תעלה על הסכום הכולל ששולם בפועל על ידי המזמין לחברה במסגרת הסכם זה.
+27. בכל מקרה, סך אחריותה הכוללת של החברה על פי הסכם זה לא תעלה על הסכום הכולל ששולם בפועל על ידי המזמין לחברה במסגרת הסכם זה.
 
 סיום / ביטול הסכם
 
-31. המזמין רשאי לבטל את ההסכם בהודעה מוקדמת בכתב של 30 יום.
+28. המזמין רשאי לבטל את ההסכם בכל עת בהודעה בכתב. הביטול נכנס לתוקף ביום קבלת ההודעה.
 
-32. החברה רשאית לבטל את ההסכם לאלתר ובאופן חד-צדדי במקרה של הפרת מדיניות השימוש המקובל על ידי המזמין, ללא כל הודעה מוקדמת.
+29. ביטל המזמין את ההסכם, תחזיר לו החברה את החלק שלא נוצל מהחודש ששולם, באופן יחסי לימים שנותרו: למשל, ביטול ביום ה-12 של חודש בן 30 יום מזכה בהחזר של 18/30 מדמי המנוי.
 
-33. החברה רשאית לבטל את ההסכם בגין אי-תשלום, בהודעה מוקדמת בכתב של 7 ימים.
+30. החברה רשאית לבטל את ההסכם לאלתר ובאופן חד-צדדי במקרה של הפרת מדיניות השימוש המקובל על ידי המזמין, ללא כל הודעה מוקדמת.
 
-34. עם סיום ההסכם, מכל סיבה שהיא, האתר ומערכת ה-CRM יורדו מהאוויר, והמזמין יאבד את הנראות באינטרנט.
+31. החברה רשאית לבטל את ההסכם בגין אי-תשלום, בהודעה מוקדמת בכתב של 7 ימים.
 
-35. לא יינתן זיכוי בגין דמי ההקמה או בגין תשלום שנתי לאחסון או דומיין ששולם מראש.
+32. עם סיום ההסכם, מכל סיבה שהיא, האתר ומערכת ה-CRM יורדו מהאוויר, והמזמין יאבד את הנראות באינטרנט.
 
-36. עם סיום ההסכם, לבקשת המזמין בכתב: יועברו קוד המקור של האתר (HTML, CSS, JS) ונתוני ה-CRM שנאספו במהלך תקופת השירות. לא תינתן גישה לכלים פנימיים של החברה, למערכת תבנית מאסטר או לתשתית הפנימית.
+33. עם סיום ההסכם, לבקשת המזמין בכתב: יועברו קוד המקור של האתר (HTML, CSS, JS) ונתוני ה-CRM שנאספו במהלך תקופת השירות. לא תינתן גישה לכלים פנימיים של החברה, למערכת תבנית מאסטר או לתשתית הפנימית.
 
 שיפוט
 
@@ -223,7 +211,7 @@ function HE(setup: string, monthly: string): string {
  * RUSSIAN CONTRACT
  * ═══════════════════════════════════════════════════════════════════════════ */
 
-function RU(setup: string, monthly: string): string {
+function RU(monthly: string): string {
   return `ДОГОВОР НА ОКАЗАНИЕ УСЛУГ — САЙТ, CRM И EMAIL-УВЕДОМЛЕНИЯ
 Arzac Studio — Подписка
 
@@ -253,13 +241,10 @@ Arzac Studio — Подписка
 
 3. Стоимость и порядок оплаты
 
-3.1. Плата за подключение: ${setup}, разовый платёж, вносится при подписании договора. Покрывает создание и первоначальную настройку сайта и CRM.
-3.2. Абонентская плата: ${monthly} в месяц, фиксированная, за услуги раздела 1.
-3.3. Платежи обрабатываются через Cardcom. Исполнитель не хранит данные карт. Абонентская плата списывается ежемесячно в одну и ту же дату.
-3.4. Хостинг: переменная сумма в год. Может изменяться. Оплата в течение 7 дней с момента запроса.
-3.5. Домен: переменная сумма в год. Оплата в течение 7 дней с момента запроса.
-3.6. Просрочка оплаты повлечёт остановку сайта и CRM. Удаление через 7 дней, расторжение договора.
-3.7. Плата за подключение и ежегодные платежи возврату не подлежат.
+3.1. Абонентская плата: ${monthly} в месяц, фиксированная. Покрывает всё, что указано в разделе 1, включая создание сайта и CRM, хостинг и домен. Платы за подключение и других платежей нет.
+3.2. Первый месяц оплачивается при принятии договора и покрывает полный месяц с этой даты. Каждый следующий месяц списывается в ту же дату.
+3.3. Платежи обрабатываются через Cardcom. Исполнитель не хранит данные карт.
+3.4. Просрочка оплаты повлечёт остановку сайта и CRM. Удаление через 7 дней, расторжение договора.
 
 4. Сроки исполнения
 
@@ -288,11 +273,11 @@ Arzac Studio — Подписка
 
 8. Расторжение договора
 
-8.1. Заказчик вправе расторгнуть с уведомлением за 30 дней.
-8.2. Исполнитель вправе расторгнуть немедленно при нарушении политики использования.
-8.3. Исполнитель вправе расторгнуть при неоплате после 7-дневного предупреждения.
-8.4. После расторжения сайт и CRM деактивируются.
-8.5. Плата за подключение и ежегодные платежи не возвращаются.
+8.1. Заказчик вправе расторгнуть договор в любой момент письменным уведомлением. Расторжение вступает в силу в день получения уведомления.
+8.2. При расторжении Заказчиком Исполнитель возвращает неиспользованную часть оплаченного месяца пропорционально оставшимся дням: например, при отмене на 12-й день 30-дневного месяца возвращается 18/30 абонентской платы.
+8.3. Исполнитель вправе расторгнуть немедленно при нарушении политики использования.
+8.4. Исполнитель вправе расторгнуть при неоплате после 7-дневного предупреждения.
+8.5. После расторжения сайт и CRM деактивируются.
 8.6. По запросу передаются исходный код сайта и данные CRM. Доступ к инфраструктуре не предоставляется.
 
 9. Применимое право и юрисдикция
@@ -304,7 +289,7 @@ Arzac Studio — Подписка
  * SPANISH CONTRACT
  * ═══════════════════════════════════════════════════════════════════════════ */
 
-function ES(setup: string, monthly: string): string {
+function ES(monthly: string): string {
   return `ACUERDO DE SERVICIOS — SITIO WEB, CRM Y NOTIFICACIONES POR EMAIL
 Arzac Studio — Suscripcion
 
@@ -334,13 +319,10 @@ LAS PARTES ACUERDAN LO SIGUIENTE:
 
 3. Precio y Pago
 
-3.1. Alta: ${setup}, pago unico, pagadero al firmar este acuerdo. El alta cubre la creacion y configuracion inicial del sitio web y del CRM.
-3.2. Cuota de suscripcion: ${monthly} por mes, fija, por los servicios de la seccion 1.
-3.3. Los pagos se procesan via Cardcom, procesador de pagos israeli. El Proveedor nunca almacena los datos de tarjeta del Cliente. La cuota se cobra mensualmente en la misma fecha.
-3.4. Hosting anual: monto variable por año. Puede cambiar segun costos de terceros. Pagadero dentro de 7 dias desde la solicitud.
-3.5. Dominio: monto variable por año. Pagadero dentro de 7 dias desde la solicitud.
-3.6. La falta de pago resultara en la suspension del sitio web y del CRM. Eliminacion permanente 7 dias despues del impago y rescision del acuerdo.
-3.7. No se emiten reembolsos por el alta ni por tarifas anuales de hosting o dominio.
+3.1. Cuota de suscripcion: ${monthly} por mes, fija. Cubre todo lo de la seccion 1, incluida la creacion del sitio web y del CRM, el hosting y el dominio. No hay alta ni ningun otro cargo.
+3.2. El primer mes se cobra cuando el Cliente acepta este acuerdo y cubre un mes completo desde esa fecha. Cada mes siguiente se cobra en la misma fecha.
+3.3. Los pagos se procesan via Cardcom, procesador de pagos israeli. El Proveedor nunca almacena los datos de tarjeta del Cliente.
+3.4. La falta de pago resultara en la suspension del sitio web y del CRM. Eliminacion permanente 7 dias despues del impago y rescision del acuerdo.
 
 4. Plazos de Entrega
 
@@ -369,11 +351,11 @@ LAS PARTES ACUERDAN LO SIGUIENTE:
 
 8. Rescision
 
-8.1. El Cliente puede cancelar con 30 dias de aviso por escrito.
-8.2. El Proveedor puede rescindir inmediatamente por violacion de la Politica de Uso Aceptable.
-8.3. El Proveedor puede rescindir por falta de pago con 7 dias de aviso por escrito.
-8.4. Tras la rescision, el sitio web y el CRM seran dados de baja.
-8.5. No se reembolsan el alta ni las tarifas anuales.
+8.1. El Cliente puede cancelar en cualquier momento con un aviso por escrito. La cancelacion rige desde el dia en que se recibe.
+8.2. Cuando el Cliente cancela, el Proveedor le devuelve la parte no usada del mes ya pagado, en proporcion a los dias que faltan: por ejemplo, cancelar el dia 12 de un mes de 30 dias devuelve 18/30 de la cuota.
+8.3. El Proveedor puede rescindir inmediatamente por violacion de la Politica de Uso Aceptable.
+8.4. El Proveedor puede rescindir por falta de pago con 7 dias de aviso por escrito.
+8.5. Tras la rescision, el sitio web y el CRM seran dados de baja.
 8.6. A solicitud, el Proveedor entregara el codigo fuente del sitio (HTML/CSS/JS) y los datos del CRM. No se otorgara acceso a la infraestructura interna.
 
 9. Ley Aplicable y Jurisdiccion
@@ -385,7 +367,7 @@ Este acuerdo se rige por la ley israeli. Jurisdiccion exclusiva: tribunales comp
  * ARABIC CONTRACT
  * ═══════════════════════════════════════════════════════════════════════════ */
 
-function AR(setup: string, monthly: string): string {
+function AR(monthly: string): string {
   return `اتفاقية تقديم خدمات — موقع إلكتروني، CRM وإشعارات بريد إلكتروني
 Arzac Studio — الاشتراك
 
@@ -415,13 +397,10 @@ Arzac Studio — الاشتراك
 
 3. التسعير والدفع
 
-3.1. رسوم التأسيس: ${setup}، دفعة واحدة تُدفع عند توقيع هذه الاتفاقية. تغطي إنشاء الموقع ونظام CRM وإعدادهما الأولي.
-3.2. رسوم الاشتراك: ${monthly} شهرياً، ثابتة، مقابل خدمات البند 1.
-3.3. تُعالج المدفوعات عبر Cardcom. لا يخزّن مزوّد الخدمة بيانات البطاقة. يُحصَّل الاشتراك شهرياً في التاريخ نفسه.
-3.4. الاستضافة: مبلغ سنوي متغيّر. يُدفع خلال 7 أيام من الطلب.
-3.5. النطاق: مبلغ سنوي متغيّر. يُدفع خلال 7 أيام من الطلب.
-3.6. التأخّر في الدفع يؤدي إلى تعليق الموقع ونظام CRM. الحذف خلال 7 أيام وإنهاء الاتفاقية.
-3.7. لا تُردّ رسوم التأسيس ولا الرسوم السنوية.
+3.1. رسوم الاشتراك: ${monthly} شهرياً، ثابتة. تشمل كل ما ورد في البند 1، بما في ذلك إنشاء الموقع ونظام CRM والاستضافة والنطاق. لا توجد رسوم تأسيس ولا أي رسوم أخرى.
+3.2. يُحصَّل الشهر الأول عند قبول العميل لهذه الاتفاقية ويغطي شهراً كاملاً من ذلك التاريخ. ويُحصَّل كل شهر تالٍ في التاريخ نفسه.
+3.3. تُعالج المدفوعات عبر Cardcom. لا يخزّن مزوّد الخدمة بيانات البطاقة.
+3.4. التأخّر في الدفع يؤدي إلى تعليق الموقع ونظام CRM. الحذف خلال 7 أيام وإنهاء الاتفاقية.
 
 4. مواعيد التسليم
 
@@ -450,11 +429,11 @@ Arzac Studio — الاشتراك
 
 8. إنهاء الاتفاقية
 
-8.1. يحقّ للعميل الإلغاء بإشعار خطي مسبق من 30 يوماً.
-8.2. يحقّ لمزوّد الخدمة الإنهاء الفوري في حال انتهاك سياسة الاستخدام.
-8.3. يحقّ لمزوّد الخدمة الإنهاء لعدم الدفع بعد إشعار من 7 أيام.
-8.4. بعد الإنهاء يُوقَف الموقع ونظام CRM.
-8.5. لا تُردّ رسوم التأسيس ولا الرسوم السنوية.
+8.1. يحقّ للعميل الإلغاء في أي وقت بإشعار خطي. يسري الإلغاء من يوم استلام الإشعار.
+8.2. عند إلغاء العميل، يردّ مزوّد الخدمة الجزء غير المستخدم من الشهر المدفوع بنسبة الأيام المتبقية: مثلاً، الإلغاء في اليوم 12 من شهر من 30 يوماً يُرجع 18/30 من رسوم الاشتراك.
+8.3. يحقّ لمزوّد الخدمة الإنهاء الفوري في حال انتهاك سياسة الاستخدام.
+8.4. يحقّ لمزوّد الخدمة الإنهاء لعدم الدفع بعد إشعار من 7 أيام.
+8.5. بعد الإنهاء يُوقَف الموقع ونظام CRM.
 8.6. يُسلَّم عند الطلب الكود المصدري للموقع وبيانات CRM. لا يُمنح وصول إلى البنية التحتية.
 
 9. القانون المعمول به والاختصاص القضائي
@@ -466,7 +445,7 @@ Arzac Studio — الاشتراك
  * LOOKUP
  * ═══════════════════════════════════════════════════════════════════════════ */
 
-const contractFns: Record<ContractLang, (setup: string, monthly: string) => string> = {
+const contractFns: Record<ContractLang, (monthly: string) => string> = {
   en: EN,
   he: HE,
   ru: RU,
@@ -474,18 +453,9 @@ const contractFns: Record<ContractLang, (setup: string, monthly: string) => stri
   ar: AR,
 };
 
-export function getContract(
-  lang: ContractLang,
-  opts: ContractOptions = {},
-): { text: string; version: string; setupAmount: number; monthlyAmount: number } {
+export function getContract(lang: ContractLang): { text: string; version: string; monthlyAmount: number } {
   const fn = contractFns[lang] ?? contractFns.en;
-  const setupAmount = resolveSetupAmount(opts.setupAmount);
-  return {
-    text: fn(fmt(setupAmount, lang), fmt(MONTHLY_AMOUNT, lang)),
-    version: CONTRACT_VERSION,
-    setupAmount,
-    monthlyAmount: MONTHLY_AMOUNT,
-  };
+  return { text: fn(fmt(MONTHLY_AMOUNT, lang)), version: CONTRACT_VERSION, monthlyAmount: MONTHLY_AMOUNT };
 }
 
 export function isContractLang(lang: string): lang is ContractLang {

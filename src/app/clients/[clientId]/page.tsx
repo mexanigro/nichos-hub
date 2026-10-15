@@ -41,7 +41,7 @@ import { ClientConfigTab } from "@/components/client-config-tab";
 import { ClientContentTab } from "@/components/client-content-tab";
 import { ClientSitePreview } from "@/components/client-site-preview";
 import { WhatsAppConfigTab } from "@/components/whatsapp-config-tab";
-import { SetupAmountPanel } from "@/components/setup-amount-panel";
+import { PagoLinkPanel } from "@/components/pago-link-panel";
 import { VoiceConfigTab } from "@/components/voice-config-tab";
 import { ClientLeadsTab } from "@/components/client-leads-tab";
 import { CrmImportModal } from "@/components/crm-import-modal";
@@ -100,7 +100,6 @@ type ClientReview = ClientWithHealth & {
   resubmissionCount?: number;
   contactPhone?: string;
   contactWhatsapp?: string;
-  setupAmount?: number | null;
 };
 
 /**
@@ -995,26 +994,16 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
           </Link>
         </div>
         {tenantId && (
-          <SetupAmountPanel
-            docId={clientId}
-            tenantId={tenantId}
-            initial={client.setupAmount ?? undefined}
-            onSaved={(amount) => setData((d) => d ? { ...d, client: { ...d.client, setupAmount: amount } } : d)}
-          />
+          <PagoLinkPanel tenantId={tenantId} />
         )}
         {payments.length === 0 ? (
           <p className="py-4 text-center text-xs text-text-muted">Sin registros de pago</p>
         ) : (
           <>
             {(() => {
-              const initial = payments.find((p) => p.type === "initial");
               const paidRecurring = payments.filter((p) => p.type === "recurring" && p.status === "paid").length;
               return (
                 <div className="mb-3 flex flex-wrap items-center gap-3 text-xs">
-                  <span className="inline-flex items-center gap-1.5">
-                    <span className="text-[11px] font-medium text-text-muted">Setup:</span>
-                    {initial ? <PaymentStatusBadge status={initial.status} /> : <span className="text-[11px] text-text-muted">Sin registro</span>}
-                  </span>
                   <span className="text-text-secondary">
                     {paidRecurring} mensualidad{paidRecurring !== 1 ? "es" : ""} pagada{paidRecurring !== 1 ? "s" : ""}
                   </span>

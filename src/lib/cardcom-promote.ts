@@ -1,7 +1,7 @@
 import { db } from "@/lib/firebase-admin";
 import { FieldValue, Timestamp } from "firebase-admin/firestore";
 import { verifyPayment, checkPaymentTerminal, TERMINAL, SANDBOX } from "@/lib/cardcom";
-import { getChargeAmount, type PlanType } from "@/lib/pricing";
+import { MONTHLY_AMOUNT, type PlanType } from "@/lib/pricing";
 import { sendEmail } from "@/lib/email";
 import { paymentConfirmed } from "@/lib/email-templates";
 import { signOnboardingToken } from "@/lib/onboarding-token";
@@ -96,8 +96,8 @@ export async function processCardcomPayment(
   // Cuando Liam provisione el sitio real puede renombrar el clientId si quiere.
   const clientId = leadId;
   const plan = (lead.plan || "web_crm") as PlanType;
-  // Compra web: alta fija (1500). El cobro mensual posterior lo hace el cron a 250.
-  const amount = getChargeAmount("initial");
+  // Compra web: el primer mes (250), igual que en persona. Los siguientes los cobra el cron.
+  const amount = MONTHLY_AMOUNT;
 
   // Validar el terminal ANTES de acreditar. Cierra el caso de credenciales de
   // sandbox mezcladas en un deploy productivo: un cobro del terminal de prueba
