@@ -232,16 +232,16 @@ export default function PagoClient({ clientId, clientDocId, businessName, lang }
 
         {/* Amount summary: el primer mes ahora (cubre un mes entero), la misma cuota después */}
         <div className="mb-8 rounded-xl border border-[var(--pg-line)] bg-[var(--pg-paper)] p-5">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between gap-4">
             <div>
               <p className="text-sm font-medium text-[var(--pg-ink)]">{t.firstMonth}</p>
               <p className="text-xs text-[var(--pg-ink-3)]">{t.payNow} · {t.firstMonthNote}</p>
             </div>
             <p className="text-2xl font-bold text-[var(--pg-ink)]">₪{MONTHLY_AMOUNT}</p>
           </div>
-          <div className="mt-3 flex items-center justify-between border-t border-[var(--pg-line)] pt-3">
+          <div className="mt-3 flex items-center justify-between gap-4 border-t border-[var(--pg-line)] pt-3">
             <p className="text-sm text-[var(--pg-ink-2)]">{t.thenLabel}</p>
-            <p className="text-base font-semibold text-[var(--pg-ink)]">₪{MONTHLY_AMOUNT}<span className="text-xs font-normal text-[var(--pg-ink-2)]">{t.perMonth}</span></p>
+            <p className="shrink-0 text-base font-semibold text-[var(--pg-ink)]">₪{MONTHLY_AMOUNT}<span className="text-xs font-normal text-[var(--pg-ink-2)]">{t.perMonth}</span></p>
           </div>
           <p className="mt-3 text-xs text-[var(--pg-ink-3)]">{t.cancelNote}</p>
         </div>
