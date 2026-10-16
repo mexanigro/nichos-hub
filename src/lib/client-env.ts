@@ -8,7 +8,7 @@
  * Nunca devuelve ni loggea valores; solo nombres y estados.
  */
 
-export type VercelEnvVar = { key: string; value: string; target: string[]; type: "plain" | "sensitive" };
+export type VercelEnvVar = { key: string; value: string; target: string[]; type: "plain" | "sensitive" | "encrypted" };
 export type VercelFetch = (path: string, options?: RequestInit) => Promise<Response>;
 
 const TARGETS = ["production", "preview"];

@@ -27,7 +27,8 @@ test("variablesDeDeploy(config, hub) da, sólo para peluquería, VITE_BRAND_NAME
   assert.ok(existe(MODULO), `falta ${MODULO} (D-264): hoy el deploy no le pasa a Vercel ni el nombre, ni la línea, ni la descripción, ni la imagen de la clienta, y el link dice «Studio Noa — … ברמת גן»`);
   const { variablesDeDeploy } = await importarModulo(MODULO);
   assert.equal(typeof variablesDeDeploy, "function", `${MODULO} exporta variablesDeDeploy`);
-  const vars = (c: Cfg, h: Cfg) => variablesDeDeploy(c, h) as Variable[];
+  // CRM-03 (D-300): con el entorno del hub sin CRON_SECRET, sólo las variables del link (la del cron la vigila tests/orden/crm-03).
+  const vars = (c: Cfg, h: Cfg) => variablesDeDeploy(c, h, {}) as Variable[];
 
   // (2) Las cuatro, de su campo, en production y preview y plain.
   const completa = vars(config({ name: "Salón Noga", tagline: "Color y rizos", description: "Un salón chico en el barrio.", ogImage: OG }), hub());

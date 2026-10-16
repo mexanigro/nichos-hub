@@ -121,7 +121,9 @@ export async function deployToVercel({ clientId, niche, hubDocId, demoMode = fal
   envVars.push(...buildAdminEnvVars(process.env));
 
   // VENTA-01: el nombre, la línea, la descripción y la imagen del link (sólo peluquería, D-267); el config del alta ya está escrito.
-  envVars.push(...variablesDeDeploy(configData, { ...hubData, niche }));
+  // CRM-03 (D-300): y CRON_SECRET de esta web (HMAC del del hub), para todos los nichos.
+  envVars.push(...variablesDeDeploy(configData, { ...hubData, niche, clientId }));
+  if (!envVars.some((v) => v.key === "CRON_SECRET")) console.warn(`[deploy] ${clientId}: sin CRON_SECRET en el hub — la web no mandará recordatorios hasta un Redeploy con la clave`);
 
   // N08 T1b: crear proyecto → variables (v10 upsert) → dominio → deployment, con fallo cerrado
   // (deploy-flow.ts, con test): si Vercel rechaza variables o dominio, hub_clients queda en "error"

@@ -78,6 +78,7 @@ export function StaffEditor({
   businessHours,
   config,
   setConfig,
+  idsGuardados,
 }: {
   value: StaffMember[] | undefined;
   onChange: (next: StaffMember[] | undefined) => void;
@@ -88,6 +89,9 @@ export function StaffEditor({
   /** IDIOMAS-01: con el config entero, la casilla edita también el texto de los otros idiomas. */
   config?: Record<string, unknown>;
   setConfig?: (fn: (prev: Record<string, unknown>) => Record<string, unknown>) => void;
+  /** CRM-03 (D-303 (1)): los ids de las personas ya guardadas. Su horario lo carga la dueña en el CRM de su web y el hub lo conserva
+   *  al guardar (guardarConfig); acá sólo se sugiere el de una persona nueva. */
+  idsGuardados?: readonly string[];
 }) {
   const items = value ?? [];
   const [expanded, setExpanded] = useState<Set<number>>(new Set([0]));
@@ -343,11 +347,17 @@ export function StaffEditor({
                   </div>
                 </div>
 
-                <ScheduleEditor
-                  value={m.schedule}
-                  onChange={(schedule) => update(i, { schedule })}
-                  businessHours={businessHours}
-                />
+                {m.id && idsGuardados?.includes(m.id) ? (
+                  <p className="rounded-lg border border-border-subtle bg-bg-card px-3 py-2 text-xs text-text-secondary">
+                    El horario de esta persona lo carga la dueña en el CRM de su web (pestaña «צוות»): días, horas, pausas y días libres. Desde acá no se cambia y guardar no lo toca.
+                  </p>
+                ) : (
+                  <ScheduleEditor
+                    value={m.schedule}
+                    onChange={(schedule) => update(i, { schedule })}
+                    businessHours={businessHours}
+                  />
+                )}
 
                 <p className="text-[10px] text-text-muted">
                   ID:{" "}

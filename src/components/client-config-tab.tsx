@@ -1729,6 +1729,7 @@ export function ClientConfigTab({
             businessHours={config.hours}
             config={config as Record<string, unknown>}
             setConfig={(fn) => setConfig((prev) => fn(prev as Record<string, unknown>) as ConfigDoc)}
+            idsGuardados={(originalConfigRef.current.staff ?? []).map((s) => s.id ?? "").filter(Boolean)}
           />
         </Section>
       )}

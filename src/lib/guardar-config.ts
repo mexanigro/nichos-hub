@@ -32,7 +32,7 @@ export type DbMinima = {
 
 export type ResultadoGuardado =
   | { ok: true; normalizedBusinessType: string; warning?: string; warnings: ConfigIssue[] }
-  | { ok: false; status: 400 | 422; error: string; issues: ConfigIssue[] };
+  | { ok: false; status: 400 | 422 | 503; error: string; issues: ConfigIssue[] };
 
 export const CLIENT_ID_RE = /^[a-zA-Z0-9_-]+$/;
 
@@ -152,6 +152,27 @@ function withNormalizedBusinessType(body: Obj, businessType: string): Obj {
   return { ...body, business: { ...currentBusiness, type: businessType } };
 }
 
+/** CRM-03 (D-303 (1)): lo que el CRM de la web escribe en cada persona; el hub nunca lo pisa. */
+export const CAMPOS_DEL_CRM = ["schedule", "blockedDates", "dateOverrides", "blockedSlots"] as const;
+
+/**
+ * El `staff` del cuerpo con el horario de lo guardado: de cada persona que ya estaba (por id) quedan su schedule, blockedDates,
+ * dateOverrides y blockedSlots guardados; una persona nueva entra con lo que trae; una quitada se va (el array del cuerpo manda la
+ * lista). Hace falta porque Firestore reemplaza los arrays enteros con `merge` y la ficha manda la copia que cargó al abrirse.
+ */
+export function conHorarioGuardado(staff: unknown, guardado: unknown): unknown {
+  if (!Array.isArray(staff) || !Array.isArray(guardado)) return staff;
+  const porId = new Map<string, Obj>();
+  for (const p of guardado) if (p && typeof p === "object" && typeof (p as Obj).id === "string") porId.set((p as Obj).id as string, p as Obj);
+  return staff.map((p) => {
+    const previo = p && typeof p === "object" ? porId.get((p as Obj).id as string) : undefined;
+    if (!previo) return p;
+    const out: Obj = { ...(p as Obj) };
+    for (const k of CAMPOS_DEL_CRM) if (previo[k] !== undefined) out[k] = previo[k];
+    return out;
+  });
+}
+
 /**
  * Guarda `body` en `config/{clientId}` como lo hace `PUT /api/config`. `quien` va a la auditoría (`changedBy`): el email del dueño
  * desde la ficha, «consola» desde un script. La auditoría es de buen esfuerzo: si falla, el guardado ya está hecho y no se revierte.
@@ -161,7 +182,19 @@ export async function guardarConfig(clientId: string, body: unknown, deps: { db?
   if (!body || typeof body !== "object" || Array.isArray(body)) return { ok: false, status: 400, error: "Body must be an object", issues: [] };
   const db = deps.db ?? (dbReal as unknown as DbMinima);
 
-  const rawBody = body as Obj;
+  // Lo guardado: para conservar el horario del CRM (CRM-03) y para la auditoría. Si hay equipo en el cuerpo y no se puede leer lo
+  // guardado, no se escribe: escribir a ciegas pisaría el horario que cargó la dueña.
+  let guardadoRaw: Obj | null = null;
+  try {
+    const prev = await db.collection("config").doc(clientId).get();
+    guardadoRaw = prev.exists ? (prev.data() ?? {}) : null;
+  } catch (err) {
+    console.error("[guardarConfig] failed to read the saved config:", err);
+    if (Array.isArray((body as Obj).staff)) return { ok: false, status: 503, error: "No se pudo leer lo guardado; el equipo no se guardó para no pisar el horario", issues: [] };
+  }
+
+  const cuerpo: Obj = guardadoRaw && Array.isArray((body as Obj).staff) ? { ...(body as Obj), staff: conHorarioGuardado((body as Obj).staff, guardadoRaw.staff) } : (body as Obj);
+  const rawBody = cuerpo;
   const requestedBusinessType = getNestedBusinessType(rawBody);
   const deployBusinessType = await getDeployNiche(db, clientId, requestedBusinessType);
   const normalizedBody = withNormalizedBusinessType(normalizeConfigShape(rawBody), deployBusinessType);
@@ -171,13 +204,7 @@ export async function guardarConfig(clientId: string, body: unknown, deps: { db?
   if (hasBlockingIssues(issues)) return { ok: false, status: 422, error: "Config invalido", issues: issues.filter((i) => i.severity === "error") };
 
   // El estado previo para la auditoría, en la forma normalizada: el log muestra lo que cambió en disco.
-  let previousData: Obj = {};
-  try {
-    const prev = await db.collection("config").doc(clientId).get();
-    if (prev.exists) previousData = normalizeConfigShape(prev.data() ?? {});
-  } catch (err) {
-    console.error("[guardarConfig] failed to snapshot prev for audit log:", err);
-  }
+  const previousData: Obj = guardadoRaw ? normalizeConfigShape(guardadoRaw) : {};
 
   // IDIOMAS-01: sin mapas vacíos (un parche vacío no borra nada) y null → FieldValue.delete() sólo en ese campo.
   await db.collection("config").doc(clientId).set(paraFirestore(normalizedBody), { merge: true });

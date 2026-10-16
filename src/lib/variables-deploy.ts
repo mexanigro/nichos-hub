@@ -2,6 +2,7 @@
 // (`scripts/vite-plugin-seo.ts`) con VITE_BRAND_NAME, VITE_BRAND_TAGLINE, VITE_BRAND_DESCRIPTION y VITE_OG_IMAGE; lo que falta cae al
 // default del nicho («Studio Noa … ברמת גן» en peluquería). Este módulo arma esas variables desde el config de la clienta y las sube
 // antes de pedir el deployment. Puro (sin firebase-admin ni `@/`): fetch de Vercel inyectado, testeable sin red.
+import { createHmac } from "node:crypto";
 import type { VercelEnvVar } from "./client-env.ts";
 import { describeFailure, type VercelFetch } from "./deploy-flow.ts";
 
@@ -15,9 +16,24 @@ function limpiar(v: unknown): string {
   return v.replace(/[\x00-\x1F\x7F-\x9F]/g, " ").replace(/\s+/g, " ").trim().replace(/\$/g, "$$$$");
 }
 
-/** Las variables del link para Vercel. Sólo peluquería (D-267: la flota no cambia). Un campo que falta no manda nada: nunca un texto
- *  vacío que pise el default de T. */
-export function variablesDeDeploy(config: Datos, hub: Datos): VercelEnvVar[] {
+type Entorno = Record<string, string | undefined>;
+
+/** CRM-03 (D-300): la clave del cron de avisos de una web. Estable entre redeploys, distinta por web y nunca la del hub. */
+export function cronSecretDe(entorno: Entorno, clientId: unknown): string | null {
+  const clave = entorno.CRON_SECRET?.trim();
+  return clave && typeof clientId === "string" && clientId ? createHmac("sha256", clave).update(clientId).digest("hex") : null;
+}
+
+/** Las variables que el hub sube a la web: CRON_SECRET para todos los nichos (CRM-03, D-300: el CRM es el mismo en todas) y, sólo en
+ *  peluquería, las del link (D-267: la flota no cambia). Un campo del link que falta no manda nada: nunca un texto vacío que pise el
+ *  default de T. */
+export function variablesDeDeploy(config: Datos, hub: Datos, entorno: Entorno = process.env): VercelEnvVar[] {
+  const cron = cronSecretDe(entorno, hub?.clientId);
+  const delCron: VercelEnvVar[] = cron ? [{ key: "CRON_SECRET", value: cron, target: ["production", "preview"], type: "encrypted" }] : [];
+  return [...delCron, ...variablesDelLink(config, hub)];
+}
+
+function variablesDelLink(config: Datos, hub: Datos): VercelEnvVar[] {
   if (hub?.niche !== "peluqueria") return [];
   const brand = config?.brand ?? {};
   const og = limpiar(brand.ogImage);
@@ -32,12 +48,17 @@ export function variablesDeDeploy(config: Datos, hub: Datos): VercelEnvVar[] {
 
 export type Redespliegue =
   | { ok: true; deploymentId?: string; keys: string[] }
-  | { ok: false; stage: "env" | "deployment"; status: number; detalle: string };
+  | { ok: false; stage: "env" | "deployment"; status: number; detalle: string; motivo?: "sin-cron-secret" };
 
-/** El «Redeploy» de la ficha (D-265): sube con upsert las variables del link y recién después pide el deployment de main. Si Vercel
- *  rechaza una variable, no hay deployment (falla cerrado, como el alta). Sin variables (la flota), sólo el deployment, como antes. */
-export async function redesplegar(p: { hub: Datos; config: Datos; templateRepo: string; fetchVercel: VercelFetch }): Promise<Redespliegue> {
-  const vars = variablesDeDeploy(p.config, p.hub);
+/** El «Redeploy» de la ficha (D-265): sube con upsert las variables de la web y recién después pide el deployment de main. Si Vercel
+ *  rechaza una variable, no hay deployment (falla cerrado, como el alta). Sin CRON_SECRET en el hub tampoco (CRM-03, D-300): una web
+ *  redesplegada sin su clave se quedaría sin recordatorios ni resumen sin que nadie lo note. */
+export async function redesplegar(p: { hub: Datos; config: Datos; templateRepo: string; fetchVercel: VercelFetch; entorno?: Entorno }): Promise<Redespliegue> {
+  const entorno = p.entorno ?? process.env;
+  if (!cronSecretDe(entorno, p.hub?.clientId)) {
+    return { ok: false, stage: "env", status: 500, motivo: "sin-cron-secret", detalle: "Falta CRON_SECRET en el hub (o el cliente no tiene clientId): sin él la web no manda recordatorios. Se configura en Railway y se vuelve a redesplegar." };
+  }
+  const vars = variablesDeDeploy(p.config, p.hub, entorno);
   if (vars.length) {
     const res = await p.fetchVercel(`/v10/projects/${p.hub.vercelProjectId}/env?upsert=true`, { method: "POST", body: JSON.stringify(vars) });
     const body = (await res.clone().json().catch(() => ({}))) as { failed?: Array<{ error?: { key?: string } }> };

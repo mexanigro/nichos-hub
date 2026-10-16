@@ -1,6 +1,8 @@
 // VENTA-01 · copia promovida (SECCIONES-02, 2026-10-07, D-281) de tests/orden/venta-01/b.test.ts. La orden quedó aprobada por Liam
 // el 2026-10-06 (T 3222922 · H fa5674e) y su carpeta está congelada; esto es la copia editable que corre `npm test`.
 // Recorte: entera (no sale a la red: Vercel es un fetch falso y la ruta y deploy.ts se leen como texto).
+// CRM-03 (D-300): toda web recibe además su CRON_SECRET (HMAC del del hub) en cada Redeploy, y sin él en el hub no hay Redeploy; el
+// entorno del hub se pasa explícito (ENTORNO) y el caso (4) de la flota sube sólo esa variable antes del deployment.
 // VENTA-01 · B1 (H) · el alta y el Redeploy de la ficha mandan las variables del link a Vercel (D-265). Sesión A (2026-10-06): test rojo.
 //
 // Medido (D-265): el alta (`/api/clients/provision` → `deployToVercel`, `src/lib/deploy.ts:94-120`) sube las variables del proyecto y
@@ -20,6 +22,7 @@ const DEPLOY = "src/lib/deploy.ts";
 const HUB = { clientId: "demo-x", niche: "peluqueria", businessName: "Salón del alta", vercelProjectId: "prj_x", vercelProjectName: "demo-x" };
 const CONFIG: Cfg = { language: "he", brand: { name: "Salón Noga", tagline: "Color y rizos", description: "Un salón chico." } };
 type Llamada = { ruta: string; metodo: string; cuerpo: any };
+const ENTORNO = { CRON_SECRET: "clave-del-hub" };
 
 function vercelFalso(respuestas: { env?: { status: number; body: Cfg }; deploy?: { status: number; body: Cfg } } = {}) {
   const llamadas: Llamada[] = [];
@@ -39,9 +42,9 @@ test("el alta y el Redeploy de la ficha mandan esas variables a Vercel: deploy.t
 
   // (2) Con variables: primero el upsert con exactamente lo que da variablesDeDeploy, después el deployment de main en producción.
   const ok = vercelFalso();
-  const r = await redesplegar({ hub: HUB, config: CONFIG, templateRepo: "mexanigro/Barber-shop-template", fetchVercel: ok.fetchVercel });
+  const r = await redesplegar({ hub: HUB, config: CONFIG, templateRepo: "mexanigro/Barber-shop-template", fetchVercel: ok.fetchVercel, entorno: ENTORNO });
   assert.deepEqual(ok.llamadas.map((l) => `${l.metodo} ${l.ruta}`), ["POST /v10/projects/prj_x/env?upsert=true", "POST /v13/deployments"], "upsert de las variables y después el deployment, en ese orden");
-  assert.deepEqual(ok.llamadas[0].cuerpo, variablesDeDeploy(CONFIG, HUB), "el upsert lleva exactamente lo que da variablesDeDeploy");
+  assert.deepEqual(ok.llamadas[0].cuerpo, variablesDeDeploy(CONFIG, HUB, ENTORNO), "el upsert lleva exactamente lo que da variablesDeDeploy");
   const d = ok.llamadas[1].cuerpo;
   assert.equal(d.project, "prj_x", "el deployment es del proyecto del cliente");
   assert.equal(d.target, "production", "en producción");
@@ -52,21 +55,22 @@ test("el alta y el Redeploy de la ficha mandan esas variables a Vercel: deploy.t
   // (3) Vercel rechaza una variable (HTTP no 2xx o `failed`): no hay deployment.
   for (const env of [{ status: 400, body: { error: { code: "bad" } } }, { status: 201, body: { failed: [{ error: { key: "VITE_BRAND_NAME" } }] } }]) {
     const mal = vercelFalso({ env });
-    const rm = await redesplegar({ hub: HUB, config: CONFIG, templateRepo: "mexanigro/Barber-shop-template", fetchVercel: mal.fetchVercel });
+    const rm = await redesplegar({ hub: HUB, config: CONFIG, templateRepo: "mexanigro/Barber-shop-template", fetchVercel: mal.fetchVercel, entorno: ENTORNO });
     assert.equal(rm.ok, false, `Vercel responde ${env.status} ${JSON.stringify(env.body)}: no sale bien`);
     assert.equal(rm.stage, "env", "falla en las variables");
     assert.ok(!mal.llamadas.some((l) => l.ruta.startsWith("/v13/deployments")), "y no pide ningún deployment (falla cerrado)");
   }
 
-  // (4) Sin variables (otro nicho): no sube nada y redespliega como hoy.
+  // (4) Otro nicho: ninguna variable del link; sólo su CRON_SECRET (CRM-03) y el deployment.
   const flota = vercelFalso();
-  const rf = await redesplegar({ hub: { ...HUB, niche: "barberia" }, config: CONFIG, templateRepo: "mexanigro/Barber-shop-template", fetchVercel: flota.fetchVercel });
-  assert.deepEqual(flota.llamadas.map((l) => `${l.metodo} ${l.ruta}`), ["POST /v13/deployments"], "un nicho de la flota: sólo el deployment, ninguna variable");
+  const rf = await redesplegar({ hub: { ...HUB, niche: "barberia" }, config: CONFIG, templateRepo: "mexanigro/Barber-shop-template", fetchVercel: flota.fetchVercel, entorno: ENTORNO });
+  assert.deepEqual(flota.llamadas.map((l) => `${l.metodo} ${l.ruta}`), ["POST /v10/projects/prj_x/env?upsert=true", "POST /v13/deployments"], "un nicho de la flota: su CRON_SECRET y el deployment");
+  assert.deepEqual(flota.llamadas[0].cuerpo.map((v: { key: string }) => v.key), ["CRON_SECRET"], "ninguna variable del link en la flota");
   assert.equal(rf.ok, true, "y sale bien");
 
   // (5) Un deployment que Vercel rechaza: no sale bien.
   const caido = vercelFalso({ deploy: { status: 500, body: {} } });
-  const rc = await redesplegar({ hub: HUB, config: CONFIG, templateRepo: "mexanigro/Barber-shop-template", fetchVercel: caido.fetchVercel });
+  const rc = await redesplegar({ hub: HUB, config: CONFIG, templateRepo: "mexanigro/Barber-shop-template", fetchVercel: caido.fetchVercel, entorno: ENTORNO });
   assert.equal(rc.ok, false, "Vercel rechaza el deployment: no sale bien");
   assert.equal(rc.stage, "deployment", "falla en el deployment");
 
