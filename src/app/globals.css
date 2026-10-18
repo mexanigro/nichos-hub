@@ -138,7 +138,7 @@ html:has(.at) { scroll-padding-top: 68px; }
 .at-section-cta { margin-top: 36px; display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
 .at-section-cta .at-btn-link { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--at-line); }
 @media (min-width: 1024px) { .at .at-section-cta { margin-top: 44px; } }
-.at-btn-link::after { content: "↓"; font-family: var(--at-serif); font-style: italic; font-size: 17px; line-height: 1; }
+.at-btn-link::after { content: "↓" / ""; font-family: var(--at-serif); font-style: italic; font-size: 17px; line-height: 1; }
 .at-btn-link.no-arrow::after { content: ""; }
 
 /* hero phone teaser */
@@ -182,7 +182,7 @@ html:has(.at) { scroll-padding-top: 68px; }
 
 /* CRM section */
 .at-crm-wrap { display: flex; flex-direction: column; gap: 22px; }
-.at-crm-bullets { display: grid; grid-template-columns: 1fr; gap: 12px; }
+.at-crm-bullets { display: grid; grid-template-columns: 1fr; gap: 12px; list-style: none; margin: 0; padding: 0; }
 .at-crm-bullet { display: grid; grid-template-columns: 28px 1fr; gap: 10px; align-items: baseline; font-size: 14.5px; color: var(--at-ink); padding-block: 12px; border-bottom: 1px dashed var(--at-line-2); }
 .at-crm-bullet:last-child { border-bottom: 0; }
 .at-crm-bullet .n { font-family: var(--at-mono); font-size: 12px; color: var(--at-ink-3); letter-spacing: 0.1em; }
@@ -269,7 +269,7 @@ html:has(.at) { scroll-padding-top: 68px; }
 .at-plan ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; padding-top: 16px; border-top: 1px dashed var(--at-line); }
 .at-plan.hl ul { border-top-color: rgba(244,240,232,0.18); }
 .at-plan li { display: grid; grid-template-columns: 22px 1fr; gap: 8px; align-items: baseline; font-size: 14.5px; line-height: 1.5; }
-.at-plan li::before { content: "—"; font-family: var(--at-serif); font-size: 16px; color: var(--at-accent); }
+.at-plan li::before { content: "—" / ""; font-family: var(--at-serif); font-size: 16px; color: var(--at-accent); }
 .at-plan li[data-hl] { background: rgba(179,82,46,0.08); border-radius: 10px; padding: 10px 14px 10px 8px; margin-top: 4px; font-family: var(--at-serif); font-style: italic; font-size: 15.5px; letter-spacing: -0.01em; color: var(--at-accent); }
 .at-plan li[data-hl]::before { content: "✦"; font-style: normal; font-size: 13px; }
 .at-plan.hl li[data-hl] { background: rgba(216,164,132,0.14); color: #d8a484; }

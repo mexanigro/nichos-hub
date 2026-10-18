@@ -3,7 +3,7 @@ import type { Translations } from "../types";
 export const en: Translations = {
   meta: { title: "Website + CRM for your business · {precio} a month | Arzac Studio" },
   a11y: { skip: "Skip to content", mainNav: "Main", legalNav: "Legal", languages: "Language" },
-  nav: { work: "Examples", crm: "CRM", how: "How", pricing: "Pricing", faq: "FAQ", start: "Start" },
+  nav: { work: "Examples", crm: "CRM", how: "How it works", pricing: "Pricing", faq: "FAQ", start: "Start" },
 
   hero: {
     eyebrow: "Website + CRM + email for local businesses",
@@ -19,14 +19,14 @@ export const en: Translations = {
     eyebrow: "Examples",
     title: "Sites we've built, ",
     titleEm: "open for you to explore.",
-    sub: "Live demos across different trades: barber, tattoo, nails, café, aesthetics and painting.",
+    sub: "Live demos across different trades: barber, tattoo, nails, café, beauty and painting.",
     open: "Open",
     sites: {
       barber:   { name: "Onyx & Steel",        niche: "Barbershop",       tagline: "Classic cuts, booked by appointment." },
       tattoo:   { name: "Martellin",           niche: "Tattoo & piercing", tagline: "A dark portfolio that lets the photos lead." },
       nails:    { name: "Uñas de mar",         niche: "Nails",            tagline: "Soft colours, photos first." },
       cafe:     { name: "Café Aristano",       niche: "Café",             tagline: "Menu, opening hours and the story behind the place." },
-      estetica: { name: "Estética",            niche: "Aesthetics",       tagline: "Treatments with a consultation first." },
+      estetica: { name: "Estética",            niche: "Beauty",       tagline: "Treatments with a consultation first." },
       remod:    { name: "Pinturería el Paolo", niche: "Painting & home",  tagline: "Finished jobs and quote requests." },
     },
   },
@@ -87,7 +87,7 @@ export const en: Translations = {
       { t: "Talk",      d: "Tell us what you do, your services, hours and prices. On WhatsApp or in person.", time: "Day 1" },
       { t: "Materials", d: "Send us your photos and logo if you have them. If not, we design the logo and write the copy.", time: "When you're ready" },
       { t: "Build",     d: "We build the site and the CRM with your details and send you a private link to review it.", time: "Up to 48 h" },
-      { t: "Live",      d: "We adjust whatever you ask, connect the domain and you start taking bookings.", time: "Done" },
+      { t: "Live",      d: "We make the changes you ask for, connect the domain, and you start taking bookings.", time: "Done" },
     ],
   },
 
@@ -131,7 +131,7 @@ export const en: Translations = {
       { q: "Do I need to be good with technology?",
         a: "No. We handle the hosting, the domain and the setup. You give us your business details and, if you have them, your photos." },
       { q: "How do I know I can trust you?",
-        a: "Arzac Studio is a business registered in Israel, run by Liam Arzac in person. We can talk on WhatsApp, on a video call or meet. Payments go through an Israeli payment processor: we never see or store your card details." },
+        a: "Arzac Studio is a business registered in Israel, and Liam Arzac runs it himself. We can talk on WhatsApp, on a video call or meet. Payments go through an Israeli payment processor: we never see or store your card details." },
       { q: "What if I don't have a logo?",
         a: "We design one. Tell us the name and how you want your business to feel, and we put together the logo, the colours and the copy." },
       { q: "What happens if I cancel?",
@@ -149,7 +149,7 @@ export const en: Translations = {
       { q: "What does the subscription include?",
         a: "The custom website with online booking, the CRM, automatic emails, hosting, the domain, the logo and copy if you don't have them, updates and support on WhatsApp." },
       { q: "Why does a small business need a website?",
-        a: "People search on Google before they call. With a website, your clients see your services and prices and book on their own, at any hour, without you answering every message." },
+        a: "People search on Google before they call. With a website, your clients see your services and prices and book on their own, at any hour, without you having to answer every message." },
     ],
   },
 

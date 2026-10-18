@@ -36,7 +36,7 @@ export const LEGAL: Record<Locale, TextosLegales> = {
         ] },
         { h: "Si un pago no se hace", p: ["La web y el CRM se suspenden. A los 7 días del pago no hecho se borran de forma definitiva y el acuerdo termina."] },
         { h: "Qué mantenemos", p: ["Mientras dure la suscripción mantenemos la web, el hosting, la renovación del dominio, el certificado SSL y las copias de seguridad diarias de los datos del CRM, actualizamos el contenido (textos, fotos, servicios y precios) y corregimos los errores."] },
-        { h: "Pagos", p: ["Los pagos los procesa un procesador de pagos israelí. Nunca vemos ni guardamos los datos de tu tarjeta. Cada pago lleva su factura."] },
+        { h: "Pagos", p: ["Los pagos pasan por una procesadora de pagos israelí. Nunca vemos ni guardamos los datos de tu tarjeta. Cada pago lleva su factura."] },
         { h: "Propiedad", p: ["Tu marca, tus contenidos, tus fotos y los datos de tu CRM son tuyos, y el dominio está a tu nombre. El código, el diseño y el sistema de plantillas son de Arzac Studio: mientras dure la suscripción tenés una licencia para usarlos."] },
         { h: "Uso aceptable", p: ["La web y el CRM no se pueden usar para mandar spam ni para guardar o publicar material ilegal, ofensivo o engañoso. Si eso pasa, podemos terminar el servicio de inmediato."] },
         { h: "Responsabilidad", p: ["Sos responsable del contenido de tu web y de lo que cargás en el CRM. No garantizamos resultados comerciales. No respondemos por fallas de plataformas de terceros (hosting, registradores de dominio, proveedores de email) ni por fuerza mayor, y nuestra responsabilidad nunca supera lo que pagaste por el servicio."] },
@@ -49,7 +49,7 @@ export const LEGAL: Record<Locale, TextosLegales> = {
         { h: "Quiénes somos", p: ["Arzac Studio, de Liam Arzac, con base en Tel Aviv, Israel, es responsable de los datos que tratamos para darte el servicio."] },
         { h: "Qué datos juntamos", li: [
           "Tus datos de contacto: nombre, email, teléfono y el nombre de tu negocio, cuando hablamos o te suscribís.",
-          "Datos de pago: los procesa un procesador de pagos israelí. Nosotros no vemos ni guardamos tu tarjeta.",
+          "Datos de pago: los procesa una procesadora de pagos israelí. Nosotros no vemos ni guardamos tu tarjeta.",
           "Los datos de tus clientes que entran por tu web y tu CRM: nombre, teléfono, email, turnos y consultas. Esos datos son tuyos; los guardamos por cuenta tuya.",
         ] },
         { h: "Para qué los usamos", li: [
@@ -66,7 +66,7 @@ export const LEGAL: Record<Locale, TextosLegales> = {
           "Resend: envío de los emails.",
           "Google: inicio de sesión, el calendario si lo conectás, y las fuentes y los mapas que muestran las webs.",
           "Anthropic: herramientas internas de Arzac Studio que procesan textos.",
-          "Un procesador de pagos israelí, para cobrar.",
+          "Una procesadora de pagos israelí, para cobrar.",
         ] },
         { h: "Datos fuera de Israel", p: ["Varios de estos proveedores guardan o procesan datos fuera de Israel, por ejemplo en Estados Unidos."] },
         { h: "Cuánto tiempo los guardamos", p: ["Mientras dure la suscripción. Si cancelás, borramos tus datos dentro de los 30 días; si un pago no se hace, la web y el CRM se borran a los 7 días, como dice el contrato. Antes de borrar, si nos lo pedís, te entregamos tus datos."] },
@@ -133,7 +133,7 @@ export const LEGAL: Record<Locale, TextosLegales> = {
         { h: "Data outside Israel", p: ["Several of these providers store or process data outside Israel, for example in the United States."] },
         { h: "How long we keep it", p: ["For as long as you are subscribed. If you cancel, we delete your data within 30 days; if a payment is missed, the website and the CRM are deleted after 7 days, as the agreement says. Before deleting, if you ask, we hand over your data."] },
         { h: "Your rights", p: ["You can ask us for a copy of your data, correct it or ask us to delete it at any time."] },
-        { h: "Cookies", p: ["This site stores only the language you choose in your browser, plus the cookies needed if you sign in. We do not use advertising or tracking cookies."] },
+        { h: "Cookies", p: ["This site stores in your browser only the language you choose, plus the cookies needed if you sign in. We do not use advertising or tracking cookies."] },
       ],
     },
   },
@@ -141,30 +141,30 @@ export const LEGAL: Record<Locale, TextosLegales> = {
   he: {
     updated: "עודכן: אוקטובר 2026",
     back: "חזרה לדף הבית",
-    contactEmail: "כתבו לנו לכתובת",
+    contactEmail: "אפשר לכתוב לנו לכתובת",
     prevalece: "הטקסט קיים בחמש שפות. אם יש הבדלים ביניהן, הנוסח העברי הוא הקובע.",
     terms: {
       title: "תנאי השירות",
       sections: [
         { h: "השירות", p: ["Arzac Studio בונה אתרים מותאמים לעסקים מקומיים בישראל, עם מערכת CRM ללקוחות ולתורים ומיילים אוטומטיים לעסק וללקוחות שלו. יש תוכנית אחת, במנוי חודשי קבוע. ההסכם שנחתם בתחילת העבודה הוא המסמך המלא; התנאים כאן מסכמים אותו."] },
         { h: "מחיר", li: [
-          "מנוי: {precio} לחודש, קבוע. הוא כולל את בניית האתר וה-CRM, את האחסון ואת הדומיין.",
+          "דמי מנוי: {precio} לחודש, קבועים. הוא כולל את בניית האתר וה-CRM, את האחסון ואת הדומיין.",
           "אין דמי הקמה ואין חיובים נוספים.",
-          "החודש הראשון משולם בעת קבלת ההסכם ומכסה חודש שלם מאותו יום. כל חודש נוסף מחויב באותו תאריך.",
+          "החודש הראשון משולם בעת אישור ההסכם ומכסה חודש שלם מאותו יום. כל חודש נוסף מחויב באותו תאריך.",
           "אין רמות של תוכניות ואין העלאות מחיר אוטומטיות.",
         ] },
         { h: "מסירה", p: ["אנחנו מוסרים אתר פעיל תוך 48 שעות מקבלת חומרי העיצוב שלך."] },
         { h: "ביטול", p: [
-          "אפשר לבטל בכל עת בהודעה בכתב. הביטול נכנס לתוקף ביום שבו קיבלנו אותה, ואנחנו מחזירים את החלק מהחודש ששולם ולא נוצל, באופן יחסי לימים שנשארו: למשל, ביטול ביום ה-12 של חודש בן 30 ימים מזכה ב-18/30 מהמנוי.",
+          "אפשר לבטל בכל עת בהודעה בכתב. הביטול נכנס לתוקף ביום שבו קיבלנו אותה, ואנחנו מחזירים את החלק מהחודש ששולם ולא נוצל, באופן יחסי לימים שנשארו: למשל, ביטול ביום ה-12 של חודש בן 30 ימים מזכה ב-18/30 מדמי המנוי.",
           "בסיום, האתר וה-CRM יורדים מהאוויר. לפי בקשתך, נעביר לך את נתוני ה-CRM ואת קוד האתר (HTML, CSS ו-JS).",
         ] },
         { h: "אם תשלום לא בוצע", p: ["האתר וה-CRM מושעים. שבעה ימים אחרי התשלום שלא בוצע הם נמחקים לצמיתות וההסכם מסתיים."] },
         { h: "מה אנחנו מתחזקים", p: ["כל עוד המנוי בתוקף, אנחנו מתחזקים את האתר, את האחסון, את חידוש הדומיין, את תעודת ה-SSL ואת הגיבויים היומיים של נתוני ה-CRM, מעדכנים את התוכן (טקסטים, תמונות, שירותים ומחירים) ומתקנים תקלות."] },
         { h: "תשלומים", p: ["התשלומים עוברים דרך חברת סליקה ישראלית. אנחנו אף פעם לא רואים ולא שומרים את פרטי הכרטיס. על כל תשלום מונפקת חשבונית."] },
         { h: "בעלות", p: ["המותג, התוכן, התמונות ונתוני ה-CRM שלך שייכים לך, והדומיין רשום על שמך. הקוד, העיצוב ומערכת התבניות שייכים ל-Arzac Studio: כל עוד המנוי בתוקף, יש לך רישיון להשתמש בהם."] },
-        { h: "שימוש הוגן", p: ["אסור להשתמש באתר וב-CRM כדי לשלוח דואר זבל או כדי לשמור או לפרסם תוכן לא חוקי, פוגעני או מטעה. אם זה קורה, אנחנו רשאים להפסיק את השירות מיד."] },
+        { h: "שימוש מותר", p: ["אסור להשתמש באתר וב-CRM כדי לשלוח דואר זבל או כדי לשמור או לפרסם תוכן לא חוקי, פוגעני או מטעה. אם זה קורה, אנחנו רשאים להפסיק את השירות מיד."] },
         { h: "אחריות", p: ["האחריות לתוכן האתר ולמה שמוזן ל-CRM היא שלך. אנחנו לא מתחייבים לתוצאות עסקיות. אנחנו לא אחראים לתקלות בפלטפורמות של צד שלישי (אחסון, רשמי דומיינים, ספקי מייל) או לכוח עליון, והאחריות שלנו לעולם לא תעלה על מה ששילמת עבור השירות."] },
-        { h: "דין ושיפוט", p: ["על ההסכם חל הדין הישראלי. סמכות השיפוט לבתי המשפט של מחוז תל אביב."] },
+        { h: "דין ושיפוט", p: ["על ההסכם חל הדין הישראלי. סמכות השיפוט נתונה לבתי המשפט במחוז תל אביב."] },
       ],
     },
     privacy: {
@@ -212,7 +212,7 @@ export const LEGAL: Record<Locale, TextosLegales> = {
         { h: "Цена", li: [
           "Абонемент: {precio} в месяц, фиксированно. Он покрывает создание сайта и CRM, хостинг и домен.",
           "Платы за подключение и других платежей нет.",
-          "Первый месяц оплачивается при принятии договора и покрывает целый месяц с этого дня. Каждый следующий месяц списывается в то же число.",
+          "Первый месяц оплачивается при принятии договора и покрывает целый месяц с этого дня. Оплата за каждый следующий месяц списывается в то же число.",
           "Уровней тарифа и автоматического повышения цены нет.",
         ] },
         { h: "Сроки", p: ["Работающий сайт мы сдаём в течение 48 часов после получения ваших материалов для дизайна."] },
@@ -232,7 +232,7 @@ export const LEGAL: Record<Locale, TextosLegales> = {
     privacy: {
       title: "Политика конфиденциальности",
       sections: [
-        { h: "Кто мы", p: ["Arzac Studio под руководством Лиама Арзака, работающий из Тель-Авива (Израиль), отвечает за данные, которые мы обрабатываем, чтобы оказывать услугу."] },
+        { h: "Кто мы", p: ["Arzac Studio (Тель-Авив, Израиль), которой руководит Лиам Арзак, отвечает за данные, которые мы обрабатываем, чтобы оказывать услугу."] },
         { h: "Какие данные мы собираем", li: [
           "Ваши контакты: имя, email, телефон и название бизнеса — когда мы общаемся или вы подписываетесь.",
           "Платёжные данные: их обрабатывает израильская платёжная система. Вашу карту мы не видим и не храним.",
@@ -279,16 +279,16 @@ export const LEGAL: Record<Locale, TextosLegales> = {
         ] },
         { h: "التسليم", p: ["نسلّم موقعاً يعمل خلال 48 ساعة من استلام مواد التصميم الخاصة بك."] },
         { h: "الإلغاء", p: [
-          "يمكنك الإلغاء في أي وقت بإشعار مكتوب. يسري الإلغاء في اليوم الذي نستلمه فيه، ونعيد لك الجزء غير المستخدم من الشهر المدفوع بنسبة الأيام المتبقية: مثلاً، الإلغاء في اليوم 12 من شهر من 30 يوماً يعيد لك 18/30 من الاشتراك.",
+          "يمكنك الإلغاء في أي وقت بإشعار مكتوب. يسري الإلغاء في اليوم الذي نستلمه فيه، ونعيد لك الجزء غير المستخدم من الشهر المدفوع بنسبة الأيام المتبقية: مثلاً، الإلغاء في اليوم 12 من شهرٍ مدّته 30 يوماً يعيد لك 18/30 من الاشتراك.",
           "عند انتهاء الخدمة يتوقّف الموقع والـCRM. وإن طلبت، نسلّمك بيانات الـCRM وشيفرة الموقع (HTML وCSS وJS).",
         ] },
         { h: "إذا لم يتمّ الدفع", p: ["يُعلَّق الموقع والـCRM. وبعد 7 أيام من الدفعة الفائتة يُحذفان نهائياً وينتهي العقد."] },
-        { h: "ما الذي نصونه", p: ["طوال مدة الاشتراك نصون الموقع والاستضافة وتجديد النطاق وشهادة SSL والنسخ الاحتياطية اليومية لبيانات الـCRM، ونحدّث المحتوى (النصوص والصور والخدمات والأسعار) ونصلح الأعطال."] },
+        { h: "ما الذي نتولّى صيانته", p: ["طوال مدة الاشتراك نتولّى صيانة الموقع والاستضافة وتجديد النطاق وشهادة SSL والنسخ الاحتياطية اليومية لبيانات الـCRM، ونحدّث المحتوى (النصوص والصور والخدمات والأسعار) ونصلح الأعطال."] },
         { h: "المدفوعات", p: ["تتمّ المدفوعات عبر شركة دفع إسرائيلية. لا نرى بيانات بطاقتك ولا نحفظها أبداً. ولكل دفعة فاتورة."] },
         { h: "الملكية", p: ["علامتك التجارية ومحتواك وصورك وبيانات الـCRM ملكك، والنطاق مسجّل باسمك. أما الشيفرة والتصميم ونظام القوالب فهي ملك Arzac Studio، ولك ترخيص لاستخدامها طوال مدة الاشتراك."] },
         { h: "الاستخدام المقبول", p: ["لا يجوز استخدام الموقع والـCRM لإرسال رسائل مزعجة أو لحفظ أو نشر مواد غير قانونية أو مسيئة أو مضلّلة. وإن حدث ذلك، يحقّ لنا إنهاء الخدمة فوراً."] },
         { h: "المسؤولية", p: ["أنت مسؤول عن محتوى موقعك وعمّا تُدخله في الـCRM. لا نضمن نتائج تجارية. ولسنا مسؤولين عن أعطال منصّات الطرف الثالث (الاستضافة ومسجّلي النطاقات ومزوّدي البريد) أو عن القوة القاهرة، ولا تتجاوز مسؤوليتنا أبداً ما دفعته مقابل الخدمة."] },
-        { h: "القانون والاختصاص", p: ["يسري القانون الإسرائيلي. وتختصّ محاكم منطقة تل أبيب."] },
+        { h: "القانون والاختصاص", p: ["يسري القانون الإسرائيلي، وتختصّ محاكم منطقة تل أبيب بالنظر في أي نزاع."] },
       ],
     },
     privacy: {

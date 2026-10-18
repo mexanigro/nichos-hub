@@ -18,8 +18,16 @@ function AtelierInner() {
   const { locale, t } = useT();
   const dir = RTL_LOCALES.includes(locale) ? "rtl" : "ltr";
 
-  // El HTML del servidor queda en hebreo (SEO); la pestaña del navegador sigue al idioma elegido.
-  useEffect(() => { document.title = t.meta.title; }, [t]);
+  // El HTML del servidor queda en hebreo (SEO); la pestaña del navegador sigue al idioma elegido. Next vuelve a
+  // escribir el <title> de la metadata después de hidratar, así que se vigila el <head> y se repone (LANDING-01).
+  useEffect(() => {
+    const titulo = t.meta.title;
+    const reponer = () => { if (document.title !== titulo) document.title = titulo; };
+    reponer();
+    const mo = new MutationObserver(reponer);
+    mo.observe(document.head, { subtree: true, childList: true, characterData: true });
+    return () => mo.disconnect();
+  }, [t]);
 
   return (
     <div className="at" dir={dir} lang={locale}>

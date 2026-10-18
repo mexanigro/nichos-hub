@@ -3,7 +3,7 @@ import type { Translations } from "../types";
 export const es: Translations = {
   meta: { title: "Web + CRM para tu negocio · {precio} por mes | Arzac Studio" },
   a11y: { skip: "Saltar al contenido", mainNav: "Principal", legalNav: "Legal", languages: "Idioma" },
-  nav: { work: "Ejemplos", crm: "CRM", how: "Cómo", pricing: "Precio", faq: "Preguntas", start: "Empezar" },
+  nav: { work: "Ejemplos", crm: "CRM", how: "Cómo trabajamos", pricing: "Precio", faq: "Preguntas", start: "Empezar" },
 
   hero: {
     eyebrow: "Web + CRM + emails para negocios locales",
@@ -131,7 +131,7 @@ export const es: Translations = {
       { q: "¿Tengo que saber de tecnología?",
         a: "No. Nosotros nos ocupamos del hosting, el dominio y la configuración. Vos nos pasás la información de tu negocio y, si las tenés, tus fotos." },
       { q: "¿Cómo sé que son confiables?",
-        a: "Arzac Studio es un negocio registrado en Israel y lo atiende Liam Arzac en persona. Podemos hablar por WhatsApp, por videollamada o vernos. El pago lo procesa un procesador de pagos israelí: nunca vemos ni guardamos los datos de tu tarjeta." },
+        a: "Arzac Studio es un negocio registrado en Israel y lo atiende Liam Arzac en persona. Podemos hablar por WhatsApp, por videollamada o vernos. El pago pasa por una procesadora de pagos israelí: nunca vemos ni guardamos los datos de tu tarjeta." },
       { q: "¿Y si no tengo logo?",
         a: "Lo diseñamos. Nos contás el nombre y cómo querés que se sienta tu negocio, y armamos el logo, los colores y los textos." },
       { q: "¿Qué pasa si cancelo?",
@@ -141,7 +141,7 @@ export const es: Translations = {
       { q: "¿Y si ya tengo dominio?",
         a: "Lo conectamos a tu web nueva. Si no tenés, lo registramos a tu nombre." },
       { q: "¿Cuánto tarda?",
-        a: "Tu web está online 48 horas después de que nos pasás tus materiales." },
+        a: "Tu web está online 48 horas después de que nos pases tus materiales." },
       { q: "¿Puedo verla antes de que se publique?",
         a: "Sí. Te mandamos un link privado y nada se publica sin tu OK." },
       { q: "¿Cuánto cuesta?",

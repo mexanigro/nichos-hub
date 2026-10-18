@@ -103,3 +103,15 @@ test("el FAQ y los legales tienen las mismas preguntas y secciones en los cinco 
     LEGAL[l].privacy.sections.forEach((s, i) => assert.equal(s.li?.length ?? 0, LEGAL.es.privacy.sections[i].li?.length ?? 0, `${l}: privacy §${i + 1}`));
   }
 });
+
+test("la pestaña sigue al idioma aunque Next reponga el <title> del servidor, y el lector de pantalla no lee lo que no se ve: imágenes ocultas sin alt, respuestas cerradas del FAQ ocultas, contador y pasos sin invertir en RTL", () => {
+  const page = leer("src/components/landing/atelier-page.tsx");
+  assert.match(page, /document\.title !== titulo\) document\.title = titulo/, "repone el título del idioma");
+  assert.match(page, /new MutationObserver\(reponer\)[\s\S]*mo\.observe\(document\.head/, "vigila el <head>, donde Next reescribe el título");
+  const show = leer("src/components/landing/showcase.tsx"), crm = leer("src/components/landing/crm-section.tsx"), faq = leer("src/components/landing/faq.tsx");
+  assert.match(show, /alt=\{s\.id === active \? t\.showcase\.sites\[s\.id\]\.name : ""\}/, "ejemplos: sólo la imagen visible tiene alt");
+  assert.equal((crm.match(/alt=\{v\.id === active \?/g) || []).length, 2, "CRM: sólo la imagen visible tiene alt, en las dos escenas");
+  assert.match(faq, /aria-hidden=\{!isOpen\} inert=\{!isOpen\}/, "FAQ: la respuesta cerrada no se lee ni recibe foco");
+  assert.match(show, /className="count" dir="ltr"/, "el contador 05 / 06 no se invierte en RTL");
+  assert.match(leer("src/app/globals.css"), /\.at-plan li::before \{ content: "—" \/ "";/, "el guion decorativo no se lee");
+});

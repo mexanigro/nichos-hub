@@ -27,7 +27,7 @@ const Dots = () => <span className="dots"><i /><i /><i /></span>;
 export function CrmSection() {
   const { t } = useT();
   const reveal = useReveal<HTMLElement>();
-  const bulletsRef = useReveal<HTMLDivElement>();
+  const bulletsRef = useReveal<HTMLUListElement>();
   const tabs = (set: typeof CRM_M) => set.map((v) => ({ id: v.id, label: t.crm.tabs[v.id] }));
 
   return (
@@ -48,14 +48,14 @@ export function CrmSection() {
         </div>
 
         <div className="at-crm-wrap">
-          <div className="at-crm-bullets" ref={bulletsRef} data-stagger>
+          <ul className="at-crm-bullets" ref={bulletsRef} data-stagger role="list">
             {t.crm.bullets.map((b, i) => (
-              <div className="at-crm-bullet" key={i} style={{ "--si": i } as CSSProperties}>
+              <li className="at-crm-bullet" key={i} style={{ "--si": i } as CSSProperties}>
                 <span className="n" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
                 <span>{b}</span>
-              </div>
+              </li>
             ))}
-          </div>
+          </ul>
 
           {/* Las dos escenas van en el HTML y el CSS muestra una según el ancho: sin salto al hidratar (LANDING-01). */}
           <div className="at-crm-scene at-only-mobile">
@@ -68,7 +68,7 @@ export function CrmSection() {
                       <Image
                         key={v.id}
                         src={v.img}
-                        alt={`CRM · ${t.crm.tabs[v.id]}`}
+                        alt={v.id === active ? `CRM · ${t.crm.tabs[v.id]}` : ""}
                         width={390}
                         height={0}
                         sizes="(max-width: 1024px) 100vw, 390px"
@@ -92,7 +92,7 @@ export function CrmSection() {
                       <Image
                         key={v.id}
                         src={v.img}
-                        alt={`CRM · ${t.crm.tabs[v.id]}`}
+                        alt={v.id === active ? `CRM · ${t.crm.tabs[v.id]}` : ""}
                         fill
                         sizes="720px"
                         className={v.id === active ? "active" : ""}

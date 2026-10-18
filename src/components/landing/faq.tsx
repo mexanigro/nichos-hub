@@ -22,11 +22,12 @@ export function Faq() {
             const isOpen = i === open;
             return (
               <div className={`at-faq-item${isOpen ? " open" : ""}`} key={i}>
-                <button className="at-faq-q" onClick={() => setOpen(isOpen ? -1 : i)} aria-expanded={isOpen} type="button">
+                <button className="at-faq-q" onClick={() => setOpen(isOpen ? -1 : i)} aria-expanded={isOpen} aria-controls={`at-faq-a-${i}`} id={`at-faq-q-${i}`} type="button">
                   <span className="qt">{it.q}</span>
                   <span className="ico" aria-hidden="true">{isOpen ? "−" : "+"}</span>
                 </button>
-                <div className="at-faq-a-wrap">
+                {/* Cerrada, la respuesta no se lee ni recibe foco (LANDING-01). */}
+                <div className="at-faq-a-wrap" id={`at-faq-a-${i}`} role="region" aria-labelledby={`at-faq-q-${i}`} aria-hidden={!isOpen} inert={!isOpen}>
                   <div className="at-faq-a">
                     <div className="at-faq-a-inner">{it.a}</div>
                   </div>

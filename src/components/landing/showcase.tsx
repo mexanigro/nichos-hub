@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef, type KeyboardEvent } from "react";
 import Image from "next/image";
 import { useT } from "@/lib/i18n/context";
 import { SITES } from "@/lib/sites";
@@ -14,6 +14,17 @@ export function Showcase() {
   const meta = SITES.find((s) => s.id === active) ?? SITES[0];
   const siteT = t.showcase.sites[meta.id];
   const idx = SITES.findIndex((s) => s.id === active);
+  const thumbs = useRef<(HTMLButtonElement | null)[]>([]);
+  // Flechas del teclado entre pestañas (en RTL la izquierda avanza) con un solo tabindex activo (LANDING-01).
+  function onKey(e: KeyboardEvent<HTMLButtonElement>, i: number) {
+    const rtl = getComputedStyle(e.currentTarget).direction === "rtl";
+    const paso = { ArrowRight: rtl ? -1 : 1, ArrowLeft: rtl ? 1 : -1 }[e.key as "ArrowRight" | "ArrowLeft"];
+    const j = paso ? (i + paso + SITES.length) % SITES.length : e.key === "Home" ? 0 : e.key === "End" ? SITES.length - 1 : -1;
+    if (j < 0) return;
+    e.preventDefault();
+    setActive(SITES[j].id);
+    thumbs.current[j]?.focus();
+  }
 
   return (
     <section className="at-section alt at-show" id="work" ref={reveal} data-reveal>
@@ -49,16 +60,17 @@ export function Showcase() {
                   href={`https://${meta.url}`}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={`${t.showcase.open}: ${siteT.name}`}
                 >
-                  {t.showcase.open} &#8599;
+                  {t.showcase.open} <span aria-hidden="true">&#8599;</span>
                 </a>
               </div>
-              <div className="frame" role="tabpanel">
+              <div className="frame" role="tabpanel" id="at-show-panel" aria-labelledby={`at-show-tab-${active}`}>
                 {SITES.map((s) => (
                   <Image
                     key={s.id}
                     src={s.img}
-                    alt={t.showcase.sites[s.id].name}
+                    alt={s.id === active ? t.showcase.sites[s.id].name : ""}
                     fill
                     sizes="(max-width: 1024px) 100vw, 800px"
                     style={{ objectFit: "cover" }}
@@ -75,7 +87,7 @@ export function Showcase() {
               <span className="niche">
                 {siteT.niche}
               </span>
-              <span className="count">
+              <span className="count" dir="ltr">
                 {String(idx + 1).padStart(2, "0")}{" "}
                 <span className="now">/</span>{" "}
                 {String(SITES.length).padStart(2, "0")}
@@ -86,13 +98,19 @@ export function Showcase() {
           </div>
 
           <div className="at-thumbs" role="tablist">
-            {SITES.map((s) => {
+            {SITES.map((s, i) => {
               const st =
                 t.showcase.sites[s.id];
               return (
                 <button
                   key={s.id}
+                  ref={(el) => { thumbs.current[i] = el; }}
+                  type="button"
                   role="tab"
+                  id={`at-show-tab-${s.id}`}
+                  aria-controls="at-show-panel"
+                  tabIndex={s.id === active ? 0 : -1}
+                  onKeyDown={(e) => onKey(e, i)}
                   aria-selected={s.id === active}
                   aria-label={st.name}
                   onClick={() => setActive(s.id)}

@@ -23,8 +23,8 @@ function Step({
 }) {
   const ref = useReveal<HTMLDivElement>();
   return (
-    <div className="at-step" data-reveal ref={ref}>
-      <div className="stp-num">
+    <div className="at-step" data-reveal ref={ref} role="listitem">
+      <div className="stp-num" aria-hidden="true">
         <span className="stp-dot" ref={(el) => registerDot(index, el)} /><span dir="ltr">/0{index + 1}</span>
       </div>
       <div className="stp-body">
@@ -129,7 +129,7 @@ export function AnimatedStepper({ steps }: { steps: StepperStep[] }) {
           <span className="rail-fill" style={{ transform: "scaleY(0)" }} />
         )}
       </div>
-      <div className="at-proc-grid">
+      <div className="at-proc-grid" role="list">
         {steps.map((s, i) => (
           <Step key={i} index={i} step={s} registerDot={(idx, el) => (dotRefs.current[idx] = el)} />
         ))}
