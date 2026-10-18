@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/firebase-admin";
 import { FieldValue } from "firebase-admin/firestore";
 import { isRateLimited } from "@/lib/rate-limit";
+import { isWebCheckoutEnabled } from "@/lib/web-checkout";
 import { sendEmail } from "@/lib/email";
 import { demoLeadNotification } from "@/lib/email-templates";
 import { isValidClientLanguage, DEFAULT_CLIENT_LANGUAGE, VALID_CLIENT_LANGUAGES_LABEL } from "@/lib/client-language";
@@ -39,6 +40,9 @@ interface FreeLeadBody {
 }
 
 export async function POST(req: NextRequest) {
+  // LANDING-01: el embudo público está cerrado mientras la venta sea en persona.
+  if (!isWebCheckoutEnabled()) return NextResponse.json({ error: "Self-serve onboarding is disabled" }, { status: 403 });
+
   const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
   if (isRateLimited(ip, "free-lead", 5, 60_000)) {
     return NextResponse.json({ error: "Demasiadas solicitudes" }, { status: 429 });

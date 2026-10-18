@@ -64,7 +64,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Get Started Free — Arzac Studio",
   description: "Build your business website for free. Tell us about your business and we'll create a preview.",
-  robots: { index: true, follow: true },
+  robots: { index: false, follow: false },
 };
 
 export default function OnboardingFreeLayout({ children }: { children: React.ReactNode }) {

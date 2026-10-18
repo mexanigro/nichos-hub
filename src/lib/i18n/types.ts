@@ -7,7 +7,7 @@ export interface Translations {
   nav: { work: string; crm: string; how: string; pricing: string; faq: string; start: string };
   hero: { eyebrow: string; h1a: string; h1b: string; h1c: string; sub: string; cta: string; ghost: string };
   showcase: {
-    eyebrow: string; title: string; titleEm: string; sub: string; open: string;
+    eyebrow: string; title: string; titleEm: string; sub: string;
     sites: Record<"barber" | "tattoo" | "nails" | "cafe" | "estetica" | "remod", { name: string; niche: string; tagline: string }>;
   };
   crm: {

@@ -115,3 +115,28 @@ test("la pestaña sigue al idioma aunque Next reponga el <title> del servidor, y
   assert.match(show, /className="count" dir="ltr"/, "el contador 05 / 06 no se invierte en RTL");
   assert.match(leer("src/app/globals.css"), /\.at-plan li::before \{ content: "—" \/ "";/, "el guion decorativo no se lee");
 });
+
+test("fuera de la landing tampoco se promete lo que no se vende: el embudo público cerrado sin la compra web, el asistente de ventas con la oferta de hoy, los mails y los textos de cobro sin agente, sin Google Business, sin «una hora» ni 24 h, y la vitrina sin enlazar demos", () => {
+  // El embudo público (formulario → vista previa → deploy) cerrado mientras la venta sea en persona.
+  assert.match(leer("src/app/onboarding/free/page.tsx"), /if \(!isWebCheckoutEnabled\(\)\) redirect\(/, "/onboarding/free redirige");
+  assert.match(leer("src/app/onboarding/preview/layout.tsx"), /if \(!isWebCheckoutEnabled\(\)\) redirect\(/, "/onboarding/preview redirige");
+  assert.match(leer("src/app/onboarding/free/layout.tsx"), /robots: \{ index: false, follow: false \}/, "/onboarding/free sin indexar");
+  for (const f of ["src/app/api/onboarding/route.ts", "src/app/api/free/lead/route.ts"])
+    assert.match(leer(f), /if \(!isWebCheckoutEnabled\(\)\) return NextResponse\.json\([^)]*\{ status: 403 \}\)/, `${f} responde 403`);
+  // El asistente de ventas: la cuota de pricing.ts, sin alta, y el agente sólo como «no lo ofrecemos».
+  const asistente = leer("src/app/api/sales-assistant/route.ts");
+  assert.match(asistente, /\$\{MONTHLY_AMOUNT\} ₪ por mes, todo incluido\. Sin alta/);
+  assert.ok(!/1,500|1\.500|Alta única|claude-sonnet-4-5-20250514|español, ruso|web de prueba/.test(asistente), "sin alta, sin el modelo viejo, sin español como idioma de la web");
+  assert.match(asistente, /model: MODELO_TEXTOS/);
+  // Mails y textos de cobro y estado.
+  const mails = leer("src/lib/email-templates.ts");
+  assert.ok(!/Agente|24hs/.test(mails), "mails sin «Agente» ni 24 h");
+  for (const [l, t] of Object.entries(LOCALES)) {
+    const visibles = textos([t.pagoOk, t.pago.footerSecurity, t.status.reviewBody, t.wizard.noClientIdSub]);
+    for (const s of visibles) assert.ok(!/Google Business|PCI|una hora|the hour|תוך שעה|в течение часа|خلال ساعة|\b24\b|bienvenida|welcome email|ברכה|приветствен|الترحيب/.test(s), `${l}: «${s}»`);
+  }
+  // La vitrina: el marco de las demos queda, sin enlaces ni urls.
+  const vitrina = leer("src/components/landing/showcase.tsx") + leer("src/lib/sites.ts");
+  assert.ok(!/href=|arzac\.studio|vercel\.app/.test(vitrina), "la vitrina no enlaza demos");
+  assert.ok(!existsSync(resolve(ROOT, "scripts/generate-og.mjs")), "el script viejo de og (agente AI, cero alta) no vuelve");
+});

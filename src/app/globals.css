@@ -158,9 +158,6 @@ html:has(.at) { scroll-padding-top: 68px; }
 .at-browser .dots i { width: 10px; height: 10px; border-radius: 999px; background: rgba(27,24,22,0.16); display: block; }
 .at-browser .url { flex: 1; min-width: 0; background: var(--at-bg); border: 1px solid var(--at-line-2); border-radius: 999px; padding: 5px 12px 5px 30px; font-family: var(--at-mono); font-size: 10.5px; letter-spacing: 0.02em; color: var(--at-ink-2); display: flex; align-items: center; gap: 8px; position: relative; min-height: 24px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .at-browser .url::before { content: ""; position: absolute; left: 11px; top: 50%; transform: translateY(-50%); width: 12px; height: 12px; background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234a8a4a' stroke-width='2' stroke-linecap='round'><rect x='5' y='11' width='14' height='9' rx='2'/><path d='M8 11V8a4 4 0 0 1 8 0v3'/></svg>") center/contain no-repeat; }
-.at-browser .url-text { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.at-browser .open-btn { flex-shrink: 0; font-family: var(--at-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; padding: 0 14px; min-height: 32px; border-radius: 999px; background: var(--at-ink); color: var(--at-paper); border: 0; cursor: pointer; transition: background .15s; display: inline-flex; align-items: center; gap: 5px; }
-.at-browser .open-btn:hover { background: var(--at-accent); }
 .at-browser .frame { position: relative; width: 100%; aspect-ratio: 1200 / 630; overflow: hidden; background: var(--at-bg-2); }
 .at-browser .frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0; transition: opacity 0.35s cubic-bezier(0.23, 1, 0.32, 1); }
 .at-browser .frame img.active { opacity: 1; }
@@ -362,7 +359,6 @@ html:has(.at) { scroll-padding-top: 68px; }
   .at .at-thumb-label { font-size: 12px; padding: 16px 8px 7px; }
   .at .at-browser .chrome { padding: 12px 16px; gap: 14px; }
   .at .at-browser .url { font-size: 12.5px; padding: 7px 16px 7px 36px; }
-  .at .at-browser .open-btn { font-size: 12px; padding: 0 16px; min-height: 36px; }
   .at .at-crm-wrap { display: grid; grid-template-columns: 320px 1fr; gap: 56px; align-items: start; }
   .at .at-crm-bullet { font-size: 16px; padding-block: 16px; }
   .at .at-crm-tabs { margin-inline: 0; padding: 4px 0 8px; gap: 10px; }

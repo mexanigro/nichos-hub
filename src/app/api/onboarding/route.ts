@@ -5,6 +5,7 @@ import { isRateLimited } from "@/lib/rate-limit";
 import { resolveBranding } from "@/lib/branding-resolver";
 import { generateLogoSvg } from "@/lib/logo-generator";
 import { buildFeatures, getDefaultTheme, getDefaultSplash } from "@/lib/niche-defaults";
+import { isWebCheckoutEnabled } from "@/lib/web-checkout";
 
 function slugify(name: string): string {
   return name
@@ -30,6 +31,9 @@ function isAllowedOrigin(req: NextRequest): boolean {
 }
 
 export async function POST(req: NextRequest) {
+  // LANDING-01: este POST crea y despliega una web; con la venta en persona no lo puede llamar un visitante.
+  if (!isWebCheckoutEnabled()) return NextResponse.json({ error: "Self-serve onboarding is disabled" }, { status: 403 });
+
   const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "anonymous";
 
   // 3 requests per hour per IP — triggers a full Vercel deploy, must be strict

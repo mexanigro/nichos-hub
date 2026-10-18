@@ -30,6 +30,7 @@ const cormorant = Cormorant_Garamond({
   weight: ["400"],
   style: ["normal", "italic"],
   variable: "--font-cormorant",
+  preload: false, // LANDING-01: sólo ruso/árabe; se baja cuando se usa (unicode-range), no en cada visita
   display: "swap",
 });
 
@@ -52,6 +53,7 @@ const amiri = Amiri({
   weight: ["400"],
   style: ["normal", "italic"],
   variable: "--font-amiri",
+  preload: false, // LANDING-01: sólo ruso/árabe; se baja cuando se usa (unicode-range), no en cada visita
   display: "swap",
 });
 
@@ -59,6 +61,7 @@ const plexArabic = IBM_Plex_Sans_Arabic({
   subsets: ["arabic", "latin"],
   weight: ["400", "500", "600"],
   variable: "--font-plex-ar",
+  preload: false, // LANDING-01: sólo ruso/árabe; se baja cuando se usa (unicode-range), no en cada visita
   display: "swap",
 });
 

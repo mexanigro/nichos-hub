@@ -7,6 +7,8 @@
  * el copy del wizard y el sitio.
  */
 
+import { PLAN_LABEL } from "./pricing.ts";
+
 const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://arzac.studio";
 
 interface PaymentConfirmedVars {
@@ -19,14 +21,8 @@ interface PaymentConfirmedVars {
 }
 
 export function paymentConfirmed(v: PaymentConfirmedVars) {
-  const tierLabels: Record<string, string> = {
-    base: "Base",
-    pro: "Pro",
-    enterprise: "Enterprise",
-    web_crm: "Web + CRM",
-    completo: "Web + CRM + Agente",
-  };
-  const planLabel = tierLabels[v.plan] || v.plan;
+  // Un solo plan: los plan/tier viejos en datos se muestran como el plan único (LANDING-01: sin el agente que ya no se vende).
+  const planLabel = PLAN_LABEL;
   const name = v.name?.split(" ")[0] || "";
   const nextLine = v.nextChargeAt
     ? `\nPróximo cobro: ${new Date(v.nextChargeAt).toLocaleDateString("es", { day: "numeric", month: "long", year: "numeric" })}.\n`
@@ -69,7 +65,7 @@ export function infoSubmittedThanks(v: InfoSubmittedVars) {
     text: [
       `Hola${name ? " " + name : ""},`,
       ``,
-      `Recibí toda la info de tu sitio. En menos de 24hs te escribo por WhatsApp con la primera versión.`,
+      `Recibí toda la info de tu sitio. En 48 horas te mando por WhatsApp un link privado con la primera versión.`,
       ``,
       `Vas a poder revisarla y pedir cambios antes de que salga online.`,
       ``,
@@ -80,7 +76,7 @@ export function infoSubmittedThanks(v: InfoSubmittedVars) {
       `Arzac Studio · ${SITE}`,
     ].join("\n"),
     html: `<p>Hola${name ? " " + escape(name) : ""},</p>
-<p>Recibí toda la info de tu sitio. En menos de 24hs te escribo por WhatsApp con la primera versión.</p>
+<p>Recibí toda la info de tu sitio. En 48 horas te mando por WhatsApp un link privado con la primera versión.</p>
 <p>Vas a poder revisarla y pedir cambios antes de que salga online.</p>
 <p><a href="${v.statusUrl}" style="display:inline-block;background:#0f0f0f;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600">Ver estado →</a></p>
 <p>—<br>Liam<br><a href="${SITE}">Arzac Studio</a></p>`,

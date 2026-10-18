@@ -8,7 +8,7 @@ import { SectionCta } from "./section-cta";
 
 export function Showcase() {
   const { t } = useT();
-  const [active, setActive] = useState("estetica");
+  const [active, setActive] = useState("barber");
   const reveal = useReveal<HTMLElement>();
 
   const meta = SITES.find((s) => s.id === active) ?? SITES[0];
@@ -52,18 +52,8 @@ export function Showcase() {
                   <i />
                   <i />
                 </span>
-                <span className="url">
-                  <span className="url-text">https://{meta.url}</span>
-                </span>
-                <a
-                  className="open-btn"
-                  href={`https://${meta.url}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`${t.showcase.open}: ${siteT.name}`}
-                >
-                  {t.showcase.open} <span aria-hidden="true">&#8599;</span>
-                </a>
+                {/* LANDING-01 (Liam 2026-10-18): las demos viejas no se enlazan hasta que haya nuevas; el marco queda igual. */}
+                <span className="url" aria-hidden="true" />
               </div>
               <div className="frame" role="tabpanel" id="at-show-panel" aria-labelledby={`at-show-tab-${active}`}>
                 {SITES.map((s) => (
