@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/providers";
 import { AppShell } from "@/components/app-shell";
+import { MONTHLY_AMOUNT } from "@/lib/pricing";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,11 +16,11 @@ export const metadata: Metadata = {
     template: "%s | Arzac Studio",
   },
   description:
-    "אתר מקצועי לעסק שלך + מערכת CRM ללקוחות ותורים + התראות במייל. הקמה חד-פעמית ומנוי חודשי קבוע של 250 ₪. מתאים למספרות, מכוני יופי, קעקועים ושיפוצים.",
+    `אתר מקצועי לעסק שלך + מערכת CRM ללקוחות ותורים + התראות במייל. ${MONTHLY_AMOUNT} ₪ לחודש, בלי דמי הקמה. מתאים למספרות, מכוני יופי, קעקועים ושיפוצים.`,
   metadataBase: new URL("https://arzac.studio"),
   openGraph: {
     title: "Arzac Studio — בניית אתר לעסק עם CRM והתראות במייל",
-    description: "אתר + CRM + התראות במייל לעסקים מקומיים בישראל. הקמה חד-פעמית 1,500 ₪ ומנוי 250 ₪ לחודש.",
+    description: `אתר + CRM + התראות במייל לעסקים מקומיים בישראל. ${MONTHLY_AMOUNT} ₪ לחודש, בלי דמי הקמה.`,
     url: "https://arzac.studio",
     siteName: "Arzac Studio",
     locale: "he_IL",
@@ -30,7 +31,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Arzac Studio — בניית אתר לעסק עם CRM והתראות במייל",
-    description: "אתר + CRM + התראות במייל לעסקים מקומיים בישראל. הקמה חד-פעמית 1,500 ₪ ומנוי 250 ₪ לחודש.",
+    description: `אתר + CRM + התראות במייל לעסקים מקומיים בישראל. ${MONTHLY_AMOUNT} ₪ לחודש, בלי דמי הקמה.`,
     images: ["/og.png"],
   },
   robots: {

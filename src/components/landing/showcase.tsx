@@ -5,7 +5,6 @@ import { useT } from "@/lib/i18n/context";
 import { SITES } from "@/lib/sites";
 import { useReveal } from "@/hooks/use-scroll-reveal";
 import { SectionCta } from "./section-cta";
-import { Mascot } from "./mascot";
 
 export function Showcase() {
   const { t } = useT();
@@ -13,7 +12,7 @@ export function Showcase() {
   const reveal = useReveal<HTMLElement>();
 
   const meta = SITES.find((s) => s.id === active) ?? SITES[0];
-  const siteT = t.showcase.sites[active as keyof typeof t.showcase.sites];
+  const siteT = t.showcase.sites[meta.id];
   const idx = SITES.findIndex((s) => s.id === active);
 
   return (
@@ -32,15 +31,6 @@ export function Showcase() {
           </div>
           <p>{t.showcase.sub}</p>
         </div>
-
-        {t.showcase.why && (
-          <div className="at-why">
-            <div>
-              <div className="head">{t.whyLabel}</div>
-              <div className="body">{t.showcase.why}</div>
-            </div>
-          </div>
-        )}
 
         <div className="stage">
           <div className="at-show-browser-wrap">
@@ -68,7 +58,7 @@ export function Showcase() {
                   <Image
                     key={s.id}
                     src={s.img}
-                    alt={`${t.showcase.sites[s.id as keyof typeof t.showcase.sites]?.name || s.niche} — ${s.city}`}
+                    alt={t.showcase.sites[s.id].name}
                     fill
                     sizes="(max-width: 1024px) 100vw, 800px"
                     style={{ objectFit: "cover" }}
@@ -83,7 +73,7 @@ export function Showcase() {
           <div className="at-show-meta">
             <div className="top">
               <span className="niche">
-                {meta.niche} &middot; {meta.city}
+                {siteT.niche}
               </span>
               <span className="count">
                 {String(idx + 1).padStart(2, "0")}{" "}
@@ -91,33 +81,33 @@ export function Showcase() {
                 {String(SITES.length).padStart(2, "0")}
               </span>
             </div>
-            <div className="name">{siteT?.name || meta.niche}</div>
-            <div className="tagline">{siteT?.tagline}</div>
+            <div className="name">{siteT.name}</div>
+            <div className="tagline">{siteT.tagline}</div>
           </div>
 
           <div className="at-thumbs" role="tablist">
             {SITES.map((s) => {
               const st =
-                t.showcase.sites[s.id as keyof typeof t.showcase.sites];
+                t.showcase.sites[s.id];
               return (
                 <button
                   key={s.id}
                   role="tab"
                   aria-selected={s.id === active}
-                  aria-label={st?.name || s.niche}
+                  aria-label={st.name}
                   onClick={() => setActive(s.id)}
                   className={`at-thumb${s.id === active ? " on" : ""}`}
                 >
                   <Image
                     src={s.img}
-                    alt={st?.name || s.niche}
+                    alt=""
                     fill
                     sizes="80px"
                     style={{ objectFit: "cover" }}
                     loading="lazy"
                   />
                   <span className="at-thumb-label">
-                    {(st?.name || s.niche).split(" ")[0]}
+                    {st.niche}
                   </span>
                 </button>
               );
@@ -126,7 +116,6 @@ export function Showcase() {
         </div>
         <SectionCta to="pricing" />
       </div>
-      <Mascot variant="showcase" drift />
     </section>
   );
 }

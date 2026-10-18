@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { he as heT } from "@/lib/i18n/locales/he";
+import { he as heCrudo } from "@/lib/i18n/locales/he";
+import { aplicarPrecios } from "@/lib/i18n/precios";
+import { MONTHLY_AMOUNT } from "@/lib/pricing";
 import {
   Instrument_Serif,
   JetBrains_Mono,
@@ -10,6 +12,10 @@ import {
   IBM_Plex_Sans_Arabic,
 } from "next/font/google";
 import { AtelierPage } from "@/components/landing/atelier-page";
+
+// LANDING-01: el precio sale de src/lib/pricing.ts; el FAQ del JSON-LD es el mismo que se pinta, con {precio} ya reemplazado.
+const heT = aplicarPrecios(heCrudo, "he");
+const DESCRIPCION = `אתר מקצועי לעסק שלך + מערכת CRM ללקוחות ותורים + התראות במייל. ${MONTHLY_AMOUNT} ₪ לחודש, בלי דמי הקמה. מתאים למספרות, מכוני יופי, קעקועים ושיפוצים.`;
 
 const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
@@ -64,17 +70,17 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   // absolute: evita el template "%s | Arzac Studio" del layout (doble marca).
-  title: { absolute: "בניית אתר לעסק עם CRM והתראות במייל | 250 ₪ לחודש" },
-  description:
-    "אתר מקצועי לעסק שלך + מערכת CRM ללקוחות ותורים + התראות במייל. הקמה חד-פעמית 1,500 ₪ ואחר כך 250 ₪ לחודש. מתאים למספרות, מכוני יופי, קעקועים ושיפוצים. סוכן וואטסאפ AI — תוספת לפי בקשה.",
+  title: { absolute: heT.meta.title },
+  description: DESCRIPCION,
   alternates: { canonical: "/" },
   openGraph: {
-    title: "בניית אתר לעסק עם CRM והתראות במייל — 250 ₪ לחודש",
-    description:
-      "אתר מקצועי + CRM + התראות במייל לעסקים מקומיים בישראל. הקמה חד-פעמית 1,500 ₪, מנוי 250 ₪ לחודש, באוויר תוך 72 שעות.",
+    title: heT.meta.title,
+    description: `אתר מקצועי + CRM + התראות במייל לעסקים מקומיים בישראל. ${MONTHLY_AMOUNT} ₪ לחודש, בלי דמי הקמה, באוויר תוך 48 שעות מקבלת החומרים.`,
     url: "https://arzac.studio",
+    siteName: "Arzac Studio",
     locale: "he_IL",
     type: "website",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: heT.meta.title }],
   },
 };
 
@@ -92,7 +98,7 @@ const jsonLd = {
       logo: "https://arzac.studio/logo.png",
       image: "https://arzac.studio/og.png",
       description:
-        "סטודיו לבניית אתרים לעסקים קטנים בישראל: אתר מקצועי, מערכת CRM ללקוחות ותורים והתראות במייל. הקמה חד-פעמית ומנוי חודשי קבוע.",
+        "סטודיו לבניית אתרים לעסקים קטנים בישראל: אתר מקצועי, מערכת CRM ללקוחות ותורים והתראות במייל, במנוי חודשי קבוע ובלי דמי הקמה.",
       address: {
         "@type": "PostalAddress",
         addressLocality: "Tel Aviv",
@@ -127,7 +133,7 @@ const jsonLd = {
       about: { "@id": "https://arzac.studio/#organization" },
       inLanguage: "he",
       description:
-        "אתר מקצועי לעסק שלך + מערכת CRM ללקוחות ותורים + התראות במייל. הקמה חד-פעמית 1,500 ₪ ואחר כך 250 ₪ לחודש.",
+        DESCRIPCION,
     },
     {
       "@type": "Service",
@@ -135,23 +141,15 @@ const jsonLd = {
       name: "אתר + CRM + התראות במייל לעסקים מקומיים",
       serviceType: "בניית אתרים לעסקים קטנים",
       description:
-        "אתר מקצועי עם מערכת קביעת תורים אונליין, CRM לניהול לקוחות ולידים והתראות במייל. מתאים למספרות, מכוני יופי, סטודיו קעקועים, מעצבות ציפורניים, בתי קפה וקבלני שיפוצים. סוכן וואטסאפ AI זמין כתוספת.",
+        "אתר מקצועי עם זימון תורים אונליין, CRM לניהול לקוחות ופניות והתראות במייל. מתאים למספרות, מכוני יופי, סטודיו קעקועים, מעצבות ציפורניים, בתי קפה וקבלני שיפוצים.",
       provider: { "@id": "https://arzac.studio/#organization" },
       areaServed: { "@type": "Country", name: "IL" },
       availableLanguage: ["he", "en", "ru", "es", "ar"],
       offers: [
         {
           "@type": "Offer",
-          name: "מנוי חודשי — אתר + CRM + התראות במייל",
-          price: "250",
-          priceCurrency: "ILS",
-          availability: "https://schema.org/InStock",
-          url: "https://arzac.studio/#pricing",
-        },
-        {
-          "@type": "Offer",
-          name: "הקמה חד-פעמית",
-          price: "1500",
+          name: "מנוי חודשי — אתר + CRM + התראות במייל, בלי דמי הקמה",
+          price: String(MONTHLY_AMOUNT),
           priceCurrency: "ILS",
           availability: "https://schema.org/InStock",
           url: "https://arzac.studio/#pricing",

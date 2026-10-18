@@ -1,49 +1,34 @@
 "use client";
-import { useState, useEffect } from "react";
 import type { CSSProperties } from "react";
 import Image from "next/image";
 import { useT } from "@/lib/i18n/context";
 import { useReveal } from "@/hooks/use-scroll-reveal";
 import { AutoRotatingTabs } from "./auto-rotating-tabs";
-import { Mascot } from "./mascot";
 
-const CRM_M = [
-  { id: "dashboard", labelKey: "dashboard" as const, img: "/landing/crm-m-dashboard.png" },
-  { id: "calendar", labelKey: "calendar" as const, img: "/landing/crm-m-calendar.png" },
-  { id: "customers", labelKey: "customers" as const, img: "/landing/crm-m-customers.png" },
-  { id: "assistant", labelKey: "assistant" as const, img: "/landing/crm-m-assistant.png" },
-  { id: "support", labelKey: "support" as const, img: "/landing/crm-m-support.png" },
-  { id: "menu", labelKey: "menu" as const, img: "/landing/crm-m-menu.png" },
+type TabKey = "dashboard" | "calendar" | "customers" | "support" | "menu" | "overview" | "appointments" | "payments";
+
+const CRM_M: { id: TabKey; img: string }[] = [
+  { id: "dashboard", img: "/landing/crm-m-dashboard.png" },
+  { id: "calendar", img: "/landing/crm-m-calendar.png" },
+  { id: "customers", img: "/landing/crm-m-customers.png" },
+  { id: "support", img: "/landing/crm-m-support.png" },
+  { id: "menu", img: "/landing/crm-m-menu.png" },
 ];
 
-const CRM_D = [
-  { id: "overview", labelKey: "overview" as const, img: "/landing/crm-d-overview.png" },
-  { id: "appointments", labelKey: "appointments" as const, img: "/landing/crm-d-appointments.png" },
-  { id: "payments", labelKey: "payments" as const, img: "/landing/crm-d-payments.png" },
-  { id: "support", labelKey: "support" as const, img: "/landing/crm-d-support.png" },
+const CRM_D: { id: TabKey; img: string }[] = [
+  { id: "overview", img: "/landing/crm-d-overview.png" },
+  { id: "appointments", img: "/landing/crm-d-appointments.png" },
+  { id: "payments", img: "/landing/crm-d-payments.png" },
+  { id: "support", img: "/landing/crm-d-support.png" },
 ];
 
-function useIsDesktop() {
-  const [desktop, setDesktop] = useState(false);
-  useEffect(() => {
-    const mq = window.matchMedia("(min-width: 1024px)");
-    setDesktop(mq.matches);
-    const h = (e: MediaQueryListEvent) => setDesktop(e.matches);
-    mq.addEventListener("change", h);
-    return () => mq.removeEventListener("change", h);
-  }, []);
-  return desktop;
-}
+const Dots = () => <span className="dots"><i /><i /><i /></span>;
 
 export function CrmSection() {
   const { t } = useT();
-  const isDesktop = useIsDesktop();
-  const views = (isDesktop ? CRM_D : CRM_M).map((v) => ({
-    ...v,
-    label: t.crm.tabs[v.labelKey],
-  }));
   const reveal = useReveal<HTMLElement>();
   const bulletsRef = useReveal<HTMLDivElement>();
+  const tabs = (set: typeof CRM_M) => set.map((v) => ({ id: v.id, label: t.crm.tabs[v.id] }));
 
   return (
     <section className="at-section" id="crm" ref={reveal} data-reveal>
@@ -62,91 +47,66 @@ export function CrmSection() {
           <p>{t.crm.sub}</p>
         </div>
 
-        {t.crm.why && (
-          <div className="at-why">
-            <div>
-              <div className="head">{t.whyLabel}</div>
-              <div className="body">{t.crm.why}</div>
-            </div>
-          </div>
-        )}
-
         <div className="at-crm-wrap">
           <div className="at-crm-bullets" ref={bulletsRef} data-stagger>
             {t.crm.bullets.map((b, i) => (
               <div className="at-crm-bullet" key={i} style={{ "--si": i } as CSSProperties}>
-                <span className="n">{String(i + 1).padStart(2, "0")}</span>
+                <span className="n" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
                 <span>{b}</span>
               </div>
             ))}
           </div>
 
-          <div className="at-crm-scene">
-            <AutoRotatingTabs
-              tabs={views.map((v) => ({ id: v.id, label: v.label }))}
-              resetKey={isDesktop ? "d" : "m"}
-              tabsClassName="at-crm-tabs"
-              tabClassName="at-crm-tab"
-            >
-              {(active) =>
-                isDesktop ? (
-                  <div className="at-crm-browser">
-                    <div className="chrome">
-                      <span className="dots">
-                        <i />
-                        <i />
-                        <i />
-                      </span>
-                      <span className="url">crm.arzac.studio</span>
-                    </div>
-                    <div className="frame" role="tabpanel">
-                      {views.map((v) => (
-                        <Image
-                          key={v.id}
-                          src={v.img}
-                          alt={`CRM · ${v.label}`}
-                          fill
-                          sizes="(max-width: 1024px) 100vw, 720px"
-                          className={v.id === active ? "active" : ""}
-                          style={{ objectFit: "cover", objectPosition: "top" }}
-                          loading={v.id === active ? undefined : "lazy"}
-                        />
-                      ))}
-                    </div>
+          {/* Las dos escenas van en el HTML y el CSS muestra una según el ancho: sin salto al hidratar (LANDING-01). */}
+          <div className="at-crm-scene at-only-mobile">
+            <AutoRotatingTabs tabs={tabs(CRM_M)} tabsClassName="at-crm-tabs" tabClassName="at-crm-tab" pauseLabel={t.crm.pause} playLabel={t.crm.play}>
+              {(active, panel) => (
+                <div className="at-crm-mobcard">
+                  <div className="topbar"><Dots /><span className="url">crm.arzac.studio</span></div>
+                  <div className="crm-imgs" {...panel}>
+                    {CRM_M.map((v, i) => (
+                      <Image
+                        key={v.id}
+                        src={v.img}
+                        alt={`CRM · ${t.crm.tabs[v.id]}`}
+                        width={390}
+                        height={0}
+                        sizes="(max-width: 1024px) 100vw, 390px"
+                        style={{ width: "100%", height: "auto" }}
+                        className={v.id === active ? "active" : ""}
+                        loading={i === 0 ? undefined : "lazy"}
+                      />
+                    ))}
                   </div>
-                ) : (
-                  <div className="at-crm-mobcard">
-                    <div className="topbar">
-                      <span className="dots">
-                        <i />
-                        <i />
-                        <i />
-                      </span>
-                      <span className="url">crm.arzac.studio</span>
-                    </div>
-                    <div className="crm-imgs" role="tabpanel">
-                      {views.map((v, i) => (
-                        <Image
-                          key={v.id}
-                          src={v.img}
-                          alt={`CRM · ${v.label}`}
-                          width={390}
-                          height={0}
-                          sizes="(max-width: 1024px) 100vw, 390px"
-                          style={{ width: "100%", height: "auto" }}
-                          className={v.id === active ? "active" : ""}
-                          loading={i === 0 ? undefined : "lazy"}
-                        />
-                      ))}
-                    </div>
+                </div>
+              )}
+            </AutoRotatingTabs>
+          </div>
+          <div className="at-crm-scene at-only-desktop">
+            <AutoRotatingTabs tabs={tabs(CRM_D)} tabsClassName="at-crm-tabs" tabClassName="at-crm-tab" pauseLabel={t.crm.pause} playLabel={t.crm.play}>
+              {(active, panel) => (
+                <div className="at-crm-browser">
+                  <div className="chrome"><Dots /><span className="url">crm.arzac.studio</span></div>
+                  <div className="frame" {...panel}>
+                    {CRM_D.map((v) => (
+                      <Image
+                        key={v.id}
+                        src={v.img}
+                        alt={`CRM · ${t.crm.tabs[v.id]}`}
+                        fill
+                        sizes="720px"
+                        className={v.id === active ? "active" : ""}
+                        style={{ objectFit: "cover", objectPosition: "top" }}
+                        loading="lazy"
+                      />
+                    ))}
                   </div>
-                )
-              }
+                </div>
+              )}
             </AutoRotatingTabs>
           </div>
         </div>
       </div>
-      <Mascot variant="crm" drift />
     </section>
   );
 }

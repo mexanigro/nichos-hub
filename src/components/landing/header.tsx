@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useT } from "@/lib/i18n/context";
 import { LogoMark } from "./logo-mark";
 import { LangSwitch } from "./lang-switch";
+import { Flecha } from "./flecha";
 
 export function Header() {
   const { t } = useT();
@@ -45,26 +46,22 @@ export function Header() {
     <header className={`at-header${scrolled ? " is-scrolled" : ""}${hidden ? " is-hidden" : ""}`}>
       <div className="container at-header-inner">
         <a className="at-brand" href="/">
-          <span className="at-brand-face" aria-hidden="true">
-            <img src="/mascot/hedgehog/processed/face.png" alt="" width={34} height={34} loading="eager" decoding="async" />
-          </span>
           <LogoMark size={22} color="var(--at-ink)" />
           <span className="wm">
             Arzac <em>studio</em>
           </span>
         </a>
-        <nav className="at-nav" aria-label="Main">
+        <nav className="at-nav" aria-label={t.a11y.mainNav}>
           <a href="#work">{t.nav.work}</a>
           <a href="#crm">{t.nav.crm}</a>
-          <a href="#agent">{t.nav.agent}</a>
-          {t.nav.how && <a href="#how">{t.nav.how}</a>}
+          <a href="#how">{t.nav.how}</a>
           <a href="#pricing">{t.nav.pricing}</a>
           <a href="#faq">{t.nav.faq}</a>
         </nav>
         <div className="at-controls">
           <LangSwitch />
           <a className="at-cta" href="#pricing">
-            {t.nav.start} <span className="at-cta-arrow">&rarr;</span>
+            {t.nav.start} <span className="at-cta-arrow"><Flecha /></span>
           </a>
         </div>
       </div>

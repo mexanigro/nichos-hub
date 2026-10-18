@@ -2,8 +2,8 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useT } from "@/lib/i18n/context";
-import { Mascot } from "./mascot";
 import { whatsappHref } from "@/lib/whatsapp";
+import { Flecha } from "./flecha";
 
 const WA_HREF = whatsappHref();
 
@@ -29,16 +29,7 @@ export function Hero() {
             <p className="at-hero-sub">{t.hero.sub}</p>
             <div className="at-hero-actions">
               <a className="at-btn-primary" href={WA_HREF} target="_blank" rel="noopener noreferrer">
-                {t.hero.cta}{" "}
-                <span
-                  style={{
-                    fontFamily: "var(--at-serif)",
-                    fontStyle: "italic",
-                    fontSize: 18,
-                  }}
-                >
-                  &rarr;
-                </span>
+                {t.hero.cta} <span className="at-btn-arrow"><Flecha /></span>
               </a>
               <a className="at-btn-link" href="#work">
                 {t.hero.ghost}
@@ -51,7 +42,7 @@ export function Hero() {
               <div className="screen">
                 <Image
                   src="/landing/hero-onyx-steel-vertical.png"
-                  alt="Onyx & Steel barbershop"
+                  alt=""
                   fill
                   sizes="(max-width: 1024px) 280px, 360px"
                   style={{ objectFit: "cover" }}
@@ -59,21 +50,6 @@ export function Hero() {
                 />
               </div>
             </div>
-            <div className="at-hero-ribbon" aria-hidden="true">
-              <div className="at-hero-ribbon-inner">
-                <span>{t.hero.ribbon || "shipped this week"}</span>
-                <span>tattoo · TLV</span>
-                <span>café · Florentin</span>
-                <span>barber · Holon</span>
-                <span>nails · Ramat Gan</span>
-                <span>{t.hero.ribbon || "shipped this week"}</span>
-                <span>tattoo · TLV</span>
-                <span>café · Florentin</span>
-                <span>barber · Holon</span>
-                <span>nails · Ramat Gan</span>
-              </div>
-            </div>
-            <Mascot variant="hero" mouseFollow scrollParallax delayMs={350} />
           </div>
         </div>
       </div>

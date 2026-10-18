@@ -6,7 +6,7 @@ const WA_HREF = whatsappHref();
 
 export function WhatsappFab() {
   const { t } = useT();
-  const label = "WhatsApp";
+  const label = t.hero.cta;
   return (
     <a
       className="at-wa-fab"

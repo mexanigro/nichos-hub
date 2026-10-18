@@ -8,8 +8,16 @@ import { es } from "./locales/es";
 import { ru } from "./locales/ru";
 import { he } from "./locales/he";
 import { ar } from "./locales/ar";
+import { aplicarPrecios } from "./precios";
 
-const locales: Record<Locale, Translations> = { en, es, ru, he, ar };
+// LANDING-01: la cuota de cada texto sale de src/lib/pricing.ts ({precio} en los locales).
+const locales: Record<Locale, Translations> = {
+  en: aplicarPrecios(en, "en"),
+  es: aplicarPrecios(es, "es"),
+  ru: aplicarPrecios(ru, "ru"),
+  he: aplicarPrecios(he, "he"),
+  ar: aplicarPrecios(ar, "ar"),
+};
 
 /** Get translations object for a given locale string. Falls back to English. */
 export function getTranslations(locale?: string): Translations {

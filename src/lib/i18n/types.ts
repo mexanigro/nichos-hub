@@ -1,40 +1,24 @@
 export type Locale = "en" | "es" | "he" | "ru" | "ar";
 
 export interface Translations {
-  nav: { work: string; crm: string; agent: string; how?: string; pricing: string; faq: string; start: string };
-  hero: { eyebrow: string; h1a: string; h1b: string; h1c: string; sub: string; cta: string; ghost: string; ribbon?: string };
+  /** Landing (LANDING-01). Donde va la cuota se escribe {precio}: lo reemplaza aplicarPrecios (src/lib/i18n/precios.ts). */
+  meta: { title: string };
+  a11y: { skip: string; mainNav: string; legalNav: string; languages: string };
+  nav: { work: string; crm: string; how: string; pricing: string; faq: string; start: string };
+  hero: { eyebrow: string; h1a: string; h1b: string; h1c: string; sub: string; cta: string; ghost: string };
   showcase: {
-    eyebrow: string; title: string; titleEm: string; sub: string; why: string;
-    pickHint: string; open: string;
-    sites: Record<"barber" | "tattoo" | "nails" | "cafe" | "estetica" | "remod", { name?: string; tagline: string; blurb?: string }>;
+    eyebrow: string; title: string; titleEm: string; sub: string; open: string;
+    sites: Record<"barber" | "tattoo" | "nails" | "cafe" | "estetica" | "remod", { name: string; niche: string; tagline: string }>;
   };
   crm: {
-    eyebrow: string; title: string; titleEm: string; sub: string; why: string;
+    eyebrow: string; title: string; titleEm: string; sub: string;
     bullets: string[];
-    dashboard: { title: string; bookings: string; leads: string; revenue: string; agendaTitle: string; inboxTitle: string };
-    tabs: {
-      dashboard: string; calendar: string; customers: string; assistant: string; support: string; menu: string;
-      overview: string; appointments: string; payments: string;
-    };
-  };
-  agent: {
-    eyebrow: string; title: string; titleEm: string; sub: string; why: string;
-    reasons: { t: string; d: string }[];
-    chat: { from: "client" | "agent"; text: string }[];
-    chatStatus?: string;
-    chatField?: string;
-    /** Insignia del chat de ejemplo: la IA es una añadidura con presupuesto aparte (P-4). */
-    addonBadge?: string;
+    tabs: { dashboard: string; calendar: string; customers: string; support: string; menu: string; overview: string; appointments: string; payments: string };
+    pause: string; play: string;
   };
   everything: {
     eyebrow: string; title: string; titleEm: string; sub: string;
     items: { t: string; d: string }[];
-    whyTitle: string; whyTitleEm: string; whyBody: string;
-    whyPoints: { k: string; v: string }[];
-  };
-  manifesto: {
-    eyebrow: string; h: string; hEm: string; body: string;
-    points: { k: string; v: string }[];
   };
   process: {
     eyebrow: string; title: string; titleEm: string;
@@ -42,30 +26,16 @@ export interface Translations {
   };
   pricing: {
     eyebrow: string; title: string; titleEm: string; sub: string; monthlyAbbr: string;
-    plans: { tag: string; name: string; price: number; tagline: string; highlight?: boolean; items: string[]; planId?: string; bookingLimit?: string }[];
-    stamp: string; redesignHighlight?: string;
-    setupLabel: string; setupValue: string; cta: string; ctaSecondary: string; note: string;
+    /** `price` no se escribe en los locales: lo pone aplicarPrecios desde MONTHLY_AMOUNT. */
+    plans: { tag: string; name: string; price?: number; tagline: string; highlight?: boolean; items: string[]; planId?: string }[];
+    stamp: string; setupLabel: string; setupValue: string; cta: string; ctaSecondary: string; note: string;
   };
   faq: {
     eyebrow: string; title: string; titleEm: string;
     items: { q: string; a: string }[];
   };
-  final: { a: string; b: string; cta: string; ctaHref?: string; note: string };
-  founder: {
-    eyebrow: string; h: string; hName: string; hRest: string; body: string;
-    role: string; location: string; badge: string;
-    stats: { k: string; v: string }[];
-    cta: string;
-  };
-  evergreen?: {
-    eyebrow: string; h: string; hEm: string; body: string;
-    counter: string; counterUnit: string; counterDesc: string;
-    points: { k: string; v: string }[];
-  };
-  techStack?: { eyebrow: string; title: string; titleEm: string };
-  whyLabel: string;
+  final: { a: string; b: string; cta: string; note: string };
   foot: { rights: string; legal: string[] };
-  statusLine: string;
   pago: {
     title: string; back: string; step: string; of: string;
     planLabel: string; planChange: string; includes: string; monthlyAbbr: string;

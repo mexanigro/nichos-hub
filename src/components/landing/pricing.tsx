@@ -4,6 +4,8 @@ import { useReveal } from "@/hooks/use-scroll-reveal";
 import React from "react";
 import { isWebCheckoutEnabled } from "@/lib/web-checkout";
 import { whatsappHref } from "@/lib/whatsapp";
+import { MONTHLY_AMOUNT } from "@/lib/pricing";
+import { Flecha } from "./flecha";
 
 const WA_HREF = whatsappHref();
 
@@ -29,34 +31,26 @@ export function Pricing() {
             return (
             <div className={`at-plan${recommended ? " hl" : ""}`} key={i} style={{ "--si": i } as React.CSSProperties}>
               {recommended && t.pricing.stamp && <span className="stamp">{t.pricing.stamp}</span>}
-              <span className="tag">/{(i + 1).toString().padStart(2, "0")} · {p.tag}</span>
+              <span className="tag"><span dir="ltr">/{(i + 1).toString().padStart(2, "0")}</span> · {p.tag}</span>
               <h3 className="name">{p.name}</h3>
               <p className="tagline">{p.tagline}</p>
               <div className="price">
                 <span className="c">₪</span>
-                <span className="v">{p.price}</span>
+                <span className="v">{MONTHLY_AMOUNT}</span>
                 <span className="per">{t.pricing.monthlyAbbr}</span>
               </div>
-              {p.bookingLimit && (
-                <div className="row-meta">
-                  <span>{p.bookingLimit}</span>
-                </div>
-              )}
               <div className="row-meta">
                 <span>{t.pricing.setupLabel}</span>
-                <span style={{ color: "var(--at-accent)" }}>{t.pricing.setupValue}</span>
+                <span className="val">{t.pricing.setupValue}</span>
               </div>
               <ul>
                 {p.items.map((it, j) => <li key={j}><span>{it}</span></li>)}
-                {t.pricing.redesignHighlight && (
-                  <li data-hl><span>{t.pricing.redesignHighlight}</span></li>
-                )}
               </ul>
               <div className="ctas">
                 {/* P-5: sin compra web, el camino es el lead por WhatsApp (venta en persona desde el hub). */}
                 {isWebCheckoutEnabled()
-                  ? <a className="at-plan-btn primary" href={`/onboarding/pago?plan=${planId}`}>{t.pricing.cta} →</a>
-                  : <a className="at-plan-btn primary" href={WA_HREF} target="_blank" rel="noopener noreferrer">{t.pricing.cta} →</a>}
+                  ? <a className="at-plan-btn primary" href={`/onboarding/pago?plan=${planId}`}>{t.pricing.cta} <Flecha /></a>
+                  : <a className="at-plan-btn primary" href={WA_HREF} target="_blank" rel="noopener noreferrer">{t.pricing.cta} <Flecha /></a>}
                 <a className="at-plan-btn ghost" href="#work">{t.pricing.ctaSecondary}</a>
               </div>
             </div>

@@ -6,14 +6,13 @@
  */
 import { useT } from "@/lib/i18n/context";
 import { whatsappHref } from "@/lib/whatsapp";
+import { Flecha } from "./flecha";
 
 const WA_HREF = whatsappHref();
 
 export function SectionCta({ to = "pricing" }: { to?: "pricing" | "whatsapp" }) {
   const { t } = useT();
-  const arrow = (
-    <span style={{ fontFamily: "var(--at-serif)", fontStyle: "italic", fontSize: 18 }}>&rarr;</span>
-  );
+  const arrow = <span className="at-btn-arrow"><Flecha /></span>;
 
   if (to === "whatsapp") {
     return (
@@ -29,7 +28,7 @@ export function SectionCta({ to = "pricing" }: { to?: "pricing" | "whatsapp" }) 
   return (
     <div className="at-section-cta">
       <a className="at-btn-primary" href="#pricing">{t.nav.start} {arrow}</a>
-      <a className="at-btn-link" href={WA_HREF} target="_blank" rel="noopener noreferrer">{t.hero.cta}</a>
+      <a className="at-btn-link no-arrow" href={WA_HREF} target="_blank" rel="noopener noreferrer">{t.hero.cta}</a>
     </div>
   );
 }

@@ -25,7 +25,7 @@ function Step({
   return (
     <div className="at-step" data-reveal ref={ref}>
       <div className="stp-num">
-        <span className="stp-dot" ref={(el) => registerDot(index, el)} />/0{index + 1}
+        <span className="stp-dot" ref={(el) => registerDot(index, el)} /><span dir="ltr">/0{index + 1}</span>
       </div>
       <div className="stp-body">
         <div className="stp-name">{step.title}</div>
