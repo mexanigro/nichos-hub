@@ -41,7 +41,7 @@ export function Hero() {
               <div className="island" />
               <div className="screen">
                 <Image
-                  src="/landing/hero-onyx-steel-vertical.png"
+                  src="/landing/demo-hero.png"
                   alt=""
                   fill
                   sizes="(max-width: 1024px) 280px, 360px"

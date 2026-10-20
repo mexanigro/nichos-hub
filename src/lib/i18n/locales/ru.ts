@@ -49,7 +49,7 @@ export const ru: Translations = {
       dashboard: "Сегодня",
       calendar: "Календарь",
       customers: "Клиенты",
-      support: "Поддержка",
+      team: "Часы работы",
       menu: "Меню",
       overview: "Обзор",
       appointments: "Записи",

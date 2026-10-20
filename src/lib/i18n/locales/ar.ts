@@ -49,7 +49,7 @@ export const ar: Translations = {
       dashboard: "اليوم",
       calendar: "التقويم",
       customers: "الزبائن",
-      support: "الدعم",
+      team: "ساعات العمل",
       menu: "القائمة",
       overview: "نظرة عامة",
       appointments: "المواعيد",

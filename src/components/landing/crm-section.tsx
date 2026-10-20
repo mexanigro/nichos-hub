@@ -5,13 +5,14 @@ import { useT } from "@/lib/i18n/context";
 import { useReveal } from "@/hooks/use-scroll-reveal";
 import { AutoRotatingTabs } from "./auto-rotating-tabs";
 
-type TabKey = "dashboard" | "calendar" | "customers" | "support" | "menu" | "overview" | "appointments" | "payments";
+// Las capturas son del CRM real (T), en hebreo: `node --experimental-strip-types scripts/capturas-crm.ts` las rehace cuando el CRM cambia.
+type TabKey = "dashboard" | "calendar" | "customers" | "team" | "menu" | "overview" | "appointments" | "payments";
 
 const CRM_M: { id: TabKey; img: string }[] = [
   { id: "dashboard", img: "/landing/crm-m-dashboard.png" },
   { id: "calendar", img: "/landing/crm-m-calendar.png" },
   { id: "customers", img: "/landing/crm-m-customers.png" },
-  { id: "support", img: "/landing/crm-m-support.png" },
+  { id: "team", img: "/landing/crm-m-team.png" },
   { id: "menu", img: "/landing/crm-m-menu.png" },
 ];
 
@@ -19,7 +20,7 @@ const CRM_D: { id: TabKey; img: string }[] = [
   { id: "overview", img: "/landing/crm-d-overview.png" },
   { id: "appointments", img: "/landing/crm-d-appointments.png" },
   { id: "payments", img: "/landing/crm-d-payments.png" },
-  { id: "support", img: "/landing/crm-d-support.png" },
+  { id: "team", img: "/landing/crm-d-team.png" },
 ];
 
 const Dots = () => <span className="dots"><i /><i /><i /></span>;
@@ -62,7 +63,7 @@ export function CrmSection() {
             <AutoRotatingTabs tabs={tabs(CRM_M)} tabsClassName="at-crm-tabs" tabClassName="at-crm-tab" pauseLabel={t.crm.pause} playLabel={t.crm.play}>
               {(active, panel) => (
                 <div className="at-crm-mobcard">
-                  <div className="topbar"><Dots /><span className="url">crm.arzac.studio</span></div>
+                  <div className="topbar"><Dots /><span className="url" aria-hidden="true" /></div>
                   <div className="crm-imgs" {...panel}>
                     {CRM_M.map((v, i) => (
                       <Image
@@ -86,7 +87,7 @@ export function CrmSection() {
             <AutoRotatingTabs tabs={tabs(CRM_D)} tabsClassName="at-crm-tabs" tabClassName="at-crm-tab" pauseLabel={t.crm.pause} playLabel={t.crm.play}>
               {(active, panel) => (
                 <div className="at-crm-browser">
-                  <div className="chrome"><Dots /><span className="url">crm.arzac.studio</span></div>
+                  <div className="chrome"><Dots /><span className="url" aria-hidden="true" /></div>
                   <div className="frame" {...panel}>
                     {CRM_D.map((v) => (
                       <Image

@@ -13,7 +13,7 @@ export interface Translations {
   crm: {
     eyebrow: string; title: string; titleEm: string; sub: string;
     bullets: string[];
-    tabs: { dashboard: string; calendar: string; customers: string; support: string; menu: string; overview: string; appointments: string; payments: string };
+    tabs: { dashboard: string; calendar: string; customers: string; team: string; menu: string; overview: string; appointments: string; payments: string };
     pause: string; play: string;
   };
   everything: {

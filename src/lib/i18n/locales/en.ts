@@ -49,7 +49,7 @@ export const en: Translations = {
       dashboard: "Today",
       calendar: "Calendar",
       customers: "Clients",
-      support: "Support",
+      team: "Hours",
       menu: "Menu",
       overview: "Overview",
       appointments: "Appointments",
