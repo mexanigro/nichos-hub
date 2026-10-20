@@ -5,10 +5,10 @@ import { useT } from "@/lib/i18n/context";
 import { RTL_LOCALES } from "@/lib/i18n/types";
 import { LogoMark } from "@/components/landing/logo-mark";
 import { LangSwitch } from "@/components/landing/lang-switch";
-import { PLAN_ID, SETUP_AMOUNT_DEFAULT } from "@/lib/pricing";
+import { PLAN_ID } from "@/lib/pricing";
 import { getContract, type ContractLang } from "@/lib/contracts";
 
-// Compra por la web: plan único con alta fija (1500). Sólo se renderiza con la bandera de compra web encendida.
+// Compra por la web: plan único, 250/mes sin alta. Sólo se renderiza con la bandera de compra web encendida.
 export function OnboardingPagoClient() {
   const { t, locale } = useT();
   const dir = RTL_LOCALES.includes(locale) ? "rtl" : "ltr";
@@ -27,7 +27,7 @@ export function OnboardingPagoClient() {
 
   // Map PlanType to contract lang
   const contractLang: ContractLang = (["he", "en", "es", "ru", "ar"].includes(locale) ? locale : "en") as ContractLang;
-  const { text: fullContract, version: contractVersion } = getContract(contractLang, { setupAmount: SETUP_AMOUNT_DEFAULT });
+  const { text: fullContract, version: contractVersion } = getContract(contractLang);
 
   const formValid = name && email && phone && biz && niche && agreed;
 

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/firebase-admin";
 import { FieldValue } from "firebase-admin/firestore";
 import { createLowProfilePayment } from "@/lib/cardcom";
-import { getChargeAmount, PLAN_LABEL, type PlanType } from "@/lib/pricing";
+import { MONTHLY_AMOUNT, PLAN_LABEL, type PlanType } from "@/lib/pricing";
 import { isWebCheckoutEnabled } from "@/lib/web-checkout";
 import { isRateLimited } from "@/lib/rate-limit";
 import { isContractLang, type ContractLang } from "@/lib/contracts";
@@ -80,10 +80,10 @@ export async function POST(req: NextRequest) {
     createdAt: FieldValue.serverTimestamp(),
   });
 
-  // 2. Crear pago en Cardcom: por la web el alta es fija (1500).
-  const amount = getChargeAmount("initial");
+  // 2. Crear pago en Cardcom: el primer mes (250), sin alta.
+  const amount = MONTHLY_AMOUNT;
   const cardcomLang: "he" | "en" = lang === "he" ? "he" : "en";
-  const productName = `${PLAN_LABEL} (alta) - ${name.trim()}`;
+  const productName = `${PLAN_LABEL} (primer mes) - ${name.trim()}`;
 
   const result = await createLowProfilePayment({
     amount,

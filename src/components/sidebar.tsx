@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { HubBrand } from "@/components/hub-brand";
 import { usePathname } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
 import {
@@ -94,14 +95,7 @@ export function Sidebar() {
         >
           {mobileOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
-        <div className="flex items-center gap-2">
-          <div className="flex h-6 w-6 items-center justify-center rounded-md bg-accent-muted">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="text-accent">
-              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-            </svg>
-          </div>
-          <span className="text-sm font-semibold text-text">nichos-hub</span>
-        </div>
+        <HubBrand size={16} textClass="text-[16px]" />
       </div>
 
       {/* Overlay */}
@@ -118,13 +112,8 @@ export function Sidebar() {
           mobileOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <div className="flex h-14 items-center gap-2.5 border-b border-border px-5">
-          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-accent-muted">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="text-accent">
-              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-            </svg>
-          </div>
-          <span className="text-sm font-semibold tracking-tight text-text">nichos-hub</span>
+        <div className="flex h-14 items-center border-b border-border px-5">
+          <HubBrand />
         </div>
 
         <nav className="flex-1 space-y-0.5 px-3 py-4">

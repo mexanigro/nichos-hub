@@ -59,6 +59,16 @@ function SuccessContent() {
       : locale === "he" ? "אם השלמת את התשלום, המנוי שלך יופעל אוטומטית. לשאלות, צור קשר בוואטסאפ."
       : locale === "ru" ? "Если вы завершили оплату, подписка активируется автоматически. По вопросам пишите в WhatsApp."
       : "إذا أكملت الدفع، سيتم تفعيل اشتراكك تلقائيًا. للاستفسارات، تواصل معنا عبر واتساب.";
+    const pendingEyebrow = locale === "es" ? "Pago en verificación"
+      : locale === "en" ? "Payment pending"
+      : locale === "he" ? "התשלום בבדיקה"
+      : locale === "ru" ? "Платёж проверяется"
+      : "الدفع قيد التحقق";
+    const backHome = locale === "es" ? "Volver al inicio"
+      : locale === "en" ? "Back to home"
+      : locale === "he" ? "חזרה לדף הבית"
+      : locale === "ru" ? "На главную"
+      : "العودة إلى الصفحة الرئيسية";
     const contactCta = locale === "es" ? "Contactar por WhatsApp"
       : locale === "en" ? "Contact via WhatsApp"
       : locale === "he" ? "צור קשר בוואטסאפ"
@@ -81,12 +91,12 @@ function SuccessContent() {
               <span className="ico" style={{ display: "inline-flex" }}>
                 <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
               </span>
-              <div className="eyebrow">{pendingTitle}</div>
+              <div className="eyebrow">{pendingEyebrow}</div>
               <h1>{pendingTitle}<em>.</em></h1>
               <p style={{ marginInline: "auto" }}>{pendingSub}</p>
               <div className="pgerr-actions" style={{ marginTop: 16 }}>
                 <a href={whatsappHref()} className="pago-btn" style={{ textDecoration: "none" }} target="_blank" rel="noopener noreferrer">{contactCta} <span className="pago-btn-arrow">→</span></a>
-                <a href="/" className="pago-btn pago-btn-ghost" style={{ textDecoration: "none" }}>{t.pagoErr.ctaSecondary}</a>
+                <a href="/" className="pago-btn pago-btn-ghost" style={{ textDecoration: "none" }}>{backHome}</a>
               </div>
             </div>
           </div>

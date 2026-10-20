@@ -131,6 +131,7 @@ export interface UptimeStats {
 
 export type PaymentStatus = "paid" | "pending" | "failed" | "cancelled";
 
+/** `initial` = alta, sólo en datos anteriores a 2026-10-15 (sin alta desde entonces); los pagos nuevos son `recurring`. */
 export type PaymentType = "initial" | "recurring";
 
 export interface Payment {

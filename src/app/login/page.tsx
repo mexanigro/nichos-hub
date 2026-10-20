@@ -1,18 +1,14 @@
 "use client";
 
 import { signIn } from "next-auth/react";
+import { HubBrand } from "@/components/hub-brand";
 
 export default function LoginPage() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-bg">
       <div className="w-full max-w-sm space-y-8 rounded-xl border border-border bg-bg-card p-8">
         <div className="space-y-2 text-center">
-          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-accent-muted">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-accent">
-              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-            </svg>
-          </div>
-          <h1 className="text-xl font-semibold tracking-tight text-text">nichos-hub</h1>
+          <h1 className="flex justify-center"><HubBrand size={28} textClass="text-[28px]" /></h1>
           <p className="text-sm text-text-muted">Centro de operaciones</p>
         </div>
         <button

@@ -21,7 +21,7 @@ export function PaymentTypeBadge({ type }: { type: "initial" | "recurring" }) {
     <span className={`inline-flex items-center rounded-md px-2 py-0.5 text-[10px] font-semibold ${
       type === "initial" ? "text-accent bg-accent-muted" : "text-text-secondary bg-bg-elevated"
     }`}>
-      {type === "initial" ? "Setup" : "Mensual"}
+      {type === "initial" ? "Alta (histórico)" : "Mensual"}
     </span>
   );
 }

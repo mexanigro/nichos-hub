@@ -5,7 +5,8 @@ import { useRouter } from "next/navigation";
 import { useUserAuth } from "@/lib/user-auth-context";
 import { getLeadData, signOut, type HubLead } from "@/lib/user-auth";
 import { AuthModal } from "@/components/landing/auth-modal";
-import { MONTHLY_AMOUNT, PLAN_LABEL, SETUP_AMOUNT_DEFAULT } from "@/lib/pricing";
+import { MONTHLY_AMOUNT, PLAN_LABEL } from "@/lib/pricing";
+import { LogoMark } from "@/components/landing/logo-mark";
 import { whatsappHref } from "@/lib/whatsapp";
 
 // Los planes viejos en datos se muestran mapeados al plan único (sin migrar datos).
@@ -69,11 +70,11 @@ export default function MiCuentaPage() {
       <div className="mx-auto max-w-[560px]">
         {/* Header */}
         <div className="mb-8 flex items-center justify-between">
-          <a href="/" className="flex items-center gap-2.5">
-            <img src="/logo-icon.svg" alt="Arzac Studio" className="h-8 w-8" />
-            <span className="hidden items-baseline gap-0.5 sm:flex">
-              <span className="text-[0.95rem] font-bold tracking-tight text-gray-900">ARZAC</span>
-              <span className="text-[0.6rem] font-medium text-teal-600">.studio</span>
+          {/* La misma marca que la landing: LogoMark en tinta + «Arzac studio» en serif. */}
+          <a href="/" className="flex items-center gap-2 text-gray-900" aria-label="Arzac Studio">
+            <LogoMark size={20} color="currentColor" />
+            <span className="text-[18px] leading-none tracking-[-0.01em]" style={{ fontFamily: "var(--font-at-serif, Georgia), serif" }}>
+              Arzac <em className="font-normal italic text-[#b3522e]">studio</em>
             </span>
           </a>
           <button
@@ -139,7 +140,7 @@ export default function MiCuentaPage() {
                 <div className="rounded-xl border-2 border-gray-900 p-4">
                   <p className="font-semibold text-gray-900">{PLAN_LABEL}</p>
                   <p className="mt-1 text-2xl font-bold text-gray-900">₪{MONTHLY_AMOUNT}<span className="text-sm font-normal text-gray-500">/mes</span></p>
-                  <p className="text-[0.8rem] text-gray-500">Alta única ₪{SETUP_AMOUNT_DEFAULT.toLocaleString()}</p>
+                  <p className="text-[0.8rem] text-gray-500">Todo incluido, sin alta</p>
                   <ul className="mt-3 space-y-1.5 text-[0.8rem] text-gray-600">
                     <li>✓ Sitio web profesional</li>
                     <li>✓ CRM de clientes y reservas</li>

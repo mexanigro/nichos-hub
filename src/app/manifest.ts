@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "Arzac Studio",
     short_name: "Arzac",
     description:
-      "אתר מקצועי + CRM + התראות במייל לעסקים מקומיים בישראל. הקמה חד-פעמית ומנוי חודשי קבוע.",
+      "אתר מקצועי + CRM + התראות במייל לעסקים מקומיים בישראל. מנוי חודשי קבוע, הכל כלול.",
     start_url: "/",
     display: "standalone",
     background_color: "#09090b",
@@ -13,8 +13,9 @@ export default function manifest(): MetadataRoute.Manifest {
     lang: "he",
     dir: "rtl",
     icons: [
-      { src: "/logo-icon.png", sizes: "any", type: "image/png" },
-      { src: "/favicon.ico", sizes: "48x48", type: "image/x-icon" },
+      // La A del logo de la landing (LogoMark), en tinta sobre el fondo crema; src/app/icon.png es la misma.
+      { src: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { src: "/icon-512.png", sizes: "512x512", type: "image/png" },
     ],
   };
 }

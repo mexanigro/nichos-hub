@@ -1,19 +1,16 @@
-import { MONTHLY_AMOUNT, resolveSetupAmount } from "./pricing.ts";
+import { MONTHLY_AMOUNT } from "./pricing.ts";
 
 export type ContractLang = "en" | "es" | "ru" | "he" | "ar";
 
 /**
- * v8.0 (N10 n10-precios-v1, 2026-09-12): un solo plan — web + CRM + notificaciones por email — con alta única
- * (importe variable, negociable en persona) y cuota mensual fija. WhatsApp, IA y voz son servicios opcionales
- * a cotizar aparte, sin plazo de activación. Sin niveles ni subida automática de precio.
+ * v9.0 (Liam, 2026-10-15): un solo plan — web + CRM + notificaciones por email — por una cuota mensual fija que lo
+ * cubre todo (sin alta, sin hosting ni dominio aparte). El primer mes se cobra al aceptar y cubre un mes entero; el
+ * cliente cancela cuando quiere, rige ese día, y se le devuelve la parte no usada del mes en proporción a los días.
+ * WhatsApp, IA y voz no se ofrecen (Liam, 2026-10-20: fuera de la oferta y del contrato). Sin niveles ni subida
+ * automática de precio. v8.0 (2026-09-12) llevaba alta negociable 1000–1500, hosting y dominio anuales y aviso de 30 días.
  * Cambiar cifras o cláusulas = nueva versión.
  */
-const CONTRACT_VERSION = "8.0";
-
-export interface ContractOptions {
-  /** Alta negociada (1000–1500); fuera de rango o ausente → 1500. */
-  setupAmount?: unknown;
-}
+const CONTRACT_VERSION = "9.0";
 
 const fmt = (n: number, lang: ContractLang): string => {
   const sep = lang === "es" ? "." : lang === "ru" ? " " : ",";
@@ -24,7 +21,7 @@ const fmt = (n: number, lang: ContractLang): string => {
  * ENGLISH CONTRACT
  * ═══════════════════════════════════════════════════════════════════════════ */
 
-function EN(setup: string, monthly: string): string {
+function EN(monthly: string): string {
   return `SERVICE AGREEMENT — WEBSITE, CRM & EMAIL NOTIFICATIONS
 Arzac Studio — Subscription
 
@@ -45,58 +42,53 @@ THE PARTIES AGREE AS FOLLOWS:
 1.4. Email notifications: automated notifications to the business owner and to customers/leads (booking confirmations, cancellations, contact requests). Optionally, to staff members.
 1.5. Ongoing maintenance and technical support: content updates, bug fixes.
 1.6. Website hosting on third-party infrastructure.
+1.7. Logo and texts: if the Client has no logo, the Provider designs one; the Provider writes the website texts, in the languages of the website.
 
-2. Optional Services (not included)
+1.8. This agreement contains no service tiers and no automatic upgrades or automatic price changes.
 
-2.1. The following are NOT part of this agreement and are quoted separately, on request, under a separate written quote: AI-powered WhatsApp agent, AI assistant/chatbot, AI voice calls, WhatsApp notifications.
-2.2. No activation deadline applies to optional services unless agreed in writing in their own quote.
-2.3. This agreement contains no service tiers and no automatic upgrades or automatic price changes.
+2. Pricing & Payment
 
-3. Pricing & Payment
+2.1. Subscription fee: ${monthly} per month, fixed. It covers everything in section 1, including the creation of the website and the CRM, hosting and the domain. There is no setup fee and no other charge.
+2.2. The first month is charged when the Client accepts this agreement and covers one full month from that date. Each following month is charged on the same date.
+2.3. Payments are processed via Cardcom, Israel's payment processor. The Provider never stores the Client's card details.
+2.4. Late payment will result in the website and the CRM being suspended. Permanent deletion occurs 7 days after the missed payment and this agreement is terminated.
 
-3.1. Setup fee: ${setup}, one-time, payable upon signing this agreement. The setup fee covers the creation and initial configuration of the website and CRM.
-3.2. Subscription fee: ${monthly} per month, fixed, for the services in section 1.
-3.3. Payments are processed via Cardcom, Israel's payment processor. The Provider never stores the Client's card details. The subscription is charged monthly on the same date.
-3.4. Annual hosting fee: variable amount per year. May change annually subject to third-party costs. Payable within 7 days of the Provider's demand.
-3.5. Domain fee: variable amount per year. May change annually. Payable within 7 days of the Provider's demand.
-3.6. Late payment will result in the website and the CRM being suspended. Permanent deletion occurs 7 days after the missed payment and this agreement is terminated.
-3.7. No refunds or credits are issued for the setup fee or for annual hosting or domain fees upon early termination.
+3. Delivery Timeline
 
-4. Delivery Timeline
+3.1. A functional website is delivered within 48 hours of receiving the Client's design materials.
 
-4.1. A functional website is delivered within 48 hours of receiving the Client's design materials.
+4. Intellectual Property & Licensing
 
-5. Intellectual Property & Licensing
+4.1. The Client receives a non-exclusive licence for the duration of this agreement.
+4.2. Source code, design files, and all IP rights to the website design remain the sole property of the Provider.
+4.3. Logos, brand assets, and content provided by the Client remain the Client's exclusive IP and are used by the Provider solely for this agreement.
+4.4. The domain name is owned by the Client.
+4.5. CRM data entered by the Client belongs to the Client and will be provided upon request at termination.
 
-5.1. The Client receives a non-exclusive licence for the duration of this agreement.
-5.2. Source code, design files, and all IP rights to the website design remain the sole property of the Provider.
-5.3. Logos, brand assets, and content provided by the Client remain the Client's exclusive IP and are used by the Provider solely for this agreement.
-5.4. The domain name is owned by the Client.
-5.5. CRM data entered by the Client belongs to the Client and will be provided upon request at termination.
+5. Acceptable Use Policy
 
-6. Acceptable Use Policy
+5.1. The website and the CRM may not be used to send spam or store illegal material.
+5.2. Uploading or configuring offensive, misleading, or legally prohibited content is strictly prohibited.
+5.3. Breach of this section constitutes a material breach entitling the Provider to terminate services immediately and unilaterally.
 
-6.1. The website and the CRM may not be used to send spam or store illegal material.
-6.2. Uploading or configuring offensive, misleading, or legally prohibited content is strictly prohibited.
-6.3. Breach of this section constitutes a material breach entitling the Provider to terminate services immediately and unilaterally.
+6. Limitation of Liability
 
-7. Limitation of Liability
+6.1. The Client bears sole responsibility for all content on the website and all information entered in the CRM.
+6.2. The Provider does not guarantee any commercial results, sales, or financial returns.
+6.3. The Provider is not liable for failures caused by third-party platforms (hosting, domain registrars, email providers) or force majeure.
+6.4. In no event shall the Provider's liability exceed the total amount paid under this agreement.
 
-7.1. The Client bears sole responsibility for all content on the website and all information entered in the CRM.
-7.2. The Provider does not guarantee any commercial results, sales, or financial returns.
-7.3. The Provider is not liable for failures caused by third-party platforms (hosting, domain registrars, email providers) or force majeure.
-7.4. In no event shall the Provider's liability exceed the total amount paid under this agreement.
+7. Termination
 
-8. Termination
+7.1. The Client may cancel at any time by written notice. The cancellation takes effect on the day it is received.
+7.2. When the Client cancels, the Provider refunds the unused part of the month already paid, in proportion to the days left: for example, cancelling on day 12 of a 30-day month refunds 18/30 of the monthly fee.
+7.3. The Provider may terminate immediately for breach of the Acceptable Use Policy.
+7.4. The Provider may terminate for non-payment after 7 days' written notice.
+7.5. Upon termination the website and the CRM will be taken offline.
+7.6. After the Client cancels, the Client's data is deleted within 30 days; until then, the Client may request it as set out in 7.7.
+7.7. Upon request, the Provider will deliver the website source code (HTML/CSS/JS) and the Client's CRM data. No access to internal infrastructure will be granted.
 
-8.1. The Client may cancel with 30 days' written notice.
-8.2. The Provider may terminate immediately for breach of the Acceptable Use Policy.
-8.3. The Provider may terminate for non-payment after 7 days' written notice.
-8.4. Upon termination the website and the CRM will be taken offline.
-8.5. No refunds of the setup fee or annual fees will be issued.
-8.6. Upon request, the Provider will deliver the website source code (HTML/CSS/JS) and the Client's CRM data. No access to internal infrastructure will be granted.
-
-9. Governing Law & Jurisdiction
+8. Governing Law & Jurisdiction
 
 This agreement is governed by Israeli law. Exclusive jurisdiction: competent courts of the Tel Aviv district.`;
 }
@@ -105,7 +97,7 @@ This agreement is governed by Israeli law. Exclusive jurisdiction: competent cou
  * HEBREW CONTRACT
  * ═══════════════════════════════════════════════════════════════════════════ */
 
-function HE(setup: string, monthly: string): string {
+function HE(monthly: string): string {
   return `הסכם מתן שירות בניית אתרים, תחזוקה, אירוח, מערכת CRM והתראות במייל
 
 שנערך ונחתם ביום _____ לחודש _____ שנת _____
@@ -136,77 +128,69 @@ function HE(setup: string, monthly: string): string {
 
 7. דומיין — רכישת שם מתחם (דומיין) עבור המזמין וחידושו השנתי.
 
-שירותים אופציונליים (אינם כלולים)
+8. לוגו וטקסטים — אם אין למזמין לוגו, החברה תעצב לוגו; את הטקסטים של האתר תכתוב החברה, בשפות האתר.
 
-8. השירותים הבאים אינם חלק מהסכם זה ויוצעו לפי בקשת המזמין בהצעת מחיר נפרדת ובכתב: סוכן WhatsApp מבוסס בינה מלאכותית, עוזר/צ׳אטבוט בינה מלאכותית, שיחות קוליות עם בינה מלאכותית, התראות WhatsApp.
-
-9. לשירותים האופציונליים לא חל מועד הפעלה אלא אם הוסכם בכתב בהצעת המחיר שלהם.
-
-10. הסכם זה אינו כולל תוכניות ברמות שונות, שדרוג אוטומטי או שינוי מחיר אוטומטי.
+9. הסכם זה אינו כולל תוכניות ברמות שונות, שדרוג אוטומטי או שינוי מחיר אוטומטי.
 
 התמורה
 
-11. דמי הקמה: ${setup}, תשלום חד-פעמי, ישולם עם חתימת הסכם זה. דמי ההקמה מכסים את בניית האתר ומערכת ה-CRM והגדרתם הראשונית.
+10. דמי מנוי חודשיים: ${monthly} לחודש, סכום קבוע. דמי המנוי כוללים את כל השירותים המפורטים בסעיפים 1 עד 8, לרבות בניית האתר ומערכת ה-CRM, האחסון והדומיין. אין דמי הקמה ואין כל תשלום נוסף.
 
-12. דמי מנוי חודשיים: ${monthly} לחודש, סכום קבוע, עבור השירותים המפורטים בסעיפים 1 עד 7.
+11. החודש הראשון ייגבה עם אישור הסכם זה על ידי המזמין ויכסה חודש מלא מאותו תאריך. כל חודש נוסף ייגבה באותו תאריך.
 
-13. התשלומים יבוצעו באמצעות מערכת הסליקה Cardcom. החברה אינה שומרת פרטי כרטיס אשראי של המזמין. דמי המנוי ייגבו מדי חודש באותו תאריך.
+12. התשלומים יבוצעו באמצעות מערכת הסליקה Cardcom. החברה אינה שומרת פרטי כרטיס אשראי של המזמין.
 
-14. אחסון אתר: עלות שנתית משתנה. העלות עשויה להשתנות בהתאם לעלויות צד שלישי. ישולם תוך 7 ימים מדרישת החברה.
-
-15. דומיין: עלות שנתית משתנה. עשויה להשתנות בהתאם לתנאי ספקי שמות המתחם. ישולם תוך 7 ימים מדרישת החברה.
-
-16. לא שולמה התמורה במועדה, יושבתו האתר ומערכת ה-CRM. אם לא שולמה התמורה תוך 7 ימים ממועד התשלום, יימחק האתר לצמיתות ויבוטל הסכם זה.
-
-17. החברה לא תעניק זיכוי בגין דמי ההקמה או בגין תשלומים שנתיים ששולמו (אחסון ודומיין) אם ההסכם מבוטל לפני תום התקופה.
+13. לא שולמה התמורה במועדה, יושבתו האתר ומערכת ה-CRM. אם לא שולמה התמורה תוך 7 ימים ממועד התשלום, יימחק האתר לצמיתות ויבוטל הסכם זה.
 
 זמנים
 
-18. אתר אינטרנט פונקציונלי יימסר תוך 48 שעות ממועד קבלת חומרי העיצוב מהמזמין.
+14. אתר אינטרנט פונקציונלי יימסר תוך 48 שעות ממועד קבלת חומרי העיצוב מהמזמין.
 
 זכויות / קניין רוחני ורישוי
 
-19. המזמין יקבל רישיון שימוש לא בלעדי, שאינו ניתן להעברה, אך ורק לתקופת ההסכם.
+15. המזמין יקבל רישיון שימוש לא בלעדי, שאינו ניתן להעברה, אך ורק לתקופת ההסכם.
 
-20. קוד המקור, קבצי העיצוב וכל זכויות הקניין הרוחני על עיצוב האתר הם ויישארו קניינה הבלעדי של החברה. המזמין מקבל רישיון שימוש באתר בלבד.
+16. קוד המקור, קבצי העיצוב וכל זכויות הקניין הרוחני על עיצוב האתר הם ויישארו קניינה הבלעדי של החברה. המזמין מקבל רישיון שימוש באתר בלבד.
 
-21. לוגו, סימן מסחרי וכל תוכן שסיפק המזמין לחברה הם קניינו הבלעדי של המזמין. החברה תשתמש בהם אך ורק לצורך הסכם זה.
+17. לוגו, סימן מסחרי וכל תוכן שסיפק המזמין לחברה הם קניינו הבלעדי של המזמין. החברה תשתמש בהם אך ורק לצורך הסכם זה.
 
-22. שם המתחם (דומיין) הוא בבעלות המזמין.
+18. שם המתחם (דומיין) הוא בבעלות המזמין.
 
-23. נתוני ה-CRM שהוזנו על ידי המזמין שייכים למזמין ויועברו לבקשתו עם סיום ההסכם.
+19. נתוני ה-CRM שהוזנו על ידי המזמין שייכים למזמין ויועברו לבקשתו עם סיום ההסכם.
 
 מדיניות שימוש מקובל
 
-24. אין להשתמש באתר ובמערכת ה-CRM לשליחת דואר זבל (ספאם) או לאחסון חומרים בלתי חוקיים.
+20. אין להשתמש באתר ובמערכת ה-CRM לשליחת דואר זבל (ספאם) או לאחסון חומרים בלתי חוקיים.
 
-25. אין להעלות או לפרסם תוכן פוגעני, מטעה, אסור על פי דין או הפוגע בזכויות צד שלישי.
+21. אין להעלות או לפרסם תוכן פוגעני, מטעה, אסור על פי דין או הפוגע בזכויות צד שלישי.
 
-26. הפרת מדיניות שימוש מקובל מהווה הפרה יסודית של הסכם זה, המקנה לחברה את הזכות לסיים את ההסכם לאלתר ובאופן חד-צדדי, ללא כל הודעה מוקדמת.
+22. הפרת מדיניות שימוש מקובל מהווה הפרה יסודית של הסכם זה, המקנה לחברה את הזכות לסיים את ההסכם לאלתר ובאופן חד-צדדי, ללא כל הודעה מוקדמת.
 
 הגבלת אחריות
 
-27. כל תוכן המועלה לאתר וכל מידע המוזן למערכת ה-CRM הוא באחריותו הבלעדית של המזמין.
+23. כל תוכן המועלה לאתר וכל מידע המוזן למערכת ה-CRM הוא באחריותו הבלעדית של המזמין.
 
-28. החברה אינה מתחייבת לתוצאות מסחריות, מכירות, הכנסות או כל תשואה כלכלית אחרת.
+24. החברה אינה מתחייבת לתוצאות מסחריות, מכירות, הכנסות או כל תשואה כלכלית אחרת.
 
-29. החברה אינה אחראית לכשלים, תקלות או הפסקות שירות הנובעים מפלטפורמות צד שלישי (ספקי אחסון, רשמי דומיינים, ספקי דוא"ל וכיוצא בזה) או מאירועי כוח עליון.
+25. החברה אינה אחראית לכשלים, תקלות או הפסקות שירות הנובעים מפלטפורמות צד שלישי (ספקי אחסון, רשמי דומיינים, ספקי דוא"ל וכיוצא בזה) או מאירועי כוח עליון.
 
-30. בכל מקרה, סך אחריותה הכוללת של החברה על פי הסכם זה לא תעלה על הסכום הכולל ששולם בפועל על ידי המזמין לחברה במסגרת הסכם זה.
+26. בכל מקרה, סך אחריותה הכוללת של החברה על פי הסכם זה לא תעלה על הסכום הכולל ששולם בפועל על ידי המזמין לחברה במסגרת הסכם זה.
 
 סיום / ביטול הסכם
 
-31. המזמין רשאי לבטל את ההסכם בהודעה מוקדמת בכתב של 30 יום.
+27. המזמין רשאי לבטל את ההסכם בכל עת בהודעה בכתב. הביטול נכנס לתוקף ביום קבלת ההודעה.
 
-32. החברה רשאית לבטל את ההסכם לאלתר ובאופן חד-צדדי במקרה של הפרת מדיניות השימוש המקובל על ידי המזמין, ללא כל הודעה מוקדמת.
+28. ביטל המזמין את ההסכם, תחזיר לו החברה את החלק שלא נוצל מהחודש ששולם, באופן יחסי לימים שנותרו: למשל, ביטול ביום ה-12 של חודש בן 30 יום מזכה בהחזר של 18/30 מדמי המנוי.
 
-33. החברה רשאית לבטל את ההסכם בגין אי-תשלום, בהודעה מוקדמת בכתב של 7 ימים.
+29. החברה רשאית לבטל את ההסכם לאלתר ובאופן חד-צדדי במקרה של הפרת מדיניות השימוש המקובל על ידי המזמין, ללא כל הודעה מוקדמת.
 
-34. עם סיום ההסכם, מכל סיבה שהיא, האתר ומערכת ה-CRM יורדו מהאוויר, והמזמין יאבד את הנראות באינטרנט.
+30. החברה רשאית לבטל את ההסכם בגין אי-תשלום, בהודעה מוקדמת בכתב של 7 ימים.
 
-35. לא יינתן זיכוי בגין דמי ההקמה או בגין תשלום שנתי לאחסון או דומיין ששולם מראש.
+31. עם סיום ההסכם, מכל סיבה שהיא, האתר ומערכת ה-CRM יורדו מהאוויר, והמזמין יאבד את הנראות באינטרנט.
 
-36. עם סיום ההסכם, לבקשת המזמין בכתב: יועברו קוד המקור של האתר (HTML, CSS, JS) ונתוני ה-CRM שנאספו במהלך תקופת השירות. לא תינתן גישה לכלים פנימיים של החברה, למערכת תבנית מאסטר או לתשתית הפנימית.
+32. ביטל המזמין את ההסכם, יימחקו נתוניו תוך 30 יום; עד אז רשאי המזמין לבקש אותם כמפורט בסעיף הבא.
+
+33. עם סיום ההסכם, לבקשת המזמין בכתב: יועברו קוד המקור של האתר (HTML, CSS, JS) ונתוני ה-CRM שנאספו במהלך תקופת השירות. לא תינתן גישה לכלים פנימיים של החברה, למערכת תבנית מאסטר או לתשתית הפנימית.
 
 שיפוט
 
@@ -223,7 +207,7 @@ function HE(setup: string, monthly: string): string {
  * RUSSIAN CONTRACT
  * ═══════════════════════════════════════════════════════════════════════════ */
 
-function RU(setup: string, monthly: string): string {
+function RU(monthly: string): string {
   return `ДОГОВОР НА ОКАЗАНИЕ УСЛУГ — САЙТ, CRM И EMAIL-УВЕДОМЛЕНИЯ
 Arzac Studio — Подписка
 
@@ -244,58 +228,53 @@ Arzac Studio — Подписка
 1.4. Email-уведомления: автоматические уведомления владельцу бизнеса и клиентам/лидам (подтверждения записи, отмены, обращения с сайта). По желанию — сотрудникам.
 1.5. Техническое обслуживание и поддержка: обновление контента, исправление ошибок.
 1.6. Хостинг на сторонней инфраструктуре.
+1.7. Логотип и тексты: если у Заказчика нет логотипа, Исполнитель его разрабатывает; тексты сайта пишет Исполнитель, на языках сайта.
 
-2. Дополнительные услуги (не включены)
+1.8. Настоящий договор не содержит тарифных уровней, автоматических повышений или автоматического изменения цены.
 
-2.1. Следующие услуги НЕ входят в настоящий договор и предоставляются по запросу по отдельному письменному предложению: ИИ-агент WhatsApp, ИИ-ассистент/чатбот, голосовые вызовы с ИИ, WhatsApp-уведомления.
-2.2. Срок активации дополнительных услуг не установлен, если иное не согласовано письменно в их предложении.
-2.3. Настоящий договор не содержит тарифных уровней, автоматических повышений или автоматического изменения цены.
+2. Стоимость и порядок оплаты
 
-3. Стоимость и порядок оплаты
+2.1. Абонентская плата: ${monthly} в месяц, фиксированная. Покрывает всё, что указано в разделе 1, включая создание сайта и CRM, хостинг и домен. Платы за подключение и других платежей нет.
+2.2. Первый месяц оплачивается при принятии договора и покрывает полный месяц с этой даты. Каждый следующий месяц списывается в ту же дату.
+2.3. Платежи обрабатываются через Cardcom. Исполнитель не хранит данные карт.
+2.4. Просрочка оплаты повлечёт остановку сайта и CRM. Удаление через 7 дней, расторжение договора.
 
-3.1. Плата за подключение: ${setup}, разовый платёж, вносится при подписании договора. Покрывает создание и первоначальную настройку сайта и CRM.
-3.2. Абонентская плата: ${monthly} в месяц, фиксированная, за услуги раздела 1.
-3.3. Платежи обрабатываются через Cardcom. Исполнитель не хранит данные карт. Абонентская плата списывается ежемесячно в одну и ту же дату.
-3.4. Хостинг: переменная сумма в год. Может изменяться. Оплата в течение 7 дней с момента запроса.
-3.5. Домен: переменная сумма в год. Оплата в течение 7 дней с момента запроса.
-3.6. Просрочка оплаты повлечёт остановку сайта и CRM. Удаление через 7 дней, расторжение договора.
-3.7. Плата за подключение и ежегодные платежи возврату не подлежат.
+3. Сроки исполнения
 
-4. Сроки исполнения
+3.1. Сайт передаётся в течение 48 часов после получения дизайн-материалов.
 
-4.1. Сайт передаётся в течение 48 часов после получения дизайн-материалов.
+4. Интеллектуальная собственность и лицензирование
 
-5. Интеллектуальная собственность и лицензирование
+4.1. Неисключительная лицензия на срок действия договора.
+4.2. Исходный код, файлы дизайна и права на дизайн — собственность Исполнителя.
+4.3. Логотип, бренд и контент Заказчика — его исключительная собственность.
+4.4. Доменное имя принадлежит Заказчику.
+4.5. Данные CRM, внесённые Заказчиком, принадлежат Заказчику и передаются по запросу при расторжении.
 
-5.1. Неисключительная лицензия на срок действия договора.
-5.2. Исходный код, файлы дизайна и права на дизайн — собственность Исполнителя.
-5.3. Логотип, бренд и контент Заказчика — его исключительная собственность.
-5.4. Доменное имя принадлежит Заказчику.
-5.5. Данные CRM, внесённые Заказчиком, принадлежат Заказчику и передаются по запросу при расторжении.
+5. Политика допустимого использования
 
-6. Политика допустимого использования
+5.1. Запрещается использовать сайт и CRM для спама или хранения незаконных материалов.
+5.2. Запрещается размещать оскорбительный, вводящий в заблуждение или противоправный контент.
+5.3. Нарушение даёт Исполнителю право немедленного одностороннего расторжения.
 
-6.1. Запрещается использовать сайт и CRM для спама или хранения незаконных материалов.
-6.2. Запрещается размещать оскорбительный, вводящий в заблуждение или противоправный контент.
-6.3. Нарушение даёт Исполнителю право немедленного одностороннего расторжения.
+6. Ограничение ответственности
 
-7. Ограничение ответственности
+6.1. Заказчик несёт исключительную ответственность за контент сайта и данные в CRM.
+6.2. Коммерческие результаты не гарантируются.
+6.3. Исполнитель не отвечает за сбои сторонних платформ (хостинг, регистраторы доменов, почтовые провайдеры) или форс-мажор.
+6.4. Ответственность Исполнителя не превышает сумму, уплаченную по договору.
 
-7.1. Заказчик несёт исключительную ответственность за контент сайта и данные в CRM.
-7.2. Коммерческие результаты не гарантируются.
-7.3. Исполнитель не отвечает за сбои сторонних платформ (хостинг, регистраторы доменов, почтовые провайдеры) или форс-мажор.
-7.4. Ответственность Исполнителя не превышает сумму, уплаченную по договору.
+7. Расторжение договора
 
-8. Расторжение договора
+7.1. Заказчик вправе расторгнуть договор в любой момент письменным уведомлением. Расторжение вступает в силу в день получения уведомления.
+7.2. При расторжении Заказчиком Исполнитель возвращает неиспользованную часть оплаченного месяца пропорционально оставшимся дням: например, при отмене на 12-й день 30-дневного месяца возвращается 18/30 абонентской платы.
+7.3. Исполнитель вправе расторгнуть немедленно при нарушении политики использования.
+7.4. Исполнитель вправе расторгнуть при неоплате после 7-дневного предупреждения.
+7.5. После расторжения сайт и CRM деактивируются.
+7.6. После расторжения Заказчиком его данные удаляются в течение 30 дней; до этого Заказчик может запросить их, как указано в 7.7.
+7.7. По запросу передаются исходный код сайта и данные CRM. Доступ к инфраструктуре не предоставляется.
 
-8.1. Заказчик вправе расторгнуть с уведомлением за 30 дней.
-8.2. Исполнитель вправе расторгнуть немедленно при нарушении политики использования.
-8.3. Исполнитель вправе расторгнуть при неоплате после 7-дневного предупреждения.
-8.4. После расторжения сайт и CRM деактивируются.
-8.5. Плата за подключение и ежегодные платежи не возвращаются.
-8.6. По запросу передаются исходный код сайта и данные CRM. Доступ к инфраструктуре не предоставляется.
-
-9. Применимое право и юрисдикция
+8. Применимое право и юрисдикция
 
 Договор регулируется законодательством Израиля. Исключительная юрисдикция: суды округа Тель-Авива.`;
 }
@@ -304,88 +283,83 @@ Arzac Studio — Подписка
  * SPANISH CONTRACT
  * ═══════════════════════════════════════════════════════════════════════════ */
 
-function ES(setup: string, monthly: string): string {
+function ES(monthly: string): string {
   return `ACUERDO DE SERVICIOS — SITIO WEB, CRM Y NOTIFICACIONES POR EMAIL
-Arzac Studio — Suscripcion
+Arzac Studio — Suscripción
 
 Entre: Arzac Studio (en adelante: "el Proveedor")
 Y: El Cliente (en adelante: "el Cliente")
 
-Considerando que el Proveedor ha desarrollado una infraestructura tecnologica que incluye hosting de sitios web (SaaS), un sistema CRM, notificaciones automaticas por email, mantenimiento y almacenamiento (el "Sistema de Plantilla Maestra");
+Considerando que el Proveedor ha desarrollado una infraestructura tecnológica que incluye hosting de sitios web (SaaS), un sistema CRM, notificaciones automáticas por email, mantenimiento y almacenamiento (el "Sistema de Plantilla Maestra");
 
-Y considerando que el Cliente desea suscribirse al Servicio para visibilidad en internet, digitalizacion y gestion operativa de su negocio;
+Y considerando que el Cliente desea suscribirse al Servicio para visibilidad en internet, digitalización y gestión operativa de su negocio;
 
 LAS PARTES ACUERDAN LO SIGUIENTE:
 
-1. El Servicio (plan unico)
+1. El Servicio (plan único)
 
-1.1. Sitio web personalizado usando el Sistema de Plantilla Maestra, incluyendo landing, servicios, galeria y contacto.
-1.2. Visibilidad online: presencia en internet, compra de dominio y renovacion anual.
-1.3. Micro-CRM: panel de gestion de clientes, leads y reservas online.
-1.4. Notificaciones por email: avisos automaticos al dueño del negocio y a clientes/leads (confirmaciones de reserva, cancelaciones, consultas desde la web). Opcionalmente, al staff.
-1.5. Mantenimiento continuo y soporte tecnico: actualizaciones de contenido, correccion de errores.
+1.1. Sitio web personalizado usando el Sistema de Plantilla Maestra, incluyendo landing, servicios, galería y contacto.
+1.2. Visibilidad online: presencia en internet, compra de dominio y renovación anual.
+1.3. Micro-CRM: panel de gestión de clientes, leads y reservas online.
+1.4. Notificaciones por email: avisos automáticos al dueño del negocio y a clientes/leads (confirmaciones de reserva, cancelaciones, consultas desde la web). Opcionalmente, al staff.
+1.5. Mantenimiento continuo y soporte técnico: actualizaciones de contenido, corrección de errores.
 1.6. Hosting en infraestructura de terceros.
+1.7. Logo y textos: si el Cliente no tiene logo, el Proveedor lo diseña; los textos del sitio web los escribe el Proveedor, en los idiomas del sitio.
 
-2. Servicios opcionales (no incluidos)
+1.8. Este acuerdo no contiene niveles de servicio ni upgrades automáticos ni cambios automáticos de precio.
 
-2.1. Los siguientes servicios NO forman parte de este acuerdo y se cotizan aparte, a pedido, mediante presupuesto escrito: agente de WhatsApp con IA, asistente/chatbot con IA, llamadas de voz con IA, notificaciones por WhatsApp.
-2.2. Los servicios opcionales no tienen plazo de activacion salvo que se acuerde por escrito en su propio presupuesto.
-2.3. Este acuerdo no contiene niveles de servicio ni upgrades automaticos ni cambios automaticos de precio.
+2. Precio y Pago
 
-3. Precio y Pago
+2.1. Cuota de suscripción: ${monthly} por mes, fija. Cubre todo lo de la sección 1, incluida la creación del sitio web y del CRM, el hosting y el dominio. No hay alta ni ningún otro cargo.
+2.2. El primer mes se cobra cuando el Cliente acepta este acuerdo y cubre un mes completo desde esa fecha. Cada mes siguiente se cobra en la misma fecha.
+2.3. Los pagos se procesan vía Cardcom, procesador de pagos israelí. El Proveedor nunca almacena los datos de tarjeta del Cliente.
+2.4. La falta de pago resultará en la suspensión del sitio web y del CRM. Eliminación permanente 7 días después del impago y rescisión del acuerdo.
 
-3.1. Alta: ${setup}, pago unico, pagadero al firmar este acuerdo. El alta cubre la creacion y configuracion inicial del sitio web y del CRM.
-3.2. Cuota de suscripcion: ${monthly} por mes, fija, por los servicios de la seccion 1.
-3.3. Los pagos se procesan via Cardcom, procesador de pagos israeli. El Proveedor nunca almacena los datos de tarjeta del Cliente. La cuota se cobra mensualmente en la misma fecha.
-3.4. Hosting anual: monto variable por año. Puede cambiar segun costos de terceros. Pagadero dentro de 7 dias desde la solicitud.
-3.5. Dominio: monto variable por año. Pagadero dentro de 7 dias desde la solicitud.
-3.6. La falta de pago resultara en la suspension del sitio web y del CRM. Eliminacion permanente 7 dias despues del impago y rescision del acuerdo.
-3.7. No se emiten reembolsos por el alta ni por tarifas anuales de hosting o dominio.
+3. Plazos de Entrega
 
-4. Plazos de Entrega
+3.1. Un sitio web funcional se entrega dentro de las 48 horas posteriores a la recepción de los materiales de diseño.
 
-4.1. Un sitio web funcional se entrega dentro de las 48 horas posteriores a la recepcion de los materiales de diseño.
+4. Propiedad Intelectual y Licencias
 
-5. Propiedad Intelectual y Licencias
+4.1. El Cliente recibe una licencia no exclusiva por la duración de este acuerdo.
+4.2. El código fuente, archivos de diseño y todos los derechos de PI sobre el diseño del sitio web son propiedad exclusiva del Proveedor.
+4.3. Logos, activos de marca y contenido del Cliente son su PI exclusiva, utilizados únicamente para este acuerdo.
+4.4. El nombre de dominio es propiedad del Cliente.
+4.5. Los datos del CRM cargados por el Cliente le pertenecen y serán entregados a solicitud al momento de la rescisión.
 
-5.1. El Cliente recibe una licencia no exclusiva por la duracion de este acuerdo.
-5.2. El codigo fuente, archivos de diseño y todos los derechos de PI sobre el diseño del sitio web son propiedad exclusiva del Proveedor.
-5.3. Logos, activos de marca y contenido del Cliente son su PI exclusiva, utilizados unicamente para este acuerdo.
-5.4. El nombre de dominio es propiedad del Cliente.
-5.5. Los datos del CRM cargados por el Cliente le pertenecen y seran entregados a solicitud al momento de la rescision.
+5. Política de Uso Aceptable
 
-6. Politica de Uso Aceptable
+5.1. El sitio web y el CRM no pueden ser utilizados para enviar spam o almacenar material ilegal.
+5.2. Está estrictamente prohibido subir contenido ofensivo, engañoso o legalmente prohibido.
+5.3. La violación de esta sección constituye un incumplimiento material que otorga al Proveedor el derecho de rescindir de forma inmediata y unilateral.
 
-6.1. El sitio web y el CRM no pueden ser utilizados para enviar spam o almacenar material ilegal.
-6.2. Esta estrictamente prohibido subir contenido ofensivo, engañoso o legalmente prohibido.
-6.3. La violacion de esta seccion constituye un incumplimiento material que otorga al Proveedor el derecho de rescindir de forma inmediata y unilateral.
+6. Limitación de Responsabilidad
 
-7. Limitacion de Responsabilidad
+6.1. El Cliente asume responsabilidad exclusiva por todo el contenido del sitio y los datos cargados en el CRM.
+6.2. El Proveedor no garantiza resultados comerciales, ventas ni retornos financieros.
+6.3. El Proveedor no es responsable por fallas de plataformas de terceros (hosting, registradores de dominio, proveedores de email) o fuerza mayor.
+6.4. En ningún caso la responsabilidad del Proveedor excederá el monto total pagado bajo este acuerdo.
 
-7.1. El Cliente asume responsabilidad exclusiva por todo el contenido del sitio y los datos cargados en el CRM.
-7.2. El Proveedor no garantiza resultados comerciales, ventas ni retornos financieros.
-7.3. El Proveedor no es responsable por fallas de plataformas de terceros (hosting, registradores de dominio, proveedores de email) o fuerza mayor.
-7.4. En ningun caso la responsabilidad del Proveedor excedera el monto total pagado bajo este acuerdo.
+7. Rescisión
 
-8. Rescision
+7.1. El Cliente puede cancelar en cualquier momento con un aviso por escrito. La cancelación rige desde el día en que se recibe.
+7.2. Cuando el Cliente cancela, el Proveedor le devuelve la parte no usada del mes ya pagado, en proporción a los días que faltan: por ejemplo, cancelar el día 12 de un mes de 30 días devuelve 18/30 de la cuota.
+7.3. El Proveedor puede rescindir inmediatamente por violación de la Política de Uso Aceptable.
+7.4. El Proveedor puede rescindir por falta de pago con 7 días de aviso por escrito.
+7.5. Tras la rescisión, el sitio web y el CRM serán dados de baja.
+7.6. Cuando el Cliente cancela, sus datos se borran dentro de los 30 días; hasta entonces puede pedirlos, como indica 7.7.
+7.7. A solicitud, el Proveedor entregará el código fuente del sitio (HTML/CSS/JS) y los datos del CRM. No se otorgará acceso a la infraestructura interna.
 
-8.1. El Cliente puede cancelar con 30 dias de aviso por escrito.
-8.2. El Proveedor puede rescindir inmediatamente por violacion de la Politica de Uso Aceptable.
-8.3. El Proveedor puede rescindir por falta de pago con 7 dias de aviso por escrito.
-8.4. Tras la rescision, el sitio web y el CRM seran dados de baja.
-8.5. No se reembolsan el alta ni las tarifas anuales.
-8.6. A solicitud, el Proveedor entregara el codigo fuente del sitio (HTML/CSS/JS) y los datos del CRM. No se otorgara acceso a la infraestructura interna.
+8. Ley Aplicable y Jurisdicción
 
-9. Ley Aplicable y Jurisdiccion
-
-Este acuerdo se rige por la ley israeli. Jurisdiccion exclusiva: tribunales competentes del distrito de Tel Aviv.`;
+Este acuerdo se rige por la ley israelí. Jurisdicción exclusiva: tribunales competentes del distrito de Tel Aviv.`;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
  * ARABIC CONTRACT
  * ═══════════════════════════════════════════════════════════════════════════ */
 
-function AR(setup: string, monthly: string): string {
+function AR(monthly: string): string {
   return `اتفاقية تقديم خدمات — موقع إلكتروني، CRM وإشعارات بريد إلكتروني
 Arzac Studio — الاشتراك
 
@@ -406,58 +380,53 @@ Arzac Studio — الاشتراك
 1.4. إشعارات بريد إلكتروني: إشعارات تلقائية لصاحب العمل وللعملاء/المهتمّين (تأكيد الحجز، الإلغاء، طلبات التواصل). اختيارياً لأعضاء الفريق.
 1.5. صيانة مستمرة ودعم فني: تحديثات المحتوى، إصلاح الأخطاء.
 1.6. استضافة على بنية تحتية لطرف ثالث.
+1.7. الشعار والنصوص: إذا لم يكن لدى العميل شعار، يصمّمه مزوّد الخدمة؛ ويكتب مزوّد الخدمة نصوص الموقع بلغات الموقع.
 
-2. خدمات اختيارية (غير مشمولة)
+1.8. لا تتضمن هذه الاتفاقية مستويات خدمة ولا ترقيات تلقائية ولا تغييرات تلقائية في السعر.
 
-2.1. الخدمات التالية ليست جزءاً من هذه الاتفاقية وتُقدَّم عند الطلب بعرض سعر خطي منفصل: وكيل WhatsApp بالذكاء الاصطناعي، مساعد/شات بوت ذكي، مكالمات صوتية بالذكاء الاصطناعي، إشعارات WhatsApp.
-2.2. لا يسري موعد تفعيل على الخدمات الاختيارية ما لم يُتفق عليه خطياً في عرض السعر الخاص بها.
-2.3. لا تتضمن هذه الاتفاقية مستويات خدمة ولا ترقيات تلقائية ولا تغييرات تلقائية في السعر.
+2. التسعير والدفع
 
-3. التسعير والدفع
+2.1. رسوم الاشتراك: ${monthly} شهرياً، ثابتة. تشمل كل ما ورد في البند 1، بما في ذلك إنشاء الموقع ونظام CRM والاستضافة والنطاق. لا توجد رسوم تأسيس ولا أي رسوم أخرى.
+2.2. يُحصَّل الشهر الأول عند قبول العميل لهذه الاتفاقية ويغطي شهراً كاملاً من ذلك التاريخ. ويُحصَّل كل شهر تالٍ في التاريخ نفسه.
+2.3. تُعالج المدفوعات عبر Cardcom. لا يخزّن مزوّد الخدمة بيانات البطاقة.
+2.4. التأخّر في الدفع يؤدي إلى تعليق الموقع ونظام CRM. الحذف خلال 7 أيام وإنهاء الاتفاقية.
 
-3.1. رسوم التأسيس: ${setup}، دفعة واحدة تُدفع عند توقيع هذه الاتفاقية. تغطي إنشاء الموقع ونظام CRM وإعدادهما الأولي.
-3.2. رسوم الاشتراك: ${monthly} شهرياً، ثابتة، مقابل خدمات البند 1.
-3.3. تُعالج المدفوعات عبر Cardcom. لا يخزّن مزوّد الخدمة بيانات البطاقة. يُحصَّل الاشتراك شهرياً في التاريخ نفسه.
-3.4. الاستضافة: مبلغ سنوي متغيّر. يُدفع خلال 7 أيام من الطلب.
-3.5. النطاق: مبلغ سنوي متغيّر. يُدفع خلال 7 أيام من الطلب.
-3.6. التأخّر في الدفع يؤدي إلى تعليق الموقع ونظام CRM. الحذف خلال 7 أيام وإنهاء الاتفاقية.
-3.7. لا تُردّ رسوم التأسيس ولا الرسوم السنوية.
+3. مواعيد التسليم
 
-4. مواعيد التسليم
+3.1. يُسلَّم الموقع خلال 48 ساعة من استلام مواد التصميم.
 
-4.1. يُسلَّم الموقع خلال 48 ساعة من استلام مواد التصميم.
+4. الملكية الفكرية والترخيص
 
-5. الملكية الفكرية والترخيص
+4.1. ترخيص استخدام غير حصري طوال مدة الاتفاقية.
+4.2. الكود المصدري وملفات التصميم وحقوق الملكية الفكرية ملك حصري لمزوّد الخدمة.
+4.3. الشعار والعلامة التجارية والمحتوى المقدّم من العميل ملكيته الحصرية.
+4.4. اسم النطاق ملك العميل.
+4.5. بيانات CRM التي يُدخلها العميل ملكه وتُسلَّم عند الطلب عند الإنهاء.
 
-5.1. ترخيص استخدام غير حصري طوال مدة الاتفاقية.
-5.2. الكود المصدري وملفات التصميم وحقوق الملكية الفكرية ملك حصري لمزوّد الخدمة.
-5.3. الشعار والعلامة التجارية والمحتوى المقدّم من العميل ملكيته الحصرية.
-5.4. اسم النطاق ملك العميل.
-5.5. بيانات CRM التي يُدخلها العميل ملكه وتُسلَّم عند الطلب عند الإنهاء.
+5. سياسة الاستخدام المقبول
 
-6. سياسة الاستخدام المقبول
+5.1. يُحظر استخدام الموقع ونظام CRM لإرسال رسائل مزعجة أو تخزين مواد غير قانونية.
+5.2. يُحظر رفع محتوى مسيء أو مضلّل أو محظور قانونياً.
+5.3. يُشكّل الانتهاك خرقاً جوهرياً يمنح مزوّد الخدمة حقّ الإنهاء الفوري والأحادي.
 
-6.1. يُحظر استخدام الموقع ونظام CRM لإرسال رسائل مزعجة أو تخزين مواد غير قانونية.
-6.2. يُحظر رفع محتوى مسيء أو مضلّل أو محظور قانونياً.
-6.3. يُشكّل الانتهاك خرقاً جوهرياً يمنح مزوّد الخدمة حقّ الإنهاء الفوري والأحادي.
+6. تحديد المسؤولية
 
-7. تحديد المسؤولية
+6.1. يتحمّل العميل المسؤولية الكاملة عن محتوى الموقع والبيانات في CRM.
+6.2. لا يضمن مزوّد الخدمة أيّ نتائج تجارية أو مالية.
+6.3. مزوّد الخدمة غير مسؤول عن أعطال منصات الطرف الثالث (الاستضافة، مسجّلي النطاقات، مزوّدي البريد) أو القوة القاهرة.
+6.4. لا تتجاوز مسؤولية مزوّد الخدمة بأيّ حال المبلغ الإجمالي المدفوع.
 
-7.1. يتحمّل العميل المسؤولية الكاملة عن محتوى الموقع والبيانات في CRM.
-7.2. لا يضمن مزوّد الخدمة أيّ نتائج تجارية أو مالية.
-7.3. مزوّد الخدمة غير مسؤول عن أعطال منصات الطرف الثالث (الاستضافة، مسجّلي النطاقات، مزوّدي البريد) أو القوة القاهرة.
-7.4. لا تتجاوز مسؤولية مزوّد الخدمة بأيّ حال المبلغ الإجمالي المدفوع.
+7. إنهاء الاتفاقية
 
-8. إنهاء الاتفاقية
+7.1. يحقّ للعميل الإلغاء في أي وقت بإشعار خطي. يسري الإلغاء من يوم استلام الإشعار.
+7.2. عند إلغاء العميل، يردّ مزوّد الخدمة الجزء غير المستخدم من الشهر المدفوع بنسبة الأيام المتبقية: مثلاً، الإلغاء في اليوم 12 من شهر من 30 يوماً يُرجع 18/30 من رسوم الاشتراك.
+7.3. يحقّ لمزوّد الخدمة الإنهاء الفوري في حال انتهاك سياسة الاستخدام.
+7.4. يحقّ لمزوّد الخدمة الإنهاء لعدم الدفع بعد إشعار من 7 أيام.
+7.5. بعد الإنهاء يُوقَف الموقع ونظام CRM.
+7.6. بعد إلغاء العميل، تُحذف بياناته خلال 30 يوماً؛ وحتى ذلك الحين يمكنه طلبها كما ورد في البند 7.7.
+7.7. يُسلَّم عند الطلب الكود المصدري للموقع وبيانات CRM. لا يُمنح وصول إلى البنية التحتية.
 
-8.1. يحقّ للعميل الإلغاء بإشعار خطي مسبق من 30 يوماً.
-8.2. يحقّ لمزوّد الخدمة الإنهاء الفوري في حال انتهاك سياسة الاستخدام.
-8.3. يحقّ لمزوّد الخدمة الإنهاء لعدم الدفع بعد إشعار من 7 أيام.
-8.4. بعد الإنهاء يُوقَف الموقع ونظام CRM.
-8.5. لا تُردّ رسوم التأسيس ولا الرسوم السنوية.
-8.6. يُسلَّم عند الطلب الكود المصدري للموقع وبيانات CRM. لا يُمنح وصول إلى البنية التحتية.
-
-9. القانون المعمول به والاختصاص القضائي
+8. القانون المعمول به والاختصاص القضائي
 
 تخضع هذه الاتفاقية للقانون الإسرائيلي. الاختصاص القضائي الحصري: المحاكم المختصة في منطقة تل أبيب.`;
 }
@@ -466,7 +435,7 @@ Arzac Studio — الاشتراك
  * LOOKUP
  * ═══════════════════════════════════════════════════════════════════════════ */
 
-const contractFns: Record<ContractLang, (setup: string, monthly: string) => string> = {
+const contractFns: Record<ContractLang, (monthly: string) => string> = {
   en: EN,
   he: HE,
   ru: RU,
@@ -474,18 +443,9 @@ const contractFns: Record<ContractLang, (setup: string, monthly: string) => stri
   ar: AR,
 };
 
-export function getContract(
-  lang: ContractLang,
-  opts: ContractOptions = {},
-): { text: string; version: string; setupAmount: number; monthlyAmount: number } {
+export function getContract(lang: ContractLang): { text: string; version: string; monthlyAmount: number } {
   const fn = contractFns[lang] ?? contractFns.en;
-  const setupAmount = resolveSetupAmount(opts.setupAmount);
-  return {
-    text: fn(fmt(setupAmount, lang), fmt(MONTHLY_AMOUNT, lang)),
-    version: CONTRACT_VERSION,
-    setupAmount,
-    monthlyAmount: MONTHLY_AMOUNT,
-  };
+  return { text: fn(fmt(MONTHLY_AMOUNT, lang)), version: CONTRACT_VERSION, monthlyAmount: MONTHLY_AMOUNT };
 }
 
 export function isContractLang(lang: string): lang is ContractLang {

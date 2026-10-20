@@ -133,7 +133,7 @@ export function ConfigHistoryPanel({ clientId }: { clientId: string }) {
         </div>
       ) : !entries || entries.length === 0 ? (
         <p className="py-4 text-center text-xs text-text-muted">
-          {error || "Sin cambios registrados todavia."}
+          {error || "Sin cambios registrados todavía."}
         </p>
       ) : (
         <div className="max-h-80 space-y-1.5 overflow-y-auto">

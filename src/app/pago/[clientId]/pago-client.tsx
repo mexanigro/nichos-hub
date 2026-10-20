@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { MONTHLY_AMOUNT } from "@/lib/pricing";
 import { getContract, type ContractLang } from "@/lib/contracts";
+import { LogoMark } from "@/components/landing/logo-mark";
 
 /* ═══════════════════════════════════════════════════════════════════════════
  * i18n
@@ -21,10 +22,12 @@ const i18n = {
     error: "שגיאה, נסה שוב",
     securePayment: "תשלום מאובטח",
     planName: "אתר + CRM + התראות במייל",
-    setupLabel: "דמי הקמה (תשלום חד-פעמי)",
-    monthlyLabel: "דמי מנוי חודשיים",
+    included: "הכל כלול, בלי דמי הקמה",
+    firstMonth: "החודש הראשון",
+    firstMonthNote: "מכסה חודש מלא מהיום",
     payNow: "לתשלום עכשיו",
-    thenMonthly: "ולאחר מכן",
+    thenLabel: "כל חודש, באותו תאריך",
+    cancelNote: "אפשר לבטל בכל עת, והימים שלא נוצלו מוחזרים.",
     features: [
       "אתר אישי מעוצב, אחסון ודומיין",
       "CRM ללקוחות ולידים",
@@ -33,7 +36,6 @@ const i18n = {
       "תחזוקה ותמיכה שוטפת",
       "5 שפות (HE, EN, RU, ES, AR)",
     ],
-    optional: "WhatsApp, בינה מלאכותית ושיחות קוליות — שירותים אופציונליים בהצעת מחיר נפרדת.",
   },
   en: {
     greeting: "Hello,",
@@ -47,10 +49,12 @@ const i18n = {
     error: "An error occurred, please try again",
     securePayment: "Secure payment",
     planName: "Website + CRM + Email notifications",
-    setupLabel: "Setup fee (one-time)",
-    monthlyLabel: "Monthly subscription",
+    included: "Everything included, no setup fee",
+    firstMonth: "First month",
+    firstMonthNote: "Covers a full month from today",
     payNow: "Due now",
-    thenMonthly: "then",
+    thenLabel: "Every month, same date",
+    cancelNote: "Cancel anytime; unused days are refunded.",
     features: [
       "Custom designed website, hosting and domain",
       "CRM for customers and leads",
@@ -59,7 +63,6 @@ const i18n = {
       "Maintenance & support",
       "5 languages (HE, EN, RU, ES, AR)",
     ],
-    optional: "WhatsApp, AI and voice calls are optional services, quoted separately.",
   },
   es: {
     greeting: "Hola,",
@@ -67,16 +70,18 @@ const i18n = {
     contractTitle: "Acuerdo de servicio",
     expandContract: "Leer acuerdo completo",
     collapseContract: "Ocultar",
-    accept: "Lei y acepto los terminos del acuerdo",
+    accept: "Leí y acepto los términos del acuerdo",
     pay: "Continuar al pago",
     processing: "Procesando...",
-    error: "Error, intenta de nuevo",
+    error: "Error, intentá de nuevo",
     securePayment: "Pago seguro",
     planName: "Web + CRM + Notificaciones por email",
-    setupLabel: "Alta (pago unico)",
-    monthlyLabel: "Suscripcion mensual",
+    included: "Todo incluido, sin alta",
+    firstMonth: "Primer mes",
+    firstMonthNote: "Cubre un mes entero desde hoy",
     payNow: "A pagar ahora",
-    thenMonthly: "luego",
+    thenLabel: "Cada mes, el mismo día",
+    cancelNote: "Cancelás cuando quieras y te devolvemos los días que no usaste.",
     features: [
       "Sitio web profesional, hosting y dominio",
       "CRM de clientes y leads",
@@ -85,7 +90,6 @@ const i18n = {
       "Mantenimiento y soporte",
       "5 idiomas (HE, EN, RU, ES, AR)",
     ],
-    optional: "WhatsApp, IA y llamadas de voz son servicios opcionales, a cotizar aparte.",
   },
   ru: {
     greeting: "Здравствуйте,",
@@ -99,10 +103,12 @@ const i18n = {
     error: "Ошибка, попробуйте снова",
     securePayment: "Безопасная оплата",
     planName: "Сайт + CRM + Email-уведомления",
-    setupLabel: "Подключение (разовый платёж)",
-    monthlyLabel: "Ежемесячная подписка",
+    included: "Всё включено, без платы за подключение",
+    firstMonth: "Первый месяц",
+    firstMonthNote: "Покрывает полный месяц с сегодняшнего дня",
     payNow: "К оплате сейчас",
-    thenMonthly: "затем",
+    thenLabel: "Каждый месяц, в ту же дату",
+    cancelNote: "Отменить можно в любой момент, неиспользованные дни возвращаются.",
     features: [
       "Индивидуальный сайт, хостинг и домен",
       "CRM для клиентов и лидов",
@@ -111,7 +117,6 @@ const i18n = {
       "Обслуживание и поддержка",
       "5 языков (HE, EN, RU, ES, AR)",
     ],
-    optional: "WhatsApp, ИИ и голосовые звонки — дополнительные услуги, рассчитываются отдельно.",
   },
 };
 
@@ -124,11 +129,9 @@ interface Props {
   clientDocId: string;
   businessName: string;
   lang: "he" | "en" | "es" | "ru";
-  /** Alta negociada en persona (1000–1500), ya validada por el servidor; 1500 por defecto. */
-  setupAmount: number;
 }
 
-export default function PagoClient({ clientId, clientDocId, businessName, lang, setupAmount }: Props) {
+export default function PagoClient({ clientId, clientDocId, businessName, lang }: Props) {
   const [accepted, setAccepted] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
@@ -136,9 +139,7 @@ export default function PagoClient({ clientId, clientDocId, businessName, lang, 
   const t = i18n[lang];
   const planName = t.planName;
   const features = t.features;
-  // Mismo formato que el contrato (fmt de contracts.ts): 1,500 / 1.500 / 1 500 según idioma, no el locale del navegador.
-  const setupFmt = setupAmount.toLocaleString(lang === "es" ? "es-ES" : lang === "ru" ? "ru-RU" : "en-US");
-  const { text: contract, version: contractVersion } = getContract(lang as ContractLang, { setupAmount });
+  const { text: contract, version: contractVersion } = getContract(lang as ContractLang);
   const dir = lang === "he" ? "rtl" : "ltr";
 
   async function handleContinue() {
@@ -181,12 +182,10 @@ export default function PagoClient({ clientId, clientDocId, businessName, lang, 
       {/* Header */}
       <header className="border-b border-[var(--pg-line)] bg-[var(--pg-paper)]/80 backdrop-blur-md">
         <div className="mx-auto flex h-16 max-w-3xl items-center justify-between px-6">
-          <a href="/" className="flex items-center gap-2.5">
-            <img src="/logo-icon.svg" alt="Arzac Studio" className="h-8 w-8" />
-            <span className="hidden items-baseline gap-0.5 sm:flex" style={{ fontFamily: "var(--pg-serif, system-ui)" }}>
-              <span className="text-[0.95rem] font-bold tracking-tight text-[var(--pg-ink)]">ARZAC</span>
-              <span className="text-[0.6rem] font-medium text-[var(--pg-accent)]">.studio</span>
-            </span>
+          {/* La misma marca que la landing y /pago/success: LogoMark en tinta + «Arzac studio» en serif. */}
+          <a href="/" className="pago-brand" aria-label="Arzac Studio">
+            <LogoMark size={20} color="var(--pg-ink)" />
+            <span className="wm">Arzac <em>studio</em></span>
           </a>
           <div className="flex items-center gap-1.5 text-[0.78rem] text-[var(--pg-ink-3)]">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -209,8 +208,8 @@ export default function PagoClient({ clientId, clientDocId, businessName, lang, 
           <div className="rounded-2xl border-2 border-[var(--pg-accent)] bg-[var(--pg-paper)] p-5 shadow-md">
             <p className="text-[0.9rem] font-semibold text-[var(--pg-ink)]">{planName}</p>
             <p className="mt-1">
-              <span className="text-2xl font-bold text-[var(--pg-ink)]">₪{setupFmt}</span>
-              <span className="text-sm text-[var(--pg-ink-2)]"> {t.setupLabel.toLowerCase()} · {t.thenMonthly} ₪{MONTHLY_AMOUNT}{t.perMonth}</span>
+              <span className="text-2xl font-bold text-[var(--pg-ink)]">₪{MONTHLY_AMOUNT}</span>
+              <span className="text-sm text-[var(--pg-ink-2)]">{t.perMonth} · {t.included}</span>
             </p>
             <ul className="mt-4 space-y-1.5">
               {features.map((f: string) => (
@@ -222,23 +221,21 @@ export default function PagoClient({ clientId, clientDocId, businessName, lang, 
                 </li>
               ))}
             </ul>
-            <p className="mt-3 text-[0.75rem] text-[var(--pg-ink-3)]">{t.optional}</p>
           </div>
         </section>
 
-        {/* Amount summary: alta ahora, cuota después */}
+        {/* Amount summary: el primer mes ahora (cubre un mes entero), la misma cuota después */}
         <div className="mb-8 rounded-xl border border-[var(--pg-line)] bg-[var(--pg-paper)] p-5">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm font-medium text-[var(--pg-ink)]">{t.setupLabel}</p>
-              <p className="text-xs text-[var(--pg-ink-3)]">{t.payNow}</p>
-            </div>
-            <p className="text-2xl font-bold text-[var(--pg-ink)]">₪{setupFmt}</p>
+          <div className="flex items-baseline justify-between gap-4">
+            <p className="text-sm font-medium text-[var(--pg-ink)]">{t.firstMonth}</p>
+            <p className="shrink-0 text-2xl font-bold text-[var(--pg-ink)]">₪{MONTHLY_AMOUNT}</p>
           </div>
-          <div className="mt-3 flex items-center justify-between border-t border-[var(--pg-line)] pt-3">
-            <p className="text-sm text-[var(--pg-ink-2)]">{t.monthlyLabel}</p>
-            <p className="text-base font-semibold text-[var(--pg-ink)]">₪{MONTHLY_AMOUNT}<span className="text-xs font-normal text-[var(--pg-ink-2)]">{t.perMonth}</span></p>
+          <p className="mt-1 text-xs text-[var(--pg-ink-3)]">{t.payNow} · {t.firstMonthNote}</p>
+          <div className="mt-3 flex items-center justify-between gap-4 border-t border-[var(--pg-line)] pt-3">
+            <p className="text-sm text-[var(--pg-ink-2)]">{t.thenLabel}</p>
+            <p className="shrink-0 text-base font-semibold text-[var(--pg-ink)]">₪{MONTHLY_AMOUNT}<span className="text-xs font-normal text-[var(--pg-ink-2)]">{t.perMonth}</span></p>
           </div>
+          <p className="mt-3 text-xs text-[var(--pg-ink-3)]">{t.cancelNote}</p>
         </div>
 
         {/* Contract */}
@@ -261,7 +258,7 @@ export default function PagoClient({ clientId, clientDocId, businessName, lang, 
           </div>
 
           <div
-            className={`mt-4 overflow-hidden transition-all duration-300 ease-in-out ${
+            className={`relative mt-4 overflow-hidden transition-all duration-300 ease-in-out ${
               contractExpanded ? "max-h-[60vh] overflow-y-auto" : "max-h-28"
             }`}
             style={{ direction: dir }}
@@ -270,7 +267,7 @@ export default function PagoClient({ clientId, clientDocId, businessName, lang, 
               {contract}
             </div>
             {!contractExpanded && (
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[var(--pg-paper)] to-transparent" style={{ position: "relative", marginTop: "-4rem" }} />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[var(--pg-paper)] to-transparent" />
             )}
           </div>
 
