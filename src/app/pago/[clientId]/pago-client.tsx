@@ -36,7 +36,6 @@ const i18n = {
       "תחזוקה ותמיכה שוטפת",
       "5 שפות (HE, EN, RU, ES, AR)",
     ],
-    optional: "WhatsApp, בינה מלאכותית ושיחות קוליות — שירותים אופציונליים בהצעת מחיר נפרדת.",
   },
   en: {
     greeting: "Hello,",
@@ -64,7 +63,6 @@ const i18n = {
       "Maintenance & support",
       "5 languages (HE, EN, RU, ES, AR)",
     ],
-    optional: "WhatsApp, AI and voice calls are optional services, quoted separately.",
   },
   es: {
     greeting: "Hola,",
@@ -92,7 +90,6 @@ const i18n = {
       "Mantenimiento y soporte",
       "5 idiomas (HE, EN, RU, ES, AR)",
     ],
-    optional: "WhatsApp, IA y llamadas de voz son servicios opcionales, a cotizar aparte.",
   },
   ru: {
     greeting: "Здравствуйте,",
@@ -120,7 +117,6 @@ const i18n = {
       "Обслуживание и поддержка",
       "5 языков (HE, EN, RU, ES, AR)",
     ],
-    optional: "WhatsApp, ИИ и голосовые звонки — дополнительные услуги, рассчитываются отдельно.",
   },
 };
 
@@ -225,7 +221,6 @@ export default function PagoClient({ clientId, clientDocId, businessName, lang }
                 </li>
               ))}
             </ul>
-            <p className="mt-3 text-[0.75rem] text-[var(--pg-ink-3)]">{t.optional}</p>
           </div>
         </section>
 

@@ -57,9 +57,10 @@ test("v9.0: se cancela cuando quiere y se devuelve lo no usado del mes", () => {
   }
 });
 
-test("v9.0: sin niveles ni cifras viejas", () => {
+test("v9.0: sin niveles ni cifras viejas, y sin WhatsApp, IA ni voz (fuera de la oferta, 2026-10-20)", () => {
   for (const lang of LANGS) {
     const { text } = getContract(lang);
+    assert.doesNotMatch(text, /WhatsApp|chatbot|ИИ|ذكاء اصطناعي|בינה מלאכותית|AI|IA/, `${lang}: sin servicios opcionales`);
     assert.doesNotMatch(text, /₪0\b/, `${lang}: sin ₪0`);
     assert.doesNotMatch(text, /\b(480|770|960|1[,. ]?270)\b/, `${lang}: sin cifras viejas`);
     assert.doesNotMatch(text, /Solo Web|Enterprise|Plan Pro|Plan Base|תוכנית Pro|תוכנית Base/, `${lang}: sin niveles`);
@@ -67,9 +68,9 @@ test("v9.0: sin niveles ni cifras viejas", () => {
   }
 });
 
-test("hebreo: la numeración corrida de 1 a 33, sin huecos", () => {
+test("hebreo: la numeración corrida de 1 a 31, sin huecos", () => {
   const nums = [...getContract("he").text.matchAll(/^(\d+)\. /gm)].map((m) => Number(m[1]));
-  assert.deepEqual(nums, Array.from({ length: 33 }, (_, i) => i + 1));
+  assert.deepEqual(nums, Array.from({ length: 31 }, (_, i) => i + 1));
 });
 
 test("isContractLang", () => {
