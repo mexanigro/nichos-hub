@@ -17,7 +17,6 @@ function SuccessContent() {
   const dir = RTL_LOCALES.includes(locale) ? "rtl" : "ltr";
 
   const [status, setStatus] = useState<"verifying" | "success" | "error" | "pending">("verifying");
-  const [error, setError] = useState("");
 
   useEffect(() => {
     if (!lowProfileCode || !clientId) {
@@ -32,10 +31,10 @@ function SuccessContent() {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.success) setStatus("success");
-        else { setStatus("error"); setError(data.error || "Verification failed"); }
+        // El error que manda el servidor no se le muestra al cliente: la página dice el suyo, en su idioma.
+        setStatus(data.success ? "success" : "error");
       })
-      .catch(() => { setStatus("error"); setError("Network error"); });
+      .catch(() => setStatus("error"));
   }, [lowProfileCode, clientId]);
 
   if (status === "verifying") {
@@ -134,7 +133,7 @@ function SuccessContent() {
               </span>
               <div className="eyebrow">{t.pagoErr.eyebrow}</div>
               <h1>{t.pagoErr.title.replace(/(\.|\!)$/, "")}<em>.</em></h1>
-              <p style={{ marginInline: "auto" }}>{error || t.pagoErr.sub}</p>
+              <p style={{ marginInline: "auto" }}>{t.pagoErr.sub}</p>
               {clientId && (
                 <div className="pgerr-actions" style={{ marginTop: 16 }}>
                   <a href={`/pago/${clientId}`} className="pago-btn" style={{ textDecoration: "none" }}>{t.pagoErr.cta} <span className="pago-btn-arrow">→</span></a>

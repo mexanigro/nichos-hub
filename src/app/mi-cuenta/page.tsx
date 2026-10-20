@@ -165,7 +165,7 @@ export default function MiCuentaPage() {
           <div className="mt-6 rounded-2xl border border-red-100 bg-white p-6 shadow-sm">
             <h2 className="text-[0.9rem] font-semibold text-red-800">Zona de riesgo</h2>
             <p className="mt-1 text-[0.82rem] text-gray-500">
-              Si cancelás tu plan, tu sitio se desactivará después de 30 días
+              Si cancelás tu plan, tu web baja el mismo día y te devolvemos los días que no usaste del mes.
             </p>
             <button
               className="mt-3 rounded-full border border-red-200 px-4 py-2 text-[0.82rem] font-medium text-red-600 transition-all hover:bg-red-50"

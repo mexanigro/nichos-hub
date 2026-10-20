@@ -64,7 +64,6 @@ function ErrorContent() {
                 </a>
               )}
             </div>
-            <div className="pgerr-ref">{t.pagoErr.ref}: ARZ-PAY-{new Date().getFullYear()}-{String(new Date().getMonth() + 1).padStart(2, "0")}{String(new Date().getDate()).padStart(2, "0")}</div>
           </div>
         </div>
         <div className="container pago-foot">{t.pago.footerSecurity}</div>

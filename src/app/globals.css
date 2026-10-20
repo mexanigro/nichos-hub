@@ -712,8 +712,9 @@ body:has(.pago) {
 /* spinner */
 @keyframes pago-spin { to { transform: rotate(360deg); } }
 .pago-spinner { width: 20px; height: 20px; border: 2.5px solid white; border-top-color: transparent; border-radius: 50%; animation: pago-spin 0.6s linear infinite; }
-/* Sola en la página (no dentro de un botón oscuro), la ruedita va en tinta: blanca sobre el crema no se veía. */
-.pago-main > .pago-spinner { width: 28px; height: 28px; border-color: var(--pg-ink-3); border-top-color: transparent; }
+/* Sola en la página (no dentro de un botón oscuro), la ruedita va en tinta: blanca sobre el crema no se veía.
+   También la del fallback de Suspense, que cuelga directo de .pago. */
+:is(.pago-main, .pago) > .pago-spinner { width: 28px; height: 28px; border-color: var(--pg-ink-3); border-top-color: transparent; }
 /* RTL: «adelante» apunta a la izquierda. */
 .pago[dir="rtl"] .pago-btn-arrow { display: inline-block; transform: scaleX(-1); }
 .pago[dir="rtl"] .pgerr-tips li::before { content: "←"; }

@@ -62,7 +62,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Pago — Arzac Studio",
+  // absolute: sin la plantilla «%s | Arzac Studio» del layout raíz, que repetía la marca. /pago/<clientId> pone el suyo por idioma.
+  title: { absolute: "Pago — Arzac Studio" },
   description: "Complete your subscription payment",
   robots: { index: false, follow: false },
 };

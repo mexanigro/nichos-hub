@@ -34,7 +34,7 @@ const i18n = {
       "יומן תורים אונליין",
       "התראות במייל לבעל העסק וללקוחות",
       "תחזוקה ותמיכה שוטפת",
-      "5 שפות (HE, EN, RU, ES, AR)",
+      "האתר בעברית, אנגלית, רוסית וערבית",
     ],
   },
   en: {
@@ -61,7 +61,7 @@ const i18n = {
       "Online booking calendar",
       "Email notifications to the owner and customers",
       "Maintenance & support",
-      "5 languages (HE, EN, RU, ES, AR)",
+      "Your website in Hebrew, English, Russian and Arabic",
     ],
   },
   es: {
@@ -88,7 +88,7 @@ const i18n = {
       "Reservas online",
       "Notificaciones por email al dueño y a los clientes",
       "Mantenimiento y soporte",
-      "5 idiomas (HE, EN, RU, ES, AR)",
+      "Tu web en hebreo, inglés, ruso y árabe",
     ],
   },
   ru: {
@@ -115,7 +115,34 @@ const i18n = {
       "Онлайн-запись",
       "Email-уведомления владельцу и клиентам",
       "Обслуживание и поддержка",
-      "5 языков (HE, EN, RU, ES, AR)",
+      "Сайт на иврите, английском, русском и арабском",
+    ],
+  },
+  ar: {
+    greeting: "أهلاً،",
+    perMonth: "/شهر",
+    contractTitle: "اتفاقية الخدمة",
+    expandContract: "اقرأ الاتفاقية كاملة",
+    collapseContract: "إخفاء",
+    accept: "قرأتُ شروط الاتفاقية وأوافق عليها",
+    pay: "المتابعة إلى الدفع",
+    processing: "جارٍ التنفيذ...",
+    error: "لم نتمكّن من إتمام العملية، حاول مرة أخرى",
+    securePayment: "دفع آمن",
+    planName: "موقع + CRM + إشعارات بالبريد الإلكتروني",
+    included: "كل شيء مشمول، بدون رسوم تأسيس",
+    firstMonth: "الشهر الأول",
+    firstMonthNote: "يغطي شهراً كاملاً ابتداءً من اليوم",
+    payNow: "المبلغ المستحق الآن",
+    thenLabel: "كل شهر، في التاريخ نفسه",
+    cancelNote: "يمكنك الإلغاء في أي وقت، ونُعيد لك قيمة الأيام غير المستخدمة.",
+    features: [
+      "موقع بتصميم خاص بعملك، مع الاستضافة والنطاق",
+      "نظام CRM للزبائن والعملاء المحتملين",
+      "حجز المواعيد عبر الإنترنت",
+      "إشعارات بالبريد الإلكتروني لك ولزبائنك",
+      "صيانة ودعم متواصلان",
+      "الموقع بالعبرية والإنجليزية والروسية والعربية",
     ],
   },
 };
@@ -128,7 +155,7 @@ interface Props {
   clientId: string;
   clientDocId: string;
   businessName: string;
-  lang: "he" | "en" | "es" | "ru";
+  lang: "he" | "en" | "es" | "ru" | "ar";
 }
 
 export default function PagoClient({ clientId, clientDocId, businessName, lang }: Props) {
@@ -140,7 +167,7 @@ export default function PagoClient({ clientId, clientDocId, businessName, lang }
   const planName = t.planName;
   const features = t.features;
   const { text: contract, version: contractVersion } = getContract(lang as ContractLang);
-  const dir = lang === "he" ? "rtl" : "ltr";
+  const dir = lang === "he" || lang === "ar" ? "rtl" : "ltr";
 
   async function handleContinue() {
     setSending(true);
@@ -151,28 +178,23 @@ export default function PagoClient({ clientId, clientDocId, businessName, lang }
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ clientId, clientDocId, contractVersion }),
       });
-      if (!contractRes.ok) {
-        const data = await contractRes.json().catch(() => null);
-        throw new Error(data?.error || "Contract failed");
-      }
+      // Lo que manda el servidor no se le muestra al cliente: cualquier falla dice el mensaje de su idioma.
+      if (!contractRes.ok) throw new Error();
 
       const paymentRes = await fetch("/api/cardcom/create-payment", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ clientId }),
       });
-      if (!paymentRes.ok) {
-        const data = await paymentRes.json().catch(() => null);
-        throw new Error(data?.error || "Payment setup failed");
-      }
+      if (!paymentRes.ok) throw new Error();
       const { url } = await paymentRes.json();
       if (url) {
         window.location.href = url;
         return;
       }
-      throw new Error("No payment URL received");
-    } catch (e) {
-      setError(e instanceof Error ? e.message : t.error);
+      throw new Error();
+    } catch {
+      setError(t.error);
     }
     setSending(false);
   }
@@ -209,8 +231,10 @@ export default function PagoClient({ clientId, clientDocId, businessName, lang }
             <p className="text-[0.9rem] font-semibold text-[var(--pg-ink)]">{planName}</p>
             <p className="mt-1">
               <span className="text-2xl font-bold text-[var(--pg-ink)]">₪{MONTHLY_AMOUNT}</span>
-              <span className="text-sm text-[var(--pg-ink-2)]">{t.perMonth} · {t.included}</span>
+              <span className="text-sm text-[var(--pg-ink-2)]">{t.perMonth}</span>
             </p>
+            {/* En su propia línea: detrás del precio se cortaba con una o dos palabras solas a 375. */}
+            <p className="text-balance text-sm text-[var(--pg-ink-2)]">{t.included}</p>
             <ul className="mt-4 space-y-1.5">
               {features.map((f: string) => (
                 <li key={f} className="flex items-start gap-2 text-[0.8rem] text-[var(--pg-ink-2)]">
@@ -240,12 +264,12 @@ export default function PagoClient({ clientId, clientDocId, businessName, lang }
 
         {/* Contract */}
         <section className="rounded-2xl border border-[var(--pg-line)] bg-[var(--pg-paper)] p-6">
-          <div className="flex items-center justify-between">
-            <h2 className="text-[0.9rem] font-semibold text-[var(--pg-ink)]">{t.contractTitle}</h2>
+          <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
+            <h2 className="whitespace-nowrap text-[0.9rem] font-semibold text-[var(--pg-ink)]">{t.contractTitle}</h2>
             <button
               type="button"
               onClick={() => setContractExpanded(!contractExpanded)}
-              className="flex items-center gap-1.5 text-[0.8rem] font-medium text-[var(--pg-ink-2)] transition-colors hover:text-[var(--pg-ink)]"
+              className="flex items-center gap-1.5 whitespace-nowrap text-[0.8rem] font-medium text-[var(--pg-ink-2)] transition-colors hover:text-[var(--pg-ink)]"
             >
               <span>{contractExpanded ? t.collapseContract : t.expandContract}</span>
               <svg
