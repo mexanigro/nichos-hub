@@ -68,9 +68,33 @@ test("v9.0: sin niveles ni cifras viejas, y sin WhatsApp, IA ni voz (fuera de la
   }
 });
 
-test("hebreo: la numeración corrida de 1 a 31, sin huecos", () => {
+test("hebreo: la numeración corrida de 1 a 33, sin huecos", () => {
   const nums = [...getContract("he").text.matchAll(/^(\d+)\. /gm)].map((m) => Number(m[1]));
-  assert.deepEqual(nums, Array.from({ length: 31 }, (_, i) => i + 1));
+  assert.deepEqual(nums, Array.from({ length: 33 }, (_, i) => i + 1));
+});
+
+// Lo que la landing promete y el contrato tiene que decir (Liam, 2026-10-20): logo y textos, y el borrado a los 30 días de cancelar.
+const LOGO: Record<ContractLang, RegExp> = {
+  en: /no logo, the Provider designs one[^]*writes the website texts/,
+  he: /אם אין למזמין לוגו, החברה תעצב לוגו[^]*הטקסטים של האתר תכתוב החברה/,
+  ru: /нет логотипа, Исполнитель его разрабатывает[^]*тексты сайта пишет Исполнитель/,
+  es: /no tiene logo, el Proveedor lo diseña[^]*los textos del sitio web los escribe el Proveedor/,
+  ar: /إذا لم يكن لدى العميل شعار، يصمّمه مزوّد الخدمة[^]*يكتب مزوّد الخدمة نصوص الموقع/,
+};
+const BORRADO_30: Record<ContractLang, RegExp> = {
+  en: /data is deleted within 30 days/,
+  he: /יימחקו נתוניו תוך 30 יום/,
+  ru: /данные удаляются в течение 30 дней/,
+  es: /sus datos se borran dentro de los 30 días/,
+  ar: /تُحذف بياناته خلال 30 يوماً/,
+};
+
+test("v9.0: el logo y los textos entran en el servicio, y los datos se borran a los 30 días de cancelar", () => {
+  for (const lang of LANGS) {
+    const { text } = getContract(lang);
+    assert.match(text, LOGO[lang], `${lang}: logo y textos`);
+    assert.match(text, BORRADO_30[lang], `${lang}: borrado a los 30 días`);
+  }
 });
 
 test("isContractLang", () => {
