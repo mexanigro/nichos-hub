@@ -98,7 +98,7 @@ const jsonLd = {
       "@id": "https://arzac.studio/#organization",
       name: "Arzac Studio",
       url: "https://arzac.studio",
-      logo: "https://arzac.studio/logo.png",
+      logo: "https://arzac.studio/icon-512.png", // la A de la landing (LogoMark), el mismo archivo que el ícono de SIN-ALTA
       image: "https://arzac.studio/og.png",
       description:
         "סטודיו לבניית אתרים לעסקים קטנים בישראל: אתר מקצועי, מערכת CRM ללקוחות ותורים והתראות במייל, במנוי חודשי קבוע ובלי דמי הקמה.",

@@ -134,7 +134,14 @@ test("fuera de la landing tampoco se promete lo que no se vende: el embudo públ
   for (const [l, t] of Object.entries(LOCALES)) {
     const visibles = textos([t.pagoOk, t.pago.footerSecurity, t.status.reviewBody, t.wizard.noClientIdSub]);
     for (const s of visibles) assert.ok(!/Google Business|PCI|una hora|the hour|תוך שעה|в течение часа|خلال ساعة|\b24\b|bienvenida|welcome email|ברכה|приветствен|الترحيب/.test(s), `${l}: «${s}»`);
+    // La compra web (/onboarding/pago, hoy redirigida) dice el v9: la cuota es {precio}, sin alta ni v8, sin «la más grande» ni «desde el dashboard».
+    const compra = textos([t.pago.contractBody, t.pago.paymentSub, t.pago.cardPlaceholder, t.pago.whyTrustItems]);
+    for (const s of compra) assert.ok(!CIFRA.test(s) && !/v8|dashboard|הגדול|дашборд|крупнейш|أكبر|لوحة التحكم|largest|más grande/.test(s), `${l} compra web: «${s}»`);
+    assert.ok(t.pago.contractBody.includes("{precio}"), `${l}: la compra web nombra la cuota con {precio}`);
   }
+  // El logo del JSON-LD es la A de la landing (el ícono), no el wordmark viejo.
+  assert.match(leer("src/app/page.tsx"), /logo: "https:\/\/arzac\.studio\/icon-512\.png"/);
+  assert.ok(existsSync(resolve(ROOT, "public/icon-512.png")) && !existsSync(resolve(ROOT, "public/logo.png")), "icon-512.png sí, logo.png no");
   // La vitrina: el marco de las demos queda, sin enlaces ni urls.
   const vitrina = leer("src/components/landing/showcase.tsx") + leer("src/lib/sites.ts");
   assert.ok(!/href=|arzac\.studio|vercel\.app/.test(vitrina), "la vitrina no enlaza demos");
