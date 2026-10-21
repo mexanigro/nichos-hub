@@ -92,7 +92,7 @@ test("409 si el email ya es admin de OTRO tenant: no escribe ni toca claims", as
 
 test("usuario ausente en Auth: el roster se escribe y las claims quedan pendientes con motivo", async () => {
   const f = fakes({}, {});
-  const r = await bootstrapTenantOwner({ email: "nuevo@example.com", clientId: "client_barber_01", db: f.db, auth: f.auth, now: NOW });
+  const r = await bootstrapTenantOwner({ email: "nuevo@salon-nuevo.co.il", clientId: "client_barber_01", db: f.db, auth: f.auth, now: NOW });
   assert.equal(r.ok, true);
   assert.equal(r.rosterWritten, true);
   assert.equal(r.claimsSynced, false);

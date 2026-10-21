@@ -5,6 +5,7 @@
 import { buildFeatures, getDefaultTheme, getDefaultSplash, type BusinessNiche } from "./niche-defaults.ts";
 import type { ClientLanguage } from "./client-language.ts";
 import { getNichePreset, DEFAULT_BUSINESS_RULES } from "./client-config/niche-presets.ts";
+import { esEmailReservado } from "./email-reservado.ts";
 
 function normalizeEmail(value: unknown): string {
   return typeof value === "string" ? value.trim().toLowerCase() : "";
@@ -61,7 +62,8 @@ export function buildProvisionDocs(input: ProvisionInput): ProvisionDocs {
     notes: "",
   };
   const client = { status: "active" };
-  const adminEmail = normalizeEmail(input.adminEmail) || normalizeEmail(input.email);
+  // CRM-04 (D-341): un email de ejemplo (el del preset) no queda de dueña ni pide el bootstrap.
+  const adminEmail = [normalizeEmail(input.adminEmail), normalizeEmail(input.email)].find((e) => e && !esEmailReservado(e)) ?? "";
   const preset = getNichePreset(input.niche);
   // Catálogo del nicho (copia de los presets he del template): el servidor valida contra esto y los
   // emails usan estos nombres. Los arrays reemplazan al preset del bundle (mergeDeep del template).
@@ -88,5 +90,6 @@ export function buildProvisionDocs(input: ProvisionInput): ProvisionDocs {
 
 /** Destinatario del aviso de reserva al dueño que deploy.ts propaga como BUSINESS_OWNER_EMAIL. */
 export function resolveOwnerNotificationEmail(configData: Record<string, unknown>, hubData?: Record<string, unknown>): string | undefined {
-  return normalizeEmail(configData.adminEmail) || normalizeEmail(hubData?.adminEmail) || undefined;
+  // CRM-04 (D-341): nunca a un email de ejemplo; si el del config lo es, cae al del hub.
+  return [normalizeEmail(configData.adminEmail), normalizeEmail(hubData?.adminEmail)].find((e) => e && !esEmailReservado(e)) || undefined;
 }

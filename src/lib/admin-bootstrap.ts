@@ -8,6 +8,7 @@
  * Puro: `db`, `auth` y `now` inyectados; nunca devuelve claves ni tokens.
  */
 import { setTenantOwnerClaim, type TenantClaimAuth } from "./tenant-claim.ts";
+import { esEmailReservado } from "./email-reservado.ts";
 
 export interface AdminUsersDb {
   collection(name: "admin_users"): {
@@ -34,6 +35,8 @@ export async function bootstrapTenantOwner({ email: rawEmail, clientId, db, auth
   const email = (rawEmail ?? "").trim().toLowerCase();
   if (!email || !email.includes("@")) return { ok: false, status: 400, error: "email es requerido" };
   if (!clientId || !clientId.trim()) return { ok: false, status: 400, error: "clientId es requerido" };
+  // CRM-04 (D-341): un email de ejemplo (example.com, .test…) no es de nadie: no se registra como dueña.
+  if (esEmailReservado(email)) return { ok: false, status: 400, error: `${email} es un email de ejemplo (dominio reservado): no se registra como dueña` };
 
   const ref = db.collection("admin_users").doc(email);
   const snap = await ref.get();

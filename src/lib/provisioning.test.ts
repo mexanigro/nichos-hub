@@ -16,8 +16,8 @@ const base = {
   slug: "demo-barberia-n08-abcd1234",
   domain: "demo-barberia-n08-abcd1234.arzac.studio",
   language: "he" as const,
-  email: "contacto@n08.test",
-  adminEmail: "Owner@N08.test",
+  email: "contacto@n08.co.il",
+  adminEmail: "Owner@N08.co.il",
   now: new Date("2026-09-12T12:00:00Z"),
 };
 
@@ -42,18 +42,18 @@ test("1 · config nace con el catálogo del nicho: services, staff y businessRul
 
 test("2 · config lleva adminEmail normalizado (es lo que deploy.ts propaga a BUSINESS_OWNER_EMAIL)", () => {
   const { config } = buildProvisionDocs(base);
-  assert.equal(config.adminEmail, "owner@n08.test");
+  assert.equal(config.adminEmail, "owner@n08.co.il");
 });
 
 test("3 · el alta pide el bootstrap del dueño en admin_users del tenant", () => {
   const { ownerBootstrap } = buildProvisionDocs(base);
-  assert.deepEqual(ownerBootstrap, { email: "owner@n08.test", clientId: base.slug });
+  assert.deepEqual(ownerBootstrap, { email: "owner@n08.co.il", clientId: base.slug });
   assert.equal(buildProvisionDocs({ ...base, adminEmail: undefined, email: undefined }).ownerBootstrap, null);
 });
 
 test("4 · el destinatario del aviso al dueño cae a hub_clients.adminEmail cuando config no lo tiene", () => {
-  assert.equal(resolveOwnerNotificationEmail({ adminEmail: "a@x.test" }, { adminEmail: "b@x.test" }), "a@x.test");
-  assert.equal(resolveOwnerNotificationEmail({}, { adminEmail: "b@x.test" }), "b@x.test");
+  assert.equal(resolveOwnerNotificationEmail({ adminEmail: "a@x.co.il" }, { adminEmail: "b@x.co.il" }), "a@x.co.il");
+  assert.equal(resolveOwnerNotificationEmail({}, { adminEmail: "b@x.co.il" }), "b@x.co.il");
   assert.equal(resolveOwnerNotificationEmail({}, {}), undefined);
 });
 

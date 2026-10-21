@@ -28,7 +28,20 @@ export type DbMinima = {
       limit(n: number): { get(): Promise<{ empty: boolean; size: number; docs: Array<{ id: string; data(): Obj | undefined }> }> };
     };
   };
+  /** CRM-04 (D-346): la lectura y la escritura de config/{id} van en una transacción (Firestore la repite si alguien escribió en el medio). */
+  runTransaction?<T>(fn: (tx: TxMinima) => Promise<T>): Promise<T>;
 };
+type RefMinima = ReturnType<DbMinima["collection"]>["doc"] extends (id: string) => infer R ? R : never;
+type TxMinima = {
+  get(ref: RefMinima): Promise<{ exists: boolean; id: string; data(): Obj | undefined }>;
+  set(ref: RefMinima, data: Obj, opts?: { merge?: boolean }): unknown;
+};
+/** ponytail: un doble mínimo de Firestore sin runTransaction (los de los tests de consola) lee y escribe sin transacción; Firestore
+ *  real y el de los tests de CRM-04 la tienen siempre. */
+function enTransaccion<T>(db: DbMinima, fn: (tx: TxMinima) => Promise<T>): Promise<T> {
+  if (typeof db.runTransaction === "function") return db.runTransaction(fn);
+  return fn({ get: (ref) => ref.get(), set: (ref, data, opts) => ref.set(data, opts) });
+}
 
 export type ResultadoGuardado =
   | { ok: true; normalizedBusinessType: string; warning?: string; warnings: ConfigIssue[] }
@@ -182,32 +195,41 @@ export async function guardarConfig(clientId: string, body: unknown, deps: { db?
   if (!body || typeof body !== "object" || Array.isArray(body)) return { ok: false, status: 400, error: "Body must be an object", issues: [] };
   const db = deps.db ?? (dbReal as unknown as DbMinima);
 
-  // Lo guardado: para conservar el horario del CRM (CRM-03) y para la auditoría. Si hay equipo en el cuerpo y no se puede leer lo
-  // guardado, no se escribe: escribir a ciegas pisaría el horario que cargó la dueña.
-  let guardadoRaw: Obj | null = null;
-  try {
-    const prev = await db.collection("config").doc(clientId).get();
-    guardadoRaw = prev.exists ? (prev.data() ?? {}) : null;
-  } catch (err) {
-    console.error("[guardarConfig] failed to read the saved config:", err);
-    if (Array.isArray((body as Obj).staff)) return { ok: false, status: 503, error: "No se pudo leer lo guardado; el equipo no se guardó para no pisar el horario", issues: [] };
-  }
-
-  const cuerpo: Obj = guardadoRaw && Array.isArray((body as Obj).staff) ? { ...(body as Obj), staff: conHorarioGuardado((body as Obj).staff, guardadoRaw.staff) } : (body as Obj);
-  const rawBody = cuerpo;
-  const requestedBusinessType = getNestedBusinessType(rawBody);
+  const requestedBusinessType = getNestedBusinessType(body as Obj);
   const deployBusinessType = await getDeployNiche(db, clientId, requestedBusinessType);
-  const normalizedBody = withNormalizedBusinessType(normalizeConfigShape(rawBody), deployBusinessType);
+  const ref = db.collection("config").doc(clientId);
 
-  // Un error de forma o de semántica bloquea la escritura; los avisos vuelven sin bloquear.
-  const issues = validateConfig(normalizedBody);
-  if (hasBlockingIssues(issues)) return { ok: false, status: 422, error: "Config invalido", issues: issues.filter((i) => i.severity === "error") };
+  // CRM-04 (D-346, REV 12): leer lo guardado, armar el cuerpo con el horario del CRM y escribir, en una transacción. Si la dueña
+  // guarda un horario en el CRM entre la lectura y la escritura, Firestore repite la transacción con lo nuevo y no se pierde.
+  type Hecho = { r: ResultadoGuardado; guardadoRaw?: Obj | null; normalizedBody?: Obj; issues?: ReturnType<typeof validateConfig> };
+  const hecho = await enTransaccion<Hecho>(db, async (tx) => {
+    // Lo guardado: para conservar el horario del CRM (CRM-03) y para la auditoría. Si hay equipo en el cuerpo y no se puede leer lo
+    // guardado, no se escribe: escribir a ciegas pisaría el horario que cargó la dueña.
+    let guardadoRaw: Obj | null = null;
+    try {
+      const prev = await tx.get(ref);
+      guardadoRaw = prev.exists ? (prev.data() ?? {}) : null;
+    } catch (err) {
+      console.error("[guardarConfig] failed to read the saved config:", err);
+      if (Array.isArray((body as Obj).staff)) return { r: { ok: false, status: 503, error: "No se pudo leer lo guardado; el equipo no se guardó para no pisar el horario", issues: [] } };
+    }
+
+    const cuerpo: Obj = guardadoRaw && Array.isArray((body as Obj).staff) ? { ...(body as Obj), staff: conHorarioGuardado((body as Obj).staff, guardadoRaw.staff) } : (body as Obj);
+    const normalizedBody = withNormalizedBusinessType(normalizeConfigShape(cuerpo), deployBusinessType);
+
+    // Un error de forma o de semántica bloquea la escritura; los avisos vuelven sin bloquear.
+    const issues = validateConfig(normalizedBody);
+    if (hasBlockingIssues(issues)) return { r: { ok: false, status: 422, error: "Config invalido", issues: issues.filter((i) => i.severity === "error") } };
+
+    // IDIOMAS-01: sin mapas vacíos (un parche vacío no borra nada) y null → FieldValue.delete() sólo en ese campo.
+    tx.set(ref, paraFirestore(normalizedBody), { merge: true });
+    return { r: { ok: true, normalizedBusinessType: deployBusinessType, warnings: [] }, guardadoRaw, normalizedBody, issues };
+  });
+  if (!hecho.r.ok || !hecho.normalizedBody || !hecho.issues) return hecho.r;
+  const { guardadoRaw, normalizedBody, issues } = hecho;
 
   // El estado previo para la auditoría, en la forma normalizada: el log muestra lo que cambió en disco.
   const previousData: Obj = guardadoRaw ? normalizeConfigShape(guardadoRaw) : {};
-
-  // IDIOMAS-01: sin mapas vacíos (un parche vacío no borra nada) y null → FieldValue.delete() sólo en ese campo.
-  await db.collection("config").doc(clientId).set(paraFirestore(normalizedBody), { merge: true });
 
   try {
     const diff = diffConfig(previousData, normalizedBody);
