@@ -42,6 +42,9 @@ next-env.d.ts
 
 # local databases
 ruvector.db
+# memoria del plugin ruflo: sus hooks la escriben en la raíz del repo
+agentdb.rvf
+agentdb.rvf.lock
 
 # capturas y salidas de sesiones (limpieza-01, 2026-09-17)
 .playwright-mcp/
