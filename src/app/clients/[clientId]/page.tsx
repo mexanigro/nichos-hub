@@ -222,14 +222,17 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
     if (!data) return;
     setToggling(true);
     const newStatus = data.client.status === "suspended" ? "active" : "suspended";
-    await fetch("/api/clients", {
+    setKillError("");
+    const res = await fetch("/api/clients", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id: clientId, status: newStatus }),
     });
     setData((d) => d ? { ...d, client: { ...d.client, status: newStatus } } : d);
     setToggling(false);
-    setConfirmAction(null);
+    // 502: el estado se guardó pero Vercel no pausó/despausó; el modal queda abierto con el porqué.
+    if (res.ok) setConfirmAction(null);
+    else setKillError(((await res.json().catch(() => ({}))) as { error?: string }).error || `Error ${res.status}`);
   }
 
   async function killSwitch(paused: boolean) {
@@ -1151,12 +1154,17 @@ export default function ClientDetailPage({ params }: { params: Promise<{ clientI
                 </div>
                 <p className="mb-4 text-xs text-text-muted">
                   {client.status === "suspended"
-                    ? "Esto marca al cliente como activo en el sistema. No afecta el sitio en Vercel."
-                    : "Esto marca al cliente como suspendido en el sistema. El sitio en Vercel sigue funcionando normalmente. Usá el Kill Switch si querés apagar el sitio."}
+                    ? "Esto marca al cliente como activo y vuelve a prender su sitio en Vercel y su CRM."
+                    : "Esto marca al cliente como suspendido y apaga su sitio en Vercel y su CRM."}
                 </p>
+                {killError && (
+                  <p className="mb-4 rounded-lg bg-danger-muted px-3 py-2 text-xs text-danger">
+                    {killError}
+                  </p>
+                )}
                 <div className="flex justify-end gap-2">
                   <button
-                    onClick={() => setConfirmAction(null)}
+                    onClick={() => { setConfirmAction(null); setKillError(""); }}
                     className="rounded-lg px-3 py-2 text-xs font-medium text-text-secondary hover:text-text"
                   >
                     Cancelar

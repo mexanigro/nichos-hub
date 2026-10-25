@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { withOwner } from "@/lib/auth";
 import { db } from "@/lib/firebase-admin";
 import { getHealthMap } from "@/lib/repos/health";
+import { accionDeEstado, aplicarAccionEnVercel, type AccionVercel } from "@/lib/estado-cliente";
 import type { ClientWithHealth, HealthStatus } from "@/types";
 
 export const GET = withOwner(async () => {
@@ -129,13 +130,17 @@ export const PUT = withOwner(async (req) => {
     return NextResponse.json({ error: "No hay campos válidos para actualizar" }, { status: 400 });
   }
 
+  let accion: AccionVercel | null = null;
+  let vercelProjectId: string | undefined;
   try {
+    const antes = (await db.collection("hub_clients").doc(id).get()).data();
     await db.collection("hub_clients").doc(id).update(updates);
 
     // If status changed, sync to clients/{clientId} for template Firestore rules.
-    if (updates.status) {
-      const snap = await db.collection("hub_clients").doc(id).get();
-      const clientId = snap.data()?.clientId;
+    if (typeof updates.status === "string") {
+      accion = accionDeEstado(antes?.status, updates.status);
+      vercelProjectId = (updates.vercelProjectId ?? antes?.vercelProjectId) as string | undefined;
+      const clientId = antes?.clientId;
       if (clientId) {
         await db.collection("clients").doc(clientId).set(
           { status: updates.status },
@@ -146,6 +151,19 @@ export const PUT = withOwner(async (req) => {
   } catch (err) {
     console.error("[api/clients PUT]", err);
     return NextResponse.json({ error: "Error al actualizar cliente" }, { status: 500 });
+  }
+
+  // CRM-05 (D-361): suspender o archivar apaga la web; volver a active la prende.
+  if (accion) {
+    const token = process.env.VERCEL_TOKEN;
+    if (!vercelProjectId || !token) {
+      return NextResponse.json({ error: `Estado guardado, pero la web no se pudo ${accion === "pausar" ? "pausar" : "despausar"}: ${!vercelProjectId ? "el cliente no tiene Vercel Project ID" : "VERCEL_TOKEN no configurado"}` }, { status: 502 });
+    }
+    const r = await aplicarAccionEnVercel(accion, { vercelProjectId, token, teamId: process.env.VERCEL_TEAM_ID });
+    if (!r.ok) {
+      console.error("[api/clients PUT] Vercel", accion, r.status);
+      return NextResponse.json({ error: `Estado guardado, pero Vercel respondió ${r.status} al ${accion === "pausar" ? "pausar" : "despausar"} la web` }, { status: 502 });
+    }
   }
   return NextResponse.json({ ok: true });
 });

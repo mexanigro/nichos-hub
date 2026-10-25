@@ -51,8 +51,9 @@ test("3 · el alta pide el bootstrap del dueño en admin_users del tenant", () =
   assert.equal(buildProvisionDocs({ ...base, adminEmail: undefined, email: undefined }).ownerBootstrap, null);
 });
 
-test("4 · el destinatario del aviso al dueño cae a hub_clients.adminEmail cuando config no lo tiene", () => {
-  assert.equal(resolveOwnerNotificationEmail({ adminEmail: "a@x.co.il" }, { adminEmail: "b@x.co.il" }), "a@x.co.il");
+test("4 · el destinatario del aviso al dueño es hub_clients.adminEmail; el del config sólo si el hub no tiene (D-367)", () => {
+  assert.equal(resolveOwnerNotificationEmail({ adminEmail: "a@x.co.il" }, { adminEmail: "b@x.co.il" }), "b@x.co.il");
+  assert.equal(resolveOwnerNotificationEmail({ adminEmail: "a@x.co.il" }, {}), "a@x.co.il");
   assert.equal(resolveOwnerNotificationEmail({}, { adminEmail: "b@x.co.il" }), "b@x.co.il");
   assert.equal(resolveOwnerNotificationEmail({}, {}), undefined);
 });

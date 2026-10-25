@@ -90,6 +90,7 @@ export function buildProvisionDocs(input: ProvisionInput): ProvisionDocs {
 
 /** Destinatario del aviso de reserva al dueño que deploy.ts propaga como BUSINESS_OWNER_EMAIL. */
 export function resolveOwnerNotificationEmail(configData: Record<string, unknown>, hubData?: Record<string, unknown>): string | undefined {
-  // CRM-04 (D-341): nunca a un email de ejemplo; si el del config lo es, cae al del hub.
-  return [normalizeEmail(configData.adminEmail), normalizeEmail(hubData?.adminEmail)].find((e) => e && !esEmailReservado(e)) || undefined;
+  // CRM-05 (D-367): el del hub primero; el del config lo escribe el negocio (la gerente, desde CRM-04) y desviaría los avisos.
+  // CRM-04 (D-341): nunca a un email de ejemplo.
+  return [normalizeEmail(hubData?.adminEmail), normalizeEmail(configData.adminEmail)].find((e) => e && !esEmailReservado(e)) || undefined;
 }
