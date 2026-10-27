@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "next lint",
     "prepare": "git config core.hooksPath .githooks && git config core.autocrlf false || exit 0",
-    "test": "node --experimental-strip-types --test \"src/**/*.test.ts\" \"tests/*.test.ts\"",
+    "test": "node --experimental-strip-types --test \"src/**/*.test.ts\" \"tests/!(verdad-0*|contrato-hooks|arreglos-0[12]-d|arreglos-03-[ab]|conexion-0[14-9]-d|e2e-01-d|idiomas-01-d|preset-01-d).test.ts\"",
+    "test:verdad": "node --experimental-strip-types --test \"tests/@(verdad-0*|contrato-hooks|arreglos-0[12]-d|arreglos-03-[ab]|conexion-0[14-9]-d|e2e-01-d|idiomas-01-d|preset-01-d).test.ts\"",
+    "test:commit": "node tools/tests-del-commit.mjs",
     "test:client-config": "node --experimental-strip-types --test src/lib/client-config/services.test.ts",
     "capture-wizard-refs": "node scripts/capture-wizard-refs.mjs"
   },
